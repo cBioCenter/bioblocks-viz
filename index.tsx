@@ -1,14 +1,19 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { Chart } from 'react-google-charts';
-
-import { ContactContainer } from './src/container/ContactContainer';
+import { NGLContainer } from './src/container/NGLContainer';
 
 ReactDOM.render(
   <div id="Contact Root">
     <div>Hi!</div>
-    <ContactContainer />
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-around',
+      }}
+    >
+      <NGLContainer />
+    </div>
   </div>,
   document.getElementById('root'),
 );
