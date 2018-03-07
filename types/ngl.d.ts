@@ -6,9 +6,10 @@
 // tslint:disable:max-classes-per-file
 declare module 'ngl' {
   import { Signal } from 'signals';
-  import { Box3, Color, Euler, Matrix4, Quaternion, Vector3 } from 'three';
+  import { Box3, Color, Euler, Matrix4, Quaternion, Vector2, Vector3 } from 'three';
 
   export class Animation {
+    // Properties
     public alpha: number;
     public controls: ViewerControls;
     public duration: number;
@@ -22,6 +23,7 @@ declare module 'ngl' {
   }
 
   export class AnimationBehavior {
+    // Properties
     public animationControls: AnimationControls;
     public stage: Stage;
     public viewer: Viewer;
@@ -30,6 +32,7 @@ declare module 'ngl' {
   }
 
   export class AnimationControls {
+    // Properties
     public animationList: Animation[];
     public controls: ViewerControls;
     public finishedList: Animation[];
@@ -82,6 +85,7 @@ declare module 'ngl' {
   }
 
   export class AnimationList {
+    // Properties
     // tslint:disable:variable-name
     public _list: Animation[];
     public _resolveList: Array<() => {}>;
@@ -100,6 +104,7 @@ declare module 'ngl' {
   }
 
   export class Annotation {
+    // Properties
     public component: Component;
     public element: HTMLElement;
     public offsetX: number;
@@ -127,7 +132,7 @@ declare module 'ngl' {
   }
 
   export class Component {
-    // Fields
+    // Properties
     public annotationList: Annotation[];
     public controls: ComponentControls;
     public matrix: Matrix4;
@@ -190,6 +195,7 @@ declare module 'ngl' {
   }
 
   export class ComponentControls {
+    // Properties
     public component: Component;
     public signals: {
       changed: Signal;
@@ -205,9 +211,216 @@ declare module 'ngl' {
     public spin(axis: Vector3, angle: number): void;
   }
 
+  export class Counter {
+    // Properties
+    public count: number;
+    public signals: {
+      countChanged: Signal;
+    };
+
+    // Methods
+    public change(delta: number): void;
+    public clear(): void;
+    public decrement(): void;
+    public dispose(): void;
+    public increment(): void;
+    public listen(counter: Counter): void;
+    public onZeroOnce(callback: () => void, context?: any): void;
+    public unlisten(counter: Counter): void;
+  }
+
+  export type KeyActionCallback = (stage: Stage) => void;
+
+  export class KeyBehavior {
+    // Properties
+    public controls: KeyControls;
+    public domElement: HTMLCanvasElement;
+    public stage: Stage;
+    public viewer: Viewer;
+
+    constructor(stage: Stage);
+
+    // Methods
+    public _focusDomElement(): void;
+    public _onKeydown(): void;
+    public _onKeypress(event: KeyboardEvent): void;
+    public _onKeyup(): void;
+    public dispose(): void;
+  }
+
+  type KeyActionPreset = Array<[string, KeyActionCallback]>;
+  export type KeyControlPreset = 'default';
+
+  export interface IKeyControlsParams {
+    preset?: KeyActionPreset;
+    disabled?: boolean;
+  }
+
+  interface IKeyAction {
+    keyCode: number;
+    callback: KeyActionCallback;
+  }
+
+  export class KeyControls {
+    // Properties
+    public actionList: IKeyAction[];
+    public disabled: boolean;
+    public stage: Stage;
+
+    constructor(stage: Stage, params?: IKeyControlsParams);
+
+    // Methods
+    public add(char: string, callback: KeyActionCallback): void;
+    public clear(): void;
+    public preset(name: KeyControlPreset): void;
+    public remove(char: string, callback: KeyActionCallback): void;
+    public run(keyCode: number): void;
+  }
+
+  export class MouseBehavior {
+    // Properties
+    public controls: MouseControls;
+    public domElement: HTMLCanvasElement;
+    public mouse: MouseObserver;
+    public stage: Stage;
+    public viewer: Viewer;
+
+    constructor(stage: Stage);
+
+    // Methods
+    public _onClick(x: number, y: number): void;
+    public _onDblclick(x: number, y: number): void;
+    public _onDrag(dx: number, dy: number): void;
+    public _onHover(x: number, y: number): void;
+    public _onMove(): void;
+    public _onScroll(delta: number): void;
+    public dispose(): void;
+  }
+
+  type ScrollCallback = (stage: Stage, delta: number) => void;
+  type DragCallback = (stage: Stage, dx: number, dy: number) => void;
+  type PickCallback = (stage: Stage, pickingProxy: PickingProxy) => void;
+
+  export type MouseActionCallback = ScrollCallback | DragCallback | PickCallback;
+  type MouseActionPreset = Array<[string, MouseActionCallback]>;
+
+  export type MouseActionType = '' | 'scroll' | 'drag' | 'click' | 'doubleClick' | 'hover' | 'clickPick' | 'hoverPick';
+  export interface IMouseAction {
+    type: MouseActionType;
+    key: number;
+    button: number;
+    callback: MouseActionCallback;
+  }
+
+  export type MouseControlPreset = 'default' | 'pymol' | 'coot' | 'astexviewer';
+  export interface IMouseControlsParams {
+    preset?: MouseControlPreset;
+    disabled?: boolean;
+  }
+
+  export class MouseControls {
+    // Properties
+    public actionList: IMouseAction[];
+    public disabled: boolean;
+    public mouse: MouseObserver;
+    public stage: Stage;
+
+    constructor(stage: Stage, params?: IMouseControlsParams);
+
+    // Methods
+    public add(triggerStr: string, callback: MouseActionCallback): void;
+    public clear(): void;
+    public preset(name: MouseControlPreset): void;
+    public remove(triggerStr: string, callback: MouseActionCallback): void;
+    public run(type: MouseActionType, ...args: any[]): void;
+  }
+
+  export interface IMouseParams {
+    hoverTimeout?: number;
+    handleScroll?: boolean;
+    doubleClickSpeed?: number;
+  }
+
+  export class MouseObserver {
+    // Properties
+    public altKey: boolean;
+    public buttons: undefined | number;
+    public canvasPosition: Vector2;
+    public controls: MouseControls;
+    public ctrlKey: boolean;
+    public domElement: HTMLCanvasElement;
+    public doubleClickPending: boolean;
+    public doubleClickSpeed: number;
+    public down: Vector2;
+    public handleScroll: boolean;
+    public hoverTimeout: number;
+    public hovering: boolean;
+    public lastClicked: number;
+    public lastMoved: number;
+    public lastTouchDistance: number;
+    public metaKey: boolean;
+    public mouse: MouseObserver;
+    public moving: boolean;
+    public overElement: boolean;
+    public position: Vector2;
+    public pressed?: boolean;
+    public prevClickCP: Vector2;
+    public prevPosition: Vector2;
+    public scrolled: boolean;
+    public shiftKey: boolean;
+    public signals: {
+      clicked: Signal;
+      doubleClicked: Signal;
+      dragged: Signal;
+      dropped: Signal;
+      hovered: Signal;
+      moved: Signal;
+      scrolled: Signal;
+    };
+    public viewer: Viewer;
+    public which?: number;
+
+    constructor(domElement: HTMLCanvasElement, params?: IMouseParams);
+
+    // Accessors
+    public key(): number;
+
+    // Methods
+    public _distance(): number;
+    public _listen(): void;
+    public _onContextmenu(event: MouseEvent): void;
+    public _onMousedown(event: MouseEvent): void;
+    public _onMousemove(event: MouseEvent): void;
+    public _onMouseup(event: MouseEvent): void;
+    public _onMousewheel(event: MouseWheelEvent): void;
+    public _onTouchend(event: TouchEvent): void;
+    public _onTouchmove(event: TouchEvent): void;
+    public _onTouchstart(event: TouchEvent): void;
+    public _setCanvasPosition(event: any): void;
+    public _setKeys(event: MouseEvent | TouchEvent): void;
+    public dispose(): void;
+    public setParameters(params?: IMouseParams): void;
+  }
+
+  export class PickingBehavior {
+    // Properties
+    public controls: MouseControls;
+    public mouse: MouseObserver;
+    public stage: Stage;
+    public viewer: Viewer;
+
+    constructor(stage: Stage);
+
+    // Methods
+    public _onClick(x: number, y: number): void;
+    public _onHover(x: number, y: number): void;
+    public dispose(): void;
+  }
+
   export class Representation {
     constructor(object: any, viewer: any, params: any);
 
+    // Methods
     public attach(callback: any): void;
     public build(updateWhat: any): void;
     public clear(): void;
@@ -244,6 +457,7 @@ declare module 'ngl' {
   }
 
   export class RepresentationElement {
+    // Properties
     public parameters: IRepresentationElementParameters;
     public parent: Component;
     public repr: Representation;
@@ -299,7 +513,7 @@ declare module 'ngl' {
     impostor: boolean;
     lightColor: string | number;
     lightIntensity: number;
-    mousePreset: 'default' | 'pymol' | 'coot' | 'astexviewer';
+    mousePreset: MouseControlPreset;
     panSpeed: number;
     quality: 'high' | 'medium' | 'low' | 'auto';
     rotateSpeed: number;
@@ -310,32 +524,33 @@ declare module 'ngl' {
   }
 
   export class Stage {
+    // Properties
     public animationBehavior: AnimationBehavior;
     public animationControls: AnimationControls;
     public compList: Component[];
     public defaultFileParams: object;
-    // public keyBehavior: KeyBehavior;
-    // public keyControls: KeyControls;
+    public keyBehavior: KeyBehavior;
+    public keyControls: KeyControls;
     public lastFullscreenElement: HTMLElement;
     public logList: string[];
-    // public mouseBehavior: MouseBehavior;
-    // public mouseControls: MouseControls;
-    // public mouseObserver: MouseObserver;
+    public mouseBehavior: MouseBehavior;
+    public mouseControls: MouseControls;
+    public mouseObserver: MouseObserver;
     public parameters: IStageParameters;
-    // public pickingBehavior: PickingBehavior;
-    // public pickingControls: PickingControls;
+    public pickingBehavior: PickingBehavior;
     public rockAnimation: Animation;
     public spinAnimation: Animation;
-    // public tasks: Counter;
+    public tasks: Counter;
     public tooltip: HTMLElement;
-    // public trackballControls: TrackballControls;
-    // public transformAtom: AtomProxy;
+    public trackballControls: TrackballControls;
+    public transformAtom: AtomProxy;
     public transformComponent: Component;
     public viewer: Viewer;
     public viewerControls: ViewerControls;
 
     constructor(idOrElement: string | HTMLElement, params?: Partial<IStageParameters>);
 
+    // Properties
     public addComponent(component: any): undefined;
     public addComponentFromObject(object: any, params?: any): any;
     public autoView(duration: number): undefined;
@@ -363,6 +578,7 @@ declare module 'ngl' {
   }
 
   export class Stats {
+    // Properties
     public avgDuration: number;
     public count: number;
     public currentTime: number;
@@ -383,6 +599,37 @@ declare module 'ngl' {
     public begin(): void;
     public end(): number;
     public update(): void;
+  }
+
+  export interface ITrackballControlsParams {
+    rotateSpeed?: number;
+    zoomSpeed?: number;
+    panSpeed?: number;
+  }
+
+  export class TrackballControls {
+    // Properties
+    public controls: ViewerControls;
+    public mouse: MouseObserver;
+    public panSpeed: number;
+    public rotateSpeed: number;
+    public stage: Stage;
+    public viewer: Viewer;
+    public zoomSpeed: number;
+
+    constructor(stage: Stage, params?: ITrackballControlsParams);
+
+    // Accessors
+    public atom(): undefined | AtomProxy;
+    public component(): undefined | Component;
+
+    // Methods
+    public pan(x: number, y: number): void;
+    public panAtom(x: number, y: number): void;
+    public panComponent(x: number, y: number): void;
+    public rotate(x: number, y: number): void;
+    public rotateComponent(x: number, y: number): void;
+    public zoom(delta: number): void;
   }
 
   export class Viewer {
