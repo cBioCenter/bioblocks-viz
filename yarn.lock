@@ -2,10 +2,6 @@
 # yarn lockfile v1
 
 
-"3dmol@^1.3.2":
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/3dmol/-/3dmol-1.3.2.tgz#6d8462b3870981cf64a84fa87ff0e4061bc1f92a"
-
 "@babel/code-frame@^7.0.0-beta.35":
   version "7.0.0-beta.40"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.0.0-beta.40.tgz#37e2b0cf7c56026b4b21d3927cadf81adec32ac6"
@@ -34,6 +30,10 @@
   dependencies:
     "@types/minimatch" "*"
     "@types/webpack" "*"
+
+"@types/google.visualization@^0.0.41":
+  version "0.0.41"
+  resolved "https://registry.yarnpkg.com/@types/google.visualization/-/google.visualization-0.0.41.tgz#cd4858a66fd039e31586ef3989c59ab0e42d0392"
 
 "@types/html-minifier@*":
   version "3.5.1"
@@ -77,6 +77,10 @@
   version "0.2.28"
   resolved "https://registry.yarnpkg.com/@types/relateurl/-/relateurl-0.2.28.tgz#6bda7db8653fa62643f5ee69e9f69c11a392e3a6"
 
+"@types/signals@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@types/signals/-/signals-1.0.1.tgz#03bef9a51a7e07b05984d9f44803ac99c1c7ceab"
+
 "@types/source-map@0.5.2":
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/@types/source-map/-/source-map-0.5.2.tgz#973459e744cc7445c85b97f770275b479b138e08"
@@ -84,6 +88,12 @@
 "@types/tapable@*":
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/@types/tapable/-/tapable-0.2.4.tgz#8181a228da46185439300e600c5ae3b3b3982585"
+
+"@types/three@^0.89.11":
+  version "0.89.11"
+  resolved "https://registry.yarnpkg.com/@types/three/-/three-0.89.11.tgz#c2e92e8bb6f8b4197d64b3db29e9be7845ceec55"
+  dependencies:
+    "@types/webvr-api" "*"
 
 "@types/uglify-js@*":
   version "2.6.30"
@@ -99,6 +109,10 @@
     "@types/tapable" "*"
     "@types/uglify-js" "*"
     source-map "^0.6.0"
+
+"@types/webvr-api@*":
+  version "0.0.31"
+  resolved "https://registry.yarnpkg.com/@types/webvr-api/-/webvr-api-0.0.31.tgz#f6061fe88a035d34a8b6a0c55f8758901ec8a08e"
 
 abab@^1.0.4:
   version "1.0.4"
@@ -1650,6 +1664,14 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
+create-react-class@^15.6.0:
+  version "15.6.3"
+  resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.6.3.tgz#2d73237fb3f970ae6ebe011a9e66f46dbca80036"
+  dependencies:
+    fbjs "^0.8.9"
+    loose-envify "^1.3.1"
+    object-assign "^4.1.1"
+
 cross-spawn@^5.0.1, cross-spawn@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
@@ -2382,7 +2404,7 @@ faye-websocket@~0.11.0:
   dependencies:
     websocket-driver ">=0.5.1"
 
-fbjs@^0.8.16:
+fbjs@^0.8.16, fbjs@^0.8.9:
   version "0.8.16"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.16.tgz#5e67432f550dc41b572bf55847b8aca64e5337db"
   dependencies:
@@ -3989,6 +4011,10 @@ loader-utils@^1.0.2, loader-utils@^1.1.0:
     emojis-list "^2.0.0"
     json5 "^0.5.0"
 
+loadjs@^3.3.1:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/loadjs/-/loadjs-3.5.2.tgz#add0e0e0322859840b362598f762c02f5539ce0b"
+
 locate-path@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/locate-path/-/locate-path-2.0.0.tgz#2b568b265eec944c6d9c0de9c3dbbbca0354cd8e"
@@ -4412,9 +4438,9 @@ neo-async@^2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.5.0.tgz#76b1c823130cca26acfbaccc8fbaf0a2fa33b18f"
 
-ngl@^0.10.4:
-  version "0.10.4"
-  resolved "https://registry.yarnpkg.com/ngl/-/ngl-0.10.4.tgz#118562f3344b8dbbd730411e82d4b5cc2229a8e8"
+ngl@^2.0.0-dev.28:
+  version "2.0.0-dev.28"
+  resolved "https://registry.yarnpkg.com/ngl/-/ngl-2.0.0-dev.28.tgz#f367fb82f31470d7bd2498442842edfa2326595c"
 
 nice-try@^1.0.4:
   version "1.0.4"
@@ -5040,7 +5066,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.6.0:
+prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.1.tgz#36644453564255ddda391191fb3a125cbdf654ca"
   dependencies:
@@ -5189,6 +5215,15 @@ rc@~1.1.6:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-dom@^15.3.2:
+  version "15.6.2"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.6.2.tgz#41cfadf693b757faf2708443a1d1fd5a02bef730"
+  dependencies:
+    fbjs "^0.8.9"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.0"
+    prop-types "^15.5.10"
+
 react-dom@^16.2.0:
   version "16.2.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.2.0.tgz#69003178601c0ca19b709b33a83369fe6124c044"
@@ -5197,6 +5232,26 @@ react-dom@^16.2.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.0"
+
+react-google-charts@^1.5.5:
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/react-google-charts/-/react-google-charts-1.5.5.tgz#ffeaeca752a820a05029bd6a23516be2432d7df5"
+  dependencies:
+    debug "^2.2.0"
+    loadjs "^3.3.1"
+    prop-types "^15.5.8"
+    react "^15.3.2"
+    react-dom "^15.3.2"
+
+react@^15.3.2:
+  version "15.6.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-15.6.2.tgz#dba0434ab439cfe82f108f0f511663908179aa72"
+  dependencies:
+    create-react-class "^15.6.0"
+    fbjs "^0.8.9"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.0"
+    prop-types "^15.5.10"
 
 react@^16.2.0:
   version "16.2.0"
@@ -6345,6 +6400,10 @@ tslint@^5.9.1:
     semver "^5.3.0"
     tslib "^1.8.0"
     tsutils "^2.12.1"
+
+"tsnejs@https://github.com/karpathy/tsnejs":
+  version "0.0.0"
+  resolved "https://github.com/karpathy/tsnejs#13ece5d7e751a5180a59ca396013e800e1059c20"
 
 tsutils@2.8.0:
   version "2.8.0"

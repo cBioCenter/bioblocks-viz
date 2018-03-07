@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { NGLContainer } from './src/container/NGLContainer';
-import { ThreeDimMolContainer } from './src/container/ThreeDimMolContainer';
+import { TContainer } from './src/container/TContainer';
 
 ReactDOM.render(
   <div id="Contact Root">
@@ -13,7 +13,7 @@ ReactDOM.render(
       }}
     >
       <NGLContainer />
-      <ThreeDimMolContainer />
+      <TContainer />
     </div>
   </div>,
   document.getElementById('root'),
