@@ -38,10 +38,15 @@ export class ThreeDimMolContainer extends React.Component<any, I3DMolContainerSt
   private render3dMol() {
     if (this.container) {
       const glviewer = threeDimMol.createViewer(jQuery(this.container));
-      threeDimMol.download('pdb:1MO8', glviewer, { multimodel: true, frames: true }, () => {
-        glviewer.setStyle({}, { cartoon: { color: 'spectrum' } });
-        glviewer.render();
-      });
+      threeDimMol.download(
+        'pdb:1fqg',
+        glviewer,
+        { multimodel: true, frames: true, pdbUri: 'http://localhost:8080/assets' },
+        () => {
+          glviewer.setStyle({}, { cartoon: { color: 'spectrum' } });
+          glviewer.render();
+        },
+      );
 
       glviewer.render();
 
