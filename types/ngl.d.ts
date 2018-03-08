@@ -125,6 +125,10 @@ declare module 'ngl' {
     public updateVisibility(): void;
   }
 
+  export class AtomProxy {}
+
+  export class BondProxy {}
+
   export interface IComponentParameters {
     name: string;
     status: string;
@@ -194,6 +198,23 @@ declare module 'ngl' {
     public updateRepresentations(what: any): void;
   }
 
+  export class ComponentCollection {
+    // Properties
+    public list: Component[];
+
+    constructor(list?: Component[]);
+
+    // Accessories
+    public first(): undefined | Component;
+
+    // Methods
+    public _remove(elm: Component): void;
+    public addRepresentation(name: string, params: any): this;
+    public autoView(duration: number): this;
+    public dispose(): this;
+    public forEach(fn: (x: Component) => any): this;
+  }
+
   export class ComponentControls {
     // Properties
     public component: Component;
@@ -229,6 +250,13 @@ declare module 'ngl' {
     public unlisten(counter: Counter): void;
   }
 
+  export interface IImageParameters {
+    antialias: boolean;
+    factor: number;
+    onProgress: undefined | (() => void);
+    transparent: boolean;
+    trim: boolean;
+  }
   export type KeyActionCallback = (stage: Stage) => void;
 
   export class KeyBehavior {
@@ -275,6 +303,16 @@ declare module 'ngl' {
     public preset(name: KeyControlPreset): void;
     public remove(char: string, callback: KeyActionCallback): void;
     public run(keyCode: number): void;
+  }
+
+  export interface ILoaderParameters {
+    ext: string; // file extension, determines file type
+    compressed: string | boolean; // flag data as compressed
+    binary: boolean; // flag data as binary
+    name: string; // set data name
+    dir: string;
+    path: string;
+    protocol: string;
   }
 
   export class MouseBehavior {
@@ -417,6 +455,93 @@ declare module 'ngl' {
     public dispose(): void;
   }
 
+  interface IInstanceData {
+    id: number;
+    name: number | string;
+    matrix: Matrix4;
+  }
+
+  export interface IPicker {
+    array: any[];
+    type(): string;
+    data(): object;
+  }
+
+  export interface IPickingData {
+    pid: number;
+    picker: IPicker;
+    instance: IInstanceData;
+    controls: ViewerControls;
+    mouse: MouseObserver;
+  }
+
+  export class PickingProxy {
+    // Properties
+    public controls: ViewerControls;
+    public instance: IInstanceData;
+    public mouse: MouseObserver;
+    public picker: IPicker;
+    public pid: number;
+    public stage: Stage;
+
+    constructor(pickingData: IPickingData, stage: Stage);
+
+    // Accessors
+    public altKey(): boolean;
+    public arrow(): ShapePrimitive;
+    public atom(): AtomProxy;
+    public axes(): any;
+    public bond(): BondProxy;
+    public box(): ShapePrimitive;
+    public canvasPosition(): Vector2;
+    public clash(): {
+      sele1: string;
+      sele2: string;
+    };
+    public closeAtom(): undefined | AtomProxy;
+    public closestBondAtom(): undefined | AtomProxy;
+    public component(): Component;
+    public cone(): ShapePrimitive;
+    public contact(): object;
+    public ctrlKey(): boolean;
+    public cylinder(): ShapePrimitive;
+    public distance(): BondProxy;
+    public ellipsoid(): ShapePrimitive;
+    public mesh(): {
+      name: string;
+      serial: number;
+      shape: Shape;
+    };
+    public metaKey(): boolean;
+    public object(): any;
+    public octahedron(): ShapePrimitive;
+    public point(): ShapePrimitive;
+    public position(): Vector3;
+    public shiftKey(): boolean;
+    public slice(): object;
+    public sphere(): ShapePrimitive;
+    public surface(): object;
+    public tetrahedron(): ShapePrimitive;
+    public torus(): ShapePrimitive;
+    public type(): string;
+    public unitcell(): {
+      structure: Structure;
+      unitcell: Unitcell;
+    };
+    public unknown(): any;
+    public volume(): {
+      value: number;
+      volume: Volume;
+    };
+    public wideline(): ShapePrimitive;
+
+    // Methods
+    public _objectIfType(type: string): any;
+    public getLabel(): string;
+  }
+
+  export type RenderQualityType = 'auto' | 'low' | 'medium' | 'high';
+
   export class Representation {
     constructor(object: any, viewer: any, params: any);
 
@@ -441,6 +566,8 @@ declare module 'ngl' {
     public update(): void;
     public updateParameters(bufferParams: object, what: any): void;
   }
+
+  export class RepresentationCollection {}
 
   export interface IRepresentationElementParameters {
     name: string;
@@ -498,6 +625,75 @@ declare module 'ngl' {
     public visible(): boolean;
   }
 
+  export interface IShapeParameters {
+    aspectRatio: number;
+    sphereDetail: number;
+    radialSegments: number;
+    disableImpostor: boolean;
+    openEnded: boolean;
+    dashedCylinder: boolean;
+    labelParams: Partial<
+      {
+        fontFamily: 'sans-serif' | 'monospace' | 'serif';
+        fontStyle: 'normal' | 'italic';
+        fontWeight: 'normal' | 'bold';
+        fontSize: number;
+        xOffset: number;
+        yOffset: number;
+        zOffset: number;
+        attachment:
+          | 'bottom-left'
+          | 'bottom-center'
+          | 'bottom-right'
+          | 'middle-left'
+          | 'middle-center'
+          | 'middle-right'
+          | 'top-left'
+          | 'top-center'
+          | 'top-right';
+        showBorder: boolean;
+        borderColor: string | number;
+        borderWidth: number;
+        showBackground: boolean;
+        backgroundColor: string | number;
+        backgroundMargin: number;
+        backgroundOpacity: number;
+        forceTransparent: boolean;
+        fixedSize: boolean;
+      } & {
+        opaqueBack: boolean;
+        side: 'double' | 'front' | 'back';
+        opacity: number;
+        depthWrite: boolean;
+        clipNear: number;
+        clipRadius: number;
+        clipCenter: any;
+        flatShaded: boolean;
+        wireframe: boolean;
+        roughness: number;
+        metalness: number;
+        diffuse: number;
+        diffuseInterior: boolean;
+        useInteriorColor: boolean;
+        interiorColor: number;
+        interiorDarkening: number;
+        forceTransparent: boolean;
+        matrix: any;
+        disablePicking: boolean;
+        sortParticles: boolean;
+        background: boolean;
+      }
+    >;
+    pointSize: number;
+    sizeAttenuation: boolean;
+    useTexture: boolean;
+    lineWidth: number;
+  }
+
+  export class Shape {
+    constructor(name?: string, params?: Partial<IShapeParameters>);
+  }
+
   interface IStageParameters {
     ambientColor: string | number;
     ambientIntensity: number;
@@ -523,6 +719,8 @@ declare module 'ngl' {
     zoomSpeed: number;
   }
 
+  export class ShapePrimitive {}
+
   export class Stage {
     // Properties
     public animationBehavior: AnimationBehavior;
@@ -539,6 +737,14 @@ declare module 'ngl' {
     public parameters: IStageParameters;
     public pickingBehavior: PickingBehavior;
     public rockAnimation: Animation;
+    public signals: {
+      clicked: Signal;
+      componentAdded: Signal;
+      componentRemoved: Signal;
+      fullscreenChanged: Signal;
+      hovered: Signal;
+      parametersChanged: Signal;
+    };
     public spinAnimation: Animation;
     public tasks: Counter;
     public tooltip: HTMLElement;
@@ -551,30 +757,66 @@ declare module 'ngl' {
     constructor(idOrElement: string | HTMLElement, params?: Partial<IStageParameters>);
 
     // Properties
-    public addComponent(component: any): undefined;
-    public addComponentFromObject(object: any, params?: any): any;
-    public autoView(duration: number): undefined;
-    public defaultFileRepresentation(object: any): undefined;
-    public dispose(): undefined;
-    public eachComponent(callback: () => void, type: string): undefined;
-    public eachRepresentation(callback: () => void, type: string): undefined;
-    public getAnythingByName(name: string | RegExp): any[];
-    public getComponentsByName(name: string | RegExp, type: string): any[];
-    public getComponentsByObject(object: object): any[];
-    public getParameters(): IStageParameters;
-    public getRepresentationsByName(name: string | RegExp, type: string): any[];
-    public handleResize(): undefined;
-    public loadFile(path: string | File | Blob, params?: any): Promise<any>;
-    public makeImage(params: any): Promise<any>;
-    public removeAllComponents(type: string): undefined;
-    public removeComponent(component: any): undefined;
-    public setParameters(params: IStageParameters): Stage;
-    public setRock(flag: boolean): undefined;
-    public setSize(width: string, height: string): undefined;
-    public setSpin(flag: boolean): undefined;
-    public toggleFullscreen(element: Element): undefined;
-    public toggleRock(): undefined;
-    public toggleSpin(): undefined;
+    public addComponent(component: Component): void;
+    public addComponentFromObject(
+      object: Structure | Surface | Volume | Shape,
+      params?: Partial<IComponentParameters>,
+    ): any;
+    public autoView(duration?: undefined | number): void;
+    public defaultFileRepresentation(component: Component): void;
+    public dispose(): void;
+    public eachComponent(callback: () => void, type?: undefined | string): void;
+    public eachRepresentation(callback: () => void, type?: undefined | string): void;
+    public getBox(): Box3;
+    public getCenter(optionalTarget?: Vector3): Vector3;
+    public getComponentsByName(name: string | RegExp): ComponentCollection;
+    public getComponentsByObject(object: Structure | Surface | Volume | Shape): ComponentCollection;
+    public getParameters(): {
+      ambientColor: string | number;
+      ambientIntensity: number;
+      backgroundColor: string | number;
+      cameraFov: number;
+      cameraType: 'perspective' | 'orthographic' | 'stereo';
+      clipDist: number;
+      clipFar: number;
+      clipNear: number;
+      fogFar: number;
+      fogNear: number;
+      hoverTimeout: number;
+      impostor: boolean;
+      lightColor: string | number;
+      lightIntensity: number;
+      mousePreset: 'default' | 'pymol' | 'coot' | 'astexviewer';
+      panSpeed: number;
+      quality: 'high' | 'medium' | 'low' | 'auto';
+      rotateSpeed: number;
+      sampleLevel: number;
+      tooltip: boolean;
+      workerDefault: boolean;
+      zoomSpeed: number;
+    };
+    public getRepresentationsByName(name: string | RegExp): RepresentationCollection;
+    public getZoom(): number;
+    public getZoomForBox(boundingBox: Box3): number;
+    public handleResize(): void;
+    public loadFile(path: string | File | Blob, params?: Partial<IStageLoadFileParams>): any;
+    public loadScript(path: string | File | Blob): any;
+    public log(msg: string): void;
+    public makeImage(params?: Partial<IImageParameters>): Promise<Blob>;
+    public measureClear(): void;
+    public measureUpdate(): void;
+    public removeAllComponents(): void;
+    public removeComponent(component: Component): void;
+    public setFocus(value: number): void;
+    public setImpostor(value: boolean): void;
+    public setParameters(params?: Partial<IStageParameters>): this;
+    public setQuality(value: RenderQualityType): void;
+    public setRock(flag: boolean): void;
+    public setSize(width: string, height: string): void;
+    public setSpin(flag: boolean): void;
+    public toggleFullscreen(element: HTMLElement): void;
+    public toggleRock(): void;
+    public toggleSpin(): void;
   }
 
   export class Stats {
@@ -600,6 +842,14 @@ declare module 'ngl' {
     public end(): number;
     public update(): void;
   }
+
+  export interface IStageLoadFileParams extends ILoaderParameters {
+    defaultRepresentation: boolean;
+  }
+
+  export class Structure {}
+
+  export class Surface {}
 
   export interface ITrackballControlsParams {
     rotateSpeed?: number;
@@ -632,6 +882,8 @@ declare module 'ngl' {
     public zoom(delta: number): void;
   }
 
+  export class Unitcell {}
+
   export class Viewer {
     constructor(idOrElement: string | HTMLElement);
   }
@@ -639,4 +891,6 @@ declare module 'ngl' {
   export class ViewerControls {
     constructor(stage: Stage);
   }
+
+  export class Volume {}
 }
