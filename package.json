@@ -9,6 +9,8 @@
     "yarn": "^1.5.0"
   },
   "jest": {
+    "collectCoverageFrom": ["src/**/*.{ts,tsx}"],
+    "coverageDirectory": "dist/coverage",
     "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
     "moduleNameMapper": {
       "tsnejs": "tsnejs/tsne"
@@ -34,7 +36,8 @@
     "lint:markdown": "markdownlint ./ -c ./markdownlint.json -i node_modules",
     "precommit": "lint-staged",
     "start": "webpack-dev-server --open --mode development",
-    "test": "jest"
+    "test": "jest",
+    "test:cover": "jest --collectCoverage true"
   },
   "dependencies": {
     "react": "^16.2.0",
