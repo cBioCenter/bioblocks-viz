@@ -16,8 +16,8 @@ export class TComponent extends React.Component<ITComponentProps, {}> {
           data={data}
           options={{}}
           graph_id="ScatterChart"
-          width="400px"
-          height="400px"
+          width="300px"
+          height="300px"
           legend_toggle={true}
           loadCharts={false}
         />
