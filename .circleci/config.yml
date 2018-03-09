@@ -1,0 +1,27 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: 'circleci/node:9.7'
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - 'v1-dependencies-{{ checksum "package.json" }}'
+            - v1-dependencies-
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: 'v1-dependencies-{{ checksum "package.json" }}'
+      - run: yarn lint
+      - run: 'yarn test:cover'
+      - store_artifacts:
+          path: dist/jest/test-results
+          destination: test-results
+      - store_artifacts:
+          path: dist/jest/coverage
+          destination: coverage
+      - store_test_results:
+          path: dist/jest/test-results
