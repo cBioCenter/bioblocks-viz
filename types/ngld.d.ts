@@ -1,5 +1,5 @@
 // Type definitions for [ngl] [https://github.com/arose/ngl]
-// Project: [chell-viz-contact]
+// Project: [chell-viz]
 // Definitions by: [BCB @ DF-CI, Drew Diamantoukos] <[http://bcb.dfci.harvard.edu/]>
 // Transcribed from ngl documentation.
 
