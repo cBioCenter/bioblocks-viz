@@ -19,11 +19,18 @@
     "snapshotSerializers": ["enzyme-to-json/serializer"],
     "testEnvironment": "enzyme",
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "testResultsProcessor": "./node_modules/jest-junit-reporter",
+    "testResultsProcessor": "jest-junit",
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
     "verbose": true
+  },
+  "jest-junit": {
+    "ancestorSeparator": " › ",
+    "classNameTemplate": "{classname}",
+    "output": "dist/jest/test-results/junit.xml",
+    "suiteName": "Chell-Viz Jest Tests",
+    "titleTemplate": "{title}"
   },
   "lint-staged": {
     "*.{json,md,ts,tsx}": ["prettier --write", "git add"],
@@ -39,7 +46,7 @@
     "start": "webpack-dev-server --open --mode development",
     "pretest": "mkdir -p dist/jest/test-results",
     "test": "cross-env TEST_REPORT_PATH=dist/jest/test-results jest",
-    "test:cover": "jest --collectCoverage true"
+    "test:cover": "npm run test -- --collectCoverage true"
   },
   "dependencies": {
     "react": "^16.2.0",
@@ -71,7 +78,7 @@
     "husky": "^0.14.3",
     "jest": "^22.4.2",
     "jest-enzyme": "^5.0.3",
-    "jest-junit-reporter": "^1.1.0",
+    "jest-junit": "^3.6.0",
     "jquery": "^3.3.1",
     "lint-staged": "^7.0.0",
     "markdownlint-cli": "^0.7.1",

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should match existing snapshot when given simple data. 1`] = `
+exports[`TComponent Should match existing snapshot when given simple data. 1`] = `
 <div
   id="TComponentChart"
 >

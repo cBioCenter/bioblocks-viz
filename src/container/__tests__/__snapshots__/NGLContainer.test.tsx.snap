@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should match existing snapshot when given no props. 1`] = `
+exports[`NGLContainer Should match existing snapshot when given no props. 1`] = `
 <div
   id="NGLContainer"
 >

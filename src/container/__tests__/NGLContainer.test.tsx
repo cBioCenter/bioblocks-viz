@@ -3,6 +3,8 @@ import * as renderer from 'react-test-renderer';
 
 import { NGLContainer } from '../NGLContainer';
 
-test('Should match existing snapshot when given no props.', () => {
-  expect(renderer.create(<NGLContainer />)).toMatchSnapshot();
+describe('NGLContainer', () => {
+  test('Should match existing snapshot when given no props.', () => {
+    expect(renderer.create(<NGLContainer />)).toMatchSnapshot();
+  });
 });

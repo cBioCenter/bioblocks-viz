@@ -1,7 +1,4 @@
 version: 2
-general:
-  artifacts:
-    - dist/jest
 jobs:
   build:
     docker:
@@ -18,4 +15,13 @@ jobs:
           paths:
             - node_modules
           key: 'v1-dependencies-{{ checksum "package.json" }}'
+      - run: yarn lint
       - run: 'yarn test:cover'
+      - store_artifacts:
+          path: dist/jest/test-results
+          destination: test-results
+      - store_artifacts:
+          path: dist/jest/coverage
+          destination: coverage
+      - store_test_results:
+          path: dist/jest/test-results
