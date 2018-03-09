@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should match existing snapshot when given simple data. 1`] = `
+<div
+  id="TComponentChart"
+>
+  <Chart
+    allowEmptyRows={false}
+    chartActions={null}
+    chartEvents={Array []}
+    chartPackages={
+      Array [
+        "corechart",
+      ]
+    }
+    chartType="ScatterChart"
+    chartVersion="current"
+    columns={Array []}
+    data={
+      Array [
+        Array [
+          "x",
+          "y",
+        ],
+        Array [
+          1,
+          2,
+        ],
+        Array [
+          3,
+          4,
+        ],
+        Array [
+          5,
+          6,
+        ],
+      ]
+    }
+    dateFormat={null}
+    diffdata={null}
+    graph_id="ScatterChart"
+    height="400px"
+    legend_toggle={true}
+    loadCharts={false}
+    loader={
+      <div>
+        Rendering Chart
+      </div>
+    }
+    numberFormat={null}
+    options={Object {}}
+    rows={Array []}
+    width="400px"
+  />
+</div>
+`;
