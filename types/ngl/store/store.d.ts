@@ -1,18 +1,29 @@
 // tslint:disable:max-classes-per-file
 declare module 'ngl' {
-  export class AtomMap {}
+  export class AtomMap extends Store {}
 
-  export class AtomStore {}
+  export class AtomStore extends Store {}
 
-  export class AtomType {}
+  export class AtomType extends Store {}
 
-  export class BondHash {}
+  export class BondHash extends Store {}
 
-  export class ChainStore {}
+  export class BondStore extends Store {}
 
-  export class ResidueMap {}
+  export class ChainStore extends Store {}
 
-  export class ResidueStore {}
+  export class ModelStore extends Store {}
 
-  export class ResidueType {}
+  export class ResidueMap extends Store {}
+
+  export class ResidueStore extends Store {}
+
+  export class ResidueType extends Store {}
+
+  export interface IRingData {
+    flags: Int8Array;
+    rings: number[][];
+  }
+
+  export class Store {}
 }

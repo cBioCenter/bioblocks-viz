@@ -1,5 +1,6 @@
 import * as NGL from 'ngl';
 import * as React from 'react';
+import * as util from 'util';
 
 import { IStageLoadFileParams, PickingProxy, Stage, StructureComponent } from 'ngl';
 import { GeneInfo } from '../component/GeneInfo';
@@ -19,15 +20,19 @@ export class NGLContainer extends React.Component<any, any> {
 
       const structure = (await stage.loadFile('assets/1fqg.pdb', params)) as StructureComponent;
 
-      const trace = structure.addRepresentation('trace', {});
-
       structure.autoView();
 
-      trace.setSelection('');
+      let ele: NGL.RepresentationElement;
+
       stage.mouseControls.add('hoverPick', (aStage: Stage, pickingProxy: PickingProxy) => {
         if (pickingProxy && (pickingProxy.atom || pickingProxy.bond)) {
           const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
-          console.log(atom.qualifiedName());
+          if (ele) {
+            structure.removeRepresentation(ele);
+          }
+          ele = structure.addRepresentation('spacefill', {
+            sele: atom.resno.toString(),
+          });
         }
       });
     }
