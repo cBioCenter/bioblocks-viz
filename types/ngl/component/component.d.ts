@@ -3,6 +3,8 @@ declare module 'ngl' {
   import { Signal } from 'signals';
   import { Box3, Color, Euler, Matrix4, Quaternion, Vector3 } from 'three';
 
+  export type ShapeRepresentationType = 'buffer';
+
   export type StructureRepresentationType =
     | 'angle'
     | 'axes'
@@ -26,6 +28,10 @@ declare module 'ngl' {
     | 'trace'
     | 'tube'
     | 'unitcell';
+
+  export type SurfaceRepresentationType = 'surface' | 'dot';
+
+  export type VolumeRepresentationType = 'surface' | 'slice' | 'dot';
 
   export const enum MeasurementFlags {
     Distance = 0x1,
@@ -358,6 +364,38 @@ declare module 'ngl' {
     public visible(): boolean;
   }
 
+  /**
+   * Component wrapping a Shape object.
+   *
+   * @example // Get a shape component by adding a shape object to the stage.
+   * var shape = new NGL.Shape( "shape" );
+   * shape.addSphere( [ 0, 0, 0 ], [ 1, 0, 0 ], 1.5 );
+   * var shapeComponent = stage.addComponentFromObject( shape );
+   * shapeComponent.addRepresentation( "buffer" );
+   *
+   * @export
+   * @class ShapeComponent
+   * @extends {Component}
+   */
+  export class ShapeComponent extends Component {
+    // Properties
+    public shape: Shape;
+
+    constructor(stage: Stage, shape: Shape, params?: Partial<IComponentParameters>);
+
+    // Methods
+
+    /**
+     * Add a new shape representation to the component
+     *
+     * @param {ShapeRepresentationType} type The name of the representation, one of: buffer.
+     * @param {object} [params] Representation parameters.
+     * @returns {RepresentationElement} The created representation wrapped into a representation component object.
+     * @memberof ShapeComponent
+     */
+    public addRepresentation(type: ShapeRepresentationType, params?: object): RepresentationElement;
+  }
+
   export interface IStructureComponentSignals extends IComponentSignals {
     refreshed: Signal;
   }
@@ -488,7 +526,90 @@ declare module 'ngl' {
     public updateRepresentations(what: any): void;
   }
 
-  export class SurfaceComponent {}
+  /**
+   * Component wrapping a Surface object
+   *
+   * @example // get a surface component by loading a surface file into the stage
+   * stage.loadFile("url/for/surface").then(function(surfaceComponent) {
+   *   surfaceComponent.addRepresentation("surface");
+   *   surfaceComponent.autoView();
+   * });
+   *
+   * @export
+   * @class SurfaceComponent
+   */
+  export class SurfaceComponent {
+    // Properties
+    /** Surface object to wrap. */
+    public surface: Surface;
+
+    // Accessors
+    /** Component type. */
+    public type: string;
+
+    /**
+     * Creates an instance of SurfaceComponent.
+     * @param {Stage} stage Stage object the component belongs to.
+     * @param {Surface} surface Surface object to wrap.
+     * @param {Partial<IComponentParameters>} [params] Component parameters.
+     * @memberof SurfaceComponent
+     */
+    constructor(stage: Stage, surface: Surface, params?: Partial<IComponentParameters>);
+
+    // Methods
+    /**
+     * Add a new surface representation to the component.
+     *
+     * @param {SurfaceRepresentationType} type The name of the representation, one of: surface, dot.
+     * @param {object} [params] Representation parameters.
+     * @returns {RepresentationElement} The created representation wrapped into a representation component object.
+     * @memberof SurfaceComponent
+     */
+    public addRepresentation(type: SurfaceRepresentationType, params?: object): RepresentationElement;
+    public dispose(): void;
+    public getBoxUntransformed(): Box3;
+    public getCenterUntransformed(): Vector3;
+  }
 
   export class TrajectoryElement extends Element {}
+
+  /**
+   * Component wrapping a Volume object.
+   *
+   * @example // Get a volume component by loading a volume file into the stage.
+   * stage.loadFile( "url/for/volume" ).then(function(volumeComponent) {
+   *   volumeComponent.addRepresentation('surface');
+   *   volumeComponent.autoView();
+   * });
+   *
+   * @export
+   * @class VolumeComponent
+   * @extends {Component}
+   */
+  export class VolumeComponent extends Component {
+    // Properties
+    /** Volume object to wrap. */
+    public volume: Volume;
+
+    /**
+     * Creates an instance of VolumeComponent.
+     *
+     * @param {Stage} stage Stage object the component belongs to.
+     * @param {Volume} volume Volume object to wrap.
+     * @param {Partial<IComponentParameters>} [params] Component parameters.
+     * @memberof VolumeComponent
+     */
+    constructor(stage: Stage, volume: Volume, params?: Partial<IComponentParameters>);
+
+    // Methods
+    /**
+     * Add a new volume representation to the component.
+     *
+     * @param {VolumeRepresentationType} type
+     * @param {object} [params]
+     * @returns {RepresentationElement}
+     * @memberof VolumeComponent
+     */
+    public addRepresentation(type: VolumeRepresentationType, params?: object): RepresentationElement;
+  }
 }

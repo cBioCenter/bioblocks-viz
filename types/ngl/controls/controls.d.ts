@@ -42,18 +42,68 @@ declare module 'ngl' {
     callback: KeyActionCallback;
   }
 
+  /**
+   * Key controls.
+   *
+   * @export
+   * @class KeyControls
+   */
   export class KeyControls {
     // Properties
     public actionList: IKeyAction[];
     public disabled: boolean;
     public stage: Stage;
 
+    /**
+     * Creates an instance of KeyControls.
+     *
+     * @param {Stage} stage The stage object.
+     * @param {IKeyControlsParams} [params]
+     * @memberof KeyControls
+     */
     constructor(stage: Stage, params?: IKeyControlsParams);
 
     // Methods
+    /**
+     * Add a key action triggered by pressing the given character. The KeyActions class provides a number of static methods for use as callback functions.
+     *
+     * @example // Call KeyActions.toggleRock when "k" is pressed.
+     * stage.keyControls.remove("k", KeyActions.toggleRock);
+     *
+     * @param {string} char The key/character.
+     * @param {KeyActionCallback} callback The callback function for the action.
+     * @memberof KeyControls
+     */
     public add(char: string, callback: KeyActionCallback): void;
+
+    /**
+     * Remove all key actions.
+     *
+     * @memberof KeyControls
+     */
     public clear(): void;
+
+    /**
+     * Set key action preset.
+     *
+     * @param {KeyControlPreset} name One of "default".
+     * @memberof KeyControls
+     */
     public preset(name: KeyControlPreset): void;
+
+    /**
+     * Remove a key action. When the callback function is given, only actions that call that function are removed.
+     *
+     * @example // Remove all actions triggered by pressing "k".
+     * stage.keyControls.remove("k");
+     *
+     * @example Remove action toggleRock triggered by pressing "k".
+     * stage.keyControls.remove( "k", toggleRock );
+     *
+     * @param {string} char The key/character.
+     * @param {KeyActionCallback} callback Only actions that call this function will be removed.
+     * @memberof KeyControls
+     */
     public remove(char: string, callback: KeyActionCallback): void;
     public run(keyCode: number): void;
   }
@@ -71,6 +121,12 @@ declare module 'ngl' {
     disabled?: boolean;
   }
 
+  /**
+   * Mouse controls.
+   *
+   * @export
+   * @class MouseControls
+   */
   export class MouseControls {
     // Properties
     public actionList: IMouseAction[];
@@ -78,13 +134,67 @@ declare module 'ngl' {
     public mouse: MouseObserver;
     public stage: Stage;
 
+    /**
+     * The stage object.
+     * @param {Stage} stage
+     * @param {IMouseControlsParams} [params]
+     * @memberof MouseControls
+     */
     constructor(stage: Stage, params?: IMouseControlsParams);
 
     // Methods
+    /**
+     * Add a new mouse action triggered by an event, key and button combination. The MouseActions class provides a number of static methods for use as callback functions.
+     *
+     * @example // change ambient light intensity on mouse scroll while the ctrl and shift keys are pressed.
+     * stage.mouseControls.add("scroll-ctrl+shift", function(stage, delta) {
+     *   var ai = stage.getParameters().ambientIntensity;
+     *   stage.setParameters({ ambientIntensity: Math.max( 0, ai + delta / 50 ) });
+     * });
+     *
+     * @example // Call the MouseActions.zoomDrag method on mouse drag events with left and right mouse buttons simultaneously
+     * stage.mouseControls.add("drag-left+right", MouseActions.zoomDrag);
+     *
+     * @param {string} triggerStr The trigger for the action.
+     * @param {MouseActionCallback} callback The callback function for the action.
+     * @memberof MouseControls
+     */
     public add(triggerStr: string, callback: MouseActionCallback): void;
+
+    /**
+     * Remove all mouse actions.
+     *
+     * @memberof MouseControls
+     */
     public clear(): void;
+
+    /**
+     * Set mouse action preset.
+     *
+     * @param {MouseControlPreset} name One of "default", "pymol", "coot".
+     * @memberof MouseControls
+     */
     public preset(name: MouseControlPreset): void;
+
+    /**
+     * Remove a mouse action. The trigger string can contain an asterisk (*) as a wildcard for any key or mouse button.
+     * When the callback function is given, only actions that call that function are removed.
+     *
+     * @example // Remove actions triggered solely by a scroll event.
+     * stage.mouseControls.remove("scroll");
+     *
+     * @example // Remove actions triggered by a scroll event, including those requiring a key pressed or mouse button used.
+     * stage.mouseControls.remove("scroll-*");
+     *
+     * @example // Remove actions triggered by a scroll event while the shift key is pressed
+     * stage.mouseControls.remove("scroll-shift");
+     *
+     * @param {string} triggerStr The trigger for the action.
+     * @param {MouseActionCallback} callback Only actions that call this function will be removed.
+     * @memberof MouseControls
+     */
     public remove(triggerStr: string, callback: MouseActionCallback): void;
+
     public run(type: MouseActionType, ...args: any[]): void;
   }
 

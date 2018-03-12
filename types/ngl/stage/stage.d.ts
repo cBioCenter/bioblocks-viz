@@ -368,7 +368,7 @@ declare module 'ngl' {
      *
      * @param {(string | File | Blob)} path Either a URL or an object containing the file data.
      * @param {Partial<IStageLoadFileParams>} [params] Loading parameters.
-     * @returns {(Promise<StructureComponent | SurfaceComponent | ScriptComponent>)} A Promise object that resolves to a StructureComponent, a SurfaceComponent or a ScriptComponent object, depending on the type of the loaded file.
+     * @returns {(Promise<StructureComponent | SurfaceComponent>)} A Promise object that resolves to a StructureComponent, a SurfaceComponent or a ScriptComponent object, depending on the type of the loaded file.
      * @memberof Stage
      */
     public loadFile(
