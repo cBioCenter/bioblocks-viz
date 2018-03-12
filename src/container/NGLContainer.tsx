@@ -19,6 +19,11 @@ export class NGLContainer extends React.Component<any, any> {
 
       const structure = (await stage.loadFile('assets/1fqg.pdb', params)) as StructureComponent;
 
+      const trace = structure.addRepresentation('trace', {});
+
+      structure.autoView();
+
+      trace.setSelection('');
       stage.mouseControls.add('hoverPick', (aStage: Stage, pickingProxy: PickingProxy) => {
         if (pickingProxy && (pickingProxy.atom || pickingProxy.bond)) {
           const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
