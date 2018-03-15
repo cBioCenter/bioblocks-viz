@@ -125,7 +125,7 @@ declare module 'ngl' {
     public name: string;
     public path: string;
     public residueMap: ResidueMap;
-    public residueStore: ResidueMap;
+    public residueStore: ResidueStore;
     public rungBondStore: BondStore;
     public signals: {
       refreshed: Signal;

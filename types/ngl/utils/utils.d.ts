@@ -14,6 +14,8 @@ declare module 'ngl' {
     | Float32Array
     | Float64Array;
 
+  export type TypedArrayString = 'int8' | 'int16' | 'int32' | 'uint8' | 'uint16' | 'uint32' | 'float32';
+
   export type NumberArray = number[] | TypedArray;
 
   export type Partial<T> = { [p in keyof T]?: T[p] };
