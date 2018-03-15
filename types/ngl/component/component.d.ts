@@ -68,9 +68,9 @@ declare module 'ngl' {
   }
 
   export interface IComponentParameters {
-    name: string;
-    status: string;
-    visible: boolean;
+    name?: string;
+    status?: string;
+    visible?: boolean;
   }
 
   /**
