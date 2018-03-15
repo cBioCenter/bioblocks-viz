@@ -5,7 +5,7 @@ import { IStageLoadFileParams, PickingProxy, Stage, StructureComponent } from 'n
 
 export interface INGLComponentProps {
   data?: NGL.Structure;
-  onHoverCallback?: (...args: any[]) => void;
+  onHoverPickCallback?: (...args: any[]) => void;
 }
 
 export interface INGLComponentState {
@@ -26,12 +26,12 @@ export class NGLComponent extends React.Component<INGLComponentProps, INGLCompon
     if (!this.state.stage && nextProps.data && this.canvas) {
       const stage = new NGL.Stage(this.canvas);
 
-      const structureComponent = stage.addComponentFromObject(nextProps.data);
+      const structureComponent: StructureComponent = stage.addComponentFromObject(nextProps.data);
       stage.defaultFileRepresentation(structureComponent);
 
       let ele: NGL.RepresentationElement;
 
-      stage.mouseControls.add('hoverPick', (aStage: Stage, pickingProxy: PickingProxy) => {
+      stage.mouseControls.add(NGL.MouseActions.HOVER_PICK, (aStage: Stage, pickingProxy: PickingProxy) => {
         if (pickingProxy && (pickingProxy.atom || pickingProxy.bond)) {
           const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
           if (ele) {
@@ -40,8 +40,8 @@ export class NGLComponent extends React.Component<INGLComponentProps, INGLCompon
           ele = structureComponent.addRepresentation('spacefill', {
             sele: atom.resno.toString(),
           });
-          if (this.props.onHoverCallback) {
-            this.props.onHoverCallback(atom.resname);
+          if (this.props.onHoverPickCallback) {
+            this.props.onHoverPickCallback(atom.resname);
           }
         }
       });
