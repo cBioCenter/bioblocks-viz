@@ -14,6 +14,15 @@ declare module 'ngl' {
   export type MouseActionCallback = ScrollCallback | DragCallback | PickCallback;
   export type MouseActionPreset = Array<[string, MouseActionCallback]>;
   export type MouseActionType = '' | 'scroll' | 'drag' | 'click' | 'doubleClick' | 'hover' | 'clickPick' | 'hoverPick';
+  export const enum MouseActions {
+    'SCROLL' = 'scroll',
+    'DRAG' = 'drag',
+    'CLICK' = 'click',
+    'DOUBLE_CLICK' = 'doubleClick',
+    'HOVER' = 'hover',
+    'CLICK_PICK' = 'clickPick',
+    'HOVER_PICK' = 'hoverPick',
+  }
 
   export class ComponentControls {
     // Properties

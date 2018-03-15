@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NGLContainer Should match existing snapshot when given no props. 1`] = `
+exports[`NGLComponent Should match existing snapshot when given no data. 1`] = `
 <div
   id="NGLContainer"
 >
   <div
     style={
       Object {
-        "height": 200,
-        "width": 200,
+        "height": 400,
+        "width": 400,
       }
     }
   />
