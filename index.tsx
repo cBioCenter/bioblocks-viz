@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { NGLContainer } from './src/container/NGLContainer';
+import { ProteinViewer } from './src/container/ProteinViewer';
 import { TContainer } from './src/container/TContainer';
 
 ReactDOM.render(
@@ -12,7 +12,7 @@ ReactDOM.render(
         justifyContent: 'space-around',
       }}
     >
-      <NGLContainer />
+      <ProteinViewer />
       <TContainer />
     </div>
   </div>,
