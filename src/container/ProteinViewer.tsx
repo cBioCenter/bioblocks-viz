@@ -19,9 +19,6 @@ export class ProteinViewer extends React.Component<any, IProteinViewerState> {
   }
 
   public async componentDidMount() {
-    this.setState({
-      data: undefined,
-    });
     const fileLoc = 'assets/1fqg.pdb';
     const data = (await NGL.autoLoad(fileLoc)) as NGL.Structure;
     this.setState({

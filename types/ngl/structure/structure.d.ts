@@ -1,5 +1,6 @@
 // tslint:disable:max-classes-per-file
 declare module 'ngl' {
+  import { Selection } from 'ngl';
   import { Signal } from 'signals';
   import { Box3, Vector3 } from 'three';
 
