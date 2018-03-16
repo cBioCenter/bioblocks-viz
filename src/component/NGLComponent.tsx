@@ -38,7 +38,8 @@ export class NGLComponent extends React.Component<INGLComponentProps, INGLCompon
             structureComponent.removeRepresentation(ele);
           }
           ele = structureComponent.addRepresentation('spacefill', {
-            sele: atom.resno.toString(),
+            // sele: atom.resno.toString(),
+            sele: '26',
           });
           if (this.props.onHoverPickCallback) {
             this.props.onHoverPickCallback(atom.resname);
