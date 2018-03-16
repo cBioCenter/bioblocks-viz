@@ -39,7 +39,11 @@ exports[`TComponent Should match existing snapshot when given simple data. 1`] =
     dateFormat={null}
     diffdata={null}
     graph_id="ScatterChart"
+<<<<<<< HEAD
     height="400px"
+=======
+    height="300px"
+>>>>>>> ngl-interaction
     legend_toggle={true}
     loadCharts={false}
     loader={
@@ -50,7 +54,11 @@ exports[`TComponent Should match existing snapshot when given simple data. 1`] =
     numberFormat={null}
     options={Object {}}
     rows={Array []}
+<<<<<<< HEAD
     width="400px"
+=======
+    width="300px"
+>>>>>>> ngl-interaction
   />
 </div>
 `;

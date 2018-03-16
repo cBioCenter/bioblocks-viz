@@ -12,7 +12,7 @@ module.exports = {
   module: {
     rules: [
       {
-        exclude: /node_modules/,
+        exclude: ['node_modules', /\.test.tsx?$/],
         test: /\.tsx?$/,
         use: 'ts-loader',
       },

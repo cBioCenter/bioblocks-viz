@@ -43,7 +43,7 @@
     "lint:src": "tslint --project ./",
     "lint:markdown": "markdownlint ./ -c ./markdownlint.json -i node_modules",
     "precommit": "lint-staged",
-    "start": "webpack-dev-server --open --mode development",
+    "start": "webpack-dev-server --open --mode development --config webpack.config.ts",
     "pretest": "mkdir -p dist/jest/test-results",
     "test": "cross-env TEST_REPORT_PATH=dist/jest/test-results jest",
     "test:cover": "npm run test -- --collectCoverage true"
