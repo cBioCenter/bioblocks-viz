@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SequenceViewer Should match existing snapshot when given no data. 1`] = `
+<div
+  id="SequenceViewer"
+>
+  <div />
+  <div
+    id="fv1"
+    style={
+      Object {
+        "height": 400,
+        "width": 400,
+      }
+    }
+  />
+</div>
+`;

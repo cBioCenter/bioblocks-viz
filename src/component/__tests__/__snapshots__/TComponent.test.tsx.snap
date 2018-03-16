@@ -39,7 +39,7 @@ exports[`TComponent Should match existing snapshot when given simple data. 1`] =
     dateFormat={null}
     diffdata={null}
     graph_id="ScatterChart"
-    height="400px"
+    height="300px"
     legend_toggle={true}
     loadCharts={false}
     loader={
@@ -50,7 +50,7 @@ exports[`TComponent Should match existing snapshot when given simple data. 1`] =
     numberFormat={null}
     options={Object {}}
     rows={Array []}
-    width="400px"
+    width="300px"
   />
 </div>
 `;

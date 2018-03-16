@@ -13,7 +13,6 @@
     <script type="text/javascript">
         google.charts.load('current', { packages: ['corechart'] });
         google.charts.setOnLoadCallback(() => {
-            console.log(window.google);
             const bundleTag = document.createElement('script');
             bundleTag.setAttribute('src', '/bundle.js');
             document.getElementsByTagName('body')[0].appendChild(bundleTag);
