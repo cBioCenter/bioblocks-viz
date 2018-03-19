@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { ProteinViewer } from './src/container/ProteinViewer';
-import { TContainer } from './src/container/TContainer';
+import { SideBySideContainer } from './src/container/SideBySideContainer';
 
 ReactDOM.render(
   <div id="Contact Root">
@@ -12,8 +12,8 @@ ReactDOM.render(
         justifyContent: 'space-around',
       }}
     >
+      <SideBySideContainer />
       <ProteinViewer />
-      <TContainer />
     </div>
   </div>,
   document.getElementById('root'),
