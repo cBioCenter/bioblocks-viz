@@ -1,84 +1,64 @@
+import * as d3 from 'd3';
 import * as React from 'react';
 import * as tsnejs from 'tsnejs';
 
+import { ISpringGraphData, ISpringLink, ISpringNode } from 'spring';
 import { SpringComponent } from '../component/SpringComponent';
 
 export interface ISpringContainerState {
-  tsne: tsnejs.tSNE;
+  data: ISpringGraphData;
 }
 
 export class SpringContainer extends React.Component<any, ISpringContainerState> {
   public constructor(props: any) {
     super(props);
-
-    const opt = {
-      dim: 2, // dimensionality of the embedding (2 = default)
-      epsilon: 5, // epsilon is learning rate (10 = default)
-      perplexity: 10, // roughly how many neighbors each point influences (30 = default)
+    this.state = {
+      data: {
+        links: [],
+        nodes: [],
+      },
     };
+  }
 
-    this.state = { tsne: new tsnejs.tSNE(opt) }; // create a tSNE instance
+  public async componentDidMount() {
+    const coordinateText: string = await d3.text('assets/centroids/coordinates.txt');
 
-    // initialize data. Here we have 3 points and some example pairwise dissimilarities
-    const distances = this.distanceMatrix(this.generateUnlinkedData(10));
-    this.state.tsne.initDataDist(distances);
+    const coordinates: number[][] = [];
+    coordinateText!.split('\n').forEach((entry, index, array) => {
+      const items = entry.split(',');
+      if (items.length >= 3) {
+        const xx = parseFloat(items[1].trim());
+        const yy = parseFloat(items[2].trim());
+        const nn = parseInt(items[0].trim(), 10);
+        coordinates[nn] = [xx, yy];
+      }
+    });
 
-    for (let k = 0; k < 500; k++) {
-      this.state.tsne.step(); // every time you call this, solution gets better
+    const data: ISpringGraphData = (await d3.json('assets/centroids/graph_data.json')) as ISpringGraphData;
+    if (!data.nodes || !data.links) {
+      throw new Error('Unable to parse graph_data - does it have node key(s)?');
     }
+    const nodeDict: any = {};
+    data.nodes.forEach(node => {
+      nodeDict[node.number] = node;
+      if (node.number in coordinates) {
+        node.fixed = true;
+        node.x = coordinates[node.number][0];
+        node.y = coordinates[node.number][1];
+      }
+    });
+
+    data.links.forEach(link => {
+      link.source = nodeDict[link.source as string];
+      link.target = nodeDict[link.target as string];
+    });
+
+    this.setState({
+      data,
+    });
   }
 
   public render() {
-    return <SpringComponent data={this.state.tsne.getSolution()} />;
-  }
-
-  // Points in two unlinked rings. Taken from https://distill.pub/2016/misread-tsne/
-  private generateUnlinkedData(numPoints: number) {
-    const points = [];
-    const rotate = (x: number, y: number, z: number) => {
-      const u = x;
-      const cos = Math.cos(0.4);
-      const sin = Math.sin(0.4);
-      const v = cos * y + sin * z;
-      const w = -sin * y + cos * z;
-      return [u, v, w];
-    };
-
-    for (let i = 0; i < numPoints; i++) {
-      const t = 2 * Math.PI * i / numPoints;
-      const sin = Math.sin(t);
-      const cos = Math.cos(t);
-      // Ring 1.
-      points.push({
-        color: '#f90',
-        pos: rotate(cos, sin, 0),
-      });
-
-      // Ring 2.
-      points.push({
-        color: '#039',
-        pos: rotate(3 + cos, 0, sin),
-      });
-    }
-    return points;
-  }
-
-  private distanceMatrix(points: Array<{ pos: number[] }>) {
-    const matrix: number[][] = new Array<number[]>(points.length);
-    const dist = (a: number[], b: number[]) => {
-      let d = 0;
-      for (let i = 0; i < a.length; i++) {
-        d += (a[i] - b[i]) * (a[i] - b[i]);
-      }
-      return Math.sqrt(d);
-    };
-
-    for (let i = 0; i < points.length; i++) {
-      matrix[i] = new Array<number>(points.length);
-      for (let j = 0; j < points.length; j++) {
-        matrix[i][j] = dist(points[i].pos, points[j].pos);
-      }
-    }
-    return matrix;
+    return <SpringComponent data={this.state.data} />;
   }
 }

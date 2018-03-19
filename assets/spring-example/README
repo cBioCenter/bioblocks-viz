@@ -1,0 +1,39 @@
+spring_example_data_1
+
+File structures also described here:
+    https://github.com/AllonKleinLab/SPRING/#File_structures3
+
+Files:
+  SPRING_color_data_all_genes.csv [REQUIRED]
+  A comma separated file that is a matrix where each column represents
+  a "single cell" and each row represents a "gene"  (column 1 is the 
+  gene name). The cells in this matrix contain the normalized 
+  expression value for each gene in each single cell.
+    NOTE: I concatenated 50 files into one -- they separate them
+          for some unknown reason.
+  
+  graph_data.json [REQUIRED]
+  Json file containing the graph data
+  
+  color_stats.json [REQUIRED]
+  Json file containing pre-calculated summary statistics of the 
+  various coloring tracks, including those in color_data_gene_sets.csv 
+  (see below) and color_data_all_genes-*.csv. The file should contain 
+  a dictionary mapping each color track-name to a list [MEAN, STANDARD 
+  DEVIATION, MIN, MAX, 99-PERCENTILE] with summary statistics for that 
+  color track. 
+  
+  categorical_coloring_data.json [OPTIONAL]
+  Json file containing cell groupings, i.e. categorical variables such
+  as sample ID, cluster label, etc. For each cell grouping, a color 
+  map and label list must be provided
+  
+  
+I belive normalization is performed as described in the biorxiv 
+manuscript (Weinreb et al., 2016, http://dx.doi.org/10.1101/090332):
+    1. Filter all cells by total read count 
+    2. Normalize so that every cell has the same total reads 
+    3. Filter genes by mean expression and Fano factor 
+    4. Z-score normalize expression values for each gene 
+    5. Perform principal components analysis (PCA), keep the top principal components 
+    6. Compute a distance matrix and output a knn-graph
