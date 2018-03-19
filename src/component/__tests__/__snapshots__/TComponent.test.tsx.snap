@@ -2,7 +2,7 @@
 
 exports[`TComponent Should match existing snapshot when given simple data. 1`] = `
 <div
-  id="TComponentChart"
+  id="TComponent"
 >
   <Chart
     allowEmptyRows={false}
@@ -38,7 +38,7 @@ exports[`TComponent Should match existing snapshot when given simple data. 1`] =
     }
     dateFormat={null}
     diffdata={null}
-    graph_id="ScatterChart"
+    graph_id="TComponentChart"
     height="300px"
     legend_toggle={true}
     loadCharts={false}
