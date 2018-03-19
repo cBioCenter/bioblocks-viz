@@ -84,6 +84,7 @@
     "jquery": "^3.3.1",
     "lint-staged": "^7.0.0",
     "markdownlint-cli": "^0.7.1",
+    "material-ui": "^1.0.0-beta.38",
     "ngl": "^2.0.0-dev.28",
     "npm-run-all": "^4.1.2",
     "prettier": "^1.11.1",

@@ -1,3 +1,4 @@
+import Table, { TableCell, TableHead, TableRow } from 'material-ui/Table';
 import * as React from 'react';
 
 import { SpringContainer } from './SpringContainer';
@@ -10,10 +11,18 @@ export class SideBySideContainer extends React.Component<any, any> {
 
   public render() {
     return (
-      <div id="SideBySideContainer">
-        <TContainer />
-        <SpringContainer />
-      </div>
+      <Table id="SideBySideContainer">
+        <TableHead>
+          <TableRow>
+            <TableCell>
+              <TContainer />
+            </TableCell>
+            <TableCell>
+              <SpringContainer />
+            </TableCell>
+          </TableRow>
+        </TableHead>
+      </Table>
     );
   }
 }
