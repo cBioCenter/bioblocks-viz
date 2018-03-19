@@ -7,17 +7,24 @@ export interface ITContainerState {
   tsne: tsnejs.tSNE;
 }
 
-export class TContainer extends React.Component<any, ITContainerState> {
-  public constructor(props: any) {
+export interface ITContainerProps {
+  dim: number; // dimensionality of the embedding (2 = default)
+  epsilon: number; // epsilon is learning rate (10 = default)
+  perplexity: number; // roughly how many neighbors each point influences (30 = default)
+}
+
+export class TContainer extends React.Component<Partial<ITContainerProps>, ITContainerState> {
+  public static defaultProps: Partial<ITContainerProps> = {
+    dim: 2,
+    epsilon: 5,
+    perplexity: 10,
+  };
+
+  public constructor(props: ITContainerProps) {
+    console.log(props);
     super(props);
 
-    const opt = {
-      dim: 2, // dimensionality of the embedding (2 = default)
-      epsilon: 5, // epsilon is learning rate (10 = default)
-      perplexity: 10, // roughly how many neighbors each point influences (30 = default)
-    };
-
-    this.state = { tsne: new tsnejs.tSNE(opt) }; // create a tSNE instance
+    this.state = { tsne: new tsnejs.tSNE(props) }; // create a tSNE instance
 
     // initialize data. Here we have 3 points and some example pairwise dissimilarities
     const distances = this.distanceMatrix(this.generateUnlinkedData(10));
