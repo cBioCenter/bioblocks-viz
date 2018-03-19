@@ -10,12 +10,12 @@ export class TComponent extends React.Component<ITComponentProps, {}> {
     const data = [['x', 'y'], ...this.props.data];
 
     return (
-      <div id="TComponentChart">
+      <div id="TComponent">
         <Chart
           chartType="ScatterChart"
           data={data}
           options={{}}
-          graph_id="ScatterChart"
+          graph_id="TComponentChart"
           width="300px"
           height="300px"
           legend_toggle={true}
