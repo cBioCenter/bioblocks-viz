@@ -3,8 +3,8 @@ import Table, { TableCell, TableHead, TableRow } from 'material-ui/Table';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { ProteinViewer } from './src/container/ProteinViewer';
-import { SideBySideContainer } from './src/container/SideBySideContainer';
+import { ProteinViewer } from './container/ProteinViewer';
+import { SideBySideContainer } from './container/SideBySideContainer';
 
 ReactDOM.render(
   <Paper id="Chell-Viz-Root">

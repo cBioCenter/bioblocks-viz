@@ -1,6 +1,10 @@
 import * as CopyWebpackPlugin from 'copy-webpack-plugin';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 
+// TODO: Use https://github.com/TypeStrong/typedoc and https://github.com/Microsoft/Typedoc-Webpack-Plugin
+// tslint:disable-next-line:no-var-requires
+// const TypedocWebpackPlugin = require('typedoc-webpack-plugin'); //
+
 import * as path from 'path';
 
 module.exports = {
@@ -8,7 +12,7 @@ module.exports = {
     contentBase: './dist',
   },
   devtool: 'inline-source-map',
-  entry: './index.tsx',
+  entry: './src/index.tsx',
   module: {
     rules: [
       {
