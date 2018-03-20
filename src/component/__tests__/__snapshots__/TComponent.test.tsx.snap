@@ -1,58 +1,118 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TComponent Should match existing snapshot when given simple data. 1`] = `
-<div
-  id="TComponent"
+<ScatterChart
+  barCategoryGap="10%"
+  barGap={4}
+  height={400}
+  layout="horizontal"
+  margin={
+    Object {
+      "bottom": 20,
+      "left": 20,
+      "right": 20,
+      "top": 20,
+    }
+  }
+  reverseStackOrder={false}
+  stackOffset="none"
+  width={400}
 >
-  <Chart
-    allowEmptyRows={false}
-    chartActions={null}
-    chartEvents={Array []}
-    chartLanguage="en"
-    chartPackages={
+  <XAxis
+    allowDataOverflow={false}
+    allowDecimals={true}
+    allowDuplicatedCategory={true}
+    dataKey="x"
+    domain={
       Array [
-        "corechart",
+        0,
+        "auto",
       ]
     }
-    chartType="ScatterChart"
-    chartVersion="current"
-    columns={Array []}
+    height={30}
+    hide={false}
+    mirror={false}
+    orientation="bottom"
+    padding={
+      Object {
+        "left": 0,
+        "right": 0,
+      }
+    }
+    reversed={false}
+    scale="auto"
+    tickCount={5}
+    type="number"
+    width={0}
+    xAxisId={0}
+  />
+  <YAxis
+    allowDataOverflow={false}
+    allowDecimals={true}
+    allowDuplicatedCategory={true}
+    dataKey="y"
+    domain={
+      Array [
+        0,
+        "auto",
+      ]
+    }
+    height={0}
+    hide={false}
+    mirror={false}
+    orientation="left"
+    padding={
+      Object {
+        "bottom": 0,
+        "top": 0,
+      }
+    }
+    reversed={false}
+    scale="auto"
+    tickCount={5}
+    type="number"
+    width={60}
+    yAxisId={0}
+  />
+  <CartesianGrid
+    fill="none"
+    horizontal={true}
+    horizontalFill={Array []}
+    horizontalPoints={Array []}
+    stroke="#ccc"
+    vertical={true}
+    verticalFill={Array []}
+    verticalPoints={Array []}
+  />
+  <Scatter
+    animationBegin={0}
+    animationDuration={400}
+    animationEasing="linear"
     data={
       Array [
-        Array [
-          "x",
-          "y",
-        ],
-        Array [
-          1,
-          2,
-        ],
-        Array [
-          3,
-          4,
-        ],
-        Array [
-          5,
-          6,
-        ],
+        Object {
+          "x": 1,
+          "y": 2,
+        },
+        Object {
+          "x": 3,
+          "y": 4,
+        },
+        Object {
+          "x": 5,
+          "y": 6,
+        },
       ]
     }
-    dateFormat={null}
-    diffdata={null}
-    formatters={Array []}
-    graph_id="TComponentChart"
-    height="300px"
-    legend_toggle={true}
-    loadCharts={false}
-    loader={
-      <div>
-        Rendering Chart
-      </div>
-    }
-    numberFormat={null}
-    options={Object {}}
-    rows={Array []}
-    width="300px"
+    hide={false}
+    isAnimationActive={true}
+    legendType="circle"
+    lineJointType="linear"
+    lineType="joint"
+    shape="circle"
+    xAxisId={0}
+    yAxisId={0}
+    zAxisId={0}
   />
-</div>
+</ScatterChart>
 `;
