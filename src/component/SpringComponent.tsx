@@ -16,6 +16,10 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
   };
 
   private canvas: HTMLCanvasElement | null = null;
+  private svg: SVGSVGElement | null = null;
+  private graph: SVGGElement | null = null;
+  private svgLink: SVGGElement | null = null;
+  private svgNode: SVGGElement | null = null;
   private height = 0;
   private width = 0;
 
@@ -30,6 +34,7 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
     if (!this.canvas) {
       throw new Error('Unable to get canvas! Does the browser support WebGL?');
     }
+
     this.height = this.canvas.height;
     this.width = this.canvas.width;
 
@@ -60,7 +65,15 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
   public render() {
     return (
       <div id="SpringComponent">
-        <canvas ref={el => (this.canvas = el)} style={{ width: 800, height: 600 }} />
+        {<canvas ref={el => (this.canvas = el)} style={{ width: 800, height: 600 }} />}
+        {/*
+          <svg ref={el => (this.svg = el)} style={{ width: 800, height: 600 }}>
+            <g ref={el => (this.graph = el)} style={{ width: 700, height: 50 }}>
+              <g ref={el => (this.svgLink = el)} className="link" />
+              <g ref={el => (this.svgNode = el)} className="node" />
+            </g>
+          </svg>
+        */}
       </div>
     );
   }
