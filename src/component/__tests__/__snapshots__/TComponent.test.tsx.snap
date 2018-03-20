@@ -8,6 +8,7 @@ exports[`TComponent Should match existing snapshot when given simple data. 1`] =
     allowEmptyRows={false}
     chartActions={null}
     chartEvents={Array []}
+    chartLanguage="en"
     chartPackages={
       Array [
         "corechart",
@@ -38,6 +39,7 @@ exports[`TComponent Should match existing snapshot when given simple data. 1`] =
     }
     dateFormat={null}
     diffdata={null}
+    formatters={Array []}
     graph_id="TComponentChart"
     height="300px"
     legend_toggle={true}
