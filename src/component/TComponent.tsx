@@ -1,27 +1,25 @@
+import * as d3 from 'd3';
 import * as React from 'react';
-import { Chart } from 'react-google-charts';
+import { CartesianGrid, Legend, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from 'recharts';
 
 export interface ITComponentProps {
   data: number[][];
 }
 
+export type rechartScatterDataFormat = Array<{ x: number; y: number }>;
+
 export class TComponent extends React.Component<ITComponentProps, {}> {
   public render() {
-    const data = [['x', 'y'], ...this.props.data];
-
+    const data: rechartScatterDataFormat = this.props.data.map(ele => {
+      return { x: ele[0], y: ele[1] };
+    });
     return (
-      <div id="TComponent">
-        <Chart
-          chartType="ScatterChart"
-          data={data}
-          options={{}}
-          graph_id="TComponentChart"
-          width="300px"
-          height="300px"
-          legend_toggle={true}
-          loadCharts={false}
-        />
-      </div>
+      <ScatterChart width={400} height={400} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+        <XAxis type="number" dataKey={'x'} />
+        <YAxis type="number" dataKey={'y'} />
+        <CartesianGrid />
+        <Scatter data={data} />
+      </ScatterChart>
     );
   }
 }
