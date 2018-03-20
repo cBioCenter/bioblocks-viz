@@ -1,36 +1,92 @@
 import * as React from 'react';
 import * as tsnejs from 'tsnejs';
 
+import { ChellSlider } from '../component/ChellSlider';
 import { TComponent } from '../component/TComponent';
 
 export interface ITContainerState {
+  dim: number; // dimensionality of the embedding (2 = default)
+  epsilon: number; // epsilon is learning rate (10 = default)
+  numPoints: number;
+  perplexity: number; // roughly how many neighbors each point influences (30 = default)
   tsne: tsnejs.tSNE;
 }
 
 export class TContainer extends React.Component<any, ITContainerState> {
+  public static defaultParams = {
+    dim: 2,
+    epsilon: 5,
+    numPoints: 10,
+    perplexity: 10,
+  };
+
   public constructor(props: any) {
     super(props);
 
-    const opt = {
-      dim: 2, // dimensionality of the embedding (2 = default)
-      epsilon: 5, // epsilon is learning rate (10 = default)
-      perplexity: 10, // roughly how many neighbors each point influences (30 = default)
+    this.state = {
+      ...TContainer.defaultParams,
+      tsne: new tsnejs.tSNE(TContainer.defaultParams),
     };
 
-    this.state = { tsne: new tsnejs.tSNE(opt) }; // create a tSNE instance
-
-    // initialize data. Here we have 3 points and some example pairwise dissimilarities
-    const distances = this.distanceMatrix(this.generateUnlinkedData(10));
-    this.state.tsne.initDataDist(distances);
-
-    for (let k = 0; k < 500; k++) {
-      this.state.tsne.step(); // every time you call this, solution gets better
-    }
+    this.generateData(this.state.tsne);
   }
 
   public render() {
-    return <TComponent data={this.state.tsne.getSolution()} />;
+    const style = { width: 600, margin: 50 };
+    const data = this.state.tsne.getSolution();
+    return data ? (
+      <div id="TContainer">
+        <TComponent data={data} />
+        <ChellSlider label={'# of points'} defaultValue={10} max={100} min={5} onAfterChange={this.updateNumPoints()} />
+        <ChellSlider label={'epsilon'} defaultValue={5} max={10} min={1} onAfterChange={this.updateEpsilon()} />
+        <ChellSlider label={'perplexity'} defaultValue={10} max={30} min={1} onAfterChange={this.updatePerplexity()} />
+      </div>
+    ) : null;
   }
+
+  private generateData(tsne: tsnejs.tSNE, numPoints = this.state.numPoints) {
+    const distances = this.distanceMatrix(this.generateUnlinkedData(numPoints));
+    tsne.initDataDist(distances);
+
+    for (let k = 0; k < 500; k++) {
+      tsne.step(); // every time you call this, solution gets better
+    }
+  }
+
+  private updateEpsilon = () => (epsilon: number) => {
+    const tsne = new tsnejs.tSNE({
+      dim: this.state.dim,
+      epsilon,
+      perplexity: this.state.perplexity,
+    });
+    this.generateData(tsne);
+    this.setState({
+      epsilon,
+      tsne,
+    });
+  };
+
+  private updateNumPoints = () => (numPoints: number) => {
+    const tsne = new tsnejs.tSNE(this.state);
+    this.generateData(tsne, numPoints);
+    this.setState({
+      numPoints,
+      tsne,
+    });
+  };
+
+  private updatePerplexity = () => (perplexity: number) => {
+    const tsne = new tsnejs.tSNE({
+      dim: this.state.dim,
+      epsilon: this.state.epsilon,
+      perplexity,
+    });
+    this.generateData(tsne);
+    this.setState({
+      perplexity,
+      tsne,
+    });
+  };
 
   // Points in two unlinked rings. Taken from https://distill.pub/2016/misread-tsne/
   private generateUnlinkedData(numPoints: number) {
