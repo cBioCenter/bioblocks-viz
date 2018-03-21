@@ -6,10 +6,14 @@ import { ProteinViewer } from './container/ProteinViewer';
 import { SideBySideContainer } from './container/SideBySideContainer';
 
 ReactDOM.render(
-  <div>
-    <SideBySideContainer />
-    <ProteinViewer />
-  </div>,
+  <Grid centered={true}>
+    <GridRow>
+      <SideBySideContainer />
+    </GridRow>
+    <GridRow>
+      <ProteinViewer />
+    </GridRow>
+  </Grid>,
   document.getElementById('root'),
 );
 
