@@ -1,7 +1,7 @@
 import * as NGL from 'ngl';
 import * as React from 'react';
 
-import { IStageLoadFileParams, PickingProxy, Stage, StructureComponent } from 'ngl';
+import { PickingProxy, Stage, StructureComponent } from 'ngl';
 
 export interface INGLComponentProps {
   data?: NGL.Structure;

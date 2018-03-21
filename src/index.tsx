@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Card, Grid, GridRow } from 'semantic-ui-react';
+import { Grid, GridRow } from 'semantic-ui-react';
 
 import { ProteinViewer } from './container/ProteinViewer';
 import { SideBySideContainer } from './container/SideBySideContainer';

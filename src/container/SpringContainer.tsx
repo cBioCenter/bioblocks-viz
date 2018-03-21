@@ -1,8 +1,7 @@
 import * as d3 from 'd3';
 import * as React from 'react';
-import * as tsnejs from 'tsnejs';
 
-import { ISpringGraphData, ISpringLink, ISpringNode } from 'spring';
+import { ISpringGraphData } from 'spring';
 import { SpringComponent } from '../component/SpringComponent';
 
 export interface ISpringContainerState {

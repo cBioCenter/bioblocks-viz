@@ -6,6 +6,8 @@
     "lib": ["dom", "es2015"],
     "module": "commonjs",
     "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
     "outDir": "./dist/",
     "paths": {
       "tsnejs": ["node_modules/tsnejs/tsne.js"]

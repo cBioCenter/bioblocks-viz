@@ -1,6 +1,5 @@
-import * as d3 from 'd3';
 import * as React from 'react';
-import { CartesianGrid, Legend, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from 'recharts';
+import { CartesianGrid, Scatter, ScatterChart, XAxis, YAxis } from 'recharts';
 
 export interface ITComponentProps {
   data: number[][];

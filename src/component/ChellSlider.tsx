@@ -1,4 +1,4 @@
-import Slider, { Range } from 'rc-slider';
+import Slider from 'rc-slider';
 import * as React from 'react';
 
 import 'rc-slider/assets/index.css';
@@ -30,7 +30,13 @@ export class ChellSlider extends React.Component<IChellSliderProps, IChellSlider
     return (
       <div>
         <p>{`${label}: ${this.state.value}`}</p>
-        <Slider defaultValue={defaultValue} max={max} min={min} onAfterChange={this.onAfterChange(onAfterChange)} />
+        <Slider
+          defaultValue={defaultValue}
+          max={max}
+          min={min}
+          onAfterChange={this.onAfterChange(onAfterChange)}
+          onChange={this.onChange(onChange)}
+        />
       </div>
     );
   }
