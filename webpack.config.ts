@@ -1,5 +1,6 @@
 import * as CopyWebpackPlugin from 'copy-webpack-plugin';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
+import * as webpack from 'webpack';
 
 // TODO: Use https://github.com/TypeStrong/typedoc and https://github.com/Microsoft/Typedoc-Webpack-Plugin
 // tslint:disable-next-line:no-var-requires
@@ -10,6 +11,7 @@ import * as path from 'path';
 module.exports = {
   devServer: {
     contentBase: './dist',
+    hot: true,
   },
   devtool: 'inline-source-map',
   entry: './src/index.tsx',
@@ -43,6 +45,8 @@ module.exports = {
         toType: 'dir',
       },
     ]),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
   ],
   resolve: {
     alias: {

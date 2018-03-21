@@ -1,5 +1,5 @@
-import Table, { TableCell, TableHead, TableRow } from 'material-ui/Table';
 import * as React from 'react';
+import { Card, Grid } from 'semantic-ui-react';
 
 import { SpringContainer } from './SpringContainer';
 import { TContainer } from './TContainer';
@@ -11,18 +11,16 @@ export class SideBySideContainer extends React.Component<any, any> {
 
   public render() {
     return (
-      <Table id="SideBySideContainer">
-        <TableHead>
-          <TableRow>
-            <TableCell>
-              <TContainer />
-            </TableCell>
-            <TableCell>
-              <SpringContainer />
-            </TableCell>
-          </TableRow>
-        </TableHead>
-      </Table>
+      <Grid id="SideBySideContainer">
+        <Grid.Row columns={2}>
+          <Grid.Column floated={'left'}>
+            <TContainer />
+          </Grid.Column>
+          <Grid.Column floated={'right'}>
+            <SpringContainer />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     );
   }
 }
