@@ -61,9 +61,10 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
   }
 
   public render() {
+    const style = { width: this.width, height: this.height };
     return (
-      <div id="SpringComponent">
-        {<svg ref={el => (this.svg = d3.select(el))} style={{ width: this.width, height: this.height }} />}
+      <div id="SpringComponent" style={style}>
+        {<svg ref={el => (this.svg = d3.select(el))} style={style} />}
       </div>
     );
   }

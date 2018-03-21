@@ -32,10 +32,10 @@ export class TContainer extends React.Component<any, ITContainerState> {
   }
 
   public render() {
-    const style = { width: 600, margin: 50 };
+    const style = { width: 500 };
     const data = this.state.tsne.getSolution();
     return data ? (
-      <div id="TContainer">
+      <div id="TContainer" style={style}>
         <TComponent data={data} />
         <ChellSlider label={'# of points'} defaultValue={10} max={100} min={5} onAfterChange={this.updateNumPoints()} />
         <ChellSlider label={'epsilon'} defaultValue={5} max={10} min={1} onAfterChange={this.updateEpsilon()} />

@@ -370,6 +370,10 @@
   dependencies:
     source-map "^0.6.1"
 
+"@types/webpack-env@^1.13.5":
+  version "1.13.5"
+  resolved "https://registry.yarnpkg.com/@types/webpack-env/-/webpack-env-1.13.5.tgz#ca854e9fbdbcdf45d7376882875f28e2c60593f8"
+
 "@types/webpack@*":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.1.0.tgz#5af4d36ee464c85747c30629cb94f290a1195d7c"
@@ -1292,7 +1296,7 @@ babel-register@^6.26.0, babel-register@^6.9.0:
     mkdirp "^0.5.1"
     source-map-support "^0.4.15"
 
-babel-runtime@6.x, babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.26.0, babel-runtime@^6.9.2:
+babel-runtime@6.x, babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.25.0, babel-runtime@^6.26.0, babel-runtime@^6.9.2:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
   dependencies:
@@ -7870,6 +7874,16 @@ selfsigned@^1.9.1:
   resolved "https://registry.yarnpkg.com/selfsigned/-/selfsigned-1.10.2.tgz#b4449580d99929b65b10a48389301a6592088758"
   dependencies:
     node-forge "0.7.1"
+
+semantic-ui-react@^0.79.0:
+  version "0.79.0"
+  resolved "https://registry.yarnpkg.com/semantic-ui-react/-/semantic-ui-react-0.79.0.tgz#c3c0f7cb5416515bdedb6cc488dfe6ac95d329da"
+  dependencies:
+    babel-runtime "^6.25.0"
+    classnames "^2.2.5"
+    fbjs "^0.8.16"
+    lodash "^4.17.4"
+    prop-types "^15.5.10"
 
 "semver@2 || 3 || 4 || 5", semver@^5.0.1, semver@^5.3.0, semver@^5.4.1, semver@^5.5.0:
   version "5.5.0"
