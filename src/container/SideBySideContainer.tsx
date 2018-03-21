@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, Grid, GridColumn, GridRow, TextArea } from 'semantic-ui-react';
+import { Grid, GridColumn } from 'semantic-ui-react';
 
 import { SpringContainer } from './SpringContainer';
 import { TContainer } from './TContainer';
@@ -11,7 +11,7 @@ export class SideBySideContainer extends React.Component<any, any> {
 
   public render() {
     return (
-      <Grid columns={2} divided={true}>
+      <Grid columns={2}>
         <GridColumn>
           <TContainer />
         </GridColumn>

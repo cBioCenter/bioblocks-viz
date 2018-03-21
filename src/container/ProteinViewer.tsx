@@ -1,4 +1,3 @@
-import * as fs from 'fs';
 import * as NGL from 'ngl';
 import * as React from 'react';
 

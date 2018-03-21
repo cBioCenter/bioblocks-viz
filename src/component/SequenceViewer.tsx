@@ -1,6 +1,5 @@
 import * as NGL from 'ngl';
 import * as React from 'react';
-import * as util from 'util';
 
 export interface ISequenceViewerProps {
   data?: NGL.Structure;
@@ -18,9 +17,6 @@ export class SequenceViewer extends React.Component<ISequenceViewerProps, any> {
 
   public render() {
     const { data, selectedResname } = this.props;
-    if (data) {
-      const sele = new NGL.Selection('26');
-    }
     return (
       <div id="SequenceViewer">
         <div onMouseOver={this.props.onSeqHoverCallback}>{data && data.getSequence().slice(0, 50)}</div>
