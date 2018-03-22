@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChellSlider Should match existing snapshot when given simple data. 1`] = `
+<div>
+  <p>
+    test: 10
+  </p>
+  <ComponentEnhancer(undefined)
+    activeDotStyle={Object {}}
+    className=""
+    defaultValue={10}
+    disabled={false}
+    dotStyle={Object {}}
+    dots={false}
+    handle={[Function]}
+    handleStyle={
+      Array [
+        Object {},
+      ]
+    }
+    included={true}
+    marks={Object {}}
+    max={100}
+    min={1}
+    onAfterChange={[Function]}
+    onBeforeChange={[Function]}
+    onChange={[Function]}
+    prefixCls="rc-slider"
+    railStyle={Object {}}
+    step={1}
+    trackStyle={
+      Array [
+        Object {},
+      ]
+    }
+    vertical={false}
+  />
+</div>
+`;
