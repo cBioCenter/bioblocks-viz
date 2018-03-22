@@ -13,7 +13,8 @@
     "coverageDirectory": "dist/jest/coverage",
     "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
     "moduleNameMapper": {
-      "tsnejs": "tsnejs/tsne"
+      "tsnejs": "tsnejs/tsne",
+      "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.ts"
     },
     "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
     "snapshotSerializers": ["enzyme-to-json/serializer"],
@@ -42,8 +43,7 @@
     "lint": "npm-run-all lint:*",
     "lint:src": "tslint --project ./",
     "lint:markdown": "markdownlint ./ -c ./markdownlint.json -i node_modules",
-    "precommit": "lint-staged",
-    "prepush": "yarn test:staged",
+    "precommit": "lint-staged && yarn test:staged",
     "start": "webpack-dev-server --open --mode development --config webpack.config.ts",
     "start:hot": "webpack-dev-server --hot-only --open --mode development --config webpack.config.ts",
     "start:prod": "webpack-dev-server --open --mode production --config webpack.config.ts",
