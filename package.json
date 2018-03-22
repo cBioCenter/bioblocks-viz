@@ -43,12 +43,14 @@
     "lint:src": "tslint --project ./",
     "lint:markdown": "markdownlint ./ -c ./markdownlint.json -i node_modules",
     "precommit": "lint-staged",
+    "prepush": "yarn test:staged",
     "start": "webpack-dev-server --open --mode development --config webpack.config.ts",
     "start:hot": "webpack-dev-server --hot-only --open --mode development --config webpack.config.ts",
     "start:prod": "webpack-dev-server --open --mode production --config webpack.config.ts",
     "pretest": "mkdir -p dist/jest/test-results",
     "test": "cross-env TEST_REPORT_PATH=dist/jest/test-results jest",
-    "test:cover": "npm run test -- --collectCoverage true"
+    "test:cover": "yarn test -- --collectCoverage true",
+    "test:staged": "jest --onlyChanged"
   },
   "dependencies": {
     "react": "^16.2.0",
