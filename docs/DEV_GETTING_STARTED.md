@@ -1,6 +1,19 @@
-# Getting Started
+# Getting Started With Chell-Viz Development
 
-## Pre-Requisites
+<!-- TOC -->
+
+* [Getting Started With Chell-Viz Development](#getting-started-with-chell-viz-development)
+  * [Pre-Requisites](#pre-requisites)
+  * [Developer Tools](#developer-tools)
+    * [VS Code](#vs-code)
+      * [Extensions](#extensions)
+      * [Debugging](#debugging)
+      * [Formatting](#formatting)
+    * [Oh My Zsh](#oh-my-zsh)
+    * [Ack](#ack)
+    * [Workflow](#workflow)
+
+<!-- /TOC -->## Pre-Requisites
 
 In order to build and run the chell-viz repo, all you will need to manually download is a package manager - This project is using [yarn](https://yarnpkg.com/), but `npm` _should_ _mostly_ suffice.
 
