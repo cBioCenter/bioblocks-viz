@@ -3,7 +3,6 @@
 <!-- TOC -->
 
 * [Getting Started With Chell-Viz Development](#getting-started-with-chell-viz-development)
-  * [Pre-Requisites](#pre-requisites)
   * [Developer Tools](#developer-tools)
     * [VS Code](#vs-code)
       * [Extensions](#extensions)
@@ -13,7 +12,7 @@
     * [Ack](#ack)
     * [Workflow](#workflow)
 
-<!-- /TOC -->## Pre-Requisites
+<!-- /TOC -->
 
 In order to build and run the chell-viz repo, all you will need to manually download is a package manager - This project is using [yarn](https://yarnpkg.com/), but `npm` _should_ _mostly_ suffice.
 
@@ -67,8 +66,8 @@ I like using [https://beyondgrep.com/](ack) in place of grep. That's about it.
 
 ### Workflow
 
-Currently we have 2 stages of checks for code when you are ready to submit a PR.
+Currently we have 3 stages of checks for code when you are ready to submit a PR.
 
-The first actually happens locally! There is a git pre-commit hook which will run the linter and formatter on _staged_ files, as well as writing the changes to the commit! So if you forgot a semicolon, don't worry, it will automagically be appended and require _no extra work on your part_.
+The first two actually happen locally! There is both a pre-commit and pre-push git hook. The former will run the linter and formatter on _staged_ files, as well as the unit testing library against files it has detected a change in. The formatter will even write the changes to the commit, so don't worry if you forgot a semicolon, it will automagically be appended and require _no extra work on your part_. The pre-push hook will simply run the entire unit test suite locally.
 
-The second phase happens via our [Circle CI Server](circleci.com/gh/cBioCenter/chell-viz) when a PR is made against master. It will checkout, build, lint and test the code. The test results and coverage report are also saved as artifacts for each job.
+The second phase happens via our [Circle CI Server](circleci.com/gh/cBioCenter/chell-viz) when a PR is made against master. It will checkout, build, lint and test the code on a fresh machine. The test results and coverage report are also saved as artifacts for each job.
