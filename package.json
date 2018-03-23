@@ -44,6 +44,7 @@
     "lint:src": "tslint --project ./",
     "lint:markdown": "markdownlint ./ -c ./markdownlint.json -i node_modules",
     "precommit": "lint-staged && yarn test:staged",
+    "prepush": "yarn test",
     "start": "webpack-dev-server --open --mode development --config webpack.config.ts",
     "start:hot": "webpack-dev-server --hot-only --open --mode development --config webpack.config.ts",
     "start:prod": "webpack-dev-server --open --mode production --config webpack.config.ts",
