@@ -2,13 +2,16 @@ import * as d3 from 'd3';
 import * as React from 'react';
 
 import { ISpringGraphData } from 'spring';
-import { SpringComponent } from '../component/SpringComponent';
+import { Spring2Component } from '../component/Spring2Component';
 
 export interface ISpringContainerState {
   data: ISpringGraphData;
 }
 
 export class SpringContainer extends React.Component<any, ISpringContainerState> {
+  private exampleDir = 'spring2/full';
+  // private exampleDir = 'centroids';
+
   public constructor(props: any) {
     super(props);
     this.state = {
@@ -20,7 +23,8 @@ export class SpringContainer extends React.Component<any, ISpringContainerState>
   }
 
   public async componentDidMount() {
-    const coordinateText: string = await d3.text('assets/centroids/coordinates.txt');
+    const coordinateFile = 'assets/' + this.exampleDir + '/coordinates.txt';
+    const coordinateText: string = await d3.text(coordinateFile);
 
     const coordinates: number[][] = [];
     coordinateText!.split('\n').forEach((entry, index, array) => {
@@ -33,10 +37,12 @@ export class SpringContainer extends React.Component<any, ISpringContainerState>
       }
     });
 
-    const data: ISpringGraphData = (await d3.json('assets/centroids/graph_data.json')) as ISpringGraphData;
+    const graphDataFile = 'assets/' + this.exampleDir + '/graph_data.json';
+    const data = (await d3.json(graphDataFile)) as ISpringGraphData;
     if (!data.nodes || !data.links) {
       throw new Error('Unable to parse graph_data - does it have node key(s)?');
     }
+
     const nodeDict: any = {};
     data.nodes.forEach(node => {
       nodeDict[node.number] = node;
@@ -58,6 +64,6 @@ export class SpringContainer extends React.Component<any, ISpringContainerState>
   }
 
   public render() {
-    return <SpringComponent data={this.state.data} />;
+    return <Spring2Component data={this.state.data} />;
   }
 }

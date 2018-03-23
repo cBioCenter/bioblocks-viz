@@ -8,6 +8,7 @@
       * [Extensions](#extensions)
       * [Debugging](#debugging)
       * [Formatting](#formatting)
+    * [iTerm2](#iterm2)
     * [Oh My Zsh](#oh-my-zsh)
     * [Ack](#ack)
     * [Workflow](#workflow)
@@ -56,9 +57,13 @@ This will start a webpack-dev-server, and open chrome to `http://localhost:8080"
 
 The `formatOnSave` setting is enabled in this workspace, which if you installed the recommended `Prettier Code Formatter` extension, will automatically use the repo's `.prettierrc` file to format code for you in-editor!
 
+### iTerm2
+
+If you're looking to step your shell/terminal/command-line game up, might I recommend [iTerm2](https://www.iterm2.com/)?
+
 ### Oh My Zsh
 
-If you're looking to step your shell/terminal/command-line game up, might I recommend [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh)?
+If you're still looking to step your shell/terminal/command-line game up, might I also recommend [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh)?
 
 ### Ack
 
