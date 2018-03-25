@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import { ForceLink } from 'd3';
+import * as PIXI from 'pixi.js';
 import * as React from 'react';
 import { ISpringGraphData, ISpringLink, ISpringNode } from 'spring';
 
@@ -15,48 +15,54 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
     },
   };
 
-  private svg?: d3.Selection<SVGSVGElement | null, {}, null, undefined>;
-  private link?: d3.Selection<d3.BaseType, ISpringLink, d3.BaseType, {}>;
-  private node?: d3.Selection<d3.BaseType, ISpringNode, d3.BaseType, {}>;
+  private canvasElement: HTMLCanvasElement | undefined = undefined;
+  private app: PIXI.Application = new PIXI.Application();
+  private width = 800;
+  private height = 800;
 
-  private height = 400;
-  private width = 400;
+  private sprites = new PIXI.particles.ParticleContainer();
+  private edges = new PIXI.particles.ParticleContainer();
 
   constructor(props: any) {
     super(props);
+  }
+
+  public componentDidMount() {
+    this.app = new PIXI.Application(this.width, this.height, {
+      backgroundColor: 0x000000,
+      view: this.canvasElement,
+    });
   }
 
   public componentWillReceiveProps(nextProps: ISpringComponentProps) {
     const isNewData = nextProps && nextProps.data !== this.props.data;
     if (isNewData) {
       const { data } = nextProps;
+      const { app } = this;
 
-      if (!this.svg) {
-        throw new Error('Unable to get svg element!');
+      const SPRITE_IMG_SIZE = 32;
+      const scaleFactor = 0.5 * 32 / SPRITE_IMG_SIZE;
+
+      this.sprites = new PIXI.particles.ParticleContainer(data.nodes.length);
+      for (const node of data.nodes) {
+        const sprite = PIXI.Sprite.fromImage('assets/spring2/disc.png');
+        sprite.x = node.x;
+        sprite.y = node.y;
+
+        sprite.scale.set(scaleFactor);
+        sprite.anchor.set(0.5, 0.5);
+        sprite.alpha = 0.5;
+        sprite.interactive = true;
+        this.sprites.addChild(sprite);
       }
 
-      this.link = this.svg
-        .append('g')
-        .attr('class', 'links')
-        .selectAll('line')
-        .data(data.links)
-        .enter()
-        .append('line')
-        .attr('stroke-width', 1)
-        .attr('stroke', d => '#000000');
+      const linesSprite = this.generateLinesSprite(data.links);
 
-      this.node = this.svg
-        .append('g')
-        .attr('class', 'nodes')
-        .selectAll('circle')
-        .data(data.nodes)
-        .enter()
-        .append('circle')
-        .attr('r', 5)
-        .attr('fill', d => '#660000')
-        .attr('opacity', 0.6);
+      this.edges.addChild(linesSprite);
 
-      this.instantiateSimulation(data);
+      this.centerCanvas(data, true);
+      app.stage.addChild(this.edges);
+      app.stage.addChild(this.sprites);
     }
   }
 
@@ -64,50 +70,78 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
     const style = { width: this.width, height: this.height };
     return (
       <div id="SpringComponent" style={style}>
-        {<svg ref={el => (this.svg = d3.select(el))} style={style} />}
+        <div id="PixiCanvasHolder">
+          {<canvas ref={el => (this.canvasElement = el ? el : undefined)} style={style} />}
+        </div>
       </div>
     );
   }
 
-  private instantiateSimulation(data: ISpringGraphData): void {
-    const simulation = d3
-      .forceSimulation()
-      .force(
-        'link',
-        d3
-          .forceLink()
-          .id((d: any) => d.id)
-          .distance(4)
-          .strength(2),
-      )
-      .force('charge', d3.forceManyBody().strength(-5))
-      .force('center', d3.forceCenter(this.width / 2, this.height / 2))
-      .velocityDecay(0.95);
-    simulation.nodes(data.nodes).on('tick', () => this.ticked());
-    const force: ForceLink<any, any> | undefined = simulation.force('link');
-    if (force) {
-      force.links(data.links);
+  private generateLinesSprite(links: ISpringLink[]) {
+    const lines = new PIXI.Graphics(true);
+    this.edges = new PIXI.particles.ParticleContainer(links.length);
+    for (const link of links) {
+      const source = link.source as ISpringNode;
+      const target = link.target as ISpringNode;
+
+      lines.lineStyle(3, 0xff0000, 1);
+      lines.moveTo(source.x, source.y);
+      lines.lineTo(target.x, target.y);
     }
+    const linesBounds = lines.getBounds();
+    const textureRect = new PIXI.Rectangle(
+      linesBounds.x,
+      linesBounds.y,
+      Math.max(this.width, linesBounds.width),
+      Math.max(this.height, linesBounds.height),
+    );
+    const linesTexture = this.app.renderer.generateTexture(
+      lines,
+      PIXI.SCALE_MODES.LINEAR,
+      this.width / this.height,
+      textureRect,
+    );
+    const linesSprite = new PIXI.Sprite(linesTexture);
+    linesSprite.x = textureRect.x;
+    linesSprite.y = textureRect.y;
+    return linesSprite;
   }
 
-  private ticked(): void {
-    this.link!.attr('x1', d => {
-      return (d.source as ISpringNode).x;
-    })
-      .attr('y1', d => {
-        return (d.source as ISpringNode).y;
-      })
-      .attr('x2', d => {
-        return (d.target as ISpringNode).x;
-      })
-      .attr('y2', d => {
-        return (d.target as ISpringNode).y;
-      });
+  private centerCanvas(data: ISpringGraphData, render: boolean) {
+    if (!render) {
+      return;
+    }
 
-    this.node!.attr('cx', d => {
-      return d.x;
-    }).attr('cy', d => {
-      return d.y;
-    });
+    const { edges, height, sprites, width } = this;
+
+    const allXs = data.nodes.map(node => node.x);
+    const allYs = data.nodes.map(node => node.y);
+
+    const max = {
+      x: d3.max(allXs) as number,
+      y: d3.max(allYs) as number,
+    };
+    const min = {
+      x: d3.min(allXs) as number,
+      y: d3.min(allYs) as number,
+    };
+
+    const dx = max.x - min.x + 50;
+    const dy = max.y - min.y + 50;
+
+    const scale = 0.85 / Math.max(dx / width, dy / height);
+
+    const delta = {
+      scale: scale - this.sprites.scale.x,
+      x: width / 2 - (max.x + min.x) / 2 * scale - sprites.position.x,
+      y: height / 2 + 30 - (max.y + min.y) / 2 * scale - sprites.position.y,
+    };
+
+    sprites.position.x += delta.x;
+    sprites.position.y += delta.y;
+    sprites.scale.x += delta.scale;
+    sprites.scale.y += delta.scale;
+    edges.position = sprites.position;
+    edges.scale = sprites.scale;
   }
 }
