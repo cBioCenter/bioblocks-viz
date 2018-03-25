@@ -6,7 +6,7 @@
     "lib": ["dom", "es2015"],
     "module": "commonjs",
     "noImplicitAny": true,
-    "noUnusedLocals": false,
+    "noUnusedLocals": true,
     "noUnusedParameters": false,
     "outDir": "./dist/",
     "paths": {

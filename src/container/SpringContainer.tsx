@@ -2,7 +2,7 @@ import * as d3 from 'd3';
 import * as React from 'react';
 
 import { ISpringGraphData } from 'spring';
-import { Spring2Component } from '../component/Spring2Component';
+import { SpringComponent } from '../component/SpringComponent';
 
 export interface ISpringContainerState {
   data: ISpringGraphData;
@@ -64,6 +64,6 @@ export class SpringContainer extends React.Component<any, ISpringContainerState>
   }
 
   public render() {
-    return <Spring2Component data={this.state.data} />;
+    return <SpringComponent data={this.state.data} />;
   }
 }
