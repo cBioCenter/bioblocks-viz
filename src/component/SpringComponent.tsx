@@ -60,7 +60,7 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
 
       this.edges.addChild(linesSprite);
 
-      this.centerCanvas(data, true);
+      this.centerCanvas(data);
       app.stage.addChild(this.edges);
       app.stage.addChild(this.sprites);
     }
@@ -107,11 +107,7 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
     return linesSprite;
   }
 
-  private centerCanvas(data: ISpringGraphData, render: boolean) {
-    if (!render) {
-      return;
-    }
-
+  private centerCanvas(data: ISpringGraphData) {
     const { edges, height, sprites, width } = this;
 
     const allXs = data.nodes.map(node => node.x);
