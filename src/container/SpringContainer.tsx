@@ -2,19 +2,22 @@ import * as d3 from 'd3';
 import * as React from 'react';
 
 import { ISpringCategoricalColorData, ISpringCategoricalColorDataInput, ISpringGraphData } from 'spring';
+import { CategorySelector } from '../component/CategorySelector';
 import { SpringComponent } from '../component/SpringComponent';
 
 export interface ISpringContainerState {
+  categoryLabels: string[];
   data: ISpringGraphData;
 }
 
 export class SpringContainer extends React.Component<any, ISpringContainerState> {
-  private exampleDir = 'spring2/full';
-  // private exampleDir = 'centroids';
+  // private exampleDir = 'spring2/full';
+  private exampleDir = 'centroids';
 
   public constructor(props: any) {
     super(props);
     this.state = {
+      categoryLabels: [],
       data: {
         links: [],
         nodes: [],
@@ -50,22 +53,28 @@ export class SpringContainer extends React.Component<any, ISpringContainerState>
     });
 
     this.setState({
+      categoryLabels: Object.keys(catColorData.label_colors),
       data: graphData,
     });
   }
 
   public render() {
-    return <SpringComponent data={this.state.data} />;
+    return (
+      <div id="SpringContainer">
+        <SpringComponent data={this.state.data} />
+        <CategorySelector categories={this.state.categoryLabels} />
+      </div>
+    );
   }
 
   private async fetchCategoricalColorData(file: string): Promise<ISpringCategoricalColorData> {
     const input = (await d3.json(file)) as ISpringCategoricalColorDataInput;
     const output: ISpringCategoricalColorData = {
       label_colors: {},
-      label_list: input.Sample.label_list,
+      label_list: input[Object.keys(input)[0]].label_list,
     };
 
-    const { label_colors } = input.Sample;
+    const { label_colors } = input[Object.keys(input)[0]];
 
     // The input file might specify hex values as either 0xrrggbb or #rrggbb, so we might need to convert the input to a consistent output format.
     for (const key of Object.keys(label_colors)) {

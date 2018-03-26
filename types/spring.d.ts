@@ -1,6 +1,6 @@
 declare module 'spring' {
   export interface ISpringCategoricalColorDataInput {
-    Sample: {
+    [k: string]: {
       label_colors: { [key: string]: string | number };
       label_list: string[];
     };

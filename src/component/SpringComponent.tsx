@@ -15,13 +15,13 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
     },
   };
 
-  private canvasElement: HTMLCanvasElement | undefined = undefined;
+  private canvasElement?: HTMLCanvasElement;
   private app: PIXI.Application = new PIXI.Application();
-  private width = 800;
-  private height = 800;
+  private width = 600;
+  private height = 600;
 
-  private sprites: PIXI.Container = new PIXI.particles.ParticleContainer();
-  private edges: PIXI.Container = new PIXI.particles.ParticleContainer();
+  private sprites: PIXI.Container = new PIXI.Container();
+  private edges: PIXI.Container = new PIXI.Container();
 
   constructor(props: any) {
     super(props);
@@ -40,25 +40,7 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
       const { data } = nextProps;
       const { app } = this;
 
-      const SPRITE_IMG_SIZE = 32;
-      const scaleFactor = 0.5 * 32 / SPRITE_IMG_SIZE;
-
-      // this.sprites = new PIXI.particles.ParticleContainer(data.nodes.length);
-      this.sprites = new PIXI.Container();
-      for (const node of data.nodes) {
-        const nodeTexture = new PIXI.Graphics(true);
-        nodeTexture.beginFill(node.colorHex);
-        nodeTexture.drawCircle(0, 0, 16);
-        nodeTexture.endFill();
-        const sprite = new PIXI.Sprite(this.app.renderer.generateTexture(nodeTexture));
-        sprite.x = node.x;
-        sprite.y = node.y;
-        sprite.scale.set(scaleFactor);
-        sprite.anchor.set(0.5, 0.5);
-        sprite.interactive = true;
-        this.sprites.addChild(sprite);
-      }
-
+      this.generateNodeSprites(data.nodes);
       const linesSprite = this.generateLinesSprite(data.links);
 
       this.edges.addChild(linesSprite);
@@ -108,6 +90,27 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
     linesSprite.x = textureRect.x;
     linesSprite.y = textureRect.y;
     return linesSprite;
+  }
+
+  private generateNodeSprites(nodes: ISpringNode[]) {
+    const SPRITE_IMG_SIZE = 32;
+    const scaleFactor = 0.5 * 32 / SPRITE_IMG_SIZE;
+
+    // this.sprites = new PIXI.particles.ParticleContainer(data.nodes.length);
+
+    for (const node of nodes) {
+      const nodeTexture = new PIXI.Graphics();
+      nodeTexture.beginFill(node.colorHex);
+      nodeTexture.drawCircle(0, 0, SPRITE_IMG_SIZE / 2);
+      nodeTexture.endFill();
+      const sprite = new PIXI.Sprite(this.app.renderer.generateTexture(nodeTexture));
+      sprite.x = node.x;
+      sprite.y = node.y;
+      sprite.scale.set(scaleFactor);
+      sprite.anchor.set(0.5, 0.5);
+      sprite.interactive = true;
+      this.sprites.addChild(sprite);
+    }
   }
 
   private centerCanvas(data: ISpringGraphData) {
