@@ -20,8 +20,8 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
   private width = 800;
   private height = 800;
 
-  private sprites = new PIXI.particles.ParticleContainer();
-  private edges = new PIXI.particles.ParticleContainer();
+  private sprites: PIXI.Container = new PIXI.particles.ParticleContainer();
+  private edges: PIXI.Container = new PIXI.particles.ParticleContainer();
 
   constructor(props: any) {
     super(props);
@@ -29,7 +29,7 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
 
   public componentDidMount() {
     this.app = new PIXI.Application(this.width, this.height, {
-      backgroundColor: 0x000000,
+      backgroundColor: 0xcccccc,
       view: this.canvasElement,
     });
   }
@@ -43,15 +43,18 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
       const SPRITE_IMG_SIZE = 32;
       const scaleFactor = 0.5 * 32 / SPRITE_IMG_SIZE;
 
-      this.sprites = new PIXI.particles.ParticleContainer(data.nodes.length);
+      // this.sprites = new PIXI.particles.ParticleContainer(data.nodes.length);
+      this.sprites = new PIXI.Container();
       for (const node of data.nodes) {
-        const sprite = PIXI.Sprite.fromImage('assets/spring2/disc.png');
+        const nodeTexture = new PIXI.Graphics(true);
+        nodeTexture.beginFill(node.colorHex);
+        nodeTexture.drawCircle(0, 0, 16);
+        nodeTexture.endFill();
+        const sprite = new PIXI.Sprite(this.app.renderer.generateTexture(nodeTexture));
         sprite.x = node.x;
         sprite.y = node.y;
-
         sprite.scale.set(scaleFactor);
         sprite.anchor.set(0.5, 0.5);
-        sprite.alpha = 0.5;
         sprite.interactive = true;
         this.sprites.addChild(sprite);
       }

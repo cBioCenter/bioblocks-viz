@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 import * as React from 'react';
 
-import { ISpringGraphData } from 'spring';
+import { ISpringCategoricalColorData, ISpringCategoricalColorDataInput, ISpringGraphData } from 'spring';
 import { SpringComponent } from '../component/SpringComponent';
 
 export interface ISpringContainerState {
@@ -23,8 +23,86 @@ export class SpringContainer extends React.Component<any, ISpringContainerState>
   }
 
   public async componentDidMount() {
-    const coordinateFile = 'assets/' + this.exampleDir + '/coordinates.txt';
-    const coordinateText: string = await d3.text(coordinateFile);
+    const coordinates = await this.fetchCoordinateData('assets/' + this.exampleDir + '/coordinates.txt');
+    const graphData = await this.fetchGraphData('assets/' + this.exampleDir + '/graph_data.json');
+    // const colorData = await this.fetchColorData('assets/' + this.exampleDir + '/color_data_gene_sets.csv');
+    const catColorData = await this.fetchCategoricalColorData(
+      'assets/' + this.exampleDir + '/categorical_coloring_data.json',
+    );
+
+    const nodeDict: any = {};
+
+    for (let i = 0; i < graphData.nodes.length; ++i) {
+      const node = graphData.nodes[i];
+      nodeDict[node.number] = node;
+      if (node.number in coordinates) {
+        node.fixed = true;
+        node.x = coordinates[node.number][0];
+        node.y = coordinates[node.number][1];
+      }
+      const label = catColorData.label_list[i];
+      node.colorHex = catColorData.label_colors[label];
+    }
+
+    graphData.links.forEach(link => {
+      link.source = nodeDict[link.source as string];
+      link.target = nodeDict[link.target as string];
+    });
+
+    this.setState({
+      data: graphData,
+    });
+  }
+
+  public render() {
+    return <SpringComponent data={this.state.data} />;
+  }
+
+  private async fetchCategoricalColorData(file: string): Promise<ISpringCategoricalColorData> {
+    const input = (await d3.json(file)) as ISpringCategoricalColorDataInput;
+    const output: ISpringCategoricalColorData = {
+      label_colors: {},
+      label_list: input.Sample.label_list,
+    };
+
+    const { label_colors } = input.Sample;
+
+    // The input file might specify hex values as either 0xrrggbb or #rrggbb, so we might need to convert the input to a consistent output format.
+    for (const key of Object.keys(label_colors)) {
+      const hex = label_colors[key];
+      if (typeof hex === 'number') {
+        output.label_colors[key] = hex;
+      } else if (hex.charAt(0) === '#') {
+        output.label_colors[key] = Number.parseInt('0x' + hex.slice(1));
+      } else {
+        output.label_colors[key] = Number.parseInt(hex);
+      }
+    }
+    return output;
+  }
+
+  // @ts-ignore
+  private async fetchColorData(file: string) {
+    const colorText: string = await d3.text(file);
+    const dict: { [k: string]: any } = {};
+    colorText.split('\n').forEach((entry, index, array) => {
+      if (entry.length > 0) {
+        const items = entry.split(',');
+        const gene = items[0];
+        const expArray: any[] = [];
+        items.forEach((e, i, a) => {
+          if (i > 0) {
+            expArray.push(parseFloat(e));
+          }
+        });
+        dict[gene] = expArray;
+      }
+    });
+    return dict;
+  }
+
+  private async fetchCoordinateData(file: string) {
+    const coordinateText: string = await d3.text(file);
 
     const coordinates: number[][] = [];
     coordinateText!.split('\n').forEach((entry, index, array) => {
@@ -36,34 +114,14 @@ export class SpringContainer extends React.Component<any, ISpringContainerState>
         coordinates[nn] = [xx, yy];
       }
     });
+    return coordinates;
+  }
 
-    const graphDataFile = 'assets/' + this.exampleDir + '/graph_data.json';
-    const data = (await d3.json(graphDataFile)) as ISpringGraphData;
+  private async fetchGraphData(file: string) {
+    const data = (await d3.json(file)) as ISpringGraphData;
     if (!data.nodes || !data.links) {
       throw new Error('Unable to parse graph_data - does it have node key(s)?');
     }
-
-    const nodeDict: any = {};
-    data.nodes.forEach(node => {
-      nodeDict[node.number] = node;
-      if (node.number in coordinates) {
-        node.fixed = true;
-        node.x = coordinates[node.number][0];
-        node.y = coordinates[node.number][1];
-      }
-    });
-
-    data.links.forEach(link => {
-      link.source = nodeDict[link.source as string];
-      link.target = nodeDict[link.target as string];
-    });
-
-    this.setState({
-      data,
-    });
-  }
-
-  public render() {
-    return <SpringComponent data={this.state.data} />;
+    return data;
   }
 }
