@@ -11,7 +11,11 @@
     * [iTerm2](#iterm2)
     * [Oh My Zsh](#oh-my-zsh)
     * [Ack](#ack)
-    * [Workflow](#workflow)
+  * [Project Structure](#project-structure)
+    * [Frontend Stack](#frontend-stack)
+    * [Build System](#build-system)
+    * [The DevServer](#the-devserver)
+    * [Being The CI/CD You Want To See In The World](#being-the-cicd-you-want-to-see-in-the-world)
 
 <!-- /TOC -->
 
@@ -69,7 +73,42 @@ If you're still looking to step your shell/terminal/command-line game up, might 
 
 I like using [https://beyondgrep.com/](ack) in place of grep. That's about it.
 
-### Workflow
+## Project Structure
+
+### Frontend Stack
+
+We are using [TypeScript](https://www.typescriptlang.org/) and [React](https://reactjs.org/) to build the interface for our visualizations that will be consumed by other developers. Digging deeper, we are wrapping libraries such as [ThreeJS](https://threejs.org/), [PixiJS](http://www.pixijs.com/) and [D3](https://d3js.org/).
+
+TypeScript lets us have our cake and eat it too with regards to static and dynamic typing, allowing explicit contracts to be enforced at compile time when it comes to parameter types and the like. Also, it just feels _magical_.
+
+### Build System
+
+We are using [Webpack](webpack.js.org) to bundle our code, assets, etc. We currently support two build modes, development and production. By default, development is used and production must be explicitly specified. For example:
+
+```sh
+# Webpack uses 'development' configuration.
+yarn start
+yarn build
+
+# Webpack uses 'production' configuration.
+yarn start:prod
+yarn build:prod
+```
+
+You can find the webpack config files inside the `configs` directory, as well as `webpack.common.ts` for configuration that is the same for both.
+
+Right now the differences are minimal, however the framework is now in place to (more easily) allow finer-grained configuration.
+
+### The DevServer
+
+For development on frontend components, you are easily able to spin up a [Webpack DevServer](https://webpack.js.org/configuration/dev-server/) to rapidly make code changes. In addition, if you really want to move fast, try out [Hot Module Replacement](https://webpack.js.org/concepts/hot-module-replacement/) mode!
+
+```sh
+yarn start
+yarn start:hot
+```
+
+### Being The CI/CD You Want To See In The World
 
 Currently we have 3 stages of checks for code when you are ready to submit a PR.
 
