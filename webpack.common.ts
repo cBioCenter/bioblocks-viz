@@ -1,3 +1,4 @@
+import * as CleanWebpackPlugin from 'clean-webpack-plugin';
 import * as CopyWebpackPlugin from 'copy-webpack-plugin';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as webpack from 'webpack';
@@ -9,22 +10,19 @@ import * as webpack from 'webpack';
 import * as path from 'path';
 
 module.exports = {
-  devServer: {
-    contentBase: './dist',
-    hot: true,
-  },
-  devtool: 'inline-source-map',
   entry: './src/index.tsx',
   module: {
     rules: [
       {
-        exclude: ['node_modules', /\.test.tsx?$/],
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-      },
-      {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
+      },
+      {
+        exclude: ['node_modules', /\.test.tsx?$/],
+        test: /\.tsx?$/,
+        use: {
+          loader: 'ts-loader',
+        },
       },
     ],
   },
@@ -33,6 +31,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
+    new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       inject: true,
       template: './index.html',
@@ -46,7 +45,6 @@ module.exports = {
       },
     ]),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
   ],
   resolve: {
     alias: {
