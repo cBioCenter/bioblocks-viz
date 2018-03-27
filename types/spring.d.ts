@@ -23,6 +23,7 @@ declare module 'spring' {
   }
 
   export interface ISpringNode {
+    category: string;
     colorHex: number;
     fixed: boolean;
     name: string;

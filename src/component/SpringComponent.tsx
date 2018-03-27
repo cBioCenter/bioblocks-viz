@@ -5,6 +5,7 @@ import { ISpringGraphData, ISpringLink, ISpringNode } from 'spring';
 
 export interface ISpringComponentProps {
   data: ISpringGraphData;
+  selectedCategory?: string;
 }
 
 export class SpringComponent extends React.Component<ISpringComponentProps, any> {
@@ -35,17 +36,20 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
   }
 
   public componentWillReceiveProps(nextProps: ISpringComponentProps) {
-    const isNewData = nextProps && nextProps.data !== this.props.data;
-    if (isNewData) {
-      const { data } = nextProps;
-      const { app } = this;
+    const { data, selectedCategory } = nextProps;
 
-      this.generateNodeSprites(data.nodes);
-      const linesSprite = this.generateLinesSprite(data.links);
+    const isNewData = nextProps && (data !== this.props.data || selectedCategory !== this.props.selectedCategory);
+    if (isNewData) {
+      const { app } = this;
+      app.stage.removeChildren();
+
+      this.generateNodeSprites(data.nodes, selectedCategory);
+      const linesSprite = this.generateLinesSprite(data.links, selectedCategory);
 
       this.edges.addChild(linesSprite);
 
       this.centerCanvas(data);
+
       app.stage.addChild(this.edges);
       app.stage.addChild(this.sprites);
     }
@@ -62,13 +66,16 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
     );
   }
 
-  private generateLinesSprite(links: ISpringLink[]) {
+  private generateLinesSprite(links: ISpringLink[], category?: string) {
     const lines = new PIXI.Graphics(true);
     this.edges = new PIXI.particles.ParticleContainer(links.length);
     for (const link of links) {
       const source = link.source as ISpringNode;
       const target = link.target as ISpringNode;
 
+      if (category && source.category !== category && target.category !== category) {
+        continue;
+      }
       lines.lineStyle(3, 0xff0000, 1);
       lines.moveTo(source.x, source.y);
       lines.lineTo(target.x, target.y);
@@ -92,13 +99,16 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
     return linesSprite;
   }
 
-  private generateNodeSprites(nodes: ISpringNode[]) {
+  private generateNodeSprites(nodes: ISpringNode[], category?: string) {
     const SPRITE_IMG_SIZE = 32;
     const scaleFactor = 0.5 * 32 / SPRITE_IMG_SIZE;
-
+    this.sprites.removeChildren();
     // this.sprites = new PIXI.particles.ParticleContainer(data.nodes.length);
 
     for (const node of nodes) {
+      if (category && node.category !== category) {
+        continue;
+      }
       const nodeTexture = new PIXI.Graphics();
       nodeTexture.beginFill(node.colorHex);
       nodeTexture.drawCircle(0, 0, SPRITE_IMG_SIZE / 2);

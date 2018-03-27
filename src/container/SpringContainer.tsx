@@ -8,6 +8,7 @@ import { SpringComponent } from '../component/SpringComponent';
 export interface ISpringContainerState {
   categoryLabels: string[];
   data: ISpringGraphData;
+  selectedCategory?: string;
 }
 
 export class SpringContainer extends React.Component<any, ISpringContainerState> {
@@ -44,6 +45,7 @@ export class SpringContainer extends React.Component<any, ISpringContainerState>
         node.y = coordinates[node.number][1];
       }
       const label = catColorData.label_list[i];
+      node.category = label;
       node.colorHex = catColorData.label_colors[label];
     }
 
@@ -61,11 +63,17 @@ export class SpringContainer extends React.Component<any, ISpringContainerState>
   public render() {
     return (
       <div id="SpringContainer">
-        <SpringComponent data={this.state.data} />
-        <CategorySelector categories={this.state.categoryLabels} />
+        <SpringComponent data={this.state.data} selectedCategory={this.state.selectedCategory} />
+        <CategorySelector categories={this.state.categoryLabels} onCategoryChange={this.onCategoryChange} />
       </div>
     );
   }
+
+  private onCategoryChange = (event: React.SyntheticEvent<any>, data: any) => {
+    this.setState({
+      selectedCategory: data.value,
+    });
+  };
 
   private async fetchCategoricalColorData(file: string): Promise<ISpringCategoricalColorData> {
     const input = (await d3.json(file)) as ISpringCategoricalColorDataInput;

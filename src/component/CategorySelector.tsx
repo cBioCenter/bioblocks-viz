@@ -3,6 +3,7 @@ import { Dropdown } from 'semantic-ui-react';
 
 export interface ICategorySelectorProps {
   categories: string[];
+  onCategoryChange?: (event: React.SyntheticEvent<any>, data: object) => void;
 }
 
 export class CategorySelector extends React.Component<ICategorySelectorProps, any> {
@@ -15,9 +16,13 @@ export class CategorySelector extends React.Component<ICategorySelectorProps, an
       this.props.categories && (
         <Dropdown
           fluid={true}
-          options={this.props.categories.map(cat => {
-            return { text: cat, value: cat };
-          })}
+          onChange={this.props.onCategoryChange}
+          options={[
+            { text: 'all', value: undefined },
+            ...this.props.categories.map(cat => {
+              return { text: cat, value: cat };
+            }),
+          ]}
           placeholder={'Select Category'}
           search={true}
         />
