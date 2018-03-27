@@ -10,6 +10,7 @@ export interface INGLComponentProps {
 
 export interface INGLComponentState {
   stage?: NGL.Stage;
+  selectedResNum?: number;
 }
 
 export class NGLComponent extends React.Component<INGLComponentProps, INGLComponentState> {
@@ -37,13 +38,17 @@ export class NGLComponent extends React.Component<INGLComponentProps, INGLCompon
           if (ele) {
             structureComponent.removeRepresentation(ele);
           }
-          ele = structureComponent.addRepresentation('spacefill', {
-            // sele: atom.resno.toString(),
-            sele: '26',
-          });
-          if (this.props.onHoverPickCallback) {
-            this.props.onHoverPickCallback(atom.resname);
+          if (this.state.selectedResNum) {
+            ele = structureComponent.addRepresentation('spacefill', {
+              sele: this.state.selectedResNum.toString(),
+            });
           }
+          if (this.props.onHoverPickCallback) {
+            this.props.onHoverPickCallback(atom.resno);
+          }
+          this.setState({
+            selectedResNum: atom.resno,
+          });
         }
       });
 
