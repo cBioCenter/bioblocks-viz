@@ -12,8 +12,8 @@ export interface ISpringContainerState {
 }
 
 export class SpringContainer extends React.Component<any, ISpringContainerState> {
-  // private exampleDir = 'spring2/full';
-  private exampleDir = 'centroids';
+  private exampleDir = 'spring2/full';
+  // private exampleDir = 'centroids';
 
   public constructor(props: any) {
     super(props);

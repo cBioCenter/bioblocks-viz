@@ -4,33 +4,36 @@ import * as React from 'react';
 import { ISpringGraphData, ISpringLink, ISpringNode } from 'spring';
 
 export interface ISpringComponentProps {
+  canvasBackgroundColor?: number;
   data: ISpringGraphData;
   selectedCategory?: string;
 }
 
 export class SpringComponent extends React.Component<ISpringComponentProps, any> {
   public static defaultProps: Partial<ISpringComponentProps> = {
+    canvasBackgroundColor: 0xcccccc,
     data: {
       links: [],
       nodes: [],
     },
   };
 
-  private canvasElement?: HTMLCanvasElement;
-  private app: PIXI.Application = new PIXI.Application();
-  private width = 600;
-  private height = 600;
+  private pixiApp: PIXI.Application = new PIXI.Application();
 
-  private sprites: PIXI.Container = new PIXI.Container();
-  private edges: PIXI.Container = new PIXI.Container();
+  private canvasElement?: HTMLCanvasElement;
+  private canvasWidth = 600;
+  private canvasHeight = 600;
+
+  private nodeSprites: PIXI.Container = new PIXI.Container();
+  private edgeSprites: PIXI.Container = new PIXI.Container();
 
   constructor(props: any) {
     super(props);
   }
 
   public componentDidMount() {
-    this.app = new PIXI.Application(this.width, this.height, {
-      backgroundColor: 0xcccccc,
+    this.pixiApp = new PIXI.Application(this.canvasWidth, this.canvasHeight, {
+      backgroundColor: this.props.canvasBackgroundColor,
       view: this.canvasElement,
     });
   }
@@ -40,23 +43,23 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
 
     const isNewData = nextProps && (data !== this.props.data || selectedCategory !== this.props.selectedCategory);
     if (isNewData) {
-      const { app } = this;
-      app.stage.removeChildren();
+      const { pixiApp } = this;
+      pixiApp.stage.removeChildren();
 
-      this.generateNodeSprites(data.nodes, selectedCategory);
-      const linesSprite = this.generateLinesSprite(data.links, selectedCategory);
-
-      this.edges.addChild(linesSprite);
+      this.nodeSprites.removeChildren();
+      this.nodeSprites.removeChildren();
+      this.generateNodeSprites(data.nodes, this.nodeSprites, selectedCategory);
+      this.generateLinesSprite(data.links, this.edgeSprites, selectedCategory);
 
       this.centerCanvas(data);
 
-      app.stage.addChild(this.edges);
-      app.stage.addChild(this.sprites);
+      pixiApp.stage.addChild(this.edgeSprites);
+      pixiApp.stage.addChild(this.nodeSprites);
     }
   }
 
   public render() {
-    const style = { width: this.width, height: this.height };
+    const style = { width: this.canvasWidth, height: this.canvasHeight };
     return (
       <div id="SpringComponent" style={style}>
         <div id="PixiCanvasHolder">
@@ -66,9 +69,8 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
     );
   }
 
-  private generateLinesSprite(links: ISpringLink[], category?: string) {
-    const lines = new PIXI.Graphics(true);
-    this.edges = new PIXI.particles.ParticleContainer(links.length);
+  private generateLinesSprite(links: ISpringLink[], container: PIXI.Container, category?: string) {
+    const lines = new PIXI.Graphics();
     for (const link of links) {
       const source = link.source as ISpringNode;
       const target = link.target as ISpringNode;
@@ -76,7 +78,7 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
       if (category && source.category !== category && target.category !== category) {
         continue;
       }
-      lines.lineStyle(3, 0xff0000, 1);
+      lines.lineStyle(5, 0xff0000, 1);
       lines.moveTo(source.x, source.y);
       lines.lineTo(target.x, target.y);
     }
@@ -84,47 +86,48 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
     const textureRect = new PIXI.Rectangle(
       linesBounds.x,
       linesBounds.y,
-      Math.max(this.width, linesBounds.width),
-      Math.max(this.height, linesBounds.height),
+      Math.max(this.canvasWidth, linesBounds.width),
+      Math.max(this.canvasHeight, linesBounds.height),
     );
-    const linesTexture = this.app.renderer.generateTexture(
+    const linesTexture = this.pixiApp.renderer.generateTexture(
       lines,
       PIXI.SCALE_MODES.LINEAR,
-      this.width / this.height,
+      this.canvasWidth / this.canvasHeight,
       textureRect,
     );
     const linesSprite = new PIXI.Sprite(linesTexture);
     linesSprite.x = textureRect.x;
     linesSprite.y = textureRect.y;
-    return linesSprite;
+    container.addChild(linesSprite);
   }
 
-  private generateNodeSprites(nodes: ISpringNode[], category?: string) {
+  private generateNodeSprites(nodes: ISpringNode[], container: PIXI.Container, category?: string) {
     const SPRITE_IMG_SIZE = 32;
     const scaleFactor = 0.5 * 32 / SPRITE_IMG_SIZE;
-    this.sprites.removeChildren();
+
+    // TODO: Evaluate ParticleContainer is PIXI v5. The v4 version doesn't play nice with sprites rendered via PIXI.Graphics.
     // this.sprites = new PIXI.particles.ParticleContainer(data.nodes.length);
 
     for (const node of nodes) {
-      if (category && node.category !== category) {
-        continue;
-      }
       const nodeTexture = new PIXI.Graphics();
       nodeTexture.beginFill(node.colorHex);
       nodeTexture.drawCircle(0, 0, SPRITE_IMG_SIZE / 2);
       nodeTexture.endFill();
-      const sprite = new PIXI.Sprite(this.app.renderer.generateTexture(nodeTexture));
+      const sprite = new PIXI.Sprite(this.pixiApp.renderer.generateTexture(nodeTexture));
       sprite.x = node.x;
       sprite.y = node.y;
-      sprite.scale.set(scaleFactor);
+      if (category && node.category !== category) {
+        sprite.alpha = 0.1;
+      }
       sprite.anchor.set(0.5, 0.5);
       sprite.interactive = true;
-      this.sprites.addChild(sprite);
+      sprite.scale.set(scaleFactor);
+      container.addChild(sprite);
     }
   }
 
   private centerCanvas(data: ISpringGraphData) {
-    const { edges, height, sprites, width } = this;
+    const { edgeSprites, canvasHeight, nodeSprites, canvasWidth } = this;
 
     const allXs = data.nodes.map(node => node.x);
     const allYs = data.nodes.map(node => node.y);
@@ -141,19 +144,19 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
     const dx = max.x - min.x + 50;
     const dy = max.y - min.y + 50;
 
-    const scale = 0.85 / Math.max(dx / width, dy / height);
+    const scale = 0.85 / Math.max(dx / canvasWidth, dy / canvasHeight);
 
     const delta = {
-      scale: scale - this.sprites.scale.x,
-      x: width / 2 - (max.x + min.x) / 2 * scale - sprites.position.x,
-      y: height / 2 + 30 - (max.y + min.y) / 2 * scale - sprites.position.y,
+      scale: scale - this.nodeSprites.scale.x,
+      x: canvasWidth / 2 - (max.x + min.x) / 2 * scale - nodeSprites.position.x,
+      y: canvasHeight / 2 + 30 - (max.y + min.y) / 2 * scale - nodeSprites.position.y,
     };
 
-    sprites.position.x += delta.x;
-    sprites.position.y += delta.y;
-    sprites.scale.x += delta.scale;
-    sprites.scale.y += delta.scale;
-    edges.position = sprites.position;
-    edges.scale = sprites.scale;
+    nodeSprites.position.x += delta.x;
+    nodeSprites.position.y += delta.y;
+    nodeSprites.scale.x += delta.scale;
+    nodeSprites.scale.y += delta.scale;
+    edgeSprites.position = nodeSprites.position;
+    edgeSprites.scale = nodeSprites.scale;
   }
 }
