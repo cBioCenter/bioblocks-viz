@@ -71,6 +71,7 @@ export class SpringContainer extends React.Component<ISpringContainerProps, ISpr
       this.setState({
         categoryLabels: Object.keys(catColorData.label_colors),
         data: graphData,
+        selectedCategory: undefined,
       });
     } catch (e) {
       console.log(`Error fetching Spring data:\n${e}`);
@@ -152,8 +153,7 @@ export class SpringContainer extends React.Component<ISpringContainerProps, ISpr
   }
 
   private async fetchGraphData(file: string) {
-    const jsonFile = await d3.json(file);
-    const data = jsonFile as ISpringGraphData;
+    const data = (await d3.json(file)) as ISpringGraphData;
     if (!data.nodes || !data.links) {
       throw new Error('Unable to parse graph_data - does it have node key(s)?');
     }
