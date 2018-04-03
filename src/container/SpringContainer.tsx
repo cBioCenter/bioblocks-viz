@@ -71,6 +71,7 @@ export class SpringContainer extends React.Component<ISpringContainerProps, ISpr
       this.setState({
         categoryLabels: Object.keys(catColorData.label_colors),
         data: graphData,
+        selectedCategory: undefined,
       });
     } catch (e) {
       console.log(`Error fetching Spring data:\n${e}`);
