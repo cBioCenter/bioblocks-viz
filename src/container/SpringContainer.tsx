@@ -152,8 +152,7 @@ export class SpringContainer extends React.Component<ISpringContainerProps, ISpr
   }
 
   private async fetchGraphData(file: string) {
-    const jsonFile = await d3.json(file);
-    const data = jsonFile as ISpringGraphData;
+    const data = (await d3.json(file)) as ISpringGraphData;
     if (!data.nodes || !data.links) {
       throw new Error('Unable to parse graph_data - does it have node key(s)?');
     }

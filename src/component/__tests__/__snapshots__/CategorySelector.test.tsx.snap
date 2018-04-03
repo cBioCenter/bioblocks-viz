@@ -19,9 +19,29 @@ exports[`CategorySelector Should match existing snapshot when given simple data.
         "value": undefined,
       },
       Object {
-        "key": "Babydoll",
-        "text": "Babydoll",
-        "value": "Babydoll",
+        "key": "Costello Music",
+        "text": "Costello Music",
+        "value": "Costello Music",
+      },
+      Object {
+        "key": "Here We Stand",
+        "text": "Here We Stand",
+        "value": "Here We Stand",
+      },
+      Object {
+        "key": "We Need Medicine",
+        "text": "We Need Medicine",
+        "value": "We Need Medicine",
+      },
+      Object {
+        "key": "Eyes Wide, Tongue Tied",
+        "text": "Eyes Wide, Tongue Tied",
+        "value": "Eyes Wide, Tongue Tied",
+      },
+      Object {
+        "key": "In Your Own Sweet Time",
+        "text": "In Your Own Sweet Time",
+        "value": "In Your Own Sweet Time",
       },
     ]
   }
