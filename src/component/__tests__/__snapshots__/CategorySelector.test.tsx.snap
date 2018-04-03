@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CategorySelector Should match existing snapshot when given simple data. 1`] = `
+<Dropdown
+  additionLabel="Add "
+  additionPosition="top"
+  closeOnBlur={true}
+  deburr={false}
+  fluid={true}
+  icon="dropdown"
+  minCharacters={1}
+  noResultsMessage="No results found."
+  openOnFocus={true}
+  options={
+    Array [
+      Object {
+        "key": "all",
+        "text": "all",
+        "value": undefined,
+      },
+      Object {
+        "key": "Babydoll",
+        "text": "Babydoll",
+        "value": "Babydoll",
+      },
+    ]
+  }
+  placeholder="Select Category"
+  renderLabel={[Function]}
+  search={true}
+  searchInput="text"
+  selectOnBlur={true}
+  selectOnNavigation={true}
+  wrapSelection={true}
+/>
+`;

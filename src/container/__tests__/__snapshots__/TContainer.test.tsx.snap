@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TContainer Should match existing snapshot when given no data. 1`] = `
+<div
+  id="TContainer"
+>
+  <TComponent
+    data={Array []}
+  />
+  <ChellSlider
+    defaultValue={5}
+    label="epsilon"
+    max={10}
+    min={1}
+    onAfterChange={[Function]}
+  />
+  <ChellSlider
+    defaultValue={10}
+    label="perplexity"
+    max={30}
+    min={1}
+    onAfterChange={[Function]}
+  />
+</div>
+`;
+
+exports[`TContainer Should update when given a new data directory. 1`] = `
+<div
+  id="TContainer"
+>
+  <TComponent
+    data={Array []}
+  />
+  <ChellSlider
+    defaultValue={5}
+    label="epsilon"
+    max={10}
+    min={1}
+    onAfterChange={[Function]}
+  />
+  <ChellSlider
+    defaultValue={10}
+    label="perplexity"
+    max={30}
+    min={1}
+    onAfterChange={[Function]}
+  />
+</div>
+`;
