@@ -38,39 +38,43 @@ export class SpringContainer extends React.Component<ISpringContainerProps, ISpr
   }
 
   public async fetchData(dataDir: string) {
-    const coordinates = await this.fetchCoordinateData(`assets/${dataDir}/coordinates.txt`);
-    const graphData = await this.fetchGraphData(`assets/${dataDir}/graph_data.json`);
-    // const colorData = await this.fetchColorData(`assets/${this.props.dataDir}/color_data_gene_sets.csv`);
-    const catColorData = await this.fetchCategoricalColorData(`assets/${dataDir}/categorical_coloring_data.json`);
+    try {
+      const coordinates = await this.fetchCoordinateData(`assets/${dataDir}/coordinates.txt`);
+      const graphData = await this.fetchGraphData(`assets/${dataDir}/graph_data.json`);
+      // const colorData = await this.fetchColorData(`assets/${this.props.dataDir}/color_data_gene_sets.csv`);
+      const catColorData = await this.fetchCategoricalColorData(`assets/${dataDir}/categorical_coloring_data.json`);
 
-    const nodeDict: any = {};
+      const nodeDict: any = {};
 
-    for (let i = 0; i < graphData.nodes.length; ++i) {
-      const node = graphData.nodes[i];
-      nodeDict[node.number] = node;
-      if (node.number in coordinates) {
-        node.fixed = true;
-        node.x = coordinates[node.number][0];
-        node.y = coordinates[node.number][1];
+      for (let i = 0; i < graphData.nodes.length; ++i) {
+        const node = graphData.nodes[i];
+        nodeDict[node.number] = node;
+        if (node.number in coordinates) {
+          node.fixed = true;
+          node.x = coordinates[node.number][0];
+          node.y = coordinates[node.number][1];
+        }
+        const label = catColorData.label_list[i];
+        node.category = label;
+        node.colorHex = catColorData.label_colors[label];
       }
-      const label = catColorData.label_list[i];
-      node.category = label;
-      node.colorHex = catColorData.label_colors[label];
+
+      graphData.links.forEach(link => {
+        const source = nodeDict[link.source as string];
+        const target = nodeDict[link.target as string];
+        if (source && target) {
+          link.source = source;
+          link.target = target;
+        }
+      });
+
+      this.setState({
+        categoryLabels: Object.keys(catColorData.label_colors),
+        data: graphData,
+      });
+    } catch (e) {
+      console.log(`Error fetching Spring data:\n${e}`);
     }
-
-    graphData.links.forEach(link => {
-      const source = nodeDict[link.source as string];
-      const target = nodeDict[link.target as string];
-      if (source && target) {
-        link.source = source;
-        link.target = target;
-      }
-    });
-
-    this.setState({
-      categoryLabels: Object.keys(catColorData.label_colors),
-      data: graphData,
-    });
   }
 
   public render() {
@@ -148,7 +152,8 @@ export class SpringContainer extends React.Component<ISpringContainerProps, ISpr
   }
 
   private async fetchGraphData(file: string) {
-    const data = (await d3.json(file)) as ISpringGraphData;
+    const jsonFile = await d3.json(file);
+    const data = jsonFile as ISpringGraphData;
     if (!data.nodes || !data.links) {
       throw new Error('Unable to parse graph_data - does it have node key(s)?');
     }

@@ -3,7 +3,8 @@
   "extends": ["tslint:recommended", "tslint-react", "tslint-eslint-rules", "tslint-config-prettier"],
   "jsRules": {},
   "rules": {
-    "no-console": false
+    "no-console": false,
+    "no-namespace": [true, "allow-declarations"]
   },
   "rulesDirectory": []
 }

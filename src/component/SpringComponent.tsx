@@ -41,7 +41,7 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
   public componentWillReceiveProps(nextProps: ISpringComponentProps) {
     const { data, selectedCategory } = nextProps;
 
-    const isNewData = nextProps && (data !== this.props.data || selectedCategory !== this.props.selectedCategory);
+    const isNewData = nextProps && data !== this.props.data;
     if (isNewData) {
       const { pixiApp } = this;
       pixiApp.stage.removeChildren();
@@ -55,6 +55,11 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
 
       pixiApp.stage.addChild(this.edgeSprites);
       pixiApp.stage.addChild(this.nodeSprites);
+    } else if (selectedCategory !== this.props.selectedCategory) {
+      this.updateNodeSprites(data.nodes, this.nodeSprites, selectedCategory);
+      this.edgeSprites.removeChildren();
+      this.generateLinesSprite(data.links, this.edgeSprites, selectedCategory);
+      this.centerCanvas(data);
     }
   }
 
@@ -123,6 +128,18 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
       sprite.interactive = true;
       sprite.scale.set(scaleFactor);
       container.addChild(sprite);
+    }
+  }
+
+  private updateNodeSprites(nodes: ISpringNode[], container: PIXI.Container, category?: string) {
+    for (let i = 0; i < container.children.length; ++i) {
+      const node = nodes[i];
+      const sprite = container.children[i];
+      if (category && node.category !== category) {
+        sprite.alpha = 0.1;
+      } else {
+        sprite.alpha = 1;
+      }
     }
   }
 
