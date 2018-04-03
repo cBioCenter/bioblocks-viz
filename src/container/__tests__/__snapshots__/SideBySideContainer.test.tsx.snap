@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SideBySideContainer Should match existing snapshot when given no data. 1`] = `
+<Grid>
+  <GridRow
+    centered={true}
+    columns={1}
+  >
+    <Dropdown
+      additionLabel="Add "
+      additionPosition="top"
+      closeOnBlur={true}
+      deburr={false}
+      icon="dropdown"
+      minCharacters={1}
+      noResultsMessage="No results found."
+      onChange={[Function]}
+      openOnFocus={true}
+      options={
+        Array [
+          Object {
+            "key": "centroids",
+            "text": "centroids",
+            "value": "centroids",
+          },
+          Object {
+            "key": "centroids_subset",
+            "text": "centroids_subset",
+            "value": "centroids_subset",
+          },
+          Object {
+            "key": "spring2/full",
+            "text": "spring2/full",
+            "value": "spring2/full",
+          },
+        ]
+      }
+      placeholder="Select Data Directory"
+      renderLabel={[Function]}
+      search={true}
+      searchInput="text"
+      selectOnBlur={true}
+      selectOnNavigation={true}
+      wrapSelection={true}
+    />
+  </GridRow>
+  <GridRow
+    columns={2}
+  >
+    <GridColumn>
+      <TContainer
+        dataDir="centroids_subset"
+      />
+    </GridColumn>
+    <GridColumn>
+      <SpringContainer
+        dataDir="centroids_subset"
+      />
+    </GridColumn>
+  </GridRow>
+</Grid>
+`;

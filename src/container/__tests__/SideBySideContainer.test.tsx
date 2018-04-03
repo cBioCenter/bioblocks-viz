@@ -3,10 +3,10 @@ import toJson from 'enzyme-to-json';
 
 import * as React from 'react';
 
-import { ProteinViewer } from '../ProteinViewer';
+import { SideBySideContainer } from '../SideBySideContainer';
 
-describe('ProteinViewer', () => {
+describe('SideBySideContainer', () => {
   test('Should match existing snapshot when given no data.', () => {
-    expect(toJson(shallow(<ProteinViewer />))).toMatchSnapshot();
+    expect(toJson(shallow(<SideBySideContainer />))).toMatchSnapshot();
   });
 });

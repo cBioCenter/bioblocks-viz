@@ -16,8 +16,6 @@ export class SequenceViewer extends React.Component<ISequenceViewerProps, any> {
   public render() {
     const { data, selectedResNum } = this.props;
     if (data) {
-      console.log(data.residueStore);
-      console.log(data.residueMap);
       const fullSeq = data.getSequence().join('');
       return (
         <div id="SequenceViewer">

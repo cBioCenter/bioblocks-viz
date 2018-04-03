@@ -2,7 +2,6 @@ import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import * as React from 'react';
-import * as renderer from 'react-test-renderer';
 
 import { TComponent } from '../TComponent';
 

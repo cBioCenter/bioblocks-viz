@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SpringComponent Should match existing snapshot when given simple data. 1`] = `
+<div
+  id="SpringComponent"
+  style={
+    Object {
+      "height": 600,
+      "width": 600,
+    }
+  }
+>
+  <div
+    id="PixiCanvasHolder"
+  >
+    <canvas
+      style={
+        Object {
+          "height": 600,
+          "width": 600,
+        }
+      }
+    />
+  </div>
+</div>
+`;
