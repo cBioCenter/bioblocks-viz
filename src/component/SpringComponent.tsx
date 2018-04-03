@@ -27,7 +27,7 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
   private nodeSprites: PIXI.Container = new PIXI.Container();
   private edgeSprites: PIXI.Container = new PIXI.Container();
 
-  constructor(props: any) {
+  constructor(props: any = SpringComponent.defaultProps) {
     super(props);
   }
 
@@ -47,7 +47,7 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
       pixiApp.stage.removeChildren();
 
       this.nodeSprites.removeChildren();
-      this.nodeSprites.removeChildren();
+      this.edgeSprites.removeChildren();
       this.generateNodeSprites(data.nodes, this.nodeSprites, selectedCategory);
       this.generateLinesSprite(data.links, this.edgeSprites, selectedCategory);
 

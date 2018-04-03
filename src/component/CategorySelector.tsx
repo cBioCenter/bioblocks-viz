@@ -18,9 +18,9 @@ export class CategorySelector extends React.Component<ICategorySelectorProps, an
           fluid={true}
           onChange={this.props.onCategoryChange}
           options={[
-            { text: 'all', value: undefined },
+            { key: 'all', text: 'all', value: undefined },
             ...this.props.categories.map(cat => {
-              return { text: cat, value: cat };
+              return { key: cat, text: cat, value: cat };
             }),
           ]}
           placeholder={'Select Category'}

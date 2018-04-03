@@ -5,16 +5,17 @@ import { ISpringCategoricalColorData, ISpringCategoricalColorDataInput, ISpringG
 import { CategorySelector } from '../component/CategorySelector';
 import { SpringComponent } from '../component/SpringComponent';
 
+export interface ISpringContainerProps {
+  dataDir: string;
+}
+
 export interface ISpringContainerState {
   categoryLabels: string[];
   data: ISpringGraphData;
   selectedCategory?: string;
 }
 
-export class SpringContainer extends React.Component<any, ISpringContainerState> {
-  private exampleDir = 'spring2/full';
-  // private exampleDir = 'centroids';
-
+export class SpringContainer extends React.Component<ISpringContainerProps, ISpringContainerState> {
   public constructor(props: any) {
     super(props);
     this.state = {
@@ -27,12 +28,20 @@ export class SpringContainer extends React.Component<any, ISpringContainerState>
   }
 
   public async componentDidMount() {
-    const coordinates = await this.fetchCoordinateData('assets/' + this.exampleDir + '/coordinates.txt');
-    const graphData = await this.fetchGraphData('assets/' + this.exampleDir + '/graph_data.json');
-    // const colorData = await this.fetchColorData('assets/' + this.exampleDir + '/color_data_gene_sets.csv');
-    const catColorData = await this.fetchCategoricalColorData(
-      'assets/' + this.exampleDir + '/categorical_coloring_data.json',
-    );
+    await this.fetchData(this.props.dataDir);
+  }
+
+  public async componentWillReceiveProps(nextProps: ISpringContainerProps) {
+    if (nextProps.dataDir) {
+      await this.fetchData(nextProps.dataDir);
+    }
+  }
+
+  public async fetchData(dataDir: string) {
+    const coordinates = await this.fetchCoordinateData(`assets/${dataDir}/coordinates.txt`);
+    const graphData = await this.fetchGraphData(`assets/${dataDir}/graph_data.json`);
+    // const colorData = await this.fetchColorData(`assets/${this.props.dataDir}/color_data_gene_sets.csv`);
+    const catColorData = await this.fetchCategoricalColorData(`assets/${dataDir}/categorical_coloring_data.json`);
 
     const nodeDict: any = {};
 
@@ -50,8 +59,12 @@ export class SpringContainer extends React.Component<any, ISpringContainerState>
     }
 
     graphData.links.forEach(link => {
-      link.source = nodeDict[link.source as string];
-      link.target = nodeDict[link.target as string];
+      const source = nodeDict[link.source as string];
+      const target = nodeDict[link.target as string];
+      if (source && target) {
+        link.source = source;
+        link.target = target;
+      }
     });
 
     this.setState({
