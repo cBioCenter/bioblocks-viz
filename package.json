@@ -16,6 +16,7 @@
       "tsnejs": "tsnejs/tsne",
       "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.ts"
     },
+    "setupFiles": ["./configs/SetupJest.ts"],
     "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
     "snapshotSerializers": ["enzyme-to-json/serializer"],
     "testEnvironment": "enzyme",
@@ -98,6 +99,7 @@
     "jest": "^22.4.2",
     "jest-canvas-mock": "^1.0.2",
     "jest-enzyme": "^5.0.3",
+    "jest-fetch-mock": "^1.5.0",
     "jest-junit": "^3.6.0",
     "jquery": "^3.3.1",
     "jsdom": "^11.7.0",
