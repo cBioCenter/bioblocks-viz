@@ -13,6 +13,8 @@
 
 Visualization components for use in [Human Cell Atlas](https://www.humancellatlas.org/) portals, such as with [Chell](https://github.com/cBioCenter/chell).
 
+Check out the [API Docs!](./api/index.html)
+
 ## Getting Started (For Development Use)
 
 Please see the [Getting Started](./DEV_GETTING_STARTED.md) page for an introduction to the chell-viz development environment!

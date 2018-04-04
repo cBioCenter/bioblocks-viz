@@ -16,6 +16,9 @@
     * [Build System](#build-system)
     * [The DevServer](#the-devserver)
     * [Being The CI/CD You Want To See In The World](#being-the-cicd-you-want-to-see-in-the-world)
+      * [Pre-commit](#pre-commit)
+      * [Pre-push](#pre-push)
+      * [Circle CI](#circle-ci)
 
 <!-- /TOC -->
 
@@ -110,8 +113,18 @@ yarn start:hot
 
 ### Being The CI/CD You Want To See In The World
 
-Currently we have 3 stages of checks for code when you are ready to submit a PR.
+Currently we have 2 stages of checks for code when you are ready to submit a PR. As the project grows, we will likely shuffle around what get executed locally vs remotely so as to balance rapid iterative development and catching hiccups sooner rather than later.
 
-The first two actually happen locally! There is both a pre-commit and pre-push git hook. The former will run the linter and formatter on _staged_ files, as well as the unit testing library against files it has detected a change in. The formatter will even write the changes to the commit, so don't worry if you forgot a semicolon, it will automagically be appended and require _no extra work on your part_. The pre-push hook will simply run the entire unit test suite locally.
+#### Pre-commit
 
-The second phase happens via our [Circle CI Server](circleci.com/gh/cBioCenter/chell-viz) when a PR is made against master. It will checkout, build, lint and test the code on a fresh machine. The test results and coverage report are also saved as artifacts for each job.
+The following will run when a commit is made:
+
+* [Linting](https://palantir.github.io/tslint/) and [formatting](https://prettier.io/) on _staged_ files.
+* [Documentation](http://typedoc.org/) generation.
+* Unit testing via Jest's [--onlyChanged](https://facebook.github.io/jest/docs/en/cli.html#onlychanged) flag.
+
+When formatting and adding documentation the resulting file changes will automagically be appended to your commit, requiring _no extra work on your part_!
+
+#### Circle CI
+
+Our [Circle CI Server](circleci.com/gh/cBioCenter/chell-viz) will run on a PR made against master. It will checkout, build, lint and test the code on a fresh machine. The test results and coverage report are also saved as artifacts for each job.

@@ -10,6 +10,7 @@
     "noUnusedParameters": false,
     "outDir": "./dist/",
     "paths": {
+      "react": ["node_modules/@types/react"],
       "tsnejs": ["node_modules/tsnejs/tsne.js"]
     },
     "sourceMap": true,
