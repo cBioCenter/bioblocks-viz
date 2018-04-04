@@ -23,11 +23,12 @@ export class NGLComponent extends React.Component<INGLComponentProps, INGLCompon
     };
   }
 
-  public componentWillReceiveProps(nextProps: INGLComponentProps) {
-    if (!this.state.stage && nextProps.data && this.canvas) {
+  public componentDidUpdate(prevProps: INGLComponentProps, prevState: INGLComponentState) {
+    const { data } = this.props;
+    if (!this.state.stage && data && data !== prevProps.data && this.canvas) {
       const stage = new NGL.Stage(this.canvas);
 
-      const structureComponent: StructureComponent = stage.addComponentFromObject(nextProps.data);
+      const structureComponent: StructureComponent = stage.addComponentFromObject(data);
       stage.defaultFileRepresentation(structureComponent);
 
       let ele: NGL.RepresentationElement;

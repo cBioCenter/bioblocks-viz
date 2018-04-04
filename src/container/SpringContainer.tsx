@@ -31,9 +31,10 @@ export class SpringContainer extends React.Component<ISpringContainerProps, ISpr
     await this.fetchData(this.props.dataDir);
   }
 
-  public async componentWillReceiveProps(nextProps: ISpringContainerProps) {
-    if (nextProps.dataDir) {
-      await this.fetchData(nextProps.dataDir);
+  public async componentDidUpdate(prevProps: ISpringContainerProps, prevState: ISpringContainerState) {
+    const { dataDir } = this.props;
+    if (dataDir && dataDir !== prevProps.dataDir) {
+      await this.fetchData(dataDir);
     }
   }
 

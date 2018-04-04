@@ -38,9 +38,10 @@ export class TContainer extends React.Component<ITContainerProps, ITContainerSta
     });
   }
 
-  public async componentWillReceiveProps(newProps: ITContainerProps) {
-    if (newProps.dataDir) {
-      const coordinates = await this.fetchCoordinateData(`assets/${newProps.dataDir}/tsne_output.csv`);
+  public async componentDidUpdate(prevProps: ITContainerProps, prevState: ITContainerState) {
+    const { dataDir } = this.props;
+    if (dataDir && dataDir !== prevProps.dataDir) {
+      const coordinates = await this.fetchCoordinateData(`assets/${dataDir}/tsne_output.csv`);
       this.setState({
         coordinates,
       });

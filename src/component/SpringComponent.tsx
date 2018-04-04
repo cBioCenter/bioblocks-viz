@@ -38,10 +38,9 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
     });
   }
 
-  public componentWillReceiveProps(nextProps: ISpringComponentProps) {
-    const { data, selectedCategory } = nextProps;
-
-    const isNewData = nextProps && data !== this.props.data;
+  public componentDidUpdate(prevProps: ISpringComponentProps, prevState: any) {
+    const { data, selectedCategory } = this.props;
+    const isNewData = data && data !== prevProps.data;
     if (isNewData) {
       const { pixiApp } = this;
       pixiApp.stage.removeChildren();
