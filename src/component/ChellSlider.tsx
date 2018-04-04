@@ -13,10 +13,23 @@ export interface IChellSliderProps {
   onChange?: ChellSliderCallback;
 }
 
+/**
+ * State of the Chell Slider.
+ *
+ * @export
+ * @interface IChellSliderState
+ */
 export interface IChellSliderState {
   value: number;
 }
 
+/**
+ * Represents a simple 2d slider, allowing a value to be selected between a minimum and maximum.
+ *
+ * @export
+ * @class ChellSlider
+ * @extends {React.Component<IChellSliderProps, IChellSliderState>}
+ */
 export class ChellSlider extends React.Component<IChellSliderProps, IChellSliderState> {
   constructor(props: IChellSliderProps) {
     super(props);
