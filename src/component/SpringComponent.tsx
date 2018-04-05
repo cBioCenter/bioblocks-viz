@@ -54,7 +54,7 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
 
       pixiApp.stage.addChild(this.edgeSprites);
       pixiApp.stage.addChild(this.nodeSprites);
-    } else if (selectedCategory !== this.props.selectedCategory) {
+    } else if (selectedCategory !== prevProps.selectedCategory) {
       this.updateNodeSprites(data.nodes, this.nodeSprites, selectedCategory);
       this.edgeSprites.removeChildren();
       this.generateLinesSprite(data.links, this.edgeSprites, selectedCategory);
