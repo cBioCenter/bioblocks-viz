@@ -6,10 +6,18 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
 >
   <Grid
     centered={true}
+    divided="vertically"
   >
-    <VizPanelContainer
-      numPanels={2}
-    />
+    <GridRow>
+      <VizPanelContainer
+        numPanels={2}
+      />
+    </GridRow>
+    <GridRow>
+      <VizPanelContainer
+        numPanels={3}
+      />
+    </GridRow>
   </Grid>
 </div>
 `;

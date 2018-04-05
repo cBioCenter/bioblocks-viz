@@ -14,6 +14,7 @@ export enum VIZ_TYPE {
 
 export interface IVizSelectorPanelProps {
   initialViz?: VIZ_TYPE;
+  dataDir: string;
 }
 
 export interface IVizSelectorPanelState {
@@ -57,13 +58,12 @@ export class VizSelectorPanel extends React.Component<IVizSelectorPanelProps, IV
           fluid={true}
           onChange={this.onVizSelect}
         />
-        {this.renderVizContainer(this.state.selectedViz)}
+        {this.renderVizContainer(this.state.selectedViz, this.props.dataDir)}
       </div>
     );
   }
 
-  protected renderVizContainer(viz: VIZ_TYPE) {
-    const dataDir = 'centroids';
+  protected renderVizContainer(viz: VIZ_TYPE, dataDir: string) {
     switch (viz) {
       case VIZ_TYPE['T-SNE']:
         return <TContainer dataDir={dataDir} />;

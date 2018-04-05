@@ -96,9 +96,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     selectOnNavigation={true}
     wrapSelection={true}
   />
-  <SpringContainer
-    dataDir="centroids"
-  />
+  <SpringContainer />
 </div>
 `;
 
@@ -148,9 +146,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     selectOnNavigation={true}
     wrapSelection={true}
   />
-  <TContainer
-    dataDir="centroids"
-  />
+  <TContainer />
 </div>
 `;
 
@@ -200,8 +196,6 @@ exports[`VizSelectorPanel Should match existing snapshot when given no initial v
     selectOnNavigation={true}
     wrapSelection={true}
   />
-  <SpringContainer
-    dataDir="centroids"
-  />
+  <SpringContainer />
 </div>
 `;
