@@ -1,21 +1,14 @@
 import * as React from 'react';
-import { Grid, GridColumn, GridRow } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 
-import { VizSelectorPanel } from './container/VizSelectorPanel';
+import { VizPanelContainer } from './container/VizPanelContainer';
 
 export class ChellVizApp extends React.Component<any, any> {
   public render() {
     return (
       <div id="ChellVizApp">
-        <Grid centered={true} columns={2} divided={true} style={{ padding: '0 50px' }}>
-          <GridRow>
-            <GridColumn>
-              <VizSelectorPanel />
-            </GridColumn>
-            <GridColumn>
-              <VizSelectorPanel />
-            </GridColumn>
-          </GridRow>
+        <Grid centered={true}>
+          <VizPanelContainer numPanels={2} />
         </Grid>
       </div>
     );

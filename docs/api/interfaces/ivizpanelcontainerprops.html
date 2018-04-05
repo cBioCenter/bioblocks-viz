@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ICategorySelectorProps | chell-viz</title>
+	<title>IVizPanelContainerProps | chell-viz</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="icategoryselectorprops.html">ICategorySelectorProps</a>
+					<a href="ivizpanelcontainerprops.html">IVizPanelContainerProps</a>
 				</li>
 			</ul>
-			<h1>Interface ICategorySelectorProps</h1>
+			<h1>Interface IVizPanelContainerProps</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ICategorySelectorProps</span>
+						<span class="target">IVizPanelContainerProps</span>
 					</li>
 				</ul>
 			</section>
@@ -79,8 +79,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icategoryselectorprops.html#categories" class="tsd-kind-icon">categories</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icategoryselectorprops.html#oncategorychange" class="tsd-kind-icon">on<wbr>Category<wbr>Change</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ivizpanelcontainerprops.html#numpanels" class="tsd-kind-icon">num<wbr>Panels</a></li>
 							</ul>
 						</section>
 					</div>
@@ -89,24 +88,19 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="categories" class="tsd-anchor"></a>
-					<h3>categories</h3>
-					<div class="tsd-signature tsd-kind-icon">categories<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<a name="numpanels" class="tsd-anchor"></a>
+					<h3>num<wbr>Panels</h3>
+					<div class="tsd-signature tsd-kind-icon">num<wbr>Panels<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">1</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">2</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">3</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">4</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/CategorySelector.tsx:5</li>
+							<li>Defined in src/container/VizPanelContainer.tsx:8</li>
 						</ul>
 					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="oncategorychange" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Category<wbr>Change</h3>
-					<div class="tsd-signature tsd-kind-icon">on<wbr>Category<wbr>Change<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in src/component/CategorySelector.tsx:6</li>
-						</ul>
-					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Number of panels to be controlled by this container. Currently limited to 4.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -162,21 +156,9 @@
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="../classes/vizselectorpanel.html" class="tsd-kind-icon">Viz<wbr>Selector<wbr>Panel</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface">
+					<li class=" tsd-kind-interface">
 						<a href="icategoryselectorprops.html" class="tsd-kind-icon">ICategory<wbr>Selector<wbr>Props</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="icategoryselectorprops.html#categories" class="tsd-kind-icon">categories</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="icategoryselectorprops.html#oncategorychange" class="tsd-kind-icon">on<wbr>Category<wbr>Change</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="ichellsliderprops.html" class="tsd-kind-icon">IChell<wbr>Slider<wbr>Props</a>
 					</li>
@@ -216,9 +198,18 @@
 					<li class=" tsd-kind-interface">
 						<a href="itcontainerstate.html" class="tsd-kind-icon">ITContainer<wbr>State</a>
 					</li>
-					<li class=" tsd-kind-interface">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface">
 						<a href="ivizpanelcontainerprops.html" class="tsd-kind-icon">IViz<wbr>Panel<wbr>Container<wbr>Props</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="ivizpanelcontainerprops.html#numpanels" class="tsd-kind-icon">num<wbr>Panels</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="ivizselectorpanelprops.html" class="tsd-kind-icon">IViz<wbr>Selector<wbr>Panel<wbr>Props</a>
 					</li>

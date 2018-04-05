@@ -2,9 +2,9 @@ import * as React from 'react';
 
 import { Dropdown, DropdownItemProps } from 'semantic-ui-react';
 
-import { ProteinViewer } from './ProteinViewer';
-import { SpringContainer } from './SpringContainer';
-import { TContainer } from './TContainer';
+import { ProteinViewer } from '../container/ProteinViewer';
+import { SpringContainer } from '../container/SpringContainer';
+import { TContainer } from '../container/TContainer';
 
 export enum VIZ_TYPE {
   NGL = 'NGL',
@@ -20,6 +20,13 @@ export interface IVizSelectorPanelState {
   selectedViz: VIZ_TYPE;
 }
 
+/**
+ * A single visualization panel allowing a user to select how they wish to view data.
+ *
+ * @export
+ * @class VizSelectorPanel
+ * @extends {React.Component<IVizSelectorPanelProps, IVizSelectorPanelState>}
+ */
 export class VizSelectorPanel extends React.Component<IVizSelectorPanelProps, IVizSelectorPanelState> {
   public static defaultParams: Partial<IVizSelectorPanelProps> = {
     initialViz: VIZ_TYPE['T-SNE'],
@@ -39,8 +46,11 @@ export class VizSelectorPanel extends React.Component<IVizSelectorPanelProps, IV
   }
 
   public render() {
+    const style = {
+      width: 400,
+    };
     return (
-      <div className="VisSelectorPanel">
+      <div className="VizSelectorPanel" style={style}>
         <Dropdown
           options={this.dropdownItems}
           placeholder={'Select a Visualization!'}
@@ -65,6 +75,7 @@ export class VizSelectorPanel extends React.Component<IVizSelectorPanelProps, IV
         throw new Error(`Unknown viz: ${viz}`);
     }
   }
+
   protected onVizSelect = (event: React.SyntheticEvent<any>, data: any) => {
     this.setState({
       selectedViz: data.value,

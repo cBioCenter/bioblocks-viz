@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VizPanelContainer Should match existing snapshot when given a single visualization panel to render. 1`] = `
+<Grid
+  centered={true}
+  className="VizPanelContainer"
+  columns={1}
+  relaxed={true}
+>
+  <GridColumn
+    key="0"
+  >
+    <VizSelectorPanel />
+  </GridColumn>
+</Grid>
+`;

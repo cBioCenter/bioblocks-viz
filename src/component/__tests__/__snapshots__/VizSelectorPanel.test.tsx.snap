@@ -2,7 +2,12 @@
 
 exports[`VizSelectorPanel Should match existing snapshot when given initial viz of NGL. 1`] = `
 <div
-  className="VisSelectorPanel"
+  className="VizSelectorPanel"
+  style={
+    Object {
+      "width": 400,
+    }
+  }
 >
   <Dropdown
     additionLabel="Add "
@@ -47,7 +52,12 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
 
 exports[`VizSelectorPanel Should match existing snapshot when given initial viz of SPRING. 1`] = `
 <div
-  className="VisSelectorPanel"
+  className="VizSelectorPanel"
+  style={
+    Object {
+      "width": 400,
+    }
+  }
 >
   <Dropdown
     additionLabel="Add "
@@ -94,7 +104,12 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
 
 exports[`VizSelectorPanel Should match existing snapshot when given initial viz of T-SNE. 1`] = `
 <div
-  className="VisSelectorPanel"
+  className="VizSelectorPanel"
+  style={
+    Object {
+      "width": 400,
+    }
+  }
 >
   <Dropdown
     additionLabel="Add "
@@ -141,7 +156,12 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
 
 exports[`VizSelectorPanel Should match existing snapshot when given no initial visualization. 1`] = `
 <div
-  className="VisSelectorPanel"
+  className="VizSelectorPanel"
+  style={
+    Object {
+      "width": 400,
+    }
+  }
 >
   <Dropdown
     additionLabel="Add "
