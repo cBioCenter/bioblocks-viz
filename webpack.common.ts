@@ -10,7 +10,7 @@ import * as webpack from 'webpack';
 import * as path from 'path';
 
 module.exports = {
-  entry: './src/index.tsx',
+  entry: './index.tsx',
   module: {
     rules: [
       {

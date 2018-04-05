@@ -1,0 +1,187 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VizSelectorPanel Should match existing snapshot when given initial viz of NGL 1`] = `
+<div
+  className="VisSelectorPanel"
+>
+  <Dropdown
+    additionLabel="Add "
+    additionPosition="top"
+    closeOnBlur={true}
+    deburr={false}
+    fluid={true}
+    icon="dropdown"
+    minCharacters={1}
+    noResultsMessage="No results found."
+    onChange={[Function]}
+    openOnFocus={true}
+    options={
+      Array [
+        Object {
+          "key": "NGL",
+          "text": "NGL",
+          "value": "NGL",
+        },
+        Object {
+          "key": "SPRING",
+          "text": "SPRING",
+          "value": "SPRING",
+        },
+        Object {
+          "key": "T-SNE",
+          "text": "T-SNE",
+          "value": "T-SNE",
+        },
+      ]
+    }
+    placeholder="Select a Visualization!"
+    renderLabel={[Function]}
+    searchInput="text"
+    selectOnBlur={true}
+    selectOnNavigation={true}
+    wrapSelection={true}
+  />
+  <ProteinViewer />
+</div>
+`;
+
+exports[`VizSelectorPanel Should match existing snapshot when given initial viz of SPRING 1`] = `
+<div
+  className="VisSelectorPanel"
+>
+  <Dropdown
+    additionLabel="Add "
+    additionPosition="top"
+    closeOnBlur={true}
+    deburr={false}
+    fluid={true}
+    icon="dropdown"
+    minCharacters={1}
+    noResultsMessage="No results found."
+    onChange={[Function]}
+    openOnFocus={true}
+    options={
+      Array [
+        Object {
+          "key": "NGL",
+          "text": "NGL",
+          "value": "NGL",
+        },
+        Object {
+          "key": "SPRING",
+          "text": "SPRING",
+          "value": "SPRING",
+        },
+        Object {
+          "key": "T-SNE",
+          "text": "T-SNE",
+          "value": "T-SNE",
+        },
+      ]
+    }
+    placeholder="Select a Visualization!"
+    renderLabel={[Function]}
+    searchInput="text"
+    selectOnBlur={true}
+    selectOnNavigation={true}
+    wrapSelection={true}
+  />
+  <SpringContainer
+    dataDir="centroids"
+  />
+</div>
+`;
+
+exports[`VizSelectorPanel Should match existing snapshot when given initial viz of T-SNE 1`] = `
+<div
+  className="VisSelectorPanel"
+>
+  <Dropdown
+    additionLabel="Add "
+    additionPosition="top"
+    closeOnBlur={true}
+    deburr={false}
+    fluid={true}
+    icon="dropdown"
+    minCharacters={1}
+    noResultsMessage="No results found."
+    onChange={[Function]}
+    openOnFocus={true}
+    options={
+      Array [
+        Object {
+          "key": "NGL",
+          "text": "NGL",
+          "value": "NGL",
+        },
+        Object {
+          "key": "SPRING",
+          "text": "SPRING",
+          "value": "SPRING",
+        },
+        Object {
+          "key": "T-SNE",
+          "text": "T-SNE",
+          "value": "T-SNE",
+        },
+      ]
+    }
+    placeholder="Select a Visualization!"
+    renderLabel={[Function]}
+    searchInput="text"
+    selectOnBlur={true}
+    selectOnNavigation={true}
+    wrapSelection={true}
+  />
+  <TContainer
+    dataDir="centroids"
+  />
+</div>
+`;
+
+exports[`VizSelectorPanel Should match existing snapshot when given no initial visualization. 1`] = `
+<div
+  className="VisSelectorPanel"
+>
+  <Dropdown
+    additionLabel="Add "
+    additionPosition="top"
+    closeOnBlur={true}
+    deburr={false}
+    fluid={true}
+    icon="dropdown"
+    minCharacters={1}
+    noResultsMessage="No results found."
+    onChange={[Function]}
+    openOnFocus={true}
+    options={
+      Array [
+        Object {
+          "key": "NGL",
+          "text": "NGL",
+          "value": "NGL",
+        },
+        Object {
+          "key": "SPRING",
+          "text": "SPRING",
+          "value": "SPRING",
+        },
+        Object {
+          "key": "T-SNE",
+          "text": "T-SNE",
+          "value": "T-SNE",
+        },
+      ]
+    }
+    placeholder="Select a Visualization!"
+    renderLabel={[Function]}
+    searchInput="text"
+    selectOnBlur={true}
+    selectOnNavigation={true}
+    wrapSelection={true}
+  />
+  <SpringContainer
+    dataDir="centroids"
+  />
+</div>
+`;

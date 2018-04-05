@@ -16,7 +16,7 @@ export interface ITContainerState {
 }
 
 export class TContainer extends React.Component<ITContainerProps, ITContainerState> {
-  public static defaultParams = {
+  public static defaultState: ITContainerState = {
     coordinates: [],
     dim: 2,
     epsilon: 5,
@@ -27,7 +27,7 @@ export class TContainer extends React.Component<ITContainerProps, ITContainerSta
     super(props);
 
     this.state = {
-      ...TContainer.defaultParams,
+      ...TContainer.defaultState,
     };
   }
 
