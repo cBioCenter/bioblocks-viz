@@ -58,7 +58,7 @@ export class TContainer extends React.Component<ITContainerProps, ITContainerSta
     );
   }
 
-  private async fetchCoordinateData(file: string) {
+  protected async fetchCoordinateData(file: string) {
     const colorText: string = await d3.text(file);
     const result: number[][] = [];
     colorText.split('\n').forEach((entry, index, array) => {
@@ -71,13 +71,13 @@ export class TContainer extends React.Component<ITContainerProps, ITContainerSta
     return result;
   }
 
-  private updateEpsilon = () => (epsilon: number) => {
+  protected updateEpsilon = () => (epsilon: number) => {
     this.setState({
       epsilon,
     });
   };
 
-  private updatePerplexity = () => (perplexity: number) => {
+  protected updatePerplexity = () => (perplexity: number) => {
     this.setState({
       perplexity,
     });

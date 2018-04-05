@@ -37,7 +37,7 @@ export class SequenceViewer extends React.Component<ISequenceViewerProps, any> {
     }
   }
 
-  private renderFullSequence(sequence: string, selectedResNum: number = -1) {
+  protected renderFullSequence(sequence: string, selectedResNum: number = -1) {
     return (
       <div style={{ width: 400, maxHeight: 400, wordWrap: 'break-word' }}>
         {sequence.substr(0, selectedResNum + 1)}

@@ -18,14 +18,14 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
     },
   };
 
-  private pixiApp: PIXI.Application = new PIXI.Application();
+  protected pixiApp: PIXI.Application = new PIXI.Application();
 
-  private canvasElement?: HTMLCanvasElement;
-  private canvasWidth = 600;
-  private canvasHeight = 600;
+  protected canvasElement?: HTMLCanvasElement;
+  protected canvasWidth = 600;
+  protected canvasHeight = 600;
 
-  private nodeSprites: PIXI.Container = new PIXI.Container();
-  private edgeSprites: PIXI.Container = new PIXI.Container();
+  protected nodeSprites: PIXI.Container = new PIXI.Container();
+  protected edgeSprites: PIXI.Container = new PIXI.Container();
 
   constructor(props: any = SpringComponent.defaultProps) {
     super(props);
@@ -73,7 +73,7 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
     );
   }
 
-  private generateLinesSprite(links: ISpringLink[], container: PIXI.Container, category?: string) {
+  protected generateLinesSprite(links: ISpringLink[], container: PIXI.Container, category?: string) {
     const lines = new PIXI.Graphics();
     for (const link of links) {
       const source = link.source as ISpringNode;
@@ -105,7 +105,7 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
     container.addChild(linesSprite);
   }
 
-  private generateNodeSprites(nodes: ISpringNode[], container: PIXI.Container, category?: string) {
+  protected generateNodeSprites(nodes: ISpringNode[], container: PIXI.Container, category?: string) {
     const SPRITE_IMG_SIZE = 32;
     const scaleFactor = 0.5 * 32 / SPRITE_IMG_SIZE;
 
@@ -130,7 +130,7 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
     }
   }
 
-  private updateNodeSprites(nodes: ISpringNode[], container: PIXI.Container, category?: string) {
+  protected updateNodeSprites(nodes: ISpringNode[], container: PIXI.Container, category?: string) {
     for (let i = 0; i < container.children.length; ++i) {
       const node = nodes[i];
       const sprite = container.children[i];
@@ -142,7 +142,7 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
     }
   }
 
-  private centerCanvas(data: ISpringGraphData) {
+  protected centerCanvas(data: ISpringGraphData) {
     const { edgeSprites, canvasHeight, nodeSprites, canvasWidth } = this;
 
     const allXs = data.nodes.map(node => node.x);

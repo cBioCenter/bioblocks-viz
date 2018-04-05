@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`VizSelectorPanel Should match existing snapshot when given initial viz of NGL 1`] = `
+exports[`VizSelectorPanel Should match existing snapshot when given initial viz of NGL. 1`] = `
 <div
   className="VisSelectorPanel"
 >
@@ -45,7 +45,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
 </div>
 `;
 
-exports[`VizSelectorPanel Should match existing snapshot when given initial viz of SPRING 1`] = `
+exports[`VizSelectorPanel Should match existing snapshot when given initial viz of SPRING. 1`] = `
 <div
   className="VisSelectorPanel"
 >
@@ -92,7 +92,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
 </div>
 `;
 
-exports[`VizSelectorPanel Should match existing snapshot when given initial viz of T-SNE 1`] = `
+exports[`VizSelectorPanel Should match existing snapshot when given initial viz of T-SNE. 1`] = `
 <div
   className="VisSelectorPanel"
 >

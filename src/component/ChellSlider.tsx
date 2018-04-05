@@ -81,10 +81,10 @@ export class ChellSlider extends React.Component<IChellSliderProps, IChellSlider
   /**
    * Updates the state of the slider after user commits to change. If applicable, invokes appropriate callback.
    *
-   * @private
+   * @protected
    * @memberof ChellSlider
    */
-  private onAfterChange = (cb?: ChellSliderCallback) => (value: number) => {
+  protected onAfterChange = (cb?: ChellSliderCallback) => (value: number) => {
     if (cb) {
       cb(value);
     }
@@ -97,10 +97,10 @@ export class ChellSlider extends React.Component<IChellSliderProps, IChellSlider
    * Updates the state of the slider as the user moves the slider around but before selection is committed.
    * If applicable, invokes appropriate callback as well.
    *
-   * @private
+   * @protected
    * @memberof ChellSlider
    */
-  private onChange = (cb?: ChellSliderCallback) => (value: number) => {
+  protected onChange = (cb?: ChellSliderCallback) => (value: number) => {
     if (cb) {
       cb(value);
     }

@@ -88,13 +88,13 @@ export class SpringContainer extends React.Component<ISpringContainerProps, ISpr
     );
   }
 
-  private onCategoryChange = (event: React.SyntheticEvent<any>, data: any) => {
+  protected onCategoryChange = (event: React.SyntheticEvent<any>, data: any) => {
     this.setState({
       selectedCategory: data.value,
     });
   };
 
-  private async fetchCategoricalColorData(file: string): Promise<ISpringCategoricalColorData> {
+  protected async fetchCategoricalColorData(file: string): Promise<ISpringCategoricalColorData> {
     const input = (await d3.json(file)) as ISpringCategoricalColorDataInput;
     const output: ISpringCategoricalColorData = {
       label_colors: {},
@@ -118,7 +118,7 @@ export class SpringContainer extends React.Component<ISpringContainerProps, ISpr
   }
 
   // @ts-ignore
-  private async fetchColorData(file: string) {
+  protected async fetchColorData(file: string) {
     const colorText: string = await d3.text(file);
     const dict: { [k: string]: any } = {};
     colorText.split('\n').forEach((entry, index, array) => {
@@ -137,7 +137,7 @@ export class SpringContainer extends React.Component<ISpringContainerProps, ISpr
     return dict;
   }
 
-  private async fetchCoordinateData(file: string) {
+  protected async fetchCoordinateData(file: string) {
     const coordinateText: string = await d3.text(file);
 
     const coordinates: number[][] = [];
@@ -153,7 +153,7 @@ export class SpringContainer extends React.Component<ISpringContainerProps, ISpr
     return coordinates;
   }
 
-  private async fetchGraphData(file: string) {
+  protected async fetchGraphData(file: string) {
     const data = (await d3.json(file)) as ISpringGraphData;
     if (!data.nodes || !data.links) {
       throw new Error('Unable to parse graph_data - does it have node key(s)?');

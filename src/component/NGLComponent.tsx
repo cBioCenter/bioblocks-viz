@@ -14,7 +14,7 @@ export interface INGLComponentState {
 }
 
 export class NGLComponent extends React.Component<INGLComponentProps, INGLComponentState> {
-  private canvas: HTMLElement | null = null;
+  protected canvas: HTMLElement | null = null;
 
   constructor(props: any) {
     super(props);
