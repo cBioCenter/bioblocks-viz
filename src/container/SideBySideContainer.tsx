@@ -45,7 +45,7 @@ export class SideBySideContainer extends React.Component<any, ISideBySideContain
     );
   }
 
-  private onDataDirChange = (event: React.SyntheticEvent<any>, data: any) => {
+  protected onDataDirChange = (event: React.SyntheticEvent<any>, data: any) => {
     this.setState({
       currentDataDir: data.value,
     });

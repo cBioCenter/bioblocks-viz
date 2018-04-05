@@ -16,7 +16,7 @@ export interface ITContainerState {
 }
 
 export class TContainer extends React.Component<ITContainerProps, ITContainerState> {
-  public static defaultParams = {
+  public static defaultState: ITContainerState = {
     coordinates: [],
     dim: 2,
     epsilon: 5,
@@ -27,7 +27,7 @@ export class TContainer extends React.Component<ITContainerProps, ITContainerSta
     super(props);
 
     this.state = {
-      ...TContainer.defaultParams,
+      ...TContainer.defaultState,
     };
   }
 
@@ -38,9 +38,10 @@ export class TContainer extends React.Component<ITContainerProps, ITContainerSta
     });
   }
 
-  public async componentWillReceiveProps(newProps: ITContainerProps) {
-    if (newProps.dataDir) {
-      const coordinates = await this.fetchCoordinateData(`assets/${newProps.dataDir}/tsne_output.csv`);
+  public async componentDidUpdate(prevProps: ITContainerProps, prevState: ITContainerState) {
+    const { dataDir } = this.props;
+    if (dataDir && dataDir !== prevProps.dataDir) {
+      const coordinates = await this.fetchCoordinateData(`assets/${dataDir}/tsne_output.csv`);
       this.setState({
         coordinates,
       });
@@ -57,7 +58,7 @@ export class TContainer extends React.Component<ITContainerProps, ITContainerSta
     );
   }
 
-  private async fetchCoordinateData(file: string) {
+  protected async fetchCoordinateData(file: string) {
     const colorText: string = await d3.text(file);
     const result: number[][] = [];
     colorText.split('\n').forEach((entry, index, array) => {
@@ -70,13 +71,13 @@ export class TContainer extends React.Component<ITContainerProps, ITContainerSta
     return result;
   }
 
-  private updateEpsilon = () => (epsilon: number) => {
+  protected updateEpsilon = () => (epsilon: number) => {
     this.setState({
       epsilon,
     });
   };
 
-  private updatePerplexity = () => (perplexity: number) => {
+  protected updatePerplexity = () => (perplexity: number) => {
     this.setState({
       perplexity,
     });

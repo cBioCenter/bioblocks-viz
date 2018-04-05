@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
+<div
+  id="ChellVizApp"
+>
+  <Grid
+    centered={true}
+  >
+    <VizPanelContainer
+      numPanels={2}
+    />
+  </Grid>
+</div>
+`;
