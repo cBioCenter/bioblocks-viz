@@ -2,9 +2,9 @@ import * as React from 'react';
 
 import { Dropdown, DropdownItemProps } from 'semantic-ui-react';
 
+import { TComponent } from '../component/TComponent';
 import { ProteinViewer } from '../container/ProteinViewer';
 import { SpringContainer } from '../container/SpringContainer';
-import { TContainer } from '../container/TContainer';
 
 export enum VIZ_TYPE {
   NGL = 'NGL',
@@ -15,6 +15,7 @@ export enum VIZ_TYPE {
 export interface IVizSelectorPanelProps {
   initialViz?: VIZ_TYPE;
   dataDir: string;
+  data: any;
 }
 
 export interface IVizSelectorPanelState {
@@ -58,15 +59,15 @@ export class VizSelectorPanel extends React.Component<IVizSelectorPanelProps, IV
           fluid={true}
           onChange={this.onVizSelect}
         />
-        {this.renderVizContainer(this.state.selectedViz, this.props.dataDir)}
+        {this.renderVizContainer(this.state.selectedViz, this.props.dataDir, this.props.data)}
       </div>
     );
   }
 
-  protected renderVizContainer(viz: VIZ_TYPE, dataDir: string) {
+  protected renderVizContainer(viz: VIZ_TYPE, dataDir: string, data: any) {
     switch (viz) {
       case VIZ_TYPE['T-SNE']:
-        return <TContainer dataDir={dataDir} />;
+        return <TComponent data={data} />;
       case VIZ_TYPE.SPRING:
         return <SpringContainer dataDir={dataDir} />;
       case VIZ_TYPE.NGL:
