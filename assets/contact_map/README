@@ -1,0 +1,29 @@
+CouplingScoresCompared_all.csv (black dots)
+	- Row i
+	- Row j
+	- Row cn = EC score
+	- Row probability (filter to be > .99, but user should be able to define on the fly)
+
+Careful: ignore probabilities for amino acids that are in a neighborhood of 5 from currently considered amino acid ( -------{nn[P]nn}------- // {[P]nn}-------------- // --------------{nn[P]} ==> ignore n's)
+
+
+
+
+distance_map_monomer.csv
+	- Ignore first row
+	- Second row: position
+	- Third row: Secondary structure (one letter = one status)
+
+See in PDFs: some start at position 1, some at higher position. Secondary structure is drawn in black on right side of the contact map
+
+
+
+
+contacts_monomer.csv (blue dots)
+	- Display all that have distance < 5
+
+
+
+
+.fa:
+Actual sequence
