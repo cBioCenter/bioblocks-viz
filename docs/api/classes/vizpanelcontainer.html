@@ -76,7 +76,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="tsd-signature-type">Component</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerprops.html" class="tsd-signature-type">IVizPanelContainerProps</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>
+						<span class="tsd-signature-type">Component</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerprops.html" class="tsd-signature-type">IVizPanelContainerProps</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/ivizpanelcontainerstate.html" class="tsd-signature-type">IVizPanelContainerState</a><span class="tsd-signature-symbol">&gt;</span>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">VizPanelContainer</span>
@@ -107,7 +107,10 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="vizpanelcontainer.html#componentdidmount" class="tsd-kind-icon">component<wbr>Did<wbr>Mount</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="vizpanelcontainer.html#componentdidupdate" class="tsd-kind-icon">component<wbr>Did<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="vizpanelcontainer.html#forceupdate" class="tsd-kind-icon">force<wbr>Update</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="vizpanelcontainer.html#ondatadirchange" class="tsd-kind-icon">on<wbr>Data<wbr>Dir<wbr>Change</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="vizpanelcontainer.html#render" class="tsd-kind-icon">render</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="vizpanelcontainer.html#renderpanels" class="tsd-kind-icon">render<wbr>Panels</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="vizpanelcontainer.html#setstate" class="tsd-kind-icon">set<wbr>State</a></li>
@@ -115,8 +118,8 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="vizpanelcontainer.html#unsafe_componentwillreceiveprops" class="tsd-kind-icon">UNSAFE_<wbr>component<wbr>Will<wbr>Receive<wbr>Props</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="vizpanelcontainer.html#unsafe_componentwillupdate" class="tsd-kind-icon">UNSAFE_<wbr>component<wbr>Will<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="vizpanelcontainer.html#componentdidcatch" class="tsd-kind-icon">component<wbr>Did<wbr>Catch</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="vizpanelcontainer.html#componentdidmount" class="tsd-kind-icon">component<wbr>Did<wbr>Mount</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="vizpanelcontainer.html#componentdidupdate" class="tsd-kind-icon">component<wbr>Did<wbr>Update</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="vizpanelcontainer.html#componentdidmount-1" class="tsd-kind-icon">component<wbr>Did<wbr>Mount</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="vizpanelcontainer.html#componentdidupdate-1" class="tsd-kind-icon">component<wbr>Did<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="vizpanelcontainer.html#componentwillmount" class="tsd-kind-icon">component<wbr>Will<wbr>Mount</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="vizpanelcontainer.html#componentwillreceiveprops" class="tsd-kind-icon">component<wbr>Will<wbr>Receive<wbr>Props</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="vizpanelcontainer.html#componentwillunmount" class="tsd-kind-icon">component<wbr>Will<wbr>Unmount</a></li>
@@ -141,7 +144,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.__constructor</p>
 								<ul>
-									<li>Defined in src/container/VizPanelContainer.tsx:11</li>
+									<li>Defined in src/container/VizPanelContainer.tsx:25</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -201,7 +204,7 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="state" class="tsd-anchor"></a>
 					<h3>state</h3>
-					<div class="tsd-signature tsd-kind-icon">state<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">state<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerstate.html" class="tsd-signature-type">IVizPanelContainerState</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from Component.state</p>
 						<ul>
@@ -212,6 +215,49 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="componentdidmount" class="tsd-anchor"></a>
+					<h3>component<wbr>Did<wbr>Mount</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">component<wbr>Did<wbr>Mount<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/container/VizPanelContainer.tsx:36</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="componentdidupdate" class="tsd-anchor"></a>
+					<h3>component<wbr>Did<wbr>Update</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">component<wbr>Did<wbr>Update<span class="tsd-signature-symbol">(</span>prevProps<span class="tsd-signature-symbol">: </span><a href="../interfaces/ivizpanelcontainerprops.html" class="tsd-signature-type">IVizPanelContainerProps</a>, prevState<span class="tsd-signature-symbol">: </span><a href="../interfaces/ivizpanelcontainerstate.html" class="tsd-signature-type">IVizPanelContainerState</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/container/VizPanelContainer.tsx:47</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>prevProps: <a href="../interfaces/ivizpanelcontainerprops.html" class="tsd-signature-type">IVizPanelContainerProps</a></h5>
+								</li>
+								<li>
+									<h5>prevState: <a href="../interfaces/ivizpanelcontainerstate.html" class="tsd-signature-type">IVizPanelContainerState</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="forceupdate" class="tsd-anchor"></a>
 					<h3>force<wbr>Update</h3>
@@ -236,6 +282,32 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="ondatadirchange" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> on<wbr>Data<wbr>Dir<wbr>Change</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Data<wbr>Dir<wbr>Change<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SyntheticEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/container/VizPanelContainer.tsx:90</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>event: <span class="tsd-signature-type">SyntheticEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>data: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 					<a name="render" class="tsd-anchor"></a>
 					<h3>render</h3>
@@ -247,7 +319,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.render</p>
 								<ul>
-									<li>Defined in src/container/VizPanelContainer.tsx:16</li>
+									<li>Defined in src/container/VizPanelContainer.tsx:60</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
@@ -258,19 +330,22 @@
 					<a name="renderpanels" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> render<wbr>Panels</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">render<wbr>Panels<span class="tsd-signature-symbol">(</span>numPanels<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">render<wbr>Panels<span class="tsd-signature-symbol">(</span>numPanels<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/container/VizPanelContainer.tsx:24</li>
+									<li>Defined in src/container/VizPanelContainer.tsx:82</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>numPanels: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>data: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span><span class="tsd-signature-symbol">[]</span></h4>
@@ -294,7 +369,7 @@
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
-									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof any</span></h4>
+									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof IVizPanelContainerState</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -401,7 +476,7 @@
 					<a name="unsafe_componentwillupdate" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagOptional">Optional</span> UNSAFE_<wbr>component<wbr>Will<wbr>Update</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">UNSAFE_<wbr>component<wbr>Will<wbr>Update<span class="tsd-signature-symbol">(</span>nextProps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerprops.html" class="tsd-signature-type">IVizPanelContainerProps</a><span class="tsd-signature-symbol">&gt;</span>, nextState<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, nextContext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">UNSAFE_<wbr>component<wbr>Will<wbr>Update<span class="tsd-signature-symbol">(</span>nextProps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerprops.html" class="tsd-signature-type">IVizPanelContainerProps</a><span class="tsd-signature-symbol">&gt;</span>, nextState<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerstate.html" class="tsd-signature-type">IVizPanelContainerState</a><span class="tsd-signature-symbol">&gt;</span>, nextContext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -437,7 +512,7 @@
 									<h5>nextProps: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerprops.html" class="tsd-signature-type">IVizPanelContainerProps</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 								<li>
-									<h5>nextState: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>nextState: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerstate.html" class="tsd-signature-type">IVizPanelContainerState</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 								<li>
 									<h5>nextContext: <span class="tsd-signature-type">any</span></h5>
@@ -481,7 +556,7 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-					<a name="componentdidmount" class="tsd-anchor"></a>
+					<a name="componentdidmount-1" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagOptional">Optional</span> component<wbr>Did<wbr>Mount</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
 						<li class="tsd-signature tsd-kind-icon">component<wbr>Did<wbr>Mount<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
@@ -504,10 +579,10 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-					<a name="componentdidupdate" class="tsd-anchor"></a>
+					<a name="componentdidupdate-1" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagOptional">Optional</span> component<wbr>Did<wbr>Update</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">component<wbr>Did<wbr>Update<span class="tsd-signature-symbol">(</span>prevProps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerprops.html" class="tsd-signature-type">IVizPanelContainerProps</a><span class="tsd-signature-symbol">&gt;</span>, prevState<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, snapshot<span class="tsd-signature-symbol">?: </span><a href="" class="tsd-signature-type">SS</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">component<wbr>Did<wbr>Update<span class="tsd-signature-symbol">(</span>prevProps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerprops.html" class="tsd-signature-type">IVizPanelContainerProps</a><span class="tsd-signature-symbol">&gt;</span>, prevState<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerstate.html" class="tsd-signature-type">IVizPanelContainerState</a><span class="tsd-signature-symbol">&gt;</span>, snapshot<span class="tsd-signature-symbol">?: </span><a href="" class="tsd-signature-type">SS</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -529,7 +604,7 @@
 									<h5>prevProps: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerprops.html" class="tsd-signature-type">IVizPanelContainerProps</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 								<li>
-									<h5>prevState: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>prevState: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerstate.html" class="tsd-signature-type">IVizPanelContainerState</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> snapshot: <a href="" class="tsd-signature-type">SS</a></h5>
@@ -652,7 +727,7 @@
 					<a name="componentwillupdate" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagOptional">Optional</span> component<wbr>Will<wbr>Update</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">component<wbr>Will<wbr>Update<span class="tsd-signature-symbol">(</span>nextProps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerprops.html" class="tsd-signature-type">IVizPanelContainerProps</a><span class="tsd-signature-symbol">&gt;</span>, nextState<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, nextContext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">component<wbr>Will<wbr>Update<span class="tsd-signature-symbol">(</span>nextProps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerprops.html" class="tsd-signature-type">IVizPanelContainerProps</a><span class="tsd-signature-symbol">&gt;</span>, nextState<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerstate.html" class="tsd-signature-type">IVizPanelContainerState</a><span class="tsd-signature-symbol">&gt;</span>, nextContext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -687,7 +762,7 @@
 									<h5>nextProps: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerprops.html" class="tsd-signature-type">IVizPanelContainerProps</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 								<li>
-									<h5>nextState: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>nextState: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerstate.html" class="tsd-signature-type">IVizPanelContainerState</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 								<li>
 									<h5>nextContext: <span class="tsd-signature-type">any</span></h5>
@@ -701,7 +776,7 @@
 					<a name="getsnapshotbeforeupdate" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagOptional">Optional</span> get<wbr>Snapshot<wbr>Before<wbr>Update</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Snapshot<wbr>Before<wbr>Update<span class="tsd-signature-symbol">(</span>prevProps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerprops.html" class="tsd-signature-type">IVizPanelContainerProps</a><span class="tsd-signature-symbol">&gt;</span>, prevState<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SS</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Snapshot<wbr>Before<wbr>Update<span class="tsd-signature-symbol">(</span>prevProps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerprops.html" class="tsd-signature-type">IVizPanelContainerProps</a><span class="tsd-signature-symbol">&gt;</span>, prevState<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerstate.html" class="tsd-signature-type">IVizPanelContainerState</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SS</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -726,7 +801,7 @@
 									<h5>prevProps: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerprops.html" class="tsd-signature-type">IVizPanelContainerProps</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 								<li>
-									<h5>prevState: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>prevState: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerstate.html" class="tsd-signature-type">IVizPanelContainerState</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">SS</span>
@@ -740,7 +815,7 @@
 					<a name="shouldcomponentupdate" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagOptional">Optional</span> should<wbr>Component<wbr>Update</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">should<wbr>Component<wbr>Update<span class="tsd-signature-symbol">(</span>nextProps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerprops.html" class="tsd-signature-type">IVizPanelContainerProps</a><span class="tsd-signature-symbol">&gt;</span>, nextState<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, nextContext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">should<wbr>Component<wbr>Update<span class="tsd-signature-symbol">(</span>nextProps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerprops.html" class="tsd-signature-type">IVizPanelContainerProps</a><span class="tsd-signature-symbol">&gt;</span>, nextState<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerstate.html" class="tsd-signature-type">IVizPanelContainerState</a><span class="tsd-signature-symbol">&gt;</span>, nextContext<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -766,7 +841,7 @@
 									<h5>nextProps: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerprops.html" class="tsd-signature-type">IVizPanelContainerProps</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 								<li>
-									<h5>nextState: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>nextState: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ivizpanelcontainerstate.html" class="tsd-signature-type">IVizPanelContainerState</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 								<li>
 									<h5>nextContext: <span class="tsd-signature-type">any</span></h5>
@@ -788,42 +863,6 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-enum">
-						<a href="../enums/viz_type.html" class="tsd-kind-icon">VIZ_<wbr>TYPE</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="categoryselector.html" class="tsd-kind-icon">Category<wbr>Selector</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="chellslider.html" class="tsd-kind-icon">Chell<wbr>Slider</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="chellvizapp.html" class="tsd-kind-icon">Chell<wbr>Viz<wbr>App</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="nglcomponent.html" class="tsd-kind-icon">NGLComponent</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="proteinviewer.html" class="tsd-kind-icon">Protein<wbr>Viewer</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="sequenceviewer.html" class="tsd-kind-icon">Sequence<wbr>Viewer</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="sidebysidecontainer.html" class="tsd-kind-icon">Side<wbr>BySide<wbr>Container</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="springcomponent.html" class="tsd-kind-icon">Spring<wbr>Component</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="springcontainer.html" class="tsd-kind-icon">Spring<wbr>Container</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="tcomponent.html" class="tsd-kind-icon">TComponent</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="tcontainer.html" class="tsd-kind-icon">TContainer</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-has-type-parameter">
@@ -844,8 +883,17 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="vizpanelcontainer.html#state" class="tsd-kind-icon">state</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="vizpanelcontainer.html#componentdidmount" class="tsd-kind-icon">component<wbr>Did<wbr>Mount</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="vizpanelcontainer.html#componentdidupdate" class="tsd-kind-icon">component<wbr>Did<wbr>Update</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="vizpanelcontainer.html#forceupdate" class="tsd-kind-icon">force<wbr>Update</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="vizpanelcontainer.html#ondatadirchange" class="tsd-kind-icon">on<wbr>Data<wbr>Dir<wbr>Change</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="vizpanelcontainer.html#render" class="tsd-kind-icon">render</a>
@@ -869,10 +917,10 @@
 								<a href="vizpanelcontainer.html#componentdidcatch" class="tsd-kind-icon">component<wbr>Did<wbr>Catch</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-								<a href="vizpanelcontainer.html#componentdidmount" class="tsd-kind-icon">component<wbr>Did<wbr>Mount</a>
+								<a href="vizpanelcontainer.html#componentdidmount-1" class="tsd-kind-icon">component<wbr>Did<wbr>Mount</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-								<a href="vizpanelcontainer.html#componentdidupdate" class="tsd-kind-icon">component<wbr>Did<wbr>Update</a>
+								<a href="vizpanelcontainer.html#componentdidupdate-1" class="tsd-kind-icon">component<wbr>Did<wbr>Update</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
 								<a href="vizpanelcontainer.html#componentwillmount" class="tsd-kind-icon">component<wbr>Will<wbr>Mount</a>
@@ -896,69 +944,6 @@
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="vizselectorpanel.html" class="tsd-kind-icon">Viz<wbr>Selector<wbr>Panel</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/icategoryselectorprops.html" class="tsd-kind-icon">ICategory<wbr>Selector<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/ichellsliderprops.html" class="tsd-kind-icon">IChell<wbr>Slider<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/ichellsliderstate.html" class="tsd-kind-icon">IChell<wbr>Slider<wbr>State</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/inglcomponentprops.html" class="tsd-kind-icon">INGLComponent<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/inglcomponentstate.html" class="tsd-kind-icon">INGLComponent<wbr>State</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/iproteinviewerstate.html" class="tsd-kind-icon">IProtein<wbr>Viewer<wbr>State</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/isequenceviewerprops.html" class="tsd-kind-icon">ISequence<wbr>Viewer<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/isidebysidecontainerstate.html" class="tsd-kind-icon">ISide<wbr>BySide<wbr>Container<wbr>State</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/ispringcomponentprops.html" class="tsd-kind-icon">ISpring<wbr>Component<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/ispringcontainerprops.html" class="tsd-kind-icon">ISpring<wbr>Container<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/ispringcontainerstate.html" class="tsd-kind-icon">ISpring<wbr>Container<wbr>State</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/itcomponentprops.html" class="tsd-kind-icon">ITComponent<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/itcontainerprops.html" class="tsd-kind-icon">ITContainer<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/itcontainerstate.html" class="tsd-kind-icon">ITContainer<wbr>State</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/ivizpanelcontainerprops.html" class="tsd-kind-icon">IViz<wbr>Panel<wbr>Container<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/ivizselectorpanelprops.html" class="tsd-kind-icon">IViz<wbr>Selector<wbr>Panel<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/ivizselectorpanelstate.html" class="tsd-kind-icon">IViz<wbr>Selector<wbr>Panel<wbr>State</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#chellslidercallback" class="tsd-kind-icon">Chell<wbr>Slider<wbr>Callback</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#rechartscatterdataformat" class="tsd-kind-icon">rechart<wbr>Scatter<wbr>Data<wbr>Format</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#jestglobal" class="tsd-kind-icon">jest<wbr>Global</a>
-					</li>
 				</ul>
 			</nav>
 		</div>

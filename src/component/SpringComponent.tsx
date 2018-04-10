@@ -3,9 +3,11 @@ import * as PIXI from 'pixi.js';
 import * as React from 'react';
 import { ISpringGraphData, ISpringLink, ISpringNode } from 'spring';
 
+export type SPRING_DATA_TYPE = ISpringGraphData;
+
 export interface ISpringComponentProps {
   canvasBackgroundColor?: number;
-  data: ISpringGraphData;
+  data?: SPRING_DATA_TYPE;
   selectedCategory?: string;
 }
 
@@ -36,24 +38,20 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
       backgroundColor: this.props.canvasBackgroundColor,
       view: this.canvasElement,
     });
+    const { data, selectedCategory } = this.props;
+    if (data) {
+      this.generateInitialGraphics(data, selectedCategory);
+    }
   }
 
   public componentDidUpdate(prevProps: ISpringComponentProps, prevState: any) {
     const { data, selectedCategory } = this.props;
+    if (!data) {
+      return;
+    }
     const isNewData = data && data !== prevProps.data;
     if (isNewData) {
-      const { pixiApp } = this;
-      pixiApp.stage.removeChildren();
-
-      this.nodeSprites.removeChildren();
-      this.edgeSprites.removeChildren();
-      this.generateNodeSprites(data.nodes, this.nodeSprites, selectedCategory);
-      this.generateLinesSprite(data.links, this.edgeSprites, selectedCategory);
-
-      this.centerCanvas(data);
-
-      pixiApp.stage.addChild(this.edgeSprites);
-      pixiApp.stage.addChild(this.nodeSprites);
+      this.generateInitialGraphics(data, selectedCategory);
     } else if (selectedCategory !== prevProps.selectedCategory) {
       this.updateNodeSprites(data.nodes, this.nodeSprites, selectedCategory);
       this.edgeSprites.removeChildren();
@@ -73,7 +71,22 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
     );
   }
 
-  protected generateLinesSprite(links: ISpringLink[], container: PIXI.Container, category?: string) {
+  protected generateInitialGraphics(data: SPRING_DATA_TYPE, selectedCategory?: string) {
+    const { pixiApp } = this;
+    pixiApp.stage.removeChildren();
+
+    this.nodeSprites.removeChildren();
+    this.edgeSprites.removeChildren();
+    this.generateNodeSprites(data.nodes, this.nodeSprites, selectedCategory);
+    this.generateLinesSprite(data.links, this.edgeSprites, selectedCategory);
+
+    this.centerCanvas(data);
+
+    pixiApp.stage.addChild(this.edgeSprites);
+    pixiApp.stage.addChild(this.nodeSprites);
+  }
+
+  protected generateLinesSprite(links: ISpringLink[] = [], container: PIXI.Container, category?: string) {
     const lines = new PIXI.Graphics();
     for (const link of links) {
       const source = link.source as ISpringNode;
@@ -105,7 +118,7 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
     container.addChild(linesSprite);
   }
 
-  protected generateNodeSprites(nodes: ISpringNode[], container: PIXI.Container, category?: string) {
+  protected generateNodeSprites(nodes: ISpringNode[] = [], container: PIXI.Container, category?: string) {
     const SPRITE_IMG_SIZE = 32;
     const scaleFactor = 0.5 * 32 / SPRITE_IMG_SIZE;
 
@@ -130,7 +143,7 @@ export class SpringComponent extends React.Component<ISpringComponentProps, any>
     }
   }
 
-  protected updateNodeSprites(nodes: ISpringNode[], container: PIXI.Container, category?: string) {
+  protected updateNodeSprites(nodes: ISpringNode[] = [], container: PIXI.Container, category?: string) {
     for (let i = 0; i < container.children.length; ++i) {
       const node = nodes[i];
       const sprite = container.children[i];
