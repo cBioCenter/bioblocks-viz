@@ -75,9 +75,9 @@ export class VizSelectorPanel extends React.Component<IVizSelectorPanelProps, IV
       case VIZ_TYPE.SPRING:
         return <SpringComponent data={data.spring} />;
       case VIZ_TYPE.NGL:
-        return <NGLComponent />;
+        return <NGLComponent data={data.ngl} />;
       case VIZ_TYPE.CONTACT_MAP:
-        return <ContactMapComponent data={{}} />;
+        return <ContactMapComponent data={data.contactMap} />;
       default:
         throw new Error(`Unknown viz: ${viz}`);
     }

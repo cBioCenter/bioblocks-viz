@@ -4,7 +4,7 @@ exports[`SpringContainer Should match existing snapshot when given no data. 1`] 
 <div
   id="SpringContainer"
 >
-  <SpringComponent
+  <SpringComponentClass
     canvasBackgroundColor={13421772}
     data={
       Object {
@@ -12,6 +12,7 @@ exports[`SpringContainer Should match existing snapshot when given no data. 1`] 
         "nodes": Array [],
       }
     }
+    selectedCategory=""
   />
   <CategorySelector
     categories={Array []}
@@ -24,7 +25,7 @@ exports[`SpringContainer Should update when given a new data directory. 1`] = `
 <div
   id="SpringContainer"
 >
-  <SpringComponent
+  <SpringComponentClass
     canvasBackgroundColor={13421772}
     data={
       Object {
@@ -32,6 +33,7 @@ exports[`SpringContainer Should update when given a new data directory. 1`] = `
         "nodes": Array [],
       }
     }
+    selectedCategory=""
   />
   <CategorySelector
     categories={Array []}

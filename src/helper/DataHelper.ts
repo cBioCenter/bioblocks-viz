@@ -1,4 +1,6 @@
+import { CONTACT_MAP_DATA_TYPE, IDistanceMapMonomer, IMonomerContact } from 'chell';
 import * as d3 from 'd3';
+import * as NGL from 'ngl';
 import { ISpringCategoricalColorData, ISpringCategoricalColorDataInput, ISpringGraphData } from 'spring';
 import { VIZ_TYPE } from '../component/VizSelectorPanel';
 
@@ -8,8 +10,12 @@ export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
       return fetchTSneCoordinateData(dataDir);
     case VIZ_TYPE.SPRING:
       return deriveSpringData(dataDir);
+    case VIZ_TYPE.NGL:
+      return fetchNGLData(dataDir);
+    case VIZ_TYPE.CONTACT_MAP:
+      return fetchContactMapData(dataDir);
     default:
-      console.log(`Currently not appropriate data getter for ${viz}`);
+      console.log(`Currently no appropriate data getter for ${viz}`);
   }
 };
 
@@ -50,7 +56,7 @@ const deriveSpringData = async (dataDir: string) => {
   }
 };
 
-export const fetchCategoricalColorData = async (file: string): Promise<ISpringCategoricalColorData> => {
+const fetchCategoricalColorData = async (file: string): Promise<ISpringCategoricalColorData> => {
   const input = (await d3.json(file)) as ISpringCategoricalColorDataInput;
   const output: ISpringCategoricalColorData = {
     label_colors: {},
@@ -92,7 +98,7 @@ export const fetchColorData = async (file: string) => {
   return dict;
 };
 
-export const fetchSpringCoordinateData = async (file: string) => {
+const fetchSpringCoordinateData = async (file: string) => {
   const coordinateText: string = await d3.text(file);
 
   const coordinates: number[][] = [];
@@ -108,7 +114,7 @@ export const fetchSpringCoordinateData = async (file: string) => {
   return coordinates;
 };
 
-export const fetchTSneCoordinateData = async (dataDir: string) => {
+const fetchTSneCoordinateData = async (dataDir: string) => {
   const colorText: string = await d3.text(`assets/${dataDir}/tsne_output.csv`);
   const result: number[][] = [];
   colorText.split('\n').forEach((entry, index, array) => {
@@ -121,10 +127,84 @@ export const fetchTSneCoordinateData = async (dataDir: string) => {
   return result;
 };
 
-export const fetchGraphData = async (file: string) => {
+const fetchGraphData = async (file: string) => {
   const data = (await d3.json(file)) as ISpringGraphData;
   if (!data.nodes || !data.links) {
     throw new Error('Unable to parse graph_data - does it have node key(s)?');
   }
   return data;
+};
+
+const fetchNGLData = async (file: string) => {
+  const data = await NGL.autoLoad(file);
+  return data as NGL.Structure;
+};
+
+const fetchContactMapData = async (file: string) => {
+  const exampleContactMapFiles = [
+    '3_contacts_monomer.csv',
+    '3_CouplingScoresCompared_all.csv',
+    '3_distance_map_monomer.csv',
+  ].map(ext => `${file}38cab199dbf11444e52d95c83dcf083d_b0.${ext}`);
+  const promiseResults = await Promise.all(exampleContactMapFiles.map(contactFile => d3.text(contactFile)));
+
+  const data: CONTACT_MAP_DATA_TYPE = {
+    contactMonomer: parseContactMonomerLine(promiseResults[0]),
+    couplingScore: parseCouplingScoreLine(promiseResults[1]),
+    distanceMapMonomer: parseDistanceMonomerLine(promiseResults[2]),
+  };
+
+  return data;
+};
+
+const parseContactMonomerLine = (line: string) => {
+  const results: IMonomerContact[] = [];
+  line
+    .split('\n')
+    .slice(1)
+    .forEach(row => {
+      const items = row.split(',');
+      if (items.length === 3) {
+        results.push({ i: parseFloat(items[0]), j: parseFloat(items[1]), dist: parseFloat(items[2]) });
+      }
+    });
+  return results;
+};
+
+const parseCouplingScoreLine = (line: string) =>
+  line
+    .split('\n')
+    .slice(1)
+    .map(row => {
+      const items = row.split(',');
+      return {
+        i: parseFloat(items[0]),
+        // tslint:disable-next-line:object-literal-sort-keys
+        A_i: items[1],
+        j: parseFloat(items[2]),
+        A_j: items[3],
+        fn: parseFloat(items[4]),
+        cn: parseFloat(items[5]),
+        segment_i: items[6],
+        segment_j: items[7],
+        probability: parseFloat(items[8]),
+        dist_intra: parseFloat(items[9]),
+        dist_multimer: parseFloat(items[10]),
+        dist: parseFloat(items[11]),
+        precision: parseFloat(items[12]),
+      };
+    });
+
+const parseDistanceMonomerLine = (line: string) => {
+  const results: IDistanceMapMonomer[] = [];
+  line
+    .split('\n')
+    .slice(1)
+    .forEach(row => {
+      const items = row.split(',');
+      if (items.length === 3) {
+        results.push({ id: parseFloat(items[1]), sec_struct_3state: items[2] });
+      }
+    });
+  return results;
 };

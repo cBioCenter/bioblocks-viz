@@ -3,6 +3,8 @@ import * as React from 'react';
 
 import { PickingProxy, Stage, StructureComponent } from 'ngl';
 
+export type NGL_DATA_TYPE = NGL.Structure;
+
 export interface INGLComponentProps {
   data?: NGL.Structure;
   onHoverPickCallback?: (...args: any[]) => void;
@@ -61,7 +63,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, INGLCompon
 
   public render() {
     return (
-      <div id="NGLContainer">
+      <div id="NGLComponent">
         <div ref={el => (this.canvas = el)} style={{ height: 400, width: 400 }} />
       </div>
     );
