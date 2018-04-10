@@ -3,7 +3,7 @@
 exports[`NGLComponent Should match existing snapshot when canvas is available 1`] = `
 <NGLComponent>
   <div
-    id="NGLContainer"
+    id="NGLComponent"
   >
     <div
       style={
@@ -19,7 +19,7 @@ exports[`NGLComponent Should match existing snapshot when canvas is available 1`
 
 exports[`NGLComponent Should match existing snapshot when canvas isn't available. 1`] = `
 <div
-  id="NGLContainer"
+  id="NGLComponent"
 >
   <div
     style={

@@ -1,4 +1,5 @@
 import * as d3 from 'd3';
+import * as NGL from 'ngl';
 import { ISpringCategoricalColorData, ISpringCategoricalColorDataInput, ISpringGraphData } from 'spring';
 import { VIZ_TYPE } from '../component/VizSelectorPanel';
 
@@ -8,8 +9,10 @@ export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
       return fetchTSneCoordinateData(dataDir);
     case VIZ_TYPE.SPRING:
       return deriveSpringData(dataDir);
+    case VIZ_TYPE.NGL:
+      return fetchNGLData(dataDir);
     default:
-      console.log(`Currently not appropriate data getter for ${viz}`);
+      console.log(`Currently no appropriate data getter for ${viz}`);
   }
 };
 
@@ -50,7 +53,7 @@ const deriveSpringData = async (dataDir: string) => {
   }
 };
 
-export const fetchCategoricalColorData = async (file: string): Promise<ISpringCategoricalColorData> => {
+const fetchCategoricalColorData = async (file: string): Promise<ISpringCategoricalColorData> => {
   const input = (await d3.json(file)) as ISpringCategoricalColorDataInput;
   const output: ISpringCategoricalColorData = {
     label_colors: {},
@@ -92,7 +95,7 @@ export const fetchColorData = async (file: string) => {
   return dict;
 };
 
-export const fetchSpringCoordinateData = async (file: string) => {
+const fetchSpringCoordinateData = async (file: string) => {
   const coordinateText: string = await d3.text(file);
 
   const coordinates: number[][] = [];
@@ -108,7 +111,7 @@ export const fetchSpringCoordinateData = async (file: string) => {
   return coordinates;
 };
 
-export const fetchTSneCoordinateData = async (dataDir: string) => {
+const fetchTSneCoordinateData = async (dataDir: string) => {
   const colorText: string = await d3.text(`assets/${dataDir}/tsne_output.csv`);
   const result: number[][] = [];
   colorText.split('\n').forEach((entry, index, array) => {
@@ -121,10 +124,15 @@ export const fetchTSneCoordinateData = async (dataDir: string) => {
   return result;
 };
 
-export const fetchGraphData = async (file: string) => {
+const fetchGraphData = async (file: string) => {
   const data = (await d3.json(file)) as ISpringGraphData;
   if (!data.nodes || !data.links) {
     throw new Error('Unable to parse graph_data - does it have node key(s)?');
   }
   return data;
+};
+
+const fetchNGLData = async (file: string) => {
+  const data = await NGL.autoLoad(file);
+  return data as NGL.Structure;
 };

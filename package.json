@@ -42,7 +42,8 @@
   "scripts": {
     "build": "webpack --config ./configs/webpack.dev.ts",
     "build:prod": "webpack --config ./configs/webpack.prod.ts",
-    "doc": "typedoc --out docs/api --includeDeclarations --excludeExternals --mode file",
+    "doc":
+      "rm -rf node_modules/typedoc/node_modules/typescript ; typedoc --out docs/api --includeDeclarations --excludeExternals --mode file",
     "doc:precommit": "yarn doc && git add docs/api && git add -u docs/api",
     "lint": "npm-run-all lint:*",
     "lint:src": "tslint --project ./",
@@ -57,7 +58,6 @@
     "test:staged": "jest --onlyChanged"
   },
   "dependencies": {
-    "global": "^4.3.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "semantic-ui-react": "^0.79.0"
@@ -95,6 +95,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
     "extract-text-webpack-plugin": "^3.0.2",
+    "global": "^4.3.2",
     "html-webpack-plugin": "^3.0.4",
     "husky": "^0.14.3",
     "jest": "^22.4.2",
@@ -123,7 +124,7 @@
     "tslint-react": "^3.5.1",
     "tsnejs": "https://github.com/karpathy/tsnejs",
     "typedoc": "^0.11.1",
-    "typescript": "^2.7.2",
+    "typescript": "^2.8.1",
     "webpack": "^4.0.1",
     "webpack-cli": "^2.0.9",
     "webpack-dev-server": "^3.1.0",

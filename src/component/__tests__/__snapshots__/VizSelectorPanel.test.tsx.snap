@@ -165,7 +165,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     selectOnNavigation={true}
     wrapSelection={true}
   />
-  <SpringComponent
+  <SpringComponentClass
     canvasBackgroundColor={13421772}
     data={
       Object {
@@ -173,6 +173,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
         "nodes": Array [],
       }
     }
+    selectedCategory=""
   />
 </div>
 `;

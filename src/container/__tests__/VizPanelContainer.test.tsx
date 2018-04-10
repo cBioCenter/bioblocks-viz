@@ -7,6 +7,6 @@ import { VizPanelContainer } from '../VizPanelContainer';
 
 describe('VizPanelContainer', () => {
   test('Should match existing snapshot when given a single visualization panel to render.', () => {
-    expect(toJson(shallow(<VizPanelContainer numPanels={1} />))).toMatchSnapshot();
+    expect(toJson(shallow(<VizPanelContainer initialVisualizations={[]} numPanels={1} />))).toMatchSnapshot();
   });
 });
