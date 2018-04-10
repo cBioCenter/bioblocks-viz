@@ -1,5 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`VizSelectorPanel Should match existing snapshot when given initial viz of Contact Map. 1`] = `
+<div
+  className="VizSelectorPanel"
+  style={
+    Object {
+      "width": 400,
+    }
+  }
+>
+  <Dropdown
+    additionLabel="Add "
+    additionPosition="top"
+    closeOnBlur={true}
+    deburr={false}
+    fluid={true}
+    icon="dropdown"
+    minCharacters={1}
+    noResultsMessage="No results found."
+    onChange={[Function]}
+    openOnFocus={true}
+    options={
+      Array [
+        Object {
+          "key": "CONTACT_MAP",
+          "text": "Contact Map",
+          "value": "Contact Map",
+        },
+        Object {
+          "key": "NGL",
+          "text": "NGL",
+          "value": "NGL",
+        },
+        Object {
+          "key": "SPRING",
+          "text": "Spring",
+          "value": "Spring",
+        },
+        Object {
+          "key": "T-SNE",
+          "text": "T-SNE",
+          "value": "T-SNE",
+        },
+      ]
+    }
+    placeholder="Select a Visualization!"
+    renderLabel={[Function]}
+    searchInput="text"
+    selectOnBlur={true}
+    selectOnNavigation={true}
+    wrapSelection={true}
+  />
+  <ContactMapComponent
+    data={Object {}}
+    height={400}
+    width={400}
+  />
+</div>
+`;
+
 exports[`VizSelectorPanel Should match existing snapshot when given initial viz of NGL. 1`] = `
 <div
   className="VizSelectorPanel"
@@ -23,14 +82,19 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     options={
       Array [
         Object {
+          "key": "CONTACT_MAP",
+          "text": "Contact Map",
+          "value": "Contact Map",
+        },
+        Object {
           "key": "NGL",
           "text": "NGL",
           "value": "NGL",
         },
         Object {
           "key": "SPRING",
-          "text": "SPRING",
-          "value": "SPRING",
+          "text": "Spring",
+          "value": "Spring",
         },
         Object {
           "key": "T-SNE",
@@ -46,11 +110,11 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     selectOnNavigation={true}
     wrapSelection={true}
   />
-  <ProteinViewer />
+  <NGLComponent />
 </div>
 `;
 
-exports[`VizSelectorPanel Should match existing snapshot when given initial viz of SPRING. 1`] = `
+exports[`VizSelectorPanel Should match existing snapshot when given initial viz of Spring. 1`] = `
 <div
   className="VizSelectorPanel"
   style={
@@ -73,14 +137,19 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     options={
       Array [
         Object {
+          "key": "CONTACT_MAP",
+          "text": "Contact Map",
+          "value": "Contact Map",
+        },
+        Object {
           "key": "NGL",
           "text": "NGL",
           "value": "NGL",
         },
         Object {
           "key": "SPRING",
-          "text": "SPRING",
-          "value": "SPRING",
+          "text": "Spring",
+          "value": "Spring",
         },
         Object {
           "key": "T-SNE",
@@ -96,7 +165,15 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     selectOnNavigation={true}
     wrapSelection={true}
   />
-  <SpringContainer />
+  <SpringComponent
+    canvasBackgroundColor={13421772}
+    data={
+      Object {
+        "links": Array [],
+        "nodes": Array [],
+      }
+    }
+  />
 </div>
 `;
 
@@ -123,14 +200,19 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     options={
       Array [
         Object {
+          "key": "CONTACT_MAP",
+          "text": "Contact Map",
+          "value": "Contact Map",
+        },
+        Object {
           "key": "NGL",
           "text": "NGL",
           "value": "NGL",
         },
         Object {
           "key": "SPRING",
-          "text": "SPRING",
-          "value": "SPRING",
+          "text": "Spring",
+          "value": "Spring",
         },
         Object {
           "key": "T-SNE",
@@ -146,7 +228,18 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     selectOnNavigation={true}
     wrapSelection={true}
   />
-  <TContainer />
+  <TComponent
+    height={400}
+    margin={
+      Object {
+        "bottom": 20,
+        "left": 20,
+        "right": 20,
+        "top": 20,
+      }
+    }
+    width={400}
+  />
 </div>
 `;
 
@@ -173,14 +266,19 @@ exports[`VizSelectorPanel Should match existing snapshot when given no initial v
     options={
       Array [
         Object {
+          "key": "CONTACT_MAP",
+          "text": "Contact Map",
+          "value": "Contact Map",
+        },
+        Object {
           "key": "NGL",
           "text": "NGL",
           "value": "NGL",
         },
         Object {
           "key": "SPRING",
-          "text": "SPRING",
-          "value": "SPRING",
+          "text": "Spring",
+          "value": "Spring",
         },
         Object {
           "key": "T-SNE",
@@ -196,6 +294,17 @@ exports[`VizSelectorPanel Should match existing snapshot when given no initial v
     selectOnNavigation={true}
     wrapSelection={true}
   />
-  <SpringContainer />
+  <TComponent
+    height={400}
+    margin={
+      Object {
+        "bottom": 20,
+        "left": 20,
+        "right": 20,
+        "top": 20,
+      }
+    }
+    width={400}
+  />
 </div>
 `;

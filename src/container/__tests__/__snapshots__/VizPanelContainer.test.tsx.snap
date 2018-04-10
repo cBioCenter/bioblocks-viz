@@ -53,7 +53,8 @@ exports[`VizPanelContainer Should match existing snapshot when given a single vi
     key="0"
   >
     <VizSelectorPanel
-      dataDir="centroids_subset"
+      data={Object {}}
+      initialViz="T-SNE"
     />
   </GridColumn>
 </Grid>

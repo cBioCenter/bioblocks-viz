@@ -3,12 +3,12 @@
 exports[`ChellSlider Should match existing snapshot when given simple data. 1`] = `
 <div>
   <p>
-    test: 10
+    test: 1
   </p>
   <ComponentEnhancer(undefined)
     activeDotStyle={Object {}}
     className=""
-    defaultValue={10}
+    defaultValue={1}
     disabled={false}
     dotStyle={Object {}}
     dots={false}

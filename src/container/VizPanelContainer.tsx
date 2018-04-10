@@ -1,8 +1,15 @@
-import * as d3 from 'd3';
 import * as React from 'react';
 import { Dropdown, Grid, GridColumn, GridRow } from 'semantic-ui-react';
 
-import { VizSelectorPanel } from '../component/VizSelectorPanel';
+import { SPRING_DATA_TYPE } from '../component/SpringComponent';
+import { T_SNE_DATA_TYPE } from '../component/TComponent';
+import { VIZ_TYPE, VizSelectorPanel } from '../component/VizSelectorPanel';
+import { fetchAppropriateData } from '../helper/DataHelper';
+
+export interface IChellDataTypes {
+  spring?: SPRING_DATA_TYPE;
+  tsne?: T_SNE_DATA_TYPE;
+}
 
 export interface IVizPanelContainerProps {
   /** Number of panels to be controlled by this container. Currently limited to 4. */
@@ -10,8 +17,8 @@ export interface IVizPanelContainerProps {
 }
 
 export interface IVizPanelContainerState {
-  coordinates: number[][];
   currentDataDir: string;
+  data: IChellDataTypes;
   dataDirs: string[];
 }
 
@@ -20,24 +27,32 @@ export class VizPanelContainer extends React.Component<IVizPanelContainerProps, 
     super(props);
 
     this.state = {
-      coordinates: [],
-      currentDataDir: 'centroids_subset',
+      currentDataDir: 'centroids',
+      data: {},
       dataDirs: ['centroids', 'centroids_subset', 'spring2/full'],
     };
   }
 
   public async componentDidMount() {
-    const coordinates = await this.fetchCoordinateData(`assets/${this.state.currentDataDir}/tsne_output.csv`);
+    const springData = await fetchAppropriateData(VIZ_TYPE.SPRING, this.state.currentDataDir);
+    const tsneData = await fetchAppropriateData(VIZ_TYPE['T-SNE'], this.state.currentDataDir);
     this.setState({
-      coordinates,
+      data: {
+        spring: springData as SPRING_DATA_TYPE,
+        tsne: tsneData as T_SNE_DATA_TYPE,
+      },
     });
   }
 
   public async componentDidUpdate(prevProps: IVizPanelContainerProps, prevState: IVizPanelContainerState) {
     if (prevState.currentDataDir !== this.state.currentDataDir) {
-      const coordinates = await this.fetchCoordinateData(`assets/${this.state.currentDataDir}/tsne_output.csv`);
+      const springData = await fetchAppropriateData(VIZ_TYPE.SPRING, this.state.currentDataDir);
+      const tsneData = await fetchAppropriateData(VIZ_TYPE['T-SNE'], this.state.currentDataDir);
       this.setState({
-        coordinates,
+        data: {
+          spring: springData as SPRING_DATA_TYPE,
+          tsne: tsneData as T_SNE_DATA_TYPE,
+        },
       });
     }
   }
@@ -57,30 +72,17 @@ export class VizPanelContainer extends React.Component<IVizPanelContainerProps, 
             search={true}
           />
         </GridRow>
-        {this.renderPanels(this.props.numPanels, this.state.currentDataDir, this.state.coordinates).map(
-          (panel, index) => <GridColumn key={index}>{panel}</GridColumn>,
-        )}
+        {this.renderPanels(this.props.numPanels, this.state.data).map((panel, index) => (
+          <GridColumn key={index}>{panel}</GridColumn>
+        ))}
       </Grid>
     );
   }
 
-  protected async fetchCoordinateData(file: string) {
-    const colorText: string = await d3.text(file);
-    const result: number[][] = [];
-    colorText.split('\n').forEach((entry, index, array) => {
-      if (entry.length > 0) {
-        const items = entry.split(',');
-        const coordinates = [parseFloat(items[0]), parseFloat(items[1])];
-        result.push(coordinates);
-      }
-    });
-    return result;
-  }
-
-  protected renderPanels(numPanels: number, dataDir: string, data: any) {
+  protected renderPanels(numPanels: number, data: any) {
     const result = [];
     for (let i = 0; i < numPanels; ++i) {
-      result.push(<VizSelectorPanel dataDir={dataDir} data={data} />);
+      result.push(<VizSelectorPanel data={data} />);
     }
     return result;
   }

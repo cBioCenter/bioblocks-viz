@@ -11,9 +11,6 @@ export class ChellVizApp extends React.Component<any, any> {
           <GridRow>
             <VizPanelContainer numPanels={2} />
           </GridRow>
-          <GridRow>
-            <VizPanelContainer numPanels={3} />
-          </GridRow>
         </Grid>
       </div>
     );

@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { CartesianGrid, Margin, Scatter, ScatterChart, XAxis, YAxis } from 'recharts';
 
+export type T_SNE_DATA_TYPE = number[][];
+
 export interface ITComponentProps {
-  data: number[][];
+  data?: T_SNE_DATA_TYPE;
   height?: number;
   margin?: Margin;
   style?: object;
@@ -19,16 +21,21 @@ export class TComponent extends React.Component<ITComponentProps, {}> {
   };
 
   public render() {
-    const data: rechartScatterDataFormat = this.props.data.map(ele => {
-      return { x: ele[0], y: ele[1] };
-    });
-    const { height, margin, style, width } = this.props;
+    const { data, height, margin, style, width } = this.props;
     return (
       <ScatterChart width={height} height={width} margin={margin} style={style}>
         <XAxis type="number" dataKey={'x'} />
         <YAxis type="number" dataKey={'y'} />
         <CartesianGrid />
-        <Scatter data={data} />
+        <Scatter
+          data={
+            data
+              ? data.map(ele => {
+                  return { x: ele[0], y: ele[1] };
+                })
+              : []
+          }
+        />
       </ScatterChart>
     );
   }

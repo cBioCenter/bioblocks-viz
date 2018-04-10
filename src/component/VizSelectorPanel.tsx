@@ -2,20 +2,24 @@ import * as React from 'react';
 
 import { Dropdown, DropdownItemProps } from 'semantic-ui-react';
 
+import { NGLComponent } from '../component/NGLComponent';
+import { SpringComponent } from '../component/SpringComponent';
 import { TComponent } from '../component/TComponent';
-import { ProteinViewer } from '../container/ProteinViewer';
-import { SpringContainer } from '../container/SpringContainer';
+import { IChellDataTypes } from '../container/VizPanelContainer';
+import { ContactMapComponent } from './ContactMapComponent';
 
 export enum VIZ_TYPE {
+  CONTACT_MAP = 'Contact Map',
   NGL = 'NGL',
-  SPRING = 'SPRING',
+  SPRING = 'Spring',
   'T-SNE' = 'T-SNE',
 }
 
+// type VIZ_DATA_INPUT_TYPE = SPRING_DATA_TYPE | T_SNE_DATA_TYPE;
+
 export interface IVizSelectorPanelProps {
   initialViz?: VIZ_TYPE;
-  dataDir: string;
-  data: any;
+  data?: IChellDataTypes;
 }
 
 export interface IVizSelectorPanelState {
@@ -30,17 +34,17 @@ export interface IVizSelectorPanelState {
  * @extends {React.Component<IVizSelectorPanelProps, IVizSelectorPanelState>}
  */
 export class VizSelectorPanel extends React.Component<IVizSelectorPanelProps, IVizSelectorPanelState> {
-  public static defaultParams: Partial<IVizSelectorPanelProps> = {
+  public static defaultProps: IVizSelectorPanelProps = {
     initialViz: VIZ_TYPE['T-SNE'],
   };
 
   protected dropdownItems: DropdownItemProps[] = Object.keys(VIZ_TYPE).map(viz => ({
     key: viz,
-    text: viz,
-    value: viz,
+    text: VIZ_TYPE[viz as keyof typeof VIZ_TYPE],
+    value: VIZ_TYPE[viz as keyof typeof VIZ_TYPE],
   }));
 
-  constructor(props: IVizSelectorPanelProps) {
+  constructor(props: Partial<IVizSelectorPanelProps> = VizSelectorPanel.defaultProps) {
     super(props);
     this.state = {
       selectedViz: props.initialViz ? props.initialViz : VIZ_TYPE.SPRING,
@@ -59,19 +63,21 @@ export class VizSelectorPanel extends React.Component<IVizSelectorPanelProps, IV
           fluid={true}
           onChange={this.onVizSelect}
         />
-        {this.renderVizContainer(this.state.selectedViz, this.props.dataDir, this.props.data)}
+        {this.renderVizContainer(this.state.selectedViz, this.props.data)}
       </div>
     );
   }
 
-  protected renderVizContainer(viz: VIZ_TYPE, dataDir: string, data: any) {
+  protected renderVizContainer(viz: VIZ_TYPE, data: IChellDataTypes = {}) {
     switch (viz) {
       case VIZ_TYPE['T-SNE']:
-        return <TComponent data={data} />;
+        return <TComponent data={data.tsne} />;
       case VIZ_TYPE.SPRING:
-        return <SpringContainer dataDir={dataDir} />;
+        return <SpringComponent data={data.spring} />;
       case VIZ_TYPE.NGL:
-        return <ProteinViewer />;
+        return <NGLComponent />;
+      case VIZ_TYPE.CONTACT_MAP:
+        return <ContactMapComponent data={{}} />;
       default:
         throw new Error(`Unknown viz: ${viz}`);
     }
