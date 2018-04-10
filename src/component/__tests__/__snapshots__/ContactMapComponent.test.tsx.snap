@@ -1,0 +1,502 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContactMapComponent Should match existing snapshot when given empty data. 1`] = `
+<ScatterChart
+  barCategoryGap="10%"
+  barGap={4}
+  height={400}
+  layout="horizontal"
+  margin={
+    Object {
+      "bottom": 5,
+      "left": 5,
+      "right": 5,
+      "top": 5,
+    }
+  }
+  reverseStackOrder={false}
+  stackOffset="none"
+  width={400}
+>
+  <XAxis
+    allowDataOverflow={false}
+    allowDecimals={true}
+    allowDuplicatedCategory={true}
+    dataKey="i"
+    domain={
+      Array [
+        995,
+        5,
+      ]
+    }
+    height={30}
+    hide={false}
+    mirror={false}
+    orientation="top"
+    padding={
+      Object {
+        "left": 0,
+        "right": 0,
+      }
+    }
+    reversed={false}
+    scale="auto"
+    tickCount={5}
+    type="number"
+    width={0}
+    xAxisId={0}
+  />
+  <YAxis
+    allowDataOverflow={false}
+    allowDecimals={true}
+    allowDuplicatedCategory={true}
+    dataKey="j"
+    domain={
+      Array [
+        995,
+        5,
+      ]
+    }
+    height={0}
+    hide={false}
+    mirror={false}
+    orientation="left"
+    padding={
+      Object {
+        "bottom": 0,
+        "top": 0,
+      }
+    }
+    reversed={true}
+    scale="auto"
+    tickCount={5}
+    type="number"
+    width={60}
+    yAxisId={0}
+  />
+  }
+  <ZAxis
+    dataKey="dist"
+    range={
+      Array [
+        64,
+        64,
+      ]
+    }
+    scale="auto"
+    type="number"
+    zAxisId={0}
+  />
+  <CartesianGrid
+    fill="none"
+    horizontal={true}
+    horizontalFill={Array []}
+    horizontalPoints={Array []}
+    stroke="#ccc"
+    vertical={true}
+    verticalFill={Array []}
+    verticalPoints={Array []}
+  />
+  <Tooltip
+    active={false}
+    animationDuration={400}
+    animationEasing="ease"
+    coordinate={
+      Object {
+        "x": 0,
+        "y": 0,
+      }
+    }
+    cursor={true}
+    cursorStyle={Object {}}
+    filterNull={true}
+    isAnimationActive={true}
+    itemSorter={[Function]}
+    itemStyle={Object {}}
+    labelStyle={Object {}}
+    offset={10}
+    separator=" : "
+    useTranslate3d={false}
+    viewBox={
+      Object {
+        "x1": 0,
+        "x2": 0,
+        "y1": 0,
+        "y2": 0,
+      }
+    }
+    wrapperStyle={Object {}}
+  />
+  <Scatter
+    animationBegin={0}
+    animationDuration={400}
+    animationEasing="linear"
+    data={Array []}
+    fill="#009999"
+    hide={false}
+    isAnimationActive={true}
+    legendType="circle"
+    lineJointType="linear"
+    lineType="joint"
+    name="contacts_monomer"
+    onClick={[Function]}
+    shape="circle"
+    xAxisId={0}
+    yAxisId={0}
+    zAxisId={0}
+  />
+  <Scatter
+    animationBegin={0}
+    animationDuration={400}
+    animationEasing="linear"
+    data={Array []}
+    fill="#000000"
+    hide={false}
+    isAnimationActive={true}
+    legendType="circle"
+    lineJointType="linear"
+    lineType="joint"
+    name="CouplingScoresCompared"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    shape="circle"
+    xAxisId={0}
+    yAxisId={0}
+    zAxisId={0}
+  />
+</ScatterChart>
+`;
+
+exports[`ContactMapComponent Should match existing snapshot when given no data. 1`] = `
+<ScatterChart
+  barCategoryGap="10%"
+  barGap={4}
+  height={400}
+  layout="horizontal"
+  margin={
+    Object {
+      "bottom": 5,
+      "left": 5,
+      "right": 5,
+      "top": 5,
+    }
+  }
+  reverseStackOrder={false}
+  stackOffset="none"
+  width={400}
+>
+  <XAxis
+    allowDataOverflow={false}
+    allowDecimals={true}
+    allowDuplicatedCategory={true}
+    dataKey="i"
+    domain={
+      Array [
+        995,
+        5,
+      ]
+    }
+    height={30}
+    hide={false}
+    mirror={false}
+    orientation="top"
+    padding={
+      Object {
+        "left": 0,
+        "right": 0,
+      }
+    }
+    reversed={false}
+    scale="auto"
+    tickCount={5}
+    type="number"
+    width={0}
+    xAxisId={0}
+  />
+  <YAxis
+    allowDataOverflow={false}
+    allowDecimals={true}
+    allowDuplicatedCategory={true}
+    dataKey="j"
+    domain={
+      Array [
+        995,
+        5,
+      ]
+    }
+    height={0}
+    hide={false}
+    mirror={false}
+    orientation="left"
+    padding={
+      Object {
+        "bottom": 0,
+        "top": 0,
+      }
+    }
+    reversed={true}
+    scale="auto"
+    tickCount={5}
+    type="number"
+    width={60}
+    yAxisId={0}
+  />
+  }
+  <ZAxis
+    dataKey="dist"
+    range={
+      Array [
+        64,
+        64,
+      ]
+    }
+    scale="auto"
+    type="number"
+    zAxisId={0}
+  />
+  <CartesianGrid
+    fill="none"
+    horizontal={true}
+    horizontalFill={Array []}
+    horizontalPoints={Array []}
+    stroke="#ccc"
+    vertical={true}
+    verticalFill={Array []}
+    verticalPoints={Array []}
+  />
+  <Tooltip
+    active={false}
+    animationDuration={400}
+    animationEasing="ease"
+    coordinate={
+      Object {
+        "x": 0,
+        "y": 0,
+      }
+    }
+    cursor={true}
+    cursorStyle={Object {}}
+    filterNull={true}
+    isAnimationActive={true}
+    itemSorter={[Function]}
+    itemStyle={Object {}}
+    labelStyle={Object {}}
+    offset={10}
+    separator=" : "
+    useTranslate3d={false}
+    viewBox={
+      Object {
+        "x1": 0,
+        "x2": 0,
+        "y1": 0,
+        "y2": 0,
+      }
+    }
+    wrapperStyle={Object {}}
+  />
+  <Scatter
+    animationBegin={0}
+    animationDuration={400}
+    animationEasing="linear"
+    data={Array []}
+    fill="#009999"
+    hide={false}
+    isAnimationActive={true}
+    legendType="circle"
+    lineJointType="linear"
+    lineType="joint"
+    name="contacts_monomer"
+    onClick={[Function]}
+    shape="circle"
+    xAxisId={0}
+    yAxisId={0}
+    zAxisId={0}
+  />
+  <Scatter
+    animationBegin={0}
+    animationDuration={400}
+    animationEasing="linear"
+    data={Array []}
+    fill="#000000"
+    hide={false}
+    isAnimationActive={true}
+    legendType="circle"
+    lineJointType="linear"
+    lineType="joint"
+    name="CouplingScoresCompared"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    shape="circle"
+    xAxisId={0}
+    yAxisId={0}
+    zAxisId={0}
+  />
+</ScatterChart>
+`;
+
+exports[`ContactMapComponent Should match existing snapshot when given sample data. 1`] = `
+<ScatterChart
+  barCategoryGap="10%"
+  barGap={4}
+  height={400}
+  layout="horizontal"
+  margin={
+    Object {
+      "bottom": 5,
+      "left": 5,
+      "right": 5,
+      "top": 5,
+    }
+  }
+  reverseStackOrder={false}
+  stackOffset="none"
+  width={400}
+>
+  <XAxis
+    allowDataOverflow={false}
+    allowDecimals={true}
+    allowDuplicatedCategory={true}
+    dataKey="i"
+    domain={
+      Array [
+        995,
+        5,
+      ]
+    }
+    height={30}
+    hide={false}
+    mirror={false}
+    orientation="top"
+    padding={
+      Object {
+        "left": 0,
+        "right": 0,
+      }
+    }
+    reversed={false}
+    scale="auto"
+    tickCount={5}
+    type="number"
+    width={0}
+    xAxisId={0}
+  />
+  <YAxis
+    allowDataOverflow={false}
+    allowDecimals={true}
+    allowDuplicatedCategory={true}
+    dataKey="j"
+    domain={
+      Array [
+        995,
+        5,
+      ]
+    }
+    height={0}
+    hide={false}
+    mirror={false}
+    orientation="left"
+    padding={
+      Object {
+        "bottom": 0,
+        "top": 0,
+      }
+    }
+    reversed={true}
+    scale="auto"
+    tickCount={5}
+    type="number"
+    width={60}
+    yAxisId={0}
+  />
+  }
+  <ZAxis
+    dataKey="dist"
+    range={
+      Array [
+        64,
+        64,
+      ]
+    }
+    scale="auto"
+    type="number"
+    zAxisId={0}
+  />
+  <CartesianGrid
+    fill="none"
+    horizontal={true}
+    horizontalFill={Array []}
+    horizontalPoints={Array []}
+    stroke="#ccc"
+    vertical={true}
+    verticalFill={Array []}
+    verticalPoints={Array []}
+  />
+  <Tooltip
+    active={false}
+    animationDuration={400}
+    animationEasing="ease"
+    coordinate={
+      Object {
+        "x": 0,
+        "y": 0,
+      }
+    }
+    cursor={true}
+    cursorStyle={Object {}}
+    filterNull={true}
+    isAnimationActive={true}
+    itemSorter={[Function]}
+    itemStyle={Object {}}
+    labelStyle={Object {}}
+    offset={10}
+    separator=" : "
+    useTranslate3d={false}
+    viewBox={
+      Object {
+        "x1": 0,
+        "x2": 0,
+        "y1": 0,
+        "y2": 0,
+      }
+    }
+    wrapperStyle={Object {}}
+  />
+  <Scatter
+    animationBegin={0}
+    animationDuration={400}
+    animationEasing="linear"
+    data={Array []}
+    fill="#009999"
+    hide={false}
+    isAnimationActive={true}
+    legendType="circle"
+    lineJointType="linear"
+    lineType="joint"
+    name="contacts_monomer"
+    onClick={[Function]}
+    shape="circle"
+    xAxisId={0}
+    yAxisId={0}
+    zAxisId={0}
+  />
+  <Scatter
+    animationBegin={0}
+    animationDuration={400}
+    animationEasing="linear"
+    data={Array []}
+    fill="#000000"
+    hide={false}
+    isAnimationActive={true}
+    legendType="circle"
+    lineJointType="linear"
+    lineType="joint"
+    name="CouplingScoresCompared"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    shape="circle"
+    xAxisId={0}
+    yAxisId={0}
+    zAxisId={0}
+  />
+</ScatterChart>
+`;

@@ -51,7 +51,15 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     selectOnNavigation={true}
     wrapSelection={true}
   />
-  <ContactMapComponent />
+  <ContactMapComponentClass
+    data={
+      Object {
+        "contactMonomer": Array [],
+        "couplingScore": Array [],
+        "distanceMapMonomer": Array [],
+      }
+    }
+  />
 </div>
 `;
 

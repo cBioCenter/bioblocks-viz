@@ -15,8 +15,7 @@ const defaultProps = {
   selectedCategory: '',
 };
 
-type DefaultProps = typeof defaultProps;
-type Props = {} & DefaultProps;
+type Props = {} & typeof defaultProps;
 
 export const SpringComponent = withDefaultProps(
   defaultProps,

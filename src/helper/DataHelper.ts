@@ -1,7 +1,7 @@
+import { CONTACT_MAP_DATA_TYPE, IDistanceMapMonomer, IMonomerContact } from 'chell';
 import * as d3 from 'd3';
 import * as NGL from 'ngl';
 import { ISpringCategoricalColorData, ISpringCategoricalColorDataInput, ISpringGraphData } from 'spring';
-import { CONTACT_MAP_DATA_TYPE, IDistanceMapMonomer, IMonomerContact } from '../component/ContactMapComponent';
 import { VIZ_TYPE } from '../component/VizSelectorPanel';
 
 export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
