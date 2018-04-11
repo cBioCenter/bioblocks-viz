@@ -3,6 +3,7 @@ import { CartesianGrid, Scatter, ScatterChart, Tooltip, XAxis, YAxis, ZAxis } fr
 
 import { CONTACT_MAP_DATA_TYPE, ICouplingScore } from 'chell';
 import { withDefaultProps } from '../helper/ReactHelper';
+import { ChellSlider } from './ChellSlider';
 
 export type ContactMapCallback = (...args: any[]) => void;
 
@@ -49,21 +50,30 @@ export const ContactMapComponent = withDefaultProps(
       const { data } = this.props;
       const domain = [Math.max(0, this.state.min_x - 5), this.state.max_x + 5];
       return data ? (
-        <ScatterChart width={400} height={400}>
-          <XAxis type="number" dataKey={'i'} orientation={'top'} domain={domain} />
-          <YAxis type="number" dataKey={'j'} reversed={true} domain={domain} />}
-          <ZAxis dataKey="dist" />
-          <CartesianGrid />
-          <Tooltip />
-          <Scatter name="contacts_monomer" data={data.contactMonomer} fill="#009999" onClick={this.onClick()} />
-          <Scatter
-            name="CouplingScoresCompared"
-            data={data.couplingScore.filter(coupling => coupling.probability > this.state.probabilityFilter)}
-            fill="#000000"
-            onClick={this.onClick()}
-            onMouseEnter={this.onMouseEnter()}
+        <div>
+          <ScatterChart width={400} height={400}>
+            <XAxis type="number" dataKey={'i'} orientation={'top'} domain={domain} />
+            <YAxis type="number" dataKey={'j'} reversed={true} domain={domain} />}
+            <ZAxis dataKey="dist" />
+            <CartesianGrid />
+            <Tooltip />
+            <Scatter name="contacts_monomer" data={data.contactMonomer} fill="#009999" onClick={this.onClick()} />
+            <Scatter
+              name="CouplingScoresCompared"
+              data={data.couplingScore.filter(coupling => coupling.probability > this.state.probabilityFilter)}
+              fill="#000000"
+              onClick={this.onClick()}
+              onMouseEnter={this.onMouseEnter()}
+            />
+          </ScatterChart>
+          <ChellSlider
+            max={100}
+            min={0}
+            label={'Probability'}
+            defaultValue={99}
+            onChange={this.onProbabilityChange()}
           />
-        </ScatterChart>
+        </div>
       ) : null;
     }
 
@@ -71,6 +81,12 @@ export const ContactMapComponent = withDefaultProps(
       if (this.props.onClick) {
         this.props.onClick(args);
       }
+    };
+
+    protected onProbabilityChange = () => (value: number) => {
+      this.setState({
+        probabilityFilter: value / 100,
+      });
     };
 
     protected onMouseEnter = () => (e: { [key: string]: any; payload: ICouplingScore }) => {

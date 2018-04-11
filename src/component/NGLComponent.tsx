@@ -38,6 +38,8 @@ export class NGLComponent extends React.Component<INGLComponentProps, INGLCompon
       stage.mouseControls.add(NGL.MouseActions.HOVER_PICK, (aStage: Stage, pickingProxy: PickingProxy) => {
         if (pickingProxy && (pickingProxy.atom || pickingProxy.bond)) {
           const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
+          console.log(data.getSequence());
+          console.log('MALLHSARVLSGVASAFHPGLAAAASARASSWWAHVEMGPPDPILGVTEAYKRDTNSKKM');
           if (ele) {
             structureComponent.removeRepresentation(ele);
           }
