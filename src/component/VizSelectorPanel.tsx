@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { Dropdown, DropdownItemProps } from 'semantic-ui-react';
 
+import { ICouplingScore } from 'chell';
 import { NGLComponent } from '../component/NGLComponent';
 import { SpringComponent } from '../component/SpringComponent';
 import { TComponent } from '../component/TComponent';
@@ -15,11 +16,11 @@ export enum VIZ_TYPE {
   'T-SNE' = 'T-SNE',
 }
 
-// type VIZ_DATA_INPUT_TYPE = SPRING_DATA_TYPE | T_SNE_DATA_TYPE;
-
 export interface IVizSelectorPanelProps {
   initialViz?: VIZ_TYPE;
   data?: IChellDataTypes;
+  onDataSelect?: (e: any) => void;
+  selectedData?: ICouplingScore;
 }
 
 export interface IVizSelectorPanelState {
@@ -63,21 +64,21 @@ export class VizSelectorPanel extends React.Component<IVizSelectorPanelProps, IV
           fluid={true}
           onChange={this.onVizSelect}
         />
-        {this.renderVizContainer(this.state.selectedViz, this.props.data)}
+        {this.renderVizContainer(this.state.selectedViz, this.props.data, this.props.selectedData)}
       </div>
     );
   }
 
-  protected renderVizContainer(viz: VIZ_TYPE, data: IChellDataTypes = {}) {
+  protected renderVizContainer(viz: VIZ_TYPE, data: IChellDataTypes = {}, selectedData?: ICouplingScore) {
     switch (viz) {
       case VIZ_TYPE['T-SNE']:
         return <TComponent data={data.tsne} />;
       case VIZ_TYPE.SPRING:
         return <SpringComponent data={data.spring} />;
       case VIZ_TYPE.NGL:
-        return <NGLComponent data={data.ngl} />;
+        return <NGLComponent data={data.ngl} selectedData={selectedData} />;
       case VIZ_TYPE.CONTACT_MAP:
-        return <ContactMapComponent data={data.contactMap} />;
+        return <ContactMapComponent data={data.contactMap} onMouseEnter={this.props.onDataSelect} />;
       default:
         throw new Error(`Unknown viz: ${viz}`);
     }
