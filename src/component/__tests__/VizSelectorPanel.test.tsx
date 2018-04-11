@@ -6,7 +6,6 @@ import * as React from 'react';
 import { VIZ_TYPE, VizSelectorPanel } from '../VizSelectorPanel';
 
 describe('VizSelectorPanel', () => {
-  const testDataDir = 'sentence/kongsvinger';
   const testData = {};
 
   test('Should match existing snapshot when given no initial visualization.', () => {
@@ -14,7 +13,7 @@ describe('VizSelectorPanel', () => {
   });
 
   Object.keys(VIZ_TYPE).forEach(vizKey => {
-    const viz = VIZ_TYPE[vizKey];
+    const viz = VIZ_TYPE[vizKey as keyof typeof VIZ_TYPE];
     test(`Should match existing snapshot when given initial viz of ${viz}.`, () => {
       expect(toJson(shallow(<VizSelectorPanel data={testData} initialViz={viz} />))).toMatchSnapshot();
     });

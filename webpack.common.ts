@@ -18,10 +18,13 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        exclude: ['node_modules', '**/__tests__/**'],
         test: /\.tsx?$/,
         use: {
           loader: 'ts-loader',
+          options: {
+            configFile: path.resolve(__dirname, 'configs', 'tsconfig.webpack.json'),
+            context: __dirname,
+          },
         },
       },
     ],

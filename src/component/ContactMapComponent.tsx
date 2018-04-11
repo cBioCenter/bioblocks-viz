@@ -18,8 +18,7 @@ const defaultProps = {
 };
 const initialState = { min_x: 1000, max_x: 0, probabilityFilter: 0.99 };
 
-type DefaultProps = typeof defaultProps;
-type Props = {} & DefaultProps;
+type Props = {} & typeof defaultProps;
 type State = Readonly<typeof initialState>;
 
 export const ContactMapComponent = withDefaultProps(

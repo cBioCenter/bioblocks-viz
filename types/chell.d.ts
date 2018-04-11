@@ -1,3 +1,8 @@
+// Type definitions for Chell Visualization Library
+// Project: https://github.com/cBioCenter/chell-viz
+// Definitions by: cBioCenter @ Dana-Farber <https://github.com/cBioCenter/>, James Lindsay <https://github.com/jim-bo>, Nick Gauthier <https://github.com/npgauth>, Drew Diamantoukos <https://github.com/MercifulCode>,
+// TypeScript Version: 2.8
+
 declare module 'chell' {
   type CONTACT_MAP_DATA_TYPE = IContactMapData;
 
