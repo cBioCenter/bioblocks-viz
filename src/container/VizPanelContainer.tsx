@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Dropdown, Grid, GridColumn, GridRow } from 'semantic-ui-react';
 
+import { ICouplingScore } from 'chell';
 import { NGL_DATA_TYPE } from '../component/NGLComponent';
 import { SPRING_DATA_TYPE } from '../component/SpringComponent';
 import { T_SNE_DATA_TYPE } from '../component/TComponent';
@@ -24,6 +25,7 @@ export interface IVizPanelContainerState {
   currentDataDir: string;
   data: IChellDataTypes;
   dataDirs: string[];
+  selectedData?: ICouplingScore;
 }
 
 export class VizPanelContainer extends React.Component<IVizPanelContainerProps, IVizPanelContainerState> {
@@ -106,14 +108,17 @@ export class VizPanelContainer extends React.Component<IVizPanelContainerProps, 
     );
   }
 
-  protected renderPanels(numPanels: number, data: any, initialVisualizations?: VIZ_TYPE[]) {
+  protected renderPanels(numPanels: number, data: any, initialVisualizations: VIZ_TYPE[]) {
     const result = [];
     for (let i = 0; i < numPanels; ++i) {
-      if (initialVisualizations && initialVisualizations[i]) {
-        result.push(<VizSelectorPanel data={data} initialViz={initialVisualizations[i]} />);
-      } else {
-        result.push(<VizSelectorPanel data={data} />);
-      }
+      result.push(
+        <VizSelectorPanel
+          data={data}
+          initialViz={initialVisualizations[i]}
+          onDataSelect={this.onDataSelect()}
+          selectedData={this.state.selectedData}
+        />,
+      );
     }
     return result;
   }
@@ -121,6 +126,12 @@ export class VizPanelContainer extends React.Component<IVizPanelContainerProps, 
   protected onDataDirChange = (event: React.SyntheticEvent<any>, data: any) => {
     this.setState({
       currentDataDir: data.value,
+    });
+  };
+
+  protected onDataSelect = () => (payload: any) => {
+    this.setState({
+      selectedData: payload as ICouplingScore,
     });
   };
 }

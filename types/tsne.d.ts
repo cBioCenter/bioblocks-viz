@@ -1,5 +1,5 @@
 // Type definitions for [tSNEJS] [https://github.com/karpathy/tsnejs]
-// Project: [~THE PROJECT NAME~]
+// Project: [Chell-Viz]
 // Definitions by: [BCB @ DF-CI, Drew Diamantoukos] <[http://bcb.dfci.harvard.edu/]>
 
 declare module 'tsnejs' {

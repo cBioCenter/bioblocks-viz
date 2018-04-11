@@ -100,6 +100,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="nglcomponent.html#canvas" class="tsd-kind-icon">canvas</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="nglcomponent.html#context" class="tsd-kind-icon">context</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="nglcomponent.html#ele" class="tsd-kind-icon">ele</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="nglcomponent.html#props" class="tsd-kind-icon">props</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="nglcomponent.html#refs" class="tsd-kind-icon">refs</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="nglcomponent.html#state" class="tsd-kind-icon">state</a></li>
@@ -108,15 +109,18 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="nglcomponent.html#componentdidmount" class="tsd-kind-icon">component<wbr>Did<wbr>Mount</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="nglcomponent.html#componentdidupdate" class="tsd-kind-icon">component<wbr>Did<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="nglcomponent.html#forceupdate" class="tsd-kind-icon">force<wbr>Update</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="nglcomponent.html#highlightelement" class="tsd-kind-icon">highlight<wbr>Element</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="nglcomponent.html#onhover" class="tsd-kind-icon">on<wbr>Hover</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="nglcomponent.html#render" class="tsd-kind-icon">render</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="nglcomponent.html#setstate" class="tsd-kind-icon">set<wbr>State</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="nglcomponent.html#unsafe_componentwillmount" class="tsd-kind-icon">UNSAFE_<wbr>component<wbr>Will<wbr>Mount</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="nglcomponent.html#unsafe_componentwillreceiveprops" class="tsd-kind-icon">UNSAFE_<wbr>component<wbr>Will<wbr>Receive<wbr>Props</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="nglcomponent.html#unsafe_componentwillupdate" class="tsd-kind-icon">UNSAFE_<wbr>component<wbr>Will<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="nglcomponent.html#componentdidcatch" class="tsd-kind-icon">component<wbr>Did<wbr>Catch</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="nglcomponent.html#componentdidmount" class="tsd-kind-icon">component<wbr>Did<wbr>Mount</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="nglcomponent.html#componentdidmount-1" class="tsd-kind-icon">component<wbr>Did<wbr>Mount</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="nglcomponent.html#componentdidupdate-1" class="tsd-kind-icon">component<wbr>Did<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="nglcomponent.html#componentwillmount" class="tsd-kind-icon">component<wbr>Will<wbr>Mount</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="nglcomponent.html#componentwillreceiveprops" class="tsd-kind-icon">component<wbr>Will<wbr>Receive<wbr>Props</a></li>
@@ -142,7 +146,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.__constructor</p>
 								<ul>
-									<li>Defined in src/component/NGLComponent.tsx:19</li>
+									<li>Defined in src/component/NGLComponent.tsx:22</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -164,7 +168,7 @@
 					<div class="tsd-signature tsd-kind-icon">canvas<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/NGLComponent.tsx:19</li>
+							<li>Defined in src/component/NGLComponent.tsx:21</li>
 						</ul>
 					</aside>
 				</section>
@@ -175,7 +179,17 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Component.context</p>
 						<ul>
-							<li>Defined in node_modules/@types/react/index.d.ts:306</li>
+							<li>Defined in node_modules/@types/react/index.d.ts:281</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="ele" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> <span class="tsd-flag ts-flagOptional">Optional</span> ele</h3>
+					<div class="tsd-signature tsd-kind-icon">ele<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">NGL.RepresentationElement</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/component/NGLComponent.tsx:22</li>
 						</ul>
 					</aside>
 				</section>
@@ -186,7 +200,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Component.props</p>
 						<ul>
-							<li>Defined in node_modules/@types/react/index.d.ts:304</li>
+							<li>Defined in node_modules/@types/react/index.d.ts:279</li>
 						</ul>
 					</aside>
 				</section>
@@ -197,7 +211,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Component.refs</p>
 						<ul>
-							<li>Defined in node_modules/@types/react/index.d.ts:307</li>
+							<li>Defined in node_modules/@types/react/index.d.ts:282</li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -216,13 +230,30 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Component.state</p>
 						<ul>
-							<li>Defined in node_modules/@types/react/index.d.ts:305</li>
+							<li>Defined in node_modules/@types/react/index.d.ts:280</li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="componentdidmount" class="tsd-anchor"></a>
+					<h3>component<wbr>Did<wbr>Mount</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">component<wbr>Did<wbr>Mount<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/component/NGLComponent.tsx:31</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="componentdidupdate" class="tsd-anchor"></a>
 					<h3>component<wbr>Did<wbr>Update</h3>
@@ -233,7 +264,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/NGLComponent.tsx:28</li>
+									<li>Defined in src/component/NGLComponent.tsx:41</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -260,13 +291,90 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Component.forceUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:296</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:271</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> callBack: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="highlightelement" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> highlight<wbr>Element</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">highlight<wbr>Element<span class="tsd-signature-symbol">(</span>structureComponent<span class="tsd-signature-symbol">: </span><a href="_ngl_.structurecomponent.html" class="tsd-signature-type">StructureComponent</a>, resNum<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, representationType<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">NGL.StructureRepresentationType</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/component/NGLComponent.tsx:104</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Highlight a specific residue on a 3D structure.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>NGLComponent</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>structureComponent: <a href="_ngl_.structurecomponent.html" class="tsd-signature-type">StructureComponent</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The structure for which the residue to highlight belongs.</p>
+									</div>
+								</li>
+								<li>
+									<h5>resNum: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The residue number to highlight.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> representationType: <span class="tsd-signature-type">NGL.StructureRepresentationType</span><span class="tsd-signature-symbol"> =&nbsp;&quot;spacefill&quot;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="onhover" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> on<wbr>Hover</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Hover<span class="tsd-signature-symbol">(</span>aStage<span class="tsd-signature-symbol">: </span><a href="_ngl_.stage.html" class="tsd-signature-type">Stage</a>, pickingProxy<span class="tsd-signature-symbol">: </span><a href="_ngl_.pickingproxy.html" class="tsd-signature-type">PickingProxy</a>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NGL.Structure</span>, structureComponent<span class="tsd-signature-symbol">: </span><a href="_ngl_.structurecomponent.html" class="tsd-signature-type">StructureComponent</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/component/NGLComponent.tsx:71</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>aStage: <a href="_ngl_.stage.html" class="tsd-signature-type">Stage</a></h5>
+								</li>
+								<li>
+									<h5>pickingProxy: <a href="_ngl_.pickingproxy.html" class="tsd-signature-type">PickingProxy</a></h5>
+								</li>
+								<li>
+									<h5>data: <span class="tsd-signature-type">NGL.Structure</span></h5>
+								</li>
+								<li>
+									<h5>structureComponent: <a href="_ngl_.structurecomponent.html" class="tsd-signature-type">StructureComponent</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -284,7 +392,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.render</p>
 								<ul>
-									<li>Defined in src/component/NGLComponent.tsx:64</li>
+									<li>Defined in src/component/NGLComponent.tsx:63</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
@@ -302,7 +410,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Component.setState</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:291</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:266</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -335,7 +443,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.UNSAFE_componentWillMount</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:454</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:437</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -373,7 +481,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.UNSAFE_componentWillReceiveProps</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:486</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:469</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -422,7 +530,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.UNSAFE_componentWillUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:514</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:497</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -472,7 +580,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from ComponentLifecycle.componentDidCatch</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:393</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:376</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -495,7 +603,7 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-					<a name="componentdidmount" class="tsd-anchor"></a>
+					<a name="componentdidmount-1" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagOptional">Optional</span> component<wbr>Did<wbr>Mount</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
 						<li class="tsd-signature tsd-kind-icon">component<wbr>Did<wbr>Mount<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
@@ -505,7 +613,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from ComponentLifecycle.componentDidMount</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:372</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:355</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -528,7 +636,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from NewLifecycle.componentDidUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:425</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:408</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -564,7 +672,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.componentWillMount</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:440</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:423</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -601,7 +709,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.componentWillReceiveProps</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:469</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:452</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -649,7 +757,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from ComponentLifecycle.componentWillUnmount</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:388</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:371</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -673,7 +781,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.componentWillUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:499</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:482</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -722,7 +830,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from NewLifecycle.getSnapshotBeforeUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:419</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:402</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -761,7 +869,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from ComponentLifecycle.shouldComponentUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:383</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:366</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -816,6 +924,9 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="nglcomponent.html#context" class="tsd-kind-icon">context</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="nglcomponent.html#ele" class="tsd-kind-icon">ele</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="nglcomponent.html#props" class="tsd-kind-icon">props</a>
 							</li>
@@ -826,10 +937,19 @@
 								<a href="nglcomponent.html#state" class="tsd-kind-icon">state</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="nglcomponent.html#componentdidmount" class="tsd-kind-icon">component<wbr>Did<wbr>Mount</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="nglcomponent.html#componentdidupdate" class="tsd-kind-icon">component<wbr>Did<wbr>Update</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="nglcomponent.html#forceupdate" class="tsd-kind-icon">force<wbr>Update</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="nglcomponent.html#highlightelement" class="tsd-kind-icon">highlight<wbr>Element</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="nglcomponent.html#onhover" class="tsd-kind-icon">on<wbr>Hover</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="nglcomponent.html#render" class="tsd-kind-icon">render</a>
@@ -850,7 +970,7 @@
 								<a href="nglcomponent.html#componentdidcatch" class="tsd-kind-icon">component<wbr>Did<wbr>Catch</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-								<a href="nglcomponent.html#componentdidmount" class="tsd-kind-icon">component<wbr>Did<wbr>Mount</a>
+								<a href="nglcomponent.html#componentdidmount-1" class="tsd-kind-icon">component<wbr>Did<wbr>Mount</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
 								<a href="nglcomponent.html#componentdidupdate-1" class="tsd-kind-icon">component<wbr>Did<wbr>Update</a>

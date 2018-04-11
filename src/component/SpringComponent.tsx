@@ -11,7 +11,7 @@ const defaultProps = {
   data: {
     links: [],
     nodes: [],
-  } as ISpringGraphData,
+  } as SPRING_DATA_TYPE,
   selectedCategory: '',
 };
 

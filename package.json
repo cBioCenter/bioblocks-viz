@@ -11,20 +11,29 @@
   "jest": {
     "collectCoverageFrom": ["src/**/*.{ts,tsx}"],
     "coverageDirectory": "dist/jest/coverage",
-    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.json"
+      }
+    },
+    "moduleDirectories": ["node_modules", "src", "types"],
+    "moduleFileExtensions": ["ts", "tsx", "js"],
     "moduleNameMapper": {
       "tsnejs": "tsnejs/tsne",
       "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.ts"
     },
+    "modulePathIgnorePatterns": ["dist"],
     "setupFiles": ["./configs/SetupJest.ts"],
     "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
     "snapshotSerializers": ["enzyme-to-json/serializer"],
     "testEnvironment": "enzyme",
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "testMatch": ["**/__tests__/*.+(ts|tsx|js)"],
+    "testPathIgnorePatterns": ["dist", "node_modules"],
     "testResultsProcessor": "jest-junit",
     "transform": {
-      "^.+\\.tsx?$": "ts-jest"
+      "^.+\\.(ts|tsx)$": "ts-jest"
     },
+    "transformIgnorePatterns": ["<rootDir>/node_modules/(?!csstype)"],
     "verbose": true
   },
   "jest-junit": {
@@ -42,6 +51,7 @@
   "scripts": {
     "build": "webpack --config ./configs/webpack.dev.ts",
     "build:prod": "webpack --config ./configs/webpack.prod.ts",
+    "build:test": "tsc",
     "doc":
       "rm -rf node_modules/typedoc/node_modules/typescript ; typedoc --out docs/api --includeDeclarations --excludeExternals --mode file",
     "doc:precommit": "yarn doc && git add docs/api && git add -u docs/api",
@@ -52,9 +62,9 @@
     "start": "webpack-dev-server --open --mode development --config ./configs/webpack.dev.ts",
     "start:hot": "webpack-dev-server --hot-only --open --mode development --config ./configs/webpack.dev.ts",
     "start:prod": "webpack-dev-server --open --mode production ./configs/webpack.prod.ts",
-    "pretest": "mkdir -p dist/jest/test-results",
+    "pretest": "yarn build:test && mkdir -p dist/jest/test-results",
     "test": "cross-env TEST_REPORT_PATH=dist/jest/test-results jest",
-    "test:cover": "yarn test -- --collectCoverage true",
+    "test:cover": "yarn test --collectCoverage true",
     "test:staged": "jest --onlyChanged"
   },
   "dependencies": {

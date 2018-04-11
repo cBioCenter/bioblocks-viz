@@ -1,5 +1,16 @@
 {
   "editor.formatOnSave": true,
-  "cSpell.words": ["Chell", "DFCI", "Diamantoukos", "Farber", "PIXI", "Repo", "automagically", "tsne", "tsnejs"],
+  "cSpell.words": [
+    "Chell",
+    "DFCI",
+    "Diamantoukos",
+    "Farber",
+    "Gauthier",
+    "PIXI",
+    "Repo",
+    "automagically",
+    "tsne",
+    "tsnejs"
+  ],
   "python.pythonPath": "/usr/local/bin/python3"
 }
