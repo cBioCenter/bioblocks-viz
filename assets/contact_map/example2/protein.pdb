@@ -6,7 +6,7 @@ REMARK parameter file 1  : CNS_TOPPAR:protein.param
 REMARK molecular structure file: 084998782b26d65f7065adcb3c95b143_b0.3_399_1_h.mtf
 REMARK input coordinates: 084998782b26d65f7065adcb3c95b143_b0.3_399_1_h.pdb
 REMARK ncs= none
-REMARK FILENAME="084998782b26d65f7065adcb3c95b143_b0"
+REMARK FILENAME="protein"
 REMARK DATE:06-Mar-2018  21:08:56       created by user: cd174
 REMARK VERSION:1.21
 ATOM      1  CB  TRP    32     -25.932   9.165  14.397  1.00  0.00          

@@ -13,6 +13,7 @@ export interface INGLComponentProps {
 }
 
 export interface INGLComponentState {
+  residueOffset: number;
   stage?: NGL.Stage;
   structureComponent?: NGL.StructureComponent;
 }
@@ -24,6 +25,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, INGLCompon
   constructor(props: any) {
     super(props);
     this.state = {
+      residueOffset: 0,
       stage: undefined,
     };
   }
@@ -42,21 +44,31 @@ export class NGLComponent extends React.Component<INGLComponentProps, INGLCompon
     const { data, selectedData } = this.props;
     const { stage } = this.state;
 
-    if (stage && data && !this.state.structureComponent) {
-      const structureComponent = stage.addComponentFromObject(data);
+    const isNewData = data && data !== prevProps.data;
+    if (stage && isNewData) {
+      stage.removeAllComponents();
+    }
+    if (stage && isNewData && data) {
+      const structureComponent = stage.addComponentFromObject(data) as NGL.StructureComponent;
+
       this.setState({
+        residueOffset: data.residueStore.resno[0],
         structureComponent,
       });
 
       stage.defaultFileRepresentation(structureComponent);
-      stage.mouseControls.add(NGL.MouseActions.HOVER_PICK, (aStage: Stage, pickingProxy: PickingProxy) =>
-        this.onHover(aStage, pickingProxy, data, structureComponent),
+      for (const rep of structureComponent.reprList) {
+        rep.setParameters({ opacity: 0.5 });
+      }
+      structureComponent.rebuildRepresentations();
+      structureComponent.stage.mouseControls.add(
+        NGL.MouseActions.HOVER_PICK,
+        (aStage: Stage, pickingProxy: PickingProxy) => this.onHover(aStage, pickingProxy, data, structureComponent),
       );
     } else if (selectedData && selectedData !== prevProps.selectedData && this.state.structureComponent) {
-      const i = selectedData.i - 8;
-      // const j = selectedData.j - 8;
+      const residues = [selectedData.i, selectedData.j].map(index => (index - this.state.residueOffset).toString());
 
-      this.highlightElement(this.state.structureComponent, i);
+      this.highlightElement(this.state.structureComponent, residues.join(', '), 'ball+stick');
     }
   }
 
@@ -76,16 +88,8 @@ export class NGLComponent extends React.Component<INGLComponentProps, INGLCompon
   ) {
     if (pickingProxy && (pickingProxy.atom || pickingProxy.bond)) {
       const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
-      const nglSeq = data.getSequence().join('');
-      const fullSeq = 'MALLHSARVLSGVASAFHPGLAAAASARASSWWAHVEMGPPDPILGVTEAYKRDTNSKKM';
-      console.log(data.getSequence());
-      console.log(nglSeq);
-      console.log(nglSeq.length);
-      console.log(fullSeq);
-      console.log(fullSeq.length);
-      console.log(`fullSeq.indexOf(nglSeq): ${fullSeq.indexOf(nglSeq)}`);
 
-      this.highlightElement(structureComponent, atom.resno);
+      this.highlightElement(structureComponent, atom.resno.toString());
       if (this.props.onHoverPickCallback) {
         this.props.onHoverPickCallback(atom.resno);
       }
@@ -97,20 +101,20 @@ export class NGLComponent extends React.Component<INGLComponentProps, INGLCompon
    *
    * @protected
    * @param {StructureComponent} structureComponent The structure for which the residue to highlight belongs.
-   * @param {number} resNum The residue number to highlight.
+   * @param {string} selection [NGL Selection](https://github.com/arose/ngl/blob/master/doc/usage/selection-language.md) for what to highlight.
    * @param {NGL.StructureRepresentationType} [representationType='spacefill'] The NGL representation type to use for this residue.
    * @memberof NGLComponent
    */
   protected highlightElement(
     structureComponent: StructureComponent,
-    resNum: number,
+    selection: string,
     representationType: NGL.StructureRepresentationType = 'spacefill',
   ) {
     if (this.ele) {
       structureComponent.removeRepresentation(this.ele);
     }
     this.ele = structureComponent.addRepresentation(representationType, {
-      sele: resNum.toString(),
+      sele: selection,
     });
   }
 }

@@ -10,6 +10,13 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
   >
     <GridRow>
       <VizPanelContainer
+        dataDirs={
+          Array [
+            "assets/contact_map/example1",
+            "assets/contact_map/example2",
+            "assets/contact_map/example3",
+          ]
+        }
         initialVisualizations={
           Array [
             "Contact Map",
@@ -20,16 +27,5 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
       />
     </GridRow>
   </Grid>
-  <GridRow>
-    <VizPanelContainer
-      initialVisualizations={
-        Array [
-          "T-SNE",
-          "Spring",
-        ]
-      }
-      numPanels={2}
-    />
-  </GridRow>
 </div>
 `;

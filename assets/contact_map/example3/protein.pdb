@@ -6,7 +6,7 @@ REMARK parameter file 1  : CNS_TOPPAR:protein.param
 REMARK molecular structure file: PKM2_b0.1_significant_ECs_0.9_1_h.mtf
 REMARK input coordinates: PKM2_b0.1_significant_ECs_0.9_1_h.pdb
 REMARK ncs= none
-REMARK FILENAME="PKM2_b0.1_significant_ECs_0.9_1_hMIN.pdb"
+REMARK FILENAME="protein.pdb"
 REMARK DATE:05-Apr-2018  23:05:50       created by user: lrh10
 REMARK VERSION:1.21
 ATOM      1  CB  ALA    42      -6.981   5.215  17.379  1.00  0.00          

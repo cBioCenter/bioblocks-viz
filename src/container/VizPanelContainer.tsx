@@ -16,6 +16,7 @@ export interface IChellDataTypes {
 }
 
 export interface IVizPanelContainerProps {
+  dataDirs: string[];
   /** Number of panels to be controlled by this container. Currently limited to 4. */
   numPanels: 1 | 2 | 3 | 4;
   initialVisualizations: VIZ_TYPE[];
@@ -24,7 +25,6 @@ export interface IVizPanelContainerProps {
 export interface IVizPanelContainerState {
   currentDataDir: string;
   data: IChellDataTypes;
-  dataDirs: string[];
   selectedData?: ICouplingScore;
 }
 
@@ -33,54 +33,40 @@ export class VizPanelContainer extends React.Component<IVizPanelContainerProps, 
     super(props);
 
     this.state = {
-      currentDataDir: 'centroids',
+      currentDataDir: props.dataDirs[0],
       data: {},
-      dataDirs: ['centroids', 'centroids_subset', 'spring2/full'],
     };
   }
 
   public async componentDidMount() {
-    const contactMapPDBFiles = [
-      'example1/38cab199dbf11444e52d95c83dcf083d_b0.3_34_1_hMIN',
-      'example1/084998782b26d65f7065adcb3c95b143_b0.3_399_1_hMIN',
-      'example3/PKM2_b0.1_significant_ECs_0.9_1_hMIN',
-    ].map(loc => `assets/contact_map/${loc}.pdb`);
-
-    const dataPromises = await Promise.all([
-      fetchAppropriateData(VIZ_TYPE.CONTACT_MAP, 'assets/contact_map/example1/'),
-      fetchAppropriateData(VIZ_TYPE.NGL, contactMapPDBFiles[0]),
-      fetchAppropriateData(VIZ_TYPE.SPRING, this.state.currentDataDir),
-      fetchAppropriateData(VIZ_TYPE['T-SNE'], this.state.currentDataDir),
-    ]);
-
-    const contactMapData = dataPromises[0];
-    const nglData = dataPromises[1];
-    const springData = dataPromises[2];
-    const tsneData = dataPromises[3];
+    const contactMapData = await fetchAppropriateData(VIZ_TYPE.CONTACT_MAP, this.state.currentDataDir);
+    const nglData = await fetchAppropriateData(VIZ_TYPE.NGL, this.state.currentDataDir);
+    // const springData = await fetchAppropriateData(VIZ_TYPE.SPRING, this.state.currentDataDir);
+    // const tsneData = await fetchAppropriateData(VIZ_TYPE['T-SNE'], this.state.currentDataDir);
 
     this.setState({
       data: {
         contactMap: contactMapData,
         ngl: nglData as NGL_DATA_TYPE,
-        spring: springData as SPRING_DATA_TYPE,
-        tsne: tsneData as T_SNE_DATA_TYPE,
+        // spring: springData as SPRING_DATA_TYPE,
+        // tsne: tsneData as T_SNE_DATA_TYPE,
       },
     });
   }
 
   public async componentDidUpdate(prevProps: IVizPanelContainerProps, prevState: IVizPanelContainerState) {
     if (prevState.currentDataDir !== this.state.currentDataDir) {
-      const nglData = await fetchAppropriateData(
-        VIZ_TYPE.NGL,
-        'assets/contact_map/example1/38cab199dbf11444e52d95c83dcf083d_b0.3_34_1_hMIN.pdb',
-      );
-      const springData = await fetchAppropriateData(VIZ_TYPE.SPRING, this.state.currentDataDir);
-      const tsneData = await fetchAppropriateData(VIZ_TYPE['T-SNE'], this.state.currentDataDir);
+      const contactMapData = await fetchAppropriateData(VIZ_TYPE.CONTACT_MAP, this.state.currentDataDir);
+      const nglData = await fetchAppropriateData(VIZ_TYPE.NGL, this.state.currentDataDir);
+      // const springData = await fetchAppropriateData(VIZ_TYPE.SPRING, this.state.currentDataDir);
+      // const tsneData = await fetchAppropriateData(VIZ_TYPE['T-SNE'], this.state.currentDataDir);
+
       this.setState({
         data: {
+          contactMap: contactMapData,
           ngl: nglData as NGL_DATA_TYPE,
-          spring: springData as SPRING_DATA_TYPE,
-          tsne: tsneData as T_SNE_DATA_TYPE,
+          // spring: springData as SPRING_DATA_TYPE,
+          // tsne: tsneData as T_SNE_DATA_TYPE,
         },
       });
     }
@@ -93,7 +79,7 @@ export class VizPanelContainer extends React.Component<IVizPanelContainerProps, 
           <Dropdown
             onChange={this.onDataDirChange}
             options={[
-              ...this.state.dataDirs.map(dir => {
+              ...this.props.dataDirs.map(dir => {
                 return { key: dir, text: dir, value: dir };
               }),
             ]}

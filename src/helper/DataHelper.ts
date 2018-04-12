@@ -1,59 +1,59 @@
-import { CONTACT_MAP_DATA_TYPE, IDistanceMapMonomer, IMonomerContact } from 'chell';
+import { CONTACT_MAP_DATA_TYPE, IMonomerContact } from 'chell';
 import * as d3 from 'd3';
 import * as NGL from 'ngl';
 import { ISpringCategoricalColorData, ISpringCategoricalColorDataInput, ISpringGraphData } from 'spring';
 import { VIZ_TYPE } from '../component/VizSelectorPanel';
 
 export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
-  switch (viz) {
-    case VIZ_TYPE['T-SNE']:
-      return fetchTSneCoordinateData(dataDir);
-    case VIZ_TYPE.SPRING:
-      return deriveSpringData(dataDir);
-    case VIZ_TYPE.NGL:
-      return fetchNGLData(dataDir);
-    case VIZ_TYPE.CONTACT_MAP:
-      return fetchContactMapData(dataDir);
-    default:
-      return Promise.reject({ error: `Currently no appropriate data getter for ${viz}` });
+  try {
+    switch (viz) {
+      case VIZ_TYPE['T-SNE']:
+        return fetchTSneCoordinateData(dataDir);
+      case VIZ_TYPE.SPRING:
+        return deriveSpringData(dataDir);
+      case VIZ_TYPE.NGL:
+        return fetchNGLData(dataDir);
+      case VIZ_TYPE.CONTACT_MAP:
+        return fetchContactMapData(dataDir);
+      default:
+        return Promise.reject({ error: `Currently no appropriate data getter for ${viz}` });
+    }
+  } catch (e) {
+    return Promise.resolve();
   }
 };
 
 const deriveSpringData = async (dataDir: string) => {
-  try {
-    const coordinates = await fetchSpringCoordinateData(`assets/${dataDir}/coordinates.txt`);
-    const graphData = await fetchGraphData(`assets/${dataDir}/graph_data.json`);
-    // const colorData = await this.fetchColorData(`assets/${this.props.dataDir}/color_data_gene_sets.csv`);
-    const catColorData = await fetchCategoricalColorData(`assets/${dataDir}/categorical_coloring_data.json`);
+  const coordinates = await fetchSpringCoordinateData(`${dataDir}/coordinates.txt`);
+  const graphData = await fetchGraphData(`${dataDir}/graph_data.json`);
+  // const colorData = await this.fetchColorData(`${this.props.dataDir}/color_data_gene_sets.csv`);
+  const catColorData = await fetchCategoricalColorData(`${dataDir}/categorical_coloring_data.json`);
 
-    const nodeDict: any = {};
+  const nodeDict: any = {};
 
-    for (let i = 0; i < graphData.nodes.length; ++i) {
-      const node = graphData.nodes[i];
-      nodeDict[node.number] = node;
-      if (node.number in coordinates) {
-        node.fixed = true;
-        node.x = coordinates[node.number][0];
-        node.y = coordinates[node.number][1];
-      }
-      const label = catColorData.label_list[i];
-      node.category = label;
-      node.colorHex = catColorData.label_colors[label];
+  for (let i = 0; i < graphData.nodes.length; ++i) {
+    const node = graphData.nodes[i];
+    nodeDict[node.number] = node;
+    if (node.number in coordinates) {
+      node.fixed = true;
+      node.x = coordinates[node.number][0];
+      node.y = coordinates[node.number][1];
     }
-
-    graphData.links.forEach(link => {
-      const source = nodeDict[link.source as string];
-      const target = nodeDict[link.target as string];
-      if (source && target) {
-        link.source = source;
-        link.target = target;
-      }
-    });
-
-    return graphData;
-  } catch (e) {
-    console.log(`Error fetching Spring data:\n${e}`);
+    const label = catColorData.label_list[i];
+    node.category = label;
+    node.colorHex = catColorData.label_colors[label];
   }
+
+  graphData.links.forEach(link => {
+    const source = nodeDict[link.source as string];
+    const target = nodeDict[link.target as string];
+    if (source && target) {
+      link.source = source;
+      link.target = target;
+    }
+  });
+
+  return graphData;
 };
 
 const fetchCategoricalColorData = async (file: string): Promise<ISpringCategoricalColorData> => {
@@ -115,7 +115,7 @@ const fetchSpringCoordinateData = async (file: string) => {
 };
 
 const fetchTSneCoordinateData = async (dataDir: string) => {
-  const colorText: string = await d3.text(`assets/${dataDir}/tsne_output.csv`);
+  const colorText: string = await d3.text(`${dataDir}/tsne_output.csv`);
   const result: number[][] = [];
   colorText.split('\n').forEach((entry, index, array) => {
     if (entry.length > 0) {
@@ -135,23 +135,20 @@ const fetchGraphData = async (file: string) => {
   return data;
 };
 
-const fetchNGLData = async (file: string) => {
+const fetchNGLData = async (dir: string) => {
+  const file = `${dir}/protein.pdb`;
   const data = await NGL.autoLoad(file);
   return data as NGL.Structure;
 };
 
-const fetchContactMapData = async (file: string) => {
-  const exampleContactMapFiles = [
-    '3_contacts_monomer.csv',
-    '3_CouplingScoresCompared_all.csv',
-    '3_distance_map_monomer.csv',
-  ].map(ext => `${file}38cab199dbf11444e52d95c83dcf083d_b0.${ext}`);
-  const promiseResults = await Promise.all(exampleContactMapFiles.map(contactFile => d3.text(contactFile)));
+const fetchContactMapData = async (dir: string) => {
+  const contactMapFiles = ['contacts_monomer.csv', 'coupling_scores.csv' /*, 'distance_map.csv'*/];
+  const promiseResults = await Promise.all(contactMapFiles.map(file => d3.text(`${dir}/${file}`)));
 
   const data: CONTACT_MAP_DATA_TYPE = {
     contactMonomer: parseContactMonomerLine(promiseResults[0]),
     couplingScore: parseCouplingScoreLine(promiseResults[1]),
-    distanceMapMonomer: parseDistanceMonomerLine(promiseResults[2]),
+    // distanceMapMonomer: parseDistanceMonomerLine(promiseResults[2]),
   };
 
   return data;
@@ -194,17 +191,3 @@ const parseCouplingScoreLine = (line: string) =>
         precision: parseFloat(items[12]),
       };
     });
-
-const parseDistanceMonomerLine = (line: string) => {
-  const results: IDistanceMapMonomer[] = [];
-  line
-    .split('\n')
-    .slice(1)
-    .forEach(row => {
-      const items = row.split(',');
-      if (items.length === 3) {
-        results.push({ id: parseFloat(items[1]), sec_struct_3state: items[2] });
-      }
-    });
-  return results;
-};

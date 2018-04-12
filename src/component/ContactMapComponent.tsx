@@ -91,20 +91,8 @@ export const ContactMapComponent = withDefaultProps(
 
     protected onMouseEnter = () => (e: { [key: string]: any; payload: ICouplingScore }) => {
       const { payload } = e;
-      const { data, onMouseEnter } = this.props;
-      const coupling = data.couplingScore.find(ele => ele.i === payload.i);
-      const monomer = data.distanceMapMonomer.find(ele => ele.id === payload.i);
+      const { onMouseEnter } = this.props;
 
-      console.log(`Variable 'coupling':\n${coupling}\n${JSON.stringify(coupling, null, 2)}`);
-      console.log(`Variable 'monomer':\n${monomer}\n${JSON.stringify(monomer, null, 2)}`);
-      const fullSeq = 'MALLHSARVLSGVASAFHPGLAAAASARASSWWAHVEMGPPDPILGVTEAYKRDTNSKKM';
-      const nglSeq = fullSeq.substr(8, 50);
-      console.log(fullSeq);
-      console.log(nglSeq);
-      console.log(fullSeq[payload.i]);
-      console.log(fullSeq[payload.j]);
-      console.log(nglSeq[payload.i - 8]);
-      console.log(nglSeq[payload.j - 8]);
       if (onMouseEnter) {
         onMouseEnter(payload);
       }
