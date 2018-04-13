@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CartesianGrid, ReferenceLine, Scatter, ScatterChart, XAxis, YAxis, ZAxis } from 'recharts';
+import { CartesianGrid, Dot, ReferenceLine, Scatter, ScatterChart, XAxis, YAxis, ZAxis } from 'recharts';
 
 import { CONTACT_MAP_DATA_TYPE, ICouplingScore } from 'chell';
 import { withDefaultProps } from '../helper/ReactHelper';
@@ -18,7 +18,7 @@ const defaultProps = {
   onMouseEnter: undefined as ContactMapCallback | undefined,
   selectedData: undefined as number | undefined,
 };
-const initialState = { min_x: 1000, max_x: 0, probabilityFilter: 0.99 };
+const initialState = { min_x: 1000, max_x: 0, nodeSize: 2, probabilityFilter: 0.99 };
 
 type Props = {} & typeof defaultProps;
 type State = Readonly<typeof initialState>;
@@ -54,24 +54,38 @@ export const ContactMapComponent = withDefaultProps(
       const blackDots = new Array<ICouplingScore>();
       data.couplingScore.filter(coupling => coupling.probability >= this.state.probabilityFilter).forEach(coupling => {
         blackDots.push(coupling);
-        blackDots.push({ ...coupling, i: coupling.j, A_i: coupling.A_j, j: coupling.i, A_j: coupling.A_i });
+        blackDots.push({
+          ...coupling,
+          i: coupling.j,
+          // tslint:disable-next-line:object-literal-sort-keys
+          A_i: coupling.A_j,
+          j: coupling.i,
+          A_j: coupling.A_i,
+        });
       });
       return data ? (
         <div>
           <ScatterChart width={400} height={400}>
             <XAxis type="number" dataKey={'i'} orientation={'top'} domain={domain} />
             <YAxis type="number" dataKey={'j'} reversed={true} domain={domain} />
-            <ZAxis dataKey="dist" />
+            <ZAxis type="number" dataKey={'probability'} />
             {selectedData && <ReferenceLine x={selectedData} stroke={'#ff0000'} />}
-            {selectedData && <ReferenceLine y={this.props.selectedData} stroke={'#ff0000'} />}
+            {selectedData && <ReferenceLine y={selectedData} stroke={'#ff0000'} />}
             <CartesianGrid />
-            <Scatter name="contacts_monomer" data={data.contactMonomer} fill="#009999" onClick={this.onClick()} />
+            <Scatter
+              name="contacts_monomer"
+              data={data.contactMonomer}
+              fill="#009999"
+              onClick={this.onClick()}
+              shape={<Dot r={this.state.nodeSize} />}
+            />
             <Scatter
               name="CouplingScoresCompared"
               data={blackDots}
               fill="#000000"
               onClick={this.onClick()}
               onMouseEnter={this.onMouseEnter()}
+              shape={<Dot r={this.state.nodeSize} />}
             />
           </ScatterChart>
           <ChellSlider
@@ -80,6 +94,13 @@ export const ContactMapComponent = withDefaultProps(
             label={'Probability'}
             defaultValue={99}
             onChange={this.onProbabilityChange()}
+          />
+          <ChellSlider
+            max={10}
+            min={1}
+            label={'Node Size'}
+            defaultValue={this.state.nodeSize * 2}
+            onChange={this.onNodeSizeChange()}
           />
         </div>
       ) : null;
@@ -94,6 +115,12 @@ export const ContactMapComponent = withDefaultProps(
     protected onProbabilityChange = () => (value: number) => {
       this.setState({
         probabilityFilter: value / 100,
+      });
+    };
+
+    protected onNodeSizeChange = () => (value: number) => {
+      this.setState({
+        nodeSize: value / 2,
       });
     };
 
