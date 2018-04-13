@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Dropdown, DropdownItemProps } from 'semantic-ui-react';
+import { Card, Dropdown, DropdownItemProps } from 'semantic-ui-react';
 
 import { ICouplingScore } from 'chell';
 import { NGLComponent } from '../component/NGLComponent';
@@ -64,7 +64,11 @@ export class VizSelectorPanel extends React.Component<IVizSelectorPanelProps, IV
           fluid={true}
           onChange={this.onVizSelect}
         />
-        {this.renderVizContainer(this.state.selectedViz, this.props.data, this.props.selectedData)}
+        {
+          <Card fluid={true} raised={true}>
+            {this.renderVizContainer(this.state.selectedViz, this.props.data, this.props.selectedData)}
+          </Card>
+        }
       </div>
     );
   }

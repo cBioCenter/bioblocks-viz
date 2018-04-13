@@ -1,11 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ContactMapComponent Should match existing snapshot when given empty data. 1`] = `
-<div>
+<div
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
+>
   <ScatterChart
     barCategoryGap="10%"
     barGap={4}
-    height={400}
+    height={370}
     layout="horizontal"
     margin={
       Object {
@@ -17,7 +23,7 @@ exports[`ContactMapComponent Should match existing snapshot when given empty dat
     }
     reverseStackOrder={false}
     stackOffset="none"
-    width={400}
+    width={370}
   >
     <XAxis
       allowDataOverflow={false}
@@ -169,11 +175,17 @@ exports[`ContactMapComponent Should match existing snapshot when given empty dat
 `;
 
 exports[`ContactMapComponent Should match existing snapshot when given no data. 1`] = `
-<div>
+<div
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
+>
   <ScatterChart
     barCategoryGap="10%"
     barGap={4}
-    height={400}
+    height={370}
     layout="horizontal"
     margin={
       Object {
@@ -185,7 +197,7 @@ exports[`ContactMapComponent Should match existing snapshot when given no data. 
     }
     reverseStackOrder={false}
     stackOffset="none"
-    width={400}
+    width={370}
   >
     <XAxis
       allowDataOverflow={false}
@@ -337,11 +349,17 @@ exports[`ContactMapComponent Should match existing snapshot when given no data. 
 `;
 
 exports[`ContactMapComponent Should match existing snapshot when given sample data. 1`] = `
-<div>
+<div
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
+>
   <ScatterChart
     barCategoryGap="10%"
     barGap={4}
-    height={400}
+    height={370}
     layout="horizontal"
     margin={
       Object {
@@ -353,7 +371,7 @@ exports[`ContactMapComponent Should match existing snapshot when given sample da
     }
     reverseStackOrder={false}
     stackOffset="none"
-    width={400}
+    width={370}
   >
     <XAxis
       allowDataOverflow={false}

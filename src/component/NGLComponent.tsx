@@ -107,8 +107,9 @@ export class NGLComponent extends React.Component<INGLComponentProps, State> {
 
   public render() {
     return (
-      <div id="NGLComponent">
-        <div ref={el => (this.canvas = el)} style={{ height: 400, width: 400 }} />
+      <div id="NGLComponent" style={{ padding: 15 }}>
+        <div ref={el => (this.canvas = el)} style={{ height: 370, width: 370 }} />
+        <br />
         <Dropdown
           fluid={true}
           defaultValue={initialState.residueSelectionType}

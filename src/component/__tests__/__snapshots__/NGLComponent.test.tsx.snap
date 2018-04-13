@@ -4,15 +4,21 @@ exports[`NGLComponent Should match existing snapshot when canvas is available 1`
 <NGLComponent>
   <div
     id="NGLComponent"
+    style={
+      Object {
+        "padding": 15,
+      }
+    }
   >
     <div
       style={
         Object {
-          "height": 400,
-          "width": 400,
+          "height": 370,
+          "width": 370,
         }
       }
     />
+    <br />
     <Dropdown
       additionLabel="Add "
       additionPosition="top"
@@ -346,15 +352,21 @@ exports[`NGLComponent Should match existing snapshot when canvas is available 1`
 exports[`NGLComponent Should match existing snapshot when canvas isn't available. 1`] = `
 <div
   id="NGLComponent"
+  style={
+    Object {
+      "padding": 15,
+    }
+  }
 >
   <div
     style={
       Object {
-        "height": 400,
-        "width": 400,
+        "height": 370,
+        "width": 370,
       }
     }
   />
+  <br />
   <Dropdown
     additionLabel="Add "
     additionPosition="top"

@@ -73,8 +73,8 @@ export const ContactMapComponent = withDefaultProps(
         });
       });
       return data ? (
-        <div>
-          <ScatterChart width={400} height={400}>
+        <div style={{ padding: 10 }}>
+          <ScatterChart width={370} height={370}>
             <XAxis type="number" dataKey={'i'} orientation={'top'} domain={domain} />
             <YAxis type="number" dataKey={'j'} reversed={true} domain={domain} />
             {selectedData && <ReferenceLine x={selectedData} stroke={'#ff0000'} />}
