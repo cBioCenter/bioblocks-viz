@@ -5,7 +5,8 @@ import { CONTACT_MAP_DATA_TYPE, ICouplingScore } from 'chell';
 import { withDefaultProps } from '../helper/ReactHelper';
 import { ChellSlider } from './ChellSlider';
 
-export type ContactMapCallback = (...args: any[]) => void;
+export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
+export type ContactMapCallback = (coupling: CONTACT_MAP_CB_RESULT_TYPE) => void;
 
 const defaultProps = {
   data: {
@@ -84,9 +85,9 @@ export const ContactMapComponent = withDefaultProps(
       ) : null;
     }
 
-    protected onClick = () => (...args: any[]) => {
+    protected onClick = () => (coupling: ICouplingScore) => {
       if (this.props.onClick) {
-        this.props.onClick(args);
+        this.props.onClick(coupling);
       }
     };
 

@@ -5,10 +5,11 @@ import { ICouplingScore } from 'chell';
 import { PickingProxy, Stage, StructureComponent } from 'ngl';
 
 export type NGL_DATA_TYPE = NGL.Structure;
+export type NGL_HOVER_CB_RESULT_TYPE = number;
 
 export interface INGLComponentProps {
   data?: NGL.Structure;
-  onHoverPickCallback?: (...args: any[]) => void;
+  onHoverPickCallback?: (resno: NGL_HOVER_CB_RESULT_TYPE) => void;
   selectedData?: ICouplingScore;
 }
 
