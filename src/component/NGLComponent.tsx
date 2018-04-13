@@ -57,10 +57,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, INGLCompon
       });
 
       stage.defaultFileRepresentation(structureComponent);
-      for (const rep of structureComponent.reprList) {
-        rep.setParameters({ opacity: 0.5 });
-      }
-      structureComponent.rebuildRepresentations();
+
       structureComponent.stage.mouseControls.add(
         NGL.MouseActions.HOVER_PICK,
         (aStage: Stage, pickingProxy: PickingProxy) => this.onHover(aStage, pickingProxy, data, structureComponent),
@@ -89,9 +86,9 @@ export class NGLComponent extends React.Component<INGLComponentProps, INGLCompon
     if (pickingProxy && (pickingProxy.atom || pickingProxy.bond)) {
       const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
 
-      this.highlightElement(structureComponent, atom.resno.toString());
+      // this.highlightElement(structureComponent, atom.resno.toString());
       if (this.props.onHoverPickCallback) {
-        this.props.onHoverPickCallback(atom.resno);
+        this.props.onHoverPickCallback(atom.resno + this.state.residueOffset);
       }
     }
   }

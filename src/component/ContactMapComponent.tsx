@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CartesianGrid, Scatter, ScatterChart, Tooltip, XAxis, YAxis, ZAxis } from 'recharts';
+import { CartesianGrid, ReferenceLine, Scatter, ScatterChart, Tooltip, XAxis, YAxis, ZAxis } from 'recharts';
 
 import { CONTACT_MAP_DATA_TYPE, ICouplingScore } from 'chell';
 import { withDefaultProps } from '../helper/ReactHelper';
@@ -15,6 +15,7 @@ const defaultProps = {
   } as CONTACT_MAP_DATA_TYPE,
   onClick: undefined as ContactMapCallback | undefined,
   onMouseEnter: undefined as ContactMapCallback | undefined,
+  selectedData: undefined as number | undefined,
 };
 const initialState = { min_x: 1000, max_x: 0, probabilityFilter: 0.99 };
 
@@ -47,20 +48,27 @@ export const ContactMapComponent = withDefaultProps(
     }
 
     public render() {
-      const { data } = this.props;
+      const { data, selectedData } = this.props;
       const domain = [Math.max(0, this.state.min_x - 5), this.state.max_x + 5];
+      const blackDots = new Array<ICouplingScore>();
+      data.couplingScore.filter(coupling => coupling.probability >= this.state.probabilityFilter).forEach(coupling => {
+        blackDots.push(coupling);
+        blackDots.push({ ...coupling, i: coupling.j, A_i: coupling.A_j, j: coupling.i, A_j: coupling.A_i });
+      });
       return data ? (
         <div>
           <ScatterChart width={400} height={400}>
             <XAxis type="number" dataKey={'i'} orientation={'top'} domain={domain} />
-            <YAxis type="number" dataKey={'j'} reversed={true} domain={domain} />}
+            <YAxis type="number" dataKey={'j'} reversed={true} domain={domain} />
             <ZAxis dataKey="dist" />
+            {selectedData && <ReferenceLine x={selectedData} stroke={'#ff0000'} />}
+            {selectedData && <ReferenceLine y={this.props.selectedData} stroke={'#ff0000'} />}
             <CartesianGrid />
             <Tooltip />
             <Scatter name="contacts_monomer" data={data.contactMonomer} fill="#009999" onClick={this.onClick()} />
             <Scatter
               name="CouplingScoresCompared"
-              data={data.couplingScore.filter(coupling => coupling.probability > this.state.probabilityFilter)}
+              data={blackDots}
               fill="#000000"
               onClick={this.onClick()}
               onMouseEnter={this.onMouseEnter()}

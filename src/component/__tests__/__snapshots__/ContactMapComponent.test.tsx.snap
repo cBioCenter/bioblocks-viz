@@ -75,7 +75,6 @@ exports[`ContactMapComponent Should match existing snapshot when given empty dat
       width={60}
       yAxisId={0}
     />
-    }
     <ZAxis
       dataKey="dist"
       range={
@@ -251,7 +250,6 @@ exports[`ContactMapComponent Should match existing snapshot when given no data. 
       width={60}
       yAxisId={0}
     />
-    }
     <ZAxis
       dataKey="dist"
       range={
@@ -427,7 +425,6 @@ exports[`ContactMapComponent Should match existing snapshot when given sample da
       width={60}
       yAxisId={0}
     />
-    }
     <ZAxis
       dataKey="dist"
       range={

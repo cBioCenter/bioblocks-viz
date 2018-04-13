@@ -69,16 +69,28 @@ export class VizSelectorPanel extends React.Component<IVizSelectorPanelProps, IV
     );
   }
 
-  protected renderVizContainer(viz: VIZ_TYPE, data: IChellDataTypes = {}, selectedData?: ICouplingScore) {
+  protected renderVizContainer(viz: VIZ_TYPE, data: IChellDataTypes = {}, selectedData?: ICouplingScore | number) {
     switch (viz) {
       case VIZ_TYPE['T-SNE']:
         return <TComponent data={data.tsne} />;
       case VIZ_TYPE.SPRING:
         return <SpringComponent data={data.spring} />;
       case VIZ_TYPE.NGL:
-        return <NGLComponent data={data.ngl} selectedData={selectedData} />;
+        return (
+          <NGLComponent
+            data={data.ngl}
+            selectedData={selectedData as ICouplingScore}
+            onHoverPickCallback={this.props.onDataSelect}
+          />
+        );
       case VIZ_TYPE.CONTACT_MAP:
-        return <ContactMapComponent data={data.contactMap} onMouseEnter={this.props.onDataSelect} />;
+        return (
+          <ContactMapComponent
+            data={data.contactMap}
+            onMouseEnter={this.props.onDataSelect}
+            selectedData={selectedData as number}
+          />
+        );
       default:
         throw new Error(`Unknown viz: ${viz}`);
     }
