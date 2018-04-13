@@ -20,8 +20,8 @@ const defaultProps = {
 };
 const initialState = {
   blackDots: new Array<ICouplingScore>(),
-  domain: [1000, 0],
-  max_x: 0,
+  domain: [1, 100],
+  max_x: 1,
   min_x: 1000,
   nodeSize: 4,
   probabilityFilter: 0.99,
@@ -101,15 +101,12 @@ export const ContactMapComponent = withDefaultProps(
 
     protected setupData(data: CONTACT_MAP_DATA_TYPE) {
       let max = initialState.max_x;
-      let min = initialState.min_x;
       const blackDots = new Array<ICouplingScore>();
       data.contactMonomer.forEach(contact => {
         max = Math.max(max, contact.i);
-        min = Math.min(min, contact.i);
       });
       data.couplingScore.filter(coupling => coupling.probability >= this.state.probabilityFilter).forEach(coupling => {
         max = Math.max(max, coupling.i);
-        min = Math.min(min, coupling.i);
         blackDots.push(coupling);
         blackDots.push({
           ...coupling,
@@ -121,11 +118,9 @@ export const ContactMapComponent = withDefaultProps(
         });
       });
 
-      const minOffset = min - 5 - min % 5;
-      const maxOffset = max + 5 + max % 5;
       this.setState({
         blackDots,
-        domain: [Math.max(0, minOffset), maxOffset],
+        domain: [1, max],
       });
     }
 

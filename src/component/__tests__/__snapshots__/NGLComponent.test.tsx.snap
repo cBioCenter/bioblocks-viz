@@ -24,7 +24,7 @@ exports[`NGLComponent Should match existing snapshot when canvas is available 1`
       additionPosition="top"
       closeOnBlur={true}
       deburr={false}
-      defaultValue="ball+stick"
+      defaultValue="distance"
       fluid={true}
       icon="dropdown"
       minCharacters={1}
@@ -35,37 +35,42 @@ exports[`NGLComponent Should match existing snapshot when canvas is available 1`
         Array [
           Object {
             "key": "axes",
-            "text": "axes",
+            "text": "Using axes representations for residues",
             "value": "axes",
           },
           Object {
             "key": "backbone",
-            "text": "backbone",
+            "text": "Using backbone representations for residues",
             "value": "backbone",
           },
           Object {
             "key": "ball+stick",
-            "text": "ball+stick",
+            "text": "Using ball+stick representations for residues",
             "value": "ball+stick",
           },
           Object {
+            "key": "distance",
+            "text": "Using distance representations for residues",
+            "value": "distance",
+          },
+          Object {
             "key": "label",
-            "text": "label",
+            "text": "Using label representations for residues",
             "value": "label",
           },
           Object {
             "key": "line",
-            "text": "line",
+            "text": "Using line representations for residues",
             "value": "line",
           },
           Object {
             "key": "hyperball",
-            "text": "hyperball",
+            "text": "Using hyperball representations for residues",
             "value": "hyperball",
           },
           Object {
             "key": "spacefill",
-            "text": "spacefill",
+            "text": "Using spacefill representations for residues",
             "value": "spacefill",
           },
         ]
@@ -92,7 +97,7 @@ exports[`NGLComponent Should match existing snapshot when canvas is available 1`
           className="text"
           role="alert"
         >
-          ball+stick
+          Using distance representations for residues
         </div>
         <Icon
           as="i"
@@ -120,7 +125,7 @@ exports[`NGLComponent Should match existing snapshot when canvas is available 1`
                   "pointerEvents": "all",
                 }
               }
-              text="axes"
+              text="Using axes representations for residues"
               value="axes"
             >
               <div
@@ -137,9 +142,9 @@ exports[`NGLComponent Should match existing snapshot when canvas is available 1`
               >
                 <span
                   className="text"
-                  key="axes"
+                  key="Using axes representations for residues"
                 >
-                  axes
+                  Using axes representations for residues
                 </span>
               </div>
             </DropdownItem>
@@ -153,7 +158,7 @@ exports[`NGLComponent Should match existing snapshot when canvas is available 1`
                   "pointerEvents": "all",
                 }
               }
-              text="backbone"
+              text="Using backbone representations for residues"
               value="backbone"
             >
               <div
@@ -170,15 +175,48 @@ exports[`NGLComponent Should match existing snapshot when canvas is available 1`
               >
                 <span
                   className="text"
-                  key="backbone"
+                  key="Using backbone representations for residues"
                 >
-                  backbone
+                  Using backbone representations for residues
+                </span>
+              </div>
+            </DropdownItem>
+            <DropdownItem
+              active={false}
+              key="ball+stick"
+              onClick={[Function]}
+              selected={false}
+              style={
+                Object {
+                  "pointerEvents": "all",
+                }
+              }
+              text="Using ball+stick representations for residues"
+              value="ball+stick"
+            >
+              <div
+                aria-checked={false}
+                aria-selected={false}
+                className="item"
+                onClick={[Function]}
+                role="option"
+                style={
+                  Object {
+                    "pointerEvents": "all",
+                  }
+                }
+              >
+                <span
+                  className="text"
+                  key="Using ball+stick representations for residues"
+                >
+                  Using ball+stick representations for residues
                 </span>
               </div>
             </DropdownItem>
             <DropdownItem
               active={true}
-              key="ball+stick"
+              key="distance"
               onClick={[Function]}
               selected={true}
               style={
@@ -186,8 +224,8 @@ exports[`NGLComponent Should match existing snapshot when canvas is available 1`
                   "pointerEvents": "all",
                 }
               }
-              text="ball+stick"
-              value="ball+stick"
+              text="Using distance representations for residues"
+              value="distance"
             >
               <div
                 aria-checked={true}
@@ -203,9 +241,9 @@ exports[`NGLComponent Should match existing snapshot when canvas is available 1`
               >
                 <span
                   className="text"
-                  key="ball+stick"
+                  key="Using distance representations for residues"
                 >
-                  ball+stick
+                  Using distance representations for residues
                 </span>
               </div>
             </DropdownItem>
@@ -219,7 +257,7 @@ exports[`NGLComponent Should match existing snapshot when canvas is available 1`
                   "pointerEvents": "all",
                 }
               }
-              text="label"
+              text="Using label representations for residues"
               value="label"
             >
               <div
@@ -236,9 +274,9 @@ exports[`NGLComponent Should match existing snapshot when canvas is available 1`
               >
                 <span
                   className="text"
-                  key="label"
+                  key="Using label representations for residues"
                 >
-                  label
+                  Using label representations for residues
                 </span>
               </div>
             </DropdownItem>
@@ -252,7 +290,7 @@ exports[`NGLComponent Should match existing snapshot when canvas is available 1`
                   "pointerEvents": "all",
                 }
               }
-              text="line"
+              text="Using line representations for residues"
               value="line"
             >
               <div
@@ -269,9 +307,9 @@ exports[`NGLComponent Should match existing snapshot when canvas is available 1`
               >
                 <span
                   className="text"
-                  key="line"
+                  key="Using line representations for residues"
                 >
-                  line
+                  Using line representations for residues
                 </span>
               </div>
             </DropdownItem>
@@ -285,7 +323,7 @@ exports[`NGLComponent Should match existing snapshot when canvas is available 1`
                   "pointerEvents": "all",
                 }
               }
-              text="hyperball"
+              text="Using hyperball representations for residues"
               value="hyperball"
             >
               <div
@@ -302,9 +340,9 @@ exports[`NGLComponent Should match existing snapshot when canvas is available 1`
               >
                 <span
                   className="text"
-                  key="hyperball"
+                  key="Using hyperball representations for residues"
                 >
-                  hyperball
+                  Using hyperball representations for residues
                 </span>
               </div>
             </DropdownItem>
@@ -318,7 +356,7 @@ exports[`NGLComponent Should match existing snapshot when canvas is available 1`
                   "pointerEvents": "all",
                 }
               }
-              text="spacefill"
+              text="Using spacefill representations for residues"
               value="spacefill"
             >
               <div
@@ -335,9 +373,9 @@ exports[`NGLComponent Should match existing snapshot when canvas is available 1`
               >
                 <span
                   className="text"
-                  key="spacefill"
+                  key="Using spacefill representations for residues"
                 >
-                  spacefill
+                  Using spacefill representations for residues
                 </span>
               </div>
             </DropdownItem>
@@ -345,6 +383,8 @@ exports[`NGLComponent Should match existing snapshot when canvas is available 1`
         </DropdownMenu>
       </div>
     </Dropdown>
+    <br />
+    Selected residues: 
   </div>
 </NGLComponent>
 `;
@@ -372,7 +412,7 @@ exports[`NGLComponent Should match existing snapshot when canvas isn't available
     additionPosition="top"
     closeOnBlur={true}
     deburr={false}
-    defaultValue="ball+stick"
+    defaultValue="distance"
     fluid={true}
     icon="dropdown"
     minCharacters={1}
@@ -383,37 +423,42 @@ exports[`NGLComponent Should match existing snapshot when canvas isn't available
       Array [
         Object {
           "key": "axes",
-          "text": "axes",
+          "text": "Using axes representations for residues",
           "value": "axes",
         },
         Object {
           "key": "backbone",
-          "text": "backbone",
+          "text": "Using backbone representations for residues",
           "value": "backbone",
         },
         Object {
           "key": "ball+stick",
-          "text": "ball+stick",
+          "text": "Using ball+stick representations for residues",
           "value": "ball+stick",
         },
         Object {
+          "key": "distance",
+          "text": "Using distance representations for residues",
+          "value": "distance",
+        },
+        Object {
           "key": "label",
-          "text": "label",
+          "text": "Using label representations for residues",
           "value": "label",
         },
         Object {
           "key": "line",
-          "text": "line",
+          "text": "Using line representations for residues",
           "value": "line",
         },
         Object {
           "key": "hyperball",
-          "text": "hyperball",
+          "text": "Using hyperball representations for residues",
           "value": "hyperball",
         },
         Object {
           "key": "spacefill",
-          "text": "spacefill",
+          "text": "Using spacefill representations for residues",
           "value": "spacefill",
         },
       ]
@@ -424,5 +469,7 @@ exports[`NGLComponent Should match existing snapshot when canvas isn't available
     selectOnNavigation={true}
     wrapSelection={true}
   />
+  <br />
+  Selected residues: 
 </div>
 `;
