@@ -13,6 +13,332 @@ exports[`NGLComponent Should match existing snapshot when canvas is available 1`
         }
       }
     />
+    <Dropdown
+      additionLabel="Add "
+      additionPosition="top"
+      closeOnBlur={true}
+      deburr={false}
+      defaultValue="ball+stick"
+      fluid={true}
+      icon="dropdown"
+      minCharacters={1}
+      noResultsMessage="No results found."
+      onChange={[Function]}
+      openOnFocus={true}
+      options={
+        Array [
+          Object {
+            "key": "axes",
+            "text": "axes",
+            "value": "axes",
+          },
+          Object {
+            "key": "backbone",
+            "text": "backbone",
+            "value": "backbone",
+          },
+          Object {
+            "key": "ball+stick",
+            "text": "ball+stick",
+            "value": "ball+stick",
+          },
+          Object {
+            "key": "label",
+            "text": "label",
+            "value": "label",
+          },
+          Object {
+            "key": "line",
+            "text": "line",
+            "value": "line",
+          },
+          Object {
+            "key": "hyperball",
+            "text": "hyperball",
+            "value": "hyperball",
+          },
+          Object {
+            "key": "spacefill",
+            "text": "spacefill",
+            "value": "spacefill",
+          },
+        ]
+      }
+      renderLabel={[Function]}
+      searchInput="text"
+      selectOnBlur={true}
+      selectOnNavigation={true}
+      wrapSelection={true}
+    >
+      <div
+        aria-expanded={false}
+        className="ui fluid dropdown"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onMouseDown={[Function]}
+        role="listbox"
+        tabIndex={0}
+      >
+        <div
+          aria-live="polite"
+          className="text"
+          role="alert"
+        >
+          ball+stick
+        </div>
+        <Icon
+          as="i"
+          key="dropdown"
+          name="dropdown"
+          onClick={[Function]}
+        >
+          <i
+            aria-hidden="true"
+            className="dropdown icon"
+            onClick={[Function]}
+          />
+        </Icon>
+        <DropdownMenu>
+          <div
+            className="menu transition"
+          >
+            <DropdownItem
+              active={false}
+              key="axes"
+              onClick={[Function]}
+              selected={false}
+              style={
+                Object {
+                  "pointerEvents": "all",
+                }
+              }
+              text="axes"
+              value="axes"
+            >
+              <div
+                aria-checked={false}
+                aria-selected={false}
+                className="item"
+                onClick={[Function]}
+                role="option"
+                style={
+                  Object {
+                    "pointerEvents": "all",
+                  }
+                }
+              >
+                <span
+                  className="text"
+                  key="axes"
+                >
+                  axes
+                </span>
+              </div>
+            </DropdownItem>
+            <DropdownItem
+              active={false}
+              key="backbone"
+              onClick={[Function]}
+              selected={false}
+              style={
+                Object {
+                  "pointerEvents": "all",
+                }
+              }
+              text="backbone"
+              value="backbone"
+            >
+              <div
+                aria-checked={false}
+                aria-selected={false}
+                className="item"
+                onClick={[Function]}
+                role="option"
+                style={
+                  Object {
+                    "pointerEvents": "all",
+                  }
+                }
+              >
+                <span
+                  className="text"
+                  key="backbone"
+                >
+                  backbone
+                </span>
+              </div>
+            </DropdownItem>
+            <DropdownItem
+              active={true}
+              key="ball+stick"
+              onClick={[Function]}
+              selected={true}
+              style={
+                Object {
+                  "pointerEvents": "all",
+                }
+              }
+              text="ball+stick"
+              value="ball+stick"
+            >
+              <div
+                aria-checked={true}
+                aria-selected={true}
+                className="active selected item"
+                onClick={[Function]}
+                role="option"
+                style={
+                  Object {
+                    "pointerEvents": "all",
+                  }
+                }
+              >
+                <span
+                  className="text"
+                  key="ball+stick"
+                >
+                  ball+stick
+                </span>
+              </div>
+            </DropdownItem>
+            <DropdownItem
+              active={false}
+              key="label"
+              onClick={[Function]}
+              selected={false}
+              style={
+                Object {
+                  "pointerEvents": "all",
+                }
+              }
+              text="label"
+              value="label"
+            >
+              <div
+                aria-checked={false}
+                aria-selected={false}
+                className="item"
+                onClick={[Function]}
+                role="option"
+                style={
+                  Object {
+                    "pointerEvents": "all",
+                  }
+                }
+              >
+                <span
+                  className="text"
+                  key="label"
+                >
+                  label
+                </span>
+              </div>
+            </DropdownItem>
+            <DropdownItem
+              active={false}
+              key="line"
+              onClick={[Function]}
+              selected={false}
+              style={
+                Object {
+                  "pointerEvents": "all",
+                }
+              }
+              text="line"
+              value="line"
+            >
+              <div
+                aria-checked={false}
+                aria-selected={false}
+                className="item"
+                onClick={[Function]}
+                role="option"
+                style={
+                  Object {
+                    "pointerEvents": "all",
+                  }
+                }
+              >
+                <span
+                  className="text"
+                  key="line"
+                >
+                  line
+                </span>
+              </div>
+            </DropdownItem>
+            <DropdownItem
+              active={false}
+              key="hyperball"
+              onClick={[Function]}
+              selected={false}
+              style={
+                Object {
+                  "pointerEvents": "all",
+                }
+              }
+              text="hyperball"
+              value="hyperball"
+            >
+              <div
+                aria-checked={false}
+                aria-selected={false}
+                className="item"
+                onClick={[Function]}
+                role="option"
+                style={
+                  Object {
+                    "pointerEvents": "all",
+                  }
+                }
+              >
+                <span
+                  className="text"
+                  key="hyperball"
+                >
+                  hyperball
+                </span>
+              </div>
+            </DropdownItem>
+            <DropdownItem
+              active={false}
+              key="spacefill"
+              onClick={[Function]}
+              selected={false}
+              style={
+                Object {
+                  "pointerEvents": "all",
+                }
+              }
+              text="spacefill"
+              value="spacefill"
+            >
+              <div
+                aria-checked={false}
+                aria-selected={false}
+                className="item"
+                onClick={[Function]}
+                role="option"
+                style={
+                  Object {
+                    "pointerEvents": "all",
+                  }
+                }
+              >
+                <span
+                  className="text"
+                  key="spacefill"
+                >
+                  spacefill
+                </span>
+              </div>
+            </DropdownItem>
+          </div>
+        </DropdownMenu>
+      </div>
+    </Dropdown>
   </div>
 </NGLComponent>
 `;
@@ -28,6 +354,63 @@ exports[`NGLComponent Should match existing snapshot when canvas isn't available
         "width": 400,
       }
     }
+  />
+  <Dropdown
+    additionLabel="Add "
+    additionPosition="top"
+    closeOnBlur={true}
+    deburr={false}
+    defaultValue="ball+stick"
+    fluid={true}
+    icon="dropdown"
+    minCharacters={1}
+    noResultsMessage="No results found."
+    onChange={[Function]}
+    openOnFocus={true}
+    options={
+      Array [
+        Object {
+          "key": "axes",
+          "text": "axes",
+          "value": "axes",
+        },
+        Object {
+          "key": "backbone",
+          "text": "backbone",
+          "value": "backbone",
+        },
+        Object {
+          "key": "ball+stick",
+          "text": "ball+stick",
+          "value": "ball+stick",
+        },
+        Object {
+          "key": "label",
+          "text": "label",
+          "value": "label",
+        },
+        Object {
+          "key": "line",
+          "text": "line",
+          "value": "line",
+        },
+        Object {
+          "key": "hyperball",
+          "text": "hyperball",
+          "value": "hyperball",
+        },
+        Object {
+          "key": "spacefill",
+          "text": "spacefill",
+          "value": "spacefill",
+        },
+      ]
+    }
+    renderLabel={[Function]}
+    searchInput="text"
+    selectOnBlur={true}
+    selectOnNavigation={true}
+    wrapSelection={true}
   />
 </div>
 `;

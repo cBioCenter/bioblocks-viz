@@ -2,7 +2,8 @@ import * as NGL from 'ngl';
 import * as React from 'react';
 
 import { ICouplingScore } from 'chell';
-import { PickingProxy, Stage, StructureComponent } from 'ngl';
+import { PickingProxy, Stage, StructureComponent, StructureRepresentationType } from 'ngl';
+import { Dropdown, DropdownItemProps } from 'semantic-ui-react';
 
 export type NGL_DATA_TYPE = NGL.Structure;
 export type NGL_HOVER_CB_RESULT_TYPE = number;
@@ -13,22 +14,43 @@ export interface INGLComponentProps {
   selectedData?: ICouplingScore;
 }
 
-export interface INGLComponentState {
-  residueOffset: number;
-  stage?: NGL.Stage;
-  structureComponent?: NGL.StructureComponent;
-}
+export const SUPPORTED_REPS: StructureRepresentationType[] = [
+  'axes',
+  'backbone',
+  'ball+stick',
+  'label',
+  'line',
+  'hyperball',
+  'spacefill',
+];
 
-export class NGLComponent extends React.Component<INGLComponentProps, INGLComponentState> {
+const initialState = {
+  max_x: 0,
+  min_x: 1000,
+  nodeSize: 4,
+  probabilityFilter: 0.99,
+  residueOffset: 0,
+  residueSelectionType: 'ball+stick' as StructureRepresentationType,
+  stage: undefined as NGL.Stage | undefined,
+  structureComponent: undefined as NGL.StructureComponent | undefined,
+};
+
+type State = Readonly<typeof initialState>;
+
+export class NGLComponent extends React.Component<INGLComponentProps, State> {
+  public readonly state: State = initialState;
+
   protected canvas: HTMLElement | null = null;
-  protected ele?: NGL.RepresentationElement;
+  protected representationElement?: NGL.RepresentationElement;
+
+  protected dropdownItems: DropdownItemProps[] = SUPPORTED_REPS.map(type => ({
+    key: type,
+    text: type,
+    value: type,
+  }));
 
   constructor(props: any) {
     super(props);
-    this.state = {
-      residueOffset: 0,
-      stage: undefined,
-    };
   }
 
   public componentDidMount() {
@@ -56,9 +78,9 @@ export class NGLComponent extends React.Component<INGLComponentProps, INGLCompon
     }
   }
 
-  public componentDidUpdate(prevProps: INGLComponentProps, prevState: INGLComponentState) {
+  public componentDidUpdate(prevProps: INGLComponentProps, prevState: State) {
     const { data, selectedData } = this.props;
-    const { stage } = this.state;
+    const { residueSelectionType, stage, structureComponent } = this.state;
 
     const isNewData = data && data !== prevProps.data;
     if (stage && isNewData) {
@@ -69,7 +91,17 @@ export class NGLComponent extends React.Component<INGLComponentProps, INGLCompon
     } else if (selectedData && selectedData !== prevProps.selectedData && this.state.structureComponent) {
       const residues = [selectedData.i, selectedData.j].map(index => (index - this.state.residueOffset).toString());
 
-      this.highlightElement(this.state.structureComponent, residues.join(', '), 'ball+stick');
+      this.highlightElement(this.state.structureComponent, residues.join(', '), this.state.residueSelectionType);
+    } else if (
+      residueSelectionType !== prevState.residueSelectionType &&
+      this.representationElement &&
+      structureComponent
+    ) {
+      structureComponent.removeRepresentation(this.representationElement);
+      this.representationElement = structureComponent.addRepresentation(
+        residueSelectionType,
+        this.representationElement.getParameters(),
+      );
     }
   }
 
@@ -77,6 +109,12 @@ export class NGLComponent extends React.Component<INGLComponentProps, INGLCompon
     return (
       <div id="NGLComponent">
         <div ref={el => (this.canvas = el)} style={{ height: 400, width: 400 }} />
+        <Dropdown
+          fluid={true}
+          defaultValue={initialState.residueSelectionType}
+          options={this.dropdownItems}
+          onChange={this.onResidueSelectionTypeChange()}
+        />
       </div>
     );
   }
@@ -90,6 +128,9 @@ export class NGLComponent extends React.Component<INGLComponentProps, INGLCompon
     });
 
     stage.defaultFileRepresentation(structureComponent);
+    structureComponent.reprList.forEach(rep => {
+      rep.setParameters({ opacity: 0.5 });
+    });
 
     structureComponent.stage.mouseControls.add(
       NGL.MouseActions.HOVER_PICK,
@@ -127,11 +168,17 @@ export class NGLComponent extends React.Component<INGLComponentProps, INGLCompon
     selection: string,
     representationType: NGL.StructureRepresentationType = 'spacefill',
   ) {
-    if (this.ele) {
-      structureComponent.removeRepresentation(this.ele);
+    if (this.representationElement) {
+      structureComponent.removeRepresentation(this.representationElement);
     }
-    this.ele = structureComponent.addRepresentation(representationType, {
+    this.representationElement = structureComponent.addRepresentation(representationType, {
       sele: selection,
     });
   }
+
+  protected onResidueSelectionTypeChange = () => (event: any, data: any) => {
+    this.setState({
+      residueSelectionType: data.value as NGL.StructureRepresentationType,
+    });
+  };
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CartesianGrid, Dot, ReferenceLine, Scatter, ScatterChart, XAxis, YAxis, ZAxis } from 'recharts';
+import { Dot, ReferenceLine, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from 'recharts';
 
 import { CONTACT_MAP_DATA_TYPE, ICouplingScore } from 'chell';
 import { withDefaultProps } from '../helper/ReactHelper';
@@ -18,7 +18,7 @@ const defaultProps = {
   onMouseEnter: undefined as ContactMapCallback | undefined,
   selectedData: undefined as number | undefined,
 };
-const initialState = { min_x: 1000, max_x: 0, nodeSize: 2, probabilityFilter: 0.99 };
+const initialState = { min_x: 1000, max_x: 0, nodeSize: 4, probabilityFilter: 0.99 };
 
 type Props = {} & typeof defaultProps;
 type State = Readonly<typeof initialState>;
@@ -34,13 +34,20 @@ export const ContactMapComponent = withDefaultProps(
 
     public componentDidUpdate(prevProps: Props, prevState: State) {
       const { data } = this.props;
-      if (data !== prevProps.data) {
+      const isFreshDataView = data !== prevProps.data || this.state.probabilityFilter !== prevState.probabilityFilter;
+      if (isFreshDataView) {
         let max = initialState.max_x;
         let min = initialState.min_x;
-        for (const contact of data.contactMonomer) {
+        data.contactMonomer.forEach(contact => {
           max = Math.max(max, contact.i);
           min = Math.min(min, contact.i);
-        }
+        });
+        data.couplingScore
+          .filter(coupling => coupling.probability >= this.state.probabilityFilter)
+          .forEach(coupling => {
+            max = Math.max(max, coupling.i);
+            min = Math.min(min, coupling.i);
+          });
         this.setState({
           max_x: max,
           min_x: min,
@@ -50,7 +57,9 @@ export const ContactMapComponent = withDefaultProps(
 
     public render() {
       const { data, selectedData } = this.props;
-      const domain = [Math.max(0, this.state.min_x - 5), this.state.max_x + 5];
+      const minOffset = this.state.min_x - 5 - this.state.min_x % 5;
+      const maxOffset = this.state.max_x + 5 + this.state.max_x % 5;
+      const domain = [Math.max(0, minOffset), maxOffset];
       const blackDots = new Array<ICouplingScore>();
       data.couplingScore.filter(coupling => coupling.probability >= this.state.probabilityFilter).forEach(coupling => {
         blackDots.push(coupling);
@@ -68,10 +77,8 @@ export const ContactMapComponent = withDefaultProps(
           <ScatterChart width={400} height={400}>
             <XAxis type="number" dataKey={'i'} orientation={'top'} domain={domain} />
             <YAxis type="number" dataKey={'j'} reversed={true} domain={domain} />
-            <ZAxis type="number" dataKey={'probability'} />
             {selectedData && <ReferenceLine x={selectedData} stroke={'#ff0000'} />}
             {selectedData && <ReferenceLine y={selectedData} stroke={'#ff0000'} />}
-            <CartesianGrid />
             <Scatter
               name="contacts_monomer"
               data={data.contactMonomer}
@@ -87,6 +94,7 @@ export const ContactMapComponent = withDefaultProps(
               onMouseEnter={this.onMouseEnter()}
               shape={<Dot r={this.state.nodeSize} />}
             />
+            <Tooltip />
           </ScatterChart>
           <ChellSlider
             max={100}
@@ -96,10 +104,10 @@ export const ContactMapComponent = withDefaultProps(
             onChange={this.onProbabilityChange()}
           />
           <ChellSlider
-            max={10}
+            max={5}
             min={1}
             label={'Node Size'}
-            defaultValue={this.state.nodeSize * 2}
+            defaultValue={this.state.nodeSize}
             onChange={this.onNodeSizeChange()}
           />
         </div>
@@ -120,7 +128,7 @@ export const ContactMapComponent = withDefaultProps(
 
     protected onNodeSizeChange = () => (value: number) => {
       this.setState({
-        nodeSize: value / 2,
+        nodeSize: value,
       });
     };
 
