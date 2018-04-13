@@ -37,6 +37,21 @@ export class NGLComponent extends React.Component<INGLComponentProps, INGLCompon
       this.setState({
         stage,
       });
+
+      const { data } = this.props;
+      if (data) {
+        this.setupStage(data, stage);
+      }
+    }
+  }
+
+  public componentWillUnmount() {
+    const { stage } = this.state;
+    if (stage) {
+      stage.dispose();
+      this.setState({
+        stage: undefined,
+      });
     }
   }
 
@@ -49,19 +64,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, INGLCompon
       stage.removeAllComponents();
     }
     if (stage && isNewData && data) {
-      const structureComponent = stage.addComponentFromObject(data) as NGL.StructureComponent;
-
-      this.setState({
-        residueOffset: data.residueStore.resno[0],
-        structureComponent,
-      });
-
-      stage.defaultFileRepresentation(structureComponent);
-
-      structureComponent.stage.mouseControls.add(
-        NGL.MouseActions.HOVER_PICK,
-        (aStage: Stage, pickingProxy: PickingProxy) => this.onHover(aStage, pickingProxy, data, structureComponent),
-      );
+      this.setupStage(data, stage);
     } else if (selectedData && selectedData !== prevProps.selectedData && this.state.structureComponent) {
       const residues = [selectedData.i, selectedData.j].map(index => (index - this.state.residueOffset).toString());
 
@@ -74,6 +77,22 @@ export class NGLComponent extends React.Component<INGLComponentProps, INGLCompon
       <div id="NGLComponent">
         <div ref={el => (this.canvas = el)} style={{ height: 400, width: 400 }} />
       </div>
+    );
+  }
+
+  protected setupStage(data: NGL.Structure, stage: NGL.Stage) {
+    const structureComponent = stage.addComponentFromObject(data) as NGL.StructureComponent;
+
+    this.setState({
+      residueOffset: data.residueStore.resno[0],
+      structureComponent,
+    });
+
+    stage.defaultFileRepresentation(structureComponent);
+
+    structureComponent.stage.mouseControls.add(
+      NGL.MouseActions.HOVER_PICK,
+      (aStage: Stage, pickingProxy: PickingProxy) => this.onHover(aStage, pickingProxy, data, structureComponent),
     );
   }
 
