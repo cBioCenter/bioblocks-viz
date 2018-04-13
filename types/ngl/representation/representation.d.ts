@@ -1,10 +1,18 @@
+import {
+  Counter,
+  ShapeRepresentationType,
+  StructureRepresentationType,
+  SurfaceRepresentationType,
+  Viewer,
+  VolumeRepresentationType,
+} from 'ngl';
+import { Vector3 } from 'three';
+
 // tslint:disable:max-classes-per-file
 declare module 'ngl' {
-  import { Vector3 } from 'three';
-
   export interface IRepresentationParameters {
     /**
-     * Position of for spherical clipping.
+     * Position of camera for spherical clipping.
      *
      * @type {Vector3}
      * @memberof IRepresentationParameters
@@ -205,6 +213,15 @@ declare module 'ngl' {
   }
 
   export class Representation {
+    public bufferList: any[];
+    public viewer: Viewer;
+    public tasks: Counter;
+    public type:
+      | ShapeRepresentationType
+      | StructureRepresentationType
+      | VolumeRepresentationType
+      | SurfaceRepresentationType;
+
     constructor(object: any, viewer: any, params: any);
 
     // Methods

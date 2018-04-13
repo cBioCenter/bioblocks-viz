@@ -18,6 +18,7 @@ export const SUPPORTED_REPS: StructureRepresentationType[] = [
   'axes',
   'backbone',
   'ball+stick',
+  'distance',
   'label',
   'line',
   'hyperball',
@@ -30,7 +31,8 @@ const initialState = {
   nodeSize: 4,
   probabilityFilter: 0.99,
   residueOffset: 0,
-  residueSelectionType: 'ball+stick' as StructureRepresentationType,
+  residueSelectionType: 'distance' as StructureRepresentationType,
+  selection: '',
   stage: undefined as NGL.Stage | undefined,
   structureComponent: undefined as NGL.StructureComponent | undefined,
 };
@@ -45,7 +47,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, State> {
 
   protected dropdownItems: DropdownItemProps[] = SUPPORTED_REPS.map(type => ({
     key: type,
-    text: type,
+    text: `Using ${type} representations for residues`,
     value: type,
   }));
 
@@ -93,7 +95,11 @@ export class NGLComponent extends React.Component<INGLComponentProps, State> {
       // FIXME: Should be more abstract.
       if (selectedData.i && selectedData.j) {
         const residues = [selectedData.i, selectedData.j].map(index => (index - this.state.residueOffset).toString());
-        this.highlightElement(this.state.structureComponent, residues.join(', '), this.state.residueSelectionType);
+        this.highlightElement(
+          this.state.structureComponent,
+          residues.join('.CA, ') + '.CA',
+          this.state.residueSelectionType,
+        );
       }
     } else if (
       residueSelectionType !== prevState.residueSelectionType &&
@@ -118,6 +124,8 @@ export class NGLComponent extends React.Component<INGLComponentProps, State> {
           options={this.dropdownItems}
           onChange={this.onResidueSelectionTypeChange()}
         />
+        <br />
+        {`Selected residues: ${this.state.selection}`}
       </div>
     );
   }
@@ -174,7 +182,12 @@ export class NGLComponent extends React.Component<INGLComponentProps, State> {
       structureComponent.removeRepresentation(this.representationElement);
     }
     this.representationElement = structureComponent.addRepresentation(representationType, {
-      sele: selection,
+      atomPair: [selection.split(',')],
+      color: 'skyblue',
+      labelUnit: 'nm',
+    });
+    this.setState({
+      selection,
     });
   }
 
