@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CartesianGrid, ReferenceLine, Scatter, ScatterChart, Tooltip, XAxis, YAxis, ZAxis } from 'recharts';
+import { CartesianGrid, ReferenceLine, Scatter, ScatterChart, XAxis, YAxis, ZAxis } from 'recharts';
 
 import { CONTACT_MAP_DATA_TYPE, ICouplingScore } from 'chell';
 import { withDefaultProps } from '../helper/ReactHelper';
@@ -34,8 +34,8 @@ export const ContactMapComponent = withDefaultProps(
     public componentDidUpdate(prevProps: Props, prevState: State) {
       const { data } = this.props;
       if (data !== prevProps.data) {
-        let max = this.state.max_x;
-        let min = this.state.min_x;
+        let max = initialState.max_x;
+        let min = initialState.min_x;
         for (const contact of data.contactMonomer) {
           max = Math.max(max, contact.i);
           min = Math.min(min, contact.i);
@@ -64,7 +64,6 @@ export const ContactMapComponent = withDefaultProps(
             {selectedData && <ReferenceLine x={selectedData} stroke={'#ff0000'} />}
             {selectedData && <ReferenceLine y={this.props.selectedData} stroke={'#ff0000'} />}
             <CartesianGrid />
-            <Tooltip />
             <Scatter name="contacts_monomer" data={data.contactMonomer} fill="#009999" onClick={this.onClick()} />
             <Scatter
               name="CouplingScoresCompared"
