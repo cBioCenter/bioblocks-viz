@@ -89,19 +89,21 @@ export class NGLComponent extends React.Component<INGLComponentProps, State> {
     if (stage && isNewData && data) {
       this.setupStage(data, stage);
     } else if (selectedData && selectedData !== prevProps.selectedData && this.state.structureComponent) {
-      const residues = [selectedData.i, selectedData.j].map(index => (index - this.state.residueOffset).toString());
-
-      this.highlightElement(this.state.structureComponent, residues.join(', '), this.state.residueSelectionType);
+      // If the update came from the ContactMap.
+      // FIXME: Should be more abstract.
+      if (selectedData.i && selectedData.j) {
+        const residues = [selectedData.i, selectedData.j].map(index => (index - this.state.residueOffset).toString());
+        this.highlightElement(this.state.structureComponent, residues.join(', '), this.state.residueSelectionType);
+      }
     } else if (
       residueSelectionType !== prevState.residueSelectionType &&
       this.representationElement &&
       structureComponent
     ) {
       structureComponent.removeRepresentation(this.representationElement);
-      this.representationElement = structureComponent.addRepresentation(
-        residueSelectionType,
-        this.representationElement.getParameters(),
-      );
+      this.representationElement = structureComponent.addRepresentation(residueSelectionType, {
+        sele: this.representationElement.parameters.sele,
+      });
     }
   }
 
@@ -130,7 +132,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, State> {
 
     stage.defaultFileRepresentation(structureComponent);
     structureComponent.reprList.forEach(rep => {
-      rep.setParameters({ opacity: 0.5 });
+      rep.setParameters({ opacity: 1.0 });
     });
 
     structureComponent.stage.mouseControls.add(
@@ -148,7 +150,6 @@ export class NGLComponent extends React.Component<INGLComponentProps, State> {
     if (pickingProxy && (pickingProxy.atom || pickingProxy.bond)) {
       const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
 
-      // this.highlightElement(structureComponent, atom.resno.toString());
       if (this.props.onHoverPickCallback) {
         this.props.onHoverPickCallback(atom.resno + this.state.residueOffset);
       }
