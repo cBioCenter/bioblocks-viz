@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { CartesianGrid, Scatter, ScatterChart, Tooltip, XAxis, YAxis, ZAxis } from 'recharts';
+import { Dot, ReferenceLine, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from 'recharts';
 
 import { CONTACT_MAP_DATA_TYPE, ICouplingScore } from 'chell';
 import { withDefaultProps } from '../helper/ReactHelper';
 import { ChellSlider } from './ChellSlider';
 
-export type ContactMapCallback = (...args: any[]) => void;
+export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
+export type ContactMapCallback = (coupling: CONTACT_MAP_CB_RESULT_TYPE) => void;
 
 const defaultProps = {
   data: {
@@ -15,8 +16,16 @@ const defaultProps = {
   } as CONTACT_MAP_DATA_TYPE,
   onClick: undefined as ContactMapCallback | undefined,
   onMouseEnter: undefined as ContactMapCallback | undefined,
+  selectedData: undefined as number | undefined,
 };
-const initialState = { min_x: 1000, max_x: 0, probabilityFilter: 0.99 };
+const initialState = {
+  blackDots: new Array<ICouplingScore>(),
+  domain: [1, 100],
+  max_x: 1,
+  min_x: 1000,
+  nodeSize: 4,
+  probabilityFilter: 0.99,
+};
 
 type Props = {} & typeof defaultProps;
 type State = Readonly<typeof initialState>;
@@ -30,41 +39,47 @@ export const ContactMapComponent = withDefaultProps(
       super(props);
     }
 
+    public componentDidMount() {
+      const { data } = this.props;
+      if (data) {
+        this.setupData(data);
+      }
+    }
+
     public componentDidUpdate(prevProps: Props, prevState: State) {
       const { data } = this.props;
-      if (data !== prevProps.data) {
-        let max = this.state.max_x;
-        let min = this.state.min_x;
-        for (const contact of data.contactMonomer) {
-          max = Math.max(max, contact.i);
-          min = Math.min(min, contact.i);
-        }
-        this.setState({
-          max_x: max,
-          min_x: min,
-        });
+      const isFreshDataView = data !== prevProps.data || this.state.probabilityFilter !== prevState.probabilityFilter;
+      if (isFreshDataView) {
+        this.setupData(data);
       }
     }
 
     public render() {
-      const { data } = this.props;
-      const domain = [Math.max(0, this.state.min_x - 5), this.state.max_x + 5];
+      const { data, selectedData } = this.props;
+      const { blackDots, domain } = this.state;
       return data ? (
-        <div>
-          <ScatterChart width={400} height={400}>
+        <div style={{ padding: 10 }}>
+          <ScatterChart width={370} height={370}>
             <XAxis type="number" dataKey={'i'} orientation={'top'} domain={domain} />
-            <YAxis type="number" dataKey={'j'} reversed={true} domain={domain} />}
-            <ZAxis dataKey="dist" />
-            <CartesianGrid />
-            <Tooltip />
-            <Scatter name="contacts_monomer" data={data.contactMonomer} fill="#009999" onClick={this.onClick()} />
+            <YAxis type="number" dataKey={'j'} reversed={true} domain={domain} />
+            {typeof selectedData === 'number' && <ReferenceLine x={selectedData} stroke={'#ff0000'} />}
+            {typeof selectedData === 'number' && <ReferenceLine y={selectedData} stroke={'#ff0000'} />}
+            <Scatter
+              name="contacts_monomer"
+              data={data.contactMonomer}
+              fill="#009999"
+              onClick={this.onClick()}
+              shape={<Dot r={this.state.nodeSize} />}
+            />
             <Scatter
               name="CouplingScoresCompared"
-              data={data.couplingScore.filter(coupling => coupling.probability > this.state.probabilityFilter)}
+              data={blackDots}
               fill="#000000"
               onClick={this.onClick()}
               onMouseEnter={this.onMouseEnter()}
+              shape={<Dot r={this.state.nodeSize} />}
             />
+            <Tooltip />
           </ScatterChart>
           <ChellSlider
             max={100}
@@ -73,13 +88,45 @@ export const ContactMapComponent = withDefaultProps(
             defaultValue={99}
             onChange={this.onProbabilityChange()}
           />
+          <ChellSlider
+            max={5}
+            min={1}
+            label={'Node Size'}
+            defaultValue={this.state.nodeSize}
+            onChange={this.onNodeSizeChange()}
+          />
         </div>
       ) : null;
     }
 
-    protected onClick = () => (...args: any[]) => {
+    protected setupData(data: CONTACT_MAP_DATA_TYPE) {
+      let max = initialState.max_x;
+      const blackDots = new Array<ICouplingScore>();
+      data.contactMonomer.forEach(contact => {
+        max = Math.max(max, contact.i);
+      });
+      data.couplingScore.filter(coupling => coupling.probability >= this.state.probabilityFilter).forEach(coupling => {
+        max = Math.max(max, coupling.i);
+        blackDots.push(coupling);
+        blackDots.push({
+          ...coupling,
+          i: coupling.j,
+          // tslint:disable-next-line:object-literal-sort-keys
+          A_i: coupling.A_j,
+          j: coupling.i,
+          A_j: coupling.A_i,
+        });
+      });
+
+      this.setState({
+        blackDots,
+        domain: [1, max],
+      });
+    }
+
+    protected onClick = () => (coupling: ICouplingScore) => {
       if (this.props.onClick) {
-        this.props.onClick(args);
+        this.props.onClick(coupling);
       }
     };
 
@@ -89,22 +136,16 @@ export const ContactMapComponent = withDefaultProps(
       });
     };
 
+    protected onNodeSizeChange = () => (value: number) => {
+      this.setState({
+        nodeSize: value,
+      });
+    };
+
     protected onMouseEnter = () => (e: { [key: string]: any; payload: ICouplingScore }) => {
       const { payload } = e;
-      const { data, onMouseEnter } = this.props;
-      const coupling = data.couplingScore.find(ele => ele.i === payload.i);
-      const monomer = data.distanceMapMonomer.find(ele => ele.id === payload.i);
+      const { onMouseEnter } = this.props;
 
-      console.log(`Variable 'coupling':\n${coupling}\n${JSON.stringify(coupling, null, 2)}`);
-      console.log(`Variable 'monomer':\n${monomer}\n${JSON.stringify(monomer, null, 2)}`);
-      const fullSeq = 'MALLHSARVLSGVASAFHPGLAAAASARASSWWAHVEMGPPDPILGVTEAYKRDTNSKKM';
-      const nglSeq = fullSeq.substr(8, 50);
-      console.log(fullSeq);
-      console.log(nglSeq);
-      console.log(fullSeq[payload.i]);
-      console.log(fullSeq[payload.j]);
-      console.log(nglSeq[payload.i - 8]);
-      console.log(nglSeq[payload.j - 8]);
       if (onMouseEnter) {
         onMouseEnter(payload);
       }

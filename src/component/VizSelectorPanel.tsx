@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Dropdown, DropdownItemProps } from 'semantic-ui-react';
+import { Card, Dropdown, DropdownItemProps } from 'semantic-ui-react';
 
 import { ICouplingScore } from 'chell';
 import { NGLComponent } from '../component/NGLComponent';
@@ -64,21 +64,37 @@ export class VizSelectorPanel extends React.Component<IVizSelectorPanelProps, IV
           fluid={true}
           onChange={this.onVizSelect}
         />
-        {this.renderVizContainer(this.state.selectedViz, this.props.data, this.props.selectedData)}
+        {
+          <Card fluid={true} raised={true}>
+            {this.renderVizContainer(this.state.selectedViz, this.props.data, this.props.selectedData)}
+          </Card>
+        }
       </div>
     );
   }
 
-  protected renderVizContainer(viz: VIZ_TYPE, data: IChellDataTypes = {}, selectedData?: ICouplingScore) {
+  protected renderVizContainer(viz: VIZ_TYPE, data: IChellDataTypes = {}, selectedData?: ICouplingScore | number) {
     switch (viz) {
       case VIZ_TYPE['T-SNE']:
         return <TComponent data={data.tsne} />;
       case VIZ_TYPE.SPRING:
         return <SpringComponent data={data.spring} />;
       case VIZ_TYPE.NGL:
-        return <NGLComponent data={data.ngl} selectedData={selectedData} />;
+        return (
+          <NGLComponent
+            data={data.ngl}
+            selectedData={selectedData as ICouplingScore}
+            onHoverPickCallback={this.props.onDataSelect}
+          />
+        );
       case VIZ_TYPE.CONTACT_MAP:
-        return <ContactMapComponent data={data.contactMap} onMouseEnter={this.props.onDataSelect} />;
+        return (
+          <ContactMapComponent
+            data={data.contactMap}
+            onMouseEnter={this.props.onDataSelect}
+            selectedData={selectedData as number}
+          />
+        );
       default:
         throw new Error(`Unknown viz: ${viz}`);
     }

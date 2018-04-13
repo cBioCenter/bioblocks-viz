@@ -21,25 +21,7 @@ exports[`VizPanelContainer Should match existing snapshot when given a single vi
       noResultsMessage="No results found."
       onChange={[Function]}
       openOnFocus={true}
-      options={
-        Array [
-          Object {
-            "key": "centroids",
-            "text": "centroids",
-            "value": "centroids",
-          },
-          Object {
-            "key": "centroids_subset",
-            "text": "centroids_subset",
-            "value": "centroids_subset",
-          },
-          Object {
-            "key": "spring2/full",
-            "text": "spring2/full",
-            "value": "spring2/full",
-          },
-        ]
-      }
+      options={Array []}
       placeholder="Select Data Directory"
       renderLabel={[Function]}
       search={true}

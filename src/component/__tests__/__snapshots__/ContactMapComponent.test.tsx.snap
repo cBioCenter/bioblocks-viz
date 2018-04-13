@@ -1,11 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ContactMapComponent Should match existing snapshot when given empty data. 1`] = `
-<div>
+<div
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
+>
   <ScatterChart
     barCategoryGap="10%"
     barGap={4}
-    height={400}
+    height={370}
     layout="horizontal"
     margin={
       Object {
@@ -17,7 +23,7 @@ exports[`ContactMapComponent Should match existing snapshot when given empty dat
     }
     reverseStackOrder={false}
     stackOffset="none"
-    width={400}
+    width={370}
   >
     <XAxis
       allowDataOverflow={false}
@@ -26,8 +32,8 @@ exports[`ContactMapComponent Should match existing snapshot when given empty dat
       dataKey="i"
       domain={
         Array [
-          995,
-          5,
+          1,
+          1,
         ]
       }
       height={30}
@@ -54,8 +60,8 @@ exports[`ContactMapComponent Should match existing snapshot when given empty dat
       dataKey="j"
       domain={
         Array [
-          995,
-          5,
+          1,
+          1,
         ]
       }
       height={0}
@@ -75,28 +81,50 @@ exports[`ContactMapComponent Should match existing snapshot when given empty dat
       width={60}
       yAxisId={0}
     />
-    }
-    <ZAxis
-      dataKey="dist"
-      range={
-        Array [
-          64,
-          64,
-        ]
+    <Scatter
+      animationBegin={0}
+      animationDuration={400}
+      animationEasing="linear"
+      data={Array []}
+      fill="#009999"
+      hide={false}
+      isAnimationActive={true}
+      legendType="circle"
+      lineJointType="linear"
+      lineType="joint"
+      name="contacts_monomer"
+      onClick={[Function]}
+      shape={
+        <Dot
+          r={4}
+        />
       }
-      scale="auto"
-      type="number"
+      xAxisId={0}
+      yAxisId={0}
       zAxisId={0}
     />
-    <CartesianGrid
-      fill="none"
-      horizontal={true}
-      horizontalFill={Array []}
-      horizontalPoints={Array []}
-      stroke="#ccc"
-      vertical={true}
-      verticalFill={Array []}
-      verticalPoints={Array []}
+    <Scatter
+      animationBegin={0}
+      animationDuration={400}
+      animationEasing="linear"
+      data={Array []}
+      fill="#000000"
+      hide={false}
+      isAnimationActive={true}
+      legendType="circle"
+      lineJointType="linear"
+      lineType="joint"
+      name="CouplingScoresCompared"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      shape={
+        <Dot
+          r={4}
+        />
+      }
+      xAxisId={0}
+      yAxisId={0}
+      zAxisId={0}
     />
     <Tooltip
       active={false}
@@ -128,60 +156,36 @@ exports[`ContactMapComponent Should match existing snapshot when given empty dat
       }
       wrapperStyle={Object {}}
     />
-    <Scatter
-      animationBegin={0}
-      animationDuration={400}
-      animationEasing="linear"
-      data={Array []}
-      fill="#009999"
-      hide={false}
-      isAnimationActive={true}
-      legendType="circle"
-      lineJointType="linear"
-      lineType="joint"
-      name="contacts_monomer"
-      onClick={[Function]}
-      shape="circle"
-      xAxisId={0}
-      yAxisId={0}
-      zAxisId={0}
-    />
-    <Scatter
-      animationBegin={0}
-      animationDuration={400}
-      animationEasing="linear"
-      data={Array []}
-      fill="#000000"
-      hide={false}
-      isAnimationActive={true}
-      legendType="circle"
-      lineJointType="linear"
-      lineType="joint"
-      name="CouplingScoresCompared"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      shape="circle"
-      xAxisId={0}
-      yAxisId={0}
-      zAxisId={0}
-    />
   </ScatterChart>
   <ChellSlider
     defaultValue={99}
     label="Probability"
     max={100}
     min={0}
+    onChange={[Function]}
+  />
+  <ChellSlider
+    defaultValue={4}
+    label="Node Size"
+    max={5}
+    min={1}
     onChange={[Function]}
   />
 </div>
 `;
 
 exports[`ContactMapComponent Should match existing snapshot when given no data. 1`] = `
-<div>
+<div
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
+>
   <ScatterChart
     barCategoryGap="10%"
     barGap={4}
-    height={400}
+    height={370}
     layout="horizontal"
     margin={
       Object {
@@ -193,7 +197,7 @@ exports[`ContactMapComponent Should match existing snapshot when given no data. 
     }
     reverseStackOrder={false}
     stackOffset="none"
-    width={400}
+    width={370}
   >
     <XAxis
       allowDataOverflow={false}
@@ -202,8 +206,8 @@ exports[`ContactMapComponent Should match existing snapshot when given no data. 
       dataKey="i"
       domain={
         Array [
-          995,
-          5,
+          1,
+          1,
         ]
       }
       height={30}
@@ -230,8 +234,8 @@ exports[`ContactMapComponent Should match existing snapshot when given no data. 
       dataKey="j"
       domain={
         Array [
-          995,
-          5,
+          1,
+          1,
         ]
       }
       height={0}
@@ -251,28 +255,50 @@ exports[`ContactMapComponent Should match existing snapshot when given no data. 
       width={60}
       yAxisId={0}
     />
-    }
-    <ZAxis
-      dataKey="dist"
-      range={
-        Array [
-          64,
-          64,
-        ]
+    <Scatter
+      animationBegin={0}
+      animationDuration={400}
+      animationEasing="linear"
+      data={Array []}
+      fill="#009999"
+      hide={false}
+      isAnimationActive={true}
+      legendType="circle"
+      lineJointType="linear"
+      lineType="joint"
+      name="contacts_monomer"
+      onClick={[Function]}
+      shape={
+        <Dot
+          r={4}
+        />
       }
-      scale="auto"
-      type="number"
+      xAxisId={0}
+      yAxisId={0}
       zAxisId={0}
     />
-    <CartesianGrid
-      fill="none"
-      horizontal={true}
-      horizontalFill={Array []}
-      horizontalPoints={Array []}
-      stroke="#ccc"
-      vertical={true}
-      verticalFill={Array []}
-      verticalPoints={Array []}
+    <Scatter
+      animationBegin={0}
+      animationDuration={400}
+      animationEasing="linear"
+      data={Array []}
+      fill="#000000"
+      hide={false}
+      isAnimationActive={true}
+      legendType="circle"
+      lineJointType="linear"
+      lineType="joint"
+      name="CouplingScoresCompared"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      shape={
+        <Dot
+          r={4}
+        />
+      }
+      xAxisId={0}
+      yAxisId={0}
+      zAxisId={0}
     />
     <Tooltip
       active={false}
@@ -303,43 +329,6 @@ exports[`ContactMapComponent Should match existing snapshot when given no data. 
         }
       }
       wrapperStyle={Object {}}
-    />
-    <Scatter
-      animationBegin={0}
-      animationDuration={400}
-      animationEasing="linear"
-      data={Array []}
-      fill="#009999"
-      hide={false}
-      isAnimationActive={true}
-      legendType="circle"
-      lineJointType="linear"
-      lineType="joint"
-      name="contacts_monomer"
-      onClick={[Function]}
-      shape="circle"
-      xAxisId={0}
-      yAxisId={0}
-      zAxisId={0}
-    />
-    <Scatter
-      animationBegin={0}
-      animationDuration={400}
-      animationEasing="linear"
-      data={Array []}
-      fill="#000000"
-      hide={false}
-      isAnimationActive={true}
-      legendType="circle"
-      lineJointType="linear"
-      lineType="joint"
-      name="CouplingScoresCompared"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      shape="circle"
-      xAxisId={0}
-      yAxisId={0}
-      zAxisId={0}
     />
   </ScatterChart>
   <ChellSlider
@@ -349,15 +338,28 @@ exports[`ContactMapComponent Should match existing snapshot when given no data. 
     min={0}
     onChange={[Function]}
   />
+  <ChellSlider
+    defaultValue={4}
+    label="Node Size"
+    max={5}
+    min={1}
+    onChange={[Function]}
+  />
 </div>
 `;
 
 exports[`ContactMapComponent Should match existing snapshot when given sample data. 1`] = `
-<div>
+<div
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
+>
   <ScatterChart
     barCategoryGap="10%"
     barGap={4}
-    height={400}
+    height={370}
     layout="horizontal"
     margin={
       Object {
@@ -369,7 +371,7 @@ exports[`ContactMapComponent Should match existing snapshot when given sample da
     }
     reverseStackOrder={false}
     stackOffset="none"
-    width={400}
+    width={370}
   >
     <XAxis
       allowDataOverflow={false}
@@ -378,8 +380,8 @@ exports[`ContactMapComponent Should match existing snapshot when given sample da
       dataKey="i"
       domain={
         Array [
-          995,
-          5,
+          1,
+          1,
         ]
       }
       height={30}
@@ -406,8 +408,8 @@ exports[`ContactMapComponent Should match existing snapshot when given sample da
       dataKey="j"
       domain={
         Array [
-          995,
-          5,
+          1,
+          1,
         ]
       }
       height={0}
@@ -427,28 +429,50 @@ exports[`ContactMapComponent Should match existing snapshot when given sample da
       width={60}
       yAxisId={0}
     />
-    }
-    <ZAxis
-      dataKey="dist"
-      range={
-        Array [
-          64,
-          64,
-        ]
+    <Scatter
+      animationBegin={0}
+      animationDuration={400}
+      animationEasing="linear"
+      data={Array []}
+      fill="#009999"
+      hide={false}
+      isAnimationActive={true}
+      legendType="circle"
+      lineJointType="linear"
+      lineType="joint"
+      name="contacts_monomer"
+      onClick={[Function]}
+      shape={
+        <Dot
+          r={4}
+        />
       }
-      scale="auto"
-      type="number"
+      xAxisId={0}
+      yAxisId={0}
       zAxisId={0}
     />
-    <CartesianGrid
-      fill="none"
-      horizontal={true}
-      horizontalFill={Array []}
-      horizontalPoints={Array []}
-      stroke="#ccc"
-      vertical={true}
-      verticalFill={Array []}
-      verticalPoints={Array []}
+    <Scatter
+      animationBegin={0}
+      animationDuration={400}
+      animationEasing="linear"
+      data={Array []}
+      fill="#000000"
+      hide={false}
+      isAnimationActive={true}
+      legendType="circle"
+      lineJointType="linear"
+      lineType="joint"
+      name="CouplingScoresCompared"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      shape={
+        <Dot
+          r={4}
+        />
+      }
+      xAxisId={0}
+      yAxisId={0}
+      zAxisId={0}
     />
     <Tooltip
       active={false}
@@ -480,49 +504,19 @@ exports[`ContactMapComponent Should match existing snapshot when given sample da
       }
       wrapperStyle={Object {}}
     />
-    <Scatter
-      animationBegin={0}
-      animationDuration={400}
-      animationEasing="linear"
-      data={Array []}
-      fill="#009999"
-      hide={false}
-      isAnimationActive={true}
-      legendType="circle"
-      lineJointType="linear"
-      lineType="joint"
-      name="contacts_monomer"
-      onClick={[Function]}
-      shape="circle"
-      xAxisId={0}
-      yAxisId={0}
-      zAxisId={0}
-    />
-    <Scatter
-      animationBegin={0}
-      animationDuration={400}
-      animationEasing="linear"
-      data={Array []}
-      fill="#000000"
-      hide={false}
-      isAnimationActive={true}
-      legendType="circle"
-      lineJointType="linear"
-      lineType="joint"
-      name="CouplingScoresCompared"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      shape="circle"
-      xAxisId={0}
-      yAxisId={0}
-      zAxisId={0}
-    />
   </ScatterChart>
   <ChellSlider
     defaultValue={99}
     label="Probability"
     max={100}
     min={0}
+    onChange={[Function]}
+  />
+  <ChellSlider
+    defaultValue={4}
+    label="Node Size"
+    max={5}
+    min={1}
     onChange={[Function]}
   />
 </div>

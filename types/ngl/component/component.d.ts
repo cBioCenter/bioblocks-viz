@@ -310,6 +310,7 @@ declare module 'ngl' {
 
   export interface IRepresentationElementParameters {
     name: string;
+    sele: string;
     status: string;
     visible: boolean;
   }

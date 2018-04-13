@@ -9,7 +9,7 @@ declare module 'chell' {
   interface IContactMapData {
     contactMonomer: IMonomerContact[];
     couplingScore: ICouplingScore[];
-    distanceMapMonomer: IDistanceMapMonomer[];
+    distanceMapMonomer?: IDistanceMapMonomer[];
   }
 
   interface IMonomerContact {
