@@ -298,7 +298,7 @@
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in src/component/SpringComponent.tsx:18</li>
-							<li>Defined in src/component/ContactMapComponent.tsx:23</li>
+							<li>Defined in src/component/ContactMapComponent.tsx:30</li>
 						</ul>
 					</aside>
 				</section>
@@ -319,7 +319,7 @@
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in src/component/NGLComponent.tsx:38</li>
-							<li>Defined in src/component/ContactMapComponent.tsx:24</li>
+							<li>Defined in src/component/ContactMapComponent.tsx:31</li>
 						</ul>
 					</aside>
 				</section>
@@ -349,10 +349,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-variable">
 					<a name="contactmapcomponent" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> Contact<wbr>Map<wbr>Component</h3>
-					<div class="tsd-signature tsd-kind-icon">Contact<wbr>Map<wbr>Component<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultProps,class ContactMapComponentClass extends React.Component&lt;Props, State&gt; {public readonly state: State &#x3D; initialState;constructor(props: Props) {super(props);}public componentDidUpdate(prevProps: Props, prevState: State) {const { data } &#x3D; this.props;const isFreshDataView &#x3D; data !&#x3D;&#x3D; prevProps.data || this.state.probabilityFilter !&#x3D;&#x3D; prevState.probabilityFilter;if (isFreshDataView) {let max &#x3D; initialState.max_x;let min &#x3D; initialState.min_x;data.contactMonomer.forEach(contact &#x3D;&gt; {max &#x3D; Math.max(max, contact.i);min &#x3D; Math.min(min, contact.i);});data.couplingScore.filter(coupling &#x3D;&gt; coupling.probability &gt;&#x3D; this.state.probabilityFilter).forEach(coupling &#x3D;&gt; {max &#x3D; Math.max(max, coupling.i);min &#x3D; Math.min(min, coupling.i);});this.setState({max_x: max,min_x: min,});}}public render() {const { data, selectedData } &#x3D; this.props;const minOffset &#x3D; this.state.min_x - 5 - this.state.min_x % 5;const maxOffset &#x3D; this.state.max_x + 5 + this.state.max_x % 5;const domain &#x3D; [Math.max(0, minOffset), maxOffset];const blackDots &#x3D; new Array&lt;ICouplingScore&gt;();data.couplingScore.filter(coupling &#x3D;&gt; coupling.probability &gt;&#x3D; this.state.probabilityFilter).forEach(coupling &#x3D;&gt; {blackDots.push(coupling);blackDots.push({...coupling,i: coupling.j,// tslint:disable-next-line:object-literal-sort-keysA_i: coupling.A_j,j: coupling.i,A_j: coupling.A_i,});});return data ? (&lt;div style&#x3D;{{ padding: 10 }}&gt;&lt;ScatterChart width&#x3D;{370} height&#x3D;{370}&gt;&lt;XAxis type&#x3D;&quot;number&quot; dataKey&#x3D;{&#x27;i&#x27;} orientation&#x3D;{&#x27;top&#x27;} domain&#x3D;{domain} /&gt;&lt;YAxis type&#x3D;&quot;number&quot; dataKey&#x3D;{&#x27;j&#x27;} reversed&#x3D;{true} domain&#x3D;{domain} /&gt;{selectedData &amp;&amp; &lt;ReferenceLine x&#x3D;{selectedData} stroke&#x3D;{&#x27;#ff0000&#x27;} /&gt;}{selectedData &amp;&amp; &lt;ReferenceLine y&#x3D;{selectedData} stroke&#x3D;{&#x27;#ff0000&#x27;} /&gt;}&lt;Scattername&#x3D;&quot;contacts_monomer&quot;data&#x3D;{data.contactMonomer}fill&#x3D;&quot;#009999&quot;onClick&#x3D;{this.onClick()}shape&#x3D;{&lt;Dot r&#x3D;{this.state.nodeSize} /&gt;}/&gt;&lt;Scattername&#x3D;&quot;CouplingScoresCompared&quot;data&#x3D;{blackDots}fill&#x3D;&quot;#000000&quot;onClick&#x3D;{this.onClick()}onMouseEnter&#x3D;{this.onMouseEnter()}shape&#x3D;{&lt;Dot r&#x3D;{this.state.nodeSize} /&gt;}/&gt;&lt;Tooltip /&gt;&lt;/ScatterChart&gt;&lt;ChellSlidermax&#x3D;{100}min&#x3D;{0}label&#x3D;{&#x27;Probability&#x27;}defaultValue&#x3D;{99}onChange&#x3D;{this.onProbabilityChange()}/&gt;&lt;ChellSlidermax&#x3D;{5}min&#x3D;{1}label&#x3D;{&#x27;Node Size&#x27;}defaultValue&#x3D;{this.state.nodeSize}onChange&#x3D;{this.onNodeSizeChange()}/&gt;&lt;/div&gt;) : null;}protected onClick &#x3D; () &#x3D;&gt; (coupling: ICouplingScore) &#x3D;&gt; {if (this.props.onClick) {this.props.onClick(coupling);}};protected onProbabilityChange &#x3D; () &#x3D;&gt; (value: number) &#x3D;&gt; {this.setState({probabilityFilter: value / 100,});};protected onNodeSizeChange &#x3D; () &#x3D;&gt; (value: number) &#x3D;&gt; {this.setState({nodeSize: value,});};protected onMouseEnter &#x3D; () &#x3D;&gt; (e: { [key: string]: any; payload: ICouplingScore }) &#x3D;&gt; {const { payload } &#x3D; e;const { onMouseEnter } &#x3D; this.props;if (onMouseEnter) {onMouseEnter(payload);}};/*Exposed recharts mouse events to potentially become props:- onMouseDown- onMouseUp- onMouseMove- onMouseOut- onMouseOver- onMouseLeave*/},)</span></div>
+					<div class="tsd-signature tsd-kind-icon">Contact<wbr>Map<wbr>Component<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultProps,class ContactMapComponentClass extends React.Component&lt;Props, State&gt; {public readonly state: State &#x3D; initialState;constructor(props: Props) {super(props);}public componentDidMount() {const { data } &#x3D; this.props;if (data) {this.setupData(data);}}public componentDidUpdate(prevProps: Props, prevState: State) {const { data } &#x3D; this.props;const isFreshDataView &#x3D; data !&#x3D;&#x3D; prevProps.data || this.state.probabilityFilter !&#x3D;&#x3D; prevState.probabilityFilter;if (isFreshDataView) {this.setupData(data);}}public render() {const { data, selectedData } &#x3D; this.props;const { blackDots, domain } &#x3D; this.state;return data ? (&lt;div style&#x3D;{{ padding: 10 }}&gt;&lt;ScatterChart width&#x3D;{370} height&#x3D;{370}&gt;&lt;XAxis type&#x3D;&quot;number&quot; dataKey&#x3D;{&#x27;i&#x27;} orientation&#x3D;{&#x27;top&#x27;} domain&#x3D;{domain} /&gt;&lt;YAxis type&#x3D;&quot;number&quot; dataKey&#x3D;{&#x27;j&#x27;} reversed&#x3D;{true} domain&#x3D;{domain} /&gt;{typeof selectedData &#x3D;&#x3D;&#x3D; &#x27;number&#x27; &amp;&amp; &lt;ReferenceLine x&#x3D;{selectedData} stroke&#x3D;{&#x27;#ff0000&#x27;} /&gt;}{typeof selectedData &#x3D;&#x3D;&#x3D; &#x27;number&#x27; &amp;&amp; &lt;ReferenceLine y&#x3D;{selectedData} stroke&#x3D;{&#x27;#ff0000&#x27;} /&gt;}&lt;Scattername&#x3D;&quot;contacts_monomer&quot;data&#x3D;{data.contactMonomer}fill&#x3D;&quot;#009999&quot;onClick&#x3D;{this.onClick()}shape&#x3D;{&lt;Dot r&#x3D;{this.state.nodeSize} /&gt;}/&gt;&lt;Scattername&#x3D;&quot;CouplingScoresCompared&quot;data&#x3D;{blackDots}fill&#x3D;&quot;#000000&quot;onClick&#x3D;{this.onClick()}onMouseEnter&#x3D;{this.onMouseEnter()}shape&#x3D;{&lt;Dot r&#x3D;{this.state.nodeSize} /&gt;}/&gt;&lt;Tooltip /&gt;&lt;/ScatterChart&gt;&lt;ChellSlidermax&#x3D;{100}min&#x3D;{0}label&#x3D;{&#x27;Probability&#x27;}defaultValue&#x3D;{99}onChange&#x3D;{this.onProbabilityChange()}/&gt;&lt;ChellSlidermax&#x3D;{5}min&#x3D;{1}label&#x3D;{&#x27;Node Size&#x27;}defaultValue&#x3D;{this.state.nodeSize}onChange&#x3D;{this.onNodeSizeChange()}/&gt;&lt;/div&gt;) : null;}protected setupData(data: CONTACT_MAP_DATA_TYPE) {let max &#x3D; initialState.max_x;let min &#x3D; initialState.min_x;const blackDots &#x3D; new Array&lt;ICouplingScore&gt;();data.contactMonomer.forEach(contact &#x3D;&gt; {max &#x3D; Math.max(max, contact.i);min &#x3D; Math.min(min, contact.i);});data.couplingScore.filter(coupling &#x3D;&gt; coupling.probability &gt;&#x3D; this.state.probabilityFilter).forEach(coupling &#x3D;&gt; {max &#x3D; Math.max(max, coupling.i);min &#x3D; Math.min(min, coupling.i);blackDots.push(coupling);blackDots.push({...coupling,i: coupling.j,// tslint:disable-next-line:object-literal-sort-keysA_i: coupling.A_j,j: coupling.i,A_j: coupling.A_i,});});const minOffset &#x3D; min - 5 - min % 5;const maxOffset &#x3D; max + 5 + max % 5;this.setState({blackDots,domain: [Math.max(0, minOffset), maxOffset],});}protected onClick &#x3D; () &#x3D;&gt; (coupling: ICouplingScore) &#x3D;&gt; {if (this.props.onClick) {this.props.onClick(coupling);}};protected onProbabilityChange &#x3D; () &#x3D;&gt; (value: number) &#x3D;&gt; {this.setState({probabilityFilter: value / 100,});};protected onNodeSizeChange &#x3D; () &#x3D;&gt; (value: number) &#x3D;&gt; {this.setState({nodeSize: value,});};protected onMouseEnter &#x3D; () &#x3D;&gt; (e: { [key: string]: any; payload: ICouplingScore }) &#x3D;&gt; {const { payload } &#x3D; e;const { onMouseEnter } &#x3D; this.props;if (onMouseEnter) {onMouseEnter(payload);}};/*Exposed recharts mouse events to potentially become props:- onMouseDown- onMouseUp- onMouseMove- onMouseOut- onMouseOver- onMouseLeave*/},)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/ContactMapComponent.tsx:26</li>
+							<li>Defined in src/component/ContactMapComponent.tsx:33</li>
 						</ul>
 					</aside>
 				</section>
@@ -785,13 +785,33 @@
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
+						<a name="initialstate.blackdots" class="tsd-anchor"></a>
+						<h3>black<wbr>Dots</h3>
+						<div class="tsd-signature tsd-kind-icon">black<wbr>Dots<span class="tsd-signature-symbol">:</span> <a href="interfaces/_chell_.icouplingscore.html" class="tsd-signature-type">ICouplingScore</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;new Array&lt;ICouplingScore&gt;()</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/component/ContactMapComponent.tsx:22</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
+						<a name="initialstate.domain" class="tsd-anchor"></a>
+						<h3>domain</h3>
+						<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[1000, 0]</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/component/ContactMapComponent.tsx:23</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
 						<a name="initialstate.max_x" class="tsd-anchor"></a>
 						<h3>max_<wbr>x</h3>
 						<div class="tsd-signature tsd-kind-icon">max_<wbr>x<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 						<aside class="tsd-sources">
 							<ul>
 								<li>Defined in src/component/NGLComponent.tsx:28</li>
-								<li>Defined in src/component/ContactMapComponent.tsx:21</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:24</li>
 							</ul>
 						</aside>
 					</section>
@@ -802,7 +822,7 @@
 						<aside class="tsd-sources">
 							<ul>
 								<li>Defined in src/component/NGLComponent.tsx:29</li>
-								<li>Defined in src/component/ContactMapComponent.tsx:21</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:25</li>
 							</ul>
 						</aside>
 					</section>
@@ -813,7 +833,7 @@
 						<aside class="tsd-sources">
 							<ul>
 								<li>Defined in src/component/NGLComponent.tsx:30</li>
-								<li>Defined in src/component/ContactMapComponent.tsx:21</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:26</li>
 							</ul>
 						</aside>
 					</section>
@@ -824,7 +844,7 @@
 						<aside class="tsd-sources">
 							<ul>
 								<li>Defined in src/component/NGLComponent.tsx:31</li>
-								<li>Defined in src/component/ContactMapComponent.tsx:21</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:27</li>
 							</ul>
 						</aside>
 					</section>

@@ -18,7 +18,14 @@ const defaultProps = {
   onMouseEnter: undefined as ContactMapCallback | undefined,
   selectedData: undefined as number | undefined,
 };
-const initialState = { min_x: 1000, max_x: 0, nodeSize: 4, probabilityFilter: 0.99 };
+const initialState = {
+  blackDots: new Array<ICouplingScore>(),
+  domain: [1000, 0],
+  max_x: 0,
+  min_x: 1000,
+  nodeSize: 4,
+  probabilityFilter: 0.99,
+};
 
 type Props = {} & typeof defaultProps;
 type State = Readonly<typeof initialState>;
@@ -32,53 +39,31 @@ export const ContactMapComponent = withDefaultProps(
       super(props);
     }
 
+    public componentDidMount() {
+      const { data } = this.props;
+      if (data) {
+        this.setupData(data);
+      }
+    }
+
     public componentDidUpdate(prevProps: Props, prevState: State) {
       const { data } = this.props;
       const isFreshDataView = data !== prevProps.data || this.state.probabilityFilter !== prevState.probabilityFilter;
       if (isFreshDataView) {
-        let max = initialState.max_x;
-        let min = initialState.min_x;
-        data.contactMonomer.forEach(contact => {
-          max = Math.max(max, contact.i);
-          min = Math.min(min, contact.i);
-        });
-        data.couplingScore
-          .filter(coupling => coupling.probability >= this.state.probabilityFilter)
-          .forEach(coupling => {
-            max = Math.max(max, coupling.i);
-            min = Math.min(min, coupling.i);
-          });
-        this.setState({
-          max_x: max,
-          min_x: min,
-        });
+        this.setupData(data);
       }
     }
 
     public render() {
       const { data, selectedData } = this.props;
-      const minOffset = this.state.min_x - 5 - this.state.min_x % 5;
-      const maxOffset = this.state.max_x + 5 + this.state.max_x % 5;
-      const domain = [Math.max(0, minOffset), maxOffset];
-      const blackDots = new Array<ICouplingScore>();
-      data.couplingScore.filter(coupling => coupling.probability >= this.state.probabilityFilter).forEach(coupling => {
-        blackDots.push(coupling);
-        blackDots.push({
-          ...coupling,
-          i: coupling.j,
-          // tslint:disable-next-line:object-literal-sort-keys
-          A_i: coupling.A_j,
-          j: coupling.i,
-          A_j: coupling.A_i,
-        });
-      });
+      const { blackDots, domain } = this.state;
       return data ? (
         <div style={{ padding: 10 }}>
           <ScatterChart width={370} height={370}>
             <XAxis type="number" dataKey={'i'} orientation={'top'} domain={domain} />
             <YAxis type="number" dataKey={'j'} reversed={true} domain={domain} />
-            {selectedData && <ReferenceLine x={selectedData} stroke={'#ff0000'} />}
-            {selectedData && <ReferenceLine y={selectedData} stroke={'#ff0000'} />}
+            {typeof selectedData === 'number' && <ReferenceLine x={selectedData} stroke={'#ff0000'} />}
+            {typeof selectedData === 'number' && <ReferenceLine y={selectedData} stroke={'#ff0000'} />}
             <Scatter
               name="contacts_monomer"
               data={data.contactMonomer}
@@ -112,6 +97,36 @@ export const ContactMapComponent = withDefaultProps(
           />
         </div>
       ) : null;
+    }
+
+    protected setupData(data: CONTACT_MAP_DATA_TYPE) {
+      let max = initialState.max_x;
+      let min = initialState.min_x;
+      const blackDots = new Array<ICouplingScore>();
+      data.contactMonomer.forEach(contact => {
+        max = Math.max(max, contact.i);
+        min = Math.min(min, contact.i);
+      });
+      data.couplingScore.filter(coupling => coupling.probability >= this.state.probabilityFilter).forEach(coupling => {
+        max = Math.max(max, coupling.i);
+        min = Math.min(min, coupling.i);
+        blackDots.push(coupling);
+        blackDots.push({
+          ...coupling,
+          i: coupling.j,
+          // tslint:disable-next-line:object-literal-sort-keys
+          A_i: coupling.A_j,
+          j: coupling.i,
+          A_j: coupling.A_i,
+        });
+      });
+
+      const minOffset = min - 5 - min % 5;
+      const maxOffset = max + 5 + max % 5;
+      this.setState({
+        blackDots,
+        domain: [Math.max(0, minOffset), maxOffset],
+      });
     }
 
     protected onClick = () => (coupling: ICouplingScore) => {
