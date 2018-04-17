@@ -6,7 +6,6 @@ import { withDefaultProps } from '../helper/ReactHelper';
 const defaultProps = {
   data: [[0], [0]] as T_SNE_DATA_TYPE,
   height: 450,
-  margin: { top: 20, right: 20, bottom: 20, left: 20 },
   width: 450,
 };
 
@@ -16,7 +15,6 @@ const initialState = {
 };
 
 type Props = {} & typeof defaultProps;
-
 type State = typeof initialState;
 
 export const TComponent = withDefaultProps(
