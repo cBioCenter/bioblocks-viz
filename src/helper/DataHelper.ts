@@ -1,25 +1,20 @@
-import { CONTACT_MAP_DATA_TYPE, IMonomerContact } from 'chell';
+import { CONTACT_MAP_DATA_TYPE, IMonomerContact, VIZ_TYPE } from 'chell';
 import * as d3 from 'd3';
 import * as NGL from 'ngl';
 import { ISpringCategoricalColorData, ISpringCategoricalColorDataInput, ISpringGraphData } from 'spring';
-import { VIZ_TYPE } from '../component/VizSelectorPanel';
 
 export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
-  try {
-    switch (viz) {
-      case VIZ_TYPE['T-SNE']:
-        return fetchTSneCoordinateData(dataDir);
-      case VIZ_TYPE.SPRING:
-        return deriveSpringData(dataDir);
-      case VIZ_TYPE.NGL:
-        return fetchNGLData(dataDir);
-      case VIZ_TYPE.CONTACT_MAP:
-        return fetchContactMapData(dataDir);
-      default:
-        return Promise.reject({ error: `Currently no appropriate data getter for ${viz}` });
-    }
-  } catch (e) {
-    return Promise.resolve();
+  switch (viz) {
+    case VIZ_TYPE['T-SNE']:
+      return fetchTSneCoordinateData(dataDir);
+    case VIZ_TYPE.SPRING:
+      return deriveSpringData(dataDir);
+    case VIZ_TYPE.NGL:
+      return fetchNGLData(dataDir);
+    case VIZ_TYPE.CONTACT_MAP:
+      return fetchContactMapData(dataDir);
+    default:
+      return Promise.reject({ error: `Currently no appropriate data getter for ${viz}` });
   }
 };
 

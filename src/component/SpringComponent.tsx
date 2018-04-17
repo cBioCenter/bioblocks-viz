@@ -1,10 +1,9 @@
+import { SPRING_DATA_TYPE } from 'chell';
 import * as d3 from 'd3';
 import * as PIXI from 'pixi.js';
 import * as React from 'react';
 import { ISpringGraphData, ISpringLink, ISpringNode } from 'spring';
 import { withDefaultProps } from '../helper/ReactHelper';
-
-export type SPRING_DATA_TYPE = ISpringGraphData;
 
 const defaultProps = {
   canvasBackgroundColor: 0xcccccc,
@@ -12,43 +11,72 @@ const defaultProps = {
     links: [],
     nodes: [],
   } as SPRING_DATA_TYPE,
+  height: 450,
   selectedCategory: '',
+  width: 450,
 };
 
+const initialState = {
+  canvasHeight: 0,
+  canvasWidth: 0,
+};
 type Props = {} & typeof defaultProps;
+type State = typeof initialState;
 
 export const SpringComponent = withDefaultProps(
   defaultProps,
-  class SpringComponentClass extends React.Component<Props, any> {
+  class SpringComponentClass extends React.Component<Props, State> {
     protected pixiApp: PIXI.Application = new PIXI.Application();
 
     protected canvasElement?: HTMLCanvasElement;
-    protected canvasWidth = 600;
-    protected canvasHeight = 600;
 
     protected nodeSprites: PIXI.Container = new PIXI.Container();
     protected edgeSprites: PIXI.Container = new PIXI.Container();
 
     constructor(props: Props) {
       super(props);
+      this.state = {
+        ...this.state,
+        canvasHeight: Math.floor(0.9 * this.props.height),
+        canvasWidth: Math.floor(0.9 * this.props.width),
+      };
     }
 
     public componentDidMount() {
-      this.pixiApp = new PIXI.Application(this.canvasWidth, this.canvasHeight, {
+      const { canvasHeight, canvasWidth } = this.state;
+      this.pixiApp = new PIXI.Application(canvasHeight, canvasWidth, {
         backgroundColor: this.props.canvasBackgroundColor,
         view: this.canvasElement,
       });
+
+      const { pixiApp } = this;
+      const { data, selectedCategory } = this.props;
+      if (data) {
+        pixiApp.stage.removeChildren();
+
+        this.nodeSprites = new PIXI.Container();
+        this.edgeSprites = new PIXI.Container();
+
+        this.generateNodeSprites(data.nodes, this.nodeSprites, selectedCategory);
+        this.generateLinesSprite(data.links, this.edgeSprites, selectedCategory);
+
+        this.centerCanvas(data);
+
+        pixiApp.stage.addChild(this.edgeSprites);
+        pixiApp.stage.addChild(this.nodeSprites);
+      }
     }
 
-    public componentDidUpdate(prevProps: Props, prevState: any) {
+    public componentDidUpdate(prevProps: Props, prevState: State) {
       const { data, selectedCategory } = this.props;
       const isNewData = data && data !== prevProps.data;
       if (isNewData) {
         const { pixiApp } = this;
         pixiApp.stage.removeChildren();
 
-        this.nodeSprites.removeChildren();
-        this.edgeSprites.removeChildren();
+        this.nodeSprites = new PIXI.Container();
+        this.edgeSprites = new PIXI.Container();
+
         this.generateNodeSprites(data.nodes, this.nodeSprites, selectedCategory);
         this.generateLinesSprite(data.links, this.edgeSprites, selectedCategory);
 
@@ -65,11 +93,11 @@ export const SpringComponent = withDefaultProps(
     }
 
     public render() {
-      const style = { width: this.canvasWidth, height: this.canvasHeight };
+      const canvasStyle = { width: this.state.canvasWidth, height: this.state.canvasHeight };
       return (
-        <div id="SpringComponent" style={style}>
+        <div id="SpringComponent" style={{ height: this.props.height, padding: 15, width: this.props.width }}>
           <div id="PixiCanvasHolder">
-            {<canvas ref={el => (this.canvasElement = el ? el : undefined)} style={style} />}
+            {<canvas ref={el => (this.canvasElement = el ? el : undefined)} style={canvasStyle} />}
           </div>
         </div>
       );
@@ -77,6 +105,7 @@ export const SpringComponent = withDefaultProps(
 
     protected generateLinesSprite(links: ISpringLink[] = [], container: PIXI.Container, category?: string) {
       const lines = new PIXI.Graphics();
+      const { canvasHeight, canvasWidth } = this.state;
       for (const link of links) {
         const source = link.source as ISpringNode;
         const target = link.target as ISpringNode;
@@ -92,13 +121,13 @@ export const SpringComponent = withDefaultProps(
       const textureRect = new PIXI.Rectangle(
         linesBounds.x,
         linesBounds.y,
-        Math.max(this.canvasWidth, linesBounds.width),
-        Math.max(this.canvasHeight, linesBounds.height),
+        Math.max(canvasWidth, linesBounds.width),
+        Math.max(canvasHeight, linesBounds.height),
       );
       const linesTexture = this.pixiApp.renderer.generateTexture(
         lines,
         PIXI.SCALE_MODES.LINEAR,
-        this.canvasWidth / this.canvasHeight,
+        canvasWidth / canvasHeight,
         textureRect,
       );
       const linesSprite = new PIXI.Sprite(linesTexture);
@@ -145,8 +174,8 @@ export const SpringComponent = withDefaultProps(
     }
 
     protected centerCanvas(data: ISpringGraphData) {
-      const { edgeSprites, canvasHeight, nodeSprites, canvasWidth } = this;
-
+      const { edgeSprites, nodeSprites } = this;
+      const { canvasHeight, canvasWidth } = this.state;
       const allXs = data.nodes.map(node => node.x);
       const allYs = data.nodes.map(node => node.y);
 

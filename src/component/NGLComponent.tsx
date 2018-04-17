@@ -5,7 +5,6 @@ import { ICouplingScore } from 'chell';
 import { PickingProxy, Stage, StructureComponent, StructureRepresentationType } from 'ngl';
 import { Dropdown, DropdownItemProps } from 'semantic-ui-react';
 
-export type NGL_DATA_TYPE = NGL.Structure;
 export type NGL_HOVER_CB_RESULT_TYPE = number;
 
 export interface INGLComponentProps {

@@ -5,8 +5,9 @@ exports[`SpringComponent Should match existing snapshot when given simple data. 
   id="SpringComponent"
   style={
     Object {
-      "height": 600,
-      "width": 600,
+      "height": 450,
+      "padding": 15,
+      "width": 450,
     }
   }
 >
@@ -16,8 +17,8 @@ exports[`SpringComponent Should match existing snapshot when given simple data. 
     <canvas
       style={
         Object {
-          "height": 600,
-          "width": 600,
+          "height": 405,
+          "width": 405,
         }
       }
     />

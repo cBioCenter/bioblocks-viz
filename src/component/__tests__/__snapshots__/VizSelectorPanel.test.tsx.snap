@@ -5,7 +5,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
   className="VizSelectorPanel"
   style={
     Object {
-      "width": 400,
+      "width": 450,
     }
   }
 >
@@ -14,37 +14,14 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     additionPosition="top"
     closeOnBlur={true}
     deburr={false}
+    defaultValue="Contact Map"
     fluid={true}
     icon="dropdown"
     minCharacters={1}
     noResultsMessage="No results found."
     onChange={[Function]}
     openOnFocus={true}
-    options={
-      Array [
-        Object {
-          "key": "CONTACT_MAP",
-          "text": "Contact Map",
-          "value": "Contact Map",
-        },
-        Object {
-          "key": "NGL",
-          "text": "NGL",
-          "value": "NGL",
-        },
-        Object {
-          "key": "SPRING",
-          "text": "Spring",
-          "value": "Spring",
-        },
-        Object {
-          "key": "T-SNE",
-          "text": "T-SNE",
-          "value": "T-SNE",
-        },
-      ]
-    }
-    placeholder="Select a Visualization!"
+    options={Array []}
     renderLabel={[Function]}
     searchInput="text"
     selectOnBlur={true}
@@ -63,6 +40,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
           "distanceMapMonomer": Array [],
         }
       }
+      onMouseEnter={[Function]}
     />
   </Card>
 </div>
@@ -73,7 +51,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
   className="VizSelectorPanel"
   style={
     Object {
-      "width": 400,
+      "width": 450,
     }
   }
 >
@@ -82,37 +60,14 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     additionPosition="top"
     closeOnBlur={true}
     deburr={false}
+    defaultValue="NGL"
     fluid={true}
     icon="dropdown"
     minCharacters={1}
     noResultsMessage="No results found."
     onChange={[Function]}
     openOnFocus={true}
-    options={
-      Array [
-        Object {
-          "key": "CONTACT_MAP",
-          "text": "Contact Map",
-          "value": "Contact Map",
-        },
-        Object {
-          "key": "NGL",
-          "text": "NGL",
-          "value": "NGL",
-        },
-        Object {
-          "key": "SPRING",
-          "text": "Spring",
-          "value": "Spring",
-        },
-        Object {
-          "key": "T-SNE",
-          "text": "T-SNE",
-          "value": "T-SNE",
-        },
-      ]
-    }
-    placeholder="Select a Visualization!"
+    options={Array []}
     renderLabel={[Function]}
     searchInput="text"
     selectOnBlur={true}
@@ -123,7 +78,9 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     fluid={true}
     raised={true}
   >
-    <NGLComponent />
+    <NGLComponent
+      onHoverPickCallback={[Function]}
+    />
   </Card>
 </div>
 `;
@@ -133,7 +90,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
   className="VizSelectorPanel"
   style={
     Object {
-      "width": 400,
+      "width": 450,
     }
   }
 >
@@ -142,37 +99,14 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     additionPosition="top"
     closeOnBlur={true}
     deburr={false}
+    defaultValue="Spring"
     fluid={true}
     icon="dropdown"
     minCharacters={1}
     noResultsMessage="No results found."
     onChange={[Function]}
     openOnFocus={true}
-    options={
-      Array [
-        Object {
-          "key": "CONTACT_MAP",
-          "text": "Contact Map",
-          "value": "Contact Map",
-        },
-        Object {
-          "key": "NGL",
-          "text": "NGL",
-          "value": "NGL",
-        },
-        Object {
-          "key": "SPRING",
-          "text": "Spring",
-          "value": "Spring",
-        },
-        Object {
-          "key": "T-SNE",
-          "text": "T-SNE",
-          "value": "T-SNE",
-        },
-      ]
-    }
-    placeholder="Select a Visualization!"
+    options={Array []}
     renderLabel={[Function]}
     searchInput="text"
     selectOnBlur={true}
@@ -191,7 +125,9 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
           "nodes": Array [],
         }
       }
+      height={450}
       selectedCategory=""
+      width={450}
     />
   </Card>
 </div>
@@ -202,7 +138,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
   className="VizSelectorPanel"
   style={
     Object {
-      "width": 400,
+      "width": 450,
     }
   }
 >
@@ -211,37 +147,14 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     additionPosition="top"
     closeOnBlur={true}
     deburr={false}
+    defaultValue="T-SNE"
     fluid={true}
     icon="dropdown"
     minCharacters={1}
     noResultsMessage="No results found."
     onChange={[Function]}
     openOnFocus={true}
-    options={
-      Array [
-        Object {
-          "key": "CONTACT_MAP",
-          "text": "Contact Map",
-          "value": "Contact Map",
-        },
-        Object {
-          "key": "NGL",
-          "text": "NGL",
-          "value": "NGL",
-        },
-        Object {
-          "key": "SPRING",
-          "text": "Spring",
-          "value": "Spring",
-        },
-        Object {
-          "key": "T-SNE",
-          "text": "T-SNE",
-          "value": "T-SNE",
-        },
-      ]
-    }
-    placeholder="Select a Visualization!"
+    options={Array []}
     renderLabel={[Function]}
     searchInput="text"
     selectOnBlur={true}
@@ -252,17 +165,19 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     fluid={true}
     raised={true}
   >
-    <TComponent
-      height={400}
-      margin={
-        Object {
-          "bottom": 20,
-          "left": 20,
-          "right": 20,
-          "top": 20,
-        }
+    <TComponentClass
+      data={
+        Array [
+          Array [
+            0,
+          ],
+          Array [
+            0,
+          ],
+        ]
       }
-      width={400}
+      height={450}
+      width={450}
     />
   </Card>
 </div>
@@ -273,7 +188,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given no initial v
   className="VizSelectorPanel"
   style={
     Object {
-      "width": 400,
+      "width": 450,
     }
   }
 >
@@ -282,37 +197,14 @@ exports[`VizSelectorPanel Should match existing snapshot when given no initial v
     additionPosition="top"
     closeOnBlur={true}
     deburr={false}
+    defaultValue="T-SNE"
     fluid={true}
     icon="dropdown"
     minCharacters={1}
     noResultsMessage="No results found."
     onChange={[Function]}
     openOnFocus={true}
-    options={
-      Array [
-        Object {
-          "key": "CONTACT_MAP",
-          "text": "Contact Map",
-          "value": "Contact Map",
-        },
-        Object {
-          "key": "NGL",
-          "text": "NGL",
-          "value": "NGL",
-        },
-        Object {
-          "key": "SPRING",
-          "text": "Spring",
-          "value": "Spring",
-        },
-        Object {
-          "key": "T-SNE",
-          "text": "T-SNE",
-          "value": "T-SNE",
-        },
-      ]
-    }
-    placeholder="Select a Visualization!"
+    options={Array []}
     renderLabel={[Function]}
     searchInput="text"
     selectOnBlur={true}
@@ -323,17 +215,19 @@ exports[`VizSelectorPanel Should match existing snapshot when given no initial v
     fluid={true}
     raised={true}
   >
-    <TComponent
-      height={400}
-      margin={
-        Object {
-          "bottom": 20,
-          "left": 20,
-          "right": 20,
-          "top": 20,
-        }
+    <TComponentClass
+      data={
+        Array [
+          Array [
+            0,
+          ],
+          Array [
+            0,
+          ],
+        ]
       }
-      width={400}
+      height={450}
+      width={450}
     />
   </Card>
 </div>
