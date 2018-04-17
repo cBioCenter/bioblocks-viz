@@ -20,5 +20,8 @@
     "target": "es5"
   },
   "exclude": ["node_modules"],
-  "include": ["src/**/*", "types", "configs/**/*"]
+  "include": ["src/**/*", "types", "configs/**/*"],
+  "typeAcquisition": {
+    "enable": true
+  }
 }

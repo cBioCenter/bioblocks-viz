@@ -7,14 +7,6 @@ exports[`TContainer Should match existing snapshot when given no data. 1`] = `
   <TComponentClass
     data={Array []}
     height={450}
-    margin={
-      Object {
-        "bottom": 20,
-        "left": 20,
-        "right": 20,
-        "top": 20,
-      }
-    }
     width={450}
   />
   <ChellSlider
@@ -41,14 +33,6 @@ exports[`TContainer Should update when given a new data directory. 1`] = `
   <TComponentClass
     data={Array []}
     height={450}
-    margin={
-      Object {
-        "bottom": 20,
-        "left": 20,
-        "right": 20,
-        "top": 20,
-      }
-    }
     width={450}
   />
   <ChellSlider

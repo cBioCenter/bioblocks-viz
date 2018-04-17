@@ -177,14 +177,6 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
         ]
       }
       height={450}
-      margin={
-        Object {
-          "bottom": 20,
-          "left": 20,
-          "right": 20,
-          "top": 20,
-        }
-      }
       width={450}
     />
   </Card>
@@ -235,14 +227,6 @@ exports[`VizSelectorPanel Should match existing snapshot when given no initial v
         ]
       }
       height={450}
-      margin={
-        Object {
-          "bottom": 20,
-          "left": 20,
-          "right": 20,
-          "top": 20,
-        }
-      }
       width={450}
     />
   </Card>
