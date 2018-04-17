@@ -1,7 +1,6 @@
+import { T_SNE_DATA_TYPE } from 'chell';
 import * as React from 'react';
 import { CartesianGrid, Margin, Scatter, ScatterChart, XAxis, YAxis } from 'recharts';
-
-export type T_SNE_DATA_TYPE = number[][];
 
 export interface ITComponentProps {
   data?: T_SNE_DATA_TYPE;

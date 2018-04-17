@@ -11,6 +11,7 @@
     "noUnusedParameters": false,
     "outDir": "./dist/",
     "paths": {
+      "chell": ["types/chell.ts"],
       "react": ["node_modules/@types/react"],
       "tsnejs": ["node_modules/tsnejs/tsne.js"]
     },

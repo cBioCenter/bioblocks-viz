@@ -1,9 +1,10 @@
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
+import { VIZ_TYPE } from 'chell';
 import * as React from 'react';
 
-import { VIZ_TYPE, VizSelectorPanel } from '../VizSelectorPanel';
+import { VizSelectorPanel } from '../VizSelectorPanel';
 
 describe('VizSelectorPanel', () => {
   const testData = {};

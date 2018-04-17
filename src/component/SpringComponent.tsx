@@ -1,10 +1,9 @@
+import { SPRING_DATA_TYPE } from 'chell';
 import * as d3 from 'd3';
 import * as PIXI from 'pixi.js';
 import * as React from 'react';
 import { ISpringGraphData, ISpringLink, ISpringNode } from 'spring';
 import { withDefaultProps } from '../helper/ReactHelper';
-
-export type SPRING_DATA_TYPE = ISpringGraphData;
 
 const defaultProps = {
   canvasBackgroundColor: 0xcccccc,

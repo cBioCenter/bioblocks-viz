@@ -34,7 +34,7 @@ exports[`VizPanelContainer Should match existing snapshot when given a single vi
   <GridColumn
     key="0"
   >
-    <VizSelectorPanel
+    <VizSelectorPanelClass
       data={Object {}}
       initialViz="T-SNE"
       onDataSelect={[Function]}

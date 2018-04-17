@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Grid, GridRow } from 'semantic-ui-react';
 
-import { VIZ_TYPE } from './component/VizSelectorPanel';
+import { VIZ_TYPE } from 'chell';
 import { VizPanelContainer } from './container/VizPanelContainer';
 
 export class ChellVizApp extends React.Component<any, any> {
@@ -12,19 +12,20 @@ export class ChellVizApp extends React.Component<any, any> {
           <GridRow>
             <VizPanelContainer
               dataDirs={['1', '2', '3'].map(dir => `assets/contact_map/example${dir}`)}
+              supportedVisualizations={[VIZ_TYPE.CONTACT_MAP, VIZ_TYPE.NGL]}
               initialVisualizations={[VIZ_TYPE.CONTACT_MAP, VIZ_TYPE.NGL]}
               numPanels={2}
             />
           </GridRow>
         </Grid>
-        {/*<GridRow>
+        <GridRow>
           <VizPanelContainer
             dataDirs={['centroids', 'centroids_subset', 'ngl', 'spring2/full'].map(dir => `assets/${dir}`)}
             initialVisualizations={[VIZ_TYPE['T-SNE'], VIZ_TYPE.SPRING]}
+            supportedVisualizations={[VIZ_TYPE['T-SNE'], VIZ_TYPE.SPRING]}
             numPanels={2}
           />
         </GridRow>
-        */}
       </div>
     );
   }

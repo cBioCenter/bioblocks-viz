@@ -1,4 +1,4 @@
-import { VIZ_TYPE } from '../../component/VizSelectorPanel';
+import { VIZ_TYPE } from 'chell';
 import { fetchAppropriateData } from '../DataHelper';
 
 describe('DataHelper', () => {

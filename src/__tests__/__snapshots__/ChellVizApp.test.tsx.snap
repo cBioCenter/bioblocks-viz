@@ -9,7 +9,7 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
     divided="vertically"
   >
     <GridRow>
-      <VizPanelContainer
+      <VizPanelContainerClass
         dataDirs={
           Array [
             "assets/contact_map/example1",
@@ -24,8 +24,39 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
           ]
         }
         numPanels={2}
+        supportedVisualizations={
+          Array [
+            "Contact Map",
+            "NGL",
+          ]
+        }
       />
     </GridRow>
   </Grid>
+  <GridRow>
+    <VizPanelContainerClass
+      dataDirs={
+        Array [
+          "assets/centroids",
+          "assets/centroids_subset",
+          "assets/ngl",
+          "assets/spring2/full",
+        ]
+      }
+      initialVisualizations={
+        Array [
+          "T-SNE",
+          "Spring",
+        ]
+      }
+      numPanels={2}
+      supportedVisualizations={
+        Array [
+          "T-SNE",
+          "Spring",
+        ]
+      }
+    />
+  </GridRow>
 </div>
 `;
