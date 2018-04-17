@@ -92,6 +92,7 @@ export const VizPanelContainer = withDefaultProps(
             initialViz={initialVisualizations[i]}
             onDataSelect={this.onDataSelect()}
             selectedData={this.state.selectedData}
+            supportedVisualizations={this.props.supportedVisualizations}
           />,
         );
       }

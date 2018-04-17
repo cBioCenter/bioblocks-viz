@@ -17,15 +17,15 @@ export class ChellVizApp extends React.Component<any, any> {
               numPanels={2}
             />
           </GridRow>
+          <GridRow>
+            <VizPanelContainer
+              dataDirs={['centroids', 'centroids_subset', 'ngl', 'spring2/full'].map(dir => `assets/${dir}`)}
+              initialVisualizations={[VIZ_TYPE['T-SNE'], VIZ_TYPE.SPRING]}
+              supportedVisualizations={[VIZ_TYPE['T-SNE'], VIZ_TYPE.SPRING]}
+              numPanels={2}
+            />
+          </GridRow>
         </Grid>
-        <GridRow>
-          <VizPanelContainer
-            dataDirs={['centroids', 'centroids_subset', 'ngl', 'spring2/full'].map(dir => `assets/${dir}`)}
-            initialVisualizations={[VIZ_TYPE['T-SNE'], VIZ_TYPE.SPRING]}
-            supportedVisualizations={[VIZ_TYPE['T-SNE'], VIZ_TYPE.SPRING]}
-            numPanels={2}
-          />
-        </GridRow>
       </div>
     );
   }

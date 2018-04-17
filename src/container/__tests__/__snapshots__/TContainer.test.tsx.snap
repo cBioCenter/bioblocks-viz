@@ -4,9 +4,9 @@ exports[`TContainer Should match existing snapshot when given no data. 1`] = `
 <div
   id="TContainer"
 >
-  <TComponent
+  <TComponentClass
     data={Array []}
-    height={400}
+    height={450}
     margin={
       Object {
         "bottom": 20,
@@ -15,7 +15,7 @@ exports[`TContainer Should match existing snapshot when given no data. 1`] = `
         "top": 20,
       }
     }
-    width={400}
+    width={450}
   />
   <ChellSlider
     defaultValue={5}
@@ -38,9 +38,9 @@ exports[`TContainer Should update when given a new data directory. 1`] = `
 <div
   id="TContainer"
 >
-  <TComponent
+  <TComponentClass
     data={Array []}
-    height={400}
+    height={450}
     margin={
       Object {
         "bottom": 20,
@@ -49,7 +49,7 @@ exports[`TContainer Should update when given a new data directory. 1`] = `
         "top": 20,
       }
     }
-    width={400}
+    width={450}
   />
   <ChellSlider
     defaultValue={5}

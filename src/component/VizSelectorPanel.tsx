@@ -12,11 +12,14 @@ import { ContactMapComponent } from './ContactMapComponent';
 
 const defaultProps = {
   data: {} as Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>,
+  height: 450,
   initialViz: VIZ_TYPE['T-SNE'],
   onDataSelect: (e: any) => {
     return;
   },
   selectedData: undefined as ICouplingScore | undefined,
+  supportedVisualizations: [] as VIZ_TYPE[],
+  width: 450,
 };
 
 const initialState = {
@@ -39,12 +42,6 @@ export const VizSelectorPanel = withDefaultProps(
   class VizSelectorPanelClass extends React.Component<Props, State> {
     public readonly state: State = initialState;
 
-    protected dropdownItems: DropdownItemProps[] = Object.keys(VIZ_TYPE).map(viz => ({
-      key: viz,
-      text: VIZ_TYPE[viz as keyof typeof VIZ_TYPE],
-      value: VIZ_TYPE[viz as keyof typeof VIZ_TYPE],
-    }));
-
     constructor(props: Props) {
       super(props);
       this.state = {
@@ -53,20 +50,19 @@ export const VizSelectorPanel = withDefaultProps(
     }
 
     public render() {
-      const style = {
-        width: 400,
-      };
+      const { data, selectedData, supportedVisualizations, width } = this.props;
+
       return (
-        <div className="VizSelectorPanel" style={style}>
+        <div className="VizSelectorPanel" style={{ width }}>
           <Dropdown
-            options={this.dropdownItems}
+            options={this.generateDropdownItems(supportedVisualizations)}
             placeholder={'Select a Visualization!'}
             fluid={true}
             onChange={this.onVizSelect}
           />
           {
             <Card fluid={true} raised={true}>
-              {this.renderVizContainer(this.state.selectedViz, this.props.data, this.props.selectedData)}
+              {this.renderVizContainer(this.state.selectedViz, data, selectedData)}
             </Card>
           }
         </div>
@@ -78,11 +74,12 @@ export const VizSelectorPanel = withDefaultProps(
       data: Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>,
       selectedData?: ICouplingScore | number,
     ) {
+      const { height, width } = this.props;
       switch (viz) {
         case VIZ_TYPE['T-SNE']:
-          return <TComponent data={data['T-SNE'] as T_SNE_DATA_TYPE} />;
+          return <TComponent data={data['T-SNE'] as T_SNE_DATA_TYPE} height={height} width={width} />;
         case VIZ_TYPE.SPRING:
-          return <SpringComponent data={data.Spring as ISpringGraphData} />;
+          return <SpringComponent data={data.Spring as ISpringGraphData} height={height} width={width} />;
         case VIZ_TYPE.NGL:
           return (
             <NGLComponent
@@ -108,6 +105,16 @@ export const VizSelectorPanel = withDefaultProps(
       this.setState({
         selectedViz: data.value,
       });
+    };
+
+    protected generateDropdownItems = (supportedVisualizations: VIZ_TYPE[]): DropdownItemProps[] => {
+      return supportedVisualizations
+        .map(viz => ({
+          key: viz,
+          text: viz,
+          value: viz,
+        }))
+        .sort((a, b) => a.key.localeCompare(b.key));
     };
   },
 );
