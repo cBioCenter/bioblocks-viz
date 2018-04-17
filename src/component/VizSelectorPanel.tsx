@@ -56,9 +56,9 @@ export const VizSelectorPanel = withDefaultProps(
         <div className="VizSelectorPanel" style={{ width }}>
           <Dropdown
             options={this.generateDropdownItems(supportedVisualizations)}
-            placeholder={'Select a Visualization!'}
             fluid={true}
             onChange={this.onVizSelect}
+            defaultValue={this.props.initialViz}
           />
           {
             <Card fluid={true} raised={true}>

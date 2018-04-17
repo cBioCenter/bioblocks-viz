@@ -14,6 +14,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     additionPosition="top"
     closeOnBlur={true}
     deburr={false}
+    defaultValue="Contact Map"
     fluid={true}
     icon="dropdown"
     minCharacters={1}
@@ -21,7 +22,6 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     onChange={[Function]}
     openOnFocus={true}
     options={Array []}
-    placeholder="Select a Visualization!"
     renderLabel={[Function]}
     searchInput="text"
     selectOnBlur={true}
@@ -60,6 +60,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     additionPosition="top"
     closeOnBlur={true}
     deburr={false}
+    defaultValue="NGL"
     fluid={true}
     icon="dropdown"
     minCharacters={1}
@@ -67,7 +68,6 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     onChange={[Function]}
     openOnFocus={true}
     options={Array []}
-    placeholder="Select a Visualization!"
     renderLabel={[Function]}
     searchInput="text"
     selectOnBlur={true}
@@ -99,6 +99,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     additionPosition="top"
     closeOnBlur={true}
     deburr={false}
+    defaultValue="Spring"
     fluid={true}
     icon="dropdown"
     minCharacters={1}
@@ -106,7 +107,6 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     onChange={[Function]}
     openOnFocus={true}
     options={Array []}
-    placeholder="Select a Visualization!"
     renderLabel={[Function]}
     searchInput="text"
     selectOnBlur={true}
@@ -147,6 +147,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     additionPosition="top"
     closeOnBlur={true}
     deburr={false}
+    defaultValue="T-SNE"
     fluid={true}
     icon="dropdown"
     minCharacters={1}
@@ -154,7 +155,6 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     onChange={[Function]}
     openOnFocus={true}
     options={Array []}
-    placeholder="Select a Visualization!"
     renderLabel={[Function]}
     searchInput="text"
     selectOnBlur={true}
@@ -197,6 +197,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given no initial v
     additionPosition="top"
     closeOnBlur={true}
     deburr={false}
+    defaultValue="T-SNE"
     fluid={true}
     icon="dropdown"
     minCharacters={1}
@@ -204,7 +205,6 @@ exports[`VizSelectorPanel Should match existing snapshot when given no initial v
     onChange={[Function]}
     openOnFocus={true}
     options={Array []}
-    placeholder="Select a Visualization!"
     renderLabel={[Function]}
     searchInput="text"
     selectOnBlur={true}

@@ -48,6 +48,23 @@ export const SpringComponent = withDefaultProps(
         backgroundColor: this.props.canvasBackgroundColor,
         view: this.canvasElement,
       });
+
+      const { pixiApp } = this;
+      const { data, selectedCategory } = this.props;
+      if (data) {
+        pixiApp.stage.removeChildren();
+
+        this.nodeSprites = new PIXI.Container();
+        this.edgeSprites = new PIXI.Container();
+
+        this.generateNodeSprites(data.nodes, this.nodeSprites, selectedCategory);
+        this.generateLinesSprite(data.links, this.edgeSprites, selectedCategory);
+
+        this.centerCanvas(data);
+
+        pixiApp.stage.addChild(this.edgeSprites);
+        pixiApp.stage.addChild(this.nodeSprites);
+      }
     }
 
     public componentDidUpdate(prevProps: Props, prevState: State) {
@@ -57,8 +74,9 @@ export const SpringComponent = withDefaultProps(
         const { pixiApp } = this;
         pixiApp.stage.removeChildren();
 
-        this.nodeSprites.removeChildren();
-        this.edgeSprites.removeChildren();
+        this.nodeSprites = new PIXI.Container();
+        this.edgeSprites = new PIXI.Container();
+
         this.generateNodeSprites(data.nodes, this.nodeSprites, selectedCategory);
         this.generateLinesSprite(data.links, this.edgeSprites, selectedCategory);
 
