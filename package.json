@@ -8,6 +8,7 @@
     "npm": "^5.6.0",
     "yarn": "^1.5.0"
   },
+  "homepage": "https://cbiocenter.github.io/chell-viz/",
   "jest": {
     "collectCoverageFrom": ["src/**/*.{ts,tsx}"],
     "coverageDirectory": "dist/jest/coverage",
@@ -52,6 +53,8 @@
     "build": "webpack --config ./configs/webpack.dev.ts",
     "build:prod": "webpack --config ./configs/webpack.prod.ts",
     "build:test": "tsc",
+    "predeploy": "yarn build:prod && yarn doc && cp -r docs dist && cp README.md dist",
+    "deploy": "gh-pages -d dist",
     "doc":
       "rm -rf node_modules/typedoc/node_modules/typescript ; typedoc --out docs/api --includeDeclarations --excludeExternals --mode file",
     "doc:precommit": "yarn doc && git add docs/api && git add -u docs/api",
@@ -102,6 +105,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
     "extract-text-webpack-plugin": "^3.0.2",
+    "gh-pages": "^1.1.0",
     "global": "^4.3.2",
     "html-webpack-plugin": "^3.0.4",
     "husky": "^0.14.3",
