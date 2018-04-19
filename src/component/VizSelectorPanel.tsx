@@ -96,6 +96,42 @@ export const VizSelectorPanel = withDefaultProps(
               selectedData={selectedData as number}
             />
           );
+        case VIZ_TYPE.CONTACT_MAP_DYGRAPH:
+          return (
+            <ContactMapComponent
+              chartLib={'dygraph'}
+              data={data['Contact Map'] as IContactMapData}
+              onMouseEnter={this.props.onDataSelect}
+              selectedData={selectedData as number}
+            />
+          );
+        case VIZ_TYPE.CONTACT_MAP_HIGH_CHART:
+          return (
+            <ContactMapComponent
+              chartLib={'highchart'}
+              data={data['Contact Map'] as IContactMapData}
+              onMouseEnter={this.props.onDataSelect}
+              selectedData={selectedData as number}
+            />
+          );
+        case VIZ_TYPE.CONTACT_MAP_PLOTLY:
+          return (
+            <ContactMapComponent
+              chartLib={'plotly'}
+              data={data['Contact Map'] as IContactMapData}
+              onMouseEnter={this.props.onDataSelect}
+              selectedData={selectedData as number}
+            />
+          );
+        case VIZ_TYPE.CONTACT_MAP_RECHART:
+          return (
+            <ContactMapComponent
+              chartLib={'rechart'}
+              data={data['Contact Map'] as IContactMapData}
+              onMouseEnter={this.props.onDataSelect}
+              selectedData={selectedData as number}
+            />
+          );
         default:
           throw new Error(`Unknown viz: ${viz}`);
       }

@@ -43,6 +43,7 @@ module.exports = {
     new CopyWebpackPlugin([
       {
         from: './assets',
+        ignore: ['*.pdf'],
         to: './assets',
         toType: 'dir',
       },

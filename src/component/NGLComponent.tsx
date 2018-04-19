@@ -142,10 +142,12 @@ export class NGLComponent extends React.Component<INGLComponentProps, State> {
       rep.setParameters({ opacity: 1.0 });
     });
 
+    /*
     structureComponent.stage.mouseControls.add(
       NGL.MouseActions.HOVER_PICK,
       (aStage: Stage, pickingProxy: PickingProxy) => this.onHover(aStage, pickingProxy, data, structureComponent),
     );
+    */
   }
 
   protected onHover(

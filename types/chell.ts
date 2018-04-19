@@ -14,6 +14,10 @@ export type CHELL_DATA_TYPE = CONTACT_MAP_DATA_TYPE | NGL_DATA_TYPE | SPRING_DAT
 
 export enum VIZ_TYPE {
   CONTACT_MAP = 'Contact Map',
+  CONTACT_MAP_DYGRAPH = 'Contact Map (Dygraph)',
+  CONTACT_MAP_PLOTLY = 'Contact Map (Plotly)',
+  CONTACT_MAP_RECHART = 'Contact Map (Rechart)',
+  CONTACT_MAP_HIGH_CHART = 'Contact Map (HighChart)',
   NGL = 'NGL',
   SPRING = 'Spring',
   'T-SNE' = 'T-SNE',

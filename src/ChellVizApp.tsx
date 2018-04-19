@@ -11,12 +11,20 @@ export class ChellVizApp extends React.Component<any, any> {
         <Grid centered={true} divided={'vertically'}>
           <GridRow>
             <VizPanelContainer
-              dataDirs={['1', '2', '3'].map(dir => `assets/contact_map/example${dir}`)}
-              supportedVisualizations={[VIZ_TYPE.CONTACT_MAP, VIZ_TYPE.NGL]}
-              initialVisualizations={[VIZ_TYPE.CONTACT_MAP, VIZ_TYPE.NGL]}
-              numPanels={2}
+              dataDirs={['1', '2', '3', '_100k', '_1m'].map(dir => `assets/contact_map/example${dir}`)}
+              supportedVisualizations={[
+                VIZ_TYPE.CONTACT_MAP,
+                VIZ_TYPE.CONTACT_MAP_DYGRAPH,
+                VIZ_TYPE.CONTACT_MAP_HIGH_CHART,
+                VIZ_TYPE.CONTACT_MAP_PLOTLY,
+                VIZ_TYPE.CONTACT_MAP_RECHART,
+                VIZ_TYPE.NGL,
+              ]}
+              initialVisualizations={[VIZ_TYPE.CONTACT_MAP_DYGRAPH]}
+              numPanels={1}
             />
           </GridRow>
+          {/*
           <GridRow>
             <VizPanelContainer
               dataDirs={['centroids', 'centroids_subset', 'ngl', 'spring2/full'].map(dir => `assets/${dir}`)}
@@ -25,6 +33,7 @@ export class ChellVizApp extends React.Component<any, any> {
               numPanels={2}
             />
           </GridRow>
+          */}
         </Grid>
       </div>
     );

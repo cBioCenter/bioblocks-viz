@@ -1,5 +1,201 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`VizSelectorPanel Should match existing snapshot when given initial viz of Contact Map (Dygraph). 1`] = `
+<div
+  className="VizSelectorPanel"
+  style={
+    Object {
+      "width": 450,
+    }
+  }
+>
+  <Dropdown
+    additionLabel="Add "
+    additionPosition="top"
+    closeOnBlur={true}
+    deburr={false}
+    defaultValue="Contact Map (Dygraph)"
+    fluid={true}
+    icon="dropdown"
+    minCharacters={1}
+    noResultsMessage="No results found."
+    onChange={[Function]}
+    openOnFocus={true}
+    options={Array []}
+    renderLabel={[Function]}
+    searchInput="text"
+    selectOnBlur={true}
+    selectOnNavigation={true}
+    wrapSelection={true}
+  />
+  <Card
+    fluid={true}
+    raised={true}
+  >
+    <ContactMapComponentClass
+      chartLib="dygraph"
+      contactColor="#009999"
+      couplingColor="#000000"
+      data={
+        Object {
+          "contactMonomer": Array [],
+          "couplingScore": Array [],
+          "distanceMapMonomer": Array [],
+        }
+      }
+      onMouseEnter={[Function]}
+    />
+  </Card>
+</div>
+`;
+
+exports[`VizSelectorPanel Should match existing snapshot when given initial viz of Contact Map (HighChart). 1`] = `
+<div
+  className="VizSelectorPanel"
+  style={
+    Object {
+      "width": 450,
+    }
+  }
+>
+  <Dropdown
+    additionLabel="Add "
+    additionPosition="top"
+    closeOnBlur={true}
+    deburr={false}
+    defaultValue="Contact Map (HighChart)"
+    fluid={true}
+    icon="dropdown"
+    minCharacters={1}
+    noResultsMessage="No results found."
+    onChange={[Function]}
+    openOnFocus={true}
+    options={Array []}
+    renderLabel={[Function]}
+    searchInput="text"
+    selectOnBlur={true}
+    selectOnNavigation={true}
+    wrapSelection={true}
+  />
+  <Card
+    fluid={true}
+    raised={true}
+  >
+    <ContactMapComponentClass
+      chartLib="highchart"
+      contactColor="#009999"
+      couplingColor="#000000"
+      data={
+        Object {
+          "contactMonomer": Array [],
+          "couplingScore": Array [],
+          "distanceMapMonomer": Array [],
+        }
+      }
+      onMouseEnter={[Function]}
+    />
+  </Card>
+</div>
+`;
+
+exports[`VizSelectorPanel Should match existing snapshot when given initial viz of Contact Map (Plotly). 1`] = `
+<div
+  className="VizSelectorPanel"
+  style={
+    Object {
+      "width": 450,
+    }
+  }
+>
+  <Dropdown
+    additionLabel="Add "
+    additionPosition="top"
+    closeOnBlur={true}
+    deburr={false}
+    defaultValue="Contact Map (Plotly)"
+    fluid={true}
+    icon="dropdown"
+    minCharacters={1}
+    noResultsMessage="No results found."
+    onChange={[Function]}
+    openOnFocus={true}
+    options={Array []}
+    renderLabel={[Function]}
+    searchInput="text"
+    selectOnBlur={true}
+    selectOnNavigation={true}
+    wrapSelection={true}
+  />
+  <Card
+    fluid={true}
+    raised={true}
+  >
+    <ContactMapComponentClass
+      chartLib="plotly"
+      contactColor="#009999"
+      couplingColor="#000000"
+      data={
+        Object {
+          "contactMonomer": Array [],
+          "couplingScore": Array [],
+          "distanceMapMonomer": Array [],
+        }
+      }
+      onMouseEnter={[Function]}
+    />
+  </Card>
+</div>
+`;
+
+exports[`VizSelectorPanel Should match existing snapshot when given initial viz of Contact Map (Rechart). 1`] = `
+<div
+  className="VizSelectorPanel"
+  style={
+    Object {
+      "width": 450,
+    }
+  }
+>
+  <Dropdown
+    additionLabel="Add "
+    additionPosition="top"
+    closeOnBlur={true}
+    deburr={false}
+    defaultValue="Contact Map (Rechart)"
+    fluid={true}
+    icon="dropdown"
+    minCharacters={1}
+    noResultsMessage="No results found."
+    onChange={[Function]}
+    openOnFocus={true}
+    options={Array []}
+    renderLabel={[Function]}
+    searchInput="text"
+    selectOnBlur={true}
+    selectOnNavigation={true}
+    wrapSelection={true}
+  />
+  <Card
+    fluid={true}
+    raised={true}
+  >
+    <ContactMapComponentClass
+      chartLib="rechart"
+      contactColor="#009999"
+      couplingColor="#000000"
+      data={
+        Object {
+          "contactMonomer": Array [],
+          "couplingScore": Array [],
+          "distanceMapMonomer": Array [],
+        }
+      }
+      onMouseEnter={[Function]}
+    />
+  </Card>
+</div>
+`;
+
 exports[`VizSelectorPanel Should match existing snapshot when given initial viz of Contact Map. 1`] = `
 <div
   className="VizSelectorPanel"
@@ -33,6 +229,9 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     raised={true}
   >
     <ContactMapComponentClass
+      chartLib="rechart"
+      contactColor="#009999"
+      couplingColor="#000000"
       data={
         Object {
           "contactMonomer": Array [],
