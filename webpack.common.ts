@@ -36,6 +36,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
+      filename: 'app.html',
       inject: true,
       template: './index.html',
       title: 'Development',
