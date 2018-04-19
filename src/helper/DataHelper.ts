@@ -12,10 +12,6 @@ export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
     case VIZ_TYPE.NGL:
       return fetchNGLData(dataDir);
     case VIZ_TYPE.CONTACT_MAP:
-    case VIZ_TYPE.CONTACT_MAP_DYGRAPH:
-    case VIZ_TYPE.CONTACT_MAP_HIGH_CHART:
-    case VIZ_TYPE.CONTACT_MAP_PLOTLY:
-    case VIZ_TYPE.CONTACT_MAP_RECHART:
       return fetchContactMapData(dataDir);
     default:
       return Promise.reject({ error: `Currently no appropriate data getter for ${viz}` });

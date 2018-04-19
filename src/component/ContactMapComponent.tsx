@@ -2,10 +2,6 @@
 import * as React from 'react';
 import PlotlyChart from 'react-plotlyjs-ts';
 
-import Dygraph from 'dygraphs';
-import * as ReactHighcharts from 'react-highcharts';
-import { Dot, ReferenceLine, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from 'recharts';
-
 import { CONTACT_MAP_DATA_TYPE, ICouplingScore } from 'chell';
 import { Config, Layout } from 'plotly.js';
 import { withDefaultProps } from '../helper/ReactHelper';
@@ -15,7 +11,6 @@ export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
 export type ContactMapCallback = (coupling: CONTACT_MAP_CB_RESULT_TYPE) => void;
 
 const defaultProps = {
-  chartLib: 'rechart' as 'dygraph' | 'highchart' | 'plotly' | 'rechart',
   contactColor: '#009999',
   couplingColor: '#000000',
   data: {
@@ -45,9 +40,6 @@ export const ContactMapComponent = withDefaultProps(
   class ContactMapComponentClass extends React.Component<Props, State> {
     public readonly state: State = initialState;
 
-    protected dygraphElement: HTMLElement | null = null;
-    protected dygraph?: Dygraph;
-
     constructor(props: Props) {
       super(props);
     }
@@ -60,37 +52,17 @@ export const ContactMapComponent = withDefaultProps(
     }
 
     public componentDidUpdate(prevProps: Props, prevState: State) {
-      const { chartLib, data } = this.props;
+      const { data } = this.props;
       const isFreshDataView = data !== prevProps.data || this.state.probabilityFilter !== prevState.probabilityFilter;
       if (isFreshDataView) {
         this.setupData(data);
       }
-      if (chartLib === 'dygraph' && this.dygraphElement && data.contactMonomer.length >= 1) {
-        this.dygraph = new Dygraph(this.dygraphElement, data.contactMonomer.map(contact => [contact.i, contact.j]), {
-          drawAxesAtZero: true,
-          drawGrid: true,
-          drawPoints: true,
-          pointSize: this.state.nodeSize,
-          strokeWidth: 0.0,
-        });
-      }
     }
 
     public render() {
-      const { chartLib, data } = this.props;
+      const { data } = this.props;
       if (data) {
-        switch (chartLib) {
-          case 'dygraph':
-            return this.renderDygraph();
-          case 'highchart':
-            return this.renderHighChart();
-          case 'plotly':
-            return this.renderPlotly();
-          case 'rechart':
-            return this.renderRechart();
-          default:
-            throw new Error(`Unsupported Chart rendering library '${chartLib}`);
-        }
+        return this.renderPlotly();
       } else {
         return null;
       }
@@ -147,6 +119,14 @@ export const ContactMapComponent = withDefaultProps(
             ]}
             layout={layout}
           />
+          {this.renderSliders()}
+        </div>
+      );
+    }
+
+    protected renderSliders() {
+      return (
+        <div>
           <ChellSlider
             max={100}
             min={0}
@@ -164,106 +144,6 @@ export const ContactMapComponent = withDefaultProps(
         </div>
       );
     }
-
-    protected renderRechart() {
-      const { contactColor, couplingColor, data, selectedData } = this.props;
-      const { blackDots, domain } = this.state;
-      return (
-        <div style={{ padding: 10 }}>
-          <ScatterChart width={370} height={370}>
-            <XAxis type="number" dataKey={'i'} orientation={'top'} domain={domain} />
-            <YAxis type="number" dataKey={'j'} reversed={true} domain={domain} />
-            {typeof selectedData === 'number' && <ReferenceLine x={selectedData} stroke={'#ff0000'} />}
-            {typeof selectedData === 'number' && <ReferenceLine y={selectedData} stroke={'#ff0000'} />}
-            <Scatter
-              name="contacts_monomer"
-              data={data.contactMonomer}
-              fill={contactColor}
-              onClick={this.onClick()}
-              shape={<Dot r={this.state.nodeSize} />}
-            />
-            <Scatter
-              name="CouplingScoresCompared"
-              data={blackDots}
-              fill={couplingColor}
-              onClick={this.onClick()}
-              onMouseEnter={this.onMouseEnter()}
-              shape={<Dot r={this.state.nodeSize} />}
-            />
-            <Tooltip />
-          </ScatterChart>
-          <ChellSlider
-            max={100}
-            min={0}
-            label={'Probability'}
-            defaultValue={99}
-            onChange={this.onProbabilityChange()}
-          />
-          <ChellSlider
-            max={5}
-            min={1}
-            label={'Node Size'}
-            defaultValue={this.state.nodeSize}
-            onChange={this.onNodeSizeChange()}
-          />
-        </div>
-      );
-    }
-
-    protected renderHighChart() {
-      const { contactColor, couplingColor, data } = this.props;
-      const { blackDots } = this.state;
-
-      const config = {
-        legend: {
-          enabled: false,
-        },
-        series: [
-          {
-            color: contactColor,
-            data: data.contactMonomer.map(contact => [contact.i, contact.j]),
-            type: 'scatter',
-          },
-          {
-            color: couplingColor,
-            data: blackDots.map(coupling => [coupling.i, coupling.j]),
-            type: 'scatter',
-          },
-        ],
-        title: '',
-        yAxis: {
-          reversed: true,
-        },
-      };
-      return (
-        <div style={{ padding: 10 }}>
-          <ReactHighcharts config={config} />
-          <ChellSlider
-            max={100}
-            min={0}
-            label={'Probability'}
-            defaultValue={99}
-            onChange={this.onProbabilityChange()}
-          />
-          <ChellSlider
-            max={5}
-            min={1}
-            label={'Node Size'}
-            defaultValue={this.state.nodeSize}
-            onChange={this.onNodeSizeChange()}
-          />
-        </div>
-      );
-    }
-
-    protected renderDygraph() {
-      return (
-        <div style={{ padding: 10 }}>
-          <div ref={el => (this.dygraphElement = el)} style={{ height: 370, width: 370 }} />
-        </div>
-      );
-    }
-
     protected setupData(data: CONTACT_MAP_DATA_TYPE) {
       let max = initialState.max_x;
       const blackDots = new Array<ICouplingScore>();

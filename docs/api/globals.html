@@ -190,7 +190,7 @@
 					<div class="tsd-signature tsd-kind-icon">CONTACT_<wbr>MAP_<wbr>CB_<wbr>RESULT_<wbr>TYPE<span class="tsd-signature-symbol">:</span> <a href="interfaces/icouplingscore.html" class="tsd-signature-type">ICouplingScore</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/ContactMapComponent.tsx:14</li>
+							<li>Defined in src/component/ContactMapComponent.tsx:10</li>
 						</ul>
 					</aside>
 				</section>
@@ -253,7 +253,7 @@
 					<div class="tsd-signature tsd-kind-icon">Contact<wbr>Map<wbr>Callback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/ContactMapComponent.tsx:15</li>
+							<li>Defined in src/component/ContactMapComponent.tsx:11</li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -321,7 +321,7 @@
 						<ul>
 							<li>Defined in src/component/SpringComponent.tsx:23</li>
 							<li>Defined in src/component/TComponent.tsx:17</li>
-							<li>Defined in src/component/ContactMapComponent.tsx:40</li>
+							<li>Defined in src/component/ContactMapComponent.tsx:35</li>
 							<li>Defined in src/component/VizSelectorPanel.tsx:29</li>
 							<li>Defined in src/container/VizPanelContainer.tsx:21</li>
 						</ul>
@@ -346,7 +346,7 @@
 							<li>Defined in src/component/NGLComponent.tsx:39</li>
 							<li>Defined in src/component/SpringComponent.tsx:24</li>
 							<li>Defined in src/component/TComponent.tsx:18</li>
-							<li>Defined in src/component/ContactMapComponent.tsx:41</li>
+							<li>Defined in src/component/ContactMapComponent.tsx:36</li>
 							<li>Defined in src/component/VizSelectorPanel.tsx:30</li>
 							<li>Defined in src/container/VizPanelContainer.tsx:22</li>
 						</ul>
@@ -368,10 +368,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-variable">
 					<a name="contactmapcomponent" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> Contact<wbr>Map<wbr>Component</h3>
-					<div class="tsd-signature tsd-kind-icon">Contact<wbr>Map<wbr>Component<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultProps,class ContactMapComponentClass extends React.Component&lt;Props, State&gt; {public readonly state: State &#x3D; initialState;protected dygraphElement: HTMLElement | null &#x3D; null;protected dygraph?: Dygraph;constructor(props: Props) {super(props);}public componentDidMount() {const { data } &#x3D; this.props;if (data) {this.setupData(data);}}public componentDidUpdate(prevProps: Props, prevState: State) {const { chartLib, data } &#x3D; this.props;const isFreshDataView &#x3D; data !&#x3D;&#x3D; prevProps.data || this.state.probabilityFilter !&#x3D;&#x3D; prevState.probabilityFilter;if (isFreshDataView) {this.setupData(data);}if (chartLib &#x3D;&#x3D;&#x3D; &#x27;dygraph&#x27; &amp;&amp; this.dygraphElement &amp;&amp; data.contactMonomer.length &gt;&#x3D; 1) {this.dygraph &#x3D; new Dygraph(this.dygraphElement, data.contactMonomer.map(contact &#x3D;&gt; [contact.i, contact.j]), {drawAxesAtZero: true,drawGrid: true,drawPoints: true,pointSize: this.state.nodeSize,strokeWidth: 0.0,});}}public render() {const { chartLib, data } &#x3D; this.props;if (data) {switch (chartLib) {case &#x27;dygraph&#x27;:return this.renderDygraph();case &#x27;highchart&#x27;:return this.renderHighChart();case &#x27;plotly&#x27;:return this.renderPlotly();case &#x27;rechart&#x27;:return this.renderRechart();default:throw new Error(&#x60;Unsupported Chart rendering library &#x27;${chartLib}&#x60;);}} else {return null;}}protected renderPlotly() {const { contactColor, couplingColor, data } &#x3D; this.props;const { blackDots } &#x3D; this.state;const config: Partial&lt;Config&gt; &#x3D; {displayModeBar: true,};const layout: Partial&lt;Layout&gt; &#x3D; {height: 440,legend: {},showlegend: false,width: 440,yaxis: {autorange: &#x27;reversed&#x27;,},};const geom &#x3D; new Float32Array(data.contactMonomer.length * 2);data.contactMonomer.forEach((contact, index) &#x3D;&gt; {geom[index * 2] &#x3D; contact.i;geom[index * 2 + 1] &#x3D; contact.j;});return (&lt;div style&#x3D;{{ padding: 10 }}&gt;&lt;PlotlyChartconfig&#x3D;{config}data&#x3D;{[{marker: {color: contactColor,sizemax: this.state.nodeSize * 2,sizemin: this.state.nodeSize,},mode: &#x27;markers&#x27;,type: &#x27;pointcloud&#x27;,// x: data.contactMonomer.map(contact &#x3D;&gt; contact.i),// y: data.contactMonomer.map(contact &#x3D;&gt; contact.j),xy: geom,},{marker: {color: couplingColor,sizemax: this.state.nodeSize * 2,sizemin: this.state.nodeSize,},mode: &#x27;markers&#x27;,type: &#x27;pointcloud&#x27;,x: blackDots.map(dot &#x3D;&gt; dot.i),y: blackDots.map(dot &#x3D;&gt; dot.j),},]}layout&#x3D;{layout}/&gt;&lt;ChellSlidermax&#x3D;{100}min&#x3D;{0}label&#x3D;{&#x27;Probability&#x27;}defaultValue&#x3D;{99}onChange&#x3D;{this.onProbabilityChange()}/&gt;&lt;ChellSlidermax&#x3D;{5}min&#x3D;{1}label&#x3D;{&#x27;Node Size&#x27;}defaultValue&#x3D;{this.state.nodeSize}onChange&#x3D;{this.onNodeSizeChange()}/&gt;&lt;/div&gt;);}protected renderRechart() {const { contactColor, couplingColor, data, selectedData } &#x3D; this.props;const { blackDots, domain } &#x3D; this.state;return (&lt;div style&#x3D;{{ padding: 10 }}&gt;&lt;ScatterChart width&#x3D;{370} height&#x3D;{370}&gt;&lt;XAxis type&#x3D;&quot;number&quot; dataKey&#x3D;{&#x27;i&#x27;} orientation&#x3D;{&#x27;top&#x27;} domain&#x3D;{domain} /&gt;&lt;YAxis type&#x3D;&quot;number&quot; dataKey&#x3D;{&#x27;j&#x27;} reversed&#x3D;{true} domain&#x3D;{domain} /&gt;{typeof selectedData &#x3D;&#x3D;&#x3D; &#x27;number&#x27; &amp;&amp; &lt;ReferenceLine x&#x3D;{selectedData} stroke&#x3D;{&#x27;#ff0000&#x27;} /&gt;}{typeof selectedData &#x3D;&#x3D;&#x3D; &#x27;number&#x27; &amp;&amp; &lt;ReferenceLine y&#x3D;{selectedData} stroke&#x3D;{&#x27;#ff0000&#x27;} /&gt;}&lt;Scattername&#x3D;&quot;contacts_monomer&quot;data&#x3D;{data.contactMonomer}fill&#x3D;{contactColor}onClick&#x3D;{this.onClick()}shape&#x3D;{&lt;Dot r&#x3D;{this.state.nodeSize} /&gt;}/&gt;&lt;Scattername&#x3D;&quot;CouplingScoresCompared&quot;data&#x3D;{blackDots}fill&#x3D;{couplingColor}onClick&#x3D;{this.onClick()}onMouseEnter&#x3D;{this.onMouseEnter()}shape&#x3D;{&lt;Dot r&#x3D;{this.state.nodeSize} /&gt;}/&gt;&lt;Tooltip /&gt;&lt;/ScatterChart&gt;&lt;ChellSlidermax&#x3D;{100}min&#x3D;{0}label&#x3D;{&#x27;Probability&#x27;}defaultValue&#x3D;{99}onChange&#x3D;{this.onProbabilityChange()}/&gt;&lt;ChellSlidermax&#x3D;{5}min&#x3D;{1}label&#x3D;{&#x27;Node Size&#x27;}defaultValue&#x3D;{this.state.nodeSize}onChange&#x3D;{this.onNodeSizeChange()}/&gt;&lt;/div&gt;);}protected renderHighChart() {const { contactColor, couplingColor, data } &#x3D; this.props;const { blackDots } &#x3D; this.state;const config &#x3D; {legend: {enabled: false,},series: [{color: contactColor,data: data.contactMonomer.map(contact &#x3D;&gt; [contact.i, contact.j]),type: &#x27;scatter&#x27;,},{color: couplingColor,data: blackDots.map(coupling &#x3D;&gt; [coupling.i, coupling.j]),type: &#x27;scatter&#x27;,},],title: &#x27;&#x27;,yAxis: {reversed: true,},};return (&lt;div style&#x3D;{{ padding: 10 }}&gt;&lt;ReactHighcharts config&#x3D;{config} /&gt;&lt;ChellSlidermax&#x3D;{100}min&#x3D;{0}label&#x3D;{&#x27;Probability&#x27;}defaultValue&#x3D;{99}onChange&#x3D;{this.onProbabilityChange()}/&gt;&lt;ChellSlidermax&#x3D;{5}min&#x3D;{1}label&#x3D;{&#x27;Node Size&#x27;}defaultValue&#x3D;{this.state.nodeSize}onChange&#x3D;{this.onNodeSizeChange()}/&gt;&lt;/div&gt;);}protected renderDygraph() {return (&lt;div style&#x3D;{{ padding: 10 }}&gt;&lt;div ref&#x3D;{el &#x3D;&gt; (this.dygraphElement &#x3D; el)} style&#x3D;{{ height: 370, width: 370 }} /&gt;&lt;/div&gt;);}protected setupData(data: CONTACT_MAP_DATA_TYPE) {let max &#x3D; initialState.max_x;const blackDots &#x3D; new Array&lt;ICouplingScore&gt;();data.contactMonomer.forEach(contact &#x3D;&gt; {max &#x3D; Math.max(max, contact.i);});data.couplingScore.filter(coupling &#x3D;&gt; coupling.probability &gt;&#x3D; this.state.probabilityFilter).forEach(coupling &#x3D;&gt; {max &#x3D; Math.max(max, coupling.i);blackDots.push(coupling);blackDots.push({...coupling,i: coupling.j,// tslint:disable-next-line:object-literal-sort-keysA_i: coupling.A_j,j: coupling.i,A_j: coupling.A_i,});});this.setState({blackDots,domain: [1, max],});}protected onClick &#x3D; () &#x3D;&gt; (coupling: ICouplingScore) &#x3D;&gt; {if (this.props.onClick) {this.props.onClick(coupling);}};protected onProbabilityChange &#x3D; () &#x3D;&gt; (value: number) &#x3D;&gt; {this.setState({probabilityFilter: value / 100,});};protected onNodeSizeChange &#x3D; () &#x3D;&gt; (value: number) &#x3D;&gt; {this.setState({nodeSize: value,});};protected onMouseEnter &#x3D; () &#x3D;&gt; (e: { [key: string]: any; payload: ICouplingScore }) &#x3D;&gt; {const { payload } &#x3D; e;const { onMouseEnter } &#x3D; this.props;if (onMouseEnter) {onMouseEnter(payload);}};/*Exposed recharts mouse events to potentially become props:- onMouseDown- onMouseUp- onMouseMove- onMouseOut- onMouseOver- onMouseLeave*/},)</span></div>
+					<div class="tsd-signature tsd-kind-icon">Contact<wbr>Map<wbr>Component<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultProps,class ContactMapComponentClass extends React.Component&lt;Props, State&gt; {public readonly state: State &#x3D; initialState;constructor(props: Props) {super(props);}public componentDidMount() {const { data } &#x3D; this.props;if (data) {this.setupData(data);}}public componentDidUpdate(prevProps: Props, prevState: State) {const { data } &#x3D; this.props;const isFreshDataView &#x3D; data !&#x3D;&#x3D; prevProps.data || this.state.probabilityFilter !&#x3D;&#x3D; prevState.probabilityFilter;if (isFreshDataView) {this.setupData(data);}}public render() {const { data } &#x3D; this.props;if (data) {return this.renderPlotly();} else {return null;}}protected renderPlotly() {const { contactColor, couplingColor, data } &#x3D; this.props;const { blackDots } &#x3D; this.state;const config: Partial&lt;Config&gt; &#x3D; {displayModeBar: true,};const layout: Partial&lt;Layout&gt; &#x3D; {height: 440,legend: {},showlegend: false,width: 440,yaxis: {autorange: &#x27;reversed&#x27;,},};const geom &#x3D; new Float32Array(data.contactMonomer.length * 2);data.contactMonomer.forEach((contact, index) &#x3D;&gt; {geom[index * 2] &#x3D; contact.i;geom[index * 2 + 1] &#x3D; contact.j;});return (&lt;div style&#x3D;{{ padding: 10 }}&gt;&lt;PlotlyChartconfig&#x3D;{config}data&#x3D;{[{marker: {color: contactColor,sizemax: this.state.nodeSize * 2,sizemin: this.state.nodeSize,},mode: &#x27;markers&#x27;,type: &#x27;pointcloud&#x27;,// x: data.contactMonomer.map(contact &#x3D;&gt; contact.i),// y: data.contactMonomer.map(contact &#x3D;&gt; contact.j),xy: geom,},{marker: {color: couplingColor,sizemax: this.state.nodeSize * 2,sizemin: this.state.nodeSize,},mode: &#x27;markers&#x27;,type: &#x27;pointcloud&#x27;,x: blackDots.map(dot &#x3D;&gt; dot.i),y: blackDots.map(dot &#x3D;&gt; dot.j),},]}layout&#x3D;{layout}/&gt;{this.renderSliders()}&lt;/div&gt;);}protected renderSliders() {return (&lt;div&gt;&lt;ChellSlidermax&#x3D;{100}min&#x3D;{0}label&#x3D;{&#x27;Probability&#x27;}defaultValue&#x3D;{99}onChange&#x3D;{this.onProbabilityChange()}/&gt;&lt;ChellSlidermax&#x3D;{5}min&#x3D;{1}label&#x3D;{&#x27;Node Size&#x27;}defaultValue&#x3D;{this.state.nodeSize}onChange&#x3D;{this.onNodeSizeChange()}/&gt;&lt;/div&gt;);}protected setupData(data: CONTACT_MAP_DATA_TYPE) {let max &#x3D; initialState.max_x;const blackDots &#x3D; new Array&lt;ICouplingScore&gt;();data.contactMonomer.forEach(contact &#x3D;&gt; {max &#x3D; Math.max(max, contact.i);});data.couplingScore.filter(coupling &#x3D;&gt; coupling.probability &gt;&#x3D; this.state.probabilityFilter).forEach(coupling &#x3D;&gt; {max &#x3D; Math.max(max, coupling.i);blackDots.push(coupling);blackDots.push({...coupling,i: coupling.j,// tslint:disable-next-line:object-literal-sort-keysA_i: coupling.A_j,j: coupling.i,A_j: coupling.A_i,});});this.setState({blackDots,domain: [1, max],});}protected onClick &#x3D; () &#x3D;&gt; (coupling: ICouplingScore) &#x3D;&gt; {if (this.props.onClick) {this.props.onClick(coupling);}};protected onProbabilityChange &#x3D; () &#x3D;&gt; (value: number) &#x3D;&gt; {this.setState({probabilityFilter: value / 100,});};protected onNodeSizeChange &#x3D; () &#x3D;&gt; (value: number) &#x3D;&gt; {this.setState({nodeSize: value,});};protected onMouseEnter &#x3D; () &#x3D;&gt; (e: { [key: string]: any; payload: ICouplingScore }) &#x3D;&gt; {const { payload } &#x3D; e;const { onMouseEnter } &#x3D; this.props;if (onMouseEnter) {onMouseEnter(payload);}};/*Exposed recharts mouse events to potentially become props:- onMouseDown- onMouseUp- onMouseMove- onMouseOut- onMouseOver- onMouseLeave*/},)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/ContactMapComponent.tsx:43</li>
+							<li>Defined in src/component/ContactMapComponent.tsx:38</li>
 						</ul>
 					</aside>
 				</section>
@@ -428,7 +428,7 @@
 				<section class="tsd-panel tsd-member tsd-kind-variable">
 					<a name="vizselectorpanel" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> Viz<wbr>Selector<wbr>Panel</h3>
-					<div class="tsd-signature tsd-kind-icon">Viz<wbr>Selector<wbr>Panel<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultProps,/*** A single visualization panel allowing a user to select how they wish to view data.** @export* @class VizSelectorPanel* @extends {React.Component&lt;Props, State&gt;}*/class VizSelectorPanelClass extends React.Component&lt;Props, State&gt; {public readonly state: State &#x3D; initialState;constructor(props: Props) {super(props);this.state &#x3D; {selectedViz: props.initialViz ? props.initialViz : VIZ_TYPE.SPRING,};}public render() {const { data, selectedData, supportedVisualizations, width } &#x3D; this.props;return (&lt;div className&#x3D;&quot;VizSelectorPanel&quot; style&#x3D;{{ width }}&gt;&lt;Dropdownoptions&#x3D;{this.generateDropdownItems(supportedVisualizations)}fluid&#x3D;{true}onChange&#x3D;{this.onVizSelect}defaultValue&#x3D;{this.props.initialViz}/&gt;{&lt;Card fluid&#x3D;{true} raised&#x3D;{true}&gt;{this.renderVizContainer(this.state.selectedViz, data, selectedData)}&lt;/Card&gt;}&lt;/div&gt;);}protected renderVizContainer(viz: VIZ_TYPE,data: Partial&lt;{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }&gt;,selectedData?: ICouplingScore | number,) {const { height, width } &#x3D; this.props;switch (viz) {case VIZ_TYPE[&#x27;T-SNE&#x27;]:return &lt;TComponent data&#x3D;{data[&#x27;T-SNE&#x27;] as T_SNE_DATA_TYPE} height&#x3D;{height} width&#x3D;{width} /&gt;;case VIZ_TYPE.SPRING:return &lt;SpringComponent data&#x3D;{data.Spring as ISpringGraphData} height&#x3D;{height} width&#x3D;{width} /&gt;;case VIZ_TYPE.NGL:return (&lt;NGLComponentdata&#x3D;{data.NGL as NGL_DATA_TYPE}selectedData&#x3D;{selectedData as ICouplingScore}onHoverPickCallback&#x3D;{this.props.onDataSelect}/&gt;);case VIZ_TYPE.CONTACT_MAP:return (&lt;ContactMapComponentdata&#x3D;{data[&#x27;Contact Map&#x27;] as IContactMapData}onMouseEnter&#x3D;{this.props.onDataSelect}selectedData&#x3D;{selectedData as number}/&gt;);case VIZ_TYPE.CONTACT_MAP_DYGRAPH:return (&lt;ContactMapComponentchartLib&#x3D;{&#x27;dygraph&#x27;}data&#x3D;{data[&#x27;Contact Map&#x27;] as IContactMapData}onMouseEnter&#x3D;{this.props.onDataSelect}selectedData&#x3D;{selectedData as number}/&gt;);case VIZ_TYPE.CONTACT_MAP_HIGH_CHART:return (&lt;ContactMapComponentchartLib&#x3D;{&#x27;highchart&#x27;}data&#x3D;{data[&#x27;Contact Map&#x27;] as IContactMapData}onMouseEnter&#x3D;{this.props.onDataSelect}selectedData&#x3D;{selectedData as number}/&gt;);case VIZ_TYPE.CONTACT_MAP_PLOTLY:return (&lt;ContactMapComponentchartLib&#x3D;{&#x27;plotly&#x27;}data&#x3D;{data[&#x27;Contact Map&#x27;] as IContactMapData}onMouseEnter&#x3D;{this.props.onDataSelect}selectedData&#x3D;{selectedData as number}/&gt;);case VIZ_TYPE.CONTACT_MAP_RECHART:return (&lt;ContactMapComponentchartLib&#x3D;{&#x27;rechart&#x27;}data&#x3D;{data[&#x27;Contact Map&#x27;] as IContactMapData}onMouseEnter&#x3D;{this.props.onDataSelect}selectedData&#x3D;{selectedData as number}/&gt;);default:throw new Error(&#x60;Unknown viz: ${viz}&#x60;);}}protected onVizSelect &#x3D; (event: React.SyntheticEvent&lt;any&gt;, data: any) &#x3D;&gt; {this.setState({selectedViz: data.value,});};protected generateDropdownItems &#x3D; (supportedVisualizations: VIZ_TYPE[]): DropdownItemProps[] &#x3D;&gt; {return supportedVisualizations.map(viz &#x3D;&gt; ({key: viz,text: viz,value: viz,})).sort((a, b) &#x3D;&gt; a.key.localeCompare(b.key));};},)</span></div>
+					<div class="tsd-signature tsd-kind-icon">Viz<wbr>Selector<wbr>Panel<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultProps,/*** A single visualization panel allowing a user to select how they wish to view data.** @export* @class VizSelectorPanel* @extends {React.Component&lt;Props, State&gt;}*/class VizSelectorPanelClass extends React.Component&lt;Props, State&gt; {public readonly state: State &#x3D; initialState;constructor(props: Props) {super(props);this.state &#x3D; {selectedViz: props.initialViz ? props.initialViz : VIZ_TYPE.SPRING,};}public render() {const { data, selectedData, supportedVisualizations, width } &#x3D; this.props;return (&lt;div className&#x3D;&quot;VizSelectorPanel&quot; style&#x3D;{{ width }}&gt;&lt;Dropdownoptions&#x3D;{this.generateDropdownItems(supportedVisualizations)}fluid&#x3D;{true}onChange&#x3D;{this.onVizSelect}defaultValue&#x3D;{this.props.initialViz}/&gt;{&lt;Card fluid&#x3D;{true} raised&#x3D;{true}&gt;{this.renderVizContainer(this.state.selectedViz, data, selectedData)}&lt;/Card&gt;}&lt;/div&gt;);}protected renderVizContainer(viz: VIZ_TYPE,data: Partial&lt;{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }&gt;,selectedData?: ICouplingScore | number,) {const { height, width } &#x3D; this.props;switch (viz) {case VIZ_TYPE[&#x27;T-SNE&#x27;]:return &lt;TComponent data&#x3D;{data[&#x27;T-SNE&#x27;] as T_SNE_DATA_TYPE} height&#x3D;{height} width&#x3D;{width} /&gt;;case VIZ_TYPE.SPRING:return &lt;SpringComponent data&#x3D;{data.Spring as ISpringGraphData} height&#x3D;{height} width&#x3D;{width} /&gt;;case VIZ_TYPE.NGL:return (&lt;NGLComponentdata&#x3D;{data.NGL as NGL_DATA_TYPE}selectedData&#x3D;{selectedData as ICouplingScore}onHoverPickCallback&#x3D;{this.props.onDataSelect}/&gt;);case VIZ_TYPE.CONTACT_MAP:return (&lt;ContactMapComponentdata&#x3D;{data[&#x27;Contact Map&#x27;] as IContactMapData}onMouseEnter&#x3D;{this.props.onDataSelect}selectedData&#x3D;{selectedData as number}/&gt;);default:throw new Error(&#x60;Unknown viz: ${viz}&#x60;);}}protected onVizSelect &#x3D; (event: React.SyntheticEvent&lt;any&gt;, data: any) &#x3D;&gt; {this.setState({selectedViz: data.value,});};protected generateDropdownItems &#x3D; (supportedVisualizations: VIZ_TYPE[]): DropdownItemProps[] &#x3D;&gt; {return supportedVisualizations.map(viz &#x3D;&gt; ({key: viz,text: viz,value: viz,})).sort((a, b) &#x3D;&gt; a.key.localeCompare(b.key));};},)</span></div>
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in src/component/VizSelectorPanel.tsx:32</li>
@@ -458,7 +458,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:25</li>
+									<li>Defined in src/helper/DataHelper.ts:21</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -507,7 +507,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:58</li>
+									<li>Defined in src/helper/DataHelper.ts:54</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -530,7 +530,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:81</li>
+									<li>Defined in src/helper/DataHelper.ts:77</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -553,7 +553,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:143</li>
+									<li>Defined in src/helper/DataHelper.ts:139</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -576,7 +576,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:129</li>
+									<li>Defined in src/helper/DataHelper.ts:125</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -599,7 +599,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:137</li>
+									<li>Defined in src/helper/DataHelper.ts:133</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -622,7 +622,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:100</li>
+									<li>Defined in src/helper/DataHelper.ts:96</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -645,7 +645,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:116</li>
+									<li>Defined in src/helper/DataHelper.ts:112</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -668,7 +668,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:156</li>
+									<li>Defined in src/helper/DataHelper.ts:152</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -691,7 +691,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:170</li>
+									<li>Defined in src/helper/DataHelper.ts:166</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -769,7 +769,7 @@
 						<ul>
 							<li>Defined in src/component/SpringComponent.tsx:8</li>
 							<li>Defined in src/component/TComponent.tsx:6</li>
-							<li>Defined in src/component/ContactMapComponent.tsx:17</li>
+							<li>Defined in src/component/ContactMapComponent.tsx:13</li>
 							<li>Defined in src/component/VizSelectorPanel.tsx:13</li>
 							<li>Defined in src/container/VizPanelContainer.tsx:9</li>
 						</ul>
@@ -785,22 +785,12 @@
 						</aside>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
-						<a name="defaultprops.chartlib" class="tsd-anchor"></a>
-						<h3>chart<wbr>Lib</h3>
-						<div class="tsd-signature tsd-kind-icon">chart<wbr>Lib<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"rechart"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"dygraph"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"highchart"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"plotly"</span><span class="tsd-signature-symbol"> =&nbsp;&#x27;rechart&#x27; as &#x27;dygraph&#x27; | &#x27;highchart&#x27; | &#x27;plotly&#x27; | &#x27;rechart&#x27;</span></div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in src/component/ContactMapComponent.tsx:18</li>
-							</ul>
-						</aside>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
 						<a name="defaultprops.contactcolor" class="tsd-anchor"></a>
 						<h3>contact<wbr>Color</h3>
 						<div class="tsd-signature tsd-kind-icon">contact<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;#009999&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMapComponent.tsx:19</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:14</li>
 							</ul>
 						</aside>
 					</section>
@@ -810,7 +800,7 @@
 						<div class="tsd-signature tsd-kind-icon">coupling<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;#000000&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMapComponent.tsx:20</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:15</li>
 							</ul>
 						</aside>
 					</section>
@@ -822,7 +812,7 @@
 							<ul>
 								<li>Defined in src/component/SpringComponent.tsx:10</li>
 								<li>Defined in src/component/TComponent.tsx:7</li>
-								<li>Defined in src/component/ContactMapComponent.tsx:21</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:16</li>
 								<li>Defined in src/component/VizSelectorPanel.tsx:14</li>
 							</ul>
 						</aside>
@@ -885,7 +875,7 @@
 						<div class="tsd-signature tsd-kind-icon">on<wbr>Click<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> =&nbsp;undefined as ContactMapCallback | undefined</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMapComponent.tsx:26</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:21</li>
 							</ul>
 						</aside>
 					</section>
@@ -895,7 +885,7 @@
 						<div class="tsd-signature tsd-kind-icon">on<wbr>Mouse<wbr>Enter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> =&nbsp;undefined as ContactMapCallback | undefined</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMapComponent.tsx:27</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:22</li>
 							</ul>
 						</aside>
 					</section>
@@ -915,7 +905,7 @@
 						<div class="tsd-signature tsd-kind-icon">selected<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/icouplingscore.html" class="tsd-signature-type">ICouplingScore</a><span class="tsd-signature-symbol"> =&nbsp;undefined as ICouplingScore | undefined</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMapComponent.tsx:28</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:23</li>
 								<li>Defined in src/component/VizSelectorPanel.tsx:20</li>
 							</ul>
 						</aside>
@@ -975,7 +965,7 @@
 							<li>Defined in src/component/NGLComponent.tsx:27</li>
 							<li>Defined in src/component/SpringComponent.tsx:19</li>
 							<li>Defined in src/component/TComponent.tsx:12</li>
-							<li>Defined in src/component/ContactMapComponent.tsx:31</li>
+							<li>Defined in src/component/ContactMapComponent.tsx:26</li>
 							<li>Defined in src/component/VizSelectorPanel.tsx:25</li>
 							<li>Defined in src/container/VizPanelContainer.tsx:15</li>
 						</ul>
@@ -986,7 +976,7 @@
 						<div class="tsd-signature tsd-kind-icon">black<wbr>Dots<span class="tsd-signature-symbol">:</span> <a href="interfaces/icouplingscore.html" class="tsd-signature-type">ICouplingScore</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;new Array&lt;ICouplingScore&gt;()</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMapComponent.tsx:32</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:27</li>
 							</ul>
 						</aside>
 					</section>
@@ -1061,7 +1051,7 @@
 						<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[1, 100]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMapComponent.tsx:33</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:28</li>
 							</ul>
 						</aside>
 					</section>
@@ -1072,7 +1062,7 @@
 						<aside class="tsd-sources">
 							<ul>
 								<li>Defined in src/component/NGLComponent.tsx:28</li>
-								<li>Defined in src/component/ContactMapComponent.tsx:34</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:29</li>
 							</ul>
 						</aside>
 					</section>
@@ -1083,7 +1073,7 @@
 						<aside class="tsd-sources">
 							<ul>
 								<li>Defined in src/component/NGLComponent.tsx:29</li>
-								<li>Defined in src/component/ContactMapComponent.tsx:35</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:30</li>
 							</ul>
 						</aside>
 					</section>
@@ -1094,7 +1084,7 @@
 						<aside class="tsd-sources">
 							<ul>
 								<li>Defined in src/component/NGLComponent.tsx:30</li>
-								<li>Defined in src/component/ContactMapComponent.tsx:36</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:31</li>
 							</ul>
 						</aside>
 					</section>
@@ -1105,7 +1095,7 @@
 						<aside class="tsd-sources">
 							<ul>
 								<li>Defined in src/component/NGLComponent.tsx:31</li>
-								<li>Defined in src/component/ContactMapComponent.tsx:37</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:32</li>
 							</ul>
 						</aside>
 					</section>

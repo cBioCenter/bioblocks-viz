@@ -15,24 +15,44 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
             "assets/contact_map/example1",
             "assets/contact_map/example2",
             "assets/contact_map/example3",
-            "assets/contact_map/example_100k",
-            "assets/contact_map/example_1m",
           ]
         }
         initialVisualizations={
           Array [
-            "Contact Map (Dygraph)",
+            "Contact Map",
+            "NGL",
           ]
         }
-        numPanels={1}
+        numPanels={2}
         supportedVisualizations={
           Array [
             "Contact Map",
-            "Contact Map (Dygraph)",
-            "Contact Map (HighChart)",
-            "Contact Map (Plotly)",
-            "Contact Map (Rechart)",
             "NGL",
+          ]
+        }
+      />
+    </GridRow>
+    <GridRow>
+      <VizPanelContainerClass
+        dataDirs={
+          Array [
+            "assets/centroids",
+            "assets/centroids_subset",
+            "assets/ngl",
+            "assets/spring2/full",
+          ]
+        }
+        initialVisualizations={
+          Array [
+            "T-SNE",
+            "Spring",
+          ]
+        }
+        numPanels={2}
+        supportedVisualizations={
+          Array [
+            "T-SNE",
+            "Spring",
           ]
         }
       />

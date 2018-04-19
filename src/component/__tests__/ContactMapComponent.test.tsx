@@ -1,4 +1,4 @@
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import * as React from 'react';
@@ -44,15 +44,6 @@ describe('ContactMapComponent', () => {
   });
 
   test('Should match existing snapshot when given sample data.', () => {
-    expect(toJson(shallow(<ContactMapComponent data={emptyData} />))).toMatchSnapshot();
-  });
-
-  test('Should invoke onClick callback when appropriate.', () => {
-    const onClickSpy = jest.fn();
-    const wrapper = mount(<ContactMapComponent data={sampleData} onClick={onClickSpy} />);
-    wrapper
-      .find('.recharts-scatter-symbol')
-      .at(0)
-      .simulate('click');
+    expect(toJson(shallow(<ContactMapComponent data={sampleData} />))).toMatchSnapshot();
   });
 });
