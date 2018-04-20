@@ -1,6 +1,6 @@
 /* global Plotly:true */
 import * as React from 'react';
-import PlotlyChart from 'react-plotlyjs-ts';
+import PlotlyChart from '../helper/PlotlyHelper';
 
 import { CONTACT_MAP_DATA_TYPE, ICouplingScore } from 'chell';
 import { Config, Layout } from 'plotly.js';
