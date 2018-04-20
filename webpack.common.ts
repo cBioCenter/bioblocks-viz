@@ -27,6 +27,11 @@ module.exports = {
           },
         },
       },
+      {
+        // Needed for Plotly.js: https://github.com/plotly/plotly.js#building-plotlyjs-with-webpack
+        loader: 'ify-loader',
+        test: /\.js$/,
+      },
     ],
   },
   output: {
