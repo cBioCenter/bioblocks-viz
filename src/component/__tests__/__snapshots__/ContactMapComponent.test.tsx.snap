@@ -41,15 +41,22 @@ exports[`ContactMapComponent Should match existing snapshot when given empty dat
     }
     layout={
       Object {
+        "dragmode": "select",
         "height": 440,
         "legend": Object {},
         "showlegend": false,
+        "title": "",
         "width": 440,
+        "xaxis": Object {},
         "yaxis": Object {
           "autorange": "reversed",
         },
       }
     }
+    onClick={[Function]}
+    onHover={[Function]}
+    onSelected={[Function]}
+    onUnHover={[Function]}
   />
   <div>
     <ChellSlider
@@ -111,15 +118,22 @@ exports[`ContactMapComponent Should match existing snapshot when given no data. 
     }
     layout={
       Object {
+        "dragmode": "select",
         "height": 440,
         "legend": Object {},
         "showlegend": false,
+        "title": "",
         "width": 440,
+        "xaxis": Object {},
         "yaxis": Object {
           "autorange": "reversed",
         },
       }
     }
+    onClick={[Function]}
+    onHover={[Function]}
+    onSelected={[Function]}
+    onUnHover={[Function]}
   />
   <div>
     <ChellSlider
@@ -192,15 +206,22 @@ exports[`ContactMapComponent Should match existing snapshot when given sample da
     }
     layout={
       Object {
+        "dragmode": "select",
         "height": 440,
         "legend": Object {},
         "showlegend": false,
+        "title": "",
         "width": 440,
+        "xaxis": Object {},
         "yaxis": Object {
           "autorange": "reversed",
         },
       }
     }
+    onClick={[Function]}
+    onHover={[Function]}
+    onSelected={[Function]}
+    onUnHover={[Function]}
   />
   <div>
     <ChellSlider

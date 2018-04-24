@@ -1,4 +1,3 @@
-/* global Plotly:true */
 import * as React from 'react';
 import PlotlyChart from '../helper/PlotlyHelper';
 
@@ -75,10 +74,13 @@ export const ContactMapComponent = withDefaultProps(
         displayModeBar: true,
       };
       const layout: Partial<Layout> = {
+        dragmode: 'select',
         height: 440,
         legend: {},
         showlegend: false,
+        title: '',
         width: 440,
+        xaxis: {},
         yaxis: {
           autorange: 'reversed',
         },
@@ -101,8 +103,6 @@ export const ContactMapComponent = withDefaultProps(
                 },
                 mode: 'markers',
                 type: 'pointcloud',
-                // x: data.contactMonomer.map(contact => contact.i),
-                // y: data.contactMonomer.map(contact => contact.j),
                 xy: geom,
               },
               {
@@ -118,6 +118,10 @@ export const ContactMapComponent = withDefaultProps(
               },
             ]}
             layout={layout}
+            onHover={this.onMouseEnter()}
+            onClick={this.onMouseClick()}
+            onUnHover={this.onMouseLeave()}
+            onSelected={this.onMouseSelect()}
           />
           {this.renderSliders()}
         </div>
@@ -144,6 +148,7 @@ export const ContactMapComponent = withDefaultProps(
         </div>
       );
     }
+
     protected setupData(data: CONTACT_MAP_DATA_TYPE) {
       let max = initialState.max_x;
       const blackDots = new Array<ICouplingScore>();
@@ -187,23 +192,20 @@ export const ContactMapComponent = withDefaultProps(
       });
     };
 
-    protected onMouseEnter = () => (e: { [key: string]: any; payload: ICouplingScore }) => {
-      const { payload } = e;
-      const { onMouseEnter } = this.props;
-
-      if (onMouseEnter) {
-        onMouseEnter(payload);
-      }
+    protected onMouseEnter = () => (e: Plotly.PlotMouseEvent) => {
+      console.log(`onMouseEnter: ${e}`);
     };
 
-    /*
-  Exposed recharts mouse events to potentially become props:
-  - onMouseDown
-  - onMouseUp
-  - onMouseMove
-  - onMouseOut
-  - onMouseOver
-  - onMouseLeave
-  */
+    protected onMouseLeave = () => (e: Plotly.PlotMouseEvent) => {
+      console.log(`onMouseLeave: ${e}`);
+    };
+
+    protected onMouseClick = () => (e: Plotly.PlotMouseEvent) => {
+      console.log(`onMouseClick: ${e}`);
+    };
+
+    protected onMouseSelect = () => (e: Plotly.PlotSelectionEvent) => {
+      console.log(`onMouseSelect: ${e}`);
+    };
   },
 );
