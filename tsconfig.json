@@ -12,6 +12,7 @@
     "outDir": "./dist/",
     "paths": {
       "chell": ["types/chell.ts"],
+      "plotly.js": ["node_modules/@types/plotly.js"],
       "react": ["node_modules/@types/react"],
       "tsnejs": ["node_modules/tsnejs/tsne.js"]
     },

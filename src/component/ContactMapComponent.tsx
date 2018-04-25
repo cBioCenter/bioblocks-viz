@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { Dot, ReferenceLine, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from 'recharts';
+import PlotlyChart from '../helper/PlotlyHelper';
 
 import { CONTACT_MAP_DATA_TYPE, ICouplingScore } from 'chell';
+import { Config, Layout } from 'plotly.js';
 import { withDefaultProps } from '../helper/ReactHelper';
 import { ChellSlider } from './ChellSlider';
 
@@ -9,6 +10,8 @@ export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
 export type ContactMapCallback = (coupling: CONTACT_MAP_CB_RESULT_TYPE) => void;
 
 const defaultProps = {
+  contactColor: '#009999',
+  couplingColor: '#000000',
   data: {
     contactMonomer: [],
     couplingScore: [],
@@ -18,6 +21,7 @@ const defaultProps = {
   onMouseEnter: undefined as ContactMapCallback | undefined,
   selectedData: undefined as number | undefined,
 };
+
 const initialState = {
   blackDots: new Array<ICouplingScore>(),
   domain: [1, 100],
@@ -55,32 +59,78 @@ export const ContactMapComponent = withDefaultProps(
     }
 
     public render() {
-      const { data, selectedData } = this.props;
-      const { blackDots, domain } = this.state;
-      return data ? (
+      const { data } = this.props;
+      if (data) {
+        return this.renderPlotly();
+      } else {
+        return null;
+      }
+    }
+
+    protected renderPlotly() {
+      const { contactColor, couplingColor, data } = this.props;
+      const { blackDots } = this.state;
+      const config: Partial<Config> = {
+        displayModeBar: true,
+      };
+      const layout: Partial<Layout> = {
+        dragmode: 'select',
+        height: 440,
+        legend: {},
+        showlegend: false,
+        title: '',
+        width: 440,
+        xaxis: {},
+        yaxis: {
+          autorange: 'reversed',
+        },
+      };
+      const geom = new Float32Array(data.contactMonomer.length * 2);
+      data.contactMonomer.forEach((contact, index) => {
+        geom[index * 2] = contact.i;
+        geom[index * 2 + 1] = contact.j;
+      });
+      return (
         <div style={{ padding: 10 }}>
-          <ScatterChart width={370} height={370}>
-            <XAxis type="number" dataKey={'i'} orientation={'top'} domain={domain} />
-            <YAxis type="number" dataKey={'j'} reversed={true} domain={domain} />
-            {typeof selectedData === 'number' && <ReferenceLine x={selectedData} stroke={'#ff0000'} />}
-            {typeof selectedData === 'number' && <ReferenceLine y={selectedData} stroke={'#ff0000'} />}
-            <Scatter
-              name="contacts_monomer"
-              data={data.contactMonomer}
-              fill="#009999"
-              onClick={this.onClick()}
-              shape={<Dot r={this.state.nodeSize} />}
-            />
-            <Scatter
-              name="CouplingScoresCompared"
-              data={blackDots}
-              fill="#000000"
-              onClick={this.onClick()}
-              onMouseEnter={this.onMouseEnter()}
-              shape={<Dot r={this.state.nodeSize} />}
-            />
-            <Tooltip />
-          </ScatterChart>
+          <PlotlyChart
+            config={config}
+            data={[
+              {
+                marker: {
+                  color: contactColor,
+                  sizemax: this.state.nodeSize * 2,
+                  sizemin: this.state.nodeSize,
+                },
+                mode: 'markers',
+                type: 'pointcloud',
+                xy: geom,
+              },
+              {
+                marker: {
+                  color: couplingColor,
+                  sizemax: this.state.nodeSize * 2,
+                  sizemin: this.state.nodeSize,
+                },
+                mode: 'markers',
+                type: 'pointcloud',
+                x: blackDots.map(dot => dot.i),
+                y: blackDots.map(dot => dot.j),
+              },
+            ]}
+            layout={layout}
+            onHover={this.onMouseEnter()}
+            onClick={this.onMouseClick()}
+            onUnHover={this.onMouseLeave()}
+            onSelected={this.onMouseSelect()}
+          />
+          {this.renderSliders()}
+        </div>
+      );
+    }
+
+    protected renderSliders() {
+      return (
+        <div>
           <ChellSlider
             max={100}
             min={0}
@@ -96,7 +146,7 @@ export const ContactMapComponent = withDefaultProps(
             onChange={this.onNodeSizeChange()}
           />
         </div>
-      ) : null;
+      );
     }
 
     protected setupData(data: CONTACT_MAP_DATA_TYPE) {
@@ -142,23 +192,20 @@ export const ContactMapComponent = withDefaultProps(
       });
     };
 
-    protected onMouseEnter = () => (e: { [key: string]: any; payload: ICouplingScore }) => {
-      const { payload } = e;
-      const { onMouseEnter } = this.props;
-
-      if (onMouseEnter) {
-        onMouseEnter(payload);
-      }
+    protected onMouseEnter = () => (e: Plotly.PlotMouseEvent) => {
+      console.log(`onMouseEnter: ${e}`);
     };
 
-    /*
-  Exposed recharts mouse events to potentially become props:
-  - onMouseDown
-  - onMouseUp
-  - onMouseMove
-  - onMouseOut
-  - onMouseOver
-  - onMouseLeave
-  */
+    protected onMouseLeave = () => (e: Plotly.PlotMouseEvent) => {
+      console.log(`onMouseLeave: ${e}`);
+    };
+
+    protected onMouseClick = () => (e: Plotly.PlotMouseEvent) => {
+      console.log(`onMouseClick: ${e}`);
+    };
+
+    protected onMouseSelect = () => (e: Plotly.PlotSelectionEvent) => {
+      console.log(`onMouseSelect: ${e}`);
+    };
   },
 );

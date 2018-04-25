@@ -4,11 +4,15 @@ import * as merge from 'webpack-merge';
 import * as common from '../webpack.common';
 
 module.exports = merge(common, {
-  devtool: 'source-map',
   mode: 'production',
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
   plugins: [
     new UglifyJSPlugin({
-      sourceMap: true,
+      sourceMap: false,
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
