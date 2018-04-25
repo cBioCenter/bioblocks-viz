@@ -378,7 +378,7 @@
   version "4.7.3"
   resolved "https://registry.yarnpkg.com/@types/pixi.js/-/pixi.js-4.7.3.tgz#53e9b3df583cd985c773f42123abcfc345a04c3d"
 
-"@types/plotly.js@^1.35.0":
+"@types/plotly.js@^1.36.0":
   version "1.36.0"
   resolved "https://registry.yarnpkg.com/@types/plotly.js/-/plotly.js-1.36.0.tgz#e8055f815edc13bb2e7c5a505fb9ac62a86e3b6b"
   dependencies:
