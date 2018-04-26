@@ -12,6 +12,8 @@ export type T_SNE_DATA_TYPE = number[][];
 
 export type CHELL_DATA_TYPE = CONTACT_MAP_DATA_TYPE | NGL_DATA_TYPE | SPRING_DATA_TYPE | T_SNE_DATA_TYPE;
 
+export type RESIDUE_TYPE = number;
+
 export enum VIZ_TYPE {
   CONTACT_MAP = 'Contact Map',
   NGL = 'NGL',

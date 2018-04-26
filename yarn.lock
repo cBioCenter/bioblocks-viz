@@ -292,12 +292,6 @@
     "@types/d3-voronoi" "*"
     "@types/d3-zoom" "*"
 
-"@types/dygraphs@^1.1.6":
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/@types/dygraphs/-/dygraphs-1.1.6.tgz#20ff1a01e353e813ff97898c0fee5defc66626be"
-  dependencies:
-    "@types/google.visualization" "*"
-
 "@types/enzyme@^3.1.9":
   version "3.1.10"
   resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-3.1.10.tgz#28108a9864e65699751469551a803a35d2e26160"
@@ -326,10 +320,6 @@
     "@types/events" "*"
     "@types/minimatch" "*"
     "@types/node" "*"
-
-"@types/google.visualization@*":
-  version "0.0.41"
-  resolved "https://registry.yarnpkg.com/@types/google.visualization/-/google.visualization-0.0.41.tgz#cd4858a66fd039e31586ef3989c59ab0e42d0392"
 
 "@types/handlebars@4.0.36":
   version "4.0.36"
@@ -370,9 +360,13 @@
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
 
-"@types/node@*", "@types/node@^9.6.5":
+"@types/node@*":
   version "9.6.6"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.6.tgz#439b91f9caf3983cad2eef1e11f6bedcbf9431d2"
+
+"@types/node@^9.6.5":
+  version "9.6.7"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.7.tgz#5f3816d1db2155edcde1b2e3aa5d0e5c520cb564"
 
 "@types/pixi.js@^4.7.2":
   version "4.7.3"
@@ -7527,9 +7521,9 @@ nextafter@^1.0.0:
   dependencies:
     double-bits "^1.1.0"
 
-ngl@^2.0.0-dev.28:
-  version "2.0.0-dev.28"
-  resolved "https://registry.yarnpkg.com/ngl/-/ngl-2.0.0-dev.28.tgz#f367fb82f31470d7bd2498442842edfa2326595c"
+ngl@^2.0.0-dev.32:
+  version "2.0.0-dev0.0"
+  resolved "https://registry.yarnpkg.com/ngl/-/ngl-2.0.0-dev0.0.tgz#c2bc22570cf416504cfda3e008e37d32f75e0f58"
 
 nice-try@^1.0.4:
   version "1.0.4"

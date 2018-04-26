@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Dropdown, Grid, GridColumn, GridRow } from 'semantic-ui-react';
 
-import { CHELL_DATA_TYPE, IResiduePair, VIZ_TYPE } from 'chell';
+import { CHELL_DATA_TYPE, RESIDUE_TYPE, VIZ_TYPE } from 'chell';
 import { VizSelectorPanel } from '../component/VizSelectorPanel';
-import { ResidueContext } from '../context/ResidueContext';
+import { initialResidueContext, ResidueContext } from '../context/ResidueContext';
 import { fetchAppropriateData } from '../helper/DataHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
 
@@ -16,11 +16,8 @@ const defaultProps = {
 const initialState = {
   currentDataDir: '',
   data: {} as Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>,
-  residuePairValue: {
-    currentResiduePair: { i: 0, j: 0 } as IResiduePair,
-    selectNewResiduePair: (residuePair: IResiduePair) => {
-      return;
-    },
+  residueContext: {
+    ...initialResidueContext,
   },
 };
 
@@ -37,9 +34,11 @@ export const VizPanelContainer = withDefaultProps(
       this.state = {
         ...this.state,
         currentDataDir: props.dataDirs[0],
-        residuePairValue: {
-          ...this.state.residuePairValue,
-          selectNewResiduePair: this.onResidueSelect,
+        residueContext: {
+          ...this.state.residueContext,
+          addNewResidues: this.onResidueSelect,
+          removeAllResidues: this.onRemoveAllResidues,
+          removeResidues: this.onRemoveResidues,
         },
       };
     }
@@ -86,7 +85,7 @@ export const VizPanelContainer = withDefaultProps(
               search={true}
             />
           </GridRow>
-          <ResidueContext.Provider value={this.state.residuePairValue}>
+          <ResidueContext.Provider value={this.state.residueContext}>
             {this.renderPanels(this.props.numPanels, this.state.data, this.props.initialVisualizations).map(
               (panel, index) => <GridColumn key={index}>{panel}</GridColumn>,
             )}
@@ -115,17 +114,37 @@ export const VizPanelContainer = withDefaultProps(
       });
     };
 
-    protected onResidueSelect = (selectedResiduePair: IResiduePair) => {
-      const { currentResiduePair } = this.state.residuePairValue;
-      const isNewResidue =
-        selectedResiduePair.i !== currentResiduePair.i || selectedResiduePair.j !== currentResiduePair.j;
-      if (isNewResidue) {
+    protected onResidueSelect = (residues: RESIDUE_TYPE[]) => {
+      const { currentResidueSelections } = this.state.residueContext;
+      const residuePairKey = residues.toString();
+      if (!currentResidueSelections[residuePairKey]) {
         this.setState({
-          residuePairValue: {
-            ...this.state.residuePairValue,
-            currentResiduePair: selectedResiduePair,
+          residueContext: {
+            ...this.state.residueContext,
+            currentResidueSelections: {
+              ...currentResidueSelections,
+              [residuePairKey]: residues,
+            },
           },
         });
+      }
+    };
+
+    protected onRemoveAllResidues = () => {
+      this.setState({
+        residueContext: {
+          ...this.state.residueContext,
+          currentResidueSelections: {},
+        },
+      });
+    };
+
+    protected onRemoveResidues = (residues: RESIDUE_TYPE[]) => {
+      const residueKey = residues.join(',');
+      const { currentResidueSelections } = this.state.residueContext;
+      if (currentResidueSelections[residueKey]) {
+        console.log('Removing residue');
+        delete currentResidueSelections[residueKey];
       }
     };
   },

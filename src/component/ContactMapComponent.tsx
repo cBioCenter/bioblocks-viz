@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PlotlyChart from '../helper/PlotlyHelper';
 
-import { CONTACT_MAP_DATA_TYPE, ICouplingScore, IResiduePair } from 'chell';
+import { CONTACT_MAP_DATA_TYPE, ICouplingScore, RESIDUE_TYPE } from 'chell';
 import { Config, Layout } from 'plotly.js';
 import { ResidueContext } from '../context/ResidueContext';
 import { withDefaultProps } from '../helper/ReactHelper';
@@ -69,7 +69,6 @@ export const ContactMapComponent = withDefaultProps(
     }
 
     protected renderPlotly() {
-      console.log('rendering plotly');
       const { contactColor, couplingColor, data } = this.props;
       const { blackDots } = this.state;
       const config: Partial<Config> = {
@@ -94,7 +93,7 @@ export const ContactMapComponent = withDefaultProps(
       });
       return (
         <ResidueContext.Consumer>
-          {({ currentResiduePair, selectNewResiduePair }) => (
+          {({ addNewResidues, currentResidueSelections, removeResidues }) => (
             <div style={{ padding: 10 }}>
               <PlotlyChart
                 config={config}
@@ -122,8 +121,8 @@ export const ContactMapComponent = withDefaultProps(
                   },
                 ]}
                 layout={layout}
-                onHoverCallback={this.onMouseEnter(selectNewResiduePair)}
-                onClickCallback={this.onMouseClick()}
+                onHoverCallback={this.onMouseEnter(removeResidues)}
+                onClickCallback={this.onMouseClick(addNewResidues)}
                 onSelectedCallback={this.onMouseSelect()}
               />
               {this.renderSliders()}
@@ -197,16 +196,15 @@ export const ContactMapComponent = withDefaultProps(
       });
     };
 
-    protected onMouseEnter = (cb: (coupling: IResiduePair) => void) => (e: Plotly.PlotMouseEvent) => {
+    protected onMouseEnter = (cb: (residues: RESIDUE_TYPE[]) => void) => (e: Plotly.PlotMouseEvent) => {
+      // TODO Handle hover more gracefully, adding temporary selection.
       const { points } = e;
-      cb({
-        i: points[0].x,
-        j: points[0].y,
-      });
+      cb([points[0].x, points[0].y]);
     };
 
-    protected onMouseClick = () => (e: Plotly.PlotMouseEvent) => {
-      console.log(`onMouseClick: ${e}`);
+    protected onMouseClick = (cb: (residues: RESIDUE_TYPE[]) => void) => (e: Plotly.PlotMouseEvent) => {
+      const { points } = e;
+      cb([points[0].x, points[0].y]);
     };
 
     protected onMouseSelect = () => (e: Plotly.PlotSelectionEvent) => {

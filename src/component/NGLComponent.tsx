@@ -1,17 +1,11 @@
 import * as NGL from 'ngl';
 import * as React from 'react';
 
-import { IResiduePair } from 'chell';
 import { PickingProxy, Stage, StructureComponent, StructureRepresentationType } from 'ngl';
-import { ResidueContext } from '../context/ResidueContext';
+import { initialResidueContext, ResidueContext } from '../context/ResidueContext';
+import { withDefaultProps } from '../helper/ReactHelper';
 
 export type NGL_HOVER_CB_RESULT_TYPE = number;
-
-export interface INGLComponentProps {
-  currentResiduePair?: IResiduePair;
-  data?: NGL.Structure;
-  selectNewResiduePair?: (residuePair: IResiduePair) => void;
-}
 
 export const SUPPORTED_REPS: StructureRepresentationType[] = [
   'axes',
@@ -24,6 +18,11 @@ export const SUPPORTED_REPS: StructureRepresentationType[] = [
   'spacefill',
 ];
 
+const defaultProps = {
+  data: undefined as NGL.Structure | undefined,
+  ...initialResidueContext,
+};
+
 const initialState = {
   max_x: 0,
   min_x: 1000,
@@ -34,149 +33,156 @@ const initialState = {
   structureComponent: undefined as NGL.StructureComponent | undefined,
 };
 
+type Props = {} & Partial<typeof defaultProps>;
 type State = Readonly<typeof initialState>;
 
-class NGLComponentClass extends React.Component<INGLComponentProps, State> {
-  public readonly state: State = initialState;
+export const NGLComponentClass = withDefaultProps(
+  defaultProps,
+  class NGLComponentInnerClass extends React.Component<Props, State> {
+    public readonly state: State = initialState;
 
-  protected canvas: HTMLElement | null = null;
-  protected distRepresentation?: NGL.RepresentationElement;
-  protected ballStickRepresentation?: NGL.RepresentationElement;
+    protected canvas: HTMLElement | null = null;
+    protected residueSelectionRepresentations: { [key: string]: NGL.RepresentationElement[] } = {};
 
-  constructor(props: any) {
-    super(props);
-  }
+    constructor(props: any) {
+      super(props);
+    }
 
-  public componentDidMount() {
-    if (this.canvas) {
-      const stage = new NGL.Stage(this.canvas);
+    public componentDidMount() {
+      if (this.canvas) {
+        const stage = new NGL.Stage(this.canvas);
 
-      this.setState({
-        stage,
-      });
+        this.setState({
+          stage,
+        });
 
-      const { data } = this.props;
-      if (data) {
-        this.setupStage(data, stage);
+        const { data } = this.props;
+        if (data) {
+          this.setupStage(data, stage);
+        }
       }
     }
-  }
 
-  public componentWillUnmount() {
-    const { stage } = this.state;
-    if (stage) {
-      stage.dispose();
+    public componentWillUnmount() {
+      const { stage } = this.state;
+      if (stage) {
+        stage.dispose();
+        this.setState({
+          stage: undefined,
+        });
+      }
+    }
+
+    public componentDidUpdate(prevProps: Props, prevState: State) {
+      const { data, currentResidueSelections } = this.props;
+      const { residueOffset, stage, structureComponent } = this.state;
+
+      const isNewData = data && data !== prevProps.data;
+      if (stage && isNewData) {
+        stage.removeAllComponents();
+      }
+      if (stage && isNewData && data) {
+        this.setupStage(data, stage);
+      } else if (
+        currentResidueSelections &&
+        currentResidueSelections !== prevProps.currentResidueSelections &&
+        structureComponent
+      ) {
+        Object.keys(currentResidueSelections).forEach(key => {
+          this.highlightElement(structureComponent, currentResidueSelections[key].map(res => res - residueOffset));
+        });
+      } else if (structureComponent) {
+        const representations = this.residueSelectionRepresentations;
+        Object.keys(representations).forEach(key => {
+          representations[key].forEach(rep => structureComponent.removeRepresentation(rep));
+        });
+      }
+    }
+
+    public render() {
+      return (
+        <div id="NGLComponent" style={{ padding: 15 }}>
+          <div ref={el => (this.canvas = el)} style={{ height: 370, width: 370 }} />
+        </div>
+      );
+    }
+
+    protected setupStage(data: NGL.Structure, stage: NGL.Stage) {
+      const structureComponent = stage.addComponentFromObject(data) as NGL.StructureComponent;
+
       this.setState({
-        stage: undefined,
+        residueOffset: data.residueStore.resno[0],
+        structureComponent,
       });
-    }
-  }
 
-  public componentDidUpdate(prevProps: INGLComponentProps, prevState: State) {
-    const { data, currentResiduePair } = this.props;
-    const { residueOffset, stage, structureComponent } = this.state;
-
-    const isNewData = data && data !== prevProps.data;
-    if (stage && isNewData) {
-      stage.removeAllComponents();
-    }
-    if (stage && isNewData && data) {
-      this.setupStage(data, stage);
-    } else if (currentResiduePair !== prevProps.currentResiduePair && structureComponent) {
-      const residues = [currentResiduePair!.i - residueOffset, currentResiduePair!.j - residueOffset];
-
-      this.highlightElement(structureComponent, residues, 'distance');
-    } else if (this.distRepresentation && structureComponent) {
-      structureComponent.removeRepresentation(this.distRepresentation);
-      this.distRepresentation = structureComponent.addRepresentation('distance', {
-        sele: this.distRepresentation.parameters.sele,
+      stage.defaultFileRepresentation(structureComponent);
+      structureComponent.reprList.forEach(rep => {
+        rep.setParameters({ opacity: 1.0 });
       });
-    }
-  }
 
-  public render() {
-    return (
-      <div id="NGLComponent" style={{ padding: 15 }}>
-        <div ref={el => (this.canvas = el)} style={{ height: 370, width: 370 }} />
-      </div>
-    );
-  }
-
-  protected setupStage(data: NGL.Structure, stage: NGL.Stage) {
-    const structureComponent = stage.addComponentFromObject(data) as NGL.StructureComponent;
-
-    this.setState({
-      residueOffset: data.residueStore.resno[0],
-      structureComponent,
-    });
-
-    stage.defaultFileRepresentation(structureComponent);
-    structureComponent.reprList.forEach(rep => {
-      rep.setParameters({ opacity: 1.0 });
-    });
-
-    structureComponent.stage.mouseControls.add(
-      NGL.MouseActions.HOVER_PICK,
-      (aStage: Stage, pickingProxy: PickingProxy) => this.onHover(aStage, pickingProxy, data, structureComponent),
-    );
-  }
-
-  protected onHover(
-    aStage: Stage,
-    pickingProxy: PickingProxy,
-    data: NGL.Structure,
-    structureComponent: StructureComponent,
-  ) {
-    if (pickingProxy && (pickingProxy.atom || pickingProxy.bond)) {
-      const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
-      const resno = atom.resno + this.state.residueOffset;
-      this.props.selectNewResiduePair!({ i: resno, j: resno });
-    }
-  }
-
-  /**
-   * Highlight a specific residue on a 3D structure.
-   *
-   * @protected
-   * @param {StructureComponent} structureComponent The structure for which the residue to highlight belongs.
-   * @param {string} selection [NGL Selection](https://github.com/arose/ngl/blob/master/doc/usage/selection-language.md) for what to highlight.
-   * @param {NGL.StructureRepresentationType} [representationType='spacefill'] The NGL representation type to use for this residue.
-   * @memberof NGLComponent
-   */
-  protected highlightElement(
-    structureComponent: StructureComponent,
-    residues: number[],
-    representationType: NGL.StructureRepresentationType = 'spacefill',
-  ) {
-    if (this.distRepresentation) {
-      structureComponent.removeRepresentation(this.distRepresentation);
-    }
-    if (this.ballStickRepresentation) {
-      structureComponent.removeRepresentation(this.ballStickRepresentation);
+      structureComponent.stage.mouseControls.add(
+        NGL.MouseActions.HOVER_PICK,
+        (aStage: Stage, pickingProxy: PickingProxy) => this.onHover(aStage, pickingProxy, data, structureComponent),
+      );
     }
 
-    if (residues.length >= 2) {
+    protected onHover(
+      aStage: Stage,
+      pickingProxy: PickingProxy,
+      data: NGL.Structure,
+      structureComponent: StructureComponent,
+    ) {
+      if (pickingProxy && (pickingProxy.atom || pickingProxy.bond)) {
+        const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
+        const resno = atom.resno + this.state.residueOffset;
+        this.props.addNewResidues!([resno]);
+      }
+    }
+
+    /**
+     * Highlight a specific residue on a 3D structure.
+     *
+     * @protected
+     * @param {StructureComponent} structureComponent The structure for which the residue to highlight belongs.
+     * @param {string} selection [NGL Selection](https://github.com/arose/ngl/blob/master/doc/usage/selection-language.md) for what to highlight.
+     * @memberof NGLComponent
+     */
+    protected highlightElement(structureComponent: StructureComponent, residues: number[]) {
+      const residueKey = residues.toString();
+      const representations = this.residueSelectionRepresentations;
+      if (representations[residueKey]) {
+        representations[residueKey].map(rep => structureComponent.removeRepresentation(rep));
+      } else {
+        representations[residueKey] = [];
+      }
+
       const selection = residues.join('.CA, ') + '.CA';
-      this.distRepresentation = structureComponent.addRepresentation(representationType, {
-        atomPair: [selection.split(',')],
-        color: 'skyblue',
-        labelUnit: 'nm',
-      });
+      if (residues.length >= 2) {
+        representations[residueKey].push(
+          structureComponent.addRepresentation('distance', {
+            atomPair: [selection.split(',')],
+            color: 'skyblue',
+            labelUnit: 'nm',
+          }),
+        );
+      }
+
+      representations[residueKey].push(
+        structureComponent.addRepresentation('ball+stick', {
+          sele: residues.join(', '),
+        }),
+      );
     }
+  },
+);
 
-    this.ballStickRepresentation = structureComponent.addRepresentation('ball+stick', {
-      sele: residues.join(', '),
-    });
-  }
-}
-
-export const NGLComponent = (props: INGLComponentProps) => (
+export const NGLComponent = (props: Props) => (
   <ResidueContext.Consumer>
-    {({ currentResiduePair, selectNewResiduePair }) => (
+    {({ addNewResidues, currentResidueSelections }) => (
       <NGLComponentClass
         {...props}
-        currentResiduePair={currentResiduePair}
-        selectNewResiduePair={selectNewResiduePair}
+        addNewResidues={addNewResidues}
+        currentResidueSelections={currentResidueSelections}
       />
     )}
   </ResidueContext.Consumer>
