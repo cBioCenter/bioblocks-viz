@@ -3,7 +3,6 @@ import * as React from 'react';
 
 import { IResiduePair } from 'chell';
 import { PickingProxy, Stage, StructureComponent, StructureRepresentationType } from 'ngl';
-import { Dropdown, DropdownItemProps } from 'semantic-ui-react';
 import { ResidueContext } from '../context/ResidueContext';
 
 export type NGL_HOVER_CB_RESULT_TYPE = number;
@@ -31,8 +30,6 @@ const initialState = {
   nodeSize: 4,
   probabilityFilter: 0.99,
   residueOffset: 0,
-  residueSelectionType: 'distance' as StructureRepresentationType,
-  selection: '',
   stage: undefined as NGL.Stage | undefined,
   structureComponent: undefined as NGL.StructureComponent | undefined,
 };
@@ -43,13 +40,8 @@ class NGLComponentClass extends React.Component<INGLComponentProps, State> {
   public readonly state: State = initialState;
 
   protected canvas: HTMLElement | null = null;
-  protected representationElement?: NGL.RepresentationElement;
-
-  protected dropdownItems: DropdownItemProps[] = SUPPORTED_REPS.map(type => ({
-    key: type,
-    text: `Using ${type} representations for residues`,
-    value: type,
-  }));
+  protected distRepresentation?: NGL.RepresentationElement;
+  protected ballStickRepresentation?: NGL.RepresentationElement;
 
   constructor(props: any) {
     super(props);
@@ -82,7 +74,7 @@ class NGLComponentClass extends React.Component<INGLComponentProps, State> {
 
   public componentDidUpdate(prevProps: INGLComponentProps, prevState: State) {
     const { data, currentResiduePair } = this.props;
-    const { residueSelectionType, residueOffset, stage, structureComponent } = this.state;
+    const { residueOffset, stage, structureComponent } = this.state;
 
     const isNewData = data && data !== prevProps.data;
     if (stage && isNewData) {
@@ -93,15 +85,11 @@ class NGLComponentClass extends React.Component<INGLComponentProps, State> {
     } else if (currentResiduePair !== prevProps.currentResiduePair && structureComponent) {
       const residues = [currentResiduePair!.i - residueOffset, currentResiduePair!.j - residueOffset];
 
-      this.highlightElement(structureComponent, residues.join('.CA, ') + '.CA', this.state.residueSelectionType);
-    } else if (
-      residueSelectionType !== prevState.residueSelectionType &&
-      this.representationElement &&
-      structureComponent
-    ) {
-      structureComponent.removeRepresentation(this.representationElement);
-      this.representationElement = structureComponent.addRepresentation(residueSelectionType, {
-        sele: this.representationElement.parameters.sele,
+      this.highlightElement(structureComponent, residues, 'distance');
+    } else if (this.distRepresentation && structureComponent) {
+      structureComponent.removeRepresentation(this.distRepresentation);
+      this.distRepresentation = structureComponent.addRepresentation('distance', {
+        sele: this.distRepresentation.parameters.sele,
       });
     }
   }
@@ -110,15 +98,6 @@ class NGLComponentClass extends React.Component<INGLComponentProps, State> {
     return (
       <div id="NGLComponent" style={{ padding: 15 }}>
         <div ref={el => (this.canvas = el)} style={{ height: 370, width: 370 }} />
-        <br />
-        <Dropdown
-          fluid={true}
-          defaultValue={initialState.residueSelectionType}
-          options={this.dropdownItems}
-          onChange={this.onResidueSelectionTypeChange()}
-        />
-        <br />
-        {`Selected residues: ${this.state.selection}`}
       </div>
     );
   }
@@ -166,27 +145,29 @@ class NGLComponentClass extends React.Component<INGLComponentProps, State> {
    */
   protected highlightElement(
     structureComponent: StructureComponent,
-    selection: string,
+    residues: number[],
     representationType: NGL.StructureRepresentationType = 'spacefill',
   ) {
-    if (this.representationElement) {
-      structureComponent.removeRepresentation(this.representationElement);
+    if (this.distRepresentation) {
+      structureComponent.removeRepresentation(this.distRepresentation);
     }
-    this.representationElement = structureComponent.addRepresentation(representationType, {
-      atomPair: [selection.split(',')],
-      color: 'skyblue',
-      labelUnit: 'nm',
-    });
-    this.setState({
-      selection,
+    if (this.ballStickRepresentation) {
+      structureComponent.removeRepresentation(this.ballStickRepresentation);
+    }
+
+    if (residues.length >= 2) {
+      const selection = residues.join('.CA, ') + '.CA';
+      this.distRepresentation = structureComponent.addRepresentation(representationType, {
+        atomPair: [selection.split(',')],
+        color: 'skyblue',
+        labelUnit: 'nm',
+      });
+    }
+
+    this.ballStickRepresentation = structureComponent.addRepresentation('ball+stick', {
+      sele: residues.join(', '),
     });
   }
-
-  protected onResidueSelectionTypeChange = () => (event: any, data: any) => {
-    this.setState({
-      residueSelectionType: data.value as NGL.StructureRepresentationType,
-    });
-  };
 }
 
 export const NGLComponent = (props: INGLComponentProps) => (

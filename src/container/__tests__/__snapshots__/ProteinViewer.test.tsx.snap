@@ -4,9 +4,7 @@ exports[`ProteinViewer Should match existing snapshot when given no data. 1`] = 
 <div
   id="ProteinViewer"
 >
-  <NGLComponent
-    onHoverPickCallback={[Function]}
-  />
+  <Component />
   <SequenceViewer />
 </div>
 `;

@@ -69,14 +69,14 @@ export const ContactMapComponent = withDefaultProps(
     }
 
     protected renderPlotly() {
+      console.log('rendering plotly');
       const { contactColor, couplingColor, data } = this.props;
       const { blackDots } = this.state;
       const config: Partial<Config> = {
         displayModeBar: true,
-        modeBarButtons: [['zoomOut2d', 'zoomIn2d'], ['resetScale2d', 'autoScale2d'], ['select2d', 'pan2d']],
+        // modeBarButtons: [['zoomOut2d', 'zoomIn2d'], ['resetScale2d', 'autoScale2d'], ['select2d', 'pan2d']],
       };
       const layout: Partial<Layout> = {
-        dragmode: 'pan',
         height: 440,
         legend: {},
         showlegend: false,
@@ -85,7 +85,6 @@ export const ContactMapComponent = withDefaultProps(
         xaxis: {},
         yaxis: {
           autorange: 'reversed',
-          tickmode: 'auto',
         },
       };
       const geom = new Float32Array(data.contactMonomer.length * 2);
@@ -120,16 +119,6 @@ export const ContactMapComponent = withDefaultProps(
                     type: 'pointcloud',
                     x: blackDots.map(dot => dot.i),
                     y: blackDots.map(dot => dot.j),
-                  },
-                  {
-                    marker: {
-                      color: 'yellow',
-                      sizemax: this.state.nodeSize * 2,
-                      sizemin: this.state.nodeSize,
-                    },
-                    mode: 'markers',
-                    type: 'pointcloud',
-                    xy: new Float32Array([currentResiduePair.i, currentResiduePair.j]),
                   },
                 ]}
                 layout={layout}
