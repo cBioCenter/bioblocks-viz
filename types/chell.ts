@@ -51,3 +51,8 @@ export interface IDistanceMapMonomer {
   id: number;
   sec_struct_3state: string;
 }
+
+export interface IResiduePair {
+  i: number;
+  j: number;
+}

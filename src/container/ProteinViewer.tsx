@@ -6,7 +6,6 @@ import { SequenceViewer } from '../component/SequenceViewer';
 
 export interface IProteinViewerState {
   data?: NGL.Structure;
-  resNum?: number;
 }
 
 export class ProteinViewer extends React.Component<any, IProteinViewerState> {
@@ -30,16 +29,10 @@ export class ProteinViewer extends React.Component<any, IProteinViewerState> {
   }
 
   public render() {
-    const onHoverPickCallback = (resNum: number) => {
-      this.setState({
-        resNum,
-      });
-    };
-
     return (
       <div id="ProteinViewer">
-        <NGLComponent data={this.state.data} onHoverPickCallback={onHoverPickCallback} />
-        <SequenceViewer data={this.state.data} selectedResNum={this.state.resNum} />
+        <NGLComponent data={this.state.data} />
+        <SequenceViewer data={this.state.data} />
       </div>
     );
   }

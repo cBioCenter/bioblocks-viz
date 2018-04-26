@@ -1,16 +1,17 @@
 import * as NGL from 'ngl';
 import * as React from 'react';
 
-import { ICouplingScore } from 'chell';
+import { IResiduePair } from 'chell';
 import { PickingProxy, Stage, StructureComponent, StructureRepresentationType } from 'ngl';
 import { Dropdown, DropdownItemProps } from 'semantic-ui-react';
+import { ResidueContext } from '../context/ResidueContext';
 
 export type NGL_HOVER_CB_RESULT_TYPE = number;
 
 export interface INGLComponentProps {
+  currentResiduePair?: IResiduePair;
   data?: NGL.Structure;
-  onHoverPickCallback?: (resno: NGL_HOVER_CB_RESULT_TYPE) => void;
-  selectedData?: ICouplingScore;
+  selectNewResiduePair?: (residuePair: IResiduePair) => void;
 }
 
 export const SUPPORTED_REPS: StructureRepresentationType[] = [
@@ -38,7 +39,7 @@ const initialState = {
 
 type State = Readonly<typeof initialState>;
 
-export class NGLComponent extends React.Component<INGLComponentProps, State> {
+class NGLComponentClass extends React.Component<INGLComponentProps, State> {
   public readonly state: State = initialState;
 
   protected canvas: HTMLElement | null = null;
@@ -80,8 +81,8 @@ export class NGLComponent extends React.Component<INGLComponentProps, State> {
   }
 
   public componentDidUpdate(prevProps: INGLComponentProps, prevState: State) {
-    const { data, selectedData } = this.props;
-    const { residueSelectionType, stage, structureComponent } = this.state;
+    const { data, currentResiduePair } = this.props;
+    const { residueSelectionType, residueOffset, stage, structureComponent } = this.state;
 
     const isNewData = data && data !== prevProps.data;
     if (stage && isNewData) {
@@ -89,17 +90,10 @@ export class NGLComponent extends React.Component<INGLComponentProps, State> {
     }
     if (stage && isNewData && data) {
       this.setupStage(data, stage);
-    } else if (selectedData && selectedData !== prevProps.selectedData && this.state.structureComponent) {
-      // If the update came from the ContactMap.
-      // FIXME: Should be more abstract.
-      if (selectedData.i && selectedData.j) {
-        const residues = [selectedData.i, selectedData.j].map(index => (index - this.state.residueOffset).toString());
-        this.highlightElement(
-          this.state.structureComponent,
-          residues.join('.CA, ') + '.CA',
-          this.state.residueSelectionType,
-        );
-      }
+    } else if (currentResiduePair !== prevProps.currentResiduePair && structureComponent) {
+      const residues = [currentResiduePair!.i - residueOffset, currentResiduePair!.j - residueOffset];
+
+      this.highlightElement(structureComponent, residues.join('.CA, ') + '.CA', this.state.residueSelectionType);
     } else if (
       residueSelectionType !== prevState.residueSelectionType &&
       this.representationElement &&
@@ -142,12 +136,10 @@ export class NGLComponent extends React.Component<INGLComponentProps, State> {
       rep.setParameters({ opacity: 1.0 });
     });
 
-    /*
     structureComponent.stage.mouseControls.add(
       NGL.MouseActions.HOVER_PICK,
       (aStage: Stage, pickingProxy: PickingProxy) => this.onHover(aStage, pickingProxy, data, structureComponent),
     );
-    */
   }
 
   protected onHover(
@@ -158,10 +150,8 @@ export class NGLComponent extends React.Component<INGLComponentProps, State> {
   ) {
     if (pickingProxy && (pickingProxy.atom || pickingProxy.bond)) {
       const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
-
-      if (this.props.onHoverPickCallback) {
-        this.props.onHoverPickCallback(atom.resno + this.state.residueOffset);
-      }
+      const resno = atom.resno + this.state.residueOffset;
+      this.props.selectNewResiduePair!({ i: resno, j: resno });
     }
   }
 
@@ -198,3 +188,15 @@ export class NGLComponent extends React.Component<INGLComponentProps, State> {
     });
   };
 }
+
+export const NGLComponent = (props: INGLComponentProps) => (
+  <ResidueContext.Consumer>
+    {({ currentResiduePair, selectNewResiduePair }) => (
+      <NGLComponentClass
+        {...props}
+        currentResiduePair={currentResiduePair}
+        selectNewResiduePair={selectNewResiduePair}
+      />
+    )}
+  </ResidueContext.Consumer>
+);

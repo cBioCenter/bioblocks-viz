@@ -81,13 +81,7 @@ export const VizSelectorPanel = withDefaultProps(
         case VIZ_TYPE.SPRING:
           return <SpringComponent data={data.Spring as ISpringGraphData} height={height} width={width} />;
         case VIZ_TYPE.NGL:
-          return (
-            <NGLComponent
-              data={data.NGL as NGL_DATA_TYPE}
-              selectedData={selectedData as ICouplingScore}
-              onHoverPickCallback={this.props.onDataSelect}
-            />
-          );
+          return <NGLComponent data={data.NGL as NGL_DATA_TYPE} />;
         case VIZ_TYPE.CONTACT_MAP:
           return (
             <ContactMapComponent

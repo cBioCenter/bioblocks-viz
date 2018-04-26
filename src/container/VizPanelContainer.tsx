@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Dropdown, Grid, GridColumn, GridRow } from 'semantic-ui-react';
 
-import { CHELL_DATA_TYPE, ICouplingScore, VIZ_TYPE } from 'chell';
+import { CHELL_DATA_TYPE, IResiduePair, VIZ_TYPE } from 'chell';
 import { VizSelectorPanel } from '../component/VizSelectorPanel';
+import { ResidueContext } from '../context/ResidueContext';
 import { fetchAppropriateData } from '../helper/DataHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
 
@@ -15,7 +16,12 @@ const defaultProps = {
 const initialState = {
   currentDataDir: '',
   data: {} as Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>,
-  selectedData: undefined as ICouplingScore | undefined,
+  residuePairValue: {
+    currentResiduePair: { i: 0, j: 0 } as IResiduePair,
+    selectNewResiduePair: (residuePair: IResiduePair) => {
+      return;
+    },
+  },
 };
 
 type Props = { dataDirs: string[]; supportedVisualizations: VIZ_TYPE[] } & typeof defaultProps;
@@ -31,6 +37,10 @@ export const VizPanelContainer = withDefaultProps(
       this.state = {
         ...this.state,
         currentDataDir: props.dataDirs[0],
+        residuePairValue: {
+          ...this.state.residuePairValue,
+          selectNewResiduePair: this.onResidueSelect,
+        },
       };
     }
 
@@ -76,9 +86,11 @@ export const VizPanelContainer = withDefaultProps(
               search={true}
             />
           </GridRow>
-          {this.renderPanels(this.props.numPanels, this.state.data, this.props.initialVisualizations).map(
-            (panel, index) => <GridColumn key={index}>{panel}</GridColumn>,
-          )}
+          <ResidueContext.Provider value={this.state.residuePairValue}>
+            {this.renderPanels(this.props.numPanels, this.state.data, this.props.initialVisualizations).map(
+              (panel, index) => <GridColumn key={index}>{panel}</GridColumn>,
+            )}
+          </ResidueContext.Provider>
         </Grid>
       );
     }
@@ -90,8 +102,6 @@ export const VizPanelContainer = withDefaultProps(
           <VizSelectorPanel
             data={data}
             initialViz={initialVisualizations[i]}
-            onDataSelect={this.onDataSelect()}
-            selectedData={this.state.selectedData}
             supportedVisualizations={this.props.supportedVisualizations}
           />,
         );
@@ -105,10 +115,18 @@ export const VizPanelContainer = withDefaultProps(
       });
     };
 
-    protected onDataSelect = () => (payload: any) => {
-      this.setState({
-        selectedData: payload as ICouplingScore,
-      });
+    protected onResidueSelect = (selectedResiduePair: IResiduePair) => {
+      const { currentResiduePair } = this.state.residuePairValue;
+      const isNewResidue =
+        selectedResiduePair.i !== currentResiduePair.i || selectedResiduePair.j !== currentResiduePair.j;
+      if (isNewResidue) {
+        this.setState({
+          residuePairValue: {
+            ...this.state.residuePairValue,
+            currentResiduePair: selectedResiduePair,
+          },
+        });
+      }
     };
   },
 );

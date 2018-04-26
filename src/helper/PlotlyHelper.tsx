@@ -5,10 +5,10 @@ export interface IPlotlyChartProps {
   config?: Partial<plotly.Config>;
   data: Array<Partial<plotly.ScatterData>>;
   layout?: Partial<plotly.Layout>;
-  onClick?: (event: plotly.PlotMouseEvent) => void;
-  onHover?: (event: plotly.PlotMouseEvent) => void;
-  onSelected?: (event: plotly.PlotSelectionEvent) => void;
-  onUnHover?: (event: plotly.PlotMouseEvent) => void;
+  onClickCallback?: (event: plotly.PlotMouseEvent) => void;
+  onHoverCallback?: (event: plotly.PlotMouseEvent) => void;
+  onSelectedCallback?: (event: plotly.PlotSelectionEvent) => void;
+  onUnHoverCallback?: (event: plotly.PlotMouseEvent) => void;
 }
 
 /***
@@ -21,18 +21,15 @@ class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   public container: plotly.PlotlyHTMLElement | null = null;
 
   public attachListeners() {
-    if (this.props.onClick) {
-      this.container!.on('plotly_click', this.props.onClick);
+    if (this.props.onClickCallback) {
+      this.container!.on('plotly_click', this.props.onClickCallback);
     }
-    if (this.props.onHover) {
-      this.container!.on('plotly_hover', this.props.onHover);
+    if (this.props.onSelectedCallback) {
+      this.container!.on('plotly_selected', this.props.onSelectedCallback);
     }
-    if (this.props.onUnHover) {
-      this.container!.on('plotly_unhover', this.props.onUnHover);
-    }
-    if (this.props.onSelected) {
-      this.container!.on('plotly_selected', this.props.onSelected);
-    }
+
+    this.container!.on('plotly_hover', this.onHover);
+    this.container!.on('plotly_unhover', this.onUnHover);
 
     window.addEventListener('resize', this.resize);
   }
@@ -67,7 +64,16 @@ class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   }
 
   public render() {
-    const { data, layout, config, onClick, onHover, onSelected, onUnHover, ...other } = this.props;
+    const {
+      data,
+      layout,
+      config,
+      onClickCallback,
+      onHoverCallback,
+      onSelectedCallback,
+      onUnHoverCallback,
+      ...other
+    } = this.props;
     return (
       <div
         {...other}
@@ -80,6 +86,22 @@ class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
       />
     );
   }
+
+  protected onHover = (event: plotly.PlotMouseEvent) => {
+    console.log('Plotly onHover called');
+    const { onHoverCallback } = this.props;
+    if (onHoverCallback) {
+      onHoverCallback(event);
+    }
+  };
+
+  protected onUnHover = (event: plotly.PlotMouseEvent) => {
+    console.log('Plotly onUnHover called');
+    const { onUnHoverCallback } = this.props;
+    if (onUnHoverCallback) {
+      onUnHoverCallback(event);
+    }
+  };
 }
 
 export default PlotlyChart;
