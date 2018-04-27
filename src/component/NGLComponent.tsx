@@ -7,6 +7,10 @@ import { withDefaultProps } from '../helper/ReactHelper';
 
 export type NGL_HOVER_CB_RESULT_TYPE = number;
 
+export interface IRepresentationDict {
+  [key: string]: NGL.RepresentationElement[];
+}
+
 export const SUPPORTED_REPS: StructureRepresentationType[] = [
   'axes',
   'backbone',
@@ -33,16 +37,16 @@ const initialState = {
   structureComponent: undefined as NGL.StructureComponent | undefined,
 };
 
-type Props = {} & Partial<typeof defaultProps>;
+type Props = {} & typeof defaultProps;
 type State = Readonly<typeof initialState>;
 
-export const NGLComponentClass = withDefaultProps(
+export const NGLComponentWithDefaultProps = withDefaultProps(
   defaultProps,
-  class NGLComponentInnerClass extends React.Component<Props, State> {
+  class NGLComponentClass extends React.Component<Props, State> {
     public readonly state: State = initialState;
 
     protected canvas: HTMLElement | null = null;
-    protected residueSelectionRepresentations: { [key: string]: NGL.RepresentationElement[] } = {};
+    protected residueSelectionRepresentations: IRepresentationDict = {};
 
     constructor(props: any) {
       super(props);
@@ -58,7 +62,7 @@ export const NGLComponentClass = withDefaultProps(
 
         const { data } = this.props;
         if (data) {
-          this.setupStage(data, stage);
+          this.addStructureToStage(data, stage);
         }
       }
     }
@@ -82,7 +86,7 @@ export const NGLComponentClass = withDefaultProps(
         stage.removeAllComponents();
       }
       if (stage && isNewData && data) {
-        this.setupStage(data, stage);
+        this.addStructureToStage(data, stage);
       } else if (
         currentResidueSelections &&
         currentResidueSelections !== prevProps.currentResidueSelections &&
@@ -92,13 +96,18 @@ export const NGLComponentClass = withDefaultProps(
           this.highlightElement(structureComponent, currentResidueSelections[key].map(res => res - residueOffset));
         });
       } else if (structureComponent) {
-        const representations = this.residueSelectionRepresentations;
-        Object.keys(representations).forEach(key => {
-          representations[key].forEach(rep => structureComponent.removeRepresentation(rep));
-        });
+        this.removeAllRepresentations(this.residueSelectionRepresentations, structureComponent);
       }
     }
 
+    /**
+     * Renders the NGL canvas.
+     *
+     * Because we are working with WebGL via the canvas, updating this visualization happens through the canvas reference.
+     *
+     * @returns The NGL Component
+     * @memberof NGLComponentClass
+     */
     public render() {
       return (
         <div id="NGLComponent" style={{ padding: 15 }}>
@@ -107,7 +116,15 @@ export const NGLComponentClass = withDefaultProps(
       );
     }
 
-    protected setupStage(data: NGL.Structure, stage: NGL.Stage) {
+    /**
+     * Adds a NGL structure to the stage.
+     *
+     * @protected
+     * @param {NGL.Structure} data
+     * @param {NGL.Stage} stage
+     * @memberof NGLComponentClass
+     */
+    protected addStructureToStage(data: NGL.Structure, stage: NGL.Stage) {
       const structureComponent = stage.addComponentFromObject(data) as NGL.StructureComponent;
 
       this.setState({
@@ -173,13 +190,23 @@ export const NGLComponentClass = withDefaultProps(
         }),
       );
     }
+
+    protected removeAllRepresentations(repDict: IRepresentationDict, structureComponent: NGL.StructureComponent) {
+      for (const key of Object.keys(repDict)) {
+        repDict[key].forEach(rep => structureComponent.removeRepresentation(rep));
+      }
+    }
   },
 );
 
-export const NGLComponent = (props: Props) => (
+// TODO The required props should be discernable from `withDefaultProps` without needing to duplicate.
+// However the Context consumer syntax is still new to me and I can't find the right combination :(
+type requiredProps = Partial<typeof defaultProps> & Required<Omit<Props, keyof typeof defaultProps>>;
+
+export const NGLComponent = (props: requiredProps) => (
   <ResidueContext.Consumer>
     {({ addNewResidues, currentResidueSelections }) => (
-      <NGLComponentClass
+      <NGLComponentWithDefaultProps
         {...props}
         addNewResidues={addNewResidues}
         currentResidueSelections={currentResidueSelections}

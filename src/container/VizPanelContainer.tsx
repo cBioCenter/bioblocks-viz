@@ -143,7 +143,6 @@ export const VizPanelContainer = withDefaultProps(
       const residueKey = residues.join(',');
       const { currentResidueSelections } = this.state.residueContext;
       if (currentResidueSelections[residueKey]) {
-        console.log('Removing residue');
         delete currentResidueSelections[residueKey];
       }
     };

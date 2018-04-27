@@ -17,7 +17,7 @@ export interface IPlotlyChartProps {
  *               layout={layout}
  *               onClick={({points, event}) => console.log(points, event)}>
  */
-class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
+export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   public container: plotly.PlotlyHTMLElement | null = null;
 
   public attachListeners() {
@@ -104,4 +104,19 @@ class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   };
 }
 
-export default PlotlyChart;
+export const defaultLayout: Partial<Plotly.Layout> = {
+  height: 440,
+  legend: {},
+  showlegend: false,
+  title: '',
+  width: 440,
+  xaxis: {},
+  yaxis: {
+    autorange: 'reversed',
+  },
+};
+
+export const defaultConfig: Partial<Plotly.Config> = {
+  displayModeBar: true,
+  // modeBarButtons: [['zoomOut2d', 'zoomIn2d'], ['resetScale2d', 'autoScale2d'], ['select2d', 'pan2d']],
+};

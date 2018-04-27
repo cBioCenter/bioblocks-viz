@@ -1,9 +1,8 @@
 import * as React from 'react';
-import PlotlyChart from '../helper/PlotlyHelper';
 
 import { CONTACT_MAP_DATA_TYPE, ICouplingScore, RESIDUE_TYPE } from 'chell';
-import { Config, Layout } from 'plotly.js';
 import { ResidueContext } from '../context/ResidueContext';
+import { defaultConfig, defaultLayout, PlotlyChart } from '../helper/PlotlyHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
 import { ChellSlider } from './ChellSlider';
 
@@ -71,21 +70,7 @@ export const ContactMapComponent = withDefaultProps(
     protected renderPlotly() {
       const { contactColor, couplingColor, data } = this.props;
       const { blackDots } = this.state;
-      const config: Partial<Config> = {
-        displayModeBar: true,
-        // modeBarButtons: [['zoomOut2d', 'zoomIn2d'], ['resetScale2d', 'autoScale2d'], ['select2d', 'pan2d']],
-      };
-      const layout: Partial<Layout> = {
-        height: 440,
-        legend: {},
-        showlegend: false,
-        title: '',
-        width: 440,
-        xaxis: {},
-        yaxis: {
-          autorange: 'reversed',
-        },
-      };
+
       const geom = new Float32Array(data.contactMonomer.length * 2);
       data.contactMonomer.forEach((contact, index) => {
         geom[index * 2] = contact.i;
@@ -96,7 +81,7 @@ export const ContactMapComponent = withDefaultProps(
           {({ addNewResidues, currentResidueSelections, removeResidues }) => (
             <div style={{ padding: 10 }}>
               <PlotlyChart
-                config={config}
+                config={defaultConfig}
                 data={[
                   {
                     marker: {
@@ -120,7 +105,7 @@ export const ContactMapComponent = withDefaultProps(
                     y: blackDots.map(dot => dot.j),
                   },
                 ]}
-                layout={layout}
+                layout={defaultLayout}
                 onHoverCallback={this.onMouseEnter(removeResidues)}
                 onClickCallback={this.onMouseClick(addNewResidues)}
                 onSelectedCallback={this.onMouseSelect()}
