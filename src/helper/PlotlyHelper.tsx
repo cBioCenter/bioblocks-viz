@@ -120,3 +120,30 @@ export const defaultConfig: Partial<Plotly.Config> = {
   displayModeBar: true,
   // modeBarButtons: [['zoomOut2d', 'zoomIn2d'], ['resetScale2d', 'autoScale2d'], ['select2d', 'pan2d']],
 };
+
+/**
+ *
+ *
+ * @param {Float32Array} coords Array of (x,y) coordinates such that [i, i+1] refers to the (x,y) of object i.
+ * Necessary optimization to render hundreds of thousands of points.
+ * @param {string} color What color the points should be.
+ * @param {number} nodeSize Sets min/max to nodeSize/nodeSize * 2.
+ * @param {Partial<Plotly.ScatterData>} [extra] Explicit extra configuration to add / replace the default data configuration with.
+ * @returns {Partial<Plotly.ScatterData>}
+ */
+export const generatePointCloudData = (
+  coords: Float32Array,
+  color: string,
+  nodeSize: number,
+  extra?: Partial<Plotly.ScatterData>,
+): Partial<Plotly.ScatterData> => ({
+  marker: {
+    color,
+    sizemax: nodeSize * 2,
+    sizemin: nodeSize,
+  },
+  mode: 'markers',
+  type: 'pointcloud',
+  xy: coords,
+  ...extra,
+});

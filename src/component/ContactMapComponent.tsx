@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { CONTACT_MAP_DATA_TYPE, ICouplingScore, RESIDUE_TYPE } from 'chell';
 import { ResidueContext } from '../context/ResidueContext';
-import { defaultConfig, defaultLayout, PlotlyChart } from '../helper/PlotlyHelper';
+import { defaultConfig, defaultLayout, generatePointCloudData, PlotlyChart } from '../helper/PlotlyHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
 import { ChellSlider } from './ChellSlider';
 
@@ -23,10 +23,8 @@ const defaultProps = {
 };
 
 const initialState = {
-  blackDots: new Array<ICouplingScore>(),
-  domain: [1, 100],
-  max_x: 1,
-  min_x: 1000,
+  contactPoints: new Float32Array(0),
+  couplingPoints: new Float32Array(0),
   nodeSize: 4,
   probabilityFilter: 0.99,
 };
@@ -59,23 +57,9 @@ export const ContactMapComponent = withDefaultProps(
     }
 
     public render() {
-      const { data } = this.props;
-      if (data) {
-        return this.renderPlotly();
-      } else {
-        return null;
-      }
-    }
+      const { contactColor, couplingColor } = this.props;
+      const { contactPoints, couplingPoints } = this.state;
 
-    protected renderPlotly() {
-      const { contactColor, couplingColor, data } = this.props;
-      const { blackDots } = this.state;
-
-      const geom = new Float32Array(data.contactMonomer.length * 2);
-      data.contactMonomer.forEach((contact, index) => {
-        geom[index * 2] = contact.i;
-        geom[index * 2 + 1] = contact.j;
-      });
       return (
         <ResidueContext.Consumer>
           {({ addNewResidues, currentResidueSelections, removeResidues }) => (
@@ -83,27 +67,8 @@ export const ContactMapComponent = withDefaultProps(
               <PlotlyChart
                 config={defaultConfig}
                 data={[
-                  {
-                    marker: {
-                      color: contactColor,
-                      sizemax: this.state.nodeSize * 2,
-                      sizemin: this.state.nodeSize,
-                    },
-                    mode: 'markers',
-                    type: 'pointcloud',
-                    xy: geom,
-                  },
-                  {
-                    marker: {
-                      color: couplingColor,
-                      sizemax: this.state.nodeSize * 2,
-                      sizemin: this.state.nodeSize,
-                    },
-                    mode: 'markers',
-                    type: 'pointcloud',
-                    x: blackDots.map(dot => dot.i),
-                    y: blackDots.map(dot => dot.j),
-                  },
+                  generatePointCloudData(contactPoints, contactColor, this.state.nodeSize),
+                  generatePointCloudData(couplingPoints, couplingColor, this.state.nodeSize),
                 ]}
                 layout={defaultLayout}
                 onHoverCallback={this.onMouseEnter(removeResidues)}
@@ -116,7 +81,6 @@ export const ContactMapComponent = withDefaultProps(
         </ResidueContext.Consumer>
       );
     }
-
     protected renderSliders() {
       return (
         <div>
@@ -139,13 +103,9 @@ export const ContactMapComponent = withDefaultProps(
     }
 
     protected setupData(data: CONTACT_MAP_DATA_TYPE) {
-      let max = initialState.max_x;
       const blackDots = new Array<ICouplingScore>();
-      data.contactMonomer.forEach(contact => {
-        max = Math.max(max, contact.i);
-      });
+
       data.couplingScore.filter(coupling => coupling.probability >= this.state.probabilityFilter).forEach(coupling => {
-        max = Math.max(max, coupling.i);
         blackDots.push(coupling);
         blackDots.push({
           ...coupling,
@@ -157,9 +117,21 @@ export const ContactMapComponent = withDefaultProps(
         });
       });
 
+      const contactPoints = new Float32Array(data.contactMonomer.length * 2);
+      data.contactMonomer.forEach((contact, index) => {
+        contactPoints[index * 2] = contact.i;
+        contactPoints[index * 2 + 1] = contact.j;
+      });
+
+      const couplingPoints = new Float32Array(blackDots.length * 2);
+      blackDots.forEach((coupling, index) => {
+        couplingPoints[index * 2] = coupling.i;
+        couplingPoints[index * 2 + 1] = coupling.j;
+      });
+
       this.setState({
-        blackDots,
-        domain: [1, max],
+        contactPoints,
+        couplingPoints,
       });
     }
 

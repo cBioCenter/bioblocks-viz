@@ -156,12 +156,13 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
       if (pickingProxy && (pickingProxy.atom || pickingProxy.bond)) {
         const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
         const resno = atom.resno + this.state.residueOffset;
-        this.props.addNewResidues!([resno]);
+        this.props.addNewResidues([resno]);
       }
     }
 
     protected onClick = (pickingProxy: PickingProxy) => {
       if (pickingProxy && (pickingProxy.atom || pickingProxy.bond)) {
+        console.log('click');
         this.props.removeAllResidues();
         this.removeAllRepresentations(pickingProxy.component as StructureComponent);
 
