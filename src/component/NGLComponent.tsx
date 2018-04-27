@@ -79,7 +79,7 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
 
     public componentDidUpdate(prevProps: Props, prevState: State) {
       const { data, currentResidueSelections } = this.props;
-      const { residueOffset, stage, structureComponent } = this.state;
+      const { stage, structureComponent } = this.state;
 
       const isNewData = data && data !== prevProps.data;
       if (stage && isNewData) {
@@ -93,10 +93,10 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
         structureComponent
       ) {
         Object.keys(currentResidueSelections).forEach(key => {
-          this.highlightElement(structureComponent, currentResidueSelections[key].map(res => res - residueOffset));
+          this.highlightElement(structureComponent, currentResidueSelections[key]);
         });
       } else if (structureComponent) {
-        this.removeAllRepresentations(this.residueSelectionRepresentations, structureComponent);
+        this.removeAllRepresentations(structureComponent);
       }
     }
 
@@ -137,10 +137,14 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
         rep.setParameters({ opacity: 1.0 });
       });
 
+      /*
       structureComponent.stage.mouseControls.add(
         NGL.MouseActions.HOVER_PICK,
         (aStage: Stage, pickingProxy: PickingProxy) => this.onHover(aStage, pickingProxy, data, structureComponent),
       );
+      */
+
+      stage.signals.clicked.add(this.onClick);
     }
 
     protected onHover(
@@ -156,6 +160,17 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
       }
     }
 
+    protected onClick = (pickingProxy: PickingProxy) => {
+      if (pickingProxy && (pickingProxy.atom || pickingProxy.bond)) {
+        this.props.removeAllResidues();
+        this.removeAllRepresentations(pickingProxy.component as StructureComponent);
+
+        const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
+        const resno = atom.resno + this.state.residueOffset;
+        this.props.addNewResidues([resno]);
+      }
+    };
+
     /**
      * Highlight a specific residue on a 3D structure.
      *
@@ -165,17 +180,20 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
      * @memberof NGLComponent
      */
     protected highlightElement(structureComponent: StructureComponent, residues: number[]) {
+      const { residueOffset } = this.state;
       const residueKey = residues.toString();
-      const representations = this.residueSelectionRepresentations;
-      if (representations[residueKey]) {
-        representations[residueKey].map(rep => structureComponent.removeRepresentation(rep));
+      const residueWithOffset = residues.map(res => res - residueOffset);
+      const repDict = this.residueSelectionRepresentations;
+
+      if (repDict[residueKey]) {
+        repDict[residueKey].map(rep => structureComponent.removeRepresentation(rep));
       } else {
-        representations[residueKey] = [];
+        repDict[residueKey] = [];
       }
 
-      const selection = residues.join('.CA, ') + '.CA';
-      if (residues.length >= 2) {
-        representations[residueKey].push(
+      const selection = residueWithOffset.join('.CA, ') + '.CA';
+      if (residueWithOffset.length >= 2) {
+        repDict[residueKey].push(
           structureComponent.addRepresentation('distance', {
             atomPair: [selection.split(',')],
             color: 'skyblue',
@@ -184,16 +202,18 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
         );
       }
 
-      representations[residueKey].push(
+      repDict[residueKey].push(
         structureComponent.addRepresentation('ball+stick', {
-          sele: residues.join(', '),
+          sele: residueWithOffset.join(', '),
         }),
       );
     }
 
-    protected removeAllRepresentations(repDict: IRepresentationDict, structureComponent: NGL.StructureComponent) {
+    protected removeAllRepresentations(structureComponent: NGL.StructureComponent) {
+      const repDict = this.residueSelectionRepresentations;
       for (const key of Object.keys(repDict)) {
         repDict[key].forEach(rep => structureComponent.removeRepresentation(rep));
+        delete this.residueSelectionRepresentations[key];
       }
     }
   },
@@ -205,11 +225,12 @@ type requiredProps = Partial<typeof defaultProps> & Required<Omit<Props, keyof t
 
 export const NGLComponent = (props: requiredProps) => (
   <ResidueContext.Consumer>
-    {({ addNewResidues, currentResidueSelections }) => (
+    {({ addNewResidues, currentResidueSelections, removeAllResidues }) => (
       <NGLComponentWithDefaultProps
         {...props}
         addNewResidues={addNewResidues}
         currentResidueSelections={currentResidueSelections}
+        removeAllResidues={removeAllResidues}
       />
     )}
   </ResidueContext.Consumer>
