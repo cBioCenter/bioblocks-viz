@@ -6,14 +6,21 @@ export interface IResidueSelection {
 }
 
 export const initialResidueContext = {
-  addNewResidues: (residues: RESIDUE_TYPE[]) => {
+  addCandidateResidue: (residue: RESIDUE_TYPE) => {
     return;
   },
-  currentResidueSelections: {} as IResidueSelection,
-  removeAllResidues: () => {
+  addLockedResiduePair: (residues: RESIDUE_TYPE[]) => {
     return;
   },
-  removeResidues: (residues: RESIDUE_TYPE[]) => {
+  candidateResidue: 'none' as RESIDUE_TYPE | 'none',
+  lockedResiduePairs: {} as IResidueSelection,
+  removeAllLockedResiduePairs: () => {
+    return;
+  },
+  removeCandidateResidue: () => {
+    return;
+  },
+  removeLockedResiduePair: (residues: RESIDUE_TYPE[]) => {
     return;
   },
 };

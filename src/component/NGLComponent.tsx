@@ -78,25 +78,19 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
     }
 
     public componentDidUpdate(prevProps: Props, prevState: State) {
-      const { data, currentResidueSelections } = this.props;
+      const { data, lockedResiduePairs } = this.props;
       const { stage, structureComponent } = this.state;
 
       const isNewData = data && data !== prevProps.data;
-      if (stage && isNewData) {
+      if (data && stage && isNewData) {
         stage.removeAllComponents();
-      }
-      if (stage && isNewData && data) {
         this.addStructureToStage(data, stage);
-      } else if (
-        currentResidueSelections &&
-        currentResidueSelections !== prevProps.currentResidueSelections &&
-        structureComponent
-      ) {
-        Object.keys(currentResidueSelections).forEach(key => {
-          this.highlightElement(structureComponent, currentResidueSelections[key]);
+      }
+
+      if (structureComponent) {
+        Object.keys(lockedResiduePairs).forEach(key => {
+          this.highlightElement(structureComponent, lockedResiduePairs[key]);
         });
-      } else if (structureComponent) {
-        this.removeAllRepresentations(structureComponent);
       }
     }
 
@@ -137,12 +131,10 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
         rep.setParameters({ opacity: 1.0 });
       });
 
-      /*
       structureComponent.stage.mouseControls.add(
         NGL.MouseActions.HOVER_PICK,
         (aStage: Stage, pickingProxy: PickingProxy) => this.onHover(aStage, pickingProxy, data, structureComponent),
       );
-      */
 
       stage.signals.clicked.add(this.onClick);
     }
@@ -156,19 +148,30 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
       if (pickingProxy && (pickingProxy.atom || pickingProxy.bond)) {
         const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
         const resno = atom.resno + this.state.residueOffset;
-        this.props.addNewResidues([resno]);
+
+        this.removeNonLockedRepresentations(structureComponent);
+        this.highlightElement(structureComponent, [resno]);
+
+        const { candidateResidue } = this.props;
+        if (candidateResidue !== 'none') {
+          this.highlightElement(structureComponent, [candidateResidue, resno]);
+        }
       }
     }
 
     protected onClick = (pickingProxy: PickingProxy) => {
       if (pickingProxy && (pickingProxy.atom || pickingProxy.bond)) {
-        console.log('click');
-        this.props.removeAllResidues();
-        this.removeAllRepresentations(pickingProxy.component as StructureComponent);
-
         const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
         const resno = atom.resno + this.state.residueOffset;
-        this.props.addNewResidues([resno]);
+
+        const { addCandidateResidue, addLockedResiduePair, candidateResidue, removeCandidateResidue } = this.props;
+
+        if (candidateResidue !== 'none') {
+          addLockedResiduePair([candidateResidue, resno]);
+          removeCandidateResidue();
+        } else {
+          addCandidateResidue(resno);
+        }
       }
     };
 
@@ -210,11 +213,13 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
       );
     }
 
-    protected removeAllRepresentations(structureComponent: NGL.StructureComponent) {
+    protected removeNonLockedRepresentations(structureComponent: NGL.StructureComponent) {
       const repDict = this.residueSelectionRepresentations;
       for (const key of Object.keys(repDict)) {
-        repDict[key].forEach(rep => structureComponent.removeRepresentation(rep));
-        delete this.residueSelectionRepresentations[key];
+        if (!this.props.lockedResiduePairs[key]) {
+          repDict[key].forEach(rep => structureComponent.removeRepresentation(rep));
+          delete this.residueSelectionRepresentations[key];
+        }
       }
     }
   },
@@ -226,12 +231,22 @@ type requiredProps = Partial<typeof defaultProps> & Required<Omit<Props, keyof t
 
 export const NGLComponent = (props: requiredProps) => (
   <ResidueContext.Consumer>
-    {({ addNewResidues, currentResidueSelections, removeAllResidues }) => (
+    {({
+      addLockedResiduePair,
+      addCandidateResidue,
+      candidateResidue,
+      lockedResiduePairs,
+      removeAllLockedResiduePairs,
+      removeCandidateResidue,
+    }) => (
       <NGLComponentWithDefaultProps
         {...props}
-        addNewResidues={addNewResidues}
-        currentResidueSelections={currentResidueSelections}
-        removeAllResidues={removeAllResidues}
+        addCandidateResidue={addCandidateResidue}
+        addLockedResiduePair={addLockedResiduePair}
+        candidateResidue={candidateResidue}
+        lockedResiduePairs={lockedResiduePairs}
+        removeAllLockedResiduePairs={removeAllLockedResiduePairs}
+        removeCandidateResidue={removeCandidateResidue}
       />
     )}
   </ResidueContext.Consumer>

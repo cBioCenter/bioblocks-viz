@@ -36,9 +36,11 @@ export const VizPanelContainer = withDefaultProps(
         currentDataDir: props.dataDirs[0],
         residueContext: {
           ...this.state.residueContext,
-          addNewResidues: this.onResidueSelect,
-          removeAllResidues: this.onRemoveAllResidues,
-          removeResidues: this.onRemoveResidues,
+          addCandidateResidue: this.onCandidateResidueSelect,
+          addLockedResiduePair: this.onResidueSelect,
+          removeAllLockedResiduePairs: this.onRemoveAllResidues,
+          removeCandidateResidue: this.onRemoveCandidateResidue,
+          removeLockedResiduePair: this.onRemoveResidues,
         },
       };
     }
@@ -115,14 +117,14 @@ export const VizPanelContainer = withDefaultProps(
     };
 
     protected onResidueSelect = (residues: RESIDUE_TYPE[]) => {
-      const { currentResidueSelections } = this.state.residueContext;
+      const { lockedResiduePairs } = this.state.residueContext;
       const residuePairKey = residues.toString();
-      if (!currentResidueSelections[residuePairKey]) {
+      if (!lockedResiduePairs[residuePairKey]) {
         this.setState({
           residueContext: {
             ...this.state.residueContext,
-            currentResidueSelections: {
-              ...currentResidueSelections,
+            lockedResiduePairs: {
+              ...lockedResiduePairs,
               [residuePairKey]: residues,
             },
           },
@@ -134,17 +136,35 @@ export const VizPanelContainer = withDefaultProps(
       this.setState({
         residueContext: {
           ...this.state.residueContext,
-          currentResidueSelections: {},
+          lockedResiduePairs: {},
         },
       });
     };
 
     protected onRemoveResidues = (residues: RESIDUE_TYPE[]) => {
       const residueKey = residues.join(',');
-      const { currentResidueSelections } = this.state.residueContext;
-      if (currentResidueSelections[residueKey]) {
-        delete currentResidueSelections[residueKey];
+      const { lockedResiduePairs } = this.state.residueContext;
+      if (lockedResiduePairs[residueKey]) {
+        delete lockedResiduePairs[residueKey];
       }
+    };
+
+    protected onCandidateResidueSelect = (candidateResidue: RESIDUE_TYPE) => {
+      this.setState({
+        residueContext: {
+          ...this.state.residueContext,
+          candidateResidue,
+        },
+      });
+    };
+
+    protected onRemoveCandidateResidue = () => {
+      this.setState({
+        residueContext: {
+          ...this.state.residueContext,
+          candidateResidue: 'none',
+        },
+      });
     };
   },
 );

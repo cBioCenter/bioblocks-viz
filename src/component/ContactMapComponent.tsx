@@ -62,7 +62,7 @@ export const ContactMapComponent = withDefaultProps(
 
       return (
         <ResidueContext.Consumer>
-          {({ addNewResidues, currentResidueSelections, removeResidues }) => (
+          {({ addLockedResiduePair, lockedResiduePairs, removeLockedResiduePair }) => (
             <div style={{ padding: 10 }}>
               <PlotlyChart
                 config={defaultConfig}
@@ -71,8 +71,8 @@ export const ContactMapComponent = withDefaultProps(
                   generatePointCloudData(couplingPoints, couplingColor, this.state.nodeSize),
                 ]}
                 layout={defaultLayout}
-                onHoverCallback={this.onMouseEnter(removeResidues)}
-                onClickCallback={this.onMouseClick(addNewResidues)}
+                onHoverCallback={this.onMouseEnter(removeLockedResiduePair)}
+                onClickCallback={this.onMouseClick(addLockedResiduePair)}
                 onSelectedCallback={this.onMouseSelect()}
               />
               {this.renderSliders()}
