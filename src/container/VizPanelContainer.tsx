@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Dropdown, Grid, GridColumn, GridRow } from 'semantic-ui-react';
 
-import { CHELL_DATA_TYPE, ICouplingScore, VIZ_TYPE } from 'chell';
+import { CHELL_DATA_TYPE, RESIDUE_TYPE, VIZ_TYPE } from 'chell';
 import { VizSelectorPanel } from '../component/VizSelectorPanel';
+import { initialResidueContext, ResidueContext } from '../context/ResidueContext';
 import { fetchAppropriateData } from '../helper/DataHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
 
@@ -15,7 +16,9 @@ const defaultProps = {
 const initialState = {
   currentDataDir: '',
   data: {} as Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>,
-  selectedData: undefined as ICouplingScore | undefined,
+  residueContext: {
+    ...initialResidueContext,
+  },
 };
 
 type Props = { dataDirs: string[]; supportedVisualizations: VIZ_TYPE[] } & typeof defaultProps;
@@ -31,6 +34,14 @@ export const VizPanelContainer = withDefaultProps(
       this.state = {
         ...this.state,
         currentDataDir: props.dataDirs[0],
+        residueContext: {
+          ...this.state.residueContext,
+          addCandidateResidue: this.onCandidateResidueSelect,
+          addLockedResiduePair: this.onResidueSelect,
+          removeAllLockedResiduePairs: this.onRemoveAllResidues,
+          removeCandidateResidue: this.onRemoveCandidateResidue,
+          removeLockedResiduePair: this.onRemoveResidues,
+        },
       };
     }
 
@@ -76,9 +87,11 @@ export const VizPanelContainer = withDefaultProps(
               search={true}
             />
           </GridRow>
-          {this.renderPanels(this.props.numPanels, this.state.data, this.props.initialVisualizations).map(
-            (panel, index) => <GridColumn key={index}>{panel}</GridColumn>,
-          )}
+          <ResidueContext.Provider value={this.state.residueContext}>
+            {this.renderPanels(this.props.numPanels, this.state.data, this.props.initialVisualizations).map(
+              (panel, index) => <GridColumn key={index}>{panel}</GridColumn>,
+            )}
+          </ResidueContext.Provider>
         </Grid>
       );
     }
@@ -90,8 +103,6 @@ export const VizPanelContainer = withDefaultProps(
           <VizSelectorPanel
             data={data}
             initialViz={initialVisualizations[i]}
-            onDataSelect={this.onDataSelect()}
-            selectedData={this.state.selectedData}
             supportedVisualizations={this.props.supportedVisualizations}
           />,
         );
@@ -105,9 +116,54 @@ export const VizPanelContainer = withDefaultProps(
       });
     };
 
-    protected onDataSelect = () => (payload: any) => {
+    protected onResidueSelect = (residues: RESIDUE_TYPE[]) => {
+      const { lockedResiduePairs } = this.state.residueContext;
+      const residuePairKey = residues.toString();
+      if (!lockedResiduePairs[residuePairKey]) {
+        this.setState({
+          residueContext: {
+            ...this.state.residueContext,
+            lockedResiduePairs: {
+              ...lockedResiduePairs,
+              [residuePairKey]: residues,
+            },
+          },
+        });
+      }
+    };
+
+    protected onRemoveAllResidues = () => {
       this.setState({
-        selectedData: payload as ICouplingScore,
+        residueContext: {
+          ...this.state.residueContext,
+          lockedResiduePairs: {},
+        },
+      });
+    };
+
+    protected onRemoveResidues = (residues: RESIDUE_TYPE[]) => {
+      const residueKey = residues.join(',');
+      const { lockedResiduePairs } = this.state.residueContext;
+      if (lockedResiduePairs[residueKey]) {
+        delete lockedResiduePairs[residueKey];
+      }
+    };
+
+    protected onCandidateResidueSelect = (candidateResidue: RESIDUE_TYPE) => {
+      this.setState({
+        residueContext: {
+          ...this.state.residueContext,
+          candidateResidue,
+        },
+      });
+    };
+
+    protected onRemoveCandidateResidue = () => {
+      this.setState({
+        residueContext: {
+          ...this.state.residueContext,
+          candidateResidue: 'none',
+        },
       });
     };
   },

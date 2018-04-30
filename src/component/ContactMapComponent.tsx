@@ -1,8 +1,8 @@
 import * as React from 'react';
-import PlotlyChart from '../helper/PlotlyHelper';
 
-import { CONTACT_MAP_DATA_TYPE, ICouplingScore } from 'chell';
-import { Config, Layout } from 'plotly.js';
+import { CONTACT_MAP_DATA_TYPE, ICouplingScore, RESIDUE_TYPE } from 'chell';
+import { IResidueSelection, ResidueContext } from '../context/ResidueContext';
+import { defaultConfig, defaultLayout, generatePointCloudData, PlotlyChart } from '../helper/PlotlyHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
 import { ChellSlider } from './ChellSlider';
 
@@ -17,16 +17,16 @@ const defaultProps = {
     couplingScore: [],
     distanceMapMonomer: [],
   } as CONTACT_MAP_DATA_TYPE,
+  highlightColor: '#0000ff',
   onClick: undefined as ContactMapCallback | undefined,
   onMouseEnter: undefined as ContactMapCallback | undefined,
   selectedData: undefined as number | undefined,
 };
 
 const initialState = {
-  blackDots: new Array<ICouplingScore>(),
-  domain: [1, 100],
-  max_x: 1,
-  min_x: 1000,
+  contactPoints: new Float32Array(0),
+  couplingPoints: new Float32Array(0),
+  highlightedPoints: new Float32Array(0),
   nodeSize: 4,
   probabilityFilter: 0.99,
 };
@@ -59,75 +59,35 @@ export const ContactMapComponent = withDefaultProps(
     }
 
     public render() {
-      const { data } = this.props;
-      if (data) {
-        return this.renderPlotly();
-      } else {
-        return null;
-      }
-    }
+      const { contactColor, couplingColor, highlightColor } = this.props;
+      const { contactPoints, couplingPoints } = this.state;
 
-    protected renderPlotly() {
-      const { contactColor, couplingColor, data } = this.props;
-      const { blackDots } = this.state;
-      const config: Partial<Config> = {
-        displayModeBar: true,
-      };
-      const layout: Partial<Layout> = {
-        dragmode: 'select',
-        height: 440,
-        legend: {},
-        showlegend: false,
-        title: '',
-        width: 440,
-        xaxis: {},
-        yaxis: {
-          autorange: 'reversed',
-        },
-      };
-      const geom = new Float32Array(data.contactMonomer.length * 2);
-      data.contactMonomer.forEach((contact, index) => {
-        geom[index * 2] = contact.i;
-        geom[index * 2 + 1] = contact.j;
-      });
       return (
-        <div style={{ padding: 10 }}>
-          <PlotlyChart
-            config={config}
-            data={[
-              {
-                marker: {
-                  color: contactColor,
-                  sizemax: this.state.nodeSize * 2,
-                  sizemin: this.state.nodeSize,
-                },
-                mode: 'markers',
-                type: 'pointcloud',
-                xy: geom,
-              },
-              {
-                marker: {
-                  color: couplingColor,
-                  sizemax: this.state.nodeSize * 2,
-                  sizemin: this.state.nodeSize,
-                },
-                mode: 'markers',
-                type: 'pointcloud',
-                x: blackDots.map(dot => dot.i),
-                y: blackDots.map(dot => dot.j),
-              },
-            ]}
-            layout={layout}
-            onHover={this.onMouseEnter()}
-            onClick={this.onMouseClick()}
-            onUnHover={this.onMouseLeave()}
-            onSelected={this.onMouseSelect()}
-          />
-          {this.renderSliders()}
-        </div>
+        <ResidueContext.Consumer>
+          {({ addLockedResiduePair, lockedResiduePairs, removeLockedResiduePair }) => (
+            <div style={{ padding: 10 }}>
+              <PlotlyChart
+                config={defaultConfig}
+                data={[
+                  generatePointCloudData(contactPoints, contactColor, this.state.nodeSize),
+                  generatePointCloudData(couplingPoints, couplingColor, this.state.nodeSize),
+                  generatePointCloudData(
+                    this.getHighlightedResidues(lockedResiduePairs),
+                    highlightColor,
+                    this.state.nodeSize,
+                  ),
+                ]}
+                layout={defaultLayout}
+                onHoverCallback={this.onMouseEnter(removeLockedResiduePair)}
+                onClickCallback={this.onMouseClick(addLockedResiduePair)}
+                onSelectedCallback={this.onMouseSelect()}
+              />
+              {this.renderSliders()}
+            </div>
+          )}
+        </ResidueContext.Consumer>
       );
     }
-
     protected renderSliders() {
       return (
         <div>
@@ -150,13 +110,9 @@ export const ContactMapComponent = withDefaultProps(
     }
 
     protected setupData(data: CONTACT_MAP_DATA_TYPE) {
-      let max = initialState.max_x;
       const blackDots = new Array<ICouplingScore>();
-      data.contactMonomer.forEach(contact => {
-        max = Math.max(max, contact.i);
-      });
+
       data.couplingScore.filter(coupling => coupling.probability >= this.state.probabilityFilter).forEach(coupling => {
-        max = Math.max(max, coupling.i);
         blackDots.push(coupling);
         blackDots.push({
           ...coupling,
@@ -168,10 +124,33 @@ export const ContactMapComponent = withDefaultProps(
         });
       });
 
-      this.setState({
-        blackDots,
-        domain: [1, max],
+      const contactPoints = new Float32Array(data.contactMonomer.length * 2);
+      data.contactMonomer.forEach((contact, index) => {
+        contactPoints[index * 2] = contact.i;
+        contactPoints[index * 2 + 1] = contact.j;
       });
+
+      const couplingPoints = new Float32Array(blackDots.length * 2);
+      blackDots.forEach((coupling, index) => {
+        couplingPoints[index * 2] = coupling.i;
+        couplingPoints[index * 2 + 1] = coupling.j;
+      });
+
+      this.setState({
+        contactPoints,
+        couplingPoints,
+      });
+    }
+
+    protected getHighlightedResidues(pairs: IResidueSelection): Float32Array {
+      const pairKeys = Object.keys(pairs);
+      const highlightedPoints: number[] = [];
+      for (const key of pairKeys) {
+        for (const residue of pairs[key]) {
+          highlightedPoints.push(residue);
+        }
+      }
+      return new Float32Array([...highlightedPoints, ...highlightedPoints.slice().reverse()]);
     }
 
     protected onClick = () => (coupling: ICouplingScore) => {
@@ -192,16 +171,14 @@ export const ContactMapComponent = withDefaultProps(
       });
     };
 
-    protected onMouseEnter = () => (e: Plotly.PlotMouseEvent) => {
-      console.log(`onMouseEnter: ${e}`);
+    protected onMouseEnter = (cb: (residues: RESIDUE_TYPE[]) => void) => (e: Plotly.PlotMouseEvent) => {
+      const { points } = e;
+      cb([points[0].x, points[0].y]);
     };
 
-    protected onMouseLeave = () => (e: Plotly.PlotMouseEvent) => {
-      console.log(`onMouseLeave: ${e}`);
-    };
-
-    protected onMouseClick = () => (e: Plotly.PlotMouseEvent) => {
-      console.log(`onMouseClick: ${e}`);
+    protected onMouseClick = (cb: (residues: RESIDUE_TYPE[]) => void) => (e: Plotly.PlotMouseEvent) => {
+      const { points } = e;
+      cb([points[0].x, points[0].y]);
     };
 
     protected onMouseSelect = () => (e: Plotly.PlotSelectionEvent) => {

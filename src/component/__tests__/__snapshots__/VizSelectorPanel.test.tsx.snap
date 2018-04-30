@@ -42,6 +42,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
           "distanceMapMonomer": Array [],
         }
       }
+      highlightColor="#0000ff"
       onMouseEnter={[Function]}
     />
   </Card>
@@ -80,9 +81,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     fluid={true}
     raised={true}
   >
-    <NGLComponent
-      onHoverPickCallback={[Function]}
-    />
+    <Component />
   </Card>
 </div>
 `;

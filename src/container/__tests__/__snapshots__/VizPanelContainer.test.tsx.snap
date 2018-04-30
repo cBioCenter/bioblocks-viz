@@ -31,17 +31,31 @@ exports[`VizPanelContainer Should match existing snapshot when given a single vi
       wrapSelection={true}
     />
   </GridRow>
-  <GridColumn
-    key="0"
+  <[object Object]
+    value={
+      Object {
+        "addCandidateResidue": [Function],
+        "addLockedResiduePair": [Function],
+        "candidateResidue": "none",
+        "lockedResiduePairs": Object {},
+        "removeAllLockedResiduePairs": [Function],
+        "removeCandidateResidue": [Function],
+        "removeLockedResiduePair": [Function],
+      }
+    }
   >
-    <VizSelectorPanelClass
-      data={Object {}}
-      height={450}
-      initialViz="T-SNE"
-      onDataSelect={[Function]}
-      supportedVisualizations={Array []}
-      width={450}
-    />
-  </GridColumn>
+    <GridColumn
+      key="0"
+    >
+      <VizSelectorPanelClass
+        data={Object {}}
+        height={450}
+        initialViz="T-SNE"
+        onDataSelect={[Function]}
+        supportedVisualizations={Array []}
+        width={450}
+      />
+    </GridColumn>
+  </[object Object]>
 </Grid>
 `;
