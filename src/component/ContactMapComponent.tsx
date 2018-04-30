@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { CONTACT_MAP_DATA_TYPE, ICouplingScore, RESIDUE_TYPE } from 'chell';
-import { ResidueContext } from '../context/ResidueContext';
+import { IResidueSelection, ResidueContext } from '../context/ResidueContext';
 import { defaultConfig, defaultLayout, generatePointCloudData, PlotlyChart } from '../helper/PlotlyHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
 import { ChellSlider } from './ChellSlider';
@@ -17,6 +17,7 @@ const defaultProps = {
     couplingScore: [],
     distanceMapMonomer: [],
   } as CONTACT_MAP_DATA_TYPE,
+  highlightColor: '#0000ff',
   onClick: undefined as ContactMapCallback | undefined,
   onMouseEnter: undefined as ContactMapCallback | undefined,
   selectedData: undefined as number | undefined,
@@ -25,6 +26,7 @@ const defaultProps = {
 const initialState = {
   contactPoints: new Float32Array(0),
   couplingPoints: new Float32Array(0),
+  highlightedPoints: new Float32Array(0),
   nodeSize: 4,
   probabilityFilter: 0.99,
 };
@@ -57,7 +59,7 @@ export const ContactMapComponent = withDefaultProps(
     }
 
     public render() {
-      const { contactColor, couplingColor } = this.props;
+      const { contactColor, couplingColor, highlightColor } = this.props;
       const { contactPoints, couplingPoints } = this.state;
 
       return (
@@ -69,6 +71,11 @@ export const ContactMapComponent = withDefaultProps(
                 data={[
                   generatePointCloudData(contactPoints, contactColor, this.state.nodeSize),
                   generatePointCloudData(couplingPoints, couplingColor, this.state.nodeSize),
+                  generatePointCloudData(
+                    this.getHighlightedResidues(lockedResiduePairs),
+                    highlightColor,
+                    this.state.nodeSize,
+                  ),
                 ]}
                 layout={defaultLayout}
                 onHoverCallback={this.onMouseEnter(removeLockedResiduePair)}
@@ -133,6 +140,17 @@ export const ContactMapComponent = withDefaultProps(
         contactPoints,
         couplingPoints,
       });
+    }
+
+    protected getHighlightedResidues(pairs: IResidueSelection): Float32Array {
+      const pairKeys = Object.keys(pairs);
+      const highlightedPoints: number[] = [];
+      for (const key of pairKeys) {
+        for (const residue of pairs[key]) {
+          highlightedPoints.push(residue);
+        }
+      }
+      return new Float32Array([...highlightedPoints, ...highlightedPoints.slice().reverse()]);
     }
 
     protected onClick = () => (coupling: ICouplingScore) => {
