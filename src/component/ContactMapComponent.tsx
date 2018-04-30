@@ -154,7 +154,6 @@ export const ContactMapComponent = withDefaultProps(
     };
 
     protected onMouseEnter = (cb: (residues: RESIDUE_TYPE[]) => void) => (e: Plotly.PlotMouseEvent) => {
-      // TODO Handle hover more gracefully, adding temporary selection.
       const { points } = e;
       cb([points[0].x, points[0].y]);
     };

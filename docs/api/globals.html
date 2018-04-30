@@ -398,7 +398,7 @@
 				<section class="tsd-panel tsd-member tsd-kind-variable">
 					<a name="contactmapcomponent" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> Contact<wbr>Map<wbr>Component</h3>
-					<div class="tsd-signature tsd-kind-icon">Contact<wbr>Map<wbr>Component<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultProps,class ContactMapComponentClass extends React.Component&lt;Props, State&gt; {public readonly state: State &#x3D; initialState;constructor(props: Props) {super(props);}public componentDidMount() {const { data } &#x3D; this.props;if (data) {this.setupData(data);}}public componentDidUpdate(prevProps: Props, prevState: State) {const { data } &#x3D; this.props;const isFreshDataView &#x3D; data !&#x3D;&#x3D; prevProps.data || this.state.probabilityFilter !&#x3D;&#x3D; prevState.probabilityFilter;if (isFreshDataView) {this.setupData(data);}}public render() {const { contactColor, couplingColor } &#x3D; this.props;const { contactPoints, couplingPoints } &#x3D; this.state;return (&lt;ResidueContext.Consumer&gt;{({ addLockedResiduePair, lockedResiduePairs, removeLockedResiduePair }) &#x3D;&gt; (&lt;div style&#x3D;{{ padding: 10 }}&gt;&lt;PlotlyChartconfig&#x3D;{defaultConfig}data&#x3D;{[generatePointCloudData(contactPoints, contactColor, this.state.nodeSize),generatePointCloudData(couplingPoints, couplingColor, this.state.nodeSize),]}layout&#x3D;{defaultLayout}onHoverCallback&#x3D;{this.onMouseEnter(removeLockedResiduePair)}onClickCallback&#x3D;{this.onMouseClick(addLockedResiduePair)}onSelectedCallback&#x3D;{this.onMouseSelect()}/&gt;{this.renderSliders()}&lt;/div&gt;)}&lt;/ResidueContext.Consumer&gt;);}protected renderSliders() {return (&lt;div&gt;&lt;ChellSlidermax&#x3D;{100}min&#x3D;{0}label&#x3D;{&#x27;Probability&#x27;}defaultValue&#x3D;{99}onChange&#x3D;{this.onProbabilityChange()}/&gt;&lt;ChellSlidermax&#x3D;{5}min&#x3D;{1}label&#x3D;{&#x27;Node Size&#x27;}defaultValue&#x3D;{this.state.nodeSize}onChange&#x3D;{this.onNodeSizeChange()}/&gt;&lt;/div&gt;);}protected setupData(data: CONTACT_MAP_DATA_TYPE) {const blackDots &#x3D; new Array&lt;ICouplingScore&gt;();data.couplingScore.filter(coupling &#x3D;&gt; coupling.probability &gt;&#x3D; this.state.probabilityFilter).forEach(coupling &#x3D;&gt; {blackDots.push(coupling);blackDots.push({...coupling,i: coupling.j,// tslint:disable-next-line:object-literal-sort-keysA_i: coupling.A_j,j: coupling.i,A_j: coupling.A_i,});});const contactPoints &#x3D; new Float32Array(data.contactMonomer.length * 2);data.contactMonomer.forEach((contact, index) &#x3D;&gt; {contactPoints[index * 2] &#x3D; contact.i;contactPoints[index * 2 + 1] &#x3D; contact.j;});const couplingPoints &#x3D; new Float32Array(blackDots.length * 2);blackDots.forEach((coupling, index) &#x3D;&gt; {couplingPoints[index * 2] &#x3D; coupling.i;couplingPoints[index * 2 + 1] &#x3D; coupling.j;});this.setState({contactPoints,couplingPoints,});}protected onClick &#x3D; () &#x3D;&gt; (coupling: ICouplingScore) &#x3D;&gt; {if (this.props.onClick) {this.props.onClick(coupling);}};protected onProbabilityChange &#x3D; () &#x3D;&gt; (value: number) &#x3D;&gt; {this.setState({probabilityFilter: value / 100,});};protected onNodeSizeChange &#x3D; () &#x3D;&gt; (value: number) &#x3D;&gt; {this.setState({nodeSize: value,});};protected onMouseEnter &#x3D; (cb: (residues: RESIDUE_TYPE[]) &#x3D;&gt; void) &#x3D;&gt; (e: Plotly.PlotMouseEvent) &#x3D;&gt; {// TODO Handle hover more gracefully, adding temporary selection.const { points } &#x3D; e;cb([points[0].x, points[0].y]);};protected onMouseClick &#x3D; (cb: (residues: RESIDUE_TYPE[]) &#x3D;&gt; void) &#x3D;&gt; (e: Plotly.PlotMouseEvent) &#x3D;&gt; {const { points } &#x3D; e;cb([points[0].x, points[0].y]);};protected onMouseSelect &#x3D; () &#x3D;&gt; (e: Plotly.PlotSelectionEvent) &#x3D;&gt; {console.log(&#x60;onMouseSelect: ${e}&#x60;);};},)</span></div>
+					<div class="tsd-signature tsd-kind-icon">Contact<wbr>Map<wbr>Component<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultProps,class ContactMapComponentClass extends React.Component&lt;Props, State&gt; {public readonly state: State &#x3D; initialState;constructor(props: Props) {super(props);}public componentDidMount() {const { data } &#x3D; this.props;if (data) {this.setupData(data);}}public componentDidUpdate(prevProps: Props, prevState: State) {const { data } &#x3D; this.props;const isFreshDataView &#x3D; data !&#x3D;&#x3D; prevProps.data || this.state.probabilityFilter !&#x3D;&#x3D; prevState.probabilityFilter;if (isFreshDataView) {this.setupData(data);}}public render() {const { contactColor, couplingColor } &#x3D; this.props;const { contactPoints, couplingPoints } &#x3D; this.state;return (&lt;ResidueContext.Consumer&gt;{({ addLockedResiduePair, lockedResiduePairs, removeLockedResiduePair }) &#x3D;&gt; (&lt;div style&#x3D;{{ padding: 10 }}&gt;&lt;PlotlyChartconfig&#x3D;{defaultConfig}data&#x3D;{[generatePointCloudData(contactPoints, contactColor, this.state.nodeSize),generatePointCloudData(couplingPoints, couplingColor, this.state.nodeSize),]}layout&#x3D;{defaultLayout}onHoverCallback&#x3D;{this.onMouseEnter(removeLockedResiduePair)}onClickCallback&#x3D;{this.onMouseClick(addLockedResiduePair)}onSelectedCallback&#x3D;{this.onMouseSelect()}/&gt;{this.renderSliders()}&lt;/div&gt;)}&lt;/ResidueContext.Consumer&gt;);}protected renderSliders() {return (&lt;div&gt;&lt;ChellSlidermax&#x3D;{100}min&#x3D;{0}label&#x3D;{&#x27;Probability&#x27;}defaultValue&#x3D;{99}onChange&#x3D;{this.onProbabilityChange()}/&gt;&lt;ChellSlidermax&#x3D;{5}min&#x3D;{1}label&#x3D;{&#x27;Node Size&#x27;}defaultValue&#x3D;{this.state.nodeSize}onChange&#x3D;{this.onNodeSizeChange()}/&gt;&lt;/div&gt;);}protected setupData(data: CONTACT_MAP_DATA_TYPE) {const blackDots &#x3D; new Array&lt;ICouplingScore&gt;();data.couplingScore.filter(coupling &#x3D;&gt; coupling.probability &gt;&#x3D; this.state.probabilityFilter).forEach(coupling &#x3D;&gt; {blackDots.push(coupling);blackDots.push({...coupling,i: coupling.j,// tslint:disable-next-line:object-literal-sort-keysA_i: coupling.A_j,j: coupling.i,A_j: coupling.A_i,});});const contactPoints &#x3D; new Float32Array(data.contactMonomer.length * 2);data.contactMonomer.forEach((contact, index) &#x3D;&gt; {contactPoints[index * 2] &#x3D; contact.i;contactPoints[index * 2 + 1] &#x3D; contact.j;});const couplingPoints &#x3D; new Float32Array(blackDots.length * 2);blackDots.forEach((coupling, index) &#x3D;&gt; {couplingPoints[index * 2] &#x3D; coupling.i;couplingPoints[index * 2 + 1] &#x3D; coupling.j;});this.setState({contactPoints,couplingPoints,});}protected onClick &#x3D; () &#x3D;&gt; (coupling: ICouplingScore) &#x3D;&gt; {if (this.props.onClick) {this.props.onClick(coupling);}};protected onProbabilityChange &#x3D; () &#x3D;&gt; (value: number) &#x3D;&gt; {this.setState({probabilityFilter: value / 100,});};protected onNodeSizeChange &#x3D; () &#x3D;&gt; (value: number) &#x3D;&gt; {this.setState({nodeSize: value,});};protected onMouseEnter &#x3D; (cb: (residues: RESIDUE_TYPE[]) &#x3D;&gt; void) &#x3D;&gt; (e: Plotly.PlotMouseEvent) &#x3D;&gt; {const { points } &#x3D; e;cb([points[0].x, points[0].y]);};protected onMouseClick &#x3D; (cb: (residues: RESIDUE_TYPE[]) &#x3D;&gt; void) &#x3D;&gt; (e: Plotly.PlotMouseEvent) &#x3D;&gt; {const { points } &#x3D; e;cb([points[0].x, points[0].y]);};protected onMouseSelect &#x3D; () &#x3D;&gt; (e: Plotly.PlotSelectionEvent) &#x3D;&gt; {console.log(&#x60;onMouseSelect: ${e}&#x60;);};},)</span></div>
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in src/component/ContactMapComponent.tsx:35</li>
@@ -731,7 +731,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/PlotlyHelper.tsx:134</li>
+									<li>Defined in src/helper/PlotlyHelper.tsx:132</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -878,7 +878,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/helper/PlotlyHelper.tsx:119</li>
+							<li>Defined in src/helper/PlotlyHelper.tsx:117</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -887,7 +887,7 @@
 						<div class="tsd-signature tsd-kind-icon">display<wbr>Mode<wbr>Bar<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/helper/PlotlyHelper.tsx:120</li>
+								<li>Defined in src/helper/PlotlyHelper.tsx:118</li>
 							</ul>
 						</aside>
 					</section>
@@ -898,7 +898,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Layout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/helper/PlotlyHelper.tsx:107</li>
+							<li>Defined in src/helper/PlotlyHelper.tsx:105</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -907,7 +907,7 @@
 						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;440</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/helper/PlotlyHelper.tsx:108</li>
+								<li>Defined in src/helper/PlotlyHelper.tsx:106</li>
 							</ul>
 						</aside>
 					</section>
@@ -917,7 +917,7 @@
 						<div class="tsd-signature tsd-kind-icon">legend<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/helper/PlotlyHelper.tsx:109</li>
+								<li>Defined in src/helper/PlotlyHelper.tsx:107</li>
 							</ul>
 						</aside>
 						<div class="tsd-type-declaration">
@@ -932,7 +932,7 @@
 						<div class="tsd-signature tsd-kind-icon">showlegend<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/helper/PlotlyHelper.tsx:110</li>
+								<li>Defined in src/helper/PlotlyHelper.tsx:108</li>
 							</ul>
 						</aside>
 					</section>
@@ -942,7 +942,7 @@
 						<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/helper/PlotlyHelper.tsx:111</li>
+								<li>Defined in src/helper/PlotlyHelper.tsx:109</li>
 							</ul>
 						</aside>
 					</section>
@@ -952,7 +952,7 @@
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;440</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/helper/PlotlyHelper.tsx:112</li>
+								<li>Defined in src/helper/PlotlyHelper.tsx:110</li>
 							</ul>
 						</aside>
 					</section>
@@ -962,7 +962,7 @@
 						<div class="tsd-signature tsd-kind-icon">xaxis<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/helper/PlotlyHelper.tsx:113</li>
+								<li>Defined in src/helper/PlotlyHelper.tsx:111</li>
 							</ul>
 						</aside>
 						<div class="tsd-type-declaration">
@@ -977,7 +977,7 @@
 						<div class="tsd-signature tsd-kind-icon">yaxis<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/helper/PlotlyHelper.tsx:114</li>
+								<li>Defined in src/helper/PlotlyHelper.tsx:112</li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -986,7 +986,7 @@
 							<div class="tsd-signature tsd-kind-icon">autorange<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"reversed"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;reversed&quot;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/PlotlyHelper.tsx:115</li>
+									<li>Defined in src/helper/PlotlyHelper.tsx:113</li>
 								</ul>
 							</aside>
 						</section>

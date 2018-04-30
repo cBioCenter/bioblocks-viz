@@ -88,7 +88,6 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   }
 
   protected onHover = (event: plotly.PlotMouseEvent) => {
-    console.log('Plotly onHover called');
     const { onHoverCallback } = this.props;
     if (onHoverCallback) {
       onHoverCallback(event);
@@ -96,7 +95,6 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   };
 
   protected onUnHover = (event: plotly.PlotMouseEvent) => {
-    console.log('Plotly onUnHover called');
     const { onUnHoverCallback } = this.props;
     if (onUnHoverCallback) {
       onUnHoverCallback(event);
