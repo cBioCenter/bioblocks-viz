@@ -34,10 +34,13 @@ exports[`VizPanelContainer Should match existing snapshot when given a single vi
   <[object Object]
     value={
       Object {
-        "addNewResidues": [Function],
-        "currentResidueSelections": Object {},
-        "removeAllResidues": [Function],
-        "removeResidues": [Function],
+        "addCandidateResidue": [Function],
+        "addLockedResiduePair": [Function],
+        "candidateResidue": "none",
+        "lockedResiduePairs": Object {},
+        "removeAllLockedResiduePairs": [Function],
+        "removeCandidateResidue": [Function],
+        "removeLockedResiduePair": [Function],
       }
     }
   >
