@@ -4,17 +4,13 @@ exports[`SpringContainer Should match existing snapshot when given no data. 1`] 
 <div
   id="SpringContainer"
 >
-  <SpringComponentClass
-    canvasBackgroundColor={13421772}
+  <Component
     data={
       Object {
         "links": Array [],
         "nodes": Array [],
       }
     }
-    height={450}
-    selectedCategory=""
-    width={450}
   />
   <CategorySelector
     categories={Array []}
@@ -27,17 +23,13 @@ exports[`SpringContainer Should update when given a new data directory. 1`] = `
 <div
   id="SpringContainer"
 >
-  <SpringComponentClass
-    canvasBackgroundColor={13421772}
+  <Component
     data={
       Object {
         "links": Array [],
         "nodes": Array [],
       }
     }
-    height={450}
-    selectedCategory=""
-    width={450}
   />
   <CategorySelector
     categories={Array []}

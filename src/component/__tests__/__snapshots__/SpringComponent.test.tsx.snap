@@ -1,27 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SpringComponent Should match existing snapshot when given simple data. 1`] = `
-<div
-  id="SpringComponent"
-  style={
-    Object {
-      "height": 450,
-      "padding": 15,
-      "width": 450,
-    }
-  }
->
-  <div
-    id="PixiCanvasHolder"
-  >
-    <canvas
-      style={
-        Object {
-          "height": 405,
-          "width": 405,
-        }
-      }
-    />
-  </div>
-</div>
-`;
+exports[`SpringComponent Should match existing snapshot when given simple data. 1`] = `<[object Object] />`;

@@ -120,18 +120,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     fluid={true}
     raised={true}
   >
-    <SpringComponentClass
-      canvasBackgroundColor={13421772}
-      data={
-        Object {
-          "links": Array [],
-          "nodes": Array [],
-        }
-      }
-      height={450}
-      selectedCategory=""
-      width={450}
-    />
+    <Component />
   </Card>
 </div>
 `;
