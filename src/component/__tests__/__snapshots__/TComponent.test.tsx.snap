@@ -11,119 +11,46 @@ exports[`TComponent Should match existing snapshot when given simple data. 1`] =
     }
   }
 >
-  <ScatterChart
-    barCategoryGap="10%"
-    barGap={4}
-    height={405}
-    layout="horizontal"
-    margin={
+  <PlotlyChart
+    config={
       Object {
-        "bottom": 5,
-        "left": 5,
-        "right": 5,
-        "top": 5,
+        "displayModeBar": true,
       }
     }
-    reverseStackOrder={false}
-    stackOffset="none"
-    width={405}
-  >
-    <XAxis
-      allowDataOverflow={false}
-      allowDecimals={true}
-      allowDuplicatedCategory={true}
-      dataKey="x"
-      domain={
-        Array [
-          0,
-          "auto",
-        ]
-      }
-      height={30}
-      hide={false}
-      mirror={false}
-      orientation="bottom"
-      padding={
+    data={
+      Array [
         Object {
-          "left": 0,
-          "right": 0,
-        }
-      }
-      reversed={false}
-      scale="auto"
-      tickCount={5}
-      type="number"
-      width={0}
-      xAxisId={0}
-    />
-    <YAxis
-      allowDataOverflow={false}
-      allowDecimals={true}
-      allowDuplicatedCategory={true}
-      dataKey="y"
-      domain={
-        Array [
-          0,
-          "auto",
-        ]
-      }
-      height={0}
-      hide={false}
-      mirror={false}
-      orientation="left"
-      padding={
-        Object {
-          "bottom": 0,
-          "top": 0,
-        }
-      }
-      reversed={false}
-      scale="auto"
-      tickCount={5}
-      type="number"
-      width={60}
-      yAxisId={0}
-    />
-    <CartesianGrid
-      fill="none"
-      horizontal={true}
-      horizontalFill={Array []}
-      horizontalPoints={Array []}
-      stroke="#ccc"
-      vertical={true}
-      verticalFill={Array []}
-      verticalPoints={Array []}
-    />
-    <Scatter
-      animationBegin={0}
-      animationDuration={400}
-      animationEasing="linear"
-      data={
-        Array [
-          Object {
-            "x": 1,
-            "y": 2,
+          "marker": Object {
+            "color": "#000000",
+            "sizemax": 20,
+            "sizemin": 10,
           },
-          Object {
-            "x": 3,
-            "y": 4,
-          },
-          Object {
-            "x": 5,
-            "y": 6,
-          },
-        ]
+          "mode": "markers",
+          "type": "pointcloud",
+          "xy": Float32Array [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+          ],
+        },
+      ]
+    }
+    layout={
+      Object {
+        "height": 450,
+        "legend": Object {},
+        "showlegend": false,
+        "title": "",
+        "width": 450,
+        "xaxis": Object {},
+        "yaxis": Object {
+          "autorange": true,
+        },
       }
-      hide={false}
-      isAnimationActive={true}
-      legendType="circle"
-      lineJointType="linear"
-      lineType="joint"
-      shape="circle"
-      xAxisId={0}
-      yAxisId={0}
-      zAxisId={0}
-    />
-  </ScatterChart>
+    }
+  />
 </div>
 `;

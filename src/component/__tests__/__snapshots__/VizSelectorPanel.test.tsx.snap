@@ -178,6 +178,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
         ]
       }
       height={450}
+      pointColor="#000000"
       width={450}
     />
   </Card>
@@ -228,6 +229,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given no initial v
         ]
       }
       height={450}
+      pointColor="#000000"
       width={450}
     />
   </Card>

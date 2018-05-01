@@ -1,11 +1,13 @@
 import { T_SNE_DATA_TYPE } from 'chell';
 import * as React from 'react';
-import { CartesianGrid, Scatter, ScatterChart, XAxis, YAxis } from 'recharts';
+
+import { defaultConfig, defaultLayout, generatePointCloudData, PlotlyChart } from '../helper/PlotlyHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
 
 const defaultProps = {
   data: [[0], [0]] as T_SNE_DATA_TYPE,
   height: 450,
+  pointColor: '#000000',
   width: 450,
 };
 
@@ -30,23 +32,27 @@ export const TComponent = withDefaultProps(
     }
 
     public render() {
-      const { data, height, width } = this.props;
+      const { data, height, pointColor, width } = this.props;
+      const coords = new Float32Array(data.length * 2);
+      data.forEach((ele, index) => {
+        coords[index * 2] = ele[0];
+        coords[index * 2 + 1] = ele[1];
+      });
+
       return (
         <div id="TComponent" style={{ height, padding: 15, width }}>
-          <ScatterChart height={this.state.chartHeight} width={this.state.chartHeight}>
-            <XAxis type="number" dataKey={'x'} />
-            <YAxis type="number" dataKey={'y'} />
-            <CartesianGrid />
-            <Scatter
-              data={
-                data
-                  ? data.map(ele => {
-                      return { x: ele[0], y: ele[1] };
-                    })
-                  : []
-              }
-            />
-          </ScatterChart>
+          <PlotlyChart
+            config={defaultConfig}
+            data={[generatePointCloudData(coords, pointColor, 10)]}
+            layout={{
+              ...defaultLayout,
+              height,
+              width,
+              yaxis: {
+                autorange: true,
+              },
+            }}
+          />
         </div>
       );
     }
