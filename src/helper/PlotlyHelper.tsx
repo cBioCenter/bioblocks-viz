@@ -21,12 +21,8 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   public container: plotly.PlotlyHTMLElement | null = null;
 
   public attachListeners() {
-    if (this.props.onClickCallback) {
-      this.container!.on('plotly_click', this.props.onClickCallback);
-    }
-    if (this.props.onSelectedCallback) {
-      this.container!.on('plotly_selected', this.props.onSelectedCallback);
-    }
+    this.container!.on('plotly_click', this.onClick);
+    this.container!.on('plotly_selected', this.onSelect);
 
     this.container!.on('plotly_hover', this.onHover);
     this.container!.on('plotly_unhover', this.onUnHover);
@@ -35,9 +31,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   }
 
   public resize = () => {
-    if (this.container) {
-      plotly.Plots.resize(this.container);
-    }
+    plotly.Plots.resize(this.container!);
   };
 
   public draw = async (props: IPlotlyChartProps) => {
@@ -87,10 +81,24 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     );
   }
 
+  protected onClick = (event: plotly.PlotMouseEvent) => {
+    const { onClickCallback } = this.props;
+    if (onClickCallback) {
+      onClickCallback(event);
+    }
+  };
+
   protected onHover = (event: plotly.PlotMouseEvent) => {
     const { onHoverCallback } = this.props;
     if (onHoverCallback) {
       onHoverCallback(event);
+    }
+  };
+
+  protected onSelect = (event: plotly.PlotSelectionEvent) => {
+    const { onSelectedCallback } = this.props;
+    if (onSelectedCallback) {
+      onSelectedCallback(event);
     }
   };
 

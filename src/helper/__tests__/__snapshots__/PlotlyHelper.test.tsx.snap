@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlotlyChart Should attach events when the container is attached. 1`] = `
+<PlotlyChart
+  data={
+    Array [
+      Object {
+        "marker": Object {
+          "color": "blue",
+        },
+        "mode": "markers",
+        "type": "pointcloud",
+        "uid": "adam",
+        "xy": Float32Array [
+          1,
+          2,
+          3,
+          4,
+        ],
+      },
+    ]
+  }
+  onClickCallback={[MockFunction]}
+  onSelectedCallback={[MockFunction]}
+>
+  <div />
+</PlotlyChart>
+`;
+
+exports[`PlotlyChart Should match existing snapshot when given empty data. 1`] = `
+<PlotlyChart
+  data={Array []}
+>
+  <div />
+</PlotlyChart>
+`;
+
+exports[`PlotlyChart Should match existing snapshot when given sample data. 1`] = `
+<PlotlyChart
+  data={
+    Array [
+      Object {
+        "marker": Object {
+          "color": "blue",
+        },
+        "mode": "markers",
+        "type": "pointcloud",
+        "uid": "adam",
+        "xy": Float32Array [
+          1,
+          2,
+          3,
+          4,
+        ],
+      },
+    ]
+  }
+>
+  <div />
+</PlotlyChart>
+`;
+
+exports[`generatePointCloudData Should create the expected plotly data format when given defaults. 1`] = `
+Object {
+  "marker": Object {
+    "color": "red",
+    "sizemax": 8,
+    "sizemin": 4,
+  },
+  "mode": "markers",
+  "type": "pointcloud",
+  "xy": Float32Array [
+    1,
+    2,
+    3,
+  ],
+}
+`;

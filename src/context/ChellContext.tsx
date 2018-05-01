@@ -25,6 +25,8 @@ export class ChellContext extends React.Component<any, State> {
       cellContext: {
         ...this.state.cellContext,
         addCells: this.onAddCells,
+        removeAllCells: this.onRemoveAllCells,
+        removeCells: this.onRemoveCells,
       },
       residueContext: {
         ...this.state.residueContext,
@@ -45,7 +47,7 @@ export class ChellContext extends React.Component<any, State> {
     );
   }
 
-  protected onAddCells = (cells: CELL_TYPE[]) => {
+  public onAddCells = (cells: CELL_TYPE[]) => {
     this.setState({
       cellContext: {
         ...this.state.cellContext,
@@ -54,7 +56,26 @@ export class ChellContext extends React.Component<any, State> {
     });
   };
 
-  protected onCandidateResidueSelect = (candidateResidue: RESIDUE_TYPE) => {
+  public onRemoveAllCells = () => {
+    this.setState({
+      cellContext: {
+        ...this.state.cellContext,
+        currentCells: [],
+      },
+    });
+  };
+
+  public onRemoveCells = (cellsToRemove: CELL_TYPE[]) => {
+    const { currentCells } = this.state.cellContext;
+    this.setState({
+      cellContext: {
+        ...this.state.cellContext,
+        currentCells: currentCells.filter(cell => cellsToRemove.indexOf(cell) === -1),
+      },
+    });
+  };
+
+  public onCandidateResidueSelect = (candidateResidue: RESIDUE_TYPE) => {
     this.setState({
       residueContext: {
         ...this.state.residueContext,
@@ -63,7 +84,7 @@ export class ChellContext extends React.Component<any, State> {
     });
   };
 
-  protected onRemoveAllResidues = () => {
+  public onRemoveAllResidues = () => {
     this.setState({
       residueContext: {
         ...this.state.residueContext,
@@ -72,7 +93,7 @@ export class ChellContext extends React.Component<any, State> {
     });
   };
 
-  protected onRemoveCandidateResidue = () => {
+  public onRemoveCandidateResidue = () => {
     this.setState({
       residueContext: {
         ...this.state.residueContext,
@@ -81,7 +102,7 @@ export class ChellContext extends React.Component<any, State> {
     });
   };
 
-  protected onRemoveResidues = (residues: RESIDUE_TYPE[]) => {
+  public onRemoveResidues = (residues: RESIDUE_TYPE[]) => {
     const residueKey = residues.join(',');
     const { lockedResiduePairs } = this.state.residueContext;
     if (lockedResiduePairs[residueKey]) {
@@ -89,16 +110,17 @@ export class ChellContext extends React.Component<any, State> {
     }
   };
 
-  protected onResidueSelect = (residues: RESIDUE_TYPE[]) => {
+  public onResidueSelect = (residues: RESIDUE_TYPE[]) => {
     const { lockedResiduePairs } = this.state.residueContext;
-    const residuePairKey = residues.toString();
+    const sortedResidues = residues.sort();
+    const residuePairKey = sortedResidues.toString();
     if (!lockedResiduePairs[residuePairKey]) {
       this.setState({
         residueContext: {
           ...this.state.residueContext,
           lockedResiduePairs: {
             ...lockedResiduePairs,
-            [residuePairKey]: residues,
+            [residuePairKey]: sortedResidues,
           },
         },
       });

@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChellContext Should match the default snapshot. 1`] = `
+<[object Object]
+  value={
+    Object {
+      "addCells": [Function],
+      "currentCells": Array [],
+      "removeAllCells": [Function],
+      "removeCells": [Function],
+    }
+  }
+>
+  <[object Object]
+    value={
+      Object {
+        "addCandidateResidue": [Function],
+        "addLockedResiduePair": [Function],
+        "candidateResidue": "none",
+        "lockedResiduePairs": Object {},
+        "removeAllLockedResiduePairs": [Function],
+        "removeCandidateResidue": [Function],
+        "removeLockedResiduePair": [Function],
+      }
+    }
+  />
+  ;
+</[object Object]>
+`;

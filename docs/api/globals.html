@@ -96,14 +96,17 @@
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-interface"><a href="interfaces/icategoryselectorprops.html" class="tsd-kind-icon">ICategory<wbr>Selector<wbr>Props</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/icellcontext.html" class="tsd-kind-icon">ICell<wbr>Context</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/ichellsliderprops.html" class="tsd-kind-icon">IChell<wbr>Slider<wbr>Props</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/ichellsliderstate.html" class="tsd-kind-icon">IChell<wbr>Slider<wbr>State</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/icontactmapdata.html" class="tsd-kind-icon">IContact<wbr>Map<wbr>Data</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/icouplingscore.html" class="tsd-kind-icon">ICoupling<wbr>Score</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/idistancemapmonomer.html" class="tsd-kind-icon">IDistance<wbr>Map<wbr>Monomer</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/imockdict.html" class="tsd-kind-icon">IMock<wbr>Dict</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/imonomercontact.html" class="tsd-kind-icon">IMonomer<wbr>Contact</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/iplotlychartprops.html" class="tsd-kind-icon">IPlotly<wbr>Chart<wbr>Props</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/irepresentationdict.html" class="tsd-kind-icon">IRepresentation<wbr>Dict</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/iresiduecontext.html" class="tsd-kind-icon">IResidue<wbr>Context</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/iresiduepair.html" class="tsd-kind-icon">IResidue<wbr>Pair</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/iresidueselection.html" class="tsd-kind-icon">IResidue<wbr>Selection</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/isequenceviewerprops.html" class="tsd-kind-icon">ISequence<wbr>Viewer<wbr>Props</a></li>
@@ -141,6 +144,8 @@
 								<li class="tsd-kind-variable"><a href="globals.html#tcomponent" class="tsd-kind-icon">TComponent</a></li>
 								<li class="tsd-kind-variable"><a href="globals.html#vizpanelcontainer" class="tsd-kind-icon">Viz<wbr>Panel<wbr>Container</a></li>
 								<li class="tsd-kind-variable"><a href="globals.html#vizselectorpanel" class="tsd-kind-icon">Viz<wbr>Selector<wbr>Panel</a></li>
+								<li class="tsd-kind-variable"><a href="globals.html#initialcellcontext" class="tsd-kind-icon">initial<wbr>Cell<wbr>Context</a></li>
+								<li class="tsd-kind-variable"><a href="globals.html#initialresiduecontext" class="tsd-kind-icon">initial<wbr>Residue<wbr>Context</a></li>
 								<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#jestglobal" class="tsd-kind-icon">jest<wbr>Global</a></li>
 							</ul>
 						</section>
@@ -170,8 +175,6 @@
 								<li class="tsd-kind-object-literal"><a href="globals.html#defaultconfig" class="tsd-kind-icon">default<wbr>Config</a></li>
 								<li class="tsd-kind-object-literal"><a href="globals.html#defaultlayout" class="tsd-kind-icon">default<wbr>Layout</a></li>
 								<li class="tsd-kind-object-literal tsd-is-not-exported"><a href="globals.html#defaultprops" class="tsd-kind-icon">default<wbr>Props</a></li>
-								<li class="tsd-kind-object-literal"><a href="globals.html#initialcellcontext" class="tsd-kind-icon">initial<wbr>Cell<wbr>Context</a></li>
-								<li class="tsd-kind-object-literal"><a href="globals.html#initialresiduecontext" class="tsd-kind-icon">initial<wbr>Residue<wbr>Context</a></li>
 								<li class="tsd-kind-object-literal tsd-is-not-exported"><a href="globals.html#initialstate" class="tsd-kind-icon">initial<wbr>State</a></li>
 							</ul>
 						</section>
@@ -414,7 +417,7 @@
 					<div class="tsd-signature tsd-kind-icon">Cell<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Context</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;React.createContext({...initialCellContext,})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/context/CellContext.ts:17</li>
+							<li>Defined in src/context/CellContext.ts:15</li>
 						</ul>
 					</aside>
 				</section>
@@ -444,7 +447,7 @@
 					<div class="tsd-signature tsd-kind-icon">Residue<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Context</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;React.createContext({...initialResidueContext,})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/context/ResidueContext.ts:28</li>
+							<li>Defined in src/context/ResidueContext.ts:23</li>
 						</ul>
 					</aside>
 				</section>
@@ -495,6 +498,26 @@
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in src/component/VizSelectorPanel.tsx:32</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable">
+					<a name="initialcellcontext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> initial<wbr>Cell<wbr>Context</h3>
+					<div class="tsd-signature tsd-kind-icon">initial<wbr>Cell<wbr>Context<span class="tsd-signature-symbol">:</span> <a href="interfaces/icellcontext.html" class="tsd-signature-type">ICellContext</a><span class="tsd-signature-symbol"> =&nbsp;{currentCells: [] as CELL_TYPE[],} as ICellContext</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/context/CellContext.ts:11</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable">
+					<a name="initialresiduecontext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> initial<wbr>Residue<wbr>Context</h3>
+					<div class="tsd-signature tsd-kind-icon">initial<wbr>Residue<wbr>Context<span class="tsd-signature-symbol">:</span> <a href="interfaces/iresiduecontext.html" class="tsd-signature-type">IResidueContext</a><span class="tsd-signature-symbol"> =&nbsp;{candidateResidue: &#x27;none&#x27; as RESIDUE_TYPE | &#x27;none&#x27;,lockedResiduePairs: {} as IResidueSelection,} as IResidueContext</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/context/ResidueContext.ts:18</li>
 						</ul>
 					</aside>
 				</section>
@@ -777,7 +800,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/PlotlyHelper.tsx:132</li>
+									<li>Defined in src/helper/PlotlyHelper.tsx:140</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -924,7 +947,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/helper/PlotlyHelper.tsx:117</li>
+							<li>Defined in src/helper/PlotlyHelper.tsx:125</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -933,7 +956,7 @@
 						<div class="tsd-signature tsd-kind-icon">display<wbr>Mode<wbr>Bar<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/helper/PlotlyHelper.tsx:118</li>
+								<li>Defined in src/helper/PlotlyHelper.tsx:126</li>
 							</ul>
 						</aside>
 					</section>
@@ -944,7 +967,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Layout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/helper/PlotlyHelper.tsx:105</li>
+							<li>Defined in src/helper/PlotlyHelper.tsx:113</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -953,7 +976,7 @@
 						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;440</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/helper/PlotlyHelper.tsx:106</li>
+								<li>Defined in src/helper/PlotlyHelper.tsx:114</li>
 							</ul>
 						</aside>
 					</section>
@@ -963,7 +986,7 @@
 						<div class="tsd-signature tsd-kind-icon">legend<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/helper/PlotlyHelper.tsx:107</li>
+								<li>Defined in src/helper/PlotlyHelper.tsx:115</li>
 							</ul>
 						</aside>
 						<div class="tsd-type-declaration">
@@ -978,7 +1001,7 @@
 						<div class="tsd-signature tsd-kind-icon">showlegend<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/helper/PlotlyHelper.tsx:108</li>
+								<li>Defined in src/helper/PlotlyHelper.tsx:116</li>
 							</ul>
 						</aside>
 					</section>
@@ -988,7 +1011,7 @@
 						<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/helper/PlotlyHelper.tsx:109</li>
+								<li>Defined in src/helper/PlotlyHelper.tsx:117</li>
 							</ul>
 						</aside>
 					</section>
@@ -998,7 +1021,7 @@
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;440</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/helper/PlotlyHelper.tsx:110</li>
+								<li>Defined in src/helper/PlotlyHelper.tsx:118</li>
 							</ul>
 						</aside>
 					</section>
@@ -1008,7 +1031,7 @@
 						<div class="tsd-signature tsd-kind-icon">xaxis<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/helper/PlotlyHelper.tsx:111</li>
+								<li>Defined in src/helper/PlotlyHelper.tsx:119</li>
 							</ul>
 						</aside>
 						<div class="tsd-type-declaration">
@@ -1023,7 +1046,7 @@
 						<div class="tsd-signature tsd-kind-icon">yaxis<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/helper/PlotlyHelper.tsx:112</li>
+								<li>Defined in src/helper/PlotlyHelper.tsx:120</li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1032,7 +1055,7 @@
 							<div class="tsd-signature tsd-kind-icon">autorange<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"reversed"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;reversed&quot;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/PlotlyHelper.tsx:113</li>
+									<li>Defined in src/helper/PlotlyHelper.tsx:121</li>
 								</ul>
 							</aside>
 						</section>
@@ -1250,228 +1273,6 @@
 								<ul class="tsd-parameters">
 									<li>
 										<h5>e: <span class="tsd-signature-type">any</span></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-object-literal">
-					<a name="initialcellcontext" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> initial<wbr>Cell<wbr>Context</h3>
-					<div class="tsd-signature tsd-kind-icon">initial<wbr>Cell<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in src/context/CellContext.ts:4</li>
-						</ul>
-					</aside>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-						<a name="initialcellcontext.currentcells" class="tsd-anchor"></a>
-						<h3>current<wbr>Cells</h3>
-						<div class="tsd-signature tsd-kind-icon">current<wbr>Cells<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[] as CELL_TYPE[]</span></div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in src/context/CellContext.ts:8</li>
-							</ul>
-						</aside>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
-						<a name="initialcellcontext.addcells" class="tsd-anchor"></a>
-						<h3>add<wbr>Cells</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
-							<li class="tsd-signature tsd-kind-icon">add<wbr>Cells<span class="tsd-signature-symbol">(</span>cells<span class="tsd-signature-symbol">: </span><a href="globals.html#cell_type" class="tsd-signature-type">CELL_TYPE</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in src/context/CellContext.ts:5</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>cells: <a href="globals.html#cell_type" class="tsd-signature-type">CELL_TYPE</a><span class="tsd-signature-symbol">[]</span></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
-						<a name="initialcellcontext.removeallcells" class="tsd-anchor"></a>
-						<h3>remove<wbr>All<wbr>Cells</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
-							<li class="tsd-signature tsd-kind-icon">remove<wbr>All<wbr>Cells<span class="tsd-signature-symbol">(</span>cells<span class="tsd-signature-symbol">: </span><a href="globals.html#cell_type" class="tsd-signature-type">CELL_TYPE</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in src/context/CellContext.ts:9</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>cells: <a href="globals.html#cell_type" class="tsd-signature-type">CELL_TYPE</a><span class="tsd-signature-symbol">[]</span></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
-						<a name="initialcellcontext.removecells" class="tsd-anchor"></a>
-						<h3>remove<wbr>Cells</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
-							<li class="tsd-signature tsd-kind-icon">remove<wbr>Cells<span class="tsd-signature-symbol">(</span>cells<span class="tsd-signature-symbol">: </span><a href="globals.html#cell_type" class="tsd-signature-type">CELL_TYPE</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in src/context/CellContext.ts:12</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>cells: <a href="globals.html#cell_type" class="tsd-signature-type">CELL_TYPE</a><span class="tsd-signature-symbol">[]</span></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-object-literal">
-					<a name="initialresiduecontext" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> initial<wbr>Residue<wbr>Context</h3>
-					<div class="tsd-signature tsd-kind-icon">initial<wbr>Residue<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in src/context/ResidueContext.ts:8</li>
-						</ul>
-					</aside>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-						<a name="initialresiduecontext.candidateresidue" class="tsd-anchor"></a>
-						<h3>candidate<wbr>Residue</h3>
-						<div class="tsd-signature tsd-kind-icon">candidate<wbr>Residue<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"none"</span><span class="tsd-signature-symbol"> =&nbsp;&#x27;none&#x27; as RESIDUE_TYPE | &#x27;none&#x27;</span></div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in src/context/ResidueContext.ts:15</li>
-							</ul>
-						</aside>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-						<a name="initialresiduecontext.lockedresiduepairs" class="tsd-anchor"></a>
-						<h3>locked<wbr>Residue<wbr>Pairs</h3>
-						<div class="tsd-signature tsd-kind-icon">locked<wbr>Residue<wbr>Pairs<span class="tsd-signature-symbol">:</span> <a href="interfaces/iresidueselection.html" class="tsd-signature-type">IResidueSelection</a><span class="tsd-signature-symbol"> =&nbsp;{} as IResidueSelection</span></div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in src/context/ResidueContext.ts:16</li>
-							</ul>
-						</aside>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
-						<a name="initialresiduecontext.addcandidateresidue" class="tsd-anchor"></a>
-						<h3>add<wbr>Candidate<wbr>Residue</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
-							<li class="tsd-signature tsd-kind-icon">add<wbr>Candidate<wbr>Residue<span class="tsd-signature-symbol">(</span>residue<span class="tsd-signature-symbol">: </span><a href="globals.html#residue_type" class="tsd-signature-type">RESIDUE_TYPE</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in src/context/ResidueContext.ts:9</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>residue: <a href="globals.html#residue_type" class="tsd-signature-type">RESIDUE_TYPE</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
-						<a name="initialresiduecontext.addlockedresiduepair" class="tsd-anchor"></a>
-						<h3>add<wbr>Locked<wbr>Residue<wbr>Pair</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
-							<li class="tsd-signature tsd-kind-icon">add<wbr>Locked<wbr>Residue<wbr>Pair<span class="tsd-signature-symbol">(</span>residues<span class="tsd-signature-symbol">: </span><a href="globals.html#residue_type" class="tsd-signature-type">RESIDUE_TYPE</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in src/context/ResidueContext.ts:12</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>residues: <a href="globals.html#residue_type" class="tsd-signature-type">RESIDUE_TYPE</a><span class="tsd-signature-symbol">[]</span></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
-						<a name="initialresiduecontext.removealllockedresiduepairs" class="tsd-anchor"></a>
-						<h3>remove<wbr>All<wbr>Locked<wbr>Residue<wbr>Pairs</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
-							<li class="tsd-signature tsd-kind-icon">remove<wbr>All<wbr>Locked<wbr>Residue<wbr>Pairs<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in src/context/ResidueContext.ts:17</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
-						<a name="initialresiduecontext.removecandidateresidue" class="tsd-anchor"></a>
-						<h3>remove<wbr>Candidate<wbr>Residue</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
-							<li class="tsd-signature tsd-kind-icon">remove<wbr>Candidate<wbr>Residue<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in src/context/ResidueContext.ts:20</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
-						<a name="initialresiduecontext.removelockedresiduepair" class="tsd-anchor"></a>
-						<h3>remove<wbr>Locked<wbr>Residue<wbr>Pair</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
-							<li class="tsd-signature tsd-kind-icon">remove<wbr>Locked<wbr>Residue<wbr>Pair<span class="tsd-signature-symbol">(</span>residues<span class="tsd-signature-symbol">: </span><a href="globals.html#residue_type" class="tsd-signature-type">RESIDUE_TYPE</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in src/context/ResidueContext.ts:23</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>residues: <a href="globals.html#residue_type" class="tsd-signature-type">RESIDUE_TYPE</a><span class="tsd-signature-symbol">[]</span></h5>
 									</li>
 								</ul>
 								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1723,6 +1524,9 @@
 						<a href="interfaces/icategoryselectorprops.html" class="tsd-kind-icon">ICategory<wbr>Selector<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/icellcontext.html" class="tsd-kind-icon">ICell<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/ichellsliderprops.html" class="tsd-kind-icon">IChell<wbr>Slider<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -1738,6 +1542,9 @@
 						<a href="interfaces/idistancemapmonomer.html" class="tsd-kind-icon">IDistance<wbr>Map<wbr>Monomer</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/imockdict.html" class="tsd-kind-icon">IMock<wbr>Dict</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/imonomercontact.html" class="tsd-kind-icon">IMonomer<wbr>Contact</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -1745,6 +1552,9 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/irepresentationdict.html" class="tsd-kind-icon">IRepresentation<wbr>Dict</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/iresiduecontext.html" class="tsd-kind-icon">IResidue<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/iresiduepair.html" class="tsd-kind-icon">IResidue<wbr>Pair</a>
@@ -1827,6 +1637,12 @@
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#vizselectorpanel" class="tsd-kind-icon">Viz<wbr>Selector<wbr>Panel</a>
 					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#initialcellcontext" class="tsd-kind-icon">initial<wbr>Cell<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#initialresiduecontext" class="tsd-kind-icon">initial<wbr>Residue<wbr>Context</a>
+					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="globals.html#jestglobal" class="tsd-kind-icon">jest<wbr>Global</a>
 					</li>
@@ -1883,12 +1699,6 @@
 					</li>
 					<li class=" tsd-kind-object-literal tsd-is-not-exported">
 						<a href="globals.html#defaultprops" class="tsd-kind-icon">default<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-object-literal">
-						<a href="globals.html#initialcellcontext" class="tsd-kind-icon">initial<wbr>Cell<wbr>Context</a>
-					</li>
-					<li class=" tsd-kind-object-literal">
-						<a href="globals.html#initialresiduecontext" class="tsd-kind-icon">initial<wbr>Residue<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-object-literal tsd-is-not-exported">
 						<a href="globals.html#initialstate" class="tsd-kind-icon">initial<wbr>State</a>
