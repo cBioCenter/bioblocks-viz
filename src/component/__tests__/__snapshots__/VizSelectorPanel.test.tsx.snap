@@ -42,8 +42,10 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
           "distanceMapMonomer": Array [],
         }
       }
+      height={405}
       highlightColor="#0000ff"
       onMouseEnter={[Function]}
+      width={405}
     />
   </Card>
 </div>
@@ -118,18 +120,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     fluid={true}
     raised={true}
   >
-    <SpringComponentClass
-      canvasBackgroundColor={13421772}
-      data={
-        Object {
-          "links": Array [],
-          "nodes": Array [],
-        }
-      }
-      height={450}
-      selectedCategory=""
-      width={450}
-    />
+    <Component />
   </Card>
 </div>
 `;
@@ -177,8 +168,9 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
           ],
         ]
       }
-      height={450}
-      width={450}
+      height={405}
+      pointColor="#000000"
+      width={405}
     />
   </Card>
 </div>
@@ -227,8 +219,9 @@ exports[`VizSelectorPanel Should match existing snapshot when given no initial v
           ],
         ]
       }
-      height={450}
-      width={450}
+      height={405}
+      pointColor="#000000"
+      width={405}
     />
   </Card>
 </div>

@@ -17,10 +17,12 @@ const defaultProps = {
     couplingScore: [],
     distanceMapMonomer: [],
   } as CONTACT_MAP_DATA_TYPE,
+  height: 400,
   highlightColor: '#0000ff',
   onClick: undefined as ContactMapCallback | undefined,
   onMouseEnter: undefined as ContactMapCallback | undefined,
   selectedData: undefined as number | undefined,
+  width: 400,
 };
 
 const initialState = {

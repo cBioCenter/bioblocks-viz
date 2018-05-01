@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IProteinViewerState | chell-viz</title>
+	<title>ICellContext | chell-viz</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="iproteinviewerstate.html">IProteinViewerState</a>
+					<a href="icellcontext.html">ICellContext</a>
 				</li>
 			</ul>
-			<h1>Interface IProteinViewerState</h1>
+			<h1>Interface ICellContext</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IProteinViewerState</span>
+						<span class="target">ICellContext</span>
 					</li>
 				</ul>
 			</section>
@@ -79,7 +79,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iproteinviewerstate.html#data" class="tsd-kind-icon">data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icellcontext.html#addcells" class="tsd-kind-icon">add<wbr>Cells</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icellcontext.html#currentcells" class="tsd-kind-icon">current<wbr>Cells</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icellcontext.html#removeallcells" class="tsd-kind-icon">remove<wbr>All<wbr>Cells</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icellcontext.html#removecells" class="tsd-kind-icon">remove<wbr>Cells</a></li>
 							</ul>
 						</section>
 					</div>
@@ -88,14 +91,107 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="data" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> data</h3>
-					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">NGL.Structure</span></div>
+					<a name="addcells" class="tsd-anchor"></a>
+					<h3>add<wbr>Cells</h3>
+					<div class="tsd-signature tsd-kind-icon">add<wbr>Cells<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/container/ProteinViewer.tsx:8</li>
+							<li>Defined in src/context/CellContext.ts:5</li>
 						</ul>
 					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>cells<span class="tsd-signature-symbol">: </span><a href="../globals.html#cell_type" class="tsd-signature-type">CELL_TYPE</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>cells: <a href="../globals.html#cell_type" class="tsd-signature-type">CELL_TYPE</a><span class="tsd-signature-symbol">[]</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="currentcells" class="tsd-anchor"></a>
+					<h3>current<wbr>Cells</h3>
+					<div class="tsd-signature tsd-kind-icon">current<wbr>Cells<span class="tsd-signature-symbol">:</span> <a href="../globals.html#cell_type" class="tsd-signature-type">CELL_TYPE</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/context/CellContext.ts:6</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="removeallcells" class="tsd-anchor"></a>
+					<h3>remove<wbr>All<wbr>Cells</h3>
+					<div class="tsd-signature tsd-kind-icon">remove<wbr>All<wbr>Cells<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/context/CellContext.ts:7</li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>cells<span class="tsd-signature-symbol">: </span><a href="../globals.html#cell_type" class="tsd-signature-type">CELL_TYPE</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>cells: <a href="../globals.html#cell_type" class="tsd-signature-type">CELL_TYPE</a><span class="tsd-signature-symbol">[]</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="removecells" class="tsd-anchor"></a>
+					<h3>remove<wbr>Cells</h3>
+					<div class="tsd-signature tsd-kind-icon">remove<wbr>Cells<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/context/CellContext.ts:8</li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>cells<span class="tsd-signature-symbol">: </span><a href="../globals.html#cell_type" class="tsd-signature-type">CELL_TYPE</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>cells: <a href="../globals.html#cell_type" class="tsd-signature-type">CELL_TYPE</a><span class="tsd-signature-symbol">[]</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -112,10 +208,19 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="iproteinviewerstate.html" class="tsd-kind-icon">IProtein<wbr>Viewer<wbr>State</a>
+						<a href="icellcontext.html" class="tsd-kind-icon">ICell<wbr>Context</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iproteinviewerstate.html#data" class="tsd-kind-icon">data</a>
+								<a href="icellcontext.html#addcells" class="tsd-kind-icon">add<wbr>Cells</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="icellcontext.html#currentcells" class="tsd-kind-icon">current<wbr>Cells</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="icellcontext.html#removeallcells" class="tsd-kind-icon">remove<wbr>All<wbr>Cells</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="icellcontext.html#removecells" class="tsd-kind-icon">remove<wbr>Cells</a>
 							</li>
 						</ul>
 					</li>
