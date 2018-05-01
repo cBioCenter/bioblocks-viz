@@ -1,33 +1,25 @@
 import { T_SNE_DATA_TYPE } from 'chell';
 import * as React from 'react';
 
-import { defaultConfig, defaultLayout, generatePointCloudData, PlotlyChart } from '../helper/PlotlyHelper';
+import { CellContext } from '../context/CellContext';
+import { defaultConfig, defaultLayout, PlotlyChart } from '../helper/PlotlyHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
 
 const defaultProps = {
   data: [[0], [0]] as T_SNE_DATA_TYPE,
-  height: 450,
+  height: 400,
   pointColor: '#000000',
-  width: 450,
+  width: 400,
 };
-
-const initialState = {
-  chartHeight: 0,
-  chartWidth: 0,
-};
-
 type Props = {} & typeof defaultProps;
-type State = typeof initialState;
 
 export const TComponent = withDefaultProps(
   defaultProps,
-  class TComponentClass extends React.Component<Props, State> {
+  class TComponentClass extends React.Component<Props, any> {
     constructor(props: Props) {
       super(props);
       this.state = {
         ...this.state,
-        chartHeight: Math.floor(0.9 * this.props.height),
-        chartWidth: Math.floor(0.9 * this.props.width),
       };
     }
 
@@ -40,21 +32,45 @@ export const TComponent = withDefaultProps(
       });
 
       return (
-        <div id="TComponent" style={{ height, padding: 15, width }}>
-          <PlotlyChart
-            config={defaultConfig}
-            data={[generatePointCloudData(coords, pointColor, 10)]}
-            layout={{
-              ...defaultLayout,
-              height,
-              width,
-              yaxis: {
-                autorange: true,
-              },
-            }}
-          />
+        <div id="TComponent" style={{ padding: 10 }}>
+          <CellContext.Consumer>
+            {({ addCells }) => (
+              <PlotlyChart
+                config={{
+                  ...defaultConfig,
+                  modeBarButtons: [['zoomOut2d', 'zoomIn2d'], ['resetScale2d', 'autoScale2d'], ['select2d', 'pan2d']],
+                }}
+                data={[
+                  {
+                    marker: {
+                      color: pointColor,
+                    },
+                    mode: 'markers',
+                    type: 'scatter',
+                    x: data.map(ele => ele[0]),
+                    xaxis: 'x',
+                    y: data.map(ele => ele[1]),
+                    yaxis: 'y',
+                  },
+                ]}
+                layout={{
+                  ...defaultLayout,
+                  height,
+                  width,
+                  yaxis: {
+                    autorange: true,
+                  },
+                }}
+                onSelectedCallback={this.onMouseSelect(addCells)}
+              />
+            )}
+          </CellContext.Consumer>
         </div>
       );
     }
+
+    protected onMouseSelect = (cb: (cells: number[]) => void) => (e: Plotly.PlotSelectionEvent) => {
+      cb(e.points.map(point => point.pointNumber));
+    };
   },
 );

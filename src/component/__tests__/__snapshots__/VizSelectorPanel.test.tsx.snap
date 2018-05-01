@@ -42,8 +42,10 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
           "distanceMapMonomer": Array [],
         }
       }
+      height={405}
       highlightColor="#0000ff"
       onMouseEnter={[Function]}
+      width={405}
     />
   </Card>
 </div>
@@ -177,9 +179,9 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
           ],
         ]
       }
-      height={450}
+      height={405}
       pointColor="#000000"
-      width={450}
+      width={405}
     />
   </Card>
 </div>
@@ -228,9 +230,9 @@ exports[`VizSelectorPanel Should match existing snapshot when given no initial v
           ],
         ]
       }
-      height={450}
+      height={405}
       pointColor="#000000"
-      width={450}
+      width={405}
     />
   </Card>
 </div>

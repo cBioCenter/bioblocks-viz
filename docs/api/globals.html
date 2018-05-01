@@ -85,6 +85,7 @@
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/categoryselector.html" class="tsd-kind-icon">Category<wbr>Selector</a></li>
+								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/chellcontext.html" class="tsd-kind-icon">Chell<wbr>Context</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/chellslider.html" class="tsd-kind-icon">Chell<wbr>Slider</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/chellvizapp.html" class="tsd-kind-icon">Chell<wbr>Viz<wbr>App</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/plotlychart.html" class="tsd-kind-icon">Plotly<wbr>Chart</a></li>
@@ -119,6 +120,7 @@
 						<section class="tsd-index-section ">
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias"><a href="globals.html#cell_type" class="tsd-kind-icon">CELL_<wbr>TYPE</a></li>
 								<li class="tsd-kind-type-alias"><a href="globals.html#chell_data_type" class="tsd-kind-icon">CHELL_<wbr>DATA_<wbr>TYPE</a></li>
 								<li class="tsd-kind-type-alias"><a href="globals.html#contact_map_cb_result_type" class="tsd-kind-icon">CONTACT_<wbr>MAP_<wbr>CB_<wbr>RESULT_<wbr>TYPE</a></li>
 								<li class="tsd-kind-type-alias"><a href="globals.html#contact_map_data_type" class="tsd-kind-icon">CONTACT_<wbr>MAP_<wbr>DATA_<wbr>TYPE</a></li>
@@ -138,6 +140,7 @@
 						<section class="tsd-index-section ">
 							<h3>Variables</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable"><a href="globals.html#cellcontext" class="tsd-kind-icon">Cell<wbr>Context</a></li>
 								<li class="tsd-kind-variable"><a href="globals.html#contactmapcomponent" class="tsd-kind-icon">Contact<wbr>Map<wbr>Component</a></li>
 								<li class="tsd-kind-variable"><a href="globals.html#nglcomponentwithdefaultprops" class="tsd-kind-icon">NGLComponent<wbr>With<wbr>Default<wbr>Props</a></li>
 								<li class="tsd-kind-variable"><a href="globals.html#residuecontext" class="tsd-kind-icon">Residue<wbr>Context</a></li>
@@ -174,6 +177,7 @@
 								<li class="tsd-kind-object-literal"><a href="globals.html#defaultconfig" class="tsd-kind-icon">default<wbr>Config</a></li>
 								<li class="tsd-kind-object-literal"><a href="globals.html#defaultlayout" class="tsd-kind-icon">default<wbr>Layout</a></li>
 								<li class="tsd-kind-object-literal tsd-is-not-exported"><a href="globals.html#defaultprops" class="tsd-kind-icon">default<wbr>Props</a></li>
+								<li class="tsd-kind-object-literal"><a href="globals.html#initialcellcontext" class="tsd-kind-icon">initial<wbr>Cell<wbr>Context</a></li>
 								<li class="tsd-kind-object-literal"><a href="globals.html#initialresiduecontext" class="tsd-kind-icon">initial<wbr>Residue<wbr>Context</a></li>
 								<li class="tsd-kind-object-literal tsd-is-not-exported"><a href="globals.html#initialstate" class="tsd-kind-icon">initial<wbr>State</a></li>
 							</ul>
@@ -183,6 +187,21 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="cell_type" class="tsd-anchor"></a>
+					<h3>CELL_<wbr>TYPE</h3>
+					<div class="tsd-signature tsd-kind-icon">CELL_<wbr>TYPE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in types/chell.ts:17</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Shared data between Spring/T-SNE. Refers to index in points collection.</p>
+						</div>
+					</div>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias">
 					<a name="chell_data_type" class="tsd-anchor"></a>
 					<h3>CHELL_<wbr>DATA_<wbr>TYPE</h3>
@@ -330,10 +349,10 @@
 						<ul>
 							<li>Defined in src/component/NGLComponent.tsx:40</li>
 							<li>Defined in src/component/SpringComponent.tsx:23</li>
-							<li>Defined in src/component/TComponent.tsx:19</li>
-							<li>Defined in src/component/ContactMapComponent.tsx:34</li>
+							<li>Defined in src/component/TComponent.tsx:14</li>
+							<li>Defined in src/component/ContactMapComponent.tsx:36</li>
 							<li>Defined in src/component/VizSelectorPanel.tsx:29</li>
-							<li>Defined in src/container/VizPanelContainer.tsx:24</li>
+							<li>Defined in src/container/VizPanelContainer.tsx:21</li>
 						</ul>
 					</aside>
 				</section>
@@ -343,7 +362,7 @@
 					<div class="tsd-signature tsd-kind-icon">RESIDUE_<wbr>TYPE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in types/chell.ts:15</li>
+							<li>Defined in types/chell.ts:18</li>
 						</ul>
 					</aside>
 				</section>
@@ -365,10 +384,10 @@
 						<ul>
 							<li>Defined in src/component/NGLComponent.tsx:41</li>
 							<li>Defined in src/component/SpringComponent.tsx:24</li>
-							<li>Defined in src/component/TComponent.tsx:20</li>
-							<li>Defined in src/component/ContactMapComponent.tsx:35</li>
+							<li>Defined in src/component/ContactMapComponent.tsx:37</li>
 							<li>Defined in src/component/VizSelectorPanel.tsx:30</li>
-							<li>Defined in src/container/VizPanelContainer.tsx:25</li>
+							<li>Defined in src/context/ChellContext.tsx:16</li>
+							<li>Defined in src/container/VizPanelContainer.tsx:22</li>
 						</ul>
 					</aside>
 				</section>
@@ -396,12 +415,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Variables</h2>
 				<section class="tsd-panel tsd-member tsd-kind-variable">
+					<a name="cellcontext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Cell<wbr>Context</h3>
+					<div class="tsd-signature tsd-kind-icon">Cell<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Context</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;React.createContext({...initialCellContext,})</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/context/CellContext.ts:18</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable">
 					<a name="contactmapcomponent" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> Contact<wbr>Map<wbr>Component</h3>
 					<div class="tsd-signature tsd-kind-icon">Contact<wbr>Map<wbr>Component<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultProps,class ContactMapComponentClass extends React.Component&lt;Props, State&gt; {public readonly state: State &#x3D; initialState;constructor(props: Props) {super(props);}public componentDidMount() {const { data } &#x3D; this.props;if (data) {this.setupData(data);}}public componentDidUpdate(prevProps: Props, prevState: State) {const { data } &#x3D; this.props;const isFreshDataView &#x3D; data !&#x3D;&#x3D; prevProps.data || this.state.probabilityFilter !&#x3D;&#x3D; prevState.probabilityFilter;if (isFreshDataView) {this.setupData(data);}}public render() {const { contactColor, couplingColor, highlightColor } &#x3D; this.props;const { contactPoints, couplingPoints } &#x3D; this.state;return (&lt;ResidueContext.Consumer&gt;{({ addLockedResiduePair, lockedResiduePairs, removeLockedResiduePair }) &#x3D;&gt; (&lt;div style&#x3D;{{ padding: 10 }}&gt;&lt;PlotlyChartconfig&#x3D;{defaultConfig}data&#x3D;{[generatePointCloudData(contactPoints, contactColor, this.state.nodeSize),generatePointCloudData(couplingPoints, couplingColor, this.state.nodeSize),generatePointCloudData(this.getHighlightedResidues(lockedResiduePairs),highlightColor,this.state.nodeSize,),]}layout&#x3D;{defaultLayout}onHoverCallback&#x3D;{this.onMouseEnter(removeLockedResiduePair)}onClickCallback&#x3D;{this.onMouseClick(addLockedResiduePair)}onSelectedCallback&#x3D;{this.onMouseSelect()}/&gt;{this.renderSliders()}&lt;/div&gt;)}&lt;/ResidueContext.Consumer&gt;);}protected renderSliders() {return (&lt;div&gt;&lt;ChellSlidermax&#x3D;{100}min&#x3D;{0}label&#x3D;{&#x27;Probability&#x27;}defaultValue&#x3D;{99}onChange&#x3D;{this.onProbabilityChange()}/&gt;&lt;ChellSlidermax&#x3D;{5}min&#x3D;{1}label&#x3D;{&#x27;Node Size&#x27;}defaultValue&#x3D;{this.state.nodeSize}onChange&#x3D;{this.onNodeSizeChange()}/&gt;&lt;/div&gt;);}protected setupData(data: CONTACT_MAP_DATA_TYPE) {const blackDots &#x3D; new Array&lt;ICouplingScore&gt;();data.couplingScore.filter(coupling &#x3D;&gt; coupling.probability &gt;&#x3D; this.state.probabilityFilter).forEach(coupling &#x3D;&gt; {blackDots.push(coupling);blackDots.push({...coupling,i: coupling.j,// tslint:disable-next-line:object-literal-sort-keysA_i: coupling.A_j,j: coupling.i,A_j: coupling.A_i,});});const contactPoints &#x3D; new Float32Array(data.contactMonomer.length * 2);data.contactMonomer.forEach((contact, index) &#x3D;&gt; {contactPoints[index * 2] &#x3D; contact.i;contactPoints[index * 2 + 1] &#x3D; contact.j;});const couplingPoints &#x3D; new Float32Array(blackDots.length * 2);blackDots.forEach((coupling, index) &#x3D;&gt; {couplingPoints[index * 2] &#x3D; coupling.i;couplingPoints[index * 2 + 1] &#x3D; coupling.j;});this.setState({contactPoints,couplingPoints,});}protected getHighlightedResidues(pairs: IResidueSelection): Float32Array {const pairKeys &#x3D; Object.keys(pairs);const highlightedPoints: number[] &#x3D; [];for (const key of pairKeys) {for (const residue of pairs[key]) {highlightedPoints.push(residue);}}return new Float32Array([...highlightedPoints, ...highlightedPoints.slice().reverse()]);}protected onClick &#x3D; () &#x3D;&gt; (coupling: ICouplingScore) &#x3D;&gt; {if (this.props.onClick) {this.props.onClick(coupling);}};protected onProbabilityChange &#x3D; () &#x3D;&gt; (value: number) &#x3D;&gt; {this.setState({probabilityFilter: value / 100,});};protected onNodeSizeChange &#x3D; () &#x3D;&gt; (value: number) &#x3D;&gt; {this.setState({nodeSize: value,});};protected onMouseEnter &#x3D; (cb: (residues: RESIDUE_TYPE[]) &#x3D;&gt; void) &#x3D;&gt; (e: Plotly.PlotMouseEvent) &#x3D;&gt; {const { points } &#x3D; e;cb([points[0].x, points[0].y]);};protected onMouseClick &#x3D; (cb: (residues: RESIDUE_TYPE[]) &#x3D;&gt; void) &#x3D;&gt; (e: Plotly.PlotMouseEvent) &#x3D;&gt; {const { points } &#x3D; e;cb([points[0].x, points[0].y]);};protected onMouseSelect &#x3D; () &#x3D;&gt; (e: Plotly.PlotSelectionEvent) &#x3D;&gt; {console.log(&#x60;onMouseSelect: ${e}&#x60;);};},)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/ContactMapComponent.tsx:37</li>
+							<li>Defined in src/component/ContactMapComponent.tsx:39</li>
 						</ul>
 					</aside>
 				</section>
@@ -448,27 +477,27 @@
 				<section class="tsd-panel tsd-member tsd-kind-variable">
 					<a name="tcomponent" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> TComponent</h3>
-					<div class="tsd-signature tsd-kind-icon">TComponent<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultProps,class TComponentClass extends React.Component&lt;Props, State&gt; {constructor(props: Props) {super(props);this.state &#x3D; {...this.state,chartHeight: Math.floor(0.9 * this.props.height),chartWidth: Math.floor(0.9 * this.props.width),};}public render() {const { data, height, pointColor, width } &#x3D; this.props;const coords &#x3D; new Float32Array(data.length * 2);data.forEach((ele, index) &#x3D;&gt; {coords[index * 2] &#x3D; ele[0];coords[index * 2 + 1] &#x3D; ele[1];});return (&lt;div id&#x3D;&quot;TComponent&quot; style&#x3D;{{ height, padding: 15, width }}&gt;&lt;PlotlyChartconfig&#x3D;{defaultConfig}data&#x3D;{[generatePointCloudData(coords, pointColor, 10)]}layout&#x3D;{{...defaultLayout,height,width,yaxis: {autorange: true,},}}/&gt;&lt;/div&gt;);}},)</span></div>
+					<div class="tsd-signature tsd-kind-icon">TComponent<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultProps,class TComponentClass extends React.Component&lt;Props, any&gt; {constructor(props: Props) {super(props);this.state &#x3D; {...this.state,};}public render() {const { data, height, pointColor, width } &#x3D; this.props;const coords &#x3D; new Float32Array(data.length * 2);data.forEach((ele, index) &#x3D;&gt; {coords[index * 2] &#x3D; ele[0];coords[index * 2 + 1] &#x3D; ele[1];});return (&lt;div id&#x3D;&quot;TComponent&quot; style&#x3D;{{ padding: 10 }}&gt;&lt;CellContext.Consumer&gt;{({ addCells }) &#x3D;&gt; (&lt;PlotlyChartconfig&#x3D;{{...defaultConfig,modeBarButtons: [[&#x27;zoomOut2d&#x27;, &#x27;zoomIn2d&#x27;], [&#x27;resetScale2d&#x27;, &#x27;autoScale2d&#x27;], [&#x27;select2d&#x27;, &#x27;pan2d&#x27;]],}}data&#x3D;{[{marker: {color: pointColor,},mode: &#x27;markers&#x27;,type: &#x27;scatter&#x27;,x: data.map(ele &#x3D;&gt; ele[0]),xaxis: &#x27;x&#x27;,y: data.map(ele &#x3D;&gt; ele[1]),yaxis: &#x27;y&#x27;,},]}layout&#x3D;{{...defaultLayout,height,width,yaxis: {autorange: true,},}}onSelectedCallback&#x3D;{this.onMouseSelect(addCells)}/&gt;)}&lt;/CellContext.Consumer&gt;&lt;/div&gt;);}protected onMouseSelect &#x3D; (cb: (cells: number[]) &#x3D;&gt; void) &#x3D;&gt; (e: Plotly.PlotSelectionEvent) &#x3D;&gt; {cb(e.points.map(point &#x3D;&gt; point.pointNumber));};},)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/TComponent.tsx:22</li>
+							<li>Defined in src/component/TComponent.tsx:16</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-variable">
 					<a name="vizpanelcontainer" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> Viz<wbr>Panel<wbr>Container</h3>
-					<div class="tsd-signature tsd-kind-icon">Viz<wbr>Panel<wbr>Container<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultProps,class VizPanelContainerClass extends React.Component&lt;Props, State&gt; {public readonly state: State &#x3D; initialState;constructor(props: Props) {super(props);this.state &#x3D; {...this.state,currentDataDir: props.dataDirs[0],residueContext: {...this.state.residueContext,addCandidateResidue: this.onCandidateResidueSelect,addLockedResiduePair: this.onResidueSelect,removeAllLockedResiduePairs: this.onRemoveAllResidues,removeCandidateResidue: this.onRemoveCandidateResidue,removeLockedResiduePair: this.onRemoveResidues,},};}public async componentDidMount() {const results: Partial&lt;{ [K in VIZ_TYPE]: any }&gt; &#x3D; {};for (const viz of this.props.supportedVisualizations) {results[viz] &#x3D; await fetchAppropriateData(viz, this.state.currentDataDir);}this.setState({data: {...results,},});}public async componentDidUpdate(prevProps: Props, prevState: State) {if (prevState.currentDataDir !&#x3D;&#x3D; this.state.currentDataDir) {const results: Partial&lt;{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }&gt; &#x3D; {};for (const viz of this.props.supportedVisualizations) {results[viz] &#x3D; await fetchAppropriateData(viz, this.state.currentDataDir);}this.setState({data: {...results,},});}}public render() {return (&lt;Grid className&#x3D;{&#x27;VizPanelContainer&#x27;} columns&#x3D;{this.props.numPanels} centered&#x3D;{true} relaxed&#x3D;{true}&gt;&lt;GridRow columns&#x3D;{1} centered&#x3D;{true}&gt;&lt;DropdownonChange&#x3D;{this.onDataDirChange}options&#x3D;{[...this.props.dataDirs.map(dir &#x3D;&gt; {return { key: dir, text: dir, value: dir };}),]}placeholder&#x3D;{&#x27;Select Data Directory&#x27;}search&#x3D;{true}/&gt;&lt;/GridRow&gt;&lt;ResidueContext.Provider value&#x3D;{this.state.residueContext}&gt;{this.renderPanels(this.props.numPanels, this.state.data, this.props.initialVisualizations).map((panel, index) &#x3D;&gt; &lt;GridColumn key&#x3D;{index}&gt;{panel}&lt;/GridColumn&gt;,)}&lt;/ResidueContext.Provider&gt;&lt;/Grid&gt;);}protected renderPanels(numPanels: number, data: any, initialVisualizations: VIZ_TYPE[]) {const result &#x3D; [];for (let i &#x3D; 0; i &lt; numPanels; ++i) {result.push(&lt;VizSelectorPaneldata&#x3D;{data}initialViz&#x3D;{initialVisualizations[i]}supportedVisualizations&#x3D;{this.props.supportedVisualizations}/&gt;,);}return result;}protected onDataDirChange &#x3D; (event: React.SyntheticEvent&lt;any&gt;, data: any) &#x3D;&gt; {this.setState({currentDataDir: data.value,});};protected onResidueSelect &#x3D; (residues: RESIDUE_TYPE[]) &#x3D;&gt; {const { lockedResiduePairs } &#x3D; this.state.residueContext;const residuePairKey &#x3D; residues.toString();if (!lockedResiduePairs[residuePairKey]) {this.setState({residueContext: {...this.state.residueContext,lockedResiduePairs: {...lockedResiduePairs,[residuePairKey]: residues,},},});}};protected onRemoveAllResidues &#x3D; () &#x3D;&gt; {this.setState({residueContext: {...this.state.residueContext,lockedResiduePairs: {},},});};protected onRemoveResidues &#x3D; (residues: RESIDUE_TYPE[]) &#x3D;&gt; {const residueKey &#x3D; residues.join(&#x27;,&#x27;);const { lockedResiduePairs } &#x3D; this.state.residueContext;if (lockedResiduePairs[residueKey]) {delete lockedResiduePairs[residueKey];}};protected onCandidateResidueSelect &#x3D; (candidateResidue: RESIDUE_TYPE) &#x3D;&gt; {this.setState({residueContext: {...this.state.residueContext,candidateResidue,},});};protected onRemoveCandidateResidue &#x3D; () &#x3D;&gt; {this.setState({residueContext: {...this.state.residueContext,candidateResidue: &#x27;none&#x27;,},});};},)</span></div>
+					<div class="tsd-signature tsd-kind-icon">Viz<wbr>Panel<wbr>Container<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultProps,class VizPanelContainerClass extends React.Component&lt;Props, State&gt; {public readonly state: State &#x3D; initialState;constructor(props: Props) {super(props);this.state &#x3D; {...this.state,currentDataDir: props.dataDirs[0],};}public async componentDidMount() {const results: Partial&lt;{ [K in VIZ_TYPE]: any }&gt; &#x3D; {};for (const viz of this.props.supportedVisualizations) {results[viz] &#x3D; await fetchAppropriateData(viz, this.state.currentDataDir);}this.setState({data: {...results,},});}public async componentDidUpdate(prevProps: Props, prevState: State) {if (prevState.currentDataDir !&#x3D;&#x3D; this.state.currentDataDir) {const results: Partial&lt;{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }&gt; &#x3D; {};for (const viz of this.props.supportedVisualizations) {results[viz] &#x3D; await fetchAppropriateData(viz, this.state.currentDataDir);}this.setState({data: {...results,},});}}public render() {return (&lt;Grid className&#x3D;{&#x27;VizPanelContainer&#x27;} columns&#x3D;{this.props.numPanels} centered&#x3D;{true} relaxed&#x3D;{true}&gt;&lt;GridRow columns&#x3D;{1} centered&#x3D;{true}&gt;&lt;DropdownonChange&#x3D;{this.onDataDirChange}options&#x3D;{[...this.props.dataDirs.map(dir &#x3D;&gt; {return { key: dir, text: dir, value: dir };}),]}placeholder&#x3D;{&#x27;Select Data Directory&#x27;}search&#x3D;{true}/&gt;&lt;/GridRow&gt;&lt;ChellContext&gt;{this.renderPanels(this.props.numPanels, this.state.data, this.props.initialVisualizations).map((panel, index) &#x3D;&gt; &lt;GridColumn key&#x3D;{index}&gt;{panel}&lt;/GridColumn&gt;,)}&lt;/ChellContext&gt;&lt;/Grid&gt;);}protected renderPanels(numPanels: number, data: any, initialVisualizations: VIZ_TYPE[]) {const result &#x3D; [];for (let i &#x3D; 0; i &lt; numPanels; ++i) {result.push(&lt;VizSelectorPaneldata&#x3D;{data}initialViz&#x3D;{initialVisualizations[i]}supportedVisualizations&#x3D;{this.props.supportedVisualizations}/&gt;,);}return result;}protected onDataDirChange &#x3D; (event: React.SyntheticEvent&lt;any&gt;, data: any) &#x3D;&gt; {this.setState({currentDataDir: data.value,});};},)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/container/VizPanelContainer.tsx:27</li>
+							<li>Defined in src/container/VizPanelContainer.tsx:24</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-variable">
 					<a name="vizselectorpanel" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> Viz<wbr>Selector<wbr>Panel</h3>
-					<div class="tsd-signature tsd-kind-icon">Viz<wbr>Selector<wbr>Panel<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultProps,/*** A single visualization panel allowing a user to select how they wish to view data.** @export* @class VizSelectorPanel* @extends {React.Component&lt;Props, State&gt;}*/class VizSelectorPanelClass extends React.Component&lt;Props, State&gt; {public readonly state: State &#x3D; initialState;constructor(props: Props) {super(props);this.state &#x3D; {selectedViz: props.initialViz ? props.initialViz : VIZ_TYPE.SPRING,};}public render() {const { data, selectedData, supportedVisualizations, width } &#x3D; this.props;return (&lt;div className&#x3D;&quot;VizSelectorPanel&quot; style&#x3D;{{ width }}&gt;&lt;Dropdownoptions&#x3D;{this.generateDropdownItems(supportedVisualizations)}fluid&#x3D;{true}onChange&#x3D;{this.onVizSelect}defaultValue&#x3D;{this.props.initialViz}/&gt;{&lt;Card fluid&#x3D;{true} raised&#x3D;{true}&gt;{this.renderVizContainer(this.state.selectedViz, data, selectedData)}&lt;/Card&gt;}&lt;/div&gt;);}protected renderVizContainer(viz: VIZ_TYPE,data: Partial&lt;{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }&gt;,selectedData?: ICouplingScore | number,) {const { height, width } &#x3D; this.props;switch (viz) {case VIZ_TYPE[&#x27;T-SNE&#x27;]:return &lt;TComponent data&#x3D;{data[&#x27;T-SNE&#x27;] as T_SNE_DATA_TYPE} height&#x3D;{height} width&#x3D;{width} /&gt;;case VIZ_TYPE.SPRING:return &lt;SpringComponent data&#x3D;{data.Spring as ISpringGraphData} height&#x3D;{height} width&#x3D;{width} /&gt;;case VIZ_TYPE.NGL:return &lt;NGLComponent data&#x3D;{data.NGL as NGL_DATA_TYPE} /&gt;;case VIZ_TYPE.CONTACT_MAP:return (&lt;ContactMapComponentdata&#x3D;{data[&#x27;Contact Map&#x27;] as IContactMapData}onMouseEnter&#x3D;{this.props.onDataSelect}selectedData&#x3D;{selectedData as number}/&gt;);default:throw new Error(&#x60;Unknown viz: ${viz}&#x60;);}}protected onVizSelect &#x3D; (event: React.SyntheticEvent&lt;any&gt;, data: any) &#x3D;&gt; {this.setState({selectedViz: data.value,});};protected generateDropdownItems &#x3D; (supportedVisualizations: VIZ_TYPE[]): DropdownItemProps[] &#x3D;&gt; {return supportedVisualizations.map(viz &#x3D;&gt; ({key: viz,text: viz,value: viz,})).sort((a, b) &#x3D;&gt; a.key.localeCompare(b.key));};},)</span></div>
+					<div class="tsd-signature tsd-kind-icon">Viz<wbr>Selector<wbr>Panel<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultProps,/*** A single visualization panel allowing a user to select how they wish to view data.** @export* @class VizSelectorPanel* @extends {React.Component&lt;Props, State&gt;}*/class VizSelectorPanelClass extends React.Component&lt;Props, State&gt; {public readonly state: State &#x3D; initialState;constructor(props: Props) {super(props);this.state &#x3D; {selectedViz: props.initialViz ? props.initialViz : VIZ_TYPE.SPRING,};}public render() {const { data, selectedData, supportedVisualizations, width } &#x3D; this.props;return (&lt;div className&#x3D;&quot;VizSelectorPanel&quot; style&#x3D;{{ width }}&gt;&lt;Dropdownoptions&#x3D;{this.generateDropdownItems(supportedVisualizations)}fluid&#x3D;{true}onChange&#x3D;{this.onVizSelect}defaultValue&#x3D;{this.props.initialViz}/&gt;{&lt;Card fluid&#x3D;{true} raised&#x3D;{true}&gt;{this.renderVizContainer(this.state.selectedViz, data, selectedData)}&lt;/Card&gt;}&lt;/div&gt;);}protected renderVizContainer(viz: VIZ_TYPE,data: Partial&lt;{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }&gt;,selectedData?: ICouplingScore | number,) {const { height, width } &#x3D; this.props;switch (viz) {case VIZ_TYPE[&#x27;T-SNE&#x27;]:return &lt;TComponent data&#x3D;{data[&#x27;T-SNE&#x27;] as T_SNE_DATA_TYPE} height&#x3D;{height * 0.9} width&#x3D;{width * 0.9} /&gt;;case VIZ_TYPE.SPRING:return &lt;SpringComponent data&#x3D;{data.Spring as ISpringGraphData} /&gt;;case VIZ_TYPE.NGL:return &lt;NGLComponent data&#x3D;{data.NGL as NGL_DATA_TYPE} /&gt;;case VIZ_TYPE.CONTACT_MAP:return (&lt;ContactMapComponentdata&#x3D;{data[&#x27;Contact Map&#x27;] as IContactMapData}height&#x3D;{height * 0.9}onMouseEnter&#x3D;{this.props.onDataSelect}selectedData&#x3D;{selectedData as number}width&#x3D;{width * 0.9}/&gt;);default:throw new Error(&#x60;Unknown viz: ${viz}&#x60;);}}protected onVizSelect &#x3D; (event: React.SyntheticEvent&lt;any&gt;, data: any) &#x3D;&gt; {this.setState({selectedViz: data.value,});};protected generateDropdownItems &#x3D; (supportedVisualizations: VIZ_TYPE[]): DropdownItemProps[] &#x3D;&gt; {return supportedVisualizations.map(viz &#x3D;&gt; ({key: viz,text: viz,value: viz,})).sort((a, b) &#x3D;&gt; a.key.localeCompare(b.key));};},)</span></div>
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in src/component/VizSelectorPanel.tsx:32</li>
@@ -1000,7 +1029,7 @@
 						<ul>
 							<li>Defined in src/component/NGLComponent.tsx:25</li>
 							<li>Defined in src/component/SpringComponent.tsx:8</li>
-							<li>Defined in src/component/TComponent.tsx:7</li>
+							<li>Defined in src/component/TComponent.tsx:8</li>
 							<li>Defined in src/component/ContactMapComponent.tsx:12</li>
 							<li>Defined in src/component/VizSelectorPanel.tsx:13</li>
 							<li>Defined in src/container/VizPanelContainer.tsx:10</li>
@@ -1044,7 +1073,7 @@
 							<ul>
 								<li>Defined in src/component/NGLComponent.tsx:26</li>
 								<li>Defined in src/component/SpringComponent.tsx:10</li>
-								<li>Defined in src/component/TComponent.tsx:8</li>
+								<li>Defined in src/component/TComponent.tsx:9</li>
 								<li>Defined in src/component/ContactMapComponent.tsx:15</li>
 								<li>Defined in src/component/VizSelectorPanel.tsx:14</li>
 							</ul>
@@ -1062,7 +1091,8 @@
 						<aside class="tsd-sources">
 							<ul>
 								<li>Defined in src/component/SpringComponent.tsx:14</li>
-								<li>Defined in src/component/TComponent.tsx:9</li>
+								<li>Defined in src/component/TComponent.tsx:10</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:20</li>
 								<li>Defined in src/component/VizSelectorPanel.tsx:15</li>
 							</ul>
 						</aside>
@@ -1073,7 +1103,7 @@
 						<div class="tsd-signature tsd-kind-icon">highlight<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;#0000ff&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMapComponent.tsx:20</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:21</li>
 							</ul>
 						</aside>
 					</section>
@@ -1118,7 +1148,7 @@
 						<div class="tsd-signature tsd-kind-icon">on<wbr>Click<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> =&nbsp;undefined as ContactMapCallback | undefined</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMapComponent.tsx:21</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:22</li>
 							</ul>
 						</aside>
 					</section>
@@ -1128,7 +1158,7 @@
 						<div class="tsd-signature tsd-kind-icon">on<wbr>Mouse<wbr>Enter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> =&nbsp;undefined as ContactMapCallback | undefined</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMapComponent.tsx:22</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:23</li>
 							</ul>
 						</aside>
 					</section>
@@ -1138,7 +1168,7 @@
 						<div class="tsd-signature tsd-kind-icon">point<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;#000000&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/TComponent.tsx:10</li>
+								<li>Defined in src/component/TComponent.tsx:11</li>
 							</ul>
 						</aside>
 					</section>
@@ -1158,7 +1188,7 @@
 						<div class="tsd-signature tsd-kind-icon">selected<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/icouplingscore.html" class="tsd-signature-type">ICouplingScore</a><span class="tsd-signature-symbol"> =&nbsp;undefined as ICouplingScore | undefined</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMapComponent.tsx:23</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:24</li>
 								<li>Defined in src/component/VizSelectorPanel.tsx:20</li>
 							</ul>
 						</aside>
@@ -1180,7 +1210,8 @@
 						<aside class="tsd-sources">
 							<ul>
 								<li>Defined in src/component/SpringComponent.tsx:16</li>
-								<li>Defined in src/component/TComponent.tsx:11</li>
+								<li>Defined in src/component/TComponent.tsx:12</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:25</li>
 								<li>Defined in src/component/VizSelectorPanel.tsx:22</li>
 							</ul>
 						</aside>
@@ -1202,6 +1233,95 @@
 								<ul class="tsd-parameters">
 									<li>
 										<h5>e: <span class="tsd-signature-type">any</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal">
+					<a name="initialcellcontext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> initial<wbr>Cell<wbr>Context</h3>
+					<div class="tsd-signature tsd-kind-icon">initial<wbr>Cell<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/context/CellContext.ts:4</li>
+						</ul>
+					</aside>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="initialcellcontext.currentcells" class="tsd-anchor"></a>
+						<h3>current<wbr>Cells</h3>
+						<div class="tsd-signature tsd-kind-icon">current<wbr>Cells<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[] as CELL_TYPE[]</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/context/CellContext.ts:9</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="initialcellcontext.addcells" class="tsd-anchor"></a>
+						<h3>add<wbr>Cells</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">add<wbr>Cells<span class="tsd-signature-symbol">(</span>cells<span class="tsd-signature-symbol">: </span><a href="globals.html#cell_type" class="tsd-signature-type">CELL_TYPE</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in src/context/CellContext.ts:5</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>cells: <a href="globals.html#cell_type" class="tsd-signature-type">CELL_TYPE</a><span class="tsd-signature-symbol">[]</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="initialcellcontext.removeallcells" class="tsd-anchor"></a>
+						<h3>remove<wbr>All<wbr>Cells</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">remove<wbr>All<wbr>Cells<span class="tsd-signature-symbol">(</span>cells<span class="tsd-signature-symbol">: </span><a href="globals.html#cell_type" class="tsd-signature-type">CELL_TYPE</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in src/context/CellContext.ts:10</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>cells: <a href="globals.html#cell_type" class="tsd-signature-type">CELL_TYPE</a><span class="tsd-signature-symbol">[]</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="initialcellcontext.removecells" class="tsd-anchor"></a>
+						<h3>remove<wbr>Cells</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">remove<wbr>Cells<span class="tsd-signature-symbol">(</span>cells<span class="tsd-signature-symbol">: </span><a href="globals.html#cell_type" class="tsd-signature-type">CELL_TYPE</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in src/context/CellContext.ts:13</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>cells: <a href="globals.html#cell_type" class="tsd-signature-type">CELL_TYPE</a><span class="tsd-signature-symbol">[]</span></h5>
 									</li>
 								</ul>
 								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1350,9 +1470,9 @@
 						<ul>
 							<li>Defined in src/component/NGLComponent.tsx:30</li>
 							<li>Defined in src/component/SpringComponent.tsx:19</li>
-							<li>Defined in src/component/TComponent.tsx:14</li>
-							<li>Defined in src/component/ContactMapComponent.tsx:26</li>
+							<li>Defined in src/component/ContactMapComponent.tsx:28</li>
 							<li>Defined in src/component/VizSelectorPanel.tsx:25</li>
+							<li>Defined in src/context/ChellContext.tsx:7</li>
 							<li>Defined in src/container/VizPanelContainer.tsx:16</li>
 						</ul>
 					</aside>
@@ -1377,32 +1497,12 @@
 						</aside>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
-						<a name="initialstate.chartheight" class="tsd-anchor"></a>
-						<h3>chart<wbr>Height</h3>
-						<div class="tsd-signature tsd-kind-icon">chart<wbr>Height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in src/component/TComponent.tsx:15</li>
-							</ul>
-						</aside>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
-						<a name="initialstate.chartwidth" class="tsd-anchor"></a>
-						<h3>chart<wbr>Width</h3>
-						<div class="tsd-signature tsd-kind-icon">chart<wbr>Width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in src/component/TComponent.tsx:16</li>
-							</ul>
-						</aside>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
 						<a name="initialstate.contactpoints" class="tsd-anchor"></a>
 						<h3>contact<wbr>Points</h3>
 						<div class="tsd-signature tsd-kind-icon">contact<wbr>Points<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Float32Array</span><span class="tsd-signature-symbol"> =&nbsp;new Float32Array(0)</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMapComponent.tsx:27</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:29</li>
 							</ul>
 						</aside>
 					</section>
@@ -1412,7 +1512,7 @@
 						<div class="tsd-signature tsd-kind-icon">coupling<wbr>Points<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Float32Array</span><span class="tsd-signature-symbol"> =&nbsp;new Float32Array(0)</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMapComponent.tsx:28</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:30</li>
 							</ul>
 						</aside>
 					</section>
@@ -1447,7 +1547,7 @@
 						<div class="tsd-signature tsd-kind-icon">highlighted<wbr>Points<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Float32Array</span><span class="tsd-signature-symbol"> =&nbsp;new Float32Array(0)</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMapComponent.tsx:29</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:31</li>
 							</ul>
 						</aside>
 					</section>
@@ -1478,7 +1578,7 @@
 						<aside class="tsd-sources">
 							<ul>
 								<li>Defined in src/component/NGLComponent.tsx:33</li>
-								<li>Defined in src/component/ContactMapComponent.tsx:30</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:32</li>
 							</ul>
 						</aside>
 					</section>
@@ -1489,7 +1589,7 @@
 						<aside class="tsd-sources">
 							<ul>
 								<li>Defined in src/component/NGLComponent.tsx:34</li>
-								<li>Defined in src/component/ContactMapComponent.tsx:31</li>
+								<li>Defined in src/component/ContactMapComponent.tsx:33</li>
 							</ul>
 						</aside>
 					</section>
@@ -1534,12 +1634,22 @@
 						</aside>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal tsd-is-not-exported">
+						<a name="initialstate.cellcontext" class="tsd-anchor"></a>
+						<h3>cell<wbr>Context</h3>
+						<div class="tsd-signature tsd-kind-icon">cell<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/context/ChellContext.tsx:8</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal tsd-is-not-exported">
 						<a name="initialstate.residuecontext" class="tsd-anchor"></a>
 						<h3>residue<wbr>Context</h3>
 						<div class="tsd-signature tsd-kind-icon">residue<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/container/VizPanelContainer.tsx:19</li>
+								<li>Defined in src/context/ChellContext.tsx:11</li>
 							</ul>
 						</aside>
 					</section>
@@ -1576,6 +1686,9 @@
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/categoryselector.html" class="tsd-kind-icon">Category<wbr>Selector</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/chellcontext.html" class="tsd-kind-icon">Chell<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/chellslider.html" class="tsd-kind-icon">Chell<wbr>Slider</a>
@@ -1650,6 +1763,9 @@
 						<a href="interfaces/itcontainerstate.html" class="tsd-kind-icon">ITContainer<wbr>State</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#cell_type" class="tsd-kind-icon">CELL_<wbr>TYPE</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#chell_data_type" class="tsd-kind-icon">CHELL_<wbr>DATA_<wbr>TYPE</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
@@ -1690,6 +1806,9 @@
 					</li>
 					<li class=" tsd-kind-type-alias tsd-is-not-exported">
 						<a href="globals.html#requiredprops" class="tsd-kind-icon">required<wbr>Props</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#cellcontext" class="tsd-kind-icon">Cell<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#contactmapcomponent" class="tsd-kind-icon">Contact<wbr>Map<wbr>Component</a>
@@ -1768,6 +1887,9 @@
 					</li>
 					<li class=" tsd-kind-object-literal tsd-is-not-exported">
 						<a href="globals.html#defaultprops" class="tsd-kind-icon">default<wbr>Props</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#initialcellcontext" class="tsd-kind-icon">initial<wbr>Cell<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-object-literal">
 						<a href="globals.html#initialresiduecontext" class="tsd-kind-icon">initial<wbr>Residue<wbr>Context</a>

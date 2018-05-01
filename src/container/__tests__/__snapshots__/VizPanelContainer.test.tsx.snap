@@ -31,19 +31,7 @@ exports[`VizPanelContainer Should match existing snapshot when given a single vi
       wrapSelection={true}
     />
   </GridRow>
-  <[object Object]
-    value={
-      Object {
-        "addCandidateResidue": [Function],
-        "addLockedResiduePair": [Function],
-        "candidateResidue": "none",
-        "lockedResiduePairs": Object {},
-        "removeAllLockedResiduePairs": [Function],
-        "removeCandidateResidue": [Function],
-        "removeLockedResiduePair": [Function],
-      }
-    }
-  >
+  <ChellContext>
     <GridColumn
       key="0"
     >
@@ -56,6 +44,6 @@ exports[`VizPanelContainer Should match existing snapshot when given a single vi
         width={450}
       />
     </GridColumn>
-  </[object Object]>
+  </ChellContext>
 </Grid>
 `;

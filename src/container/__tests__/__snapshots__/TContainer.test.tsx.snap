@@ -6,9 +6,9 @@ exports[`TContainer Should match existing snapshot when given no data. 1`] = `
 >
   <TComponentClass
     data={Array []}
-    height={450}
+    height={400}
     pointColor="#000000"
-    width={450}
+    width={400}
   />
   <ChellSlider
     defaultValue={5}
@@ -33,9 +33,9 @@ exports[`TContainer Should update when given a new data directory. 1`] = `
 >
   <TComponentClass
     data={Array []}
-    height={450}
+    height={400}
     pointColor="#000000"
-    width={450}
+    width={400}
   />
   <ChellSlider
     defaultValue={5}
