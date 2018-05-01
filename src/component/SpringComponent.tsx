@@ -3,6 +3,8 @@ import * as d3 from 'd3';
 import * as PIXI from 'pixi.js';
 import * as React from 'react';
 import { ISpringGraphData, ISpringLink, ISpringNode } from 'spring';
+
+import { CellContext, initialCellContext } from '../context/CellContext';
 import { withDefaultProps } from '../helper/ReactHelper';
 
 const defaultProps = {
@@ -12,6 +14,7 @@ const defaultProps = {
     nodes: [],
   } as SPRING_DATA_TYPE,
   height: 450,
+  ...initialCellContext,
   selectedCategory: '',
   width: 450,
 };
@@ -23,7 +26,7 @@ const initialState = {
 type Props = {} & typeof defaultProps;
 type State = typeof initialState;
 
-export const SpringComponent = withDefaultProps(
+export const SpringComponentWithDefaultProps = withDefaultProps(
   defaultProps,
   class SpringComponentClass extends React.Component<Props, State> {
     protected pixiApp: PIXI.Application = new PIXI.Application();
@@ -85,7 +88,16 @@ export const SpringComponent = withDefaultProps(
         pixiApp.stage.addChild(this.edgeSprites);
         pixiApp.stage.addChild(this.nodeSprites);
       } else if (selectedCategory !== prevProps.selectedCategory) {
-        this.updateNodeSprites(data.nodes, this.nodeSprites, selectedCategory);
+        this.updateNodeSprites(data.nodes, this.nodeSprites, (node: ISpringNode) => node.category === selectedCategory);
+        this.edgeSprites.removeChildren();
+        this.generateLinesSprite(data.links, this.edgeSprites, selectedCategory);
+        this.centerCanvas(data);
+      } else if (this.props.currentCells !== prevProps.currentCells) {
+        this.updateNodeSprites(
+          data.nodes,
+          this.nodeSprites,
+          (node: ISpringNode) => this.props.currentCells.indexOf(node.number) !== -1,
+        );
         this.edgeSprites.removeChildren();
         this.generateLinesSprite(data.links, this.edgeSprites, selectedCategory);
         this.centerCanvas(data);
@@ -161,14 +173,18 @@ export const SpringComponent = withDefaultProps(
       }
     }
 
-    protected updateNodeSprites(nodes: ISpringNode[] = [], container: PIXI.Container, category?: string) {
+    protected updateNodeSprites(
+      nodes: ISpringNode[] = [],
+      container: PIXI.Container,
+      conditionFn: (node: ISpringNode) => boolean,
+    ) {
       for (let i = 0; i < container.children.length; ++i) {
         const node = nodes[i];
         const sprite = container.children[i];
-        if (category && node.category !== category) {
-          sprite.alpha = 0.1;
-        } else {
+        if (conditionFn(node)) {
           sprite.alpha = 1;
+        } else {
+          sprite.alpha = 0.1;
         }
       }
     }
@@ -207,4 +223,14 @@ export const SpringComponent = withDefaultProps(
       edgeSprites.scale = nodeSprites.scale;
     }
   },
+);
+
+// TODO The required props should be discernable from `withDefaultProps` without needing to duplicate.
+// However the Context consumer syntax is still new to me and I can't find the right combination :(
+type requiredProps = Partial<typeof defaultProps> & Required<Omit<Props, keyof typeof defaultProps>>;
+
+export const SpringComponent = (props: requiredProps) => (
+  <CellContext.Consumer>
+    {({ currentCells }) => <SpringComponentWithDefaultProps {...props} currentCells={currentCells} />}
+  </CellContext.Consumer>
 );

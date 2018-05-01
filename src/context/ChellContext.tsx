@@ -46,14 +46,10 @@ export class ChellContext extends React.Component<any, State> {
   }
 
   protected onAddCells = (cells: CELL_TYPE[]) => {
-    console.log('Adding cells');
-    const currentCells = [...this.state.cellContext.currentCells, ...cells].filter(
-      (elem, index, self) => index === self.indexOf(elem),
-    );
     this.setState({
       cellContext: {
         ...this.state.cellContext,
-        currentCells,
+        currentCells: cells,
       },
     });
   };

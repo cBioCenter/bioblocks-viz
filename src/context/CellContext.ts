@@ -3,7 +3,6 @@ import * as React from 'react';
 
 export const initialCellContext = {
   addCells: (cells: CELL_TYPE[]) => {
-    console.log(cells);
     return;
   },
   currentCells: [] as CELL_TYPE[],

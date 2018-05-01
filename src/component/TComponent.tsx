@@ -70,7 +70,9 @@ export const TComponent = withDefaultProps(
     }
 
     protected onMouseSelect = (cb: (cells: number[]) => void) => (e: Plotly.PlotSelectionEvent) => {
-      cb(e.points.map(point => point.pointNumber));
+      if (e.points) {
+        cb(e.points.map(point => point.pointNumber));
+      }
     };
   },
 );
