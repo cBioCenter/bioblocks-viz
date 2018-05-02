@@ -5,7 +5,7 @@ exports[`TComponent Should match existing snapshot when given simple data. 1`] =
   id="TComponent"
   style={
     Object {
-      "padding": 10,
+      "padding": 0,
     }
   }
 >

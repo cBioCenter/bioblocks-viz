@@ -21,6 +21,7 @@ const defaultProps = {
   highlightColor: '#0000ff',
   onClick: undefined as ContactMapCallback | undefined,
   onMouseEnter: undefined as ContactMapCallback | undefined,
+  padding: 0,
   selectedData: undefined as number | undefined,
   width: 400,
 };
@@ -61,13 +62,13 @@ export const ContactMapComponent = withDefaultProps(
     }
 
     public render() {
-      const { contactColor, couplingColor, highlightColor } = this.props;
+      const { contactColor, couplingColor, height, highlightColor, padding, width } = this.props;
       const { contactPoints, couplingPoints } = this.state;
 
       return (
         <ResidueContext.Consumer>
           {({ addLockedResiduePair, lockedResiduePairs, removeLockedResiduePair }) => (
-            <div style={{ padding: 10 }}>
+            <div id="ContactMapComponent" style={{ padding }}>
               <PlotlyChart
                 config={defaultConfig}
                 data={[
@@ -79,7 +80,11 @@ export const ContactMapComponent = withDefaultProps(
                     this.state.nodeSize,
                   ),
                 ]}
-                layout={defaultLayout}
+                layout={{
+                  ...defaultLayout,
+                  height,
+                  width,
+                }}
                 onHoverCallback={this.onMouseEnter(removeLockedResiduePair)}
                 onClickCallback={this.onMouseClick(addLockedResiduePair)}
                 onSelectedCallback={this.onMouseSelect()}
@@ -90,7 +95,10 @@ export const ContactMapComponent = withDefaultProps(
         </ResidueContext.Consumer>
       );
     }
+
     protected renderSliders() {
+      const { width } = this.props;
+      const sliderStyle = { width };
       return (
         <div>
           <ChellSlider
@@ -99,6 +107,7 @@ export const ContactMapComponent = withDefaultProps(
             label={'Probability'}
             defaultValue={99}
             onChange={this.onProbabilityChange()}
+            style={sliderStyle}
           />
           <ChellSlider
             max={5}
@@ -106,6 +115,7 @@ export const ContactMapComponent = withDefaultProps(
             label={'Node Size'}
             defaultValue={this.state.nodeSize}
             onChange={this.onNodeSizeChange()}
+            style={sliderStyle}
           />
         </div>
       );
@@ -113,7 +123,6 @@ export const ContactMapComponent = withDefaultProps(
 
     protected setupData(data: CONTACT_MAP_DATA_TYPE) {
       const blackDots = new Array<ICouplingScore>();
-
       data.couplingScore.filter(coupling => coupling.probability >= this.state.probabilityFilter).forEach(coupling => {
         blackDots.push(coupling);
         blackDots.push({

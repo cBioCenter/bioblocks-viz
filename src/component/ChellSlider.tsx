@@ -6,7 +6,7 @@ import 'rc-slider/assets/index.css';
 /** Function signature that is invoked on slider events. */
 export type ChellSliderCallback =
   /**
-   * @param {number} value New value the slider is currently on top of.
+   * @param value New value the slider is currently on top of.
    */
   (value: number) => void;
 
@@ -14,7 +14,6 @@ export type ChellSliderCallback =
  * Properties that ChellSlider accepts.
  *
  * @export
- * @interface IChellSliderProps
  */
 export interface IChellSliderProps {
   /** Initial value the slider is set to. */
@@ -34,13 +33,15 @@ export interface IChellSliderProps {
 
   /** Invoked when the value is in the middle of changing but user has not committed to the change. */
   onChange?: ChellSliderCallback;
+
+  /** Style for the Slider. */
+  style?: React.CSSProperties[] | React.CSSProperties;
 }
 
 /**
  * State of the Chell Slider.
  *
  * @export
- * @interface IChellSliderState
  */
 export interface IChellSliderState {
   /** Value the slider is currently set to. */
@@ -51,7 +52,6 @@ export interface IChellSliderState {
  * Represents a simple 2d slider, allowing a value to be selected between a minimum and maximum.
  *
  * @export
- * @class ChellSlider
  * @extends {React.Component<IChellSliderProps, IChellSliderState>}
  */
 export class ChellSlider extends React.Component<IChellSliderProps, IChellSliderState> {
@@ -63,7 +63,7 @@ export class ChellSlider extends React.Component<IChellSliderProps, IChellSlider
   }
 
   public render() {
-    const { defaultValue, max, min, label, onAfterChange, onChange } = this.props;
+    const { defaultValue, max, min, label, onAfterChange, onChange, style } = this.props;
     return (
       <div>
         <p>{`${label}: ${this.state.value}`}</p>
@@ -73,6 +73,7 @@ export class ChellSlider extends React.Component<IChellSliderProps, IChellSlider
           min={min}
           onAfterChange={this.onAfterChange(onAfterChange)}
           onChange={this.onChange(onChange)}
+          style={style}
         />
       </div>
     );
@@ -80,9 +81,6 @@ export class ChellSlider extends React.Component<IChellSliderProps, IChellSlider
 
   /**
    * Updates the state of the slider after user commits to change. If applicable, invokes appropriate callback.
-   *
-   * @protected
-   * @memberof ChellSlider
    */
   protected onAfterChange = (cb?: ChellSliderCallback) => (value: number) => {
     if (cb) {
@@ -96,9 +94,6 @@ export class ChellSlider extends React.Component<IChellSliderProps, IChellSlider
   /**
    * Updates the state of the slider as the user moves the slider around but before selection is committed.
    * If applicable, invokes appropriate callback as well.
-   *
-   * @protected
-   * @memberof ChellSlider
    */
   protected onChange = (cb?: ChellSliderCallback) => (value: number) => {
     if (cb) {

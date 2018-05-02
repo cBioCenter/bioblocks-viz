@@ -1,10 +1,18 @@
 {
   "defaultSeverity": "error",
-  "extends": ["tslint:recommended", "tslint-react", "tslint-eslint-rules", "tslint-config-prettier"],
+  "extends": [
+    "tslint:recommended",
+    "tslint-jsdoc-rules",
+    "tslint-react",
+    "tslint-eslint-rules",
+    "tslint-config-prettier"
+  ],
   "jsRules": {},
   "rules": {
     "no-console": false,
-    "no-namespace": [true, "allow-declarations"]
+    "no-namespace": [true, "allow-declarations"],
+    "no-redundant-jsdoc": true,
+    "jsdoc-format": [true]
   },
   "rulesDirectory": []
 }

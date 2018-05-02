@@ -15,20 +15,16 @@ const defaultProps = {
   } as SPRING_DATA_TYPE,
   height: 450,
   ...initialCellContext,
+  padding: 0,
   selectedCategory: '',
   width: 450,
 };
 
-const initialState = {
-  canvasHeight: 0,
-  canvasWidth: 0,
-};
 type Props = {} & typeof defaultProps;
-type State = typeof initialState;
 
 export const SpringComponentWithDefaultProps = withDefaultProps(
   defaultProps,
-  class SpringComponentClass extends React.Component<Props, State> {
+  class SpringComponentClass extends React.Component<Props, any> {
     protected pixiApp: PIXI.Application = new PIXI.Application();
 
     protected canvasElement?: HTMLCanvasElement;
@@ -40,14 +36,12 @@ export const SpringComponentWithDefaultProps = withDefaultProps(
       super(props);
       this.state = {
         ...this.state,
-        canvasHeight: Math.floor(0.9 * this.props.height),
-        canvasWidth: Math.floor(0.9 * this.props.width),
       };
     }
 
     public componentDidMount() {
-      const { canvasHeight, canvasWidth } = this.state;
-      this.pixiApp = new PIXI.Application(canvasHeight, canvasWidth, {
+      const { height, width } = this.props;
+      this.pixiApp = new PIXI.Application(width, height, {
         backgroundColor: this.props.canvasBackgroundColor,
         view: this.canvasElement,
       });
@@ -70,7 +64,7 @@ export const SpringComponentWithDefaultProps = withDefaultProps(
       }
     }
 
-    public componentDidUpdate(prevProps: Props, prevState: State) {
+    public componentDidUpdate(prevProps: Props, prevState: any) {
       const { data, selectedCategory } = this.props;
       const isNewData = data && data !== prevProps.data;
       if (isNewData) {
@@ -105,19 +99,17 @@ export const SpringComponentWithDefaultProps = withDefaultProps(
     }
 
     public render() {
-      const canvasStyle = { width: this.state.canvasWidth, height: this.state.canvasHeight };
+      const { height, padding, width } = this.props;
       return (
-        <div id="SpringComponent" style={{ height: this.props.height, padding: 15, width: this.props.width }}>
-          <div id="PixiCanvasHolder">
-            {<canvas ref={el => (this.canvasElement = el ? el : undefined)} style={canvasStyle} />}
-          </div>
+        <div id="SpringComponent" style={{ padding }}>
+          {<canvas ref={el => (this.canvasElement = el ? el : undefined)} style={{ height, width }} />}
         </div>
       );
     }
 
     protected generateLinesSprite(links: ISpringLink[] = [], container: PIXI.Container, category?: string) {
       const lines = new PIXI.Graphics();
-      const { canvasHeight, canvasWidth } = this.state;
+      const { height, width } = this.props;
       for (const link of links) {
         const source = link.source as ISpringNode;
         const target = link.target as ISpringNode;
@@ -133,13 +125,13 @@ export const SpringComponentWithDefaultProps = withDefaultProps(
       const textureRect = new PIXI.Rectangle(
         linesBounds.x,
         linesBounds.y,
-        Math.max(canvasWidth, linesBounds.width),
-        Math.max(canvasHeight, linesBounds.height),
+        Math.max(width, linesBounds.width),
+        Math.max(height, linesBounds.height),
       );
       const linesTexture = this.pixiApp.renderer.generateTexture(
         lines,
         PIXI.SCALE_MODES.LINEAR,
-        canvasWidth / canvasHeight,
+        width / height,
         textureRect,
       );
       const linesSprite = new PIXI.Sprite(linesTexture);
@@ -191,7 +183,7 @@ export const SpringComponentWithDefaultProps = withDefaultProps(
 
     protected centerCanvas(data: ISpringGraphData) {
       const { edgeSprites, nodeSprites } = this;
-      const { canvasHeight, canvasWidth } = this.state;
+      const { height, width } = this.props;
       const allXs = data.nodes.map(node => node.x);
       const allYs = data.nodes.map(node => node.y);
 
@@ -207,12 +199,12 @@ export const SpringComponentWithDefaultProps = withDefaultProps(
       const dx = max.x - min.x + 50;
       const dy = max.y - min.y + 50;
 
-      const scale = 0.85 / Math.max(dx / canvasWidth, dy / canvasHeight);
+      const scale = 0.85 / Math.max(dx / width, dy / height);
 
       const delta = {
         scale: scale - this.nodeSprites.scale.x,
-        x: canvasWidth / 2 - (max.x + min.x) / 2 * scale - nodeSprites.position.x,
-        y: canvasHeight / 2 + 30 - (max.y + min.y) / 2 * scale - nodeSprites.position.y,
+        x: width / 2 - (max.x + min.x) / 2 * scale - nodeSprites.position.x,
+        y: height / 2 + 30 - (max.y + min.y) / 2 * scale - nodeSprites.position.y,
       };
 
       nodeSprites.position.x += delta.x;

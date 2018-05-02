@@ -8,6 +8,7 @@ import { withDefaultProps } from '../helper/ReactHelper';
 const defaultProps = {
   data: [[0], [0]] as T_SNE_DATA_TYPE,
   height: 400,
+  padding: 0,
   pointColor: '#000000',
   width: 400,
 };
@@ -24,7 +25,7 @@ export const TComponent = withDefaultProps(
     }
 
     public render() {
-      const { data, height, pointColor, width } = this.props;
+      const { data, height, padding, pointColor, width } = this.props;
       const coords = new Float32Array(data.length * 2);
       data.forEach((ele, index) => {
         coords[index * 2] = ele[0];
@@ -32,7 +33,7 @@ export const TComponent = withDefaultProps(
       });
 
       return (
-        <div id="TComponent" style={{ padding: 10 }}>
+        <div id="TComponent" style={{ padding }}>
           <CellContext.Consumer>
             {({ addCells }) => (
               <PlotlyChart

@@ -24,6 +24,5 @@ exports[`ChellContext Should match the default snapshot. 1`] = `
       }
     }
   />
-  ;
 </[object Object]>
 `;

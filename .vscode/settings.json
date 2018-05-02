@@ -9,6 +9,7 @@
     "PIXI",
     "Plotly",
     "Repo",
+    "Unmount",
     "automagically",
     "tsne",
     "tsnejs"

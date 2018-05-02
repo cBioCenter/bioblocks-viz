@@ -24,7 +24,10 @@ export const SUPPORTED_REPS: StructureRepresentationType[] = [
 
 const defaultProps = {
   data: undefined as NGL.Structure | undefined,
+  height: 400,
   ...initialResidueContext,
+  padding: 0,
+  width: 400,
 };
 
 const initialState = {
@@ -100,12 +103,12 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
      * Because we are working with WebGL via the canvas, updating this visualization happens through the canvas reference.
      *
      * @returns The NGL Component
-     * @memberof NGLComponentClass
      */
     public render() {
+      const { height, padding, width } = this.props;
       return (
-        <div id="NGLComponent" style={{ padding: 15 }}>
-          <div ref={el => (this.canvas = el)} style={{ height: 370, width: 370 }} />
+        <div id="NGLComponent" style={{ padding }}>
+          <div ref={el => (this.canvas = el)} style={{ height, width }} />
         </div>
       );
     }
@@ -113,10 +116,8 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
     /**
      * Adds a NGL structure to the stage.
      *
-     * @protected
-     * @param {NGL.Structure} data
-     * @param {NGL.Stage} stage
-     * @memberof NGLComponentClass
+     * @param data A NGL Structure.
+     * @param stage A NGL Stage.
      */
     protected addStructureToStage(data: NGL.Structure, stage: NGL.Stage) {
       const structureComponent = stage.addComponentFromObject(data) as NGL.StructureComponent;
@@ -178,10 +179,8 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
     /**
      * Highlight a specific residue on a 3D structure.
      *
-     * @protected
-     * @param {StructureComponent} structureComponent The structure for which the residue to highlight belongs.
-     * @param {string} selection [NGL Selection](https://github.com/arose/ngl/blob/master/doc/usage/selection-language.md) for what to highlight.
-     * @memberof NGLComponent
+     * @param structureComponent The structure for which the residue to highlight belongs.
+     * @param selection [NGL Selection](https://github.com/arose/ngl/blob/master/doc/usage/selection-language.md) for what to highlight.
      */
     protected highlightElement(structureComponent: StructureComponent, residues: number[]) {
       const { residueOffset } = this.state;

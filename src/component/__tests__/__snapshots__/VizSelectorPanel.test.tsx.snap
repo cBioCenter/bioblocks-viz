@@ -42,10 +42,11 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
           "distanceMapMonomer": Array [],
         }
       }
-      height={405}
+      height={420}
       highlightColor="#0000ff"
       onMouseEnter={[Function]}
-      width={405}
+      padding={15}
+      width={420}
     />
   </Card>
 </div>
@@ -83,7 +84,11 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     fluid={true}
     raised={true}
   >
-    <Component />
+    <Component
+      height={420}
+      padding={15}
+      width={420}
+    />
   </Card>
 </div>
 `;
@@ -120,7 +125,11 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     fluid={true}
     raised={true}
   >
-    <Component />
+    <Component
+      height={420}
+      padding={15}
+      width={420}
+    />
   </Card>
 </div>
 `;
@@ -168,9 +177,10 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
           ],
         ]
       }
-      height={405}
+      height={420}
+      padding={15}
       pointColor="#000000"
-      width={405}
+      width={420}
     />
   </Card>
 </div>
@@ -219,9 +229,10 @@ exports[`VizSelectorPanel Should match existing snapshot when given no initial v
           ],
         ]
       }
-      height={405}
+      height={420}
+      padding={15}
       pointColor="#000000"
-      width={405}
+      width={420}
     />
   </Card>
 </div>

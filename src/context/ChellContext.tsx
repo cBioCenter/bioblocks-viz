@@ -42,7 +42,7 @@ export class ChellContext extends React.Component<any, State> {
   public render() {
     return (
       <CellContext.Provider value={this.state.cellContext}>
-        <ResidueContext.Provider value={this.state.residueContext}>{this.props.children}</ResidueContext.Provider>;
+        <ResidueContext.Provider value={this.state.residueContext}>{this.props.children}</ResidueContext.Provider>
       </CellContext.Provider>
     );
   }
