@@ -55,7 +55,6 @@ declare module 'ngl' {
    * Key controls.
    *
    * @export
-   * @class KeyControls
    */
   export class KeyControls {
     // Properties
@@ -66,9 +65,8 @@ declare module 'ngl' {
     /**
      * Creates an instance of KeyControls.
      *
-     * @param {Stage} stage The stage object.
-     * @param {IKeyControlsParams} [params]
-     * @memberof KeyControls
+     * @param stage The stage object.
+     * @param  [params]
      */
     constructor(stage: Stage, params?: IKeyControlsParams);
 
@@ -79,24 +77,20 @@ declare module 'ngl' {
      * @example // Call KeyActions.toggleRock when "k" is pressed.
      * stage.keyControls.remove("k", KeyActions.toggleRock);
      *
-     * @param {string} char The key/character.
-     * @param {KeyActionCallback} callback The callback function for the action.
-     * @memberof KeyControls
+     * @param char The key/character.
+     * @param callback The callback function for the action.
      */
     public add(char: string, callback: KeyActionCallback): void;
 
     /**
      * Remove all key actions.
-     *
-     * @memberof KeyControls
      */
     public clear(): void;
 
     /**
      * Set key action preset.
      *
-     * @param {KeyControlPreset} name One of "default".
-     * @memberof KeyControls
+     * @param name One of "default".
      */
     public preset(name: KeyControlPreset): void;
 
@@ -109,9 +103,8 @@ declare module 'ngl' {
      * @example Remove action toggleRock triggered by pressing "k".
      * stage.keyControls.remove( "k", toggleRock );
      *
-     * @param {string} char The key/character.
-     * @param {KeyActionCallback} callback Only actions that call this function will be removed.
-     * @memberof KeyControls
+     * @param char The key/character.
+     * @param callback Only actions that call this function will be removed.
      */
     public remove(char: string, callback: KeyActionCallback): void;
     public run(keyCode: number): void;
@@ -134,7 +127,6 @@ declare module 'ngl' {
    * Mouse controls.
    *
    * @export
-   * @class MouseControls
    */
   export class MouseControls {
     // Properties
@@ -145,9 +137,8 @@ declare module 'ngl' {
 
     /**
      * The stage object.
-     * @param {Stage} stage
-     * @param {IMouseControlsParams} [params]
-     * @memberof MouseControls
+     * @param stage
+     * @param [params]
      */
     constructor(stage: Stage, params?: IMouseControlsParams);
 
@@ -164,24 +155,20 @@ declare module 'ngl' {
      * @example // Call the MouseActions.zoomDrag method on mouse drag events with left and right mouse buttons simultaneously
      * stage.mouseControls.add("drag-left+right", MouseActions.zoomDrag);
      *
-     * @param {string} triggerStr The trigger for the action.
-     * @param {MouseActionCallback} callback The callback function for the action.
-     * @memberof MouseControls
+     * @param triggerStr The trigger for the action.
+     * @param callback The callback function for the action.
      */
     public add(triggerStr: string, callback: MouseActionCallback): void;
 
     /**
      * Remove all mouse actions.
-     *
-     * @memberof MouseControls
      */
     public clear(): void;
 
     /**
      * Set mouse action preset.
      *
-     * @param {MouseControlPreset} name One of "default", "pymol", "coot".
-     * @memberof MouseControls
+     * @param name One of "default", "pymol", "coot".
      */
     public preset(name: MouseControlPreset): void;
 
@@ -198,9 +185,8 @@ declare module 'ngl' {
      * @example // Remove actions triggered by a scroll event while the shift key is pressed
      * stage.mouseControls.remove("scroll-shift");
      *
-     * @param {string} triggerStr The trigger for the action.
-     * @param {MouseActionCallback} callback Only actions that call this function will be removed.
-     * @memberof MouseControls
+     * @param triggerStr The trigger for the action.
+     * @param callback Only actions that call this function will be removed.
      */
     public remove(triggerStr: string, callback: MouseActionCallback): void;
 
