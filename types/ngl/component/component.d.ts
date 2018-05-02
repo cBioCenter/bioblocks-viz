@@ -77,7 +77,6 @@ declare module 'ngl' {
    * Base class for components.
    *
    * @export
-   * @class Component
    */
   export class Component {
     // Accessors
@@ -116,10 +115,9 @@ declare module 'ngl' {
     /**
      * Creates an instance of Component.
      *
-     * @param {Stage} stage Stage object the component belongs to.
-     * @param {*} object
-     * @param {Partial<IComponentParameters>} [params] Parameter object.
-     * @memberof Component
+     * @param stage Stage object the component belongs to.
+     * @param object
+     * @param [params] Parameter object.
      */
     constructor(stage: Stage, object: any, params?: Partial<IComponentParameters>);
 
@@ -127,11 +125,10 @@ declare module 'ngl' {
     /**
      * Add an annotation object.
      *
-     * @param {Vector3} position The 3d position.
-     * @param {(string | HTMLElement)} content The HTML content.
-     * @param {IAnnotationParams} params
-     * @returns {Annotation} The added annotation object.
-     * @memberof Component
+     * @param position The 3d position.
+     * @param content The HTML content.
+     * @param params
+     * @returns The added annotation object.
      */
     public addAnnotation(position: Vector3, content: string | HTMLElement, params: IAnnotationParams): Annotation;
 
@@ -141,8 +138,7 @@ declare module 'ngl' {
     /**
      * Automatically center and zoom the component.
      *
-     * @param {(undefined | number)} [duration]
-     * @memberof Component
+     * @param [duration]
      */
     public autoView(duration?: undefined | number): void;
 
@@ -151,37 +147,32 @@ declare module 'ngl' {
     /**
      * Iterator over each annotation and executing the callback.
      *
-     * @param {() => void} callback Function to execute.
-     * @memberof Component
+     * @param callback Function to execute.
      */
     public eachAnnotation(callback: () => void): void;
 
     /**
      * Iterator over each representation and executing the callback.
      *
-     * @param {() => void} callback Function to execute.
-     * @memberof Component
+     * @param callback Function to execute.
      */
     public eachRepresentation(callback: () => void): void;
 
     /**
-     * @param {...any[]} args
-     * @returns {Box3} The component's bounding box.
-     * @memberof Component
+     * @param args
+     * @returns The component's bounding box.
      */
     public getBox(...args: any[]): Box3;
 
     /**
-     * @param {...any[]} args
-     * @returns {Box3}
-     * @memberof Component The untransformed component's bounding box.
+     * @param args
+     * @returns The untransformed component's bounding box.
      */
     public getBoxUntransformed(...args: any[]): Box3;
 
     /**
-     * @param {...any[]} args
-     * @returns {Vector3}
-     * @memberof Component The component's center position.
+     * @param args
+     * @returns The component's center position.
      */
     public getCenter(...args: any[]): Vector3;
 
@@ -191,31 +182,25 @@ declare module 'ngl' {
 
     /**
      * Remove all annotations from the component.
-     *
-     * @memberof Component
      */
     public removeAllAnnotations(): void;
 
     /**
      * Removes all representation components.
-     *
-     * @memberof Component
      */
     public removeAllRepresentations(): void;
 
     /**
      * Remove the give annotation from the component
      *
-     * @param {Annotation} annotation The annotation to remove
-     * @memberof Component
+     * @param annotation The annotation to remove.
      */
     public removeAnnotation(annotation: Annotation): void;
 
     /**
      * Removes a representation component.
      *
-     * @param {RepresentationElement} repr The representation element.
-     * @memberof Component
+     * @param repr The representation element.
      */
     public removeRepresentation(repr: RepresentationElement): void;
     public setName(value: string): this;
@@ -226,9 +211,8 @@ declare module 'ngl' {
      * @example // translate by 25 angstrom along x axis.
      * component.setPosition([ 25, 0, 0 ]);
      *
-     * @param {([number, number, number] | Vector3)} p The coordinates.
-     * @returns {this} This Component object.
-     * @memberof Component
+     * @param p The coordinates.
+     * @returns This Component object.
      */
     public setPosition(p: [number, number, number] | Vector3): this;
 
@@ -238,9 +222,8 @@ declare module 'ngl' {
      * @example // rotate by 2 degree radians on x axis.
      * component.setRotation( [ 2, 0, 0 ] );
      *
-     * @param {([number, number, number] | Euler | Quaternion)} r The rotation.
-     * @returns {this} This Component object.
-     * @memberof Component
+     * @param r The rotation.
+     * @returns This Component object.
      */
     public setRotation(r: [number, number, number] | Euler | Quaternion): this;
 
@@ -250,9 +233,8 @@ declare module 'ngl' {
      * @example // scale by factor of two.
      * component.setScale( 2 );
      *
-     * @param {number} s The scale.
-     * @returns {this} This Component object.
-     * @memberof Component
+     * @param s The scale.
+     * @returns This Component object.
      */
     public setScale(s: number): this;
 
@@ -261,18 +243,16 @@ declare module 'ngl' {
     /**
      * Set general transform. Is applied before and in addition to the position, rotation and scale transformations.
      * @example component.setTransform( matrix );
-     * @param {Matrix4} m The matrix.
-     * @returns {this} This component object.
-     * @memberof Component
+     * @param m The matrix.
+     * @returnsThis component object.
      */
     public setTransform(m: Matrix4): this;
 
     /**
      * Set the visibility of the component, including added representations.
      *
-     * @param {boolean} value Visibility flag.
-     * @returns {this} This component object.
-     * @memberof Component
+     * @param value Visibility flag.
+     * @returns This component object.
      */
     public setVisibility(value: boolean): this;
     public updateMatrix(): void;
@@ -375,7 +355,6 @@ declare module 'ngl' {
    * shapeComponent.addRepresentation( "buffer" );
    *
    * @export
-   * @class ShapeComponent
    * @extends {Component}
    */
   export class ShapeComponent extends Component {
@@ -389,10 +368,9 @@ declare module 'ngl' {
     /**
      * Add a new shape representation to the component
      *
-     * @param {ShapeRepresentationType} type The name of the representation, one of: buffer.
-     * @param {object} [params] Representation parameters.
-     * @returns {RepresentationElement} The created representation wrapped into a representation component object.
-     * @memberof ShapeComponent
+     * @param type The name of the representation, one of: buffer.
+     * @param [params] Representation parameters.
+     * @returns The created representation wrapped into a representation component object.
      */
     public addRepresentation(type: ShapeRepresentationType, params?: object): RepresentationElement;
   }
@@ -419,7 +397,6 @@ declare module 'ngl' {
    * });
    *
    * @export
-   * @class StructureComponent
    * @extends {Component}
    */
   export class StructureComponent extends Component {
@@ -445,8 +422,7 @@ declare module 'ngl' {
     /**
      * Add a measurement given as a pair, triple, quad of atom indices.
      *
-     * @param {number[]} atomList
-     * @memberof StructureComponent
+     * @param atomList
      */
     public addMeasurement(atomList: number[]): void;
     public addRepresentation(
@@ -458,19 +434,17 @@ declare module 'ngl' {
     /**
      * Add a new trajectory component to the structure.
      *
-     * @param {string} [trajPath]
-     * @param {object} [params]
-     * @returns {TrajectoryElement}
-     * @memberof StructureComponent
+     * @param [trajPath]
+     * @param [params]
+     * @returns
      */
     public addTrajectory(trajPath?: string, params?: object): TrajectoryElement;
 
     /**
      * Automatically center and zoom the component
      *
-     * @param {(undefined | number)} [duration]
-     * @returns {*}
-     * @memberof StructureComponent
+     * @param [duration]
+     * @returns
      */
     public autoView(duration?: undefined | number): any;
     public dispose(): void;
@@ -492,16 +466,14 @@ declare module 'ngl' {
     /**
      * Remove all measurements, optionally limit to distance, angle or dihedral.
      *
-     * @param {MeasurementFlags} [type]
-     * @memberof StructureComponent
+     * @param [type]
      */
     public removeAllMeasurements(type?: MeasurementFlags): void;
 
     /**
      * Remove a measurement given as a pair, triple, quad of atom indices.
      *
-     * @param {number[]} atomList
-     * @memberof StructureComponent
+     * @param atomList
      */
     public removeMeasurement(atomList: number[]): void;
     public removeTrajectory(traj: TrajectoryElement): void;
@@ -509,18 +481,16 @@ declare module 'ngl' {
     /**
      * Set the default assembly.
      *
-     * @param {string} value Assembly name.
-     * @returns {this}
-     * @memberof StructureComponent
+     * @param value Assembly name.
+     * @returns
      */
     public setDefaultAssembly(value: string): this;
 
     /**
      * Set selection of structureView.
      *
-     * @param {string} sel Selection string.
-     * @returns {this}
-     * @memberof StructureComponent This StructureComponent object.
+     * @param sel Selection string.
+     * @returns
      */
     public setSelection(sel: string): this;
     public superpose(component: StructureComponent, align: boolean, sele1: string, sele2: string): this;
@@ -537,7 +507,6 @@ declare module 'ngl' {
    * });
    *
    * @export
-   * @class SurfaceComponent
    */
   export class SurfaceComponent {
     // Properties
@@ -550,10 +519,9 @@ declare module 'ngl' {
 
     /**
      * Creates an instance of SurfaceComponent.
-     * @param {Stage} stage Stage object the component belongs to.
-     * @param {Surface} surface Surface object to wrap.
-     * @param {Partial<IComponentParameters>} [params] Component parameters.
-     * @memberof SurfaceComponent
+     * @param stage Stage object the component belongs to.
+     * @param surface Surface object to wrap.
+     * @param [params] Component parameters.
      */
     constructor(stage: Stage, surface: Surface, params?: Partial<IComponentParameters>);
 
@@ -561,10 +529,9 @@ declare module 'ngl' {
     /**
      * Add a new surface representation to the component.
      *
-     * @param {SurfaceRepresentationType} type The name of the representation, one of: surface, dot.
-     * @param {object} [params] Representation parameters.
-     * @returns {RepresentationElement} The created representation wrapped into a representation component object.
-     * @memberof SurfaceComponent
+     * @param type The name of the representation, one of: surface, dot.
+     * @param [params] Representation parameters.
+     * @returns The created representation wrapped into a representation component object.
      */
     public addRepresentation(type: SurfaceRepresentationType, params?: object): RepresentationElement;
     public dispose(): void;
@@ -584,7 +551,6 @@ declare module 'ngl' {
    * });
    *
    * @export
-   * @class VolumeComponent
    * @extends {Component}
    */
   export class VolumeComponent extends Component {
@@ -595,10 +561,9 @@ declare module 'ngl' {
     /**
      * Creates an instance of VolumeComponent.
      *
-     * @param {Stage} stage Stage object the component belongs to.
-     * @param {Volume} volume Volume object to wrap.
-     * @param {Partial<IComponentParameters>} [params] Component parameters.
-     * @memberof VolumeComponent
+     * @param stage Stage object the component belongs to.
+     * @param volume Volume object to wrap.
+     * @param [params] Component parameters.
      */
     constructor(stage: Stage, volume: Volume, params?: Partial<IComponentParameters>);
 
@@ -606,10 +571,9 @@ declare module 'ngl' {
     /**
      * Add a new volume representation to the component.
      *
-     * @param {VolumeRepresentationType} type
-     * @param {object} [params]
-     * @returns {RepresentationElement}
-     * @memberof VolumeComponent
+     * @param type
+     * @param [params]
+     * @returns
      */
     public addRepresentation(type: VolumeRepresentationType, params?: object): RepresentationElement;
   }

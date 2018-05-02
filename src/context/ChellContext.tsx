@@ -30,10 +30,12 @@ export class ChellContext extends React.Component<any, State> {
       },
       residueContext: {
         ...this.state.residueContext,
-        addCandidateResidue: this.onCandidateResidueSelect,
+        addCandidateResidue: this.onAddCandidateResidue,
+        addHoveredResidue: this.onAddHoveredResidue,
         addLockedResiduePair: this.onResidueSelect,
         removeAllLockedResiduePairs: this.onRemoveAllResidues,
         removeCandidateResidue: this.onRemoveCandidateResidue,
+        removeHoveredResidue: this.onRemoveHoveredResidue,
         removeLockedResiduePair: this.onRemoveResidues,
       },
     };
@@ -75,11 +77,20 @@ export class ChellContext extends React.Component<any, State> {
     });
   };
 
-  public onCandidateResidueSelect = (candidateResidue: RESIDUE_TYPE) => {
+  public onAddCandidateResidue = (candidateResidue: RESIDUE_TYPE) => {
     this.setState({
       residueContext: {
         ...this.state.residueContext,
         candidateResidue,
+      },
+    });
+  };
+
+  public onAddHoveredResidue = (hoveredResidue: RESIDUE_TYPE) => {
+    this.setState({
+      residueContext: {
+        ...this.state.residueContext,
+        hoveredResidue,
       },
     });
   };
@@ -98,6 +109,15 @@ export class ChellContext extends React.Component<any, State> {
       residueContext: {
         ...this.state.residueContext,
         candidateResidue: 'none',
+      },
+    });
+  };
+
+  public onRemoveHoveredResidue = () => {
+    this.setState({
+      residueContext: {
+        ...this.state.residueContext,
+        hoveredResidue: 'none',
       },
     });
   };

@@ -67,10 +67,19 @@ export const ContactMapComponent = withDefaultProps(
 
       return (
         <ResidueContext.Consumer>
-          {({ addLockedResiduePair, lockedResiduePairs, removeLockedResiduePair }) => (
+          {({
+            addLockedResiduePair,
+            addHoveredResidue,
+            candidateResidue,
+            hoveredResidue,
+            lockedResiduePairs,
+            removeLockedResiduePair,
+          }) => (
             <div id="ContactMapComponent" style={{ padding }}>
               <PlotlyChart
-                config={defaultConfig}
+                config={{
+                  ...defaultConfig,
+                }}
                 data={[
                   generatePointCloudData(contactPoints, contactColor, this.state.nodeSize),
                   generatePointCloudData(couplingPoints, couplingColor, this.state.nodeSize),
@@ -84,8 +93,22 @@ export const ContactMapComponent = withDefaultProps(
                   ...defaultLayout,
                   height,
                   width,
+                  xaxis: {
+                    ...defaultLayout.xaxis,
+                    gridcolor: '#ff0000',
+                    gridwidth: this.state.nodeSize,
+                    showticklabels: false,
+                    tickvals: [candidateResidue, hoveredResidue],
+                  },
+                  yaxis: {
+                    ...defaultLayout.yaxis,
+                    gridcolor: '#ff0000',
+                    gridwidth: this.state.nodeSize,
+                    showticklabels: false,
+                    tickvals: [candidateResidue, hoveredResidue],
+                  },
                 }}
-                onHoverCallback={this.onMouseEnter(removeLockedResiduePair)}
+                onHoverCallback={this.onMouseEnter(addHoveredResidue)}
                 onClickCallback={this.onMouseClick(addLockedResiduePair)}
                 onSelectedCallback={this.onMouseSelect()}
               />
@@ -182,9 +205,9 @@ export const ContactMapComponent = withDefaultProps(
       });
     };
 
-    protected onMouseEnter = (cb: (residues: RESIDUE_TYPE[]) => void) => (e: Plotly.PlotMouseEvent) => {
+    protected onMouseEnter = (cb: (residue: RESIDUE_TYPE) => void) => (e: Plotly.PlotMouseEvent) => {
       const { points } = e;
-      cb([points[0].x, points[0].y]);
+      cb(points[0].x);
     };
 
     protected onMouseClick = (cb: (residues: RESIDUE_TYPE[]) => void) => (e: Plotly.PlotMouseEvent) => {

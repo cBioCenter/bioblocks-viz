@@ -1,8 +1,9 @@
 import * as NGL from 'ngl';
-import * as React from 'react';
-
 import { PickingProxy, Stage, StructureComponent, StructureRepresentationType } from 'ngl';
-import { initialResidueContext, ResidueContext } from '../context/ResidueContext';
+import * as React from 'react';
+import { Button, GridRow } from 'semantic-ui-react';
+
+import { initialResidueContext, IResidueSelection, ResidueContext } from '../context/ResidueContext';
 import { withDefaultProps } from '../helper/ReactHelper';
 
 export type NGL_HOVER_CB_RESULT_TYPE = number;
@@ -90,10 +91,20 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
         this.addStructureToStage(data, stage);
       }
 
-      if (structureComponent) {
+      if (structureComponent && prevProps.lockedResiduePairs !== lockedResiduePairs) {
+        this.removeHighlights(structureComponent, prevProps.lockedResiduePairs);
         Object.keys(lockedResiduePairs).forEach(key => {
           this.highlightElement(structureComponent, lockedResiduePairs[key]);
         });
+      }
+
+      if (
+        structureComponent &&
+        this.props.hoveredResidue !== 'none' &&
+        this.props.hoveredResidue !== prevProps.hoveredResidue
+      ) {
+        this.removeNonLockedRepresentations(structureComponent);
+        this.highlightElement(structureComponent, [this.props.hoveredResidue]);
       }
     }
 
@@ -109,6 +120,9 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
       return (
         <div id="NGLComponent" style={{ padding }}>
           <div ref={el => (this.canvas = el)} style={{ height, width }} />
+          <GridRow>
+            <Button onClick={this.props.removeAllLockedResiduePairs}>Remove Locked Residues</Button>
+          </GridRow>
         </div>
       );
     }
@@ -151,7 +165,9 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
         const resno = atom.resno + this.state.residueOffset;
 
         this.removeNonLockedRepresentations(structureComponent);
+
         this.highlightElement(structureComponent, [resno]);
+        this.props.addHoveredResidue(resno);
 
         const { candidateResidue } = this.props;
         if (candidateResidue !== 'none') {
@@ -161,11 +177,18 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
     }
 
     protected onClick = (pickingProxy: PickingProxy) => {
+      const {
+        addCandidateResidue,
+        addLockedResiduePair,
+        candidateResidue,
+        removeCandidateResidue,
+        removeHoveredResidue,
+      } = this.props;
+      const { structureComponent } = this.state;
+
       if (pickingProxy && (pickingProxy.atom || pickingProxy.bond)) {
         const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
         const resno = atom.resno + this.state.residueOffset;
-
-        const { addCandidateResidue, addLockedResiduePair, candidateResidue, removeCandidateResidue } = this.props;
 
         if (candidateResidue !== 'none') {
           addLockedResiduePair([candidateResidue, resno]);
@@ -173,8 +196,20 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
         } else {
           addCandidateResidue(resno);
         }
+      } else if (structureComponent) {
+        // User clicked off-structure, so clear non-locked residue state.
+        this.removeNonLockedRepresentations(structureComponent);
+        removeCandidateResidue();
+        removeHoveredResidue();
       }
     };
+
+    protected removeHighlights(structureComponent: StructureComponent, residues: IResidueSelection) {
+      const repDict = this.residueSelectionRepresentations;
+      Object.keys(residues).forEach(prevKey => {
+        repDict[prevKey].map(rep => structureComponent.removeRepresentation(rep));
+      });
+    }
 
     /**
      * Highlight a specific residue on a 3D structure.
@@ -232,20 +267,26 @@ export const NGLComponent = (props: requiredProps) => (
   <ResidueContext.Consumer>
     {({
       addLockedResiduePair,
+      addHoveredResidue,
       addCandidateResidue,
       candidateResidue,
+      hoveredResidue,
       lockedResiduePairs,
       removeAllLockedResiduePairs,
       removeCandidateResidue,
+      removeHoveredResidue,
     }) => (
       <NGLComponentWithDefaultProps
         {...props}
         addCandidateResidue={addCandidateResidue}
+        addHoveredResidue={addHoveredResidue}
         addLockedResiduePair={addLockedResiduePair}
         candidateResidue={candidateResidue}
+        hoveredResidue={hoveredResidue}
         lockedResiduePairs={lockedResiduePairs}
         removeAllLockedResiduePairs={removeAllLockedResiduePairs}
         removeCandidateResidue={removeCandidateResidue}
+        removeHoveredResidue={removeHoveredResidue}
       />
     )}
   </ResidueContext.Consumer>

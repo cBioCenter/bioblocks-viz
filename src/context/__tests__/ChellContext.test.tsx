@@ -67,7 +67,7 @@ describe('ChellContext', () => {
         ...initialState,
         candidateResidue: 3,
       };
-      instance.onCandidateResidueSelect(3);
+      instance.onAddCandidateResidue(3);
       expect(instance.state.residueContext).toEqual(expectedState);
     });
 
@@ -78,8 +78,31 @@ describe('ChellContext', () => {
         ...initialState,
         candidateResidue: 'none',
       };
-      instance.onCandidateResidueSelect(3);
+      instance.onAddCandidateResidue(3);
       instance.onRemoveCandidateResidue();
+      expect(instance.state.residueContext).toEqual(expectedState);
+    });
+
+    it('Should add the hovered residue correctly.', () => {
+      const instance = shallow(<ChellContext />).instance() as ChellContext;
+      const initialState = instance.state.residueContext;
+      const expectedState = {
+        ...initialState,
+        hoveredResidue: 7,
+      };
+      instance.onAddHoveredResidue(7);
+      expect(instance.state.residueContext).toEqual(expectedState);
+    });
+
+    it('Should remove the hovered residue correctly.', () => {
+      const instance = shallow(<ChellContext />).instance() as ChellContext;
+      const initialState = instance.state.residueContext;
+      const expectedState = {
+        ...initialState,
+        hoveredResidue: 'none',
+      };
+      instance.onAddHoveredResidue(7);
+      instance.onRemoveHoveredResidue();
       expect(instance.state.residueContext).toEqual(expectedState);
     });
 

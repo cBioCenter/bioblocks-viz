@@ -15,11 +15,14 @@ exports[`ChellContext Should match the default snapshot. 1`] = `
     value={
       Object {
         "addCandidateResidue": [Function],
+        "addHoveredResidue": [Function],
         "addLockedResiduePair": [Function],
         "candidateResidue": "none",
+        "hoveredResidue": "none",
         "lockedResiduePairs": Object {},
         "removeAllLockedResiduePairs": [Function],
         "removeCandidateResidue": [Function],
+        "removeHoveredResidue": [Function],
         "removeLockedResiduePair": [Function],
       }
     }
