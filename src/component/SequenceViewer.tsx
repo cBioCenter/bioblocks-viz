@@ -32,9 +32,8 @@ export class SequenceViewer extends React.Component<ISequenceViewerProps, any> {
           })}
         </div>
       );
-    } else {
-      return null;
     }
+    return null;
   }
 
   protected renderFullSequence(sequence: string, selectedResNum: number = -1) {

@@ -11,11 +11,14 @@ export interface IPlotlyChartProps {
   onUnHoverCallback?: (event: plotly.PlotMouseEvent) => void;
 }
 
-/***
- * Usage:
- *  <PlotlyChart data={toJS(this.model_data)}
- *               layout={layout}
- *               onClick={({points, event}) => console.log(points, event)}>
+/**
+ * React wrapper for a Plotly Chart.
+ *
+ * @description
+ * Based upon: https://github.com/davidctj/react-plotlyjs-ts
+ *
+ * @export
+ * @extends {React.Component<IPlotlyChartProps, any>}
  */
 export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   public container: plotly.PlotlyHTMLElement | null = null;
@@ -128,7 +131,7 @@ export const defaultConfig: Partial<Plotly.Config> = {
 };
 
 /**
- *
+ * Generate data in the expected format for a Plotly PointCloud.
  *
  * @param coords Array of (x,y) coordinates such that [i, i+1] refers to the (x,y) of object i.
  * Necessary optimization to render hundreds of thousands of points.

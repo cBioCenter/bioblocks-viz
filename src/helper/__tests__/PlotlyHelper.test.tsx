@@ -23,7 +23,6 @@ describe('PlotlyChart', () => {
   /**
    * Adds a dummy PlotlyHTMLElement to our PlotlyChart to test surface-level events and interactions.
    *
-   *
    * @param wrapper A normally produced wrapper created by enzyme's mount or shallow renderer.
    * @returns A wrapper for the PlotlyChart with the container reference set to a dummy PlotlyHTMLElement.
    */

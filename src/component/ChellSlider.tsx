@@ -34,6 +34,7 @@ export interface IChellSliderProps {
   /** Invoked when the value is in the middle of changing but user has not committed to the change. */
   onChange?: ChellSliderCallback;
 
+  /** Style for the Slider. */
   style?: React.CSSProperties[] | React.CSSProperties;
 }
 
