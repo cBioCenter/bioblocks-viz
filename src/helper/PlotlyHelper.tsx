@@ -111,11 +111,11 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
 }
 
 export const defaultLayout: Partial<Plotly.Layout> = {
-  height: 440,
+  height: 400,
   legend: {},
   showlegend: false,
   title: '',
-  width: 440,
+  width: 400,
   xaxis: {},
   yaxis: {
     autorange: 'reversed',
@@ -130,12 +130,12 @@ export const defaultConfig: Partial<Plotly.Config> = {
 /**
  *
  *
- * @param {Float32Array} coords Array of (x,y) coordinates such that [i, i+1] refers to the (x,y) of object i.
+ * @param coords Array of (x,y) coordinates such that [i, i+1] refers to the (x,y) of object i.
  * Necessary optimization to render hundreds of thousands of points.
- * @param {string} color What color the points should be.
- * @param {number} nodeSize Sets min/max to nodeSize/nodeSize * 2.
- * @param {Partial<Plotly.ScatterData>} [extra] Explicit extra configuration to add / replace the default data configuration with.
- * @returns {Partial<Plotly.ScatterData>}
+ * @param color What color the points should be.
+ * @param nodeSize Sets min/max to nodeSize/nodeSize * 2.
+ * @param [extra] Explicit extra configuration to add / replace the default data configuration with.
+ * @returns Data suitable for consumption by Plotly.
  */
 export const generatePointCloudData = (
   coords: Float32Array,

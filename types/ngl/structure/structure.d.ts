@@ -88,7 +88,6 @@ declare module 'ngl' {
    * Structure
    *
    * @export
-   * @class Structure
    */
   export class Structure {
     // Properties
@@ -142,9 +141,8 @@ declare module 'ngl' {
 
     /**
      * Creates an instance of Structure.
-     * @param {string} [name] Structure name.
-     * @param {string} [path] Source path.
-     * @memberof Structure
+     * @param [name] Structure name.
+     * @param [path] Source path.
      */
     constructor(name?: string, path?: string);
 
@@ -152,88 +150,76 @@ declare module 'ngl' {
     /**
      * Gets the center of the (selected) structure atoms.
      *
-     * @param {Selection} [selection]
-     * @returns {Vector3} The center.
-     * @memberof Structure
+     * @param [selection]
+     * @returns The center.
      */
     public atomCenter(selection?: Selection): Vector3;
 
     /**
      * Calls dispose() method of property objects. Unsets properties to help garbage collection.
-     *
-     * @memberof Structure
      */
     public dispose(): void;
 
     /**
      * Atom iterator.
      *
-     * @param {(entity: AtomProxy) => void} callback The callback.
-     * @param {Selection} [selection]
-     * @memberof Structure
+     * @param callback The callback.
+     * @param [selection]
      */
     public eachAtom(callback: (entity: AtomProxy) => void, selection?: Selection): void;
 
     /**
      * Bond iterator.
      *
-     * @param {(entity: BondProxy) => void} callback The callback.
-     * @param {Selection} [selection]
-     * @memberof Structure
+     * @param callback The callback.
+     * @param [selection]
      */
     public eachBond(callback: (entity: BondProxy) => void, selection?: Selection): void;
 
     /**
      * Chain iterator.
      *
-     * @param {(entity: ChainProxy) => void} callback The callback.
-     * @param {Selection} [selection]
-     * @memberof Structure
+     * @param callback The callback.
+     * @param [selection]
      */
     public eachChain(callback: (entity: ChainProxy) => void, selection?: Selection): void;
 
     /**
      * Entity iterator.
      *
-     * @param {(entity: Entity) => void} callback The callback.
-     * @param {Selection} [selection]
-     * @memberof Structure
+     * @param callback The callback.
      */
     public eachEntity(callback: (entity: Entity) => void, selection?: Selection): void;
 
     /**
      * Model iterator.
      *
-     * @param {(entity: ModelProxy) => void} callback The callback.
-     * @param {Selection} [selection]
-     * @memberof Structure
+     * @param callback The callback.
+     * @param [selection]
      */
     public eachModel(callback: (entity: ModelProxy) => void, selection?: Selection): void;
 
     /**
      * Polymer iterator
      *
-     * @param {(entity: Polymer) => void} callback The callback
-     * @param {Selection} [selection]
-     * @memberof Structure
+     * @param callback The callback
+     * @param [selection]
      */
     public eachPolymer(callback: (entity: Polymer) => void, selection?: Selection): void;
 
     /**
      * Residue iterator.
      *
-     * @param {(entity: ResidueProxy) => void} callback The callback.
-     * @param {Selection} [selection]
-     * @memberof Structure
+     * @param callback The callback.
+     * @param [selection]
      */
     public eachResidue(callback: (entity: ResidueProxy) => void, selection?: Selection): void;
 
     /**
      * Multi-residue iterator.
      *
-     * @param {number} n Window size.
-     * @param {(...entityArray: ResidueProxy[]) => void} callback The callback.
-     * @memberof Structure
+     * @param n Window size.
+     * @param callback The callback.
      */
     public eachResidueN(n: number, callback: (...entityArray: ResidueProxy[]) => void): void;
 
@@ -246,7 +232,7 @@ declare module 'ngl' {
     /**
      * Get a set of atoms.
      *
-     * @param {(boolean | Selection | BitArray)} [selection] Object defining how to initialize the atom set
+     * @param [selection] Object defining how to initialize the atom set
      *
      * Boolean: Init with value.
      *
@@ -254,50 +240,45 @@ declare module 'ngl' {
      *
      * BitArray: Return bit array.
      *
-     * @returns {BitArray} Set of atoms.
-     * @memberof Structure
+     * @returns Set of atoms.
      */
     public getAtomSet(selection?: boolean | Selection | BitArray): BitArray;
 
     /**
      * Get set of all atoms within the groups of a selection.
      *
-     * @param {(boolean | Selection)} selection The selection object.
-     * @returns {BitArray} Set of atoms.
-     * @memberof Structure
+     * @param selection The selection object.
+     * @returns  Set of atoms.
      */
     public getAtomSetWithinGroup(selection: boolean | Selection): BitArray;
 
     /**
      * Get set of atoms around a point.
      *
-     * @param {(Vector3 | AtomProxy)} point The point.
-     * @param {number} radius Radius to select within.
-     * @returns {BitArray} Set of atoms.
-     * @memberof Structure
+     * @param point The point.
+     * @param radius Radius to select within.
+     * @returns Set of atoms.
      */
     public getAtomSetWithinPoint(point: Vector3 | AtomProxy, radius: number): BitArray;
 
     /**
      * Get set of atoms around a set of atoms from a selection.
      *
-     * @param {(boolean | Selection | BitArray)} selection The selection object.
-     * @param {number} radius Radius to select within
-     * @returns {BitArray} Set of atoms.
-     * @memberof Structure
+     * @param selection The selection object.
+     * @param radius Radius to select within
+     * @returns Set of atoms.
      */
     public getAtomSetWithinSelection(selection: boolean | Selection | BitArray, radius: number): BitArray;
 
     /**
      * Get set of atoms within a volume
      *
-     * @param {Volume} volume The volume.
-     * @param {number} radius Radius to select within.
-     * @param {number} minValue Minimum value to be considered as within the volume.
-     * @param {number} maxValue Maximum value to be considered as within the volume.
-     * @param {boolean} outside Use only values falling outside of the min/max values.
-     * @returns {BitArray} Set of atoms.
-     * @memberof Structure
+     * @param volume The volume.
+     * @param radius Radius to select within.
+     * @param minValue Minimum value to be considered as within the volume.
+     * @param maxValue Maximum value to be considered as within the volume.
+     * @param outside Use only values falling outside of the min/max values.
+     * @returns Set of atoms.
      */
     public getAtomSetWithinVolume(
       volume: Volume,
@@ -317,10 +298,9 @@ declare module 'ngl' {
     /**
      * Gets the bounding box of the (selected) structure atoms.
      *
-     * @param {Selection} [selection]
-     * @param {Box3} [box]
-     * @returns {Box3} The box.
-     * @memberof Structure
+     * @param [selection]
+     * @param [box]
+     * @returns The box.
      */
     public getBoundingBox(selection?: Selection, box?: Box3): Box3;
 
@@ -329,9 +309,8 @@ declare module 'ngl' {
     /**
      * Get number of unique chainnames
      *
-     * @param {Selection} [selection] Limit count to selection.
-     * @returns {number} Count.
-     * @memberof Structure
+     * @param [selection] Limit count to selection.
+     * @returns Count.
      */
     public getChainnameCount(selection?: Selection): number;
 
@@ -340,9 +319,8 @@ declare module 'ngl' {
     /**
      * Gets the principal axes of the (selected) structure atoms.
      *
-     * @param {Selection} [selection]
-     * @returns {PrincipalAxes} The principal axes.
-     * @memberof Structure
+     * @param [selection]
+     * @returns The principal axes.
      */
     public getPrincipalAxes(selection?: Selection): PrincipalAxes;
 
@@ -378,7 +356,6 @@ declare module 'ngl' {
    * View on the structure, restricted to the selection.
    *
    * @export
-   * @class StructureView
    */
   export class StructureView extends Structure {
     // Properties
@@ -388,9 +365,8 @@ declare module 'ngl' {
     /**
      * Creates an instance of StructureView.
      *
-     * @param {Structure} structure The structure.
-     * @param {Selection} selection The selection.
-     * @memberof StructureView
+     * @param structure The structure.
+     * @param selection The selection.
      */
     constructor(structure: Structure, selection: Selection);
 
@@ -399,7 +375,6 @@ declare module 'ngl' {
      * Updates atomSet, bondSet, atomSetCache, atomCount, bondCount, boundingBox, center.
      *
      * Emits {Structure.signals.refreshed} when refreshed.
-     * @memberof StructureView
      */
     public refresh(): void;
 
