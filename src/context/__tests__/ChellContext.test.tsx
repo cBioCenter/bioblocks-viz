@@ -65,9 +65,9 @@ describe('ChellContext', () => {
       const initialState = instance.state.residueContext;
       const expectedState = {
         ...initialState,
-        candidateResidue: 3,
+        candidateResidues: [3],
       };
-      instance.onAddCandidateResidue(3);
+      instance.onAddCandidateResidues([3]);
       expect(instance.state.residueContext).toEqual(expectedState);
     });
 
@@ -76,21 +76,32 @@ describe('ChellContext', () => {
       const initialState = instance.state.residueContext;
       const expectedState = {
         ...initialState,
-        candidateResidue: 'none',
+        candidateResidues: [],
       };
-      instance.onAddCandidateResidue(3);
+      instance.onAddCandidateResidues([3]);
       instance.onRemoveCandidateResidue();
       expect(instance.state.residueContext).toEqual(expectedState);
     });
 
-    it('Should add the hovered residue correctly.', () => {
+    it('Should add a single hovered residue.', () => {
       const instance = shallow(<ChellContext />).instance() as ChellContext;
       const initialState = instance.state.residueContext;
       const expectedState = {
         ...initialState,
-        hoveredResidue: 7,
+        hoveredResidues: [7],
       };
-      instance.onAddHoveredResidue(7);
+      instance.onAddHoveredResidues([7]);
+      expect(instance.state.residueContext).toEqual(expectedState);
+    });
+
+    it('Should add multiple residues as hovered residues.', () => {
+      const instance = shallow(<ChellContext />).instance() as ChellContext;
+      const initialState = instance.state.residueContext;
+      const expectedState = {
+        ...initialState,
+        hoveredResidues: [7, 9],
+      };
+      instance.onAddHoveredResidues([9, 7]);
       expect(instance.state.residueContext).toEqual(expectedState);
     });
 
@@ -99,9 +110,9 @@ describe('ChellContext', () => {
       const initialState = instance.state.residueContext;
       const expectedState = {
         ...initialState,
-        hoveredResidue: 'none',
+        hoveredResidues: [],
       };
-      instance.onAddHoveredResidue(7);
+      instance.onAddHoveredResidues([7]);
       instance.onRemoveHoveredResidue();
       expect(instance.state.residueContext).toEqual(expectedState);
     });

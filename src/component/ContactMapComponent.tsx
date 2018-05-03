@@ -69,9 +69,9 @@ export const ContactMapComponent = withDefaultProps(
         <ResidueContext.Consumer>
           {({
             addLockedResiduePair,
-            addHoveredResidue,
-            candidateResidue,
-            hoveredResidue,
+            addHoveredResidues,
+            candidateResidues,
+            hoveredResidues,
             lockedResiduePairs,
             removeLockedResiduePair,
           }) => (
@@ -98,17 +98,17 @@ export const ContactMapComponent = withDefaultProps(
                     gridcolor: '#ff0000',
                     gridwidth: this.state.nodeSize,
                     showticklabels: false,
-                    tickvals: [candidateResidue, hoveredResidue],
+                    tickvals: [candidateResidues, hoveredResidues],
                   },
                   yaxis: {
                     ...defaultLayout.yaxis,
                     gridcolor: '#ff0000',
                     gridwidth: this.state.nodeSize,
                     showticklabels: false,
-                    tickvals: [candidateResidue, hoveredResidue],
+                    tickvals: [candidateResidues, hoveredResidues],
                   },
                 }}
-                onHoverCallback={this.onMouseEnter(addHoveredResidue)}
+                onHoverCallback={this.onMouseEnter(addHoveredResidues)}
                 onClickCallback={this.onMouseClick(addLockedResiduePair)}
                 onSelectedCallback={this.onMouseSelect()}
               />
@@ -205,9 +205,10 @@ export const ContactMapComponent = withDefaultProps(
       });
     };
 
-    protected onMouseEnter = (cb: (residue: RESIDUE_TYPE) => void) => (e: Plotly.PlotMouseEvent) => {
+    protected onMouseEnter = (cb: (residue: RESIDUE_TYPE[]) => void) => (e: Plotly.PlotMouseEvent) => {
       const { points } = e;
-      cb(points[0].x);
+      console.log(`ContactMapComponent cb: ${[points[0].x, points[0].y]}`);
+      cb([points[0].x, points[0].y]);
     };
 
     protected onMouseClick = (cb: (residues: RESIDUE_TYPE[]) => void) => (e: Plotly.PlotMouseEvent) => {

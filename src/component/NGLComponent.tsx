@@ -98,13 +98,9 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
         });
       }
 
-      if (
-        structureComponent &&
-        this.props.hoveredResidue !== 'none' &&
-        this.props.hoveredResidue !== prevProps.hoveredResidue
-      ) {
+      if (structureComponent && this.props.hoveredResidues !== prevProps.hoveredResidues) {
         this.removeNonLockedRepresentations(structureComponent);
-        this.highlightElement(structureComponent, [this.props.hoveredResidue]);
+        this.highlightElement(structureComponent, this.props.hoveredResidues);
       }
     }
 
@@ -167,22 +163,22 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
         this.removeNonLockedRepresentations(structureComponent);
 
         this.highlightElement(structureComponent, [resno]);
-        this.props.addHoveredResidue(resno);
+        this.props.addHoveredResidues([resno]);
 
-        const { candidateResidue } = this.props;
-        if (candidateResidue !== 'none') {
-          this.highlightElement(structureComponent, [candidateResidue, resno]);
+        const { candidateResidues } = this.props;
+        if (candidateResidues.length >= 1) {
+          this.highlightElement(structureComponent, [...candidateResidues, resno]);
         }
       }
     }
 
     protected onClick = (pickingProxy: PickingProxy) => {
       const {
-        addCandidateResidue,
+        addCandidateResidues,
         addLockedResiduePair,
-        candidateResidue,
-        removeCandidateResidue,
-        removeHoveredResidue,
+        candidateResidues,
+        removeCandidateResidues,
+        removeHoveredResidues,
       } = this.props;
       const { structureComponent } = this.state;
 
@@ -190,17 +186,17 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
         const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
         const resno = atom.resno + this.state.residueOffset;
 
-        if (candidateResidue !== 'none') {
-          addLockedResiduePair([candidateResidue, resno]);
-          removeCandidateResidue();
+        if (candidateResidues.length >= 1) {
+          addLockedResiduePair([...candidateResidues, resno]);
+          removeCandidateResidues();
         } else {
-          addCandidateResidue(resno);
+          addCandidateResidues([resno]);
         }
       } else if (structureComponent) {
         // User clicked off-structure, so clear non-locked residue state.
         this.removeNonLockedRepresentations(structureComponent);
-        removeCandidateResidue();
-        removeHoveredResidue();
+        removeCandidateResidues();
+        removeHoveredResidues();
       }
     };
 
@@ -267,26 +263,26 @@ export const NGLComponent = (props: requiredProps) => (
   <ResidueContext.Consumer>
     {({
       addLockedResiduePair,
-      addHoveredResidue,
-      addCandidateResidue,
-      candidateResidue,
-      hoveredResidue,
+      addHoveredResidues,
+      addCandidateResidues,
+      candidateResidues,
+      hoveredResidues,
       lockedResiduePairs,
       removeAllLockedResiduePairs,
-      removeCandidateResidue,
-      removeHoveredResidue,
+      removeCandidateResidues,
+      removeHoveredResidues,
     }) => (
       <NGLComponentWithDefaultProps
         {...props}
-        addCandidateResidue={addCandidateResidue}
-        addHoveredResidue={addHoveredResidue}
+        addCandidateResidues={addCandidateResidues}
+        addHoveredResidues={addHoveredResidues}
         addLockedResiduePair={addLockedResiduePair}
-        candidateResidue={candidateResidue}
-        hoveredResidue={hoveredResidue}
+        candidateResidues={candidateResidues}
+        hoveredResidues={hoveredResidues}
         lockedResiduePairs={lockedResiduePairs}
         removeAllLockedResiduePairs={removeAllLockedResiduePairs}
-        removeCandidateResidue={removeCandidateResidue}
-        removeHoveredResidue={removeHoveredResidue}
+        removeCandidateResidues={removeCandidateResidues}
+        removeHoveredResidues={removeHoveredResidues}
       />
     )}
   </ResidueContext.Consumer>

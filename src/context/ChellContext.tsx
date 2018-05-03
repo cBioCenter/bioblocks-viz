@@ -30,12 +30,12 @@ export class ChellContext extends React.Component<any, State> {
       },
       residueContext: {
         ...this.state.residueContext,
-        addCandidateResidue: this.onAddCandidateResidue,
-        addHoveredResidue: this.onAddHoveredResidue,
+        addCandidateResidues: this.onAddCandidateResidues,
+        addHoveredResidues: this.onAddHoveredResidues,
         addLockedResiduePair: this.onResidueSelect,
         removeAllLockedResiduePairs: this.onRemoveAllResidues,
-        removeCandidateResidue: this.onRemoveCandidateResidue,
-        removeHoveredResidue: this.onRemoveHoveredResidue,
+        removeCandidateResidues: this.onRemoveCandidateResidue,
+        removeHoveredResidues: this.onRemoveHoveredResidue,
         removeLockedResiduePair: this.onRemoveResidues,
       },
     };
@@ -77,20 +77,20 @@ export class ChellContext extends React.Component<any, State> {
     });
   };
 
-  public onAddCandidateResidue = (candidateResidue: RESIDUE_TYPE) => {
+  public onAddCandidateResidues = (candidateResidues: RESIDUE_TYPE[]) => {
     this.setState({
       residueContext: {
         ...this.state.residueContext,
-        candidateResidue,
+        candidateResidues: candidateResidues.sort(),
       },
     });
   };
 
-  public onAddHoveredResidue = (hoveredResidue: RESIDUE_TYPE) => {
+  public onAddHoveredResidues = (hoveredResidues: RESIDUE_TYPE[]) => {
     this.setState({
       residueContext: {
         ...this.state.residueContext,
-        hoveredResidue,
+        hoveredResidues: hoveredResidues.sort(),
       },
     });
   };
@@ -108,7 +108,7 @@ export class ChellContext extends React.Component<any, State> {
     this.setState({
       residueContext: {
         ...this.state.residueContext,
-        candidateResidue: 'none',
+        candidateResidues: [],
       },
     });
   };
@@ -117,7 +117,7 @@ export class ChellContext extends React.Component<any, State> {
     this.setState({
       residueContext: {
         ...this.state.residueContext,
-        hoveredResidue: 'none',
+        hoveredResidues: [],
       },
     });
   };
