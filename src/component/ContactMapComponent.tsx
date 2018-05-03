@@ -98,14 +98,14 @@ export const ContactMapComponent = withDefaultProps(
                     gridcolor: '#ff0000',
                     gridwidth: this.state.nodeSize,
                     showticklabels: false,
-                    tickvals: [candidateResidues, hoveredResidues],
+                    tickvals: [...candidateResidues, ...hoveredResidues],
                   },
                   yaxis: {
                     ...defaultLayout.yaxis,
                     gridcolor: '#ff0000',
                     gridwidth: this.state.nodeSize,
                     showticklabels: false,
-                    tickvals: [candidateResidues, hoveredResidues],
+                    tickvals: [...candidateResidues, ...hoveredResidues],
                   },
                 }}
                 onHoverCallback={this.onMouseEnter(addHoveredResidues)}
@@ -207,7 +207,6 @@ export const ContactMapComponent = withDefaultProps(
 
     protected onMouseEnter = (cb: (residue: RESIDUE_TYPE[]) => void) => (e: Plotly.PlotMouseEvent) => {
       const { points } = e;
-      console.log(`ContactMapComponent cb: ${[points[0].x, points[0].y]}`);
       cb([points[0].x, points[0].y]);
     };
 

@@ -12,7 +12,8 @@
     "Unmount",
     "automagically",
     "tsne",
-    "tsnejs"
+    "tsnejs",
+    "wallabyjs"
   ],
   "python.pythonPath": "/usr/local/bin/python3"
 }

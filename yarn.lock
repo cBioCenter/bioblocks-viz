@@ -453,6 +453,10 @@
   dependencies:
     "@types/webpack" "*"
 
+"@types/wallabyjs@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@types/wallabyjs/-/wallabyjs-0.0.6.tgz#b1600951b0badd9630842dee46dec5a70da4c071"
+
 "@types/webpack-env@^1.13.6":
   version "1.13.6"
   resolved "https://registry.yarnpkg.com/@types/webpack-env/-/webpack-env-1.13.6.tgz#128d1685a7c34d31ed17010fc87d6a12c1de6976"

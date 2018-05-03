@@ -236,11 +236,13 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
         );
       }
 
-      repDict[residueKey].push(
-        structureComponent.addRepresentation('ball+stick', {
-          sele: residueWithOffset.join(', '),
-        }),
-      );
+      if (residueWithOffset.length !== 0) {
+        repDict[residueKey].push(
+          structureComponent.addRepresentation('ball+stick', {
+            sele: residueWithOffset.join(', '),
+          }),
+        );
+      }
     }
 
     protected removeNonLockedRepresentations(structureComponent: NGL.StructureComponent) {
