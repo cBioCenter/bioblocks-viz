@@ -17,6 +17,7 @@ const defaultProps = {
     couplingScore: [],
     distanceMapMonomer: [],
   } as CONTACT_MAP_DATA_TYPE,
+  enableSliders: false,
   height: 400,
   highlightColor: '#0000ff',
   onClick: undefined as ContactMapCallback | undefined,
@@ -37,7 +38,7 @@ const initialState = {
 type Props = {} & typeof defaultProps;
 type State = Readonly<typeof initialState>;
 
-export const ContactMapComponent = withDefaultProps(
+export const ContactMap = withDefaultProps(
   defaultProps,
   class ContactMapComponentClass extends React.Component<Props, State> {
     public readonly state: State = initialState;
@@ -112,7 +113,7 @@ export const ContactMapComponent = withDefaultProps(
                 onClickCallback={this.onMouseClick(addLockedResiduePair)}
                 onSelectedCallback={this.onMouseSelect()}
               />
-              {this.renderSliders()}
+              {this.props.enableSliders && this.renderSliders()}
             </div>
           )}
         </ResidueContext.Consumer>

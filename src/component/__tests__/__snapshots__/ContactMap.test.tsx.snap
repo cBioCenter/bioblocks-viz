@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContactMap Should match existing snapshot when given empty data. 1`] = `<[object Object] />`;
+
+exports[`ContactMap Should match existing snapshot when given no data. 1`] = `<[object Object] />`;
+
+exports[`ContactMap Should match existing snapshot when given sample data and sliders are _not_ enabled. 1`] = `<[object Object] />`;
+
+exports[`ContactMap Should match existing snapshot when given sample data and sliders are enabled. 1`] = `<[object Object] />`;

@@ -8,7 +8,7 @@ import { NGLComponent } from '../component/NGLComponent';
 import { SpringComponent } from '../component/SpringComponent';
 import { TComponent } from '../component/TComponent';
 import { withDefaultProps } from '../helper/ReactHelper';
-import { ContactMapComponent } from './ContactMapComponent';
+import { ContactMap } from './ContactMap';
 
 const defaultProps = {
   data: {} as Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>,
@@ -109,8 +109,9 @@ export const VizSelectorPanel = withDefaultProps(
           );
         case VIZ_TYPE.CONTACT_MAP:
           return (
-            <ContactMapComponent
+            <ContactMap
               data={data['Contact Map'] as IContactMapData}
+              enableSliders={true}
               height={paddedHeight}
               onMouseEnter={this.props.onDataSelect}
               padding={padding}

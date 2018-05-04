@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`ContactMapComponent Should match existing snapshot when given empty data. 1`] = `<[object Object] />`;
-
-exports[`ContactMapComponent Should match existing snapshot when given no data. 1`] = `<[object Object] />`;
-
-exports[`ContactMapComponent Should match existing snapshot when given sample data. 1`] = `<[object Object] />`;

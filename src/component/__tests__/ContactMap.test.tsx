@@ -3,9 +3,9 @@ import toJson from 'enzyme-to-json';
 
 import * as React from 'react';
 
-import { ContactMapComponent } from '../ContactMapComponent';
+import { ContactMap } from '../ContactMap';
 
-describe('ContactMapComponent', () => {
+describe('ContactMap', () => {
   const emptyData = {
     contactMonomer: [],
     couplingScore: [],
@@ -36,14 +36,18 @@ describe('ContactMapComponent', () => {
   };
 
   test('Should match existing snapshot when given no data.', () => {
-    expect(toJson(shallow(<ContactMapComponent />))).toMatchSnapshot();
+    expect(toJson(shallow(<ContactMap />))).toMatchSnapshot();
   });
 
   test('Should match existing snapshot when given empty data.', () => {
-    expect(toJson(shallow(<ContactMapComponent data={emptyData} />))).toMatchSnapshot();
+    expect(toJson(shallow(<ContactMap data={emptyData} />))).toMatchSnapshot();
   });
 
-  test('Should match existing snapshot when given sample data.', () => {
-    expect(toJson(shallow(<ContactMapComponent data={sampleData} />))).toMatchSnapshot();
+  test('Should match existing snapshot when given sample data and sliders are _not_ enabled.', () => {
+    expect(toJson(shallow(<ContactMap data={sampleData} enableSliders={false} />))).toMatchSnapshot();
+  });
+
+  test('Should match existing snapshot when given sample data and sliders are enabled.', () => {
+    expect(toJson(shallow(<ContactMap data={sampleData} enableSliders={true} />))).toMatchSnapshot();
   });
 });
