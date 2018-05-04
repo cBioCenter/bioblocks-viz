@@ -1,9 +1,8 @@
-import { SPRING_DATA_TYPE } from 'chell';
 import * as d3 from 'd3';
 import * as PIXI from 'pixi.js';
 import * as React from 'react';
 import { ISpringGraphData, ISpringLink, ISpringNode } from 'spring';
-
+import { SPRING_DATA_TYPE } from '../../types/chell';
 import { CellContext, initialCellContext } from '../context/CellContext';
 import { withDefaultProps } from '../helper/ReactHelper';
 

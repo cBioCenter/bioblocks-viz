@@ -1,6 +1,6 @@
-import { CHELL_DATA_TYPE, VIZ_TYPE } from 'chell';
 import * as React from 'react';
 import { Dropdown, Grid, GridColumn, GridRow } from 'semantic-ui-react';
+import { CHELL_DATA_TYPE, VIZ_TYPE } from '../../types/chell';
 
 import { VizSelectorPanel } from '../component/VizSelectorPanel';
 import { ChellContext } from '../context/ChellContext';

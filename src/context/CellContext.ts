@@ -1,5 +1,5 @@
-import { CELL_TYPE } from 'chell';
 import * as React from 'react';
+import { CELL_TYPE } from '../../types/chell';
 
 export interface ICellContext {
   addCells: (cells: CELL_TYPE[]) => void;

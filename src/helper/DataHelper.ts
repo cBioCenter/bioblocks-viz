@@ -1,7 +1,7 @@
-import { CONTACT_MAP_DATA_TYPE, IContactMapData, IMonomerContact, VIZ_TYPE } from 'chell';
 import * as d3 from 'd3';
 import * as NGL from 'ngl';
 import { ISpringCategoricalColorData, ISpringCategoricalColorDataInput, ISpringGraphData } from 'spring';
+import { CONTACT_MAP_DATA_TYPE, IContactMapData, IMonomerContact, VIZ_TYPE } from '../../types/chell';
 
 export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
   switch (viz) {

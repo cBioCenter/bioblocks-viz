@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { IContactMapData, ICouplingScore, RESIDUE_TYPE } from 'chell';
+import { IContactMapData, ICouplingScore, RESIDUE_TYPE } from '../../types/chell';
 import { IResidueSelection, ResidueContext } from '../context/ResidueContext';
 import { defaultConfig, defaultLayout, generatePointCloudData, PlotlyChart } from '../helper/PlotlyHelper';
 import { withDefaultProps } from '../helper/ReactHelper';

@@ -8,8 +8,8 @@
     "npm": "^5.6.0",
     "yarn": "^1.5.0"
   },
-  "files": ["lib/src", "lib/types/chell.d.ts"],
-  "types": "dist/types/chell.d.ts",
+  "files": ["lib"],
+  "types": "index.d.ts",
   "homepage": "https://cbiocenter.github.io/chell-viz/",
   "jest": {
     "collectCoverageFrom": ["src/**/*.{ts,tsx}"],

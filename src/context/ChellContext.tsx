@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { CELL_TYPE, RESIDUE_TYPE } from 'chell';
+import { CELL_TYPE, RESIDUE_TYPE } from '../../types/chell';
 import { CellContext, initialCellContext } from '../context/CellContext';
 import * as ResContext from '../context/ResidueContext';
 

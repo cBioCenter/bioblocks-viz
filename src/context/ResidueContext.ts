@@ -1,5 +1,5 @@
-import { RESIDUE_TYPE } from 'chell';
 import * as React from 'react';
+import { RESIDUE_TYPE } from '../../types/chell';
 
 export interface IResidueSelection {
   [key: string]: RESIDUE_TYPE[];
