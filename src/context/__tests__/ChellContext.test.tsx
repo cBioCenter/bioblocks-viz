@@ -2,7 +2,7 @@ import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import * as React from 'react';
 
-import { ChellContext } from '../ChellContext';
+import ChellContext from '../ChellContext';
 
 describe('ChellContext', () => {
   it('Should match the default snapshot.', () => {

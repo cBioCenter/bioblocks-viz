@@ -3,7 +3,7 @@ import { PickingProxy, Stage, StructureComponent, StructureRepresentationType } 
 import * as React from 'react';
 import { Button, GridRow } from 'semantic-ui-react';
 
-import { initialResidueContext, IResidueSelection, ResidueContext } from '../context/ResidueContext';
+import ResidueContext, { initialResidueContext, IResidueSelection } from '../context/ResidueContext';
 import { withDefaultProps } from '../helper/ReactHelper';
 
 export type NGL_HOVER_CB_RESULT_TYPE = number;
@@ -261,7 +261,7 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
 // However the Context consumer syntax is still new to me and I can't find the right combination :(
 type requiredProps = Partial<typeof defaultProps> & Required<Omit<Props, keyof typeof defaultProps>>;
 
-export const NGLComponent = (props: requiredProps) => (
+const NGLComponent = (props: requiredProps) => (
   <ResidueContext.Consumer>
     {({
       addLockedResiduePair,
@@ -289,3 +289,6 @@ export const NGLComponent = (props: requiredProps) => (
     )}
   </ResidueContext.Consumer>
 );
+
+export default NGLComponent;
+export { NGLComponent };

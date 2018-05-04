@@ -8,7 +8,7 @@ export interface ISequenceViewerProps {
   onSeqClickCallback?: (...args: any[]) => void;
 }
 
-export class SequenceViewer extends React.Component<ISequenceViewerProps, any> {
+export default class SequenceViewer extends React.Component<ISequenceViewerProps, any> {
   constructor(props: any) {
     super(props);
   }

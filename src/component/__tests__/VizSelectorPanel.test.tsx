@@ -4,7 +4,7 @@ import toJson from 'enzyme-to-json';
 import * as React from 'react';
 import { VIZ_TYPE } from '../../../types/chell';
 
-import { VizSelectorPanel } from '../VizSelectorPanel';
+import VizSelectorPanel from '../VizSelectorPanel';
 
 describe('VizSelectorPanel', () => {
   const testData = {};

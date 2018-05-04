@@ -32,7 +32,7 @@ export interface IPlotlyChartProps {
  * @export
  * @extends {React.Component<IPlotlyChartProps, any>}
  */
-export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
+export default class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   public container: plotly.PlotlyHTMLElement | null = null;
 
   public attachListeners() {

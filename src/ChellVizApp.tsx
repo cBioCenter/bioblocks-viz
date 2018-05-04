@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Grid, GridRow } from 'semantic-ui-react';
 
 import { VIZ_TYPE } from '../types/chell';
-import { VizPanelContainer } from './container/VizPanelContainer';
+import VizPanelContainer from './container/VizPanelContainer';
 
 export class ChellVizApp extends React.Component<any, any> {
   public render() {

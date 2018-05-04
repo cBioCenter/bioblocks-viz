@@ -2,8 +2,8 @@ import * as React from 'react';
 import { Dropdown, Grid, GridColumn, GridRow } from 'semantic-ui-react';
 import { CHELL_DATA_TYPE, VIZ_TYPE } from '../../types/chell';
 
-import { VizSelectorPanel } from '../component/VizSelectorPanel';
-import { ChellContext } from '../context/ChellContext';
+import VizSelectorPanel from '../component/VizSelectorPanel';
+import ChellContext from '../context/ChellContext';
 import { fetchAppropriateData } from '../helper/DataHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
 
@@ -21,7 +21,7 @@ const initialState = {
 type Props = { dataDirs: string[]; supportedVisualizations: VIZ_TYPE[] } & typeof defaultProps;
 type State = Readonly<typeof initialState>;
 
-export const VizPanelContainer = withDefaultProps(
+export default withDefaultProps(
   defaultProps,
   class VizPanelContainerClass extends React.Component<Props, State> {
     public readonly state: State = initialState;

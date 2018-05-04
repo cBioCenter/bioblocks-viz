@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { T_SNE_DATA_TYPE } from '../../types/chell';
-import { CellContext } from '../context/CellContext';
-import { defaultConfig, defaultLayout, PlotlyChart } from '../helper/PlotlyHelper';
+import CellContext from '../context/CellContext';
+import PlotlyChart, { defaultConfig, defaultLayout } from '../helper/PlotlyHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
 
 const defaultProps = {
@@ -13,7 +13,7 @@ const defaultProps = {
 };
 type Props = {} & typeof defaultProps;
 
-export const TComponent = withDefaultProps(
+export default withDefaultProps(
   defaultProps,
   class TComponentClass extends React.Component<Props, any> {
     constructor(props: Props) {

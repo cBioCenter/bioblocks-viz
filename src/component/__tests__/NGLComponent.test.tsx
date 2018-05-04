@@ -3,7 +3,7 @@ import toJson from 'enzyme-to-json';
 
 import * as React from 'react';
 
-import { NGLComponent } from '../NGLComponent';
+import NGLComponent from '../NGLComponent';
 
 describe('NGLComponent', () => {
   test("Should match existing snapshot when canvas isn't available.", () => {

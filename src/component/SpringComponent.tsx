@@ -3,7 +3,7 @@ import * as PIXI from 'pixi.js';
 import * as React from 'react';
 import { ISpringGraphData, ISpringLink, ISpringNode } from 'spring';
 import { SPRING_DATA_TYPE } from '../../types/chell';
-import { CellContext, initialCellContext } from '../context/CellContext';
+import CellContext, { initialCellContext } from '../context/CellContext';
 import { withDefaultProps } from '../helper/ReactHelper';
 
 const defaultProps = {
@@ -220,7 +220,7 @@ export const SpringComponentWithDefaultProps = withDefaultProps(
 // However the Context consumer syntax is still new to me and I can't find the right combination :(
 type requiredProps = Partial<typeof defaultProps> & Required<Omit<Props, keyof typeof defaultProps>>;
 
-export const SpringComponent = (props: requiredProps) => (
+export default (props: requiredProps) => (
   <CellContext.Consumer>
     {({ currentCells }) => <SpringComponentWithDefaultProps {...props} currentCells={currentCells} />}
   </CellContext.Consumer>

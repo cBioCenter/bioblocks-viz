@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 import { IContactMapData, ICouplingScore, RESIDUE_TYPE } from '../../types/chell';
-import { IResidueSelection, ResidueContext } from '../context/ResidueContext';
-import { defaultConfig, defaultLayout, generatePointCloudData, PlotlyChart } from '../helper/PlotlyHelper';
+import ResidueContext, { IResidueSelection } from '../context/ResidueContext';
+import PlotlyChart, { defaultConfig, defaultLayout, generatePointCloudData } from '../helper/PlotlyHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
 import { ChellSlider } from './ChellSlider';
 
@@ -38,7 +38,7 @@ const initialState = {
 type Props = {} & typeof defaultProps;
 type State = Readonly<typeof initialState>;
 
-export const ContactMap = withDefaultProps(
+const ContactMap = withDefaultProps(
   defaultProps,
   class ContactMapComponentClass extends React.Component<Props, State> {
     public readonly state: State = initialState;
@@ -221,3 +221,6 @@ export const ContactMap = withDefaultProps(
     };
   },
 );
+
+export default ContactMap;
+export { ContactMap };

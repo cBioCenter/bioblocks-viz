@@ -10,8 +10,8 @@ import {
   VIZ_TYPE,
 } from '../../types/chell';
 import { NGLComponent } from '../component/NGLComponent';
-import { SpringComponent } from '../component/SpringComponent';
-import { TComponent } from '../component/TComponent';
+import SpringComponent from '../component/SpringComponent';
+import TComponent from '../component/TComponent';
 import { withDefaultProps } from '../helper/ReactHelper';
 import { ContactMap } from './ContactMap';
 
@@ -35,7 +35,7 @@ const initialState = {
 type Props = {} & typeof defaultProps;
 type State = Readonly<typeof initialState>;
 
-export const VizSelectorPanel = withDefaultProps(
+export default withDefaultProps(
   defaultProps,
 
   /**

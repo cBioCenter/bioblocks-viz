@@ -5,7 +5,7 @@ import * as plotly from 'plotly.js';
 import * as React from 'react';
 
 import { IMockDict } from 'configs/SetupJest';
-import { generatePointCloudData, PlotlyChart } from '../../helper/PlotlyHelper';
+import PlotlyChart, { generatePointCloudData } from '../../helper/PlotlyHelper';
 
 describe('PlotlyChart', () => {
   const sampleData = [

@@ -3,7 +3,7 @@ import toJson from 'enzyme-to-json';
 
 import * as React from 'react';
 
-import { TComponent } from '../TComponent';
+import TComponent from '../TComponent';
 
 describe('TComponent', () => {
   test('Should match existing snapshot when given simple data.', () => {
