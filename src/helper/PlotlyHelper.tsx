@@ -1,9 +1,21 @@
 import * as plotly from 'plotly.js';
 import * as React from 'react';
 
+export enum PLOTLY_CHART_TYPES {
+  'bar' = 'bar',
+  'pointcloud' = 'pointcloud',
+  'scatter' = 'scatter',
+  'scattergl' = 'scattergl',
+  'scatter3d' = 'scatter3d',
+}
+
+export interface IPlotlyData extends plotly.ScatterData {
+  type: PLOTLY_CHART_TYPES | 'bar' | 'pointcloud' | 'scatter' | 'scattergl' | 'scatter3d';
+}
+
 export interface IPlotlyChartProps {
   config?: Partial<plotly.Config>;
-  data: Array<Partial<plotly.ScatterData>>;
+  data: Array<Partial<IPlotlyData>>;
   layout?: Partial<plotly.Layout>;
   onClickCallback?: (event: plotly.PlotMouseEvent) => void;
   onHoverCallback?: (event: plotly.PlotMouseEvent) => void;
@@ -144,15 +156,15 @@ export const generatePointCloudData = (
   coords: Float32Array,
   color: string,
   nodeSize: number,
-  extra?: Partial<Plotly.ScatterData>,
-): Partial<Plotly.ScatterData> => ({
+  extra?: Partial<IPlotlyData>,
+): Partial<IPlotlyData> => ({
   marker: {
     color,
     sizemax: nodeSize * 2,
     sizemin: nodeSize,
   },
   mode: 'markers',
-  type: 'pointcloud',
+  type: PLOTLY_CHART_TYPES.pointcloud,
   xy: coords,
   ...extra,
 });

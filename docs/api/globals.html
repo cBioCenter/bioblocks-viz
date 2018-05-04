@@ -78,6 +78,7 @@
 						<section class="tsd-index-section ">
 							<h3>Enumerations</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-enum"><a href="enums/plotly_chart_types.html" class="tsd-kind-icon">PLOTLY_<wbr>CHART_<wbr>TYPES</a></li>
 								<li class="tsd-kind-enum"><a href="enums/viz_type.html" class="tsd-kind-icon">VIZ_<wbr>TYPE</a></li>
 							</ul>
 						</section>
@@ -105,6 +106,7 @@
 								<li class="tsd-kind-interface"><a href="interfaces/imockdict.html" class="tsd-kind-icon">IMock<wbr>Dict</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/imonomercontact.html" class="tsd-kind-icon">IMonomer<wbr>Contact</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/iplotlychartprops.html" class="tsd-kind-icon">IPlotly<wbr>Chart<wbr>Props</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/iplotlydata.html" class="tsd-kind-icon">IPlotly<wbr>Data</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/irepresentationdict.html" class="tsd-kind-icon">IRepresentation<wbr>Dict</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/iresiduecontext.html" class="tsd-kind-icon">IResidue<wbr>Context</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/iresiduepair.html" class="tsd-kind-icon">IResidue<wbr>Pair</a></li>
@@ -793,13 +795,13 @@
 					<a name="generatepointclouddata" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> generate<wbr>Point<wbr>Cloud<wbr>Data</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">generate<wbr>Point<wbr>Cloud<wbr>Data<span class="tsd-signature-symbol">(</span>coords<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Float32Array</span>, color<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, nodeSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, extra<span class="tsd-signature-symbol">?: </span><a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Plotly.ScatterData</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Plotly.ScatterData</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">generate<wbr>Point<wbr>Cloud<wbr>Data<span class="tsd-signature-symbol">(</span>coords<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Float32Array</span>, color<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, nodeSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, extra<span class="tsd-signature-symbol">?: </span><a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/PlotlyHelper.tsx:143</li>
+									<li>Defined in src/helper/PlotlyHelper.tsx:155</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -835,10 +837,10 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> extra: <a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Plotly.ScatterData</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> extra: <a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Plotly.ScatterData</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>Data suitable for consumption by Plotly.</p>
 						</li>
 					</ul>
@@ -952,7 +954,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/helper/PlotlyHelper.tsx:128</li>
+							<li>Defined in src/helper/PlotlyHelper.tsx:140</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -961,7 +963,7 @@
 						<div class="tsd-signature tsd-kind-icon">display<wbr>Mode<wbr>Bar<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/helper/PlotlyHelper.tsx:129</li>
+								<li>Defined in src/helper/PlotlyHelper.tsx:141</li>
 							</ul>
 						</aside>
 					</section>
@@ -972,7 +974,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Layout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/helper/PlotlyHelper.tsx:116</li>
+							<li>Defined in src/helper/PlotlyHelper.tsx:128</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -981,7 +983,7 @@
 						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/helper/PlotlyHelper.tsx:117</li>
+								<li>Defined in src/helper/PlotlyHelper.tsx:129</li>
 							</ul>
 						</aside>
 					</section>
@@ -991,7 +993,7 @@
 						<div class="tsd-signature tsd-kind-icon">legend<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/helper/PlotlyHelper.tsx:118</li>
+								<li>Defined in src/helper/PlotlyHelper.tsx:130</li>
 							</ul>
 						</aside>
 						<div class="tsd-type-declaration">
@@ -1006,7 +1008,7 @@
 						<div class="tsd-signature tsd-kind-icon">showlegend<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/helper/PlotlyHelper.tsx:119</li>
+								<li>Defined in src/helper/PlotlyHelper.tsx:131</li>
 							</ul>
 						</aside>
 					</section>
@@ -1016,7 +1018,7 @@
 						<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/helper/PlotlyHelper.tsx:120</li>
+								<li>Defined in src/helper/PlotlyHelper.tsx:132</li>
 							</ul>
 						</aside>
 					</section>
@@ -1026,7 +1028,7 @@
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/helper/PlotlyHelper.tsx:121</li>
+								<li>Defined in src/helper/PlotlyHelper.tsx:133</li>
 							</ul>
 						</aside>
 					</section>
@@ -1036,7 +1038,7 @@
 						<div class="tsd-signature tsd-kind-icon">xaxis<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/helper/PlotlyHelper.tsx:122</li>
+								<li>Defined in src/helper/PlotlyHelper.tsx:134</li>
 							</ul>
 						</aside>
 						<div class="tsd-type-declaration">
@@ -1051,7 +1053,7 @@
 						<div class="tsd-signature tsd-kind-icon">yaxis<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/helper/PlotlyHelper.tsx:123</li>
+								<li>Defined in src/helper/PlotlyHelper.tsx:135</li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1060,7 +1062,7 @@
 							<div class="tsd-signature tsd-kind-icon">autorange<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"reversed"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;reversed&quot;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/PlotlyHelper.tsx:124</li>
+									<li>Defined in src/helper/PlotlyHelper.tsx:136</li>
 								</ul>
 							</aside>
 						</section>
@@ -1510,6 +1512,9 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-enum">
+						<a href="enums/plotly_chart_types.html" class="tsd-kind-icon">PLOTLY_<wbr>CHART_<wbr>TYPES</a>
+					</li>
+					<li class=" tsd-kind-enum">
 						<a href="enums/viz_type.html" class="tsd-kind-icon">VIZ_<wbr>TYPE</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
@@ -1559,6 +1564,9 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/iplotlychartprops.html" class="tsd-kind-icon">IPlotly<wbr>Chart<wbr>Props</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/iplotlydata.html" class="tsd-kind-icon">IPlotly<wbr>Data</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/irepresentationdict.html" class="tsd-kind-icon">IRepresentation<wbr>Dict</a>
