@@ -6,7 +6,7 @@
   "engines": {
     "node": "^9.6.0",
     "npm": "^5.6.0",
-    "yarn": "^1.6.0"
+    "yarn": "^1.5.0"
   },
   "files": ["lib/src", "lib/types/chell.d.ts"],
   "types": "dist/types/chell.d.ts",
