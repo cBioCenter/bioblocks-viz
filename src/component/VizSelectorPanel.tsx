@@ -1,8 +1,6 @@
-import * as React from 'react';
-
-import { Card, Dropdown, DropdownItemProps } from 'semantic-ui-react';
-
 import { CHELL_DATA_TYPE, IContactMapData, ICouplingScore, NGL_DATA_TYPE, T_SNE_DATA_TYPE, VIZ_TYPE } from 'chell';
+import * as React from 'react';
+import { Card, Dropdown, DropdownItemProps } from 'semantic-ui-react';
 import { ISpringGraphData } from 'spring';
 import { NGLComponent } from '../component/NGLComponent';
 import { SpringComponent } from '../component/SpringComponent';
@@ -11,8 +9,8 @@ import { withDefaultProps } from '../helper/ReactHelper';
 import { ContactMap } from './ContactMap';
 
 const defaultProps = {
-  data: {} as Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>,
   height: 450,
+  data: {} as Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>,
   initialViz: VIZ_TYPE['T-SNE'],
   onDataSelect: (e: any) => {
     return;

@@ -49,7 +49,8 @@
   "lint-staged": {
     "*.{json,md,ts,tsx}": ["prettier --write", "git add"],
     "*.md": ["markdownlint -c ./markdownlint.json", "git add"],
-    "src/*.{ts,tsx}": ["tslint", "git add"]
+    "*.{ts,tsx}": ["tslint", "git add"],
+    "ignore": ["lib"]
   },
   "scripts": {
     "build": "webpack --config ./configs/webpack.dev.ts",
