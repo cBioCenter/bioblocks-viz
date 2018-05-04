@@ -47,10 +47,12 @@
     "titleTemplate": "{title}"
   },
   "lint-staged": {
-    "*.{json,md,ts,tsx}": ["prettier --write", "git add"],
-    "*.md": ["markdownlint -c ./markdownlint.json", "git add"],
-    "*.{ts,tsx}": ["tslint", "git add"],
-    "ignore": ["lib"]
+    "ignore": ["lib"],
+    "linters": {
+      "*.{json,md,ts,tsx}": ["prettier --write", "git add"],
+      "*.md": ["markdownlint -c ./markdownlint.json", "git add"],
+      "*.{ts,tsx}": ["tslint", "git add"]
+    }
   },
   "scripts": {
     "build": "webpack --config ./configs/webpack.dev.ts",
