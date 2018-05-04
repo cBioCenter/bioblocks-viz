@@ -2,21 +2,21 @@ import * as React from 'react';
 
 import { CELL_TYPE, RESIDUE_TYPE } from 'chell';
 import { CellContext, initialCellContext } from '../context/CellContext';
-import { initialResidueContext, ResidueContext } from '../context/ResidueContext';
+import * as ResContext from '../context/ResidueContext';
 
-const initialState = {
+export const initialState = {
   cellContext: {
     ...initialCellContext,
   },
   residueContext: {
-    ...initialResidueContext,
+    ...ResContext.initialResidueContext,
   },
 };
 
-type State = Readonly<typeof initialState>;
+export type ChellContextState = Readonly<typeof initialState>;
 
-export class ChellContext extends React.Component<any, State> {
-  public readonly state: State = initialState;
+export class ChellContext extends React.Component<any, ChellContextState> {
+  public readonly state: ChellContextState = initialState;
 
   constructor(props: any) {
     super(props);
@@ -44,7 +44,9 @@ export class ChellContext extends React.Component<any, State> {
   public render() {
     return (
       <CellContext.Provider value={this.state.cellContext}>
-        <ResidueContext.Provider value={this.state.residueContext}>{this.props.children}</ResidueContext.Provider>
+        <ResContext.ResidueContext.Provider value={this.state.residueContext}>
+          {this.props.children}
+        </ResContext.ResidueContext.Provider>
       </CellContext.Provider>
     );
   }

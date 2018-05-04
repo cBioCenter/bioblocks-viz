@@ -1,6 +1,6 @@
 {
   "name": "chell-viz",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "author": "Biostatistics and Computational Biology at Dana-Farber <bcb@jimmy.harvard.edu>",
   "license": "MIT",
   "engines": {
@@ -8,8 +8,8 @@
     "npm": "^5.6.0",
     "yarn": "^1.6.0"
   },
-  "files": ["dist/src", "dist/types/chell.d.ts"],
-  "typings": "dist/types/chell.d.ts",
+  "files": ["lib/src", "lib/types/chell.d.ts"],
+  "types": "dist/types/chell.d.ts",
   "homepage": "https://cbiocenter.github.io/chell-viz/",
   "jest": {
     "collectCoverageFrom": ["src/**/*.{ts,tsx}"],
@@ -49,7 +49,7 @@
   "lint-staged": {
     "*.{json,md,ts,tsx}": ["prettier --write", "git add"],
     "*.md": ["markdownlint -c ./markdownlint.json", "git add"],
-    "*.{ts,tsx}": ["tslint", "git add"]
+    "src/*.{ts,tsx}": ["tslint", "git add"]
   },
   "scripts": {
     "build": "webpack --config ./configs/webpack.dev.ts",
@@ -64,7 +64,7 @@
     "lint:src": "tslint --project ./",
     "lint:markdown": "markdownlint ./ -c ./markdownlint.json -i node_modules",
     "precommit": "lint-staged && yarn test:staged && yarn doc:precommit",
-    "prepublish": "rm -rf dist && tsc -p configs/tsconfig.publish.json",
+    "prepublish": "rm -rf lib && tsc -p configs/tsconfig.publish.json",
     "start": "webpack-dev-server --open --mode development --config ./configs/webpack.dev.ts",
     "start:hot": "webpack-dev-server --hot-only --open --mode development --config ./configs/webpack.dev.ts",
     "start:prod": "webpack-dev-server --open --mode production ./configs/webpack.prod.ts",

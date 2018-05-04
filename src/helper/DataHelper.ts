@@ -1,4 +1,4 @@
-import { CONTACT_MAP_DATA_TYPE, IMonomerContact, VIZ_TYPE } from 'chell';
+import { CONTACT_MAP_DATA_TYPE, IContactMapData, IMonomerContact, VIZ_TYPE } from 'chell';
 import * as d3 from 'd3';
 import * as NGL from 'ngl';
 import { ISpringCategoricalColorData, ISpringCategoricalColorDataInput, ISpringGraphData } from 'spring';
@@ -136,7 +136,7 @@ const fetchNGLData = async (dir: string) => {
   return data as NGL.Structure;
 };
 
-const fetchContactMapData = async (dir: string) => {
+const fetchContactMapData = async (dir: string): Promise<IContactMapData> => {
   const contactMapFiles = ['contacts_monomer.csv', 'coupling_scores.csv' /*, 'distance_map.csv'*/];
   const promiseResults = await Promise.all(contactMapFiles.map(file => d3.text(`${dir}/${file}`)));
 

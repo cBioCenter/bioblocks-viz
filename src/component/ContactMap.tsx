@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { CONTACT_MAP_DATA_TYPE, ICouplingScore, RESIDUE_TYPE } from 'chell';
+import { IContactMapData, ICouplingScore, RESIDUE_TYPE } from 'chell';
 import { IResidueSelection, ResidueContext } from '../context/ResidueContext';
 import { defaultConfig, defaultLayout, generatePointCloudData, PlotlyChart } from '../helper/PlotlyHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
@@ -16,7 +16,7 @@ const defaultProps = {
     contactMonomer: [],
     couplingScore: [],
     distanceMapMonomer: [],
-  } as CONTACT_MAP_DATA_TYPE,
+  } as IContactMapData,
   enableSliders: false,
   height: 400,
   highlightColor: '#0000ff',
@@ -145,7 +145,7 @@ export const ContactMap = withDefaultProps(
       );
     }
 
-    protected setupData(data: CONTACT_MAP_DATA_TYPE) {
+    protected setupData(data: IContactMapData) {
       const blackDots = new Array<ICouplingScore>();
       data.couplingScore.filter(coupling => coupling.probability >= this.state.probabilityFilter).forEach(coupling => {
         blackDots.push(coupling);
