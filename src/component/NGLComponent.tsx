@@ -261,7 +261,7 @@ export const NGLComponentWithDefaultProps = withDefaultProps(
 // However the Context consumer syntax is still new to me and I can't find the right combination :(
 type requiredProps = Partial<typeof defaultProps> & Required<Omit<Props, keyof typeof defaultProps>>;
 
-const NGLComponent = (props: requiredProps) => (
+export default (props: requiredProps) => (
   <ResidueContext.Consumer>
     {({
       addLockedResiduePair,
@@ -289,6 +289,3 @@ const NGLComponent = (props: requiredProps) => (
     )}
   </ResidueContext.Consumer>
 );
-
-export default NGLComponent;
-export { NGLComponent };

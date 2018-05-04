@@ -4,7 +4,7 @@ import { IContactMapData, ICouplingScore, RESIDUE_TYPE } from '../../types/chell
 import ResidueContext, { IResidueSelection } from '../context/ResidueContext';
 import PlotlyChart, { defaultConfig, defaultLayout, generatePointCloudData } from '../helper/PlotlyHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
-import { ChellSlider } from './ChellSlider';
+import ChellSlider from './ChellSlider';
 
 export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
 export type ContactMapCallback = (coupling: CONTACT_MAP_CB_RESULT_TYPE) => void;
@@ -38,7 +38,7 @@ const initialState = {
 type Props = {} & typeof defaultProps;
 type State = Readonly<typeof initialState>;
 
-const ContactMap = withDefaultProps(
+export default withDefaultProps(
   defaultProps,
   class ContactMapComponentClass extends React.Component<Props, State> {
     public readonly state: State = initialState;
@@ -221,6 +221,3 @@ const ContactMap = withDefaultProps(
     };
   },
 );
-
-export default ContactMap;
-export { ContactMap };

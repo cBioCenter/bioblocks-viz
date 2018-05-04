@@ -9,11 +9,11 @@ import {
   T_SNE_DATA_TYPE,
   VIZ_TYPE,
 } from '../../types/chell';
-import { NGLComponent } from '../component/NGLComponent';
+import NGLComponent from '../component/NGLComponent';
 import SpringComponent from '../component/SpringComponent';
 import TComponent from '../component/TComponent';
 import { withDefaultProps } from '../helper/ReactHelper';
-import { ContactMap } from './ContactMap';
+import ContactMap from './ContactMap';
 
 const defaultProps = {
   data: {} as Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>,

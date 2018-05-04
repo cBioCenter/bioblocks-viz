@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { CELL_TYPE, RESIDUE_TYPE } from '../../types/chell';
 import CellContext, { initialCellContext } from '../context/CellContext';
-import ResidueContext, { initialResidueContext } from '../context/ResidueContext';
+import ResidueContext, { initialResidueContext, IResidueSelection } from '../context/ResidueContext';
 
 export const initialState = {
   cellContext: {
@@ -99,7 +99,7 @@ export default class ChellContext extends React.Component<any, ChellContextState
     this.setState({
       residueContext: {
         ...this.state.residueContext,
-        lockedResiduePairs: {},
+        lockedResiduePairs: {} as IResidueSelection,
       },
     });
   };

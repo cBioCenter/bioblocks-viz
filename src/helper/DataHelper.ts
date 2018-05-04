@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 import * as NGL from 'ngl';
 import { ISpringCategoricalColorData, ISpringCategoricalColorDataInput, ISpringGraphData } from 'spring';
-import { CONTACT_MAP_DATA_TYPE, IContactMapData, IMonomerContact, VIZ_TYPE } from '../../types/chell';
+import { CONTACT_MAP_DATA_TYPE, IContactMapData, ICouplingScore, IMonomerContact, VIZ_TYPE } from '../../types/chell';
 
 export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
   switch (viz) {
@@ -141,15 +141,15 @@ const fetchContactMapData = async (dir: string): Promise<IContactMapData> => {
   const promiseResults = await Promise.all(contactMapFiles.map(file => d3.text(`${dir}/${file}`)));
 
   const data: CONTACT_MAP_DATA_TYPE = {
-    contactMonomer: parseContactMonomerLine(promiseResults[0]),
-    couplingScore: parseCouplingScoreLine(promiseResults[1]),
+    contactMonomer: getContactMonomerData(promiseResults[0]),
+    couplingScore: getCouplingScoresData(promiseResults[1]),
     // distanceMapMonomer: parseDistanceMonomerLine(promiseResults[2]),
   };
 
   return data;
 };
 
-const parseContactMonomerLine = (line: string) => {
+export const getContactMonomerData = (line: string): IMonomerContact[] => {
   const results: IMonomerContact[] = [];
   line
     .split('\n')
@@ -163,7 +163,7 @@ const parseContactMonomerLine = (line: string) => {
   return results;
 };
 
-const parseCouplingScoreLine = (line: string) =>
+export const getCouplingScoresData = (line: string): ICouplingScore[] =>
   line
     .split('\n')
     .slice(1)
