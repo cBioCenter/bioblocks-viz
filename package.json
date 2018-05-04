@@ -9,8 +9,8 @@
     "yarn": "^1.5.0"
   },
   "files": ["lib"],
-  "main": "chell.ts",
-  "types": "index.d.ts",
+  "main": "lib/chell-viz.js",
+  "types": "lib/chell-viz.d.ts",
   "homepage": "https://cbiocenter.github.io/chell-viz/",
   "jest": {
     "collectCoverageFrom": ["src/**/*.{ts,tsx}"],

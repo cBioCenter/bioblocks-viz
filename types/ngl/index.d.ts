@@ -20,9 +20,7 @@ declare module 'ngl' {
    * NGL.autoLoad( file );
    *
    * @export
-   * @param {ILoaderInput} file
-   * @param {Partial<ILoaderParameters>} [params]
-   * @returns {Promise<any>} Promise resolves to the loaded data.
+   * @returns Promise resolves to the loaded data.
    */
   export function autoLoad(file: ILoaderInput, params?: Partial<ILoaderParameters>): Promise<any>;
 }

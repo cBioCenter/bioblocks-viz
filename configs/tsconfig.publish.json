@@ -5,6 +5,7 @@
     "outDir": "../lib",
     "sourceMap": false
   },
+  "files": ["../chell-viz.ts"],
   "include": ["../src/**/*", "../types"],
   "exclude": ["../node_modules", "../**/__tests__/**", "../**/__mocks__/**", "../configs"]
 }
