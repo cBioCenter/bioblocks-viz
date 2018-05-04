@@ -9,8 +9,8 @@ import { withDefaultProps } from '../helper/ReactHelper';
 import { ContactMap } from './ContactMap';
 
 const defaultProps = {
-  height: 450,
   data: {} as Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>,
+  height: 450,
   initialViz: VIZ_TYPE['T-SNE'],
   onDataSelect: (e: any) => {
     return;
