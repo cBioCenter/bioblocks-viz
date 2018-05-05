@@ -104,3 +104,5 @@ export default class ChellSlider extends React.Component<IChellSliderProps, IChe
     });
   };
 }
+
+export { ChellSlider };

@@ -147,3 +147,5 @@ export default class ChellContext extends React.Component<any, ChellContextState
     }
   };
 }
+
+export { ChellContext };

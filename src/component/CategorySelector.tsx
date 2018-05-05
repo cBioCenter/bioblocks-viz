@@ -30,3 +30,5 @@ export default class CategorySelector extends React.Component<ICategorySelectorP
     );
   }
 }
+
+export { CategorySelector };

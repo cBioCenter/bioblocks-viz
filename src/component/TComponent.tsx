@@ -13,7 +13,7 @@ const defaultProps = {
 };
 type Props = {} & typeof defaultProps;
 
-export default withDefaultProps(
+const TComponent = withDefaultProps(
   defaultProps,
   class TComponentClass extends React.Component<Props, any> {
     constructor(props: Props) {
@@ -76,3 +76,6 @@ export default withDefaultProps(
     };
   },
 );
+
+export default TComponent;
+export { TComponent };

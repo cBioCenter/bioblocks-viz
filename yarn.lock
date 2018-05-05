@@ -372,8 +372,8 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.6.tgz#439b91f9caf3983cad2eef1e11f6bedcbf9431d2"
 
 "@types/node@^9.6.5":
-  version "9.6.11"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.11.tgz#3edd774dbf52aa19b5dca7f9d4b38f719c39167a"
+  version "9.6.12"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.12.tgz#ab2d716505858ebc8ee94b347b5c9d311eb81b72"
 
 "@types/pixi.js@^4.7.2":
   version "4.7.3"
@@ -436,8 +436,8 @@
   resolved "https://registry.yarnpkg.com/@types/tapable/-/tapable-1.0.2.tgz#e13182e1b69871a422d7863e11a4a6f5b814a4bd"
 
 "@types/three@^0.91.8":
-  version "0.91.10"
-  resolved "https://registry.yarnpkg.com/@types/three/-/three-0.91.10.tgz#996b82993902d564daa1c29d0c3d653f2b15243a"
+  version "0.91.11"
+  resolved "https://registry.yarnpkg.com/@types/three/-/three-0.91.11.tgz#22956da3d485bcc41cfca8c63134d19ddadfb365"
   dependencies:
     "@types/webvr-api" "*"
 

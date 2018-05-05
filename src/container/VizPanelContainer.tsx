@@ -21,7 +21,7 @@ const initialState = {
 type Props = { dataDirs: string[]; supportedVisualizations: VIZ_TYPE[] } & typeof defaultProps;
 type State = Readonly<typeof initialState>;
 
-export default withDefaultProps(
+const VizPanelContainer = withDefaultProps(
   defaultProps,
   class VizPanelContainerClass extends React.Component<Props, State> {
     public readonly state: State = initialState;
@@ -106,3 +106,6 @@ export default withDefaultProps(
     };
   },
 );
+
+export default VizPanelContainer;
+export { VizPanelContainer };

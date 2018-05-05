@@ -220,8 +220,11 @@ export const SpringComponentWithDefaultProps = withDefaultProps(
 // However the Context consumer syntax is still new to me and I can't find the right combination :(
 type requiredProps = Partial<typeof defaultProps> & Required<Omit<Props, keyof typeof defaultProps>>;
 
-export default (props: requiredProps) => (
+const SpringComponent = (props: requiredProps) => (
   <CellContext.Consumer>
     {({ currentCells }) => <SpringComponentWithDefaultProps {...props} currentCells={currentCells} />}
   </CellContext.Consumer>
 );
+
+export default SpringComponent;
+export { SpringComponent };

@@ -61,8 +61,7 @@
     "build:test": "tsc",
     "predeploy": "yarn build:prod && yarn doc && cp -r docs dist && cp README.md dist",
     "deploy": "gh-pages -d dist && git reset --hard HEAD",
-    "doc":
-      "rm -rf node_modules/typedoc/node_modules/typescript ; typedoc --out docs/api --includeDeclarations --excludeExternals --mode file",
+    "doc": "typedoc --tsconfig ./configs/tsconfig.doc.json",
     "doc:precommit": "yarn doc && git add docs/api && git add -u docs/api",
     "lint": "npm-run-all lint:*",
     "lint:src": "tslint --project ./",

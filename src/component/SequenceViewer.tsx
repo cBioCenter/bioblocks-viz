@@ -46,3 +46,5 @@ export default class SequenceViewer extends React.Component<ISequenceViewerProps
     );
   }
 }
+
+export { SequenceViewer };

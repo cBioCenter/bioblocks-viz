@@ -35,7 +35,7 @@ const initialState = {
 type Props = {} & typeof defaultProps;
 type State = Readonly<typeof initialState>;
 
-export default withDefaultProps(
+const VizSelectorPanel = withDefaultProps(
   defaultProps,
 
   /**
@@ -146,3 +146,6 @@ export default withDefaultProps(
     };
   },
 );
+
+export default VizSelectorPanel;
+export { VizSelectorPanel };
