@@ -5,13 +5,10 @@
     "outDir": "../docs/api",
     "sourceMap": false
   },
-  "include": ["../src/**/*", "../types", "types"],
-  "exclude": ["../node_modules", "../**/__tests__/**", "../**/__mocks__/**", "../configs"],
+  "include": ["../src/**/*", "../types"],
+  "exclude": ["../node_modules", "../**/__tests__/**", "../**/__mocks__/**", "../**/configs/**"],
   "typedocOptions": {
-    "mode": "modules",
-    "out": "../docs/api",
-    "exclude": "test",
-    "excludePrivate": true,
-    "excludeNotExported": true
+    "mode": "file",
+    "out": "docs/api"
   }
 }
