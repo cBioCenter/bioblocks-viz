@@ -1,3 +1,4 @@
+import * as Plotly from 'plotly.js';
 import * as React from 'react';
 
 import { IContactMapData, ICouplingScore, RESIDUE_TYPE } from '../../types/chell';
@@ -9,7 +10,7 @@ import ChellSlider from './ChellSlider';
 export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
 export type ContactMapCallback = (coupling: CONTACT_MAP_CB_RESULT_TYPE) => void;
 
-const defaultProps = {
+export const defaultContactMapProps = {
   contactColor: '#009999',
   couplingColor: '#000000',
   data: {
@@ -27,7 +28,7 @@ const defaultProps = {
   width: 400,
 };
 
-const initialState = {
+export const initialContactMapState = {
   contactPoints: new Float32Array(0),
   couplingPoints: new Float32Array(0),
   highlightedPoints: new Float32Array(0),
@@ -35,11 +36,11 @@ const initialState = {
   probabilityFilter: 0.99,
 };
 
-export type ContactMapProps = {} & typeof defaultProps;
-export type ContactMapState = Readonly<typeof initialState>;
+export type ContactMapProps = {} & typeof defaultContactMapProps;
+export type ContactMapState = Readonly<typeof initialContactMapState>;
 
 export class ContactMapComponent extends React.Component<ContactMapProps, ContactMapState> {
-  public readonly state: ContactMapState = initialState;
+  public readonly state: ContactMapState = initialContactMapState;
 
   constructor(props: ContactMapProps) {
     super(props);
@@ -219,7 +220,7 @@ export class ContactMapComponent extends React.Component<ContactMapProps, Contac
   };
 }
 
-const ContactMap = withDefaultProps(defaultProps, ContactMapComponent);
+const ContactMap = withDefaultProps(defaultContactMapProps, ContactMapComponent);
 
 export default ContactMap;
 export { ContactMap };

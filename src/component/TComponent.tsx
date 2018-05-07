@@ -4,7 +4,7 @@ import CellContext from '../context/CellContext';
 import PlotlyChart, { defaultConfig, defaultLayout } from '../helper/PlotlyHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
 
-const defaultProps = {
+export const defaultTComponentProps = {
   data: [[0], [0]] as T_SNE_DATA_TYPE,
   height: 400,
   padding: 0,
@@ -12,10 +12,10 @@ const defaultProps = {
   width: 400,
 };
 
-export type TComponentProps = {} & typeof defaultProps;
+export type TComponentProps = {} & typeof defaultTComponentProps;
 
 const TComponent = withDefaultProps(
-  defaultProps,
+  defaultTComponentProps,
   class TComponentClass extends React.Component<TComponentProps, any> {
     constructor(props: TComponentProps) {
       super(props);

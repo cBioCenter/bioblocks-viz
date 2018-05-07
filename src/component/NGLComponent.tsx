@@ -23,7 +23,7 @@ export const SUPPORTED_REPS: StructureRepresentationType[] = [
   'spacefill',
 ];
 
-const defaultProps = {
+export const defaultNGLProps = {
   data: undefined as NGL.Structure | undefined,
   height: 400,
   ...initialResidueContext,
@@ -31,7 +31,7 @@ const defaultProps = {
   width: 400,
 };
 
-const initialState = {
+export const initialNGLState = {
   max_x: 0,
   min_x: 1000,
   nodeSize: 4,
@@ -41,11 +41,11 @@ const initialState = {
   structureComponent: undefined as NGL.StructureComponent | undefined,
 };
 
-export type NGLComponentProps = {} & typeof defaultProps;
-export type NGLComponentState = Readonly<typeof initialState>;
+export type NGLComponentProps = {} & typeof defaultNGLProps;
+export type NGLComponentState = Readonly<typeof initialNGLState>;
 
 export class NGLComponentClass extends React.Component<NGLComponentProps, NGLComponentState> {
-  public readonly state: NGLComponentState = initialState;
+  public readonly state: NGLComponentState = initialNGLState;
 
   protected canvas: HTMLElement | null = null;
   protected residueSelectionRepresentations: IRepresentationDict = {};
@@ -254,11 +254,11 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
   }
 }
 
-export const NGLComponentWithDefaultProps = withDefaultProps(defaultProps, NGLComponentClass);
+export const NGLComponentWithDefaultProps = withDefaultProps(defaultNGLProps, NGLComponentClass);
 
 // TODO The required props should be discernable from `withDefaultProps` without needing to duplicate.
 // However the Context consumer syntax is still new to me and I can't find the right combination :(
-type requiredProps = Partial<typeof defaultProps> & Required<Omit<NGLComponentProps, keyof typeof defaultProps>>;
+type requiredProps = Partial<typeof defaultNGLProps> & Required<Omit<NGLComponentProps, keyof typeof defaultNGLProps>>;
 
 const NGLComponent = (props: requiredProps) => (
   <ResidueContext.Consumer>

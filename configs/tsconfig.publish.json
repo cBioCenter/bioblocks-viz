@@ -3,6 +3,7 @@
   "compilerOptions": {
     "declaration": true,
     "outDir": "../lib",
+    "pretty": true,
     "sourceMap": false
   },
   "files": ["../chell-viz.ts"],

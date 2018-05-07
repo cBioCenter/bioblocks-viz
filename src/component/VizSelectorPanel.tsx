@@ -15,7 +15,7 @@ import TComponent from '../component/TComponent';
 import { withDefaultProps } from '../helper/ReactHelper';
 import ContactMap from './ContactMap';
 
-const defaultProps = {
+export const defaultVizPanelProps = {
   data: {} as Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>,
   height: 450,
   initialViz: VIZ_TYPE['T-SNE'],
@@ -28,15 +28,15 @@ const defaultProps = {
   width: 450,
 };
 
-const initialState = {
-  selectedViz: defaultProps.initialViz,
+export const initialVizPanelState = {
+  selectedViz: defaultVizPanelProps.initialViz,
 };
 
-export type VizPanelProps = {} & typeof defaultProps;
-export type VizPanelState = Readonly<typeof initialState>;
+export type VizPanelProps = {} & typeof defaultVizPanelProps;
+export type VizPanelState = Readonly<typeof initialVizPanelState>;
 
 const VizSelectorPanel = withDefaultProps(
-  defaultProps,
+  defaultVizPanelProps,
 
   /**
    * A single visualization panel allowing a user to select how they wish to view data.
@@ -45,7 +45,7 @@ const VizSelectorPanel = withDefaultProps(
    * @extends {React.Component<VizPanelProps, VizPanelState>}
    */
   class VizSelectorPanelClass extends React.Component<VizPanelProps, VizPanelState> {
-    public readonly state: VizPanelState = initialState;
+    public readonly state: VizPanelState = initialVizPanelState;
 
     constructor(props: VizPanelProps) {
       super(props);

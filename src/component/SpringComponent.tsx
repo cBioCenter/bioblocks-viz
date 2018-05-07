@@ -6,7 +6,7 @@ import { SPRING_DATA_TYPE } from '../../types/chell';
 import CellContext, { initialCellContext } from '../context/CellContext';
 import { withDefaultProps } from '../helper/ReactHelper';
 
-const defaultProps = {
+export const defaultSpringProps = {
   canvasBackgroundColor: 0xcccccc,
   data: {
     links: [],
@@ -19,10 +19,10 @@ const defaultProps = {
   width: 450,
 };
 
-export type SpringComponentProps = {} & typeof defaultProps;
+export type SpringComponentProps = {} & typeof defaultSpringProps;
 
 export const SpringComponentWithDefaultProps = withDefaultProps(
-  defaultProps,
+  defaultSpringProps,
   class SpringComponentClass extends React.Component<SpringComponentProps, any> {
     protected pixiApp: PIXI.Application = new PIXI.Application();
 
@@ -218,7 +218,8 @@ export const SpringComponentWithDefaultProps = withDefaultProps(
 
 // TODO The required props should be discernable from `withDefaultProps` without needing to duplicate.
 // However the Context consumer syntax is still new to me and I can't find the right combination :(
-type requiredProps = Partial<typeof defaultProps> & Required<Omit<SpringComponentProps, keyof typeof defaultProps>>;
+type requiredProps = Partial<typeof defaultSpringProps> &
+  Required<Omit<SpringComponentProps, keyof typeof defaultSpringProps>>;
 
 const SpringComponent = (props: requiredProps) => (
   <CellContext.Consumer>
