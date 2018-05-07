@@ -3,7 +3,7 @@ import toJson from 'enzyme-to-json';
 
 import * as React from 'react';
 
-import { ContactMap } from '../ContactMap';
+import ContactMap from '../ContactMap';
 
 describe('ContactMap', () => {
   const emptyData = {

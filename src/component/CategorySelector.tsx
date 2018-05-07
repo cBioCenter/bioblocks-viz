@@ -6,7 +6,7 @@ export interface ICategorySelectorProps {
   onCategoryChange?: (event: React.SyntheticEvent<any>, data: object) => void;
 }
 
-export class CategorySelector extends React.Component<ICategorySelectorProps, any> {
+export default class CategorySelector extends React.Component<ICategorySelectorProps, any> {
   constructor(props: ICategorySelectorProps) {
     super(props);
   }
@@ -30,3 +30,5 @@ export class CategorySelector extends React.Component<ICategorySelectorProps, an
     );
   }
 }
+
+export { CategorySelector };

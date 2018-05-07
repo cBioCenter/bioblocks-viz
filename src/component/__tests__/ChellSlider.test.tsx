@@ -3,7 +3,7 @@ import toJson from 'enzyme-to-json';
 
 import * as React from 'react';
 
-import { ChellSlider } from '../ChellSlider';
+import ChellSlider from '../ChellSlider';
 
 describe('ChellSlider', () => {
   test('Should match existing snapshot when given simple data.', () => {

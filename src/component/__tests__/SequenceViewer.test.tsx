@@ -4,7 +4,7 @@ import toJson from 'enzyme-to-json';
 import * as NGL from 'ngl';
 import * as React from 'react';
 
-import { SequenceViewer } from '../SequenceViewer';
+import SequenceViewer from '../SequenceViewer';
 
 describe('SequenceViewer', () => {
   test('Should match existing snapshot when given no data.', () => {

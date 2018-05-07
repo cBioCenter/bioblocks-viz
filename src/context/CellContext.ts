@@ -12,6 +12,9 @@ export const initialCellContext = {
   currentCells: [] as CELL_TYPE[],
 } as ICellContext;
 
-export const CellContext = React.createContext({
+const CellContext = React.createContext({
   ...initialCellContext,
 });
+
+export default CellContext;
+export { CellContext };

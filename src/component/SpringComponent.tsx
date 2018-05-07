@@ -3,10 +3,10 @@ import * as PIXI from 'pixi.js';
 import * as React from 'react';
 import { ISpringGraphData, ISpringLink, ISpringNode } from 'spring';
 import { SPRING_DATA_TYPE } from '../../types/chell';
-import { CellContext, initialCellContext } from '../context/CellContext';
+import CellContext, { initialCellContext } from '../context/CellContext';
 import { withDefaultProps } from '../helper/ReactHelper';
 
-const defaultProps = {
+export const defaultSpringProps = {
   canvasBackgroundColor: 0xcccccc,
   data: {
     links: [],
@@ -19,11 +19,11 @@ const defaultProps = {
   width: 450,
 };
 
-type Props = {} & typeof defaultProps;
+export type SpringComponentProps = {} & typeof defaultSpringProps;
 
 export const SpringComponentWithDefaultProps = withDefaultProps(
-  defaultProps,
-  class SpringComponentClass extends React.Component<Props, any> {
+  defaultSpringProps,
+  class SpringComponentClass extends React.Component<SpringComponentProps, any> {
     protected pixiApp: PIXI.Application = new PIXI.Application();
 
     protected canvasElement?: HTMLCanvasElement;
@@ -31,7 +31,7 @@ export const SpringComponentWithDefaultProps = withDefaultProps(
     protected nodeSprites: PIXI.Container = new PIXI.Container();
     protected edgeSprites: PIXI.Container = new PIXI.Container();
 
-    constructor(props: Props) {
+    constructor(props: SpringComponentProps) {
       super(props);
       this.state = {
         ...this.state,
@@ -63,7 +63,7 @@ export const SpringComponentWithDefaultProps = withDefaultProps(
       }
     }
 
-    public componentDidUpdate(prevProps: Props, prevState: any) {
+    public componentDidUpdate(prevProps: SpringComponentProps, prevState: any) {
       const { data, selectedCategory } = this.props;
       const isNewData = data && data !== prevProps.data;
       if (isNewData) {
@@ -218,10 +218,14 @@ export const SpringComponentWithDefaultProps = withDefaultProps(
 
 // TODO The required props should be discernable from `withDefaultProps` without needing to duplicate.
 // However the Context consumer syntax is still new to me and I can't find the right combination :(
-type requiredProps = Partial<typeof defaultProps> & Required<Omit<Props, keyof typeof defaultProps>>;
+type requiredProps = Partial<typeof defaultSpringProps> &
+  Required<Omit<SpringComponentProps, keyof typeof defaultSpringProps>>;
 
-export const SpringComponent = (props: requiredProps) => (
+const SpringComponent = (props: requiredProps) => (
   <CellContext.Consumer>
     {({ currentCells }) => <SpringComponentWithDefaultProps {...props} currentCells={currentCells} />}
   </CellContext.Consumer>
 );
+
+export default SpringComponent;
+export { SpringComponent };

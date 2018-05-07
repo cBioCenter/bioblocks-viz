@@ -24,6 +24,9 @@ export const initialResidueContext = {
   lockedResiduePairs: {} as IResidueSelection,
 } as IResidueContext;
 
-export const ResidueContext = React.createContext({
+const ResidueContext = React.createContext({
   ...initialResidueContext,
 });
+
+export default ResidueContext;
+export { ResidueContext };

@@ -1,22 +1,23 @@
 import * as React from 'react';
 import { T_SNE_DATA_TYPE } from '../../types/chell';
-import { CellContext } from '../context/CellContext';
-import { defaultConfig, defaultLayout, PlotlyChart } from '../helper/PlotlyHelper';
+import CellContext from '../context/CellContext';
+import PlotlyChart, { defaultConfig, defaultLayout } from '../helper/PlotlyHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
 
-const defaultProps = {
+export const defaultTComponentProps = {
   data: [[0], [0]] as T_SNE_DATA_TYPE,
   height: 400,
   padding: 0,
   pointColor: '#000000',
   width: 400,
 };
-type Props = {} & typeof defaultProps;
 
-export const TComponent = withDefaultProps(
-  defaultProps,
-  class TComponentClass extends React.Component<Props, any> {
-    constructor(props: Props) {
+export type TComponentProps = {} & typeof defaultTComponentProps;
+
+const TComponent = withDefaultProps(
+  defaultTComponentProps,
+  class TComponentClass extends React.Component<TComponentProps, any> {
+    constructor(props: TComponentProps) {
       super(props);
       this.state = {
         ...this.state,
@@ -76,3 +77,6 @@ export const TComponent = withDefaultProps(
     };
   },
 );
+
+export default TComponent;
+export { TComponent };

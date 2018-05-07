@@ -9,13 +9,13 @@ import {
   T_SNE_DATA_TYPE,
   VIZ_TYPE,
 } from '../../types/chell';
-import { NGLComponent } from '../component/NGLComponent';
-import { SpringComponent } from '../component/SpringComponent';
-import { TComponent } from '../component/TComponent';
+import NGLComponent from '../component/NGLComponent';
+import SpringComponent from '../component/SpringComponent';
+import TComponent from '../component/TComponent';
 import { withDefaultProps } from '../helper/ReactHelper';
-import { ContactMap } from './ContactMap';
+import ContactMap from './ContactMap';
 
-const defaultProps = {
+export const defaultVizPanelProps = {
   data: {} as Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>,
   height: 450,
   initialViz: VIZ_TYPE['T-SNE'],
@@ -28,26 +28,26 @@ const defaultProps = {
   width: 450,
 };
 
-const initialState = {
-  selectedViz: defaultProps.initialViz,
+export const initialVizPanelState = {
+  selectedViz: defaultVizPanelProps.initialViz,
 };
 
-type Props = {} & typeof defaultProps;
-type State = Readonly<typeof initialState>;
+export type VizPanelProps = {} & typeof defaultVizPanelProps;
+export type VizPanelState = Readonly<typeof initialVizPanelState>;
 
-export const VizSelectorPanel = withDefaultProps(
-  defaultProps,
+const VizSelectorPanel = withDefaultProps(
+  defaultVizPanelProps,
 
   /**
    * A single visualization panel allowing a user to select how they wish to view data.
    *
    * @export
-   * @extends {React.Component<Props, State>}
+   * @extends {React.Component<VizPanelProps, VizPanelState>}
    */
-  class VizSelectorPanelClass extends React.Component<Props, State> {
-    public readonly state: State = initialState;
+  class VizSelectorPanelClass extends React.Component<VizPanelProps, VizPanelState> {
+    public readonly state: VizPanelState = initialVizPanelState;
 
-    constructor(props: Props) {
+    constructor(props: VizPanelProps) {
       super(props);
       this.state = {
         selectedViz: props.initialViz ? props.initialViz : VIZ_TYPE.SPRING,
@@ -146,3 +146,6 @@ export const VizSelectorPanel = withDefaultProps(
     };
   },
 );
+
+export default VizSelectorPanel;
+export { VizSelectorPanel };

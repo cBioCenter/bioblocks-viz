@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "outDir": "../docs/api",
+    "sourceMap": false
+  },
+  "include": ["../src/**/*", "../types/**/*"],
+  "exclude": ["../node_modules", "../**/__tests__/**", "../**/__mocks__/**", "../**/configs/**"],
+  "typedocOptions": {
+    "excludeExternals": true,
+    "includeDeclarations": true,
+    "mode": "file",
+    "out": "docs/api"
+  }
+}

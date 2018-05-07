@@ -4,7 +4,7 @@ import toJson from 'enzyme-to-json';
 import * as React from 'react';
 
 import { Dropdown, DropdownItem } from 'semantic-ui-react';
-import { CategorySelector } from '../CategorySelector';
+import CategorySelector from '../CategorySelector';
 
 describe('CategorySelector', () => {
   const categories = [

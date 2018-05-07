@@ -41,7 +41,6 @@ declare module 'ngl' {
    * Viewer class.
    *
    * @export
-   * @class Viewer
    */
   export class Viewer {
     // Properties
@@ -61,8 +60,7 @@ declare module 'ngl' {
 
     /**
      * Creates an instance of Viewer.
-     * @param {(string | HTMLElement)} idOrElement DOM ID or Element.
-     * @memberof Viewer
+     * @param idOrElement DOM ID or Element.
      */
     constructor(idOrElement: string | HTMLElement);
 

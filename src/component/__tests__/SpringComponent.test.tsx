@@ -4,7 +4,7 @@ import toJson from 'enzyme-to-json';
 import * as React from 'react';
 
 import { ISpringGraphData } from 'spring';
-import { SpringComponent } from '../SpringComponent';
+import SpringComponent from '../SpringComponent';
 
 describe('SpringComponent', () => {
   test('Should match existing snapshot when given simple data.', () => {

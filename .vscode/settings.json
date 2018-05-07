@@ -13,6 +13,7 @@
     "automagically",
     "tsne",
     "tsnejs",
+    "typedoc",
     "wallabyjs"
   ],
   "python.pythonPath": "/usr/local/bin/python3"
