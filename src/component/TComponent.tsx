@@ -11,12 +11,13 @@ const defaultProps = {
   pointColor: '#000000',
   width: 400,
 };
-type Props = {} & typeof defaultProps;
+
+export type TComponentProps = {} & typeof defaultProps;
 
 const TComponent = withDefaultProps(
   defaultProps,
-  class TComponentClass extends React.Component<Props, any> {
-    constructor(props: Props) {
+  class TComponentClass extends React.Component<TComponentProps, any> {
+    constructor(props: TComponentProps) {
       super(props);
       this.state = {
         ...this.state,

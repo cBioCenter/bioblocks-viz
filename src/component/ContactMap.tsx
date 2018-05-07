@@ -35,13 +35,13 @@ const initialState = {
   probabilityFilter: 0.99,
 };
 
-type Props = {} & typeof defaultProps;
-type State = Readonly<typeof initialState>;
+export type ContactMapProps = {} & typeof defaultProps;
+export type ContactMapState = Readonly<typeof initialState>;
 
-export class ContactMapComponent extends React.Component<Props, State> {
-  public readonly state: State = initialState;
+export class ContactMapComponent extends React.Component<ContactMapProps, ContactMapState> {
+  public readonly state: ContactMapState = initialState;
 
-  constructor(props: Props) {
+  constructor(props: ContactMapProps) {
     super(props);
   }
 
@@ -52,7 +52,7 @@ export class ContactMapComponent extends React.Component<Props, State> {
     }
   }
 
-  public componentDidUpdate(prevProps: Props, prevState: State) {
+  public componentDidUpdate(prevProps: ContactMapProps, prevState: ContactMapState) {
     const { data } = this.props;
     const isFreshDataView = data !== prevProps.data || this.state.probabilityFilter !== prevState.probabilityFilter;
     if (isFreshDataView) {

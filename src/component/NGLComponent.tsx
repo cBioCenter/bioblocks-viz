@@ -41,11 +41,11 @@ const initialState = {
   structureComponent: undefined as NGL.StructureComponent | undefined,
 };
 
-type Props = {} & typeof defaultProps;
-type State = Readonly<typeof initialState>;
+export type NGLComponentProps = {} & typeof defaultProps;
+export type NGLComponentState = Readonly<typeof initialState>;
 
-export class NGLComponentClass extends React.Component<Props, State> {
-  public readonly state: State = initialState;
+export class NGLComponentClass extends React.Component<NGLComponentProps, NGLComponentState> {
+  public readonly state: NGLComponentState = initialState;
 
   protected canvas: HTMLElement | null = null;
   protected residueSelectionRepresentations: IRepresentationDict = {};
@@ -79,7 +79,7 @@ export class NGLComponentClass extends React.Component<Props, State> {
     }
   }
 
-  public componentDidUpdate(prevProps: Props, prevState: State) {
+  public componentDidUpdate(prevProps: NGLComponentProps, prevState: NGLComponentState) {
     const { data, lockedResiduePairs } = this.props;
     const { stage, structureComponent } = this.state;
 
@@ -258,7 +258,7 @@ export const NGLComponentWithDefaultProps = withDefaultProps(defaultProps, NGLCo
 
 // TODO The required props should be discernable from `withDefaultProps` without needing to duplicate.
 // However the Context consumer syntax is still new to me and I can't find the right combination :(
-type requiredProps = Partial<typeof defaultProps> & Required<Omit<Props, keyof typeof defaultProps>>;
+type requiredProps = Partial<typeof defaultProps> & Required<Omit<NGLComponentProps, keyof typeof defaultProps>>;
 
 const NGLComponent = (props: requiredProps) => (
   <ResidueContext.Consumer>

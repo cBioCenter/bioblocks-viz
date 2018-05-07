@@ -32,8 +32,8 @@ const initialState = {
   selectedViz: defaultProps.initialViz,
 };
 
-type Props = {} & typeof defaultProps;
-type State = Readonly<typeof initialState>;
+export type VizPanelProps = {} & typeof defaultProps;
+export type VizPanelState = Readonly<typeof initialState>;
 
 const VizSelectorPanel = withDefaultProps(
   defaultProps,
@@ -42,12 +42,12 @@ const VizSelectorPanel = withDefaultProps(
    * A single visualization panel allowing a user to select how they wish to view data.
    *
    * @export
-   * @extends {React.Component<Props, State>}
+   * @extends {React.Component<VizPanelProps, VizPanelState>}
    */
-  class VizSelectorPanelClass extends React.Component<Props, State> {
-    public readonly state: State = initialState;
+  class VizSelectorPanelClass extends React.Component<VizPanelProps, VizPanelState> {
+    public readonly state: VizPanelState = initialState;
 
-    constructor(props: Props) {
+    constructor(props: VizPanelProps) {
       super(props);
       this.state = {
         selectedViz: props.initialViz ? props.initialViz : VIZ_TYPE.SPRING,
