@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { Card, Dropdown, DropdownItemProps } from 'semantic-ui-react';
 import { ISpringGraphData } from 'spring';
+import NGLComponent from '../component/NGLComponent';
+import SpringComponent from '../component/SpringComponent';
+import TComponent from '../component/TComponent';
 import {
   CHELL_DATA_TYPE,
-  IContactMapData,
+  // IContactMapData,
   ICouplingScore,
   NGL_DATA_TYPE,
   T_SNE_DATA_TYPE,
   VIZ_TYPE,
-} from '../../types/chell';
-import NGLComponent from '../component/NGLComponent';
-import SpringComponent from '../component/SpringComponent';
-import TComponent from '../component/TComponent';
+} from '../data/chell-data';
 import { withDefaultProps } from '../helper/ReactHelper';
 import ContactMap from './ContactMap';
 
@@ -113,7 +113,8 @@ const VizSelectorPanel = withDefaultProps(
             />
           );
         case VIZ_TYPE.CONTACT_MAP:
-          return (
+          /*  
+        return (
             <ContactMap
               data={data['Contact Map'] as IContactMapData}
               enableSliders={true}
@@ -122,6 +123,17 @@ const VizSelectorPanel = withDefaultProps(
               padding={padding}
               selectedData={selectedData as number}
               width={paddedWidth}
+            />
+          );
+          */
+
+          return (
+            <ContactMap
+              data={{
+                contactMonomer: [],
+                couplingScore: [],
+              }}
+              enableSliders={false}
             />
           );
         default:

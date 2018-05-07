@@ -77,14 +77,14 @@
     "test:staged": "jest --onlyChanged"
   },
   "dependencies": {
-    "d3": "^5.0.0-rc.4",
+    "d3": "^5.1.0",
     "ngl": "^2.0.0-dev.32",
-    "pixi.js": "^4.7.1",
-    "plotly.js": "^1.31.2",
+    "pixi.js": "^4.7.3",
+    "plotly.js": "^1.37.1",
     "rc-slider": "^8.6.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "semantic-ui-react": "^0.79.0"
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "semantic-ui-react": "^0.80.0"
   },
   "devDependencies": {
     "@types/clean-webpack-plugin": "^0.1.2",
