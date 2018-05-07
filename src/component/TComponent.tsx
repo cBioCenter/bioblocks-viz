@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { T_SNE_DATA_TYPE } from '../../types/chell';
 import CellContext from '../context/CellContext';
+import { T_SNE_DATA_TYPE } from '../data/chell-data';
 import PlotlyChart, { defaultConfig, defaultLayout } from '../helper/PlotlyHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
 

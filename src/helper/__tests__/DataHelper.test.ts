@@ -1,4 +1,4 @@
-import { VIZ_TYPE } from '../../../types/chell';
+import { VIZ_TYPE } from '../../data/chell-data';
 import { fetchAppropriateData } from '../DataHelper';
 
 describe('DataHelper', () => {

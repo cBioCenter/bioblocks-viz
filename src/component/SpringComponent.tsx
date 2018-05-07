@@ -2,8 +2,8 @@ import * as d3 from 'd3';
 import * as PIXI from 'pixi.js';
 import * as React from 'react';
 import { ISpringGraphData, ISpringLink, ISpringNode } from 'spring';
-import { SPRING_DATA_TYPE } from '../../types/chell';
 import CellContext, { initialCellContext } from '../context/CellContext';
+import { SPRING_DATA_TYPE } from '../data/chell-data';
 import { withDefaultProps } from '../helper/ReactHelper';
 
 export const defaultSpringProps = {

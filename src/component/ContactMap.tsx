@@ -1,8 +1,8 @@
 import * as Plotly from 'plotly.js';
 import * as React from 'react';
 
-import { IContactMapData, ICouplingScore, RESIDUE_TYPE } from '../../types/chell';
 import ResidueContext, { IResidueSelection } from '../context/ResidueContext';
+import { IContactMapData, ICouplingScore, RESIDUE_TYPE } from '../data/chell-data';
 import PlotlyChart, { defaultConfig, defaultLayout, generatePointCloudData } from '../helper/PlotlyHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
 import ChellSlider from './ChellSlider';

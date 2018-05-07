@@ -2,7 +2,7 @@ import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import * as React from 'react';
-import { VIZ_TYPE } from '../../../types/chell';
+import { VIZ_TYPE } from '../../data/chell-data';
 
 import VizSelectorPanel from '../VizSelectorPanel';
 
