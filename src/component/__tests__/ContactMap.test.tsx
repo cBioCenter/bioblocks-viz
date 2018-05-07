@@ -2,6 +2,7 @@ import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import * as React from 'react';
+import * as Renderer from 'react-test-renderer';
 
 import ContactMap from '../ContactMap';
 
@@ -44,10 +45,12 @@ describe('ContactMap', () => {
   });
 
   test('Should match existing snapshot when given sample data and sliders are _not_ enabled.', () => {
-    expect(toJson(shallow(<ContactMap data={sampleData} enableSliders={false} />))).toMatchSnapshot();
+    const component = Renderer.create(<ContactMap data={sampleData} enableSliders={false} />);
+    expect(component.toJSON()).toMatchSnapshot();
   });
 
   test('Should match existing snapshot when given sample data and sliders are enabled.', () => {
-    expect(toJson(shallow(<ContactMap data={sampleData} enableSliders={true} />))).toMatchSnapshot();
+    const component = Renderer.create(<ContactMap data={sampleData} enableSliders={true} />);
+    expect(component.toJSON()).toMatchSnapshot();
   });
 });

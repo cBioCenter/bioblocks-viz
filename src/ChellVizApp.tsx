@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Grid, GridRow } from 'semantic-ui-react';
 
+import ContactMap from './component/ContactMap';
 import VizPanelContainer from './container/VizPanelContainer';
 import { VIZ_TYPE } from './data/chell-data';
 
@@ -9,6 +10,15 @@ export class ChellVizApp extends React.Component<any, any> {
     return (
       <div id="ChellVizApp">
         <Grid centered={true} divided={'vertically'}>
+          <GridRow>
+            <ContactMap
+              data={{
+                contactMonomer: [],
+                couplingScore: [],
+              }}
+              enableSliders={false}
+            />
+          </GridRow>
           <GridRow>
             <VizPanelContainer
               dataDirs={['1', '2', '3'].map(dir => `assets/contact_map/example${dir}`)}

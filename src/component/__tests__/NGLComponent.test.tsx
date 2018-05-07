@@ -1,13 +1,11 @@
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-
 import * as React from 'react';
+import * as Renderer from 'react-test-renderer';
 
 import NGLComponent from '../NGLComponent';
 
 describe('NGLComponent', () => {
   test("Should match existing snapshot when canvas isn't available.", () => {
-    expect(toJson(shallow(<NGLComponent />))).toMatchSnapshot();
+    expect(Renderer.create(<NGLComponent />).toJSON()).toMatchSnapshot();
   });
 
   /* TO-DO: How to mock WebGL? React Error boundaries? https://reactjs.org/docs/error-boundaries.html

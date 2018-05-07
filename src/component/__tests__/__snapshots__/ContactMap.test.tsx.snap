@@ -4,6 +4,134 @@ exports[`ContactMap Should match existing snapshot when given empty data. 1`] = 
 
 exports[`ContactMap Should match existing snapshot when given no data. 1`] = `<[object Object] />`;
 
-exports[`ContactMap Should match existing snapshot when given sample data and sliders are _not_ enabled. 1`] = `<[object Object] />`;
+exports[`ContactMap Should match existing snapshot when given sample data and sliders are _not_ enabled. 1`] = `
+<div
+  id="ContactMapComponent"
+  style={
+    Object {
+      "padding": 0,
+    }
+  }
+>
+  <div />
+</div>
+`;
 
-exports[`ContactMap Should match existing snapshot when given sample data and sliders are enabled. 1`] = `<[object Object] />`;
+exports[`ContactMap Should match existing snapshot when given sample data and sliders are enabled. 1`] = `
+<div
+  id="ContactMapComponent"
+  style={
+    Object {
+      "padding": 0,
+    }
+  }
+>
+  <div />
+  <div>
+    <div>
+      <p>
+        Probability: 99
+      </p>
+      <div
+        className="rc-slider"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onMouseDown={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "width": 400,
+          }
+        }
+      >
+        <div
+          className="rc-slider-rail"
+          style={Object {}}
+        />
+        <div
+          className="rc-slider-track"
+          style={
+            Object {
+              "left": "0%",
+              "width": "99%",
+            }
+          }
+        />
+        <div
+          className="rc-slider-step"
+        />
+        <div
+          aria-disabled={false}
+          aria-valuemax={100}
+          aria-valuemin={0}
+          aria-valuenow={99}
+          className="rc-slider-handle"
+          role="slider"
+          style={
+            Object {
+              "left": "99%",
+            }
+          }
+          tabIndex={0}
+        />
+        <div
+          className="rc-slider-mark"
+        />
+      </div>
+    </div>
+    <div>
+      <p>
+        Node Size: 4
+      </p>
+      <div
+        className="rc-slider"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onMouseDown={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "width": 400,
+          }
+        }
+      >
+        <div
+          className="rc-slider-rail"
+          style={Object {}}
+        />
+        <div
+          className="rc-slider-track"
+          style={
+            Object {
+              "left": "0%",
+              "width": "75%",
+            }
+          }
+        />
+        <div
+          className="rc-slider-step"
+        />
+        <div
+          aria-disabled={false}
+          aria-valuemax={5}
+          aria-valuemin={1}
+          aria-valuenow={4}
+          className="rc-slider-handle"
+          role="slider"
+          style={
+            Object {
+              "left": "75%",
+            }
+          }
+          tabIndex={0}
+        />
+        <div
+          className="rc-slider-mark"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
