@@ -11,7 +11,7 @@
     "noUnusedParameters": false,
     "outDir": "./dist/",
     "paths": {
-      "plotly.js": ["node_modules/@types/plotly.js"],
+      "plotly.js/dist/plotly": ["node_modules/@types/plotly.js"],
       "react": ["node_modules/@types/react"]
     },
     "sourceMap": true,

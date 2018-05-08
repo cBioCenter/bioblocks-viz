@@ -58,9 +58,6 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
   ],
   resolve: {
-    alias: {
-      tsnejs: 'tsnejs/tsne',
-    },
     extensions: ['.js', '.json', '.ts', '.tsx'],
     modules: [path.join(__dirname, 'src'), path.join(__dirname, 'types'), 'node_modules'],
   },
