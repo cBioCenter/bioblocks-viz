@@ -39,13 +39,15 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
         Object {
           "contactMonomer": Array [],
           "couplingScore": Array [],
+          "distanceMapMonomer": Array [],
         }
       }
-      enableSliders={false}
-      height={400}
+      enableSliders={true}
+      height={420}
       highlightColor="#0000ff"
-      padding={0}
-      width={400}
+      onMouseEnter={[Function]}
+      padding={15}
+      width={420}
     />
   </Card>
 </div>

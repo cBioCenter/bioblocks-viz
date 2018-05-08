@@ -6,7 +6,7 @@ import SpringComponent from '../component/SpringComponent';
 import TComponent from '../component/TComponent';
 import {
   CHELL_DATA_TYPE,
-  // IContactMapData,
+  IContactMapData,
   ICouplingScore,
   NGL_DATA_TYPE,
   T_SNE_DATA_TYPE,
@@ -113,8 +113,7 @@ const VizSelectorPanel = withDefaultProps(
             />
           );
         case VIZ_TYPE.CONTACT_MAP:
-          /*  
-        return (
+          return (
             <ContactMap
               data={data['Contact Map'] as IContactMapData}
               enableSliders={true}
@@ -123,17 +122,6 @@ const VizSelectorPanel = withDefaultProps(
               padding={padding}
               selectedData={selectedData as number}
               width={paddedWidth}
-            />
-          );
-          */
-
-          return (
-            <ContactMap
-              data={{
-                contactMonomer: [],
-                couplingScore: [],
-              }}
-              enableSliders={false}
             />
           );
         default:

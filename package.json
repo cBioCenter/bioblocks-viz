@@ -1,6 +1,6 @@
 {
   "name": "chell-viz",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "author": "Biostatistics and Computational Biology at Dana-Farber <bcb@jimmy.harvard.edu>",
   "license": "MIT",
   "engines": {
@@ -23,7 +23,8 @@
     "moduleDirectories": ["node_modules", "src", "types"],
     "moduleFileExtensions": ["ts", "tsx", "js"],
     "moduleNameMapper": {
-      "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.ts"
+      "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.ts",
+      "plotly.js/dist/plotly": "<rootDir>/src/__mocks__/plotlyMock.ts"
     },
     "modulePathIgnorePatterns": ["dist"],
     "setupFiles": ["./configs/SetupJest.ts"],
@@ -60,13 +61,14 @@
     "build:test": "tsc",
     "predeploy": "yarn build:prod && yarn doc && cp -r docs dist && cp README.md dist",
     "deploy": "gh-pages -d dist && git reset --hard HEAD",
+    "predoc": "rm -rf lib node_modules/typedoc/node_modules/typescript/lib",
     "doc": "typedoc --tsconfig ./configs/tsconfig.doc.json",
     "doc:precommit": "yarn doc && git add docs/api && git add -u docs/api",
     "lint": "npm-run-all lint:*",
     "lint:src": "tslint --project ./",
     "lint:markdown": "markdownlint ./ -c ./markdownlint.json -i node_modules",
     "precommit": "lint-staged && yarn test:staged && yarn doc:precommit",
-    "prepublish": "rm -rf lib node_modules/typedoc/node_modules/typescript/lib && tsc -p configs/tsconfig.publish.json",
+    "prepublish": "rm -rf lib && tsc -p configs/tsconfig.publish.json",
     "start": "webpack-dev-server --open --mode development --config ./configs/webpack.dev.ts",
     "start:hot": "webpack-dev-server --hot-only --open --mode development --config ./configs/webpack.dev.ts",
     "start:prod": "webpack-dev-server --open --mode production ./configs/webpack.prod.ts",
