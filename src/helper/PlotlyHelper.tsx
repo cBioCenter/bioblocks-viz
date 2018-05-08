@@ -1,5 +1,8 @@
-import * as plotly from 'plotly.js';
 import * as React from 'react';
+
+// We need to use dist/plotly to avoid forcing users to do some webpack gymnastics:
+// https://github.com/plotly/plotly-webpack#the-easy-way-recommended
+import * as plotly from 'plotly.js/dist/plotly';
 
 export enum PLOTLY_CHART_TYPE {
   /** [Plotly Bar Chart](https://plot.ly/javascript/bar-charts/) */

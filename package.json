@@ -23,7 +23,6 @@
     "moduleDirectories": ["node_modules", "src", "types"],
     "moduleFileExtensions": ["ts", "tsx", "js"],
     "moduleNameMapper": {
-      "tsnejs": "tsnejs/tsne",
       "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.ts"
     },
     "modulePathIgnorePatterns": ["dist"],
