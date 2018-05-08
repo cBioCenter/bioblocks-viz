@@ -9,6 +9,50 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
     divided="vertically"
   >
     <GridRow>
+      <ContactMapComponent
+        contactColor="#009999"
+        couplingColor="#000000"
+        data={
+          Object {
+            "contactMonomer": Array [
+              Object {
+                "dist": 10,
+                "i": 0,
+                "j": 1,
+              },
+              Object {
+                "dist": 10,
+                "i": 1,
+                "j": 0,
+              },
+            ],
+            "couplingScore": Array [
+              Object {
+                "A_i": "I",
+                "A_j": "J",
+                "cn": 1,
+                "dist": 10,
+                "dist_intra": 1,
+                "dist_multimer": 1,
+                "fn": 1,
+                "i": 0,
+                "j": 1,
+                "precision": 10,
+                "probability": 1,
+                "segment_i": "K",
+                "segment_j": "L",
+              },
+            ],
+          }
+        }
+        enableSliders={false}
+        height={400}
+        highlightColor="#0000ff"
+        padding={0}
+        width={400}
+      />
+    </GridRow>
+    <GridRow>
       <VizPanelContainerClass
         dataDirs={
           Array [

@@ -10,7 +10,16 @@ export interface ICellContext {
 }
 
 export const initialCellContext = {
+  addCells: (cells: CELL_TYPE[]) => {
+    return;
+  },
   currentCells: [] as CELL_TYPE[],
+  removeAllCells: (cells: CELL_TYPE[]) => {
+    return;
+  },
+  removeCells: (cells: CELL_TYPE[]) => {
+    return;
+  },
 } as ICellContext;
 
 const CellContext = React.createContext({

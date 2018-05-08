@@ -13,8 +13,25 @@ export class ChellVizApp extends React.Component<any, any> {
           <GridRow>
             <ContactMap
               data={{
-                contactMonomer: [],
-                couplingScore: [],
+                contactMonomer: [{ i: 0, j: 1, dist: 10 }, { i: 1, j: 0, dist: 10 }],
+                couplingScore: [
+                  {
+                    i: 0,
+                    // tslint:disable-next-line:object-literal-sort-keys
+                    A_i: 'I',
+                    j: 1,
+                    A_j: 'J',
+                    fn: 1,
+                    cn: 1,
+                    segment_i: 'K',
+                    segment_j: 'L',
+                    probability: 1,
+                    dist_intra: 1,
+                    dist_multimer: 1,
+                    dist: 10,
+                    precision: 10,
+                  },
+                ],
               }}
               enableSliders={false}
             />

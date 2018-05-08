@@ -19,9 +19,30 @@ export interface IResidueContext {
 }
 
 export const initialResidueContext = {
+  addCandidateResidues: (residues: RESIDUE_TYPE[]) => {
+    return;
+  },
+  addHoveredResidues: (residues: RESIDUE_TYPE[]) => {
+    return;
+  },
+  addLockedResiduePair: (residues: RESIDUE_TYPE[]) => {
+    return;
+  },
   candidateResidues: [] as number[],
   hoveredResidues: [] as number[],
   lockedResiduePairs: {} as IResidueSelection,
+  removeAllLockedResiduePairs: () => {
+    return;
+  },
+  removeCandidateResidues: () => {
+    return;
+  },
+  removeHoveredResidues: () => {
+    return;
+  },
+  removeLockedResiduePair: (residues: RESIDUE_TYPE[]) => {
+    return;
+  },
 } as IResidueContext;
 
 const ResidueContext = React.createContext({
