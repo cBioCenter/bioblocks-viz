@@ -32,3 +32,60 @@ exports[`NGLComponent Should match existing snapshot when canvas isn't available
   </div>
 </div>
 `;
+
+exports[`NGLComponent Should match existing snapshot when given sample data 1`] = `
+<NGLComponentClass
+  data={
+    Object {
+      "residueStore": Object {
+        "resno": Array [
+          0,
+          1,
+          2,
+          3,
+          4,
+        ],
+      },
+    }
+  }
+  height={400}
+  padding={0}
+  width={400}
+>
+  <div
+    id="NGLComponent"
+    style={
+      Object {
+        "padding": 0,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "height": 400,
+          "width": 400,
+        }
+      }
+    />
+    <GridRow>
+      <div
+        className="row"
+      >
+        <Button
+          as="button"
+          role="button"
+        >
+          <button
+            className="ui button"
+            onClick={[Function]}
+            role="button"
+          >
+            Remove Locked Residues
+          </button>
+        </Button>
+      </div>
+    </GridRow>
+  </div>
+</NGLComponentClass>
+`;

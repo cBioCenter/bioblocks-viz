@@ -187,9 +187,7 @@ declare module 'ngl' {
 
     /**
      * Creates an instance of Stage.
-     * @param {(string | HTMLElement)} idOrElement DOM ID or Element.
-     * @param {Partial<IStageParameters>} [params]
-     * @memberof Stage
+     * @param idOrElement DOM ID or Element.
      */
     constructor(idOrElement: string | HTMLElement, params?: Partial<IStageParameters>);
 
@@ -197,62 +195,42 @@ declare module 'ngl' {
     /**
      * Add the given component to the stage.
      *
-     * @param {Component} component The component to add.
-     * @memberof Stage
+     * @param component The component to add.
      */
     public addComponent(component: Component): void;
 
     /**
      * Create a component from the given object and add to the stage.
-     *
-     * @param {(Structure | Surface | Volume | Shape)} object
-     * @param {Partial<IComponentParameters>} [params]
-     * @returns {*}
-     * @memberof Stage
      */
     public addComponentFromObject(
       object: Structure | Surface | Volume | Shape,
       params?: Partial<IComponentParameters>,
-    ): any;
+    ): StructureComponent;
 
     /**
      * Add a zoom and a move animation with automatic targets.
      *
-     * @param {(undefined | number)} [duration] Animation time in milliseconds
-     * @memberof Stage
+     * @param [duration] Animation time in milliseconds.
      */
     public autoView(duration?: undefined | number): void;
 
     /**
      * Create default representations for the given component.
-     *
-     * @param {Component} component
-     * @memberof Stage
      */
     public defaultFileRepresentation(component: Component): void;
 
     /**
      * Cleanup when disposing of a stage object.
-     *
-     * @memberof Stage
      */
     public dispose(): void;
 
     /**
      * Iterator over each component and executing the callback.
-     *
-     * @param {() => void} callback
-     * @param {(undefined | string)} [type]
-     * @memberof Stage
      */
     public eachComponent(callback: () => void, type?: undefined | string): void;
 
     /**
      * Iterator over each representation and executing the callback.
-     *
-     * @param {() => void} callback
-     * @param {(undefined | string)} [type]
-     * @memberof Stage
      */
     public eachRepresentation(callback: () => void, type?: undefined | string): void;
     public getBox(): Box3;
@@ -260,50 +238,16 @@ declare module 'ngl' {
 
     /**
      * Get collection of components by name.
-     *
-     * @param {(string | RegExp)} name
-     * @returns {ComponentCollection}
-     * @memberof Stage
      */
     public getComponentsByName(name: string | RegExp): ComponentCollection;
 
     /**
      * Get collection of components by object.
-     *
-     * @param {(Structure | Surface | Volume | Shape)} object
-     * @returns {ComponentCollection}
-     * @memberof Stage
      */
     public getComponentsByObject(object: Structure | Surface | Volume | Shape): ComponentCollection;
 
     /**
      * Get stage parameters.
-     *
-     * @returns {({
-     *       ambientColor: string | number;
-     *       ambientIntensity: number;
-     *       backgroundColor: string | number;
-     *       cameraFov: number;
-     *       cameraType: CameraType;
-     *       clipDist: number;
-     *       clipFar: number;
-     *       clipNear: number;
-     *       fogFar: number;
-     *       fogNear: number;
-     *       hoverTimeout: number;
-     *       impostor: boolean;
-     *       lightColor: string | number;
-     *       lightIntensity: number;
-     *       mousePreset: 'default' | 'pymol' | 'coot' | 'astexviewer';
-     *       panSpeed: number;
-     *       quality: 'high' | 'medium' | 'low' | 'auto';
-     *       rotateSpeed: number;
-     *       sampleLevel: number;
-     *       tooltip: boolean;
-     *       workerDefault: boolean;
-     *       zoomSpeed: number;
-     *     })}
-     * @memberof Stage
      */
     public getParameters(): {
       ambientColor: string | number;
@@ -332,24 +276,18 @@ declare module 'ngl' {
 
     /**
      * Get collection of representations by name.
-     *
-     * @param {(string | RegExp)} name
-     * @returns {RepresentationCollection}
-     * @memberof Stage
      */
     public getRepresentationsByName(name: string | RegExp): RepresentationCollection;
     public getZoom(): number;
     public getZoomForBox(boundingBox: Box3): number;
 
     /**
-     * Handle any size-changes of the container element
-     *
-     * @memberof Stage
+     * Handle any size-changes of the container element.
      */
     public handleResize(): void;
 
     /**
-     * Load a file onto the stage
+     * Load a file onto the stage.
      *
      * @example // load from URL
      * stage.loadFile( "http://files.rcsb.org/download/5IOS.cif" );
@@ -366,10 +304,9 @@ declare module 'ngl' {
      * // load from URL and add a 'ball+stick' representation with double/triple bonds
      * stage.loadFile( "http://files.rcsb.org/download/1crn.cif" ).then( function( comp ){ comp.addRepresentation( "ball+stick", { multipleBond: true } ); } );
      *
-     * @param {(string | File | Blob)} path Either a URL or an object containing the file data.
-     * @param {Partial<IStageLoadFileParams>} [params] Loading parameters.
-     * @returns {(Promise<StructureComponent | SurfaceComponent>)} A Promise object that resolves to a StructureComponent, a SurfaceComponent or a ScriptComponent object, depending on the type of the loaded file.
-     * @memberof Stage
+     * @param path Either a URL or an object containing the file data.
+     * @param [params] Loading parameters.
+     * @returns A Promise object that resolves to a StructureComponent, a SurfaceComponent or a ScriptComponent object, depending on the type of the loaded file.
      */
     public loadFile(
       path: string | File | Blob,
@@ -380,10 +317,6 @@ declare module 'ngl' {
 
     /**
      * Make image from what is shown in a viewer canvas.
-     *
-     * @param {Partial<IImageParameters>} [params]
-     * @returns {Promise<Blob>}
-     * @memberof Stage
      */
     public makeImage(params?: Partial<IImageParameters>): Promise<Blob>;
     public measureClear(): void;
@@ -391,16 +324,13 @@ declare module 'ngl' {
 
     /**
      * Remove all components from the stage.
-     *
-     * @memberof Stage
      */
     public removeAllComponents(): void;
 
     /**
      * Remove the given component.
      *
-     * @param {Component} component The component to remove.
-     * @memberof Stage
+     * @param component The component to remove.
      */
     public removeComponent(component: Component): void;
     public setFocus(value: number): void;
@@ -408,10 +338,6 @@ declare module 'ngl' {
 
     /**
      * Set stage parameters.
-     *
-     * @param {Partial<IStageParameters>} [params]
-     * @returns {this}
-     * @memberof Stage
      */
     public setParameters(params?: Partial<IStageParameters>): this;
     public setQuality(value: RenderQualityType): void;
@@ -419,47 +345,37 @@ declare module 'ngl' {
     /**
      * Set rock.
      *
-     * @param {boolean} flag If true start rocking and stop spinning.
-     * @memberof Stage
+     * @param flag If true start rocking and stop spinning.
      */
     public setRock(flag: boolean): void;
 
     /**
      * Set width and height.
      *
-     * @param {string} width CSS width value.
-     * @param {string} height CSS height value.
-     * @memberof Stage
+     * @param width CSS width value.
+     * @param height CSS height value.
      */
     public setSize(width: string, height: string): void;
 
     /**
      * Set spin.
      *
-     * @param {boolean} flag If true start rocking and stop spinning.
-     * @memberof Stage
+     * @param flag If true start rocking and stop spinning.
      */
     public setSpin(flag: boolean): void;
 
     /**
      * Toggle fullscreen.
-     *
-     * @param {HTMLElement} element
-     * @memberof Stage
      */
     public toggleFullscreen(element: HTMLElement): void;
 
     /**
      * Toggle rock.
-     *
-     * @memberof Stage
      */
     public toggleRock(): void;
 
     /**
      * Toggle spin.
-     *
-     * @memberof Stage
      */
     public toggleSpin(): void;
   }

@@ -41,27 +41,28 @@ export interface IPlotlyChartProps {
  * @extends {React.Component<IPlotlyChartProps, any>}
  */
 export default class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
-  public container: plotly.PlotlyHTMLElement | null = null;
+  public plotlyCanvas: plotly.PlotlyHTMLElement | null = null;
+  protected canvasRef: HTMLDivElement | null = null;
 
   public attachListeners() {
-    this.container!.on('plotly_click', this.onClick);
-    this.container!.on('plotly_selected', this.onSelect);
+    this.plotlyCanvas!.on('plotly_click', this.onClick);
+    this.plotlyCanvas!.on('plotly_selected', this.onSelect);
 
-    this.container!.on('plotly_hover', this.onHover);
-    this.container!.on('plotly_unhover', this.onUnHover);
+    this.plotlyCanvas!.on('plotly_hover', this.onHover);
+    this.plotlyCanvas!.on('plotly_unhover', this.onUnHover);
 
     window.addEventListener('resize', this.resize);
   }
 
   public resize = () => {
-    plotly.Plots.resize(this.container!);
+    plotly.Plots.resize(this.plotlyCanvas!);
   };
 
   public draw = async (props: IPlotlyChartProps) => {
     const { data, layout, config } = props;
-    if (this.container) {
+    if (this.plotlyCanvas) {
       // plotly.react will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
-      this.container = await plotly.react(this.container, data, Object.assign({}, layout), config);
+      this.plotlyCanvas = await plotly.react(this.plotlyCanvas, data, Object.assign({}, layout), config);
     }
   };
 
@@ -69,13 +70,18 @@ export default class PlotlyChart extends React.Component<IPlotlyChartProps, any>
     this.draw(nextProps);
   }
 
-  public componentDidMount() {
-    this.draw(this.props);
+  public async componentDidMount() {
+    if (this.canvasRef && !this.plotlyCanvas) {
+      const { data, layout, config } = this.props;
+      this.plotlyCanvas = await plotly.react(this.canvasRef, data, Object.assign({}, layout), config);
+      this.attachListeners();
+      this.draw(this.props);
+    }
   }
 
   public componentWillUnmount() {
-    if (this.container) {
-      plotly.purge(this.container);
+    if (this.plotlyCanvas) {
+      plotly.purge(this.plotlyCanvas);
     }
     window.removeEventListener('resize', this.resize);
   }
@@ -91,17 +97,7 @@ export default class PlotlyChart extends React.Component<IPlotlyChartProps, any>
       onUnHoverCallback,
       ...other
     } = this.props;
-    return (
-      <div
-        {...other}
-        ref={async node => {
-          if (node && !this.container) {
-            this.container = await plotly.react(node, data as any, Object.assign({}, layout), config);
-            this.attachListeners();
-          }
-        }}
-      />
-    );
+    return <div {...other} ref={node => (this.canvasRef = node ? node : null)} />;
   }
 
   protected onClick = (event: plotly.PlotMouseEvent) => {

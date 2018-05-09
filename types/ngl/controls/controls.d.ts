@@ -66,7 +66,6 @@ declare module 'ngl' {
      * Creates an instance of KeyControls.
      *
      * @param stage The stage object.
-     * @param  [params]
      */
     constructor(stage: Stage, params?: IKeyControlsParams);
 
@@ -137,8 +136,6 @@ declare module 'ngl' {
 
     /**
      * The stage object.
-     * @param stage
-     * @param [params]
      */
     constructor(stage: Stage, params?: IMouseControlsParams);
 

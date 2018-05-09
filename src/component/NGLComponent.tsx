@@ -32,10 +32,6 @@ export const defaultNGLProps = {
 };
 
 export const initialNGLState = {
-  max_x: 0,
-  min_x: 1000,
-  nodeSize: 4,
-  probabilityFilter: 0.99,
   residueOffset: 0,
   stage: undefined as NGL.Stage | undefined,
   structureComponent: undefined as NGL.StructureComponent | undefined,
@@ -128,24 +124,28 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
    * @param stage A NGL Stage.
    */
   protected addStructureToStage(data: NGL.Structure, stage: NGL.Stage) {
-    const structureComponent = stage.addComponentFromObject(data) as NGL.StructureComponent;
+    const structureComponent = stage.addComponentFromObject(data);
 
-    this.setState({
-      residueOffset: data.residueStore.resno[0],
-      structureComponent,
-    });
+    if (structureComponent) {
+      this.setState({
+        residueOffset: data.residueStore.resno[0],
+        structureComponent,
+      });
 
-    stage.defaultFileRepresentation(structureComponent);
-    structureComponent.reprList.forEach(rep => {
-      rep.setParameters({ opacity: 1.0 });
-    });
+      stage.defaultFileRepresentation(structureComponent);
+      structureComponent.reprList.forEach(rep => {
+        rep.setParameters({ opacity: 1.0 });
+      });
 
-    structureComponent.stage.mouseControls.add(
-      NGL.MouseActions.HOVER_PICK,
-      (aStage: Stage, pickingProxy: PickingProxy) => this.onHover(aStage, pickingProxy, data, structureComponent),
-    );
+      structureComponent.stage.mouseControls.add(
+        NGL.MouseActions.HOVER_PICK,
+        (aStage: Stage, pickingProxy: PickingProxy) => this.onHover(aStage, pickingProxy, data, structureComponent),
+      );
 
-    stage.signals.clicked.add(this.onClick);
+      stage.signals.clicked.add(this.onClick);
+    } else {
+      console.error('StructureComponent was not created!');
+    }
   }
 
   protected onHover(

@@ -1,11 +1,14 @@
 import { CommonWrapper, mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
-import * as plotly from 'plotly.js';
 import * as React from 'react';
 
 import { IMockDict } from 'configs/SetupJest';
-import PlotlyChart, { generatePointCloudData } from '../../helper/PlotlyHelper';
+import PlotlyChart, { generatePointCloudData, IPlotlyChartProps } from '../../helper/PlotlyHelper';
+
+beforeEach(() => {
+  jest.resetModules();
+});
 
 describe('PlotlyChart', () => {
   const sampleData = [
@@ -21,21 +24,25 @@ describe('PlotlyChart', () => {
   ];
 
   /**
-   * Adds a dummy PlotlyHTMLElement to our PlotlyChart to test surface-level events and interactions.
+   * Helper function to create and wait for a PlotlyChart to be mounted.
    *
-   * @param wrapper A normally produced wrapper created by enzyme's mount or shallow renderer.
-   * @returns A wrapper for the PlotlyChart with the container reference set to a dummy PlotlyHTMLElement.
+   * @param props Custom props to be passed to the chart.
+   * @returns A wrapper for the PlotlyChart that has been mounted.
    */
-  const withPlotlyContainer = (wrapper: CommonWrapper) => {
-    const chartInstance = wrapper.instance() as PlotlyChart;
-
-    const div = mount(<div />);
-    chartInstance.container = {
-      ...div.getDOMNode(),
-      on: jest.fn() as any,
-    } as plotly.PlotlyHTMLElement;
-    chartInstance.forceUpdate();
+  const getMountedPlotlyChart = async (props: IPlotlyChartProps) => {
+    const wrapper = mount(<PlotlyChart {...props} />);
+    await wrapper.update();
     return wrapper;
+  };
+
+  /**
+   * Helper function to dispatch an event through plotly.
+   *
+   * @param wrapper The PlotlyChart.
+   * @param event The name of the event to dispatch.
+   */
+  const dispatchPlotlyEvent = (wrapper: CommonWrapper, event: string) => {
+    (wrapper.instance() as PlotlyChart).plotlyCanvas!.dispatchEvent(new Event(event));
   };
 
   test('Should match existing snapshot when given empty data.', () => {
@@ -75,28 +82,86 @@ describe('PlotlyChart', () => {
     }
   });
 
-  test('Should attach events when the container is attached.', () => {
+  test('Should attach events when the container is attached.', async () => {
     const spies: IMockDict = {
       onClickSpy: jest.fn(),
       onSelectedSpy: jest.fn(),
     };
 
-    const wrapper = withPlotlyContainer(
-      mount(
-        <PlotlyChart data={sampleData} onClickCallback={spies.onClickSpy} onSelectedCallback={spies.onSelectedSpy} />,
-      ),
-    );
+    const wrapper = await getMountedPlotlyChart({
+      data: sampleData,
+      onClickCallback: spies.onClickSpy,
+      onSelectedCallback: spies.onSelectedSpy,
+    });
+
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  test('Should call the appropriate callback when the window is resized.', () => {
+  test('Should call the appropriate callback when the window is resized.', async () => {
     const onResizeSpy = jest.fn();
 
-    const wrapper = withPlotlyContainer(mount(<PlotlyChart data={sampleData} />));
+    const wrapper = await getMountedPlotlyChart({ data: sampleData });
     const chartInstance = wrapper.instance() as PlotlyChart;
 
     chartInstance.resize = onResizeSpy;
     chartInstance.attachListeners();
+    window.dispatchEvent(new Event('resize'));
+    expect(onResizeSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test('Should call the appropriate callback when plotly emits a click event.', async () => {
+    const onClickSpy = jest.fn();
+    const wrapper = await getMountedPlotlyChart({
+      data: sampleData,
+      onClickCallback: onClickSpy,
+    });
+    dispatchPlotlyEvent(wrapper, 'plotly_click');
+    expect(onClickSpy).toBeCalled();
+  });
+
+  test('Should call the appropriate callback when plotly emits a hover event.', async () => {
+    const onHoverSpy = jest.fn();
+    const wrapper = await getMountedPlotlyChart({
+      data: sampleData,
+      onHoverCallback: onHoverSpy,
+    });
+    dispatchPlotlyEvent(wrapper, 'plotly_hover');
+    expect(onHoverSpy).toBeCalled();
+  });
+
+  test('Should call the appropriate callback when plotly emits a un-hover event.', async () => {
+    const onUnHoverSpy = jest.fn();
+    const wrapper = await getMountedPlotlyChart({
+      data: sampleData,
+      onUnHoverCallback: onUnHoverSpy,
+    });
+    dispatchPlotlyEvent(wrapper, 'plotly_unhover');
+    expect(onUnHoverSpy).toBeCalled();
+  });
+
+  test('Should call the appropriate callback when plotly emits a selected event.', async () => {
+    const onSelectedSpy = jest.fn();
+    const wrapper = await getMountedPlotlyChart({
+      data: sampleData,
+      onSelectedCallback: onSelectedSpy,
+    });
+    dispatchPlotlyEvent(wrapper, 'plotly_selected');
+    expect(onSelectedSpy).toBeCalled();
+  });
+
+  test('Should unmount correctly.', async () => {
+    const onResizeSpy = jest.fn();
+    const wrapper = await getMountedPlotlyChart({
+      data: sampleData,
+    });
+
+    const chartInstance = wrapper.instance() as PlotlyChart;
+
+    chartInstance.resize = onResizeSpy;
+    chartInstance.attachListeners();
+    window.dispatchEvent(new Event('resize'));
+    expect(onResizeSpy).toHaveBeenCalledTimes(1);
+    wrapper.unmount();
     window.dispatchEvent(new Event('resize'));
     expect(onResizeSpy).toHaveBeenCalledTimes(1);
   });
