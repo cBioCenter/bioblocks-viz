@@ -17,6 +17,7 @@
     "coverageDirectory": "dist/jest/coverage",
     "globals": {
       "ts-jest": {
+        "skipBabel": true,
         "tsConfigFile": "tsconfig.json"
       }
     },

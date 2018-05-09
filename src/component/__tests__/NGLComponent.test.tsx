@@ -6,8 +6,6 @@ import toJson from 'enzyme-to-json';
 import { initialResidueContext, IResidueContext } from '../../context/ResidueContext';
 import NGLComponent from '../NGLComponent';
 
-jest.mock('ngl');
-
 beforeEach(() => {
   jest.resetModules();
 });
@@ -62,6 +60,70 @@ describe('NGLComponent', () => {
     wrapper.setProps({
       data: sampleData,
     });
+  });
+
+  test('Should handle candidate residue updates.', () => {
+    const Component = getComponentWithContext();
+    const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
+
+    wrapper.setProps({
+      candidateResidues: [1, 2, 3],
+    });
+  });
+
+  test('Should handle hovered residue updates.', () => {
+    const Component = getComponentWithContext();
+    const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
+
+    wrapper.setProps({
+      hoveredResidues: [1, 2, 3],
+    });
+  });
+
+  test('Should handle locked residue updates.', () => {
+    const Component = getComponentWithContext();
+    const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
+
+    wrapper.setProps({
+      lockedResiduePairs: {
+        '1,2': [1, 2],
+      },
+    });
+  });
+
+  test('Should follow candidate selection flow.', () => {
+    const Component = getComponentWithContext();
+    const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
+
+    wrapper.setProps({
+      lockedResiduePairs: {
+        '1,2': [1, 2],
+      },
+    });
+    wrapper.update();
+
+    wrapper.setProps({
+      lockedResiduePairs: {
+        '1,2': [1, 2],
+        '3,4': [3, 4],
+      },
+    });
+    wrapper.update();
+  });
+
+  test('Should follow candidate residue selection flow.', () => {
+    const Component = getComponentWithContext();
+    const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
+
+    wrapper.setProps({
+      candidateResidues: [1],
+    });
+    wrapper.update();
+
+    wrapper.setProps({
+      candidateResidues: [2],
+    });
+    wrapper.update();
   });
 
   test('Should unmount correctly.', () => {

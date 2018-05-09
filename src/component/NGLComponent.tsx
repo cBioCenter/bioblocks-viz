@@ -125,7 +125,6 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
    */
   protected addStructureToStage(data: NGL.Structure, stage: NGL.Stage) {
     const structureComponent = stage.addComponentFromObject(data);
-
     if (structureComponent) {
       this.setState({
         residueOffset: data.residueStore.resno[0],
@@ -198,7 +197,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
     }
   };
 
-  protected removeHighlights(structureComponent: StructureComponent, residues: IResidueSelection) {
+  protected removeHighlights(structureComponent: StructureComponent, residues: IResidueSelection = {}) {
     const repDict = this.residueSelectionRepresentations;
     Object.keys(residues).forEach(prevKey => {
       repDict[prevKey].map(rep => structureComponent.removeRepresentation(rep));
