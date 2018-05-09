@@ -6,6 +6,10 @@ import * as React from 'react';
 import { IMockDict } from 'configs/SetupJest';
 import PlotlyChart, { generatePointCloudData, IPlotlyChartProps } from '../../helper/PlotlyHelper';
 
+beforeEach(() => {
+  jest.resetModules();
+});
+
 describe('PlotlyChart', () => {
   const sampleData = [
     {

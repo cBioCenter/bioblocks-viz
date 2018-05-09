@@ -97,15 +97,7 @@ export default class PlotlyChart extends React.Component<IPlotlyChartProps, any>
       onUnHoverCallback,
       ...other
     } = this.props;
-    return (
-      <div
-        {...other}
-        ref={node => {
-          console.log('render?');
-          this.canvasRef = node ? node : null;
-        }}
-      />
-    );
+    return <div {...other} ref={node => (this.canvasRef = node ? node : null)} />;
   }
 
   protected onClick = (event: plotly.PlotMouseEvent) => {

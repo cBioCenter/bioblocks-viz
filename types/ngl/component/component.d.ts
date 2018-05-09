@@ -116,7 +116,6 @@ declare module 'ngl' {
      * Creates an instance of Component.
      *
      * @param stage Stage object the component belongs to.
-     * @param object
      * @param [params] Parameter object.
      */
     constructor(stage: Stage, object: any, params?: Partial<IComponentParameters>);
@@ -127,7 +126,6 @@ declare module 'ngl' {
      *
      * @param position The 3d position.
      * @param content The HTML content.
-     * @param params
      * @returns The added annotation object.
      */
     public addAnnotation(position: Vector3, content: string | HTMLElement, params: IAnnotationParams): Annotation;
@@ -137,8 +135,6 @@ declare module 'ngl' {
 
     /**
      * Automatically center and zoom the component.
-     *
-     * @param [duration]
      */
     public autoView(duration?: undefined | number): void;
 
@@ -159,19 +155,16 @@ declare module 'ngl' {
     public eachRepresentation(callback: () => void): void;
 
     /**
-     * @param args
      * @returns The component's bounding box.
      */
     public getBox(...args: any[]): Box3;
 
     /**
-     * @param args
      * @returns The untransformed component's bounding box.
      */
     public getBoxUntransformed(...args: any[]): Box3;
 
     /**
-     * @param args
      * @returns The component's center position.
      */
     public getCenter(...args: any[]): Vector3;
@@ -421,8 +414,6 @@ declare module 'ngl' {
     // Methods
     /**
      * Add a measurement given as a pair, triple, quad of atom indices.
-     *
-     * @param atomList
      */
     public addMeasurement(atomList: number[]): void;
     public addRepresentation(
@@ -433,18 +424,11 @@ declare module 'ngl' {
 
     /**
      * Add a new trajectory component to the structure.
-     *
-     * @param [trajPath]
-     * @param [params]
-     * @returns
      */
     public addTrajectory(trajPath?: string, params?: object): TrajectoryElement;
 
     /**
      * Automatically center and zoom the component
-     *
-     * @param [duration]
-     * @returns
      */
     public autoView(duration?: undefined | number): any;
     public dispose(): void;
@@ -465,15 +449,11 @@ declare module 'ngl' {
 
     /**
      * Remove all measurements, optionally limit to distance, angle or dihedral.
-     *
-     * @param [type]
      */
     public removeAllMeasurements(type?: MeasurementFlags): void;
 
     /**
      * Remove a measurement given as a pair, triple, quad of atom indices.
-     *
-     * @param atomList
      */
     public removeMeasurement(atomList: number[]): void;
     public removeTrajectory(traj: TrajectoryElement): void;
@@ -482,7 +462,6 @@ declare module 'ngl' {
      * Set the default assembly.
      *
      * @param value Assembly name.
-     * @returns
      */
     public setDefaultAssembly(value: string): this;
 
@@ -490,7 +469,6 @@ declare module 'ngl' {
      * Set selection of structureView.
      *
      * @param sel Selection string.
-     * @returns
      */
     public setSelection(sel: string): this;
     public superpose(component: StructureComponent, align: boolean, sele1: string, sele2: string): this;
@@ -570,10 +548,6 @@ declare module 'ngl' {
     // Methods
     /**
      * Add a new volume representation to the component.
-     *
-     * @param type
-     * @param [params]
-     * @returns
      */
     public addRepresentation(type: VolumeRepresentationType, params?: object): RepresentationElement;
   }

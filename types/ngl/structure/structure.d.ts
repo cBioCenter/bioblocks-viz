@@ -150,7 +150,6 @@ declare module 'ngl' {
     /**
      * Gets the center of the (selected) structure atoms.
      *
-     * @param [selection]
      * @returns The center.
      */
     public atomCenter(selection?: Selection): Vector3;
@@ -164,7 +163,6 @@ declare module 'ngl' {
      * Atom iterator.
      *
      * @param callback The callback.
-     * @param [selection]
      */
     public eachAtom(callback: (entity: AtomProxy) => void, selection?: Selection): void;
 
@@ -172,7 +170,6 @@ declare module 'ngl' {
      * Bond iterator.
      *
      * @param callback The callback.
-     * @param [selection]
      */
     public eachBond(callback: (entity: BondProxy) => void, selection?: Selection): void;
 
@@ -180,7 +177,6 @@ declare module 'ngl' {
      * Chain iterator.
      *
      * @param callback The callback.
-     * @param [selection]
      */
     public eachChain(callback: (entity: ChainProxy) => void, selection?: Selection): void;
 
@@ -195,15 +191,13 @@ declare module 'ngl' {
      * Model iterator.
      *
      * @param callback The callback.
-     * @param [selection]
      */
     public eachModel(callback: (entity: ModelProxy) => void, selection?: Selection): void;
 
     /**
      * Polymer iterator
      *
-     * @param callback The callback
-     * @param [selection]
+     * @param callback The callback.
      */
     public eachPolymer(callback: (entity: Polymer) => void, selection?: Selection): void;
 
@@ -211,7 +205,6 @@ declare module 'ngl' {
      * Residue iterator.
      *
      * @param callback The callback.
-     * @param [selection]
      */
     public eachResidue(callback: (entity: ResidueProxy) => void, selection?: Selection): void;
 
@@ -298,8 +291,6 @@ declare module 'ngl' {
     /**
      * Gets the bounding box of the (selected) structure atoms.
      *
-     * @param [selection]
-     * @param [box]
      * @returns The box.
      */
     public getBoundingBox(selection?: Selection, box?: Box3): Box3;
@@ -319,7 +310,6 @@ declare module 'ngl' {
     /**
      * Gets the principal axes of the (selected) structure atoms.
      *
-     * @param [selection]
      * @returns The principal axes.
      */
     public getPrincipalAxes(selection?: Selection): PrincipalAxes;
