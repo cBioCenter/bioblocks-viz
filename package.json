@@ -23,8 +23,8 @@
     "moduleDirectories": ["node_modules", "src", "types"],
     "moduleFileExtensions": ["ts", "tsx", "js"],
     "moduleNameMapper": {
-      "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.ts",
-      "plotly.js/dist/plotly": "<rootDir>/src/__mocks__/plotlyMock.ts"
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.ts",
+      "plotly.js/dist/plotly": "<rootDir>/__mocks__/plotly.ts"
     },
     "modulePathIgnorePatterns": ["dist"],
     "setupFiles": ["./configs/SetupJest.ts"],
