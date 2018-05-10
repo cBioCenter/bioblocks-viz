@@ -131,6 +131,9 @@ const fetchGraphData = async (file: string) => {
 };
 
 const fetchNGLData = async (dir: string) => {
+  if (dir.length === 0) {
+    return Promise.reject('Empty path.');
+  }
   const file = `${dir}/protein.pdb`;
   const data = await NGL.autoLoad(file);
   return data as NGL.Structure;

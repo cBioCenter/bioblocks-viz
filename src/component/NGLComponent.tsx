@@ -43,8 +43,8 @@ export type NGLComponentState = Readonly<typeof initialNGLState>;
 export class NGLComponentClass extends React.Component<NGLComponentProps, NGLComponentState> {
   public readonly state: NGLComponentState = initialNGLState;
 
-  protected canvas: HTMLElement | null = null;
-  protected residueSelectionRepresentations: IRepresentationDict = {};
+  public canvas: HTMLElement | null = null;
+  public residueSelectionRepresentations: IRepresentationDict = {};
 
   constructor(props: any) {
     super(props);
@@ -177,6 +177,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
       removeCandidateResidues,
       removeHoveredResidues,
     } = this.props;
+    console.log(pickingProxy);
     const { structureComponent } = this.state;
 
     if (pickingProxy && (pickingProxy.atom || pickingProxy.bond)) {
