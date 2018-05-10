@@ -4,9 +4,7 @@ import * as Renderer from 'react-test-renderer';
 
 import toJson from 'enzyme-to-json';
 import { initialResidueContext, IResidueContext } from '../../context/ResidueContext';
-import NGLComponent from '../NGLComponent';
-
-jest.mock('ngl');
+import NGLComponent, { NGLComponentClass } from '../NGLComponent';
 
 beforeEach(() => {
   jest.resetModules();
@@ -62,6 +60,112 @@ describe('NGLComponent', () => {
     wrapper.setProps({
       data: sampleData,
     });
+  });
+
+  test('Should handle candidate residue updates.', () => {
+    const Component = getComponentWithContext();
+    const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
+
+    wrapper.setProps({
+      candidateResidues: [1, 2, 3],
+    });
+  });
+
+  test('Should handle hovered residue updates.', () => {
+    const Component = getComponentWithContext();
+    const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
+
+    wrapper.setProps({
+      hoveredResidues: [1, 2, 3],
+    });
+  });
+
+  test('Should show the ball+stick representation for hovered residues.', () => {
+    const expectedRep = ['ball+stick'];
+    const Component = getComponentWithContext();
+    const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
+    const instance = wrapper.instance() as NGLComponentClass;
+
+    wrapper.setProps({
+      hoveredResidues: [1],
+    });
+
+    expect(instance.residueSelectionRepresentations['1']).toEqual(expectedRep);
+  });
+
+  test('Should show the distance and ball+stick representation for locked residues.', () => {
+    const expectedRep = ['distance', 'ball+stick'];
+    const Component = getComponentWithContext();
+    const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
+    const instance = wrapper.instance() as NGLComponentClass;
+
+    wrapper.setProps({
+      lockedResiduePairs: {
+        '1,2': [1, 2],
+        '3,4': [3, 4],
+      },
+    });
+
+    expect(instance.residueSelectionRepresentations['1,2']).toEqual(expectedRep);
+    expect(instance.residueSelectionRepresentations['3,4']).toEqual(expectedRep);
+  });
+
+  test('Should show the distance and ball+stick representation for multiple hovered residues.', () => {
+    const expectedRep = ['distance', 'ball+stick'];
+    const Component = getComponentWithContext();
+    const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
+    const instance = wrapper.instance() as NGLComponentClass;
+
+    wrapper.setProps({
+      hoveredResidues: [7, 8],
+    });
+
+    wrapper.update();
+
+    expect(instance.residueSelectionRepresentations['7,8']).toEqual(expectedRep);
+  });
+
+  test('Should follow candidate selection flow.', () => {
+    const Component = getComponentWithContext();
+    const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
+
+    wrapper.setProps({
+      lockedResiduePairs: {
+        '1,2': [1, 2],
+      },
+    });
+    wrapper.update();
+
+    wrapper.setProps({
+      lockedResiduePairs: {
+        '1,2': [1, 2],
+        '3,4': [3, 4],
+      },
+    });
+    wrapper.update();
+  });
+
+  test('Should follow candidate residue selection flow.', () => {
+    const Component = getComponentWithContext();
+    const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
+
+    wrapper.setProps({
+      candidateResidues: [1],
+    });
+    wrapper.update();
+
+    wrapper.setProps({
+      candidateResidues: [2],
+    });
+    wrapper.update();
+  });
+
+  test('Should call appropriate residue clearing callback.', () => {
+    const Component = getComponentWithContext();
+    const removeSpy = jest.fn();
+    const wrapper = mount(<Component.NGLComponentClass removeAllLockedResiduePairs={removeSpy} />);
+    wrapper.find('Button').simulate('click');
+    expect(removeSpy).toHaveBeenCalledTimes(1);
   });
 
   test('Should unmount correctly.', () => {
