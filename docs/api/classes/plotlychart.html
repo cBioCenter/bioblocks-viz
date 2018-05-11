@@ -115,8 +115,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="plotlychart.html#container" class="tsd-kind-icon">container</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="plotlychart.html#canvasref" class="tsd-kind-icon">canvas<wbr>Ref</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="plotlychart.html#context" class="tsd-kind-icon">context</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="plotlychart.html#plotlycanvas" class="tsd-kind-icon">plotly<wbr>Canvas</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="plotlychart.html#props" class="tsd-kind-icon">props</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="plotlychart.html#refs" class="tsd-kind-icon">refs</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="plotlychart.html#state" class="tsd-kind-icon">state</a></li>
@@ -187,13 +188,13 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="container" class="tsd-anchor"></a>
-					<h3>container</h3>
-					<div class="tsd-signature tsd-kind-icon">container<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">plotly.PlotlyHTMLElement</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="canvasref" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> canvas<wbr>Ref</h3>
+					<div class="tsd-signature tsd-kind-icon">canvas<wbr>Ref<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HTMLDivElement</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/aba3ea9/src/helper/PlotlyHelper.tsx#L44">src/helper/PlotlyHelper.tsx:44</a></li>
+							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e77cd0c/src/helper/PlotlyHelper.tsx#L45">src/helper/PlotlyHelper.tsx:45</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -205,6 +206,16 @@
 						<p>Inherited from Component.context</p>
 						<ul>
 							<li>Defined in node_modules/@types/react/index.d.ts:302</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="plotlycanvas" class="tsd-anchor"></a>
+					<h3>plotly<wbr>Canvas</h3>
+					<div class="tsd-signature tsd-kind-icon">plotly<wbr>Canvas<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">plotly.PlotlyHTMLElement</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e77cd0c/src/helper/PlotlyHelper.tsx#L44">src/helper/PlotlyHelper.tsx:44</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -262,7 +273,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/aba3ea9/src/helper/PlotlyHelper.tsx#L46">src/helper/PlotlyHelper.tsx:46</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e77cd0c/src/helper/PlotlyHelper.tsx#L47">src/helper/PlotlyHelper.tsx:47</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -273,16 +284,16 @@
 					<a name="componentdidmount" class="tsd-anchor"></a>
 					<h3>component<wbr>Did<wbr>Mount</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">component<wbr>Did<wbr>Mount<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">component<wbr>Did<wbr>Mount<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/aba3ea9/src/helper/PlotlyHelper.tsx#L72">src/helper/PlotlyHelper.tsx:72</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e77cd0c/src/helper/PlotlyHelper.tsx#L74">src/helper/PlotlyHelper.tsx:74</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -296,7 +307,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/aba3ea9/src/helper/PlotlyHelper.tsx#L68">src/helper/PlotlyHelper.tsx:68</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e77cd0c/src/helper/PlotlyHelper.tsx#L70">src/helper/PlotlyHelper.tsx:70</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -319,7 +330,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/aba3ea9/src/helper/PlotlyHelper.tsx#L76">src/helper/PlotlyHelper.tsx:76</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e77cd0c/src/helper/PlotlyHelper.tsx#L83">src/helper/PlotlyHelper.tsx:83</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -336,7 +347,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/aba3ea9/src/helper/PlotlyHelper.tsx#L60">src/helper/PlotlyHelper.tsx:60</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e77cd0c/src/helper/PlotlyHelper.tsx#L62">src/helper/PlotlyHelper.tsx:62</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -383,7 +394,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/aba3ea9/src/helper/PlotlyHelper.tsx#L107">src/helper/PlotlyHelper.tsx:107</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e77cd0c/src/helper/PlotlyHelper.tsx#L105">src/helper/PlotlyHelper.tsx:105</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -406,7 +417,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/aba3ea9/src/helper/PlotlyHelper.tsx#L114">src/helper/PlotlyHelper.tsx:114</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e77cd0c/src/helper/PlotlyHelper.tsx#L112">src/helper/PlotlyHelper.tsx:112</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -429,7 +440,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/aba3ea9/src/helper/PlotlyHelper.tsx#L121">src/helper/PlotlyHelper.tsx:121</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e77cd0c/src/helper/PlotlyHelper.tsx#L119">src/helper/PlotlyHelper.tsx:119</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -452,7 +463,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/aba3ea9/src/helper/PlotlyHelper.tsx#L128">src/helper/PlotlyHelper.tsx:128</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e77cd0c/src/helper/PlotlyHelper.tsx#L126">src/helper/PlotlyHelper.tsx:126</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -476,7 +487,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.render</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/aba3ea9/src/helper/PlotlyHelper.tsx#L83">src/helper/PlotlyHelper.tsx:83</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e77cd0c/src/helper/PlotlyHelper.tsx#L91">src/helper/PlotlyHelper.tsx:91</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
@@ -493,7 +504,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/aba3ea9/src/helper/PlotlyHelper.tsx#L56">src/helper/PlotlyHelper.tsx:56</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e77cd0c/src/helper/PlotlyHelper.tsx#L58">src/helper/PlotlyHelper.tsx:58</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1019,11 +1030,14 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
 								<a href="plotlychart.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="plotlychart.html#container" class="tsd-kind-icon">container</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="plotlychart.html#canvasref" class="tsd-kind-icon">canvas<wbr>Ref</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="plotlychart.html#context" class="tsd-kind-icon">context</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="plotlychart.html#plotlycanvas" class="tsd-kind-icon">plotly<wbr>Canvas</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="plotlychart.html#props" class="tsd-kind-icon">props</a>
