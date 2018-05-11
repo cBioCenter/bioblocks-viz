@@ -10,6 +10,6 @@ export { default as VizPanelContainer } from './src/container/VizPanelContainer'
 export {
   fetchAppropriateData,
   fetchColorData,
-  getContactMonomerData,
+  getMonomerContactData,
   getCouplingScoresData,
 } from './src/helper/DataHelper';

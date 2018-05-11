@@ -177,7 +177,6 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
       removeCandidateResidues,
       removeHoveredResidues,
     } = this.props;
-    console.log(pickingProxy);
     const { structureComponent } = this.state;
 
     if (pickingProxy && (pickingProxy.atom || pickingProxy.bond)) {
@@ -262,30 +261,7 @@ type requiredProps = Partial<typeof defaultNGLProps> & Required<Omit<NGLComponen
 
 const NGLComponent = (props: requiredProps) => (
   <ResidueContext.Consumer>
-    {({
-      addLockedResiduePair,
-      addHoveredResidues,
-      addCandidateResidues,
-      candidateResidues,
-      hoveredResidues,
-      lockedResiduePairs,
-      removeAllLockedResiduePairs,
-      removeCandidateResidues,
-      removeHoveredResidues,
-    }) => (
-      <NGLComponentWithDefaultProps
-        {...props}
-        addCandidateResidues={addCandidateResidues}
-        addHoveredResidues={addHoveredResidues}
-        addLockedResiduePair={addLockedResiduePair}
-        candidateResidues={candidateResidues}
-        hoveredResidues={hoveredResidues}
-        lockedResiduePairs={lockedResiduePairs}
-        removeAllLockedResiduePairs={removeAllLockedResiduePairs}
-        removeCandidateResidues={removeCandidateResidues}
-        removeHoveredResidues={removeHoveredResidues}
-      />
-    )}
+    {context => <NGLComponentWithDefaultProps {...props} {...context} />}
   </ResidueContext.Consumer>
 );
 

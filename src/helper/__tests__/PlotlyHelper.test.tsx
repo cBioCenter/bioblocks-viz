@@ -150,20 +150,15 @@ describe('PlotlyChart', () => {
   });
 
   test('Should unmount correctly.', async () => {
-    const onResizeSpy = jest.fn();
     const wrapper = await getMountedPlotlyChart({
       data: sampleData,
     });
 
     const chartInstance = wrapper.instance() as PlotlyChart;
 
-    chartInstance.resize = onResizeSpy;
-    chartInstance.attachListeners();
-    window.dispatchEvent(new Event('resize'));
-    expect(onResizeSpy).toHaveBeenCalledTimes(1);
+    expect(chartInstance.plotlyCanvas).not.toBeNull();
     wrapper.unmount();
-    window.dispatchEvent(new Event('resize'));
-    expect(onResizeSpy).toHaveBeenCalledTimes(1);
+    expect(chartInstance.plotlyCanvas).toBeNull();
   });
 });
 

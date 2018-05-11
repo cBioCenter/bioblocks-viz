@@ -1,16 +1,57 @@
-import { shallow } from 'enzyme';
+import { CommonWrapper, mount, ReactWrapper, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import * as React from 'react';
 import * as Renderer from 'react-test-renderer';
 
-import ContactMap from '../ContactMap';
+import { initialResidueContext, IResidueContext } from '../../context/ResidueContext';
+import PlotlyChart from '../../helper/PlotlyHelper';
+import ContactMap, { ContactMapProps } from '../ContactMap';
+
+// https://medium.com/@ryandrewjohnson/unit-testing-components-using-reacts-new-context-api-4a5219f4b3fe
+// Provides a dummy context for unit testing purposes.
+const getComponentWithContext = (context: IResidueContext = { ...initialResidueContext }) => {
+  jest.doMock('../../context/ResidueContext', () => {
+    return {
+      ResidueContext: {
+        Consumer: (props: any) => props.children(context),
+      },
+    };
+  });
+
+  return require('../ContactMap');
+};
+
+/**
+ * Helper function to create and wait for a ContactMap to be mounted.
+ *
+ * @param props Custom props to be passed to the chart.
+ * @returns A wrapper for the ContactMap that has been mounted.
+ */
+const getMountedContactMap = async (props?: Partial<ContactMapProps>) => {
+  const Component = getComponentWithContext();
+  const wrapper = mount(<Component.ContactMapClass {...props} />);
+  await wrapper.mount();
+  return wrapper;
+};
+
+/**
+ * Helper function to dispatch an event through plotly.
+ *
+ * @param wrapper The PlotlyChart.
+ * @param event The name of the event to dispatch.
+ */
+const dispatchPlotlyEvent = (wrapper: ReactWrapper, eventName: string) => {
+  const plotlyWrapper = wrapper.find('PlotlyChart') as CommonWrapper;
+  (plotlyWrapper.instance() as PlotlyChart).plotlyCanvas!.dispatchEvent(new Event(eventName));
+};
 
 describe('ContactMap', () => {
   const emptyData = {
     contactMonomer: [],
     couplingScore: [],
     distanceMapMonomer: [],
+    observedMonomer: [],
   };
 
   const sampleData = {
@@ -34,6 +75,7 @@ describe('ContactMap', () => {
       },
     ],
     distanceMapMonomer: [{ id: 0, sec_struct_3state: 'A' }],
+    observedMonomer: [{ i: 0, j: 1, dist: 5 }, { i: 1, j: 0, dist: 5 }],
   };
 
   test('Should match existing snapshot when given no data.', () => {
@@ -52,5 +94,37 @@ describe('ContactMap', () => {
   test('Should match existing snapshot when given sample data and sliders are enabled.', () => {
     const component = Renderer.create(<ContactMap data={sampleData} enableSliders={true} />);
     expect(component.toJSON()).toMatchSnapshot();
+  });
+
+  test('Should match existing snapshot using ScatterGL is toggled on.', async () => {
+    const wrapper = await getMountedContactMap();
+    wrapper.setState({
+      iSUsingScatterGL: true,
+    });
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+
+  test('Should match existing snapshot using ScatterGL is toggled off.', async () => {
+    const wrapper = await getMountedContactMap();
+    wrapper.setState({
+      iSUsingScatterGL: false,
+    });
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+
+  test('Should invoke callback to add locked residues when a click event is fired.', async () => {
+    const onClickSpy = jest.fn();
+    const wrapper = await getMountedContactMap({ addLockedResiduePair: onClickSpy, data: sampleData });
+    dispatchPlotlyEvent(wrapper, 'plotly_click');
+
+    expect(onClickSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test('Should invoke callback to add hovered residues when a click event is fired.', async () => {
+    const onHoverSpy = jest.fn();
+    const wrapper = await getMountedContactMap({ addHoveredResidues: onHoverSpy, data: sampleData });
+    dispatchPlotlyEvent(wrapper, 'plotly_hover');
+
+    expect(onHoverSpy).toHaveBeenCalledTimes(1);
   });
 });

@@ -1,11 +1,13 @@
 import * as Plotly from 'plotly.js';
 import * as React from 'react';
+import { Checkbox } from 'semantic-ui-react';
 
-import ResidueContext, { IResidueSelection } from '../context/ResidueContext';
-import { IContactMapData, ICouplingScore, RESIDUE_TYPE } from '../data/chell-data';
-import PlotlyChart, { defaultConfig, defaultLayout, generatePointCloudData } from '../helper/PlotlyHelper';
+import ResidueContext, { initialResidueContext, IResidueSelection } from '../context/ResidueContext';
+import { IContactMapData, ICouplingScore, IMonomerContact, RESIDUE_TYPE } from '../data/chell-data';
 import { withDefaultProps } from '../helper/ReactHelper';
 import ChellSlider from './ChellSlider';
+import PointCloudChart from './PointCloudChart';
+import ScatterChart from './ScatterChart';
 
 export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
 export type ContactMapCallback = (coupling: CONTACT_MAP_CB_RESULT_TYPE) => void;
@@ -17,10 +19,13 @@ export const defaultContactMapProps = {
     contactMonomer: [],
     couplingScore: [],
     distanceMapMonomer: [],
+    observedMonomer: [],
   } as IContactMapData,
   enableSliders: false,
   height: 400,
   highlightColor: '#0000ff',
+  ...initialResidueContext,
+  observedColor: '#ff8800',
   onClick: undefined as ContactMapCallback | undefined,
   onMouseEnter: undefined as ContactMapCallback | undefined,
   padding: 0,
@@ -29,17 +34,19 @@ export const defaultContactMapProps = {
 };
 
 export const initialContactMapState = {
-  contactPoints: new Float32Array(0),
-  couplingPoints: new Float32Array(0),
-  highlightedPoints: new Float32Array(0),
+  contactPoints: [] as IMonomerContact[],
+  couplingPoints: [] as ICouplingScore[],
+  highlightedPoints: [] as number[],
+  isUsingScatterGL: true,
   nodeSize: 4,
+  observedPoints: [] as IMonomerContact[],
   probabilityFilter: 0.99,
 };
 
 export type ContactMapProps = {} & typeof defaultContactMapProps;
 export type ContactMapState = Readonly<typeof initialContactMapState>;
 
-export class ContactMapComponent extends React.Component<ContactMapProps, ContactMapState> {
+export class ContactMapClass extends React.Component<ContactMapProps, ContactMapState> {
   public readonly state: ContactMapState = initialContactMapState;
 
   constructor(props: ContactMapProps) {
@@ -54,68 +61,85 @@ export class ContactMapComponent extends React.Component<ContactMapProps, Contac
   }
 
   public componentDidUpdate(prevProps: ContactMapProps, prevState: ContactMapState) {
-    const { data } = this.props;
+    const { data, lockedResiduePairs } = this.props;
     const isFreshDataView = data !== prevProps.data || this.state.probabilityFilter !== prevState.probabilityFilter;
     if (isFreshDataView) {
       this.setupData(data);
     }
+
+    if (lockedResiduePairs && prevProps.lockedResiduePairs !== lockedResiduePairs) {
+      this.setupHighlightedResidues(lockedResiduePairs);
+    }
   }
 
   public render() {
-    const { contactColor, couplingColor, height, highlightColor, padding, width } = this.props;
-    const { contactPoints, couplingPoints } = this.state;
+    const {
+      contactColor,
+      couplingColor,
+      height,
+      // highlightColor,
+      observedColor,
+      padding,
+      width,
+      addLockedResiduePair,
+      addHoveredResidues,
+      candidateResidues,
+      hoveredResidues,
+      // lockedResiduePairs,
+    } = this.props;
+
+    const { contactPoints, couplingPoints, isUsingScatterGL, nodeSize, observedPoints } = this.state;
+
+    const inputData = [
+      {
+        color: contactColor,
+        points: contactPoints,
+      },
+      {
+        color: couplingColor,
+        points: couplingPoints,
+      },
+      {
+        color: observedColor,
+        points: observedPoints,
+      },
+    ];
 
     return (
-      <ResidueContext.Consumer>
-        {({
-          addLockedResiduePair,
-          addHoveredResidues,
-          candidateResidues,
-          hoveredResidues,
-          lockedResiduePairs,
-          removeLockedResiduePair,
-        }) => (
-          <div id="ContactMapComponent" style={{ padding }}>
-            <PlotlyChart
-              config={{
-                ...defaultConfig,
-              }}
-              data={[
-                generatePointCloudData(contactPoints, contactColor, this.state.nodeSize),
-                generatePointCloudData(couplingPoints, couplingColor, this.state.nodeSize),
-                generatePointCloudData(
-                  this.getHighlightedResidues(lockedResiduePairs),
-                  highlightColor,
-                  this.state.nodeSize,
-                ),
-              ]}
-              layout={{
-                ...defaultLayout,
-                height,
-                width,
-                xaxis: {
-                  ...defaultLayout.xaxis,
-                  gridcolor: '#ff0000',
-                  gridwidth: this.state.nodeSize,
-                  showticklabels: false,
-                  tickvals: [...candidateResidues, ...hoveredResidues],
-                },
-                yaxis: {
-                  ...defaultLayout.yaxis,
-                  gridcolor: '#ff0000',
-                  gridwidth: this.state.nodeSize,
-                  showticklabels: false,
-                  tickvals: [...candidateResidues, ...hoveredResidues],
-                },
-              }}
-              onHoverCallback={this.onMouseEnter(addHoveredResidues)}
-              onClickCallback={this.onMouseClick(addLockedResiduePair)}
-              onSelectedCallback={this.onMouseSelect()}
-            />
-            {this.props.enableSliders && this.renderSliders()}
-          </div>
+      <div id="ContactMapComponent" style={{ padding }}>
+        {isUsingScatterGL ? (
+          <ScatterChart
+            candidateResidues={candidateResidues}
+            height={height}
+            hoveredResidues={hoveredResidues}
+            data={inputData}
+            nodeSize={nodeSize}
+            onHoverCallback={this.onMouseEnter(addHoveredResidues)}
+            onClickCallback={this.onMouseClick(addLockedResiduePair)}
+            onSelectedCallback={this.onMouseSelect()}
+            width={width}
+          />
+        ) : (
+          <PointCloudChart
+            candidateResidues={candidateResidues}
+            height={height}
+            hoveredResidues={hoveredResidues}
+            data={inputData}
+            nodeSize={nodeSize}
+            onHoverCallback={this.onMouseEnter(addHoveredResidues)}
+            onClickCallback={this.onMouseClick(addLockedResiduePair)}
+            onSelectedCallback={this.onMouseSelect()}
+            width={width}
+          />
         )}
-      </ResidueContext.Consumer>
+        {this.props.enableSliders && this.renderSliders()}
+        <Checkbox
+          defaultChecked={false}
+          label={isUsingScatterGL ? 'ScatterGL' : 'Point Cloud'}
+          toggle={true}
+          onChange={this.onRendererChange()}
+        />
+      </div>
     );
   }
 
@@ -158,25 +182,14 @@ export class ContactMapComponent extends React.Component<ContactMapProps, Contac
       });
     });
 
-    const contactPoints = new Float32Array(data.contactMonomer.length * 2);
-    data.contactMonomer.forEach((contact, index) => {
-      contactPoints[index * 2] = contact.i;
-      contactPoints[index * 2 + 1] = contact.j;
-    });
-
-    const couplingPoints = new Float32Array(blackDots.length * 2);
-    blackDots.forEach((coupling, index) => {
-      couplingPoints[index * 2] = coupling.i;
-      couplingPoints[index * 2 + 1] = coupling.j;
-    });
-
     this.setState({
-      contactPoints,
-      couplingPoints,
+      contactPoints: data.contactMonomer,
+      couplingPoints: data.couplingScore.filter(coupling => coupling.probability >= this.state.probabilityFilter),
+      observedPoints: data.observedMonomer,
     });
   }
 
-  protected getHighlightedResidues(pairs: IResidueSelection): Float32Array {
+  protected setupHighlightedResidues(pairs: IResidueSelection) {
     const pairKeys = Object.keys(pairs);
     const highlightedPoints: number[] = [];
     for (const key of pairKeys) {
@@ -184,14 +197,11 @@ export class ContactMapComponent extends React.Component<ContactMapProps, Contac
         highlightedPoints.push(residue);
       }
     }
-    return new Float32Array([...highlightedPoints, ...highlightedPoints.slice().reverse()]);
-  }
 
-  protected onClick = () => (coupling: ICouplingScore) => {
-    if (this.props.onClick) {
-      this.props.onClick(coupling);
-    }
-  };
+    this.setState({
+      highlightedPoints,
+    });
+  }
 
   protected onProbabilityChange = () => (value: number) => {
     this.setState({
@@ -202,6 +212,12 @@ export class ContactMapComponent extends React.Component<ContactMapProps, Contac
   protected onNodeSizeChange = () => (value: number) => {
     this.setState({
       nodeSize: value,
+    });
+  };
+
+  protected onRendererChange = () => (value: any) => {
+    this.setState({
+      isUsingScatterGL: !this.state.isUsingScatterGL,
     });
   };
 
@@ -220,7 +236,16 @@ export class ContactMapComponent extends React.Component<ContactMapProps, Contac
   };
 }
 
-const ContactMap = withDefaultProps(defaultContactMapProps, ContactMapComponent);
+export const ContactMapWithDefaultProps = withDefaultProps(defaultContactMapProps, ContactMapClass);
+
+// TODO The required props should be discernable from `withDefaultProps` without needing to duplicate.
+// However the Context consumer syntax is still new to me and I can't find the right combination :(
+type requiredProps = Partial<typeof defaultContactMapProps> &
+  Required<Omit<ContactMapProps, keyof typeof defaultContactMapProps>>;
+
+const ContactMap = (props: requiredProps) => (
+  <ResidueContext.Consumer>{context => <ContactMapWithDefaultProps {...props} {...context} />}</ResidueContext.Consumer>
+);
 
 export default ContactMap;
 export { ContactMap };

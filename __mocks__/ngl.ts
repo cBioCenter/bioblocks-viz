@@ -4,7 +4,7 @@
  * Our NGLComponent is, understandably, pretty coupled to the library so this is an attempt to mock the behaviors.
  *
  * Ideally it would be most beneficial if as much of the original ngl / automocked version could be used.
- * As of this writing, it is not 100% clear to me on how best to approach seletively mocking several
+ * As of this writing, it is not 100% clear to me on how best to approach selectively mocking several
  * classes/methods of the 3rd party library while retaining most of the original functionality.
  *
  * https://facebook.github.io/jest/docs/en/manual-mocks.html
