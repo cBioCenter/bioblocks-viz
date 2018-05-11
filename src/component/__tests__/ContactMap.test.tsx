@@ -28,7 +28,7 @@ const getComponentWithContext = (context: IResidueContext = { ...initialResidueC
  * @param props Custom props to be passed to the chart.
  * @returns A wrapper for the ContactMap that has been mounted.
  */
-const getMountedContactMap = async (props: Partial<ContactMapProps>) => {
+const getMountedContactMap = async (props?: Partial<ContactMapProps>) => {
   const Component = getComponentWithContext();
   const wrapper = mount(<Component.ContactMapClass {...props} />);
   await wrapper.mount();
@@ -94,6 +94,22 @@ describe('ContactMap', () => {
   test('Should match existing snapshot when given sample data and sliders are enabled.', () => {
     const component = Renderer.create(<ContactMap data={sampleData} enableSliders={true} />);
     expect(component.toJSON()).toMatchSnapshot();
+  });
+
+  test('Should match existing snapshot using ScatterGL is toggled on.', async () => {
+    const wrapper = await getMountedContactMap();
+    wrapper.setState({
+      iSUsingScatterGL: true,
+    });
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+
+  test('Should match existing snapshot using ScatterGL is toggled off.', async () => {
+    const wrapper = await getMountedContactMap();
+    wrapper.setState({
+      iSUsingScatterGL: false,
+    });
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 
   test('Should invoke callback to add locked residues when a click event is fired.', async () => {

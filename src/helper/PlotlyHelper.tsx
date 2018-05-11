@@ -51,6 +51,7 @@ export default class PlotlyChart extends React.Component<IPlotlyChartProps, any>
     this.plotlyCanvas!.on('plotly_hover', this.onHover);
     this.plotlyCanvas!.on('plotly_unhover', this.onUnHover);
 
+    window.removeEventListener('resize', this.resize);
     window.addEventListener('resize', this.resize);
   }
 
@@ -82,6 +83,7 @@ export default class PlotlyChart extends React.Component<IPlotlyChartProps, any>
   public componentWillUnmount() {
     if (this.plotlyCanvas) {
       plotly.purge(this.plotlyCanvas);
+      this.plotlyCanvas = null;
     }
     window.removeEventListener('resize', this.resize);
   }

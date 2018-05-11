@@ -1,11 +1,12 @@
 import * as Plotly from 'plotly.js';
 import * as React from 'react';
-// import { Checkbox } from 'semantic-ui-react';
+import { Checkbox } from 'semantic-ui-react';
 
 import ResidueContext, { initialResidueContext, IResidueSelection } from '../context/ResidueContext';
 import { IContactMapData, ICouplingScore, IMonomerContact, RESIDUE_TYPE } from '../data/chell-data';
 import { withDefaultProps } from '../helper/ReactHelper';
 import ChellSlider from './ChellSlider';
+import PointCloudChart from './PointCloudChart';
 import ScatterChart from './ScatterChart';
 
 export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
@@ -36,11 +37,8 @@ export const initialContactMapState = {
   contactPoints: [] as IMonomerContact[],
   couplingPoints: [] as ICouplingScore[],
   highlightedPoints: [] as number[],
-  // contactPoints: new Float32Array(0),
-  // couplingPoints: new Float32Array(0),
-  // highlightedPoints: new Float32Array(0),
+  isUsingScatterGL: true,
   nodeSize: 4,
-  // observedPoints: new Float32Array(0),
   observedPoints: [] as IMonomerContact[],
   probabilityFilter: 0.99,
 };
@@ -90,7 +88,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
       // lockedResiduePairs,
     } = this.props;
 
-    const { contactPoints, couplingPoints, nodeSize, observedPoints } = this.state;
+    const { contactPoints, couplingPoints, isUsingScatterGL, nodeSize, observedPoints } = this.state;
 
     const inputData = [
       {
@@ -109,19 +107,38 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
     return (
       <div id="ContactMapComponent" style={{ padding }}>
-        <ScatterChart
-          candidateResidues={candidateResidues}
-          height={height}
-          hoveredResidues={hoveredResidues}
-          inputData={inputData}
-          nodeSize={nodeSize}
-          onHoverCallback={this.onMouseEnter(addHoveredResidues)}
-          onClickCallback={this.onMouseClick(addLockedResiduePair)}
-          onSelectedCallback={this.onMouseSelect()}
-          width={width}
-        />
+        {isUsingScatterGL ? (
+          <ScatterChart
+            candidateResidues={candidateResidues}
+            height={height}
+            hoveredResidues={hoveredResidues}
+            data={inputData}
+            nodeSize={nodeSize}
+            onHoverCallback={this.onMouseEnter(addHoveredResidues)}
+            onClickCallback={this.onMouseClick(addLockedResiduePair)}
+            onSelectedCallback={this.onMouseSelect()}
+            width={width}
+          />
+        ) : (
+          <PointCloudChart
+            candidateResidues={candidateResidues}
+            height={height}
+            hoveredResidues={hoveredResidues}
+            data={inputData}
+            nodeSize={nodeSize}
+            onHoverCallback={this.onMouseEnter(addHoveredResidues)}
+            onClickCallback={this.onMouseClick(addLockedResiduePair)}
+            onSelectedCallback={this.onMouseSelect()}
+            width={width}
+          />
+        )}
         {this.props.enableSliders && this.renderSliders()}
-        {/* <Checkbox toggle={true} onChange={this.onRendererChange()} /> */}
+        <Checkbox
+          defaultChecked={false}
+          label={isUsingScatterGL ? 'ScatterGL' : 'Point Cloud'}
+          toggle={true}
+          onChange={this.onRendererChange()}
+        />
       </div>
     );
   }
@@ -199,7 +216,9 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
   };
 
   protected onRendererChange = () => (value: any) => {
-    console.log(value);
+    this.setState({
+      isUsingScatterGL: !this.state.isUsingScatterGL,
+    });
   };
 
   protected onMouseEnter = (cb: (residue: RESIDUE_TYPE[]) => void) => (e: Plotly.PlotMouseEvent) => {

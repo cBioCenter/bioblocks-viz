@@ -3,31 +3,44 @@ import * as React from 'react';
 import { RESIDUE_TYPE } from '../data/chell-data';
 
 import PlotlyChart, { defaultConfig, defaultLayout, generatePointCloudData } from '../helper/PlotlyHelper';
+import { withDefaultProps } from '../helper/ReactHelper';
 
-export interface IScatterChartProps {
-  candidateResidues: RESIDUE_TYPE[];
-  inputData: Array<{
+export const defaultPointCloudProps = {
+  candidateResidues: new Array<RESIDUE_TYPE>(),
+  height: 400,
+  hoveredResidues: new Array<RESIDUE_TYPE>(),
+  onClickCallback: (...args: any[]) => {
+    return;
+  },
+  onHoverCallback: (...args: any[]) => {
+    return;
+  },
+  onSelectedCallback: (...args: any[]) => {
+    return;
+  },
+  onUnHoverCallback: (...args: any[]) => {
+    return;
+  },
+  width: 400,
+};
+
+export type PointCloudChartProps = {
+  data: Array<{
     color: string;
     points: Array<{ i: number; j: number }>;
   }>;
-  height: number;
-  hoveredResidues: RESIDUE_TYPE[];
   nodeSize: number;
-  width: number;
-  onClickCallback?: () => void;
-  onHoverCallback?: () => void;
-  onSelectedCallback?: () => void;
-  onUnHoverCallback?: () => void;
-}
+} & typeof defaultPointCloudProps;
 
-class ScatterChart extends React.Component<IScatterChartProps, any> {
-  constructor(props: any) {
+class PointCloudChartClass extends React.Component<PointCloudChartProps, any> {
+  constructor(props: PointCloudChartProps) {
     super(props);
   }
-  public render() {
-    const { candidateResidues, height, hoveredResidues, inputData, nodeSize, width, ...props } = this.props;
 
-    const pointCloudData = inputData.map(entry =>
+  public render() {
+    const { candidateResidues, height, hoveredResidues, data, nodeSize, width, ...props } = this.props;
+
+    const pointCloudData = data.map(entry =>
       generatePointCloudData(this.generateFloat32ArrayFromContacts(entry.points), entry.color, nodeSize),
     );
 
@@ -71,5 +84,6 @@ class ScatterChart extends React.Component<IScatterChartProps, any> {
   };
 }
 
-export default ScatterChart;
-export { ScatterChart };
+export const PointCloudChart = withDefaultProps(defaultPointCloudProps, PointCloudChartClass);
+
+export default PointCloudChart;

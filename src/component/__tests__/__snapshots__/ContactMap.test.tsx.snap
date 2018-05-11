@@ -1,5 +1,343 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ContactMap Should match existing snapshot using ScatterGL is toggled off. 1`] = `
+<ContactMapClass
+  addCandidateResidues={[Function]}
+  addHoveredResidues={[Function]}
+  addLockedResiduePair={[Function]}
+  candidateResidues={Array []}
+  contactColor="#009999"
+  couplingColor="#000000"
+  data={
+    Object {
+      "contactMonomer": Array [],
+      "couplingScore": Array [],
+      "distanceMapMonomer": Array [],
+      "observedMonomer": Array [],
+    }
+  }
+  enableSliders={false}
+  height={400}
+  highlightColor="#0000ff"
+  hoveredResidues={Array []}
+  lockedResiduePairs={Object {}}
+  observedColor="#ff8800"
+  padding={0}
+  removeAllLockedResiduePairs={[Function]}
+  removeCandidateResidues={[Function]}
+  removeHoveredResidues={[Function]}
+  removeLockedResiduePair={[Function]}
+  width={400}
+>
+  <div
+    id="ContactMapComponent"
+    style={
+      Object {
+        "padding": 0,
+      }
+    }
+  >
+    <ScatterChartClass
+      candidateResidues={Array []}
+      data={
+        Array [
+          Object {
+            "color": "#009999",
+            "points": Array [],
+          },
+          Object {
+            "color": "#000000",
+            "points": Array [],
+          },
+          Object {
+            "color": "#ff8800",
+            "points": Array [],
+          },
+        ]
+      }
+      height={400}
+      hoveredResidues={Array []}
+      nodeSize={4}
+      onClickCallback={[Function]}
+      onHoverCallback={[Function]}
+      onSelectedCallback={[Function]}
+      onUnHoverCallback={[Function]}
+      width={400}
+    >
+      <PlotlyChart
+        config={
+          Object {
+            "displayModeBar": true,
+          }
+        }
+        data={
+          Array [
+            Object {
+              "marker": Object {
+                "color": "#009999",
+                "sizemax": 8,
+                "sizemin": 4,
+              },
+              "mode": "markers",
+              "type": "scattergl",
+              "x": Array [],
+              "y": Array [],
+            },
+            Object {
+              "marker": Object {
+                "color": "#000000",
+                "sizemax": 8,
+                "sizemin": 4,
+              },
+              "mode": "markers",
+              "type": "scattergl",
+              "x": Array [],
+              "y": Array [],
+            },
+            Object {
+              "marker": Object {
+                "color": "#ff8800",
+                "sizemax": 8,
+                "sizemin": 4,
+              },
+              "mode": "markers",
+              "type": "scattergl",
+              "x": Array [],
+              "y": Array [],
+            },
+          ]
+        }
+        layout={
+          Object {
+            "height": 400,
+            "legend": Object {},
+            "showlegend": false,
+            "title": "",
+            "width": 400,
+            "xaxis": Object {
+              "gridcolor": "#ff0000",
+              "gridwidth": 4,
+              "showticklabels": false,
+              "tickvals": Array [],
+            },
+            "yaxis": Object {
+              "autorange": "reversed",
+              "gridcolor": "#ff0000",
+              "gridwidth": 4,
+              "showticklabels": false,
+              "tickvals": Array [],
+            },
+          }
+        }
+        onClickCallback={[Function]}
+        onHoverCallback={[Function]}
+        onSelectedCallback={[Function]}
+        onUnHoverCallback={[Function]}
+      >
+        <div />
+      </PlotlyChart>
+    </ScatterChartClass>
+    <Checkbox
+      defaultChecked={false}
+      label="ScatterGL"
+      onChange={[Function]}
+      toggle={true}
+      type="checkbox"
+    >
+      <div
+        className="ui toggle checkbox"
+        onChange={[Function]}
+        onClick={[Function]}
+        onMouseDown={[Function]}
+      >
+        <input
+          checked={false}
+          className="hidden"
+          onClick={[Function]}
+          readOnly={true}
+          tabIndex={0}
+          type="checkbox"
+        />
+        <label
+          key="ScatterGL"
+        >
+          ScatterGL
+        </label>
+      </div>
+    </Checkbox>
+  </div>
+</ContactMapClass>
+`;
+
+exports[`ContactMap Should match existing snapshot using ScatterGL is toggled on. 1`] = `
+<ContactMapClass
+  addCandidateResidues={[Function]}
+  addHoveredResidues={[Function]}
+  addLockedResiduePair={[Function]}
+  candidateResidues={Array []}
+  contactColor="#009999"
+  couplingColor="#000000"
+  data={
+    Object {
+      "contactMonomer": Array [],
+      "couplingScore": Array [],
+      "distanceMapMonomer": Array [],
+      "observedMonomer": Array [],
+    }
+  }
+  enableSliders={false}
+  height={400}
+  highlightColor="#0000ff"
+  hoveredResidues={Array []}
+  lockedResiduePairs={Object {}}
+  observedColor="#ff8800"
+  padding={0}
+  removeAllLockedResiduePairs={[Function]}
+  removeCandidateResidues={[Function]}
+  removeHoveredResidues={[Function]}
+  removeLockedResiduePair={[Function]}
+  width={400}
+>
+  <div
+    id="ContactMapComponent"
+    style={
+      Object {
+        "padding": 0,
+      }
+    }
+  >
+    <ScatterChartClass
+      candidateResidues={Array []}
+      data={
+        Array [
+          Object {
+            "color": "#009999",
+            "points": Array [],
+          },
+          Object {
+            "color": "#000000",
+            "points": Array [],
+          },
+          Object {
+            "color": "#ff8800",
+            "points": Array [],
+          },
+        ]
+      }
+      height={400}
+      hoveredResidues={Array []}
+      nodeSize={4}
+      onClickCallback={[Function]}
+      onHoverCallback={[Function]}
+      onSelectedCallback={[Function]}
+      onUnHoverCallback={[Function]}
+      width={400}
+    >
+      <PlotlyChart
+        config={
+          Object {
+            "displayModeBar": true,
+          }
+        }
+        data={
+          Array [
+            Object {
+              "marker": Object {
+                "color": "#009999",
+                "sizemax": 8,
+                "sizemin": 4,
+              },
+              "mode": "markers",
+              "type": "scattergl",
+              "x": Array [],
+              "y": Array [],
+            },
+            Object {
+              "marker": Object {
+                "color": "#000000",
+                "sizemax": 8,
+                "sizemin": 4,
+              },
+              "mode": "markers",
+              "type": "scattergl",
+              "x": Array [],
+              "y": Array [],
+            },
+            Object {
+              "marker": Object {
+                "color": "#ff8800",
+                "sizemax": 8,
+                "sizemin": 4,
+              },
+              "mode": "markers",
+              "type": "scattergl",
+              "x": Array [],
+              "y": Array [],
+            },
+          ]
+        }
+        layout={
+          Object {
+            "height": 400,
+            "legend": Object {},
+            "showlegend": false,
+            "title": "",
+            "width": 400,
+            "xaxis": Object {
+              "gridcolor": "#ff0000",
+              "gridwidth": 4,
+              "showticklabels": false,
+              "tickvals": Array [],
+            },
+            "yaxis": Object {
+              "autorange": "reversed",
+              "gridcolor": "#ff0000",
+              "gridwidth": 4,
+              "showticklabels": false,
+              "tickvals": Array [],
+            },
+          }
+        }
+        onClickCallback={[Function]}
+        onHoverCallback={[Function]}
+        onSelectedCallback={[Function]}
+        onUnHoverCallback={[Function]}
+      >
+        <div />
+      </PlotlyChart>
+    </ScatterChartClass>
+    <Checkbox
+      defaultChecked={false}
+      label="ScatterGL"
+      onChange={[Function]}
+      toggle={true}
+      type="checkbox"
+    >
+      <div
+        className="ui toggle checkbox"
+        onChange={[Function]}
+        onClick={[Function]}
+        onMouseDown={[Function]}
+      >
+        <input
+          checked={false}
+          className="hidden"
+          onClick={[Function]}
+          readOnly={true}
+          tabIndex={0}
+          type="checkbox"
+        />
+        <label
+          key="ScatterGL"
+        >
+          ScatterGL
+        </label>
+      </div>
+    </Checkbox>
+  </div>
+</ContactMapClass>
+`;
+
 exports[`ContactMap Should match existing snapshot when given empty data. 1`] = `<[object Object] />`;
 
 exports[`ContactMap Should match existing snapshot when given no data. 1`] = `<[object Object] />`;
@@ -14,6 +352,29 @@ exports[`ContactMap Should match existing snapshot when given sample data and sl
   }
 >
   <div />
+  <div
+    className="ui toggle checkbox"
+    onChange={[Function]}
+    onClick={[Function]}
+    onMouseDown={[Function]}
+  >
+    <input
+      checked={false}
+      className="hidden"
+      id={undefined}
+      name={undefined}
+      onClick={[Function]}
+      readOnly={true}
+      tabIndex={0}
+      type="checkbox"
+      value={undefined}
+    />
+    <label
+      htmlFor={undefined}
+    >
+      ScatterGL
+    </label>
+  </div>
 </div>
 `;
 
@@ -132,6 +493,29 @@ exports[`ContactMap Should match existing snapshot when given sample data and sl
         />
       </div>
     </div>
+  </div>
+  <div
+    className="ui toggle checkbox"
+    onChange={[Function]}
+    onClick={[Function]}
+    onMouseDown={[Function]}
+  >
+    <input
+      checked={false}
+      className="hidden"
+      id={undefined}
+      name={undefined}
+      onClick={[Function]}
+      readOnly={true}
+      tabIndex={0}
+      type="checkbox"
+      value={undefined}
+    />
+    <label
+      htmlFor={undefined}
+    >
+      ScatterGL
+    </label>
   </div>
 </div>
 `;

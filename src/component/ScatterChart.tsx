@@ -3,31 +3,43 @@ import * as React from 'react';
 import { RESIDUE_TYPE } from '../data/chell-data';
 
 import PlotlyChart, { defaultConfig, defaultLayout, generateScatterGLData } from '../helper/PlotlyHelper';
+import { withDefaultProps } from '../helper/ReactHelper';
 
-export interface IScatterChartProps {
-  candidateResidues: RESIDUE_TYPE[];
-  inputData: Array<{
+export const defaultScatterChartProps = {
+  candidateResidues: new Array<RESIDUE_TYPE>(),
+  height: 400,
+  hoveredResidues: new Array<RESIDUE_TYPE>(),
+  onClickCallback: (...args: any[]) => {
+    return;
+  },
+  onHoverCallback: (...args: any[]) => {
+    return;
+  },
+  onSelectedCallback: (...args: any[]) => {
+    return;
+  },
+  onUnHoverCallback: (...args: any[]) => {
+    return;
+  },
+  width: 400,
+};
+
+export type ScatterChartProps = {
+  data: Array<{
     color: string;
     points: Array<{ i: number; j: number }>;
   }>;
-  height: number;
-  hoveredResidues: RESIDUE_TYPE[];
   nodeSize: number;
-  width: number;
-  onClickCallback?: (...args: any[]) => void;
-  onHoverCallback?: (...args: any[]) => void;
-  onSelectedCallback?: (...args: any[]) => void;
-  onUnHoverCallback?: (...args: any[]) => void;
-}
+} & typeof defaultScatterChartProps;
 
-class ScatterChart extends React.Component<IScatterChartProps, any> {
+class ScatterChartClass extends React.Component<ScatterChartProps, any> {
   constructor(props: any) {
     super(props);
   }
   public render() {
-    const { candidateResidues, height, hoveredResidues, inputData, nodeSize, width, ...props } = this.props;
+    const { candidateResidues, height, hoveredResidues, data, nodeSize, width, ...props } = this.props;
 
-    const scatterGLData = inputData.map(entry => generateScatterGLData(entry.points, entry.color, nodeSize));
+    const scatterGLData = data.map(entry => generateScatterGLData(entry.points, entry.color, nodeSize));
 
     return (
       <PlotlyChart
@@ -60,5 +72,6 @@ class ScatterChart extends React.Component<IScatterChartProps, any> {
   }
 }
 
+export const ScatterChart = withDefaultProps(defaultScatterChartProps, ScatterChartClass);
+
 export default ScatterChart;
-export { ScatterChart };
