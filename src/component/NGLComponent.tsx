@@ -177,7 +177,6 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
       removeCandidateResidues,
       removeHoveredResidues,
     } = this.props;
-    console.log(pickingProxy);
     const { structureComponent } = this.state;
 
     if (pickingProxy && (pickingProxy.atom || pickingProxy.bond)) {

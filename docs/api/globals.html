@@ -89,6 +89,7 @@
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/contactmapclass.html" class="tsd-kind-icon">Contact<wbr>Map<wbr>Class</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/nglcomponentclass.html" class="tsd-kind-icon">NGLComponent<wbr>Class</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/plotlychart.html" class="tsd-kind-icon">Plotly<wbr>Chart</a></li>
+								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/scatterchart.html" class="tsd-kind-icon">Scatter<wbr>Chart</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/sequenceviewer.html" class="tsd-kind-icon">Sequence<wbr>Viewer</a></li>
 							</ul>
 						</section>
@@ -109,6 +110,7 @@
 								<li class="tsd-kind-interface"><a href="interfaces/iresiduecontext.html" class="tsd-kind-icon">IResidue<wbr>Context</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/iresiduepair.html" class="tsd-kind-icon">IResidue<wbr>Pair</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/iresidueselection.html" class="tsd-kind-icon">IResidue<wbr>Selection</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/iscatterchartprops.html" class="tsd-kind-icon">IScatter<wbr>Chart<wbr>Props</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/isequenceviewerprops.html" class="tsd-kind-icon">ISequence<wbr>Viewer<wbr>Props</a></li>
 							</ul>
 						</section>
@@ -233,7 +235,7 @@
 					<div class="tsd-signature tsd-kind-icon">CONTACT_<wbr>MAP_<wbr>CB_<wbr>RESULT_<wbr>TYPE<span class="tsd-signature-symbol">:</span> <a href="interfaces/icouplingscore.html" class="tsd-signature-type">ICouplingScore</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/ContactMap.tsx:15</li>
+							<li>Defined in src/component/ContactMap.tsx:11</li>
 						</ul>
 					</aside>
 				</section>
@@ -306,7 +308,7 @@
 					<div class="tsd-signature tsd-kind-icon">Contact<wbr>Map<wbr>Callback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/ContactMap.tsx:16</li>
+							<li>Defined in src/component/ContactMap.tsx:12</li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -337,7 +339,7 @@
 					<div class="tsd-signature tsd-kind-icon">Contact<wbr>Map<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/ContactMap.tsx:52</li>
+							<li>Defined in src/component/ContactMap.tsx:48</li>
 						</ul>
 					</aside>
 				</section>
@@ -347,7 +349,7 @@
 					<div class="tsd-signature tsd-kind-icon">Contact<wbr>Map<wbr>State<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/ContactMap.tsx:53</li>
+							<li>Defined in src/component/ContactMap.tsx:49</li>
 						</ul>
 					</aside>
 				</section>
@@ -507,9 +509,9 @@
 					<div class="tsd-signature tsd-kind-icon">required<wbr>Props<span class="tsd-signature-symbol">:</span> <a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><a href="globals.html#omit" class="tsd-signature-type">Omit</a><span class="tsd-signature-symbol">&lt;</span><a href="globals.html#contactmapprops" class="tsd-signature-type">ContactMapProps</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">keyof object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/NGLComponent.tsx:261</li>
+							<li>Defined in src/component/NGLComponent.tsx:260</li>
 							<li>Defined in src/component/SpringComponent.tsx:221</li>
-							<li>Defined in src/component/ContactMap.tsx:248</li>
+							<li>Defined in src/component/ContactMap.tsx:224</li>
 						</ul>
 					</aside>
 				</section>
@@ -532,7 +534,7 @@
 					<div class="tsd-signature tsd-kind-icon">Contact<wbr>Map<wbr>With<wbr>Default<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultContactMapProps, ContactMapClass)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/ContactMap.tsx:244</li>
+							<li>Defined in src/component/ContactMap.tsx:220</li>
 						</ul>
 					</aside>
 				</section>
@@ -542,7 +544,7 @@
 					<div class="tsd-signature tsd-kind-icon">NGLComponent<wbr>With<wbr>Default<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultNGLProps, NGLComponentClass)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/NGLComponent.tsx:257</li>
+							<li>Defined in src/component/NGLComponent.tsx:256</li>
 						</ul>
 					</aside>
 				</section>
@@ -639,7 +641,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/ContactMap.tsx:251</li>
+									<li>Defined in src/component/ContactMap.tsx:227</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -662,7 +664,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/NGLComponent.tsx:263</li>
+									<li>Defined in src/component/NGLComponent.tsx:262</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1189,7 +1191,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Contact<wbr>Map<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/ContactMap.tsx:18</li>
+							<li>Defined in src/component/ContactMap.tsx:14</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1198,7 +1200,7 @@
 						<div class="tsd-signature tsd-kind-icon">contact<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;#009999&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMap.tsx:19</li>
+								<li>Defined in src/component/ContactMap.tsx:15</li>
 							</ul>
 						</aside>
 					</section>
@@ -1208,7 +1210,7 @@
 						<div class="tsd-signature tsd-kind-icon">coupling<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;#000000&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMap.tsx:20</li>
+								<li>Defined in src/component/ContactMap.tsx:16</li>
 							</ul>
 						</aside>
 					</section>
@@ -1218,7 +1220,7 @@
 						<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <a href="interfaces/icontactmapdata.html" class="tsd-signature-type">IContactMapData</a><span class="tsd-signature-symbol"> =&nbsp;{contactMonomer: [],couplingScore: [],distanceMapMonomer: [],observedMonomer: [],} as IContactMapData</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMap.tsx:21</li>
+								<li>Defined in src/component/ContactMap.tsx:17</li>
 							</ul>
 						</aside>
 					</section>
@@ -1228,7 +1230,7 @@
 						<div class="tsd-signature tsd-kind-icon">enable<wbr>Sliders<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMap.tsx:27</li>
+								<li>Defined in src/component/ContactMap.tsx:23</li>
 							</ul>
 						</aside>
 					</section>
@@ -1238,7 +1240,7 @@
 						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMap.tsx:28</li>
+								<li>Defined in src/component/ContactMap.tsx:24</li>
 							</ul>
 						</aside>
 					</section>
@@ -1248,7 +1250,7 @@
 						<div class="tsd-signature tsd-kind-icon">highlight<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;#0000ff&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMap.tsx:29</li>
+								<li>Defined in src/component/ContactMap.tsx:25</li>
 							</ul>
 						</aside>
 					</section>
@@ -1258,7 +1260,7 @@
 						<div class="tsd-signature tsd-kind-icon">observed<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;#ff8800&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMap.tsx:31</li>
+								<li>Defined in src/component/ContactMap.tsx:27</li>
 							</ul>
 						</aside>
 					</section>
@@ -1268,7 +1270,7 @@
 						<div class="tsd-signature tsd-kind-icon">on<wbr>Click<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> =&nbsp;undefined as ContactMapCallback | undefined</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMap.tsx:32</li>
+								<li>Defined in src/component/ContactMap.tsx:28</li>
 							</ul>
 						</aside>
 					</section>
@@ -1278,7 +1280,7 @@
 						<div class="tsd-signature tsd-kind-icon">on<wbr>Mouse<wbr>Enter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> =&nbsp;undefined as ContactMapCallback | undefined</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMap.tsx:33</li>
+								<li>Defined in src/component/ContactMap.tsx:29</li>
 							</ul>
 						</aside>
 					</section>
@@ -1288,7 +1290,7 @@
 						<div class="tsd-signature tsd-kind-icon">padding<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMap.tsx:34</li>
+								<li>Defined in src/component/ContactMap.tsx:30</li>
 							</ul>
 						</aside>
 					</section>
@@ -1298,7 +1300,7 @@
 						<div class="tsd-signature tsd-kind-icon">selected<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;undefined as number | undefined</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMap.tsx:35</li>
+								<li>Defined in src/component/ContactMap.tsx:31</li>
 							</ul>
 						</aside>
 					</section>
@@ -1308,7 +1310,7 @@
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMap.tsx:36</li>
+								<li>Defined in src/component/ContactMap.tsx:32</li>
 							</ul>
 						</aside>
 					</section>
@@ -1742,7 +1744,7 @@
 					<div class="tsd-signature tsd-kind-icon">initial<wbr>Contact<wbr>Map<wbr>State<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/ContactMap.tsx:39</li>
+							<li>Defined in src/component/ContactMap.tsx:35</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1751,7 +1753,7 @@
 						<div class="tsd-signature tsd-kind-icon">contact<wbr>Points<span class="tsd-signature-symbol">:</span> <a href="interfaces/imonomercontact.html" class="tsd-signature-type">IMonomerContact</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[] as IMonomerContact[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMap.tsx:40</li>
+								<li>Defined in src/component/ContactMap.tsx:36</li>
 							</ul>
 						</aside>
 					</section>
@@ -1761,17 +1763,17 @@
 						<div class="tsd-signature tsd-kind-icon">coupling<wbr>Points<span class="tsd-signature-symbol">:</span> <a href="interfaces/icouplingscore.html" class="tsd-signature-type">ICouplingScore</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[] as ICouplingScore[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMap.tsx:41</li>
+								<li>Defined in src/component/ContactMap.tsx:37</li>
 							</ul>
 						</aside>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 						<a name="initialcontactmapstate.highlightedpoints" class="tsd-anchor"></a>
 						<h3>highlighted<wbr>Points</h3>
-						<div class="tsd-signature tsd-kind-icon">highlighted<wbr>Points<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+						<div class="tsd-signature tsd-kind-icon">highlighted<wbr>Points<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[] as number[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMap.tsx:42</li>
+								<li>Defined in src/component/ContactMap.tsx:38</li>
 							</ul>
 						</aside>
 					</section>
@@ -1781,7 +1783,7 @@
 						<div class="tsd-signature tsd-kind-icon">node<wbr>Size<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;4</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMap.tsx:46</li>
+								<li>Defined in src/component/ContactMap.tsx:42</li>
 							</ul>
 						</aside>
 					</section>
@@ -1791,7 +1793,7 @@
 						<div class="tsd-signature tsd-kind-icon">observed<wbr>Points<span class="tsd-signature-symbol">:</span> <a href="interfaces/imonomercontact.html" class="tsd-signature-type">IMonomerContact</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[] as IMonomerContact[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMap.tsx:48</li>
+								<li>Defined in src/component/ContactMap.tsx:44</li>
 							</ul>
 						</aside>
 					</section>
@@ -1801,7 +1803,7 @@
 						<div class="tsd-signature tsd-kind-icon">probability<wbr>Filter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.99</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/ContactMap.tsx:49</li>
+								<li>Defined in src/component/ContactMap.tsx:45</li>
 							</ul>
 						</aside>
 					</section>
@@ -1968,6 +1970,9 @@
 						<a href="classes/plotlychart.html" class="tsd-kind-icon">Plotly<wbr>Chart</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/scatterchart.html" class="tsd-kind-icon">Scatter<wbr>Chart</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/sequenceviewer.html" class="tsd-kind-icon">Sequence<wbr>Viewer</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -2011,6 +2016,9 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/iresidueselection.html" class="tsd-kind-icon">IResidue<wbr>Selection</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/iscatterchartprops.html" class="tsd-kind-icon">IScatter<wbr>Chart<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/isequenceviewerprops.html" class="tsd-kind-icon">ISequence<wbr>Viewer<wbr>Props</a>
