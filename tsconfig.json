@@ -20,7 +20,7 @@
     "target": "es5"
   },
   "exclude": ["node_modules"],
-  "include": ["src/**/*", "types", "configs/**/*", "__mocks__/**/*"],
+  "include": ["src/**/*", "types", "configs/**/*", "__mocks__/**/*", "./chell-viz.ts"],
   "typeAcquisition": {
     "enable": true
   }
