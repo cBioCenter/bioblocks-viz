@@ -15,7 +15,15 @@ export class MockPlotlyHTMLElement {
   public dispatchEvent(event: Event): boolean {
     const cb = this.callbacks.get(event.type);
     if (cb) {
-      cb();
+      switch (event.type) {
+        case 'plotly_click':
+        case 'plotly_hover':
+          cb({ points: [{ x: 0, y: 0 }] });
+          break;
+        default:
+          cb();
+          break;
+      }
     }
     return true;
   }

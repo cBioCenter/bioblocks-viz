@@ -27,7 +27,8 @@ export enum VIZ_TYPE {
 export interface IContactMapData {
   contactMonomer: IMonomerContact[];
   couplingScore: ICouplingScore[];
-  distanceMapMonomer?: IDistanceMapMonomer[];
+  distanceMapMonomer: IDistanceMapMonomer[];
+  observedMonomer: IMonomerContact[];
 }
 
 export interface IMonomerContact {

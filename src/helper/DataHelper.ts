@@ -1,7 +1,14 @@
 import * as d3 from 'd3';
 import * as NGL from 'ngl';
 import { ISpringCategoricalColorData, ISpringCategoricalColorDataInput, ISpringGraphData } from 'spring';
-import { CONTACT_MAP_DATA_TYPE, IContactMapData, ICouplingScore, IMonomerContact, VIZ_TYPE } from '../data/chell-data';
+import {
+  CONTACT_MAP_DATA_TYPE,
+  IContactMapData,
+  ICouplingScore,
+  IDistanceMapMonomer,
+  IMonomerContact,
+  VIZ_TYPE,
+} from '../data/chell-data';
 
 export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
   switch (viz) {
@@ -140,21 +147,28 @@ const fetchNGLData = async (dir: string) => {
 };
 
 const fetchContactMapData = async (dir: string): Promise<IContactMapData> => {
-  const contactMapFiles = ['contacts_monomer.csv', 'coupling_scores.csv' /*, 'distance_map.csv'*/];
+  const contactMapFiles = ['contacts_monomer.csv', 'coupling_scores.csv', 'distance_map.csv', 'observed_monomer.csv'];
   const promiseResults = await Promise.all(contactMapFiles.map(file => d3.text(`${dir}/${file}`)));
 
   const data: CONTACT_MAP_DATA_TYPE = {
-    contactMonomer: getContactMonomerData(promiseResults[0]),
+    contactMonomer: getMonomerContactData(promiseResults[0]),
     couplingScore: getCouplingScoresData(promiseResults[1]),
-    // distanceMapMonomer: parseDistanceMonomerLine(promiseResults[2]),
+    distanceMapMonomer: getDistanceContactData(promiseResults[2]),
+    observedMonomer: getMonomerContactData(promiseResults[3]),
   };
 
   return data;
 };
 
-export const getContactMonomerData = (line: string): IMonomerContact[] => {
+/**
+ * Parse a csv string to get the monomer contact data.
+ *
+ * @param csvText A csv file represented as a single string.
+ * @returns Data representing the contacts: An i value, a j value, and distance between them.
+ */
+export const getMonomerContactData = (csvText: string): IMonomerContact[] => {
   const results: IMonomerContact[] = [];
-  line
+  csvText
     .split('\n')
     .slice(1)
     .forEach(row => {
@@ -189,3 +203,23 @@ export const getCouplingScoresData = (line: string): ICouplingScore[] =>
         precision: parseFloat(items[12]),
       };
     });
+
+/**
+ * Parse a csv string to get the monomer contact data.
+ *
+ * @param csvText A csv file represented as a single string.
+ * @returns Data representing the distance: An id and a sec_structure value.
+ */
+export const getDistanceContactData = (csvText: string): IDistanceMapMonomer[] => {
+  const results: IDistanceMapMonomer[] = [];
+  csvText
+    .split('\n')
+    .slice(1)
+    .forEach(row => {
+      const items = row.split(',');
+      if (items.length === 3) {
+        results.push({ id: parseFloat(items[1]), sec_struct_3state: items[2] });
+      }
+    });
+  return results;
+};

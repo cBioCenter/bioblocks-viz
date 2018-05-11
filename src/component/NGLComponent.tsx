@@ -262,30 +262,7 @@ type requiredProps = Partial<typeof defaultNGLProps> & Required<Omit<NGLComponen
 
 const NGLComponent = (props: requiredProps) => (
   <ResidueContext.Consumer>
-    {({
-      addLockedResiduePair,
-      addHoveredResidues,
-      addCandidateResidues,
-      candidateResidues,
-      hoveredResidues,
-      lockedResiduePairs,
-      removeAllLockedResiduePairs,
-      removeCandidateResidues,
-      removeHoveredResidues,
-    }) => (
-      <NGLComponentWithDefaultProps
-        {...props}
-        addCandidateResidues={addCandidateResidues}
-        addHoveredResidues={addHoveredResidues}
-        addLockedResiduePair={addLockedResiduePair}
-        candidateResidues={candidateResidues}
-        hoveredResidues={hoveredResidues}
-        lockedResiduePairs={lockedResiduePairs}
-        removeAllLockedResiduePairs={removeAllLockedResiduePairs}
-        removeCandidateResidues={removeCandidateResidues}
-        removeHoveredResidues={removeHoveredResidues}
-      />
-    )}
+    {context => <NGLComponentWithDefaultProps {...props} {...context} />}
   </ResidueContext.Consumer>
 );
 

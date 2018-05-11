@@ -32,19 +32,9 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     fluid={true}
     raised={true}
   >
-    <ContactMapComponent
-      contactColor="#009999"
-      couplingColor="#000000"
-      data={
-        Object {
-          "contactMonomer": Array [],
-          "couplingScore": Array [],
-          "distanceMapMonomer": Array [],
-        }
-      }
+    <ContactMap
       enableSliders={true}
       height={420}
-      highlightColor="#0000ff"
       onMouseEnter={[Function]}
       padding={15}
       width={420}

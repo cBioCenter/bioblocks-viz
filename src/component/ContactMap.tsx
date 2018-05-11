@@ -1,8 +1,8 @@
 import * as Plotly from 'plotly.js';
 import * as React from 'react';
 
-import ResidueContext, { IResidueSelection } from '../context/ResidueContext';
-import { IContactMapData, ICouplingScore, RESIDUE_TYPE } from '../data/chell-data';
+import ResidueContext, { initialResidueContext, IResidueSelection } from '../context/ResidueContext';
+import { IContactMapData, ICouplingScore, IMonomerContact, RESIDUE_TYPE } from '../data/chell-data';
 import PlotlyChart, { defaultConfig, defaultLayout, generatePointCloudData } from '../helper/PlotlyHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
 import ChellSlider from './ChellSlider';
@@ -17,10 +17,13 @@ export const defaultContactMapProps = {
     contactMonomer: [],
     couplingScore: [],
     distanceMapMonomer: [],
+    observedMonomer: [],
   } as IContactMapData,
   enableSliders: false,
   height: 400,
   highlightColor: '#0000ff',
+  ...initialResidueContext,
+  observedColor: '#ff8800',
   onClick: undefined as ContactMapCallback | undefined,
   onMouseEnter: undefined as ContactMapCallback | undefined,
   padding: 0,
@@ -33,13 +36,14 @@ export const initialContactMapState = {
   couplingPoints: new Float32Array(0),
   highlightedPoints: new Float32Array(0),
   nodeSize: 4,
+  observedPoints: new Float32Array(0),
   probabilityFilter: 0.99,
 };
 
 export type ContactMapProps = {} & typeof defaultContactMapProps;
 export type ContactMapState = Readonly<typeof initialContactMapState>;
 
-export class ContactMapComponent extends React.Component<ContactMapProps, ContactMapState> {
+export class ContactMapClass extends React.Component<ContactMapProps, ContactMapState> {
   public readonly state: ContactMapState = initialContactMapState;
 
   constructor(props: ContactMapProps) {
@@ -62,60 +66,64 @@ export class ContactMapComponent extends React.Component<ContactMapProps, Contac
   }
 
   public render() {
-    const { contactColor, couplingColor, height, highlightColor, padding, width } = this.props;
-    const { contactPoints, couplingPoints } = this.state;
+    const {
+      contactColor,
+      couplingColor,
+      height,
+      highlightColor,
+      observedColor,
+      padding,
+      width,
+      addLockedResiduePair,
+      addHoveredResidues,
+      candidateResidues,
+      hoveredResidues,
+      lockedResiduePairs,
+    } = this.props;
+
+    const { contactPoints, couplingPoints, observedPoints } = this.state;
 
     return (
-      <ResidueContext.Consumer>
-        {({
-          addLockedResiduePair,
-          addHoveredResidues,
-          candidateResidues,
-          hoveredResidues,
-          lockedResiduePairs,
-          removeLockedResiduePair,
-        }) => (
-          <div id="ContactMapComponent" style={{ padding }}>
-            <PlotlyChart
-              config={{
-                ...defaultConfig,
-              }}
-              data={[
-                generatePointCloudData(contactPoints, contactColor, this.state.nodeSize),
-                generatePointCloudData(couplingPoints, couplingColor, this.state.nodeSize),
-                generatePointCloudData(
-                  this.getHighlightedResidues(lockedResiduePairs),
-                  highlightColor,
-                  this.state.nodeSize,
-                ),
-              ]}
-              layout={{
-                ...defaultLayout,
-                height,
-                width,
-                xaxis: {
-                  ...defaultLayout.xaxis,
-                  gridcolor: '#ff0000',
-                  gridwidth: this.state.nodeSize,
-                  showticklabels: false,
-                  tickvals: [...candidateResidues, ...hoveredResidues],
-                },
-                yaxis: {
-                  ...defaultLayout.yaxis,
-                  gridcolor: '#ff0000',
-                  gridwidth: this.state.nodeSize,
-                  showticklabels: false,
-                  tickvals: [...candidateResidues, ...hoveredResidues],
-                },
-              }}
-              onHoverCallback={this.onMouseEnter(addHoveredResidues)}
-              onClickCallback={this.onMouseClick(addLockedResiduePair)}
-              onSelectedCallback={this.onMouseSelect()}
-            />
-            {this.props.enableSliders && this.renderSliders()}
-          </div>
-        )}
-      </ResidueContext.Consumer>
+      <div id="ContactMapComponent" style={{ padding }}>
+        <PlotlyChart
+          config={{
+            ...defaultConfig,
+          }}
+          data={[
+            generatePointCloudData(contactPoints, contactColor, this.state.nodeSize),
+            generatePointCloudData(couplingPoints, couplingColor, this.state.nodeSize),
+            generatePointCloudData(observedPoints, observedColor, this.state.nodeSize),
+            generatePointCloudData(
+              this.getHighlightedResidues(lockedResiduePairs),
+              highlightColor,
+              this.state.nodeSize,
+            ),
+          ]}
+          layout={{
+            ...defaultLayout,
+            height,
+            width,
+            xaxis: {
+              ...defaultLayout.xaxis,
+              gridcolor: '#ff0000',
+              gridwidth: this.state.nodeSize,
+              showticklabels: false,
+              tickvals: [...candidateResidues, ...hoveredResidues],
+            },
+            yaxis: {
+              ...defaultLayout.yaxis,
+              gridcolor: '#ff0000',
+              gridwidth: this.state.nodeSize,
+              showticklabels: false,
+              tickvals: [...candidateResidues, ...hoveredResidues],
+            },
+          }}
+          onHoverCallback={this.onMouseEnter(addHoveredResidues)}
+          onClickCallback={this.onMouseClick(addLockedResiduePair)}
+          onSelectedCallback={this.onMouseSelect()}
+        />
+        {this.props.enableSliders && this.renderSliders()}
+      </div>
     );
   }
 
@@ -158,21 +166,14 @@ export class ContactMapComponent extends React.Component<ContactMapProps, Contac
       });
     });
 
-    const contactPoints = new Float32Array(data.contactMonomer.length * 2);
-    data.contactMonomer.forEach((contact, index) => {
-      contactPoints[index * 2] = contact.i;
-      contactPoints[index * 2 + 1] = contact.j;
-    });
-
-    const couplingPoints = new Float32Array(blackDots.length * 2);
-    blackDots.forEach((coupling, index) => {
-      couplingPoints[index * 2] = coupling.i;
-      couplingPoints[index * 2 + 1] = coupling.j;
-    });
+    const contactPoints = this.generateFloat32ArrayFromContacts(data.contactMonomer);
+    const couplingPoints = this.generateFloat32ArrayFromContacts(blackDots);
+    const observedPoints = this.generateFloat32ArrayFromContacts(data.observedMonomer);
 
     this.setState({
       contactPoints,
       couplingPoints,
+      observedPoints,
     });
   }
 
@@ -186,12 +187,6 @@ export class ContactMapComponent extends React.Component<ContactMapProps, Contac
     }
     return new Float32Array([...highlightedPoints, ...highlightedPoints.slice().reverse()]);
   }
-
-  protected onClick = () => (coupling: ICouplingScore) => {
-    if (this.props.onClick) {
-      this.props.onClick(coupling);
-    }
-  };
 
   protected onProbabilityChange = () => (value: number) => {
     this.setState({
@@ -218,9 +213,27 @@ export class ContactMapComponent extends React.Component<ContactMapProps, Contac
   protected onMouseSelect = () => (e: Plotly.PlotSelectionEvent) => {
     console.log(`onMouseSelect: ${e}`);
   };
+
+  protected generateFloat32ArrayFromContacts = (array: IMonomerContact[]) => {
+    const result = new Float32Array(array.length * 2);
+    array.forEach((item, index) => {
+      result[index * 2] = item.i;
+      result[index * 2 + 1] = item.j;
+    });
+    return result;
+  };
 }
 
-const ContactMap = withDefaultProps(defaultContactMapProps, ContactMapComponent);
+export const ContactMapWithDefaultProps = withDefaultProps(defaultContactMapProps, ContactMapClass);
+
+// TODO The required props should be discernable from `withDefaultProps` without needing to duplicate.
+// However the Context consumer syntax is still new to me and I can't find the right combination :(
+type requiredProps = Partial<typeof defaultContactMapProps> &
+  Required<Omit<ContactMapProps, keyof typeof defaultContactMapProps>>;
+
+const ContactMap = (props: requiredProps) => (
+  <ResidueContext.Consumer>{context => <ContactMapWithDefaultProps {...props} {...context} />}</ResidueContext.Consumer>
+);
 
 export default ContactMap;
 export { ContactMap };
