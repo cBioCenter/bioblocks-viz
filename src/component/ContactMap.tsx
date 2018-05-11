@@ -3,7 +3,12 @@ import * as React from 'react';
 
 import ResidueContext, { initialResidueContext, IResidueSelection } from '../context/ResidueContext';
 import { IContactMapData, ICouplingScore, IMonomerContact, RESIDUE_TYPE } from '../data/chell-data';
-import PlotlyChart, { defaultConfig, defaultLayout, generatePointCloudData } from '../helper/PlotlyHelper';
+import PlotlyChart, {
+  defaultConfig,
+  defaultLayout,
+  generatePointCloudData,
+  generateScatterGLData,
+} from '../helper/PlotlyHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
 import ChellSlider from './ChellSlider';
 
@@ -32,11 +37,15 @@ export const defaultContactMapProps = {
 };
 
 export const initialContactMapState = {
-  contactPoints: new Float32Array(0),
-  couplingPoints: new Float32Array(0),
-  highlightedPoints: new Float32Array(0),
+  contactPoints: [] as IMonomerContact[],
+  couplingPoints: [] as ICouplingScore[],
+  highlightedPoints: [],
+  // contactPoints: new Float32Array(0),
+  // couplingPoints: new Float32Array(0),
+  // highlightedPoints: new Float32Array(0),
   nodeSize: 4,
-  observedPoints: new Float32Array(0),
+  // observedPoints: new Float32Array(0),
+  observedPoints: [] as IMonomerContact[],
   probabilityFilter: 0.99,
 };
 
@@ -83,22 +92,30 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
     const { contactPoints, couplingPoints, observedPoints } = this.state;
 
+    const pointCloudData = [
+      generatePointCloudData(this.generateFloat32ArrayFromContacts(contactPoints), contactColor, this.state.nodeSize),
+      generatePointCloudData(this.generateFloat32ArrayFromContacts(couplingPoints), couplingColor, this.state.nodeSize),
+      generatePointCloudData(this.generateFloat32ArrayFromContacts(observedPoints), observedColor, this.state.nodeSize),
+      generatePointCloudData(this.getHighlightedResidues(lockedResiduePairs), highlightColor, this.state.nodeSize),
+    ];
+
+    const scatterGLData = [
+      generateScatterGLData(contactPoints, contactColor, this.state.nodeSize),
+      generateScatterGLData(couplingPoints, couplingColor, this.state.nodeSize),
+      generateScatterGLData(observedPoints, observedColor, this.state.nodeSize),
+      // generateScatterGLData(this.getHighlightedResidues(lockedResiduePairs), highlightColor, this.state.nodeSize),
+    ];
+
+    console.log(pointCloudData.length);
+    console.log(scatterGLData.length);
+
     return (
       <div id="ContactMapComponent" style={{ padding }}>
         <PlotlyChart
           config={{
             ...defaultConfig,
           }}
-          data={[
-            generatePointCloudData(contactPoints, contactColor, this.state.nodeSize),
-            generatePointCloudData(couplingPoints, couplingColor, this.state.nodeSize),
-            generatePointCloudData(observedPoints, observedColor, this.state.nodeSize),
-            generatePointCloudData(
-              this.getHighlightedResidues(lockedResiduePairs),
-              highlightColor,
-              this.state.nodeSize,
-            ),
-          ]}
+          data={scatterGLData}
           layout={{
             ...defaultLayout,
             height,
@@ -166,9 +183,9 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
       });
     });
 
-    const contactPoints = this.generateFloat32ArrayFromContacts(data.contactMonomer);
-    const couplingPoints = this.generateFloat32ArrayFromContacts(blackDots);
-    const observedPoints = this.generateFloat32ArrayFromContacts(data.observedMonomer);
+    const contactPoints = data.contactMonomer;
+    const couplingPoints = data.couplingScore.filter(coupling => coupling.probability >= this.state.probabilityFilter);
+    const observedPoints = data.observedMonomer;
 
     this.setState({
       contactPoints,

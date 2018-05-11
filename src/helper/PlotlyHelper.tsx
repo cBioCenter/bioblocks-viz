@@ -173,4 +173,31 @@ export const generatePointCloudData = (
   ...extra,
 });
 
+/**
+ * Generate data in the expected format for a Scatter plot backed by WebGL
+ *
+ * @param array Array containing the data objects, where (x,y) will be parsed.
+ * @param color What color the points should be.
+ * @param nodeSize Sets min/max to nodeSize/nodeSize * 2.
+ * @param [extra] Explicit extra configuration to add / replace the default data configuration with.
+ * @returns Data suitable for consumption by Plotly.
+ */
+export const generateScatterGLData = (
+  array: Array<{ i: number; j: number }>,
+  color: string,
+  nodeSize: number,
+  extra?: Partial<IPlotlyData>,
+): Partial<IPlotlyData> => ({
+  marker: {
+    color,
+    sizemax: nodeSize * 2,
+    sizemin: nodeSize,
+  },
+  mode: 'markers',
+  type: PLOTLY_CHART_TYPE.scattergl,
+  x: array.map(data => data.i),
+  y: array.map(data => data.j),
+  ...extra,
+});
+
 export { PlotlyChart };
