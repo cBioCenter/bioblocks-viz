@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Checkbox } from 'semantic-ui-react';
 
 import ResidueContext, { initialResidueContext, IResidueSelection } from '../context/ResidueContext';
-import { IContactMapData, ICouplingScore, IMonomerContact, RESIDUE_TYPE } from '../data/chell-data';
+import { CONTACT_VIEW_TYPE, IContactMapData, ICouplingScore, IMonomerContact, RESIDUE_TYPE } from '../data/chell-data';
 import { withDefaultProps } from '../helper/ReactHelper';
 import ChellSlider from './ChellSlider';
 import PointCloudChart from './PointCloudChart';
@@ -35,6 +35,7 @@ export const defaultContactMapProps = {
 
 export const initialContactMapState = {
   contactPoints: [] as IMonomerContact[],
+  contactViewType: CONTACT_VIEW_TYPE.BOTH,
   couplingPoints: [] as ICouplingScore[],
   highlightedPoints: [] as number[],
   isUsingScatterGL: true,
@@ -54,17 +55,19 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
   }
 
   public componentDidMount() {
-    const { data } = this.props;
-    if (data) {
-      this.setupData(data);
-    }
+    this.setupData(this.props.data, this.state.contactViewType);
   }
 
   public componentDidUpdate(prevProps: ContactMapProps, prevState: ContactMapState) {
     const { data, lockedResiduePairs } = this.props;
-    const isFreshDataView = data !== prevProps.data || this.state.probabilityFilter !== prevState.probabilityFilter;
+    const { contactViewType } = this.state;
+
+    const isFreshDataView =
+      data !== prevProps.data ||
+      this.state.probabilityFilter !== prevState.probabilityFilter ||
+      contactViewType !== prevState.contactViewType;
     if (isFreshDataView) {
-      this.setupData(data);
+      this.setupData(data, contactViewType);
     }
 
     if (lockedResiduePairs && prevProps.lockedResiduePairs !== lockedResiduePairs) {
@@ -89,6 +92,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     } = this.props;
 
     const { contactPoints, couplingPoints, isUsingScatterGL, nodeSize, observedPoints } = this.state;
+    const sliderStyle = { width };
 
     const inputData = [
       {
@@ -132,20 +136,30 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
             width={width}
           />
         )}
-        {this.props.enableSliders && this.renderSliders()}
+        {this.props.enableSliders && this.renderSliders(sliderStyle)}
         <Checkbox
           defaultChecked={false}
           label={isUsingScatterGL ? 'ScatterGL' : 'Point Cloud'}
           toggle={true}
           onChange={this.onRendererChange()}
         />
+        <ChellSlider
+          defaultValue={1}
+          hideLabelValue={true}
+          label={'What to show?'}
+          max={2}
+          min={0}
+          onChange={this.onContactViewChange()}
+          sliderProps={{
+            marks: { 0: 'Observed', 1: 'Both', 2: 'Predicted' },
+          }}
+          style={{ width: sliderStyle.width / 2 }}
+        />
       </div>
     );
   }
 
-  protected renderSliders() {
-    const { width } = this.props;
-    const sliderStyle = { width };
+  protected renderSliders(sliderStyle: React.CSSProperties[] | React.CSSProperties) {
     return (
       <div>
         <ChellSlider
@@ -168,24 +182,16 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     );
   }
 
-  protected setupData(data: IContactMapData) {
-    const blackDots = new Array<ICouplingScore>();
-    data.couplingScore.filter(coupling => coupling.probability >= this.state.probabilityFilter).forEach(coupling => {
-      blackDots.push(coupling);
-      blackDots.push({
-        ...coupling,
-        i: coupling.j,
-        // tslint:disable-next-line:object-literal-sort-keys
-        A_i: coupling.A_j,
-        j: coupling.i,
-        A_j: coupling.A_i,
-      });
-    });
+  protected setupData(data: IContactMapData, contactViewType: CONTACT_VIEW_TYPE) {
+    const showObserved = contactViewType === CONTACT_VIEW_TYPE.BOTH || contactViewType === CONTACT_VIEW_TYPE.OBSERVED;
+    const showPredicted = contactViewType === CONTACT_VIEW_TYPE.BOTH || contactViewType === CONTACT_VIEW_TYPE.PREDICTED;
 
     this.setState({
       contactPoints: data.contactMonomer,
-      couplingPoints: data.couplingScore.filter(coupling => coupling.probability >= this.state.probabilityFilter),
-      observedPoints: data.observedMonomer,
+      couplingPoints: showPredicted
+        ? data.couplingScore.filter(coupling => coupling.probability >= this.state.probabilityFilter)
+        : [],
+      observedPoints: showObserved ? data.observedMonomer : [],
     });
   }
 
@@ -212,6 +218,12 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
   protected onNodeSizeChange = () => (value: number) => {
     this.setState({
       nodeSize: value,
+    });
+  };
+
+  protected onContactViewChange = () => (value: number) => {
+    this.setState({
+      contactViewType: value,
     });
   };
 

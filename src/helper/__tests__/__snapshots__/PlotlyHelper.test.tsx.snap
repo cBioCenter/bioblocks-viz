@@ -60,7 +60,7 @@ exports[`PlotlyChart Should match existing snapshot when given sample data. 1`] 
 </PlotlyChart>
 `;
 
-exports[`generatePointCloudData Should create the expected plotly data format when given defaults. 1`] = `
+exports[`generatePointCloudData Should create the expected plotly point cloud data format when given defaults. 1`] = `
 Object {
   "marker": Object {
     "color": "red",
@@ -73,6 +73,27 @@ Object {
     1,
     2,
     3,
+    4,
+  ],
+}
+`;
+
+exports[`generateScatterGLData Should create the expected plotly scatter data format when given defaults. 1`] = `
+Object {
+  "marker": Object {
+    "color": "blue",
+    "sizemax": 8,
+    "sizemin": 4,
+  },
+  "mode": "markers",
+  "type": "scattergl",
+  "x": Array [
+    9,
+    7,
+  ],
+  "y": Array [
+    8,
+    6,
   ],
 }
 `;

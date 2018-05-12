@@ -41,7 +41,7 @@ class PointCloudChartClass extends React.Component<PointCloudChartProps, any> {
     const { candidateResidues, height, hoveredResidues, data, nodeSize, width, ...props } = this.props;
 
     const pointCloudData = data.map(entry =>
-      generatePointCloudData(this.generateFloat32ArrayFromContacts(entry.points), entry.color, nodeSize),
+      generatePointCloudData(this.generateFloat32ArrayFromContacts(entry.points), entry.color, nodeSize, true),
     );
 
     return (

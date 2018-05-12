@@ -155,6 +155,7 @@ export const defaultConfig: Partial<Plotly.Config> = {
  * Necessary optimization to render hundreds of thousands of points.
  * @param color What color the points should be.
  * @param nodeSize Sets min/max to nodeSize/nodeSize * 2.
+ * @param mirrorPoints Should we mirror the points on the x/y axis?
  * @param [extra] Explicit extra configuration to add / replace the default data configuration with.
  * @returns Data suitable for consumption by Plotly.
  */
@@ -162,6 +163,7 @@ export const generatePointCloudData = (
   coords: Float32Array,
   color: string,
   nodeSize: number,
+  mirrorPoints: boolean = false,
   extra?: Partial<IPlotlyData>,
 ): Partial<IPlotlyData> => ({
   marker: {
@@ -171,7 +173,14 @@ export const generatePointCloudData = (
   },
   mode: 'markers',
   type: PLOTLY_CHART_TYPE.pointcloud,
-  xy: coords,
+  xy: mirrorPoints
+    ? new Float32Array([
+        ...Array.from(coords),
+        ...Array.from(coords)
+          .slice()
+          .reverse(),
+      ])
+    : coords,
   ...extra,
 });
 
@@ -181,6 +190,7 @@ export const generatePointCloudData = (
  * @param array Array containing the data objects, where (x,y) will be parsed.
  * @param color What color the points should be.
  * @param nodeSize Sets min/max to nodeSize/nodeSize * 2.
+ * @param mirrorPoints Should we mirror the points on the x/y axis?
  * @param [extra] Explicit extra configuration to add / replace the default data configuration with.
  * @returns Data suitable for consumption by Plotly.
  */
@@ -188,18 +198,23 @@ export const generateScatterGLData = (
   array: Array<{ i: number; j: number }>,
   color: string,
   nodeSize: number,
+  mirrorPoints: boolean = false,
   extra?: Partial<IPlotlyData>,
-): Partial<IPlotlyData> => ({
-  marker: {
-    color,
-    sizemax: nodeSize * 2,
-    sizemin: nodeSize,
-  },
-  mode: 'markers',
-  type: PLOTLY_CHART_TYPE.scattergl,
-  x: array.map(data => data.i),
-  y: array.map(data => data.j),
-  ...extra,
-});
+): Partial<IPlotlyData> => {
+  const xValues = array.map(data => data.i);
+  const yValues = array.map(data => data.j);
+  return {
+    marker: {
+      color,
+      sizemax: nodeSize * 2,
+      sizemin: nodeSize,
+    },
+    mode: 'markers',
+    type: PLOTLY_CHART_TYPE.scattergl,
+    x: mirrorPoints ? [...xValues, ...yValues] : xValues,
+    y: mirrorPoints ? [...yValues, ...xValues] : yValues,
+    ...extra,
+  };
+};
 
 export { PlotlyChart };

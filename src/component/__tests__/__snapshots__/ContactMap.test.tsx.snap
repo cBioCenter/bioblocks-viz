@@ -2,10 +2,6 @@
 
 exports[`ContactMap Should match existing snapshot using ScatterGL is toggled off. 1`] = `
 <ContactMapClass
-  addCandidateResidues={[Function]}
-  addHoveredResidues={[Function]}
-  addLockedResiduePair={[Function]}
-  candidateResidues={Array []}
   contactColor="#009999"
   couplingColor="#000000"
   data={
@@ -19,14 +15,8 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled of
   enableSliders={false}
   height={400}
   highlightColor="#0000ff"
-  hoveredResidues={Array []}
-  lockedResiduePairs={Object {}}
   observedColor="#ff8800"
   padding={0}
-  removeAllLockedResiduePairs={[Function]}
-  removeCandidateResidues={[Function]}
-  removeHoveredResidues={[Function]}
-  removeLockedResiduePair={[Function]}
   width={400}
 >
   <div
@@ -37,7 +27,7 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled of
       }
     }
   >
-    <ScatterChartClass
+    <PointCloudChartClass
       candidateResidues={Array []}
       data={
         Array [
@@ -79,9 +69,8 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled of
                 "sizemin": 4,
               },
               "mode": "markers",
-              "type": "scattergl",
-              "x": Array [],
-              "y": Array [],
+              "type": "pointcloud",
+              "xy": Float32Array [],
             },
             Object {
               "marker": Object {
@@ -90,9 +79,8 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled of
                 "sizemin": 4,
               },
               "mode": "markers",
-              "type": "scattergl",
-              "x": Array [],
-              "y": Array [],
+              "type": "pointcloud",
+              "xy": Float32Array [],
             },
             Object {
               "marker": Object {
@@ -101,9 +89,8 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled of
                 "sizemin": 4,
               },
               "mode": "markers",
-              "type": "scattergl",
-              "x": Array [],
-              "y": Array [],
+              "type": "pointcloud",
+              "xy": Float32Array [],
             },
           ]
         }
@@ -136,10 +123,10 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled of
       >
         <div />
       </PlotlyChart>
-    </ScatterChartClass>
+    </PointCloudChartClass>
     <Checkbox
       defaultChecked={false}
-      label="ScatterGL"
+      label="Point Cloud"
       onChange={[Function]}
       toggle={true}
       type="checkbox"
@@ -159,22 +146,265 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled of
           type="checkbox"
         />
         <label
-          key="ScatterGL"
+          key="Point Cloud"
         >
-          ScatterGL
+          Point Cloud
         </label>
       </div>
     </Checkbox>
+    <ChellSlider
+      defaultValue={1}
+      hideLabelValue={true}
+      label="What to show?"
+      max={2}
+      min={0}
+      onChange={[Function]}
+      sliderProps={
+        Object {
+          "marks": Object {
+            "0": "Observed",
+            "1": "Both",
+            "2": "Predicted",
+          },
+        }
+      }
+      style={
+        Object {
+          "width": 200,
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "padding": 10,
+          }
+        }
+      >
+        <ComponentEnhancer(undefined)
+          activeDotStyle={Object {}}
+          className=""
+          defaultValue={1}
+          disabled={false}
+          dotStyle={Object {}}
+          dots={false}
+          handle={[Function]}
+          handleStyle={
+            Array [
+              Object {},
+            ]
+          }
+          included={true}
+          marks={
+            Object {
+              "0": "Observed",
+              "1": "Both",
+              "2": "Predicted",
+            }
+          }
+          max={2}
+          min={0}
+          onAfterChange={[Function]}
+          onBeforeChange={[Function]}
+          onChange={[Function]}
+          prefixCls="rc-slider"
+          railStyle={Object {}}
+          step={1}
+          style={
+            Object {
+              "width": 200,
+            }
+          }
+          trackStyle={
+            Array [
+              Object {},
+            ]
+          }
+          vertical={false}
+        >
+          <div
+            className="rc-slider rc-slider-with-marks"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            onTouchStart={[Function]}
+            style={
+              Object {
+                "width": 200,
+              }
+            }
+          >
+            <div
+              className="rc-slider-rail"
+              style={Object {}}
+            />
+            <Track
+              className="rc-slider-track"
+              included={true}
+              length={50}
+              offset={0}
+              style={Object {}}
+              vertical={false}
+            >
+              <div
+                className="rc-slider-track"
+                style={
+                  Object {
+                    "left": "0%",
+                    "width": "50%",
+                  }
+                }
+              />
+            </Track>
+            <Steps
+              activeDotStyle={Object {}}
+              dotStyle={Object {}}
+              dots={false}
+              included={true}
+              lowerBound={0}
+              marks={
+                Object {
+                  "0": "Observed",
+                  "1": "Both",
+                  "2": "Predicted",
+                }
+              }
+              max={2}
+              min={0}
+              prefixCls="rc-slider"
+              step={1}
+              upperBound={1}
+              vertical={false}
+            >
+              <div
+                className="rc-slider-step"
+              >
+                <span
+                  className="rc-slider-dot rc-slider-dot-active"
+                  key="0"
+                  style={
+                    Object {
+                      "left": "0%",
+                    }
+                  }
+                />
+                <span
+                  className="rc-slider-dot rc-slider-dot-active"
+                  key="1"
+                  style={
+                    Object {
+                      "left": "50%",
+                    }
+                  }
+                />
+                <span
+                  className="rc-slider-dot"
+                  key="2"
+                  style={
+                    Object {
+                      "left": "100%",
+                    }
+                  }
+                />
+              </div>
+            </Steps>
+            <Handle
+              className="rc-slider-handle"
+              disabled={false}
+              key="0"
+              max={2}
+              min={0}
+              offset={50}
+              style={Object {}}
+              value={1}
+              vertical={false}
+            >
+              <div
+                aria-disabled={false}
+                aria-valuemax={2}
+                aria-valuemin={0}
+                aria-valuenow={1}
+                className="rc-slider-handle"
+                role="slider"
+                style={
+                  Object {
+                    "left": "50%",
+                  }
+                }
+                tabIndex={0}
+              />
+            </Handle>
+            <Marks
+              className="rc-slider-mark"
+              included={true}
+              lowerBound={0}
+              marks={
+                Object {
+                  "0": "Observed",
+                  "1": "Both",
+                  "2": "Predicted",
+                }
+              }
+              max={2}
+              min={0}
+              upperBound={1}
+              vertical={false}
+            >
+              <div
+                className="rc-slider-mark"
+              >
+                <span
+                  className="rc-slider-mark-text rc-slider-mark-text-active"
+                  key="0"
+                  style={
+                    Object {
+                      "left": "0%",
+                      "marginLeft": "-22.5%",
+                      "width": "45%",
+                    }
+                  }
+                >
+                  Observed
+                </span>
+                <span
+                  className="rc-slider-mark-text rc-slider-mark-text-active"
+                  key="1"
+                  style={
+                    Object {
+                      "left": "50%",
+                      "marginLeft": "-22.5%",
+                      "width": "45%",
+                    }
+                  }
+                >
+                  Both
+                </span>
+                <span
+                  className="rc-slider-mark-text"
+                  key="2"
+                  style={
+                    Object {
+                      "left": "100%",
+                      "marginLeft": "-22.5%",
+                      "width": "45%",
+                    }
+                  }
+                >
+                  Predicted
+                </span>
+              </div>
+            </Marks>
+          </div>
+        </ComponentEnhancer(undefined)>
+      </div>
+    </ChellSlider>
   </div>
 </ContactMapClass>
 `;
 
 exports[`ContactMap Should match existing snapshot using ScatterGL is toggled on. 1`] = `
 <ContactMapClass
-  addCandidateResidues={[Function]}
-  addHoveredResidues={[Function]}
-  addLockedResiduePair={[Function]}
-  candidateResidues={Array []}
   contactColor="#009999"
   couplingColor="#000000"
   data={
@@ -188,14 +418,8 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled on
   enableSliders={false}
   height={400}
   highlightColor="#0000ff"
-  hoveredResidues={Array []}
-  lockedResiduePairs={Object {}}
   observedColor="#ff8800"
   padding={0}
-  removeAllLockedResiduePairs={[Function]}
-  removeCandidateResidues={[Function]}
-  removeHoveredResidues={[Function]}
-  removeLockedResiduePair={[Function]}
   width={400}
 >
   <div
@@ -334,6 +558,253 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled on
         </label>
       </div>
     </Checkbox>
+    <ChellSlider
+      defaultValue={1}
+      hideLabelValue={true}
+      label="What to show?"
+      max={2}
+      min={0}
+      onChange={[Function]}
+      sliderProps={
+        Object {
+          "marks": Object {
+            "0": "Observed",
+            "1": "Both",
+            "2": "Predicted",
+          },
+        }
+      }
+      style={
+        Object {
+          "width": 200,
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "padding": 10,
+          }
+        }
+      >
+        <ComponentEnhancer(undefined)
+          activeDotStyle={Object {}}
+          className=""
+          defaultValue={1}
+          disabled={false}
+          dotStyle={Object {}}
+          dots={false}
+          handle={[Function]}
+          handleStyle={
+            Array [
+              Object {},
+            ]
+          }
+          included={true}
+          marks={
+            Object {
+              "0": "Observed",
+              "1": "Both",
+              "2": "Predicted",
+            }
+          }
+          max={2}
+          min={0}
+          onAfterChange={[Function]}
+          onBeforeChange={[Function]}
+          onChange={[Function]}
+          prefixCls="rc-slider"
+          railStyle={Object {}}
+          step={1}
+          style={
+            Object {
+              "width": 200,
+            }
+          }
+          trackStyle={
+            Array [
+              Object {},
+            ]
+          }
+          vertical={false}
+        >
+          <div
+            className="rc-slider rc-slider-with-marks"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            onTouchStart={[Function]}
+            style={
+              Object {
+                "width": 200,
+              }
+            }
+          >
+            <div
+              className="rc-slider-rail"
+              style={Object {}}
+            />
+            <Track
+              className="rc-slider-track"
+              included={true}
+              length={50}
+              offset={0}
+              style={Object {}}
+              vertical={false}
+            >
+              <div
+                className="rc-slider-track"
+                style={
+                  Object {
+                    "left": "0%",
+                    "width": "50%",
+                  }
+                }
+              />
+            </Track>
+            <Steps
+              activeDotStyle={Object {}}
+              dotStyle={Object {}}
+              dots={false}
+              included={true}
+              lowerBound={0}
+              marks={
+                Object {
+                  "0": "Observed",
+                  "1": "Both",
+                  "2": "Predicted",
+                }
+              }
+              max={2}
+              min={0}
+              prefixCls="rc-slider"
+              step={1}
+              upperBound={1}
+              vertical={false}
+            >
+              <div
+                className="rc-slider-step"
+              >
+                <span
+                  className="rc-slider-dot rc-slider-dot-active"
+                  key="0"
+                  style={
+                    Object {
+                      "left": "0%",
+                    }
+                  }
+                />
+                <span
+                  className="rc-slider-dot rc-slider-dot-active"
+                  key="1"
+                  style={
+                    Object {
+                      "left": "50%",
+                    }
+                  }
+                />
+                <span
+                  className="rc-slider-dot"
+                  key="2"
+                  style={
+                    Object {
+                      "left": "100%",
+                    }
+                  }
+                />
+              </div>
+            </Steps>
+            <Handle
+              className="rc-slider-handle"
+              disabled={false}
+              key="0"
+              max={2}
+              min={0}
+              offset={50}
+              style={Object {}}
+              value={1}
+              vertical={false}
+            >
+              <div
+                aria-disabled={false}
+                aria-valuemax={2}
+                aria-valuemin={0}
+                aria-valuenow={1}
+                className="rc-slider-handle"
+                role="slider"
+                style={
+                  Object {
+                    "left": "50%",
+                  }
+                }
+                tabIndex={0}
+              />
+            </Handle>
+            <Marks
+              className="rc-slider-mark"
+              included={true}
+              lowerBound={0}
+              marks={
+                Object {
+                  "0": "Observed",
+                  "1": "Both",
+                  "2": "Predicted",
+                }
+              }
+              max={2}
+              min={0}
+              upperBound={1}
+              vertical={false}
+            >
+              <div
+                className="rc-slider-mark"
+              >
+                <span
+                  className="rc-slider-mark-text rc-slider-mark-text-active"
+                  key="0"
+                  style={
+                    Object {
+                      "left": "0%",
+                      "marginLeft": "-22.5%",
+                      "width": "45%",
+                    }
+                  }
+                >
+                  Observed
+                </span>
+                <span
+                  className="rc-slider-mark-text rc-slider-mark-text-active"
+                  key="1"
+                  style={
+                    Object {
+                      "left": "50%",
+                      "marginLeft": "-22.5%",
+                      "width": "45%",
+                    }
+                  }
+                >
+                  Both
+                </span>
+                <span
+                  className="rc-slider-mark-text"
+                  key="2"
+                  style={
+                    Object {
+                      "left": "100%",
+                      "marginLeft": "-22.5%",
+                      "width": "45%",
+                    }
+                  }
+                >
+                  Predicted
+                </span>
+              </div>
+            </Marks>
+          </div>
+        </ComponentEnhancer(undefined)>
+      </div>
+    </ChellSlider>
   </div>
 </ContactMapClass>
 `;
@@ -375,6 +846,123 @@ exports[`ContactMap Should match existing snapshot when given sample data and sl
       ScatterGL
     </label>
   </div>
+  <div
+    style={
+      Object {
+        "padding": 10,
+      }
+    }
+  >
+    <div
+      className="rc-slider rc-slider-with-marks"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onMouseDown={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "width": 200,
+        }
+      }
+    >
+      <div
+        className="rc-slider-rail"
+        style={Object {}}
+      />
+      <div
+        className="rc-slider-track"
+        style={
+          Object {
+            "left": "0%",
+            "width": "50%",
+          }
+        }
+      />
+      <div
+        className="rc-slider-step"
+      >
+        <span
+          className="rc-slider-dot rc-slider-dot-active"
+          style={
+            Object {
+              "left": "0%",
+            }
+          }
+        />
+        <span
+          className="rc-slider-dot rc-slider-dot-active"
+          style={
+            Object {
+              "left": "50%",
+            }
+          }
+        />
+        <span
+          className="rc-slider-dot"
+          style={
+            Object {
+              "left": "100%",
+            }
+          }
+        />
+      </div>
+      <div
+        aria-disabled={false}
+        aria-valuemax={2}
+        aria-valuemin={0}
+        aria-valuenow={1}
+        className="rc-slider-handle"
+        role="slider"
+        style={
+          Object {
+            "left": "50%",
+          }
+        }
+        tabIndex={0}
+      />
+      <div
+        className="rc-slider-mark"
+      >
+        <span
+          className="rc-slider-mark-text rc-slider-mark-text-active"
+          style={
+            Object {
+              "left": "0%",
+              "marginLeft": "-22.5%",
+              "width": "45%",
+            }
+          }
+        >
+          Observed
+        </span>
+        <span
+          className="rc-slider-mark-text rc-slider-mark-text-active"
+          style={
+            Object {
+              "left": "50%",
+              "marginLeft": "-22.5%",
+              "width": "45%",
+            }
+          }
+        >
+          Both
+        </span>
+        <span
+          className="rc-slider-mark-text"
+          style={
+            Object {
+              "left": "100%",
+              "marginLeft": "-22.5%",
+              "width": "45%",
+            }
+          }
+        >
+          Predicted
+        </span>
+      </div>
+    </div>
+  </div>
 </div>
 `;
 
@@ -389,7 +977,13 @@ exports[`ContactMap Should match existing snapshot when given sample data and sl
 >
   <div />
   <div>
-    <div>
+    <div
+      style={
+        Object {
+          "padding": 10,
+        }
+      }
+    >
       <p>
         Probability: 99
       </p>
@@ -441,7 +1035,13 @@ exports[`ContactMap Should match existing snapshot when given sample data and sl
         />
       </div>
     </div>
-    <div>
+    <div
+      style={
+        Object {
+          "padding": 10,
+        }
+      }
+    >
       <p>
         Node Size: 4
       </p>
@@ -516,6 +1116,123 @@ exports[`ContactMap Should match existing snapshot when given sample data and sl
     >
       ScatterGL
     </label>
+  </div>
+  <div
+    style={
+      Object {
+        "padding": 10,
+      }
+    }
+  >
+    <div
+      className="rc-slider rc-slider-with-marks"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onMouseDown={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "width": 200,
+        }
+      }
+    >
+      <div
+        className="rc-slider-rail"
+        style={Object {}}
+      />
+      <div
+        className="rc-slider-track"
+        style={
+          Object {
+            "left": "0%",
+            "width": "50%",
+          }
+        }
+      />
+      <div
+        className="rc-slider-step"
+      >
+        <span
+          className="rc-slider-dot rc-slider-dot-active"
+          style={
+            Object {
+              "left": "0%",
+            }
+          }
+        />
+        <span
+          className="rc-slider-dot rc-slider-dot-active"
+          style={
+            Object {
+              "left": "50%",
+            }
+          }
+        />
+        <span
+          className="rc-slider-dot"
+          style={
+            Object {
+              "left": "100%",
+            }
+          }
+        />
+      </div>
+      <div
+        aria-disabled={false}
+        aria-valuemax={2}
+        aria-valuemin={0}
+        aria-valuenow={1}
+        className="rc-slider-handle"
+        role="slider"
+        style={
+          Object {
+            "left": "50%",
+          }
+        }
+        tabIndex={0}
+      />
+      <div
+        className="rc-slider-mark"
+      >
+        <span
+          className="rc-slider-mark-text rc-slider-mark-text-active"
+          style={
+            Object {
+              "left": "0%",
+              "marginLeft": "-22.5%",
+              "width": "45%",
+            }
+          }
+        >
+          Observed
+        </span>
+        <span
+          className="rc-slider-mark-text rc-slider-mark-text-active"
+          style={
+            Object {
+              "left": "50%",
+              "marginLeft": "-22.5%",
+              "width": "45%",
+            }
+          }
+        >
+          Both
+        </span>
+        <span
+          className="rc-slider-mark-text"
+          style={
+            Object {
+              "left": "100%",
+              "marginLeft": "-22.5%",
+              "width": "45%",
+            }
+          }
+        >
+          Predicted
+        </span>
+      </div>
+    </div>
   </div>
 </div>
 `;
