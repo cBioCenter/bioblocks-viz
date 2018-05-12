@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PointCloudChart Should match existing snapshot when given simple data. 1`] = `
+exports[`PointCloudChart Should match existing snapshot when given empty data. 1`] = `
 <PlotlyChart
   config={
     Object {
@@ -18,6 +18,84 @@ exports[`PointCloudChart Should match existing snapshot when given simple data. 
         "mode": "markers",
         "type": "pointcloud",
         "xy": Float32Array [],
+      },
+    ]
+  }
+  layout={
+    Object {
+      "height": 400,
+      "legend": Object {},
+      "showlegend": false,
+      "title": "",
+      "width": 400,
+      "xaxis": Object {
+        "gridcolor": "#ff0000",
+        "gridwidth": 4,
+        "showticklabels": false,
+        "tickvals": Array [],
+      },
+      "yaxis": Object {
+        "autorange": "reversed",
+        "gridcolor": "#ff0000",
+        "gridwidth": 4,
+        "showticklabels": false,
+        "tickvals": Array [],
+      },
+    }
+  }
+  onClickCallback={[Function]}
+  onHoverCallback={[Function]}
+  onSelectedCallback={[Function]}
+  onUnHoverCallback={[Function]}
+/>
+`;
+
+exports[`PointCloudChart Should match existing snapshot when given simple data. 1`] = `
+<PlotlyChart
+  config={
+    Object {
+      "displayModeBar": true,
+    }
+  }
+  data={
+    Array [
+      Object {
+        "marker": Object {
+          "color": "magenta",
+          "sizemax": 8,
+          "sizemin": 4,
+        },
+        "mode": "markers",
+        "type": "pointcloud",
+        "xy": Float32Array [
+          1,
+          2,
+          5,
+          6,
+          6,
+          5,
+          2,
+          1,
+        ],
+      },
+      Object {
+        "marker": Object {
+          "color": "chartreuse",
+          "sizemax": 8,
+          "sizemin": 4,
+        },
+        "mode": "markers",
+        "type": "pointcloud",
+        "xy": Float32Array [
+          8,
+          2,
+          3,
+          4,
+          4,
+          3,
+          2,
+          8,
+        ],
       },
     ]
   }

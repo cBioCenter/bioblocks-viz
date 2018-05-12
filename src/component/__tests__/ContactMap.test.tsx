@@ -5,8 +5,9 @@ import * as React from 'react';
 import * as Renderer from 'react-test-renderer';
 
 import { initialResidueContext, IResidueContext } from '../../context/ResidueContext';
+import { CONTACT_VIEW_TYPE } from '../../data/chell-data';
 import PlotlyChart from '../../helper/PlotlyHelper';
-import ContactMap, { ContactMapProps } from '../ContactMap';
+import ContactMap, { ContactMapClass, ContactMapProps } from '../ContactMap';
 
 // https://medium.com/@ryandrewjohnson/unit-testing-components-using-reacts-new-context-api-4a5219f4b3fe
 // Provides a dummy context for unit testing purposes.
@@ -47,6 +48,10 @@ const dispatchPlotlyEvent = (wrapper: ReactWrapper, eventName: string) => {
 };
 
 describe('ContactMap', () => {
+  beforeEach(() => {
+    jest.resetModuleRegistry();
+  });
+
   const emptyData = {
     contactMonomer: [],
     couplingScore: [],
@@ -99,16 +104,18 @@ describe('ContactMap', () => {
   test('Should match existing snapshot using ScatterGL is toggled on.', async () => {
     const wrapper = await getMountedContactMap();
     wrapper.setState({
-      iSUsingScatterGL: true,
+      isUsingScatterGL: true,
     });
+    await wrapper.update();
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
   test('Should match existing snapshot using ScatterGL is toggled off.', async () => {
     const wrapper = await getMountedContactMap();
     wrapper.setState({
-      iSUsingScatterGL: false,
+      isUsingScatterGL: false,
     });
+    await wrapper.update();
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
@@ -126,5 +133,43 @@ describe('ContactMap', () => {
     dispatchPlotlyEvent(wrapper, 'plotly_hover');
 
     expect(onHoverSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("Should show both observed and predicted contacts when 'BOTH' is selected.", async () => {
+    const wrapper = await getMountedContactMap({ data: sampleData });
+    const instance = wrapper.instance() as ContactMapClass;
+    wrapper.setState({
+      contactViewType: CONTACT_VIEW_TYPE.BOTH,
+    });
+    await wrapper.update();
+    expect(instance.state.contactPoints).toEqual(sampleData.contactMonomer);
+    expect(instance.state.couplingPoints).toEqual(sampleData.couplingScore);
+    expect(instance.state.observedPoints).toEqual(sampleData.observedMonomer);
+  });
+
+  test("Should show only observed contacts when 'OBSERVED' is selected.", async () => {
+    const wrapper = await getMountedContactMap({ data: sampleData });
+    const instance = wrapper.instance() as ContactMapClass;
+    wrapper.setState({
+      contactViewType: CONTACT_VIEW_TYPE.OBSERVED,
+    });
+    await wrapper.update();
+    expect(instance.state.contactPoints).toEqual(sampleData.contactMonomer);
+    expect(instance.state.couplingPoints).not.toEqual(sampleData.couplingScore);
+    expect(instance.state.couplingPoints).toEqual([]);
+    expect(instance.state.observedPoints).toEqual(sampleData.observedMonomer);
+  });
+
+  test("Should show only predicted contacts when 'PREDICTED' is selected.", async () => {
+    const wrapper = await getMountedContactMap({ data: sampleData });
+    const instance = wrapper.instance() as ContactMapClass;
+    wrapper.setState({
+      contactViewType: CONTACT_VIEW_TYPE.PREDICTED,
+    });
+    await wrapper.update();
+    expect(instance.state.contactPoints).toEqual(sampleData.contactMonomer);
+    expect(instance.state.couplingPoints).toEqual(sampleData.couplingScore);
+    expect(instance.state.observedPoints).not.toEqual(sampleData.observedMonomer);
+    expect(instance.state.observedPoints).toEqual([]);
   });
 });

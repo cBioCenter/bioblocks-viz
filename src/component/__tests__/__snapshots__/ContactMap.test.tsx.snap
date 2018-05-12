@@ -2,10 +2,6 @@
 
 exports[`ContactMap Should match existing snapshot using ScatterGL is toggled off. 1`] = `
 <ContactMapClass
-  addCandidateResidues={[Function]}
-  addHoveredResidues={[Function]}
-  addLockedResiduePair={[Function]}
-  candidateResidues={Array []}
   contactColor="#009999"
   couplingColor="#000000"
   data={
@@ -19,14 +15,8 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled of
   enableSliders={false}
   height={400}
   highlightColor="#0000ff"
-  hoveredResidues={Array []}
-  lockedResiduePairs={Object {}}
   observedColor="#ff8800"
   padding={0}
-  removeAllLockedResiduePairs={[Function]}
-  removeCandidateResidues={[Function]}
-  removeHoveredResidues={[Function]}
-  removeLockedResiduePair={[Function]}
   width={400}
 >
   <div
@@ -37,7 +27,7 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled of
       }
     }
   >
-    <ScatterChartClass
+    <PointCloudChartClass
       candidateResidues={Array []}
       data={
         Array [
@@ -79,9 +69,8 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled of
                 "sizemin": 4,
               },
               "mode": "markers",
-              "type": "scattergl",
-              "x": Array [],
-              "y": Array [],
+              "type": "pointcloud",
+              "xy": Float32Array [],
             },
             Object {
               "marker": Object {
@@ -90,9 +79,8 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled of
                 "sizemin": 4,
               },
               "mode": "markers",
-              "type": "scattergl",
-              "x": Array [],
-              "y": Array [],
+              "type": "pointcloud",
+              "xy": Float32Array [],
             },
             Object {
               "marker": Object {
@@ -101,9 +89,8 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled of
                 "sizemin": 4,
               },
               "mode": "markers",
-              "type": "scattergl",
-              "x": Array [],
-              "y": Array [],
+              "type": "pointcloud",
+              "xy": Float32Array [],
             },
           ]
         }
@@ -136,10 +123,10 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled of
       >
         <div />
       </PlotlyChart>
-    </ScatterChartClass>
+    </PointCloudChartClass>
     <Checkbox
       defaultChecked={false}
-      label="ScatterGL"
+      label="Point Cloud"
       onChange={[Function]}
       toggle={true}
       type="checkbox"
@@ -159,9 +146,9 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled of
           type="checkbox"
         />
         <label
-          key="ScatterGL"
+          key="Point Cloud"
         >
-          ScatterGL
+          Point Cloud
         </label>
       </div>
     </Checkbox>
@@ -418,10 +405,6 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled of
 
 exports[`ContactMap Should match existing snapshot using ScatterGL is toggled on. 1`] = `
 <ContactMapClass
-  addCandidateResidues={[Function]}
-  addHoveredResidues={[Function]}
-  addLockedResiduePair={[Function]}
-  candidateResidues={Array []}
   contactColor="#009999"
   couplingColor="#000000"
   data={
@@ -435,14 +418,8 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled on
   enableSliders={false}
   height={400}
   highlightColor="#0000ff"
-  hoveredResidues={Array []}
-  lockedResiduePairs={Object {}}
   observedColor="#ff8800"
   padding={0}
-  removeAllLockedResiduePairs={[Function]}
-  removeCandidateResidues={[Function]}
-  removeHoveredResidues={[Function]}
-  removeLockedResiduePair={[Function]}
   width={400}
 >
   <div

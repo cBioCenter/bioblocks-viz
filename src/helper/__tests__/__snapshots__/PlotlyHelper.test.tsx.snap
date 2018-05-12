@@ -97,23 +97,3 @@ Object {
   ],
 }
 `;
-
-exports[`generateScatterGLData Should create the expected plotly scatter data format when points are mirrored. 1`] = `
-Object {
-  "marker": Object {
-    "color": "blue",
-    "sizemax": 8,
-    "sizemin": 4,
-  },
-  "mode": "markers",
-  "type": "scattergl",
-  "x": Array [
-    9,
-    7,
-  ],
-  "y": Array [
-    8,
-    6,
-  ],
-}
-`;
