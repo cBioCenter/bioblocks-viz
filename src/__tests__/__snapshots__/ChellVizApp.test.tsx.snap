@@ -21,9 +21,10 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
           Array [
             "Contact Map",
             "NGL",
+            "Contact Map",
           ]
         }
-        numPanels={2}
+        numPanels={3}
         supportedVisualizations={
           Array [
             "Contact Map",

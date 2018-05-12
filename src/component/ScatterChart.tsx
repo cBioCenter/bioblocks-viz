@@ -39,7 +39,7 @@ class ScatterChartClass extends React.Component<ScatterChartProps, any> {
   public render() {
     const { candidateResidues, height, hoveredResidues, data, nodeSize, width, ...props } = this.props;
 
-    const scatterGLData = data.map(entry => generateScatterGLData(entry.points, entry.color, nodeSize));
+    const scatterGLData = data.map(entry => generateScatterGLData(entry.points, entry.color, nodeSize, true));
 
     return (
       <PlotlyChart

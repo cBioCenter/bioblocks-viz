@@ -163,7 +163,7 @@ export const generatePointCloudData = (
   coords: Float32Array,
   color: string,
   nodeSize: number,
-  mirrorPoints: boolean = true,
+  mirrorPoints: boolean = false,
   extra?: Partial<IPlotlyData>,
 ): Partial<IPlotlyData> => ({
   marker: {
@@ -198,7 +198,7 @@ export const generateScatterGLData = (
   array: Array<{ i: number; j: number }>,
   color: string,
   nodeSize: number,
-  mirrorPoints: boolean = true,
+  mirrorPoints: boolean = false,
   extra?: Partial<IPlotlyData>,
 ): Partial<IPlotlyData> => {
   const xValues = array.map(data => data.i);
