@@ -1,4 +1,4 @@
-import Slider from 'rc-slider';
+import Slider, { SliderProps } from 'rc-slider';
 import * as React from 'react';
 
 import 'rc-slider/assets/index.css';
@@ -19,6 +19,10 @@ export interface IChellSliderProps {
   /** Initial value the slider is set to. */
   defaultValue: number;
 
+  // TODO Split up label and value, have both be independently visible or not.
+  /** Should we show the label/value for the slider? */
+  hideLabelValue?: boolean;
+
   /** Initial value the slider is set to. */
   label: string;
 
@@ -33,6 +37,9 @@ export interface IChellSliderProps {
 
   /** Invoked when the value is in the middle of changing but user has not committed to the change. */
   onChange?: ChellSliderCallback;
+
+  /** Props specific to the underlying rc-slider component. */
+  sliderProps?: SliderProps;
 
   /** Style for the Slider. */
   style?: React.CSSProperties[] | React.CSSProperties;
@@ -63,11 +70,12 @@ export default class ChellSlider extends React.Component<IChellSliderProps, IChe
   }
 
   public render() {
-    const { defaultValue, max, min, label, onAfterChange, onChange, style } = this.props;
+    const { defaultValue, hideLabelValue, max, min, label, onAfterChange, onChange, sliderProps, style } = this.props;
     return (
-      <div>
-        <p>{`${label}: ${this.state.value}`}</p>
+      <div style={{ padding: 10 }}>
+        {!hideLabelValue && <p>{`${label}: ${this.state.value}`}</p>}
         <Slider
+          {...sliderProps}
           defaultValue={defaultValue}
           max={max}
           min={min}
