@@ -3131,8 +3131,8 @@ d3-random@1:
   resolved "https://registry.yarnpkg.com/d3-random/-/d3-random-1.1.0.tgz#6642e506c6fa3a648595d2b2469788a8d12529d3"
 
 d3-scale-chromatic@1:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/d3-scale-chromatic/-/d3-scale-chromatic-1.2.0.tgz#25820d059c0eccc33e85f77561f37382a817ab58"
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/d3-scale-chromatic/-/d3-scale-chromatic-1.3.0.tgz#7ee38ffcaa7ad55cfed83a6a668aac5570c653c4"
   dependencies:
     d3-color "1"
     d3-interpolate "1"
@@ -3202,8 +3202,8 @@ d3@^3.5.12:
   resolved "https://registry.yarnpkg.com/d3/-/d3-3.5.17.tgz#bc46748004378b21a360c9fc7cf5231790762fb8"
 
 d3@^5.1.0:
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/d3/-/d3-5.3.0.tgz#60e047d7ea9349c1bdded9fd61a1dabfbf5e3179"
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/d3/-/d3-5.4.0.tgz#090199a8569d1de23d04a3ff07fe136095fea74e"
   dependencies:
     d3-array "1"
     d3-axis "1"
@@ -3313,13 +3313,9 @@ deep-equal@^1.0.0, deep-equal@^1.0.1, deep-equal@~1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/deep-equal/-/deep-equal-1.0.1.tgz#f5d260292b660e084eff4cdbc9f08ad3247448b5"
 
-deep-extend@^0.5.1:
+deep-extend@^0.5.1, deep-extend@~0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/deep-extend/-/deep-extend-0.5.1.tgz#b894a9dd90d3023fbf1c55a394fb858eb2066f1f"
-
-deep-extend@~0.4.0, deep-extend@~0.4.1:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/deep-extend/-/deep-extend-0.4.2.tgz#48b699c27e334bf89f10892be432f6e4c7d34a7f"
 
 deep-is@~0.1.3:
   version "0.1.3"
@@ -7138,17 +7134,17 @@ markdown-it@8.4.1:
     uc.micro "^1.0.5"
 
 markdownlint-cli@^0.8.1:
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/markdownlint-cli/-/markdownlint-cli-0.8.1.tgz#b5644bdc52635827097ac1829b4be54d9c94637c"
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/markdownlint-cli/-/markdownlint-cli-0.8.2.tgz#c4aec23ea45f9a869add4fc26354226c9158e454"
   dependencies:
     commander "~2.9.0"
-    deep-extend "~0.4.1"
+    deep-extend "~0.5.1"
     get-stdin "~5.0.1"
     glob "~7.0.3"
     lodash.differencewith "~4.5.0"
     lodash.flatten "~4.4.0"
     markdownlint "~0.8.1"
-    rc "~1.1.6"
+    rc "~1.2.7"
 
 markdownlint@~0.8.1:
   version "0.8.1"
@@ -9203,20 +9199,11 @@ rc-util@^4.0.4, rc-util@^4.4.0:
     prop-types "^15.5.10"
     shallowequal "^0.2.2"
 
-rc@^1.1.7:
+rc@^1.1.7, rc@~1.2.7:
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/rc/-/rc-1.2.7.tgz#8a10ca30d588d00464360372b890d06dacd02297"
   dependencies:
     deep-extend "^0.5.1"
-    ini "~1.3.0"
-    minimist "^1.2.0"
-    strip-json-comments "~2.0.1"
-
-rc@~1.1.6:
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/rc/-/rc-1.1.7.tgz#c5ea564bb07aff9fd3a5b32e906c1d3a65940fea"
-  dependencies:
-    deep-extend "~0.4.0"
     ini "~1.3.0"
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
