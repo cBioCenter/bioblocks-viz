@@ -9,6 +9,7 @@ describe('ScatterChart', () => {
   const emptyData = [
     {
       color: '',
+      name: '',
       points: [],
     },
   ];

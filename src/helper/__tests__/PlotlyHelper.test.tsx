@@ -191,12 +191,12 @@ describe('generateScatterGLData', () => {
   ];
 
   test('Should create the expected plotly scatter data format when given defaults.', () => {
-    const result = generateScatterGLData(sampleData, 'blue', 4);
+    const result = generateScatterGLData(sampleData, 'blue', 'da-bo-de', 4);
     expect(result).toMatchSnapshot();
   });
 
   test('Should create the expected plotly scatter data format when points are mirrored.', () => {
-    const result = generateScatterGLData(sampleData, 'blue', 4);
+    const result = generateScatterGLData(sampleData, 'blue', 'da-bo-dai', 4);
     expect(result.x).toEqual([9, 7]);
     expect(result.y).toEqual([8, 6]);
   });

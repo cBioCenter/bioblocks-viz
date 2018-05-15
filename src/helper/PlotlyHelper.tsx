@@ -197,6 +197,7 @@ export const generatePointCloudData = (
 export const generateScatterGLData = (
   array: Array<{ i: number; j: number }>,
   color: string,
+  name: string,
   nodeSize: number,
   mirrorPoints: boolean = false,
   extra?: Partial<IPlotlyData>,
@@ -209,6 +210,7 @@ export const generateScatterGLData = (
       size: nodeSize * 2,
     },
     mode: 'markers',
+    name,
     type: PLOTLY_CHART_TYPE.scattergl,
     x: mirrorPoints ? [...xValues, ...yValues] : xValues,
     y: mirrorPoints ? [...yValues, ...xValues] : yValues,

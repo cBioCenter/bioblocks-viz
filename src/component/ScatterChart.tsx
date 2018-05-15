@@ -27,6 +27,7 @@ export const defaultScatterChartProps = {
 export type ScatterChartProps = {
   data: Array<{
     color: string;
+    name: string;
     points: Array<{ i: number; j: number }>;
   }>;
   nodeSize: number;
@@ -39,7 +40,9 @@ class ScatterChartClass extends React.Component<ScatterChartProps, any> {
   public render() {
     const { candidateResidues, height, hoveredResidues, data, nodeSize, width, ...props } = this.props;
 
-    const scatterGLData = data.map(entry => generateScatterGLData(entry.points, entry.color, nodeSize, true));
+    const scatterGLData = data.map(entry =>
+      generateScatterGLData(entry.points, entry.color, entry.name, nodeSize, true),
+    );
 
     return (
       <PlotlyChart
@@ -50,6 +53,11 @@ class ScatterChartClass extends React.Component<ScatterChartProps, any> {
         layout={{
           ...defaultLayout,
           height,
+          legend: {
+            xanchor: 'right',
+            yanchor: 'bottom',
+          },
+          showlegend: true,
           width,
           xaxis: {
             ...defaultLayout.xaxis,

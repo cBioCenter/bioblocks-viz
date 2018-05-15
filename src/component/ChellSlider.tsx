@@ -72,7 +72,7 @@ export default class ChellSlider extends React.Component<IChellSliderProps, IChe
   public render() {
     const { defaultValue, hideLabelValue, max, min, label, onAfterChange, onChange, sliderProps, style } = this.props;
     return (
-      <div style={{ padding: 5 }}>
+      <div style={{ padding: 20 }}>
         {!hideLabelValue && <p>{`${label}: ${this.state.value}`}</p>}
         <Slider
           {...sliderProps}

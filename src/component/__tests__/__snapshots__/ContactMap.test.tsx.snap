@@ -24,20 +24,23 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled of
       }
     }
   >
-    <PointCloudChartClass
+    <ScatterChartClass
       candidateResidues={Array []}
       data={
         Array [
           Object {
             "color": "#ff0000",
+            "name": "Correct Prediction",
             "points": Array [],
           },
           Object {
             "color": "#000000",
+            "name": "Incorrect Prediction",
             "points": Array [],
           },
           Object {
             "color": "#0000ff",
+            "name": "Observed",
             "points": Array [],
           },
         ]
@@ -62,40 +65,46 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled of
             Object {
               "marker": Object {
                 "color": "#ff0000",
-                "sizemax": 6,
-                "sizemin": 3,
+                "size": 6,
               },
               "mode": "markers",
-              "type": "pointcloud",
-              "xy": Float32Array [],
+              "name": "Correct Prediction",
+              "type": "scattergl",
+              "x": Array [],
+              "y": Array [],
             },
             Object {
               "marker": Object {
                 "color": "#000000",
-                "sizemax": 6,
-                "sizemin": 3,
+                "size": 6,
               },
               "mode": "markers",
-              "type": "pointcloud",
-              "xy": Float32Array [],
+              "name": "Incorrect Prediction",
+              "type": "scattergl",
+              "x": Array [],
+              "y": Array [],
             },
             Object {
               "marker": Object {
                 "color": "#0000ff",
-                "sizemax": 6,
-                "sizemin": 3,
+                "size": 6,
               },
               "mode": "markers",
-              "type": "pointcloud",
-              "xy": Float32Array [],
+              "name": "Observed",
+              "type": "scattergl",
+              "x": Array [],
+              "y": Array [],
             },
           ]
         }
         layout={
           Object {
             "height": 400,
-            "legend": Object {},
-            "showlegend": false,
+            "legend": Object {
+              "xanchor": "right",
+              "yanchor": "bottom",
+            },
+            "showlegend": true,
             "title": "",
             "width": 400,
             "xaxis": Object {
@@ -120,35 +129,7 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled of
       >
         <div />
       </PlotlyChart>
-    </PointCloudChartClass>
-    <Checkbox
-      defaultChecked={false}
-      label="Point Cloud"
-      onChange={[Function]}
-      toggle={true}
-      type="checkbox"
-    >
-      <div
-        className="ui toggle checkbox"
-        onChange={[Function]}
-        onClick={[Function]}
-        onMouseDown={[Function]}
-      >
-        <input
-          checked={false}
-          className="hidden"
-          onClick={[Function]}
-          readOnly={true}
-          tabIndex={0}
-          type="checkbox"
-        />
-        <label
-          key="Point Cloud"
-        >
-          Point Cloud
-        </label>
-      </div>
-    </Checkbox>
+    </ScatterChartClass>
     <ChellSlider
       defaultValue={1}
       hideLabelValue={true}
@@ -167,14 +148,14 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled of
       }
       style={
         Object {
-          "width": 400,
+          "width": 360,
         }
       }
     >
       <div
         style={
           Object {
-            "padding": 5,
+            "padding": 20,
           }
         }
       >
@@ -209,7 +190,7 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled of
           step={1}
           style={
             Object {
-              "width": 400,
+              "width": 360,
             }
           }
           trackStyle={
@@ -228,7 +209,7 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled of
             onTouchStart={[Function]}
             style={
               Object {
-                "width": 400,
+                "width": 360,
               }
             }
           >
@@ -430,14 +411,17 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled on
         Array [
           Object {
             "color": "#ff0000",
+            "name": "Correct Prediction",
             "points": Array [],
           },
           Object {
             "color": "#000000",
+            "name": "Incorrect Prediction",
             "points": Array [],
           },
           Object {
             "color": "#0000ff",
+            "name": "Observed",
             "points": Array [],
           },
         ]
@@ -465,6 +449,7 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled on
                 "size": 6,
               },
               "mode": "markers",
+              "name": "Correct Prediction",
               "type": "scattergl",
               "x": Array [],
               "y": Array [],
@@ -475,6 +460,7 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled on
                 "size": 6,
               },
               "mode": "markers",
+              "name": "Incorrect Prediction",
               "type": "scattergl",
               "x": Array [],
               "y": Array [],
@@ -485,6 +471,7 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled on
                 "size": 6,
               },
               "mode": "markers",
+              "name": "Observed",
               "type": "scattergl",
               "x": Array [],
               "y": Array [],
@@ -494,8 +481,11 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled on
         layout={
           Object {
             "height": 400,
-            "legend": Object {},
-            "showlegend": false,
+            "legend": Object {
+              "xanchor": "right",
+              "yanchor": "bottom",
+            },
+            "showlegend": true,
             "title": "",
             "width": 400,
             "xaxis": Object {
@@ -521,34 +511,6 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled on
         <div />
       </PlotlyChart>
     </ScatterChartClass>
-    <Checkbox
-      defaultChecked={false}
-      label="ScatterGL"
-      onChange={[Function]}
-      toggle={true}
-      type="checkbox"
-    >
-      <div
-        className="ui toggle checkbox"
-        onChange={[Function]}
-        onClick={[Function]}
-        onMouseDown={[Function]}
-      >
-        <input
-          checked={false}
-          className="hidden"
-          onClick={[Function]}
-          readOnly={true}
-          tabIndex={0}
-          type="checkbox"
-        />
-        <label
-          key="ScatterGL"
-        >
-          ScatterGL
-        </label>
-      </div>
-    </Checkbox>
     <ChellSlider
       defaultValue={1}
       hideLabelValue={true}
@@ -567,14 +529,14 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled on
       }
       style={
         Object {
-          "width": 400,
+          "width": 360,
         }
       }
     >
       <div
         style={
           Object {
-            "padding": 5,
+            "padding": 20,
           }
         }
       >
@@ -609,7 +571,7 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled on
           step={1}
           style={
             Object {
-              "width": 400,
+              "width": 360,
             }
           }
           trackStyle={
@@ -628,7 +590,7 @@ exports[`ContactMap Should match existing snapshot using ScatterGL is toggled on
             onTouchStart={[Function]}
             style={
               Object {
-                "width": 400,
+                "width": 360,
               }
             }
           >
@@ -815,32 +777,9 @@ exports[`ContactMap Should match existing snapshot when given sample data and sl
 >
   <div />
   <div
-    className="ui toggle checkbox"
-    onChange={[Function]}
-    onClick={[Function]}
-    onMouseDown={[Function]}
-  >
-    <input
-      checked={false}
-      className="hidden"
-      id={undefined}
-      name={undefined}
-      onClick={[Function]}
-      readOnly={true}
-      tabIndex={0}
-      type="checkbox"
-      value={undefined}
-    />
-    <label
-      htmlFor={undefined}
-    >
-      ScatterGL
-    </label>
-  </div>
-  <div
     style={
       Object {
-        "padding": 5,
+        "padding": 20,
       }
     }
   >
@@ -853,7 +792,7 @@ exports[`ContactMap Should match existing snapshot when given sample data and sl
       onTouchStart={[Function]}
       style={
         Object {
-          "width": 400,
+          "width": 360,
         }
       }
     >
@@ -971,65 +910,7 @@ exports[`ContactMap Should match existing snapshot when given sample data and sl
     <div
       style={
         Object {
-          "padding": 5,
-        }
-      }
-    >
-      <p>
-        Probability: 99
-      </p>
-      <div
-        className="rc-slider"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onMouseDown={[Function]}
-        onTouchStart={[Function]}
-        style={
-          Object {
-            "width": 400,
-          }
-        }
-      >
-        <div
-          className="rc-slider-rail"
-          style={Object {}}
-        />
-        <div
-          className="rc-slider-track"
-          style={
-            Object {
-              "left": "0%",
-              "width": "99%",
-            }
-          }
-        />
-        <div
-          className="rc-slider-step"
-        />
-        <div
-          aria-disabled={false}
-          aria-valuemax={100}
-          aria-valuemin={0}
-          aria-valuenow={99}
-          className="rc-slider-handle"
-          role="slider"
-          style={
-            Object {
-              "left": "99%",
-            }
-          }
-          tabIndex={0}
-        />
-        <div
-          className="rc-slider-mark"
-        />
-      </div>
-    </div>
-    <div
-      style={
-        Object {
-          "padding": 5,
+          "padding": 20,
         }
       }
     >
@@ -1045,7 +926,7 @@ exports[`ContactMap Should match existing snapshot when given sample data and sl
         onTouchStart={[Function]}
         style={
           Object {
-            "width": 400,
+            "width": 360,
           }
         }
       >
@@ -1084,34 +965,131 @@ exports[`ContactMap Should match existing snapshot when given sample data and sl
         />
       </div>
     </div>
-  </div>
-  <div
-    className="ui toggle checkbox"
-    onChange={[Function]}
-    onClick={[Function]}
-    onMouseDown={[Function]}
-  >
-    <input
-      checked={false}
-      className="hidden"
-      id={undefined}
-      name={undefined}
-      onClick={[Function]}
-      readOnly={true}
-      tabIndex={0}
-      type="checkbox"
-      value={undefined}
-    />
-    <label
-      htmlFor={undefined}
+    <div
+      style={
+        Object {
+          "padding": 20,
+        }
+      }
     >
-      ScatterGL
-    </label>
+      <p>
+        # Predicted Contacts to Show: 100
+      </p>
+      <div
+        className="rc-slider rc-slider-with-marks"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onMouseDown={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "width": 360,
+          }
+        }
+      >
+        <div
+          className="rc-slider-rail"
+          style={Object {}}
+        />
+        <div
+          className="rc-slider-track"
+          style={
+            Object {
+              "left": "0%",
+              "width": "100%",
+            }
+          }
+        />
+        <div
+          className="rc-slider-step"
+        >
+          <span
+            className="rc-slider-dot rc-slider-dot-active"
+            style={
+              Object {
+                "left": "0%",
+              }
+            }
+          />
+          <span
+            className="rc-slider-dot rc-slider-dot-active"
+            style={
+              Object {
+                "left": "33.33333333333333%",
+              }
+            }
+          />
+          <span
+            className="rc-slider-dot rc-slider-dot-active"
+            style={
+              Object {
+                "left": "100%",
+              }
+            }
+          />
+        </div>
+        <div
+          aria-disabled={false}
+          aria-valuemax={3}
+          aria-valuemin={0}
+          aria-valuenow={3}
+          className="rc-slider-handle"
+          role="slider"
+          style={
+            Object {
+              "left": "100%",
+            }
+          }
+          tabIndex={0}
+        />
+        <div
+          className="rc-slider-mark"
+        >
+          <span
+            className="rc-slider-mark-text rc-slider-mark-text-active"
+            style={
+              Object {
+                "left": "0%",
+                "marginLeft": "-22.5%",
+                "width": "45%",
+              }
+            }
+          >
+            None
+          </span>
+          <span
+            className="rc-slider-mark-text rc-slider-mark-text-active"
+            style={
+              Object {
+                "left": "33.33333333333333%",
+                "marginLeft": "-22.5%",
+                "width": "45%",
+              }
+            }
+          >
+            Half (1)
+          </span>
+          <span
+            className="rc-slider-mark-text rc-slider-mark-text-active"
+            style={
+              Object {
+                "left": "100%",
+                "marginLeft": "-22.5%",
+                "width": "45%",
+              }
+            }
+          >
+            All (3)
+          </span>
+        </div>
+      </div>
+    </div>
   </div>
   <div
     style={
       Object {
-        "padding": 5,
+        "padding": 20,
       }
     }
   >
@@ -1124,7 +1102,7 @@ exports[`ContactMap Should match existing snapshot when given sample data and sl
       onTouchStart={[Function]}
       style={
         Object {
-          "width": 400,
+          "width": 360,
         }
       }
     >

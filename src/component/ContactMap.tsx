@@ -1,12 +1,10 @@
 import * as Plotly from 'plotly.js';
 import * as React from 'react';
-import { Checkbox } from 'semantic-ui-react';
 
 import ResidueContext, { initialResidueContext, IResidueSelection } from '../context/ResidueContext';
 import { CONTACT_VIEW_TYPE, IContactMapData, ICouplingScore, RESIDUE_TYPE } from '../data/chell-data';
 import { withDefaultProps } from '../helper/ReactHelper';
 import ChellSlider from './ChellSlider';
-import PointCloudChart from './PointCloudChart';
 import ScatterChart from './ScatterChart';
 
 export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
@@ -38,6 +36,7 @@ export const initialContactMapState = {
   isUsingScatterGL: true,
   nodeSize: 3,
   observedContacts: [] as ICouplingScore[],
+  predictedContactCount: 100,
   probabilityFilter: 0.99,
 };
 
@@ -62,7 +61,9 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     const isFreshDataView =
       data !== prevProps.data ||
       this.state.probabilityFilter !== prevState.probabilityFilter ||
-      contactViewType !== prevState.contactViewType;
+      contactViewType !== prevState.contactViewType ||
+      this.state.predictedContactCount !== prevState.predictedContactCount;
+
     if (isFreshDataView) {
       this.setupData(data, contactViewType);
     }
@@ -88,65 +89,42 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
       // lockedResiduePairs,
     } = this.props;
 
-    const {
-      correctPredictedContacts,
-      incorrectPredictedContacts,
-      isUsingScatterGL,
-      nodeSize,
-      observedContacts,
-    } = this.state;
+    const { correctPredictedContacts, incorrectPredictedContacts, nodeSize, observedContacts } = this.state;
 
-    const sliderStyle = { width };
+    const sliderStyle = { width: width * 0.9 };
 
     const inputData = [
       {
         color: correctColor,
+        name: 'Correct Prediction',
         points: correctPredictedContacts,
       },
       {
         color: incorrectColor,
+        name: 'Incorrect Prediction',
         points: incorrectPredictedContacts,
       },
       {
         color: observedColor,
+        name: 'Observed',
         points: observedContacts,
       },
     ];
 
     return (
       <div id="ContactMapComponent" style={{ padding }}>
-        {isUsingScatterGL ? (
-          <ScatterChart
-            candidateResidues={candidateResidues}
-            height={height}
-            hoveredResidues={hoveredResidues}
-            data={inputData}
-            nodeSize={nodeSize}
-            onHoverCallback={this.onMouseEnter(addHoveredResidues)}
-            onClickCallback={this.onMouseClick(addLockedResiduePair)}
-            onSelectedCallback={this.onMouseSelect()}
-            width={width}
-          />
-        ) : (
-          <PointCloudChart
-            candidateResidues={candidateResidues}
-            height={height}
-            hoveredResidues={hoveredResidues}
-            data={inputData}
-            nodeSize={nodeSize}
-            onHoverCallback={this.onMouseEnter(addHoveredResidues)}
-            onClickCallback={this.onMouseClick(addLockedResiduePair)}
-            onSelectedCallback={this.onMouseSelect()}
-            width={width}
-          />
-        )}
-        {this.props.enableSliders && this.renderSliders(sliderStyle)}
-        <Checkbox
-          defaultChecked={false}
-          label={isUsingScatterGL ? 'ScatterGL' : 'Point Cloud'}
-          toggle={true}
-          onChange={this.onRendererChange()}
+        <ScatterChart
+          candidateResidues={candidateResidues}
+          height={height}
+          hoveredResidues={hoveredResidues}
+          data={inputData}
+          nodeSize={nodeSize}
+          onHoverCallback={this.onMouseEnter(addHoveredResidues)}
+          onClickCallback={this.onMouseClick(addLockedResiduePair)}
+          onSelectedCallback={this.onMouseSelect()}
+          width={width}
         />
+        {this.props.enableSliders && this.renderSliders(sliderStyle, this.props.data.couplingScores.length)}
         <ChellSlider
           defaultValue={1}
           hideLabelValue={true}
@@ -163,23 +141,38 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     );
   }
 
-  protected renderSliders(sliderStyle: React.CSSProperties[] | React.CSSProperties) {
+  protected renderSliders(sliderStyle: React.CSSProperties[] | React.CSSProperties, dataLength: number) {
     return (
       <div>
-        <ChellSlider
+        {/*<ChellSlider
           max={100}
           min={0}
           label={'Probability'}
           defaultValue={99}
           onChange={this.onProbabilityChange()}
           style={sliderStyle}
-        />
+        />*/}
         <ChellSlider
           max={5}
           min={1}
           label={'Node Size'}
           defaultValue={this.state.nodeSize}
           onChange={this.onNodeSizeChange()}
+          style={sliderStyle}
+        />
+        <ChellSlider
+          max={dataLength}
+          min={0}
+          label={'# Predicted Contacts to Show'}
+          defaultValue={100}
+          onChange={this.onPredictedContactCountChange()}
+          sliderProps={{
+            marks: {
+              0: 'None',
+              [Math.floor(dataLength / 2)]: `Half (${Math.floor(dataLength / 2)})`,
+              [dataLength]: `All (${dataLength})`,
+            },
+          }}
           style={sliderStyle}
         />
       </div>
@@ -190,7 +183,6 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     const showObserved = contactViewType === CONTACT_VIEW_TYPE.BOTH || contactViewType === CONTACT_VIEW_TYPE.OBSERVED;
     const showPredicted = contactViewType === CONTACT_VIEW_TYPE.BOTH || contactViewType === CONTACT_VIEW_TYPE.PREDICTED;
 
-    const maxContactsToConsider = 100;
     const maxAng = 5;
     const maxResidueDist = 1;
 
@@ -198,7 +190,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     const correctPredictedContacts: ICouplingScore[] = [];
     const incorrectPredictedContacts: ICouplingScore[] = [];
 
-    for (const contact of data.couplingScores.slice(0, maxContactsToConsider)) {
+    for (const contact of data.couplingScores.slice(0, this.state.predictedContactCount)) {
       if (Math.abs(contact.i - contact.j) > maxResidueDist) {
         if (contact.dist < maxAng && showObserved) {
           observedContacts.push(contact);
@@ -238,6 +230,12 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
   protected onNodeSizeChange = () => (value: number) => {
     this.setState({
       nodeSize: value,
+    });
+  };
+
+  protected onPredictedContactCountChange = () => (value: number) => {
+    this.setState({
+      predictedContactCount: value,
     });
   };
 

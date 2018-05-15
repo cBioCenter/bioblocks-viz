@@ -4,7 +4,7 @@ exports[`ChellSlider Should match existing snapshot when given simple data. 1`] 
 <div
   style={
     Object {
-      "padding": 5,
+      "padding": 20,
     }
   }
 >

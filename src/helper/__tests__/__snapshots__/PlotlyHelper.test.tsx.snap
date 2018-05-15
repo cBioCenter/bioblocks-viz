@@ -85,6 +85,7 @@ Object {
     "size": 8,
   },
   "mode": "markers",
+  "name": "da-bo-de",
   "type": "scattergl",
   "x": Array [
     9,

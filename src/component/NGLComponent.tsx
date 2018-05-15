@@ -228,7 +228,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
         structureComponent.addRepresentation('distance', {
           atomPair: [selection.split(',')],
           color: 'skyblue',
-          labelUnit: 'nm',
+          labelUnit: 'angstrom',
         }),
       );
     }
