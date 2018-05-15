@@ -1,10 +1,5 @@
 import { VIZ_TYPE } from '../../data/chell-data';
-import {
-  fetchAppropriateData,
-  getCouplingScoresData,
-  getDistanceContactData,
-  getMonomerContactData,
-} from '../DataHelper';
+import { fetchAppropriateData, getCouplingScoresData } from '../DataHelper';
 
 describe('DataHelper', () => {
   test('Should throw an error when attempting to fetch data for an unsupported visualization type.', async () => {
@@ -17,24 +12,10 @@ describe('DataHelper', () => {
 
   describe('Contact Map', () => {
     test('Should return empty data for an incorrect location.', async () => {
-      await expect(fetchAppropriateData(VIZ_TYPE.CONTACT_MAP, '')).resolves.toEqual({
-        contactMonomer: [],
-        couplingScore: [],
-        distanceMapMonomer: [],
-        observedMonomer: [],
-      });
-    });
-
-    const monomerContactCsv = 'i,j,dist\n1,2,3\n2,1,3';
-    test('Should parse contact monomer data correctly.', async () => {
-      const data = await getMonomerContactData(monomerContactCsv);
-      expect(data).toEqual([{ i: 1, j: 2, dist: 3 }, { i: 2, j: 1, dist: 3 }]);
-    });
-
-    const monomerObservedCsv = '_,id,sec_struc\n1,1,C\n2,2,K';
-    test('Should parse contact monomer data correctly.', async () => {
-      const data = await getDistanceContactData(monomerObservedCsv);
-      expect(data).toEqual([{ id: 1, sec_struct_3state: 'C' }, { id: 2, sec_struct_3state: 'K' }]);
+      const expected = {
+        couplingScores: [],
+      };
+      await expect(fetchAppropriateData(VIZ_TYPE.CONTACT_MAP, '')).resolves.toEqual(expected);
     });
 
     const couplingScoresCsv =

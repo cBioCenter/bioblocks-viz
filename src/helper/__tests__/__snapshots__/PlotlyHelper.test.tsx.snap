@@ -82,8 +82,7 @@ exports[`generateScatterGLData Should create the expected plotly scatter data fo
 Object {
   "marker": Object {
     "color": "blue",
-    "sizemax": 8,
-    "sizemin": 4,
+    "size": 8,
   },
   "mode": "markers",
   "type": "scattergl",

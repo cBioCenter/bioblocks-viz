@@ -53,34 +53,48 @@ describe('ContactMap', () => {
   });
 
   const emptyData = {
-    contactMonomer: [],
-    couplingScore: [],
-    distanceMapMonomer: [],
-    observedMonomer: [],
+    couplingScores: [],
   };
 
+  // tslint:disable:variable-name
+  const generateCouplingScore = (
+    i: number,
+    A_i: string,
+    j: number,
+    A_j: string,
+    fn: number,
+    cn: number,
+    segment_i: string,
+    segment_j: string,
+    probability: number,
+    dist_intra: number,
+    dist_multimer: number,
+    dist: number,
+    precision: number,
+  ) => ({
+    i,
+    // tslint:disable-next-line:object-literal-sort-keys
+    A_i,
+    j,
+    A_j,
+    fn,
+    cn,
+    segment_i,
+    segment_j,
+    probability,
+    dist_intra,
+    dist_multimer,
+    dist,
+    precision,
+  });
+  // tslint:enable:variable-name
+
   const sampleData = {
-    contactMonomer: [{ i: 0, j: 1, dist: 10 }, { i: 1, j: 0, dist: 10 }],
-    couplingScore: [
-      {
-        i: 0,
-        // tslint:disable-next-line:object-literal-sort-keys
-        A_i: 'I',
-        j: 1,
-        A_j: 'J',
-        fn: 1,
-        cn: 1,
-        segment_i: 'K',
-        segment_j: 'L',
-        probability: 1,
-        dist_intra: 1,
-        dist_multimer: 1,
-        dist: 10,
-        precision: 10,
-      },
+    couplingScores: [
+      generateCouplingScore(0, 'I', 1, 'J', 1, 1, 'K', 'L', 1, 1, 1, 10, 10),
+      generateCouplingScore(0, 'I', 10, 'J', 1, 1, 'K', 'L', 1, 1, 1, 10, 10),
+      generateCouplingScore(10, 'I', 0, 'J', 1, 1, 'K', 'L', 1, 1, 1, 10, 10),
     ],
-    distanceMapMonomer: [{ id: 0, sec_struct_3state: 'A' }],
-    observedMonomer: [{ i: 0, j: 1, dist: 5 }, { i: 1, j: 0, dist: 5 }],
   };
 
   test('Should match existing snapshot when given no data.', () => {
@@ -142,9 +156,7 @@ describe('ContactMap', () => {
       contactViewType: CONTACT_VIEW_TYPE.BOTH,
     });
     await wrapper.update();
-    expect(instance.state.contactPoints).toEqual(sampleData.contactMonomer);
-    expect(instance.state.couplingPoints).toEqual(sampleData.couplingScore);
-    expect(instance.state.observedPoints).toEqual(sampleData.observedMonomer);
+    expect(instance.state.observedContacts).toEqual([]);
   });
 
   test("Should show only observed contacts when 'OBSERVED' is selected.", async () => {
@@ -154,10 +166,7 @@ describe('ContactMap', () => {
       contactViewType: CONTACT_VIEW_TYPE.OBSERVED,
     });
     await wrapper.update();
-    expect(instance.state.contactPoints).toEqual(sampleData.contactMonomer);
-    expect(instance.state.couplingPoints).not.toEqual(sampleData.couplingScore);
-    expect(instance.state.couplingPoints).toEqual([]);
-    expect(instance.state.observedPoints).toEqual(sampleData.observedMonomer);
+    expect(instance.state.observedContacts).toEqual([]);
   });
 
   test("Should show only predicted contacts when 'PREDICTED' is selected.", async () => {
@@ -167,9 +176,6 @@ describe('ContactMap', () => {
       contactViewType: CONTACT_VIEW_TYPE.PREDICTED,
     });
     await wrapper.update();
-    expect(instance.state.contactPoints).toEqual(sampleData.contactMonomer);
-    expect(instance.state.couplingPoints).toEqual(sampleData.couplingScore);
-    expect(instance.state.observedPoints).not.toEqual(sampleData.observedMonomer);
-    expect(instance.state.observedPoints).toEqual([]);
+    expect(instance.state.observedContacts).toEqual([]);
   });
 });

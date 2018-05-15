@@ -12,8 +12,7 @@ exports[`ScatterChart Should match existing snapshot when given simple data. 1`]
       Object {
         "marker": Object {
           "color": "",
-          "sizemax": 8,
-          "sizemin": 4,
+          "size": 8,
         },
         "mode": "markers",
         "type": "scattergl",

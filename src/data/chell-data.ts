@@ -31,10 +31,7 @@ export enum CONTACT_VIEW_TYPE {
 }
 
 export interface IContactMapData {
-  contactMonomer: IMonomerContact[];
-  couplingScore: ICouplingScore[];
-  distanceMapMonomer: IDistanceMapMonomer[];
-  observedMonomer: IMonomerContact[];
+  couplingScores: ICouplingScore[];
 }
 
 export interface IMonomerContact {

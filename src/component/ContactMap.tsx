@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Checkbox } from 'semantic-ui-react';
 
 import ResidueContext, { initialResidueContext, IResidueSelection } from '../context/ResidueContext';
-import { CONTACT_VIEW_TYPE, IContactMapData, ICouplingScore, IMonomerContact, RESIDUE_TYPE } from '../data/chell-data';
+import { CONTACT_VIEW_TYPE, IContactMapData, ICouplingScore, RESIDUE_TYPE } from '../data/chell-data';
 import { withDefaultProps } from '../helper/ReactHelper';
 import ChellSlider from './ChellSlider';
 import PointCloudChart from './PointCloudChart';
@@ -13,19 +13,16 @@ export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
 export type ContactMapCallback = (coupling: CONTACT_MAP_CB_RESULT_TYPE) => void;
 
 export const defaultContactMapProps = {
-  contactColor: '#009999',
-  couplingColor: '#000000',
+  correctColor: '#ff0000',
   data: {
-    contactMonomer: [],
-    couplingScore: [],
-    distanceMapMonomer: [],
-    observedMonomer: [],
+    couplingScores: [],
   } as IContactMapData,
   enableSliders: false,
   height: 400,
-  highlightColor: '#0000ff',
+  highlightColor: '#ff0000',
+  incorrectColor: '#000000',
   ...initialResidueContext,
-  observedColor: '#ff8800',
+  observedColor: '#0000ff',
   onClick: undefined as ContactMapCallback | undefined,
   onMouseEnter: undefined as ContactMapCallback | undefined,
   padding: 0,
@@ -34,13 +31,13 @@ export const defaultContactMapProps = {
 };
 
 export const initialContactMapState = {
-  contactPoints: [] as IMonomerContact[],
   contactViewType: CONTACT_VIEW_TYPE.BOTH,
-  couplingPoints: [] as ICouplingScore[],
+  correctPredictedContacts: [] as ICouplingScore[],
   highlightedPoints: [] as number[],
+  incorrectPredictedContacts: [] as ICouplingScore[],
   isUsingScatterGL: true,
-  nodeSize: 4,
-  observedPoints: [] as IMonomerContact[],
+  nodeSize: 3,
+  observedContacts: [] as ICouplingScore[],
   probabilityFilter: 0.99,
 };
 
@@ -77,8 +74,8 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
   public render() {
     const {
-      contactColor,
-      couplingColor,
+      correctColor,
+      incorrectColor,
       height,
       // highlightColor,
       observedColor,
@@ -91,21 +88,28 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
       // lockedResiduePairs,
     } = this.props;
 
-    const { contactPoints, couplingPoints, isUsingScatterGL, nodeSize, observedPoints } = this.state;
+    const {
+      correctPredictedContacts,
+      incorrectPredictedContacts,
+      isUsingScatterGL,
+      nodeSize,
+      observedContacts,
+    } = this.state;
+
     const sliderStyle = { width };
 
     const inputData = [
       {
-        color: contactColor,
-        points: contactPoints,
+        color: correctColor,
+        points: correctPredictedContacts,
       },
       {
-        color: couplingColor,
-        points: couplingPoints,
+        color: incorrectColor,
+        points: incorrectPredictedContacts,
       },
       {
         color: observedColor,
-        points: observedPoints,
+        points: observedContacts,
       },
     ];
 
@@ -153,7 +157,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
           sliderProps={{
             marks: { 0: 'Observed', 1: 'Both', 2: 'Predicted' },
           }}
-          style={{ width: sliderStyle.width / 2 }}
+          style={sliderStyle}
         />
       </div>
     );
@@ -186,12 +190,28 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     const showObserved = contactViewType === CONTACT_VIEW_TYPE.BOTH || contactViewType === CONTACT_VIEW_TYPE.OBSERVED;
     const showPredicted = contactViewType === CONTACT_VIEW_TYPE.BOTH || contactViewType === CONTACT_VIEW_TYPE.PREDICTED;
 
+    const maxContactsToConsider = 100;
+    const maxAng = 5;
+    const maxResidueDist = 1;
+
+    const observedContacts: ICouplingScore[] = [];
+    const correctPredictedContacts: ICouplingScore[] = [];
+    const incorrectPredictedContacts: ICouplingScore[] = [];
+
+    for (const contact of data.couplingScores.slice(0, maxContactsToConsider)) {
+      if (Math.abs(contact.i - contact.j) > maxResidueDist) {
+        if (contact.dist < maxAng && showObserved) {
+          observedContacts.push(contact);
+        } else if (contact.dist >= maxAng && showPredicted) {
+          incorrectPredictedContacts.push(contact);
+        }
+      }
+    }
+
     this.setState({
-      contactPoints: data.contactMonomer,
-      couplingPoints: showPredicted
-        ? data.couplingScore.filter(coupling => coupling.probability >= this.state.probabilityFilter)
-        : [],
-      observedPoints: showObserved ? data.observedMonomer : [],
+      correctPredictedContacts,
+      incorrectPredictedContacts,
+      observedContacts,
     });
   }
 

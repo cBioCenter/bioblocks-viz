@@ -206,8 +206,7 @@ export const generateScatterGLData = (
   return {
     marker: {
       color,
-      sizemax: nodeSize * 2,
-      sizemin: nodeSize,
+      size: nodeSize * 2,
     },
     mode: 'markers',
     type: PLOTLY_CHART_TYPE.scattergl,
