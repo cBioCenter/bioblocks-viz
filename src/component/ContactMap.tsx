@@ -1,7 +1,7 @@
 import * as Plotly from 'plotly.js';
 import * as React from 'react';
 
-import ResidueContext, { initialResidueContext } from '../context/ResidueContext';
+import ResidueContext, { initialResidueContext, IResidueSelection } from '../context/ResidueContext';
 import { CONTACT_VIEW_TYPE, IContactMapData, ICouplingScore, RESIDUE_TYPE } from '../data/chell-data';
 import { withDefaultProps } from '../helper/ReactHelper';
 import ChellSlider from './ChellSlider';
@@ -107,7 +107,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
         color: highlightColor,
         name: 'Locked Residue',
         points: lockedResiduePairs
-          ? Object.keys(lockedResiduePairs)
+          ? Object.keys(lockedResiduePairs as IResidueSelection)
               .filter(key => lockedResiduePairs[key].length === 2)
               .map(key => ({ i: lockedResiduePairs[key][0], j: lockedResiduePairs[key][1] }))
           : [],
