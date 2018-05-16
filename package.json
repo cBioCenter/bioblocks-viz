@@ -8,12 +8,16 @@
     "npm": "^5.6.0",
     "yarn": "^1.5.0"
   },
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "main": "lib/chell-viz.js",
   "types": "lib/chell-viz.d.ts",
   "homepage": "https://cbiocenter.github.io/chell-viz/",
   "jest": {
-    "collectCoverageFrom": ["src/**/*.{ts,tsx}"],
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}"
+    ],
     "coverageDirectory": "dist/jest/coverage",
     "globals": {
       "ts-jest": {
@@ -21,24 +25,45 @@
         "tsConfigFile": "tsconfig.json"
       }
     },
-    "moduleDirectories": ["node_modules", "src", "types"],
-    "moduleFileExtensions": ["ts", "tsx", "js"],
+    "moduleDirectories": [
+      "node_modules",
+      "src",
+      "types"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.ts",
       "plotly.js/dist/plotly": "<rootDir>/__mocks__/plotly.ts"
     },
-    "modulePathIgnorePatterns": ["dist"],
-    "setupFiles": ["./configs/SetupJest.ts"],
+    "modulePathIgnorePatterns": [
+      "dist"
+    ],
+    "setupFiles": [
+      "./configs/SetupJest.ts"
+    ],
     "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
-    "snapshotSerializers": ["enzyme-to-json/serializer"],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
     "testEnvironment": "enzyme",
-    "testMatch": ["**/__tests__/*.+(ts|tsx|js)"],
-    "testPathIgnorePatterns": ["dist", "node_modules"],
+    "testMatch": [
+      "**/__tests__/*.+(ts|tsx|js)"
+    ],
+    "testPathIgnorePatterns": [
+      "dist",
+      "node_modules"
+    ],
     "testResultsProcessor": "jest-junit",
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest"
     },
-    "transformIgnorePatterns": ["<rootDir>/node_modules/(?!csstype)"],
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/(?!csstype)"
+    ],
     "verbose": true
   },
   "jest-junit": {
@@ -49,11 +74,22 @@
     "titleTemplate": "{title}"
   },
   "lint-staged": {
-    "ignore": ["lib"],
+    "ignore": [
+      "lib"
+    ],
     "linters": {
-      "*.{json,md,ts,tsx}": ["prettier --write", "git add"],
-      "*.md": ["markdownlint -c ./markdownlint.json", "git add"],
-      "*.{ts,tsx}": ["tslint", "git add"]
+      "*.{md,ts,tsx}": [
+        "prettier --write",
+        "git add"
+      ],
+      "*.md": [
+        "markdownlint -c ./markdownlint.json",
+        "git add"
+      ],
+      "*.{ts,tsx}": [
+        "tslint",
+        "git add"
+      ]
     }
   },
   "scripts": {

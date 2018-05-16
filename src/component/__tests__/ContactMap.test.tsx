@@ -5,7 +5,7 @@ import * as React from 'react';
 import * as Renderer from 'react-test-renderer';
 
 import { initialResidueContext, IResidueContext } from '../../context/ResidueContext';
-import { CONTACT_VIEW_TYPE } from '../../data/chell-data';
+import { CONTACT_VIEW_TYPE, ICouplingScore } from '../../data/chell-data';
 import PlotlyChart from '../../helper/PlotlyHelper';
 import ContactMap, { ContactMapClass, ContactMapProps } from '../ContactMap';
 
@@ -37,6 +37,17 @@ const getMountedContactMap = async (props?: Partial<ContactMapProps>) => {
 };
 
 /**
+ * Helper function to create and wait for a shallow ContactMap.
+ *
+ * @param props Custom props to be passed to the chart.
+ * @returns A wrapper for the ContactMap that has been shallowly created.
+ */
+const getShallowContactMap = (props?: Partial<ContactMapProps>) => {
+  const Component = getComponentWithContext();
+  return shallow(<Component.ContactMapClass {...props} />);
+};
+
+/**
  * Helper function to dispatch an event through plotly.
  *
  * @param wrapper The PlotlyChart.
@@ -56,81 +67,63 @@ describe('ContactMap', () => {
     couplingScores: [],
   };
 
-  // tslint:disable:variable-name
   const generateCouplingScore = (
     i: number,
-    A_i: string,
     j: number,
-    A_j: string,
-    fn: number,
-    cn: number,
-    segment_i: string,
-    segment_j: string,
-    probability: number,
-    dist_intra: number,
-    dist_multimer: number,
     dist: number,
-    precision: number,
-  ) => ({
-    i,
-    // tslint:disable-next-line:object-literal-sort-keys
-    A_i,
-    j,
-    A_j,
-    fn,
-    cn,
-    segment_i,
-    segment_j,
-    probability,
-    dist_intra,
-    dist_multimer,
+    extra?: Partial<ICouplingScore>,
+  ): ICouplingScore => ({
     dist,
-    precision,
+    i,
+    j,
+    ...extra,
   });
-  // tslint:enable:variable-name
+
+  const sampleCorrectPredictedContact = generateCouplingScore(56, 58, 2.4);
 
   const sampleData = {
+    // Translated from example1/coupling_scores.csv
     couplingScores: [
-      generateCouplingScore(0, 'I', 1, 'J', 1, 1, 'K', 'L', 1, 1, 1, 10, 10),
-      generateCouplingScore(0, 'I', 10, 'J', 1, 1, 'K', 'L', 1, 1, 1, 10, 10),
-      generateCouplingScore(10, 'I', 0, 'J', 1, 1, 'K', 'L', 1, 1, 1, 10, 10),
+      sampleCorrectPredictedContact,
+      generateCouplingScore(45, 46, 1.3),
+      generateCouplingScore(44, 45, 1.3),
+      generateCouplingScore(56, 57, 1.3),
+      generateCouplingScore(57, 58, 1.3),
+      generateCouplingScore(41, 52, 11.3),
     ],
   };
 
-  test('Should match existing snapshot when given no data.', () => {
-    expect(toJson(shallow(<ContactMap />))).toMatchSnapshot();
-  });
-
-  test('Should match existing snapshot when given empty data.', () => {
-    expect(toJson(shallow(<ContactMap data={emptyData} />))).toMatchSnapshot();
-  });
-
-  test('Should match existing snapshot when given sample data and sliders are _not_ enabled.', () => {
-    const component = Renderer.create(<ContactMap data={sampleData} enableSliders={false} />);
-    expect(component.toJSON()).toMatchSnapshot();
-  });
-
-  test('Should match existing snapshot when given sample data and sliders are enabled.', () => {
-    const component = Renderer.create(<ContactMap data={sampleData} enableSliders={true} />);
-    expect(component.toJSON()).toMatchSnapshot();
-  });
-
-  test('Should match existing snapshot using ScatterGL is toggled on.', async () => {
-    const wrapper = await getMountedContactMap();
-    wrapper.setState({
-      isUsingScatterGL: true,
+  describe('Snapshots', () => {
+    test('Should match existing snapshot when given no data.', () => {
+      expect(toJson(shallow(<ContactMap />))).toMatchSnapshot();
     });
-    await wrapper.update();
-    expect(toJson(wrapper)).toMatchSnapshot();
-  });
 
-  test('Should match existing snapshot using ScatterGL is toggled off.', async () => {
-    const wrapper = await getMountedContactMap();
-    wrapper.setState({
-      isUsingScatterGL: false,
+    test('Should match existing snapshot when given empty data.', () => {
+      expect(toJson(shallow(<ContactMap data={emptyData} />))).toMatchSnapshot();
     });
-    await wrapper.update();
-    expect(toJson(wrapper)).toMatchSnapshot();
+
+    test('Should match existing snapshot when given sample data and sliders are _not_ enabled.', () => {
+      const component = Renderer.create(<ContactMap data={sampleData} enableSliders={false} />);
+      expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    test('Should match existing snapshot when given sample data and sliders are enabled.', () => {
+      const component = Renderer.create(<ContactMap data={sampleData} enableSliders={true} />);
+      expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    test('Should match snapshot when locked residues are added.', async () => {
+      const wrapper = await getMountedContactMap({ data: sampleData });
+      const expectedSelectedPoints = {
+        '37,46': [37, 46],
+        '8': [8],
+      };
+      wrapper.setProps({
+        lockedResiduePairs: expectedSelectedPoints,
+      });
+      await wrapper.update();
+      expect(toJson(wrapper)).toMatchSnapshot();
+    });
   });
 
   test('Should invoke callback to add locked residues when a click event is fired.', async () => {
@@ -149,33 +142,68 @@ describe('ContactMap', () => {
     expect(onHoverSpy).toHaveBeenCalledTimes(1);
   });
 
-  test("Should show both observed and predicted contacts when 'BOTH' is selected.", async () => {
+  test('Should show both observed and predicted contacts when BOTH is selected.', async () => {
     const wrapper = await getMountedContactMap({ data: sampleData });
     const instance = wrapper.instance() as ContactMapClass;
     wrapper.setState({
       contactViewType: CONTACT_VIEW_TYPE.BOTH,
     });
-    await wrapper.update();
-    expect(instance.state.observedContacts).toEqual([]);
+    expect(instance.state.observedContacts).toEqual([sampleCorrectPredictedContact]);
   });
 
-  test("Should show only observed contacts when 'OBSERVED' is selected.", async () => {
+  test('Should show only observed contacts when OBSERVED is selected.', async () => {
     const wrapper = await getMountedContactMap({ data: sampleData });
     const instance = wrapper.instance() as ContactMapClass;
     wrapper.setState({
       contactViewType: CONTACT_VIEW_TYPE.OBSERVED,
     });
-    await wrapper.update();
-    expect(instance.state.observedContacts).toEqual([]);
+    expect(instance.state.observedContacts).toEqual([sampleCorrectPredictedContact]);
   });
 
-  test("Should show only predicted contacts when 'PREDICTED' is selected.", async () => {
+  test('Should show only predicted contacts when PREDICTED is selected.', async () => {
     const wrapper = await getMountedContactMap({ data: sampleData });
     const instance = wrapper.instance() as ContactMapClass;
     wrapper.setState({
       contactViewType: CONTACT_VIEW_TYPE.PREDICTED,
     });
-    await wrapper.update();
     expect(instance.state.observedContacts).toEqual([]);
+  });
+
+  describe('Sliders', () => {
+    test('Should update node size when appropriate slider is updated.', () => {
+      const wrapper = getShallowContactMap({ data: sampleData, enableSliders: true });
+      const instance = wrapper.instance() as ContactMapClass;
+      expect(instance.state.nodeSize).toBe(3);
+      const expectedSize = 5;
+      wrapper
+        .find('.node-size-slider')
+        .at(0)
+        .simulate('change', expectedSize);
+      expect(instance.state.nodeSize).toBe(expectedSize);
+    });
+
+    test('Should update number of predicted contacts to show when appropriate slider is updated.', () => {
+      const wrapper = getShallowContactMap({ data: sampleData, enableSliders: true });
+      const instance = wrapper.instance() as ContactMapClass;
+      expect(instance.state.predictedContactCount).toBe(100);
+      const expectedCount = 50;
+      wrapper
+        .find('.predicted-contact-slider')
+        .at(0)
+        .simulate('change', expectedCount);
+      expect(instance.state.predictedContactCount).toBe(expectedCount);
+    });
+
+    test('Should update contact view type when appropriate slider is updated.', () => {
+      const wrapper = getShallowContactMap({ data: sampleData, enableSliders: true });
+      const instance = wrapper.instance() as ContactMapClass;
+      expect(instance.state.contactViewType).toBe(CONTACT_VIEW_TYPE.BOTH);
+      const expectedViewType = CONTACT_VIEW_TYPE.OBSERVED;
+      wrapper
+        .find('.contact-view-slider')
+        .at(0)
+        .simulate('change', expectedViewType);
+      expect(instance.state.contactViewType).toBe(expectedViewType);
+    });
   });
 });

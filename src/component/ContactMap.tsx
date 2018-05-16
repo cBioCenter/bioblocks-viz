@@ -1,7 +1,7 @@
 import * as Plotly from 'plotly.js';
 import * as React from 'react';
 
-import ResidueContext, { initialResidueContext, IResidueSelection } from '../context/ResidueContext';
+import ResidueContext, { initialResidueContext } from '../context/ResidueContext';
 import { CONTACT_VIEW_TYPE, IContactMapData, ICouplingScore, RESIDUE_TYPE } from '../data/chell-data';
 import { withDefaultProps } from '../helper/ReactHelper';
 import ChellSlider from './ChellSlider';
@@ -31,9 +31,7 @@ export const defaultContactMapProps = {
 export const initialContactMapState = {
   contactViewType: CONTACT_VIEW_TYPE.BOTH,
   correctPredictedContacts: [] as ICouplingScore[],
-  highlightedPoints: [] as number[],
   incorrectPredictedContacts: [] as ICouplingScore[],
-  isUsingScatterGL: true,
   nodeSize: 3,
   observedContacts: [] as ICouplingScore[],
   predictedContactCount: 100,
@@ -55,7 +53,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
   }
 
   public componentDidUpdate(prevProps: ContactMapProps, prevState: ContactMapState) {
-    const { data, lockedResiduePairs } = this.props;
+    const { data } = this.props;
     const { contactViewType } = this.state;
 
     const isFreshDataView =
@@ -67,18 +65,14 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     if (isFreshDataView) {
       this.setupData(data, contactViewType);
     }
-
-    if (lockedResiduePairs && prevProps.lockedResiduePairs !== lockedResiduePairs) {
-      this.setupHighlightedResidues(lockedResiduePairs);
-    }
   }
 
   public render() {
     const {
       correctColor,
-      incorrectColor,
       height,
-      // highlightColor,
+      highlightColor,
+      incorrectColor,
       observedColor,
       padding,
       width,
@@ -86,7 +80,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
       addHoveredResidues,
       candidateResidues,
       hoveredResidues,
-      // lockedResiduePairs,
+      lockedResiduePairs,
     } = this.props;
 
     const { correctPredictedContacts, incorrectPredictedContacts, nodeSize, observedContacts } = this.state;
@@ -95,9 +89,9 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
     const inputData = [
       {
-        color: correctColor,
-        name: 'Correct Prediction',
-        points: correctPredictedContacts,
+        color: observedColor,
+        name: 'Observed',
+        points: observedContacts,
       },
       {
         color: incorrectColor,
@@ -105,9 +99,18 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
         points: incorrectPredictedContacts,
       },
       {
-        color: observedColor,
-        name: 'Observed',
-        points: observedContacts,
+        color: correctColor,
+        name: 'Correct Prediction',
+        points: correctPredictedContacts,
+      },
+      {
+        color: highlightColor,
+        name: 'Locked Residue',
+        points: lockedResiduePairs
+          ? Object.keys(lockedResiduePairs)
+              .filter(key => lockedResiduePairs[key].length === 2)
+              .map(key => ({ i: lockedResiduePairs[key][0], j: lockedResiduePairs[key][1] }))
+          : [],
       },
     ];
 
@@ -125,18 +128,6 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
           width={width}
         />
         {this.props.enableSliders && this.renderSliders(sliderStyle, this.props.data.couplingScores.length)}
-        <ChellSlider
-          defaultValue={1}
-          hideLabelValue={true}
-          label={'What to show?'}
-          max={2}
-          min={0}
-          onChange={this.onContactViewChange()}
-          sliderProps={{
-            marks: { 0: 'Observed', 1: 'Both', 2: 'Predicted' },
-          }}
-          style={sliderStyle}
-        />
       </div>
     );
   }
@@ -144,15 +135,8 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
   protected renderSliders(sliderStyle: React.CSSProperties[] | React.CSSProperties, dataLength: number) {
     return (
       <div>
-        {/*<ChellSlider
-          max={100}
-          min={0}
-          label={'Probability'}
-          defaultValue={99}
-          onChange={this.onProbabilityChange()}
-          style={sliderStyle}
-        />*/}
         <ChellSlider
+          className={'node-size-slider'}
           max={5}
           min={1}
           label={'Node Size'}
@@ -161,6 +145,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
           style={sliderStyle}
         />
         <ChellSlider
+          className={'predicted-contact-slider'}
           max={dataLength}
           min={0}
           label={'# Predicted Contacts to Show'}
@@ -172,6 +157,19 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
               [Math.floor(dataLength / 2)]: `Half (${Math.floor(dataLength / 2)})`,
               [dataLength]: `All (${dataLength})`,
             },
+          }}
+          style={sliderStyle}
+        />
+        <ChellSlider
+          className={'contact-view-slider'}
+          defaultValue={1}
+          hideLabelValue={true}
+          label={'What to show?'}
+          max={2}
+          min={0}
+          onChange={this.onContactViewChange()}
+          sliderProps={{
+            marks: { 0: 'Observed', 1: 'Both', 2: 'Predicted' },
           }}
           style={sliderStyle}
         />
@@ -207,26 +205,6 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     });
   }
 
-  protected setupHighlightedResidues(pairs: IResidueSelection) {
-    const pairKeys = Object.keys(pairs);
-    const highlightedPoints: number[] = [];
-    for (const key of pairKeys) {
-      for (const residue of pairs[key]) {
-        highlightedPoints.push(residue);
-      }
-    }
-
-    this.setState({
-      highlightedPoints,
-    });
-  }
-
-  protected onProbabilityChange = () => (value: number) => {
-    this.setState({
-      probabilityFilter: value / 100,
-    });
-  };
-
   protected onNodeSizeChange = () => (value: number) => {
     this.setState({
       nodeSize: value,
@@ -242,12 +220,6 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
   protected onContactViewChange = () => (value: number) => {
     this.setState({
       contactViewType: value,
-    });
-  };
-
-  protected onRendererChange = () => (value: any) => {
-    this.setState({
-      isUsingScatterGL: !this.state.isUsingScatterGL,
     });
   };
 
