@@ -1,4 +1,3 @@
-import * as UglifyJSPlugin from 'uglifyjs-webpack-plugin';
 import * as webpack from 'webpack';
 import * as merge from 'webpack-merge';
 import * as common from '../webpack.common';
@@ -11,7 +10,7 @@ module.exports = merge(common, {
     },
   },
   plugins: [
-    new UglifyJSPlugin({
+    new webpack.optimize.UglifyJsPlugin({
       sourceMap: false,
     }),
     new webpack.DefinePlugin({
