@@ -4,6 +4,8 @@ import * as React from 'react';
 // https://github.com/plotly/plotly-webpack#the-easy-way-recommended
 import * as plotly from 'plotly.js/dist/plotly';
 
+import { withDefaultProps } from '../../helper/ReactHelper';
+
 export enum PLOTLY_CHART_TYPE {
   /** [Plotly Bar Chart](https://plot.ly/javascript/bar-charts/) */
   'bar' = 'bar',
@@ -31,6 +33,37 @@ export interface IPlotlyChartProps {
   onUnHoverCallback?: (event: plotly.PlotMouseEvent) => void;
 }
 
+const defaultPlotlyChartProps: Partial<IPlotlyChartProps> = {
+  config: {
+    displayModeBar: false,
+    // modeBarButtons: [['zoomOut2d', 'zoomIn2d'], ['resetScale2d', 'autoScale2d'], ['select2d', 'pan2d']],
+  },
+  layout: {
+    autosize: true,
+    height: 400,
+    legend: {},
+    margin: {
+      b: 80,
+      l: 40,
+      r: 40,
+      t: 10,
+    },
+    showlegend: false,
+    title: '',
+    width: 400,
+    xaxis: {
+      range: [30],
+    },
+    yaxis: {
+      range: [30],
+    },
+  },
+};
+
+export const defaultPlotlyLayout: Partial<Plotly.Layout> = {};
+
+export const defaultPlotlyConfig: Partial<Plotly.Config> = {};
+
 /**
  * React wrapper for a Plotly Chart.
  *
@@ -40,7 +73,7 @@ export interface IPlotlyChartProps {
  * @export
  * @extends {React.Component<IPlotlyChartProps, any>}
  */
-export default class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
+export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
   public plotlyCanvas: plotly.PlotlyHTMLElement | null = null;
   protected canvasRef: HTMLDivElement | null = null;
 
@@ -92,7 +125,7 @@ export default class PlotlyChart extends React.Component<IPlotlyChartProps, any>
   }
 
   public render() {
-    return <div ref={node => (this.canvasRef = node ? node : null)} />;
+    return <div className={'plotly-chart'} ref={node => (this.canvasRef = node ? node : null)} />;
   }
 
   protected onClick = (event: plotly.PlotMouseEvent) => {
@@ -124,4 +157,7 @@ export default class PlotlyChart extends React.Component<IPlotlyChartProps, any>
   };
 }
 
+const PlotlyChart = withDefaultProps(defaultPlotlyChartProps, PlotlyChartClass);
+
+export default PlotlyChart;
 export { PlotlyChart };

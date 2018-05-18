@@ -13,7 +13,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
     }
   }
 >
-  <div />
+  <div
+    className="plotly-chart"
+  />
 </div>
 `;
 
@@ -26,7 +28,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
     }
   }
 >
-  <div />
+  <div
+    className="plotly-chart"
+  />
   <div>
     <div
       className="node-size-slider"
@@ -531,7 +535,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         ]
       }
     >
-      <PlotlyChart
+      <PlotlyChartClass
         config={
           Object {
             "displayModeBar": false,
@@ -662,8 +666,10 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         onSelectedCallback={[Function]}
         onUnHoverCallback={[Function]}
       >
-        <div />
-      </PlotlyChart>
+        <div
+          className="plotly-chart"
+        />
+      </PlotlyChartClass>
     </ContactMapChartClass>
   </div>
 </ContactMapClass>

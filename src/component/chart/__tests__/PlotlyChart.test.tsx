@@ -4,7 +4,7 @@ import toJson from 'enzyme-to-json';
 import * as React from 'react';
 
 import { IMockDict } from 'configs/SetupJest';
-import PlotlyChart, { IPlotlyChartProps } from '../PlotlyChart';
+import { IPlotlyChartProps, PlotlyChartClass } from '../PlotlyChart';
 
 beforeEach(() => {
   jest.resetModules();
@@ -29,7 +29,7 @@ describe('PlotlyChart', () => {
    * @returns A wrapper for the PlotlyChart that has been mounted.
    */
   const getMountedPlotlyChart = async (props: IPlotlyChartProps) => {
-    const wrapper = mount(<PlotlyChart {...props} />);
+    const wrapper = mount(<PlotlyChartClass {...props} />);
     await wrapper.update();
     return wrapper;
   };
@@ -41,16 +41,16 @@ describe('PlotlyChart', () => {
    * @param event The name of the event to dispatch.
    */
   const dispatchPlotlyEvent = (wrapper: CommonWrapper, event: string) => {
-    (wrapper.instance() as PlotlyChart).plotlyCanvas!.dispatchEvent(new Event(event));
+    (wrapper.instance() as PlotlyChartClass).plotlyCanvas!.dispatchEvent(new Event(event));
   };
 
   test('Should match existing snapshot when given empty data.', () => {
-    const wrapper = mount(<PlotlyChart data={[]} />);
+    const wrapper = mount(<PlotlyChartClass data={[]} />);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
   test('Should match existing snapshot when given sample data.', () => {
-    const wrapper = mount(<PlotlyChart data={sampleData} />);
+    const wrapper = mount(<PlotlyChartClass data={sampleData} />);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
@@ -62,7 +62,7 @@ describe('PlotlyChart', () => {
       onUnHoverSpy: jest.fn(),
     };
     const wrapper = shallow(
-      <PlotlyChart
+      <PlotlyChartClass
         data={sampleData}
         onClickCallback={spies.onClickSpy}
         onHoverCallback={spies.onHoverSpy}
@@ -100,7 +100,7 @@ describe('PlotlyChart', () => {
     const onResizeSpy = jest.fn();
 
     const wrapper = await getMountedPlotlyChart({ data: sampleData });
-    const chartInstance = wrapper.instance() as PlotlyChart;
+    const chartInstance = wrapper.instance() as PlotlyChartClass;
 
     chartInstance.resize = onResizeSpy;
     chartInstance.attachListeners();
@@ -153,10 +153,74 @@ describe('PlotlyChart', () => {
       data: sampleData,
     });
 
-    const chartInstance = wrapper.instance() as PlotlyChart;
+    const chartInstance = wrapper.instance() as PlotlyChartClass;
 
     expect(chartInstance.plotlyCanvas).not.toBeNull();
     wrapper.unmount();
     expect(chartInstance.plotlyCanvas).toBeNull();
+  });
+
+  test('Should not call draw if data is unchanged.', async () => {
+    const wrapper = await getMountedPlotlyChart({
+      data: sampleData,
+    });
+
+    const chartInstance = wrapper.instance() as PlotlyChartClass;
+    const drawSpy = jest.fn();
+    chartInstance.draw = drawSpy;
+
+    wrapper.setProps({
+      data: sampleData,
+    });
+
+    expect(drawSpy).not.toHaveBeenCalledTimes(1);
+  });
+
+  test('Should call draw when data is updated.', async () => {
+    const wrapper = await getMountedPlotlyChart({
+      data: sampleData,
+    });
+
+    const chartInstance = wrapper.instance() as PlotlyChartClass;
+    const drawSpy = jest.fn();
+    chartInstance.draw = drawSpy;
+
+    wrapper.setProps({
+      data: {},
+    });
+
+    expect(drawSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test('Should call draw when layout is updated.', async () => {
+    const wrapper = await getMountedPlotlyChart({
+      data: sampleData,
+    });
+
+    const chartInstance = wrapper.instance() as PlotlyChartClass;
+    const drawSpy = jest.fn();
+    chartInstance.draw = drawSpy;
+
+    wrapper.setProps({
+      layout: {},
+    });
+
+    expect(drawSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test('Should call draw when config is updated.', async () => {
+    const wrapper = await getMountedPlotlyChart({
+      data: sampleData,
+    });
+
+    const chartInstance = wrapper.instance() as PlotlyChartClass;
+    const drawSpy = jest.fn();
+    chartInstance.draw = drawSpy;
+
+    wrapper.setProps({
+      config: {},
+    });
+
+    expect(drawSpy).toHaveBeenCalledTimes(1);
   });
 });

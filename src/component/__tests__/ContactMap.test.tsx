@@ -6,7 +6,7 @@ import * as Renderer from 'react-test-renderer';
 
 import { initialResidueContext, IResidueContext } from '../../context/ResidueContext';
 import { CONTACT_VIEW_TYPE, ICouplingScore } from '../../data/chell-data';
-import PlotlyChart from '../chart/PlotlyChart';
+import { PlotlyChartClass } from '../chart/PlotlyChart';
 import ContactMap, { ContactMapClass, ContactMapProps } from '../ContactMap';
 
 // https://medium.com/@ryandrewjohnson/unit-testing-components-using-reacts-new-context-api-4a5219f4b3fe
@@ -54,8 +54,8 @@ const getShallowContactMap = (props?: Partial<ContactMapProps>) => {
  * @param event The name of the event to dispatch.
  */
 const dispatchPlotlyEvent = (wrapper: ReactWrapper, eventName: string) => {
-  const plotlyWrapper = wrapper.find('PlotlyChart') as CommonWrapper;
-  (plotlyWrapper.instance() as PlotlyChart).plotlyCanvas!.dispatchEvent(new Event(eventName));
+  const plotlyWrapper = wrapper.find('PlotlyChartClass') as CommonWrapper;
+  (plotlyWrapper.instance() as PlotlyChartClass).plotlyCanvas!.dispatchEvent(new Event(eventName));
 };
 
 describe('ContactMap', () => {
