@@ -6,7 +6,7 @@ import * as Renderer from 'react-test-renderer';
 
 import { initialResidueContext, IResidueContext } from '../../context/ResidueContext';
 import { CONTACT_VIEW_TYPE, ICouplingScore } from '../../data/chell-data';
-import PlotlyChart from '../../helper/PlotlyHelper';
+import PlotlyChart from '../chart/PlotlyChart';
 import ContactMap, { ContactMapClass, ContactMapProps } from '../ContactMap';
 
 // https://medium.com/@ryandrewjohnson/unit-testing-components-using-reacts-new-context-api-4a5219f4b3fe

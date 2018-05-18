@@ -1,9 +1,9 @@
 import * as React from 'react';
 import CellContext from '../context/CellContext';
 import { T_SNE_DATA_TYPE } from '../data/chell-data';
-import PlotlyChart from '../helper/PlotlyHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
-import { defaultPlotlyConfig, defaultPlotlyLayout } from './ContactMapChart';
+import { defaultPlotlyConfig, defaultPlotlyLayout } from './chart/ContactMapChart';
+import PlotlyChart from './chart/PlotlyChart';
 
 export const defaultTComponentProps = {
   data: [[0], [0]] as T_SNE_DATA_TYPE,

@@ -1,9 +1,10 @@
 import * as React from 'react';
 
-import { RESIDUE_TYPE } from '../data/chell-data';
+import { RESIDUE_TYPE } from '../../data/chell-data';
 
-import PlotlyChart, { generateScatterGLData, IPlotlyData } from '../helper/PlotlyHelper';
-import { withDefaultProps } from '../helper/ReactHelper';
+import { generateScatterGLData } from '../../helper/PlotlyHelper';
+import { withDefaultProps } from '../../helper/ReactHelper';
+import PlotlyChart, { IPlotlyData } from './PlotlyChart';
 
 export interface IContactMapChartProps {
   candidateResidues: RESIDUE_TYPE[];

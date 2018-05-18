@@ -4,8 +4,8 @@ import * as React from 'react';
 import ResidueContext, { initialResidueContext, IResidueSelection } from '../context/ResidueContext';
 import { CONTACT_VIEW_TYPE, IContactMapData, ICouplingScore, RESIDUE_TYPE } from '../data/chell-data';
 import { withDefaultProps } from '../helper/ReactHelper';
+import ContactMapChart from './chart/ContactMapChart';
 import ChellSlider from './ChellSlider';
-import ContactMapChart from './ContactMapChart';
 
 export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
 export type ContactMapCallback = (coupling: CONTACT_MAP_CB_RESULT_TYPE) => void;
