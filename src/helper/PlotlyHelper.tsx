@@ -3,7 +3,7 @@ import * as React from 'react';
 // We need to use dist/plotly to avoid forcing users to do some webpack gymnastics:
 // https://github.com/plotly/plotly-webpack#the-easy-way-recommended
 import * as plotly from 'plotly.js/dist/plotly';
-import { IScatterChartData } from '../component/ScatterChart';
+import { IContactMapChartData } from '../component/ContactMapChart';
 
 export enum PLOTLY_CHART_TYPE {
   /** [Plotly Bar Chart](https://plot.ly/javascript/bar-charts/) */
@@ -125,69 +125,8 @@ export default class PlotlyChart extends React.Component<IPlotlyChartProps, any>
   };
 }
 
-export const defaultLayout: Partial<Plotly.Layout> = {
-  height: 400,
-  legend: {},
-  margin: {
-    b: 80,
-    l: 40,
-    r: 40,
-    t: 10,
-  },
-  showlegend: false,
-  title: '',
-  width: 400,
-  xaxis: {
-    range: [30],
-  },
-  yaxis: {
-    range: [30],
-  },
-};
-
-export const defaultConfig: Partial<Plotly.Config> = {
-  displayModeBar: false,
-  // modeBarButtons: [['zoomOut2d', 'zoomIn2d'], ['resetScale2d', 'autoScale2d'], ['select2d', 'pan2d']],
-};
-
 /**
- * Generate data in the expected format for a Plotly PointCloud.
- *
- * @param coords Array of (x,y) coordinates such that [i, i+1] refers to the (x,y) of object i.
- * Necessary optimization to render hundreds of thousands of points.
- * @param color What color the points should be.
- * @param nodeSize Sets min/max to nodeSize/nodeSize * 2.
- * @param mirrorPoints Should we mirror the points on the x/y axis?
- * @param [extra] Explicit extra configuration to add / replace the default data configuration with.
- * @returns Data suitable for consumption by Plotly.
- */
-export const generatePointCloudData = (
-  coords: Float32Array,
-  color: string,
-  nodeSize: number,
-  mirrorPoints: boolean = false,
-  extra?: Partial<IPlotlyData>,
-): Partial<IPlotlyData> => ({
-  marker: {
-    color,
-    sizemax: nodeSize * 2,
-    sizemin: nodeSize,
-  },
-  mode: 'markers',
-  type: PLOTLY_CHART_TYPE.pointcloud,
-  xy: mirrorPoints
-    ? new Float32Array([
-        ...Array.from(coords),
-        ...Array.from(coords)
-          .slice()
-          .reverse(),
-      ])
-    : coords,
-  ...extra,
-});
-
-/**
- * Generate data in the expected format for a Scatter plot backed by WebGL
+ * Generate data in the expected format for a WebGL Scatter plot.
  *
  * @param entry A unit of Plotly data containing points, color, name, and any extras.
  * @param nodeSize How big to make the nodes on the graph?
@@ -195,7 +134,24 @@ export const generatePointCloudData = (
  * @returns Data suitable for consumption by Plotly.
  */
 export const generateScatterGLData = (
-  entry: IScatterChartData,
+  entry: IContactMapChartData,
+  nodeSize: number,
+  mirrorPoints: boolean = false,
+): Partial<IPlotlyData> => ({
+  ...generateScatterData(entry, nodeSize, mirrorPoints),
+  type: PLOTLY_CHART_TYPE.scattergl,
+});
+
+/**
+ * Generate data in the expected format for a Scatter plot.
+ *
+ * @param entry A unit of Plotly data containing points, color, name, and any extras.
+ * @param nodeSize How big to make the nodes on the graph?
+ * @param mirrorPoints Should we mirror the points on the x/y axis?
+ * @returns Data suitable for consumption by Plotly.
+ */
+export const generateScatterData = (
+  entry: IContactMapChartData,
   nodeSize: number,
   mirrorPoints: boolean = false,
 ): Partial<IPlotlyData> => {
@@ -210,9 +166,54 @@ export const generateScatterGLData = (
     },
     mode: 'markers',
     name,
-    type: PLOTLY_CHART_TYPE.scattergl,
+    type: PLOTLY_CHART_TYPE.scatter,
     x: mirrorPoints ? [...xValues, ...yValues] : xValues,
     y: mirrorPoints ? [...yValues, ...xValues] : yValues,
+    ...extra,
+  };
+};
+
+export const generateFloat32ArrayFromContacts = (array: Array<{ i: number; j: number }>) => {
+  const result = new Float32Array(array.length * 2);
+  array.forEach((item, index) => {
+    result[index * 2] = item.i;
+    result[index * 2 + 1] = item.j;
+  });
+  return result;
+};
+
+/**
+ * Generate data in the expected format for a Plotly PointCloud.
+ *
+ * @param entry A unit of Plotly data containing points, color, and any extras.
+ * @param nodeSize Sets min/max to nodeSize/nodeSize * 2.
+ * @param mirrorPoints Should we mirror the points on the x/y axis?
+ * @param [extra] Explicit extra configuration to add / replace the default data configuration with.
+ * @returns Data suitable for consumption by Plotly.
+ */
+export const generatePointCloudData = (
+  entry: IContactMapChartData,
+  nodeSize: number,
+  mirrorPoints: boolean = false,
+): Partial<IPlotlyData> => {
+  const { color, points, ...extra } = entry;
+  const coords = generateFloat32ArrayFromContacts(points);
+  return {
+    marker: {
+      color,
+      sizemax: nodeSize * 2,
+      sizemin: nodeSize,
+    },
+    mode: 'markers',
+    type: PLOTLY_CHART_TYPE.pointcloud,
+    xy: mirrorPoints
+      ? new Float32Array([
+          ...Array.from(coords),
+          ...Array.from(coords)
+            .slice()
+            .reverse(),
+        ])
+      : coords,
     ...extra,
   };
 };

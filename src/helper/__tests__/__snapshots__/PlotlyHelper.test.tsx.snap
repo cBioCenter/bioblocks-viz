@@ -63,11 +63,12 @@ exports[`PlotlyChart Should match existing snapshot when given sample data. 1`] 
 exports[`generatePointCloudData Should create the expected plotly point cloud data format when given defaults. 1`] = `
 Object {
   "marker": Object {
-    "color": "red",
+    "color": "blue",
     "sizemax": 8,
     "sizemin": 4,
   },
   "mode": "markers",
+  "name": "da-bo-dai",
   "type": "pointcloud",
   "xy": Float32Array [
     1,

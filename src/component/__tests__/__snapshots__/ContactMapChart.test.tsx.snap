@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ScatterChart Should match existing snapshot when given simple data. 1`] = `
+exports[`ContactMapChart Should match existing snapshot when given simple data. 1`] = `
 <PlotlyChart
   config={
     Object {
@@ -25,6 +25,7 @@ exports[`ScatterChart Should match existing snapshot when given simple data. 1`]
   }
   layout={
     Object {
+      "autosize": true,
       "height": 400,
       "legend": Object {
         "orientation": "h",

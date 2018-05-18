@@ -5,7 +5,7 @@ import ResidueContext, { initialResidueContext, IResidueSelection } from '../con
 import { CONTACT_VIEW_TYPE, IContactMapData, ICouplingScore, RESIDUE_TYPE } from '../data/chell-data';
 import { withDefaultProps } from '../helper/ReactHelper';
 import ChellSlider from './ChellSlider';
-import ScatterChart from './ScatterChart';
+import ContactMapChart from './ContactMapChart';
 
 export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
 export type ContactMapCallback = (coupling: CONTACT_MAP_CB_RESULT_TYPE) => void;
@@ -70,7 +70,6 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
   public render() {
     const {
       correctColor,
-      height,
       highlightColor,
       incorrectColor,
       observedColor,
@@ -123,17 +122,15 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
     return (
       <div id="ContactMapComponent" style={{ padding }}>
-        <ScatterChart
+        <ContactMapChart
           candidateResidues={candidateResidues}
           data={inputData}
-          height={height}
           hoveredResidues={hoveredResidues}
           nodeSize={nodeSize}
           onClickCallback={this.onMouseClick(addLockedResiduePair)}
           onHoverCallback={this.onMouseEnter(addHoveredResidues)}
           onSelectedCallback={this.onMouseSelect()}
           range={[0, chainLength]}
-          width={width}
         />
         {this.props.enableSliders && this.renderSliders(sliderStyle, chainLength)}
       </div>

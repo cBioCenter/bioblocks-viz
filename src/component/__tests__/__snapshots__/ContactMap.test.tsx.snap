@@ -452,7 +452,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       }
     }
   >
-    <ScatterChartClass
+    <ContactMapChartClass
       candidateResidues={Array []}
       data={
         Array [
@@ -517,7 +517,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           },
         ]
       }
-      height={400}
+      dataTransformFn={[Function]}
       hoveredResidues={Array []}
       nodeSize={3}
       onClickCallback={[Function]}
@@ -530,7 +530,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           57,
         ]
       }
-      width={400}
     >
       <PlotlyChart
         config={
@@ -628,6 +627,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         }
         layout={
           Object {
+            "autosize": true,
             "height": 400,
             "legend": Object {
               "orientation": "h",
@@ -664,7 +664,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       >
         <div />
       </PlotlyChart>
-    </ScatterChartClass>
+    </ContactMapChartClass>
   </div>
 </ContactMapClass>
 `;
