@@ -59,16 +59,19 @@ export default class PlotlyChart extends React.Component<IPlotlyChartProps, any>
     plotly.Plots.resize(this.plotlyCanvas!);
   };
 
-  public draw = async (props: IPlotlyChartProps) => {
-    const { data, layout, config } = props;
+  public draw = async () => {
+    const { data, layout, config } = this.props;
     if (this.plotlyCanvas) {
       // plotly.react will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
       this.plotlyCanvas = await plotly.react(this.plotlyCanvas, data, Object.assign({}, layout), config);
     }
   };
 
-  public componentWillReceiveProps(nextProps: IPlotlyChartProps) {
-    this.draw(nextProps);
+  public componentDidUpdate(prevProps: IPlotlyChartProps) {
+    const { data, layout, config } = this.props;
+    if (data !== prevProps.data || layout !== prevProps.layout || config !== prevProps.config) {
+      this.draw();
+    }
   }
 
   public async componentDidMount() {
@@ -76,7 +79,7 @@ export default class PlotlyChart extends React.Component<IPlotlyChartProps, any>
       const { data, layout, config } = this.props;
       this.plotlyCanvas = await plotly.react(this.canvasRef, data, Object.assign({}, layout), config);
       this.attachListeners();
-      this.draw(this.props);
+      this.draw();
     }
   }
 
@@ -141,7 +144,6 @@ export const defaultLayout: Partial<Plotly.Layout> = {
     range: [30],
   },
   yaxis: {
-    autorange: 'reversed',
     range: [30],
   },
 };

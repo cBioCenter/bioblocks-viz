@@ -33,17 +33,12 @@ exports[`ScatterChart Should match existing snapshot when given simple data. 1`]
       "title": "",
       "width": 400,
       "xaxis": Object {
-        "gridcolor": "#ff0000",
-        "gridwidth": 4,
-        "showticklabels": false,
-        "tickvals": Array [],
+        "autorange": false,
+        "range": Array [],
       },
       "yaxis": Object {
-        "autorange": "reversed",
-        "gridcolor": "#ff0000",
-        "gridwidth": 4,
-        "showticklabels": false,
-        "tickvals": Array [],
+        "autorange": false,
+        "range": Array [],
       },
     }
   }

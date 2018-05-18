@@ -31,13 +31,18 @@ exports[`PointCloudChart Should match existing snapshot when given empty data. 1
       "xaxis": Object {
         "gridcolor": "#ff0000",
         "gridwidth": 4,
+        "range": Array [
+          30,
+        ],
         "showticklabels": false,
         "tickvals": Array [],
       },
       "yaxis": Object {
-        "autorange": "reversed",
         "gridcolor": "#ff0000",
         "gridwidth": 4,
+        "range": Array [
+          30,
+        ],
         "showticklabels": false,
         "tickvals": Array [],
       },
@@ -109,13 +114,18 @@ exports[`PointCloudChart Should match existing snapshot when given simple data. 
       "xaxis": Object {
         "gridcolor": "#ff0000",
         "gridwidth": 4,
+        "range": Array [
+          30,
+        ],
         "showticklabels": false,
         "tickvals": Array [],
       },
       "yaxis": Object {
-        "autorange": "reversed",
         "gridcolor": "#ff0000",
         "gridwidth": 4,
+        "range": Array [
+          30,
+        ],
         "showticklabels": false,
         "tickvals": Array [],
       },

@@ -16,5 +16,6 @@
     "typedoc",
     "wallabyjs"
   ],
-  "python.pythonPath": "/usr/local/bin/python3"
+  "python.pythonPath": "/usr/local/bin/python3",
+  "typescript.tsdk": "./node_modules/typescript/lib"
 }

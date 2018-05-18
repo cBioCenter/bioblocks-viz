@@ -88,7 +88,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
       </div>
     </div>
     <div
-      className="predicted-contact-slider"
+      className="linear-dist-filter"
       style={
         Object {
           "padding": 20,
@@ -96,10 +96,10 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
       }
     >
       <p>
-        # Predicted Contacts to Show: 100
+        Linear Distance Filter (|i - j|): 5
       </p>
       <div
-        className="rc-slider rc-slider-with-marks"
+        className="rc-slider"
         onBlur={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
@@ -120,92 +120,148 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
           style={
             Object {
               "left": "0%",
-              "width": "100%",
+              "width": "44.44444444444444%",
             }
           }
         />
         <div
           className="rc-slider-step"
-        >
-          <span
-            className="rc-slider-dot rc-slider-dot-active"
-            style={
-              Object {
-                "left": "0%",
-              }
-            }
-          />
-          <span
-            className="rc-slider-dot rc-slider-dot-active"
-            style={
-              Object {
-                "left": "50%",
-              }
-            }
-          />
-          <span
-            className="rc-slider-dot rc-slider-dot-active"
-            style={
-              Object {
-                "left": "100%",
-              }
-            }
-          />
-        </div>
+        />
         <div
           aria-disabled={false}
-          aria-valuemax={6}
-          aria-valuemin={0}
-          aria-valuenow={6}
+          aria-valuemax={10}
+          aria-valuemin={1}
+          aria-valuenow={5}
           className="rc-slider-handle"
           role="slider"
           style={
             Object {
-              "left": "100%",
+              "left": "44.44444444444444%",
             }
           }
           tabIndex={0}
         />
         <div
           className="rc-slider-mark"
-        >
-          <span
-            className="rc-slider-mark-text rc-slider-mark-text-active"
-            style={
-              Object {
-                "left": "0%",
-                "marginLeft": "-22.5%",
-                "width": "45%",
-              }
+        />
+      </div>
+    </div>
+    <div
+      className="prediction-cutoff-filter"
+      style={
+        Object {
+          "padding": 20,
+        }
+      }
+    >
+      <p>
+        Prediction Cutoff Dist (Correct/Incorrect): 5
+      </p>
+      <div
+        className="rc-slider"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onMouseDown={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "width": 360,
+          }
+        }
+      >
+        <div
+          className="rc-slider-rail"
+          style={Object {}}
+        />
+        <div
+          className="rc-slider-track"
+          style={
+            Object {
+              "left": "0%",
+              "width": "21.052631578947366%",
             }
-          >
-            None
-          </span>
-          <span
-            className="rc-slider-mark-text rc-slider-mark-text-active"
-            style={
-              Object {
-                "left": "50%",
-                "marginLeft": "-22.5%",
-                "width": "45%",
-              }
+          }
+        />
+        <div
+          className="rc-slider-step"
+        />
+        <div
+          aria-disabled={false}
+          aria-valuemax={20}
+          aria-valuemin={1}
+          aria-valuenow={5}
+          className="rc-slider-handle"
+          role="slider"
+          style={
+            Object {
+              "left": "21.052631578947366%",
             }
-          >
-            Half (3)
-          </span>
-          <span
-            className="rc-slider-mark-text rc-slider-mark-text-active"
-            style={
-              Object {
-                "left": "100%",
-                "marginLeft": "-22.5%",
-                "width": "45%",
-              }
+          }
+          tabIndex={0}
+        />
+        <div
+          className="rc-slider-mark"
+        />
+      </div>
+    </div>
+    <div
+      className="predicted-contact-slider"
+      style={
+        Object {
+          "padding": 20,
+        }
+      }
+    >
+      <p>
+        # Predicted Contacts to Show (L): 29
+      </p>
+      <div
+        className="rc-slider"
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onMouseDown={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "width": 360,
+          }
+        }
+      >
+        <div
+          className="rc-slider-rail"
+          style={Object {}}
+        />
+        <div
+          className="rc-slider-track"
+          style={
+            Object {
+              "left": "0%",
+              "width": "48.275862068965516%",
             }
-          >
-            All (6)
-          </span>
-        </div>
+          }
+        />
+        <div
+          className="rc-slider-step"
+        />
+        <div
+          aria-disabled={false}
+          aria-valuemax={59}
+          aria-valuemin={1}
+          aria-valuenow={29}
+          className="rc-slider-handle"
+          role="slider"
+          style={
+            Object {
+              "left": "48.275862068965516%",
+            }
+          }
+          tabIndex={0}
+        />
+        <div
+          className="rc-slider-mark"
+        />
       </div>
     </div>
     <div
@@ -339,7 +395,17 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         Object {
           "dist": 2.4,
           "i": 56,
-          "j": 58,
+          "j": 50,
+        },
+        Object {
+          "dist": 20.4,
+          "i": 42,
+          "j": 50,
+        },
+        Object {
+          "dist": 11.3,
+          "i": 41,
+          "j": 52,
         },
         Object {
           "dist": 1.3,
@@ -356,22 +422,12 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           "i": 56,
           "j": 57,
         },
-        Object {
-          "dist": 1.3,
-          "i": 57,
-          "j": 58,
-        },
-        Object {
-          "dist": 11.3,
-          "i": 41,
-          "j": 52,
-        },
       ],
     }
   }
   enableSliders={false}
   height={400}
-  highlightColor="#ff0000"
+  highlightColor="#ffff00"
   incorrectColor="#000000"
   lockedResiduePairs={
     Object {
@@ -407,7 +463,17 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               Object {
                 "dist": 2.4,
                 "i": 56,
-                "j": 58,
+                "j": 50,
+              },
+              Object {
+                "dist": 20.4,
+                "i": 42,
+                "j": 50,
+              },
+              Object {
+                "dist": 11.3,
+                "i": 41,
+                "j": 52,
               },
             ],
           },
@@ -415,6 +481,11 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             "color": "#000000",
             "name": "Incorrect Prediction",
             "points": Array [
+              Object {
+                "dist": 20.4,
+                "i": 42,
+                "j": 50,
+              },
               Object {
                 "dist": 11.3,
                 "i": 41,
@@ -425,10 +496,16 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           Object {
             "color": "#ff0000",
             "name": "Correct Prediction",
-            "points": Array [],
+            "points": Array [
+              Object {
+                "dist": 2.4,
+                "i": 56,
+                "j": 50,
+              },
+            ],
           },
           Object {
-            "color": "#ff0000",
+            "color": "#ffff00",
             "name": "Locked Residue",
             "points": Array [
               Object {
@@ -448,8 +525,8 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       onUnHoverCallback={[Function]}
       range={
         Array [
-          NaN,
-          NaN,
+          0,
+          57,
         ]
       }
       width={400}
@@ -472,11 +549,19 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "type": "scattergl",
               "x": Array [
                 56,
-                58,
+                42,
+                41,
+                50,
+                50,
+                52,
               ],
               "y": Array [
-                58,
+                50,
+                50,
+                52,
                 56,
+                42,
+                41,
               ],
             },
             Object {
@@ -488,11 +573,15 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "name": "Incorrect Prediction",
               "type": "scattergl",
               "x": Array [
+                42,
                 41,
+                50,
                 52,
               ],
               "y": Array [
+                50,
                 52,
+                42,
                 41,
               ],
             },
@@ -504,12 +593,18 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "mode": "markers",
               "name": "Correct Prediction",
               "type": "scattergl",
-              "x": Array [],
-              "y": Array [],
+              "x": Array [
+                56,
+                50,
+              ],
+              "y": Array [
+                50,
+                56,
+              ],
             },
             Object {
               "marker": Object {
-                "color": "#ff0000",
+                "color": "#ffff00",
                 "size": 6,
               },
               "mode": "markers",
@@ -537,25 +632,18 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             "title": "",
             "width": 400,
             "xaxis": Object {
-              "gridcolor": "#ff0000",
-              "gridwidth": 3,
+              "autorange": false,
               "range": Array [
-                NaN,
-                NaN,
+                0,
+                57,
               ],
-              "showticklabels": false,
-              "tickvals": Array [],
             },
             "yaxis": Object {
-              "autorange": "reversed",
-              "gridcolor": "#ff0000",
-              "gridwidth": 3,
+              "autorange": false,
               "range": Array [
-                NaN,
-                NaN,
+                57,
+                0,
               ],
-              "showticklabels": false,
-              "tickvals": Array [],
             },
           }
         }

@@ -79,17 +79,22 @@ describe('ContactMap', () => {
     ...extra,
   });
 
-  const sampleCorrectPredictedContact = generateCouplingScore(56, 58, 2.4);
+  const sampleCorrectPredictedContacts = [generateCouplingScore(56, 50, 2.4)];
+  const sampleIncorrectPredictedContacts = [generateCouplingScore(42, 50, 20.4)];
+  const sampleObservedContacts = [generateCouplingScore(41, 52, 11.3)];
+  const sampleOutOfLinearDistContacts = [
+    generateCouplingScore(45, 46, 1.3),
+    generateCouplingScore(44, 45, 1.3),
+    generateCouplingScore(56, 57, 1.3),
+  ];
 
   const sampleData = {
     // Translated from example1/coupling_scores.csv
     couplingScores: [
-      sampleCorrectPredictedContact,
-      generateCouplingScore(45, 46, 1.3),
-      generateCouplingScore(44, 45, 1.3),
-      generateCouplingScore(56, 57, 1.3),
-      generateCouplingScore(57, 58, 1.3),
-      generateCouplingScore(41, 52, 11.3),
+      ...sampleCorrectPredictedContacts,
+      ...sampleIncorrectPredictedContacts,
+      ...sampleObservedContacts,
+      ...sampleOutOfLinearDistContacts,
     ],
   };
 
@@ -148,16 +153,21 @@ describe('ContactMap', () => {
     wrapper.setState({
       contactViewType: CONTACT_VIEW_TYPE.BOTH,
     });
-    expect(instance.state.observedContacts).toEqual([sampleCorrectPredictedContact]);
+    expect(instance.state.correctPredictedContacts).toEqual(sampleCorrectPredictedContacts);
   });
 
   test('Should show only observed contacts when OBSERVED is selected.', async () => {
     const wrapper = await getMountedContactMap({ data: sampleData });
+    const expected = [
+      ...sampleCorrectPredictedContacts,
+      ...sampleIncorrectPredictedContacts,
+      ...sampleObservedContacts,
+    ];
     const instance = wrapper.instance() as ContactMapClass;
     wrapper.setState({
       contactViewType: CONTACT_VIEW_TYPE.OBSERVED,
     });
-    expect(instance.state.observedContacts).toEqual([sampleCorrectPredictedContact]);
+    expect(instance.state.observedContacts).toEqual(expected);
   });
 
   test('Should show only predicted contacts when PREDICTED is selected.', async () => {
@@ -185,8 +195,8 @@ describe('ContactMap', () => {
     test('Should update number of predicted contacts to show when appropriate slider is updated.', () => {
       const wrapper = getShallowContactMap({ data: sampleData, enableSliders: true });
       const instance = wrapper.instance() as ContactMapClass;
-      expect(instance.state.predictedContactCount).toBe(100);
       const expectedCount = 50;
+      expect(instance.state.predictedContactCount).not.toBe(expectedCount);
       wrapper
         .find('.predicted-contact-slider')
         .at(0)
@@ -204,6 +214,42 @@ describe('ContactMap', () => {
         .at(0)
         .simulate('change', expectedViewType);
       expect(instance.state.contactViewType).toBe(expectedViewType);
+    });
+
+    test('Should update linear distance filter when appropriate slider is updated.', () => {
+      const wrapper = getShallowContactMap({ data: sampleData, enableSliders: true });
+      const instance = wrapper.instance() as ContactMapClass;
+      const expected = 10;
+      expect(instance.state.linearDistFilter).not.toBe(expected);
+      wrapper
+        .find('.linear-dist-filter')
+        .at(0)
+        .simulate('change', expected);
+      expect(instance.state.linearDistFilter).toBe(expected);
+    });
+
+    test('Should update # of predicted contacts to show when appropriate slider is updated.', () => {
+      const wrapper = getShallowContactMap({ data: sampleData, enableSliders: true });
+      const instance = wrapper.instance() as ContactMapClass;
+      const expected = 20;
+      expect(instance.state.predictedContactCount).not.toBe(expected);
+      wrapper
+        .find('.predicted-contact-slider')
+        .at(0)
+        .simulate('change', expected);
+      expect(instance.state.predictedContactCount).toBe(expected);
+    });
+
+    test('Should update prediction cutoff distance when appropriate slider is updated.', () => {
+      const wrapper = getShallowContactMap({ data: sampleData, enableSliders: true });
+      const instance = wrapper.instance() as ContactMapClass;
+      const expected = 30;
+      expect(instance.state.predictionCutoffDist).not.toBe(expected);
+      wrapper
+        .find('.prediction-cutoff-filter')
+        .at(0)
+        .simulate('change', expected);
+      expect(instance.state.predictionCutoffDist).toBe(expected);
     });
   });
 });

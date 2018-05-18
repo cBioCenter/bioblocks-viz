@@ -4,14 +4,7 @@ import { ISpringGraphData } from 'spring';
 import NGLComponent from '../component/NGLComponent';
 import SpringComponent from '../component/SpringComponent';
 import TComponent from '../component/TComponent';
-import {
-  CHELL_DATA_TYPE,
-  IContactMapData,
-  ICouplingScore,
-  NGL_DATA_TYPE,
-  T_SNE_DATA_TYPE,
-  VIZ_TYPE,
-} from '../data/chell-data';
+import { CHELL_DATA_TYPE, IContactMapData, NGL_DATA_TYPE, T_SNE_DATA_TYPE, VIZ_TYPE } from '../data/chell-data';
 import { withDefaultProps } from '../helper/ReactHelper';
 import ContactMap from './ContactMap';
 
@@ -19,11 +12,7 @@ export const defaultVizPanelProps = {
   data: {} as Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>,
   height: 450,
   initialViz: VIZ_TYPE['T-SNE'],
-  onDataSelect: (e: any) => {
-    return;
-  },
   padding: 15,
-  selectedData: undefined as ICouplingScore | undefined,
   supportedVisualizations: [] as VIZ_TYPE[],
   width: 450,
 };
@@ -57,7 +46,7 @@ const VizSelectorPanel = withDefaultProps(
     public render() {
       // N.B. We are only setting the width of the VizSelectorPanel, explicitly leaving out the height.
       // This means a component can only grow vertically, but not horizontally, and be correctly styled in containers.
-      const { data, selectedData, supportedVisualizations, width } = this.props;
+      const { data, supportedVisualizations, width } = this.props;
 
       return (
         <div className="VizSelectorPanel" style={{ width }}>
@@ -69,18 +58,14 @@ const VizSelectorPanel = withDefaultProps(
           />
           {
             <Card fluid={true} raised={true}>
-              {this.renderVizContainer(this.state.selectedViz, data, selectedData)}
+              {this.renderVizContainer(this.state.selectedViz, data)}
             </Card>
           }
         </div>
       );
     }
 
-    protected renderVizContainer(
-      viz: VIZ_TYPE,
-      data: Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>,
-      selectedData?: ICouplingScore | number,
-    ) {
+    protected renderVizContainer(viz: VIZ_TYPE, data: Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>) {
       const { padding } = this.props;
       const paddedHeight = this.props.height - padding * 2;
       const paddedWidth = this.props.width - padding * 2;
@@ -118,9 +103,7 @@ const VizSelectorPanel = withDefaultProps(
               data={data['Contact Map'] as IContactMapData}
               enableSliders={true}
               height={paddedHeight}
-              onMouseEnter={this.props.onDataSelect}
               padding={padding}
-              selectedData={selectedData as number}
               width={paddedWidth}
             />
           );

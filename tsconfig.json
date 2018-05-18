@@ -21,6 +21,6 @@
   "exclude": ["node_modules"],
   "include": ["src/**/*", "types", "configs/**/*", "__mocks__/**/*", "./chell-viz.ts"],
   "typeAcquisition": {
-    "enable": true
+    "enable": false
   }
 }

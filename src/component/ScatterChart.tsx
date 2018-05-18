@@ -78,19 +78,13 @@ class ScatterChartClass extends React.Component<IScatterChartProps, any> {
           width,
           xaxis: {
             ...defaultLayout.xaxis,
-            gridcolor: '#ff0000',
-            gridwidth: nodeSize,
+            autorange: false,
             range,
-            showticklabels: false,
-            tickvals: [...candidateResidues, ...hoveredResidues],
           },
           yaxis: {
             ...defaultLayout.yaxis,
-            gridcolor: '#ff0000',
-            gridwidth: nodeSize,
-            range,
-            showticklabels: false,
-            tickvals: [...candidateResidues, ...hoveredResidues],
+            autorange: false,
+            range: range.slice().reverse(),
           },
         }}
         {...props}

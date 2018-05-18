@@ -17,26 +17,24 @@ export const defaultContactMapProps = {
   } as IContactMapData,
   enableSliders: false,
   height: 400,
-  highlightColor: '#ff0000',
+  highlightColor: '#ffff00',
   incorrectColor: '#000000',
   ...initialResidueContext,
   observedColor: '#0000ff',
-  onClick: undefined as ContactMapCallback | undefined,
-  onMouseEnter: undefined as ContactMapCallback | undefined,
   padding: 0,
-  selectedData: undefined as number | undefined,
   width: 400,
 };
 
 export const initialContactMapState = {
+  chainLength: 59,
   contactViewType: CONTACT_VIEW_TYPE.BOTH,
   correctPredictedContacts: [] as ICouplingScore[],
   incorrectPredictedContacts: [] as ICouplingScore[],
+  linearDistFilter: 5,
   nodeSize: 3,
   observedContacts: [] as ICouplingScore[],
-  predictedContactCount: 100,
-  probabilityFilter: 0.99,
-  range: [] as number[],
+  predictedContactCount: 29,
+  predictionCutoffDist: 5,
 };
 
 export type ContactMapProps = {} & typeof defaultContactMapProps;
@@ -59,9 +57,10 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
     const isFreshDataView =
       data !== prevProps.data ||
-      this.state.probabilityFilter !== prevState.probabilityFilter ||
       contactViewType !== prevState.contactViewType ||
-      this.state.predictedContactCount !== prevState.predictedContactCount;
+      this.state.linearDistFilter !== prevState.linearDistFilter ||
+      this.state.predictedContactCount !== prevState.predictedContactCount ||
+      this.state.chainLength !== prevState.chainLength;
 
     if (isFreshDataView) {
       this.setupData(data, contactViewType);
@@ -84,7 +83,13 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
       lockedResiduePairs,
     } = this.props;
 
-    const { correctPredictedContacts, incorrectPredictedContacts, nodeSize, observedContacts, range } = this.state;
+    const {
+      chainLength,
+      correctPredictedContacts,
+      incorrectPredictedContacts,
+      nodeSize,
+      observedContacts,
+    } = this.state;
 
     const sliderStyle = { width: width * 0.9 };
 
@@ -126,45 +131,65 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
           onClickCallback={this.onMouseClick(addLockedResiduePair)}
           onHoverCallback={this.onMouseEnter(addHoveredResidues)}
           onSelectedCallback={this.onMouseSelect()}
-          range={range}
+          range={[0, chainLength]}
           width={width}
         />
-        {this.props.enableSliders && this.renderSliders(sliderStyle, this.props.data.couplingScores.length)}
+        {this.props.enableSliders && this.renderSliders(sliderStyle, chainLength)}
       </div>
     );
   }
 
-  protected renderSliders(sliderStyle: React.CSSProperties[] | React.CSSProperties, dataLength: number) {
+  protected renderSliders(sliderStyle: React.CSSProperties[] | React.CSSProperties, chainLength: number) {
     return (
       <div>
         <ChellSlider
           className={'node-size-slider'}
+          defaultValue={initialContactMapState.nodeSize}
+          label={'Node Size'}
           max={5}
           min={1}
-          label={'Node Size'}
-          defaultValue={this.state.nodeSize}
           onChange={this.onNodeSizeChange()}
           style={sliderStyle}
         />
         <ChellSlider
+          className={'linear-dist-filter'}
+          defaultValue={initialContactMapState.linearDistFilter}
+          label={'Linear Distance Filter (|i - j|)'}
+          max={10}
+          min={1}
+          onChange={this.onLinearDistFilterChange()}
+          style={sliderStyle}
+        />
+        <ChellSlider
+          className={'prediction-cutoff-filter'}
+          defaultValue={5}
+          label={'Prediction Cutoff Dist (Correct/Incorrect)'}
+          max={20}
+          min={1}
+          onChange={this.onPredictionCutoffDistChange()}
+          style={sliderStyle}
+        />
+        <ChellSlider
           className={'predicted-contact-slider'}
-          max={dataLength}
-          min={0}
-          label={'# Predicted Contacts to Show'}
-          defaultValue={100}
+          defaultValue={initialContactMapState.predictedContactCount}
+          label={'# Predicted Contacts to Show (L)'}
+          max={59}
+          min={1}
           onChange={this.onPredictedContactCountChange()}
-          sliderProps={{
-            marks: {
-              0: 'None',
-              [Math.floor(dataLength / 2)]: `Half (${Math.floor(dataLength / 2)})`,
-              [dataLength]: `All (${dataLength})`,
-            },
-          }}
+          sliderProps={
+            {
+              /*marks: {
+              1: 'One',
+              [Math.floor(chainLength / 2)]: `Half (${Math.floor(chainLength / 2)})`,
+              [chainLength]: `All (${chainLength})`,
+            },*/
+            }
+          }
           style={sliderStyle}
         />
         <ChellSlider
           className={'contact-view-slider'}
-          defaultValue={1}
+          defaultValue={initialContactMapState.contactViewType}
           hideLabelValue={true}
           label={'What to show?'}
           max={2}
@@ -179,39 +204,57 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     );
   }
 
+  /**
+   * Parse the incoming data object to determine which contacts to show and if they are correct/incorrect.
+   *
+   * @param data Incoming data object which has an array of all observed contacts.
+   * @param contactViewType Whether to only show observed, predicted, or both kinds of contacts.
+   */
   protected setupData(data: IContactMapData, contactViewType: CONTACT_VIEW_TYPE) {
     const showObserved = contactViewType === CONTACT_VIEW_TYPE.BOTH || contactViewType === CONTACT_VIEW_TYPE.OBSERVED;
     const showPredicted = contactViewType === CONTACT_VIEW_TYPE.BOTH || contactViewType === CONTACT_VIEW_TYPE.PREDICTED;
+    const chainLength = data.couplingScores.reduce((a, b) => Math.max(a, Math.max(b.i, b.j)), 0);
 
-    const maxAng = 5;
-    const maxResidueDist = 1;
+    const { linearDistFilter, predictedContactCount, predictionCutoffDist } = this.state;
 
     const observedContacts: ICouplingScore[] = [];
     const correctPredictedContacts: ICouplingScore[] = [];
     const incorrectPredictedContacts: ICouplingScore[] = [];
 
-    for (const contact of data.couplingScores.slice(0, this.state.predictedContactCount)) {
-      if (Math.abs(contact.i - contact.j) > maxResidueDist) {
-        if (contact.dist < maxAng && showObserved) {
-          observedContacts.push(contact);
-        } else if (contact.dist >= maxAng && showPredicted) {
+    for (const contact of data.couplingScores
+      .filter(score => Math.abs(score.i - score.j) >= linearDistFilter)
+      .slice(0, predictedContactCount)) {
+      if (showPredicted) {
+        if (contact.dist < predictionCutoffDist) {
+          correctPredictedContacts.push(contact);
+        } else {
           incorrectPredictedContacts.push(contact);
         }
+      }
+      if (showObserved) {
+        observedContacts.push(contact);
       }
     }
 
     this.setState({
+      chainLength,
       correctPredictedContacts,
       incorrectPredictedContacts,
       observedContacts,
-      range: data.couplingScores.reduce(
-        (accumulator, score) => {
-          return [Math.min(score.i, accumulator[0]), Math.max(score.j, accumulator[1])];
-        },
-        [Number.MAX_VALUE, Number.MIN_VALUE],
-      ),
     });
   }
+
+  protected onContactViewChange = () => (value: number) => {
+    this.setState({
+      contactViewType: value,
+    });
+  };
+
+  protected onLinearDistFilterChange = () => (value: number) => {
+    this.setState({
+      linearDistFilter: value,
+    });
+  };
 
   protected onNodeSizeChange = () => (value: number) => {
     this.setState({
@@ -225,9 +268,9 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     });
   };
 
-  protected onContactViewChange = () => (value: number) => {
+  protected onPredictionCutoffDistChange = () => (value: number) => {
     this.setState({
-      contactViewType: value,
+      predictionCutoffDist: value,
     });
   };
 
