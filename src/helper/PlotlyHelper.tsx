@@ -137,9 +137,12 @@ export const defaultLayout: Partial<Plotly.Layout> = {
   showlegend: false,
   title: '',
   width: 400,
-  xaxis: {},
+  xaxis: {
+    range: [30],
+  },
   yaxis: {
     autorange: 'reversed',
+    range: [30],
   },
 };
 

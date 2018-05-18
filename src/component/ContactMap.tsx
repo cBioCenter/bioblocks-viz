@@ -36,6 +36,7 @@ export const initialContactMapState = {
   observedContacts: [] as ICouplingScore[],
   predictedContactCount: 100,
   probabilityFilter: 0.99,
+  range: [] as number[],
 };
 
 export type ContactMapProps = {} & typeof defaultContactMapProps;
@@ -83,7 +84,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
       lockedResiduePairs,
     } = this.props;
 
-    const { correctPredictedContacts, incorrectPredictedContacts, nodeSize, observedContacts } = this.state;
+    const { correctPredictedContacts, incorrectPredictedContacts, nodeSize, observedContacts, range } = this.state;
 
     const sliderStyle = { width: width * 0.9 };
 
@@ -118,13 +119,14 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
       <div id="ContactMapComponent" style={{ padding }}>
         <ScatterChart
           candidateResidues={candidateResidues}
+          data={inputData}
           height={height}
           hoveredResidues={hoveredResidues}
-          data={inputData}
           nodeSize={nodeSize}
-          onHoverCallback={this.onMouseEnter(addHoveredResidues)}
           onClickCallback={this.onMouseClick(addLockedResiduePair)}
+          onHoverCallback={this.onMouseEnter(addHoveredResidues)}
           onSelectedCallback={this.onMouseSelect()}
+          range={range}
           width={width}
         />
         {this.props.enableSliders && this.renderSliders(sliderStyle, this.props.data.couplingScores.length)}
@@ -202,6 +204,12 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
       correctPredictedContacts,
       incorrectPredictedContacts,
       observedContacts,
+      range: data.couplingScores.reduce(
+        (accumulator, score) => {
+          return [Math.min(score.i, accumulator[0]), Math.max(score.j, accumulator[1])];
+        },
+        [Number.MAX_VALUE, Number.MIN_VALUE],
+      ),
     });
   }
 

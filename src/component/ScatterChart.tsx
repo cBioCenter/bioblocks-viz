@@ -5,7 +5,21 @@ import { RESIDUE_TYPE } from '../data/chell-data';
 import PlotlyChart, { defaultConfig, defaultLayout, generateScatterGLData } from '../helper/PlotlyHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
 
-export const defaultScatterChartProps = {
+export interface IScatterChartProps {
+  candidateResidues: RESIDUE_TYPE[];
+  data: IScatterChartData[];
+  nodeSize: number;
+  height: number;
+  hoveredResidues: RESIDUE_TYPE[];
+  onClickCallback: (...args: any[]) => void;
+  onHoverCallback: (...args: any[]) => void;
+  onSelectedCallback: (...args: any[]) => void;
+  onUnHoverCallback: (...args: any[]) => void;
+  range: number[];
+  width: number;
+}
+
+const defaultScatterChartProps: Partial<IScatterChartProps> = {
   candidateResidues: new Array<RESIDUE_TYPE>(),
   height: 400,
   hoveredResidues: new Array<RESIDUE_TYPE>(),
@@ -21,24 +35,27 @@ export const defaultScatterChartProps = {
   onUnHoverCallback: (...args: any[]) => {
     return;
   },
+  range: [],
   width: 400,
 };
 
-export type ScatterChartProps = {
-  data: Array<{
-    color: string;
-    name: string;
-    points: Array<{ i: number; j: number }>;
-  }>;
-  nodeSize: number;
-} & typeof defaultScatterChartProps;
+export interface IScatterChartData {
+  color: string;
+  name: string;
+  points: IScatterChartDataPoint[];
+}
 
-class ScatterChartClass extends React.Component<ScatterChartProps, any> {
+export interface IScatterChartDataPoint {
+  i: number;
+  j: number;
+}
+
+class ScatterChartClass extends React.Component<IScatterChartProps, any> {
   constructor(props: any) {
     super(props);
   }
   public render() {
-    const { candidateResidues, height, hoveredResidues, data, nodeSize, width, ...props } = this.props;
+    const { candidateResidues, data, height, hoveredResidues, nodeSize, range, width, ...props } = this.props;
 
     const scatterGLData = data.map(entry =>
       generateScatterGLData(entry.points, entry.color, entry.name, nodeSize, true),
@@ -63,6 +80,7 @@ class ScatterChartClass extends React.Component<ScatterChartProps, any> {
             ...defaultLayout.xaxis,
             gridcolor: '#ff0000',
             gridwidth: nodeSize,
+            range,
             showticklabels: false,
             tickvals: [...candidateResidues, ...hoveredResidues],
           },
@@ -70,6 +88,7 @@ class ScatterChartClass extends React.Component<ScatterChartProps, any> {
             ...defaultLayout.yaxis,
             gridcolor: '#ff0000',
             gridwidth: nodeSize,
+            range,
             showticklabels: false,
             tickvals: [...candidateResidues, ...hoveredResidues],
           },
