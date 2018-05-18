@@ -4,12 +4,13 @@ exports[`ScatterChart Should match existing snapshot when given simple data. 1`]
 <PlotlyChart
   config={
     Object {
-      "displayModeBar": true,
+      "displayModeBar": false,
     }
   }
   data={
     Array [
       Object {
+        "hoverinfo": "none",
         "marker": Object {
           "color": "",
           "size": 8,
@@ -26,8 +27,13 @@ exports[`ScatterChart Should match existing snapshot when given simple data. 1`]
     Object {
       "height": 400,
       "legend": Object {
-        "xanchor": "right",
-        "yanchor": "bottom",
+        "orientation": "h",
+      },
+      "margin": Object {
+        "b": 80,
+        "l": 40,
+        "r": 40,
+        "t": 10,
       },
       "showlegend": true,
       "title": "",

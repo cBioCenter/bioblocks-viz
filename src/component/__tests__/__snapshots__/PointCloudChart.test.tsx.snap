@@ -4,7 +4,7 @@ exports[`PointCloudChart Should match existing snapshot when given empty data. 1
 <PlotlyChart
   config={
     Object {
-      "displayModeBar": true,
+      "displayModeBar": false,
     }
   }
   data={
@@ -25,26 +25,22 @@ exports[`PointCloudChart Should match existing snapshot when given empty data. 1
     Object {
       "height": 400,
       "legend": Object {},
+      "margin": Object {
+        "b": 80,
+        "l": 40,
+        "r": 40,
+        "t": 10,
+      },
       "showlegend": false,
       "title": "",
       "width": 400,
       "xaxis": Object {
-        "gridcolor": "#ff0000",
-        "gridwidth": 4,
-        "range": Array [
-          30,
-        ],
-        "showticklabels": false,
-        "tickvals": Array [],
+        "autorange": false,
+        "range": Array [],
       },
       "yaxis": Object {
-        "gridcolor": "#ff0000",
-        "gridwidth": 4,
-        "range": Array [
-          30,
-        ],
-        "showticklabels": false,
-        "tickvals": Array [],
+        "autorange": false,
+        "range": Array [],
       },
     }
   }
@@ -59,7 +55,7 @@ exports[`PointCloudChart Should match existing snapshot when given simple data. 
 <PlotlyChart
   config={
     Object {
-      "displayModeBar": true,
+      "displayModeBar": false,
     }
   }
   data={
@@ -108,26 +104,22 @@ exports[`PointCloudChart Should match existing snapshot when given simple data. 
     Object {
       "height": 400,
       "legend": Object {},
+      "margin": Object {
+        "b": 80,
+        "l": 40,
+        "r": 40,
+        "t": 10,
+      },
       "showlegend": false,
       "title": "",
       "width": 400,
       "xaxis": Object {
-        "gridcolor": "#ff0000",
-        "gridwidth": 4,
-        "range": Array [
-          30,
-        ],
-        "showticklabels": false,
-        "tickvals": Array [],
+        "autorange": false,
+        "range": Array [],
       },
       "yaxis": Object {
-        "gridcolor": "#ff0000",
-        "gridwidth": 4,
-        "range": Array [
-          30,
-        ],
-        "showticklabels": false,
-        "tickvals": Array [],
+        "autorange": false,
+        "range": Array [],
       },
     }
   }

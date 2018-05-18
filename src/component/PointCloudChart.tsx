@@ -21,6 +21,7 @@ export const defaultPointCloudProps = {
   onUnHoverCallback: (...args: any[]) => {
     return;
   },
+  range: new Array<number>(),
   width: 400,
 };
 
@@ -38,7 +39,7 @@ class PointCloudChartClass extends React.Component<PointCloudChartProps, any> {
   }
 
   public render() {
-    const { candidateResidues, height, hoveredResidues, data, nodeSize, width, ...props } = this.props;
+    const { candidateResidues, data, height, hoveredResidues, nodeSize, range, width, ...props } = this.props;
 
     const pointCloudData = data.map(entry =>
       generatePointCloudData(this.generateFloat32ArrayFromContacts(entry.points), entry.color, nodeSize, true),
@@ -56,17 +57,13 @@ class PointCloudChartClass extends React.Component<PointCloudChartProps, any> {
           width,
           xaxis: {
             ...defaultLayout.xaxis,
-            gridcolor: '#ff0000',
-            gridwidth: nodeSize,
-            showticklabels: false,
-            tickvals: [...candidateResidues, ...hoveredResidues],
+            autorange: false,
+            range,
           },
           yaxis: {
             ...defaultLayout.yaxis,
-            gridcolor: '#ff0000',
-            gridwidth: nodeSize,
-            showticklabels: false,
-            tickvals: [...candidateResidues, ...hoveredResidues],
+            autorange: false,
+            range: range.slice().reverse(),
           },
         }}
         {...props}

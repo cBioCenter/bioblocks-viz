@@ -96,6 +96,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     const inputData = [
       {
         color: observedColor,
+        hoverinfo: 'x+y',
         name: 'Observed',
         points: observedContacts,
       },

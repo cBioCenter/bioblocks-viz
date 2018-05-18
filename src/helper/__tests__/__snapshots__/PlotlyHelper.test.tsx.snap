@@ -80,12 +80,13 @@ Object {
 
 exports[`generateScatterGLData Should create the expected plotly scatter data format when given defaults. 1`] = `
 Object {
+  "hoverinfo": "none",
   "marker": Object {
     "color": "blue",
     "size": 8,
   },
   "mode": "markers",
-  "name": "da-bo-de",
+  "name": "da-bo-dee",
   "type": "scattergl",
   "x": Array [
     9,

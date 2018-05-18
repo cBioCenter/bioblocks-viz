@@ -3,6 +3,7 @@ import * as React from 'react';
 // We need to use dist/plotly to avoid forcing users to do some webpack gymnastics:
 // https://github.com/plotly/plotly-webpack#the-easy-way-recommended
 import * as plotly from 'plotly.js/dist/plotly';
+import { IScatterChartData } from '../component/ScatterChart';
 
 export enum PLOTLY_CHART_TYPE {
   /** [Plotly Bar Chart](https://plot.ly/javascript/bar-charts/) */
@@ -92,17 +93,7 @@ export default class PlotlyChart extends React.Component<IPlotlyChartProps, any>
   }
 
   public render() {
-    const {
-      data,
-      layout,
-      config,
-      onClickCallback,
-      onHoverCallback,
-      onSelectedCallback,
-      onUnHoverCallback,
-      ...other
-    } = this.props;
-    return <div {...other} ref={node => (this.canvasRef = node ? node : null)} />;
+    return <div ref={node => (this.canvasRef = node ? node : null)} />;
   }
 
   protected onClick = (event: plotly.PlotMouseEvent) => {
@@ -137,6 +128,12 @@ export default class PlotlyChart extends React.Component<IPlotlyChartProps, any>
 export const defaultLayout: Partial<Plotly.Layout> = {
   height: 400,
   legend: {},
+  margin: {
+    b: 80,
+    l: 40,
+    r: 40,
+    t: 10,
+  },
   showlegend: false,
   title: '',
   width: 400,
@@ -149,7 +146,7 @@ export const defaultLayout: Partial<Plotly.Layout> = {
 };
 
 export const defaultConfig: Partial<Plotly.Config> = {
-  displayModeBar: true,
+  displayModeBar: false,
   // modeBarButtons: [['zoomOut2d', 'zoomIn2d'], ['resetScale2d', 'autoScale2d'], ['select2d', 'pan2d']],
 };
 
@@ -192,24 +189,21 @@ export const generatePointCloudData = (
 /**
  * Generate data in the expected format for a Scatter plot backed by WebGL
  *
- * @param array Array containing the data objects, where (x,y) will be parsed.
- * @param color What color the points should be.
- * @param nodeSize Sets min/max to nodeSize/nodeSize * 2.
+ * @param entry A unit of Plotly data containing points, color, name, and any extras.
+ * @param nodeSize How big to make the nodes on the graph?
  * @param mirrorPoints Should we mirror the points on the x/y axis?
- * @param [extra] Explicit extra configuration to add / replace the default data configuration with.
  * @returns Data suitable for consumption by Plotly.
  */
 export const generateScatterGLData = (
-  array: Array<{ i: number; j: number }>,
-  color: string,
-  name: string,
+  entry: IScatterChartData,
   nodeSize: number,
   mirrorPoints: boolean = false,
-  extra?: Partial<IPlotlyData>,
 ): Partial<IPlotlyData> => {
-  const xValues = array.map(data => data.i);
-  const yValues = array.map(data => data.j);
+  const { points, color, name, ...extra } = entry;
+  const xValues = points.map(data => data.i);
+  const yValues = points.map(data => data.j);
   return {
+    hoverinfo: 'none' as any,
     marker: {
       color,
       size: nodeSize * 2,

@@ -458,6 +458,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         Array [
           Object {
             "color": "#0000ff",
+            "hoverinfo": "x+y",
             "name": "Observed",
             "points": Array [
               Object {
@@ -534,12 +535,13 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       <PlotlyChart
         config={
           Object {
-            "displayModeBar": true,
+            "displayModeBar": false,
           }
         }
         data={
           Array [
             Object {
+              "hoverinfo": "x+y",
               "marker": Object {
                 "color": "#0000ff",
                 "size": 6,
@@ -565,6 +567,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               ],
             },
             Object {
+              "hoverinfo": "none",
               "marker": Object {
                 "color": "#000000",
                 "size": 6,
@@ -586,6 +589,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               ],
             },
             Object {
+              "hoverinfo": "none",
               "marker": Object {
                 "color": "#ff0000",
                 "size": 6,
@@ -603,6 +607,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               ],
             },
             Object {
+              "hoverinfo": "none",
               "marker": Object {
                 "color": "#ffff00",
                 "size": 6,
@@ -625,8 +630,13 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           Object {
             "height": 400,
             "legend": Object {
-              "xanchor": "right",
-              "yanchor": "bottom",
+              "orientation": "h",
+            },
+            "margin": Object {
+              "b": 80,
+              "l": 40,
+              "r": 40,
+              "t": 10,
             },
             "showlegend": true,
             "title": "",
