@@ -4,7 +4,7 @@ import toJson from 'enzyme-to-json';
 import * as React from 'react';
 
 import { IMockDict } from 'configs/SetupJest';
-import { IPlotlyChartProps, PlotlyChartClass } from '../PlotlyChart';
+import { PlotlyChartClass, PlotlyChartProps } from '../PlotlyChart';
 
 beforeEach(() => {
   jest.resetModules();
@@ -28,7 +28,7 @@ describe('PlotlyChart', () => {
    * @param props Custom props to be passed to the chart.
    * @returns A wrapper for the PlotlyChart that has been mounted.
    */
-  const getMountedPlotlyChart = async (props: IPlotlyChartProps) => {
+  const getMountedPlotlyChart = async (props: PlotlyChartProps) => {
     const wrapper = mount(<PlotlyChartClass {...props} />);
     await wrapper.update();
     return wrapper;

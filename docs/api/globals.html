@@ -108,7 +108,6 @@
 								<li class="tsd-kind-interface"><a href="interfaces/icouplingscore.html" class="tsd-kind-icon">ICoupling<wbr>Score</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/idistancemapmonomer.html" class="tsd-kind-icon">IDistance<wbr>Map<wbr>Monomer</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/imonomercontact.html" class="tsd-kind-icon">IMonomer<wbr>Contact</a></li>
-								<li class="tsd-kind-interface"><a href="interfaces/iplotlychartprops.html" class="tsd-kind-icon">IPlotly<wbr>Chart<wbr>Props</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/iplotlydata.html" class="tsd-kind-icon">IPlotly<wbr>Data</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/irepresentationdict.html" class="tsd-kind-icon">IRepresentation<wbr>Dict</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/iresiduecontext.html" class="tsd-kind-icon">IResidue<wbr>Context</a></li>
@@ -134,6 +133,7 @@
 								<li class="tsd-kind-type-alias"><a href="globals.html#ngl_data_type" class="tsd-kind-icon">NGL_<wbr>DATA_<wbr>TYPE</a></li>
 								<li class="tsd-kind-type-alias"><a href="globals.html#ngl_hover_cb_result_type" class="tsd-kind-icon">NGL_<wbr>HOVER_<wbr>CB_<wbr>RESULT_<wbr>TYPE</a></li>
 								<li class="tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported"><a href="globals.html#omit" class="tsd-kind-icon">Omit</a></li>
+								<li class="tsd-kind-type-alias"><a href="globals.html#plotlychartprops" class="tsd-kind-icon">Plotly<wbr>Chart<wbr>Props</a></li>
 								<li class="tsd-kind-type-alias tsd-is-not-exported"><a href="globals.html#props" class="tsd-kind-icon">Props</a></li>
 								<li class="tsd-kind-type-alias"><a href="globals.html#residue_type" class="tsd-kind-icon">RESIDUE_<wbr>TYPE</a></li>
 								<li class="tsd-kind-type-alias"><a href="globals.html#spring_data_type" class="tsd-kind-icon">SPRING_<wbr>DATA_<wbr>TYPE</a></li>
@@ -193,7 +193,7 @@
 								<li class="tsd-kind-object-literal tsd-is-not-exported"><a href="globals.html#defaultcontactmapchartprops" class="tsd-kind-icon">default<wbr>Contact<wbr>Map<wbr>Chart<wbr>Props</a></li>
 								<li class="tsd-kind-object-literal"><a href="globals.html#defaultcontactmapprops" class="tsd-kind-icon">default<wbr>Contact<wbr>Map<wbr>Props</a></li>
 								<li class="tsd-kind-object-literal"><a href="globals.html#defaultnglprops" class="tsd-kind-icon">defaultNGLProps</a></li>
-								<li class="tsd-kind-object-literal tsd-is-not-exported"><a href="globals.html#defaultplotlychartprops" class="tsd-kind-icon">default<wbr>Plotly<wbr>Chart<wbr>Props</a></li>
+								<li class="tsd-kind-object-literal"><a href="globals.html#defaultplotlychartprops" class="tsd-kind-icon">default<wbr>Plotly<wbr>Chart<wbr>Props</a></li>
 								<li class="tsd-kind-object-literal"><a href="globals.html#defaultplotlyconfig" class="tsd-kind-icon">default<wbr>Plotly<wbr>Config</a></li>
 								<li class="tsd-kind-object-literal"><a href="globals.html#defaultplotlylayout" class="tsd-kind-icon">default<wbr>Plotly<wbr>Layout</a></li>
 								<li class="tsd-kind-object-literal tsd-is-not-exported"><a href="globals.html#defaultprops" class="tsd-kind-icon">default<wbr>Props</a></li>
@@ -420,6 +420,16 @@
 						</dl>
 					</div>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="plotlychartprops" class="tsd-anchor"></a>
+					<h3>Plotly<wbr>Chart<wbr>Props</h3>
+					<div class="tsd-signature tsd-kind-icon">Plotly<wbr>Chart<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/component/chart/PlotlyChart.tsx:70</li>
+						</ul>
+					</aside>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-is-not-exported">
 					<a name="props" class="tsd-anchor"></a>
 					<h3>Props</h3>
@@ -571,7 +581,7 @@
 					<div class="tsd-signature tsd-kind-icon">Plotly<wbr>Chart<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultPlotlyChartProps, PlotlyChartClass)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/chart/PlotlyChart.tsx:160</li>
+							<li>Defined in src/component/chart/PlotlyChart.tsx:171</li>
 						</ul>
 					</aside>
 				</section>
@@ -1482,199 +1492,146 @@
 						</aside>
 					</section>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-is-not-exported">
+				<section class="tsd-panel tsd-member tsd-kind-object-literal">
 					<a name="defaultplotlychartprops" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> default<wbr>Plotly<wbr>Chart<wbr>Props</h3>
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Plotly<wbr>Chart<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/chart/PlotlyChart.tsx:36</li>
+							<li>Defined in src/component/chart/PlotlyChart.tsx:52</li>
 						</ul>
 					</aside>
-					<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal tsd-is-not-exported">
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 						<a name="defaultplotlychartprops.config" class="tsd-anchor"></a>
 						<h3>config</h3>
-						<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+						<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;{} as Partial&lt;Plotly.Config&gt;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:37</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:53</li>
 							</ul>
 						</aside>
-						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
-							<a name="defaultplotlychartprops.config.displaymodebar" class="tsd-anchor"></a>
-							<h3>display<wbr>Mode<wbr>Bar</h3>
-							<div class="tsd-signature tsd-kind-icon">display<wbr>Mode<wbr>Bar<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:38</li>
-								</ul>
-							</aside>
-						</section>
+						<div class="tsd-type-declaration">
+							<h4>Type declaration</h4>
+							<ul class="tsd-parameters">
+							</ul>
+						</div>
 					</section>
-					<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal tsd-is-not-exported">
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="defaultplotlychartprops.data" class="tsd-anchor"></a>
+						<h3>data</h3>
+						<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[] as Array&lt;Partial&lt;IPlotlyData&gt;&gt;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:54</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 						<a name="defaultplotlychartprops.layout" class="tsd-anchor"></a>
 						<h3>layout</h3>
-						<div class="tsd-signature tsd-kind-icon">layout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+						<div class="tsd-signature tsd-kind-icon">layout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;{} as Partial&lt;Plotly.Layout&gt;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:41</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:55</li>
 							</ul>
 						</aside>
-						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
-							<a name="defaultplotlychartprops.layout.autosize" class="tsd-anchor"></a>
-							<h3>autosize</h3>
-							<div class="tsd-signature tsd-kind-icon">autosize<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:42</li>
-								</ul>
-							</aside>
-						</section>
-						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
-							<a name="defaultplotlychartprops.layout.height" class="tsd-anchor"></a>
-							<h3>height</h3>
-							<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:43</li>
-								</ul>
-							</aside>
-						</section>
-						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
-							<a name="defaultplotlychartprops.layout.legend" class="tsd-anchor"></a>
-							<h3>legend</h3>
-							<div class="tsd-signature tsd-kind-icon">legend<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:44</li>
-								</ul>
-							</aside>
-							<div class="tsd-type-declaration">
-								<h4>Type declaration</h4>
+						<div class="tsd-type-declaration">
+							<h4>Type declaration</h4>
+							<ul class="tsd-parameters">
+							</ul>
+						</div>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="defaultplotlychartprops.onclickcallback" class="tsd-anchor"></a>
+						<h3>on<wbr>Click<wbr>Callback</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">on<wbr>Click<wbr>Callback<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">plotly.PlotMouseEvent</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in src/component/chart/PlotlyChart.tsx:56</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
 								<ul class="tsd-parameters">
+									<li>
+										<h5>event: <span class="tsd-signature-type">plotly.PlotMouseEvent</span></h5>
+									</li>
 								</ul>
-							</div>
-						</section>
-						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
-							<a name="defaultplotlychartprops.layout.showlegend" class="tsd-anchor"></a>
-							<h3>showlegend</h3>
-							<div class="tsd-signature tsd-kind-icon">showlegend<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:51</li>
-								</ul>
-							</aside>
-						</section>
-						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
-							<a name="defaultplotlychartprops.layout.title" class="tsd-anchor"></a>
-							<h3>title</h3>
-							<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:52</li>
-								</ul>
-							</aside>
-						</section>
-						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
-							<a name="defaultplotlychartprops.layout.width" class="tsd-anchor"></a>
-							<h3>width</h3>
-							<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:53</li>
-								</ul>
-							</aside>
-						</section>
-						<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal tsd-is-not-exported">
-							<a name="defaultplotlychartprops.layout.margin" class="tsd-anchor"></a>
-							<h3>margin</h3>
-							<div class="tsd-signature tsd-kind-icon">margin<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:45</li>
-								</ul>
-							</aside>
-							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
-								<a name="defaultplotlychartprops.layout.margin.b" class="tsd-anchor"></a>
-								<h3>b</h3>
-								<div class="tsd-signature tsd-kind-icon">b<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;80</span></div>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="defaultplotlychartprops.onhovercallback" class="tsd-anchor"></a>
+						<h3>on<wbr>Hover<wbr>Callback</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">on<wbr>Hover<wbr>Callback<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">plotly.PlotMouseEvent</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in src/component/chart/PlotlyChart.tsx:46</li>
+										<li>Defined in src/component/chart/PlotlyChart.tsx:59</li>
 									</ul>
 								</aside>
-							</section>
-							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
-								<a name="defaultplotlychartprops.layout.margin.l" class="tsd-anchor"></a>
-								<h3>l</h3>
-								<div class="tsd-signature tsd-kind-icon">l<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;40</span></div>
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in src/component/chart/PlotlyChart.tsx:47</li>
-									</ul>
-								</aside>
-							</section>
-							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
-								<a name="defaultplotlychartprops.layout.margin.r" class="tsd-anchor"></a>
-								<h3>r</h3>
-								<div class="tsd-signature tsd-kind-icon">r<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;40</span></div>
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in src/component/chart/PlotlyChart.tsx:48</li>
-									</ul>
-								</aside>
-							</section>
-							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
-								<a name="defaultplotlychartprops.layout.margin.t" class="tsd-anchor"></a>
-								<h3>t</h3>
-								<div class="tsd-signature tsd-kind-icon">t<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;10</span></div>
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in src/component/chart/PlotlyChart.tsx:49</li>
-									</ul>
-								</aside>
-							</section>
-						</section>
-						<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal tsd-is-not-exported">
-							<a name="defaultplotlychartprops.layout.xaxis" class="tsd-anchor"></a>
-							<h3>xaxis</h3>
-							<div class="tsd-signature tsd-kind-icon">xaxis<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:54</li>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>event: <span class="tsd-signature-type">plotly.PlotMouseEvent</span></h5>
+									</li>
 								</ul>
-							</aside>
-							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
-								<a name="defaultplotlychartprops.layout.xaxis.range" class="tsd-anchor"></a>
-								<h3>range</h3>
-								<div class="tsd-signature tsd-kind-icon">range<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[30]</span></div>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="defaultplotlychartprops.onselectedcallback" class="tsd-anchor"></a>
+						<h3>on<wbr>Selected<wbr>Callback</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">on<wbr>Selected<wbr>Callback<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">plotly.PlotSelectionEvent</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in src/component/chart/PlotlyChart.tsx:55</li>
+										<li>Defined in src/component/chart/PlotlyChart.tsx:62</li>
 									</ul>
 								</aside>
-							</section>
-						</section>
-						<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal tsd-is-not-exported">
-							<a name="defaultplotlychartprops.layout.yaxis" class="tsd-anchor"></a>
-							<h3>yaxis</h3>
-							<div class="tsd-signature tsd-kind-icon">yaxis<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:57</li>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>event: <span class="tsd-signature-type">plotly.PlotSelectionEvent</span></h5>
+									</li>
 								</ul>
-							</aside>
-							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
-								<a name="defaultplotlychartprops.layout.yaxis.range-1" class="tsd-anchor"></a>
-								<h3>range</h3>
-								<div class="tsd-signature tsd-kind-icon">range<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[30]</span></div>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="defaultplotlychartprops.onunhovercallback" class="tsd-anchor"></a>
+						<h3>on<wbr>UnHover<wbr>Callback</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">on<wbr>UnHover<wbr>Callback<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">plotly.PlotMouseEvent</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in src/component/chart/PlotlyChart.tsx:58</li>
+										<li>Defined in src/component/chart/PlotlyChart.tsx:65</li>
 									</ul>
 								</aside>
-							</section>
-						</section>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>event: <span class="tsd-signature-type">plotly.PlotMouseEvent</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
 					</section>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-object-literal">
@@ -1683,7 +1640,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Plotly<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/chart/PlotlyChart.tsx:65</li>
+							<li>Defined in src/component/chart/PlotlyChart.tsx:26</li>
 							<li>Defined in src/component/chart/ContactMapChart.tsx:73</li>
 						</ul>
 					</aside>
@@ -1693,6 +1650,7 @@
 						<div class="tsd-signature tsd-kind-icon">display<wbr>Mode<wbr>Bar<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 						<aside class="tsd-sources">
 							<ul>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:27</li>
 								<li>Defined in src/component/chart/ContactMapChart.tsx:74</li>
 							</ul>
 						</aside>
@@ -1704,7 +1662,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Plotly<wbr>Layout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/chart/PlotlyChart.tsx:63</li>
+							<li>Defined in src/component/chart/PlotlyChart.tsx:31</li>
 							<li>Defined in src/component/chart/ContactMapChart.tsx:52</li>
 						</ul>
 					</aside>
@@ -1714,6 +1672,7 @@
 						<div class="tsd-signature tsd-kind-icon">autosize<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 						<aside class="tsd-sources">
 							<ul>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:32</li>
 								<li>Defined in src/component/chart/ContactMapChart.tsx:53</li>
 							</ul>
 						</aside>
@@ -1724,6 +1683,7 @@
 						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
 						<aside class="tsd-sources">
 							<ul>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:33</li>
 								<li>Defined in src/component/chart/ContactMapChart.tsx:54</li>
 							</ul>
 						</aside>
@@ -1734,6 +1694,7 @@
 						<div class="tsd-signature tsd-kind-icon">legend<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:34</li>
 								<li>Defined in src/component/chart/ContactMapChart.tsx:55</li>
 							</ul>
 						</aside>
@@ -1749,6 +1710,7 @@
 						<div class="tsd-signature tsd-kind-icon">showlegend<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 						<aside class="tsd-sources">
 							<ul>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:41</li>
 								<li>Defined in src/component/chart/ContactMapChart.tsx:62</li>
 							</ul>
 						</aside>
@@ -1759,6 +1721,7 @@
 						<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:42</li>
 								<li>Defined in src/component/chart/ContactMapChart.tsx:63</li>
 							</ul>
 						</aside>
@@ -1769,6 +1732,7 @@
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
 						<aside class="tsd-sources">
 							<ul>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:43</li>
 								<li>Defined in src/component/chart/ContactMapChart.tsx:64</li>
 							</ul>
 						</aside>
@@ -1779,6 +1743,7 @@
 						<div class="tsd-signature tsd-kind-icon">margin<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:35</li>
 								<li>Defined in src/component/chart/ContactMapChart.tsx:56</li>
 							</ul>
 						</aside>
@@ -1788,6 +1753,7 @@
 							<div class="tsd-signature tsd-kind-icon">b<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;80</span></div>
 							<aside class="tsd-sources">
 								<ul>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:36</li>
 									<li>Defined in src/component/chart/ContactMapChart.tsx:57</li>
 								</ul>
 							</aside>
@@ -1798,6 +1764,7 @@
 							<div class="tsd-signature tsd-kind-icon">l<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;40</span></div>
 							<aside class="tsd-sources">
 								<ul>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:37</li>
 									<li>Defined in src/component/chart/ContactMapChart.tsx:58</li>
 								</ul>
 							</aside>
@@ -1808,6 +1775,7 @@
 							<div class="tsd-signature tsd-kind-icon">r<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;40</span></div>
 							<aside class="tsd-sources">
 								<ul>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:38</li>
 									<li>Defined in src/component/chart/ContactMapChart.tsx:59</li>
 								</ul>
 							</aside>
@@ -1818,6 +1786,7 @@
 							<div class="tsd-signature tsd-kind-icon">t<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;10</span></div>
 							<aside class="tsd-sources">
 								<ul>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:39</li>
 									<li>Defined in src/component/chart/ContactMapChart.tsx:60</li>
 								</ul>
 							</aside>
@@ -1829,6 +1798,7 @@
 						<div class="tsd-signature tsd-kind-icon">xaxis<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:44</li>
 								<li>Defined in src/component/chart/ContactMapChart.tsx:65</li>
 							</ul>
 						</aside>
@@ -1838,6 +1808,7 @@
 							<div class="tsd-signature tsd-kind-icon">range<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[30]</span></div>
 							<aside class="tsd-sources">
 								<ul>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:45</li>
 									<li>Defined in src/component/chart/ContactMapChart.tsx:66</li>
 								</ul>
 							</aside>
@@ -1849,6 +1820,7 @@
 						<div class="tsd-signature tsd-kind-icon">yaxis<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:47</li>
 								<li>Defined in src/component/chart/ContactMapChart.tsx:68</li>
 							</ul>
 						</aside>
@@ -1858,6 +1830,7 @@
 							<div class="tsd-signature tsd-kind-icon">range<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[30]</span></div>
 							<aside class="tsd-sources">
 								<ul>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:48</li>
 									<li>Defined in src/component/chart/ContactMapChart.tsx:69</li>
 								</ul>
 							</aside>
@@ -2408,9 +2381,6 @@
 						<a href="interfaces/imonomercontact.html" class="tsd-kind-icon">IMonomer<wbr>Contact</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/iplotlychartprops.html" class="tsd-kind-icon">IPlotly<wbr>Chart<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-interface">
 						<a href="interfaces/iplotlydata.html" class="tsd-kind-icon">IPlotly<wbr>Data</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -2469,6 +2439,9 @@
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported">
 						<a href="globals.html#omit" class="tsd-kind-icon">Omit</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#plotlychartprops" class="tsd-kind-icon">Plotly<wbr>Chart<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-is-not-exported">
 						<a href="globals.html#props" class="tsd-kind-icon">Props</a>
@@ -2602,7 +2575,7 @@
 					<li class=" tsd-kind-object-literal">
 						<a href="globals.html#defaultnglprops" class="tsd-kind-icon">defaultNGLProps</a>
 					</li>
-					<li class=" tsd-kind-object-literal tsd-is-not-exported">
+					<li class=" tsd-kind-object-literal">
 						<a href="globals.html#defaultplotlychartprops" class="tsd-kind-icon">default<wbr>Plotly<wbr>Chart<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-object-literal">

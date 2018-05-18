@@ -2,11 +2,7 @@
 
 exports[`PlotlyChart Should attach events when the container is attached. 1`] = `
 <PlotlyChartClass
-  config={
-    Object {
-      "displayModeBar": false,
-    }
-  }
+  config={Object {}}
   data={
     Array [
       Object {
@@ -25,34 +21,11 @@ exports[`PlotlyChart Should attach events when the container is attached. 1`] = 
       },
     ]
   }
-  layout={
-    Object {
-      "autosize": true,
-      "height": 400,
-      "legend": Object {},
-      "margin": Object {
-        "b": 80,
-        "l": 40,
-        "r": 40,
-        "t": 10,
-      },
-      "showlegend": false,
-      "title": "",
-      "width": 400,
-      "xaxis": Object {
-        "range": Array [
-          30,
-        ],
-      },
-      "yaxis": Object {
-        "range": Array [
-          30,
-        ],
-      },
-    }
-  }
+  layout={Object {}}
   onClickCallback={[MockFunction]}
+  onHoverCallback={[Function]}
   onSelectedCallback={[MockFunction]}
+  onUnHoverCallback={[Function]}
 >
   <div
     className="plotly-chart"
@@ -62,38 +35,13 @@ exports[`PlotlyChart Should attach events when the container is attached. 1`] = 
 
 exports[`PlotlyChart Should match existing snapshot when given empty data. 1`] = `
 <PlotlyChartClass
-  config={
-    Object {
-      "displayModeBar": false,
-    }
-  }
+  config={Object {}}
   data={Array []}
-  layout={
-    Object {
-      "autosize": true,
-      "height": 400,
-      "legend": Object {},
-      "margin": Object {
-        "b": 80,
-        "l": 40,
-        "r": 40,
-        "t": 10,
-      },
-      "showlegend": false,
-      "title": "",
-      "width": 400,
-      "xaxis": Object {
-        "range": Array [
-          30,
-        ],
-      },
-      "yaxis": Object {
-        "range": Array [
-          30,
-        ],
-      },
-    }
-  }
+  layout={Object {}}
+  onClickCallback={[Function]}
+  onHoverCallback={[Function]}
+  onSelectedCallback={[Function]}
+  onUnHoverCallback={[Function]}
 >
   <div
     className="plotly-chart"
@@ -103,11 +51,7 @@ exports[`PlotlyChart Should match existing snapshot when given empty data. 1`] =
 
 exports[`PlotlyChart Should match existing snapshot when given sample data. 1`] = `
 <PlotlyChartClass
-  config={
-    Object {
-      "displayModeBar": false,
-    }
-  }
+  config={Object {}}
   data={
     Array [
       Object {
@@ -126,32 +70,11 @@ exports[`PlotlyChart Should match existing snapshot when given sample data. 1`] 
       },
     ]
   }
-  layout={
-    Object {
-      "autosize": true,
-      "height": 400,
-      "legend": Object {},
-      "margin": Object {
-        "b": 80,
-        "l": 40,
-        "r": 40,
-        "t": 10,
-      },
-      "showlegend": false,
-      "title": "",
-      "width": 400,
-      "xaxis": Object {
-        "range": Array [
-          30,
-        ],
-      },
-      "yaxis": Object {
-        "range": Array [
-          30,
-        ],
-      },
-    }
-  }
+  layout={Object {}}
+  onClickCallback={[Function]}
+  onHoverCallback={[Function]}
+  onSelectedCallback={[Function]}
+  onUnHoverCallback={[Function]}
 >
   <div
     className="plotly-chart"

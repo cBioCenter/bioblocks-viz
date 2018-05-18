@@ -23,46 +23,53 @@ export interface IPlotlyData extends plotly.ScatterData {
   type: PLOTLY_CHART_TYPE | 'bar' | 'pointcloud' | 'scatter' | 'scattergl' | 'scatter3d';
 }
 
-export interface IPlotlyChartProps {
-  config?: Partial<plotly.Config>;
-  data: Array<Partial<IPlotlyData>>;
-  layout?: Partial<plotly.Layout>;
-  onClickCallback?: (event: plotly.PlotMouseEvent) => void;
-  onHoverCallback?: (event: plotly.PlotMouseEvent) => void;
-  onSelectedCallback?: (event: plotly.PlotSelectionEvent) => void;
-  onUnHoverCallback?: (event: plotly.PlotMouseEvent) => void;
-}
+export const defaultPlotlyConfig: Partial<Plotly.Config> = {
+  displayModeBar: false,
+  // modeBarButtons: [['zoomOut2d', 'zoomIn2d'], ['resetScale2d', 'autoScale2d'], ['select2d', 'pan2d']],
+};
 
-const defaultPlotlyChartProps: Partial<IPlotlyChartProps> = {
-  config: {
-    displayModeBar: false,
-    // modeBarButtons: [['zoomOut2d', 'zoomIn2d'], ['resetScale2d', 'autoScale2d'], ['select2d', 'pan2d']],
+export const defaultPlotlyLayout: Partial<Plotly.Layout> = {
+  autosize: true,
+  height: 400,
+  legend: {},
+  margin: {
+    b: 80,
+    l: 40,
+    r: 40,
+    t: 10,
   },
-  layout: {
-    autosize: true,
-    height: 400,
-    legend: {},
-    margin: {
-      b: 80,
-      l: 40,
-      r: 40,
-      t: 10,
-    },
-    showlegend: false,
-    title: '',
-    width: 400,
-    xaxis: {
-      range: [30],
-    },
-    yaxis: {
-      range: [30],
-    },
+  showlegend: false,
+  title: '',
+  width: 400,
+  xaxis: {
+    range: [30],
+  },
+  yaxis: {
+    range: [30],
   },
 };
 
-export const defaultPlotlyLayout: Partial<Plotly.Layout> = {};
+export const defaultPlotlyChartProps = {
+  config: {} as Partial<Plotly.Config>,
+  data: [] as Array<Partial<IPlotlyData>>,
+  layout: {} as Partial<Plotly.Layout>,
+  onClickCallback: (event: plotly.PlotMouseEvent) => {
+    return;
+  },
+  onHoverCallback: (event: plotly.PlotMouseEvent) => {
+    return;
+  },
+  onSelectedCallback: (event: plotly.PlotSelectionEvent) => {
+    return;
+  },
+  onUnHoverCallback: (event: plotly.PlotMouseEvent) => {
+    return;
+  },
+};
 
-export const defaultPlotlyConfig: Partial<Plotly.Config> = {};
+export type PlotlyChartProps = {
+  data: Array<Partial<IPlotlyData>>;
+} & Partial<typeof defaultPlotlyChartProps>;
 
 /**
  * React wrapper for a Plotly Chart.
@@ -73,7 +80,7 @@ export const defaultPlotlyConfig: Partial<Plotly.Config> = {};
  * @export
  * @extends {React.Component<IPlotlyChartProps, any>}
  */
-export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
+export class PlotlyChartClass extends React.Component<PlotlyChartProps, any> {
   public plotlyCanvas: plotly.PlotlyHTMLElement | null = null;
   protected canvasRef: HTMLDivElement | null = null;
 
@@ -96,11 +103,11 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
     const { data, layout, config } = this.props;
     if (this.plotlyCanvas) {
       // plotly.react will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
-      this.plotlyCanvas = await plotly.react(this.plotlyCanvas, data, Object.assign({}, layout), config);
+      this.plotlyCanvas = await plotly.react(this.plotlyCanvas, data, this.getMergedLayout(layout), config);
     }
   };
 
-  public componentDidUpdate(prevProps: IPlotlyChartProps) {
+  public componentDidUpdate(prevProps: PlotlyChartProps) {
     const { data, layout, config } = this.props;
     if (data !== prevProps.data || layout !== prevProps.layout || config !== prevProps.config) {
       this.draw();
@@ -110,7 +117,7 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
   public async componentDidMount() {
     if (this.canvasRef && !this.plotlyCanvas) {
       const { data, layout, config } = this.props;
-      this.plotlyCanvas = await plotly.react(this.canvasRef, data, Object.assign({}, layout), config);
+      this.plotlyCanvas = await plotly.react(this.canvasRef, data, this.getMergedLayout(layout), config);
       this.attachListeners();
       this.draw();
     }
@@ -127,6 +134,10 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
   public render() {
     return <div className={'plotly-chart'} ref={node => (this.canvasRef = node ? node : null)} />;
   }
+
+  protected getMergedConfig = (config: Partial<Plotly.Config> = {}) => Object.assign(defaultPlotlyConfig, config);
+
+  protected getMergedLayout = (layout: Partial<Plotly.Layout> = {}) => Object.assign(defaultPlotlyLayout, layout);
 
   protected onClick = (event: plotly.PlotMouseEvent) => {
     const { onClickCallback } = this.props;
