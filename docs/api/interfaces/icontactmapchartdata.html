@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IPlotlyChartProps | chell-viz</title>
+	<title>IContactMapChartData | chell-viz</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="iplotlychartprops.html">IPlotlyChartProps</a>
+					<a href="icontactmapchartdata.html">IContactMapChartData</a>
 				</li>
 			</ul>
-			<h1>Interface IPlotlyChartProps</h1>
+			<h1>Interface IContactMapChartData</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IPlotlyChartProps</span>
+						<span class="target">IContactMapChartData</span>
 					</li>
 				</ul>
 			</section>
@@ -79,13 +79,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iplotlychartprops.html#config" class="tsd-kind-icon">config</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iplotlychartprops.html#data" class="tsd-kind-icon">data</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iplotlychartprops.html#layout" class="tsd-kind-icon">layout</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iplotlychartprops.html#onclickcallback" class="tsd-kind-icon">on<wbr>Click<wbr>Callback</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iplotlychartprops.html#onhovercallback" class="tsd-kind-icon">on<wbr>Hover<wbr>Callback</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iplotlychartprops.html#onselectedcallback" class="tsd-kind-icon">on<wbr>Selected<wbr>Callback</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iplotlychartprops.html#onunhovercallback" class="tsd-kind-icon">on<wbr>UnHover<wbr>Callback</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icontactmapchartdata.html#color" class="tsd-kind-icon">color</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icontactmapchartdata.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icontactmapchartdata.html#points" class="tsd-kind-icon">points</a></li>
 							</ul>
 						</section>
 					</div>
@@ -94,72 +90,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="config" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> config</h3>
-					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">plotly.Config</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="color" class="tsd-anchor"></a>
+					<h3>color</h3>
+					<div class="tsd-signature tsd-kind-icon">color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/0f9691b/src/helper/PlotlyHelper.tsx#L25">src/helper/PlotlyHelper.tsx:25</a></li>
+							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/4e0b5d7/src/component/chart/ContactMapChart.tsx#L42">src/component/chart/ContactMapChart.tsx:42</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="data" class="tsd-anchor"></a>
-					<h3>data</h3>
-					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/0f9691b/src/helper/PlotlyHelper.tsx#L26">src/helper/PlotlyHelper.tsx:26</a></li>
+							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/4e0b5d7/src/component/chart/ContactMapChart.tsx#L43">src/component/chart/ContactMapChart.tsx:43</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="layout" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> layout</h3>
-					<div class="tsd-signature tsd-kind-icon">layout<span class="tsd-signature-symbol">:</span> <a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">plotly.Layout</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="points" class="tsd-anchor"></a>
+					<h3>points</h3>
+					<div class="tsd-signature tsd-kind-icon">points<span class="tsd-signature-symbol">:</span> <a href="icontactmapchartpoint.html" class="tsd-signature-type">IContactMapChartPoint</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/0f9691b/src/helper/PlotlyHelper.tsx#L27">src/helper/PlotlyHelper.tsx:27</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="onclickcallback" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Click<wbr>Callback</h3>
-					<div class="tsd-signature tsd-kind-icon">on<wbr>Click<wbr>Callback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/0f9691b/src/helper/PlotlyHelper.tsx#L28">src/helper/PlotlyHelper.tsx:28</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="onhovercallback" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Hover<wbr>Callback</h3>
-					<div class="tsd-signature tsd-kind-icon">on<wbr>Hover<wbr>Callback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/0f9691b/src/helper/PlotlyHelper.tsx#L29">src/helper/PlotlyHelper.tsx:29</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="onselectedcallback" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Selected<wbr>Callback</h3>
-					<div class="tsd-signature tsd-kind-icon">on<wbr>Selected<wbr>Callback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/0f9691b/src/helper/PlotlyHelper.tsx#L30">src/helper/PlotlyHelper.tsx:30</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="onunhovercallback" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>UnHover<wbr>Callback</h3>
-					<div class="tsd-signature tsd-kind-icon">on<wbr>UnHover<wbr>Callback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/0f9691b/src/helper/PlotlyHelper.tsx#L31">src/helper/PlotlyHelper.tsx:31</a></li>
+							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/4e0b5d7/src/component/chart/ContactMapChart.tsx#L44">src/component/chart/ContactMapChart.tsx:44</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -178,28 +134,16 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="iplotlychartprops.html" class="tsd-kind-icon">IPlotly<wbr>Chart<wbr>Props</a>
+						<a href="icontactmapchartdata.html" class="tsd-kind-icon">IContact<wbr>Map<wbr>Chart<wbr>Data</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iplotlychartprops.html#config" class="tsd-kind-icon">config</a>
+								<a href="icontactmapchartdata.html#color" class="tsd-kind-icon">color</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iplotlychartprops.html#data" class="tsd-kind-icon">data</a>
+								<a href="icontactmapchartdata.html#name" class="tsd-kind-icon">name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iplotlychartprops.html#layout" class="tsd-kind-icon">layout</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iplotlychartprops.html#onclickcallback" class="tsd-kind-icon">on<wbr>Click<wbr>Callback</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iplotlychartprops.html#onhovercallback" class="tsd-kind-icon">on<wbr>Hover<wbr>Callback</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iplotlychartprops.html#onselectedcallback" class="tsd-kind-icon">on<wbr>Selected<wbr>Callback</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iplotlychartprops.html#onunhovercallback" class="tsd-kind-icon">on<wbr>UnHover<wbr>Callback</a>
+								<a href="icontactmapchartdata.html#points" class="tsd-kind-icon">points</a>
 							</li>
 						</ul>
 					</li>
