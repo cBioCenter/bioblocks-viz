@@ -219,17 +219,18 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     const correctPredictedContacts: ICouplingScore[] = [];
     const incorrectPredictedContacts: ICouplingScore[] = [];
 
-    for (const contact of data.couplingScores
-      .filter(score => Math.abs(score.i - score.j) >= linearDistFilter)
-      .slice(0, predictedContactCount)) {
-      if (showPredicted) {
+    for (const contact of data.couplingScores.filter(score => Math.abs(score.i - score.j) >= linearDistFilter)) {
+      if (
+        showPredicted &&
+        correctPredictedContacts.length + incorrectPredictedContacts.length < predictedContactCount
+      ) {
         if (contact.dist < predictionCutoffDist) {
           correctPredictedContacts.push(contact);
         } else {
           incorrectPredictedContacts.push(contact);
         }
       }
-      if (showObserved) {
+      if (showObserved && contact.dist < 5) {
         observedContacts.push(contact);
       }
     }
