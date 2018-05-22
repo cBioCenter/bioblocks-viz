@@ -100,6 +100,15 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
         points: observedContacts,
       },
       {
+        color: highlightColor,
+        name: 'Locked Residue',
+        points: lockedResiduePairs
+          ? Object.keys(lockedResiduePairs as IResidueSelection)
+              .filter(key => lockedResiduePairs[key].length === 2)
+              .map(key => ({ i: lockedResiduePairs[key][0], j: lockedResiduePairs[key][1] }))
+          : [],
+      },
+      {
         color: incorrectColor,
         name: 'Incorrect Prediction',
         points: incorrectPredictedContacts,
@@ -108,15 +117,6 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
         color: correctColor,
         name: 'Correct Prediction',
         points: correctPredictedContacts,
-      },
-      {
-        color: highlightColor,
-        name: 'Locked Residue',
-        points: lockedResiduePairs
-          ? Object.keys(lockedResiduePairs as IResidueSelection)
-              .filter(key => lockedResiduePairs[key].length === 2)
-              .map(key => ({ i: lockedResiduePairs[key][0], j: lockedResiduePairs[key][1] }))
-          : [],
       },
     ];
 
@@ -130,7 +130,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
           onClickCallback={this.onMouseClick(addLockedResiduePair)}
           onHoverCallback={this.onMouseEnter(addHoveredResidues)}
           onSelectedCallback={this.onMouseSelect()}
-          range={[0, chainLength]}
+          range={[0, chainLength + 5]}
         />
         {this.props.enableSliders && this.renderSliders(sliderStyle, chainLength)}
       </div>
@@ -219,19 +219,23 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     const correctPredictedContacts: ICouplingScore[] = [];
     const incorrectPredictedContacts: ICouplingScore[] = [];
 
-    for (const contact of data.couplingScores.filter(score => Math.abs(score.i - score.j) >= linearDistFilter)) {
-      if (
-        showPredicted &&
-        correctPredictedContacts.length + incorrectPredictedContacts.length < predictedContactCount
-      ) {
+    if (showPredicted) {
+      for (const contact of data.couplingScores
+        .filter(score => Math.abs(score.i - score.j) >= linearDistFilter)
+        .slice(0, predictedContactCount)) {
         if (contact.dist < predictionCutoffDist) {
           correctPredictedContacts.push(contact);
         } else {
           incorrectPredictedContacts.push(contact);
         }
       }
-      if (showObserved && contact.dist < 5) {
-        observedContacts.push(contact);
+    }
+
+    if (showObserved) {
+      for (const contact of data.couplingScores) {
+        if (contact.dist < predictionCutoffDist) {
+          observedContacts.push(contact);
+        }
       }
     }
 
