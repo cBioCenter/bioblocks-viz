@@ -31,9 +31,10 @@ export const defaultPlotlyConfig: Partial<Plotly.Config> = {
 export const defaultPlotlyLayout: Partial<Plotly.Layout> = {
   autosize: true,
   height: 400,
+  hovermode: 'closest',
   legend: {},
   margin: {
-    b: 80,
+    b: 20,
     l: 40,
     r: 40,
     t: 10,
@@ -103,7 +104,12 @@ export class PlotlyChartClass extends React.Component<PlotlyChartProps, any> {
     const { data, layout, config } = this.props;
     if (this.plotlyCanvas) {
       // plotly.react will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
-      this.plotlyCanvas = await plotly.react(this.plotlyCanvas, data, this.getMergedLayout(layout), config);
+      this.plotlyCanvas = await plotly.react(
+        this.plotlyCanvas,
+        data,
+        this.getMergedLayout(layout),
+        this.getMergedConfig(config),
+      );
     }
   };
 
@@ -117,7 +123,12 @@ export class PlotlyChartClass extends React.Component<PlotlyChartProps, any> {
   public async componentDidMount() {
     if (this.canvasRef && !this.plotlyCanvas) {
       const { data, layout, config } = this.props;
-      this.plotlyCanvas = await plotly.react(this.canvasRef, data, this.getMergedLayout(layout), config);
+      this.plotlyCanvas = await plotly.react(
+        this.canvasRef,
+        data,
+        this.getMergedLayout(layout),
+        this.getMergedConfig(config),
+      );
       this.attachListeners();
       this.draw();
     }

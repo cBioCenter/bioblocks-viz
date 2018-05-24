@@ -2,11 +2,7 @@
 
 exports[`ContactMapChart Should match existing snapshot when given simple data. 1`] = `
 <PlotlyChartClass
-  config={
-    Object {
-      "displayModeBar": false,
-    }
-  }
+  config={Object {}}
   data={
     Array [
       Object {
@@ -25,20 +21,10 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
   }
   layout={
     Object {
-      "autosize": true,
-      "height": 400,
       "legend": Object {
         "orientation": "h",
       },
-      "margin": Object {
-        "b": 80,
-        "l": 40,
-        "r": 40,
-        "t": 10,
-      },
       "showlegend": true,
-      "title": "",
-      "width": 400,
       "xaxis": Object {
         "autorange": false,
         "range": Array [],

@@ -2,9 +2,9 @@ import * as Plotly from 'plotly.js';
 import * as React from 'react';
 
 import ResidueContext, { initialResidueContext, IResidueSelection } from '../context/ResidueContext';
-import { CONTACT_VIEW_TYPE, IContactMapData, ICouplingScore, RESIDUE_TYPE } from '../data/chell-data';
+import { IContactMapData, ICouplingScore, RESIDUE_TYPE } from '../data/chell-data';
 import { withDefaultProps } from '../helper/ReactHelper';
-import ContactMapChart from './chart/ContactMapChart';
+import ContactMapChart, { IContactMapChartData } from './chart/ContactMapChart';
 import ChellSlider from './ChellSlider';
 
 export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
@@ -27,14 +27,13 @@ export const defaultContactMapProps = {
 
 export const initialContactMapState = {
   chainLength: 59,
-  contactViewType: CONTACT_VIEW_TYPE.BOTH,
   correctPredictedContacts: [] as ICouplingScore[],
-  incorrectPredictedContacts: [] as ICouplingScore[],
   linearDistFilter: 5,
+  measuredContactDistFilter: 5,
   nodeSize: 3,
+  numPredictionsToShow: 29,
   observedContacts: [] as ICouplingScore[],
-  predictedContactCount: 29,
-  predictionCutoffDist: 5,
+  predictedContacts: [] as ICouplingScore[],
 };
 
 export type ContactMapProps = {} & typeof defaultContactMapProps;
@@ -48,22 +47,20 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
   }
 
   public componentDidMount() {
-    this.setupData(this.props.data, this.state.contactViewType);
+    this.setupData(this.props.data);
   }
 
   public componentDidUpdate(prevProps: ContactMapProps, prevState: ContactMapState) {
     const { data } = this.props;
-    const { contactViewType } = this.state;
 
     const isFreshDataView =
       data !== prevProps.data ||
-      contactViewType !== prevState.contactViewType ||
       this.state.linearDistFilter !== prevState.linearDistFilter ||
-      this.state.predictedContactCount !== prevState.predictedContactCount ||
+      this.state.numPredictionsToShow !== prevState.numPredictionsToShow ||
       this.state.chainLength !== prevState.chainLength;
 
     if (isFreshDataView) {
-      this.setupData(data, contactViewType);
+      this.setupData(data);
     }
   }
 
@@ -82,43 +79,41 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
       lockedResiduePairs,
     } = this.props;
 
-    const {
-      chainLength,
-      correctPredictedContacts,
-      incorrectPredictedContacts,
-      nodeSize,
-      observedContacts,
-    } = this.state;
+    const { chainLength, correctPredictedContacts, predictedContacts, nodeSize, observedContacts } = this.state;
 
     const sliderStyle = { width: width * 0.9 };
 
     const inputData = [
       {
         color: observedColor,
-        hoverinfo: 'x+y',
         name: 'Observed',
         points: observedContacts,
       },
       {
+        color: incorrectColor,
+        hoverinfo: 'x+y' as any,
+        name: 'Incorrect Prediction',
+        points: predictedContacts,
+      },
+      {
+        color: correctColor,
+        hoverinfo: 'x+y' as any,
+        name: 'Correct Prediction',
+        points: correctPredictedContacts,
+      },
+      {
         color: highlightColor,
-        name: 'Locked Residue',
+        marker: {
+          opacity: 0.5,
+        },
+        name: 'Selected Residue Pairs',
         points: lockedResiduePairs
           ? Object.keys(lockedResiduePairs as IResidueSelection)
               .filter(key => lockedResiduePairs[key].length === 2)
               .map(key => ({ i: lockedResiduePairs[key][0], j: lockedResiduePairs[key][1] }))
           : [],
       },
-      {
-        color: incorrectColor,
-        name: 'Incorrect Prediction',
-        points: incorrectPredictedContacts,
-      },
-      {
-        color: correctColor,
-        name: 'Correct Prediction',
-        points: correctPredictedContacts,
-      },
-    ];
+    ] as IContactMapChartData[];
 
     return (
       <div id="ContactMapComponent" style={{ padding }}>
@@ -159,21 +154,12 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
           style={sliderStyle}
         />
         <ChellSlider
-          className={'prediction-cutoff-filter'}
-          defaultValue={5}
-          label={'Prediction Cutoff Dist (Correct/Incorrect)'}
-          max={20}
-          min={1}
-          onChange={this.onPredictionCutoffDistChange()}
-          style={sliderStyle}
-        />
-        <ChellSlider
           className={'predicted-contact-slider'}
-          defaultValue={initialContactMapState.predictedContactCount}
-          label={'# Predicted Contacts to Show (L)'}
+          defaultValue={initialContactMapState.numPredictionsToShow}
+          label={'Top N Predictions to Show'}
           max={59}
           min={1}
-          onChange={this.onPredictedContactCountChange()}
+          onChange={this.onNumPredictionsToShowChange()}
           sliderProps={
             {
               /*marks: {
@@ -183,19 +169,6 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
             },*/
             }
           }
-          style={sliderStyle}
-        />
-        <ChellSlider
-          className={'contact-view-slider'}
-          defaultValue={initialContactMapState.contactViewType}
-          hideLabelValue={true}
-          label={'What to show?'}
-          max={2}
-          min={0}
-          onChange={this.onContactViewChange()}
-          sliderProps={{
-            marks: { 0: 'Observed', 1: 'Both', 2: 'Predicted' },
-          }}
           style={sliderStyle}
         />
       </div>
@@ -208,50 +181,21 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
    * @param data Incoming data object which has an array of all observed contacts.
    * @param contactViewType Whether to only show observed, predicted, or both kinds of contacts.
    */
-  protected setupData(data: IContactMapData, contactViewType: CONTACT_VIEW_TYPE) {
-    const showObserved = contactViewType === CONTACT_VIEW_TYPE.BOTH || contactViewType === CONTACT_VIEW_TYPE.OBSERVED;
-    const showPredicted = contactViewType === CONTACT_VIEW_TYPE.BOTH || contactViewType === CONTACT_VIEW_TYPE.PREDICTED;
+  protected setupData(data: IContactMapData) {
     const chainLength = data.couplingScores.reduce((a, b) => Math.max(a, Math.max(b.i, b.j)), 0);
 
-    const { linearDistFilter, predictedContactCount, predictionCutoffDist } = this.state;
+    const { linearDistFilter, measuredContactDistFilter, numPredictionsToShow } = this.state;
 
-    const observedContacts: ICouplingScore[] = [];
-    const correctPredictedContacts: ICouplingScore[] = [];
-    const incorrectPredictedContacts: ICouplingScore[] = [];
-
-    if (showPredicted) {
-      for (const contact of data.couplingScores
-        .filter(score => Math.abs(score.i - score.j) >= linearDistFilter)
-        .slice(0, predictedContactCount)) {
-        if (contact.dist < predictionCutoffDist) {
-          correctPredictedContacts.push(contact);
-        } else {
-          incorrectPredictedContacts.push(contact);
-        }
-      }
-    }
-
-    if (showObserved) {
-      for (const contact of data.couplingScores.filter(score => Math.abs(score.i - score.j) >= linearDistFilter)) {
-        if (contact.dist < predictionCutoffDist) {
-          observedContacts.push(contact);
-        }
-      }
-    }
+    const observedContacts = this.getObservedContacts(data.couplingScores, measuredContactDistFilter);
+    const predictions = this.getPredictedContacts(data.couplingScores, numPredictionsToShow, linearDistFilter);
 
     this.setState({
       chainLength,
-      correctPredictedContacts,
-      incorrectPredictedContacts,
+      correctPredictedContacts: predictions.correct,
       observedContacts,
+      predictedContacts: predictions.predicted,
     });
   }
-
-  protected onContactViewChange = () => (value: number) => {
-    this.setState({
-      contactViewType: value,
-    });
-  };
 
   protected onLinearDistFilterChange = () => (value: number) => {
     this.setState({
@@ -265,15 +209,9 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     });
   };
 
-  protected onPredictedContactCountChange = () => (value: number) => {
+  protected onNumPredictionsToShowChange = () => (value: number) => {
     this.setState({
-      predictedContactCount: value,
-    });
-  };
-
-  protected onPredictionCutoffDistChange = () => (value: number) => {
-    this.setState({
-      predictionCutoffDist: value,
+      numPredictionsToShow: value,
     });
   };
 
@@ -286,6 +224,47 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     const { points } = e;
     cb([points[0].x, points[0].y]);
   };
+
+  /**
+   * Determine which contacts in a set of coupling scores are observed.
+   *
+   * @param contacts Set of contacts, usually generated from coupling_scores.csv.
+   * @param [actualDistFilter=5] For each score, if dist <= linearDistFilter, it is considered observed.
+   * @returns Contacts that should be considered observed int he current data set.
+   */
+  protected getObservedContacts(contacts: ICouplingScore[], actualDistFilter = 5): ICouplingScore[] {
+    return contacts.filter(residuePair => residuePair.dist <= actualDistFilter);
+  }
+
+  /**
+   * Determine which contacts in a set of coupling scores are predicted as well as which are correct.
+   *
+   * @param contacts Set of contacts, usually generated from coupling_scores.csv.
+   * @param totalPredictionsToShow How many predictions, max, to return.
+   * @param [linearDistFilter=5] For each score, if |i - j| >= linearDistFilter, it will be a candidate for being correct/incorrect.
+   * @param [measuredContactDistFilter=5]  If the dist for the contact is less than predictionCutoffDist, it is considered correct.
+   * @returns The list of correct and incorrect contacts.
+   */
+  protected getPredictedContacts(
+    contacts: ICouplingScore[],
+    totalPredictionsToShow: number,
+    linearDistFilter = 5,
+    measuredContactDistFilter = 5,
+  ) {
+    const result = {
+      correct: new Array<ICouplingScore>(),
+      predicted: new Array<ICouplingScore>(),
+    };
+    for (const contact of contacts
+      .filter(score => Math.abs(score.i - score.j) >= linearDistFilter)
+      .slice(0, totalPredictionsToShow)) {
+      if (contact.dist < measuredContactDistFilter) {
+        result.correct.push(contact);
+      }
+      result.predicted.push(contact);
+    }
+    return result;
+  }
 
   protected onMouseSelect = () => (e: Plotly.PlotSelectionEvent) => {
     console.log(`onMouseSelect: ${e}`);

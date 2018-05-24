@@ -38,7 +38,7 @@ const defaultContactMapChartProps: Partial<IContactMapChartProps> = {
   range: [],
 };
 
-export interface IContactMapChartData {
+export interface IContactMapChartData extends Partial<IPlotlyData> {
   color: string;
   name: string;
   points: IContactMapChartPoint[];
@@ -49,32 +49,6 @@ export interface IContactMapChartPoint {
   j: number;
 }
 
-export const defaultPlotlyLayout: Partial<Plotly.Layout> = {
-  autosize: true,
-  height: 400,
-  legend: {},
-  margin: {
-    b: 80,
-    l: 40,
-    r: 40,
-    t: 10,
-  },
-  showlegend: false,
-  title: '',
-  width: 400,
-  xaxis: {
-    range: [30],
-  },
-  yaxis: {
-    range: [30],
-  },
-};
-
-export const defaultPlotlyConfig: Partial<Plotly.Config> = {
-  displayModeBar: false,
-  // modeBarButtons: [['zoomOut2d', 'zoomIn2d'], ['resetScale2d', 'autoScale2d'], ['select2d', 'pan2d']],
-};
-
 class ContactMapChartClass extends React.Component<IContactMapChartProps, any> {
   constructor(props: any) {
     super(props);
@@ -84,23 +58,17 @@ class ContactMapChartClass extends React.Component<IContactMapChartProps, any> {
 
     return (
       <PlotlyChart
-        config={{
-          ...defaultPlotlyConfig,
-        }}
         data={data.map(entry => dataTransformFn(entry, nodeSize, true))}
         layout={{
-          ...defaultPlotlyLayout,
           legend: {
             orientation: 'h',
           },
           showlegend: true,
           xaxis: {
-            ...defaultPlotlyLayout.xaxis,
             autorange: false,
             range,
           },
           yaxis: {
-            ...defaultPlotlyLayout.yaxis,
             autorange: false,
             range: range.slice().reverse(),
           },

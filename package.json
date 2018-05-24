@@ -115,13 +115,13 @@
     "test:staged": "jest --onlyChanged"
   },
   "dependencies": {
-    "d3": "^5.1.0",
+    "d3": "^5.4.0",
     "ngl": "^2.0.0-dev.32",
     "pixi.js": "^4.7.3",
-    "plotly.js": "^1.37.1",
+    "plotly.js": "^1.38.0",
     "rc-slider": "^8.6.1",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
     "semantic-ui-react": "^0.80.0"
   },
   "devDependencies": {
@@ -133,7 +133,7 @@
     "@types/jest": "^22.2.3",
     "@types/node": "^9.6.5",
     "@types/pixi.js": "^4.7.3",
-    "@types/plotly.js": "^1.36.0",
+    "@types/plotly.js": "^1.37.0",
     "@types/rc-slider": "^8.2.3",
     "@types/react": "^16.3.13",
     "@types/react-dom": "^16.0.5",

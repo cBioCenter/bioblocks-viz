@@ -24,12 +24,6 @@ export enum VIZ_TYPE {
   'T-SNE' = 'T-SNE',
 }
 
-export enum CONTACT_VIEW_TYPE {
-  OBSERVED,
-  BOTH,
-  PREDICTED,
-}
-
 export interface IContactMapData {
   couplingScores: ICouplingScore[];
 }

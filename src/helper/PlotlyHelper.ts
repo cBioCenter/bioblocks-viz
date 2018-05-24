@@ -35,7 +35,7 @@ export const generateScatterData = (
   const xValues = points.map(data => data.i);
   const yValues = points.map(data => data.j);
   return {
-    hoverinfo: 'none' as any,
+    hoverinfo: 'none',
     marker: {
       color,
       size: nodeSize * 2,

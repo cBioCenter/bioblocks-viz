@@ -2,7 +2,7 @@ import * as React from 'react';
 import CellContext from '../context/CellContext';
 import { T_SNE_DATA_TYPE } from '../data/chell-data';
 import { withDefaultProps } from '../helper/ReactHelper';
-import { defaultPlotlyConfig, defaultPlotlyLayout } from './chart/ContactMapChart';
+import { defaultPlotlyConfig, defaultPlotlyLayout } from './chart/PlotlyChart';
 import PlotlyChart from './chart/PlotlyChart';
 
 export const defaultTComponentProps = {

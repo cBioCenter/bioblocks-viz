@@ -5,7 +5,7 @@ import * as React from 'react';
 import * as Renderer from 'react-test-renderer';
 
 import { initialResidueContext, IResidueContext } from '../../context/ResidueContext';
-import { CONTACT_VIEW_TYPE, ICouplingScore } from '../../data/chell-data';
+import { ICouplingScore } from '../../data/chell-data';
 import { PlotlyChartClass } from '../chart/PlotlyChart';
 import ContactMap, { ContactMapClass, ContactMapProps } from '../ContactMap';
 
@@ -151,34 +151,6 @@ describe('ContactMap', () => {
     expect(onHoverSpy).toHaveBeenCalledTimes(1);
   });
 
-  test('Should show both observed and predicted contacts when BOTH is selected.', async () => {
-    const wrapper = await getMountedContactMap({ data: sampleData });
-    const instance = wrapper.instance() as ContactMapClass;
-    const expected = [...sampleObservedContacts];
-    wrapper.setState({
-      contactViewType: CONTACT_VIEW_TYPE.BOTH,
-    });
-    expect(instance.state.correctPredictedContacts).toEqual(expected);
-  });
-
-  test('Should show only observed contacts when OBSERVED is selected.', async () => {
-    const wrapper = await getMountedContactMap({ data: sampleData });
-    const instance = wrapper.instance() as ContactMapClass;
-    wrapper.setState({
-      contactViewType: CONTACT_VIEW_TYPE.OBSERVED,
-    });
-    expect(instance.state.observedContacts).toEqual(sampleObservedContacts);
-  });
-
-  test('Should show only predicted contacts when PREDICTED is selected.', async () => {
-    const wrapper = await getMountedContactMap({ data: sampleData });
-    const instance = wrapper.instance() as ContactMapClass;
-    wrapper.setState({
-      contactViewType: CONTACT_VIEW_TYPE.PREDICTED,
-    });
-    expect(instance.state.observedContacts).toEqual([]);
-  });
-
   describe('Sliders', () => {
     test('Should update node size when appropriate slider is updated.', () => {
       const wrapper = getShallowContactMap({ data: sampleData, enableSliders: true });
@@ -196,24 +168,12 @@ describe('ContactMap', () => {
       const wrapper = getShallowContactMap({ data: sampleData, enableSliders: true });
       const instance = wrapper.instance() as ContactMapClass;
       const expectedCount = 50;
-      expect(instance.state.predictedContactCount).not.toBe(expectedCount);
+      expect(instance.state.numPredictionsToShow).not.toBe(expectedCount);
       wrapper
         .find('.predicted-contact-slider')
         .at(0)
         .simulate('change', expectedCount);
-      expect(instance.state.predictedContactCount).toBe(expectedCount);
-    });
-
-    test('Should update contact view type when appropriate slider is updated.', () => {
-      const wrapper = getShallowContactMap({ data: sampleData, enableSliders: true });
-      const instance = wrapper.instance() as ContactMapClass;
-      expect(instance.state.contactViewType).toBe(CONTACT_VIEW_TYPE.BOTH);
-      const expectedViewType = CONTACT_VIEW_TYPE.OBSERVED;
-      wrapper
-        .find('.contact-view-slider')
-        .at(0)
-        .simulate('change', expectedViewType);
-      expect(instance.state.contactViewType).toBe(expectedViewType);
+      expect(instance.state.numPredictionsToShow).toBe(expectedCount);
     });
 
     test('Should update linear distance filter when appropriate slider is updated.', () => {
@@ -232,24 +192,12 @@ describe('ContactMap', () => {
       const wrapper = getShallowContactMap({ data: sampleData, enableSliders: true });
       const instance = wrapper.instance() as ContactMapClass;
       const expected = 20;
-      expect(instance.state.predictedContactCount).not.toBe(expected);
+      expect(instance.state.numPredictionsToShow).not.toBe(expected);
       wrapper
         .find('.predicted-contact-slider')
         .at(0)
         .simulate('change', expected);
-      expect(instance.state.predictedContactCount).toBe(expected);
-    });
-
-    test('Should update prediction cutoff distance when appropriate slider is updated.', () => {
-      const wrapper = getShallowContactMap({ data: sampleData, enableSliders: true });
-      const instance = wrapper.instance() as ContactMapClass;
-      const expected = 30;
-      expect(instance.state.predictionCutoffDist).not.toBe(expected);
-      wrapper
-        .find('.prediction-cutoff-filter')
-        .at(0)
-        .simulate('change', expected);
-      expect(instance.state.predictionCutoffDist).toBe(expected);
+      expect(instance.state.numPredictionsToShow).toBe(expected);
     });
   });
 });
