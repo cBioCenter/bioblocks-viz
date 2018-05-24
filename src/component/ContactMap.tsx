@@ -232,7 +232,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     }
 
     if (showObserved) {
-      for (const contact of data.couplingScores) {
+      for (const contact of data.couplingScores.filter(score => Math.abs(score.i - score.j) >= linearDistFilter)) {
         if (contact.dist < predictionCutoffDist) {
           observedContacts.push(contact);
         }

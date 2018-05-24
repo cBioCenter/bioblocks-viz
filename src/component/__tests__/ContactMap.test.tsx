@@ -79,23 +79,27 @@ describe('ContactMap', () => {
     ...extra,
   });
 
+  // Translated from example1/coupling_scores.csv
   const sampleCorrectPredictedContacts = [generateCouplingScore(56, 50, 2.4)];
   const sampleIncorrectPredictedContacts = [generateCouplingScore(42, 50, 20.4)];
-  const sampleObservedContacts = [generateCouplingScore(41, 52, 11.3)];
   const sampleOutOfLinearDistContacts = [
     generateCouplingScore(45, 46, 1.3),
     generateCouplingScore(44, 45, 1.3),
     generateCouplingScore(56, 57, 1.3),
   ];
+  const sampleObservedContacts = [...sampleCorrectPredictedContacts, generateCouplingScore(41, 52, 1.3)];
 
-  const sampleData = {
-    // Translated from example1/coupling_scores.csv
-    couplingScores: [
+  const uniqueScores = new Set(
+    Array.from([
       ...sampleCorrectPredictedContacts,
       ...sampleIncorrectPredictedContacts,
       ...sampleObservedContacts,
       ...sampleOutOfLinearDistContacts,
-    ],
+    ]),
+  );
+
+  const sampleData = {
+    couplingScores: Array.from(uniqueScores),
   };
 
   describe('Snapshots', () => {
@@ -150,24 +154,20 @@ describe('ContactMap', () => {
   test('Should show both observed and predicted contacts when BOTH is selected.', async () => {
     const wrapper = await getMountedContactMap({ data: sampleData });
     const instance = wrapper.instance() as ContactMapClass;
+    const expected = [...sampleObservedContacts];
     wrapper.setState({
       contactViewType: CONTACT_VIEW_TYPE.BOTH,
     });
-    expect(instance.state.correctPredictedContacts).toEqual(sampleCorrectPredictedContacts);
+    expect(instance.state.correctPredictedContacts).toEqual(expected);
   });
 
   test('Should show only observed contacts when OBSERVED is selected.', async () => {
     const wrapper = await getMountedContactMap({ data: sampleData });
-    const expected = [
-      ...sampleCorrectPredictedContacts,
-      ...sampleIncorrectPredictedContacts,
-      ...sampleObservedContacts,
-    ];
     const instance = wrapper.instance() as ContactMapClass;
     wrapper.setState({
       contactViewType: CONTACT_VIEW_TYPE.OBSERVED,
     });
-    expect(instance.state.observedContacts).toEqual(expected);
+    expect(instance.state.observedContacts).toEqual(sampleObservedContacts);
   });
 
   test('Should show only predicted contacts when PREDICTED is selected.', async () => {
