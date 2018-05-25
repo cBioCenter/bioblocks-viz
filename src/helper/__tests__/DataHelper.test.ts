@@ -23,6 +23,8 @@ describe('DataHelper', () => {
     56,N,58,K,0,0.846606,A,A,0.9999062540489566,2.439798557258364,47.877125070329775,2.439798557258364,1.0\n\
     45,L,46,G,0,0.653624,A,A,0.9921059888909092,1.3037864088875917,37.58818230508094,1.3037864088875917,1.0';
 
+    const couplingScoresCsvWithNewline = couplingScoresCsv + '\n';
+
     const firstScore = {
       i: 56,
       // tslint:disable-next-line:object-literal-sort-keys
@@ -59,6 +61,11 @@ describe('DataHelper', () => {
 
     test('Should parse contact monomer data correctly.', async () => {
       const data = await getCouplingScoresData(couplingScoresCsv);
+      expect(data).toEqual([firstScore, secondScore]);
+    });
+
+    test('Should parse contact monomer data correctly when csv file has newline.', async () => {
+      const data = await getCouplingScoresData(couplingScoresCsvWithNewline);
       expect(data).toEqual([firstScore, secondScore]);
     });
   });

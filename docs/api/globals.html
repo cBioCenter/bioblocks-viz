@@ -525,7 +525,7 @@
 					<div class="tsd-signature tsd-kind-icon">required<wbr>Props<span class="tsd-signature-symbol">:</span> <a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><a href="globals.html#omit" class="tsd-signature-type">Omit</a><span class="tsd-signature-symbol">&lt;</span><a href="globals.html#contactmapprops" class="tsd-signature-type">ContactMapProps</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">keyof object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/NGLComponent.tsx:260</li>
+							<li>Defined in src/component/NGLComponent.tsx:271</li>
 							<li>Defined in src/component/SpringComponent.tsx:221</li>
 							<li>Defined in src/component/ContactMap.tsx:278</li>
 						</ul>
@@ -570,7 +570,7 @@
 					<div class="tsd-signature tsd-kind-icon">NGLComponent<wbr>With<wbr>Default<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultNGLProps, NGLComponentClass)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/NGLComponent.tsx:256</li>
+							<li>Defined in src/component/NGLComponent.tsx:267</li>
 						</ul>
 					</aside>
 				</section>
@@ -700,7 +700,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/NGLComponent.tsx:262</li>
+									<li>Defined in src/component/NGLComponent.tsx:273</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1129,16 +1129,32 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:153</li>
+									<li>Defined in src/helper/DataHelper.ts:166</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Parses a coupling_scores.csv file to generate the appropriate data structure.</p>
+								</div>
+								<p>!Important!
+								The first line in the csv will be ignored as it is assumed to be a csv header.</p>
+								<p>!Important!
+									Currently 13 fields are assumed to be part of a single coupling score.
+								As such, any rows with less thirteen will be ignored.</p>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>line: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The csv file as a single string.</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="interfaces/icouplingscore.html" class="tsd-signature-type">ICouplingScore</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>Array of CouplingScores suitable for chell-viz consumption.</p>
 						</li>
 					</ul>
 				</section>

@@ -150,10 +150,24 @@ const fetchContactMapData = async (dir: string): Promise<IContactMapData> => {
   return data;
 };
 
+/**
+ * Parses a coupling_scores.csv file to generate the appropriate data structure.
+ *
+ * !Important!
+ * The first line in the csv will be ignored as it is assumed to be a csv header.
+ *
+ * !Important!
+ * Currently 13 fields are assumed to be part of a single coupling score.
+ * As such, any rows with less thirteen will be ignored.
+ *
+ * @param line The csv file as a single string.
+ * @returns Array of CouplingScores suitable for chell-viz consumption.
+ */
 export const getCouplingScoresData = (line: string): ICouplingScore[] =>
   line
     .split('\n')
     .slice(1)
+    .filter(row => row.split(',').length >= 13)
     .map(row => {
       const items = row.split(',');
       return {
