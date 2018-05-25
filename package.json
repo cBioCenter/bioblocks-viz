@@ -4,16 +4,20 @@
   "author": "Biostatistics and Computational Biology at Dana-Farber <bcb@jimmy.harvard.edu>",
   "license": "MIT",
   "engines": {
-    "node": "^9.6.0",
-    "npm": "^5.6.0",
-    "yarn": "^1.5.0"
+    "node": "^10.0.0",
+    "npm": "^6.0.0",
+    "yarn": "^1.7.0"
   },
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "main": "lib/chell-viz.js",
   "types": "lib/chell-viz.d.ts",
   "homepage": "https://cbiocenter.github.io/chell-viz/",
   "jest": {
-    "collectCoverageFrom": ["src/**/*.{ts,tsx}"],
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}"
+    ],
     "coverageDirectory": "dist/jest/coverage",
     "globals": {
       "ts-jest": {
@@ -21,24 +25,45 @@
         "tsConfigFile": "tsconfig.json"
       }
     },
-    "moduleDirectories": ["node_modules", "src", "types"],
-    "moduleFileExtensions": ["ts", "tsx", "js"],
+    "moduleDirectories": [
+      "node_modules",
+      "src",
+      "types"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.ts",
       "plotly.js/dist/plotly": "<rootDir>/__mocks__/plotly.ts"
     },
-    "modulePathIgnorePatterns": ["dist"],
-    "setupFiles": ["./configs/SetupJest.ts"],
+    "modulePathIgnorePatterns": [
+      "dist"
+    ],
+    "setupFiles": [
+      "./configs/SetupJest.ts"
+    ],
     "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
-    "snapshotSerializers": ["enzyme-to-json/serializer"],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
     "testEnvironment": "enzyme",
-    "testMatch": ["**/__tests__/*.+(ts|tsx|js)"],
-    "testPathIgnorePatterns": ["dist", "node_modules"],
+    "testMatch": [
+      "**/__tests__/*.+(ts|tsx|js)"
+    ],
+    "testPathIgnorePatterns": [
+      "dist",
+      "node_modules"
+    ],
     "testResultsProcessor": "jest-junit",
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest"
     },
-    "transformIgnorePatterns": ["<rootDir>/node_modules/(?!csstype)"],
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/(?!csstype)"
+    ],
     "verbose": true
   },
   "jest-junit": {
@@ -49,11 +74,22 @@
     "titleTemplate": "{title}"
   },
   "lint-staged": {
-    "ignore": ["lib"],
+    "ignore": [
+      "lib"
+    ],
     "linters": {
-      "*.{json,md,ts,tsx}": ["prettier --write", "git add"],
-      "*.md": ["markdownlint -c ./markdownlint.json", "git add"],
-      "*.{ts,tsx}": ["tslint", "git add"]
+      "*.{md,ts,tsx}": [
+        "prettier --write",
+        "git add"
+      ],
+      "*.md": [
+        "markdownlint -c ./markdownlint.json",
+        "git add"
+      ],
+      "*.{ts,tsx}": [
+        "tslint",
+        "git add"
+      ]
     }
   },
   "scripts": {
@@ -79,13 +115,13 @@
     "test:staged": "jest --onlyChanged"
   },
   "dependencies": {
-    "d3": "^5.1.0",
+    "d3": "^5.4.0",
     "ngl": "^2.0.0-dev.32",
     "pixi.js": "^4.7.3",
-    "plotly.js": "^1.37.1",
+    "plotly.js": "^1.38.0",
     "rc-slider": "^8.6.1",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
     "semantic-ui-react": "^0.80.0"
   },
   "devDependencies": {
@@ -97,16 +133,14 @@
     "@types/jest": "^22.2.3",
     "@types/node": "^9.6.5",
     "@types/pixi.js": "^4.7.3",
-    "@types/plotly.js": "^1.36.0",
+    "@types/plotly.js": "^1.37.0",
     "@types/rc-slider": "^8.2.3",
     "@types/react": "^16.3.13",
     "@types/react-dom": "^16.0.5",
     "@types/react-test-renderer": "^16.0.1",
     "@types/signals": "^1.0.1",
     "@types/three": "^0.91.11",
-    "@types/uglifyjs-webpack-plugin": "^1.1.0",
     "@types/wallabyjs": "^0.0.6",
-    "@types/webpack": "^4.1.4",
     "@types/webpack-env": "^1.13.6",
     "@types/webpack-merge": "^4.1.3",
     "canvas-prebuilt": "^1.6.5-prerelease.1",

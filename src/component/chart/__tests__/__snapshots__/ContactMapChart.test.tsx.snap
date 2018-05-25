@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContactMapChart Should match existing snapshot when given simple data. 1`] = `
+<PlotlyChartClass
+  config={Object {}}
+  data={
+    Array [
+      Object {
+        "hoverinfo": "none",
+        "marker": Object {
+          "color": "",
+          "size": 8,
+        },
+        "mode": "markers",
+        "name": "",
+        "type": "scattergl",
+        "x": Array [],
+        "y": Array [],
+      },
+    ]
+  }
+  layout={
+    Object {
+      "legend": Object {
+        "orientation": "h",
+      },
+      "showlegend": true,
+      "xaxis": Object {
+        "autorange": false,
+        "range": Array [],
+      },
+      "yaxis": Object {
+        "autorange": false,
+        "range": Array [],
+      },
+    }
+  }
+  onClickCallback={[Function]}
+  onHoverCallback={[Function]}
+  onSelectedCallback={[Function]}
+  onUnHoverCallback={[Function]}
+/>
+`;

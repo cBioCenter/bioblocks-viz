@@ -125,6 +125,17 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
    */
   protected addStructureToStage(data: NGL.Structure, stage: NGL.Stage) {
     const structureComponent = stage.addComponentFromObject(data);
+    /*
+    TODO https://github.com/arose/ngl/issues/541
+    data.eachResidue(outerResidue => {
+      data.eachResidue(innerResidue => {
+        if (outerResidue.resno !== innerResidue.resno) {
+          const dist = outerResidue.distanceTo(innerResidue);
+          console.log(`Distance between ${innerResidue.resno} and ${outerResidue.resno} is ${dist}`);
+        }
+      });
+    });
+    */
     if (structureComponent) {
       this.setState({
         residueOffset: data.residueStore.resno[0],
@@ -228,7 +239,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
         structureComponent.addRepresentation('distance', {
           atomPair: [selection.split(',')],
           color: 'skyblue',
-          labelUnit: 'nm',
+          labelUnit: 'angstrom',
         }),
       );
     }

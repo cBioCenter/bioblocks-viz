@@ -24,17 +24,8 @@ export enum VIZ_TYPE {
   'T-SNE' = 'T-SNE',
 }
 
-export enum CONTACT_VIEW_TYPE {
-  OBSERVED,
-  BOTH,
-  PREDICTED,
-}
-
 export interface IContactMapData {
-  contactMonomer: IMonomerContact[];
-  couplingScore: ICouplingScore[];
-  distanceMapMonomer: IDistanceMapMonomer[];
-  observedMonomer: IMonomerContact[];
+  couplingScores: ICouplingScore[];
 }
 
 export interface IMonomerContact {
@@ -45,18 +36,18 @@ export interface IMonomerContact {
 
 export interface ICouplingScore {
   i: number;
-  A_i: string;
+  A_i?: string;
   j: number;
-  A_j: string;
-  fn: number;
-  cn: number;
-  segment_i: string;
-  segment_j: string;
-  probability: number;
-  dist_intra: number;
-  dist_multimer: number;
+  A_j?: string;
+  fn?: number;
+  cn?: number;
+  segment_i?: string;
+  segment_j?: string;
+  probability?: number;
+  dist_intra?: number;
+  dist_multimer?: number;
   dist: number;
-  precision: number;
+  precision?: number;
 }
 
 export interface IDistanceMapMonomer {

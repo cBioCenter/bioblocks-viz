@@ -39,7 +39,6 @@ exports[`VizPanelContainer Should match existing snapshot when given a single vi
         data={Object {}}
         height={450}
         initialViz="T-SNE"
-        onDataSelect={[Function]}
         padding={15}
         supportedVisualizations={Array []}
         width={450}

@@ -13,7 +13,8 @@
     "no-namespace": [true, "allow-declarations"],
     "no-redundant-jsdoc": true,
     "no-reference": false,
-    "jsdoc-format": [true]
+    "jsdoc-format": [true],
+    "quotemark": [true, "jsx-double", "single", "avoid-escape"]
   },
   "rulesDirectory": []
 }

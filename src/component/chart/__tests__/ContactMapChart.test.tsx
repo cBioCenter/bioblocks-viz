@@ -3,18 +3,19 @@ import toJson from 'enzyme-to-json';
 
 import * as React from 'react';
 
-import ScatterChart from '../ScatterChart';
+import ContactMapChart from '../ContactMapChart';
 
-describe('ScatterChart', () => {
+describe('ContactMapChart', () => {
   const emptyData = [
     {
       color: '',
+      name: '',
       points: [],
     },
   ];
 
   test('Should match existing snapshot when given simple data.', () => {
-    const wrapper = shallow(<ScatterChart data={emptyData} nodeSize={4} />);
+    const wrapper = shallow(<ContactMapChart data={emptyData} nodeSize={4} />);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

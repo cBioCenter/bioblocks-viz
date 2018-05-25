@@ -1,8 +1,9 @@
 import * as React from 'react';
 import CellContext from '../context/CellContext';
 import { T_SNE_DATA_TYPE } from '../data/chell-data';
-import PlotlyChart, { defaultConfig, defaultLayout } from '../helper/PlotlyHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
+import { defaultPlotlyConfig, defaultPlotlyLayout } from './chart/PlotlyChart';
+import PlotlyChart from './chart/PlotlyChart';
 
 export const defaultTComponentProps = {
   data: [[0], [0]] as T_SNE_DATA_TYPE,
@@ -26,11 +27,6 @@ const TComponent = withDefaultProps(
 
     public render() {
       const { data, height, padding, pointColor, width } = this.props;
-      const coords = new Float32Array(data.length * 2);
-      data.forEach((ele, index) => {
-        coords[index * 2] = ele[0];
-        coords[index * 2 + 1] = ele[1];
-      });
 
       return (
         <div id="TComponent" style={{ padding }}>
@@ -38,7 +34,7 @@ const TComponent = withDefaultProps(
             {({ addCells }) => (
               <PlotlyChart
                 config={{
-                  ...defaultConfig,
+                  ...defaultPlotlyConfig,
                   modeBarButtons: [['zoomOut2d', 'zoomIn2d'], ['resetScale2d', 'autoScale2d'], ['select2d', 'pan2d']],
                 }}
                 data={[
@@ -55,7 +51,7 @@ const TComponent = withDefaultProps(
                   },
                 ]}
                 layout={{
-                  ...defaultLayout,
+                  ...defaultPlotlyLayout,
                   height,
                   width,
                   yaxis: {

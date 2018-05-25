@@ -35,7 +35,6 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     <ContactMap
       enableSliders={true}
       height={420}
-      onMouseEnter={[Function]}
       padding={15}
       width={420}
     />

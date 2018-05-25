@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlotlyChart Should attach events when the container is attached. 1`] = `
+<PlotlyChartClass
+  config={Object {}}
+  data={
+    Array [
+      Object {
+        "marker": Object {
+          "color": "blue",
+        },
+        "mode": "markers",
+        "type": "pointcloud",
+        "uid": "adam",
+        "xy": Float32Array [
+          1,
+          2,
+          3,
+          4,
+        ],
+      },
+    ]
+  }
+  layout={Object {}}
+  onClickCallback={[MockFunction]}
+  onHoverCallback={[Function]}
+  onSelectedCallback={[MockFunction]}
+  onUnHoverCallback={[Function]}
+>
+  <div
+    className="plotly-chart"
+  />
+</PlotlyChartClass>
+`;
+
+exports[`PlotlyChart Should match existing snapshot when given empty data. 1`] = `
+<PlotlyChartClass
+  config={Object {}}
+  data={Array []}
+  layout={Object {}}
+  onClickCallback={[Function]}
+  onHoverCallback={[Function]}
+  onSelectedCallback={[Function]}
+  onUnHoverCallback={[Function]}
+>
+  <div
+    className="plotly-chart"
+  />
+</PlotlyChartClass>
+`;
+
+exports[`PlotlyChart Should match existing snapshot when given sample data. 1`] = `
+<PlotlyChartClass
+  config={Object {}}
+  data={
+    Array [
+      Object {
+        "marker": Object {
+          "color": "blue",
+        },
+        "mode": "markers",
+        "type": "pointcloud",
+        "uid": "adam",
+        "xy": Float32Array [
+          1,
+          2,
+          3,
+          4,
+        ],
+      },
+    ]
+  }
+  layout={Object {}}
+  onClickCallback={[Function]}
+  onHoverCallback={[Function]}
+  onSelectedCallback={[Function]}
+  onUnHoverCallback={[Function]}
+>
+  <div
+    className="plotly-chart"
+  />
+</PlotlyChartClass>
+`;

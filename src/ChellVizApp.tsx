@@ -13,8 +13,8 @@ export class ChellVizApp extends React.Component<any, any> {
             <VizPanelContainer
               dataDirs={['1', '2', '3'].map(dir => `assets/contact_map/example${dir}`)}
               supportedVisualizations={[VIZ_TYPE.CONTACT_MAP, VIZ_TYPE.NGL]}
-              initialVisualizations={[VIZ_TYPE.CONTACT_MAP, VIZ_TYPE.NGL, VIZ_TYPE.CONTACT_MAP]}
-              numPanels={3}
+              initialVisualizations={[VIZ_TYPE.CONTACT_MAP, VIZ_TYPE.NGL]}
+              numPanels={2}
             />
           </GridRow>
           <GridRow>

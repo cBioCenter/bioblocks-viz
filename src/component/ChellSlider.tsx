@@ -16,6 +16,9 @@ export type ChellSliderCallback =
  * @export
  */
 export interface IChellSliderProps {
+  /** CSS class to identify this slider. */
+  className?: string;
+
   /** Initial value the slider is set to. */
   defaultValue: number;
 
@@ -70,18 +73,29 @@ export default class ChellSlider extends React.Component<IChellSliderProps, IChe
   }
 
   public render() {
-    const { defaultValue, hideLabelValue, max, min, label, onAfterChange, onChange, sliderProps, style } = this.props;
+    const {
+      className,
+      defaultValue,
+      hideLabelValue,
+      max,
+      min,
+      label,
+      onAfterChange,
+      onChange,
+      sliderProps,
+      style,
+    } = this.props;
     return (
-      <div style={{ padding: 10 }}>
+      <div className={className} style={{ padding: 20 }}>
         {!hideLabelValue && <p>{`${label}: ${this.state.value}`}</p>}
         <Slider
-          {...sliderProps}
           defaultValue={defaultValue}
           max={max}
           min={min}
           onAfterChange={this.onAfterChange(onAfterChange)}
           onChange={this.onChange(onChange)}
           style={style}
+          {...sliderProps}
         />
       </div>
     );
