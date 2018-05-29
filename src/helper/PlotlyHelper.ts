@@ -68,7 +68,6 @@ export const generateFloat32ArrayFromContacts = (array: Array<{ i: number; j: nu
  * @param entry A unit of Plotly data containing points, color, and any extras.
  * @param nodeSize Sets min/max to nodeSize/nodeSize * 2.
  * @param mirrorPoints Should we mirror the points on the x/y axis?
- * @param [extra] Explicit extra configuration to add / replace the default data configuration with.
  * @returns Data suitable for consumption by Plotly.
  */
 export const generatePointCloudData = (
