@@ -143,7 +143,13 @@ export class PlotlyChartClass extends React.Component<PlotlyChartProps, any> {
   }
 
   public render() {
-    return <div className={'plotly-chart'} ref={node => (this.canvasRef = node ? node : null)} />;
+    return (
+      <div
+        className={'plotly-chart'}
+        ref={node => (this.canvasRef = node ? node : null)}
+        style={{ marginBottom: 10, marginTop: 10 }}
+      />
+    );
   }
 
   protected getMergedConfig = (config: Partial<Plotly.Config> = {}) => Object.assign(defaultPlotlyConfig, config);
