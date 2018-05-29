@@ -31,21 +31,25 @@ export const generateScatterData = (
   nodeSize: number,
   mirrorPoints: boolean = false,
 ): Partial<IPlotlyData> => {
-  const { points, color, name, ...extra } = entry;
+  const { marker, name, points } = entry;
   const xValues = points.map(data => data.i);
   const yValues = points.map(data => data.j);
+  const zValues = points.map(data => data.dist);
   return {
     hoverinfo: 'none',
-    marker: {
-      color,
-      size: nodeSize * 2,
-    },
+    marker: Object.assign(
+      {
+        color: mirrorPoints ? zValues.concat(zValues) : zValues,
+        size: nodeSize * 2,
+      },
+      marker,
+    ),
     mode: 'markers',
     name,
     type: PLOTLY_CHART_TYPE.scatter,
     x: mirrorPoints ? [...xValues, ...yValues] : xValues,
     y: mirrorPoints ? [...yValues, ...xValues] : yValues,
-    ...extra,
+    z: mirrorPoints ? [...zValues, ...zValues] : zValues,
   };
 };
 
@@ -72,11 +76,11 @@ export const generatePointCloudData = (
   nodeSize: number,
   mirrorPoints: boolean = false,
 ): Partial<IPlotlyData> => {
-  const { color, points, ...extra } = entry;
+  const { points } = entry;
   const coords = generateFloat32ArrayFromContacts(points);
   return {
     marker: {
-      color,
+      ...entry.marker,
       sizemax: nodeSize * 2,
       sizemin: nodeSize,
     },
@@ -90,6 +94,5 @@ export const generatePointCloudData = (
             .reverse(),
         ])
       : coords,
-    ...extra,
   };
 };

@@ -3,12 +3,10 @@
 exports[`generatePointCloudData Should create the expected plotly point cloud data format when given defaults. 1`] = `
 Object {
   "marker": Object {
-    "color": "blue",
     "sizemax": 8,
     "sizemin": 4,
   },
   "mode": "markers",
-  "name": "da-bo-dai",
   "type": "pointcloud",
   "xy": Float32Array [
     1,
@@ -23,7 +21,10 @@ exports[`generateScatterGLData Should create the expected plotly scatter data fo
 Object {
   "hoverinfo": "none",
   "marker": Object {
-    "color": "blue",
+    "color": Array [
+      6,
+      2,
+    ],
     "size": 8,
   },
   "mode": "markers",
@@ -36,6 +37,10 @@ Object {
   "y": Array [
     8,
     6,
+  ],
+  "z": Array [
+    6,
+    2,
   ],
 }
 `;

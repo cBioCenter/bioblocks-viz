@@ -8,7 +8,7 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
       Object {
         "hoverinfo": "none",
         "marker": Object {
-          "color": "",
+          "color": Array [],
           "size": 8,
         },
         "mode": "markers",
@@ -16,6 +16,7 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
         "type": "scattergl",
         "x": Array [],
         "y": Array [],
+        "z": Array [],
       },
     ]
   }

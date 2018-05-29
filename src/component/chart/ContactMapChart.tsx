@@ -45,6 +45,7 @@ export interface IContactMapChartData extends Partial<IPlotlyData> {
 }
 
 export interface IContactMapChartPoint {
+  dist: number;
   i: number;
   j: number;
 }

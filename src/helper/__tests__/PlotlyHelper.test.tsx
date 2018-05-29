@@ -6,10 +6,11 @@ describe('generateScatterGLData', () => {
     name: 'da-bo-dee',
     points: [
       {
+        dist: 6,
         i: 9,
         j: 8,
       },
-      { i: 7, j: 6 },
+      { dist: 2, i: 7, j: 6 },
     ],
   };
 
@@ -31,10 +32,11 @@ describe('generatePointCloudData', () => {
     name: 'da-bo-dai',
     points: [
       {
+        dist: 4,
         i: 1,
         j: 2,
       },
-      { i: 3, j: 4 },
+      { dist: 5, i: 3, j: 4 },
     ],
   };
 

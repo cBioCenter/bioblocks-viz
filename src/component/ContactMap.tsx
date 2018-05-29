@@ -85,25 +85,31 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
     const inputData = [
       {
-        color: observedColor,
+        marker: {
+          colorscale: [[0, observedColor], [1, 'rgb(100,177,200)']],
+        },
         name: 'Observed',
         points: observedContacts,
       },
       {
-        color: incorrectColor,
         hoverinfo: 'x+y' as any,
+        marker: {
+          color: incorrectColor,
+        },
         name: 'Incorrect Prediction',
         points: predictedContacts,
       },
       {
-        color: correctColor,
         hoverinfo: 'x+y' as any,
+        marker: {
+          color: correctColor,
+        },
         name: 'Correct Prediction',
         points: correctPredictedContacts,
       },
       {
-        color: highlightColor,
         marker: {
+          color: highlightColor,
           opacity: 0.5,
         },
         name: 'Selected Residue Pairs',

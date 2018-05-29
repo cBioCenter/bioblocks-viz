@@ -284,7 +284,18 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       data={
         Array [
           Object {
-            "color": "#0000ff",
+            "marker": Object {
+              "colorscale": Array [
+                Array [
+                  0,
+                  "#0000ff",
+                ],
+                Array [
+                  1,
+                  "rgb(100,177,200)",
+                ],
+              ],
+            },
             "name": "Observed",
             "points": Array [
               Object {
@@ -315,8 +326,10 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             ],
           },
           Object {
-            "color": "#000000",
             "hoverinfo": "x+y",
+            "marker": Object {
+              "color": "#000000",
+            },
             "name": "Incorrect Prediction",
             "points": Array [
               Object {
@@ -337,8 +350,10 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             ],
           },
           Object {
-            "color": "#ff0000",
             "hoverinfo": "x+y",
+            "marker": Object {
+              "color": "#ff0000",
+            },
             "name": "Correct Prediction",
             "points": Array [
               Object {
@@ -354,8 +369,8 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             ],
           },
           Object {
-            "color": "#ffff00",
             "marker": Object {
+              "color": "#ffff00",
               "opacity": 0.5,
             },
             "name": "Selected Residue Pairs",
@@ -389,7 +404,28 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             Object {
               "hoverinfo": "none",
               "marker": Object {
-                "color": "#0000ff",
+                "color": Array [
+                  2.4,
+                  1.3,
+                  1.3,
+                  1.3,
+                  1.3,
+                  2.4,
+                  1.3,
+                  1.3,
+                  1.3,
+                  1.3,
+                ],
+                "colorscale": Array [
+                  Array [
+                    0,
+                    "#0000ff",
+                  ],
+                  Array [
+                    1,
+                    "rgb(100,177,200)",
+                  ],
+                ],
                 "size": 6,
               },
               "mode": "markers",
@@ -419,9 +455,21 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 44,
                 56,
               ],
+              "z": Array [
+                2.4,
+                1.3,
+                1.3,
+                1.3,
+                1.3,
+                2.4,
+                1.3,
+                1.3,
+                1.3,
+                1.3,
+              ],
             },
             Object {
-              "hoverinfo": "x+y",
+              "hoverinfo": "none",
               "marker": Object {
                 "color": "#000000",
                 "size": 6,
@@ -445,9 +493,17 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 42,
                 41,
               ],
+              "z": Array [
+                2.4,
+                20.4,
+                1.3,
+                2.4,
+                20.4,
+                1.3,
+              ],
             },
             Object {
-              "hoverinfo": "x+y",
+              "hoverinfo": "none",
               "marker": Object {
                 "color": "#ff0000",
                 "size": 6,
@@ -467,11 +523,19 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 56,
                 41,
               ],
+              "z": Array [
+                2.4,
+                1.3,
+                2.4,
+                1.3,
+              ],
             },
             Object {
               "hoverinfo": "none",
               "marker": Object {
+                "color": "#ffff00",
                 "opacity": 0.5,
+                "size": 6,
               },
               "mode": "markers",
               "name": "Selected Residue Pairs",
@@ -483,6 +547,10 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "y": Array [
                 46,
                 37,
+              ],
+              "z": Array [
+                undefined,
+                undefined,
               ],
             },
           ]
