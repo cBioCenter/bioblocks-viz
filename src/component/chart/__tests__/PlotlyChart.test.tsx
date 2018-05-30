@@ -4,7 +4,7 @@ import toJson from 'enzyme-to-json';
 import * as React from 'react';
 
 import { IMockDict } from 'configs/SetupJest';
-import { PlotlyChartClass, PlotlyChartProps } from '../PlotlyChart';
+import { IPlotlyData, PlotlyChartClass, PlotlyChartProps } from '../PlotlyChart';
 
 beforeEach(() => {
   jest.resetModules();
@@ -20,7 +20,7 @@ describe('PlotlyChart', () => {
       type: 'pointcloud',
       uid: 'adam',
       xy: new Float32Array([1, 2, 3, 4]),
-    } as Partial<Plotly.ScatterData>,
+    } as Partial<IPlotlyData>,
   ];
   /**
    * Helper function to create and wait for a PlotlyChart to be mounted.

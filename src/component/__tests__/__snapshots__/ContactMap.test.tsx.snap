@@ -314,6 +314,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       data={
         Array [
           Object {
+            "hoverinfo": "x+y",
             "marker": Object {
               "colorscale": Array [
                 Array [
@@ -360,7 +361,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             "marker": Object {
               "color": "#000000",
             },
-            "name": "Prediction",
+            "name": "Predicted Contact (57)",
             "points": Array [
               Object {
                 "dist": 2.4,
@@ -509,7 +510,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 "size": 6,
               },
               "mode": "markers",
-              "name": "Prediction",
+              "name": "Predicted Contact (57)",
               "type": "scattergl",
               "x": Array [
                 56,
