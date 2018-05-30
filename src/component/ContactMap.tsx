@@ -53,10 +53,15 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
   }
 
   public componentDidUpdate(prevProps: ContactMapProps, prevState: ContactMapState) {
-    const { data } = this.props;
+    const { data, removeAllLockedResiduePairs } = this.props;
+
+    const isNewData = data !== prevProps.data;
+    if (isNewData) {
+      removeAllLockedResiduePairs();
+    }
 
     const isFreshDataView =
-      data !== prevProps.data ||
+      isNewData ||
       this.state.linearDistFilter !== prevState.linearDistFilter ||
       this.state.numPredictionsToShow !== prevState.numPredictionsToShow ||
       this.state.chainLength !== prevState.chainLength;
@@ -152,9 +157,9 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
       <Accordion fluid={true} styled={true}>
         <Accordion.Title
           active={showConfiguration}
-          // tslint:disable-next-line:jsx-no-lambda
-          onClick={() => this.setState({ showConfiguration: !this.state.showConfiguration })}
+          className={'contact-map-configuration-toggle'}
           index={1}
+          onClick={this.onShowConfigurationToggle()}
         >
           <Icon name="dropdown" />
           Configuration
@@ -241,6 +246,8 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     });
   };
 
+  protected onShowConfigurationToggle = () => () => this.setState({ showConfiguration: !this.state.showConfiguration });
+
   protected onMouseEnter = (cb: (residue: RESIDUE_TYPE[]) => void) => (e: Plotly.PlotMouseEvent) => {
     const { points } = e;
     cb([points[0].x, points[0].y]);
@@ -258,9 +265,8 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
    * @param [actualDistFilter=5] For each score, if dist <= linearDistFilter, it is considered observed.
    * @returns Contacts that should be considered observed int he current data set.
    */
-  protected getObservedContacts(contacts: ICouplingScore[], actualDistFilter = 5): ICouplingScore[] {
-    return contacts.filter(residuePair => residuePair.dist <= actualDistFilter);
-  }
+  protected getObservedContacts = (contacts: ICouplingScore[], actualDistFilter = 5) =>
+    contacts.filter(residuePair => residuePair.dist <= actualDistFilter);
 
   /**
    * Determine which contacts in a set of coupling scores are predicted as well as which are correct.

@@ -151,7 +151,25 @@ describe('ContactMap', () => {
     expect(onHoverSpy).toHaveBeenCalledTimes(1);
   });
 
-  describe('Sliders', () => {
+  test.skip('Should clear state if new data is given', async () => {
+    const wrapper = await getMountedContactMap({ data: sampleData });
+    wrapper.setProps({
+      data: emptyData,
+    });
+  });
+
+  describe('Configuration', () => {
+    test('Should update the state when the configuration accordion is clicked', () => {
+      const wrapper = getShallowContactMap({ data: sampleData, enableSliders: true });
+      const instance = wrapper.instance() as ContactMapClass;
+      const initialState = instance.state.showConfiguration;
+      wrapper
+        .find('.contact-map-configuration-toggle')
+        .at(0)
+        .simulate('click');
+      expect(instance.state.showConfiguration).toBe(!initialState);
+    });
+
     test('Should update node size when appropriate slider is updated.', () => {
       const wrapper = getShallowContactMap({ data: sampleData, enableSliders: true });
       const instance = wrapper.instance() as ContactMapClass;

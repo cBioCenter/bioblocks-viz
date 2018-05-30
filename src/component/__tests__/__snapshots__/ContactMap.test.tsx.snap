@@ -49,7 +49,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
     className="accordion ui fluid styled"
   >
     <div
-      className="title"
+      className="title contact-map-configuration-toggle"
       onClick={[Function]}
     >
       <i
