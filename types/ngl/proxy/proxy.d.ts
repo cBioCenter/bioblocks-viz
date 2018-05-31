@@ -6,7 +6,6 @@ declare module 'ngl' {
    * Atom proxy.
    *
    * @export
-   * @class AtomProxy
    */
   export class AtomProxy {
     // Accessors
@@ -94,9 +93,8 @@ declare module 'ngl' {
 
     /**
      * Creates an instance of AtomProxy.
-     * @param {Structure} structure The structure.
-     * @param {number} [index] The index.
-     * @memberof AtomProxy
+     * @param structure The structure.
+     * @param [index] The index.
      */
     constructor(structure: Structure, index?: number);
 
@@ -107,36 +105,30 @@ declare module 'ngl' {
     /**
      * If connected to another atom.
      *
-     * @param {AtomProxy} atom The other atom.
-     * @returns {boolean} Flag.
-     * @memberof AtomProxy
+     * @param atom The other atom.
+     * @returns Flag.
      */
     public connectedTo(atom: AtomProxy): boolean;
 
     /**
      * Distance to another atom.
      *
-     * @param {AtomProxy} atom The other atom.
-     * @returns {number} The distance.
-     * @memberof AtomProxy
+     * @param atom The other atom.
+     * @returns The distance.
      */
     public distanceTo(atom: AtomProxy): number;
 
     /**
      * Iterate over each bond.
      *
-     * @param {() => void} callback Iterator callback function.
-     * @param {BondProxy} [bp]
-     * @memberof AtomProxy
+     * @param callback Iterator callback function.
      */
     public eachBond(callback: () => void, bp?: BondProxy): void;
 
     /**
      * Iterate over each bonded atom.
      *
-     * @param {() => void} callback iterator callback function.
-     * @param {AtomProxy} [ap]
-     * @memberof AtomProxy
+     * @param callback iterator callback function.
      */
     public eachBondedAtom(callback: () => void, ap?: AtomProxy): void;
     public getDefaultValence(): number;
@@ -145,9 +137,8 @@ declare module 'ngl' {
     /**
      * Get intra group/residue bonds.
      *
-     * @param {boolean} [firstOnly] Immediately return the first connected atomIndex.
-     * @returns {(undefined | number | number[])} Connected atomIndices.
-     * @memberof AtomProxy
+     * @param [firstOnly] Immediately return the first connected atomIndex.
+     * @returns Connected atomIndices.
      */
     public getResidueBonds(firstOnly?: boolean): undefined | number | number[];
     public getValenceList(): number[];
@@ -155,9 +146,8 @@ declare module 'ngl' {
     /**
      * Check if this atom is bonded to the given atom, assumes both atoms are from the same structure.
      *
-     * @param {AtomProxy} ap The given atom.
-     * @returns {boolean}  Whether a bond exists or not.
-     * @memberof AtomProxy
+     * @param ap The given atom.
+     * @returns Whether a bond exists or not.
      */
     public hasBondTo(ap: AtomProxy): boolean;
     public hasBondToElement(element: Elements): boolean;
@@ -169,8 +159,7 @@ declare module 'ngl' {
     /**
      * If atom is part of a backbone.
      *
-     * @returns {boolean} Flag
-     * @memberof AtomProxy
+     * @returns Flag
      */
     public isBackbone(): boolean;
     public isBonded(): boolean;
@@ -178,8 +167,7 @@ declare module 'ngl' {
     /**
      * If atom is part of a coarse-grain group.
      *
-     * @returns {boolean} Flag
-     * @memberof AtomProxy
+     * @returns Flag
      */
     public isCg(): boolean;
     public isDiatomicNonmetal(): boolean;
@@ -187,8 +175,7 @@ declare module 'ngl' {
     /**
      * If atom is part of a dna.
      *
-     * @returns {boolean} Flag.
-     * @memberof AtomProxy
+     * @returns Flag.
      */
     public isDna(): boolean;
     public isHalogen(): boolean;
@@ -196,24 +183,21 @@ declare module 'ngl' {
     /**
      * If atom is part of a helix.
      *
-     * @returns {boolean} Flag.
-     * @memberof AtomProxy
+     * @returns Flag.
      */
     public isHelix(): boolean;
 
     /**
      * If atom is part of a hetero group.
      *
-     * @returns {boolean} Flag.
-     * @memberof AtomProxy
+     * @returns Flag.
      */
     public isHetero(): boolean;
 
     /**
      * If atom is part of an ion.
      *
-     * @returns {boolean} Flag.
-     * @memberof AtomProxy
+     * @returns Flag.
      */
     public isIon(): boolean;
     public isLanthanide(): boolean;
@@ -224,8 +208,7 @@ declare module 'ngl' {
     /**
      * If atom is part of a nucleic molecule.
      *
-     * @returns {boolean} Flag.
-     * @memberof AtomProxy
+     * @returns Flag.
      */
     public isNucleic(): boolean;
     public isPolyatomicNonmetal(): boolean;
@@ -233,8 +216,7 @@ declare module 'ngl' {
     /**
      * If atom is part of a polymer.
      *
-     * @returns {boolean} Flag.
-     * @memberof AtomProxy
+     * @returns Flag.
      */
     public isPolymer(): boolean;
     public isPostTransitionMetal(): boolean;
@@ -242,48 +224,40 @@ declare module 'ngl' {
     /**
      * If atom is part of a protein molecule.
      *
-     * @returns {boolean} Flag.
-     * @memberof AtomProxy
+     * @returns Flag.
      */
     public isProtein(): boolean;
 
     /**
      * If atom is part of a ring.
      *
-     * @returns {boolean} Flag.
-     * @memberof AtomProxy
+     * @returns Flag.
      */
     public isRing(): boolean;
 
     /**
      * If atom is part of a rna.
      *
-     * @returns {boolean} Flag.
-     * @memberof AtomProxy
+     * @returns Flag.
      */
     public isRna(): boolean;
 
     /**
      * If atom is part of a saccharide.
      *
-     * @returns {boolean} Flag.
-     * @memberof AtomProxy
+     * @returns Flag.
      */
     public isSaccharide(): boolean;
 
     /**
      * If atom is part of a sheet.
-     *
-     * @returns {boolean}
-     * @memberof AtomProxy
      */
     public isSheet(): boolean;
 
     /**
      * If atom is part of a sidechain.
      *
-     * @returns {boolean} Flag.
-     * @memberof AtomProxy
+     * @returns Flag.
      */
     public isSidechain(): boolean;
     public isTrace(): boolean;
@@ -292,72 +266,53 @@ declare module 'ngl' {
     /**
      * If atom is part of a turn.
      *
-     * @returns {boolean} Flag
-     * @memberof AtomProxy
+     * @returns Flag.
      */
     public isTurn(): boolean;
 
     /**
      * If atom is part of a water molecule.
      *
-     * @returns {boolean} Flag.
-     * @memberof AtomProxy
+     * @returns Flag.
      */
     public isWater(): boolean;
 
     /**
      * Add vector to atom position.
      *
-     * @param {(Vector3 | AtomProxy)} v Input vector.
-     * @returns {this} This object.
-     * @memberof AtomProxy
+     * @param v Input vector.
+     * @returns This object.
      */
     public positionAdd(v: Vector3 | AtomProxy): this;
 
     /**
      * Set atom position from array
      *
-     * @param {NumberArray} array Input array.
-     * @param {number} [offset]
-     * @returns {this} This object.
-     * @memberof AtomProxy
+     * @param array Input array.
+     * @returns This object.
      */
     public positionFromArray(array: NumberArray, offset?: number): this;
 
     /**
      * Set atom position from vector.
      *
-     * @param {Vector3} v Input vector.
-     * @returns {this} This object.
-     * @memberof AtomProxy
+     * @param v Input vector.
+     * @returns This object.
      */
     public positionFromVector3(v: Vector3): this;
 
     /**
      * Subtract vector from atom position.
      *
-     * @param {(Vector3 | AtomProxy)} v Input vector.
-     * @returns {this} This object.
-     * @memberof AtomProxy
+     * @param v Input vector.
+     * @returns This object.
      */
     public positionSub(v: Vector3 | AtomProxy): this;
 
     /**
      * Write atom position to array.
      *
-     * @param {NumberArray} [array]
-     * @param {number} [offset]
-     * @returns {(number[]
-     *       | Uint8Array
-     *       | Int8Array
-     *       | Int16Array
-     *       | Int32Array
-     *       | Uint16Array
-     *       | Uint32Array
-     *       | Float32Array
-     *       | Uint8ClampedArray
-     *       | Float64Array)} Target array.
-     * @memberof AtomProxy
+     * @returns Target array.
      */
     public positionToArray(
       array?: NumberArray,
@@ -377,9 +332,7 @@ declare module 'ngl' {
     /**
      * Write atom position to vector.
      *
-     * @param {Vector3} v
-     * @returns {Vector3} Target vector.
-     * @memberof AtomProxy
+     * @returns Target vector.
      */
     public positionToVector3(v: Vector3): Vector3;
     public qualifiedName(noResname?: boolean): string;
@@ -408,7 +361,6 @@ declare module 'ngl' {
    * Bond proxy.
    *
    * @export
-   * @class BondProxy
    */
   export class BondProxy {
     // Properties
@@ -426,27 +378,22 @@ declare module 'ngl' {
     /**
      * Creates an instance of BondProxy.
      *
-     * @param {Structure} structure The structure.
-     * @param {number} [index] The index.
-     * @memberof BondProxy
+     * @param structure The structure.
+     * @param [index] The index.
      */
     constructor(structure: Structure, index?: number);
 
     // Methods
     /**
      * Calculate shift direction for displaying double/triple bonds.
-     *
-     * @param {Vector3} [v]
-     * @returns {Vector3} The shift direction vector.
-     * @memberof BondProxy
+     * @returns The shift direction vector.
      */
     public calculateShiftDir(v?: Vector3): Vector3;
 
     /**
      * Clone object.
      *
-     * @returns {BondProxy} Cloned bond.
-     * @memberof BondProxy
+     * @returns Cloned bond.
      */
     public clone(): BondProxy;
 
@@ -457,8 +404,7 @@ declare module 'ngl' {
     /**
      * Get reference atom index for the bond.
      *
-     * @returns {(undefined | number)} Atom index, or undefined if unavailable.
-     * @memberof BondProxy
+     * @returns Atom index, or undefined if unavailable.
      */
     public getReferenceAtomIndex(): undefined | number;
 
@@ -474,7 +420,6 @@ declare module 'ngl' {
    * Chain proxy.
    *
    * @export
-   * @class ChainProxy
    */
   export class ChainProxy {
     // Properties
@@ -509,9 +454,8 @@ declare module 'ngl' {
     /**
      * Creates an instance of ChainProxy.
      *
-     * @param {Structure} structure The structure.
-     * @param {number} [index] The index.
-     * @memberof ChainProxy
+     * @param structure The structure.
+     * @param [index] The index.
      */
     constructor(structure: Structure, index?: number);
 
@@ -519,44 +463,36 @@ declare module 'ngl' {
     /**
      * Clone object.
      *
-     * @returns {ChainProxy} Cloned chain.
-     * @memberof ChainProxy
+     * @returns Cloned chain.
      */
     public clone(): ChainProxy;
 
     /**
      * Atom iterator.
      *
-     * @param {(ap: AtomProxy) => void} callback The callback.
-     * @param {Selection} [selection]
-     * @memberof ChainProxy
+     * @param callback The callback.
      */
     public eachAtom(callback: (ap: AtomProxy) => void, selection?: Selection): void;
 
     /**
      * Polymer iterator.
      *
-     * @param {(p: Polymer) => void} callback The callback.
-     * @param {Selection} [selection]
-     * @memberof ChainProxy
+     * @param callback The callback.
      */
     public eachPolymer(callback: (p: Polymer) => void, selection?: Selection): void;
 
     /**
      * Residue iterator.
      *
-     * @param {(rp: ResidueProxy) => void} callback The callback.
-     * @param {Selection} [selection]
-     * @memberof ChainProxy
+     * @param callback The callback.
      */
     public eachResidue(callback: (rp: ResidueProxy) => void, selection?: Selection): void;
 
     /**
      * Multi-residue iterator.
      *
-     * @param {number} n Window size.
-     * @param {(...rpArray: ResidueProxy[]) => void} callback The callback.
-     * @memberof ChainProxy
+     * @param n Window size.
+     * @param callback The callback.
      */
     public eachResidueN(n: number, callback: (...rpArray: ResidueProxy[]) => void): void;
 
@@ -574,7 +510,6 @@ declare module 'ngl' {
    * Model proxy.
    *
    * @export
-   * @class ModelProxy
    */
   export class ModelProxy {
     // Properties
@@ -598,9 +533,8 @@ declare module 'ngl' {
     /**
      * Creates an instance of ModelProxy.
      *
-     * @param {Structure} structure The structure.
-     * @param {number} [index] The index.
-     * @memberof ModelProxy
+     * @param structure The structure.
+     * @param [index] The index.
      */
     constructor(structure: Structure, index?: number);
 
@@ -608,44 +542,35 @@ declare module 'ngl' {
     /**
      * Clone object.
      *
-     * @returns {ModelProxy} Cloned model.
-     * @memberof ModelProxy
+     * @returns Cloned model.
      */
     public clone(): ModelProxy;
 
     /**
      * Atom iterator.
      *
-     * @param {(ap: AtomProxy) => void} callback The callback.
-     * @param {Selection} [selection]
-     * @memberof ModelProxy
+     * @param callback The callback.
      */
     public eachAtom(callback: (ap: AtomProxy) => void, selection?: Selection): void;
 
     /**
      * Chain iterator.
      *
-     * @param {(p: ChainProxy) => void} callback The callback.
-     * @param {Selection} [selection]
-     * @memberof ModelProxy
+     * @param callback The callback.
      */
     public eachChain(callback: (p: ChainProxy) => void, selection?: Selection): void;
 
     /**
      * Polymer iterator.
      *
-     * @param {(p: Polymer) => void} callback The callback.
-     * @param {Selection} [selection]
-     * @memberof ModelProxy
+     * @param callback The callback.
      */
     public eachPolymer(callback: (p: Polymer) => void, selection?: Selection): void;
 
     /**
      * Residue iterator.
      *
-     * @param {(rp: ResidueProxy) => void} callback The callback.
-     * @param {Selection} [selection]
-     * @memberof ModelProxy
+     * @param callback The callback.
      */
     public eachResidue(callback: (rp: ResidueProxy) => void, selection?: Selection): void;
 
@@ -662,7 +587,6 @@ declare module 'ngl' {
    * Polymer
    *
    * @export
-   * @class Polymer
    */
   export class Polymer {
     // Properties
@@ -691,10 +615,9 @@ declare module 'ngl' {
     /**
      * Creates an instance of Polymer.
      *
-     * @param {Structure} structure The structure.
-     * @param {number} residueIndexStart The index of the first residue.
-     * @param {number} residueIndexEnd The index of the last residue.
-     * @memberof Polymer
+     * @param structure The structure.
+     * @param residueIndexStart The index of the first residue.
+     * @param residueIndexEnd The index of the last residue.
      */
     constructor(structure: Structure, residueIndexStart: number, residueIndexEnd: number);
 
@@ -702,9 +625,7 @@ declare module 'ngl' {
     /**
      * Atom iterator.
      *
-     * @param {(ap: AtomProxy) => void} callback The callback.
-     * @param {Selection} [selection]
-     * @memberof Polymer
+     * @param callback The callback.
      */
     public eachAtom(callback: (ap: AtomProxy) => void, selection?: Selection): void;
 
@@ -713,18 +634,14 @@ declare module 'ngl' {
     /**
      * Polymer iterator.
      *
-     * @param {(p: Polymer) => void} callback The callback.
-     * @param {Selection} [selection]
-     * @memberof Polymer
+     * @param callback The callback.
      */
     public eachPolymer(callback: (p: Polymer) => void, selection?: Selection): void;
 
     /**
      * Residue iterator.
      *
-     * @param {(rp: ResidueProxy) => void} callback The callback.
-     * @param {Selection} [selection]
-     * @memberof Polymer
+     * @param callback The callback.
      */
     public eachResidue(callback: (rp: ResidueProxy) => void, selection?: Selection): void;
 
@@ -735,24 +652,21 @@ declare module 'ngl' {
     /**
      * If atom is part of a coarse-grain group.
      *
-     * @returns {boolean} Flag.
-     * @memberof Polymer
+     * @returns Flag.
      */
     public isCg(): boolean;
 
     /**
      * If atom is part of a nucleic molecule.
      *
-     * @returns {boolean} Flag.
-     * @memberof Polymer
+     * @returns Flag.
      */
     public isNucleic(): boolean;
 
     /**
      * If first residue is from a protein.
      *
-     * @returns {boolean} Flag.
-     * @memberof Polymer
+     * @returns Flag.
      */
     public isProtein(): boolean;
 
@@ -763,7 +677,6 @@ declare module 'ngl' {
    * Residue proxy.
    *
    * @export
-   * @class ResidueProxy
    */
   export class ResidueProxy {
     // Properties
@@ -820,9 +733,8 @@ declare module 'ngl' {
     /**
      * Creates an instance of ResidueProxy.
      *
-     * @param {Structure} structure The structure.
-     * @param {number} [index] The index.
-     * @memberof ResidueProxy
+     * @param structure The structure.
+     * @param [index] The index.
      */
     constructor(structure: Structure, index?: number);
 
@@ -830,26 +742,22 @@ declare module 'ngl' {
     /**
      * Clone object.
      *
-     * @returns {ResidueProxy} Cloned residue.
-     * @memberof ResidueProxy
+     * @returns Cloned residue.
      */
     public clone(): ResidueProxy;
 
     /**
      * If residue is connected to another.
      *
-     * @param {ResidueProxy} rNext The other residue.
-     * @returns {boolean} Flag.
-     * @memberof ResidueProxy
+     * @param rNext The other residue.
+     * @returns Flag.
      */
     public connectedTo(rNext: ResidueProxy): boolean;
 
     /**
      * Atom iterator.
      *
-     * @param {(ap: AtomProxy) => void} callback The callback.
-     * @param {Selection} [selection]
-     * @memberof ResidueProxy
+     * @param callback The callback.
      */
     public eachAtom(callback: (ap: AtomProxy) => void, selection?: Selection): void;
 
@@ -868,123 +776,98 @@ declare module 'ngl' {
     /**
      * If residue is coarse-grain.
      *
-     * @returns {boolean} Flag
-     * @memberof ResidueProxy
+     * @returns Flag.
      */
     public isCg(): boolean;
 
     /**
      * If residue is dna.
      *
-     * @returns {boolean} Flag.
-     * @memberof ResidueProxy
+     * @returns Flag.
      */
     public isDna(): boolean;
 
     /**
      * If residue is part of a helix.
      *
-     * @returns {boolean} Flag.
-     * @memberof ResidueProxy
+     * @returns Flag.
      */
     public isHelix(): boolean;
 
     /**
      * If residue is hetero.
      *
-     * @returns {boolean} Flag.
-     * @memberof ResidueProxy
+     * @returns Flag.
      */
     public isHetero(): boolean;
 
     /**
      * If residue is an ion.
      *
-     * @returns {boolean} Flag.
-     * @memberof ResidueProxy
+     * @returns Flag.
      */
     public isIon(): boolean;
 
     /**
      * If residue is nucleic.
      *
-     * @returns {boolean} Flag.
-     * @memberof ResidueProxy
+     * @returns Flag.
      */
     public isNucleic(): boolean;
 
     /**
      * If residue is from a polymer.
      *
-     * @returns {boolean} Flag.
-     * @memberof ResidueProxy
+     * @returns Flag.
      */
     public isPolymer(): boolean;
 
     /**
      * If residue is from a protein.
      *
-     * @returns {boolean} Flag.
-     * @memberof ResidueProxy
+     * @returns Flag.
      */
     public isProtein(): boolean;
 
     /**
      * If residue is rna.
      *
-     * @returns {boolean} Flag.
-     * @memberof ResidueProxy
+     * @returns Flag.
      */
     public isRna(): boolean;
 
     /**
      * If residue is a saccharide.
      *
-     * @returns {boolean}Flag.
-     * @memberof ResidueProxy
+     * @returns Flag.
      */
     public isSaccharide(): boolean;
 
     /**
      * If residue is part of a sheet.
      *
-     * @returns {boolean} Flag.
-     * @memberof ResidueProxy
+     * @returns Flag.
      */
     public isSheet(): boolean;
 
     /**
      * If residue is part of a turn
      *
-     * @returns {boolean} Flag.
-     * @memberof ResidueProxy
+     * @returns Flag.
      */
     public isTurn(): boolean;
 
     /**
      * If residue is a water molecule.
      *
-     * @returns {boolean} Flag.
-     * @memberof ResidueProxy
+     * @returns Flag.
      */
     public isWater(): boolean;
 
     /**
      * Write residue center position to array.
      *
-     * @param {NumberArray} [array]
-     * @param {number} [offset]
-     * @returns {(number[]
-     *       | Uint8Array
-     *       | Int8Array
-     *       | Int16Array
-     *       | Int32Array
-     *       | Uint16Array
-     *       | Uint32Array
-     *       | Float32Array
-     *       | Uint8ClampedArray
-     *       | Float64Array)} Target array.
-     * @memberof ResidueProxy
+     * @returns Target array.
      */
     public positionToArray(
       array?: NumberArray,

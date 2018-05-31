@@ -79,14 +79,10 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
       observedColor,
       padding,
       width,
-      addHoveredResidues,
-      candidateResidues,
-      hoveredResidues,
       lockedResiduePairs,
-      toggleLockedResiduePair,
     } = this.props;
 
-    const { chainLength, correctPredictedContacts, predictedContacts, nodeSize, observedContacts } = this.state;
+    const { chainLength, correctPredictedContacts, predictedContacts, observedContacts } = this.state;
 
     const sliderStyle = { width: width * 0.9 };
 
@@ -125,29 +121,37 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
           symbol: 'circle-open',
         },
         name: 'Selected Res. Pairs',
-        points: lockedResiduePairs
-          ? Object.keys(lockedResiduePairs as IResidueSelection)
-              .filter(key => lockedResiduePairs[key].length === 2)
-              .map(key => ({ i: lockedResiduePairs[key][0], j: lockedResiduePairs[key][1] }))
-          : [],
+        points: Object.keys(lockedResiduePairs as IResidueSelection)
+          .filter(key => lockedResiduePairs[key].length === 2)
+          .map(key => ({ i: lockedResiduePairs[key][0], j: lockedResiduePairs[key][1] })),
       },
     ] as IContactMapChartData[];
 
     return (
       <div id="ContactMapComponent" style={{ padding }}>
-        <ContactMapChart
-          candidateResidues={candidateResidues}
-          data={inputData}
-          hoveredResidues={hoveredResidues}
-          nodeSize={nodeSize}
-          onClickCallback={this.onMouseClick(toggleLockedResiduePair)}
-          onHoverCallback={this.onMouseEnter(addHoveredResidues)}
-          onSelectedCallback={this.onMouseSelect()}
-          range={[0, chainLength + 5]}
-        />
+        {this.renderContactMapChart(inputData)}
         {<div />}
         {this.props.enableSliders && this.renderSliders(sliderStyle, chainLength)}
       </div>
+    );
+  }
+
+  protected renderContactMapChart(data: IContactMapChartData[]) {
+    const { addHoveredResidues, candidateResidues, hoveredResidues, toggleLockedResiduePair } = this.props;
+
+    const { chainLength, nodeSize } = this.state;
+
+    return (
+      <ContactMapChart
+        candidateResidues={candidateResidues}
+        data={data}
+        hoveredResidues={hoveredResidues}
+        nodeSize={nodeSize}
+        onClickCallback={this.onMouseClick(toggleLockedResiduePair)}
+        onHoverCallback={this.onMouseEnter(addHoveredResidues)}
+        onSelectedCallback={this.onMouseSelect()}
+        range={[0, chainLength + 5]}
+      />
     );
   }
 

@@ -1,7 +1,12 @@
+import * as fetchMock from 'jest-fetch-mock';
 import { VIZ_TYPE } from '../../data/chell-data';
 import { fetchAppropriateData, getCouplingScoresData } from '../DataHelper';
 
 describe('DataHelper', () => {
+  beforeEach(() => {
+    fetchMock.resetMocks();
+  });
+
   test('Should throw an error when attempting to fetch data for an unsupported visualization type.', async () => {
     const badVizType = 'Imagination';
     expect.assertions(1);
@@ -15,6 +20,7 @@ describe('DataHelper', () => {
       const expected = {
         couplingScores: [],
       };
+      fetchMock.mockResponse(JSON.stringify(expected));
       await expect(fetchAppropriateData(VIZ_TYPE.CONTACT_MAP, '')).resolves.toEqual(expected);
     });
 
@@ -88,11 +94,31 @@ describe('DataHelper', () => {
       expect.assertions(1);
       await expect(fetchAppropriateData(VIZ_TYPE.SPRING, '')).rejects.toThrowError();
     });
+
+    test('Should parse spring data.', async () => {
+      const expected = { links: [], nodes: [] };
+      const sampleColorData = { Sample: { label_colors: [], label_list: [] } };
+      fetchMock.mockResponseOnce(',');
+      fetchMock.mockResponseOnce(JSON.stringify(expected));
+      fetchMock.mockResponseOnce(JSON.stringify(sampleColorData));
+      await expect(fetchAppropriateData(VIZ_TYPE.SPRING, 'kanto')).resolves.toEqual(expected);
+    });
   });
 
   describe('T-SNE', () => {
     test('Should return empty data for an incorrect location', async () => {
-      await expect(fetchAppropriateData(VIZ_TYPE['T-SNE'], '')).resolves.toEqual([]);
+      const expected = [
+        [0.2586516988310038068, -5.607454590334670641],
+        [-3.112878150223143958, -3.342860779282196049],
+        [5.882927335707632821, 4.215268767108215187],
+      ];
+
+      const sampleCsv =
+        '2.586516988310038068e-01,-5.607454590334670641e+00\n\
+        -3.112878150223143958e+00,-3.342860779282196049e+00\n\
+        5.882927335707632821e+00,4.215268767108215187e+00\n';
+      fetchMock.mockResponseOnce(sampleCsv);
+      await expect(fetchAppropriateData(VIZ_TYPE['T-SNE'], '')).resolves.toEqual(expected);
     });
   });
 });

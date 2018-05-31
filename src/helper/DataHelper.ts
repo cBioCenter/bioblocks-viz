@@ -1,4 +1,5 @@
-import * as d3 from 'd3';
+import { fetchCSVFile, fetchJSONFile } from './FetchHelper';
+
 import * as NGL from 'ngl';
 import { ISpringCategoricalColorData, ISpringCategoricalColorDataInput, ISpringGraphData } from 'spring';
 import { CONTACT_MAP_DATA_TYPE, IContactMapData, ICouplingScore, VIZ_TYPE } from '../data/chell-data';
@@ -52,7 +53,7 @@ const deriveSpringData = async (dataDir: string) => {
 };
 
 const fetchCategoricalColorData = async (file: string): Promise<ISpringCategoricalColorData> => {
-  const input = (await d3.json(file)) as ISpringCategoricalColorDataInput;
+  const input = (await fetchJSONFile(file)) as ISpringCategoricalColorDataInput;
   const output: ISpringCategoricalColorData = {
     label_colors: {},
     label_list: input[Object.keys(input)[0]].label_list,
@@ -75,7 +76,7 @@ const fetchCategoricalColorData = async (file: string): Promise<ISpringCategoric
 };
 
 export const fetchColorData = async (file: string) => {
-  const colorText: string = await d3.text(file);
+  const colorText: string = await fetchCSVFile(file);
   const dict: { [k: string]: any } = {};
   colorText.split('\n').forEach((entry, index, array) => {
     if (entry.length > 0) {
@@ -94,7 +95,7 @@ export const fetchColorData = async (file: string) => {
 };
 
 const fetchSpringCoordinateData = async (file: string) => {
-  const coordinateText: string = await d3.text(file);
+  const coordinateText: string = await fetchCSVFile(file);
 
   const coordinates: number[][] = [];
   coordinateText!.split('\n').forEach((entry, index, array) => {
@@ -110,7 +111,7 @@ const fetchSpringCoordinateData = async (file: string) => {
 };
 
 const fetchTSneCoordinateData = async (dataDir: string) => {
-  const colorText: string = await d3.text(`${dataDir}/tsne_output.csv`);
+  const colorText: string = await fetchCSVFile(`${dataDir}/tsne_output.csv`);
   const result: number[][] = [];
   colorText.split('\n').forEach((entry, index, array) => {
     if (entry.length > 0) {
@@ -123,7 +124,7 @@ const fetchTSneCoordinateData = async (dataDir: string) => {
 };
 
 const fetchGraphData = async (file: string) => {
-  const data = (await d3.json(file)) as ISpringGraphData;
+  const data = (await fetchJSONFile(file)) as ISpringGraphData;
   if (!data.nodes || !data.links) {
     throw new Error('Unable to parse graph_data - does it have node key(s)?');
   }
@@ -141,7 +142,7 @@ const fetchNGLData = async (dir: string) => {
 
 const fetchContactMapData = async (dir: string): Promise<IContactMapData> => {
   const contactMapFiles = ['coupling_scores.csv'];
-  const promiseResults = await Promise.all(contactMapFiles.map(file => d3.text(`${dir}/${file}`)));
+  const promiseResults = await Promise.all(contactMapFiles.map(file => fetchCSVFile(`${dir}/${file}`)));
 
   const data: CONTACT_MAP_DATA_TYPE = {
     couplingScores: getCouplingScoresData(promiseResults[0]),
@@ -163,8 +164,8 @@ const fetchContactMapData = async (dir: string): Promise<IContactMapData> => {
  * @param line The csv file as a single string.
  * @returns Array of CouplingScores suitable for chell-viz consumption.
  */
-export const getCouplingScoresData = (line: string): ICouplingScore[] =>
-  line
+export const getCouplingScoresData = (line: string): ICouplingScore[] => {
+  return line
     .split('\n')
     .slice(1)
     .filter(row => row.split(',').length >= 13)
@@ -187,3 +188,4 @@ export const getCouplingScoresData = (line: string): ICouplingScore[] =>
         precision: parseFloat(items[12]),
       };
     });
+};

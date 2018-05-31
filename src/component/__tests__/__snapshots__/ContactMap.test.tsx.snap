@@ -647,3 +647,384 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
   </div>
 </ContactMapClass>
 `;
+
+exports[`ContactMap Snapshots Should match snapshot when locked residues are not present. 1`] = `
+<ContactMapClass
+  addCandidateResidues={[Function]}
+  addHoveredResidues={[Function]}
+  addLockedResiduePair={[Function]}
+  candidateResidues={Array []}
+  clearAllResidues={[Function]}
+  correctColor="#ff0000"
+  data={
+    Object {
+      "couplingScores": Array [
+        Object {
+          "dist": 2.4,
+          "i": 56,
+          "j": 50,
+        },
+        Object {
+          "dist": 20.4,
+          "i": 42,
+          "j": 50,
+        },
+        Object {
+          "dist": 1.3,
+          "i": 41,
+          "j": 52,
+        },
+        Object {
+          "dist": 1.3,
+          "i": 45,
+          "j": 46,
+        },
+        Object {
+          "dist": 1.3,
+          "i": 44,
+          "j": 45,
+        },
+        Object {
+          "dist": 1.3,
+          "i": 56,
+          "j": 57,
+        },
+      ],
+    }
+  }
+  enableSliders={false}
+  height={400}
+  highlightColor="#ff8800"
+  hoveredResidues={Array []}
+  incorrectColor="#000000"
+  lockedResiduePairs={Array []}
+  observedColor="#0000ff"
+  padding={0}
+  removeAllLockedResiduePairs={[Function]}
+  removeCandidateResidues={[Function]}
+  removeHoveredResidues={[Function]}
+  removeLockedResiduePair={[Function]}
+  toggleLockedResiduePair={[Function]}
+  width={400}
+>
+  <div
+    id="ContactMapComponent"
+    style={
+      Object {
+        "padding": 0,
+      }
+    }
+  >
+    <ContactMapChartClass
+      candidateResidues={Array []}
+      data={
+        Array [
+          Object {
+            "hoverinfo": "x+y",
+            "marker": Object {
+              "colorscale": Array [
+                Array [
+                  0,
+                  "#0000ff",
+                ],
+                Array [
+                  1,
+                  "rgb(100,177,200)",
+                ],
+              ],
+            },
+            "name": "Observed",
+            "points": Array [
+              Object {
+                "dist": 2.4,
+                "i": 56,
+                "j": 50,
+              },
+              Object {
+                "dist": 1.3,
+                "i": 41,
+                "j": 52,
+              },
+              Object {
+                "dist": 1.3,
+                "i": 45,
+                "j": 46,
+              },
+              Object {
+                "dist": 1.3,
+                "i": 44,
+                "j": 45,
+              },
+              Object {
+                "dist": 1.3,
+                "i": 56,
+                "j": 57,
+              },
+            ],
+          },
+          Object {
+            "hoverinfo": "x+y",
+            "marker": Object {
+              "color": "#000000",
+            },
+            "name": "Predicted Contact (57)",
+            "points": Array [
+              Object {
+                "dist": 2.4,
+                "i": 56,
+                "j": 50,
+              },
+              Object {
+                "dist": 20.4,
+                "i": 42,
+                "j": 50,
+              },
+              Object {
+                "dist": 1.3,
+                "i": 41,
+                "j": 52,
+              },
+            ],
+          },
+          Object {
+            "hoverinfo": "x+y",
+            "marker": Object {
+              "color": "#ff0000",
+            },
+            "name": "Correct Prediction",
+            "points": Array [
+              Object {
+                "dist": 2.4,
+                "i": 56,
+                "j": 50,
+              },
+              Object {
+                "dist": 1.3,
+                "i": 41,
+                "j": 52,
+              },
+            ],
+          },
+          Object {
+            "marker": Object {
+              "color": "#ff8800",
+              "line": Object {
+                "color": "#ff8800",
+                "width": 3,
+              },
+              "symbol": "circle-open",
+            },
+            "name": "Selected Res. Pairs",
+            "points": Array [],
+          },
+        ]
+      }
+      dataTransformFn={[Function]}
+      hoveredResidues={Array []}
+      nodeSize={3}
+      onClickCallback={[Function]}
+      onHoverCallback={[Function]}
+      onSelectedCallback={[Function]}
+      onUnHoverCallback={[Function]}
+      range={
+        Array [
+          0,
+          62,
+        ]
+      }
+    >
+      <PlotlyChartClass
+        config={Object {}}
+        data={
+          Array [
+            Object {
+              "hoverinfo": "none",
+              "marker": Object {
+                "color": Array [
+                  2.4,
+                  1.3,
+                  1.3,
+                  1.3,
+                  1.3,
+                  2.4,
+                  1.3,
+                  1.3,
+                  1.3,
+                  1.3,
+                ],
+                "colorscale": Array [
+                  Array [
+                    0,
+                    "#0000ff",
+                  ],
+                  Array [
+                    1,
+                    "rgb(100,177,200)",
+                  ],
+                ],
+                "size": 6,
+              },
+              "mode": "markers",
+              "name": "Observed",
+              "type": "scattergl",
+              "x": Array [
+                56,
+                41,
+                45,
+                44,
+                56,
+                50,
+                52,
+                46,
+                45,
+                57,
+              ],
+              "y": Array [
+                50,
+                52,
+                46,
+                45,
+                57,
+                56,
+                41,
+                45,
+                44,
+                56,
+              ],
+              "z": Array [
+                2.4,
+                1.3,
+                1.3,
+                1.3,
+                1.3,
+                2.4,
+                1.3,
+                1.3,
+                1.3,
+                1.3,
+              ],
+            },
+            Object {
+              "hoverinfo": "none",
+              "marker": Object {
+                "color": "#000000",
+                "size": 6,
+              },
+              "mode": "markers",
+              "name": "Predicted Contact (57)",
+              "type": "scattergl",
+              "x": Array [
+                56,
+                42,
+                41,
+                50,
+                50,
+                52,
+              ],
+              "y": Array [
+                50,
+                50,
+                52,
+                56,
+                42,
+                41,
+              ],
+              "z": Array [
+                2.4,
+                20.4,
+                1.3,
+                2.4,
+                20.4,
+                1.3,
+              ],
+            },
+            Object {
+              "hoverinfo": "none",
+              "marker": Object {
+                "color": "#ff0000",
+                "size": 6,
+              },
+              "mode": "markers",
+              "name": "Correct Prediction",
+              "type": "scattergl",
+              "x": Array [
+                56,
+                41,
+                50,
+                52,
+              ],
+              "y": Array [
+                50,
+                52,
+                56,
+                41,
+              ],
+              "z": Array [
+                2.4,
+                1.3,
+                2.4,
+                1.3,
+              ],
+            },
+            Object {
+              "hoverinfo": "none",
+              "marker": Object {
+                "color": "#ff8800",
+                "line": Object {
+                  "color": "#ff8800",
+                  "width": 3,
+                },
+                "size": 6,
+                "symbol": "circle-open",
+              },
+              "mode": "markers",
+              "name": "Selected Res. Pairs",
+              "type": "scattergl",
+              "x": Array [],
+              "y": Array [],
+              "z": Array [],
+            },
+          ]
+        }
+        layout={
+          Object {
+            "legend": Object {
+              "orientation": "h",
+            },
+            "showlegend": true,
+            "xaxis": Object {
+              "autorange": false,
+              "range": Array [
+                0,
+                62,
+              ],
+            },
+            "yaxis": Object {
+              "autorange": false,
+              "range": Array [
+                62,
+                0,
+              ],
+            },
+          }
+        }
+        onClickCallback={[Function]}
+        onHoverCallback={[Function]}
+        onSelectedCallback={[Function]}
+        onUnHoverCallback={[Function]}
+      >
+        <div
+          className="plotly-chart"
+          style={
+            Object {
+              "marginBottom": 10,
+              "marginTop": 10,
+            }
+          }
+        />
+      </PlotlyChartClass>
+    </ContactMapChartClass>
+    <div />
+  </div>
+</ContactMapClass>
+`;
