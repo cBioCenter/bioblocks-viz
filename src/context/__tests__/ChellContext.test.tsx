@@ -126,7 +126,7 @@ describe('ChellContext', () => {
           '1,2': [1, 2],
         },
       };
-      instance.onResidueSelect([1, 2]);
+      instance.onAddLockedResiduePair([1, 2]);
       expect(instance.state.residueContext).toEqual(expectedState);
     });
 
@@ -141,9 +141,9 @@ describe('ChellContext', () => {
           '6,7,8,9': [6, 7, 8, 9],
         },
       };
-      instance.onResidueSelect([1, 2]);
-      instance.onResidueSelect([5]);
-      instance.onResidueSelect([6, 7, 8, 9]);
+      instance.onAddLockedResiduePair([1, 2]);
+      instance.onAddLockedResiduePair([5]);
+      instance.onAddLockedResiduePair([6, 7, 8, 9]);
       expect(instance.state.residueContext).toEqual(expectedState);
     });
 
@@ -156,8 +156,8 @@ describe('ChellContext', () => {
           '1,2': [1, 2],
         },
       };
-      instance.onResidueSelect([1, 2]);
-      instance.onResidueSelect([2, 1]);
+      instance.onAddLockedResiduePair([1, 2]);
+      instance.onAddLockedResiduePair([2, 1]);
       expect(instance.state.residueContext).toEqual(expectedState);
     });
 
@@ -171,10 +171,10 @@ describe('ChellContext', () => {
           '6,7,8,9': [6, 7, 8, 9],
         },
       };
-      instance.onResidueSelect([5]);
-      instance.onResidueSelect([1, 2]);
-      instance.onResidueSelect([6, 7, 8, 9]);
-      instance.onRemoveResidues([5]);
+      instance.onAddLockedResiduePair([5]);
+      instance.onAddLockedResiduePair([1, 2]);
+      instance.onAddLockedResiduePair([6, 7, 8, 9]);
+      instance.onRemoveLockedResiduePair([5]);
       expect(instance.state.residueContext).toEqual(expectedState);
     });
 
@@ -189,10 +189,10 @@ describe('ChellContext', () => {
           '6,7,8,9': [6, 7, 8, 9],
         },
       };
-      instance.onResidueSelect([5]);
-      instance.onResidueSelect([1, 2]);
-      instance.onResidueSelect([6, 7, 8, 9]);
-      instance.onRemoveResidues([666]);
+      instance.onAddLockedResiduePair([5]);
+      instance.onAddLockedResiduePair([1, 2]);
+      instance.onAddLockedResiduePair([6, 7, 8, 9]);
+      instance.onRemoveLockedResiduePair([666]);
       expect(instance.state.residueContext).toEqual(expectedState);
     });
 
@@ -203,10 +203,51 @@ describe('ChellContext', () => {
         ...initialState,
         lockedResiduePairs: {},
       };
-      instance.onResidueSelect([5]);
-      instance.onResidueSelect([1, 2]);
-      instance.onResidueSelect([9, 8, 7, 6]);
-      instance.onRemoveAllResidues();
+      instance.onAddLockedResiduePair([5]);
+      instance.onAddLockedResiduePair([1, 2]);
+      instance.onAddLockedResiduePair([9, 8, 7, 6]);
+      instance.onRemoveAllLockedResiduePairs();
+      expect(instance.state.residueContext).toEqual(expectedState);
+    });
+
+    it('Should allow all residues to be removed.', () => {
+      const instance = shallow(<ChellContext />).instance() as ChellContext;
+      const initialState = instance.state.residueContext;
+      const expectedState = {
+        ...initialState,
+        candidateResidues: [],
+        hoveredResidues: [],
+        lockedResiduePairs: {},
+      };
+      instance.onAddCandidateResidues([1]);
+      instance.onAddHoveredResidues([2, 3]);
+      instance.onAddLockedResiduePair([4, 5]);
+
+      expect(instance.state.residueContext).toEqual({
+        ...initialState,
+        candidateResidues: [1],
+        hoveredResidues: [2, 3],
+        lockedResiduePairs: { '4,5': [4, 5] },
+      });
+
+      instance.onClearAllResidues();
+      expect(instance.state.residueContext).toEqual(expectedState);
+    });
+
+    it('Should allow a locked residue pair to be toggled.', () => {
+      const instance = shallow(<ChellContext />).instance() as ChellContext;
+      const initialState = instance.state.residueContext;
+      const expectedState = {
+        ...initialState,
+        lockedResiduePairs: {},
+      };
+      instance.onToggleLockedResiduePair([5]);
+      expect(instance.state.residueContext).toEqual({
+        ...initialState,
+        lockedResiduePairs: { '5': [5] },
+      });
+
+      instance.onToggleLockedResiduePair([5]);
       expect(instance.state.residueContext).toEqual(expectedState);
     });
   });
