@@ -10,6 +10,7 @@ export interface IResidueContext {
   addHoveredResidues: (residues: RESIDUE_TYPE[]) => void;
   addLockedResiduePair: (residues: RESIDUE_TYPE[]) => void;
   candidateResidues: RESIDUE_TYPE[];
+  clearAllResidues: () => void;
   hoveredResidues: RESIDUE_TYPE[];
   lockedResiduePairs: IResidueSelection;
   removeAllLockedResiduePairs: () => void;
@@ -29,6 +30,9 @@ export const initialResidueContext = {
     return;
   },
   candidateResidues: [] as number[],
+  clearAllResidues: () => {
+    return;
+  },
   hoveredResidues: [] as number[],
   lockedResiduePairs: {} as IResidueSelection,
   removeAllLockedResiduePairs: () => {

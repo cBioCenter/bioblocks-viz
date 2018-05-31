@@ -12,9 +12,9 @@ import ContactMap, { ContactMapClass, ContactMapProps } from '../ContactMap';
 // https://medium.com/@ryandrewjohnson/unit-testing-components-using-reacts-new-context-api-4a5219f4b3fe
 // Provides a dummy context for unit testing purposes.
 const getComponentWithContext = (context: IResidueContext = { ...initialResidueContext }) => {
-  jest.doMock('../../context/ResidueContext', () => {
+  jest.doMock('../../context/ChellContext', () => {
     return {
-      ResidueContext: {
+      ChellContext: {
         Consumer: (props: any) => props.children(context),
       },
     };
@@ -151,11 +151,15 @@ describe('ContactMap', () => {
     expect(onHoverSpy).toHaveBeenCalledTimes(1);
   });
 
-  test.skip('Should clear state if new data is given', async () => {
-    const wrapper = await getMountedContactMap({ data: sampleData });
+  test('Should clear state if new data is given', async () => {
+    const onClearResidueSpy = jest.fn();
+    const wrapper = await getMountedContactMap({ clearAllResidues: onClearResidueSpy, data: sampleData });
+    await wrapper.update();
     wrapper.setProps({
       data: emptyData,
     });
+    await wrapper.update();
+    expect(onClearResidueSpy).toHaveBeenCalledTimes(1);
   });
 
   describe('Configuration', () => {

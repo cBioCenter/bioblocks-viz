@@ -245,6 +245,11 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
 
 exports[`ContactMap Snapshots Should match snapshot when locked residues are added. 1`] = `
 <ContactMapClass
+  addCandidateResidues={[Function]}
+  addHoveredResidues={[Function]}
+  addLockedResiduePair={[Function]}
+  candidateResidues={Array []}
+  clearAllResidues={[Function]}
   correctColor="#ff0000"
   data={
     Object {
@@ -285,6 +290,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
   enableSliders={false}
   height={400}
   highlightColor="#ff8800"
+  hoveredResidues={Array []}
   incorrectColor="#000000"
   lockedResiduePairs={
     Object {
@@ -299,6 +305,10 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
   }
   observedColor="#0000ff"
   padding={0}
+  removeAllLockedResiduePairs={[Function]}
+  removeCandidateResidues={[Function]}
+  removeHoveredResidues={[Function]}
+  removeLockedResiduePair={[Function]}
   width={400}
 >
   <div

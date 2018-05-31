@@ -11,16 +11,32 @@
  */
 
 import * as NGL from 'ngl';
-import Signals from 'signals';
 
 const ngl = jest.genMockFromModule<typeof NGL>('ngl');
-const signals = jest.genMockFromModule<typeof Signals>('signals');
 
 class MockStage {
+  public events = new Map<string, (...args: any[]) => void>();
   public callbacks = new Array<(...args: any[]) => void>();
+  public reprList: string[] = [];
+
+  public mouseControls = {
+    add: (eventName: string, callback: (...args: any[]) => void) => this.events.set(eventName, callback),
+    run: (eventName: string, ...args: any[]) => {
+      if (this.events.get(eventName)) {
+        this.events.get(eventName)!(...args);
+      }
+    },
+  };
 
   public signals = {
-    clicked: new signals.Signal(),
+    clicked: {
+      add: (callback: (...args: any[]) => void) => this.events.set('click', callback),
+      dispatch: (...args: any[]) => {
+        if (this.events.get('click')) {
+          this.events.get('click')!(...args);
+        }
+      },
+    },
   };
 
   constructor(canvas: HTMLElement) {
@@ -28,17 +44,20 @@ class MockStage {
   }
 
   public addComponentFromObject = () => ({
-    addRepresentation: (name: string, ...args: any[]) => name,
-    removeRepresentation: jest.fn(),
-    reprList: [],
+    addRepresentation: (name: string, ...args: any[]) => {
+      this.reprList.push(name);
+      return name;
+    },
+    hasRepresentation: (name: string, ...args: any[]) => this.reprList.indexOf(name) !== -1,
+    removeRepresentation: (name: string, ...args: any[]) => {
+      this.reprList.splice(this.reprList.indexOf(name), 1);
+    },
+
     stage: {
-      mouseControls: {
-        add: jest.fn(),
-        run: jest.fn(),
-      },
+      mouseControls: this.mouseControls,
     },
   });
-  public defaultFileRepresentation = () => jest.fn();
+  public defaultFileRepresentation = (...args: any[]) => jest.fn();
   public dispose = () => jest.fn();
   public removeAllComponents = () => jest.fn();
 }
@@ -56,8 +75,17 @@ class MockStage {
   };
 });
 
-ngl.autoLoad = jest.fn(
-  (path: string) =>
-    path.length === 0 ? Promise.reject(() => new Error('Empty path')) : Promise.resolve('Path is not empty'),
-);
+(ngl.autoLoad as any) = jest.fn(() => Promise.resolve('Mock NGL path.'));
+
+// @ts-ignore
+ngl.MouseActions = {
+  CLICK: 'click',
+  CLICK_PICK: 'clickPick',
+  DOUBLE_CLICK: 'doubleClick',
+  DRAG: 'drag',
+  HOVER: 'hover',
+  HOVER_PICK: 'hoverPick',
+  SCROLL: 'scroll',
+};
+
 module.exports = ngl;

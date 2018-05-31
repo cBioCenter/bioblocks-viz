@@ -22,10 +22,8 @@ exports[`NGLComponent Should match existing snapshot when canvas isn't available
   >
     <button
       className="ui button"
-      disabled={undefined}
       onClick={[Function]}
       role="button"
-      tabIndex={undefined}
     >
       Remove Locked Residues
     </button>
@@ -35,6 +33,11 @@ exports[`NGLComponent Should match existing snapshot when canvas isn't available
 
 exports[`NGLComponent Should match existing snapshot when given sample data 1`] = `
 <NGLComponentClass
+  addCandidateResidues={[Function]}
+  addHoveredResidues={[Function]}
+  addLockedResiduePair={[Function]}
+  candidateResidues={Array []}
+  clearAllResidues={[Function]}
   data={
     Object {
       "residueStore": Object {
@@ -49,7 +52,13 @@ exports[`NGLComponent Should match existing snapshot when given sample data 1`] 
     }
   }
   height={400}
+  hoveredResidues={Array []}
+  lockedResiduePairs={Object {}}
   padding={0}
+  removeAllLockedResiduePairs={[Function]}
+  removeCandidateResidues={[Function]}
+  removeHoveredResidues={[Function]}
+  removeLockedResiduePair={[Function]}
   width={400}
 >
   <div
@@ -74,6 +83,7 @@ exports[`NGLComponent Should match existing snapshot when given sample data 1`] 
       >
         <Button
           as="button"
+          onClick={[Function]}
           role="button"
         >
           <button

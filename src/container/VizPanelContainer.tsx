@@ -7,24 +7,27 @@ import ChellContext from '../context/ChellContext';
 import { fetchAppropriateData } from '../helper/DataHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
 
-const defaultProps = {
+export const defaultVizPanelProps = {
   initialVisualizations: [] as VIZ_TYPE[],
   /** Number of panels to be controlled by this container. Currently limited to 4. */
   numPanels: 1 as 1 | 2 | 3 | 4,
 };
 
-const initialState = {
+export const initialVizPanelState = {
   currentDataDir: '',
   data: {} as Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>,
 };
 
-type Props = { dataDirs: string[]; supportedVisualizations: VIZ_TYPE[] } & typeof defaultProps;
-type State = Readonly<typeof initialState>;
+export type VizPanelContainerProps = {
+  dataDirs: string[];
+  supportedVisualizations: VIZ_TYPE[];
+} & typeof defaultVizPanelProps;
+export type VizPanelContainerState = Readonly<typeof initialVizPanelState>;
 
-export class VizPanelContainerClass extends React.Component<Props, State> {
-  public readonly state: State = initialState;
+export class VizPanelContainerClass extends React.Component<VizPanelContainerProps, VizPanelContainerState> {
+  public readonly state: VizPanelContainerState = initialVizPanelState;
 
-  constructor(props: Props) {
+  constructor(props: VizPanelContainerProps) {
     super(props);
     this.state = {
       ...this.state,
@@ -44,7 +47,7 @@ export class VizPanelContainerClass extends React.Component<Props, State> {
     });
   }
 
-  public async componentDidUpdate(prevProps: Props, prevState: State) {
+  public async componentDidUpdate(prevProps: VizPanelContainerProps, prevState: VizPanelContainerState) {
     if (prevState.currentDataDir !== this.state.currentDataDir) {
       const results: Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }> = {};
       for (const viz of this.props.supportedVisualizations) {
@@ -105,7 +108,7 @@ export class VizPanelContainerClass extends React.Component<Props, State> {
   };
 }
 
-const VizPanelContainer = withDefaultProps(defaultProps, VizPanelContainerClass);
+const VizPanelContainer = withDefaultProps(defaultVizPanelProps, VizPanelContainerClass);
 
 export default VizPanelContainer;
 export { VizPanelContainer };

@@ -53,11 +53,11 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
   }
 
   public componentDidUpdate(prevProps: ContactMapProps, prevState: ContactMapState) {
-    const { data, removeAllLockedResiduePairs } = this.props;
+    const { data, clearAllResidues } = this.props;
 
     const isNewData = data !== prevProps.data;
     if (isNewData) {
-      removeAllLockedResiduePairs();
+      clearAllResidues();
     }
 
     const isFreshDataView =
