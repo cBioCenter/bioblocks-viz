@@ -309,6 +309,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
   removeCandidateResidues={[Function]}
   removeHoveredResidues={[Function]}
   removeLockedResiduePair={[Function]}
+  toggleLockedResiduePair={[Function]}
   width={400}
 >
   <div

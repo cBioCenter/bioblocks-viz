@@ -79,11 +79,11 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
       observedColor,
       padding,
       width,
-      addLockedResiduePair,
       addHoveredResidues,
       candidateResidues,
       hoveredResidues,
       lockedResiduePairs,
+      toggleLockedResiduePair,
     } = this.props;
 
     const { chainLength, correctPredictedContacts, predictedContacts, nodeSize, observedContacts } = this.state;
@@ -140,7 +140,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
           data={inputData}
           hoveredResidues={hoveredResidues}
           nodeSize={nodeSize}
-          onClickCallback={this.onMouseClick(addLockedResiduePair)}
+          onClickCallback={this.onMouseClick(toggleLockedResiduePair)}
           onHoverCallback={this.onMouseEnter(addHoveredResidues)}
           onSelectedCallback={this.onMouseSelect()}
           range={[0, chainLength + 5]}
@@ -255,6 +255,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
   protected onMouseClick = (cb: (residues: RESIDUE_TYPE[]) => void) => (e: Plotly.PlotMouseEvent) => {
     const { points } = e;
+    console.log('click');
     cb([points[0].x, points[0].y]);
   };
 

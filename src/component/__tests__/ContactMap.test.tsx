@@ -137,7 +137,7 @@ describe('ContactMap', () => {
 
   test('Should invoke callback to add locked residues when a click event is fired.', async () => {
     const onClickSpy = jest.fn();
-    const wrapper = await getMountedContactMap({ addLockedResiduePair: onClickSpy, data: sampleData });
+    const wrapper = await getMountedContactMap({ toggleLockedResiduePair: onClickSpy, data: sampleData });
     dispatchPlotlyEvent(wrapper, 'plotly_click');
 
     expect(onClickSpy).toHaveBeenCalledTimes(1);
