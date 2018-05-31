@@ -32,12 +32,13 @@ export default class ChellContext extends React.Component<any, ChellContextState
         ...this.state.residueContext,
         addCandidateResidues: this.onAddCandidateResidues,
         addHoveredResidues: this.onAddHoveredResidues,
-        addLockedResiduePair: this.onResidueSelect,
+        addLockedResiduePair: this.onAddLockedResiduePair,
         clearAllResidues: this.onClearAllResidues,
-        removeAllLockedResiduePairs: this.onRemoveAllResidues,
+        removeAllLockedResiduePairs: this.onRemoveAllLockedResiduePairs,
         removeCandidateResidues: this.onRemoveCandidateResidue,
         removeHoveredResidues: this.onRemoveHoveredResidue,
-        removeLockedResiduePair: this.onRemoveResidues,
+        removeLockedResiduePair: this.onRemoveLockedResiduePair,
+        toggleLockedResiduePair: this.onToggleLockedResiduePair,
       },
     };
   }
@@ -96,6 +97,23 @@ export default class ChellContext extends React.Component<any, ChellContextState
     });
   };
 
+  public onAddLockedResiduePair = (residues: RESIDUE_TYPE[]) => {
+    const { lockedResiduePairs } = this.state.residueContext;
+    const sortedResidues = residues.sort();
+    const residuePairKey = sortedResidues.toString();
+    if (!lockedResiduePairs[residuePairKey]) {
+      this.setState({
+        residueContext: {
+          ...this.state.residueContext,
+          lockedResiduePairs: {
+            ...lockedResiduePairs,
+            [residuePairKey]: sortedResidues,
+          },
+        },
+      });
+    }
+  };
+
   public onClearAllResidues = () => {
     this.setState({
       residueContext: {
@@ -107,7 +125,7 @@ export default class ChellContext extends React.Component<any, ChellContextState
     });
   };
 
-  public onRemoveAllResidues = () => {
+  public onRemoveAllLockedResiduePairs = () => {
     this.setState({
       residueContext: {
         ...this.state.residueContext,
@@ -134,18 +152,19 @@ export default class ChellContext extends React.Component<any, ChellContextState
     });
   };
 
-  public onRemoveResidues = (residues: RESIDUE_TYPE[]) => {
-    const residueKey = residues.join(',');
+  public onRemoveLockedResiduePair = (residues: RESIDUE_TYPE[]) => {
+    const residuePairKey = residues.join(',');
     const { lockedResiduePairs } = this.state.residueContext;
-    if (lockedResiduePairs[residueKey]) {
-      delete lockedResiduePairs[residueKey];
+    if (lockedResiduePairs[residuePairKey]) {
+      delete lockedResiduePairs[residuePairKey];
     }
   };
 
-  public onResidueSelect = (residues: RESIDUE_TYPE[]) => {
+  public onToggleLockedResiduePair = (residues: RESIDUE_TYPE[]) => {
     const { lockedResiduePairs } = this.state.residueContext;
     const sortedResidues = residues.sort();
     const residuePairKey = sortedResidues.toString();
+    console.log('toggle');
     if (!lockedResiduePairs[residuePairKey]) {
       this.setState({
         residueContext: {
@@ -156,6 +175,8 @@ export default class ChellContext extends React.Component<any, ChellContextState
           },
         },
       });
+    } else {
+      delete lockedResiduePairs[residuePairKey];
     }
   };
 }

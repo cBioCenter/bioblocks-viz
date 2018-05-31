@@ -17,6 +17,7 @@ export interface IResidueContext {
   removeCandidateResidues: () => void;
   removeHoveredResidues: () => void;
   removeLockedResiduePair: (residues: RESIDUE_TYPE[]) => void;
+  toggleLockedResiduePair: (residues: RESIDUE_TYPE[]) => void;
 }
 
 export const initialResidueContext = {
@@ -45,6 +46,9 @@ export const initialResidueContext = {
     return;
   },
   removeLockedResiduePair: (residues: RESIDUE_TYPE[]) => {
+    return;
+  },
+  toggleLockedResiduePair: (residues: RESIDUE_TYPE[]) => {
     return;
   },
 } as IResidueContext;
