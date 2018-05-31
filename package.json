@@ -1,6 +1,6 @@
 {
   "name": "chell-viz",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "author": "Biostatistics and Computational Biology at Dana-Farber <bcb@jimmy.harvard.edu>",
   "license": "MIT",
   "engines": {
