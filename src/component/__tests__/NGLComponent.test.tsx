@@ -1,14 +1,11 @@
-import { mount } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
+import * as NGL from 'ngl';
 import * as React from 'react';
 import * as Renderer from 'react-test-renderer';
 
 import toJson from 'enzyme-to-json';
 import { initialResidueContext, IResidueContext } from '../../context/ResidueContext';
 import NGLComponent, { NGLComponentClass } from '../NGLComponent';
-
-beforeEach(() => {
-  jest.resetModules();
-});
 
 // https://medium.com/@ryandrewjohnson/unit-testing-components-using-reacts-new-context-api-4a5219f4b3fe
 // Provides a dummy context for unit testing purposes.
@@ -90,7 +87,7 @@ describe('NGLComponent', () => {
       hoveredResidues: [1],
     });
 
-    expect(instance.residueSelectionRepresentations['1']).toEqual(expectedRep);
+    expect(instance.state.residueSelectionRepresentations['1']).toEqual(expectedRep);
   });
 
   test('Should show the distance and ball+stick representation for locked residues.', () => {
@@ -106,8 +103,8 @@ describe('NGLComponent', () => {
       },
     });
 
-    expect(instance.residueSelectionRepresentations['1,2']).toEqual(expectedRep);
-    expect(instance.residueSelectionRepresentations['3,4']).toEqual(expectedRep);
+    expect(instance.state.residueSelectionRepresentations['1,2']).toEqual(expectedRep);
+    expect(instance.state.residueSelectionRepresentations['3,4']).toEqual(expectedRep);
   });
 
   test('Should show the distance and ball+stick representation for multiple hovered residues.', () => {
@@ -122,7 +119,7 @@ describe('NGLComponent', () => {
 
     wrapper.update();
 
-    expect(instance.residueSelectionRepresentations['7,8']).toEqual(expectedRep);
+    expect(instance.state.residueSelectionRepresentations['7,8']).toEqual(expectedRep);
   });
 
   test('Should follow candidate selection flow.', () => {
@@ -174,5 +171,86 @@ describe('NGLComponent', () => {
     expect(wrapper.get(0)).not.toBeNull();
     wrapper.unmount();
     expect(wrapper.get(0)).toBeNull();
+  });
+
+  describe('Events', () => {
+    const simulateHoverEvent = (wrapper: ReactWrapper<any, any>, opts: object) => {
+      const instance = wrapper.instance() as NGLComponentClass;
+      instance.state.stage!.mouseControls.run(NGL.MouseActions.HOVER_PICK, instance.state.stage, opts);
+    };
+
+    const simulateClickEvent = (wrapper: ReactWrapper<any, any>, opts: object) => {
+      const instance = wrapper.instance() as NGLComponentClass;
+      instance.state.stage!.signals.clicked.dispatch(opts);
+    };
+
+    // @ts-ignore
+    // TODO Add each to official jest types - Jest is as v23 but types are for v22 so far.
+    it.each([{ atom: { resno: 4 } }, { closestBondAtom: { resno: 4 } }])(
+      'Should handle hover events by adding the hovered residue.',
+      async (pickingResult: any) => {
+        const expectedRep = ['ball+stick'];
+        const Component = getComponentWithContext();
+        const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
+        simulateHoverEvent(wrapper, pickingResult);
+        expect(wrapper.instance().state.residueSelectionRepresentations['4']).toEqual(expectedRep);
+      },
+    );
+
+    it('Should handle hover events when there is a candidate residue.', async () => {
+      const Component = getComponentWithContext();
+      const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
+      wrapper.setProps({
+        candidateResidues: [4],
+      });
+      simulateHoverEvent(wrapper, { atom: 3 });
+    });
+
+    // @ts-ignore
+    // TODO Add each to official jest types - Jest is as v23 but types are for v22 so far.
+    it.each([{ atom: { resno: 4 } }, { closestBondAtom: { resno: 4 } }])(
+      'Should handle click events by creating a locked residue pair if there is a candidate.',
+      async (pickingResult: NGL.PickingProxy) => {
+        const addLockedSpy = jest.fn();
+        const Component = getComponentWithContext();
+        const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
+        wrapper.setProps({
+          addLockedResiduePair: addLockedSpy,
+          candidateResidues: [2],
+        });
+        simulateClickEvent(wrapper, pickingResult);
+        expect(addLockedSpy).toHaveBeenCalledWith([2, 4]);
+      },
+    );
+
+    // @ts-ignore
+    // TODO Add each to official jest types - Jest is as v23 but types are for v22 so far.
+    it.each([{ atom: { resno: 4 } }, { closestBondAtom: { resno: 4 } }])(
+      'Should handle click events by creating a candidate residue when none is present.',
+      async (pickingResult: NGL.PickingProxy) => {
+        const addCandidateSpy = jest.fn();
+        const Component = getComponentWithContext();
+        const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
+        wrapper.setProps({
+          addCandidateResidues: addCandidateSpy,
+        });
+        simulateClickEvent(wrapper, pickingResult);
+        expect(addCandidateSpy).toHaveBeenCalledWith([4]);
+      },
+    );
+
+    it('Should handle clicking off-component.', async () => {
+      const Component = getComponentWithContext();
+      const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
+      const instance = wrapper.instance() as NGLComponentClass;
+      instance.state.structureComponent!.addRepresentation('ball+stick');
+      wrapper.setState({
+        residueSelectionRepresentations: {
+          '4': ['ball+stick'],
+        },
+      });
+      simulateClickEvent(wrapper, {});
+      expect(instance.state.residueSelectionRepresentations).toEqual({});
+    });
   });
 });

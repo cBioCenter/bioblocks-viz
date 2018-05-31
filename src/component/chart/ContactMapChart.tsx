@@ -39,12 +39,12 @@ const defaultContactMapChartProps: Partial<IContactMapChartProps> = {
 };
 
 export interface IContactMapChartData extends Partial<IPlotlyData> {
-  color: string;
   name: string;
   points: IContactMapChartPoint[];
 }
 
 export interface IContactMapChartPoint {
+  dist: number;
   i: number;
   j: number;
 }

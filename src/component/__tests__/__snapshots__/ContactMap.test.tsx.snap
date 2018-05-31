@@ -15,7 +15,14 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
 >
   <div
     className="plotly-chart"
+    style={
+      Object {
+        "marginBottom": 10,
+        "marginTop": 10,
+      }
+    }
   />
+  <div />
 </div>
 `;
 
@@ -30,183 +37,206 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
 >
   <div
     className="plotly-chart"
+    style={
+      Object {
+        "marginBottom": 10,
+        "marginTop": 10,
+      }
+    }
   />
-  <div>
+  <div />
+  <div
+    className="accordion ui fluid styled"
+  >
     <div
-      className="node-size-slider"
-      style={
-        Object {
-          "padding": 20,
-        }
-      }
+      className="title contact-map-configuration-toggle"
+      onClick={[Function]}
     >
-      <p>
-        Node Size: 3
-      </p>
-      <div
-        className="rc-slider"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onMouseDown={[Function]}
-        onTouchStart={[Function]}
-        style={
-          Object {
-            "width": 360,
-          }
-        }
-      >
-        <div
-          className="rc-slider-rail"
-          style={Object {}}
-        />
-        <div
-          className="rc-slider-track"
-          style={
-            Object {
-              "left": "0%",
-              "width": "50%",
-            }
-          }
-        />
-        <div
-          className="rc-slider-step"
-        />
-        <div
-          aria-disabled={false}
-          aria-valuemax={5}
-          aria-valuemin={1}
-          aria-valuenow={3}
-          className="rc-slider-handle"
-          role="slider"
-          style={
-            Object {
-              "left": "50%",
-            }
-          }
-          tabIndex={0}
-        />
-        <div
-          className="rc-slider-mark"
-        />
-      </div>
+      <i
+        aria-hidden="true"
+        className="dropdown icon"
+      />
+      Configuration
     </div>
     <div
-      className="linear-dist-filter"
-      style={
-        Object {
-          "padding": 20,
-        }
-      }
+      className="content"
     >
-      <p>
-        Linear Distance Filter (|i - j|): 5
-      </p>
       <div
-        className="rc-slider"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onMouseDown={[Function]}
-        onTouchStart={[Function]}
+        className="node-size-slider"
         style={
           Object {
-            "width": 360,
+            "padding": 20,
           }
         }
       >
+        <p>
+          Node Size: 3
+        </p>
         <div
-          className="rc-slider-rail"
-          style={Object {}}
-        />
-        <div
-          className="rc-slider-track"
+          className="rc-slider"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          onTouchStart={[Function]}
           style={
             Object {
-              "left": "0%",
-              "width": "44.44444444444444%",
+              "width": 360,
             }
           }
-        />
-        <div
-          className="rc-slider-step"
-        />
-        <div
-          aria-disabled={false}
-          aria-valuemax={10}
-          aria-valuemin={1}
-          aria-valuenow={5}
-          className="rc-slider-handle"
-          role="slider"
-          style={
-            Object {
-              "left": "44.44444444444444%",
+        >
+          <div
+            className="rc-slider-rail"
+            style={Object {}}
+          />
+          <div
+            className="rc-slider-track"
+            style={
+              Object {
+                "left": "0%",
+                "width": "50%",
+              }
             }
-          }
-          tabIndex={0}
-        />
-        <div
-          className="rc-slider-mark"
-        />
+          />
+          <div
+            className="rc-slider-step"
+          />
+          <div
+            aria-disabled={false}
+            aria-valuemax={5}
+            aria-valuemin={1}
+            aria-valuenow={3}
+            className="rc-slider-handle"
+            role="slider"
+            style={
+              Object {
+                "left": "50%",
+              }
+            }
+            tabIndex={0}
+          />
+          <div
+            className="rc-slider-mark"
+          />
+        </div>
       </div>
-    </div>
-    <div
-      className="predicted-contact-slider"
-      style={
-        Object {
-          "padding": 20,
-        }
-      }
-    >
-      <p>
-        Top N Predictions to Show: 29
-      </p>
       <div
-        className="rc-slider"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onMouseDown={[Function]}
-        onTouchStart={[Function]}
+        className="linear-dist-filter"
         style={
           Object {
-            "width": 360,
+            "padding": 20,
           }
         }
       >
+        <p>
+          Linear Distance Filter (|i - j|): 5
+        </p>
         <div
-          className="rc-slider-rail"
-          style={Object {}}
-        />
-        <div
-          className="rc-slider-track"
+          className="rc-slider"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          onTouchStart={[Function]}
           style={
             Object {
-              "left": "0%",
-              "width": "48.275862068965516%",
+              "width": 360,
             }
           }
-        />
+        >
+          <div
+            className="rc-slider-rail"
+            style={Object {}}
+          />
+          <div
+            className="rc-slider-track"
+            style={
+              Object {
+                "left": "0%",
+                "width": "44.44444444444444%",
+              }
+            }
+          />
+          <div
+            className="rc-slider-step"
+          />
+          <div
+            aria-disabled={false}
+            aria-valuemax={10}
+            aria-valuemin={1}
+            aria-valuenow={5}
+            className="rc-slider-handle"
+            role="slider"
+            style={
+              Object {
+                "left": "44.44444444444444%",
+              }
+            }
+            tabIndex={0}
+          />
+          <div
+            className="rc-slider-mark"
+          />
+        </div>
+      </div>
+      <div
+        className="predicted-contact-slider"
+        style={
+          Object {
+            "padding": 20,
+          }
+        }
+      >
+        <p>
+          Top N Predictions to Show: 29
+        </p>
         <div
-          className="rc-slider-step"
-        />
-        <div
-          aria-disabled={false}
-          aria-valuemax={59}
-          aria-valuemin={1}
-          aria-valuenow={29}
-          className="rc-slider-handle"
-          role="slider"
+          className="rc-slider"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          onTouchStart={[Function]}
           style={
             Object {
-              "left": "48.275862068965516%",
+              "width": 360,
             }
           }
-          tabIndex={0}
-        />
-        <div
-          className="rc-slider-mark"
-        />
+        >
+          <div
+            className="rc-slider-rail"
+            style={Object {}}
+          />
+          <div
+            className="rc-slider-track"
+            style={
+              Object {
+                "left": "0%",
+                "width": "48.275862068965516%",
+              }
+            }
+          />
+          <div
+            className="rc-slider-step"
+          />
+          <div
+            aria-disabled={false}
+            aria-valuemax={59}
+            aria-valuemin={1}
+            aria-valuenow={29}
+            className="rc-slider-handle"
+            role="slider"
+            style={
+              Object {
+                "left": "48.275862068965516%",
+              }
+            }
+            tabIndex={0}
+          />
+          <div
+            className="rc-slider-mark"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -215,6 +245,11 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
 
 exports[`ContactMap Snapshots Should match snapshot when locked residues are added. 1`] = `
 <ContactMapClass
+  addCandidateResidues={[Function]}
+  addHoveredResidues={[Function]}
+  addLockedResiduePair={[Function]}
+  candidateResidues={Array []}
+  clearAllResidues={[Function]}
   correctColor="#ff0000"
   data={
     Object {
@@ -254,7 +289,8 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
   }
   enableSliders={false}
   height={400}
-  highlightColor="#ffff00"
+  highlightColor="#ff8800"
+  hoveredResidues={Array []}
   incorrectColor="#000000"
   lockedResiduePairs={
     Object {
@@ -269,6 +305,10 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
   }
   observedColor="#0000ff"
   padding={0}
+  removeAllLockedResiduePairs={[Function]}
+  removeCandidateResidues={[Function]}
+  removeHoveredResidues={[Function]}
+  removeLockedResiduePair={[Function]}
   width={400}
 >
   <div
@@ -284,7 +324,19 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       data={
         Array [
           Object {
-            "color": "#0000ff",
+            "hoverinfo": "x+y",
+            "marker": Object {
+              "colorscale": Array [
+                Array [
+                  0,
+                  "#0000ff",
+                ],
+                Array [
+                  1,
+                  "rgb(100,177,200)",
+                ],
+              ],
+            },
             "name": "Observed",
             "points": Array [
               Object {
@@ -315,9 +367,11 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             ],
           },
           Object {
-            "color": "#000000",
             "hoverinfo": "x+y",
-            "name": "Incorrect Prediction",
+            "marker": Object {
+              "color": "#000000",
+            },
+            "name": "Predicted Contact (57)",
             "points": Array [
               Object {
                 "dist": 2.4,
@@ -337,8 +391,10 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             ],
           },
           Object {
-            "color": "#ff0000",
             "hoverinfo": "x+y",
+            "marker": Object {
+              "color": "#ff0000",
+            },
             "name": "Correct Prediction",
             "points": Array [
               Object {
@@ -354,11 +410,15 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             ],
           },
           Object {
-            "color": "#ffff00",
             "marker": Object {
-              "opacity": 0.5,
+              "color": "#ff8800",
+              "line": Object {
+                "color": "#ff8800",
+                "width": 3,
+              },
+              "symbol": "circle-open",
             },
-            "name": "Selected Residue Pairs",
+            "name": "Selected Res. Pairs",
             "points": Array [
               Object {
                 "i": 37,
@@ -389,7 +449,28 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             Object {
               "hoverinfo": "none",
               "marker": Object {
-                "color": "#0000ff",
+                "color": Array [
+                  2.4,
+                  1.3,
+                  1.3,
+                  1.3,
+                  1.3,
+                  2.4,
+                  1.3,
+                  1.3,
+                  1.3,
+                  1.3,
+                ],
+                "colorscale": Array [
+                  Array [
+                    0,
+                    "#0000ff",
+                  ],
+                  Array [
+                    1,
+                    "rgb(100,177,200)",
+                  ],
+                ],
                 "size": 6,
               },
               "mode": "markers",
@@ -419,15 +500,27 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 44,
                 56,
               ],
+              "z": Array [
+                2.4,
+                1.3,
+                1.3,
+                1.3,
+                1.3,
+                2.4,
+                1.3,
+                1.3,
+                1.3,
+                1.3,
+              ],
             },
             Object {
-              "hoverinfo": "x+y",
+              "hoverinfo": "none",
               "marker": Object {
                 "color": "#000000",
                 "size": 6,
               },
               "mode": "markers",
-              "name": "Incorrect Prediction",
+              "name": "Predicted Contact (57)",
               "type": "scattergl",
               "x": Array [
                 56,
@@ -445,9 +538,17 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 42,
                 41,
               ],
+              "z": Array [
+                2.4,
+                20.4,
+                1.3,
+                2.4,
+                20.4,
+                1.3,
+              ],
             },
             Object {
-              "hoverinfo": "x+y",
+              "hoverinfo": "none",
               "marker": Object {
                 "color": "#ff0000",
                 "size": 6,
@@ -467,14 +568,26 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 56,
                 41,
               ],
+              "z": Array [
+                2.4,
+                1.3,
+                2.4,
+                1.3,
+              ],
             },
             Object {
               "hoverinfo": "none",
               "marker": Object {
-                "opacity": 0.5,
+                "color": "#ff8800",
+                "line": Object {
+                  "color": "#ff8800",
+                  "width": 3,
+                },
+                "size": 6,
+                "symbol": "circle-open",
               },
               "mode": "markers",
-              "name": "Selected Residue Pairs",
+              "name": "Selected Res. Pairs",
               "type": "scattergl",
               "x": Array [
                 37,
@@ -483,6 +596,10 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "y": Array [
                 46,
                 37,
+              ],
+              "z": Array [
+                undefined,
+                undefined,
               ],
             },
           ]
@@ -516,9 +633,16 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       >
         <div
           className="plotly-chart"
+          style={
+            Object {
+              "marginBottom": 10,
+              "marginTop": 10,
+            }
+          }
         />
       </PlotlyChartClass>
     </ContactMapChartClass>
+    <div />
   </div>
 </ContactMapClass>
 `;

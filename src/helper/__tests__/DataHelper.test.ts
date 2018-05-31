@@ -72,8 +72,14 @@ describe('DataHelper', () => {
 
   describe('NGL', () => {
     test('Should throw on incorrect location.', async () => {
+      const reason = 'Empty path.';
       expect.assertions(1);
-      await expect(fetchAppropriateData(VIZ_TYPE.NGL, '')).rejects.toThrowError();
+      await expect(fetchAppropriateData(VIZ_TYPE.NGL, '')).rejects.toBe(reason);
+    });
+
+    test('Should resolve on nonempty location.', async () => {
+      expect.assertions(1);
+      await expect(fetchAppropriateData(VIZ_TYPE.NGL, 'somewhere-over-the-rainbow')).resolves.toBeTruthy();
     });
   });
 

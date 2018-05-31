@@ -33,6 +33,7 @@ export default class ChellContext extends React.Component<any, ChellContextState
         addCandidateResidues: this.onAddCandidateResidues,
         addHoveredResidues: this.onAddHoveredResidues,
         addLockedResiduePair: this.onResidueSelect,
+        clearAllResidues: this.onClearAllResidues,
         removeAllLockedResiduePairs: this.onRemoveAllResidues,
         removeCandidateResidues: this.onRemoveCandidateResidue,
         removeHoveredResidues: this.onRemoveHoveredResidue,
@@ -91,6 +92,17 @@ export default class ChellContext extends React.Component<any, ChellContextState
       residueContext: {
         ...this.state.residueContext,
         hoveredResidues: hoveredResidues.sort(),
+      },
+    });
+  };
+
+  public onClearAllResidues = () => {
+    this.setState({
+      residueContext: {
+        ...this.state.residueContext,
+        candidateResidues: [],
+        hoveredResidues: [],
+        lockedResiduePairs: {} as IResidueSelection,
       },
     });
   };

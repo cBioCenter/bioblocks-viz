@@ -18,6 +18,7 @@ exports[`ChellContext Should match the default snapshot. 1`] = `
         "addHoveredResidues": [Function],
         "addLockedResiduePair": [Function],
         "candidateResidues": Array [],
+        "clearAllResidues": [Function],
         "hoveredResidues": Array [],
         "lockedResiduePairs": Object {},
         "removeAllLockedResiduePairs": [Function],

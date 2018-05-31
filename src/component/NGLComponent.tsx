@@ -33,6 +33,7 @@ export const defaultNGLProps = {
 
 export const initialNGLState = {
   residueOffset: 0,
+  residueSelectionRepresentations: {} as IRepresentationDict,
   stage: undefined as NGL.Stage | undefined,
   structureComponent: undefined as NGL.StructureComponent | undefined,
 };
@@ -44,7 +45,6 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
   public readonly state: NGLComponentState = initialNGLState;
 
   public canvas: HTMLElement | null = null;
-  public residueSelectionRepresentations: IRepresentationDict = {};
 
   constructor(props: any) {
     super(props);
@@ -70,6 +70,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
     if (stage) {
       stage.dispose();
       this.setState({
+        residueSelectionRepresentations: {},
         stage: undefined,
       });
     }
@@ -83,18 +84,17 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
     if (data && stage && isNewData) {
       stage.removeAllComponents();
       this.addStructureToStage(data, stage);
-    }
-
-    if (structureComponent && prevProps.lockedResiduePairs !== lockedResiduePairs) {
-      this.removeHighlights(structureComponent, prevProps.lockedResiduePairs);
-      Object.keys(lockedResiduePairs).forEach(key => {
-        this.highlightElement(structureComponent, lockedResiduePairs[key]);
-      });
-    }
-
-    if (structureComponent && this.props.hoveredResidues !== prevProps.hoveredResidues) {
-      this.removeNonLockedRepresentations(structureComponent);
-      this.highlightElement(structureComponent, this.props.hoveredResidues);
+    } else {
+      if (structureComponent && prevProps.lockedResiduePairs !== lockedResiduePairs) {
+        this.removeHighlights(structureComponent, prevProps.lockedResiduePairs);
+        Object.keys(lockedResiduePairs).forEach(key => {
+          this.highlightElement(structureComponent, lockedResiduePairs[key]);
+        });
+      }
+      if (structureComponent && this.props.hoveredResidues !== prevProps.hoveredResidues) {
+        this.removeNonLockedRepresentations(structureComponent);
+        this.highlightElement(structureComponent, this.props.hoveredResidues);
+      }
     }
   }
 
@@ -136,35 +136,24 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
       });
     });
     */
-    if (structureComponent) {
-      this.setState({
-        residueOffset: data.residueStore.resno[0],
-        structureComponent,
-      });
+    this.setState({
+      residueOffset: data.residueStore.resno[0],
+      structureComponent,
+    });
 
-      stage.defaultFileRepresentation(structureComponent);
-      structureComponent.reprList.forEach(rep => {
-        rep.setParameters({ opacity: 1.0 });
-      });
+    stage.defaultFileRepresentation(structureComponent);
 
-      structureComponent.stage.mouseControls.add(
-        NGL.MouseActions.HOVER_PICK,
-        (aStage: Stage, pickingProxy: PickingProxy) => this.onHover(aStage, pickingProxy, data, structureComponent),
-      );
+    structureComponent.stage.mouseControls.add(
+      NGL.MouseActions.HOVER_PICK,
+      (aStage: Stage, pickingProxy: PickingProxy) => this.onHover(aStage, pickingProxy),
+    );
 
-      stage.signals.clicked.add(this.onClick);
-    } else {
-      console.error('StructureComponent was not created!');
-    }
+    stage.signals.clicked.add(this.onClick);
   }
 
-  protected onHover(
-    aStage: Stage,
-    pickingProxy: PickingProxy,
-    data: NGL.Structure,
-    structureComponent: StructureComponent,
-  ) {
-    if (pickingProxy && (pickingProxy.atom || pickingProxy.bond)) {
+  protected onHover(aStage: Stage, pickingProxy: PickingProxy) {
+    const { structureComponent } = this.state;
+    if (structureComponent && pickingProxy && (pickingProxy.atom || pickingProxy.closestBondAtom)) {
       const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
       const resno = atom.resno + this.state.residueOffset;
 
@@ -190,7 +179,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
     } = this.props;
     const { structureComponent } = this.state;
 
-    if (pickingProxy && (pickingProxy.atom || pickingProxy.bond)) {
+    if (pickingProxy && (pickingProxy.atom || pickingProxy.closestBondAtom)) {
       const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
       const resno = atom.resno + this.state.residueOffset;
 
@@ -209,9 +198,12 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
   };
 
   protected removeHighlights(structureComponent: StructureComponent, residues: IResidueSelection = {}) {
-    const repDict = this.residueSelectionRepresentations;
+    const repDict = this.state.residueSelectionRepresentations;
     Object.keys(residues).forEach(prevKey => {
       repDict[prevKey].map(rep => structureComponent.removeRepresentation(rep));
+    });
+    this.setState({
+      residueSelectionRepresentations: {},
     });
   }
 
@@ -225,7 +217,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
     const { residueOffset } = this.state;
     const residueKey = residues.toString();
     const residueWithOffset = residues.map(res => res - residueOffset);
-    const repDict = this.residueSelectionRepresentations;
+    const repDict = this.state.residueSelectionRepresentations;
 
     if (repDict[residueKey]) {
       repDict[residueKey].map(rep => structureComponent.removeRepresentation(rep));
@@ -234,6 +226,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
     }
 
     const selection = residueWithOffset.join('.CA, ') + '.CA';
+
     if (residueWithOffset.length >= 2) {
       repDict[residueKey].push(
         structureComponent.addRepresentation('distance', {
@@ -251,14 +244,20 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
         }),
       );
     }
+
+    this.setState({
+      residueSelectionRepresentations: repDict,
+    });
   }
 
   protected removeNonLockedRepresentations(structureComponent: NGL.StructureComponent) {
-    const repDict = this.residueSelectionRepresentations;
+    const repDict = this.state.residueSelectionRepresentations;
     for (const key of Object.keys(repDict)) {
       if (!this.props.lockedResiduePairs[key]) {
-        repDict[key].forEach(rep => structureComponent.removeRepresentation(rep));
-        delete this.residueSelectionRepresentations[key];
+        repDict[key]
+          .filter(rep => structureComponent.hasRepresentation(rep))
+          .forEach(rep => structureComponent.removeRepresentation(rep));
+        delete this.state.residueSelectionRepresentations[key];
       }
     }
   }

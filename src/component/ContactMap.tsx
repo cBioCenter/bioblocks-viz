@@ -1,5 +1,6 @@
 import * as Plotly from 'plotly.js';
 import * as React from 'react';
+import { Accordion, Icon } from 'semantic-ui-react';
 
 import ResidueContext, { initialResidueContext, IResidueSelection } from '../context/ResidueContext';
 import { IContactMapData, ICouplingScore, RESIDUE_TYPE } from '../data/chell-data';
@@ -17,7 +18,7 @@ export const defaultContactMapProps = {
   } as IContactMapData,
   enableSliders: false,
   height: 400,
-  highlightColor: '#ffff00',
+  highlightColor: '#ff8800',
   incorrectColor: '#000000',
   ...initialResidueContext,
   observedColor: '#0000ff',
@@ -34,6 +35,7 @@ export const initialContactMapState = {
   numPredictionsToShow: 29,
   observedContacts: [] as ICouplingScore[],
   predictedContacts: [] as ICouplingScore[],
+  showConfiguration: false,
 };
 
 export type ContactMapProps = {} & typeof defaultContactMapProps;
@@ -51,10 +53,15 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
   }
 
   public componentDidUpdate(prevProps: ContactMapProps, prevState: ContactMapState) {
-    const { data } = this.props;
+    const { data, clearAllResidues } = this.props;
+
+    const isNewData = data !== prevProps.data;
+    if (isNewData) {
+      clearAllResidues();
+    }
 
     const isFreshDataView =
-      data !== prevProps.data ||
+      isNewData ||
       this.state.linearDistFilter !== prevState.linearDistFilter ||
       this.state.numPredictionsToShow !== prevState.numPredictionsToShow ||
       this.state.chainLength !== prevState.chainLength;
@@ -85,28 +92,39 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
     const inputData = [
       {
-        color: observedColor,
+        hoverinfo: 'x+y',
+        marker: {
+          colorscale: [[0, observedColor], [1, 'rgb(100,177,200)']],
+        },
         name: 'Observed',
         points: observedContacts,
       },
       {
-        color: incorrectColor,
-        hoverinfo: 'x+y' as any,
-        name: 'Incorrect Prediction',
+        hoverinfo: 'x+y',
+        marker: {
+          color: incorrectColor,
+        },
+        name: `Predicted Contact (${chainLength})`,
         points: predictedContacts,
       },
       {
-        color: correctColor,
-        hoverinfo: 'x+y' as any,
+        hoverinfo: 'x+y',
+        marker: {
+          color: correctColor,
+        },
         name: 'Correct Prediction',
         points: correctPredictedContacts,
       },
       {
-        color: highlightColor,
         marker: {
-          opacity: 0.5,
+          color: highlightColor,
+          line: {
+            color: highlightColor,
+            width: 3,
+          },
+          symbol: 'circle-open',
         },
-        name: 'Selected Residue Pairs',
+        name: 'Selected Res. Pairs',
         points: lockedResiduePairs
           ? Object.keys(lockedResiduePairs as IResidueSelection)
               .filter(key => lockedResiduePairs[key].length === 2)
@@ -127,51 +145,64 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
           onSelectedCallback={this.onMouseSelect()}
           range={[0, chainLength + 5]}
         />
+        {<div />}
         {this.props.enableSliders && this.renderSliders(sliderStyle, chainLength)}
       </div>
     );
   }
 
   protected renderSliders(sliderStyle: React.CSSProperties[] | React.CSSProperties, chainLength: number) {
+    const { showConfiguration } = this.state;
     return (
-      <div>
-        <ChellSlider
-          className={'node-size-slider'}
-          defaultValue={initialContactMapState.nodeSize}
-          label={'Node Size'}
-          max={5}
-          min={1}
-          onChange={this.onNodeSizeChange()}
-          style={sliderStyle}
-        />
-        <ChellSlider
-          className={'linear-dist-filter'}
-          defaultValue={initialContactMapState.linearDistFilter}
-          label={'Linear Distance Filter (|i - j|)'}
-          max={10}
-          min={1}
-          onChange={this.onLinearDistFilterChange()}
-          style={sliderStyle}
-        />
-        <ChellSlider
-          className={'predicted-contact-slider'}
-          defaultValue={initialContactMapState.numPredictionsToShow}
-          label={'Top N Predictions to Show'}
-          max={59}
-          min={1}
-          onChange={this.onNumPredictionsToShowChange()}
-          sliderProps={
-            {
-              /*marks: {
+      <Accordion fluid={true} styled={true}>
+        <Accordion.Title
+          active={showConfiguration}
+          className={'contact-map-configuration-toggle'}
+          index={1}
+          onClick={this.onShowConfigurationToggle()}
+        >
+          <Icon name="dropdown" />
+          Configuration
+        </Accordion.Title>
+        <Accordion.Content active={showConfiguration}>
+          <ChellSlider
+            className={'node-size-slider'}
+            defaultValue={initialContactMapState.nodeSize}
+            label={'Node Size'}
+            max={5}
+            min={1}
+            onChange={this.onNodeSizeChange()}
+            style={sliderStyle}
+          />
+          <ChellSlider
+            className={'linear-dist-filter'}
+            defaultValue={initialContactMapState.linearDistFilter}
+            label={'Linear Distance Filter (|i - j|)'}
+            max={10}
+            min={1}
+            onChange={this.onLinearDistFilterChange()}
+            style={sliderStyle}
+          />
+          <ChellSlider
+            className={'predicted-contact-slider'}
+            defaultValue={initialContactMapState.numPredictionsToShow}
+            label={'Top N Predictions to Show'}
+            max={59}
+            min={1}
+            onChange={this.onNumPredictionsToShowChange()}
+            sliderProps={
+              {
+                /*marks: {
               1: 'One',
               [Math.floor(chainLength / 2)]: `Half (${Math.floor(chainLength / 2)})`,
               [chainLength]: `All (${chainLength})`,
             },*/
+              }
             }
-          }
-          style={sliderStyle}
-        />
-      </div>
+            style={sliderStyle}
+          />
+        </Accordion.Content>
+      </Accordion>
     );
   }
 
@@ -215,6 +246,8 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     });
   };
 
+  protected onShowConfigurationToggle = () => () => this.setState({ showConfiguration: !this.state.showConfiguration });
+
   protected onMouseEnter = (cb: (residue: RESIDUE_TYPE[]) => void) => (e: Plotly.PlotMouseEvent) => {
     const { points } = e;
     cb([points[0].x, points[0].y]);
@@ -232,9 +265,8 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
    * @param [actualDistFilter=5] For each score, if dist <= linearDistFilter, it is considered observed.
    * @returns Contacts that should be considered observed int he current data set.
    */
-  protected getObservedContacts(contacts: ICouplingScore[], actualDistFilter = 5): ICouplingScore[] {
-    return contacts.filter(residuePair => residuePair.dist <= actualDistFilter);
-  }
+  protected getObservedContacts = (contacts: ICouplingScore[], actualDistFilter = 5) =>
+    contacts.filter(residuePair => residuePair.dist <= actualDistFilter);
 
   /**
    * Determine which contacts in a set of coupling scores are predicted as well as which are correct.

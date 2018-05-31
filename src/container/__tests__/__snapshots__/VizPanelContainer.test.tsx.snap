@@ -14,6 +14,7 @@ exports[`VizPanelContainer Should match existing snapshot when given a single vi
     <Dropdown
       additionLabel="Add "
       additionPosition="top"
+      className="viz-panel-container-dropdown"
       closeOnBlur={true}
       deburr={false}
       icon="dropdown"
@@ -41,6 +42,90 @@ exports[`VizPanelContainer Should match existing snapshot when given a single vi
         initialViz="T-SNE"
         padding={15}
         supportedVisualizations={Array []}
+        width={450}
+      />
+    </GridColumn>
+  </ChellContext>
+</Grid>
+`;
+
+exports[`VizPanelContainer Should match existing snapshot when given multiple visualizations to render. 1`] = `
+<Grid
+  centered={true}
+  className="VizPanelContainer"
+  columns={2}
+  relaxed={true}
+>
+  <GridRow
+    centered={true}
+    columns={1}
+  >
+    <Dropdown
+      additionLabel="Add "
+      additionPosition="top"
+      className="viz-panel-container-dropdown"
+      closeOnBlur={true}
+      deburr={false}
+      icon="dropdown"
+      minCharacters={1}
+      noResultsMessage="No results found."
+      onChange={[Function]}
+      openOnFocus={true}
+      options={
+        Array [
+          Object {
+            "key": "first",
+            "text": "first",
+            "value": "first",
+          },
+          Object {
+            "key": "second",
+            "text": "second",
+            "value": "second",
+          },
+        ]
+      }
+      placeholder="Select Data Directory"
+      renderLabel={[Function]}
+      search={true}
+      searchInput="text"
+      selectOnBlur={true}
+      selectOnNavigation={true}
+      wrapSelection={true}
+    />
+  </GridRow>
+  <ChellContext>
+    <GridColumn
+      key="0"
+    >
+      <VizSelectorPanelClass
+        data={Object {}}
+        height={450}
+        initialViz="Contact Map"
+        padding={15}
+        supportedVisualizations={
+          Array [
+            "Contact Map",
+            "NGL",
+          ]
+        }
+        width={450}
+      />
+    </GridColumn>
+    <GridColumn
+      key="1"
+    >
+      <VizSelectorPanelClass
+        data={Object {}}
+        height={450}
+        initialViz="NGL"
+        padding={15}
+        supportedVisualizations={
+          Array [
+            "Contact Map",
+            "NGL",
+          ]
+        }
         width={450}
       />
     </GridColumn>
