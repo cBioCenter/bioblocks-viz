@@ -7,4 +7,4 @@ export { default as TComponent } from './src/component/TComponent';
 export { default as VizSelectorPanel } from './src/component/VizSelectorPanel';
 export { default as VizPanelContainer } from './src/container/VizPanelContainer';
 
-export { fetchAppropriateData, fetchColorData, getCouplingScoresData } from './src/helper/DataHelper';
+export { fetchAppropriateData, getCouplingScoresData } from './src/helper/DataHelper';

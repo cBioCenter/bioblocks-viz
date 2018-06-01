@@ -164,7 +164,6 @@ export default class ChellContext extends React.Component<any, ChellContextState
     const { lockedResiduePairs } = this.state.residueContext;
     const sortedResidues = residues.sort();
     const residuePairKey = sortedResidues.toString();
-    console.log('toggle');
     if (!lockedResiduePairs[residuePairKey]) {
       this.setState({
         residueContext: {

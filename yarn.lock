@@ -6414,7 +6414,7 @@ jest-enzyme@^6.0.0:
     enzyme-to-json "^3.3.0"
     jest-environment-enzyme "^6.0.1"
 
-jest-fetch-mock@^1.5.0:
+jest-fetch-mock@^1.6.2:
   version "1.6.2"
   resolved "https://registry.yarnpkg.com/jest-fetch-mock/-/jest-fetch-mock-1.6.2.tgz#dcdbf137459f0a94fb0a76ec832fed84d3153610"
   dependencies:

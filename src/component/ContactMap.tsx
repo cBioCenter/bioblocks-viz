@@ -259,7 +259,6 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
   protected onMouseClick = (cb: (residues: RESIDUE_TYPE[]) => void) => (e: Plotly.PlotMouseEvent) => {
     const { points } = e;
-    console.log('click');
     cb([points[0].x, points[0].y]);
   };
 
