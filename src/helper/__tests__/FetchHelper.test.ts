@@ -14,6 +14,12 @@ describe('FetchHelper', () => {
       const result = await fetchCSVFile('foo.csv');
       expect(result).toBe(expected);
     });
+
+    it('Should throw errors.', async () => {
+      const expected = 'Chell-viz error fetching CSV File!';
+      fetchMock.mockResponseOnce('error', { status: 400 });
+      await expect(fetchCSVFile('foo.csv')).rejects.toThrowError(expected);
+    });
   });
 
   describe('JSON Files', () => {
@@ -22,6 +28,12 @@ describe('FetchHelper', () => {
       (fetch as any).mockResponseOnce(JSON.stringify(expected));
       const result = await fetchJSONFile('best-game.json');
       expect(result).toEqual(expected);
+    });
+
+    it('Should throw errors.', async () => {
+      const expected = 'Chell-viz error fetching JSON File!';
+      fetchMock.mockResponseOnce('error', { status: 400 });
+      await expect(fetchJSONFile('foo.csv')).rejects.toThrowError(expected);
     });
   });
 });
