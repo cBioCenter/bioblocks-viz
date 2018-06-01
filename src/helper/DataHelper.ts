@@ -1,4 +1,5 @@
-import * as d3 from 'd3';
+import { fetchCSVFile, fetchJSONFile } from './FetchHelper';
+
 import * as NGL from 'ngl';
 import { ISpringCategoricalColorData, ISpringCategoricalColorDataInput, ISpringGraphData } from 'spring';
 import { CONTACT_MAP_DATA_TYPE, IContactMapData, ICouplingScore, VIZ_TYPE } from '../data/chell-data';
@@ -52,10 +53,15 @@ const deriveSpringData = async (dataDir: string) => {
 };
 
 const fetchCategoricalColorData = async (file: string): Promise<ISpringCategoricalColorData> => {
-  const input = (await d3.json(file)) as ISpringCategoricalColorDataInput;
+  const input = (await fetchJSONFile(file)) as ISpringCategoricalColorDataInput;
+  const firstKey = Object.keys(input)[0];
+  const firstColorData = input[firstKey];
+  if (!firstColorData.label_colors || !firstColorData.label_list) {
+    throw new Error("Unable to parse color data - does it have keys named 'label_colors' and 'label_list'");
+  }
   const output: ISpringCategoricalColorData = {
     label_colors: {},
-    label_list: input[Object.keys(input)[0]].label_list,
+    label_list: firstColorData.label_list,
   };
 
   const { label_colors } = input[Object.keys(input)[0]];
@@ -74,8 +80,10 @@ const fetchCategoricalColorData = async (file: string): Promise<ISpringCategoric
   return output;
 };
 
+/*
+TODO Currently not being used by Spring. Remove? Use in future Spring work?
 export const fetchColorData = async (file: string) => {
-  const colorText: string = await d3.text(file);
+  const colorText: string = await fetchCSVFile(file);
   const dict: { [k: string]: any } = {};
   colorText.split('\n').forEach((entry, index, array) => {
     if (entry.length > 0) {
@@ -92,25 +100,29 @@ export const fetchColorData = async (file: string) => {
   });
   return dict;
 };
+*/
 
 const fetchSpringCoordinateData = async (file: string) => {
-  const coordinateText: string = await d3.text(file);
+  const coordinateText: string = await fetchCSVFile(file);
 
   const coordinates: number[][] = [];
-  coordinateText!.split('\n').forEach((entry, index, array) => {
+  const rows = coordinateText!.split('\n');
+  rows.forEach((entry, index, array) => {
     const items = entry.split(',');
     if (items.length >= 3) {
       const xx = parseFloat(items[1].trim());
       const yy = parseFloat(items[2].trim());
       const nn = parseInt(items[0].trim(), 10);
       coordinates[nn] = [xx, yy];
+    } else {
+      throw new Error(`Unable to parse coordinate data - Row ${index} does not have at least 3 columns!`);
     }
   });
   return coordinates;
 };
 
 const fetchTSneCoordinateData = async (dataDir: string) => {
-  const colorText: string = await d3.text(`${dataDir}/tsne_output.csv`);
+  const colorText: string = await fetchCSVFile(`${dataDir}/tsne_output.csv`);
   const result: number[][] = [];
   colorText.split('\n').forEach((entry, index, array) => {
     if (entry.length > 0) {
@@ -123,9 +135,9 @@ const fetchTSneCoordinateData = async (dataDir: string) => {
 };
 
 const fetchGraphData = async (file: string) => {
-  const data = (await d3.json(file)) as ISpringGraphData;
+  const data = (await fetchJSONFile(file)) as ISpringGraphData;
   if (!data.nodes || !data.links) {
-    throw new Error('Unable to parse graph_data - does it have node key(s)?');
+    throw new Error("Unable to parse graph data - does it have keys named 'nodes' and 'links'");
   }
   return data;
 };
@@ -141,7 +153,7 @@ const fetchNGLData = async (dir: string) => {
 
 const fetchContactMapData = async (dir: string): Promise<IContactMapData> => {
   const contactMapFiles = ['coupling_scores.csv'];
-  const promiseResults = await Promise.all(contactMapFiles.map(file => d3.text(`${dir}/${file}`)));
+  const promiseResults = await Promise.all(contactMapFiles.map(file => fetchCSVFile(`${dir}/${file}`)));
 
   const data: CONTACT_MAP_DATA_TYPE = {
     couplingScores: getCouplingScoresData(promiseResults[0]),
@@ -163,8 +175,8 @@ const fetchContactMapData = async (dir: string): Promise<IContactMapData> => {
  * @param line The csv file as a single string.
  * @returns Array of CouplingScores suitable for chell-viz consumption.
  */
-export const getCouplingScoresData = (line: string): ICouplingScore[] =>
-  line
+export const getCouplingScoresData = (line: string): ICouplingScore[] => {
+  return line
     .split('\n')
     .slice(1)
     .filter(row => row.split(',').length >= 13)
@@ -187,3 +199,4 @@ export const getCouplingScoresData = (line: string): ICouplingScore[] =>
         precision: parseFloat(items[12]),
       };
     });
+};

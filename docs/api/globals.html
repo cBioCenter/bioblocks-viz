@@ -172,13 +172,15 @@
 								<li class="tsd-kind-function"><a href="globals.html#springcomponent" class="tsd-kind-icon">Spring<wbr>Component</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#derivespringdata" class="tsd-kind-icon">derive<wbr>Spring<wbr>Data</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#fetchappropriatedata" class="tsd-kind-icon">fetch<wbr>Appropriate<wbr>Data</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#fetchcsvfile" class="tsd-kind-icon">fetchCSVFile</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#fetchcategoricalcolordata" class="tsd-kind-icon">fetch<wbr>Categorical<wbr>Color<wbr>Data</a></li>
-								<li class="tsd-kind-function"><a href="globals.html#fetchcolordata" class="tsd-kind-icon">fetch<wbr>Color<wbr>Data</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#fetchcontactmapdata" class="tsd-kind-icon">fetch<wbr>Contact<wbr>Map<wbr>Data</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#fetchgraphdata" class="tsd-kind-icon">fetch<wbr>Graph<wbr>Data</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#fetchjsonfile" class="tsd-kind-icon">fetchJSONFile</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#fetchngldata" class="tsd-kind-icon">fetchNGLData</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#fetchspringcoordinatedata" class="tsd-kind-icon">fetch<wbr>Spring<wbr>Coordinate<wbr>Data</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#fetchtsnecoordinatedata" class="tsd-kind-icon">fetchTSne<wbr>Coordinate<wbr>Data</a></li>
+								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#generrormsg" class="tsd-kind-icon">gen<wbr>Error<wbr>Msg</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#generatefloat32arrayfromcontacts" class="tsd-kind-icon">generate<wbr>Float32<wbr>Array<wbr>From<wbr>Contacts</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#generatepointclouddata" class="tsd-kind-icon">generate<wbr>Point<wbr>Cloud<wbr>Data</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#generatescatterdata" class="tsd-kind-icon">generate<wbr>Scatter<wbr>Data</a></li>
@@ -527,7 +529,7 @@
 						<ul>
 							<li>Defined in src/component/NGLComponent.tsx:270</li>
 							<li>Defined in src/component/SpringComponent.tsx:221</li>
-							<li>Defined in src/component/ContactMap.tsx:311</li>
+							<li>Defined in src/component/ContactMap.tsx:314</li>
 						</ul>
 					</aside>
 				</section>
@@ -560,7 +562,7 @@
 					<div class="tsd-signature tsd-kind-icon">Contact<wbr>Map<wbr>With<wbr>Default<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultContactMapProps, ContactMapClass)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/ContactMap.tsx:307</li>
+							<li>Defined in src/component/ContactMap.tsx:310</li>
 						</ul>
 					</aside>
 				</section>
@@ -677,7 +679,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/ContactMap.tsx:314</li>
+									<li>Defined in src/component/ContactMap.tsx:317</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -746,7 +748,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:21</li>
+									<li>Defined in src/helper/DataHelper.ts:22</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -769,7 +771,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:6</li>
+									<li>Defined in src/helper/DataHelper.ts:7</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -785,6 +787,29 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="fetchcsvfile" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> fetchCSVFile</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">fetchCSVFile<span class="tsd-signature-symbol">(</span>filename<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/helper/FetchHelper.ts:1</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>filename: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
 					<a name="fetchcategoricalcolordata" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> fetch<wbr>Categorical<wbr>Color<wbr>Data</h3>
@@ -795,7 +820,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:54</li>
+									<li>Defined in src/helper/DataHelper.ts:55</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -805,29 +830,6 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/_spring_.ispringcategoricalcolordata.html" class="tsd-signature-type">ISpringCategoricalColorData</a><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="fetchcolordata" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> fetch<wbr>Color<wbr>Data</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">fetch<wbr>Color<wbr>Data<span class="tsd-signature-symbol">(</span>file<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/helper/DataHelper.ts:77</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>file: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -841,7 +843,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:142</li>
+									<li>Defined in src/helper/DataHelper.ts:154</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -864,7 +866,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:125</li>
+									<li>Defined in src/helper/DataHelper.ts:137</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -874,6 +876,29 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/_spring_.ispringgraphdata.html" class="tsd-signature-type">ISpringGraphData</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="fetchjsonfile" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> fetchJSONFile</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">fetchJSONFile<span class="tsd-signature-symbol">(</span>filename<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/helper/FetchHelper.ts:10</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>filename: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -887,7 +912,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:133</li>
+									<li>Defined in src/helper/DataHelper.ts:145</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -910,7 +935,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:96</li>
+									<li>Defined in src/helper/DataHelper.ts:105</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -933,7 +958,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:112</li>
+									<li>Defined in src/helper/DataHelper.ts:124</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -943,6 +968,32 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
+					<a name="generrormsg" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> gen<wbr>Error<wbr>Msg</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">gen<wbr>Error<wbr>Msg<span class="tsd-signature-symbol">(</span>fileType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, response<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/helper/FetchHelper.ts:19</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>fileType: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>response: <span class="tsd-signature-type">Response</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1129,7 +1180,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:166</li>
+									<li>Defined in src/helper/DataHelper.ts:178</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2535,17 +2586,20 @@
 					<li class=" tsd-kind-function">
 						<a href="globals.html#fetchappropriatedata" class="tsd-kind-icon">fetch<wbr>Appropriate<wbr>Data</a>
 					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#fetchcsvfile" class="tsd-kind-icon">fetchCSVFile</a>
+					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#fetchcategoricalcolordata" class="tsd-kind-icon">fetch<wbr>Categorical<wbr>Color<wbr>Data</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#fetchcolordata" class="tsd-kind-icon">fetch<wbr>Color<wbr>Data</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#fetchcontactmapdata" class="tsd-kind-icon">fetch<wbr>Contact<wbr>Map<wbr>Data</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#fetchgraphdata" class="tsd-kind-icon">fetch<wbr>Graph<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#fetchjsonfile" class="tsd-kind-icon">fetchJSONFile</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#fetchngldata" class="tsd-kind-icon">fetchNGLData</a>
@@ -2555,6 +2609,9 @@
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#fetchtsnecoordinatedata" class="tsd-kind-icon">fetchTSne<wbr>Coordinate<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#generrormsg" class="tsd-kind-icon">gen<wbr>Error<wbr>Msg</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#generatefloat32arrayfromcontacts" class="tsd-kind-icon">generate<wbr>Float32<wbr>Array<wbr>From<wbr>Contacts</a>
