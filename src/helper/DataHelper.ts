@@ -114,7 +114,7 @@ const fetchSpringCoordinateData = async (file: string) => {
       const yy = parseFloat(items[2].trim());
       const nn = parseInt(items[0].trim(), 10);
       coordinates[nn] = [xx, yy];
-    } else {
+    } else if (entry.localeCompare('') !== 0) {
       throw new Error(`Unable to parse coordinate data - Row ${index} does not have at least 3 columns!`);
     }
   });
