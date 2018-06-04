@@ -118,6 +118,7 @@
   },
   "dependencies": {
     "d3": "^5.4.0",
+    "immutable": "^3.8.2",
     "ngl": "^2.0.0-dev.32",
     "pixi.js": "^4.7.3",
     "plotly.js": "^1.38.0",

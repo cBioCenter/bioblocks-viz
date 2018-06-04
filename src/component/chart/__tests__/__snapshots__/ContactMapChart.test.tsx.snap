@@ -22,18 +22,31 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
   }
   layout={
     Object {
+      "height": 520,
       "legend": Object {
         "orientation": "h",
-        "yanchor": "top",
+        "y": -0.1,
+        "yanchor": "bottom",
+      },
+      "margin": Object {
+        "b": 40,
       },
       "showlegend": true,
       "xaxis": Object {
         "autorange": false,
+        "dtick": 10,
         "range": Array [],
+        "showline": true,
+        "tickmode": "linear",
+        "title": "Residue #",
       },
       "yaxis": Object {
         "autorange": false,
+        "dtick": 10,
         "range": Array [],
+        "showline": true,
+        "tickmode": "linear",
+        "title": "Residue #",
       },
     }
   }
