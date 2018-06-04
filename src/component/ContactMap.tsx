@@ -50,13 +50,13 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     const chainLength = props.data.couplingScores.reduce((a, b) => Math.max(a, Math.max(b.i, b.j)), 0);
 
     const observedContacts = ContactMapClass.getObservedContacts(data.couplingScores, measuredContactDistFilter);
-    const predictedContacts = ContactMapClass.getPredictedContacts(
+    const allPredictions = ContactMapClass.getPredictedContacts(
       data.couplingScores,
       numPredictionsToShow,
       linearDistFilter,
     );
 
-    const inputData = [
+    const pointsToPlot = [
       {
         hoverinfo: 'x+y',
         marker: {
@@ -71,7 +71,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
           color: incorrectColor,
         },
         name: `Predicted Contact (${chainLength})`,
-        points: predictedContacts.predicted,
+        points: allPredictions.predicted,
       },
       {
         hoverinfo: 'x+y',
@@ -79,7 +79,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
           color: correctColor,
         },
         name: 'Correct Prediction',
-        points: predictedContacts.correct,
+        points: allPredictions.correct,
       },
       {
         marker: {
@@ -92,17 +92,17 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
         },
         name: 'Selected Res. Pairs',
         points: Object.keys(lockedResiduePairs as IResidueSelection)
-          // .filter(key => lockedResiduePairs[key].length === 2)
+          .filter(key => lockedResiduePairs[key].length === 2)
           .map(key => ({ i: lockedResiduePairs[key][0], j: lockedResiduePairs[key][1] })),
       },
     ] as IContactMapChartData[];
 
     return {
       chainLength,
-      correctPredictedContacts: predictedContacts.correct,
+      correctPredictedContacts: allPredictions.correct,
       observedContacts,
-      pointsToPlot: inputData,
-      predictedContacts: predictedContacts.predicted,
+      pointsToPlot,
+      predictedContacts: allPredictions.predicted,
     };
   }
 
@@ -154,13 +154,14 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
   public shouldComponentUpdate(nextProps: ContactMapProps, nextState: ContactMapState) {
     const { data, lockedResiduePairs } = this.props;
-    const { linearDistFilter, numPredictionsToShow, chainLength } = this.state;
+    const { chainLength, linearDistFilter, numPredictionsToShow, showConfiguration } = this.state;
     return (
       chainLength !== nextState.chainLength ||
       data !== nextProps.data ||
       linearDistFilter !== nextState.linearDistFilter ||
       lockedResiduePairs !== nextProps.lockedResiduePairs ||
-      numPredictionsToShow !== nextState.numPredictionsToShow
+      numPredictionsToShow !== nextState.numPredictionsToShow ||
+      showConfiguration !== nextState.showConfiguration
     );
   }
 
@@ -182,7 +183,6 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     return (
       <div id="ContactMapComponent" style={{ padding }}>
         {this.renderContactMapChart(pointsToPlot)}
-        {<div />}
         {this.props.enableSliders && this.renderSliders(sliderStyle, chainLength)}
       </div>
     );

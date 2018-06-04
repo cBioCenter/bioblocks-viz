@@ -62,6 +62,7 @@ class ContactMapChartClass extends React.Component<IContactMapChartProps, any> {
         layout={{
           legend: {
             orientation: 'h',
+            yanchor: 'top',
           },
           showlegend: true,
           xaxis: {

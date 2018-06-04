@@ -17,12 +17,10 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
     className="plotly-chart"
     style={
       Object {
-        "marginBottom": 10,
-        "marginTop": 10,
+        "marginBottom": 5,
       }
     }
   />
-  <div />
 </div>
 `;
 
@@ -39,12 +37,10 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
     className="plotly-chart"
     style={
       Object {
-        "marginBottom": 10,
-        "marginTop": 10,
+        "marginBottom": 5,
       }
     }
   />
-  <div />
   <div
     className="accordion ui fluid styled"
   >
@@ -609,6 +605,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           Object {
             "legend": Object {
               "orientation": "h",
+              "yanchor": "top",
             },
             "showlegend": true,
             "xaxis": Object {
@@ -636,14 +633,12 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           className="plotly-chart"
           style={
             Object {
-              "marginBottom": 10,
-              "marginTop": 10,
+              "marginBottom": 5,
             }
           }
         />
       </PlotlyChartClass>
     </ContactMapChartClass>
-    <div />
   </div>
 </ContactMapClass>
 `;
