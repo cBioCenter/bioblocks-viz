@@ -65,6 +65,7 @@ describe('ContactMap', () => {
 
   const emptyData = {
     couplingScores: [],
+    secondaryStructures: [],
   };
 
   const generateCouplingScore = (
@@ -100,6 +101,7 @@ describe('ContactMap', () => {
 
   const sampleData = {
     couplingScores: Array.from(uniqueScores),
+    secondaryStructures: [{ resno: 30, structId: 'C' }, { resno: 31, structId: 'C' }],
   };
 
   describe('Snapshots', () => {

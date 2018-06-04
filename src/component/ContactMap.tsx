@@ -15,6 +15,7 @@ export const defaultContactMapProps = {
   correctColor: '#ff0000',
   data: {
     couplingScores: [],
+    secondaryStructures: [],
   } as IContactMapData,
   enableSliders: false,
   height: 400,

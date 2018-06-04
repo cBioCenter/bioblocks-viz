@@ -281,6 +281,16 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           "j": 57,
         },
       ],
+      "secondaryStructures": Array [
+        Object {
+          "resno": 30,
+          "structId": "C",
+        },
+        Object {
+          "resno": 31,
+          "structId": "C",
+        },
+      ],
     }
   }
   enableSliders={false}
