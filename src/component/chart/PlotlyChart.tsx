@@ -1,3 +1,4 @@
+import * as Immutable from 'immutable';
 import * as React from 'react';
 
 // We need to use dist/plotly to avoid forcing users to do some webpack gymnastics:
@@ -31,13 +32,13 @@ export const defaultPlotlyConfig: Partial<Plotly.Config> = {
 
 export const defaultPlotlyLayout: Partial<Plotly.Layout> = {
   autosize: true,
-  height: 465,
+  height: 400,
   hovermode: 'closest',
   legend: {},
   margin: {
-    b: 135,
+    b: 10,
     l: 40,
-    r: 40,
+    r: 10,
     t: 10,
   },
   showlegend: false,
@@ -149,9 +150,17 @@ export class PlotlyChartClass extends React.Component<PlotlyChartProps, any> {
     );
   }
 
-  protected getMergedConfig = (config: Partial<Plotly.Config> = {}) => Object.assign({}, defaultPlotlyConfig, config);
+  protected getMergedConfig = (config: Partial<Plotly.Config> = {}) => {
+    const foo: Immutable.Map<any, any> = Immutable.fromJS(Object.assign({}, defaultPlotlyConfig));
+    const bar: Immutable.Map<any, any> = Immutable.fromJS(Object.assign({}, config));
+    return Object.assign({}, foo.mergeDeep(bar).toJS());
+  };
 
-  protected getMergedLayout = (layout: Partial<Plotly.Layout> = {}) => Object.assign({}, defaultPlotlyLayout, layout);
+  protected getMergedLayout = (layout: Partial<Plotly.Layout> = {}) => {
+    const foo: Immutable.Map<any, any> = Immutable.fromJS(Object.assign({}, defaultPlotlyLayout));
+    const bar: Immutable.Map<any, any> = Immutable.fromJS(Object.assign({}, layout));
+    return Object.assign({}, foo.mergeDeep(bar).toJS());
+  };
 
   protected onClick = (event: plotly.PlotMouseEvent) => {
     const { onClickCallback } = this.props;

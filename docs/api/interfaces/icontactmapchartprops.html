@@ -82,7 +82,10 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icontactmapchartprops.html#candidateresidues" class="tsd-kind-icon">candidate<wbr>Residues</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icontactmapchartprops.html#data" class="tsd-kind-icon">data</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icontactmapchartprops.html#datatransformfn" class="tsd-kind-icon">data<wbr>Transform<wbr>Fn</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icontactmapchartprops.html#heightmodifier" class="tsd-kind-icon">height<wbr>Modifier</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icontactmapchartprops.html#hoveredresidues" class="tsd-kind-icon">hovered<wbr>Residues</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icontactmapchartprops.html#legendmodifiers" class="tsd-kind-icon">legend<wbr>Modifiers</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icontactmapchartprops.html#marginmodifiers" class="tsd-kind-icon">margin<wbr>Modifiers</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icontactmapchartprops.html#nodesize" class="tsd-kind-icon">node<wbr>Size</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icontactmapchartprops.html#onclickcallback" class="tsd-kind-icon">on<wbr>Click<wbr>Callback</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icontactmapchartprops.html#onhovercallback" class="tsd-kind-icon">on<wbr>Hover<wbr>Callback</a></li>
@@ -154,14 +157,60 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="hoveredresidues" class="tsd-anchor"></a>
-					<h3>hovered<wbr>Residues</h3>
-					<div class="tsd-signature tsd-kind-icon">hovered<wbr>Residues<span class="tsd-signature-symbol">:</span> <a href="../globals.html#residue_type" class="tsd-signature-type">RESIDUE_TYPE</a><span class="tsd-signature-symbol">[]</span></div>
+					<a name="heightmodifier" class="tsd-anchor"></a>
+					<h3>height<wbr>Modifier</h3>
+					<div class="tsd-signature tsd-kind-icon">height<wbr>Modifier<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in src/component/chart/ContactMapChart.tsx:14</li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="hoveredresidues" class="tsd-anchor"></a>
+					<h3>hovered<wbr>Residues</h3>
+					<div class="tsd-signature tsd-kind-icon">hovered<wbr>Residues<span class="tsd-signature-symbol">:</span> <a href="../globals.html#residue_type" class="tsd-signature-type">RESIDUE_TYPE</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/component/chart/ContactMapChart.tsx:15</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="legendmodifiers" class="tsd-anchor"></a>
+					<h3>legend<wbr>Modifiers</h3>
+					<div class="tsd-signature tsd-kind-icon">legend<wbr>Modifiers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/component/chart/ContactMapChart.tsx:16</li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="marginmodifiers" class="tsd-anchor"></a>
+					<h3>margin<wbr>Modifiers</h3>
+					<div class="tsd-signature tsd-kind-icon">margin<wbr>Modifiers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/component/chart/ContactMapChart.tsx:19</li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>b<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+							</li>
+						</ul>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="nodesize" class="tsd-anchor"></a>
@@ -179,7 +228,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Click<wbr>Callback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/chart/ContactMapChart.tsx:15</li>
+							<li>Defined in src/component/chart/ContactMapChart.tsx:22</li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -210,7 +259,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Hover<wbr>Callback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/chart/ContactMapChart.tsx:16</li>
+							<li>Defined in src/component/chart/ContactMapChart.tsx:23</li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -241,7 +290,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Selected<wbr>Callback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/chart/ContactMapChart.tsx:17</li>
+							<li>Defined in src/component/chart/ContactMapChart.tsx:24</li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -272,7 +321,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>UnHover<wbr>Callback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/chart/ContactMapChart.tsx:18</li>
+							<li>Defined in src/component/chart/ContactMapChart.tsx:25</li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -303,7 +352,7 @@
 					<div class="tsd-signature tsd-kind-icon">range<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/chart/ContactMapChart.tsx:19</li>
+							<li>Defined in src/component/chart/ContactMapChart.tsx:26</li>
 						</ul>
 					</aside>
 				</section>
@@ -334,7 +383,16 @@
 								<a href="icontactmapchartprops.html#datatransformfn" class="tsd-kind-icon">data<wbr>Transform<wbr>Fn</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="icontactmapchartprops.html#heightmodifier" class="tsd-kind-icon">height<wbr>Modifier</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="icontactmapchartprops.html#hoveredresidues" class="tsd-kind-icon">hovered<wbr>Residues</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="icontactmapchartprops.html#legendmodifiers" class="tsd-kind-icon">legend<wbr>Modifiers</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="icontactmapchartprops.html#marginmodifiers" class="tsd-kind-icon">margin<wbr>Modifiers</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="icontactmapchartprops.html#nodesize" class="tsd-kind-icon">node<wbr>Size</a>
