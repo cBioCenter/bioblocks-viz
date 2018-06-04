@@ -157,6 +157,14 @@ export default class ChellContext extends React.Component<any, ChellContextState
     const { lockedResiduePairs } = this.state.residueContext;
     if (lockedResiduePairs[residuePairKey]) {
       delete lockedResiduePairs[residuePairKey];
+      this.setState({
+        residueContext: {
+          ...this.state.residueContext,
+          lockedResiduePairs: {
+            ...lockedResiduePairs,
+          },
+        },
+      });
     }
   };
 
@@ -176,6 +184,14 @@ export default class ChellContext extends React.Component<any, ChellContextState
       });
     } else {
       delete lockedResiduePairs[residuePairKey];
+      this.setState({
+        residueContext: {
+          ...this.state.residueContext,
+          lockedResiduePairs: {
+            ...lockedResiduePairs,
+          },
+        },
+      });
     }
   };
 }

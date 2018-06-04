@@ -24,6 +24,7 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
     Object {
       "legend": Object {
         "orientation": "h",
+        "yanchor": "top",
       },
       "showlegend": true,
       "xaxis": Object {

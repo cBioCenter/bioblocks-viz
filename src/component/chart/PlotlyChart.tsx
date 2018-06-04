@@ -25,16 +25,17 @@ export interface IPlotlyData extends plotly.ScatterData {
 
 export const defaultPlotlyConfig: Partial<Plotly.Config> = {
   displayModeBar: false,
+  scrollZoom: true,
   // modeBarButtons: [['zoomOut2d', 'zoomIn2d'], ['resetScale2d', 'autoScale2d'], ['select2d', 'pan2d']],
 };
 
 export const defaultPlotlyLayout: Partial<Plotly.Layout> = {
   autosize: true,
-  height: 400,
+  height: 465,
   hovermode: 'closest',
   legend: {},
   margin: {
-    b: 20,
+    b: 135,
     l: 40,
     r: 40,
     t: 10,
@@ -144,17 +145,13 @@ export class PlotlyChartClass extends React.Component<PlotlyChartProps, any> {
 
   public render() {
     return (
-      <div
-        className={'plotly-chart'}
-        ref={node => (this.canvasRef = node ? node : null)}
-        style={{ marginBottom: 10, marginTop: 10 }}
-      />
+      <div className={'plotly-chart'} ref={node => (this.canvasRef = node ? node : null)} style={{ marginBottom: 5 }} />
     );
   }
 
-  protected getMergedConfig = (config: Partial<Plotly.Config> = {}) => Object.assign(defaultPlotlyConfig, config);
+  protected getMergedConfig = (config: Partial<Plotly.Config> = {}) => Object.assign({}, defaultPlotlyConfig, config);
 
-  protected getMergedLayout = (layout: Partial<Plotly.Layout> = {}) => Object.assign(defaultPlotlyLayout, layout);
+  protected getMergedLayout = (layout: Partial<Plotly.Layout> = {}) => Object.assign({}, defaultPlotlyLayout, layout);
 
   protected onClick = (event: plotly.PlotMouseEvent) => {
     const { onClickCallback } = this.props;

@@ -31,8 +31,7 @@ exports[`PlotlyChart Should attach events when the container is attached. 1`] = 
     className="plotly-chart"
     style={
       Object {
-        "marginBottom": 10,
-        "marginTop": 10,
+        "marginBottom": 5,
       }
     }
   />
@@ -53,8 +52,7 @@ exports[`PlotlyChart Should match existing snapshot when given empty data. 1`] =
     className="plotly-chart"
     style={
       Object {
-        "marginBottom": 10,
-        "marginTop": 10,
+        "marginBottom": 5,
       }
     }
   />
@@ -92,8 +90,7 @@ exports[`PlotlyChart Should match existing snapshot when given sample data. 1`] 
     className="plotly-chart"
     style={
       Object {
-        "marginBottom": 10,
-        "marginTop": 10,
+        "marginBottom": 5,
       }
     }
   />

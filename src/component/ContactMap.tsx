@@ -34,6 +34,7 @@ export const initialContactMapState = {
   nodeSize: 3,
   numPredictionsToShow: 29,
   observedContacts: [] as ICouplingScore[],
+  pointsToPlot: [] as IContactMapChartData[],
   predictedContacts: [] as ICouplingScore[],
   showConfiguration: false,
 };
@@ -42,51 +43,20 @@ export type ContactMapProps = {} & typeof defaultContactMapProps;
 export type ContactMapState = Readonly<typeof initialContactMapState>;
 
 export class ContactMapClass extends React.Component<ContactMapProps, ContactMapState> {
-  public readonly state: ContactMapState = initialContactMapState;
+  public static getDerivedStateFromProps(props: ContactMapProps, state: ContactMapState) {
+    const { correctColor, data, highlightColor, incorrectColor, observedColor, lockedResiduePairs } = props;
+    const { linearDistFilter, measuredContactDistFilter, numPredictionsToShow } = state;
 
-  constructor(props: ContactMapProps) {
-    super(props);
-  }
+    const chainLength = props.data.couplingScores.reduce((a, b) => Math.max(a, Math.max(b.i, b.j)), 0);
 
-  public componentDidMount() {
-    this.setupData(this.props.data);
-  }
+    const observedContacts = ContactMapClass.getObservedContacts(data.couplingScores, measuredContactDistFilter);
+    const allPredictions = ContactMapClass.getPredictedContacts(
+      data.couplingScores,
+      numPredictionsToShow,
+      linearDistFilter,
+    );
 
-  public componentDidUpdate(prevProps: ContactMapProps, prevState: ContactMapState) {
-    const { data, clearAllResidues } = this.props;
-
-    const isNewData = data !== prevProps.data;
-    if (isNewData) {
-      clearAllResidues();
-    }
-
-    const isFreshDataView =
-      isNewData ||
-      this.state.linearDistFilter !== prevState.linearDistFilter ||
-      this.state.numPredictionsToShow !== prevState.numPredictionsToShow ||
-      this.state.chainLength !== prevState.chainLength;
-
-    if (isFreshDataView) {
-      this.setupData(data);
-    }
-  }
-
-  public render() {
-    const {
-      correctColor,
-      highlightColor,
-      incorrectColor,
-      observedColor,
-      padding,
-      width,
-      lockedResiduePairs,
-    } = this.props;
-
-    const { chainLength, correctPredictedContacts, predictedContacts, observedContacts } = this.state;
-
-    const sliderStyle = { width: width * 0.9 };
-
-    const inputData = [
+    const pointsToPlot = [
       {
         hoverinfo: 'x+y',
         marker: {
@@ -101,7 +71,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
           color: incorrectColor,
         },
         name: `Predicted Contact (${chainLength})`,
-        points: predictedContacts,
+        points: allPredictions.predicted,
       },
       {
         hoverinfo: 'x+y',
@@ -109,7 +79,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
           color: correctColor,
         },
         name: 'Correct Prediction',
-        points: correctPredictedContacts,
+        points: allPredictions.correct,
       },
       {
         marker: {
@@ -127,10 +97,92 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
       },
     ] as IContactMapChartData[];
 
+    return {
+      chainLength,
+      correctPredictedContacts: allPredictions.correct,
+      observedContacts,
+      pointsToPlot,
+      predictedContacts: allPredictions.predicted,
+    };
+  }
+
+  /**
+   * Determine which contacts in a set of coupling scores are observed.
+   *
+   * @param contacts Set of contacts, usually generated from coupling_scores.csv.
+   * @param [actualDistFilter=5] For each score, if dist <= linearDistFilter, it is considered observed.
+   * @returns Contacts that should be considered observed int he current data set.
+   */
+  protected static getObservedContacts = (contacts: ICouplingScore[], actualDistFilter = 5) =>
+    contacts.filter(residuePair => residuePair.dist <= actualDistFilter);
+
+  /**
+   * Determine which contacts in a set of coupling scores are predicted as well as which are correct.
+   *
+   * @param contacts Set of contacts, usually generated from coupling_scores.csv.
+   * @param totalPredictionsToShow How many predictions, max, to return.
+   * @param [linearDistFilter=5] For each score, if |i - j| >= linearDistFilter, it will be a candidate for being correct/incorrect.
+   * @param [measuredContactDistFilter=5]  If the dist for the contact is less than predictionCutoffDist, it is considered correct.
+   * @returns The list of correct and incorrect contacts.
+   */
+  protected static getPredictedContacts(
+    contacts: ICouplingScore[],
+    totalPredictionsToShow: number,
+    linearDistFilter = 5,
+    measuredContactDistFilter = 5,
+  ) {
+    const result = {
+      correct: new Array<ICouplingScore>(),
+      predicted: new Array<ICouplingScore>(),
+    };
+    for (const contact of contacts
+      .filter(score => Math.abs(score.i - score.j) >= linearDistFilter)
+      .slice(0, totalPredictionsToShow)) {
+      if (contact.dist < measuredContactDistFilter) {
+        result.correct.push(contact);
+      }
+      result.predicted.push(contact);
+    }
+    return result;
+  }
+
+  public readonly state: ContactMapState = initialContactMapState;
+
+  constructor(props: ContactMapProps) {
+    super(props);
+  }
+
+  public shouldComponentUpdate(nextProps: ContactMapProps, nextState: ContactMapState) {
+    const { data, lockedResiduePairs } = this.props;
+    const { chainLength, linearDistFilter, numPredictionsToShow, showConfiguration } = this.state;
+    return (
+      chainLength !== nextState.chainLength ||
+      data !== nextProps.data ||
+      linearDistFilter !== nextState.linearDistFilter ||
+      lockedResiduePairs !== nextProps.lockedResiduePairs ||
+      numPredictionsToShow !== nextState.numPredictionsToShow ||
+      showConfiguration !== nextState.showConfiguration
+    );
+  }
+
+  public componentDidUpdate(prevProps: ContactMapProps, prevState: ContactMapState) {
+    const { data, clearAllResidues } = this.props;
+
+    if (data !== prevProps.data) {
+      clearAllResidues();
+    }
+  }
+
+  public render() {
+    const { padding, width } = this.props;
+
+    const { chainLength, pointsToPlot } = this.state;
+
+    const sliderStyle = { width: width * 0.9 };
+
     return (
       <div id="ContactMapComponent" style={{ padding }}>
-        {this.renderContactMapChart(inputData)}
-        {<div />}
+        {this.renderContactMapChart(pointsToPlot)}
         {this.props.enableSliders && this.renderSliders(sliderStyle, chainLength)}
       </div>
     );
@@ -210,28 +262,6 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     );
   }
 
-  /**
-   * Parse the incoming data object to determine which contacts to show and if they are correct/incorrect.
-   *
-   * @param data Incoming data object which has an array of all observed contacts.
-   * @param contactViewType Whether to only show observed, predicted, or both kinds of contacts.
-   */
-  protected setupData(data: IContactMapData) {
-    const chainLength = data.couplingScores.reduce((a, b) => Math.max(a, Math.max(b.i, b.j)), 0);
-
-    const { linearDistFilter, measuredContactDistFilter, numPredictionsToShow } = this.state;
-
-    const observedContacts = this.getObservedContacts(data.couplingScores, measuredContactDistFilter);
-    const predictions = this.getPredictedContacts(data.couplingScores, numPredictionsToShow, linearDistFilter);
-
-    this.setState({
-      chainLength,
-      correctPredictedContacts: predictions.correct,
-      observedContacts,
-      predictedContacts: predictions.predicted,
-    });
-  }
-
   protected onLinearDistFilterChange = () => (value: number) => {
     this.setState({
       linearDistFilter: value,
@@ -261,46 +291,6 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     const { points } = e;
     cb([points[0].x, points[0].y]);
   };
-
-  /**
-   * Determine which contacts in a set of coupling scores are observed.
-   *
-   * @param contacts Set of contacts, usually generated from coupling_scores.csv.
-   * @param [actualDistFilter=5] For each score, if dist <= linearDistFilter, it is considered observed.
-   * @returns Contacts that should be considered observed int he current data set.
-   */
-  protected getObservedContacts = (contacts: ICouplingScore[], actualDistFilter = 5) =>
-    contacts.filter(residuePair => residuePair.dist <= actualDistFilter);
-
-  /**
-   * Determine which contacts in a set of coupling scores are predicted as well as which are correct.
-   *
-   * @param contacts Set of contacts, usually generated from coupling_scores.csv.
-   * @param totalPredictionsToShow How many predictions, max, to return.
-   * @param [linearDistFilter=5] For each score, if |i - j| >= linearDistFilter, it will be a candidate for being correct/incorrect.
-   * @param [measuredContactDistFilter=5]  If the dist for the contact is less than predictionCutoffDist, it is considered correct.
-   * @returns The list of correct and incorrect contacts.
-   */
-  protected getPredictedContacts(
-    contacts: ICouplingScore[],
-    totalPredictionsToShow: number,
-    linearDistFilter = 5,
-    measuredContactDistFilter = 5,
-  ) {
-    const result = {
-      correct: new Array<ICouplingScore>(),
-      predicted: new Array<ICouplingScore>(),
-    };
-    for (const contact of contacts
-      .filter(score => Math.abs(score.i - score.j) >= linearDistFilter)
-      .slice(0, totalPredictionsToShow)) {
-      if (contact.dist < measuredContactDistFilter) {
-        result.correct.push(contact);
-      }
-      result.predicted.push(contact);
-    }
-    return result;
-  }
 
   protected onMouseSelect = () => (e: Plotly.PlotSelectionEvent) => {
     console.log(`onMouseSelect: ${e}`);

@@ -133,6 +133,18 @@ describe('DataHelper', () => {
       expect(nodes[1].y).toBe(520.63422);
     });
 
+    test('Should parse coordinate data that ends on a newline.', async () => {
+      fetchMock.mockResponseOnce(sampleSpringInput.coordinateData + '\n');
+      fetchMock.mockResponseOnce(JSON.stringify(sampleSpringInput.graphData));
+      fetchMock.mockResponseOnce(JSON.stringify(sampleSpringInput.colorData));
+      const springData = (await fetchAppropriateData(VIZ_TYPE.SPRING, 'hoenn')) as SPRING_DATA_TYPE;
+      const nodes = springData.nodes;
+      expect(nodes[0].x).toBe(267.9312);
+      expect(nodes[0].y).toBe(-346.14858);
+      expect(nodes[1].x).toBe(597.35064);
+      expect(nodes[1].y).toBe(520.63422);
+    });
+
     test('Should parse color data using actual numbers.', async () => {
       const sampleColorData = { Sample: { label_colors: { P11B: 424242 }, label_list: ['P11B', 'P11B'] } };
       fetchMock.mockResponseOnce(sampleSpringInput.coordinateData);
