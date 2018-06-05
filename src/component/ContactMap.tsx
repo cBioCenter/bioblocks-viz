@@ -273,8 +273,8 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
           key={key}
           defaultValue={entry.nodeSize}
           label={`${entry.name} Node Size`}
-          max={entry.nodeSizeRange ? entry.nodeSizeRange.max : 20}
-          min={entry.nodeSizeRange ? entry.nodeSizeRange.min : 1}
+          max={20}
+          min={1}
           onChange={this.onNodeSizeChange(index)}
           style={sliderStyle}
         />

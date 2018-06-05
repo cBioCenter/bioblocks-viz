@@ -57,7 +57,6 @@ const defaultContactMapChartProps: Partial<IContactMapChartProps> = {
 export interface IContactMapChartData extends Partial<IPlotlyData> {
   name: string;
   nodeSize: number;
-  nodeSizeRange?: { max: number; min: number };
   points: IContactMapChartPoint[];
 }
 

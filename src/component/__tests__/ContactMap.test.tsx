@@ -176,19 +176,18 @@ describe('ContactMap', () => {
       expect(instance.state.showConfiguration).toBe(!initialState);
     });
 
-    test.skip('Should update node size when appropriate slider is updated.', () => {
+    test('Should update node size when appropriate slider is updated?', () => {
       const wrapper = getShallowContactMap({ data: sampleData, enableSliders: true });
+      const setStateSpy = jest.fn();
+      wrapper.instance().setState = setStateSpy;
       wrapper.update();
-      wrapper.instance().forceUpdate();
-      const onNodeSizeChangeSpy = jest.spyOn(wrapper.instance() as ContactMapClass, 'onNodeSizeChange');
-      const expectedSize = 8;
+      const expectedSize = 11;
       wrapper
         .find('.node-size-slider-0')
         .at(0)
         .simulate('change', expectedSize);
-      const instance = wrapper.instance() as ContactMapClass;
-      instance.forceUpdate();
-      expect(onNodeSizeChangeSpy).toHaveBeenLastCalledWith(0, expectedSize);
+      const newState = setStateSpy.mock.calls[setStateSpy.mock.calls.length - 1];
+      expect(newState[0].pointsToPlot[0].nodeSize).toBe(expectedSize);
     });
 
     test('Should update number of predicted contacts to show when appropriate slider is updated.', () => {
