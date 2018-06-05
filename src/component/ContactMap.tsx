@@ -1,11 +1,11 @@
-import * as Plotly from 'plotly.js';
+import * as plotly from 'plotly.js/dist/plotly';
 import * as React from 'react';
 import { Accordion, Icon } from 'semantic-ui-react';
 
 import ResidueContext, { initialResidueContext, IResidueSelection } from '../context/ResidueContext';
 import { IContactMapData, ICouplingScore, RESIDUE_TYPE } from '../data/chell-data';
 import { withDefaultProps } from '../helper/ReactHelper';
-import ContactMapChart, { IContactMapChartData } from './chart/ContactMapChart';
+import ContactMapChart, { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';
 import ChellSlider from './ChellSlider';
 
 export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
@@ -29,14 +29,10 @@ export const defaultContactMapProps = {
 
 export const initialContactMapState = {
   chainLength: 59,
-  correctPredictedContacts: [] as ICouplingScore[],
   linearDistFilter: 5,
   measuredContactDistFilter: 5,
-  nodeSize: 3,
   numPredictionsToShow: 29,
-  observedContacts: [] as ICouplingScore[],
   pointsToPlot: [] as IContactMapChartData[],
-  predictedContacts: [] as ICouplingScore[],
   showConfiguration: false,
 };
 
@@ -44,11 +40,9 @@ export type ContactMapProps = {} & typeof defaultContactMapProps;
 export type ContactMapState = Readonly<typeof initialContactMapState>;
 
 export class ContactMapClass extends React.Component<ContactMapProps, ContactMapState> {
-  public static getDerivedStateFromProps(props: ContactMapProps, state: ContactMapState) {
+  public static getDerivedStateFromProps = (props: ContactMapProps, state: ContactMapState) => {
     const { correctColor, data, highlightColor, incorrectColor, observedColor, lockedResiduePairs } = props;
-    const { linearDistFilter, measuredContactDistFilter, numPredictionsToShow } = state;
-
-    const chainLength = props.data.couplingScores.reduce((a, b) => Math.max(a, Math.max(b.i, b.j)), 0);
+    const { chainLength, linearDistFilter, measuredContactDistFilter, numPredictionsToShow, pointsToPlot } = state;
 
     const observedContacts = ContactMapClass.getObservedContacts(data.couplingScores, measuredContactDistFilter);
     const allPredictions = ContactMapClass.getPredictedContacts(
@@ -57,55 +51,54 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
       linearDistFilter,
     );
 
-    const pointsToPlot = [
-      {
-        hoverinfo: 'x+y',
-        marker: {
-          colorscale: [[0, observedColor], [1, 'rgb(100,177,200)']],
-        },
-        name: 'Observed',
-        points: observedContacts,
-      },
-      {
-        hoverinfo: 'x+y',
-        marker: {
-          color: incorrectColor,
-        },
-        name: `Predicted Contact (${chainLength})`,
-        points: allPredictions.predicted,
-      },
-      {
-        hoverinfo: 'x+y',
-        marker: {
-          color: correctColor,
-        },
-        name: 'Correct Prediction',
-        points: allPredictions.correct,
-      },
-      {
-        marker: {
-          color: highlightColor,
-          line: {
-            color: highlightColor,
-            width: 3,
-          },
-          symbol: 'circle-open',
-        },
-        name: 'Selected Res. Pairs',
-        points: Object.keys(lockedResiduePairs as IResidueSelection)
+    const newPoints = [
+      generateChartDataEntry(
+        'x+y',
+        { start: observedColor, end: 'rgb(100,177,200)' },
+        'Observed',
+        pointsToPlot[0] && pointsToPlot[0].nodeSize ? pointsToPlot[0].nodeSize : 4,
+        observedContacts,
+      ),
+      generateChartDataEntry(
+        'x+y',
+        incorrectColor,
+        `Predicted Contact (${chainLength})`,
+        pointsToPlot[1] && pointsToPlot[1].nodeSize ? pointsToPlot[1].nodeSize : 4,
+        allPredictions.predicted,
+      ),
+      generateChartDataEntry(
+        'x+y',
+        correctColor,
+        'Correct Prediction',
+        pointsToPlot[2] && pointsToPlot[2].nodeSize ? pointsToPlot[2].nodeSize : 6,
+        allPredictions.correct,
+      ),
+      generateChartDataEntry(
+        'none',
+        highlightColor,
+        'Selected Res. Pairs',
+        pointsToPlot[3] && pointsToPlot[3].nodeSize ? pointsToPlot[3].nodeSize : 6,
+        Object.keys(lockedResiduePairs as IResidueSelection)
           .filter(key => lockedResiduePairs[key].length === 2)
-          .map(key => ({ i: lockedResiduePairs[key][0], j: lockedResiduePairs[key][1] })),
-      },
+          .map(key => ({ i: lockedResiduePairs[key][0], j: lockedResiduePairs[key][1], dist: 0 })),
+        {
+          marker: {
+            color: highlightColor,
+            line: {
+              color: highlightColor,
+              width: 3,
+            },
+            symbol: 'circle-open',
+          },
+        },
+      ),
     ] as IContactMapChartData[];
 
     return {
-      chainLength,
-      correctPredictedContacts: allPredictions.correct,
-      observedContacts,
-      pointsToPlot,
-      predictedContacts: allPredictions.predicted,
+      chainLength: data.couplingScores.reduce((a, b) => Math.max(a, Math.max(b.i, b.j)), 0),
+      pointsToPlot: newPoints,
     };
-  }
+  };
 
   /**
    * Determine which contacts in a set of coupling scores are observed.
@@ -155,9 +148,17 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
   public shouldComponentUpdate(nextProps: ContactMapProps, nextState: ContactMapState) {
     const { data, lockedResiduePairs } = this.props;
-    const { chainLength, linearDistFilter, numPredictionsToShow, showConfiguration } = this.state;
+    const { chainLength, linearDistFilter, numPredictionsToShow, pointsToPlot, showConfiguration } = this.state;
+
+    let pointsUpdated = pointsToPlot.length !== nextState.pointsToPlot.length;
+    if (!pointsUpdated) {
+      for (let i = 0; i < pointsToPlot.length; ++i) {
+        pointsUpdated = pointsUpdated || pointsToPlot[i].nodeSize !== nextState.pointsToPlot[i].nodeSize;
+      }
+    }
     return (
       chainLength !== nextState.chainLength ||
+      pointsUpdated ||
       data !== nextProps.data ||
       linearDistFilter !== nextState.linearDistFilter ||
       lockedResiduePairs !== nextProps.lockedResiduePairs ||
@@ -167,8 +168,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
   }
 
   public componentDidUpdate(prevProps: ContactMapProps, prevState: ContactMapState) {
-    const { data, clearAllResidues } = this.props;
-
+    const { clearAllResidues, data } = this.props;
     if (data !== prevProps.data) {
       clearAllResidues();
     }
@@ -176,7 +176,6 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
   public render() {
     const { padding, width } = this.props;
-
     const { chainLength, pointsToPlot } = this.state;
 
     const sliderStyle = { width: width * 0.9 };
@@ -184,22 +183,34 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     return (
       <div id="ContactMapComponent" style={{ padding }}>
         {this.renderContactMapChart(pointsToPlot)}
-        {this.props.enableSliders && this.renderSliders(sliderStyle, chainLength)}
+        {this.props.enableSliders && this.renderSliders(sliderStyle, pointsToPlot, chainLength)}
       </div>
     );
   }
 
+  public onNodeSizeChange = (index: number) => (value: number) => {
+    const { pointsToPlot } = this.state;
+    this.setState({
+      pointsToPlot: [
+        ...pointsToPlot.slice(0, index),
+        {
+          ...pointsToPlot[index],
+          nodeSize: value,
+        },
+        ...pointsToPlot.slice(index + 1),
+      ],
+    });
+  };
+
   protected renderContactMapChart(data: IContactMapChartData[]) {
     const { addHoveredResidues, candidateResidues, hoveredResidues, toggleLockedResiduePair } = this.props;
-
-    const { chainLength, nodeSize } = this.state;
+    const { chainLength } = this.state;
 
     return (
       <ContactMapChart
         candidateResidues={candidateResidues}
         data={data}
         hoveredResidues={hoveredResidues}
-        nodeSize={nodeSize}
         onClickCallback={this.onMouseClick(toggleLockedResiduePair)}
         onHoverCallback={this.onMouseEnter(addHoveredResidues)}
         onSelectedCallback={this.onMouseSelect()}
@@ -208,7 +219,11 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     );
   }
 
-  protected renderSliders(sliderStyle: React.CSSProperties[] | React.CSSProperties, chainLength: number) {
+  protected renderSliders(
+    sliderStyle: React.CSSProperties[] | React.CSSProperties,
+    entries: IContactMapChartData[],
+    chainLength: number,
+  ) {
     const { showConfiguration } = this.state;
     return (
       <Accordion fluid={true} styled={true}>
@@ -222,15 +237,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
           Configuration
         </Accordion.Title>
         <Accordion.Content active={showConfiguration}>
-          <ChellSlider
-            className={'node-size-slider'}
-            defaultValue={initialContactMapState.nodeSize}
-            label={'Node Size'}
-            max={5}
-            min={1}
-            onChange={this.onNodeSizeChange()}
-            style={sliderStyle}
-          />
+          {this.renderNodeSizeSliders(sliderStyle, entries)}
           <ChellSlider
             className={'linear-dist-filter'}
             defaultValue={initialContactMapState.linearDistFilter}
@@ -247,15 +254,6 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
             max={59}
             min={1}
             onChange={this.onNumPredictionsToShowChange()}
-            sliderProps={
-              {
-                /*marks: {
-              1: 'One',
-              [Math.floor(chainLength / 2)]: `Half (${Math.floor(chainLength / 2)})`,
-              [chainLength]: `All (${chainLength})`,
-            },*/
-              }
-            }
             style={sliderStyle}
           />
         </Accordion.Content>
@@ -263,15 +261,30 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     );
   }
 
+  protected renderNodeSizeSliders(
+    sliderStyle: React.CSSProperties[] | React.CSSProperties,
+    entries: IContactMapChartData[],
+  ) {
+    return entries.map((entry, index) => {
+      const key = `node-size-slider-${index}`;
+      return (
+        <ChellSlider
+          className={key}
+          key={key}
+          defaultValue={entry.nodeSize}
+          label={`${entry.name} Node Size`}
+          max={entry.nodeSizeRange ? entry.nodeSizeRange.max : 20}
+          min={entry.nodeSizeRange ? entry.nodeSizeRange.min : 1}
+          onChange={this.onNodeSizeChange(index)}
+          style={sliderStyle}
+        />
+      );
+    });
+  }
+
   protected onLinearDistFilterChange = () => (value: number) => {
     this.setState({
       linearDistFilter: value,
-    });
-  };
-
-  protected onNodeSizeChange = () => (value: number) => {
-    this.setState({
-      nodeSize: value,
     });
   };
 
@@ -283,17 +296,17 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
   protected onShowConfigurationToggle = () => () => this.setState({ showConfiguration: !this.state.showConfiguration });
 
-  protected onMouseEnter = (cb: (residue: RESIDUE_TYPE[]) => void) => (e: Plotly.PlotMouseEvent) => {
+  protected onMouseEnter = (cb: (residue: RESIDUE_TYPE[]) => void) => (e: plotly.PlotMouseEvent) => {
     const { points } = e;
     cb([points[0].x, points[0].y]);
   };
 
-  protected onMouseClick = (cb: (residues: RESIDUE_TYPE[]) => void) => (e: Plotly.PlotMouseEvent) => {
+  protected onMouseClick = (cb: (residues: RESIDUE_TYPE[]) => void) => (e: plotly.PlotMouseEvent) => {
     const { points } = e;
     cb([points[0].x, points[0].y]);
   };
 
-  protected onMouseSelect = () => (e: Plotly.PlotSelectionEvent) => {
+  protected onMouseSelect = () => (e: plotly.PlotSelectionEvent) => {
     console.log(`onMouseSelect: ${e}`);
   };
 }
