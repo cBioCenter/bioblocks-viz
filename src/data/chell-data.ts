@@ -26,6 +26,7 @@ export enum VIZ_TYPE {
 
 export interface IContactMapData {
   couplingScores: ICouplingScore[];
+  secondaryStructures: ISecondaryStructureData[];
 }
 
 export interface IMonomerContact {
@@ -48,6 +49,11 @@ export interface ICouplingScore {
   dist_multimer?: number;
   dist: number;
   precision?: number;
+}
+
+export interface ISecondaryStructureData {
+  resno: number;
+  structId: string;
 }
 
 export interface IDistanceMapMonomer {

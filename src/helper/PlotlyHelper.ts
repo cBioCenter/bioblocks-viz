@@ -5,16 +5,14 @@ import { IPlotlyData, PLOTLY_CHART_TYPE } from '../component/chart/PlotlyChart';
  * Generate data in the expected format for a WebGL Scatter plot.
  *
  * @param entry A unit of Plotly data containing points, color, name, and any extras.
- * @param nodeSize How big to make the nodes on the graph?
  * @param mirrorPoints Should we mirror the points on the x/y axis?
  * @returns Data suitable for consumption by Plotly.
  */
 export const generateScatterGLData = (
   entry: IContactMapChartData,
-  nodeSize: number,
   mirrorPoints: boolean = false,
 ): Partial<IPlotlyData> => ({
-  ...generateScatterData(entry, nodeSize, mirrorPoints),
+  ...generateScatterData(entry, mirrorPoints),
   type: PLOTLY_CHART_TYPE.scattergl,
 });
 
@@ -22,13 +20,11 @@ export const generateScatterGLData = (
  * Generate data in the expected format for a Scatter plot.
  *
  * @param entry A unit of Plotly data containing points, color, name, and any extras.
- * @param nodeSize How big to make the nodes on the graph?
  * @param mirrorPoints Should we mirror the points on the x/y axis?
  * @returns Data suitable for consumption by Plotly.
  */
 export const generateScatterData = (
   entry: IContactMapChartData,
-  nodeSize: number,
   mirrorPoints: boolean = false,
 ): Partial<IPlotlyData> => {
   const { marker, name, points } = entry;
@@ -40,7 +36,7 @@ export const generateScatterData = (
     marker: Object.assign(
       {
         color: mirrorPoints ? zValues.concat(zValues) : zValues,
-        size: nodeSize * 2,
+        size: entry.nodeSize,
       },
       marker,
     ),
@@ -66,13 +62,11 @@ export const generateFloat32ArrayFromContacts = (array: Array<{ i: number; j: nu
  * Generate data in the expected format for a Plotly PointCloud.
  *
  * @param entry A unit of Plotly data containing points, color, and any extras.
- * @param nodeSize Sets min/max to nodeSize/nodeSize * 2.
  * @param mirrorPoints Should we mirror the points on the x/y axis?
  * @returns Data suitable for consumption by Plotly.
  */
 export const generatePointCloudData = (
   entry: IContactMapChartData,
-  nodeSize: number,
   mirrorPoints: boolean = false,
 ): Partial<IPlotlyData> => {
   const { points } = entry;
@@ -80,8 +74,8 @@ export const generatePointCloudData = (
   return {
     marker: {
       ...entry.marker,
-      sizemax: nodeSize * 2,
-      sizemin: nodeSize,
+      sizemax: entry.nodeSize * 2,
+      sizemin: entry.nodeSize,
     },
     mode: 'markers',
     type: PLOTLY_CHART_TYPE.pointcloud,

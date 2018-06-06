@@ -1,3 +1,4 @@
+import { ISecondaryStructureData } from './../data/chell-data';
 import { fetchCSVFile, fetchJSONFile } from './FetchHelper';
 
 import * as NGL from 'ngl';
@@ -152,11 +153,12 @@ const fetchNGLData = async (dir: string) => {
 };
 
 const fetchContactMapData = async (dir: string): Promise<IContactMapData> => {
-  const contactMapFiles = ['coupling_scores.csv'];
+  const contactMapFiles = ['coupling_scores.csv', 'distance_map.csv'];
   const promiseResults = await Promise.all(contactMapFiles.map(file => fetchCSVFile(`${dir}/${file}`)));
 
   const data: CONTACT_MAP_DATA_TYPE = {
     couplingScores: getCouplingScoresData(promiseResults[0]),
+    secondaryStructures: getSecondaryStructureData(promiseResults[1]),
   };
 
   return data;
@@ -197,6 +199,33 @@ export const getCouplingScoresData = (line: string): ICouplingScore[] => {
         dist_multimer: parseFloat(items[10]),
         dist: parseFloat(items[11]),
         precision: parseFloat(items[12]),
+      };
+    });
+};
+
+/**
+ * Parses a distance_map.csv file to generate the appropriate secondary structure mapping.
+ *
+ * !Important!
+ * The first line in the csv will be ignored as it is assumed to be a csv header.
+ *
+ * !Important!
+ * Currently 3 fields are assumed to be part of a single entry, with the second and third actually being relevant.
+ * As such, any other rows will be ignored.
+ *
+ * @param line The csv file as a single string.
+ * @returns Array of SecondaryStructure mappings suitable for chell-viz consumption.
+ */
+export const getSecondaryStructureData = (line: string): ISecondaryStructureData[] => {
+  return line
+    .split('\n')
+    .slice(1)
+    .filter(row => row.split(',').length >= 3)
+    .map(row => {
+      const items = row.split(',');
+      return {
+        resno: parseFloat(items[1]),
+        structId: items[2],
       };
     });
 };

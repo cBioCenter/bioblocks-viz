@@ -10,12 +10,13 @@ describe('ContactMapChart', () => {
     {
       color: '',
       name: '',
+      nodeSize: 0,
       points: [],
     },
   ];
 
   test('Should match existing snapshot when given simple data.', () => {
-    const wrapper = shallow(<ContactMapChart data={emptyData} nodeSize={4} />);
+    const wrapper = shallow(<ContactMapChart data={emptyData} />);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

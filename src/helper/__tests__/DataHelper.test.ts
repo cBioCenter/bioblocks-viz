@@ -1,6 +1,6 @@
 import * as fetchMock from 'jest-fetch-mock';
 import { SPRING_DATA_TYPE, VIZ_TYPE } from '../../data/chell-data';
-import { fetchAppropriateData, getCouplingScoresData } from '../DataHelper';
+import { fetchAppropriateData, getCouplingScoresData, getSecondaryStructureData } from '../DataHelper';
 
 describe('DataHelper', () => {
   beforeEach(() => {
@@ -19,6 +19,7 @@ describe('DataHelper', () => {
     test('Should return empty data for an incorrect location.', async () => {
       const expected = {
         couplingScores: [],
+        secondaryStructures: [],
       };
       fetchMock.mockResponse(JSON.stringify(expected));
       await expect(fetchAppropriateData(VIZ_TYPE.CONTACT_MAP, '')).resolves.toEqual(expected);
@@ -65,14 +66,31 @@ describe('DataHelper', () => {
       precision: 1.0,
     };
 
-    test('Should parse contact monomer data correctly.', async () => {
-      const data = await getCouplingScoresData(couplingScoresCsv);
+    test('Should parse contact monomer data correctly.', () => {
+      const data = getCouplingScoresData(couplingScoresCsv);
       expect(data).toEqual([firstScore, secondScore]);
     });
 
-    test('Should parse contact monomer data correctly when csv file has newline.', async () => {
-      const data = await getCouplingScoresData(couplingScoresCsvWithNewline);
+    test('Should parse contact monomer data correctly when csv file has newline.', () => {
+      const data = getCouplingScoresData(couplingScoresCsvWithNewline);
       expect(data).toEqual([firstScore, secondScore]);
+    });
+
+    const secondaryStructureCsv = ',id,sec_struct_3state\n\
+      0,30,C\n\
+      1,31,C';
+
+    const secondaryStructureCsvWithNewline = secondaryStructureCsv + '\n';
+    const expectedSecondaryData = [{ resno: 30, structId: 'C' }, { resno: 31, structId: 'C' }];
+
+    test('Should parse secondary structure data correctly.', () => {
+      const data = getSecondaryStructureData(secondaryStructureCsv);
+      expect(data).toEqual(expectedSecondaryData);
+    });
+
+    test('Should parse secondary structure data correctly when csv file has newline.', () => {
+      const data = getSecondaryStructureData(secondaryStructureCsvWithNewline);
+      expect(data).toEqual(expectedSecondaryData);
     });
   });
 
