@@ -7,6 +7,7 @@ import { IContactMapData, ICouplingScore, RESIDUE_TYPE } from '../data/chell-dat
 import { withDefaultProps } from '../helper/ReactHelper';
 import ContactMapChart, { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';
 import ChellSlider from './ChellSlider';
+import SecondaryStructure from './SecondaryStructure';
 
 export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
 export type ContactMapCallback = (coupling: CONTACT_MAP_CB_RESULT_TYPE) => void;
@@ -183,6 +184,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     return (
       <div id="ContactMapComponent" style={{ padding }}>
         {this.renderContactMapChart(pointsToPlot)}
+        <SecondaryStructure sequence={this.props.data.secondaryStructures.map(entry => entry.structId)} />
         {this.props.enableSliders && this.renderSliders(sliderStyle, pointsToPlot, chainLength)}
       </div>
     );
