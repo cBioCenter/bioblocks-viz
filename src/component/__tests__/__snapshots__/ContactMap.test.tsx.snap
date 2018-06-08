@@ -21,6 +21,18 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
       }
     }
   />
+  <div
+    style={
+      Object {
+        "fontFamily": "fira code",
+        "fontSize": 16,
+        "textAlign": "right",
+      }
+    }
+  >
+    -
+    -
+  </div>
 </div>
 `;
 
@@ -41,6 +53,18 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
       }
     }
   />
+  <div
+    style={
+      Object {
+        "fontFamily": "fira code",
+        "fontSize": 16,
+        "textAlign": "right",
+      }
+    }
+  >
+    -
+    -
+  </div>
   <div
     className="accordion ui fluid styled"
   >
@@ -824,34 +848,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 62,
               ],
               "showline": true,
-              "tickfont": Object {
-                "size": 6,
-              },
-              "tickmode": "array",
-              "ticktext": Array [
-                "a",
-                "b",
-                "c",
-                "d",
-                "e",
-                "f",
-                "g",
-                "h",
-                "i",
-                "j",
-              ],
-              "tickvals": Array [
-                0,
-                1,
-                2,
-                3,
-                4,
-                5,
-                6,
-                7,
-                8,
-                9,
-              ],
+              "tickmode": "linear",
               "title": "Residue #",
             },
             "yaxis": Object {
@@ -882,6 +879,27 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         />
       </PlotlyChartClass>
     </ContactMapChartClass>
+    <SecondaryStructure
+      sequence={
+        Array [
+          "C",
+          "C",
+        ]
+      }
+    >
+      <div
+        style={
+          Object {
+            "fontFamily": "fira code",
+            "fontSize": 16,
+            "textAlign": "right",
+          }
+        }
+      >
+        -
+        -
+      </div>
+    </SecondaryStructure>
   </div>
 </ContactMapClass>
 `;
