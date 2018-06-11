@@ -65,3 +65,20 @@ export interface IResiduePair {
   i: number;
   j: number;
 }
+
+export enum SECONDARY_STRUCTURE_CODES {
+  '310_HELIX' = 'G',
+  'ALPHA_HELIX' = 'H',
+  'PI_HELIX' = 'I',
+  'HYDROGEN_BONDED_TURN' = 'T',
+  'BETA_SHEET' = 'E',
+  'BETA_BRIDGE' = 'B',
+  'BEND' = 'S',
+  'COIL' = 'C',
+}
+
+export interface ISecondaryStructure {
+  code: SECONDARY_STRUCTURE_CODES;
+  name: string;
+  minResidueLength: number;
+}

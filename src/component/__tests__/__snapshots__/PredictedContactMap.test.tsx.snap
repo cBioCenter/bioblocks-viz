@@ -1,0 +1,287 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PredictedContactMap Snapshots Should match existing snapshot when given empty data. 1`] = `
+<div
+  id="PredictedContactMapComponent"
+>
+  <ContactMap
+    addCandidateResidues={[Function]}
+    addHoveredResidues={[Function]}
+    addLockedResiduePair={[Function]}
+    candidateResidues={Array []}
+    clearAllResidues={[Function]}
+    configurations={
+      Array [
+        Object {
+          "name": "Linear Distance Filter (|i - j|)",
+          "onChange": [Function],
+          "values": Object {
+            "default": 5,
+            "max": 10,
+            "min": 1,
+          },
+        },
+        Object {
+          "name": "Top N Predictions to Show",
+          "onChange": [Function],
+          "values": Object {
+            "default": 29,
+            "max": 59,
+            "min": 1,
+          },
+        },
+      ]
+    }
+    correctColor="#ff0000"
+    data={
+      Object {
+        "computedPoints": Array [
+          Object {
+            "hoverinfo": "x+y",
+            "marker": Object {
+              "colorscale": Array [
+                Array [
+                  0,
+                  "#0000ff",
+                ],
+                Array [
+                  1,
+                  "rgb(100,177,200)",
+                ],
+              ],
+            },
+            "name": "Observed",
+            "nodeSize": 4,
+            "points": Array [],
+          },
+          Object {
+            "hoverinfo": "x+y",
+            "marker": Object {
+              "color": "#000000",
+            },
+            "name": "Predicted Contact (0)",
+            "nodeSize": 4,
+            "points": Array [],
+          },
+          Object {
+            "hoverinfo": "x+y",
+            "marker": Object {
+              "color": "#ff0000",
+            },
+            "name": "Correct Prediction",
+            "nodeSize": 6,
+            "points": Array [],
+          },
+        ],
+        "secondaryStructures": Array [],
+      }
+    }
+    height={400}
+    hoveredResidues={Array []}
+    incorrectColor="#000000"
+    lockedResiduePairs={Object {}}
+    observedColor="#0000ff"
+    padding={0}
+    removeAllLockedResiduePairs={[Function]}
+    removeCandidateResidues={[Function]}
+    removeHoveredResidues={[Function]}
+    removeLockedResiduePair={[Function]}
+    toggleLockedResiduePair={[Function]}
+    width={400}
+  />
+</div>
+`;
+
+exports[`PredictedContactMap Snapshots Should match existing snapshot when given no data. 1`] = `
+<div
+  id="PredictedContactMapComponent"
+>
+  <ContactMap
+    addCandidateResidues={[Function]}
+    addHoveredResidues={[Function]}
+    addLockedResiduePair={[Function]}
+    candidateResidues={Array []}
+    clearAllResidues={[Function]}
+    configurations={
+      Array [
+        Object {
+          "name": "Linear Distance Filter (|i - j|)",
+          "onChange": [Function],
+          "values": Object {
+            "default": 5,
+            "max": 10,
+            "min": 1,
+          },
+        },
+        Object {
+          "name": "Top N Predictions to Show",
+          "onChange": [Function],
+          "values": Object {
+            "default": 29,
+            "max": 59,
+            "min": 1,
+          },
+        },
+      ]
+    }
+    correctColor="#ff0000"
+    data={
+      Object {
+        "computedPoints": Array [
+          Object {
+            "hoverinfo": "x+y",
+            "marker": Object {
+              "colorscale": Array [
+                Array [
+                  0,
+                  "#0000ff",
+                ],
+                Array [
+                  1,
+                  "rgb(100,177,200)",
+                ],
+              ],
+            },
+            "name": "Observed",
+            "nodeSize": 4,
+            "points": Array [],
+          },
+          Object {
+            "hoverinfo": "x+y",
+            "marker": Object {
+              "color": "#000000",
+            },
+            "name": "Predicted Contact (0)",
+            "nodeSize": 4,
+            "points": Array [],
+          },
+          Object {
+            "hoverinfo": "x+y",
+            "marker": Object {
+              "color": "#ff0000",
+            },
+            "name": "Correct Prediction",
+            "nodeSize": 6,
+            "points": Array [],
+          },
+        ],
+        "secondaryStructures": Array [],
+      }
+    }
+    height={400}
+    hoveredResidues={Array []}
+    incorrectColor="#000000"
+    lockedResiduePairs={Object {}}
+    observedColor="#0000ff"
+    padding={0}
+    removeAllLockedResiduePairs={[Function]}
+    removeCandidateResidues={[Function]}
+    removeHoveredResidues={[Function]}
+    removeLockedResiduePair={[Function]}
+    toggleLockedResiduePair={[Function]}
+    width={400}
+  />
+</div>
+`;
+
+exports[`PredictedContactMap Snapshots Should match snapshot when locked residues are added. 1`] = `
+<div
+  id="PredictedContactMapComponent"
+>
+  <ContactMap
+    addCandidateResidues={[Function]}
+    addHoveredResidues={[Function]}
+    addLockedResiduePair={[Function]}
+    candidateResidues={Array []}
+    clearAllResidues={[Function]}
+    configurations={
+      Array [
+        Object {
+          "name": "Linear Distance Filter (|i - j|)",
+          "onChange": [Function],
+          "values": Object {
+            "default": 5,
+            "max": 10,
+            "min": 1,
+          },
+        },
+        Object {
+          "name": "Top N Predictions to Show",
+          "onChange": [Function],
+          "values": Object {
+            "default": 29,
+            "max": 59,
+            "min": 1,
+          },
+        },
+      ]
+    }
+    correctColor="#ff0000"
+    data={
+      Object {
+        "computedPoints": Array [
+          Object {
+            "hoverinfo": "x+y",
+            "marker": Object {
+              "colorscale": Array [
+                Array [
+                  0,
+                  "#0000ff",
+                ],
+                Array [
+                  1,
+                  "rgb(100,177,200)",
+                ],
+              ],
+            },
+            "name": "Observed",
+            "nodeSize": 4,
+            "points": Array [],
+          },
+          Object {
+            "hoverinfo": "x+y",
+            "marker": Object {
+              "color": "#000000",
+            },
+            "name": "Predicted Contact (0)",
+            "nodeSize": 4,
+            "points": Array [],
+          },
+          Object {
+            "hoverinfo": "x+y",
+            "marker": Object {
+              "color": "#ff0000",
+            },
+            "name": "Correct Prediction",
+            "nodeSize": 6,
+            "points": Array [],
+          },
+        ],
+        "secondaryStructures": Array [],
+      }
+    }
+    height={400}
+    hoveredResidues={Array []}
+    incorrectColor="#000000"
+    lockedResiduePairs={
+      Object {
+        "37,46": Array [
+          37,
+          46,
+        ],
+        "8": Array [
+          8,
+        ],
+      }
+    }
+    observedColor="#0000ff"
+    padding={0}
+    removeAllLockedResiduePairs={[Function]}
+    removeCandidateResidues={[Function]}
+    removeHoveredResidues={[Function]}
+    removeLockedResiduePair={[Function]}
+    toggleLockedResiduePair={[Function]}
+    width={400}
+  />
+</div>
+`;
