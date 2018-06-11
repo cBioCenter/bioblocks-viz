@@ -64,7 +64,7 @@ describe('ContactMap', () => {
   });
 
   const emptyData = {
-    couplingScores: [],
+    computedPoints: [],
     secondaryStructures: [],
   };
 
@@ -100,7 +100,17 @@ describe('ContactMap', () => {
   );
 
   const sampleData = {
-    couplingScores: Array.from(uniqueScores),
+    computedPoints: Array.from(uniqueScores).map((value, index) => ({
+      name: index.toString(),
+      nodeSize: 4,
+      points: [
+        {
+          dist: value.dist,
+          i: value.i,
+          j: value.j,
+        },
+      ],
+    })),
     secondaryStructures: [{ resno: 30, structId: 'C' }, { resno: 31, structId: 'C' }],
   };
 
@@ -153,7 +163,7 @@ describe('ContactMap', () => {
     expect(onHoverSpy).toHaveBeenCalledTimes(1);
   });
 
-  test('Should clear state if new data is given', async () => {
+  test('Should clear state if new data is given.', async () => {
     const onClearResidueSpy = jest.fn();
     const wrapper = await getMountedContactMap({ clearAllResidues: onClearResidueSpy, data: sampleData });
     await wrapper.update();
@@ -165,7 +175,7 @@ describe('ContactMap', () => {
   });
 
   describe('Configuration', () => {
-    test('Should update the state when the configuration accordion is clicked', () => {
+    test('Should update the state when the configuration accordion is clicked.', () => {
       const wrapper = getShallowContactMap({ data: sampleData, enableSliders: true });
       const instance = wrapper.instance() as ContactMapClass;
       const initialState = instance.state.showConfiguration;
@@ -176,7 +186,7 @@ describe('ContactMap', () => {
       expect(instance.state.showConfiguration).toBe(!initialState);
     });
 
-    test('Should update node size when appropriate slider is updated?', () => {
+    test('Should update node size when appropriate slider is updated.', () => {
       const wrapper = getShallowContactMap({ data: sampleData, enableSliders: true });
       const setStateSpy = jest.fn();
       wrapper.instance().setState = setStateSpy;
@@ -190,40 +200,42 @@ describe('ContactMap', () => {
       expect(newState[0].pointsToPlot[0].nodeSize).toBe(expectedSize);
     });
 
-    test('Should update number of predicted contacts to show when appropriate slider is updated.', () => {
-      const wrapper = getShallowContactMap({ data: sampleData, enableSliders: true });
-      const instance = wrapper.instance() as ContactMapClass;
-      const expectedCount = 50;
-      expect(instance.state.numPredictionsToShow).not.toBe(expectedCount);
-      wrapper
-        .find('.predicted-contact-slider')
-        .at(0)
-        .simulate('change', expectedCount);
-      expect(instance.state.numPredictionsToShow).toBe(expectedCount);
+    test('Should match existing snapshot when given configurations.', () => {
+      const configurations = [
+        {
+          name: 'sample',
+          onChange: jest.fn(),
+          values: {
+            default: 5,
+            max: 10,
+            min: 0,
+          },
+        },
+      ];
+      const wrapper = getShallowContactMap({ configurations });
+      expect(toJson(wrapper)).toMatchSnapshot();
     });
 
-    test('Should update linear distance filter when appropriate slider is updated.', () => {
-      const wrapper = getShallowContactMap({ data: sampleData, enableSliders: true });
-      const instance = wrapper.instance() as ContactMapClass;
-      const expected = 10;
-      expect(instance.state.linearDistFilter).not.toBe(expected);
+    test('Should invoke appropriate configuration callback.', () => {
+      const onChangeSpy = jest.fn();
+      const expectedValue = 7;
+      const configurations = [
+        {
+          name: 'sample',
+          onChange: onChangeSpy,
+          values: {
+            default: 5,
+            max: 10,
+            min: 0,
+          },
+        },
+      ];
+      const wrapper = getShallowContactMap({ configurations });
       wrapper
-        .find('.linear-dist-filter')
+        .find('.sample')
         .at(0)
-        .simulate('change', expected);
-      expect(instance.state.linearDistFilter).toBe(expected);
-    });
-
-    test('Should update # of predicted contacts to show when appropriate slider is updated.', () => {
-      const wrapper = getShallowContactMap({ data: sampleData, enableSliders: true });
-      const instance = wrapper.instance() as ContactMapClass;
-      const expected = 20;
-      expect(instance.state.numPredictionsToShow).not.toBe(expected);
-      wrapper
-        .find('.predicted-contact-slider')
-        .at(0)
-        .simulate('change', expected);
-      expect(instance.state.numPredictionsToShow).toBe(expected);
+        .simulate('change', expectedValue);
+      expect(onChangeSpy).toHaveBeenLastCalledWith(expectedValue);
     });
   });
 });

@@ -6,7 +6,7 @@ import SpringComponent from '../component/SpringComponent';
 import TComponent from '../component/TComponent';
 import { CHELL_DATA_TYPE, IContactMapData, NGL_DATA_TYPE, T_SNE_DATA_TYPE, VIZ_TYPE } from '../data/chell-data';
 import { withDefaultProps } from '../helper/ReactHelper';
-import ContactMap from './ContactMap';
+import PredictedContactMap from './PredictedContactMap';
 
 export const defaultVizPanelProps = {
   data: {} as Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>,
@@ -99,9 +99,8 @@ const VizSelectorPanel = withDefaultProps(
           );
         case VIZ_TYPE.CONTACT_MAP:
           return (
-            <ContactMap
+            <PredictedContactMap
               data={data['Contact Map'] as IContactMapData}
-              enableSliders={true}
               height={paddedHeight}
               padding={padding}
               width={paddedWidth}
