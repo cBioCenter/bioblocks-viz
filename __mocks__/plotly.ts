@@ -18,6 +18,7 @@ export class MockPlotlyHTMLElement {
       switch (event.type) {
         case 'plotly_click':
         case 'plotly_hover':
+        case 'plotly_selected':
           cb({ points: [{ x: 0, y: 0 }] });
           break;
         default:

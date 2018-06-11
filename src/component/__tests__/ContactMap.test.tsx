@@ -163,6 +163,13 @@ describe('ContactMap', () => {
     expect(onHoverSpy).toHaveBeenCalledTimes(1);
   });
 
+  test('Should invoke callback for selected residues when a click event is fired.', async () => {
+    const onSelectedSpy = jest.fn();
+    const wrapper = await getMountedContactMap({ data: sampleData, onBoxSelection: onSelectedSpy });
+    dispatchPlotlyEvent(wrapper, 'plotly_selected');
+    expect(onSelectedSpy).toHaveBeenLastCalledWith([0]);
+  });
+
   test('Should clear state if new data is given.', async () => {
     const onClearResidueSpy = jest.fn();
     const wrapper = await getMountedContactMap({ clearAllResidues: onClearResidueSpy, data: sampleData });

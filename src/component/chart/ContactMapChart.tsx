@@ -14,7 +14,6 @@ export interface IContactMapChartProps {
   data: IContactMapChartData[];
   dataTransformFn: (entry: IContactMapChartData, mirrorPoints: boolean) => Partial<IPlotlyData>;
   heightModifier: number;
-  hoveredResidues: RESIDUE_TYPE[];
   legendModifiers: {
     y: number;
   };
@@ -32,24 +31,11 @@ const defaultContactMapChartProps: Partial<IContactMapChartProps> = {
   candidateResidues: new Array<RESIDUE_TYPE>(),
   dataTransformFn: generateScatterGLData,
   heightModifier: 0.3,
-  hoveredResidues: new Array<RESIDUE_TYPE>(),
   legendModifiers: {
     y: -0.1,
   },
   marginModifiers: {
     b: 40,
-  },
-  onClickCallback: (...args: any[]) => {
-    return;
-  },
-  onHoverCallback: (...args: any[]) => {
-    return;
-  },
-  onSelectedCallback: (...args: any[]) => {
-    return;
-  },
-  onUnHoverCallback: (...args: any[]) => {
-    return;
   },
   range: [],
 };
@@ -98,7 +84,6 @@ class ContactMapChartClass extends React.Component<IContactMapChartProps, any> {
       data,
       dataTransformFn,
       heightModifier,
-      hoveredResidues,
       legendModifiers,
       marginModifiers,
       range,

@@ -50,9 +50,5 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
       },
     }
   }
-  onClickCallback={[Function]}
-  onHoverCallback={[Function]}
-  onSelectedCallback={[Function]}
-  onUnHoverCallback={[Function]}
 />
 `;

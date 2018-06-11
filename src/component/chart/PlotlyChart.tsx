@@ -1,3 +1,4 @@
+import * as deepEqual from 'deep-equal';
 import * as Immutable from 'immutable';
 import * as React from 'react';
 
@@ -22,6 +23,16 @@ export enum PLOTLY_CHART_TYPE {
 
 export interface IPlotlyData extends plotly.ScatterData {
   type: PLOTLY_CHART_TYPE | 'bar' | 'pointcloud' | 'scatter' | 'scattergl' | 'scatter3d';
+}
+
+export interface IPlotlyChartProps {
+  config?: Partial<Plotly.Config>;
+  data: Array<Partial<IPlotlyData>>;
+  layout?: Partial<Plotly.Layout>;
+  onClickCallback?: ((event: plotly.PlotMouseEvent) => void);
+  onHoverCallback?: ((event: plotly.PlotMouseEvent) => void);
+  onSelectedCallback?: ((event: plotly.PlotSelectionEvent) => void);
+  onUnHoverCallback?: ((event: plotly.PlotMouseEvent) => void);
 }
 
 export const defaultPlotlyConfig: Partial<Plotly.Config> = {
@@ -52,27 +63,11 @@ export const defaultPlotlyLayout: Partial<Plotly.Layout> = {
   },
 };
 
-export const defaultPlotlyChartProps = {
-  config: {} as Partial<Plotly.Config>,
-  data: [] as Array<Partial<IPlotlyData>>,
-  layout: {} as Partial<Plotly.Layout>,
-  onClickCallback: (event: plotly.PlotMouseEvent) => {
-    return;
-  },
-  onHoverCallback: (event: plotly.PlotMouseEvent) => {
-    return;
-  },
-  onSelectedCallback: (event: plotly.PlotSelectionEvent) => {
-    return;
-  },
-  onUnHoverCallback: (event: plotly.PlotMouseEvent) => {
-    return;
-  },
+export const defaultPlotlyChartProps: Partial<IPlotlyChartProps> = {
+  config: {},
+  data: [],
+  layout: {},
 };
-
-export type PlotlyChartProps = {
-  data: Array<Partial<IPlotlyData>>;
-} & Partial<typeof defaultPlotlyChartProps>;
 
 /**
  * React wrapper for a Plotly Chart.
@@ -83,8 +78,9 @@ export type PlotlyChartProps = {
  * @export
  * @extends {React.Component<IPlotlyChartProps, any>}
  */
-export class PlotlyChartClass extends React.Component<PlotlyChartProps, any> {
+export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
   public plotlyCanvas: plotly.PlotlyHTMLElement | null = null;
+  protected plotlyFormattedData: Array<Partial<IPlotlyData>> = [];
   protected canvasRef: HTMLDivElement | null = null;
 
   public attachListeners() {
@@ -103,21 +99,26 @@ export class PlotlyChartClass extends React.Component<PlotlyChartProps, any> {
   };
 
   public draw = async () => {
-    const { data, layout, config } = this.props;
+    const { layout, config } = this.props;
     if (this.plotlyCanvas) {
       // plotly.react will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
       this.plotlyCanvas = await plotly.react(
         this.plotlyCanvas,
-        data,
+        this.plotlyFormattedData,
         this.getMergedLayout(layout),
         this.getMergedConfig(config),
       );
     }
   };
 
-  public componentDidUpdate(prevProps: PlotlyChartProps) {
+  public componentDidUpdate(prevProps: IPlotlyChartProps) {
     const { data, layout, config } = this.props;
-    if (data !== prevProps.data || layout !== prevProps.layout || config !== prevProps.config) {
+    if (
+      JSON.stringify(data) !== JSON.stringify(prevProps.data) ||
+      !deepEqual(layout, prevProps.layout) ||
+      !deepEqual(config, prevProps.config)
+    ) {
+      this.plotlyFormattedData = Immutable.fromJS(data).toJS();
       this.draw();
     }
   }
@@ -125,12 +126,15 @@ export class PlotlyChartClass extends React.Component<PlotlyChartProps, any> {
   public async componentDidMount() {
     if (this.canvasRef && !this.plotlyCanvas) {
       const { data, layout, config } = this.props;
+      this.plotlyFormattedData = Immutable.fromJS(data).toJS();
+
       this.plotlyCanvas = await plotly.react(
         this.canvasRef,
-        data,
+        this.plotlyFormattedData,
         this.getMergedLayout(layout),
         this.getMergedConfig(config),
       );
+
       this.attachListeners();
       this.draw();
     }
@@ -151,15 +155,21 @@ export class PlotlyChartClass extends React.Component<PlotlyChartProps, any> {
   }
 
   protected getMergedConfig = (config: Partial<Plotly.Config> = {}) => {
-    const foo: Immutable.Map<any, any> = Immutable.fromJS(Object.assign({}, defaultPlotlyConfig));
-    const bar: Immutable.Map<any, any> = Immutable.fromJS(Object.assign({}, config));
-    return Object.assign({}, foo.mergeDeep(bar).toJS());
+    return Object.assign(
+      {},
+      Immutable.fromJS(Object.assign({}, defaultPlotlyConfig))
+        .mergeDeep(Immutable.fromJS(Object.assign({}, config)))
+        .toJS(),
+    );
   };
 
   protected getMergedLayout = (layout: Partial<Plotly.Layout> = {}) => {
-    const foo: Immutable.Map<any, any> = Immutable.fromJS(Object.assign({}, defaultPlotlyLayout));
-    const bar: Immutable.Map<any, any> = Immutable.fromJS(Object.assign({}, layout));
-    return Object.assign({}, foo.mergeDeep(bar).toJS());
+    return Object.assign(
+      {},
+      Immutable.fromJS(Object.assign({}, defaultPlotlyLayout))
+        .mergeDeep(Immutable.fromJS(Object.assign({}, layout)))
+        .toJS(),
+    );
   };
 
   protected onClick = (event: plotly.PlotMouseEvent) => {
