@@ -4,7 +4,7 @@ import toJson from 'enzyme-to-json';
 import * as React from 'react';
 
 import { IMockDict } from 'configs/SetupJest';
-import { IPlotlyData, PlotlyChartClass, PlotlyChartProps } from '../PlotlyChart';
+import { IPlotlyChartProps, IPlotlyData, PlotlyChartClass } from '../PlotlyChart';
 
 beforeEach(() => {
   jest.resetModules();
@@ -28,7 +28,7 @@ describe('PlotlyChart', () => {
    * @param props Custom props to be passed to the chart.
    * @returns A wrapper for the PlotlyChart that has been mounted.
    */
-  const getMountedPlotlyChart = async (props: PlotlyChartProps) => {
+  const getMountedPlotlyChart = async (props: IPlotlyChartProps) => {
     const wrapper = mount(<PlotlyChartClass {...props} />);
     await wrapper.update();
     return wrapper;
@@ -173,7 +173,7 @@ describe('PlotlyChart', () => {
       data: sampleData,
     });
 
-    expect(drawSpy).not.toHaveBeenCalledTimes(1);
+    expect(drawSpy).toHaveBeenCalledTimes(0);
   });
 
   test('Should call draw when data is updated.', async () => {
@@ -202,7 +202,9 @@ describe('PlotlyChart', () => {
     chartInstance.draw = drawSpy;
 
     wrapper.setProps({
-      layout: {},
+      layout: {
+        autosize: false,
+      },
     });
 
     expect(drawSpy).toHaveBeenCalledTimes(1);
@@ -218,7 +220,9 @@ describe('PlotlyChart', () => {
     chartInstance.draw = drawSpy;
 
     wrapper.setProps({
-      config: {},
+      config: {
+        displayModeBar: true,
+      },
     });
 
     expect(drawSpy).toHaveBeenCalledTimes(1);

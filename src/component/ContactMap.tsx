@@ -32,6 +32,7 @@ export const defaultContactMapProps = {
   height: 400,
   highlightColor: '#ff8800',
   ...initialResidueContext,
+  onBoxSelection: undefined as undefined | ((residues: RESIDUE_TYPE[]) => void),
   padding: 0,
   width: 400,
 };
@@ -46,44 +47,6 @@ export type ContactMapProps = {} & typeof defaultContactMapProps;
 export type ContactMapState = Readonly<typeof initialContactMapState>;
 
 export class ContactMapClass extends React.Component<ContactMapProps, ContactMapState> {
-  public static getDerivedStateFromProps = (props: ContactMapProps, state: ContactMapState) => {
-    const { highlightColor, lockedResiduePairs } = props;
-    const { pointsToPlot } = state;
-
-    const pointsLength = pointsToPlot.length;
-    const nodeSize =
-      pointsLength >= 2 && pointsToPlot[pointsLength - 1].nodeSize ? pointsToPlot[pointsLength - 1].nodeSize : 6;
-
-    const highlightedPoints = generateChartDataEntry(
-      'none',
-      highlightColor,
-      'Selected Res. Pairs',
-      nodeSize,
-      Object.keys(lockedResiduePairs as IResidueSelection)
-        .filter(key => lockedResiduePairs[key].length === 2)
-        .map(key => ({ i: lockedResiduePairs[key][0], j: lockedResiduePairs[key][1], dist: 0 })),
-      {
-        marker: {
-          color: highlightColor,
-          line: {
-            color: highlightColor,
-            width: 3,
-          },
-          symbol: 'circle-open',
-        },
-      },
-    );
-
-    return {
-      pointsToPlot: [
-        ...pointsToPlot.slice(0, pointsLength - 1),
-        {
-          ...highlightedPoints,
-        },
-      ],
-    };
-  };
-
   public readonly state: ContactMapState = initialContactMapState;
 
   constructor(props: ContactMapProps) {
@@ -94,11 +57,13 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     this.setupPointsToPlot(this.props.data.computedPoints);
   }
 
-  public componentDidUpdate(prevProps: ContactMapProps, prevState: ContactMapState) {
-    const { clearAllResidues, data } = this.props;
+  public componentDidUpdate(prevProps: ContactMapProps) {
+    const { clearAllResidues, data, lockedResiduePairs } = this.props;
     if (data !== prevProps.data) {
       clearAllResidues();
       this.setupPointsToPlot(data.computedPoints);
+    } else if (lockedResiduePairs !== prevProps.lockedResiduePairs) {
+      this.setupPointsToPlot(data.computedPoints, lockedResiduePairs);
     }
   }
 
@@ -131,7 +96,33 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     });
   };
 
-  protected setupPointsToPlot(points: IContactMapChartData[], highlightedPoints = {} as IContactMapChartData) {
+  protected setupPointsToPlot(points: IContactMapChartData[], lockedResiduePairs: IResidueSelection = {}) {
+    const { highlightColor } = this.props;
+    const { pointsToPlot } = this.state;
+
+    const pointsLength = pointsToPlot.length;
+    const nodeSize = pointsLength >= 2 && pointsToPlot[pointsLength - 1] ? pointsToPlot[pointsLength - 1].nodeSize : 6;
+
+    const highlightedPoints = generateChartDataEntry(
+      'none',
+      highlightColor,
+      'Selected Res. Pairs',
+      nodeSize,
+      Object.keys(lockedResiduePairs)
+        .filter(key => lockedResiduePairs[key].length === 2)
+        .map(key => ({ i: lockedResiduePairs[key][0], j: lockedResiduePairs[key][1], dist: 0 })),
+      {
+        marker: {
+          color: highlightColor,
+          line: {
+            color: highlightColor,
+            width: 3,
+          },
+          symbol: 'circle-open',
+        },
+      },
+    );
+
     this.setState({
       ...this.state,
       pointsToPlot: [...points, highlightedPoints],
@@ -139,17 +130,16 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
   }
 
   protected renderContactMapChart(pointsToPlot: IContactMapChartData[]) {
-    const { addHoveredResidues, candidateResidues, hoveredResidues, toggleLockedResiduePair } = this.props;
+    const { addHoveredResidues, candidateResidues, onBoxSelection, toggleLockedResiduePair } = this.props;
     const { chainLength } = this.state;
 
     return (
       <ContactMapChart
         candidateResidues={candidateResidues}
         data={pointsToPlot}
-        hoveredResidues={hoveredResidues}
         onClickCallback={this.onMouseClick(toggleLockedResiduePair)}
         onHoverCallback={this.onMouseEnter(addHoveredResidues)}
-        onSelectedCallback={this.onMouseSelect()}
+        onSelectedCallback={this.onMouseSelect(onBoxSelection)}
         range={[0, chainLength + 5]}
       />
     );
@@ -231,8 +221,15 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     cb([points[0].x, points[0].y]);
   };
 
-  protected onMouseSelect = () => (e: plotly.PlotSelectionEvent) => {
-    console.log(`onMouseSelect: ${e}`);
+  protected onMouseSelect = (cb?: (residues: RESIDUE_TYPE[]) => void) => (
+    e: plotly.PlotSelectionEvent = { points: [] },
+  ) => {
+    const { points } = e;
+    if (cb) {
+      // For the contact map, all the x/y values are mirrored and correspond directly with i/j values.
+      // Thus, all the residue numbers can be obtained by getting either all x or values from ths selected points.
+      cb(points.map(point => point.x));
+    }
   };
 }
 

@@ -23,9 +23,7 @@ exports[`PlotlyChart Should attach events when the container is attached. 1`] = 
   }
   layout={Object {}}
   onClickCallback={[MockFunction]}
-  onHoverCallback={[Function]}
   onSelectedCallback={[MockFunction]}
-  onUnHoverCallback={[Function]}
 >
   <div
     className="plotly-chart"
@@ -43,10 +41,6 @@ exports[`PlotlyChart Should match existing snapshot when given empty data. 1`] =
   config={Object {}}
   data={Array []}
   layout={Object {}}
-  onClickCallback={[Function]}
-  onHoverCallback={[Function]}
-  onSelectedCallback={[Function]}
-  onUnHoverCallback={[Function]}
 >
   <div
     className="plotly-chart"
@@ -81,10 +75,6 @@ exports[`PlotlyChart Should match existing snapshot when given sample data. 1`] 
     ]
   }
   layout={Object {}}
-  onClickCallback={[Function]}
-  onHoverCallback={[Function]}
-  onSelectedCallback={[Function]}
-  onUnHoverCallback={[Function]}
 >
   <div
     className="plotly-chart"

@@ -31,7 +31,6 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
     }
     dataTransformFn={[Function]}
     heightModifier={0.3}
-    hoveredResidues={Array []}
     legendModifiers={
       Object {
         "y": -0.1,
@@ -45,7 +44,6 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
     onClickCallback={[Function]}
     onHoverCallback={[Function]}
     onSelectedCallback={[Function]}
-    onUnHoverCallback={[Function]}
     range={
       Array [
         0,
@@ -198,7 +196,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
         }
       >
         <p>
-          0 Node Size: 6
+          0 Node Size: 4
         </p>
         <div
           className="rc-slider"
@@ -222,7 +220,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
             style={
               Object {
                 "left": "0%",
-                "width": "26.31578947368421%",
+                "width": "15.789473684210526%",
               }
             }
           />
@@ -233,12 +231,12 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
             aria-disabled={false}
             aria-valuemax={20}
             aria-valuemin={1}
-            aria-valuenow={6}
+            aria-valuenow={4}
             className="rc-slider-handle"
             role="slider"
             style={
               Object {
-                "left": "26.31578947368421%",
+                "left": "15.789473684210526%",
               }
             }
             tabIndex={0}
@@ -822,7 +820,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       }
       dataTransformFn={[Function]}
       heightModifier={0.3}
-      hoveredResidues={Array []}
       legendModifiers={
         Object {
           "y": -0.1,
@@ -836,7 +833,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       onClickCallback={[Function]}
       onHoverCallback={[Function]}
       onSelectedCallback={[Function]}
-      onUnHoverCallback={[Function]}
       range={
         Array [
           0,
@@ -1066,7 +1062,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         onClickCallback={[Function]}
         onHoverCallback={[Function]}
         onSelectedCallback={[Function]}
-        onUnHoverCallback={[Function]}
       >
         <div
           className="plotly-chart"
@@ -1161,7 +1156,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   }
                 >
                   <p>
-                    0 Node Size: 6
+                    0 Node Size: 4
                   </p>
                   <ComponentEnhancer(undefined)
                     activeDotStyle={Object {}}
@@ -1218,7 +1213,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       <Track
                         className="rc-slider-track"
                         included={true}
-                        length={26.31578947368421}
+                        length={15.789473684210526}
                         offset={0}
                         style={Object {}}
                         vertical={false}
@@ -1228,7 +1223,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                           style={
                             Object {
                               "left": "0%",
-                              "width": "26.31578947368421%",
+                              "width": "15.789473684210526%",
                             }
                           }
                         />
@@ -1244,7 +1239,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         min={1}
                         prefixCls="rc-slider"
                         step={1}
-                        upperBound={6}
+                        upperBound={4}
                         vertical={false}
                       >
                         <div
@@ -1257,21 +1252,21 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         key="0"
                         max={20}
                         min={1}
-                        offset={26.31578947368421}
+                        offset={15.789473684210526}
                         style={Object {}}
-                        value={6}
+                        value={4}
                         vertical={false}
                       >
                         <div
                           aria-disabled={false}
                           aria-valuemax={20}
                           aria-valuemin={1}
-                          aria-valuenow={6}
+                          aria-valuenow={4}
                           className="rc-slider-handle"
                           role="slider"
                           style={
                             Object {
-                              "left": "26.31578947368421%",
+                              "left": "15.789473684210526%",
                             }
                           }
                           tabIndex={0}
@@ -1284,7 +1279,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         marks={Object {}}
                         max={20}
                         min={1}
-                        upperBound={6}
+                        upperBound={4}
                         vertical={false}
                       >
                         <div

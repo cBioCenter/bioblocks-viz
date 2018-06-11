@@ -1,6 +1,6 @@
 {
   "name": "chell-viz",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "author": "Biostatistics and Computational Biology at Dana-Farber <bcb@jimmy.harvard.edu>",
   "license": "MIT",
   "engines": {
@@ -151,6 +151,7 @@
     "copy-webpack-plugin": "^4.5.1",
     "cross-env": "^5.1.4",
     "css-loader": "^0.28.11",
+    "deep-equal": "^1.0.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.3",
