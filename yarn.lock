@@ -378,6 +378,10 @@
   version "22.2.3"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-22.2.3.tgz#0157c0316dc3722c43a7b71de3fdf3acbccef10d"
 
+"@types/jest@^23.0.0":
+  version "23.0.2"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.0.2.tgz#f03f9e6dd2206cc2a2e8fd033161b0b7cf905db6"
+
 "@types/lodash@4.14.104":
   version "4.14.104"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.104.tgz#53ee2357fa2e6e68379341d92eb2ecea4b11bb80"
@@ -6389,9 +6393,10 @@ jest-enzyme@^6.0.0:
     jest-environment-enzyme "^6.0.1"
 
 jest-fetch-mock@^1.6.2:
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/jest-fetch-mock/-/jest-fetch-mock-1.6.3.tgz#bb168a80ae1e70efd47096523a53f62e3967261e"
+  version "1.6.4"
+  resolved "https://registry.yarnpkg.com/jest-fetch-mock/-/jest-fetch-mock-1.6.4.tgz#73fc486cb17c9547dbf256eed1a826ee5f215761"
   dependencies:
+    "@types/jest" "^23.0.0"
     isomorphic-fetch "^2.2.1"
     promise-polyfill "^7.1.1"
 
