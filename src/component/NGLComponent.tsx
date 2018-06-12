@@ -4,6 +4,8 @@ import * as React from 'react';
 import { Button, GridRow } from 'semantic-ui-react';
 
 import ResidueContext, { initialResidueContext, IResidueSelection } from '../context/ResidueContext';
+import { RESIDUE_TYPE } from '../data/chell-data';
+import { createBallStickRepresentation, createDistanceRepresentation } from '../helper/NGLHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
 
 export type NGL_HOVER_CB_RESULT_TYPE = number;
@@ -87,13 +89,11 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
     } else {
       if (structureComponent && prevProps.lockedResiduePairs !== lockedResiduePairs) {
         this.removeHighlights(structureComponent, prevProps.lockedResiduePairs);
-        Object.keys(lockedResiduePairs).forEach(key => {
-          this.highlightElement(structureComponent, lockedResiduePairs[key]);
-        });
+        this.highlightResidues(structureComponent, lockedResiduePairs);
       }
       if (structureComponent && this.props.hoveredResidues !== prevProps.hoveredResidues) {
         this.removeNonLockedRepresentations(structureComponent);
-        this.highlightElement(structureComponent, this.props.hoveredResidues);
+        this.highlightResidues(structureComponent, this.props.hoveredResidues);
       }
     }
   }
@@ -159,12 +159,12 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
 
       this.removeNonLockedRepresentations(structureComponent);
 
-      this.highlightElement(structureComponent, [resno]);
+      this.highlightResidues(structureComponent, [resno]);
       this.props.addHoveredResidues([resno]);
 
       const { candidateResidues } = this.props;
       if (candidateResidues.length >= 1) {
-        this.highlightElement(structureComponent, [...candidateResidues, resno]);
+        this.highlightResidues(structureComponent, [...candidateResidues, resno]);
       }
     }
   }
@@ -213,38 +213,35 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
    * @param structureComponent The structure for which the residue to highlight belongs.
    * @param selection [NGL Selection](https://github.com/arose/ngl/blob/master/doc/usage/selection-language.md) for what to highlight.
    */
-  protected highlightElement(structureComponent: StructureComponent, residues: number[]) {
+  protected highlightResidues(
+    structureComponent: StructureComponent,
+    residuesToHighlight: IResidueSelection | RESIDUE_TYPE[],
+  ) {
     const { residueOffset } = this.state;
-    const residueKey = residues.toString();
-    const residueWithOffset = residues.map(res => res - residueOffset);
     const repDict = this.state.residueSelectionRepresentations;
 
-    if (repDict[residueKey]) {
-      repDict[residueKey].map(rep => structureComponent.removeRepresentation(rep));
-    } else {
-      repDict[residueKey] = [];
-    }
+    const allResidues = Array.isArray(residuesToHighlight) ? { 0: residuesToHighlight } : residuesToHighlight;
+    Object.keys(allResidues).forEach(key => {
+      const residues = allResidues[key];
 
-    const selection = residueWithOffset.join('.CA, ') + '.CA';
+      const residueKey = residues.toString();
+      const residueWithOffset = residues.map(res => res - residueOffset);
 
-    if (residueWithOffset.length >= 2) {
-      repDict[residueKey].push(
-        structureComponent.addRepresentation('distance', {
-          atomPair: [selection.split(',')],
-          color: 'skyblue',
-          labelUnit: 'angstrom',
-        }),
-      );
-    }
+      if (repDict[residueKey]) {
+        repDict[residueKey].map(rep => structureComponent.removeRepresentation(rep));
+      } else {
+        repDict[residueKey] = [];
+      }
 
-    if (residueWithOffset.length !== 0) {
-      repDict[residueKey].push(
-        structureComponent.addRepresentation('ball+stick', {
-          sele: residueWithOffset.join(', '),
-        }),
-      );
-    }
+      if (residueWithOffset.length >= 2) {
+        const selection = residueWithOffset.join('.CA, ') + '.CA';
+        repDict[residueKey].push(createDistanceRepresentation(structureComponent, selection));
+      }
 
+      if (residueWithOffset.length !== 0) {
+        repDict[residueKey].push(createBallStickRepresentation(structureComponent, residueWithOffset));
+      }
+    });
     this.setState({
       residueSelectionRepresentations: repDict,
     });
