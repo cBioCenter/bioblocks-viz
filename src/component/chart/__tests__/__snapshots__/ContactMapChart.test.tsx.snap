@@ -6,7 +6,7 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
   data={
     Array [
       Object {
-        "hoverinfo": "none",
+        "hoverinfo": "x+y+z",
         "marker": Object {
           "color": Array [],
           "size": 0,

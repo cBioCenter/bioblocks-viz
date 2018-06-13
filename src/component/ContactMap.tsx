@@ -7,7 +7,6 @@ import { ICouplingScore, ISecondaryStructureData, RESIDUE_TYPE } from '../data/c
 import { withDefaultProps } from '../helper/ReactHelper';
 import ContactMapChart, { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';
 import ChellSlider, { ChellSliderCallback } from './ChellSlider';
-import SecondaryStructure from './SecondaryStructure';
 
 export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
 export type ContactMapCallback = (coupling: CONTACT_MAP_CB_RESULT_TYPE) => void;
@@ -68,16 +67,15 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
   }
 
   public render() {
-    const { padding, width } = this.props;
+    const { data, enableSliders, padding, width } = this.props;
     const { pointsToPlot } = this.state;
 
     const sliderStyle = { width: width * 0.9 };
 
     return (
       <div id="ContactMapComponent" style={{ padding }}>
-        {this.renderContactMapChart(pointsToPlot)}
-        <SecondaryStructure sequence={this.props.data.secondaryStructures.map(entry => entry.structId)} />
-        {this.props.enableSliders && this.renderSliders(sliderStyle, pointsToPlot)}
+        {this.renderContactMapChart(pointsToPlot, data.secondaryStructures)}
+        {enableSliders && this.renderSliders(sliderStyle, pointsToPlot)}
       </div>
     );
   }
@@ -129,18 +127,22 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     });
   }
 
-  protected renderContactMapChart(pointsToPlot: IContactMapChartData[]) {
+  protected renderContactMapChart(
+    pointsToPlot: IContactMapChartData[],
+    secondaryStructures: ISecondaryStructureData[],
+  ) {
     const { addHoveredResidues, candidateResidues, onBoxSelection, toggleLockedResiduePair } = this.props;
     const { chainLength } = this.state;
 
     return (
       <ContactMapChart
         candidateResidues={candidateResidues}
-        data={pointsToPlot}
+        contactData={pointsToPlot}
         onClickCallback={this.onMouseClick(toggleLockedResiduePair)}
         onHoverCallback={this.onMouseEnter(addHoveredResidues)}
         onSelectedCallback={this.onMouseSelect(onBoxSelection)}
         range={[0, chainLength + 5]}
+        secondaryStructures={secondaryStructures}
       />
     );
   }

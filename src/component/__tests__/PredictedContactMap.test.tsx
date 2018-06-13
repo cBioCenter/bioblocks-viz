@@ -3,7 +3,7 @@ import toJson from 'enzyme-to-json';
 
 import * as React from 'react';
 
-import { ICouplingScore } from '../../data/chell-data';
+import { ICouplingScore, SECONDARY_STRUCTURE_CODES } from '../../data/chell-data';
 import { PredictedContactMap, PredictedContactMapClass } from '../PredictedContactMap';
 
 describe('PredictedContactMap', () => {
@@ -45,7 +45,10 @@ describe('PredictedContactMap', () => {
 
   const sampleData = {
     couplingScores: Array.from(uniqueScores),
-    secondaryStructures: [{ resno: 30, structId: 'C' }, { resno: 31, structId: 'C' }],
+    secondaryStructures: [
+      { resno: 30, structId: 'C' as keyof typeof SECONDARY_STRUCTURE_CODES },
+      { resno: 31, structId: 'C' as keyof typeof SECONDARY_STRUCTURE_CODES },
+    ],
   };
 
   describe('Snapshots', () => {

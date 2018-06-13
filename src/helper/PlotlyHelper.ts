@@ -1,5 +1,7 @@
+import { Datum } from 'plotly.js';
 import { IContactMapChartData } from '../component/chart/ContactMapChart';
 import { IPlotlyData, PLOTLY_CHART_TYPE } from '../component/chart/PlotlyChart';
+import { ISecondaryStructureData, SECONDARY_STRUCTURE_CODES } from '../data/chell-data';
 
 /**
  * Generate data in the expected format for a WebGL Scatter plot.
@@ -32,7 +34,7 @@ export const generateScatterData = (
   const yValues = points.map(data => data.j);
   const zValues = points.map(data => data.dist);
   return {
-    hoverinfo: 'none',
+    hoverinfo: 'x+y+z',
     marker: Object.assign(
       {
         color: mirrorPoints ? zValues.concat(zValues) : zValues,
@@ -89,3 +91,44 @@ export const generatePointCloudData = (
       : coords,
   };
 };
+
+const secStructColorMap: { [key: string]: string } = {
+  C: 'red',
+  E: 'green',
+  H: 'blue',
+};
+
+export const generateSecStructAxisSegment = (entry: ISecondaryStructureData): Partial<IPlotlyData> => ({
+  // @ts-ignore
+  boxpoints: false,
+  hoverinfo: 'name',
+  marker: {
+    color: secStructColorMap[entry.structId],
+  },
+  name: SECONDARY_STRUCTURE_CODES[entry.structId],
+  orientation: 'h',
+  showlegend: false,
+  type: 'box' as any,
+  x: [entry.resno - 1],
+  xaxis: 'x',
+  y: [1],
+  yaxis: 'y2',
+});
+
+export const generateSecondaryStructureAxis = (sequence: ISecondaryStructureData[]): Array<Partial<IPlotlyData>> =>
+  sequence.slice(1, sequence.length).reduce(
+    (prev, current, index) => {
+      if (sequence[index].structId !== current.structId) {
+        prev.push(generateSecStructAxisSegment(current));
+      } else {
+        (prev[prev.length - 1].x as Datum[]).push(current.resno - 1);
+        (prev[prev.length - 1].y as Datum[]).push(1);
+      }
+      return prev;
+    },
+    [
+      {
+        ...generateSecStructAxisSegment(sequence[0]),
+      },
+    ],
+  );

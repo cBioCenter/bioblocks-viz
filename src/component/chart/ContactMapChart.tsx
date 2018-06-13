@@ -3,15 +3,15 @@
 import * as plotly from 'plotly.js/dist/plotly';
 import * as React from 'react';
 
-import { RESIDUE_TYPE } from '../../data/chell-data';
+import { ISecondaryStructureData, RESIDUE_TYPE } from '../../data/chell-data';
 
-import { generateScatterGLData } from '../../helper/PlotlyHelper';
+import { generateScatterGLData, generateSecondaryStructureAxis } from '../../helper/PlotlyHelper';
 import { withDefaultProps } from '../../helper/ReactHelper';
 import PlotlyChart, { defaultPlotlyLayout, IPlotlyData } from './PlotlyChart';
 
 export interface IContactMapChartProps {
   candidateResidues: RESIDUE_TYPE[];
-  data: IContactMapChartData[];
+  contactData: IContactMapChartData[];
   dataTransformFn: (entry: IContactMapChartData, mirrorPoints: boolean) => Partial<IPlotlyData>;
   heightModifier: number;
   legendModifiers: {
@@ -25,6 +25,7 @@ export interface IContactMapChartProps {
   onSelectedCallback: (...args: any[]) => void;
   onUnHoverCallback: (...args: any[]) => void;
   range: number[];
+  secondaryStructures?: ISecondaryStructureData[];
 }
 
 const defaultContactMapChartProps: Partial<IContactMapChartProps> = {
@@ -81,27 +82,34 @@ class ContactMapChartClass extends React.Component<IContactMapChartProps, any> {
   public render() {
     const {
       candidateResidues,
-      data,
+      contactData,
       dataTransformFn,
       heightModifier,
       legendModifiers,
       marginModifiers,
       range,
+      secondaryStructures,
       ...props
     } = this.props;
 
+    let plotlyData = [...contactData.map(entry => dataTransformFn(entry, true))];
+
+    if (secondaryStructures && secondaryStructures.length >= 1) {
+      plotlyData = [...plotlyData, ...generateSecondaryStructureAxis(secondaryStructures)];
+    }
+
     return (
       <PlotlyChart
-        data={data.map(entry => dataTransformFn(entry, true))}
+        data={plotlyData}
         layout={{
           height: defaultPlotlyLayout.height! + defaultPlotlyLayout.height! * heightModifier,
           legend: {
             orientation: 'h',
-            y: legendModifiers.y * data.length,
+            y: legendModifiers.y * contactData.length,
             yanchor: 'bottom',
           },
           margin: {
-            b: data.length * marginModifiers.b,
+            b: contactData.length * marginModifiers.b,
           },
           showlegend: true,
           xaxis: {

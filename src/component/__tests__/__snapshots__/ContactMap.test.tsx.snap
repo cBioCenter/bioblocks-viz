@@ -11,7 +11,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
 >
   <ContactMapChartClass
     candidateResidues={Array []}
-    data={
+    contactData={
       Array [
         Object {
           "hoverinfo": "none",
@@ -50,9 +50,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
         64,
       ]
     }
-  />
-  <SecondaryStructure
-    sequence={Array []}
+    secondaryStructures={Array []}
   />
   <Accordion
     fluid={true}
@@ -127,18 +125,6 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
       }
     }
   />
-  <div
-    style={
-      Object {
-        "fontFamily": "fira code",
-        "fontSize": 16,
-        "textAlign": "right",
-      }
-    }
-  >
-    -
-    -
-  </div>
 </div>
 `;
 
@@ -159,18 +145,6 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
       }
     }
   />
-  <div
-    style={
-      Object {
-        "fontFamily": "fira code",
-        "fontSize": 16,
-        "textAlign": "right",
-      }
-    }
-  >
-    -
-    -
-  </div>
   <div
     className="accordion ui fluid styled"
   >
@@ -728,7 +702,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
   >
     <ContactMapChartClass
       candidateResidues={Array []}
-      data={
+      contactData={
         Array [
           Object {
             "name": "0",
@@ -839,13 +813,25 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           64,
         ]
       }
+      secondaryStructures={
+        Array [
+          Object {
+            "resno": 30,
+            "structId": "C",
+          },
+          Object {
+            "resno": 31,
+            "structId": "C",
+          },
+        ]
+      }
     >
       <PlotlyChartClass
         config={Object {}}
         data={
           Array [
             Object {
-              "hoverinfo": "none",
+              "hoverinfo": "x+y+z",
               "marker": Object {
                 "color": Array [
                   2.4,
@@ -870,7 +856,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               ],
             },
             Object {
-              "hoverinfo": "none",
+              "hoverinfo": "x+y+z",
               "marker": Object {
                 "color": Array [
                   20.4,
@@ -895,7 +881,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               ],
             },
             Object {
-              "hoverinfo": "none",
+              "hoverinfo": "x+y+z",
               "marker": Object {
                 "color": Array [
                   1.3,
@@ -920,7 +906,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               ],
             },
             Object {
-              "hoverinfo": "none",
+              "hoverinfo": "x+y+z",
               "marker": Object {
                 "color": Array [
                   1.3,
@@ -945,7 +931,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               ],
             },
             Object {
-              "hoverinfo": "none",
+              "hoverinfo": "x+y+z",
               "marker": Object {
                 "color": Array [
                   1.3,
@@ -970,7 +956,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               ],
             },
             Object {
-              "hoverinfo": "none",
+              "hoverinfo": "x+y+z",
               "marker": Object {
                 "color": Array [
                   1.3,
@@ -995,7 +981,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               ],
             },
             Object {
-              "hoverinfo": "none",
+              "hoverinfo": "x+y+z",
               "marker": Object {
                 "color": "#ff8800",
                 "line": Object {
@@ -1020,6 +1006,27 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 0,
                 0,
               ],
+            },
+            Object {
+              "boxpoints": false,
+              "hoverinfo": "name",
+              "marker": Object {
+                "color": "red",
+              },
+              "name": "COIL",
+              "orientation": "h",
+              "showlegend": false,
+              "type": "box",
+              "x": Array [
+                29,
+                30,
+              ],
+              "xaxis": "x",
+              "y": Array [
+                1,
+                1,
+              ],
+              "yaxis": "y2",
             },
           ]
         }
@@ -1073,27 +1080,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         />
       </PlotlyChartClass>
     </ContactMapChartClass>
-    <SecondaryStructure
-      sequence={
-        Array [
-          "C",
-          "C",
-        ]
-      }
-    >
-      <div
-        style={
-          Object {
-            "fontFamily": "fira code",
-            "fontSize": 16,
-            "textAlign": "right",
-          }
-        }
-      >
-        -
-        -
-      </div>
-    </SecondaryStructure>
     <Accordion
       fluid={true}
       styled={true}

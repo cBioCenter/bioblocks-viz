@@ -59,7 +59,12 @@ export const defaultPlotlyLayout: Partial<Plotly.Layout> = {
     range: [30],
   },
   yaxis: {
+    domain: [0, 0.9],
     range: [30],
+  },
+  yaxis2: {
+    domain: [0.9, 1],
+    visible: false,
   },
 };
 
@@ -100,6 +105,7 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
 
   public draw = async () => {
     const { layout, config } = this.props;
+    this.plotlyFormattedData = [...this.plotlyFormattedData];
     if (this.plotlyCanvas) {
       // plotly.react will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
       this.plotlyCanvas = await plotly.react(
@@ -154,7 +160,7 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
     );
   }
 
-  protected getMergedConfig = (config: Partial<Plotly.Config> = {}) => {
+  protected getMergedConfig = (config: Partial<Plotly.Config> = {}): Plotly.Config => {
     return Object.assign(
       {},
       Immutable.fromJS(Object.assign({}, defaultPlotlyConfig))
@@ -163,7 +169,7 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
     );
   };
 
-  protected getMergedLayout = (layout: Partial<Plotly.Layout> = {}) => {
+  protected getMergedLayout = (layout: Partial<Plotly.Layout> = {}): Plotly.Layout => {
     return Object.assign(
       {},
       Immutable.fromJS(Object.assign({}, defaultPlotlyLayout))
