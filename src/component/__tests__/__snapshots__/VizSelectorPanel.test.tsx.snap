@@ -48,7 +48,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
       height={420}
       hoveredResidues={Array []}
       incorrectColor="#000000"
-      lockedResiduePairs={Object {}}
+      lockedResiduePairs={Map {}}
       observedColor="#0000ff"
       padding={15}
       removeAllLockedResiduePairs={[Function]}

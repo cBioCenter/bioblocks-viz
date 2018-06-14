@@ -97,10 +97,12 @@ describe('NGLComponent', () => {
     const instance = wrapper.instance() as NGLComponentClass;
 
     wrapper.setProps({
-      lockedResiduePairs: {
-        '1,2': [1, 2],
-        '3,4': [3, 4],
-      },
+      lockedResiduePairs: new Map(
+        Object.entries({
+          '1,2': [1, 2],
+          '3,4': [3, 4],
+        }),
+      ),
     });
 
     expect(instance.state.residueSelectionRepresentations['1,2']).toEqual(expectedRep);
@@ -127,17 +129,21 @@ describe('NGLComponent', () => {
     const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
 
     wrapper.setProps({
-      lockedResiduePairs: {
-        '1,2': [1, 2],
-      },
+      lockedResiduePairs: new Map(
+        Object.entries({
+          '1,2': [1, 2],
+        }),
+      ),
     });
     wrapper.update();
 
     wrapper.setProps({
-      lockedResiduePairs: {
-        '1,2': [1, 2],
-        '3,4': [3, 4],
-      },
+      lockedResiduePairs: new Map(
+        Object.entries({
+          '1,2': [1, 2],
+          '3,4': [3, 4],
+        }),
+      ),
     });
     wrapper.update();
   });

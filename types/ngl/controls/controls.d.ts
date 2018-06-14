@@ -198,8 +198,8 @@ declare module 'ngl' {
 
   export interface IPicker {
     array: any[];
-    type(): string;
-    data(): object;
+    type: string;
+    data: object;
   }
 
   export interface IPickingData {

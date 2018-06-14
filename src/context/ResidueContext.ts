@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { RESIDUE_TYPE } from '../data/chell-data';
 
-export interface IResidueSelection {
-  [key: string]: RESIDUE_TYPE[];
-}
+export type ResidueSelection = Map<string, RESIDUE_TYPE[]>;
 
 export interface IResidueContext {
   addCandidateResidues: (residues: RESIDUE_TYPE[]) => void;
@@ -12,7 +10,7 @@ export interface IResidueContext {
   candidateResidues: RESIDUE_TYPE[];
   clearAllResidues: () => void;
   hoveredResidues: RESIDUE_TYPE[];
-  lockedResiduePairs: IResidueSelection;
+  lockedResiduePairs: ResidueSelection;
   removeAllLockedResiduePairs: () => void;
   removeCandidateResidues: () => void;
   removeHoveredResidues: () => void;
@@ -35,7 +33,7 @@ export const initialResidueContext = {
     return;
   },
   hoveredResidues: [] as number[],
-  lockedResiduePairs: {} as IResidueSelection,
+  lockedResiduePairs: new Map(),
   removeAllLockedResiduePairs: () => {
     return;
   },

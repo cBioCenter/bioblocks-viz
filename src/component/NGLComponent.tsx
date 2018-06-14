@@ -3,7 +3,7 @@ import { PickingProxy, Stage, StructureComponent, StructureRepresentationType } 
 import * as React from 'react';
 import { Button, GridRow } from 'semantic-ui-react';
 
-import ResidueContext, { initialResidueContext, IResidueSelection } from '../context/ResidueContext';
+import ResidueContext, { initialResidueContext, ResidueSelection } from '../context/ResidueContext';
 import { RESIDUE_TYPE } from '../data/chell-data';
 import { createBallStickRepresentation, createDistanceRepresentation } from '../helper/NGLHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
@@ -176,31 +176,42 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
       candidateResidues,
       removeCandidateResidues,
       removeHoveredResidues,
+      removeLockedResiduePair,
     } = this.props;
-    const { structureComponent } = this.state;
+    if (pickingProxy) {
+      const { structureComponent } = this.state;
+      const isDistancePicker = pickingProxy.picker && pickingProxy.picker.type === 'distance';
 
-    if (pickingProxy && (pickingProxy.atom || pickingProxy.closestBondAtom)) {
-      const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
-      const resno = atom.resno + this.state.residueOffset;
-
-      if (candidateResidues.length >= 1) {
-        addLockedResiduePair([...candidateResidues, resno]);
-        removeCandidateResidues();
+      if (isDistancePicker) {
+        removeLockedResiduePair([
+          pickingProxy.distance.atom1.resno + this.state.residueOffset,
+          pickingProxy.distance.atom2.resno + this.state.residueOffset,
+        ]);
       } else {
-        addCandidateResidues([resno]);
+        if (pickingProxy.atom || pickingProxy.closestBondAtom) {
+          const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
+          const resno = atom.resno + this.state.residueOffset;
+
+          if (candidateResidues.length >= 1) {
+            addLockedResiduePair([...candidateResidues, resno]);
+            removeCandidateResidues();
+          } else {
+            addCandidateResidues([resno]);
+          }
+        } else if (structureComponent) {
+          // User clicked off-structure, so clear non-locked residue state.
+          this.removeNonLockedRepresentations(structureComponent);
+          removeCandidateResidues();
+          removeHoveredResidues();
+        }
       }
-    } else if (structureComponent) {
-      // User clicked off-structure, so clear non-locked residue state.
-      this.removeNonLockedRepresentations(structureComponent);
-      removeCandidateResidues();
-      removeHoveredResidues();
     }
   };
 
-  protected removeHighlights(structureComponent: StructureComponent, residues: IResidueSelection = {}) {
+  protected removeHighlights(structureComponent: StructureComponent, residues: ResidueSelection = new Map()) {
     const repDict = this.state.residueSelectionRepresentations;
-    Object.keys(residues).forEach(prevKey => {
-      repDict[prevKey].map(rep => structureComponent.removeRepresentation(rep));
+    Array.from(residues.keys()).map(key => {
+      repDict[key].map(rep => structureComponent.removeRepresentation(rep));
     });
     this.setState({
       residueSelectionRepresentations: {},
@@ -215,15 +226,16 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
    */
   protected highlightResidues(
     structureComponent: StructureComponent,
-    residuesToHighlight: IResidueSelection | RESIDUE_TYPE[],
+    residuesToHighlight: ResidueSelection | RESIDUE_TYPE[],
   ) {
     const { residueOffset } = this.state;
     const repDict = this.state.residueSelectionRepresentations;
 
-    const allResidues = Array.isArray(residuesToHighlight) ? { 0: residuesToHighlight } : residuesToHighlight;
-    Object.keys(allResidues).forEach(key => {
-      const residues = allResidues[key];
+    const allResidues = Array.isArray(residuesToHighlight)
+      ? new Map<string, RESIDUE_TYPE[]>([['0', residuesToHighlight]])
+      : residuesToHighlight;
 
+    allResidues.forEach(residues => {
       const residueKey = residues.toString();
       const residueWithOffset = residues.map(res => res - residueOffset);
 
@@ -242,6 +254,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
         repDict[residueKey].push(createBallStickRepresentation(structureComponent, residueWithOffset));
       }
     });
+
     this.setState({
       residueSelectionRepresentations: repDict,
     });
@@ -250,7 +263,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
   protected removeNonLockedRepresentations(structureComponent: NGL.StructureComponent) {
     const repDict = this.state.residueSelectionRepresentations;
     for (const key of Object.keys(repDict)) {
-      if (!this.props.lockedResiduePairs[key]) {
+      if (!this.props.lockedResiduePairs.has(key)) {
         repDict[key]
           .filter(rep => structureComponent.hasRepresentation(rep))
           .forEach(rep => structureComponent.removeRepresentation(rep));

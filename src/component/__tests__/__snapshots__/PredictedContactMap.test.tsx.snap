@@ -79,7 +79,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
     height={400}
     hoveredResidues={Array []}
     incorrectColor="#000000"
-    lockedResiduePairs={Object {}}
+    lockedResiduePairs={Map {}}
     observedColor="#0000ff"
     padding={0}
     removeAllLockedResiduePairs={[Function]}
@@ -171,7 +171,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
     height={400}
     hoveredResidues={Array []}
     incorrectColor="#000000"
-    lockedResiduePairs={Object {}}
+    lockedResiduePairs={Map {}}
     observedColor="#0000ff"
     padding={0}
     removeAllLockedResiduePairs={[Function]}

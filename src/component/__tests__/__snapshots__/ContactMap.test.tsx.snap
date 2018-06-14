@@ -674,13 +674,13 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
   highlightColor="#ff8800"
   hoveredResidues={Array []}
   lockedResiduePairs={
-    Object {
-      "37,46": Array [
+    Map {
+      "8" => Array [
+        8,
+      ],
+      "37,46" => Array [
         37,
         46,
-      ],
-      "8": Array [
-        8,
       ],
     }
   }

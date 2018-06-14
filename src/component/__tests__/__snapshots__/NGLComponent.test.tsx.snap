@@ -53,7 +53,7 @@ exports[`NGLComponent Should match existing snapshot when given sample data 1`] 
   }
   height={400}
   hoveredResidues={Array []}
-  lockedResiduePairs={Object {}}
+  lockedResiduePairs={Map {}}
   padding={0}
   removeAllLockedResiduePairs={[Function]}
   removeCandidateResidues={[Function]}

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import CellContext, { initialCellContext } from '../context/CellContext';
-import ResidueContext, { initialResidueContext, IResidueSelection } from '../context/ResidueContext';
+import ResidueContext, { initialResidueContext } from '../context/ResidueContext';
 import { CELL_TYPE, RESIDUE_TYPE } from '../data/chell-data';
 
 export const initialState = {
@@ -101,14 +101,13 @@ export default class ChellContext extends React.Component<any, ChellContextState
     const { lockedResiduePairs } = this.state.residueContext;
     const sortedResidues = residues.sort();
     const residuePairKey = sortedResidues.toString();
-    if (!lockedResiduePairs[residuePairKey]) {
+    if (!lockedResiduePairs.has(residuePairKey)) {
+      const result = new Map(lockedResiduePairs);
+      result.set(residuePairKey, sortedResidues);
       this.setState({
         residueContext: {
           ...this.state.residueContext,
-          lockedResiduePairs: {
-            ...lockedResiduePairs,
-            [residuePairKey]: sortedResidues,
-          },
+          lockedResiduePairs: result,
         },
       });
     }
@@ -120,7 +119,7 @@ export default class ChellContext extends React.Component<any, ChellContextState
         ...this.state.residueContext,
         candidateResidues: [],
         hoveredResidues: [],
-        lockedResiduePairs: {} as IResidueSelection,
+        lockedResiduePairs: new Map(),
       },
     });
   };
@@ -129,7 +128,7 @@ export default class ChellContext extends React.Component<any, ChellContextState
     this.setState({
       residueContext: {
         ...this.state.residueContext,
-        lockedResiduePairs: {} as IResidueSelection,
+        lockedResiduePairs: new Map(),
       },
     });
   };
@@ -153,16 +152,15 @@ export default class ChellContext extends React.Component<any, ChellContextState
   };
 
   public onRemoveLockedResiduePair = (residues: RESIDUE_TYPE[]) => {
-    const residuePairKey = residues.join(',');
+    const residuePairKey = residues.sort().join(',');
     const { lockedResiduePairs } = this.state.residueContext;
-    if (lockedResiduePairs[residuePairKey]) {
-      delete lockedResiduePairs[residuePairKey];
+    if (lockedResiduePairs.has(residuePairKey)) {
+      const result = new Map(lockedResiduePairs);
+      result.delete(residuePairKey);
       this.setState({
         residueContext: {
           ...this.state.residueContext,
-          lockedResiduePairs: {
-            ...lockedResiduePairs,
-          },
+          lockedResiduePairs: result,
         },
       });
     }
@@ -172,27 +170,18 @@ export default class ChellContext extends React.Component<any, ChellContextState
     const { lockedResiduePairs } = this.state.residueContext;
     const sortedResidues = residues.sort();
     const residuePairKey = sortedResidues.toString();
-    if (!lockedResiduePairs[residuePairKey]) {
-      this.setState({
-        residueContext: {
-          ...this.state.residueContext,
-          lockedResiduePairs: {
-            ...lockedResiduePairs,
-            [residuePairKey]: sortedResidues,
-          },
-        },
-      });
+    const result = new Map(lockedResiduePairs);
+    if (!lockedResiduePairs.has(residuePairKey)) {
+      result.set(residuePairKey, sortedResidues);
     } else {
-      delete lockedResiduePairs[residuePairKey];
-      this.setState({
-        residueContext: {
-          ...this.state.residueContext,
-          lockedResiduePairs: {
-            ...lockedResiduePairs,
-          },
-        },
-      });
+      result.delete(residuePairKey);
     }
+    this.setState({
+      residueContext: {
+        ...this.state.residueContext,
+        lockedResiduePairs: result,
+      },
+    });
   };
 }
 

@@ -2,7 +2,7 @@ import * as plotly from 'plotly.js/dist/plotly';
 import * as React from 'react';
 import { Accordion, Icon } from 'semantic-ui-react';
 
-import ResidueContext, { initialResidueContext, IResidueSelection } from '../context/ResidueContext';
+import ResidueContext, { initialResidueContext, ResidueSelection } from '../context/ResidueContext';
 import { ICouplingScore, ISecondaryStructureData, RESIDUE_TYPE } from '../data/chell-data';
 import { withDefaultProps } from '../helper/ReactHelper';
 import ContactMapChart, { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';
@@ -94,7 +94,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     });
   };
 
-  protected setupPointsToPlot(points: IContactMapChartData[], lockedResiduePairs: IResidueSelection = {}) {
+  protected setupPointsToPlot(points: IContactMapChartData[], lockedResiduePairs: ResidueSelection = new Map()) {
     const { highlightColor } = this.props;
     const { pointsToPlot } = this.state;
 
@@ -106,9 +106,9 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
       highlightColor,
       'Selected Res. Pairs',
       nodeSize,
-      Object.keys(lockedResiduePairs)
-        .filter(key => lockedResiduePairs[key].length === 2)
-        .map(key => ({ i: lockedResiduePairs[key][0], j: lockedResiduePairs[key][1], dist: 0 })),
+      Array.from(lockedResiduePairs.keys())
+        .filter(key => lockedResiduePairs.get(key)!.length === 2)
+        .map(key => ({ i: lockedResiduePairs.get(key)![0], j: lockedResiduePairs.get(key)![1], dist: 0 })),
       {
         marker: {
           color: highlightColor,
