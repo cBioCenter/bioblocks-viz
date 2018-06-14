@@ -87,7 +87,7 @@ describe('NGLComponent', () => {
       hoveredResidues: [1],
     });
 
-    expect(instance.state.residueSelectionRepresentations['1']).toEqual(expectedRep);
+    expect(instance.state.residueSelectionRepresentations.get('1')).toEqual(expectedRep);
   });
 
   test('Should show the distance and ball+stick representation for locked residues.', () => {
@@ -97,14 +97,16 @@ describe('NGLComponent', () => {
     const instance = wrapper.instance() as NGLComponentClass;
 
     wrapper.setProps({
-      lockedResiduePairs: {
-        '1,2': [1, 2],
-        '3,4': [3, 4],
-      },
+      lockedResiduePairs: new Map(
+        Object.entries({
+          '1,2': [1, 2],
+          '3,4': [3, 4],
+        }),
+      ),
     });
 
-    expect(instance.state.residueSelectionRepresentations['1,2']).toEqual(expectedRep);
-    expect(instance.state.residueSelectionRepresentations['3,4']).toEqual(expectedRep);
+    expect(instance.state.residueSelectionRepresentations.get('1,2')).toEqual(expectedRep);
+    expect(instance.state.residueSelectionRepresentations.get('3,4')).toEqual(expectedRep);
   });
 
   test('Should show the distance and ball+stick representation for multiple hovered residues.', () => {
@@ -119,7 +121,7 @@ describe('NGLComponent', () => {
 
     wrapper.update();
 
-    expect(instance.state.residueSelectionRepresentations['7,8']).toEqual(expectedRep);
+    expect(instance.state.residueSelectionRepresentations.get('7,8')).toEqual(expectedRep);
   });
 
   test('Should follow candidate selection flow.', () => {
@@ -127,17 +129,21 @@ describe('NGLComponent', () => {
     const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
 
     wrapper.setProps({
-      lockedResiduePairs: {
-        '1,2': [1, 2],
-      },
+      lockedResiduePairs: new Map(
+        Object.entries({
+          '1,2': [1, 2],
+        }),
+      ),
     });
     wrapper.update();
 
     wrapper.setProps({
-      lockedResiduePairs: {
-        '1,2': [1, 2],
-        '3,4': [3, 4],
-      },
+      lockedResiduePairs: new Map(
+        Object.entries({
+          '1,2': [1, 2],
+          '3,4': [3, 4],
+        }),
+      ),
     });
     wrapper.update();
   });
@@ -193,7 +199,7 @@ describe('NGLComponent', () => {
         const Component = getComponentWithContext();
         const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
         simulateHoverEvent(wrapper, pickingResult);
-        expect(wrapper.instance().state.residueSelectionRepresentations['4']).toEqual(expectedRep);
+        expect(wrapper.instance().state.residueSelectionRepresentations.get('4')).toEqual(expectedRep);
       },
     );
 
@@ -239,18 +245,40 @@ describe('NGLComponent', () => {
       },
     );
 
+    it('Should handle clicking on a distance representation.', async () => {
+      const Component = getComponentWithContext();
+      const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
+      const removedLockedSpy = jest.fn();
+      wrapper.instance().state.structureComponent!.addRepresentation('distance');
+      wrapper.setProps({
+        lockedResiduePairs: new Map(
+          Object.entries({
+            '4,7': [4, 7],
+          }),
+        ),
+        removeLockedResiduePair: removedLockedSpy,
+      });
+      simulateClickEvent(wrapper, {
+        distance: { atom1: { resno: 4 }, atom2: { resno: 7 } },
+        picker: { type: 'distance' },
+      });
+      expect(removedLockedSpy).toHaveBeenLastCalledWith([4, 7]);
+    });
+
     it('Should handle clicking off-component.', async () => {
       const Component = getComponentWithContext();
       const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
-      const instance = wrapper.instance() as NGLComponentClass;
-      instance.state.structureComponent!.addRepresentation('ball+stick');
+      wrapper.instance().state.structureComponent!.addRepresentation('ball+stick');
       wrapper.setState({
-        residueSelectionRepresentations: {
-          '4': ['ball+stick'],
-        },
+        residueSelectionRepresentations: new Map(
+          Object.entries({
+            '4': ['ball+stick'],
+          }),
+        ),
       });
       simulateClickEvent(wrapper, {});
-      expect(instance.state.residueSelectionRepresentations).toEqual({});
+      wrapper.update();
+      expect(wrapper.state().residueSelectionRepresentations).toEqual(new Map());
     });
   });
 });

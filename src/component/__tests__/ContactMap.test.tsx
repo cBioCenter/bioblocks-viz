@@ -138,10 +138,12 @@ describe('ContactMap', () => {
 
     test('Should match snapshot when locked residues are added.', async () => {
       const wrapper = await getMountedContactMap({ data: sampleData });
-      const expectedSelectedPoints = {
-        '37,46': [37, 46],
-        '8': [8],
-      };
+      const expectedSelectedPoints = new Map(
+        Object.entries({
+          '37,46': [37, 46],
+          '8': [8],
+        }),
+      );
       wrapper.setProps({
         lockedResiduePairs: expectedSelectedPoints,
       });

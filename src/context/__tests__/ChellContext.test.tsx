@@ -122,9 +122,11 @@ describe('ChellContext', () => {
       const initialState = instance.state.residueContext;
       const expectedState = {
         ...initialState,
-        lockedResiduePairs: {
-          '1,2': [1, 2],
-        },
+        lockedResiduePairs: new Map(
+          Object.entries({
+            '1,2': [1, 2],
+          }),
+        ),
       };
       instance.onAddLockedResiduePair([1, 2]);
       expect(instance.state.residueContext).toEqual(expectedState);
@@ -135,11 +137,13 @@ describe('ChellContext', () => {
       const initialState = instance.state.residueContext;
       const expectedState = {
         ...initialState,
-        lockedResiduePairs: {
-          '1,2': [1, 2],
-          '5': [5],
-          '6,7,8,9': [6, 7, 8, 9],
-        },
+        lockedResiduePairs: new Map(
+          Object.entries({
+            '1,2': [1, 2],
+            '5': [5],
+            '6,7,8,9': [6, 7, 8, 9],
+          }),
+        ),
       };
       instance.onAddLockedResiduePair([1, 2]);
       instance.onAddLockedResiduePair([5]);
@@ -152,9 +156,11 @@ describe('ChellContext', () => {
       const initialState = instance.state.residueContext;
       const expectedState = {
         ...initialState,
-        lockedResiduePairs: {
-          '1,2': [1, 2],
-        },
+        lockedResiduePairs: new Map(
+          Object.entries({
+            '1,2': [1, 2],
+          }),
+        ),
       };
       instance.onAddLockedResiduePair([1, 2]);
       instance.onAddLockedResiduePair([2, 1]);
@@ -166,10 +172,12 @@ describe('ChellContext', () => {
       const initialState = instance.state.residueContext;
       const expectedState = {
         ...initialState,
-        lockedResiduePairs: {
-          '1,2': [1, 2],
-          '6,7,8,9': [6, 7, 8, 9],
-        },
+        lockedResiduePairs: new Map(
+          Object.entries({
+            '1,2': [1, 2],
+            '6,7,8,9': [6, 7, 8, 9],
+          }),
+        ),
       };
       instance.onAddLockedResiduePair([5]);
       instance.onAddLockedResiduePair([1, 2]);
@@ -183,11 +191,13 @@ describe('ChellContext', () => {
       const initialState = instance.state.residueContext;
       const expectedState = {
         ...initialState,
-        lockedResiduePairs: {
-          '1,2': [1, 2],
-          '5': [5],
-          '6,7,8,9': [6, 7, 8, 9],
-        },
+        lockedResiduePairs: new Map(
+          Object.entries({
+            '1,2': [1, 2],
+            '5': [5],
+            '6,7,8,9': [6, 7, 8, 9],
+          }),
+        ),
       };
       instance.onAddLockedResiduePair([5]);
       instance.onAddLockedResiduePair([1, 2]);
@@ -201,7 +211,7 @@ describe('ChellContext', () => {
       const initialState = instance.state.residueContext;
       const expectedState = {
         ...initialState,
-        lockedResiduePairs: {},
+        lockedResiduePairs: new Map(),
       };
       instance.onAddLockedResiduePair([5]);
       instance.onAddLockedResiduePair([1, 2]);
@@ -217,7 +227,7 @@ describe('ChellContext', () => {
         ...initialState,
         candidateResidues: [],
         hoveredResidues: [],
-        lockedResiduePairs: {},
+        lockedResiduePairs: new Map(),
       };
       instance.onAddCandidateResidues([1]);
       instance.onAddHoveredResidues([2, 3]);
@@ -227,7 +237,7 @@ describe('ChellContext', () => {
         ...initialState,
         candidateResidues: [1],
         hoveredResidues: [2, 3],
-        lockedResiduePairs: { '4,5': [4, 5] },
+        lockedResiduePairs: new Map(Object.entries({ '4,5': [4, 5] })),
       });
 
       instance.onClearAllResidues();
@@ -239,12 +249,12 @@ describe('ChellContext', () => {
       const initialState = instance.state.residueContext;
       const expectedState = {
         ...initialState,
-        lockedResiduePairs: {},
+        lockedResiduePairs: new Map(),
       };
       instance.onToggleLockedResiduePair([5]);
       expect(instance.state.residueContext).toEqual({
         ...initialState,
-        lockedResiduePairs: { '5': [5] },
+        lockedResiduePairs: new Map([['5', [5]]]),
       });
 
       instance.onToggleLockedResiduePair([5]);

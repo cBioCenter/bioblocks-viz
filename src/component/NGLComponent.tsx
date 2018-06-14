@@ -3,16 +3,14 @@ import { PickingProxy, Stage, StructureComponent, StructureRepresentationType } 
 import * as React from 'react';
 import { Button, GridRow } from 'semantic-ui-react';
 
-import ResidueContext, { initialResidueContext, IResidueSelection } from '../context/ResidueContext';
+import ResidueContext, { initialResidueContext, ResidueSelection } from '../context/ResidueContext';
 import { RESIDUE_TYPE } from '../data/chell-data';
 import { createBallStickRepresentation, createDistanceRepresentation } from '../helper/NGLHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
 
 export type NGL_HOVER_CB_RESULT_TYPE = number;
 
-export interface IRepresentationDict {
-  [key: string]: NGL.RepresentationElement[];
-}
+export type RepresentationDict = Map<string, NGL.RepresentationElement[]>;
 
 export const SUPPORTED_REPS: StructureRepresentationType[] = [
   'axes',
@@ -35,7 +33,7 @@ export const defaultNGLProps = {
 
 export const initialNGLState = {
   residueOffset: 0,
-  residueSelectionRepresentations: {} as IRepresentationDict,
+  residueSelectionRepresentations: new Map() as RepresentationDict,
   stage: undefined as NGL.Stage | undefined,
   structureComponent: undefined as NGL.StructureComponent | undefined,
 };
@@ -72,7 +70,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
     if (stage) {
       stage.dispose();
       this.setState({
-        residueSelectionRepresentations: {},
+        residueSelectionRepresentations: new Map(),
         stage: undefined,
       });
     }
@@ -176,34 +174,46 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
       candidateResidues,
       removeCandidateResidues,
       removeHoveredResidues,
+      removeLockedResiduePair,
     } = this.props;
     const { structureComponent } = this.state;
+    if (pickingProxy && structureComponent) {
+      const isDistancePicker = pickingProxy.picker && pickingProxy.picker.type === 'distance';
 
-    if (pickingProxy && (pickingProxy.atom || pickingProxy.closestBondAtom)) {
-      const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
-      const resno = atom.resno + this.state.residueOffset;
-
-      if (candidateResidues.length >= 1) {
-        addLockedResiduePair([...candidateResidues, resno]);
-        removeCandidateResidues();
+      if (isDistancePicker) {
+        const residues = [
+          pickingProxy.distance.atom1.resno + this.state.residueOffset,
+          pickingProxy.distance.atom2.resno + this.state.residueOffset,
+        ];
+        removeLockedResiduePair(residues);
       } else {
-        addCandidateResidues([resno]);
+        if (pickingProxy.atom || pickingProxy.closestBondAtom) {
+          const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
+          const resno = atom.resno + this.state.residueOffset;
+
+          if (candidateResidues.length >= 1) {
+            addLockedResiduePair([...candidateResidues, resno]);
+            removeCandidateResidues();
+          } else {
+            addCandidateResidues([resno]);
+          }
+        } else {
+          // User clicked off-structure, so clear non-locked residue state.
+          this.removeNonLockedRepresentations(structureComponent);
+          removeCandidateResidues();
+          removeHoveredResidues();
+        }
       }
-    } else if (structureComponent) {
-      // User clicked off-structure, so clear non-locked residue state.
-      this.removeNonLockedRepresentations(structureComponent);
-      removeCandidateResidues();
-      removeHoveredResidues();
     }
   };
 
-  protected removeHighlights(structureComponent: StructureComponent, residues: IResidueSelection = {}) {
+  protected removeHighlights(structureComponent: StructureComponent, residues: ResidueSelection = new Map()) {
     const repDict = this.state.residueSelectionRepresentations;
-    Object.keys(residues).forEach(prevKey => {
-      repDict[prevKey].map(rep => structureComponent.removeRepresentation(rep));
+    Array.from(residues.keys()).map(key => {
+      repDict.get(key)!.map(rep => structureComponent.removeRepresentation(rep));
     });
     this.setState({
-      residueSelectionRepresentations: {},
+      residueSelectionRepresentations: new Map(),
     });
   }
 
@@ -215,48 +225,54 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
    */
   protected highlightResidues(
     structureComponent: StructureComponent,
-    residuesToHighlight: IResidueSelection | RESIDUE_TYPE[],
+    residuesToHighlight: ResidueSelection | RESIDUE_TYPE[],
   ) {
     const { residueOffset } = this.state;
     const repDict = this.state.residueSelectionRepresentations;
 
-    const allResidues = Array.isArray(residuesToHighlight) ? { 0: residuesToHighlight } : residuesToHighlight;
-    Object.keys(allResidues).forEach(key => {
-      const residues = allResidues[key];
+    const allResidues = Array.isArray(residuesToHighlight)
+      ? new Map<string, RESIDUE_TYPE[]>([['0', residuesToHighlight]])
+      : residuesToHighlight;
 
+    allResidues.forEach(residues => {
       const residueKey = residues.toString();
       const residueWithOffset = residues.map(res => res - residueOffset);
 
-      if (repDict[residueKey]) {
-        repDict[residueKey].map(rep => structureComponent.removeRepresentation(rep));
+      if (repDict.has(residueKey)) {
+        repDict.get(residueKey)!.map(rep => structureComponent.removeRepresentation(rep));
       } else {
-        repDict[residueKey] = [];
+        repDict.set(residueKey, []);
       }
 
       if (residueWithOffset.length >= 2) {
         const selection = residueWithOffset.join('.CA, ') + '.CA';
-        repDict[residueKey].push(createDistanceRepresentation(structureComponent, selection));
+        repDict.get(residueKey)!.push(createDistanceRepresentation(structureComponent, selection));
       }
 
       if (residueWithOffset.length !== 0) {
-        repDict[residueKey].push(createBallStickRepresentation(structureComponent, residueWithOffset));
+        repDict.get(residueKey)!.push(createBallStickRepresentation(structureComponent, residueWithOffset));
       }
     });
+
     this.setState({
       residueSelectionRepresentations: repDict,
     });
   }
 
   protected removeNonLockedRepresentations(structureComponent: NGL.StructureComponent) {
-    const repDict = this.state.residueSelectionRepresentations;
-    for (const key of Object.keys(repDict)) {
-      if (!this.props.lockedResiduePairs[key]) {
-        repDict[key]
+    const repDict = new Map(this.state.residueSelectionRepresentations);
+    Array.from(repDict.keys()).map(key => {
+      if (!this.props.lockedResiduePairs.has(key)) {
+        repDict
+          .get(key)!
           .filter(rep => structureComponent.hasRepresentation(rep))
           .forEach(rep => structureComponent.removeRepresentation(rep));
-        delete this.state.residueSelectionRepresentations[key];
+        repDict.delete(key);
       }
-    }
+    });
+    this.setState({
+      residueSelectionRepresentations: repDict,
+    });
   }
 }
 

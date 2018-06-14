@@ -113,10 +113,8 @@
 								<li class="tsd-kind-interface"><a href="interfaces/imonomercontact.html" class="tsd-kind-icon">IMonomer<wbr>Contact</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/iplotlychartprops.html" class="tsd-kind-icon">IPlotly<wbr>Chart<wbr>Props</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/iplotlydata.html" class="tsd-kind-icon">IPlotly<wbr>Data</a></li>
-								<li class="tsd-kind-interface"><a href="interfaces/irepresentationdict.html" class="tsd-kind-icon">IRepresentation<wbr>Dict</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/iresiduecontext.html" class="tsd-kind-icon">IResidue<wbr>Context</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/iresiduepair.html" class="tsd-kind-icon">IResidue<wbr>Pair</a></li>
-								<li class="tsd-kind-interface"><a href="interfaces/iresidueselection.html" class="tsd-kind-icon">IResidue<wbr>Selection</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/isecondarystructure.html" class="tsd-kind-icon">ISecondary<wbr>Structure</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/isecondarystructuredata.html" class="tsd-kind-icon">ISecondary<wbr>Structure<wbr>Data</a></li>
 							</ul>
@@ -141,6 +139,8 @@
 								<li class="tsd-kind-type-alias"><a href="globals.html#predictedcontactmapprops" class="tsd-kind-icon">Predicted<wbr>Contact<wbr>Map<wbr>Props</a></li>
 								<li class="tsd-kind-type-alias"><a href="globals.html#predictedcontactmapstate" class="tsd-kind-icon">Predicted<wbr>Contact<wbr>Map<wbr>State</a></li>
 								<li class="tsd-kind-type-alias"><a href="globals.html#residue_type" class="tsd-kind-icon">RESIDUE_<wbr>TYPE</a></li>
+								<li class="tsd-kind-type-alias"><a href="globals.html#representationdict" class="tsd-kind-icon">Representation<wbr>Dict</a></li>
+								<li class="tsd-kind-type-alias"><a href="globals.html#residueselection" class="tsd-kind-icon">Residue<wbr>Selection</a></li>
 								<li class="tsd-kind-type-alias"><a href="globals.html#spring_data_type" class="tsd-kind-icon">SPRING_<wbr>DATA_<wbr>TYPE</a></li>
 								<li class="tsd-kind-type-alias"><a href="globals.html#springcomponentprops" class="tsd-kind-icon">Spring<wbr>Component<wbr>Props</a></li>
 								<li class="tsd-kind-type-alias"><a href="globals.html#tcomponentprops" class="tsd-kind-icon">TComponent<wbr>Props</a></li>
@@ -383,7 +383,7 @@
 					<div class="tsd-signature tsd-kind-icon">NGLComponent<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/NGLComponent.tsx:43</li>
+							<li>Defined in src/component/NGLComponent.tsx:41</li>
 						</ul>
 					</aside>
 				</section>
@@ -393,7 +393,7 @@
 					<div class="tsd-signature tsd-kind-icon">NGLComponent<wbr>State<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/NGLComponent.tsx:44</li>
+							<li>Defined in src/component/NGLComponent.tsx:42</li>
 						</ul>
 					</aside>
 				</section>
@@ -464,6 +464,26 @@
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in src/data/chell-data.ts:18</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="representationdict" class="tsd-anchor"></a>
+					<h3>Representation<wbr>Dict</h3>
+					<div class="tsd-signature tsd-kind-icon">Representation<wbr>Dict<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">NGL.RepresentationElement</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/component/NGLComponent.tsx:13</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="residueselection" class="tsd-anchor"></a>
+					<h3>Residue<wbr>Selection</h3>
+					<div class="tsd-signature tsd-kind-icon">Residue<wbr>Selection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="globals.html#residue_type" class="tsd-signature-type">RESIDUE_TYPE</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/context/ResidueContext.ts:4</li>
 						</ul>
 					</aside>
 				</section>
@@ -553,7 +573,7 @@
 					<div class="tsd-signature tsd-kind-icon">required<wbr>Props<span class="tsd-signature-symbol">:</span> <a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><a href="globals.html#omit" class="tsd-signature-type">Omit</a><span class="tsd-signature-symbol">&lt;</span><a href="globals.html#contactmapprops" class="tsd-signature-type">ContactMapProps</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">keyof object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/NGLComponent.tsx:267</li>
+							<li>Defined in src/component/NGLComponent.tsx:283</li>
 							<li>Defined in src/component/SpringComponent.tsx:221</li>
 							<li>Defined in src/component/ContactMap.tsx:242</li>
 						</ul>
@@ -598,7 +618,7 @@
 					<div class="tsd-signature tsd-kind-icon">NGLComponent<wbr>With<wbr>Default<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultNGLProps, NGLComponentClass)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/NGLComponent.tsx:263</li>
+							<li>Defined in src/component/NGLComponent.tsx:279</li>
 						</ul>
 					</aside>
 				</section>
@@ -628,7 +648,7 @@
 					<div class="tsd-signature tsd-kind-icon">Residue<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Context</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;React.createContext({...initialResidueContext,})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/context/ResidueContext.ts:56</li>
+							<li>Defined in src/context/ResidueContext.ts:54</li>
 						</ul>
 					</aside>
 				</section>
@@ -638,7 +658,7 @@
 					<div class="tsd-signature tsd-kind-icon">SUPPORTED_<wbr>REPS<span class="tsd-signature-symbol">:</span> <a href="modules/_ngl_.html#structurerepresentationtype" class="tsd-signature-type">StructureRepresentationType</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[&#x27;axes&#x27;,&#x27;backbone&#x27;,&#x27;ball+stick&#x27;,&#x27;distance&#x27;,&#x27;label&#x27;,&#x27;line&#x27;,&#x27;hyperball&#x27;,&#x27;spacefill&#x27;,]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/NGLComponent.tsx:17</li>
+							<li>Defined in src/component/NGLComponent.tsx:15</li>
 						</ul>
 					</aside>
 				</section>
@@ -695,10 +715,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-variable">
 					<a name="initialresiduecontext" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> initial<wbr>Residue<wbr>Context</h3>
-					<div class="tsd-signature tsd-kind-icon">initial<wbr>Residue<wbr>Context<span class="tsd-signature-symbol">:</span> <a href="interfaces/iresiduecontext.html" class="tsd-signature-type">IResidueContext</a><span class="tsd-signature-symbol"> =&nbsp;{addCandidateResidues: (residues: RESIDUE_TYPE[]) &#x3D;&gt; {return;},addHoveredResidues: (residues: RESIDUE_TYPE[]) &#x3D;&gt; {return;},addLockedResiduePair: (residues: RESIDUE_TYPE[]) &#x3D;&gt; {return;},candidateResidues: [] as number[],clearAllResidues: () &#x3D;&gt; {return;},hoveredResidues: [] as number[],lockedResiduePairs: {} as IResidueSelection,removeAllLockedResiduePairs: () &#x3D;&gt; {return;},removeCandidateResidues: () &#x3D;&gt; {return;},removeHoveredResidues: () &#x3D;&gt; {return;},removeLockedResiduePair: (residues: RESIDUE_TYPE[]) &#x3D;&gt; {return;},toggleLockedResiduePair: (residues: RESIDUE_TYPE[]) &#x3D;&gt; {return;},} as IResidueContext</span></div>
+					<div class="tsd-signature tsd-kind-icon">initial<wbr>Residue<wbr>Context<span class="tsd-signature-symbol">:</span> <a href="interfaces/iresiduecontext.html" class="tsd-signature-type">IResidueContext</a><span class="tsd-signature-symbol"> =&nbsp;{addCandidateResidues: (residues: RESIDUE_TYPE[]) &#x3D;&gt; {return;},addHoveredResidues: (residues: RESIDUE_TYPE[]) &#x3D;&gt; {return;},addLockedResiduePair: (residues: RESIDUE_TYPE[]) &#x3D;&gt; {return;},candidateResidues: [] as number[],clearAllResidues: () &#x3D;&gt; {return;},hoveredResidues: [] as number[],lockedResiduePairs: new Map(),removeAllLockedResiduePairs: () &#x3D;&gt; {return;},removeCandidateResidues: () &#x3D;&gt; {return;},removeHoveredResidues: () &#x3D;&gt; {return;},removeLockedResiduePair: (residues: RESIDUE_TYPE[]) &#x3D;&gt; {return;},toggleLockedResiduePair: (residues: RESIDUE_TYPE[]) &#x3D;&gt; {return;},} as IResidueContext</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/context/ResidueContext.ts:23</li>
+							<li>Defined in src/context/ResidueContext.ts:21</li>
 						</ul>
 					</aside>
 				</section>
@@ -738,7 +758,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/NGLComponent.tsx:269</li>
+									<li>Defined in src/component/NGLComponent.tsx:285</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1687,7 +1707,7 @@
 					<div class="tsd-signature tsd-kind-icon">defaultNGLProps<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/NGLComponent.tsx:28</li>
+							<li>Defined in src/component/NGLComponent.tsx:26</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1696,7 +1716,7 @@
 						<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="classes/_ngl_.structure.html" class="tsd-signature-type">Structure</a><span class="tsd-signature-symbol"> =&nbsp;undefined as NGL.Structure | undefined</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/NGLComponent.tsx:29</li>
+								<li>Defined in src/component/NGLComponent.tsx:27</li>
 							</ul>
 						</aside>
 					</section>
@@ -1706,7 +1726,7 @@
 						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/NGLComponent.tsx:30</li>
+								<li>Defined in src/component/NGLComponent.tsx:28</li>
 							</ul>
 						</aside>
 					</section>
@@ -1716,7 +1736,7 @@
 						<div class="tsd-signature tsd-kind-icon">padding<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/NGLComponent.tsx:32</li>
+								<li>Defined in src/component/NGLComponent.tsx:30</li>
 							</ul>
 						</aside>
 					</section>
@@ -1726,7 +1746,7 @@
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/NGLComponent.tsx:33</li>
+								<li>Defined in src/component/NGLComponent.tsx:31</li>
 							</ul>
 						</aside>
 					</section>
@@ -2383,7 +2403,7 @@
 					<div class="tsd-signature tsd-kind-icon">initialNGLState<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/NGLComponent.tsx:36</li>
+							<li>Defined in src/component/NGLComponent.tsx:34</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -2392,17 +2412,17 @@
 						<div class="tsd-signature tsd-kind-icon">residue<wbr>Offset<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/NGLComponent.tsx:37</li>
+								<li>Defined in src/component/NGLComponent.tsx:35</li>
 							</ul>
 						</aside>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 						<a name="initialnglstate.residueselectionrepresentations" class="tsd-anchor"></a>
 						<h3>residue<wbr>Selection<wbr>Representations</h3>
-						<div class="tsd-signature tsd-kind-icon">residue<wbr>Selection<wbr>Representations<span class="tsd-signature-symbol">:</span> <a href="interfaces/irepresentationdict.html" class="tsd-signature-type">IRepresentationDict</a><span class="tsd-signature-symbol"> =&nbsp;{} as IRepresentationDict</span></div>
+						<div class="tsd-signature tsd-kind-icon">residue<wbr>Selection<wbr>Representations<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="classes/_ngl_.representationelement.html" class="tsd-signature-type">RepresentationElement</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new Map() as RepresentationDict</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/NGLComponent.tsx:38</li>
+								<li>Defined in src/component/NGLComponent.tsx:36</li>
 							</ul>
 						</aside>
 					</section>
@@ -2412,7 +2432,7 @@
 						<div class="tsd-signature tsd-kind-icon">stage<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="classes/_ngl_.stage.html" class="tsd-signature-type">Stage</a><span class="tsd-signature-symbol"> =&nbsp;undefined as NGL.Stage | undefined</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/NGLComponent.tsx:39</li>
+								<li>Defined in src/component/NGLComponent.tsx:37</li>
 							</ul>
 						</aside>
 					</section>
@@ -2422,7 +2442,7 @@
 						<div class="tsd-signature tsd-kind-icon">structure<wbr>Component<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="classes/_ngl_.structurecomponent.html" class="tsd-signature-type">StructureComponent</a><span class="tsd-signature-symbol"> =&nbsp;undefined as NGL.StructureComponent | undefined</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/NGLComponent.tsx:40</li>
+								<li>Defined in src/component/NGLComponent.tsx:38</li>
 							</ul>
 						</aside>
 					</section>
@@ -2706,16 +2726,10 @@
 						<a href="interfaces/iplotlydata.html" class="tsd-kind-icon">IPlotly<wbr>Data</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/irepresentationdict.html" class="tsd-kind-icon">IRepresentation<wbr>Dict</a>
-					</li>
-					<li class=" tsd-kind-interface">
 						<a href="interfaces/iresiduecontext.html" class="tsd-kind-icon">IResidue<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/iresiduepair.html" class="tsd-kind-icon">IResidue<wbr>Pair</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/iresidueselection.html" class="tsd-kind-icon">IResidue<wbr>Selection</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/isecondarystructure.html" class="tsd-kind-icon">ISecondary<wbr>Structure</a>
@@ -2773,6 +2787,12 @@
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#residue_type" class="tsd-kind-icon">RESIDUE_<wbr>TYPE</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#representationdict" class="tsd-kind-icon">Representation<wbr>Dict</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#residueselection" class="tsd-kind-icon">Residue<wbr>Selection</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#spring_data_type" class="tsd-kind-icon">SPRING_<wbr>DATA_<wbr>TYPE</a>
