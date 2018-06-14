@@ -1,3 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CellContext Should match the default snapshot. 1`] = `<div />`;
+exports[`CellContext Should match the default snapshot. 1`] = `
+<div
+  addCells={[Function]}
+  currentCells={Array []}
+  removeAllCells={[Function]}
+  removeCells={[Function]}
+/>
+`;
