@@ -45,12 +45,14 @@ export interface IContactMapChartData extends Partial<IPlotlyData> {
   name: string;
   nodeSize: number;
   points: IContactMapChartPoint[];
+  subtitle?: string;
 }
 
 export const generateChartDataEntry = (
   hoverinfo: plotly.ScatterData['hoverinfo'],
   color: string | { start: string; end: string },
   name: string,
+  subtitle: string,
   nodeSize: number,
   points: IContactMapChartPoint[],
   extra: Partial<IPlotlyData> = {},
@@ -60,11 +62,24 @@ export const generateChartDataEntry = (
     typeof color === 'string'
       ? { color }
       : {
-          colorscale: [[0, color.start], [1, color.end]],
+          colorscale: [
+            [0.0, 'rgb(12,50,102)'],
+            [0.1, 'rgb(17,83,150)'],
+            [0.2, 'rgb(40,114,175)'],
+            [0.3, 'rgb(71,147,193)'],
+            [0.4, 'rgb(111,175,209)'],
+            [0.5, 'rgb(160,202,222)'],
+            [0.6, 'rgb(200,219,237)'],
+            [0.7, 'rgb(224,235,246)'],
+            [0.8, 'rgb(247,251,255)'],
+            [0.9, 'rgb(249,253,255)'],
+            [1.0, 'rgb(255,255,255)'],
+          ],
         },
   name,
   nodeSize,
   points,
+  subtitle,
   ...extra,
 });
 

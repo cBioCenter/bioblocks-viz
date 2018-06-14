@@ -12,7 +12,7 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
           "size": 0,
         },
         "mode": "markers",
-        "name": "",
+        "name": " undefined",
         "type": "scattergl",
         "x": Array [],
         "y": Array [],

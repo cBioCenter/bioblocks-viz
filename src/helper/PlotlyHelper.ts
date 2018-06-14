@@ -29,7 +29,7 @@ export const generateScatterData = (
   entry: IContactMapChartData,
   mirrorPoints: boolean = false,
 ): Partial<IPlotlyData> => {
-  const { marker, name, points } = entry;
+  const { marker, points, subtitle, name } = entry;
   const xValues = points.map(data => data.i);
   const yValues = points.map(data => data.j);
   const zValues = points.map(data => data.dist);
@@ -43,7 +43,7 @@ export const generateScatterData = (
       marker,
     ),
     mode: 'markers',
-    name,
+    name: `${name} ${subtitle}`,
     type: PLOTLY_CHART_TYPE.scatter,
     x: mirrorPoints ? [...xValues, ...yValues] : xValues,
     y: mirrorPoints ? [...yValues, ...xValues] : yValues,
