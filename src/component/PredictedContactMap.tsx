@@ -46,10 +46,31 @@ export class PredictedContactMapClass extends React.Component<PredictedContactMa
     );
 
     const chainLength = data.couplingScores.reduce((a, b) => Math.max(a, Math.max(b.i, b.j)), 0);
+    const correctPredictionPercent = ((allPredictions.correct.length / allPredictions.predicted.length) * 100).toFixed(
+      2,
+    );
     const newPoints = [
-      generateChartDataEntry('x+y', { start: observedColor, end: 'rgb(100,177,200)' }, 'Observed', 4, observedContacts),
-      generateChartDataEntry('x+y', incorrectColor, `Predicted Contact (${chainLength})`, 4, allPredictions.predicted),
-      generateChartDataEntry('x+y', correctColor, 'Correct Prediction', 6, allPredictions.correct),
+      generateChartDataEntry(
+        'x+y',
+        { start: observedColor, end: 'rgb(100,177,200)' },
+        'Known Structure Contact (from PDB structure)',
+        4,
+        observedContacts,
+      ),
+      generateChartDataEntry(
+        'x+y',
+        incorrectColor,
+        `Predicted Contact (${numPredictionsToShow}, L=${chainLength})`,
+        4,
+        allPredictions.predicted,
+      ),
+      generateChartDataEntry(
+        'x+y',
+        correctColor,
+        `Correct Prediction (${allPredictions.correct.length}, ${correctPredictionPercent}%)`,
+        6,
+        allPredictions.correct,
+      ),
     ] as IContactMapChartData[];
 
     return {
