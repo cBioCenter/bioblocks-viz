@@ -197,7 +197,7 @@
 					<div class="tsd-signature tsd-kind-icon">canvas<wbr>Ref<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HTMLDivElement</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e94eefe3/src/component/chart/PlotlyChart.tsx#L89">src/component/chart/PlotlyChart.tsx:89</a></li>
+							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/fdffc344/src/component/chart/PlotlyChart.tsx#L98">src/component/chart/PlotlyChart.tsx:98</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -218,7 +218,7 @@
 					<div class="tsd-signature tsd-kind-icon">plotly<wbr>Canvas<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">plotly.PlotlyHTMLElement</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e94eefe3/src/component/chart/PlotlyChart.tsx#L87">src/component/chart/PlotlyChart.tsx:87</a></li>
+							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/fdffc344/src/component/chart/PlotlyChart.tsx#L96">src/component/chart/PlotlyChart.tsx:96</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -228,7 +228,7 @@
 					<div class="tsd-signature tsd-kind-icon">plotly<wbr>Formatted<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e94eefe3/src/component/chart/PlotlyChart.tsx#L88">src/component/chart/PlotlyChart.tsx:88</a></li>
+							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/fdffc344/src/component/chart/PlotlyChart.tsx#L97">src/component/chart/PlotlyChart.tsx:97</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -286,9 +286,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e94eefe3/src/component/chart/PlotlyChart.tsx#L91">src/component/chart/PlotlyChart.tsx:91</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/fdffc344/src/component/chart/PlotlyChart.tsx#L103">src/component/chart/PlotlyChart.tsx:103</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Setup all the event listeners for the plotly canvas.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -303,7 +308,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e94eefe3/src/component/chart/PlotlyChart.tsx#L132">src/component/chart/PlotlyChart.tsx:132</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/fdffc344/src/component/chart/PlotlyChart.tsx#L160">src/component/chart/PlotlyChart.tsx:160</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -320,13 +325,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e94eefe3/src/component/chart/PlotlyChart.tsx#L120">src/component/chart/PlotlyChart.tsx:120</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/fdffc344/src/component/chart/PlotlyChart.tsx#L146">src/component/chart/PlotlyChart.tsx:146</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Determines if we should send a draw call to Plotly based on if data has actually changed.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>prevProps: <a href="../interfaces/iplotlychartprops.html" class="tsd-signature-type">IPlotlyChartProps</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The previous props for the PlotlyChart.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -343,7 +356,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e94eefe3/src/component/chart/PlotlyChart.tsx#L149">src/component/chart/PlotlyChart.tsx:149</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/fdffc344/src/component/chart/PlotlyChart.tsx#L178">src/component/chart/PlotlyChart.tsx:178</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -360,9 +373,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e94eefe3/src/component/chart/PlotlyChart.tsx#L106">src/component/chart/PlotlyChart.tsx:106</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/fdffc344/src/component/chart/PlotlyChart.tsx#L127">src/component/chart/PlotlyChart.tsx:127</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sends a draw call to Plotly since it is using canvas/WebGL which is outside of the locus of control for React.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -401,7 +419,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e94eefe3/src/component/chart/PlotlyChart.tsx#L163">src/component/chart/PlotlyChart.tsx:163</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/fdffc344/src/component/chart/PlotlyChart.tsx#L192">src/component/chart/PlotlyChart.tsx:192</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -424,7 +442,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e94eefe3/src/component/chart/PlotlyChart.tsx#L172">src/component/chart/PlotlyChart.tsx:172</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/fdffc344/src/component/chart/PlotlyChart.tsx#L201">src/component/chart/PlotlyChart.tsx:201</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -447,7 +465,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e94eefe3/src/component/chart/PlotlyChart.tsx#L181">src/component/chart/PlotlyChart.tsx:181</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/fdffc344/src/component/chart/PlotlyChart.tsx#L210">src/component/chart/PlotlyChart.tsx:210</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -470,7 +488,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e94eefe3/src/component/chart/PlotlyChart.tsx#L188">src/component/chart/PlotlyChart.tsx:188</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/fdffc344/src/component/chart/PlotlyChart.tsx#L217">src/component/chart/PlotlyChart.tsx:217</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -493,7 +511,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e94eefe3/src/component/chart/PlotlyChart.tsx#L195">src/component/chart/PlotlyChart.tsx:195</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/fdffc344/src/component/chart/PlotlyChart.tsx#L224">src/component/chart/PlotlyChart.tsx:224</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -516,7 +534,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e94eefe3/src/component/chart/PlotlyChart.tsx#L202">src/component/chart/PlotlyChart.tsx:202</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/fdffc344/src/component/chart/PlotlyChart.tsx#L231">src/component/chart/PlotlyChart.tsx:231</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -540,7 +558,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.render</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e94eefe3/src/component/chart/PlotlyChart.tsx#L157">src/component/chart/PlotlyChart.tsx:157</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/fdffc344/src/component/chart/PlotlyChart.tsx#L186">src/component/chart/PlotlyChart.tsx:186</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
@@ -557,9 +575,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/e94eefe3/src/component/chart/PlotlyChart.tsx#L102">src/component/chart/PlotlyChart.tsx:102</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/fdffc344/src/component/chart/PlotlyChart.tsx#L118">src/component/chart/PlotlyChart.tsx:118</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Resizes the inner Plotly canvas.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
