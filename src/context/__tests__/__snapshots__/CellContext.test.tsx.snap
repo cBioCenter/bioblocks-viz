@@ -1,3 +1,154 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CellContext Should match the default snapshot. 1`] = `<div />`;
+exports[`CellContext Should ha 1`] = `
+<div
+  addCells={[Function]}
+  currentCells={Array []}
+  removeAllCells={[Function]}
+  removeCells={[Function]}
+/>
+`;
+
+exports[`CellContext Should hav 1`] = `
+<div
+  addCells={[Function]}
+  currentCells={Array []}
+  removeAllCells={[Function]}
+  removeCells={[Function]}
+/>
+`;
+
+exports[`CellContext Should have  1`] = `
+<div
+  addCells={[Function]}
+  currentCells={Array []}
+  removeAllCells={[Function]}
+  removeCells={[Function]}
+/>
+`;
+
+exports[`CellContext Should have em 1`] = `
+<div
+  addCells={[Function]}
+  currentCells={Array []}
+  removeAllCells={[Function]}
+  removeCells={[Function]}
+/>
+`;
+
+exports[`CellContext Should have empt 1`] = `
+<div
+  addCells={[Function]}
+  currentCells={Array []}
+  removeAllCells={[Function]}
+  removeCells={[Function]}
+/>
+`;
+
+exports[`CellContext Should have empty  1`] = `
+<div
+  addCells={[Function]}
+  currentCells={Array []}
+  removeAllCells={[Function]}
+  removeCells={[Function]}
+/>
+`;
+
+exports[`CellContext Should have empty 1`] = `
+<div
+  addCells={[Function]}
+  currentCells={Array []}
+  removeAllCells={[Function]}
+  removeCells={[Function]}
+/>
+`;
+
+exports[`CellContext Should have empty fu 1`] = `
+<div
+  addCells={[Function]}
+  currentCells={Array []}
+  removeAllCells={[Function]}
+  removeCells={[Function]}
+/>
+`;
+
+exports[`CellContext Should have empty func 1`] = `
+<div
+  addCells={[Function]}
+  currentCells={Array []}
+  removeAllCells={[Function]}
+  removeCells={[Function]}
+/>
+`;
+
+exports[`CellContext Should have empty functi 1`] = `
+<div
+  addCells={[Function]}
+  currentCells={Array []}
+  removeAllCells={[Function]}
+  removeCells={[Function]}
+/>
+`;
+
+exports[`CellContext Should have empty functin 1`] = `
+<div
+  addCells={[Function]}
+  currentCells={Array []}
+  removeAllCells={[Function]}
+  removeCells={[Function]}
+/>
+`;
+
+exports[`CellContext Should have empty functio 1`] = `
+<div
+  addCells={[Function]}
+  currentCells={Array []}
+  removeAllCells={[Function]}
+  removeCells={[Function]}
+/>
+`;
+
+exports[`CellContext Should have empty functiob 1`] = `
+<div
+  addCells={[Function]}
+  currentCells={Array []}
+  removeAllCells={[Function]}
+  removeCells={[Function]}
+/>
+`;
+
+exports[`CellContext Should have empty functions 1`] = `
+<div
+  addCells={[Function]}
+  currentCells={Array []}
+  removeAllCells={[Function]}
+  removeCells={[Function]}
+/>
+`;
+
+exports[`CellContext Should have empty functions. 1`] = `
+<div
+  addCells={[Function]}
+  currentCells={Array []}
+  removeAllCells={[Function]}
+  removeCells={[Function]}
+/>
+`;
+
+exports[`CellContext Should match the default snapshot. 1`] = `
+<div
+  addCells={[Function]}
+  currentCells={Array []}
+  removeAllCells={[Function]}
+  removeCells={[Function]}
+/>
+`;
+
+exports[`CellContext Should match the default snapshot. 2`] = `
+<div
+  addCells={[Function]}
+  currentCells={Array []}
+  removeAllCells={[Function]}
+  removeCells={[Function]}
+/>
+`;

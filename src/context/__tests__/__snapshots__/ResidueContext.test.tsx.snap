@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResidueContext Should match the default snapshot. 1`] = `
+<div
+  addCandidateResidues={[Function]}
+  addHoveredResidues={[Function]}
+  addLockedResiduePair={[Function]}
+  candidateResidues={Array []}
+  clearAllResidues={[Function]}
+  hoveredResidues={Array []}
+  lockedResiduePairs={Map {}}
+  removeAllLockedResiduePairs={[Function]}
+  removeCandidateResidues={[Function]}
+  removeHoveredResidues={[Function]}
+  removeLockedResiduePair={[Function]}
+  toggleLockedResiduePair={[Function]}
+/>
+`;
