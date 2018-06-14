@@ -111,7 +111,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
       <div id="NGLComponent" style={{ padding }}>
         <div ref={el => (this.canvas = el)} style={{ height, width }} />
         <GridRow>
-          <Button onClick={this.props.removeAllLockedResiduePairs}>Remove Locked Residues</Button>
+          <Button onClick={this.props.removeAllLockedResiduePairs}>Remove Locked Distance Pairs</Button>
         </GridRow>
       </div>
     );
