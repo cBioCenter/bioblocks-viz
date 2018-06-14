@@ -26,6 +26,7 @@ export interface IPlotlyData extends plotly.ScatterData {
   /** [Plotly Box Plots](https://plot.ly/javascript/box-plots/) */
   // 'box' = 'box',
   boxpoints: 'all' | 'outliers' | 'suspectedoutliers' | false;
+  name: string;
   notched: boolean;
   orientation: 'h' | 'v';
   showlegend: boolean;

@@ -26,6 +26,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
           "name": "Selected Res. Pairs",
           "nodeSize": 6,
           "points": Array [],
+          "subtitle": "",
         },
       ]
     }
@@ -75,7 +76,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
         className="node-size-slider-0"
         defaultValue={6}
         key="node-size-slider-0"
-        label="Selected Res. Pairs Node Size"
+        label="Selected Res. Pairs - Node Size"
         max={20}
         min={1}
         onChange={[Function]}
@@ -170,7 +171,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
         }
       >
         <p>
-          0 Node Size: 4
+          0 - Node Size: 4
         </p>
         <div
           className="rc-slider"
@@ -229,7 +230,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
         }
       >
         <p>
-          1 Node Size: 4
+          1 - Node Size: 4
         </p>
         <div
           className="rc-slider"
@@ -288,7 +289,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
         }
       >
         <p>
-          2 Node Size: 4
+          2 - Node Size: 4
         </p>
         <div
           className="rc-slider"
@@ -347,7 +348,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
         }
       >
         <p>
-          3 Node Size: 4
+          3 - Node Size: 4
         </p>
         <div
           className="rc-slider"
@@ -406,7 +407,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
         }
       >
         <p>
-          4 Node Size: 4
+          4 - Node Size: 4
         </p>
         <div
           className="rc-slider"
@@ -465,7 +466,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
         }
       >
         <p>
-          5 Node Size: 4
+          5 - Node Size: 4
         </p>
         <div
           className="rc-slider"
@@ -524,7 +525,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
         }
       >
         <p>
-          Selected Res. Pairs Node Size: 6
+          Selected Res. Pairs - Node Size: 6
         </p>
         <div
           className="rc-slider"
@@ -789,6 +790,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 "j": 46,
               },
             ],
+            "subtitle": "",
           },
         ]
       }
@@ -840,7 +842,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 "size": 4,
               },
               "mode": "markers",
-              "name": "0",
+              "name": "0 undefined",
               "type": "scattergl",
               "x": Array [
                 56,
@@ -865,7 +867,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 "size": 4,
               },
               "mode": "markers",
-              "name": "1",
+              "name": "1 undefined",
               "type": "scattergl",
               "x": Array [
                 42,
@@ -890,7 +892,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 "size": 4,
               },
               "mode": "markers",
-              "name": "2",
+              "name": "2 undefined",
               "type": "scattergl",
               "x": Array [
                 41,
@@ -915,7 +917,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 "size": 4,
               },
               "mode": "markers",
-              "name": "3",
+              "name": "3 undefined",
               "type": "scattergl",
               "x": Array [
                 45,
@@ -940,7 +942,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 "size": 4,
               },
               "mode": "markers",
-              "name": "4",
+              "name": "4 undefined",
               "type": "scattergl",
               "x": Array [
                 44,
@@ -965,7 +967,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 "size": 4,
               },
               "mode": "markers",
-              "name": "5",
+              "name": "5 undefined",
               "type": "scattergl",
               "x": Array [
                 56,
@@ -992,7 +994,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 "symbol": "circle-open",
               },
               "mode": "markers",
-              "name": "Selected Res. Pairs",
+              "name": "Selected Res. Pairs ",
               "type": "scattergl",
               "x": Array [
                 37,
@@ -1125,7 +1127,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 className="node-size-slider-0"
                 defaultValue={4}
                 key="node-size-slider-0"
-                label="0 Node Size"
+                label="0 - Node Size"
                 max={20}
                 min={1}
                 onChange={[Function]}
@@ -1144,7 +1146,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   }
                 >
                   <p>
-                    0 Node Size: 4
+                    0 - Node Size: 4
                   </p>
                   <ComponentEnhancer(undefined)
                     activeDotStyle={Object {}}
@@ -1282,7 +1284,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 className="node-size-slider-1"
                 defaultValue={4}
                 key="node-size-slider-1"
-                label="1 Node Size"
+                label="1 - Node Size"
                 max={20}
                 min={1}
                 onChange={[Function]}
@@ -1301,7 +1303,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   }
                 >
                   <p>
-                    1 Node Size: 4
+                    1 - Node Size: 4
                   </p>
                   <ComponentEnhancer(undefined)
                     activeDotStyle={Object {}}
@@ -1439,7 +1441,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 className="node-size-slider-2"
                 defaultValue={4}
                 key="node-size-slider-2"
-                label="2 Node Size"
+                label="2 - Node Size"
                 max={20}
                 min={1}
                 onChange={[Function]}
@@ -1458,7 +1460,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   }
                 >
                   <p>
-                    2 Node Size: 4
+                    2 - Node Size: 4
                   </p>
                   <ComponentEnhancer(undefined)
                     activeDotStyle={Object {}}
@@ -1596,7 +1598,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 className="node-size-slider-3"
                 defaultValue={4}
                 key="node-size-slider-3"
-                label="3 Node Size"
+                label="3 - Node Size"
                 max={20}
                 min={1}
                 onChange={[Function]}
@@ -1615,7 +1617,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   }
                 >
                   <p>
-                    3 Node Size: 4
+                    3 - Node Size: 4
                   </p>
                   <ComponentEnhancer(undefined)
                     activeDotStyle={Object {}}
@@ -1753,7 +1755,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 className="node-size-slider-4"
                 defaultValue={4}
                 key="node-size-slider-4"
-                label="4 Node Size"
+                label="4 - Node Size"
                 max={20}
                 min={1}
                 onChange={[Function]}
@@ -1772,7 +1774,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   }
                 >
                   <p>
-                    4 Node Size: 4
+                    4 - Node Size: 4
                   </p>
                   <ComponentEnhancer(undefined)
                     activeDotStyle={Object {}}
@@ -1910,7 +1912,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 className="node-size-slider-5"
                 defaultValue={4}
                 key="node-size-slider-5"
-                label="5 Node Size"
+                label="5 - Node Size"
                 max={20}
                 min={1}
                 onChange={[Function]}
@@ -1929,7 +1931,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   }
                 >
                   <p>
-                    5 Node Size: 4
+                    5 - Node Size: 4
                   </p>
                   <ComponentEnhancer(undefined)
                     activeDotStyle={Object {}}
@@ -2067,7 +2069,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 className="node-size-slider-6"
                 defaultValue={6}
                 key="node-size-slider-6"
-                label="Selected Res. Pairs Node Size"
+                label="Selected Res. Pairs - Node Size"
                 max={20}
                 min={1}
                 onChange={[Function]}
@@ -2086,7 +2088,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   }
                 >
                   <p>
-                    Selected Res. Pairs Node Size: 6
+                    Selected Res. Pairs - Node Size: 6
                   </p>
                   <ComponentEnhancer(undefined)
                     activeDotStyle={Object {}}

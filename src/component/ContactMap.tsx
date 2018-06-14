@@ -105,6 +105,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
       'none',
       highlightColor,
       'Selected Res. Pairs',
+      '',
       nodeSize,
       Array.from(lockedResiduePairs.keys())
         .filter(key => lockedResiduePairs.get(key)!.length === 2)
@@ -179,7 +180,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
           className={key}
           key={key}
           defaultValue={entry.nodeSize}
-          label={`${entry.name} Node Size`}
+          label={`${entry.name} - Node Size`}
           max={20}
           min={1}
           onChange={this.onNodeSizeChange(index)}

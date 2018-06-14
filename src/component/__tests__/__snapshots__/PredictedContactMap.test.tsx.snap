@@ -42,35 +42,74 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
               "colorscale": Array [
                 Array [
                   0,
-                  "#0000ff",
+                  "rgb(12,50,102)",
+                ],
+                Array [
+                  0.1,
+                  "rgb(17,83,150)",
+                ],
+                Array [
+                  0.2,
+                  "rgb(40,114,175)",
+                ],
+                Array [
+                  0.3,
+                  "rgb(71,147,193)",
+                ],
+                Array [
+                  0.4,
+                  "rgb(111,175,209)",
+                ],
+                Array [
+                  0.5,
+                  "rgb(160,202,222)",
+                ],
+                Array [
+                  0.6,
+                  "rgb(200,219,237)",
+                ],
+                Array [
+                  0.7,
+                  "rgb(224,235,246)",
+                ],
+                Array [
+                  0.8,
+                  "rgb(247,251,255)",
+                ],
+                Array [
+                  0.9,
+                  "rgb(249,253,255)",
                 ],
                 Array [
                   1,
-                  "rgb(100,177,200)",
+                  "rgb(255,255,255)",
                 ],
               ],
             },
-            "name": "Known Structure Contact (from PDB structure)",
+            "name": "Known Structure Contact",
             "nodeSize": 4,
             "points": Array [],
+            "subtitle": "(from PDB structure)",
           },
           Object {
             "hoverinfo": "x+y",
             "marker": Object {
               "color": "#000000",
             },
-            "name": "Predicted Contact (29, L=0)",
+            "name": "Predicted Contact",
             "nodeSize": 4,
             "points": Array [],
+            "subtitle": "(29, L=0)",
           },
           Object {
             "hoverinfo": "x+y",
             "marker": Object {
               "color": "#ff0000",
             },
-            "name": "Correct Prediction (0, NaN%)",
+            "name": "Correct Prediction",
             "nodeSize": 6,
             "points": Array [],
+            "subtitle": "(0, NaN%)",
           },
         ],
         "secondaryStructures": Array [],
@@ -134,35 +173,74 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
               "colorscale": Array [
                 Array [
                   0,
-                  "#0000ff",
+                  "rgb(12,50,102)",
+                ],
+                Array [
+                  0.1,
+                  "rgb(17,83,150)",
+                ],
+                Array [
+                  0.2,
+                  "rgb(40,114,175)",
+                ],
+                Array [
+                  0.3,
+                  "rgb(71,147,193)",
+                ],
+                Array [
+                  0.4,
+                  "rgb(111,175,209)",
+                ],
+                Array [
+                  0.5,
+                  "rgb(160,202,222)",
+                ],
+                Array [
+                  0.6,
+                  "rgb(200,219,237)",
+                ],
+                Array [
+                  0.7,
+                  "rgb(224,235,246)",
+                ],
+                Array [
+                  0.8,
+                  "rgb(247,251,255)",
+                ],
+                Array [
+                  0.9,
+                  "rgb(249,253,255)",
                 ],
                 Array [
                   1,
-                  "rgb(100,177,200)",
+                  "rgb(255,255,255)",
                 ],
               ],
             },
-            "name": "Known Structure Contact (from PDB structure)",
+            "name": "Known Structure Contact",
             "nodeSize": 4,
             "points": Array [],
+            "subtitle": "(from PDB structure)",
           },
           Object {
             "hoverinfo": "x+y",
             "marker": Object {
               "color": "#000000",
             },
-            "name": "Predicted Contact (29, L=0)",
+            "name": "Predicted Contact",
             "nodeSize": 4,
             "points": Array [],
+            "subtitle": "(29, L=0)",
           },
           Object {
             "hoverinfo": "x+y",
             "marker": Object {
               "color": "#ff0000",
             },
-            "name": "Correct Prediction (0, NaN%)",
+            "name": "Correct Prediction",
             "nodeSize": 6,
             "points": Array [],
+            "subtitle": "(0, NaN%)",
           },
         ],
         "secondaryStructures": Array [],
@@ -226,35 +304,74 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
               "colorscale": Array [
                 Array [
                   0,
-                  "#0000ff",
+                  "rgb(12,50,102)",
+                ],
+                Array [
+                  0.1,
+                  "rgb(17,83,150)",
+                ],
+                Array [
+                  0.2,
+                  "rgb(40,114,175)",
+                ],
+                Array [
+                  0.3,
+                  "rgb(71,147,193)",
+                ],
+                Array [
+                  0.4,
+                  "rgb(111,175,209)",
+                ],
+                Array [
+                  0.5,
+                  "rgb(160,202,222)",
+                ],
+                Array [
+                  0.6,
+                  "rgb(200,219,237)",
+                ],
+                Array [
+                  0.7,
+                  "rgb(224,235,246)",
+                ],
+                Array [
+                  0.8,
+                  "rgb(247,251,255)",
+                ],
+                Array [
+                  0.9,
+                  "rgb(249,253,255)",
                 ],
                 Array [
                   1,
-                  "rgb(100,177,200)",
+                  "rgb(255,255,255)",
                 ],
               ],
             },
-            "name": "Known Structure Contact (from PDB structure)",
+            "name": "Known Structure Contact",
             "nodeSize": 4,
             "points": Array [],
+            "subtitle": "(from PDB structure)",
           },
           Object {
             "hoverinfo": "x+y",
             "marker": Object {
               "color": "#000000",
             },
-            "name": "Predicted Contact (29, L=0)",
+            "name": "Predicted Contact",
             "nodeSize": 4,
             "points": Array [],
+            "subtitle": "(29, L=0)",
           },
           Object {
             "hoverinfo": "x+y",
             "marker": Object {
               "color": "#ff0000",
             },
-            "name": "Correct Prediction (0, NaN%)",
+            "name": "Correct Prediction",
             "nodeSize": 6,
             "points": Array [],
+            "subtitle": "(0, NaN%)",
           },
         ],
         "secondaryStructures": Array [],
