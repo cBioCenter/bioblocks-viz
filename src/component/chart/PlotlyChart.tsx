@@ -22,6 +22,15 @@ export enum PLOTLY_CHART_TYPE {
 }
 
 export interface IPlotlyData extends plotly.ScatterData {
+  // TODO Open PR to add these missing Plotly types. - https://plot.ly/javascript/reference/#box
+  /** [Plotly Box Plots](https://plot.ly/javascript/box-plots/) */
+  // 'box' = 'box',
+  boxpoints: 'all' | 'outliers' | 'suspectedoutliers' | false;
+  notched: boolean;
+  orientation: 'h' | 'v';
+  showlegend: boolean;
+  // TODO Open PR to add these missing Plotly types. - https://plot.ly/javascript/reference/#box
+
   type: PLOTLY_CHART_TYPE | 'bar' | 'pointcloud' | 'scatter' | 'scattergl' | 'scatter3d';
 }
 
@@ -88,21 +97,33 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
   protected plotlyFormattedData: Array<Partial<IPlotlyData>> = [];
   protected canvasRef: HTMLDivElement | null = null;
 
+  /**
+   * Setup all the event listeners for the plotly canvas.
+   */
   public attachListeners() {
-    this.plotlyCanvas!.on('plotly_click', this.onClick);
-    this.plotlyCanvas!.on('plotly_selected', this.onSelect);
+    if (this.plotlyCanvas) {
+      this.plotlyCanvas.on('plotly_click', this.onClick);
+      this.plotlyCanvas.on('plotly_selected', this.onSelect);
 
-    this.plotlyCanvas!.on('plotly_hover', this.onHover);
-    this.plotlyCanvas!.on('plotly_unhover', this.onUnHover);
-
+      this.plotlyCanvas.on('plotly_hover', this.onHover);
+      this.plotlyCanvas.on('plotly_unhover', this.onUnHover);
+    }
     window.removeEventListener('resize', this.resize);
     window.addEventListener('resize', this.resize);
   }
 
+  /**
+   * Resizes the inner Plotly canvas.
+   */
   public resize = () => {
-    plotly.Plots.resize(this.plotlyCanvas!);
+    if (this.plotlyCanvas) {
+      plotly.Plots.resize(this.plotlyCanvas);
+    }
   };
 
+  /**
+   * Sends a draw call to Plotly since it is using canvas/WebGL which is outside of the locus of control for React.
+   */
   public draw = async () => {
     const { layout, config } = this.props;
     this.plotlyFormattedData = [...this.plotlyFormattedData];
@@ -117,8 +138,15 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
     }
   };
 
+  /**
+   * Determines if we should send a draw call to Plotly based on if data has actually changed.
+   *
+   * @param prevProps The previous props for the PlotlyChart.
+   */
   public componentDidUpdate(prevProps: IPlotlyChartProps) {
     const { data, layout, config } = this.props;
+    // !Important! This logic should be refactored for performance to not use JSON stringify.
+    // !Important! Likely requires another crack at state/context.
     if (
       JSON.stringify(data) !== JSON.stringify(prevProps.data) ||
       !deepEqual(layout, prevProps.layout) ||
@@ -132,6 +160,7 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
   public async componentDidMount() {
     if (this.canvasRef && !this.plotlyCanvas) {
       const { data, layout, config } = this.props;
+      // !Important! This is to make a DEEP COPY of the data because Plotly will modify it, thus causing false positive data updates.
       this.plotlyFormattedData = Immutable.fromJS(data).toJS();
 
       this.plotlyCanvas = await plotly.react(

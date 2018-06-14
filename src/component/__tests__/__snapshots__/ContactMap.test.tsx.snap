@@ -1020,9 +1020,11 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "x": Array [
                 29,
                 30,
+                30,
               ],
               "xaxis": "x",
               "y": Array [
+                1,
                 1,
                 1,
               ],

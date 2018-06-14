@@ -74,6 +74,12 @@ export interface IContactMapChartPoint {
   j: number;
 }
 
+/**
+ * Intermediary between a ContactMap and a PlotlyChart.
+ *
+ * Will transform data and setup layout from science/chell data type into the Plotly type.
+ * @extends {React.Component<IContactMapChartProps, any>}
+ */
 class ContactMapChartClass extends React.Component<IContactMapChartProps, any> {
   constructor(props: any) {
     super(props);
@@ -117,10 +123,7 @@ class ContactMapChartClass extends React.Component<IContactMapChartProps, any> {
             dtick: 10,
             range,
             showline: true,
-            // tickfont: { size: 6 },
             tickmode: 'linear',
-            // ticktext: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'],
-            // tickvals: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
             title: 'Residue #',
           },
           yaxis: {

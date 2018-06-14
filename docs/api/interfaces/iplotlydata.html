@@ -84,6 +84,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iplotlydata.html#boxpoints" class="tsd-kind-icon">boxpoints</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#connectgaps" class="tsd-kind-icon">connectgaps</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#fill" class="tsd-kind-icon">fill</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#fillcolor" class="tsd-kind-icon">fillcolor</a></li>
@@ -113,6 +114,9 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#marker_symbol" class="tsd-kind-icon">marker.symbol</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#mode" class="tsd-kind-icon">mode</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iplotlydata.html#notched" class="tsd-kind-icon">notched</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iplotlydata.html#orientation" class="tsd-kind-icon">orientation</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iplotlydata.html#showlegend" class="tsd-kind-icon">showlegend</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#text" class="tsd-kind-icon">text</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="iplotlydata.html#type" class="tsd-kind-icon">type</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#x" class="tsd-kind-icon">x</a></li>
@@ -128,6 +132,21 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="boxpoints" class="tsd-anchor"></a>
+					<h3>boxpoints</h3>
+					<div class="tsd-signature tsd-kind-icon">boxpoints<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"all"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"outliers"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"suspectedoutliers"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/component/chart/PlotlyChart.tsx:28</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p><a href="https://plot.ly/javascript/box-plots/">Plotly Box Plots</a></p>
+						</div>
+					</div>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="connectgaps" class="tsd-anchor"></a>
 					<h3>connectgaps</h3>
@@ -447,6 +466,36 @@
 						</ul>
 					</aside>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="notched" class="tsd-anchor"></a>
+					<h3>notched</h3>
+					<div class="tsd-signature tsd-kind-icon">notched<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/component/chart/PlotlyChart.tsx:29</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="orientation" class="tsd-anchor"></a>
+					<h3>orientation</h3>
+					<div class="tsd-signature tsd-kind-icon">orientation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"h"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"v"</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/component/chart/PlotlyChart.tsx:30</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="showlegend" class="tsd-anchor"></a>
+					<h3>showlegend</h3>
+					<div class="tsd-signature tsd-kind-icon">showlegend<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/component/chart/PlotlyChart.tsx:31</li>
+						</ul>
+					</aside>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="text" class="tsd-anchor"></a>
 					<h3>text</h3>
@@ -465,7 +514,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides ScatterData.type</p>
 						<ul>
-							<li>Defined in src/component/chart/PlotlyChart.tsx:25</li>
+							<li>Defined in src/component/chart/PlotlyChart.tsx:34</li>
 						</ul>
 					</aside>
 				</section>
@@ -552,6 +601,9 @@
 					<li class="current tsd-kind-interface">
 						<a href="iplotlydata.html" class="tsd-kind-icon">IPlotly<wbr>Data</a>
 						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="iplotlydata.html#boxpoints" class="tsd-kind-icon">boxpoints</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="iplotlydata.html#connectgaps" class="tsd-kind-icon">connectgaps</a>
 							</li>
@@ -638,6 +690,15 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="iplotlydata.html#name" class="tsd-kind-icon">name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="iplotlydata.html#notched" class="tsd-kind-icon">notched</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="iplotlydata.html#orientation" class="tsd-kind-icon">orientation</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="iplotlydata.html#showlegend" class="tsd-kind-icon">showlegend</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="iplotlydata.html#text" class="tsd-kind-icon">text</a>

@@ -93,7 +93,6 @@
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/nglcomponentclass.html" class="tsd-kind-icon">NGLComponent<wbr>Class</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/plotlychartclass.html" class="tsd-kind-icon">Plotly<wbr>Chart<wbr>Class</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/predictedcontactmapclass.html" class="tsd-kind-icon">Predicted<wbr>Contact<wbr>Map<wbr>Class</a></li>
-								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/sequenceviewer.html" class="tsd-kind-icon">Sequence<wbr>Viewer</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/vizpanelcontainerclass.html" class="tsd-kind-icon">Viz<wbr>Panel<wbr>Container<wbr>Class</a></li>
 							</ul>
 						</section>
@@ -120,7 +119,6 @@
 								<li class="tsd-kind-interface"><a href="interfaces/iresidueselection.html" class="tsd-kind-icon">IResidue<wbr>Selection</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/isecondarystructure.html" class="tsd-kind-icon">ISecondary<wbr>Structure</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/isecondarystructuredata.html" class="tsd-kind-icon">ISecondary<wbr>Structure<wbr>Data</a></li>
-								<li class="tsd-kind-interface"><a href="interfaces/isequenceviewerprops.html" class="tsd-kind-icon">ISequence<wbr>Viewer<wbr>Props</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -580,7 +578,7 @@
 					<div class="tsd-signature tsd-kind-icon">Contact<wbr>Map<wbr>Chart<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultContactMapChartProps, ContactMapChartClass)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/chart/ContactMapChart.tsx:141</li>
+							<li>Defined in src/component/chart/ContactMapChart.tsx:144</li>
 						</ul>
 					</aside>
 				</section>
@@ -610,7 +608,7 @@
 					<div class="tsd-signature tsd-kind-icon">Plotly<wbr>Chart<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultPlotlyChartProps, PlotlyChartClass)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/chart/PlotlyChart.tsx:210</li>
+							<li>Defined in src/component/chart/PlotlyChart.tsx:239</li>
 						</ul>
 					</aside>
 				</section>
@@ -677,7 +675,7 @@
 				<section class="tsd-panel tsd-member tsd-kind-variable">
 					<a name="vizselectorpanel" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> Viz<wbr>Selector<wbr>Panel</h3>
-					<div class="tsd-signature tsd-kind-icon">Viz<wbr>Selector<wbr>Panel<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultVizPanelProps,/*** A single visualization panel allowing a user to select how they wish to view data.** @export* @extends {React.Component&lt;VizPanelProps, VizPanelState&gt;}*/class VizSelectorPanelClass extends React.Component&lt;VizPanelProps, VizPanelState&gt; {public readonly state: VizPanelState &#x3D; initialVizPanelState;constructor(props: VizPanelProps) {super(props);this.state &#x3D; {selectedViz: props.initialViz ? props.initialViz : VIZ_TYPE.SPRING,};}public render() {// N.B. We are only setting the width of the VizSelectorPanel, explicitly leaving out the height.// This means a component can only grow vertically, but not horizontally, and be correctly styled in containers.const { data, supportedVisualizations, width } &#x3D; this.props;return (&lt;div className&#x3D;&quot;VizSelectorPanel&quot; style&#x3D;{{ width }}&gt;&lt;Dropdownoptions&#x3D;{this.generateDropdownItems(supportedVisualizations)}fluid&#x3D;{true}onChange&#x3D;{this.onVizSelect}defaultValue&#x3D;{this.props.initialViz}/&gt;{&lt;Card fluid&#x3D;{true} raised&#x3D;{true}&gt;{this.renderVizContainer(this.state.selectedViz, data)}&lt;/Card&gt;}&lt;/div&gt;);}protected renderVizContainer(viz: VIZ_TYPE, data: Partial&lt;{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }&gt;) {const { padding } &#x3D; this.props;const paddedHeight &#x3D; this.props.height - padding * 2;const paddedWidth &#x3D; this.props.width - padding * 2;switch (viz) {case VIZ_TYPE[&#x27;T-SNE&#x27;]:return (&lt;TComponentdata&#x3D;{data[&#x27;T-SNE&#x27;] as T_SNE_DATA_TYPE}height&#x3D;{paddedHeight}padding&#x3D;{padding}width&#x3D;{paddedWidth}/&gt;);case VIZ_TYPE.SPRING:return (&lt;SpringComponentdata&#x3D;{data.Spring as ISpringGraphData}height&#x3D;{paddedHeight}padding&#x3D;{padding}width&#x3D;{paddedWidth}/&gt;);case VIZ_TYPE.NGL:return (&lt;NGLComponentdata&#x3D;{data.NGL as NGL_DATA_TYPE}height&#x3D;{paddedHeight}padding&#x3D;{padding}width&#x3D;{paddedWidth}/&gt;);case VIZ_TYPE.CONTACT_MAP:return (&lt;PredictedContactMapdata&#x3D;{data[&#x27;Contact Map&#x27;] as IContactMapData}height&#x3D;{paddedHeight}padding&#x3D;{padding}width&#x3D;{paddedWidth}/&gt;);default:throw new Error(&#x60;Unknown viz: ${viz}&#x60;);}}protected onVizSelect &#x3D; (event: React.SyntheticEvent&lt;any&gt;, data: any) &#x3D;&gt; {this.setState({selectedViz: data.value,});};protected generateDropdownItems &#x3D; (supportedVisualizations: VIZ_TYPE[]): DropdownItemProps[] &#x3D;&gt; {return supportedVisualizations.map(viz &#x3D;&gt; ({key: viz,text: viz,value: viz,})).sort((a, b) &#x3D;&gt; a.key.localeCompare(b.key));};},)</span></div>
+					<div class="tsd-signature tsd-kind-icon">Viz<wbr>Selector<wbr>Panel<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultVizPanelProps,/*** A single visualization panel allowing a user to select how they wish to view data.** @export* @extends {React.Component&lt;VizPanelProps, VizPanelState&gt;}*/class VizSelectorPanelClass extends React.Component&lt;VizPanelProps, VizPanelState&gt; {public readonly state: VizPanelState &#x3D; initialVizPanelState;constructor(props: VizPanelProps) {super(props);this.state &#x3D; {selectedViz: props.initialViz,};}public render() {// N.B. We are only setting the width of the VizSelectorPanel, explicitly leaving out the height.// This means a component can only grow vertically, but not horizontally, and be correctly styled in containers.const { data, supportedVisualizations, width } &#x3D; this.props;return (&lt;div className&#x3D;&quot;VizSelectorPanel&quot; style&#x3D;{{ width }}&gt;&lt;Dropdownoptions&#x3D;{this.generateDropdownItems(supportedVisualizations)}fluid&#x3D;{true}onChange&#x3D;{this.onVizSelect}defaultValue&#x3D;{this.props.initialViz}/&gt;{&lt;Card fluid&#x3D;{true} raised&#x3D;{true}&gt;{this.renderVizContainer(this.state.selectedViz, data)}&lt;/Card&gt;}&lt;/div&gt;);}protected renderVizContainer(viz: VIZ_TYPE, data: Partial&lt;{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }&gt;) {const { padding } &#x3D; this.props;const paddedHeight &#x3D; this.props.height - padding * 2;const paddedWidth &#x3D; this.props.width - padding * 2;switch (viz) {case VIZ_TYPE[&#x27;T-SNE&#x27;]:return (&lt;TComponentdata&#x3D;{data[&#x27;T-SNE&#x27;] as T_SNE_DATA_TYPE}height&#x3D;{paddedHeight}padding&#x3D;{padding}width&#x3D;{paddedWidth}/&gt;);case VIZ_TYPE.SPRING:return (&lt;SpringComponentdata&#x3D;{data.Spring as ISpringGraphData}height&#x3D;{paddedHeight}padding&#x3D;{padding}width&#x3D;{paddedWidth}/&gt;);case VIZ_TYPE.NGL:return (&lt;NGLComponentdata&#x3D;{data.NGL as NGL_DATA_TYPE}height&#x3D;{paddedHeight}padding&#x3D;{padding}width&#x3D;{paddedWidth}/&gt;);case VIZ_TYPE.CONTACT_MAP:return (&lt;PredictedContactMapdata&#x3D;{data[&#x27;Contact Map&#x27;] as IContactMapData}height&#x3D;{paddedHeight}padding&#x3D;{padding}width&#x3D;{paddedWidth}/&gt;);default:throw new Error(&#x60;Unknown viz: ${viz}&#x60;);}}protected onVizSelect &#x3D; (event: React.SyntheticEvent&lt;any&gt;, data: any) &#x3D;&gt; {this.setState({selectedViz: data.value,});};protected generateDropdownItems &#x3D; (supportedVisualizations: VIZ_TYPE[]): DropdownItemProps[] &#x3D;&gt; {return supportedVisualizations.map(viz &#x3D;&gt; ({key: viz,text: viz,value: viz,})).sort((a, b) &#x3D;&gt; a.key.localeCompare(b.key));};},)</span></div>
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in src/component/VizSelectorPanel.tsx:27</li>
@@ -1097,7 +1095,7 @@
 					<a name="generatechartdataentry" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> generate<wbr>Chart<wbr>Data<wbr>Entry</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">generate<wbr>Chart<wbr>Data<wbr>Entry<span class="tsd-signature-symbol">(</span>hoverinfo<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"none"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"all"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"skip"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+z"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+z+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+z+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+z"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+z+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+z+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+z"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+z+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+z+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+y+x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+y+x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+y+x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+y"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+y+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+y+name"</span>, color<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span>, name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, nodeSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, points<span class="tsd-signature-symbol">: </span><a href="interfaces/icontactmapchartpoint.html" class="tsd-signature-type">IContactMapChartPoint</a><span class="tsd-signature-symbol">[]</span>, extra<span class="tsd-signature-symbol">?: </span><a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/icontactmapchartdata.html" class="tsd-signature-type">IContactMapChartData</a></li>
+						<li class="tsd-signature tsd-kind-icon">generate<wbr>Chart<wbr>Data<wbr>Entry<span class="tsd-signature-symbol">(</span>hoverinfo<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"all"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"none"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"skip"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+z"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+z+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+z+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+z"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+z+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+z+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+z"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+z+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+z+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+y+x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+y+x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+y+x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+y"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+y+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+y+name"</span>, color<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span>, name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, nodeSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, points<span class="tsd-signature-symbol">: </span><a href="interfaces/icontactmapchartpoint.html" class="tsd-signature-type">IContactMapChartPoint</a><span class="tsd-signature-symbol">[]</span>, extra<span class="tsd-signature-symbol">?: </span><a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/icontactmapchartdata.html" class="tsd-signature-type">IContactMapChartData</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -1109,7 +1107,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>hoverinfo: <span class="tsd-signature-type">"text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"none"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"all"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"skip"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+z"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+z+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+z+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+z"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+z+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+z+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+z"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+z+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+z+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+y+x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+y+x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+y+x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+y"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+y+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+y+name"</span></h5>
+									<h5>hoverinfo: <span class="tsd-signature-type">"all"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"none"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"skip"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+z"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+z+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+z+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+z"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+z+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+z+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+z"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+z+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+z+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+y+x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+y+x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+y+x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+y"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+y+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+y+name"</span></h5>
 								</li>
 								<li>
 									<h5>color: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span></h5>
@@ -1290,16 +1288,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/PlotlyHelper.ts:101</li>
+									<li>Defined in src/helper/PlotlyHelper.ts:107</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generate a Plotly data object to represent a secondary structure as a box plot.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>entry: <a href="interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>A Single residue-secondary structure element.</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A object conforming to data object requirements in Plotly to add a box plot representing this secondary structure.</p>
 						</li>
 					</ul>
 				</section>
@@ -1313,16 +1322,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/PlotlyHelper.ts:118</li>
+									<li>Defined in src/helper/PlotlyHelper.ts:139</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generate all of the box plots for the secondary structure of a sequence.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>sequence: <a href="interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>All of the pairs of residue numbers with corresponding secondary structure codes.</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>An array of data objects where each element represents a secondary structure chunk.</p>
 						</li>
 					</ul>
 				</section>
@@ -1717,7 +1737,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Plotly<wbr>Chart<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/chart/PlotlyChart.tsx:71</li>
+							<li>Defined in src/component/chart/PlotlyChart.tsx:80</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1726,7 +1746,7 @@
 						<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:72</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:81</li>
 							</ul>
 						</aside>
 						<div class="tsd-type-declaration">
@@ -1741,7 +1761,7 @@
 						<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:73</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:82</li>
 							</ul>
 						</aside>
 					</section>
@@ -1751,7 +1771,7 @@
 						<div class="tsd-signature tsd-kind-icon">layout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:74</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:83</li>
 							</ul>
 						</aside>
 						<div class="tsd-type-declaration">
@@ -1767,7 +1787,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Plotly<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/chart/PlotlyChart.tsx:38</li>
+							<li>Defined in src/component/chart/PlotlyChart.tsx:47</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1776,7 +1796,7 @@
 						<div class="tsd-signature tsd-kind-icon">display<wbr>Mode<wbr>Bar<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:39</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:48</li>
 							</ul>
 						</aside>
 					</section>
@@ -1786,7 +1806,7 @@
 						<div class="tsd-signature tsd-kind-icon">scroll<wbr>Zoom<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:40</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:49</li>
 							</ul>
 						</aside>
 					</section>
@@ -1797,7 +1817,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Plotly<wbr>Layout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/chart/PlotlyChart.tsx:44</li>
+							<li>Defined in src/component/chart/PlotlyChart.tsx:53</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1806,7 +1826,7 @@
 						<div class="tsd-signature tsd-kind-icon">autosize<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:45</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:54</li>
 							</ul>
 						</aside>
 					</section>
@@ -1816,7 +1836,7 @@
 						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:46</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:55</li>
 							</ul>
 						</aside>
 					</section>
@@ -1826,7 +1846,7 @@
 						<div class="tsd-signature tsd-kind-icon">hovermode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"closest"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;closest&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:47</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:56</li>
 							</ul>
 						</aside>
 					</section>
@@ -1836,7 +1856,7 @@
 						<div class="tsd-signature tsd-kind-icon">legend<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:48</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:57</li>
 							</ul>
 						</aside>
 						<div class="tsd-type-declaration">
@@ -1851,7 +1871,7 @@
 						<div class="tsd-signature tsd-kind-icon">showlegend<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:55</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:64</li>
 							</ul>
 						</aside>
 					</section>
@@ -1861,7 +1881,7 @@
 						<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:56</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:65</li>
 							</ul>
 						</aside>
 					</section>
@@ -1871,7 +1891,7 @@
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:57</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:66</li>
 							</ul>
 						</aside>
 					</section>
@@ -1881,7 +1901,7 @@
 						<div class="tsd-signature tsd-kind-icon">margin<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:49</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:58</li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1890,7 +1910,7 @@
 							<div class="tsd-signature tsd-kind-icon">b<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;10</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:50</li>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:59</li>
 								</ul>
 							</aside>
 						</section>
@@ -1900,7 +1920,7 @@
 							<div class="tsd-signature tsd-kind-icon">l<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;40</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:51</li>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:60</li>
 								</ul>
 							</aside>
 						</section>
@@ -1910,7 +1930,7 @@
 							<div class="tsd-signature tsd-kind-icon">r<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;10</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:52</li>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:61</li>
 								</ul>
 							</aside>
 						</section>
@@ -1920,7 +1940,7 @@
 							<div class="tsd-signature tsd-kind-icon">t<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;10</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:53</li>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:62</li>
 								</ul>
 							</aside>
 						</section>
@@ -1931,7 +1951,7 @@
 						<div class="tsd-signature tsd-kind-icon">xaxis<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:58</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:67</li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1940,7 +1960,7 @@
 							<div class="tsd-signature tsd-kind-icon">range<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[30]</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:59</li>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:68</li>
 								</ul>
 							</aside>
 						</section>
@@ -1951,7 +1971,7 @@
 						<div class="tsd-signature tsd-kind-icon">yaxis<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:61</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:70</li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1960,7 +1980,7 @@
 							<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[0, 0.9]</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:62</li>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:71</li>
 								</ul>
 							</aside>
 						</section>
@@ -1970,7 +1990,7 @@
 							<div class="tsd-signature tsd-kind-icon">range<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[30]</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:63</li>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:72</li>
 								</ul>
 							</aside>
 						</section>
@@ -1981,7 +2001,7 @@
 						<div class="tsd-signature tsd-kind-icon">yaxis2<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:65</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:74</li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1990,7 +2010,7 @@
 							<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[0.9, 1]</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:66</li>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:75</li>
 								</ul>
 							</aside>
 						</section>
@@ -2000,7 +2020,7 @@
 							<div class="tsd-signature tsd-kind-icon">visible<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:67</li>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:76</li>
 								</ul>
 							</aside>
 						</section>
@@ -2641,9 +2661,6 @@
 						<a href="classes/predictedcontactmapclass.html" class="tsd-kind-icon">Predicted<wbr>Contact<wbr>Map<wbr>Class</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="classes/sequenceviewer.html" class="tsd-kind-icon">Sequence<wbr>Viewer</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/vizpanelcontainerclass.html" class="tsd-kind-icon">Viz<wbr>Panel<wbr>Container<wbr>Class</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -2705,9 +2722,6 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/isecondarystructuredata.html" class="tsd-kind-icon">ISecondary<wbr>Structure<wbr>Data</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/isequenceviewerprops.html" class="tsd-kind-icon">ISequence<wbr>Viewer<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#cell_type" class="tsd-kind-icon">CELL_<wbr>TYPE</a>
