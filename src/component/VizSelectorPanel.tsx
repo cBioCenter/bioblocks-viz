@@ -39,7 +39,7 @@ const VizSelectorPanel = withDefaultProps(
     constructor(props: VizPanelProps) {
       super(props);
       this.state = {
-        selectedViz: props.initialViz ? props.initialViz : VIZ_TYPE.SPRING,
+        selectedViz: props.initialViz,
       };
     }
 

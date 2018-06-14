@@ -1,4 +1,4 @@
-import { ISecondaryStructureData } from './../data/chell-data';
+import { ISecondaryStructureData, SECONDARY_STRUCTURE_CODES } from './../data/chell-data';
 import { fetchCSVFile, fetchJSONFile } from './FetchHelper';
 
 import * as NGL from 'ngl';
@@ -225,7 +225,7 @@ export const getSecondaryStructureData = (line: string): ISecondaryStructureData
       const items = row.split(',');
       return {
         resno: parseFloat(items[1]),
-        structId: items[2],
+        structId: items[2] as keyof typeof SECONDARY_STRUCTURE_CODES,
       };
     });
 };

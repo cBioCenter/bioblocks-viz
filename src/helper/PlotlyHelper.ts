@@ -1,5 +1,7 @@
+import { Datum } from 'plotly.js';
 import { IContactMapChartData } from '../component/chart/ContactMapChart';
 import { IPlotlyData, PLOTLY_CHART_TYPE } from '../component/chart/PlotlyChart';
+import { ISecondaryStructureData, SECONDARY_STRUCTURE_CODES } from '../data/chell-data';
 
 /**
  * Generate data in the expected format for a WebGL Scatter plot.
@@ -32,7 +34,7 @@ export const generateScatterData = (
   const yValues = points.map(data => data.j);
   const zValues = points.map(data => data.dist);
   return {
-    hoverinfo: 'none',
+    hoverinfo: 'x+y+z',
     marker: Object.assign(
       {
         color: mirrorPoints ? zValues.concat(zValues) : zValues,
@@ -89,3 +91,67 @@ export const generatePointCloudData = (
       : coords,
   };
 };
+
+const secStructColorMap: { [key: string]: string } = {
+  C: 'red',
+  E: 'green',
+  H: 'blue',
+};
+
+/**
+ * Generate a Plotly data object to represent a secondary structure as a box plot.
+ *
+ * @param entry A Single residue-secondary structure element.
+ * @returns A object conforming to data object requirements in Plotly to add a box plot representing this secondary structure.
+ */
+export const generateSecStructAxisSegment = (entry: ISecondaryStructureData): Partial<IPlotlyData> => ({
+  boxpoints: false,
+  hoverinfo: 'name',
+  marker: {
+    color: secStructColorMap[entry.structId],
+  },
+  // mode: 'lines',
+  name: SECONDARY_STRUCTURE_CODES[entry.structId],
+  orientation: 'h',
+  showlegend: false,
+  type: 'box' as any,
+  // type: 'scatter',
+  x: [entry.resno - 1, entry.resno],
+  xaxis: 'x',
+  y: [1, 1],
+  yaxis: 'y2',
+});
+
+/**
+ * Generate all of the box plots for the secondary structure of a sequence.
+ *
+ * @example
+ * Given: `[{resno: 0, 'C'}, {resno: 1, 'C'}, {resno: 2, 'H'}, {resno: 3, 'H'}, {resno: 4, 'C'}, {resno: 5, 'E'}];`
+ * This will create an array of 4 Plotly data objects, such that:
+ * - result[0] is a box plot with x === [0, 1, 2] and named 'COIL'.
+ * - result[1] is a box plot with x === [2,3] and named 'ALPHA HELIX'.
+ * - result[2] is a box plot with x === [4] and named 'COIL'.
+ * - result[2] is a box plot with x === [5] and named 'BETA SHEET'.
+ *
+ * @param sequence All of the pairs of residue numbers with corresponding secondary structure codes.
+ * @returns An array of data objects where each element represents a secondary structure chunk.
+ */
+export const generateSecondaryStructureAxis = (sequence: ISecondaryStructureData[]): Array<Partial<IPlotlyData>> =>
+  sequence.length >= 1
+    ? sequence.slice(1, sequence.length).reduce(
+        (prev, current, index) => {
+          if (sequence[index].structId !== current.structId) {
+            prev.push(generateSecStructAxisSegment(current));
+          } else {
+            (prev[prev.length - 1].x as Datum[]).push(current.resno - 1);
+            (prev[prev.length - 1].y as Datum[]).push(1);
+          }
+          return prev;
+        },
+        [
+          {
+            ...generateSecStructAxisSegment(sequence[0]),
+          },
+        ],
+      )
+    : [];

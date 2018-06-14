@@ -3,15 +3,15 @@
 import * as plotly from 'plotly.js/dist/plotly';
 import * as React from 'react';
 
-import { RESIDUE_TYPE } from '../../data/chell-data';
+import { ISecondaryStructureData, RESIDUE_TYPE } from '../../data/chell-data';
 
-import { generateScatterGLData } from '../../helper/PlotlyHelper';
+import { generateScatterGLData, generateSecondaryStructureAxis } from '../../helper/PlotlyHelper';
 import { withDefaultProps } from '../../helper/ReactHelper';
 import PlotlyChart, { defaultPlotlyLayout, IPlotlyData } from './PlotlyChart';
 
 export interface IContactMapChartProps {
   candidateResidues: RESIDUE_TYPE[];
-  data: IContactMapChartData[];
+  contactData: IContactMapChartData[];
   dataTransformFn: (entry: IContactMapChartData, mirrorPoints: boolean) => Partial<IPlotlyData>;
   heightModifier: number;
   legendModifiers: {
@@ -25,6 +25,7 @@ export interface IContactMapChartProps {
   onSelectedCallback: (...args: any[]) => void;
   onUnHoverCallback: (...args: any[]) => void;
   range: number[];
+  secondaryStructures?: ISecondaryStructureData[];
 }
 
 const defaultContactMapChartProps: Partial<IContactMapChartProps> = {
@@ -73,6 +74,12 @@ export interface IContactMapChartPoint {
   j: number;
 }
 
+/**
+ * Intermediary between a ContactMap and a PlotlyChart.
+ *
+ * Will transform data and setup layout from science/chell data type into the Plotly type.
+ * @extends {React.Component<IContactMapChartProps, any>}
+ */
 class ContactMapChartClass extends React.Component<IContactMapChartProps, any> {
   constructor(props: any) {
     super(props);
@@ -81,27 +88,34 @@ class ContactMapChartClass extends React.Component<IContactMapChartProps, any> {
   public render() {
     const {
       candidateResidues,
-      data,
+      contactData,
       dataTransformFn,
       heightModifier,
       legendModifiers,
       marginModifiers,
       range,
+      secondaryStructures,
       ...props
     } = this.props;
 
+    let plotlyData = [...contactData.map(entry => dataTransformFn(entry, true))];
+
+    if (secondaryStructures && secondaryStructures.length >= 1) {
+      plotlyData = [...plotlyData, ...generateSecondaryStructureAxis(secondaryStructures)];
+    }
+
     return (
       <PlotlyChart
-        data={data.map(entry => dataTransformFn(entry, true))}
+        data={plotlyData}
         layout={{
           height: defaultPlotlyLayout.height! + defaultPlotlyLayout.height! * heightModifier,
           legend: {
             orientation: 'h',
-            y: legendModifiers.y * data.length,
+            y: legendModifiers.y * contactData.length,
             yanchor: 'bottom',
           },
           margin: {
-            b: data.length * marginModifiers.b,
+            b: contactData.length * marginModifiers.b,
           },
           showlegend: true,
           xaxis: {
@@ -109,10 +123,7 @@ class ContactMapChartClass extends React.Component<IContactMapChartProps, any> {
             dtick: 10,
             range,
             showline: true,
-            // tickfont: { size: 6 },
             tickmode: 'linear',
-            // ticktext: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'],
-            // tickvals: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
             title: 'Residue #',
           },
           yaxis: {

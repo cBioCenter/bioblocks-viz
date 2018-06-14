@@ -1,4 +1,4 @@
-import { generatePointCloudData, generateScatterGLData } from '../PlotlyHelper';
+import { generatePointCloudData, generateScatterGLData, generateSecondaryStructureAxis } from '../PlotlyHelper';
 
 describe('generateScatterGLData', () => {
   const sampleInput = {
@@ -53,3 +53,39 @@ describe('generatePointCloudData', () => {
     expect(result.xy).toEqual(expected);
   });
 });
+
+describe('generateSecondaryStructureAxis', () => {
+  test('Should handle empty secondary structure.', () => {
+    const result = generateSecondaryStructureAxis([]);
+    expect(result).toEqual([]);
+  });
+
+  test('Should handle secondary structure containing a single residue.', () => {
+    const result = generateSecondaryStructureAxis([{ resno: 1, structId: 'G' }]);
+    expect(result).toMatchSnapshot();
+  });
+
+  test('Should handle secondary structure containing a chain of residues with the same structure.', () => {
+    const result = generateSecondaryStructureAxis([
+      { resno: 1, structId: 'G' },
+      { resno: 2, structId: 'G' },
+      { resno: 3, structId: 'G' },
+    ]);
+    expect(result).toMatchSnapshot();
+  });
+
+  test('Should handle secondary structure containing alternating chains of residues with different structures.', () => {
+    const result = generateSecondaryStructureAxis([
+      { resno: 1, structId: 'G' },
+      { resno: 2, structId: 'G' },
+      { resno: 3, structId: 'B' },
+      { resno: 4, structId: 'B' },
+      { resno: 5, structId: 'B' },
+      { resno: 6, structId: 'E' },
+    ]);
+    expect(result.length === 3);
+    expect(result).toMatchSnapshot();
+  });
+});
+
+//

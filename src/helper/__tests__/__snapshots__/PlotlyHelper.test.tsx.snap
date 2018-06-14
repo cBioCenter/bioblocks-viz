@@ -19,7 +19,7 @@ Object {
 
 exports[`generateScatterGLData Should create the expected plotly scatter data format when given defaults. 1`] = `
 Object {
-  "hoverinfo": "none",
+  "hoverinfo": "x+y+z",
   "marker": Object {
     "color": Array [
       6,
@@ -43,4 +43,134 @@ Object {
     2,
   ],
 }
+`;
+
+exports[`generateSecondaryStructureAxis Should handle secondary structure containing a chain of residues with the same structure. 1`] = `
+Array [
+  Object {
+    "boxpoints": false,
+    "hoverinfo": "name",
+    "marker": Object {
+      "color": undefined,
+    },
+    "name": "310_HELIX",
+    "orientation": "h",
+    "showlegend": false,
+    "type": "box",
+    "x": Array [
+      0,
+      1,
+      1,
+      2,
+    ],
+    "xaxis": "x",
+    "y": Array [
+      1,
+      1,
+      1,
+      1,
+    ],
+    "yaxis": "y2",
+  },
+]
+`;
+
+exports[`generateSecondaryStructureAxis Should handle secondary structure containing a single residue. 1`] = `
+Array [
+  Object {
+    "boxpoints": false,
+    "hoverinfo": "name",
+    "marker": Object {
+      "color": undefined,
+    },
+    "name": "310_HELIX",
+    "orientation": "h",
+    "showlegend": false,
+    "type": "box",
+    "x": Array [
+      0,
+      1,
+    ],
+    "xaxis": "x",
+    "y": Array [
+      1,
+      1,
+    ],
+    "yaxis": "y2",
+  },
+]
+`;
+
+exports[`generateSecondaryStructureAxis Should handle secondary structure containing alternating chains of residues with different structures. 1`] = `
+Array [
+  Object {
+    "boxpoints": false,
+    "hoverinfo": "name",
+    "marker": Object {
+      "color": undefined,
+    },
+    "name": "310_HELIX",
+    "orientation": "h",
+    "showlegend": false,
+    "type": "box",
+    "x": Array [
+      0,
+      1,
+      1,
+    ],
+    "xaxis": "x",
+    "y": Array [
+      1,
+      1,
+      1,
+    ],
+    "yaxis": "y2",
+  },
+  Object {
+    "boxpoints": false,
+    "hoverinfo": "name",
+    "marker": Object {
+      "color": undefined,
+    },
+    "name": "BETA_BRIDGE",
+    "orientation": "h",
+    "showlegend": false,
+    "type": "box",
+    "x": Array [
+      2,
+      3,
+      3,
+      4,
+    ],
+    "xaxis": "x",
+    "y": Array [
+      1,
+      1,
+      1,
+      1,
+    ],
+    "yaxis": "y2",
+  },
+  Object {
+    "boxpoints": false,
+    "hoverinfo": "name",
+    "marker": Object {
+      "color": "green",
+    },
+    "name": "BETA_SHEET",
+    "orientation": "h",
+    "showlegend": false,
+    "type": "box",
+    "x": Array [
+      5,
+      6,
+    ],
+    "xaxis": "x",
+    "y": Array [
+      1,
+      1,
+    ],
+    "yaxis": "y2",
+  },
+]
 `;

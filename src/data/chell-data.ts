@@ -53,7 +53,7 @@ export interface ICouplingScore {
 
 export interface ISecondaryStructureData {
   resno: number;
-  structId: string;
+  structId: keyof typeof SECONDARY_STRUCTURE_CODES;
 }
 
 export interface IDistanceMapMonomer {
@@ -67,14 +67,14 @@ export interface IResiduePair {
 }
 
 export enum SECONDARY_STRUCTURE_CODES {
-  '310_HELIX' = 'G',
-  'ALPHA_HELIX' = 'H',
-  'PI_HELIX' = 'I',
-  'HYDROGEN_BONDED_TURN' = 'T',
-  'BETA_SHEET' = 'E',
-  'BETA_BRIDGE' = 'B',
-  'BEND' = 'S',
-  'COIL' = 'C',
+  'G' = '310_HELIX',
+  'H' = 'ALPHA_HELIX',
+  'I' = 'PI_HELIX',
+  'T' = 'HYDROGEN_BONDED_TURN',
+  'E' = 'BETA_SHEET',
+  'B' = 'BETA_BRIDGE',
+  'S' = 'BEND',
+  'C' = 'COIL',
 }
 
 export interface ISecondaryStructure {
