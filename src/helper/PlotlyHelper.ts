@@ -99,27 +99,49 @@ const secStructColorMap: { [key: string]: string } = {
 };
 
 /**
- * Generate a Plotly data object to represent a secondary structure as a box plot.
+ * Generate a Plotly data object with elements shared between x/y axis.
  *
  * @param entry A Single residue-secondary structure element.
- * @returns A object conforming to data object requirements in Plotly to add a box plot representing this secondary structure.
+ * @returns Plotly data object with axis options shared between x and y axis.
  */
-export const generateSecStructAxisSegment = (entry: ISecondaryStructureData): Partial<IPlotlyData> => ({
-  boxpoints: false,
+export const secondaryStructureAxisDefaults = (entry: ISecondaryStructureData): Partial<IPlotlyData> => ({
   hoverinfo: 'name',
-  marker: {
+  line: {
     color: secStructColorMap[entry.structId],
+    width: 5,
   },
-  // mode: 'lines',
+  mode: 'lines',
   name: SECONDARY_STRUCTURE_CODES[entry.structId],
-  orientation: 'h',
   showlegend: false,
-  type: 'box' as any,
-  // type: 'scatter',
+  type: 'scatter',
+});
+
+/**
+ * Generate a Plotly data object to represent the secondary structure on the X axis.
+ *
+ * @param entry A Single residue-secondary structure element.
+ */
+export const generateSecStructXAxisSegment = (entry: ISecondaryStructureData): Partial<IPlotlyData> => ({
+  ...secondaryStructureAxisDefaults(entry),
+  orientation: 'h',
   x: [entry.resno - 1, entry.resno],
   xaxis: 'x',
   y: [1, 1],
   yaxis: 'y2',
+});
+
+/**
+ * Generate a Plotly data object to represent the secondary structure on the Y axis.
+ *
+ * @param entry A Single residue-secondary structure element.
+ */
+export const generateSecStructYAxisSegment = (entry: ISecondaryStructureData): Partial<IPlotlyData> => ({
+  ...secondaryStructureAxisDefaults(entry),
+  orientation: 'v',
+  x: [1, 1],
+  xaxis: 'x2',
+  y: [entry.resno - 1, entry.resno],
+  yaxis: 'y',
 });
 
 /**
@@ -141,16 +163,22 @@ export const generateSecondaryStructureAxis = (sequence: ISecondaryStructureData
     ? sequence.slice(1, sequence.length).reduce(
         (prev, current, index) => {
           if (sequence[index].structId !== current.structId) {
-            prev.push(generateSecStructAxisSegment(current));
+            prev.push(generateSecStructXAxisSegment(current));
+            prev.push(generateSecStructYAxisSegment(current));
           } else {
-            (prev[prev.length - 1].x as Datum[]).push(current.resno - 1);
-            (prev[prev.length - 1].y as Datum[]).push(1);
+            (prev[prev.length - 2].x as Datum[]).push(current.resno - 1);
+            (prev[prev.length - 2].y as Datum[]).push(1);
+            (prev[prev.length - 1].x as Datum[]).push(1);
+            (prev[prev.length - 1].y as Datum[]).push(current.resno - 1);
           }
           return prev;
         },
         [
           {
-            ...generateSecStructAxisSegment(sequence[0]),
+            ...generateSecStructXAxisSegment(sequence[0]),
+          },
+          {
+            ...generateSecStructYAxisSegment(sequence[0]),
           },
         ],
       )
