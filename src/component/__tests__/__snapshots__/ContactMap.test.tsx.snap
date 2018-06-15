@@ -45,12 +45,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
     onClickCallback={[Function]}
     onHoverCallback={[Function]}
     onSelectedCallback={[Function]}
-    range={
-      Array [
-        0,
-        64,
-      ]
-    }
+    range={64}
     secondaryStructures={Array []}
   />
   <Accordion
@@ -810,12 +805,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       onClickCallback={[Function]}
       onHoverCallback={[Function]}
       onSelectedCallback={[Function]}
-      range={
-        Array [
-          0,
-          64,
-        ]
-      }
+      range={64}
       secondaryStructures={
         Array [
           Object {
@@ -1074,24 +1064,24 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             "showlegend": true,
             "xaxis": Object {
               "autorange": false,
-              "dtick": 10,
+              "nticks": 10,
               "range": Array [
-                0,
+                1,
                 64,
               ],
               "showline": true,
-              "tickmode": "linear",
+              "tickmode": "auto",
               "title": "Residue #",
             },
             "yaxis": Object {
               "autorange": false,
-              "dtick": 10,
+              "nticks": 10,
               "range": Array [
                 64,
-                0,
+                1,
               ],
               "showline": true,
-              "tickmode": "linear",
+              "tickmode": "auto",
               "title": "Residue #",
             },
           }
