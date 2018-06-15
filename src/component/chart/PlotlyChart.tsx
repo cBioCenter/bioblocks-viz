@@ -35,10 +35,16 @@ export interface IPlotlyData extends plotly.ScatterData {
   type: PLOTLY_CHART_TYPE | 'bar' | 'pointcloud' | 'scatter' | 'scattergl' | 'scatter3d';
 }
 
+export interface IPlotlyLayout extends Plotly.Layout {
+  // TODO Open PR to add these missing Plotly types. - https://plot.ly/javascript/reference/#box
+  xaxis2: Partial<Plotly.LayoutAxis>;
+  // TODO Open PR to add these missing Plotly types. - https://plot.ly/javascript/reference/#box
+}
+
 export interface IPlotlyChartProps {
   config?: Partial<Plotly.Config>;
   data: Array<Partial<IPlotlyData>>;
-  layout?: Partial<Plotly.Layout>;
+  layout?: Partial<IPlotlyLayout>;
   onClickCallback?: ((event: plotly.PlotMouseEvent) => void);
   onHoverCallback?: ((event: plotly.PlotMouseEvent) => void);
   onSelectedCallback?: ((event: plotly.PlotSelectionEvent) => void);
@@ -51,7 +57,7 @@ export const defaultPlotlyConfig: Partial<Plotly.Config> = {
   // modeBarButtons: [['zoomOut2d', 'zoomIn2d'], ['resetScale2d', 'autoScale2d'], ['select2d', 'pan2d']],
 };
 
-export const defaultPlotlyLayout: Partial<Plotly.Layout> = {
+export const defaultPlotlyLayout: Partial<IPlotlyLayout> = {
   autosize: true,
   height: 400,
   hovermode: 'closest',
@@ -66,7 +72,12 @@ export const defaultPlotlyLayout: Partial<Plotly.Layout> = {
   title: '',
   width: 400,
   xaxis: {
+    domain: [0, 0.9],
     range: [30],
+  },
+  xaxis2: {
+    domain: [0.9, 1],
+    visible: false,
   },
   yaxis: {
     domain: [0, 0.9],

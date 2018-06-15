@@ -104,7 +104,7 @@ const secStructColorMap: { [key: string]: string } = {
  * @param entry A Single residue-secondary structure element.
  * @returns A object conforming to data object requirements in Plotly to add a box plot representing this secondary structure.
  */
-export const generateSecStructAxisSegment = (entry: ISecondaryStructureData): Partial<IPlotlyData> => ({
+export const generateSecStructXAxisSegment = (entry: ISecondaryStructureData): Partial<IPlotlyData> => ({
   boxpoints: false,
   hoverinfo: 'name',
   marker: {
@@ -112,6 +112,7 @@ export const generateSecStructAxisSegment = (entry: ISecondaryStructureData): Pa
   },
   // mode: 'lines',
   name: SECONDARY_STRUCTURE_CODES[entry.structId],
+  notched: entry.structId === 'H' ? true : false,
   orientation: 'h',
   showlegend: false,
   type: 'box' as any,
@@ -120,6 +121,33 @@ export const generateSecStructAxisSegment = (entry: ISecondaryStructureData): Pa
   xaxis: 'x',
   y: [1, 1],
   yaxis: 'y2',
+});
+
+/**
+ * Generate a Plotly data object to represent a secondary structure as a box plot.
+ *
+ * @param entry A Single residue-secondary structure element.
+ * @returns A object conforming to data object requirements in Plotly to add a box plot representing this secondary structure.
+ */
+export const generateSecStructYAxisSegment = (entry: ISecondaryStructureData): Partial<IPlotlyData> => ({
+  boxpoints: false,
+  hoverinfo: 'name',
+  line: {
+    dash: 'solid',
+  },
+  marker: {
+    color: secStructColorMap[entry.structId],
+  },
+  mode: 'lines',
+  name: SECONDARY_STRUCTURE_CODES[entry.structId],
+  orientation: 'v',
+  showlegend: false,
+  // type: 'box' as any,
+  type: 'scatter',
+  x: [1, 1],
+  xaxis: 'x2',
+  y: [entry.resno - 1, entry.resno],
+  yaxis: 'y',
 });
 
 /**
@@ -141,16 +169,22 @@ export const generateSecondaryStructureAxis = (sequence: ISecondaryStructureData
     ? sequence.slice(1, sequence.length).reduce(
         (prev, current, index) => {
           if (sequence[index].structId !== current.structId) {
-            prev.push(generateSecStructAxisSegment(current));
+            prev.push(generateSecStructXAxisSegment(current));
+            prev.push(generateSecStructYAxisSegment(current));
           } else {
-            (prev[prev.length - 1].x as Datum[]).push(current.resno - 1);
-            (prev[prev.length - 1].y as Datum[]).push(1);
+            (prev[prev.length - 2].x as Datum[]).push(current.resno - 1);
+            (prev[prev.length - 2].y as Datum[]).push(1);
+            (prev[prev.length - 1].x as Datum[]).push(1);
+            (prev[prev.length - 1].y as Datum[]).push(current.resno - 1);
           }
           return prev;
         },
         [
           {
-            ...generateSecStructAxisSegment(sequence[0]),
+            ...generateSecStructXAxisSegment(sequence[0]),
+          },
+          {
+            ...generateSecStructYAxisSegment(sequence[0]),
           },
         ],
       )

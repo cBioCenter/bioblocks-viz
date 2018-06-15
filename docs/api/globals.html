@@ -113,6 +113,7 @@
 								<li class="tsd-kind-interface"><a href="interfaces/imonomercontact.html" class="tsd-kind-icon">IMonomer<wbr>Contact</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/iplotlychartprops.html" class="tsd-kind-icon">IPlotly<wbr>Chart<wbr>Props</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/iplotlydata.html" class="tsd-kind-icon">IPlotly<wbr>Data</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/iplotlylayout.html" class="tsd-kind-icon">IPlotly<wbr>Layout</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/iresiduecontext.html" class="tsd-kind-icon">IResidue<wbr>Context</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/iresiduepair.html" class="tsd-kind-icon">IResidue<wbr>Pair</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/isecondarystructure.html" class="tsd-kind-icon">ISecondary<wbr>Structure</a></li>
@@ -195,7 +196,8 @@
 								<li class="tsd-kind-function"><a href="globals.html#generatepointclouddata" class="tsd-kind-icon">generate<wbr>Point<wbr>Cloud<wbr>Data</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#generatescatterdata" class="tsd-kind-icon">generate<wbr>Scatter<wbr>Data</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#generatescattergldata" class="tsd-kind-icon">generate<wbr>ScatterGLData</a></li>
-								<li class="tsd-kind-function"><a href="globals.html#generatesecstructaxissegment" class="tsd-kind-icon">generate<wbr>Sec<wbr>Struct<wbr>Axis<wbr>Segment</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#generatesecstructxaxissegment" class="tsd-kind-icon">generate<wbr>Sec<wbr>StructXAxis<wbr>Segment</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#generatesecstructyaxissegment" class="tsd-kind-icon">generate<wbr>Sec<wbr>StructYAxis<wbr>Segment</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#generatesecondarystructureaxis" class="tsd-kind-icon">generate<wbr>Secondary<wbr>Structure<wbr>Axis</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#getcouplingscoresdata" class="tsd-kind-icon">get<wbr>Coupling<wbr>Scores<wbr>Data</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#getsecondarystructuredata" class="tsd-kind-icon">get<wbr>Secondary<wbr>Structure<wbr>Data</a></li>
@@ -628,7 +630,7 @@
 					<div class="tsd-signature tsd-kind-icon">Plotly<wbr>Chart<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultPlotlyChartProps, PlotlyChartClass)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/chart/PlotlyChart.tsx:240</li>
+							<li>Defined in src/component/chart/PlotlyChart.tsx:251</li>
 						</ul>
 					</aside>
 				</section>
@@ -1302,16 +1304,50 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="generatesecstructaxissegment" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> generate<wbr>Sec<wbr>Struct<wbr>Axis<wbr>Segment</h3>
+					<a name="generatesecstructxaxissegment" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> generate<wbr>Sec<wbr>StructXAxis<wbr>Segment</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">generate<wbr>Sec<wbr>Struct<wbr>Axis<wbr>Segment<span class="tsd-signature-symbol">(</span>entry<span class="tsd-signature-symbol">: </span><a href="interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">generate<wbr>Sec<wbr>StructXAxis<wbr>Segment<span class="tsd-signature-symbol">(</span>entry<span class="tsd-signature-symbol">: </span><a href="interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
 									<li>Defined in src/helper/PlotlyHelper.ts:107</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generate a Plotly data object to represent a secondary structure as a box plot.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>entry: <a href="interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>A Single residue-secondary structure element.</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A object conforming to data object requirements in Plotly to add a box plot representing this secondary structure.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="generatesecstructyaxissegment" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> generate<wbr>Sec<wbr>StructYAxis<wbr>Segment</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">generate<wbr>Sec<wbr>StructYAxis<wbr>Segment<span class="tsd-signature-symbol">(</span>entry<span class="tsd-signature-symbol">: </span><a href="interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/helper/PlotlyHelper.ts:132</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1345,7 +1381,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/PlotlyHelper.ts:139</li>
+									<li>Defined in src/helper/PlotlyHelper.ts:167</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1760,7 +1796,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Plotly<wbr>Chart<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/chart/PlotlyChart.tsx:81</li>
+							<li>Defined in src/component/chart/PlotlyChart.tsx:92</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1769,7 +1805,7 @@
 						<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:82</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:93</li>
 							</ul>
 						</aside>
 						<div class="tsd-type-declaration">
@@ -1784,7 +1820,7 @@
 						<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:83</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:94</li>
 							</ul>
 						</aside>
 					</section>
@@ -1794,7 +1830,7 @@
 						<div class="tsd-signature tsd-kind-icon">layout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:84</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:95</li>
 							</ul>
 						</aside>
 						<div class="tsd-type-declaration">
@@ -1810,7 +1846,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Plotly<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/chart/PlotlyChart.tsx:48</li>
+							<li>Defined in src/component/chart/PlotlyChart.tsx:54</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1819,7 +1855,7 @@
 						<div class="tsd-signature tsd-kind-icon">display<wbr>Mode<wbr>Bar<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:49</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:55</li>
 							</ul>
 						</aside>
 					</section>
@@ -1829,7 +1865,7 @@
 						<div class="tsd-signature tsd-kind-icon">scroll<wbr>Zoom<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:50</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:56</li>
 							</ul>
 						</aside>
 					</section>
@@ -1840,7 +1876,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Plotly<wbr>Layout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/chart/PlotlyChart.tsx:54</li>
+							<li>Defined in src/component/chart/PlotlyChart.tsx:60</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1849,7 +1885,7 @@
 						<div class="tsd-signature tsd-kind-icon">autosize<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:55</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:61</li>
 							</ul>
 						</aside>
 					</section>
@@ -1859,7 +1895,7 @@
 						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:56</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:62</li>
 							</ul>
 						</aside>
 					</section>
@@ -1869,7 +1905,7 @@
 						<div class="tsd-signature tsd-kind-icon">hovermode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"closest"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;closest&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:57</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:63</li>
 							</ul>
 						</aside>
 					</section>
@@ -1879,7 +1915,7 @@
 						<div class="tsd-signature tsd-kind-icon">legend<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:58</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:64</li>
 							</ul>
 						</aside>
 						<div class="tsd-type-declaration">
@@ -1894,7 +1930,7 @@
 						<div class="tsd-signature tsd-kind-icon">showlegend<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:65</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:71</li>
 							</ul>
 						</aside>
 					</section>
@@ -1904,7 +1940,7 @@
 						<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:66</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:72</li>
 							</ul>
 						</aside>
 					</section>
@@ -1914,7 +1950,7 @@
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:67</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:73</li>
 							</ul>
 						</aside>
 					</section>
@@ -1924,7 +1960,7 @@
 						<div class="tsd-signature tsd-kind-icon">margin<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:59</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:65</li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1933,7 +1969,7 @@
 							<div class="tsd-signature tsd-kind-icon">b<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;10</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:60</li>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:66</li>
 								</ul>
 							</aside>
 						</section>
@@ -1943,7 +1979,7 @@
 							<div class="tsd-signature tsd-kind-icon">l<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;40</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:61</li>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:67</li>
 								</ul>
 							</aside>
 						</section>
@@ -1953,7 +1989,7 @@
 							<div class="tsd-signature tsd-kind-icon">r<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;10</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:62</li>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:68</li>
 								</ul>
 							</aside>
 						</section>
@@ -1963,7 +1999,7 @@
 							<div class="tsd-signature tsd-kind-icon">t<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;10</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:63</li>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:69</li>
 								</ul>
 							</aside>
 						</section>
@@ -1974,16 +2010,56 @@
 						<div class="tsd-signature tsd-kind-icon">xaxis<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:68</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:74</li>
 							</ul>
 						</aside>
+						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+							<a name="defaultplotlylayout.xaxis.domain" class="tsd-anchor"></a>
+							<h3>domain</h3>
+							<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[0, 0.9]</span></div>
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:75</li>
+								</ul>
+							</aside>
+						</section>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 							<a name="defaultplotlylayout.xaxis.range" class="tsd-anchor"></a>
 							<h3>range</h3>
 							<div class="tsd-signature tsd-kind-icon">range<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[30]</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:69</li>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:76</li>
+								</ul>
+							</aside>
+						</section>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal">
+						<a name="defaultplotlylayout.xaxis2" class="tsd-anchor"></a>
+						<h3>xaxis2</h3>
+						<div class="tsd-signature tsd-kind-icon">xaxis2<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:78</li>
+							</ul>
+						</aside>
+						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+							<a name="defaultplotlylayout.xaxis2.domain-1" class="tsd-anchor"></a>
+							<h3>domain</h3>
+							<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[0.9, 1]</span></div>
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:79</li>
+								</ul>
+							</aside>
+						</section>
+						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+							<a name="defaultplotlylayout.xaxis2.visible" class="tsd-anchor"></a>
+							<h3>visible</h3>
+							<div class="tsd-signature tsd-kind-icon">visible<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:80</li>
 								</ul>
 							</aside>
 						</section>
@@ -1994,16 +2070,16 @@
 						<div class="tsd-signature tsd-kind-icon">yaxis<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:71</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:82</li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-							<a name="defaultplotlylayout.yaxis.domain" class="tsd-anchor"></a>
+							<a name="defaultplotlylayout.yaxis.domain-2" class="tsd-anchor"></a>
 							<h3>domain</h3>
 							<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[0, 0.9]</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:72</li>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:83</li>
 								</ul>
 							</aside>
 						</section>
@@ -2013,7 +2089,7 @@
 							<div class="tsd-signature tsd-kind-icon">range<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[30]</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:73</li>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:84</li>
 								</ul>
 							</aside>
 						</section>
@@ -2024,26 +2100,26 @@
 						<div class="tsd-signature tsd-kind-icon">yaxis2<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/chart/PlotlyChart.tsx:75</li>
+								<li>Defined in src/component/chart/PlotlyChart.tsx:86</li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-							<a name="defaultplotlylayout.yaxis2.domain-1" class="tsd-anchor"></a>
+							<a name="defaultplotlylayout.yaxis2.domain-3" class="tsd-anchor"></a>
 							<h3>domain</h3>
 							<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[0.9, 1]</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:76</li>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:87</li>
 								</ul>
 							</aside>
 						</section>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-							<a name="defaultplotlylayout.yaxis2.visible" class="tsd-anchor"></a>
+							<a name="defaultplotlylayout.yaxis2.visible-1" class="tsd-anchor"></a>
 							<h3>visible</h3>
 							<div class="tsd-signature tsd-kind-icon">visible<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/chart/PlotlyChart.tsx:77</li>
+									<li>Defined in src/component/chart/PlotlyChart.tsx:88</li>
 								</ul>
 							</aside>
 						</section>
@@ -2317,7 +2393,7 @@
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 						<a name="defaultvizpanelprops.numpanels" class="tsd-anchor"></a>
 						<h3>num<wbr>Panels</h3>
-						<div class="tsd-signature tsd-kind-icon">num<wbr>Panels<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">1</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">2</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">4</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">3</span><span class="tsd-signature-symbol"> =&nbsp;1 as 1 | 2 | 3 | 4</span></div>
+						<div class="tsd-signature tsd-kind-icon">num<wbr>Panels<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">2</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">1</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">4</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">3</span><span class="tsd-signature-symbol"> =&nbsp;1 as 1 | 2 | 3 | 4</span></div>
 						<aside class="tsd-sources">
 							<ul>
 								<li>Defined in src/container/VizPanelContainer.tsx:13</li>
@@ -2729,6 +2805,9 @@
 						<a href="interfaces/iplotlydata.html" class="tsd-kind-icon">IPlotly<wbr>Data</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/iplotlylayout.html" class="tsd-kind-icon">IPlotly<wbr>Layout</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/iresiduecontext.html" class="tsd-kind-icon">IResidue<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -2930,7 +3009,10 @@
 						<a href="globals.html#generatescattergldata" class="tsd-kind-icon">generate<wbr>ScatterGLData</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#generatesecstructaxissegment" class="tsd-kind-icon">generate<wbr>Sec<wbr>Struct<wbr>Axis<wbr>Segment</a>
+						<a href="globals.html#generatesecstructxaxissegment" class="tsd-kind-icon">generate<wbr>Sec<wbr>StructXAxis<wbr>Segment</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#generatesecstructyaxissegment" class="tsd-kind-icon">generate<wbr>Sec<wbr>StructYAxis<wbr>Segment</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#generatesecondarystructureaxis" class="tsd-kind-icon">generate<wbr>Secondary<wbr>Structure<wbr>Axis</a>
