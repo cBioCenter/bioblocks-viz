@@ -8,7 +8,7 @@ import ChellSlider, { IChellSliderProps } from '../ChellSlider';
 
 describe('ChellSlider', () => {
   const sampleChellSlider = (props: Partial<IChellSliderProps> = {}) => (
-    <ChellSlider defaultValue={1} max={100} min={1} label={'test'} {...props} />
+    <ChellSlider value={1} max={100} min={1} label={'test'} {...props} />
   );
   test('Should match existing snapshot when given simple data.', () => {
     const wrapper = shallow(sampleChellSlider());

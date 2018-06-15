@@ -19,8 +19,8 @@ export interface IChellSliderProps {
   /** CSS class to identify this slider. */
   className?: string;
 
-  /** Initial value the slider is set to. */
-  defaultValue: number;
+  /** Value the slider is set to. */
+  value: number;
 
   // TODO Split up label and value, have both be independently visible or not.
   /** Should we show the label/value for the slider? */
@@ -68,14 +68,23 @@ export default class ChellSlider extends React.Component<IChellSliderProps, IChe
   constructor(props: IChellSliderProps) {
     super(props);
     this.state = {
-      value: props.defaultValue,
+      value: props.value,
     };
+  }
+
+  public componentDidUpdate(prevProps: IChellSliderProps, prevState: IChellSliderState) {
+    const { value } = this.props;
+    if (value !== this.state.value) {
+      this.setState({
+        value,
+      });
+    }
   }
 
   public render() {
     const {
       className,
-      defaultValue,
+      value,
       hideLabelValue,
       max,
       min,
@@ -89,12 +98,12 @@ export default class ChellSlider extends React.Component<IChellSliderProps, IChe
       <div className={className} style={{ padding: 20 }}>
         {!hideLabelValue && <p>{`${label}: ${this.state.value}`}</p>}
         <Slider
-          defaultValue={defaultValue}
           max={max}
           min={min}
           onAfterChange={this.onAfterChange(onAfterChange)}
           onChange={this.onChange(onChange)}
           style={style}
+          value={value}
           {...sliderProps}
         />
       </div>

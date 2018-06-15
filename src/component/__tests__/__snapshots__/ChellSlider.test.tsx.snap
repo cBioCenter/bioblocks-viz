@@ -14,7 +14,6 @@ exports[`ChellSlider Should match existing snapshot when given simple data. 1`] 
   <ComponentEnhancer(undefined)
     activeDotStyle={Object {}}
     className=""
-    defaultValue={1}
     disabled={false}
     dotStyle={Object {}}
     dots={false}
@@ -39,6 +38,7 @@ exports[`ChellSlider Should match existing snapshot when given simple data. 1`] 
         Object {},
       ]
     }
+    value={1}
     vertical={false}
   />
 </div>

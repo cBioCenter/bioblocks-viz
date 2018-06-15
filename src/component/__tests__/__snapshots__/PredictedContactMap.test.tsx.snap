@@ -9,6 +9,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
     addHoveredResidues={[Function]}
     addLockedResiduePair={[Function]}
     candidateResidues={Array []}
+    chainLength={-1}
     clearAllResidues={[Function]}
     configurations={
       Array [
@@ -16,7 +17,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
           "name": "Linear Distance Filter (|i - j|)",
           "onChange": [Function],
           "values": Object {
-            "default": 5,
+            "current": 5,
             "max": 10,
             "min": 1,
           },
@@ -25,8 +26,8 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
           "name": "Top N Predictions to Show",
           "onChange": [Function],
           "values": Object {
-            "default": 29,
-            "max": 59,
+            "current": -1,
+            "max": -1,
             "min": 1,
           },
         },
@@ -35,83 +36,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
     correctColor="#ff0000"
     data={
       Object {
-        "computedPoints": Array [
-          Object {
-            "hoverinfo": "x+y",
-            "marker": Object {
-              "colorscale": Array [
-                Array [
-                  0,
-                  "rgb(12,50,102)",
-                ],
-                Array [
-                  0.1,
-                  "rgb(17,83,150)",
-                ],
-                Array [
-                  0.2,
-                  "rgb(40,114,175)",
-                ],
-                Array [
-                  0.3,
-                  "rgb(71,147,193)",
-                ],
-                Array [
-                  0.4,
-                  "rgb(111,175,209)",
-                ],
-                Array [
-                  0.5,
-                  "rgb(160,202,222)",
-                ],
-                Array [
-                  0.6,
-                  "rgb(200,219,237)",
-                ],
-                Array [
-                  0.7,
-                  "rgb(224,235,246)",
-                ],
-                Array [
-                  0.8,
-                  "rgb(247,251,255)",
-                ],
-                Array [
-                  0.9,
-                  "rgb(249,253,255)",
-                ],
-                Array [
-                  1,
-                  "rgb(255,255,255)",
-                ],
-              ],
-            },
-            "name": "Known Structure Contact",
-            "nodeSize": 4,
-            "points": Array [],
-            "subtitle": "(from PDB structure)",
-          },
-          Object {
-            "hoverinfo": "x+y",
-            "marker": Object {
-              "color": "#000000",
-            },
-            "name": "Predicted Contact",
-            "nodeSize": 4,
-            "points": Array [],
-            "subtitle": "(29, L=0)",
-          },
-          Object {
-            "hoverinfo": "x+y",
-            "marker": Object {
-              "color": "#ff0000",
-            },
-            "name": "Correct Prediction",
-            "nodeSize": 6,
-            "points": Array [],
-            "subtitle": "(0, NaN%)",
-          },
-        ],
+        "computedPoints": Array [],
         "secondaryStructures": Array [],
       }
     }
@@ -140,6 +65,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
     addHoveredResidues={[Function]}
     addLockedResiduePair={[Function]}
     candidateResidues={Array []}
+    chainLength={-1}
     clearAllResidues={[Function]}
     configurations={
       Array [
@@ -147,7 +73,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
           "name": "Linear Distance Filter (|i - j|)",
           "onChange": [Function],
           "values": Object {
-            "default": 5,
+            "current": 5,
             "max": 10,
             "min": 1,
           },
@@ -156,8 +82,8 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
           "name": "Top N Predictions to Show",
           "onChange": [Function],
           "values": Object {
-            "default": 29,
-            "max": 59,
+            "current": -1,
+            "max": -1,
             "min": 1,
           },
         },
@@ -166,83 +92,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
     correctColor="#ff0000"
     data={
       Object {
-        "computedPoints": Array [
-          Object {
-            "hoverinfo": "x+y",
-            "marker": Object {
-              "colorscale": Array [
-                Array [
-                  0,
-                  "rgb(12,50,102)",
-                ],
-                Array [
-                  0.1,
-                  "rgb(17,83,150)",
-                ],
-                Array [
-                  0.2,
-                  "rgb(40,114,175)",
-                ],
-                Array [
-                  0.3,
-                  "rgb(71,147,193)",
-                ],
-                Array [
-                  0.4,
-                  "rgb(111,175,209)",
-                ],
-                Array [
-                  0.5,
-                  "rgb(160,202,222)",
-                ],
-                Array [
-                  0.6,
-                  "rgb(200,219,237)",
-                ],
-                Array [
-                  0.7,
-                  "rgb(224,235,246)",
-                ],
-                Array [
-                  0.8,
-                  "rgb(247,251,255)",
-                ],
-                Array [
-                  0.9,
-                  "rgb(249,253,255)",
-                ],
-                Array [
-                  1,
-                  "rgb(255,255,255)",
-                ],
-              ],
-            },
-            "name": "Known Structure Contact",
-            "nodeSize": 4,
-            "points": Array [],
-            "subtitle": "(from PDB structure)",
-          },
-          Object {
-            "hoverinfo": "x+y",
-            "marker": Object {
-              "color": "#000000",
-            },
-            "name": "Predicted Contact",
-            "nodeSize": 4,
-            "points": Array [],
-            "subtitle": "(29, L=0)",
-          },
-          Object {
-            "hoverinfo": "x+y",
-            "marker": Object {
-              "color": "#ff0000",
-            },
-            "name": "Correct Prediction",
-            "nodeSize": 6,
-            "points": Array [],
-            "subtitle": "(0, NaN%)",
-          },
-        ],
+        "computedPoints": Array [],
         "secondaryStructures": Array [],
       }
     }
@@ -271,6 +121,7 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
     addHoveredResidues={[Function]}
     addLockedResiduePair={[Function]}
     candidateResidues={Array []}
+    chainLength={-1}
     clearAllResidues={[Function]}
     configurations={
       Array [
@@ -278,7 +129,7 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
           "name": "Linear Distance Filter (|i - j|)",
           "onChange": [Function],
           "values": Object {
-            "default": 5,
+            "current": 5,
             "max": 10,
             "min": 1,
           },
@@ -287,8 +138,8 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
           "name": "Top N Predictions to Show",
           "onChange": [Function],
           "values": Object {
-            "default": 29,
-            "max": 59,
+            "current": -1,
+            "max": -1,
             "min": 1,
           },
         },
@@ -297,83 +148,7 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
     correctColor="#ff0000"
     data={
       Object {
-        "computedPoints": Array [
-          Object {
-            "hoverinfo": "x+y",
-            "marker": Object {
-              "colorscale": Array [
-                Array [
-                  0,
-                  "rgb(12,50,102)",
-                ],
-                Array [
-                  0.1,
-                  "rgb(17,83,150)",
-                ],
-                Array [
-                  0.2,
-                  "rgb(40,114,175)",
-                ],
-                Array [
-                  0.3,
-                  "rgb(71,147,193)",
-                ],
-                Array [
-                  0.4,
-                  "rgb(111,175,209)",
-                ],
-                Array [
-                  0.5,
-                  "rgb(160,202,222)",
-                ],
-                Array [
-                  0.6,
-                  "rgb(200,219,237)",
-                ],
-                Array [
-                  0.7,
-                  "rgb(224,235,246)",
-                ],
-                Array [
-                  0.8,
-                  "rgb(247,251,255)",
-                ],
-                Array [
-                  0.9,
-                  "rgb(249,253,255)",
-                ],
-                Array [
-                  1,
-                  "rgb(255,255,255)",
-                ],
-              ],
-            },
-            "name": "Known Structure Contact",
-            "nodeSize": 4,
-            "points": Array [],
-            "subtitle": "(from PDB structure)",
-          },
-          Object {
-            "hoverinfo": "x+y",
-            "marker": Object {
-              "color": "#000000",
-            },
-            "name": "Predicted Contact",
-            "nodeSize": 4,
-            "points": Array [],
-            "subtitle": "(29, L=0)",
-          },
-          Object {
-            "hoverinfo": "x+y",
-            "marker": Object {
-              "color": "#ff0000",
-            },
-            "name": "Correct Prediction",
-            "nodeSize": 6,
-            "points": Array [],
-            "subtitle": "(0, NaN%)",
-          },
-        ],
+        "computedPoints": Array [],
         "secondaryStructures": Array [],
       }
     }
