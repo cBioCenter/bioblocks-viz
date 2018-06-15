@@ -209,7 +209,35 @@ describe('NGLComponent', () => {
       wrapper.setProps({
         candidateResidues: [4],
       });
-      simulateHoverEvent(wrapper, { atom: 3 });
+      simulateHoverEvent(wrapper, { atom: { resno: 3 } });
+      const expected = new Map(
+        Object.entries({
+          '3': ['ball+stick'],
+          '3,4': ['distance', 'ball+stick'],
+        }),
+      );
+      expect(wrapper.state().residueSelectionRepresentations).toEqual(expected);
+    });
+
+    it('Should handle hover events when there is not a candidate residue.', async () => {
+      const Component = getComponentWithContext();
+      const removeHoveredResiduesSpy = jest.fn();
+      const wrapper = mount(
+        <Component.NGLComponentClass data={sampleData} removeHoveredResiduesSpy={removeHoveredResiduesSpy} />,
+      );
+      wrapper.setProps({
+        candidateResidues: [],
+        removeHoveredResidues: removeHoveredResiduesSpy,
+      });
+      simulateHoverEvent(wrapper, { atom: { resno: 3 } });
+      const expected = new Map(
+        Object.entries({
+          '3': ['ball+stick'],
+        }),
+      );
+      expect(wrapper.state().residueSelectionRepresentations).toEqual(expected);
+      simulateHoverEvent(wrapper, {});
+      expect(removeHoveredResiduesSpy).toHaveBeenCalledTimes(1);
     });
 
     // @ts-ignore

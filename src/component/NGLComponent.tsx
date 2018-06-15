@@ -150,19 +150,22 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
   }
 
   protected onHover(aStage: Stage, pickingProxy: PickingProxy) {
+    const { addHoveredResidues, candidateResidues, removeHoveredResidues } = this.props;
     const { structureComponent } = this.state;
-    if (structureComponent && pickingProxy && (pickingProxy.atom || pickingProxy.closestBondAtom)) {
-      const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
-      const resno = atom.resno + this.state.residueOffset;
+    if (structureComponent) {
+      if (pickingProxy && (pickingProxy.atom || pickingProxy.closestBondAtom)) {
+        const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
+        const resno = atom.resno + this.state.residueOffset;
 
-      this.removeNonLockedRepresentations(structureComponent);
+        this.removeNonLockedRepresentations(structureComponent);
+        this.highlightResidues(structureComponent, [resno]);
+        addHoveredResidues([resno]);
 
-      this.highlightResidues(structureComponent, [resno]);
-      this.props.addHoveredResidues([resno]);
-
-      const { candidateResidues } = this.props;
-      if (candidateResidues.length >= 1) {
-        this.highlightResidues(structureComponent, [...candidateResidues, resno]);
+        if (candidateResidues.length >= 1) {
+          this.highlightResidues(structureComponent, [...candidateResidues, resno].sort());
+        }
+      } else if (candidateResidues.length === 0) {
+        removeHoveredResidues();
       }
     }
   }
