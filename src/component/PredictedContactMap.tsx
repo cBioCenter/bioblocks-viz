@@ -100,55 +100,53 @@ export class PredictedContactMapClass extends React.Component<PredictedContactMa
       numPredictionsToShow !== prevState.numPredictionsToShow;
     if (isRecomputeNeeded) {
       const chainLength = data.couplingScores.reduce((a, b) => Math.max(a, Math.max(b.i, b.j)), 0);
-      if (isRecomputeNeeded) {
-        const observedContacts = PredictedContactMapClass.getObservedContacts(
-          data.couplingScores,
-          measuredContactDistFilter,
-        );
-        const allPredictions = PredictedContactMapClass.getPredictedContacts(
-          data.couplingScores,
-          numPredictionsToShow,
-          linearDistFilter,
-        );
+      const observedContacts = PredictedContactMapClass.getObservedContacts(
+        data.couplingScores,
+        measuredContactDistFilter,
+      );
+      const allPredictions = PredictedContactMapClass.getPredictedContacts(
+        data.couplingScores,
+        numPredictionsToShow,
+        linearDistFilter,
+      );
 
-        const correctPredictionPercent = (
-          (allPredictions.correct.length / allPredictions.predicted.length) *
-          100
-        ).toFixed(2);
-        const newPoints = [
-          generateChartDataEntry(
-            'x+y',
-            { start: observedColor, end: 'rgb(100,177,200)' },
-            'Known Structure Contact',
-            '(from PDB structure)',
-            4,
-            observedContacts,
-          ),
-          generateChartDataEntry(
-            'x+y',
-            incorrectColor,
-            'Predicted Contact',
-            `(N=${numPredictionsToShow}, L=${chainLength})`,
-            4,
-            allPredictions.predicted,
-          ),
-          generateChartDataEntry(
-            'x+y',
-            correctColor,
-            'Correct Prediction',
-            `(N=${allPredictions.correct.length}, ${correctPredictionPercent}%)`,
-            6,
-            allPredictions.correct,
-          ),
-        ] as IContactMapChartData[];
+      const correctPredictionPercent = (
+        (allPredictions.correct.length / allPredictions.predicted.length) *
+        100
+      ).toFixed(2);
+      const newPoints = [
+        generateChartDataEntry(
+          'x+y',
+          { start: observedColor, end: 'rgb(100,177,200)' },
+          'Known Structure Contact',
+          '(from PDB structure)',
+          4,
+          observedContacts,
+        ),
+        generateChartDataEntry(
+          'x+y',
+          incorrectColor,
+          'Predicted Contact',
+          `(N=${numPredictionsToShow}, L=${chainLength})`,
+          4,
+          allPredictions.predicted,
+        ),
+        generateChartDataEntry(
+          'x+y',
+          correctColor,
+          'Correct Prediction',
+          `(N=${allPredictions.correct.length}, ${correctPredictionPercent}%)`,
+          6,
+          allPredictions.correct,
+        ),
+      ] as IContactMapChartData[];
 
-        this.setState({
-          chainLength,
-          numPredictionsToShow:
-            data.couplingScores !== prevProps.data.couplingScores ? Math.floor(chainLength / 2) : numPredictionsToShow,
-          pointsToPlot: newPoints,
-        });
-      }
+      this.setState({
+        chainLength,
+        numPredictionsToShow:
+          data.couplingScores !== prevProps.data.couplingScores ? Math.floor(chainLength / 2) : numPredictionsToShow,
+        pointsToPlot: newPoints,
+      });
     }
   }
 

@@ -133,7 +133,6 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     secondaryStructures: ISecondaryStructureData[],
   ) {
     const { addHoveredResidues, candidateResidues, chainLength, onBoxSelection, toggleLockedResiduePair } = this.props;
-
     return (
       <ContactMapChart
         candidateResidues={candidateResidues}

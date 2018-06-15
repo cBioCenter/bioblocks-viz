@@ -1004,7 +1004,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "hoverinfo": "name",
               "line": Object {
                 "color": "red",
-                "width": 5,
+                "width": 0,
               },
               "mode": "lines",
               "name": "COIL",
@@ -1028,7 +1028,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "hoverinfo": "name",
               "line": Object {
                 "color": "red",
-                "width": 5,
+                "width": 0,
               },
               "mode": "lines",
               "name": "COIL",
