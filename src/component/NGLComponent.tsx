@@ -106,8 +106,13 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
   public render() {
     const { height, padding, width } = this.props;
     return (
-      <div id="NGLComponent" style={{ padding }}>
-        <div ref={el => (this.canvas = el)} style={{ height, width }} />
+      <div className="NGLComponent" style={{ padding }}>
+        <div
+          className="NGLCanvas"
+          ref={el => (this.canvas = el)}
+          style={{ height, width }}
+          onMouseLeave={this.onCanvasLeave}
+        />
         <GridRow>
           <Button onClick={this.props.removeAllLockedResiduePairs}>Remove Locked Distance Pairs</Button>
         </GridRow>
@@ -277,6 +282,12 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
       residueSelectionRepresentations: repDict,
     });
   }
+
+  protected onCanvasLeave = () => {
+    const { removeCandidateResidues, removeHoveredResidues } = this.props;
+    removeCandidateResidues();
+    removeHoveredResidues();
+  };
 }
 
 export const NGLComponentWithDefaultProps = withDefaultProps(defaultNGLProps, NGLComponentClass);

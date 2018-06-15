@@ -2,7 +2,7 @@
 
 exports[`NGLComponent Should match existing snapshot when canvas isn't available. 1`] = `
 <div
-  id="NGLComponent"
+  className="NGLComponent"
   style={
     Object {
       "padding": 0,
@@ -10,6 +10,8 @@ exports[`NGLComponent Should match existing snapshot when canvas isn't available
   }
 >
   <div
+    className="NGLCanvas"
+    onMouseLeave={[Function]}
     style={
       Object {
         "height": 400,
@@ -63,7 +65,7 @@ exports[`NGLComponent Should match existing snapshot when given sample data 1`] 
   width={400}
 >
   <div
-    id="NGLComponent"
+    className="NGLComponent"
     style={
       Object {
         "padding": 0,
@@ -71,6 +73,8 @@ exports[`NGLComponent Should match existing snapshot when given sample data 1`] 
     }
   >
     <div
+      className="NGLCanvas"
+      onMouseLeave={[Function]}
       style={
         Object {
           "height": 400,
