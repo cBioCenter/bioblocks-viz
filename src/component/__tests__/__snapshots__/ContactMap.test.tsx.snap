@@ -45,12 +45,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
     onClickCallback={[Function]}
     onHoverCallback={[Function]}
     onSelectedCallback={[Function]}
-    range={
-      Array [
-        0,
-        64,
-      ]
-    }
+    range={64}
     secondaryStructures={Array []}
   />
   <Accordion
@@ -74,7 +69,6 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
     >
       <ChellSlider
         className="node-size-slider-0"
-        defaultValue={6}
         key="node-size-slider-0"
         label="Selected Res. Pairs - Node Size"
         max={20}
@@ -85,10 +79,10 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
             "width": 360,
           }
         }
+        value={6}
       />
       <ChellSlider
         className="sample"
-        defaultValue={5}
         key="sample"
         label="sample"
         max={10}
@@ -99,6 +93,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
             "width": 360,
           }
         }
+        value={5}
       />
     </AccordionContent>
   </Accordion>
@@ -586,6 +581,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
   addHoveredResidues={[Function]}
   addLockedResiduePair={[Function]}
   candidateResidues={Array []}
+  chainLength={59}
   clearAllResidues={[Function]}
   configurations={Array []}
   data={
@@ -809,12 +805,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       onClickCallback={[Function]}
       onHoverCallback={[Function]}
       onSelectedCallback={[Function]}
-      range={
-        Array [
-          0,
-          64,
-        ]
-      }
+      range={64}
       secondaryStructures={
         Array [
           Object {
@@ -1073,24 +1064,24 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             "showlegend": true,
             "xaxis": Object {
               "autorange": false,
-              "dtick": 10,
+              "nticks": 10,
               "range": Array [
-                0,
+                1,
                 64,
               ],
               "showline": true,
-              "tickmode": "linear",
+              "tickmode": "auto",
               "title": "Residue #",
             },
             "yaxis": Object {
               "autorange": false,
-              "dtick": 10,
+              "nticks": 10,
               "range": Array [
                 64,
-                0,
+                1,
               ],
               "showline": true,
-              "tickmode": "linear",
+              "tickmode": "auto",
               "title": "Residue #",
             },
           }
@@ -1150,7 +1141,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             >
               <ChellSlider
                 className="node-size-slider-0"
-                defaultValue={4}
                 key="node-size-slider-0"
                 label="0 - Node Size"
                 max={20}
@@ -1161,6 +1151,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                     "width": 360,
                   }
                 }
+                value={4}
               >
                 <div
                   className="node-size-slider-0"
@@ -1176,7 +1167,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   <ComponentEnhancer(undefined)
                     activeDotStyle={Object {}}
                     className=""
-                    defaultValue={4}
                     disabled={false}
                     dotStyle={Object {}}
                     dots={false}
@@ -1206,6 +1196,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         Object {},
                       ]
                     }
+                    value={4}
                     vertical={false}
                   >
                     <div
@@ -1307,7 +1298,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               </ChellSlider>
               <ChellSlider
                 className="node-size-slider-1"
-                defaultValue={4}
                 key="node-size-slider-1"
                 label="1 - Node Size"
                 max={20}
@@ -1318,6 +1308,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                     "width": 360,
                   }
                 }
+                value={4}
               >
                 <div
                   className="node-size-slider-1"
@@ -1333,7 +1324,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   <ComponentEnhancer(undefined)
                     activeDotStyle={Object {}}
                     className=""
-                    defaultValue={4}
                     disabled={false}
                     dotStyle={Object {}}
                     dots={false}
@@ -1363,6 +1353,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         Object {},
                       ]
                     }
+                    value={4}
                     vertical={false}
                   >
                     <div
@@ -1464,7 +1455,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               </ChellSlider>
               <ChellSlider
                 className="node-size-slider-2"
-                defaultValue={4}
                 key="node-size-slider-2"
                 label="2 - Node Size"
                 max={20}
@@ -1475,6 +1465,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                     "width": 360,
                   }
                 }
+                value={4}
               >
                 <div
                   className="node-size-slider-2"
@@ -1490,7 +1481,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   <ComponentEnhancer(undefined)
                     activeDotStyle={Object {}}
                     className=""
-                    defaultValue={4}
                     disabled={false}
                     dotStyle={Object {}}
                     dots={false}
@@ -1520,6 +1510,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         Object {},
                       ]
                     }
+                    value={4}
                     vertical={false}
                   >
                     <div
@@ -1621,7 +1612,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               </ChellSlider>
               <ChellSlider
                 className="node-size-slider-3"
-                defaultValue={4}
                 key="node-size-slider-3"
                 label="3 - Node Size"
                 max={20}
@@ -1632,6 +1622,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                     "width": 360,
                   }
                 }
+                value={4}
               >
                 <div
                   className="node-size-slider-3"
@@ -1647,7 +1638,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   <ComponentEnhancer(undefined)
                     activeDotStyle={Object {}}
                     className=""
-                    defaultValue={4}
                     disabled={false}
                     dotStyle={Object {}}
                     dots={false}
@@ -1677,6 +1667,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         Object {},
                       ]
                     }
+                    value={4}
                     vertical={false}
                   >
                     <div
@@ -1778,7 +1769,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               </ChellSlider>
               <ChellSlider
                 className="node-size-slider-4"
-                defaultValue={4}
                 key="node-size-slider-4"
                 label="4 - Node Size"
                 max={20}
@@ -1789,6 +1779,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                     "width": 360,
                   }
                 }
+                value={4}
               >
                 <div
                   className="node-size-slider-4"
@@ -1804,7 +1795,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   <ComponentEnhancer(undefined)
                     activeDotStyle={Object {}}
                     className=""
-                    defaultValue={4}
                     disabled={false}
                     dotStyle={Object {}}
                     dots={false}
@@ -1834,6 +1824,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         Object {},
                       ]
                     }
+                    value={4}
                     vertical={false}
                   >
                     <div
@@ -1935,7 +1926,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               </ChellSlider>
               <ChellSlider
                 className="node-size-slider-5"
-                defaultValue={4}
                 key="node-size-slider-5"
                 label="5 - Node Size"
                 max={20}
@@ -1946,6 +1936,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                     "width": 360,
                   }
                 }
+                value={4}
               >
                 <div
                   className="node-size-slider-5"
@@ -1961,7 +1952,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   <ComponentEnhancer(undefined)
                     activeDotStyle={Object {}}
                     className=""
-                    defaultValue={4}
                     disabled={false}
                     dotStyle={Object {}}
                     dots={false}
@@ -1991,6 +1981,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         Object {},
                       ]
                     }
+                    value={4}
                     vertical={false}
                   >
                     <div
@@ -2092,7 +2083,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               </ChellSlider>
               <ChellSlider
                 className="node-size-slider-6"
-                defaultValue={6}
                 key="node-size-slider-6"
                 label="Selected Res. Pairs - Node Size"
                 max={20}
@@ -2103,6 +2093,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                     "width": 360,
                   }
                 }
+                value={6}
               >
                 <div
                   className="node-size-slider-6"
@@ -2118,7 +2109,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   <ComponentEnhancer(undefined)
                     activeDotStyle={Object {}}
                     className=""
-                    defaultValue={6}
                     disabled={false}
                     dotStyle={Object {}}
                     dots={false}
@@ -2148,6 +2138,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         Object {},
                       ]
                     }
+                    value={6}
                     vertical={false}
                   >
                     <div

@@ -219,7 +219,7 @@ describe('NGLComponent', () => {
       expect(wrapper.state().residueSelectionRepresentations).toEqual(expected);
     });
 
-    it('Should handle hover events when there is not a candidate residue.', async () => {
+    test('Should handle hover events when there is not a candidate residue.', async () => {
       const Component = getComponentWithContext();
       const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
 
@@ -239,7 +239,7 @@ describe('NGLComponent', () => {
       expect(removeHoveredResiduesSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('Should clear candidate and hovered residues when the mouse leaves the canvas.', async () => {
+    test('Should clear candidate and hovered residues when the mouse leaves the canvas.', async () => {
       const Component = getComponentWithContext();
       const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
       const removeHoveredResiduesSpy = jest.fn();

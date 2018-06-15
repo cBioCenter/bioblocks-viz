@@ -218,7 +218,7 @@ describe('ContactMap', () => {
           name: 'sample',
           onChange: jest.fn(),
           values: {
-            default: 5,
+            current: 5,
             max: 10,
             min: 0,
           },
@@ -236,7 +236,7 @@ describe('ContactMap', () => {
           name: 'sample',
           onChange: onChangeSpy,
           values: {
-            default: 5,
+            current: 5,
             max: 10,
             min: 0,
           },

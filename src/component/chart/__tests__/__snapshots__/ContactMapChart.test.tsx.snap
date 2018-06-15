@@ -34,18 +34,24 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
       "showlegend": true,
       "xaxis": Object {
         "autorange": false,
-        "dtick": 10,
-        "range": Array [],
+        "nticks": 10,
+        "range": Array [
+          1,
+          100,
+        ],
         "showline": true,
-        "tickmode": "linear",
+        "tickmode": "auto",
         "title": "Residue #",
       },
       "yaxis": Object {
         "autorange": false,
-        "dtick": 10,
-        "range": Array [],
+        "nticks": 10,
+        "range": Array [
+          100,
+          1,
+        ],
         "showline": true,
-        "tickmode": "linear",
+        "tickmode": "auto",
         "title": "Residue #",
       },
     }

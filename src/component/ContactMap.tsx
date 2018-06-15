@@ -15,13 +15,14 @@ export interface IContactMapConfiguration {
   name: string;
   onChange: ChellSliderCallback;
   values: {
-    default: number;
+    current: number;
     max: number;
     min: number;
   };
 }
 
 export const defaultContactMapProps = {
+  chainLength: 59,
   configurations: new Array<IContactMapConfiguration>(),
   data: {
     computedPoints: new Array<IContactMapChartData>(),
@@ -37,7 +38,6 @@ export const defaultContactMapProps = {
 };
 
 export const initialContactMapState = {
-  chainLength: 59,
   pointsToPlot: new Array<IContactMapChartData>(),
   showConfiguration: false,
 };
@@ -132,8 +132,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     pointsToPlot: IContactMapChartData[],
     secondaryStructures: ISecondaryStructureData[],
   ) {
-    const { addHoveredResidues, candidateResidues, onBoxSelection, toggleLockedResiduePair } = this.props;
-    const { chainLength } = this.state;
+    const { addHoveredResidues, candidateResidues, chainLength, onBoxSelection, toggleLockedResiduePair } = this.props;
 
     return (
       <ContactMapChart
@@ -142,7 +141,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
         onClickCallback={this.onMouseClick(toggleLockedResiduePair)}
         onHoverCallback={this.onMouseEnter(addHoveredResidues)}
         onSelectedCallback={this.onMouseSelect(onBoxSelection)}
-        range={[0, chainLength + 5]}
+        range={chainLength + 5}
         secondaryStructures={secondaryStructures}
       />
     );
@@ -179,7 +178,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
         <ChellSlider
           className={key}
           key={key}
-          defaultValue={entry.nodeSize}
+          value={entry.nodeSize}
           label={`${entry.name} - Node Size`}
           max={20}
           min={1}
@@ -202,7 +201,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
       <ChellSlider
         className={id}
         key={id}
-        defaultValue={config.values.default}
+        value={config.values.current}
         label={config.name}
         max={config.values.max}
         min={config.values.min}

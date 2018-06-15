@@ -24,7 +24,7 @@ export interface IContactMapChartProps {
   onHoverCallback: (...args: any[]) => void;
   onSelectedCallback: (...args: any[]) => void;
   onUnHoverCallback: (...args: any[]) => void;
-  range: number[];
+  range: number;
   secondaryStructures?: ISecondaryStructureData[];
 }
 
@@ -38,7 +38,7 @@ const defaultContactMapChartProps: Partial<IContactMapChartProps> = {
   marginModifiers: {
     b: 40,
   },
-  range: [],
+  range: 100,
 };
 
 export interface IContactMapChartData extends Partial<IPlotlyData> {
@@ -135,18 +135,18 @@ class ContactMapChartClass extends React.Component<IContactMapChartProps, any> {
           showlegend: true,
           xaxis: {
             autorange: false,
-            dtick: 10,
-            range,
+            nticks: 10,
+            range: [1, range],
             showline: true,
-            tickmode: 'linear',
+            tickmode: 'auto',
             title: 'Residue #',
           },
           yaxis: {
             autorange: false,
-            dtick: 10,
-            range: range.slice().reverse(),
+            nticks: 10,
+            range: [1, range].reverse(),
             showline: true,
-            tickmode: 'linear',
+            tickmode: 'auto',
             title: 'Residue #',
           },
         }}
