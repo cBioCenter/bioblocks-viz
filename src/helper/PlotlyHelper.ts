@@ -108,7 +108,7 @@ export const secondaryStructureAxisDefaults = (entry: ISecondaryStructureData): 
   hoverinfo: 'name',
   line: {
     color: secStructColorMap[entry.structId],
-    width: 5,
+    width: entry.structId === 'C' ? 0 : 5,
   },
   mode: 'lines',
   name: SECONDARY_STRUCTURE_CODES[entry.structId],
@@ -161,17 +161,17 @@ export const generateSecStructYAxisSegment = (entry: ISecondaryStructureData): P
 export const generateSecondaryStructureAxis = (sequence: ISecondaryStructureData[]): Array<Partial<IPlotlyData>> =>
   sequence.length >= 1
     ? sequence.slice(1, sequence.length).reduce(
-        (prev, current, index) => {
+        (resultingAxis, current, index) => {
           if (sequence[index].structId !== current.structId) {
-            prev.push(generateSecStructXAxisSegment(current));
-            prev.push(generateSecStructYAxisSegment(current));
+            resultingAxis.push(generateSecStructXAxisSegment(current));
+            resultingAxis.push(generateSecStructYAxisSegment(current));
           } else {
-            (prev[prev.length - 2].x as Datum[]).push(current.resno - 1);
-            (prev[prev.length - 2].y as Datum[]).push(1);
-            (prev[prev.length - 1].x as Datum[]).push(1);
-            (prev[prev.length - 1].y as Datum[]).push(current.resno - 1);
+            (resultingAxis[resultingAxis.length - 2].x as Datum[]).push(current.resno - 1);
+            (resultingAxis[resultingAxis.length - 2].y as Datum[]).push(1);
+            (resultingAxis[resultingAxis.length - 1].x as Datum[]).push(1);
+            (resultingAxis[resultingAxis.length - 1].y as Datum[]).push(current.resno - 1);
           }
-          return prev;
+          return resultingAxis;
         },
         [
           {
