@@ -91,22 +91,15 @@ export class PredictedContactMapClass extends React.Component<PredictedContactMa
 
   public componentDidUpdate(prevProps: PredictedContactMapProps, prevState: PredictedContactMapState) {
     const { correctColor, data, incorrectColor, observedColor } = this.props;
+    const { linearDistFilter, measuredContactDistFilter, numPredictionsToShow } = this.state;
 
-    const isNewData = data.couplingScores !== prevProps.data.couplingScores;
-
-    if (isNewData) {
+    const isRecomputeNeeded =
+      data.couplingScores !== prevProps.data.couplingScores ||
+      linearDistFilter !== prevState.linearDistFilter ||
+      measuredContactDistFilter !== prevState.measuredContactDistFilter ||
+      numPredictionsToShow !== prevState.numPredictionsToShow;
+    if (isRecomputeNeeded) {
       const chainLength = data.couplingScores.reduce((a, b) => Math.max(a, Math.max(b.i, b.j)), 0);
-      const numPredictionsToShow = Math.floor(chainLength / 2);
-      this.setState({
-        chainLength,
-        numPredictionsToShow,
-      });
-    } else {
-      const { chainLength, linearDistFilter, measuredContactDistFilter, numPredictionsToShow } = this.state;
-      const isRecomputeNeeded =
-        linearDistFilter !== prevState.linearDistFilter ||
-        measuredContactDistFilter !== prevState.measuredContactDistFilter ||
-        numPredictionsToShow !== prevState.numPredictionsToShow;
       if (isRecomputeNeeded) {
         const observedContacts = PredictedContactMapClass.getObservedContacts(
           data.couplingScores,
@@ -150,6 +143,9 @@ export class PredictedContactMapClass extends React.Component<PredictedContactMa
         ] as IContactMapChartData[];
 
         this.setState({
+          chainLength,
+          numPredictionsToShow:
+            data.couplingScores !== prevProps.data.couplingScores ? Math.floor(chainLength / 2) : numPredictionsToShow,
           pointsToPlot: newPoints,
         });
       }

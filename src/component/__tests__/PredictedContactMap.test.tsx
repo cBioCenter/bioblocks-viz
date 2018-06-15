@@ -80,6 +80,7 @@ describe('PredictedContactMap', () => {
     const expected = 10;
     expect(instance.state.linearDistFilter).not.toBe(expected);
     instance.onLinearDistFilterChange()(expected);
+    instance.forceUpdate();
     expect(instance.state.linearDistFilter).toBe(expected);
   });
 
@@ -89,6 +90,7 @@ describe('PredictedContactMap', () => {
     const expectedCount = 50;
     expect(instance.state.numPredictionsToShow).not.toBe(expectedCount);
     instance.onNumPredictionsToShowChange()(expectedCount);
+    wrapper.update();
     expect(instance.state.numPredictionsToShow).toBe(expectedCount);
   });
 
@@ -98,6 +100,47 @@ describe('PredictedContactMap', () => {
     const expected = 20;
     expect(instance.state.numPredictionsToShow).not.toBe(expected);
     instance.onNumPredictionsToShowChange()(expected);
+    wrapper.update();
     expect(instance.state.numPredictionsToShow).toBe(expected);
+  });
+
+  test('Should update chain length when new data is provided.', () => {
+    const expected = 57;
+    const wrapper = shallow(<PredictedContactMap data={emptyData} />);
+    expect(wrapper.state().numPredictionsToShow).not.toBe(expected);
+    wrapper.setProps({
+      data: sampleData,
+    });
+    expect(wrapper.state().chainLength).toBe(expected);
+  });
+
+  test('Should update number of predictions to show when new data is provided.', () => {
+    const expected = 28;
+    const wrapper = shallow(<PredictedContactMap data={emptyData} />);
+    expect(wrapper.state().numPredictionsToShow).not.toBe(expected);
+    wrapper.setProps({
+      data: sampleData,
+    });
+    expect(wrapper.state().numPredictionsToShow).toBe(expected);
+  });
+
+  test('Should update number of predictions to show when new value is received.', () => {
+    const expected = 28;
+    const wrapper = shallow(<PredictedContactMap data={emptyData} />);
+    expect(wrapper.state().numPredictionsToShow).not.toBe(expected);
+    wrapper.setState({
+      numPredictionsToShow: expected,
+    });
+    expect(wrapper.state().numPredictionsToShow).toBe(expected);
+  });
+
+  test('Should update points to plot when new data is provided.', () => {
+    const wrapper = shallow(<PredictedContactMap data={emptyData} />);
+    expect(wrapper.state().pointsToPlot).toEqual([]);
+    wrapper.setProps({
+      data: sampleData,
+    });
+    expect(wrapper.state().pointsToPlot).not.toEqual([]);
+    expect(wrapper.state().pointsToPlot).toMatchSnapshot();
   });
 });
