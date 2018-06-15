@@ -99,24 +99,31 @@ const secStructColorMap: { [key: string]: string } = {
 };
 
 /**
- * Generate a Plotly data object to represent a secondary structure as a box plot.
+ * Generate a Plotly data object with elements shared between x/y axis.
  *
  * @param entry A Single residue-secondary structure element.
- * @returns A object conforming to data object requirements in Plotly to add a box plot representing this secondary structure.
+ * @returns Plotly data object with axis options shared between x and y axis.
+ */
+export const secondaryStructureAxisDefaults = (entry: ISecondaryStructureData): Partial<IPlotlyData> => ({
+  hoverinfo: 'name',
+  line: {
+    color: secStructColorMap[entry.structId],
+    width: 5,
+  },
+  mode: 'lines',
+  name: SECONDARY_STRUCTURE_CODES[entry.structId],
+  showlegend: false,
+  type: 'scatter',
+});
+
+/**
+ * Generate a Plotly data object to represent the secondary structure on the X axis.
+ *
+ * @param entry A Single residue-secondary structure element.
  */
 export const generateSecStructXAxisSegment = (entry: ISecondaryStructureData): Partial<IPlotlyData> => ({
-  boxpoints: false,
-  hoverinfo: 'name',
-  marker: {
-    color: secStructColorMap[entry.structId],
-  },
-  // mode: 'lines',
-  name: SECONDARY_STRUCTURE_CODES[entry.structId],
-  notched: entry.structId === 'H' ? true : false,
+  ...secondaryStructureAxisDefaults(entry),
   orientation: 'h',
-  showlegend: false,
-  type: 'box' as any,
-  // type: 'scatter',
   x: [entry.resno - 1, entry.resno],
   xaxis: 'x',
   y: [1, 1],
@@ -124,26 +131,13 @@ export const generateSecStructXAxisSegment = (entry: ISecondaryStructureData): P
 });
 
 /**
- * Generate a Plotly data object to represent a secondary structure as a box plot.
+ * Generate a Plotly data object to represent the secondary structure on the Y axis.
  *
  * @param entry A Single residue-secondary structure element.
- * @returns A object conforming to data object requirements in Plotly to add a box plot representing this secondary structure.
  */
 export const generateSecStructYAxisSegment = (entry: ISecondaryStructureData): Partial<IPlotlyData> => ({
-  boxpoints: false,
-  hoverinfo: 'name',
-  line: {
-    dash: 'solid',
-  },
-  marker: {
-    color: secStructColorMap[entry.structId],
-  },
-  mode: 'lines',
-  name: SECONDARY_STRUCTURE_CODES[entry.structId],
+  ...secondaryStructureAxisDefaults(entry),
   orientation: 'v',
-  showlegend: false,
-  // type: 'box' as any,
-  type: 'scatter',
   x: [1, 1],
   xaxis: 'x2',
   y: [entry.resno - 1, entry.resno],

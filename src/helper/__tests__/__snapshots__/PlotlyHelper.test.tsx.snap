@@ -48,15 +48,16 @@ Object {
 exports[`generateSecondaryStructureAxis Should handle secondary structure containing a chain of residues with the same structure. 1`] = `
 Array [
   Object {
-    "boxpoints": false,
     "hoverinfo": "name",
-    "marker": Object {
+    "line": Object {
       "color": undefined,
+      "width": 5,
     },
+    "mode": "lines",
     "name": "310_HELIX",
     "orientation": "h",
     "showlegend": false,
-    "type": "box",
+    "type": "scatter",
     "x": Array [
       0,
       1,
@@ -72,21 +73,48 @@ Array [
     ],
     "yaxis": "y2",
   },
+  Object {
+    "hoverinfo": "name",
+    "line": Object {
+      "color": undefined,
+      "width": 5,
+    },
+    "mode": "lines",
+    "name": "310_HELIX",
+    "orientation": "v",
+    "showlegend": false,
+    "type": "scatter",
+    "x": Array [
+      1,
+      1,
+      1,
+      1,
+    ],
+    "xaxis": "x2",
+    "y": Array [
+      0,
+      1,
+      1,
+      2,
+    ],
+    "yaxis": "y",
+  },
 ]
 `;
 
 exports[`generateSecondaryStructureAxis Should handle secondary structure containing a single residue. 1`] = `
 Array [
   Object {
-    "boxpoints": false,
     "hoverinfo": "name",
-    "marker": Object {
+    "line": Object {
       "color": undefined,
+      "width": 5,
     },
+    "mode": "lines",
     "name": "310_HELIX",
     "orientation": "h",
     "showlegend": false,
-    "type": "box",
+    "type": "scatter",
     "x": Array [
       0,
       1,
@@ -97,6 +125,28 @@ Array [
       1,
     ],
     "yaxis": "y2",
+  },
+  Object {
+    "hoverinfo": "name",
+    "line": Object {
+      "color": undefined,
+      "width": 5,
+    },
+    "mode": "lines",
+    "name": "310_HELIX",
+    "orientation": "v",
+    "showlegend": false,
+    "type": "scatter",
+    "x": Array [
+      1,
+      1,
+    ],
+    "xaxis": "x2",
+    "y": Array [
+      0,
+      1,
+    ],
+    "yaxis": "y",
   },
 ]
 `;
@@ -104,15 +154,16 @@ Array [
 exports[`generateSecondaryStructureAxis Should handle secondary structure containing alternating chains of residues with different structures. 1`] = `
 Array [
   Object {
-    "boxpoints": false,
     "hoverinfo": "name",
-    "marker": Object {
+    "line": Object {
       "color": undefined,
+      "width": 5,
     },
+    "mode": "lines",
     "name": "310_HELIX",
     "orientation": "h",
     "showlegend": false,
-    "type": "box",
+    "type": "scatter",
     "x": Array [
       0,
       1,
@@ -127,15 +178,40 @@ Array [
     "yaxis": "y2",
   },
   Object {
-    "boxpoints": false,
     "hoverinfo": "name",
-    "marker": Object {
+    "line": Object {
       "color": undefined,
+      "width": 5,
     },
+    "mode": "lines",
+    "name": "310_HELIX",
+    "orientation": "v",
+    "showlegend": false,
+    "type": "scatter",
+    "x": Array [
+      1,
+      1,
+      1,
+    ],
+    "xaxis": "x2",
+    "y": Array [
+      0,
+      1,
+      1,
+    ],
+    "yaxis": "y",
+  },
+  Object {
+    "hoverinfo": "name",
+    "line": Object {
+      "color": undefined,
+      "width": 5,
+    },
+    "mode": "lines",
     "name": "BETA_BRIDGE",
     "orientation": "h",
     "showlegend": false,
-    "type": "box",
+    "type": "scatter",
     "x": Array [
       2,
       3,
@@ -152,15 +228,42 @@ Array [
     "yaxis": "y2",
   },
   Object {
-    "boxpoints": false,
     "hoverinfo": "name",
-    "marker": Object {
-      "color": "green",
+    "line": Object {
+      "color": undefined,
+      "width": 5,
     },
+    "mode": "lines",
+    "name": "BETA_BRIDGE",
+    "orientation": "v",
+    "showlegend": false,
+    "type": "scatter",
+    "x": Array [
+      1,
+      1,
+      1,
+      1,
+    ],
+    "xaxis": "x2",
+    "y": Array [
+      2,
+      3,
+      3,
+      4,
+    ],
+    "yaxis": "y",
+  },
+  Object {
+    "hoverinfo": "name",
+    "line": Object {
+      "color": "green",
+      "width": 5,
+    },
+    "mode": "lines",
     "name": "BETA_SHEET",
     "orientation": "h",
     "showlegend": false,
-    "type": "box",
+    "type": "scatter",
     "x": Array [
       5,
       6,
@@ -171,6 +274,28 @@ Array [
       1,
     ],
     "yaxis": "y2",
+  },
+  Object {
+    "hoverinfo": "name",
+    "line": Object {
+      "color": "green",
+      "width": 5,
+    },
+    "mode": "lines",
+    "name": "BETA_SHEET",
+    "orientation": "v",
+    "showlegend": false,
+    "type": "scatter",
+    "x": Array [
+      1,
+      1,
+    ],
+    "xaxis": "x2",
+    "y": Array [
+      5,
+      6,
+    ],
+    "yaxis": "y",
   },
 ]
 `;

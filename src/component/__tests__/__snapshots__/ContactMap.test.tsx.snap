@@ -1010,15 +1010,16 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               ],
             },
             Object {
-              "boxpoints": false,
               "hoverinfo": "name",
-              "marker": Object {
+              "line": Object {
                 "color": "red",
+                "width": 5,
               },
+              "mode": "lines",
               "name": "COIL",
               "orientation": "h",
               "showlegend": false,
-              "type": "box",
+              "type": "scatter",
               "x": Array [
                 29,
                 30,
@@ -1031,6 +1032,30 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 1,
               ],
               "yaxis": "y2",
+            },
+            Object {
+              "hoverinfo": "name",
+              "line": Object {
+                "color": "red",
+                "width": 5,
+              },
+              "mode": "lines",
+              "name": "COIL",
+              "orientation": "v",
+              "showlegend": false,
+              "type": "scatter",
+              "x": Array [
+                1,
+                1,
+                1,
+              ],
+              "xaxis": "x2",
+              "y": Array [
+                29,
+                30,
+                30,
+              ],
+              "yaxis": "y",
             },
           ]
         }

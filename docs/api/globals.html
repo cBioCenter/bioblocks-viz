@@ -201,6 +201,7 @@
 								<li class="tsd-kind-function"><a href="globals.html#generatesecondarystructureaxis" class="tsd-kind-icon">generate<wbr>Secondary<wbr>Structure<wbr>Axis</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#getcouplingscoresdata" class="tsd-kind-icon">get<wbr>Coupling<wbr>Scores<wbr>Data</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#getsecondarystructuredata" class="tsd-kind-icon">get<wbr>Secondary<wbr>Structure<wbr>Data</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#secondarystructureaxisdefaults" class="tsd-kind-icon">secondary<wbr>Structure<wbr>Axis<wbr>Defaults</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#withdefaultprops" class="tsd-kind-icon">with<wbr>Default<wbr>Props</a></li>
 							</ul>
 						</section>
@@ -1313,12 +1314,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/PlotlyHelper.ts:107</li>
+									<li>Defined in src/helper/PlotlyHelper.ts:124</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Generate a Plotly data object to represent a secondary structure as a box plot.</p>
+									<p>Generate a Plotly data object to represent the secondary structure on the X axis.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1333,7 +1334,6 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A object conforming to data object requirements in Plotly to add a box plot representing this secondary structure.</p>
 						</li>
 					</ul>
 				</section>
@@ -1347,12 +1347,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/PlotlyHelper.ts:132</li>
+									<li>Defined in src/helper/PlotlyHelper.ts:138</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Generate a Plotly data object to represent a secondary structure as a box plot.</p>
+									<p>Generate a Plotly data object to represent the secondary structure on the Y axis.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1367,7 +1367,6 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A object conforming to data object requirements in Plotly to add a box plot representing this secondary structure.</p>
 						</li>
 					</ul>
 				</section>
@@ -1381,7 +1380,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/PlotlyHelper.ts:167</li>
+									<li>Defined in src/helper/PlotlyHelper.ts:161</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1480,6 +1479,40 @@
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a><span class="tsd-signature-symbol">[]</span></h4>
 							<p>Array of SecondaryStructure mappings suitable for chell-viz consumption.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="secondarystructureaxisdefaults" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> secondary<wbr>Structure<wbr>Axis<wbr>Defaults</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">secondary<wbr>Structure<wbr>Axis<wbr>Defaults<span class="tsd-signature-symbol">(</span>entry<span class="tsd-signature-symbol">: </span><a href="interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/helper/PlotlyHelper.ts:107</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generate a Plotly data object with elements shared between x/y axis.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>entry: <a href="interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>A Single residue-secondary structure element.</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Plotly data object with axis options shared between x and y axis.</p>
 						</li>
 					</ul>
 				</section>
@@ -2016,7 +2049,7 @@
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 							<a name="defaultplotlylayout.xaxis.domain" class="tsd-anchor"></a>
 							<h3>domain</h3>
-							<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[0, 0.9]</span></div>
+							<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[0, 0.95]</span></div>
 							<aside class="tsd-sources">
 								<ul>
 									<li>Defined in src/component/chart/PlotlyChart.tsx:75</li>
@@ -2046,7 +2079,7 @@
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 							<a name="defaultplotlylayout.xaxis2.domain-1" class="tsd-anchor"></a>
 							<h3>domain</h3>
-							<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[0.9, 1]</span></div>
+							<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[0.95, 1]</span></div>
 							<aside class="tsd-sources">
 								<ul>
 									<li>Defined in src/component/chart/PlotlyChart.tsx:79</li>
@@ -2076,7 +2109,7 @@
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 							<a name="defaultplotlylayout.yaxis.domain-2" class="tsd-anchor"></a>
 							<h3>domain</h3>
-							<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[0, 0.9]</span></div>
+							<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[0, 0.95]</span></div>
 							<aside class="tsd-sources">
 								<ul>
 									<li>Defined in src/component/chart/PlotlyChart.tsx:83</li>
@@ -2106,7 +2139,7 @@
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 							<a name="defaultplotlylayout.yaxis2.domain-3" class="tsd-anchor"></a>
 							<h3>domain</h3>
-							<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[0.9, 1]</span></div>
+							<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[0.95, 1]</span></div>
 							<aside class="tsd-sources">
 								<ul>
 									<li>Defined in src/component/chart/PlotlyChart.tsx:87</li>
@@ -3022,6 +3055,9 @@
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#getsecondarystructuredata" class="tsd-kind-icon">get<wbr>Secondary<wbr>Structure<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#secondarystructureaxisdefaults" class="tsd-kind-icon">secondary<wbr>Structure<wbr>Axis<wbr>Defaults</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#withdefaultprops" class="tsd-kind-icon">with<wbr>Default<wbr>Props</a>

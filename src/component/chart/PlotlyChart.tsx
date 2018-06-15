@@ -72,19 +72,19 @@ export const defaultPlotlyLayout: Partial<IPlotlyLayout> = {
   title: '',
   width: 400,
   xaxis: {
-    domain: [0, 0.9],
+    domain: [0, 0.95],
     range: [30],
   },
   xaxis2: {
-    domain: [0.9, 1],
+    domain: [0.95, 1],
     visible: false,
   },
   yaxis: {
-    domain: [0, 0.9],
+    domain: [0, 0.95],
     range: [30],
   },
   yaxis2: {
-    domain: [0.9, 1],
+    domain: [0.95, 1],
     visible: false,
   },
 };
