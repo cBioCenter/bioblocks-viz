@@ -209,7 +209,52 @@ describe('NGLComponent', () => {
       wrapper.setProps({
         candidateResidues: [4],
       });
-      simulateHoverEvent(wrapper, { atom: 3 });
+      simulateHoverEvent(wrapper, { atom: { resno: 3 } });
+      const expected = new Map(
+        Object.entries({
+          '3': ['ball+stick'],
+          '3,4': ['distance', 'ball+stick'],
+        }),
+      );
+      expect(wrapper.state().residueSelectionRepresentations).toEqual(expected);
+    });
+
+    it('Should handle hover events when there is not a candidate residue.', async () => {
+      const Component = getComponentWithContext();
+      const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
+
+      const removeHoveredResiduesSpy = jest.fn();
+      wrapper.setProps({
+        candidateResidues: [],
+        removeHoveredResidues: removeHoveredResiduesSpy,
+      });
+      simulateHoverEvent(wrapper, { atom: { resno: 3 } });
+      const expected = new Map(
+        Object.entries({
+          '3': ['ball+stick'],
+        }),
+      );
+      expect(wrapper.state().residueSelectionRepresentations).toEqual(expected);
+      simulateHoverEvent(wrapper, {});
+      expect(removeHoveredResiduesSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it('Should clear candidate and hovered residues when the mouse leaves the canvas.', async () => {
+      const Component = getComponentWithContext();
+      const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
+      const removeHoveredResiduesSpy = jest.fn();
+      const removeCandidateResiduesSpy = jest.fn();
+
+      wrapper.setProps({
+        candidateResidues: [3],
+        hoveredResidues: [4],
+        removeCandidateResidues: removeCandidateResiduesSpy,
+        removeHoveredResidues: removeHoveredResiduesSpy,
+      });
+
+      wrapper.find('.NGLCanvas').simulate('mouseleave');
+      expect(removeCandidateResiduesSpy).toHaveBeenCalledTimes(1);
+      expect(removeHoveredResiduesSpy).toHaveBeenCalledTimes(1);
     });
 
     // @ts-ignore
