@@ -3,6 +3,7 @@ import { fetchCSVFile, fetchJSONFile } from './FetchHelper';
 
 import * as NGL from 'ngl';
 import { ISpringCategoricalColorData, ISpringCategoricalColorDataInput, ISpringGraphData } from 'spring';
+// import { Vector3 } from 'three';
 import { CONTACT_MAP_DATA_TYPE, IContactMapData, ICouplingScore, VIZ_TYPE } from '../data/chell-data';
 
 export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
@@ -12,9 +13,9 @@ export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
     case VIZ_TYPE.SPRING:
       return deriveSpringData(dataDir);
     case VIZ_TYPE.NGL:
-      return fetchNGLData(dataDir);
+      return fetchNGLDataFromDirectory(dataDir);
     case VIZ_TYPE.CONTACT_MAP:
-      return fetchContactMapData(dataDir);
+      return fetchContactMapDataWithNGL(dataDir);
     default:
       return Promise.reject({ error: `Currently no appropriate data getter for ${viz}` });
   }
@@ -143,16 +144,41 @@ const fetchGraphData = async (file: string) => {
   return data;
 };
 
-const fetchNGLData = async (dir: string) => {
+export const fetchNGLDataFromDirectory = async (dir: string) => {
   if (dir.length === 0) {
     return Promise.reject('Empty path.');
   }
   const file = `${dir}/protein.pdb`;
-  const data = await NGL.autoLoad(file);
-  return data as NGL.Structure;
+  return fetchNGLDataFromFile(file);
 };
 
-const fetchContactMapData = async (dir: string): Promise<IContactMapData> => {
+export const fetchNGLDataFromFile = async (file: string) => {
+  if (file.length === 0) {
+    return Promise.reject('Empty filename.');
+  }
+  return (await NGL.autoLoad(file)) as NGL.Structure;
+};
+
+export const fetchContactMapDataWithNGL = async (dir: string): Promise<IContactMapData> => {
+  const contactMapData = await fetchContactMapData(dir);
+  const nglData = await fetchNGLDataFromDirectory(dir);
+
+  console.log(nglData.atomStore);
+  console.log(nglData.atomMap);
+  console.log(nglData.atomSet);
+  contactMapData.couplingScores.forEach(score => {
+    // const { i, j } = score;
+    // const firstVector = new Vector3(nglData.atomStore.x[i], nglData.atomStore.y[i], nglData.atomStore.z[i]);
+    // const secondVector = new Vector3(nglData.atomStore.x[j], nglData.atomStore.y[j], nglData.atomStore.z[j]);
+    // console.log(`Distance between resno ${i} and ${j} is ${dist}`);
+  });
+  nglData.eachResidue(outerResidue => {
+    console.log(outerResidue);
+  });
+  return contactMapData;
+};
+
+export const fetchContactMapData = async (dir: string): Promise<IContactMapData> => {
   const contactMapFiles = ['coupling_scores.csv', 'distance_map.csv'];
   const promiseResults = await Promise.all(contactMapFiles.map(file => fetchCSVFile(`${dir}/${file}`)));
 

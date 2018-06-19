@@ -7,4 +7,12 @@ export { default as TComponent } from './src/component/TComponent';
 export { default as VizSelectorPanel } from './src/component/VizSelectorPanel';
 export { default as VizPanelContainer } from './src/container/VizPanelContainer';
 
-export { fetchAppropriateData, getCouplingScoresData } from './src/helper/DataHelper';
+export {
+  fetchAppropriateData,
+  fetchContactMapData,
+  fetchNGLDataFromDirectory,
+  fetchNGLDataFromFile,
+  getCouplingScoresData,
+} from './src/helper/DataHelper';
+
+export const ANGSTROM_CHAR = String.fromCharCode(0x212b);
