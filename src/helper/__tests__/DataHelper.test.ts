@@ -97,6 +97,28 @@ describe('DataHelper', () => {
       const data = getSecondaryStructureData(secondaryStructureCsvWithNewline);
       expect(data).toEqual(expectedSecondaryData);
     });
+
+    it('Should load pdb data if available.', async () => {
+      const expected = {
+        couplingScores: new CouplingContainer(),
+        secondaryStructures: [],
+      };
+      fetchMock.mockResponse(JSON.stringify(expected));
+
+      const result = (await fetchAppropriateData(VIZ_TYPE.CONTACT_MAP, '')) as IContactMapData;
+      expect(result.pdbData).toEqual('Mock NGL path.');
+    });
+
+    it('Should load data even if pdb data if available.', async () => {
+      const expected = {
+        couplingScores: new CouplingContainer(),
+        secondaryStructures: [],
+      };
+      fetchMock.mockResponse(JSON.stringify(expected));
+
+      const result = (await fetchAppropriateData(VIZ_TYPE.CONTACT_MAP, 'error')) as IContactMapData;
+      expect(result.pdbData).toEqual(undefined);
+    });
   });
 
   describe('NGL', () => {

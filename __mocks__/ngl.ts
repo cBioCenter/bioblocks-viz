@@ -75,7 +75,12 @@ class MockStage {
   };
 });
 
-(ngl.autoLoad as any) = jest.fn(() => Promise.resolve('Mock NGL path.'));
+(ngl.autoLoad as any) = jest.fn(
+  (path: string) =>
+    path.localeCompare('error/protein.pdb') === 0
+      ? Promise.reject('Invalid NGL path.')
+      : Promise.resolve('Mock NGL path.'),
+);
 
 // @ts-ignore
 ngl.MouseActions = {

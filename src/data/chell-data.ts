@@ -27,6 +27,7 @@ export enum VIZ_TYPE {
 
 export interface IContactMapData {
   couplingScores: CouplingContainer;
+  pdbData?: Structure;
   secondaryStructures: ISecondaryStructureData[];
 }
 

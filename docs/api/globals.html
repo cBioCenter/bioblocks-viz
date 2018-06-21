@@ -191,6 +191,7 @@
 								<li class="tsd-kind-function"><a href="globals.html#fetchjsonfile" class="tsd-kind-icon">fetchJSONFile</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#fetchngldatafromdirectory" class="tsd-kind-icon">fetchNGLData<wbr>From<wbr>Directory</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#fetchngldatafromfile" class="tsd-kind-icon">fetchNGLData<wbr>From<wbr>File</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#fetchpdbfile" class="tsd-kind-icon">fetchPDBFile</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#fetchspringcoordinatedata" class="tsd-kind-icon">fetch<wbr>Spring<wbr>Coordinate<wbr>Data</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#fetchtsnecoordinatedata" class="tsd-kind-icon">fetchTSne<wbr>Coordinate<wbr>Data</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#generrormsg" class="tsd-kind-icon">gen<wbr>Error<wbr>Msg</a></li>
@@ -888,7 +889,7 @@
 					<a name="fetchappropriatedata" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> fetch<wbr>Appropriate<wbr>Data</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">fetch<wbr>Appropriate<wbr>Data<span class="tsd-signature-symbol">(</span>viz<span class="tsd-signature-symbol">: </span><a href="enums/viz_type.html" class="tsd-signature-type">VIZ_TYPE</a>, dataDir<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/icontactmapdata.html" class="tsd-signature-type">IContactMapData</a><span class="tsd-signature-symbol"> | </span><a href="classes/_ngl_.structure.html" class="tsd-signature-type">Structure</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/_spring_.ispringgraphdata.html" class="tsd-signature-type">ISpringGraphData</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">fetch<wbr>Appropriate<wbr>Data<span class="tsd-signature-symbol">(</span>viz<span class="tsd-signature-symbol">: </span><a href="enums/viz_type.html" class="tsd-signature-type">VIZ_TYPE</a>, dataDir<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="classes/_ngl_.structure.html" class="tsd-signature-type">Structure</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/icontactmapdata.html" class="tsd-signature-type">IContactMapData</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/_spring_.ispringgraphdata.html" class="tsd-signature-type">ISpringGraphData</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -906,7 +907,7 @@
 									<h5>dataDir: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/icontactmapdata.html" class="tsd-signature-type">IContactMapData</a><span class="tsd-signature-symbol"> | </span><a href="classes/_ngl_.structure.html" class="tsd-signature-type">Structure</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/_spring_.ispringgraphdata.html" class="tsd-signature-type">ISpringGraphData</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="classes/_ngl_.structure.html" class="tsd-signature-type">Structure</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/icontactmapdata.html" class="tsd-signature-type">IContactMapData</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/_spring_.ispringgraphdata.html" class="tsd-signature-type">ISpringGraphData</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -966,7 +967,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:237</li>
+									<li>Defined in src/helper/DataHelper.ts:232</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -989,7 +990,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:163</li>
+									<li>Defined in src/helper/DataHelper.ts:158</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1097,6 +1098,29 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="fetchpdbfile" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> fetchPDBFile</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">fetchPDBFile<span class="tsd-signature-symbol">(</span>filename<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/helper/FetchHelper.ts:19</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>filename: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
 					<a name="fetchspringcoordinatedata" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> fetch<wbr>Spring<wbr>Coordinate<wbr>Data</h3>
@@ -1153,7 +1177,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/FetchHelper.ts:19</li>
+									<li>Defined in src/helper/FetchHelper.ts:28</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1502,7 +1526,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:205</li>
+									<li>Defined in src/helper/DataHelper.ts:200</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1531,7 +1555,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:262</li>
+									<li>Defined in src/helper/DataHelper.ts:265</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1570,7 +1594,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:217</li>
+									<li>Defined in src/helper/DataHelper.ts:212</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1599,7 +1623,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:303</li>
+									<li>Defined in src/helper/DataHelper.ts:306</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3171,6 +3195,9 @@
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#fetchngldatafromfile" class="tsd-kind-icon">fetchNGLData<wbr>From<wbr>File</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#fetchpdbfile" class="tsd-kind-icon">fetchPDBFile</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#fetchspringcoordinatedata" class="tsd-kind-icon">fetch<wbr>Spring<wbr>Coordinate<wbr>Data</a>
