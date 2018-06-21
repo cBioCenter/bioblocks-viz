@@ -8,7 +8,7 @@ describe('DataHelper', () => {
     fetchMock.resetMocks();
   });
 
-  test('Should throw an error when attempting to fetch data for an unsupported visualization type.', async () => {
+  it('Should throw an error when attempting to fetch data for an unsupported visualization type.', async () => {
     const badVizType = 'Imagination';
     expect.assertions(1);
     await expect(fetchAppropriateData(badVizType as VIZ_TYPE, '')).rejects.toEqual({
@@ -17,7 +17,7 @@ describe('DataHelper', () => {
   });
 
   describe('Contact Map', () => {
-    test('Should return empty data for an incorrect location.', async () => {
+    it('Should return empty data for an incorrect location.', async () => {
       const expected = {
         couplingScores: new CouplingContainer(),
         secondaryStructures: [],
@@ -69,13 +69,13 @@ describe('DataHelper', () => {
       precision: 1.0,
     };
 
-    test('Should parse contact monomer data correctly.', () => {
+    it('Should parse contact monomer data correctly.', () => {
       const data = getCouplingScoresData(couplingScoresCsv);
       const expected = new CouplingContainer([firstScore, secondScore]);
       expect(data.allContacts).toEqual(expected.allContacts);
     });
 
-    test('Should parse contact monomer data correctly when csv file has newline.', () => {
+    it('Should parse contact monomer data correctly when csv file has newline.', () => {
       const data = getCouplingScoresData(couplingScoresCsvWithNewline);
       const expected = new CouplingContainer([firstScore, secondScore]);
       expect(data.allContacts).toEqual(expected.allContacts);
@@ -88,25 +88,25 @@ describe('DataHelper', () => {
     const secondaryStructureCsvWithNewline = secondaryStructureCsv + '\n';
     const expectedSecondaryData = [{ resno: 30, structId: 'C' }, { resno: 31, structId: 'C' }];
 
-    test('Should parse secondary structure data correctly.', () => {
+    it('Should parse secondary structure data correctly.', () => {
       const data = getSecondaryStructureData(secondaryStructureCsv);
       expect(data).toEqual(expectedSecondaryData);
     });
 
-    test('Should parse secondary structure data correctly when csv file has newline.', () => {
+    it('Should parse secondary structure data correctly when csv file has newline.', () => {
       const data = getSecondaryStructureData(secondaryStructureCsvWithNewline);
       expect(data).toEqual(expectedSecondaryData);
     });
   });
 
   describe('NGL', () => {
-    test('Should throw on incorrect location.', async () => {
+    it('Should throw on incorrect location.', async () => {
       const reason = 'Empty path.';
       expect.assertions(1);
       await expect(fetchAppropriateData(VIZ_TYPE.NGL, '')).rejects.toBe(reason);
     });
 
-    test('Should resolve on nonempty location.', async () => {
+    it('Should resolve on nonempty location.', async () => {
       expect.assertions(1);
       await expect(fetchAppropriateData(VIZ_TYPE.NGL, 'somewhere-over-the-rainbow')).resolves.toBeTruthy();
     });
@@ -132,19 +132,19 @@ describe('DataHelper', () => {
       },
     };
 
-    test('Should throw on incorrect location.', async () => {
+    it('Should throw on incorrect location.', async () => {
       expect.assertions(1);
       await expect(fetchAppropriateData(VIZ_TYPE.SPRING, '')).rejects.toThrowError();
     });
 
-    test('Should parse graph data.', async () => {
+    it('Should parse graph data.', async () => {
       fetchMock.mockResponseOnce(emptySpringInput.coordinateData);
       fetchMock.mockResponseOnce(JSON.stringify(emptySpringInput.graphData));
       fetchMock.mockResponseOnce(JSON.stringify(emptySpringInput.colorData));
       await expect(fetchAppropriateData(VIZ_TYPE.SPRING, 'kanto')).resolves.toEqual(emptySpringInput.graphData);
     });
 
-    test('Should parse coordinate data.', async () => {
+    it('Should parse coordinate data.', async () => {
       fetchMock.mockResponseOnce(sampleSpringInput.coordinateData);
       fetchMock.mockResponseOnce(JSON.stringify(sampleSpringInput.graphData));
       fetchMock.mockResponseOnce(JSON.stringify(sampleSpringInput.colorData));
@@ -156,7 +156,7 @@ describe('DataHelper', () => {
       expect(nodes[1].y).toBe(520.63422);
     });
 
-    test('Should parse coordinate data that ends on a newline.', async () => {
+    it('Should parse coordinate data that ends on a newline.', async () => {
       fetchMock.mockResponseOnce(sampleSpringInput.coordinateData + '\n');
       fetchMock.mockResponseOnce(JSON.stringify(sampleSpringInput.graphData));
       fetchMock.mockResponseOnce(JSON.stringify(sampleSpringInput.colorData));
@@ -168,7 +168,7 @@ describe('DataHelper', () => {
       expect(nodes[1].y).toBe(520.63422);
     });
 
-    test('Should parse color data using actual numbers.', async () => {
+    it('Should parse color data using actual numbers.', async () => {
       const sampleColorData = { Sample: { label_colors: { P11B: 424242 }, label_list: ['P11B', 'P11B'] } };
       fetchMock.mockResponseOnce(sampleSpringInput.coordinateData);
       fetchMock.mockResponseOnce(JSON.stringify(sampleSpringInput.graphData));
@@ -180,7 +180,7 @@ describe('DataHelper', () => {
       expect(nodes[1].colorHex).toBe(424242);
     });
 
-    test("Should parse color data starting with '#'", async () => {
+    it("Should parse color data starting with '#'", async () => {
       const sampleColorData = { Sample: { label_colors: { P11B: '#00007f' }, label_list: ['P11B', 'P11B'] } };
       fetchMock.mockResponseOnce(sampleSpringInput.coordinateData);
       fetchMock.mockResponseOnce(JSON.stringify(sampleSpringInput.graphData));
@@ -192,7 +192,7 @@ describe('DataHelper', () => {
       expect(nodes[1].colorHex).toBe(127);
     });
 
-    test("Should parse color data starting with '0x'", async () => {
+    it("Should parse color data starting with '0x'", async () => {
       const sampleColorData = { Sample: { label_colors: { P11B: '0x0080ff' }, label_list: ['P11B', 'P11B'] } };
       fetchMock.mockResponseOnce(sampleSpringInput.coordinateData);
       fetchMock.mockResponseOnce(JSON.stringify(sampleSpringInput.graphData));
@@ -204,7 +204,7 @@ describe('DataHelper', () => {
       expect(nodes[1].colorHex).toBe(0x0080ff);
     });
 
-    test('Should throw an error on invalid color data.', async () => {
+    it('Should throw an error on invalid color data.', async () => {
       const expected = "Unable to parse color data - does it have keys named 'label_colors' and 'label_list'";
       const sampleColorData = { rival: 'silver' };
       fetchMock.mockResponseOnce(emptySpringInput.coordinateData);
@@ -213,7 +213,7 @@ describe('DataHelper', () => {
       await expect(fetchAppropriateData(VIZ_TYPE.SPRING, 'johto')).rejects.toThrowError(expected);
     });
 
-    test('Should throw an error on invalid coordinate data.', async () => {
+    it('Should throw an error on invalid coordinate data.', async () => {
       const expected = 'Unable to parse coordinate data - Row 0 does not have at least 3 columns!';
       fetchMock.mockResponseOnce('ThisIsNotACsv');
       fetchMock.mockResponseOnce(JSON.stringify(emptySpringInput.graphData));
@@ -221,7 +221,7 @@ describe('DataHelper', () => {
       await expect(fetchAppropriateData(VIZ_TYPE.SPRING, 'johto')).rejects.toThrowError(expected);
     });
 
-    test('Should throw an error on invalid graph data.', async () => {
+    it('Should throw an error on invalid graph data.', async () => {
       const expected = "Unable to parse graph data - does it have keys named 'nodes' and 'links'";
       const graphData = { starter: 'cyndaquil' };
       fetchMock.mockResponseOnce(emptySpringInput.coordinateData);
@@ -232,7 +232,7 @@ describe('DataHelper', () => {
   });
 
   describe('T-SNE', () => {
-    test('Should return empty data for an incorrect location', async () => {
+    it('Should return empty data for an incorrect location', async () => {
       const expected = [
         [0.2586516988310038068, -5.607454590334670641],
         [-3.112878150223143958, -3.342860779282196049],

@@ -53,15 +53,15 @@ describe('PredictedContactMap', () => {
   };
 
   describe('Snapshots', () => {
-    test('Should match existing snapshot when given no data.', () => {
+    it('Should match existing snapshot when given no data.', () => {
       expect(toJson(shallow(<PredictedContactMap />))).toMatchSnapshot();
     });
 
-    test('Should match existing snapshot when given empty data.', () => {
+    it('Should match existing snapshot when given empty data.', () => {
       expect(toJson(shallow(<PredictedContactMap data={emptyData} />))).toMatchSnapshot();
     });
 
-    test('Should match snapshot when locked residues are added.', async () => {
+    it('Should match snapshot when locked residues are added.', async () => {
       const wrapper = await shallow(<PredictedContactMap />);
       const expectedSelectedPoints = {
         '37,46': [37, 46],
@@ -75,7 +75,7 @@ describe('PredictedContactMap', () => {
     });
   });
 
-  test('Should update linear distance filter when appropriate slider is updated.', () => {
+  it('Should update linear distance filter when appropriate slider is updated.', () => {
     const wrapper = shallow(<PredictedContactMap data={sampleData} />);
     const instance = wrapper.instance() as PredictedContactMapClass;
     const expected = 10;
@@ -85,7 +85,7 @@ describe('PredictedContactMap', () => {
     expect(instance.state.linearDistFilter).toBe(expected);
   });
 
-  test('Should update number of predicted contacts to show when appropriate slider is updated.', () => {
+  it('Should update number of predicted contacts to show when appropriate slider is updated.', () => {
     const wrapper = shallow(<PredictedContactMap data={sampleData} />);
     const instance = wrapper.instance() as PredictedContactMapClass;
     const expectedCount = 50;
@@ -95,7 +95,7 @@ describe('PredictedContactMap', () => {
     expect(instance.state.numPredictionsToShow).toBe(expectedCount);
   });
 
-  test('Should update # of predicted contacts to show when appropriate slider is updated.', () => {
+  it('Should update # of predicted contacts to show when appropriate slider is updated.', () => {
     const wrapper = shallow(<PredictedContactMap data={sampleData} />);
     const instance = wrapper.instance() as PredictedContactMapClass;
     const expected = 20;
@@ -105,7 +105,7 @@ describe('PredictedContactMap', () => {
     expect(instance.state.numPredictionsToShow).toBe(expected);
   });
 
-  test('Should update chain length when new data is provided.', () => {
+  it('Should update chain length when new data is provided.', () => {
     const expected = 57;
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);
     expect(wrapper.state().numPredictionsToShow).not.toBe(expected);
@@ -115,7 +115,7 @@ describe('PredictedContactMap', () => {
     expect(wrapper.state().chainLength).toBe(expected);
   });
 
-  test('Should update number of predictions to show when new data is provided.', () => {
+  it('Should update number of predictions to show when new data is provided.', () => {
     const expected = 28;
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);
     expect(wrapper.state().numPredictionsToShow).not.toBe(expected);
@@ -125,7 +125,7 @@ describe('PredictedContactMap', () => {
     expect(wrapper.state().numPredictionsToShow).toBe(expected);
   });
 
-  test('Should update number of predictions to show when new value is received.', () => {
+  it('Should update number of predictions to show when new value is received.', () => {
     const expected = 28;
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);
     expect(wrapper.state().numPredictionsToShow).not.toBe(expected);
@@ -135,7 +135,7 @@ describe('PredictedContactMap', () => {
     expect(wrapper.state().numPredictionsToShow).toBe(expected);
   });
 
-  test('Should update points to plot when new data is provided.', () => {
+  it('Should update points to plot when new data is provided.', () => {
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);
     expect(wrapper.state().pointsToPlot).toEqual([]);
     wrapper.setProps({

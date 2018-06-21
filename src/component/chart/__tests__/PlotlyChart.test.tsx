@@ -44,17 +44,17 @@ describe('PlotlyChart', () => {
     (wrapper.instance() as PlotlyChartClass).plotlyCanvas!.dispatchEvent(new Event(event));
   };
 
-  test('Should match existing snapshot when given empty data.', () => {
+  it('Should match existing snapshot when given empty data.', () => {
     const wrapper = mount(<PlotlyChartClass data={[]} />);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  test('Should match existing snapshot when given sample data.', () => {
+  it('Should match existing snapshot when given sample data.', () => {
     const wrapper = mount(<PlotlyChartClass data={sampleData} />);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  test('Should handle callbacks.', () => {
+  it('Should handle callbacks.', () => {
     const spies: IMockDict = {
       onClickSpy: jest.fn(),
       onHoverSpy: jest.fn(),
@@ -81,7 +81,7 @@ describe('PlotlyChart', () => {
     }
   });
 
-  test('Should attach events when the container is attached.', async () => {
+  it('Should attach events when the container is attached.', async () => {
     const spies: IMockDict = {
       onClickSpy: jest.fn(),
       onSelectedSpy: jest.fn(),
@@ -96,7 +96,7 @@ describe('PlotlyChart', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  test('Should call the appropriate callback when the window is resized.', async () => {
+  it('Should call the appropriate callback when the window is resized.', async () => {
     const onResizeSpy = jest.fn();
 
     const wrapper = await getMountedPlotlyChart({ data: sampleData });
@@ -108,7 +108,7 @@ describe('PlotlyChart', () => {
     expect(onResizeSpy).toHaveBeenCalledTimes(1);
   });
 
-  test('Should call the appropriate callback when plotly emits a click event.', async () => {
+  it('Should call the appropriate callback when plotly emits a click event.', async () => {
     const onClickSpy = jest.fn();
     const wrapper = await getMountedPlotlyChart({
       data: sampleData,
@@ -118,7 +118,7 @@ describe('PlotlyChart', () => {
     expect(onClickSpy).toBeCalled();
   });
 
-  test('Should call the appropriate callback when plotly emits a hover event.', async () => {
+  it('Should call the appropriate callback when plotly emits a hover event.', async () => {
     const onHoverSpy = jest.fn();
     const wrapper = await getMountedPlotlyChart({
       data: sampleData,
@@ -128,7 +128,7 @@ describe('PlotlyChart', () => {
     expect(onHoverSpy).toBeCalled();
   });
 
-  test('Should call the appropriate callback when plotly emits a un-hover event.', async () => {
+  it('Should call the appropriate callback when plotly emits a un-hover event.', async () => {
     const onUnHoverSpy = jest.fn();
     const wrapper = await getMountedPlotlyChart({
       data: sampleData,
@@ -138,7 +138,7 @@ describe('PlotlyChart', () => {
     expect(onUnHoverSpy).toBeCalled();
   });
 
-  test('Should call the appropriate callback when plotly emits a selected event.', async () => {
+  it('Should call the appropriate callback when plotly emits a selected event.', async () => {
     const onSelectedSpy = jest.fn();
     const wrapper = await getMountedPlotlyChart({
       data: sampleData,
@@ -148,7 +148,7 @@ describe('PlotlyChart', () => {
     expect(onSelectedSpy).toBeCalled();
   });
 
-  test('Should unmount correctly.', async () => {
+  it('Should unmount correctly.', async () => {
     const wrapper = await getMountedPlotlyChart({
       data: sampleData,
     });
@@ -160,7 +160,7 @@ describe('PlotlyChart', () => {
     expect(chartInstance.plotlyCanvas).toBeNull();
   });
 
-  test('Should not call draw if data is unchanged.', async () => {
+  it('Should not call draw if data is unchanged.', async () => {
     const wrapper = await getMountedPlotlyChart({
       data: sampleData,
     });
@@ -176,7 +176,7 @@ describe('PlotlyChart', () => {
     expect(drawSpy).toHaveBeenCalledTimes(0);
   });
 
-  test('Should call draw when data is updated.', async () => {
+  it('Should call draw when data is updated.', async () => {
     const wrapper = await getMountedPlotlyChart({
       data: sampleData,
     });
@@ -192,7 +192,7 @@ describe('PlotlyChart', () => {
     expect(drawSpy).toHaveBeenCalledTimes(1);
   });
 
-  test('Should call draw when layout is updated.', async () => {
+  it('Should call draw when layout is updated.', async () => {
     const wrapper = await getMountedPlotlyChart({
       data: sampleData,
     });
@@ -210,7 +210,7 @@ describe('PlotlyChart', () => {
     expect(drawSpy).toHaveBeenCalledTimes(1);
   });
 
-  test('Should call draw when config is updated.', async () => {
+  it('Should call draw when config is updated.', async () => {
     const wrapper = await getMountedPlotlyChart({
       data: sampleData,
     });

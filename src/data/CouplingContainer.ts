@@ -25,8 +25,8 @@ export class CouplingContainer {
     return this.contacts;
   }
 
-  public includes = (searchElement: ICouplingScore, fromIndex?: number | undefined) =>
-    this.contacts[Math.min(searchElement.i, searchElement.j)][Math.max(searchElement.i, searchElement.j)] !== undefined;
+  public includes = (firstRes: number, secondRes: number) =>
+    this.contacts[Math.min(firstRes, secondRes)][Math.max(firstRes, secondRes)] !== undefined;
 
   public getObservedContacts(distFilter: number): ICouplingScore[] {
     const result = new Array<ICouplingScore>();
@@ -70,11 +70,11 @@ export class CouplingContainer {
     const { i, j } = score;
     const minResidueIndex = Math.min(i, j);
     const maxResidueIndex = Math.max(i, j);
-    this.contactsLength++;
     if (!this.contacts[minResidueIndex]) {
       this.contacts[minResidueIndex] = new Array<ICouplingScore>();
     }
     if (!this.contacts[minResidueIndex][maxResidueIndex]) {
+      this.contactsLength++;
       this.contacts[minResidueIndex][maxResidueIndex] = score;
       this.rankedContacts.push(score);
       this.maxResidueIndex = Math.max(maxResidueIndex, this.maxResidueIndex);

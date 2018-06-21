@@ -15,14 +15,14 @@ describe('VizPanelContainer', () => {
     );
   });
 
-  test('Should match existing snapshot when given a single visualization panel to render.', async () => {
+  it('Should match existing snapshot when given a single visualization panel to render.', async () => {
     const wrapper = await shallow(
       <VizPanelContainer dataDirs={[]} initialVisualizations={[]} numPanels={1} supportedVisualizations={[]} />,
     ).update();
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  test('Should match existing snapshot when given multiple visualizations to render.', () => {
+  it('Should match existing snapshot when given multiple visualizations to render.', () => {
     const visualizations = [VIZ_TYPE.CONTACT_MAP, VIZ_TYPE.NGL];
 
     expect(
@@ -39,7 +39,7 @@ describe('VizPanelContainer', () => {
     ).toMatchSnapshot();
   });
 
-  test('Should fetch new data when selected directory changes.', async () => {
+  it('Should fetch new data when selected directory changes.', async () => {
     const visualizations = [VIZ_TYPE.CONTACT_MAP];
     const wrapper = shallow(
       <VizPanelContainer
@@ -60,7 +60,7 @@ describe('VizPanelContainer', () => {
     expect(instance.state.data).not.toBe(initialData);
   });
 
-  test('Should not fetch new data if selected directory is the same.', async () => {
+  it('Should not fetch new data if selected directory is the same.', async () => {
     const visualizations = [VIZ_TYPE.CONTACT_MAP];
     const wrapper = await shallow(
       <VizPanelContainer
@@ -81,7 +81,7 @@ describe('VizPanelContainer', () => {
     expect(instance.state.data).toBe(initialData);
   });
 
-  test('Should update the state when the directory dropdown changes.', async () => {
+  it('Should update the state when the directory dropdown changes.', async () => {
     const wrapper = await shallow(
       <VizPanelContainer
         dataDirs={['first', 'second']}

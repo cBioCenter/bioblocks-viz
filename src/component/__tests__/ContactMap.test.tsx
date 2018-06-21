@@ -118,25 +118,25 @@ describe('ContactMap', () => {
   };
 
   describe('Snapshots', () => {
-    test('Should match existing snapshot when given no data.', () => {
+    it('Should match existing snapshot when given no data.', () => {
       expect(toJson(shallow(<ContactMap />))).toMatchSnapshot();
     });
 
-    test('Should match existing snapshot when given empty data.', () => {
+    it('Should match existing snapshot when given empty data.', () => {
       expect(toJson(shallow(<ContactMap data={emptyData} />))).toMatchSnapshot();
     });
 
-    test('Should match existing snapshot when given sample data and sliders are _not_ enabled.', () => {
+    it('Should match existing snapshot when given sample data and sliders are _not_ enabled.', () => {
       const component = Renderer.create(<ContactMap data={sampleData} enableSliders={false} />);
       expect(component.toJSON()).toMatchSnapshot();
     });
 
-    test('Should match existing snapshot when given sample data and sliders are enabled.', () => {
+    it('Should match existing snapshot when given sample data and sliders are enabled.', () => {
       const component = Renderer.create(<ContactMap data={sampleData} enableSliders={true} />);
       expect(component.toJSON()).toMatchSnapshot();
     });
 
-    test('Should match snapshot when locked residues are added.', async () => {
+    it('Should match snapshot when locked residues are added.', async () => {
       const wrapper = await getMountedContactMap({ data: sampleData });
       const expectedSelectedPoints = new Map(
         Object.entries({
@@ -152,7 +152,7 @@ describe('ContactMap', () => {
     });
   });
 
-  test('Should invoke callback to add locked residues when a click event is fired.', async () => {
+  it('Should invoke callback to add locked residues when a click event is fired.', async () => {
     const onClickSpy = jest.fn();
     const wrapper = await getMountedContactMap({ toggleLockedResiduePair: onClickSpy, data: sampleData });
     dispatchPlotlyEvent(wrapper, 'plotly_click');
@@ -160,7 +160,7 @@ describe('ContactMap', () => {
     expect(onClickSpy).toHaveBeenCalledTimes(1);
   });
 
-  test('Should invoke callback to add hovered residues when a click event is fired.', async () => {
+  it('Should invoke callback to add hovered residues when a click event is fired.', async () => {
     const onHoverSpy = jest.fn();
     const wrapper = await getMountedContactMap({ addHoveredResidues: onHoverSpy, data: sampleData });
     dispatchPlotlyEvent(wrapper, 'plotly_hover');
@@ -168,14 +168,14 @@ describe('ContactMap', () => {
     expect(onHoverSpy).toHaveBeenCalledTimes(1);
   });
 
-  test('Should invoke callback for selected residues when a click event is fired.', async () => {
+  it('Should invoke callback for selected residues when a click event is fired.', async () => {
     const onSelectedSpy = jest.fn();
     const wrapper = await getMountedContactMap({ data: sampleData, onBoxSelection: onSelectedSpy });
     dispatchPlotlyEvent(wrapper, 'plotly_selected');
     expect(onSelectedSpy).toHaveBeenLastCalledWith([0]);
   });
 
-  test('Should clear state if new data is given.', async () => {
+  it('Should clear state if new data is given.', async () => {
     const onClearResidueSpy = jest.fn();
     const wrapper = await getMountedContactMap({ clearAllResidues: onClearResidueSpy, data: sampleData });
     await wrapper.update();
@@ -187,7 +187,7 @@ describe('ContactMap', () => {
   });
 
   describe('Configuration', () => {
-    test('Should update the state when the configuration accordion is clicked.', () => {
+    it('Should update the state when the configuration accordion is clicked.', () => {
       const wrapper = getShallowContactMap({ data: sampleData, enableSliders: true });
       const instance = wrapper.instance() as ContactMapClass;
       const initialState = instance.state.showConfiguration;
@@ -198,7 +198,7 @@ describe('ContactMap', () => {
       expect(instance.state.showConfiguration).toBe(!initialState);
     });
 
-    test('Should update node size when appropriate slider is updated.', () => {
+    it('Should update node size when appropriate slider is updated.', () => {
       const wrapper = getShallowContactMap({ data: sampleData, enableSliders: true });
       const setStateSpy = jest.fn();
       wrapper.instance().setState = setStateSpy;
@@ -212,7 +212,7 @@ describe('ContactMap', () => {
       expect(newState[0].pointsToPlot[0].nodeSize).toBe(expectedSize);
     });
 
-    test('Should match existing snapshot when given configurations.', () => {
+    it('Should match existing snapshot when given configurations.', () => {
       const configurations = [
         {
           name: 'sample',
@@ -228,7 +228,7 @@ describe('ContactMap', () => {
       expect(toJson(wrapper)).toMatchSnapshot();
     });
 
-    test('Should invoke appropriate configuration callback.', () => {
+    it('Should invoke appropriate configuration callback.', () => {
       const onChangeSpy = jest.fn();
       const expectedValue = 7;
       const configurations = [
