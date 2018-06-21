@@ -3,7 +3,6 @@ import { fetchCSVFile, fetchJSONFile } from './FetchHelper';
 
 import * as NGL from 'ngl';
 import { ISpringCategoricalColorData, ISpringCategoricalColorDataInput, ISpringGraphData } from 'spring';
-// import { Vector3 } from 'three';
 import { CONTACT_MAP_DATA_TYPE, IContactMapData, ICouplingScore, VIZ_TYPE } from '../data/chell-data';
 
 export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
@@ -15,7 +14,7 @@ export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
     case VIZ_TYPE.NGL:
       return fetchNGLDataFromDirectory(dataDir);
     case VIZ_TYPE.CONTACT_MAP:
-      return fetchContactMapDataWithNGL(dataDir);
+      return fetchContactMapData(dataDir);
     default:
       return Promise.reject({ error: `Currently no appropriate data getter for ${viz}` });
   }
@@ -159,23 +158,107 @@ export const fetchNGLDataFromFile = async (file: string) => {
   return (await NGL.autoLoad(file)) as NGL.Structure;
 };
 
-export const fetchContactMapDataWithNGL = async (dir: string): Promise<IContactMapData> => {
+export const fetchContactMapDataWithNGL = async (
+  dir: string,
+  measureProximity: 'nearest' | 'c-alpha',
+): Promise<IContactMapData> => {
   const contactMapData = await fetchContactMapData(dir);
   const nglData = await fetchNGLDataFromDirectory(dir);
 
-  console.log(nglData.atomStore);
-  console.log(nglData.atomMap);
-  console.log(nglData.atomSet);
-  contactMapData.couplingScores.forEach(score => {
-    // const { i, j } = score;
-    // const firstVector = new Vector3(nglData.atomStore.x[i], nglData.atomStore.y[i], nglData.atomStore.z[i]);
-    // const secondVector = new Vector3(nglData.atomStore.x[j], nglData.atomStore.y[j], nglData.atomStore.z[j]);
-    // console.log(`Distance between resno ${i} and ${j} is ${dist}`);
-  });
+  const offset = nglData.residueStore.resno[0];
+  const alphaId = nglData.atomMap.dict['CA|C'];
+
   nglData.eachResidue(outerResidue => {
-    console.log(outerResidue);
+    nglData.eachResidue(innerResidue => {
+      if (outerResidue.resno !== innerResidue.resno) {
+        const firstResidueIndex = outerResidue.resno - offset;
+        const secondResidueIndex = innerResidue.resno - offset;
+        let firstAtomIndex = nglData.residueStore.atomOffset[firstResidueIndex];
+        let secondAtomIndex = nglData.residueStore.atomOffset[secondResidueIndex];
+
+        if (measureProximity === 'c-alpha') {
+          firstAtomIndex = getCAlphaAtomIndexFromResidue(nglData, firstResidueIndex, alphaId);
+          secondAtomIndex = getCAlphaAtomIndexFromResidue(nglData, secondResidueIndex, alphaId);
+          const dist = nglData.getAtomProxy(firstAtomIndex).distanceTo(nglData.getAtomProxy(secondAtomIndex));
+          const existingScore = contactMapData.couplingScores.find(
+            score => score.i === outerResidue.resno && score.j === innerResidue.resno,
+          );
+          if (existingScore) {
+            existingScore.dist = dist;
+          } else {
+            contactMapData.couplingScores.push({ i: outerResidue.resno, j: innerResidue.resno, dist });
+          }
+        } else {
+          const firstResCount = nglData.residueStore.atomCount[firstResidueIndex];
+          const secondResCount = nglData.residueStore.atomCount[secondResidueIndex];
+
+          let minDist = Number.MAX_SAFE_INTEGER;
+          for (let firstCounter = 0; firstCounter < firstResCount; ++firstCounter) {
+            for (let secondCounter = 0; secondCounter < secondResCount; ++secondCounter) {
+              minDist = Math.min(
+                minDist,
+                nglData
+                  .getAtomProxy(firstAtomIndex + firstCounter)
+                  .distanceTo(nglData.getAtomProxy(secondAtomIndex + secondCounter)),
+              );
+            }
+          }
+          const existingScore = contactMapData.couplingScores.find(
+            score => score.i === outerResidue.resno && score.j === innerResidue.resno,
+          );
+          if (existingScore) {
+            existingScore.dist = minDist;
+          } else {
+            contactMapData.couplingScores.push({ i: outerResidue.resno, j: innerResidue.resno, dist: minDist });
+          }
+        }
+      }
+    });
+  });
+  contactMapData.couplingScores.forEach(score => {
+    const { i, j } = score;
+    if (!isNaN(score.dist)) {
+      const firstResidueIndex = i - offset;
+      const secondResidueIndex = j - offset;
+      let firstAtomIndex = nglData.residueStore.atomOffset[firstResidueIndex];
+      let secondAtomIndex = nglData.residueStore.atomOffset[secondResidueIndex];
+
+      if (measureProximity === 'c-alpha') {
+        firstAtomIndex = getCAlphaAtomIndexFromResidue(nglData, firstResidueIndex, alphaId);
+        secondAtomIndex = getCAlphaAtomIndexFromResidue(nglData, secondResidueIndex, alphaId);
+        score.dist = nglData.getAtomProxy(firstAtomIndex).distanceTo(nglData.getAtomProxy(secondAtomIndex));
+      } else {
+        const firstResCount = nglData.residueStore.atomCount[firstResidueIndex];
+        const secondResCount = nglData.residueStore.atomCount[secondResidueIndex];
+
+        let minDist = Number.MAX_SAFE_INTEGER;
+        for (let firstCounter = 0; firstCounter < firstResCount; ++firstCounter) {
+          for (let secondCounter = 0; secondCounter < secondResCount; ++secondCounter) {
+            minDist = Math.min(
+              minDist,
+              nglData
+                .getAtomProxy(firstAtomIndex + firstCounter)
+                .distanceTo(nglData.getAtomProxy(secondAtomIndex + secondCounter)),
+            );
+          }
+        }
+        score.dist = minDist;
+      }
+    }
   });
   return contactMapData;
+};
+
+const getCAlphaAtomIndexFromResidue = (nglData: NGL.Structure, residueIndex: number, alphaId: number) => {
+  const atomOffset = nglData.residueStore.atomOffset[residueIndex];
+  const atomCount = nglData.residueStore.atomCount[residueIndex];
+
+  let result = atomOffset;
+  while (nglData.residueStore.residueTypeId[result] !== alphaId && result < atomOffset + atomCount) {
+    result++;
+  }
+
+  return result;
 };
 
 export const fetchContactMapData = async (dir: string): Promise<IContactMapData> => {
