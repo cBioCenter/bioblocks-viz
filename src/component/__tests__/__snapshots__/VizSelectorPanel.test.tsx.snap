@@ -41,7 +41,14 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
       correctColor="#ff0000"
       data={
         Object {
-          "couplingScores": Array [],
+          "couplingScores": CouplingContainer {
+            "contacts": Array [],
+            "contactsLength": 0,
+            "getCouplingScore": [Function],
+            "includes": [Function],
+            "maxResidueIndex": 0,
+            "rankedContacts": Array [],
+          },
           "secondaryStructures": Array [],
         }
       }

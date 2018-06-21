@@ -4,6 +4,7 @@
 // TypeScript Version: 2.8
 import { Structure } from 'ngl';
 import { ISpringGraphData } from 'spring';
+import { CouplingContainer } from './CouplingContainer';
 
 export type CONTACT_MAP_DATA_TYPE = IContactMapData;
 export type NGL_DATA_TYPE = Structure;
@@ -25,7 +26,7 @@ export enum VIZ_TYPE {
 }
 
 export interface IContactMapData {
-  couplingScores: ICouplingScore[];
+  couplingScores: CouplingContainer;
   secondaryStructures: ISecondaryStructureData[];
 }
 

@@ -1,9 +1,10 @@
 import { ISecondaryStructureData, SECONDARY_STRUCTURE_CODES } from './../data/chell-data';
+import { CouplingContainer } from './../data/CouplingContainer';
 import { fetchCSVFile, fetchJSONFile } from './FetchHelper';
 
 import * as NGL from 'ngl';
 import { ISpringCategoricalColorData, ISpringCategoricalColorDataInput, ISpringGraphData } from 'spring';
-import { CONTACT_MAP_DATA_TYPE, IContactMapData, ICouplingScore, VIZ_TYPE } from '../data/chell-data';
+import { CONTACT_MAP_DATA_TYPE, IContactMapData, VIZ_TYPE } from '../data/chell-data';
 
 export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
   switch (viz) {
@@ -15,6 +16,7 @@ export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
       return fetchNGLDataFromDirectory(dataDir);
     case VIZ_TYPE.CONTACT_MAP:
       return fetchContactMapData(dataDir);
+    // return fetchContactMapDataWithNGL(dataDir, 'nearest');
     default:
       return Promise.reject({ error: `Currently no appropriate data getter for ${viz}` });
   }
@@ -169,82 +171,33 @@ export const fetchContactMapDataWithNGL = async (
   const alphaId = nglData.atomMap.dict['CA|C'];
 
   nglData.eachResidue(outerResidue => {
+    const firstResidueIndex = outerResidue.resno - offset;
     nglData.eachResidue(innerResidue => {
-      if (outerResidue.resno !== innerResidue.resno) {
-        const firstResidueIndex = outerResidue.resno - offset;
+      if (
+        outerResidue.resno <= contactMapData.couplingScores.chainLength &&
+        innerResidue.resno <= contactMapData.couplingScores.chainLength
+      ) {
         const secondResidueIndex = innerResidue.resno - offset;
-        let firstAtomIndex = nglData.residueStore.atomOffset[firstResidueIndex];
-        let secondAtomIndex = nglData.residueStore.atomOffset[secondResidueIndex];
 
         if (measureProximity === 'c-alpha') {
-          firstAtomIndex = getCAlphaAtomIndexFromResidue(nglData, firstResidueIndex, alphaId);
-          secondAtomIndex = getCAlphaAtomIndexFromResidue(nglData, secondResidueIndex, alphaId);
-          const dist = nglData.getAtomProxy(firstAtomIndex).distanceTo(nglData.getAtomProxy(secondAtomIndex));
-          const existingScore = contactMapData.couplingScores.find(
-            score => score.i === outerResidue.resno && score.j === innerResidue.resno,
-          );
-          if (existingScore) {
-            existingScore.dist = dist;
-          } else {
-            contactMapData.couplingScores.push({ i: outerResidue.resno, j: innerResidue.resno, dist });
-          }
+          const firstResidueCAlphaIndex = getCAlphaAtomIndexFromResidue(nglData, firstResidueIndex, alphaId);
+          const secondResidueCAlphaIndex = getCAlphaAtomIndexFromResidue(nglData, secondResidueIndex, alphaId);
+          contactMapData.couplingScores.addCouplingScore({
+            dist: nglData
+              .getAtomProxy(firstResidueCAlphaIndex)
+              .distanceTo(nglData.getAtomProxy(secondResidueCAlphaIndex)),
+            i: outerResidue.resno,
+            j: innerResidue.resno,
+          });
         } else {
-          const firstResCount = nglData.residueStore.atomCount[firstResidueIndex];
-          const secondResCount = nglData.residueStore.atomCount[secondResidueIndex];
-
-          let minDist = Number.MAX_SAFE_INTEGER;
-          for (let firstCounter = 0; firstCounter < firstResCount; ++firstCounter) {
-            for (let secondCounter = 0; secondCounter < secondResCount; ++secondCounter) {
-              minDist = Math.min(
-                minDist,
-                nglData
-                  .getAtomProxy(firstAtomIndex + firstCounter)
-                  .distanceTo(nglData.getAtomProxy(secondAtomIndex + secondCounter)),
-              );
-            }
-          }
-          const existingScore = contactMapData.couplingScores.find(
-            score => score.i === outerResidue.resno && score.j === innerResidue.resno,
-          );
-          if (existingScore) {
-            existingScore.dist = minDist;
-          } else {
-            contactMapData.couplingScores.push({ i: outerResidue.resno, j: innerResidue.resno, dist: minDist });
-          }
+          contactMapData.couplingScores.addCouplingScore({
+            dist: getMinDistBetweenResidues(nglData, firstResidueIndex, secondResidueIndex),
+            i: outerResidue.resno,
+            j: innerResidue.resno,
+          });
         }
       }
     });
-  });
-  contactMapData.couplingScores.forEach(score => {
-    const { i, j } = score;
-    if (!isNaN(score.dist)) {
-      const firstResidueIndex = i - offset;
-      const secondResidueIndex = j - offset;
-      let firstAtomIndex = nglData.residueStore.atomOffset[firstResidueIndex];
-      let secondAtomIndex = nglData.residueStore.atomOffset[secondResidueIndex];
-
-      if (measureProximity === 'c-alpha') {
-        firstAtomIndex = getCAlphaAtomIndexFromResidue(nglData, firstResidueIndex, alphaId);
-        secondAtomIndex = getCAlphaAtomIndexFromResidue(nglData, secondResidueIndex, alphaId);
-        score.dist = nglData.getAtomProxy(firstAtomIndex).distanceTo(nglData.getAtomProxy(secondAtomIndex));
-      } else {
-        const firstResCount = nglData.residueStore.atomCount[firstResidueIndex];
-        const secondResCount = nglData.residueStore.atomCount[secondResidueIndex];
-
-        let minDist = Number.MAX_SAFE_INTEGER;
-        for (let firstCounter = 0; firstCounter < firstResCount; ++firstCounter) {
-          for (let secondCounter = 0; secondCounter < secondResCount; ++secondCounter) {
-            minDist = Math.min(
-              minDist,
-              nglData
-                .getAtomProxy(firstAtomIndex + firstCounter)
-                .distanceTo(nglData.getAtomProxy(secondAtomIndex + secondCounter)),
-            );
-          }
-        }
-        score.dist = minDist;
-      }
-    }
   });
   return contactMapData;
 };
@@ -259,6 +212,26 @@ const getCAlphaAtomIndexFromResidue = (nglData: NGL.Structure, residueIndex: num
   }
 
   return result;
+};
+
+const getMinDistBetweenResidues = (nglData: NGL.Structure, firstResidueIndex: number, secondResidueIndex: number) => {
+  const firstResCount = nglData.residueStore.atomCount[firstResidueIndex];
+  const secondResCount = nglData.residueStore.atomCount[secondResidueIndex];
+  const firstAtomIndex = nglData.residueStore.atomOffset[firstResidueIndex];
+  const secondAtomIndex = nglData.residueStore.atomOffset[secondResidueIndex];
+
+  let minDist = Number.MAX_SAFE_INTEGER;
+  for (let firstCounter = 0; firstCounter < firstResCount; ++firstCounter) {
+    for (let secondCounter = 0; secondCounter < secondResCount; ++secondCounter) {
+      minDist = Math.min(
+        minDist,
+        nglData
+          .getAtomProxy(firstAtomIndex + firstCounter)
+          .distanceTo(nglData.getAtomProxy(secondAtomIndex + secondCounter)),
+      );
+    }
+  }
+  return minDist;
 };
 
 export const fetchContactMapData = async (dir: string): Promise<IContactMapData> => {
@@ -286,14 +259,15 @@ export const fetchContactMapData = async (dir: string): Promise<IContactMapData>
  * @param line The csv file as a single string.
  * @returns Array of CouplingScores suitable for chell-viz consumption.
  */
-export const getCouplingScoresData = (line: string): ICouplingScore[] => {
-  return line
+export const getCouplingScoresData = (line: string): CouplingContainer => {
+  const couplingScores = new CouplingContainer();
+  line
     .split('\n')
     .slice(1)
     .filter(row => row.split(',').length >= 13)
     .map(row => {
       const items = row.split(',');
-      return {
+      couplingScores.addCouplingScore({
         i: parseFloat(items[0]),
         // tslint:disable-next-line:object-literal-sort-keys
         A_i: items[1],
@@ -308,8 +282,9 @@ export const getCouplingScoresData = (line: string): ICouplingScore[] => {
         dist_multimer: parseFloat(items[10]),
         dist: parseFloat(items[11]),
         precision: parseFloat(items[12]),
-      };
+      });
     });
+  return couplingScores;
 };
 
 /**

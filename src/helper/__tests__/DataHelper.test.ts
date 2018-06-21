@@ -1,5 +1,6 @@
 import * as fetchMock from 'jest-fetch-mock';
-import { SPRING_DATA_TYPE, VIZ_TYPE } from '../../data/chell-data';
+import { IContactMapData, SPRING_DATA_TYPE, VIZ_TYPE } from '../../data/chell-data';
+import { CouplingContainer } from '../../data/CouplingContainer';
 import { fetchAppropriateData, getCouplingScoresData, getSecondaryStructureData } from '../DataHelper';
 
 describe('DataHelper', () => {
@@ -18,11 +19,13 @@ describe('DataHelper', () => {
   describe('Contact Map', () => {
     test('Should return empty data for an incorrect location.', async () => {
       const expected = {
-        couplingScores: [],
+        couplingScores: new CouplingContainer(),
         secondaryStructures: [],
       };
       fetchMock.mockResponse(JSON.stringify(expected));
-      await expect(fetchAppropriateData(VIZ_TYPE.CONTACT_MAP, '')).resolves.toEqual(expected);
+      const result = (await fetchAppropriateData(VIZ_TYPE.CONTACT_MAP, '')) as IContactMapData;
+      expect(result.couplingScores.allContacts).toEqual(expected.couplingScores.allContacts);
+      expect(result.secondaryStructures).toEqual(expected.secondaryStructures);
     });
 
     const couplingScoresCsv =
@@ -68,12 +71,14 @@ describe('DataHelper', () => {
 
     test('Should parse contact monomer data correctly.', () => {
       const data = getCouplingScoresData(couplingScoresCsv);
-      expect(data).toEqual([firstScore, secondScore]);
+      const expected = new CouplingContainer([firstScore, secondScore]);
+      expect(data.allContacts).toEqual(expected.allContacts);
     });
 
     test('Should parse contact monomer data correctly when csv file has newline.', () => {
       const data = getCouplingScoresData(couplingScoresCsvWithNewline);
-      expect(data).toEqual([firstScore, secondScore]);
+      const expected = new CouplingContainer([firstScore, secondScore]);
+      expect(data.allContacts).toEqual(expected.allContacts);
     });
 
     const secondaryStructureCsv = ',id,sec_struct_3state\n\

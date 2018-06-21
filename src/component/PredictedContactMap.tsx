@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { initialResidueContext } from '../context/ResidueContext';
-import { IContactMapData, ICouplingScore } from '../data/chell-data';
+import { IContactMapData } from '../data/chell-data';
+import { CouplingContainer } from '../data/CouplingContainer';
 import { withDefaultProps } from '../helper/ReactHelper';
 import { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';
 import ContactMap, { IContactMapConfiguration } from './ContactMap';
@@ -8,7 +9,7 @@ import ContactMap, { IContactMapConfiguration } from './ContactMap';
 export const defaultPredictedContactMapProps = {
   correctColor: '#ff0000',
   data: {
-    couplingScores: [],
+    couplingScores: new CouplingContainer(),
     secondaryStructures: [],
   } as IContactMapData,
   height: 400,
@@ -38,8 +39,6 @@ export class PredictedContactMapClass extends React.Component<PredictedContactMa
    * @param [actualDistFilter=5] For each score, if dist <= linearDistFilter, it is considered observed.
    * @returns Contacts that should be considered observed int he current data set.
    */
-  protected static getObservedContacts = (contacts: ICouplingScore[], actualDistFilter = 5) =>
-    contacts.filter(residuePair => residuePair.dist <= actualDistFilter);
 
   /**
    * Determine which contacts in a set of coupling scores are predicted as well as which are correct.
@@ -50,26 +49,6 @@ export class PredictedContactMapClass extends React.Component<PredictedContactMa
    * @param [measuredContactDistFilter=5]  If the dist for the contact is less than predictionCutoffDist, it is considered correct.
    * @returns The list of correct and incorrect contacts.
    */
-  protected static getPredictedContacts(
-    contacts: ICouplingScore[],
-    totalPredictionsToShow: number,
-    linearDistFilter = 5,
-    measuredContactDistFilter = 5,
-  ) {
-    const result = {
-      correct: new Array<ICouplingScore>(),
-      predicted: new Array<ICouplingScore>(),
-    };
-    for (const contact of contacts
-      .filter(score => Math.abs(score.i - score.j) >= linearDistFilter)
-      .slice(0, totalPredictionsToShow)) {
-      if (contact.dist < measuredContactDistFilter) {
-        result.correct.push(contact);
-      }
-      result.predicted.push(contact);
-    }
-    return result;
-  }
 
   public readonly state: PredictedContactMapState = initialPredictedContactMapState;
 
@@ -99,16 +78,10 @@ export class PredictedContactMapClass extends React.Component<PredictedContactMa
       measuredContactDistFilter !== prevState.measuredContactDistFilter ||
       numPredictionsToShow !== prevState.numPredictionsToShow;
     if (isRecomputeNeeded) {
-      const chainLength = data.couplingScores.reduce((a, b) => Math.max(a, Math.max(b.i, b.j)), 0);
-      const observedContacts = PredictedContactMapClass.getObservedContacts(
-        data.couplingScores,
-        measuredContactDistFilter,
-      );
-      const allPredictions = PredictedContactMapClass.getPredictedContacts(
-        data.couplingScores,
-        numPredictionsToShow,
-        linearDistFilter,
-      );
+      const { chainLength } = data.couplingScores;
+      const observedContacts = data.couplingScores.getObservedContacts(measuredContactDistFilter);
+
+      const allPredictions = data.couplingScores.getPredictedContacts(numPredictionsToShow, linearDistFilter);
 
       const correctPredictionPercent = (
         (allPredictions.correct.length / allPredictions.predicted.length) *
