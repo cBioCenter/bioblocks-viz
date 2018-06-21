@@ -1,4 +1,4 @@
-import { ISecondaryStructureData, SECONDARY_STRUCTURE_CODES } from './../data/chell-data';
+import { CONTACT_DISTANCE_PROXIMITY, ISecondaryStructureData, SECONDARY_STRUCTURE_CODES } from './../data/chell-data';
 import { CouplingContainer } from './../data/CouplingContainer';
 import { fetchCSVFile, fetchJSONFile } from './FetchHelper';
 
@@ -155,29 +155,25 @@ export const fetchNGLDataFromDirectory = async (dir: string) => {
 
 export const fetchNGLDataFromFile = async (file: string) => (await NGL.autoLoad(file)) as NGL.Structure;
 
-export const fetchContactMapDataWithNGL = async (
-  dir: string,
-  measureProximity: 'nearest' | 'c-alpha',
-): Promise<IContactMapData> => {
-  const contactMapData = await fetchContactMapData(dir);
-  const nglData = await fetchNGLDataFromDirectory(dir);
-
+export const deriveContactWithPDB = (
+  couplingContainer: CouplingContainer,
+  nglData: NGL.Structure,
+  measuredProximity: CONTACT_DISTANCE_PROXIMITY,
+) => {
+  const result = new CouplingContainer(couplingContainer.allContactsRanked);
   const offset = nglData.residueStore.resno[0];
   const alphaId = nglData.atomMap.dict['CA|C'];
 
   nglData.eachResidue(outerResidue => {
     const firstResidueIndex = outerResidue.resno - offset;
     nglData.eachResidue(innerResidue => {
-      if (
-        outerResidue.resno <= contactMapData.couplingScores.chainLength &&
-        innerResidue.resno <= contactMapData.couplingScores.chainLength
-      ) {
+      if (outerResidue.resno <= result.chainLength && innerResidue.resno <= result.chainLength) {
         const secondResidueIndex = innerResidue.resno - offset;
 
-        if (measureProximity === 'c-alpha') {
+        if (measuredProximity === CONTACT_DISTANCE_PROXIMITY.C_ALPHA) {
           const firstResidueCAlphaIndex = getCAlphaAtomIndexFromResidue(nglData, firstResidueIndex, alphaId);
           const secondResidueCAlphaIndex = getCAlphaAtomIndexFromResidue(nglData, secondResidueIndex, alphaId);
-          contactMapData.couplingScores.addCouplingScore({
+          result.addCouplingScore({
             dist: nglData
               .getAtomProxy(firstResidueCAlphaIndex)
               .distanceTo(nglData.getAtomProxy(secondResidueCAlphaIndex)),
@@ -185,7 +181,7 @@ export const fetchContactMapDataWithNGL = async (
             j: innerResidue.resno,
           });
         } else {
-          contactMapData.couplingScores.addCouplingScore({
+          result.addCouplingScore({
             dist: getMinDistBetweenResidues(nglData, firstResidueIndex, secondResidueIndex),
             i: outerResidue.resno,
             j: innerResidue.resno,
@@ -194,7 +190,8 @@ export const fetchContactMapDataWithNGL = async (
       }
     });
   });
-  return contactMapData;
+
+  return result;
 };
 
 const getCAlphaAtomIndexFromResidue = (nglData: NGL.Structure, residueIndex: number, alphaId: number) => {

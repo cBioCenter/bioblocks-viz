@@ -137,6 +137,15 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
     configurations={
       Array [
         Object {
+          "name": "Calculate Distance: Closest Atom - C-Alpha",
+          "onChange": [Function],
+          "values": Object {
+            "current": 0,
+            "max": 1,
+            "min": 0,
+          },
+        },
+        Object {
           "name": "Linear Distance Filter (|i - j|)",
           "onChange": [Function],
           "values": Object {
@@ -193,6 +202,15 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
     configurations={
       Array [
         Object {
+          "name": "Calculate Distance: Closest Atom - C-Alpha",
+          "onChange": [Function],
+          "values": Object {
+            "current": 0,
+            "max": 1,
+            "min": 0,
+          },
+        },
+        Object {
           "name": "Linear Distance Filter (|i - j|)",
           "onChange": [Function],
           "values": Object {
@@ -248,6 +266,15 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
     clearAllResidues={[Function]}
     configurations={
       Array [
+        Object {
+          "name": "Calculate Distance: Closest Atom - C-Alpha",
+          "onChange": [Function],
+          "values": Object {
+            "current": 0,
+            "max": 1,
+            "min": 0,
+          },
+        },
         Object {
           "name": "Linear Distance Filter (|i - j|)",
           "onChange": [Function],

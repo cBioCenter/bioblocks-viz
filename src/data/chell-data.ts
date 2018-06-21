@@ -53,6 +53,11 @@ export interface ICouplingScore {
   precision?: number;
 }
 
+export enum CONTACT_DISTANCE_PROXIMITY {
+  'CLOSEST' = 0,
+  'C_ALPHA' = 1,
+}
+
 export interface ISecondaryStructureData {
   resno: number;
   structId: keyof typeof SECONDARY_STRUCTURE_CODES;

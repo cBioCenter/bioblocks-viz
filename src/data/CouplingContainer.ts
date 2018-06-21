@@ -13,16 +13,20 @@ export class CouplingContainer {
     }
   }
 
-  public get totalContacts() {
-    return this.contactsLength;
+  public get allContacts() {
+    return this.contacts;
   }
 
   public get chainLength() {
     return this.maxResidueIndex;
   }
 
-  public get allContacts() {
-    return this.contacts;
+  public get allContactsRanked() {
+    return this.rankedContacts;
+  }
+
+  public get totalContacts() {
+    return this.contactsLength;
   }
 
   public includes = (firstRes: number, secondRes: number) =>

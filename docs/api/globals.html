@@ -76,6 +76,7 @@
 						<section class="tsd-index-section ">
 							<h3>Enumerations</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-enum"><a href="enums/contact_distance_proximity.html" class="tsd-kind-icon">CONTACT_<wbr>DISTANCE_<wbr>PROXIMITY</a></li>
 								<li class="tsd-kind-enum"><a href="enums/plotly_chart_type.html" class="tsd-kind-icon">PLOTLY_<wbr>CHART_<wbr>TYPE</a></li>
 								<li class="tsd-kind-enum"><a href="enums/secondary_structure_codes.html" class="tsd-kind-icon">SECONDARY_<wbr>STRUCTURE_<wbr>CODES</a></li>
 								<li class="tsd-kind-enum"><a href="enums/viz_type.html" class="tsd-kind-icon">VIZ_<wbr>TYPE</a></li>
@@ -181,12 +182,12 @@
 								<li class="tsd-kind-function"><a href="globals.html#springcomponent" class="tsd-kind-icon">Spring<wbr>Component</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#createballstickrepresentation" class="tsd-kind-icon">create<wbr>Ball<wbr>Stick<wbr>Representation</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#createdistancerepresentation" class="tsd-kind-icon">create<wbr>Distance<wbr>Representation</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#derivecontactwithpdb" class="tsd-kind-icon">derive<wbr>Contact<wbr>WithPDB</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#derivespringdata" class="tsd-kind-icon">derive<wbr>Spring<wbr>Data</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#fetchappropriatedata" class="tsd-kind-icon">fetch<wbr>Appropriate<wbr>Data</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#fetchcsvfile" class="tsd-kind-icon">fetchCSVFile</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#fetchcategoricalcolordata" class="tsd-kind-icon">fetch<wbr>Categorical<wbr>Color<wbr>Data</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#fetchcontactmapdata" class="tsd-kind-icon">fetch<wbr>Contact<wbr>Map<wbr>Data</a></li>
-								<li class="tsd-kind-function"><a href="globals.html#fetchcontactmapdatawithngl" class="tsd-kind-icon">fetch<wbr>Contact<wbr>Map<wbr>Data<wbr>WithNGL</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#fetchgraphdata" class="tsd-kind-icon">fetch<wbr>Graph<wbr>Data</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#fetchjsonfile" class="tsd-kind-icon">fetchJSONFile</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#fetchngldatafromdirectory" class="tsd-kind-icon">fetchNGLData<wbr>From<wbr>Directory</a></li>
@@ -453,7 +454,7 @@
 					<div class="tsd-signature tsd-kind-icon">Predicted<wbr>Contact<wbr>Map<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/PredictedContactMap.tsx:31</li>
+							<li>Defined in src/component/PredictedContactMap.tsx:33</li>
 						</ul>
 					</aside>
 				</section>
@@ -463,7 +464,7 @@
 					<div class="tsd-signature tsd-kind-icon">Predicted<wbr>Contact<wbr>Map<wbr>State<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/PredictedContactMap.tsx:32</li>
+							<li>Defined in src/component/PredictedContactMap.tsx:34</li>
 						</ul>
 					</aside>
 				</section>
@@ -648,7 +649,7 @@
 					<div class="tsd-signature tsd-kind-icon">Predicted<wbr>Contact<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultPredictedContactMapProps, PredictedContactMapClass)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/PredictedContactMap.tsx:163</li>
+							<li>Defined in src/component/PredictedContactMap.tsx:188</li>
 						</ul>
 					</aside>
 				</section>
@@ -862,6 +863,35 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="derivecontactwithpdb" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> derive<wbr>Contact<wbr>WithPDB</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">derive<wbr>Contact<wbr>WithPDB<span class="tsd-signature-symbol">(</span>couplingContainer<span class="tsd-signature-symbol">: </span><a href="classes/couplingcontainer.html" class="tsd-signature-type">CouplingContainer</a>, nglData<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NGL.Structure</span>, measuredProximity<span class="tsd-signature-symbol">: </span><a href="enums/contact_distance_proximity.html" class="tsd-signature-type">CONTACT_DISTANCE_PROXIMITY</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/couplingcontainer.html" class="tsd-signature-type">CouplingContainer</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/helper/DataHelper.ts:158</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>couplingContainer: <a href="classes/couplingcontainer.html" class="tsd-signature-type">CouplingContainer</a></h5>
+								</li>
+								<li>
+									<h5>nglData: <span class="tsd-signature-type">NGL.Structure</span></h5>
+								</li>
+								<li>
+									<h5>measuredProximity: <a href="enums/contact_distance_proximity.html" class="tsd-signature-type">CONTACT_DISTANCE_PROXIMITY</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="classes/couplingcontainer.html" class="tsd-signature-type">CouplingContainer</a></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
 					<a name="derivespringdata" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> derive<wbr>Spring<wbr>Data</h3>
@@ -967,39 +997,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:232</li>
+									<li>Defined in src/helper/DataHelper.ts:229</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>dir: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/icontactmapdata.html" class="tsd-signature-type">IContactMapData</a><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="fetchcontactmapdatawithngl" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> fetch<wbr>Contact<wbr>Map<wbr>Data<wbr>WithNGL</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">fetch<wbr>Contact<wbr>Map<wbr>Data<wbr>WithNGL<span class="tsd-signature-symbol">(</span>dir<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, measureProximity<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"nearest"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"c-alpha"</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/icontactmapdata.html" class="tsd-signature-type">IContactMapData</a><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/helper/DataHelper.ts:158</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>dir: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>measureProximity: <span class="tsd-signature-type">"nearest"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"c-alpha"</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/icontactmapdata.html" class="tsd-signature-type">IContactMapData</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -1526,7 +1530,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:200</li>
+									<li>Defined in src/helper/DataHelper.ts:197</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1555,7 +1559,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:265</li>
+									<li>Defined in src/helper/DataHelper.ts:262</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1594,7 +1598,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:212</li>
+									<li>Defined in src/helper/DataHelper.ts:209</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1623,7 +1627,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:306</li>
+									<li>Defined in src/helper/DataHelper.ts:303</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2344,7 +2348,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Predicted<wbr>Contact<wbr>Map<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/PredictedContactMap.tsx:9</li>
+							<li>Defined in src/component/PredictedContactMap.tsx:10</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -2353,7 +2357,7 @@
 						<div class="tsd-signature tsd-kind-icon">correct<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;#ff0000&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/PredictedContactMap.tsx:10</li>
+								<li>Defined in src/component/PredictedContactMap.tsx:11</li>
 							</ul>
 						</aside>
 					</section>
@@ -2363,7 +2367,7 @@
 						<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <a href="interfaces/icontactmapdata.html" class="tsd-signature-type">IContactMapData</a><span class="tsd-signature-symbol"> =&nbsp;{couplingScores: new CouplingContainer(),secondaryStructures: [],} as IContactMapData</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/PredictedContactMap.tsx:11</li>
+								<li>Defined in src/component/PredictedContactMap.tsx:12</li>
 							</ul>
 						</aside>
 					</section>
@@ -2373,7 +2377,7 @@
 						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/PredictedContactMap.tsx:15</li>
+								<li>Defined in src/component/PredictedContactMap.tsx:16</li>
 							</ul>
 						</aside>
 					</section>
@@ -2383,7 +2387,7 @@
 						<div class="tsd-signature tsd-kind-icon">incorrect<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;#000000&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/PredictedContactMap.tsx:16</li>
+								<li>Defined in src/component/PredictedContactMap.tsx:17</li>
 							</ul>
 						</aside>
 					</section>
@@ -2393,7 +2397,7 @@
 						<div class="tsd-signature tsd-kind-icon">observed<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;#0000ff&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/PredictedContactMap.tsx:18</li>
+								<li>Defined in src/component/PredictedContactMap.tsx:19</li>
 							</ul>
 						</aside>
 					</section>
@@ -2403,7 +2407,7 @@
 						<div class="tsd-signature tsd-kind-icon">padding<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/PredictedContactMap.tsx:19</li>
+								<li>Defined in src/component/PredictedContactMap.tsx:20</li>
 							</ul>
 						</aside>
 					</section>
@@ -2413,7 +2417,7 @@
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/PredictedContactMap.tsx:20</li>
+								<li>Defined in src/component/PredictedContactMap.tsx:21</li>
 							</ul>
 						</aside>
 					</section>
@@ -2735,7 +2739,7 @@
 					<div class="tsd-signature tsd-kind-icon">initial<wbr>Predicted<wbr>Contact<wbr>Map<wbr>State<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/PredictedContactMap.tsx:23</li>
+							<li>Defined in src/component/PredictedContactMap.tsx:24</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -2744,7 +2748,7 @@
 						<div class="tsd-signature tsd-kind-icon">chain<wbr>Length<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;-1</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/PredictedContactMap.tsx:24</li>
+								<li>Defined in src/component/PredictedContactMap.tsx:25</li>
 							</ul>
 						</aside>
 					</section>
@@ -2754,7 +2758,7 @@
 						<div class="tsd-signature tsd-kind-icon">linear<wbr>Dist<wbr>Filter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;5</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/PredictedContactMap.tsx:25</li>
+								<li>Defined in src/component/PredictedContactMap.tsx:26</li>
 							</ul>
 						</aside>
 					</section>
@@ -2764,7 +2768,17 @@
 						<div class="tsd-signature tsd-kind-icon">measured<wbr>Contact<wbr>Dist<wbr>Filter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;5</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/PredictedContactMap.tsx:26</li>
+								<li>Defined in src/component/PredictedContactMap.tsx:27</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="initialpredictedcontactmapstate.measuredproximity" class="tsd-anchor"></a>
+						<h3>measured<wbr>Proximity</h3>
+						<div class="tsd-signature tsd-kind-icon">measured<wbr>Proximity<span class="tsd-signature-symbol">:</span> <a href="enums/contact_distance_proximity.html" class="tsd-signature-type">CONTACT_DISTANCE_PROXIMITY</a><span class="tsd-signature-symbol"> =&nbsp;CONTACT_DISTANCE_PROXIMITY.CLOSEST</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/component/PredictedContactMap.tsx:28</li>
 							</ul>
 						</aside>
 					</section>
@@ -2774,7 +2788,7 @@
 						<div class="tsd-signature tsd-kind-icon">num<wbr>Predictions<wbr>ToShow<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;-1</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/PredictedContactMap.tsx:27</li>
+								<li>Defined in src/component/PredictedContactMap.tsx:29</li>
 							</ul>
 						</aside>
 					</section>
@@ -2784,7 +2798,7 @@
 						<div class="tsd-signature tsd-kind-icon">points<wbr>ToPlot<span class="tsd-signature-symbol">:</span> <a href="interfaces/icontactmapchartdata.html" class="tsd-signature-type">IContactMapChartData</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[] as IContactMapChartData[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/PredictedContactMap.tsx:28</li>
+								<li>Defined in src/component/PredictedContactMap.tsx:30</li>
 							</ul>
 						</aside>
 					</section>
@@ -2926,6 +2940,9 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum">
+						<a href="enums/contact_distance_proximity.html" class="tsd-kind-icon">CONTACT_<wbr>DISTANCE_<wbr>PROXIMITY</a>
+					</li>
 					<li class=" tsd-kind-enum">
 						<a href="enums/plotly_chart_type.html" class="tsd-kind-icon">PLOTLY_<wbr>CHART_<wbr>TYPE</a>
 					</li>
@@ -3166,6 +3183,9 @@
 					<li class=" tsd-kind-function">
 						<a href="globals.html#createdistancerepresentation" class="tsd-kind-icon">create<wbr>Distance<wbr>Representation</a>
 					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#derivecontactwithpdb" class="tsd-kind-icon">derive<wbr>Contact<wbr>WithPDB</a>
+					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#derivespringdata" class="tsd-kind-icon">derive<wbr>Spring<wbr>Data</a>
 					</li>
@@ -3180,9 +3200,6 @@
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#fetchcontactmapdata" class="tsd-kind-icon">fetch<wbr>Contact<wbr>Map<wbr>Data</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#fetchcontactmapdatawithngl" class="tsd-kind-icon">fetch<wbr>Contact<wbr>Map<wbr>Data<wbr>WithNGL</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#fetchgraphdata" class="tsd-kind-icon">fetch<wbr>Graph<wbr>Data</a>
