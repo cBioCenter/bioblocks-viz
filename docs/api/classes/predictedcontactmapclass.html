@@ -111,6 +111,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="predictedcontactmapclass.html#forceupdate" class="tsd-kind-icon">force<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="predictedcontactmapclass.html#getcontactmapconfigs" class="tsd-kind-icon">get<wbr>Contact<wbr>Map<wbr>Configs</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="predictedcontactmapclass.html#onlineardistfilterchange" class="tsd-kind-icon">on<wbr>Linear<wbr>Dist<wbr>Filter<wbr>Change</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="predictedcontactmapclass.html#onmeasuredproximitychange" class="tsd-kind-icon">on<wbr>Measured<wbr>Proximity<wbr>Change</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="predictedcontactmapclass.html#onnumpredictionstoshowchange" class="tsd-kind-icon">on<wbr>Num<wbr>Predictions<wbr>ToShow<wbr>Change</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="predictedcontactmapclass.html#render" class="tsd-kind-icon">render</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="predictedcontactmapclass.html#setstate" class="tsd-kind-icon">set<wbr>State</a></li>
@@ -124,8 +125,6 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="predictedcontactmapclass.html#componentwillreceiveprops" class="tsd-kind-icon">component<wbr>Will<wbr>Receive<wbr>Props</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="predictedcontactmapclass.html#componentwillunmount" class="tsd-kind-icon">component<wbr>Will<wbr>Unmount</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="predictedcontactmapclass.html#componentwillupdate" class="tsd-kind-icon">component<wbr>Will<wbr>Update</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-static"><a href="predictedcontactmapclass.html#getobservedcontacts" class="tsd-kind-icon">get<wbr>Observed<wbr>Contacts</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-static"><a href="predictedcontactmapclass.html#getpredictedcontacts" class="tsd-kind-icon">get<wbr>Predicted<wbr>Contacts</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="predictedcontactmapclass.html#getsnapshotbeforeupdate" class="tsd-kind-icon">get<wbr>Snapshot<wbr>Before<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="predictedcontactmapclass.html#shouldcomponentupdate" class="tsd-kind-icon">should<wbr>Component<wbr>Update</a></li>
 							</ul>
@@ -146,7 +145,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/81c10c99/src/component/PredictedContactMap.tsx#L74">src/component/PredictedContactMap.tsx:74</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/56050ab5/src/component/PredictedContactMap.tsx#L55">src/component/PredictedContactMap.tsx:55</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -169,7 +168,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Component.context</p>
 						<ul>
-							<li>Defined in node_modules/@types/react/index.d.ts:302</li>
+							<li>Defined in node_modules/@types/react/index.d.ts:303</li>
 						</ul>
 					</aside>
 				</section>
@@ -180,7 +179,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Component.props</p>
 						<ul>
-							<li>Defined in node_modules/@types/react/index.d.ts:300</li>
+							<li>Defined in node_modules/@types/react/index.d.ts:301</li>
 						</ul>
 					</aside>
 				</section>
@@ -191,7 +190,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Component.refs</p>
 						<ul>
-							<li>Defined in node_modules/@types/react/index.d.ts:303</li>
+							<li>Defined in node_modules/@types/react/index.d.ts:304</li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -210,9 +209,31 @@
 					<aside class="tsd-sources">
 						<p>Overrides Component.state</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/81c10c99/src/component/PredictedContactMap.tsx#L74">src/component/PredictedContactMap.tsx:74</a></li>
+							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/56050ab5/src/component/PredictedContactMap.tsx#L55">src/component/PredictedContactMap.tsx:55</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Determine which contacts in a set of coupling scores are predicted as well as which are correct.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>Set of contacts, usually generated from coupling_scores.csv.</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>How many predictions, max, to return.</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>each score, if |i - j| &gt;= linearDistFilter, it will be a candidate for being correct/incorrect.</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>the dist for the contact is less than predictionCutoffDist, it is considered correct.</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>The list of correct and incorrect contacts.</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -227,7 +248,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/81c10c99/src/component/PredictedContactMap.tsx#L92">src/component/PredictedContactMap.tsx:92</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/56050ab5/src/component/PredictedContactMap.tsx#L82">src/component/PredictedContactMap.tsx:82</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -254,7 +275,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Component.forceUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:292</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:293</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -277,7 +298,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/81c10c99/src/component/PredictedContactMap.tsx#L168">src/component/PredictedContactMap.tsx:168</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/56050ab5/src/component/PredictedContactMap.tsx#L157">src/component/PredictedContactMap.tsx:157</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/icontactmapconfiguration.html" class="tsd-signature-type">IContactMapConfiguration</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -294,7 +315,24 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/81c10c99/src/component/PredictedContactMap.tsx#L80">src/component/PredictedContactMap.tsx:80</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/56050ab5/src/component/PredictedContactMap.tsx#L61">src/component/PredictedContactMap.tsx:61</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">(Anonymous function)</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="onmeasuredproximitychange" class="tsd-anchor"></a>
+					<h3>on<wbr>Measured<wbr>Proximity<wbr>Change</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Measured<wbr>Proximity<wbr>Change<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">(Anonymous function)</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/56050ab5/src/component/PredictedContactMap.tsx#L73">src/component/PredictedContactMap.tsx:73</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">(Anonymous function)</span></h4>
@@ -311,7 +349,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/81c10c99/src/component/PredictedContactMap.tsx#L86">src/component/PredictedContactMap.tsx:86</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/56050ab5/src/component/PredictedContactMap.tsx#L67">src/component/PredictedContactMap.tsx:67</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">(Anonymous function)</span></h4>
@@ -329,7 +367,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.render</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/81c10c99/src/component/PredictedContactMap.tsx#L153">src/component/PredictedContactMap.tsx:153</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/56050ab5/src/component/PredictedContactMap.tsx#L142">src/component/PredictedContactMap.tsx:142</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
@@ -347,7 +385,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Component.setState</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:287</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:288</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -380,7 +418,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.UNSAFE_componentWillMount</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:458</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:459</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -418,7 +456,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.UNSAFE_componentWillReceiveProps</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:490</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:491</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -467,7 +505,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.UNSAFE_componentWillUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:518</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:519</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -517,7 +555,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from ComponentLifecycle.componentDidCatch</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:397</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:398</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -550,7 +588,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from ComponentLifecycle.componentDidMount</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:376</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:377</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -573,7 +611,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from NewLifecycle.componentDidUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:429</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:430</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -609,7 +647,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.componentWillMount</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:444</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:445</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -646,7 +684,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.componentWillReceiveProps</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:473</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:474</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -694,7 +732,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from ComponentLifecycle.componentWillUnmount</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:392</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:393</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -718,7 +756,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.componentWillUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:503</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:504</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -756,95 +794,6 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-static">
-					<a name="getobservedcontacts" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Observed<wbr>Contacts</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Observed<wbr>Contacts<span class="tsd-signature-symbol">(</span>contacts<span class="tsd-signature-symbol">: </span><a href="../interfaces/icouplingscore.html" class="tsd-signature-type">ICouplingScore</a><span class="tsd-signature-symbol">[]</span>, actualDistFilter<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/icouplingscore.html" class="tsd-signature-type">ICouplingScore</a><span class="tsd-signature-symbol">[]</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/81c10c99/src/component/PredictedContactMap.tsx#L41">src/component/PredictedContactMap.tsx:41</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Determine which contacts in a set of coupling scores are observed.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>contacts: <a href="../interfaces/icouplingscore.html" class="tsd-signature-type">ICouplingScore</a><span class="tsd-signature-symbol">[]</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>Set of contacts, usually generated from coupling_scores.csv.</p>
-										</div>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> actualDistFilter: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;5</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/icouplingscore.html" class="tsd-signature-type">ICouplingScore</a><span class="tsd-signature-symbol">[]</span></h4>
-							<p>Contacts that should be considered observed int he current data set.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-static">
-					<a name="getpredictedcontacts" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Predicted<wbr>Contacts</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Predicted<wbr>Contacts<span class="tsd-signature-symbol">(</span>contacts<span class="tsd-signature-symbol">: </span><a href="../interfaces/icouplingscore.html" class="tsd-signature-type">ICouplingScore</a><span class="tsd-signature-symbol">[]</span>, totalPredictionsToShow<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, linearDistFilter<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, measuredContactDistFilter<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/81c10c99/src/component/PredictedContactMap.tsx#L53">src/component/PredictedContactMap.tsx:53</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Determine which contacts in a set of coupling scores are predicted as well as which are correct.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>contacts: <a href="../interfaces/icouplingscore.html" class="tsd-signature-type">ICouplingScore</a><span class="tsd-signature-symbol">[]</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Set of contacts, usually generated from coupling_scores.csv.</p>
-									</div>
-								</li>
-								<li>
-									<h5>totalPredictionsToShow: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>How many predictions, max, to return.</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> linearDistFilter: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;5</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> measuredContactDistFilter: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;5</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
-							<p>The list of correct and incorrect contacts.</p>
-							<ul class="tsd-parameters">
-								<li class="tsd-parameter">
-									<h5>correct<span class="tsd-signature-symbol">: </span><a href="../interfaces/icouplingscore.html" class="tsd-signature-type">ICouplingScore</a><span class="tsd-signature-symbol">[]</span></h5>
-								</li>
-								<li class="tsd-parameter">
-									<h5>predicted<span class="tsd-signature-symbol">: </span><a href="../interfaces/icouplingscore.html" class="tsd-signature-type">ICouplingScore</a><span class="tsd-signature-symbol">[]</span></h5>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
 					<a name="getsnapshotbeforeupdate" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagOptional">Optional</span> get<wbr>Snapshot<wbr>Before<wbr>Update</h3>
@@ -856,7 +805,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from NewLifecycle.getSnapshotBeforeUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:423</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:424</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -895,7 +844,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from ComponentLifecycle.shouldComponentUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:387</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:388</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -969,6 +918,9 @@
 								<a href="predictedcontactmapclass.html#onlineardistfilterchange" class="tsd-kind-icon">on<wbr>Linear<wbr>Dist<wbr>Filter<wbr>Change</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="predictedcontactmapclass.html#onmeasuredproximitychange" class="tsd-kind-icon">on<wbr>Measured<wbr>Proximity<wbr>Change</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="predictedcontactmapclass.html#onnumpredictionstoshowchange" class="tsd-kind-icon">on<wbr>Num<wbr>Predictions<wbr>ToShow<wbr>Change</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
@@ -1006,12 +958,6 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
 								<a href="predictedcontactmapclass.html#componentwillupdate" class="tsd-kind-icon">component<wbr>Will<wbr>Update</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-static">
-								<a href="predictedcontactmapclass.html#getobservedcontacts" class="tsd-kind-icon">get<wbr>Observed<wbr>Contacts</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-static">
-								<a href="predictedcontactmapclass.html#getpredictedcontacts" class="tsd-kind-icon">get<wbr>Predicted<wbr>Contacts</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
 								<a href="predictedcontactmapclass.html#getsnapshotbeforeupdate" class="tsd-kind-icon">get<wbr>Snapshot<wbr>Before<wbr>Update</a>
