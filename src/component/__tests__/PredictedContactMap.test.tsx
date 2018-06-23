@@ -176,4 +176,30 @@ describe('PredictedContactMap', () => {
     expect(wrapper.state().pointsToPlot).not.toEqual([]);
     expect(wrapper.state().pointsToPlot).toMatchSnapshot();
   });
+
+  it('Should update points to plot using closest atom for distance determination.', () => {
+    const wrapper = shallow(<PredictedContactMap data={emptyData} />);
+    expect(wrapper.state().pointsToPlot).toEqual([]);
+    wrapper.setProps({
+      data: sampleDataWithPDB,
+    });
+    wrapper.setState({
+      measuredProximity: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
+    });
+    expect(wrapper.state().pointsToPlot).not.toEqual([]);
+    expect(wrapper.state().pointsToPlot).toMatchSnapshot();
+  });
+
+  it('Should update points to plot using C-Alpha for distance determination.', () => {
+    const wrapper = shallow(<PredictedContactMap data={emptyData} />);
+    expect(wrapper.state().pointsToPlot).toEqual([]);
+    wrapper.setProps({
+      data: sampleDataWithPDB,
+    });
+    wrapper.setState({
+      measuredProximity: CONTACT_DISTANCE_PROXIMITY.C_ALPHA,
+    });
+    expect(wrapper.state().pointsToPlot).not.toEqual([]);
+    expect(wrapper.state().pointsToPlot).toMatchSnapshot();
+  });
 });

@@ -80,8 +80,11 @@ const sampleResidues = [{ resno: 1 }, { resno: 2 }];
       list: [],
     },
     residueStore: {
-      atomCount: [1, 1],
-      atomOffset: [0, 1],
+      atomCount: [2, 2],
+      atomOffset: [0, 2],
+      // We are the priests, of the Temples of Syrinx.
+      // Our great computers fill the hollowed halls.
+      residueTypeId: [2, 1, 1, 2],
       resno: [1, 2],
     },
   };
