@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ILoaderParameters | chell-viz</title>
+	<title>IChellWidgetProps | chell-viz</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_ngl_.html">&quot;ngl&quot;</a>
-				</li>
-				<li>
-					<a href="_ngl_.iloaderparameters.html">ILoaderParameters</a>
+					<a href="ichellwidgetprops.html">IChellWidgetProps</a>
 				</li>
 			</ul>
-			<h1>Interface ILoaderParameters</h1>
+			<h1>Interface IChellWidgetProps</h1>
 		</div>
 	</div>
 </header>
@@ -71,10 +68,13 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ILoaderParameters</span>
+						<span class="target">IChellWidgetProps</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="_ngl_.istageloadfileparams.html" class="tsd-signature-type">IStageLoadFileParams</a>
+								<a href="ichellradiogroupprops.html" class="tsd-signature-type">IChellRadioGroupProps</a>
+							</li>
+							<li>
+								<a href="ichellsliderprops.html" class="tsd-signature-type">IChellSliderProps</a>
 							</li>
 						</ul>
 					</li>
@@ -87,13 +87,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.iloaderparameters.html#binary" class="tsd-kind-icon">binary</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.iloaderparameters.html#compressed" class="tsd-kind-icon">compressed</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.iloaderparameters.html#dir" class="tsd-kind-icon">dir</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.iloaderparameters.html#ext" class="tsd-kind-icon">ext</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.iloaderparameters.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.iloaderparameters.html#path" class="tsd-kind-icon">path</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.iloaderparameters.html#protocol" class="tsd-kind-icon">protocol</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ichellwidgetprops.html#classname" class="tsd-kind-icon">class<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ichellwidgetprops.html#style" class="tsd-kind-icon">style</a></li>
 							</ul>
 						</section>
 					</div>
@@ -102,92 +97,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="binary" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> binary</h3>
-					<div class="tsd-signature tsd-kind-icon">binary<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span></div>
+					<a name="classname" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> class<wbr>Name</h3>
+					<div class="tsd-signature tsd-kind-icon">class<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/dc4a712b/types/ngl/loader/loader.d.ts#L11">types/ngl/loader/loader.d.ts:11</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Flag data as binary.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="compressed" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> compressed</h3>
-					<div class="tsd-signature tsd-kind-icon">compressed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/dc4a712b/types/ngl/loader/loader.d.ts#L8">types/ngl/loader/loader.d.ts:8</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Flag data as compressed.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="dir" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> dir</h3>
-					<div class="tsd-signature tsd-kind-icon">dir<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/dc4a712b/types/ngl/loader/loader.d.ts#L16">types/ngl/loader/loader.d.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/dc4a712b/src/component/widget/ChellWidget.ts#L4">src/component/widget/ChellWidget.ts:4</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="ext" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> ext</h3>
-					<div class="tsd-signature tsd-kind-icon">ext<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<a name="style" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> style</h3>
+					<div class="tsd-signature tsd-kind-icon">style<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CSSProperties</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CSSProperties</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/dc4a712b/types/ngl/loader/loader.d.ts#L5">types/ngl/loader/loader.d.ts:5</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>File extension, determines file type.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="name" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> name</h3>
-					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/dc4a712b/types/ngl/loader/loader.d.ts#L14">types/ngl/loader/loader.d.ts:14</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Set data name.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="path" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> path</h3>
-					<div class="tsd-signature tsd-kind-icon">path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/dc4a712b/types/ngl/loader/loader.d.ts#L17">types/ngl/loader/loader.d.ts:17</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="protocol" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> protocol</h3>
-					<div class="tsd-signature tsd-kind-icon">protocol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/dc4a712b/types/ngl/loader/loader.d.ts#L18">types/ngl/loader/loader.d.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/dc4a712b/src/component/widget/ChellWidget.ts#L5">src/component/widget/ChellWidget.ts:5</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -199,44 +124,20 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_deep_equal_.html">"deep-<wbr>equal"</a>
-					</li>
-					<li class="current tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_ngl_.html">"ngl"</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_spring_.html">"spring"</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="_ngl_.iloaderparameters.html" class="tsd-kind-icon">ILoader<wbr>Parameters</a>
+					<li class="current tsd-kind-interface">
+						<a href="ichellwidgetprops.html" class="tsd-kind-icon">IChell<wbr>Widget<wbr>Props</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.iloaderparameters.html#binary" class="tsd-kind-icon">binary</a>
+								<a href="ichellwidgetprops.html#classname" class="tsd-kind-icon">class<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.iloaderparameters.html#compressed" class="tsd-kind-icon">compressed</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.iloaderparameters.html#dir" class="tsd-kind-icon">dir</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.iloaderparameters.html#ext" class="tsd-kind-icon">ext</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.iloaderparameters.html#name" class="tsd-kind-icon">name</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.iloaderparameters.html#path" class="tsd-kind-icon">path</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.iloaderparameters.html#protocol" class="tsd-kind-icon">protocol</a>
+								<a href="ichellwidgetprops.html#style" class="tsd-kind-icon">style</a>
 							</li>
 						</ul>
 					</li>
