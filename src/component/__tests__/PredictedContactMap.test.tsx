@@ -3,7 +3,8 @@ import toJson from 'enzyme-to-json';
 
 import * as React from 'react';
 
-import { ICouplingScore, SECONDARY_STRUCTURE_CODES } from '../../data/chell-data';
+import { Structure } from 'ngl';
+import { CONTACT_DISTANCE_PROXIMITY, ICouplingScore, SECONDARY_STRUCTURE_CODES } from '../../data/chell-data';
 import { CouplingContainer } from '../../data/CouplingContainer';
 import { PredictedContactMap, PredictedContactMapClass } from '../PredictedContactMap';
 
@@ -52,6 +53,15 @@ describe('PredictedContactMap', () => {
     ],
   };
 
+  const sampleDataWithPDB = {
+    couplingScores: new CouplingContainer(Array.from(uniqueScores)),
+    pdbData: new Structure(),
+    secondaryStructures: [
+      { resno: 30, structId: 'C' as keyof typeof SECONDARY_STRUCTURE_CODES },
+      { resno: 31, structId: 'C' as keyof typeof SECONDARY_STRUCTURE_CODES },
+    ],
+  };
+
   describe('Snapshots', () => {
     it('Should match existing snapshot when given no data.', () => {
       expect(toJson(shallow(<PredictedContactMap />))).toMatchSnapshot();
@@ -75,42 +85,64 @@ describe('PredictedContactMap', () => {
     });
   });
 
-  it('Should update linear distance filter when appropriate slider is updated.', () => {
-    const wrapper = shallow(<PredictedContactMap data={sampleData} />);
-    const instance = wrapper.instance() as PredictedContactMapClass;
-    const expected = 10;
-    expect(instance.state.linearDistFilter).not.toBe(expected);
-    instance.onLinearDistFilterChange()(expected);
-    instance.forceUpdate();
-    expect(instance.state.linearDistFilter).toBe(expected);
+  describe('Sliders', () => {
+    it('Should update linear distance filter when appropriate slider is updated.', () => {
+      const wrapper = shallow(<PredictedContactMap data={sampleData} />);
+      const instance = wrapper.instance() as PredictedContactMapClass;
+      const expected = 10;
+      expect(instance.state.linearDistFilter).not.toBe(expected);
+      instance.onLinearDistFilterChange()(expected);
+      instance.forceUpdate();
+      expect(instance.state.linearDistFilter).toBe(expected);
+    });
+
+    it('Should update number of predicted contacts to show when appropriate slider is updated.', () => {
+      const wrapper = shallow(<PredictedContactMap data={sampleData} />);
+      const instance = wrapper.instance() as PredictedContactMapClass;
+      const expectedCount = 50;
+      expect(instance.state.numPredictionsToShow).not.toBe(expectedCount);
+      instance.onNumPredictionsToShowChange()(expectedCount);
+      wrapper.update();
+      expect(instance.state.numPredictionsToShow).toBe(expectedCount);
+    });
+
+    it('Should update # of predicted contacts to show when appropriate slider is updated.', () => {
+      const wrapper = shallow(<PredictedContactMap data={sampleData} />);
+      const instance = wrapper.instance() as PredictedContactMapClass;
+      const expected = 20;
+      expect(instance.state.numPredictionsToShow).not.toBe(expected);
+      instance.onNumPredictionsToShowChange()(expected);
+      wrapper.update();
+      expect(instance.state.numPredictionsToShow).toBe(expected);
+    });
+
+    it('Should update how Measured Proximity is determined.', () => {
+      const wrapper = shallow(<PredictedContactMap data={sampleData} />);
+      const instance = wrapper.instance() as PredictedContactMapClass;
+      const expected = CONTACT_DISTANCE_PROXIMITY.C_ALPHA;
+      expect(instance.state.measuredProximity).not.toBe(expected);
+      instance.onMeasuredProximityChange()(expected);
+      wrapper.update();
+      expect(instance.state.measuredProximity).toBe(expected);
+    });
   });
 
-  it('Should update number of predicted contacts to show when appropriate slider is updated.', () => {
-    const wrapper = shallow(<PredictedContactMap data={sampleData} />);
-    const instance = wrapper.instance() as PredictedContactMapClass;
-    const expectedCount = 50;
-    expect(instance.state.numPredictionsToShow).not.toBe(expectedCount);
-    instance.onNumPredictionsToShowChange()(expectedCount);
-    wrapper.update();
-    expect(instance.state.numPredictionsToShow).toBe(expectedCount);
-  });
-
-  it('Should update # of predicted contacts to show when appropriate slider is updated.', () => {
-    const wrapper = shallow(<PredictedContactMap data={sampleData} />);
-    const instance = wrapper.instance() as PredictedContactMapClass;
-    const expected = 20;
-    expect(instance.state.numPredictionsToShow).not.toBe(expected);
-    instance.onNumPredictionsToShowChange()(expected);
-    wrapper.update();
-    expect(instance.state.numPredictionsToShow).toBe(expected);
-  });
-
-  it('Should update chain length when new data is provided.', () => {
-    const expected = 57;
+  it('Should update chain length when new non-pdb data is provided.', () => {
+    const expected = 56;
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);
     expect(wrapper.state().numPredictionsToShow).not.toBe(expected);
     wrapper.setProps({
       data: sampleData,
+    });
+    expect(wrapper.state().chainLength).toBe(expected);
+  });
+
+  it('Should update chain length when new pdb data is provided.', () => {
+    const expected = 56;
+    const wrapper = shallow(<PredictedContactMap data={emptyData} />);
+    expect(wrapper.state().numPredictionsToShow).not.toBe(expected);
+    wrapper.setProps({
+      data: sampleDataWithPDB,
     });
     expect(wrapper.state().chainLength).toBe(expected);
   });

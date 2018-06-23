@@ -3,21 +3,31 @@ import * as React from 'react';
 import { Accordion, Icon } from 'semantic-ui-react';
 
 import ResidueContext, { initialResidueContext, ResidueSelection } from '../context/ResidueContext';
-import { ICouplingScore, ISecondaryStructureData, RESIDUE_TYPE } from '../data/chell-data';
+import {
+  CONFIGURATION_COMPONENT_TYPE,
+  ICouplingScore,
+  ISecondaryStructureData,
+  RESIDUE_TYPE,
+} from '../data/chell-data';
 import { withDefaultProps } from '../helper/ReactHelper';
 import ContactMapChart, { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';
-import ChellSlider, { ChellSliderCallback } from './ChellSlider';
+import ChellRadioGroup from './widget/ChellRadioGroup';
+// import ChellSlider, { ChellSliderCallback } from './ChellSlider';
+import ChellSlider from './widget/ChellSlider';
 
 export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
 export type ContactMapCallback = (coupling: CONTACT_MAP_CB_RESULT_TYPE) => void;
 
 export interface IContactMapConfiguration {
   name: string;
-  onChange: ChellSliderCallback;
+  // onChange: ChellSliderCallback | ((args: any[]) => void);
+  onChange: any;
+  type: CONFIGURATION_COMPONENT_TYPE;
   values: {
     current: number;
     max: number;
     min: number;
+    options?: string[];
   };
 }
 
@@ -75,7 +85,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     return (
       <div id="ContactMapComponent" style={{ padding }}>
         {this.renderContactMapChart(pointsToPlot, data.secondaryStructures)}
-        {enableSliders && this.renderSliders(sliderStyle, pointsToPlot)}
+        {enableSliders && this.renderConfigSliders(sliderStyle, pointsToPlot)}
       </div>
     );
   }
@@ -146,7 +156,10 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     );
   }
 
-  protected renderSliders(sliderStyle: React.CSSProperties[] | React.CSSProperties, entries: IContactMapChartData[]) {
+  protected renderConfigSliders(
+    sliderStyle: React.CSSProperties[] | React.CSSProperties,
+    entries: IContactMapChartData[],
+  ) {
     const { showConfiguration } = this.state;
     return (
       <Accordion fluid={true} styled={true}>
@@ -160,16 +173,16 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
           Configuration
         </Accordion.Title>
         <Accordion.Content active={showConfiguration}>
-          {this.renderNodeSizeSliders(sliderStyle, entries)}
-          {this.props.configurations.map(config => this.renderConfigurationSliders(sliderStyle, config))}
+          {this.renderNodeSizeSliders(entries, sliderStyle)}
+          {this.renderConfigurations(this.props.configurations, sliderStyle)}
         </Accordion.Content>
       </Accordion>
     );
   }
 
   protected renderNodeSizeSliders(
-    sliderStyle: React.CSSProperties[] | React.CSSProperties,
     entries: IContactMapChartData[],
+    sliderStyle: React.CSSProperties[] | React.CSSProperties,
   ) {
     return entries.map((entry, index) => {
       const key = `node-size-slider-${index}`;
@@ -188,14 +201,33 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     });
   }
 
-  protected renderConfigurationSliders(
+  protected renderConfigurations(
+    configurations: IContactMapConfiguration[],
     sliderStyle: React.CSSProperties[] | React.CSSProperties,
-    config: IContactMapConfiguration,
   ) {
-    const id = config.name
-      .toLowerCase()
-      .split(' ')
-      .join('-');
+    const result = [];
+    for (const config of configurations) {
+      const id = config.name
+        .toLowerCase()
+        .split(' ')
+        .join('-');
+      switch (config.type) {
+        case CONFIGURATION_COMPONENT_TYPE.SLIDER:
+          result.push(this.renderConfigurationSlider(config, id, sliderStyle));
+          break;
+        case CONFIGURATION_COMPONENT_TYPE.RADIO:
+          result.push(this.renderConfigurationRadioButton(config, id));
+          break;
+      }
+    }
+    return result;
+  }
+
+  protected renderConfigurationSlider(
+    config: IContactMapConfiguration,
+    id: string,
+    sliderStyle: React.CSSProperties[] | React.CSSProperties,
+  ) {
     return (
       <ChellSlider
         className={id}
@@ -207,6 +239,12 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
         onChange={config.onChange}
         style={sliderStyle}
       />
+    );
+  }
+
+  protected renderConfigurationRadioButton(config: IContactMapConfiguration, id: string) {
+    return (
+      <ChellRadioGroup key={`radio-group-${id}`} id={id} options={config.values.options!} onChange={config.onChange} />
     );
   }
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { initialResidueContext } from '../context/ResidueContext';
-import { CONTACT_DISTANCE_PROXIMITY, IContactMapData } from '../data/chell-data';
+import { CONFIGURATION_COMPONENT_TYPE, CONTACT_DISTANCE_PROXIMITY, IContactMapData } from '../data/chell-data';
 import { CouplingContainer } from '../data/CouplingContainer';
 import { deriveContactWithPDB } from '../helper/DataHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
@@ -34,24 +34,6 @@ export type PredictedContactMapProps = {} & typeof defaultPredictedContactMapPro
 export type PredictedContactMapState = Readonly<typeof initialPredictedContactMapState>;
 
 export class PredictedContactMapClass extends React.Component<PredictedContactMapProps, PredictedContactMapState> {
-  /**
-   * Determine which contacts in a set of coupling scores are observed.
-   *
-   * @param contacts Set of contacts, usually generated from coupling_scores.csv.
-   * @param [actualDistFilter=5] For each score, if dist <= linearDistFilter, it is considered observed.
-   * @returns Contacts that should be considered observed int he current data set.
-   */
-
-  /**
-   * Determine which contacts in a set of coupling scores are predicted as well as which are correct.
-   *
-   * @param contacts Set of contacts, usually generated from coupling_scores.csv.
-   * @param totalPredictionsToShow How many predictions, max, to return.
-   * @param [linearDistFilter=5] For each score, if |i - j| >= linearDistFilter, it will be a candidate for being correct/incorrect.
-   * @param [measuredContactDistFilter=5]  If the dist for the contact is less than predictionCutoffDist, it is considered correct.
-   * @returns The list of correct and incorrect contacts.
-   */
-
   public readonly state: PredictedContactMapState = initialPredictedContactMapState;
 
   constructor(props: PredictedContactMapProps) {
@@ -70,12 +52,9 @@ export class PredictedContactMapClass extends React.Component<PredictedContactMa
     });
   };
 
-  public onMeasuredProximityChange = () => (value: number) => {
+  public onMeasuredProximityChange = () => (value: CONTACT_DISTANCE_PROXIMITY) => {
     this.setState({
-      measuredProximity:
-        this.state.measuredProximity === CONTACT_DISTANCE_PROXIMITY.C_ALPHA
-          ? CONTACT_DISTANCE_PROXIMITY.CLOSEST
-          : CONTACT_DISTANCE_PROXIMITY.C_ALPHA,
+      measuredProximity: value,
     });
   };
 
@@ -158,15 +137,18 @@ export class PredictedContactMapClass extends React.Component<PredictedContactMa
     {
       name: 'Calculate Distance: Closest Atom - C-Alpha',
       onChange: this.onMeasuredProximityChange(),
+      type: CONFIGURATION_COMPONENT_TYPE.RADIO,
       values: {
-        current: this.state.measuredProximity,
+        current: Object.keys(CONTACT_DISTANCE_PROXIMITY).indexOf(this.state.measuredProximity),
         max: 1,
         min: 0,
+        options: Object.values(CONTACT_DISTANCE_PROXIMITY),
       },
     },
     {
       name: 'Linear Distance Filter (|i - j|)',
       onChange: this.onLinearDistFilterChange(),
+      type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
       values: {
         current: this.state.linearDistFilter,
         max: 10,
@@ -176,6 +158,7 @@ export class PredictedContactMapClass extends React.Component<PredictedContactMa
     {
       name: 'Top N Predictions to Show',
       onChange: this.onNumPredictionsToShowChange(),
+      type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
       values: {
         current: this.state.numPredictionsToShow,
         max: this.state.chainLength,

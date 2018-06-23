@@ -1,4 +1,5 @@
 import * as fetchMock from 'jest-fetch-mock';
+import { Structure } from 'ngl';
 import { IContactMapData, SPRING_DATA_TYPE, VIZ_TYPE } from '../../data/chell-data';
 import { CouplingContainer } from '../../data/CouplingContainer';
 import { fetchAppropriateData, getCouplingScoresData, getSecondaryStructureData } from '../DataHelper';
@@ -101,6 +102,7 @@ describe('DataHelper', () => {
     it('Should load pdb data if available.', async () => {
       const expected = {
         couplingScores: new CouplingContainer(),
+        pdbData: new Structure(),
         secondaryStructures: [],
       };
       fetchMock.mockResponse(JSON.stringify(expected));

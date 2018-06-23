@@ -54,8 +54,13 @@ export interface ICouplingScore {
 }
 
 export enum CONTACT_DISTANCE_PROXIMITY {
-  'CLOSEST' = 0,
-  'C_ALPHA' = 1,
+  CLOSEST = 'CLOSEST',
+  C_ALPHA = 'C-α',
+}
+
+export enum CONFIGURATION_COMPONENT_TYPE {
+  RADIO = 'RADIO',
+  SLIDER = 'SLIDER',
 }
 
 export interface ISecondaryStructureData {

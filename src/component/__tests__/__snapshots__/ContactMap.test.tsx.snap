@@ -82,9 +82,9 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
         value={6}
       />
       <ChellSlider
-        className="sample"
-        key="sample"
-        label="sample"
+        className="sample-slider"
+        key="sample-slider"
+        label="sample slider"
         max={10}
         min={0}
         onChange={[MockFunction]}
@@ -94,6 +94,11 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
           }
         }
         value={5}
+      />
+      <ChellRadioGroup
+        id="sample-radio"
+        key="radio-group-sample-radio"
+        onChange={[MockFunction]}
       />
     </AccordionContent>
   </Accordion>

@@ -42,12 +42,12 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
       data={
         Object {
           "couplingScores": CouplingContainer {
+            "colCounter": 0,
             "contacts": Array [],
-            "contactsLength": 0,
             "getCouplingScore": [Function],
             "includes": [Function],
-            "maxResidueIndex": 0,
-            "rankedContacts": Array [],
+            "rowCounter": 0,
+            "totalStoredContacts": 0,
           },
           "secondaryStructures": Array [],
         }

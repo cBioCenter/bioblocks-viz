@@ -16,7 +16,6 @@ export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
       return fetchNGLDataFromDirectory(dataDir);
     case VIZ_TYPE.CONTACT_MAP:
       return fetchContactMapData(dataDir);
-    // return fetchContactMapDataWithNGL(dataDir, 'nearest');
     default:
       return Promise.reject({ error: `Currently no appropriate data getter for ${viz}` });
   }
@@ -83,28 +82,6 @@ const fetchCategoricalColorData = async (file: string): Promise<ISpringCategoric
   return output;
 };
 
-/*
-TODO Currently not being used by Spring. Remove? Use in future Spring work?
-export const fetchColorData = async (file: string) => {
-  const colorText: string = await fetchCSVFile(file);
-  const dict: { [k: string]: any } = {};
-  colorText.split('\n').forEach((entry, index, array) => {
-    if (entry.length > 0) {
-      const items = entry.split(',');
-      const gene = items[0];
-      const expArray: any[] = [];
-      items.forEach((e, i, a) => {
-        if (i > 0) {
-          expArray.push(parseFloat(e));
-        }
-      });
-      dict[gene] = expArray;
-    }
-  });
-  return dict;
-};
-*/
-
 const fetchSpringCoordinateData = async (file: string) => {
   const coordinateText: string = await fetchCSVFile(file);
 
@@ -160,7 +137,7 @@ export const deriveContactWithPDB = (
   nglData: NGL.Structure,
   measuredProximity: CONTACT_DISTANCE_PROXIMITY,
 ) => {
-  const result = new CouplingContainer(couplingContainer.allContactsRanked);
+  const result = new CouplingContainer(couplingContainer.rankedContacts);
   const offset = nglData.residueStore.resno[0];
   const alphaId = nglData.atomMap.dict['CA|C'];
 
@@ -313,3 +290,25 @@ export const getSecondaryStructureData = (line: string): ISecondaryStructureData
       };
     });
 };
+
+/*
+TODO Currently not being used by Spring. Remove? Use in future Spring work?
+export const fetchColorData = async (file: string) => {
+  const colorText: string = await fetchCSVFile(file);
+  const dict: { [k: string]: any } = {};
+  colorText.split('\n').forEach((entry, index, array) => {
+    if (entry.length > 0) {
+      const items = entry.split(',');
+      const gene = items[0];
+      const expArray: any[] = [];
+      items.forEach((e, i, a) => {
+        if (i > 0) {
+          expArray.push(parseFloat(e));
+        }
+      });
+      dict[gene] = expArray;
+    }
+  });
+  return dict;
+};
+*/

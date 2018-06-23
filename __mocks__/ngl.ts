@@ -66,11 +66,23 @@ class MockStage {
   return new MockStage(canvas);
 });
 
+const sampleResidues = [{ resno: 1 }, { resno: 2 }];
+
 (ngl.Structure as any).mockImplementation(() => {
   return {
+    atomMap: { dict: { 'CA|C': 2 } },
+    eachResidue: jest.fn(cb => sampleResidues.map(residue => cb(residue))),
+    getAtomProxy: jest.fn(() => ({
+      distanceTo: (...args: any[]) => 1,
+    })),
     getSequence: jest.fn(() => []),
     residueMap: {
       list: [],
+    },
+    residueStore: {
+      atomCount: [1, 1],
+      atomOffset: [0, 1],
+      resno: [1, 2],
     },
   };
 });

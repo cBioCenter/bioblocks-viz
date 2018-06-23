@@ -5,7 +5,7 @@ import * as React from 'react';
 import * as Renderer from 'react-test-renderer';
 
 import { initialResidueContext, IResidueContext } from '../../context/ResidueContext';
-import { ICouplingScore, SECONDARY_STRUCTURE_CODES } from '../../data/chell-data';
+import { CONFIGURATION_COMPONENT_TYPE, ICouplingScore, SECONDARY_STRUCTURE_CODES } from '../../data/chell-data';
 import { PlotlyChartClass } from '../chart/PlotlyChart';
 import ContactMap, { ContactMapClass, ContactMapProps } from '../ContactMap';
 
@@ -215,8 +215,19 @@ describe('ContactMap', () => {
     it('Should match existing snapshot when given configurations.', () => {
       const configurations = [
         {
-          name: 'sample',
+          name: 'sample slider',
           onChange: jest.fn(),
+          type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
+          values: {
+            current: 5,
+            max: 10,
+            min: 0,
+          },
+        },
+        {
+          name: 'sample radio',
+          onChange: jest.fn(),
+          type: CONFIGURATION_COMPONENT_TYPE.RADIO,
           values: {
             current: 5,
             max: 10,
@@ -235,6 +246,7 @@ describe('ContactMap', () => {
         {
           name: 'sample',
           onChange: onChangeSpy,
+          type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
           values: {
             current: 5,
             max: 10,
