@@ -155,7 +155,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
   }
 
   protected onHover(aStage: Stage, pickingProxy: PickingProxy) {
-    const { addHoveredResidues, candidateResidues, removeHoveredResidues } = this.props;
+    const { addHoveredResidues, candidateResidues, hoveredResidues, removeHoveredResidues } = this.props;
     const { structureComponent } = this.state;
     if (structureComponent) {
       if (pickingProxy && (pickingProxy.atom || pickingProxy.closestBondAtom)) {
@@ -169,7 +169,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
         if (candidateResidues.length >= 1) {
           this.highlightResidues(structureComponent, [...candidateResidues, resno].sort());
         }
-      } else if (candidateResidues.length === 0) {
+      } else if (candidateResidues.length === 0 && hoveredResidues.length !== 0) {
         removeHoveredResidues();
       }
     }

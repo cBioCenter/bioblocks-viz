@@ -15,12 +15,12 @@ describe('CategorySelector', () => {
     'In Your Own Sweet Time',
   ];
 
-  test('Should match existing snapshot when given simple data.', () => {
+  it('Should match existing snapshot when given simple data.', () => {
     const selectorWrapper = shallow(<CategorySelector categories={categories} />);
     expect(toJson(selectorWrapper)).toMatchSnapshot();
   });
 
-  test('Should invoke callback if provided when category is selected', () => {
+  it('Should invoke callback if provided when category is selected', () => {
     const onCategoryChangeSpy = jest.fn();
     const selectorWrapper = mount(<CategorySelector categories={categories} onCategoryChange={onCategoryChangeSpy} />);
 

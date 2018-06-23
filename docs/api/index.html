@@ -108,6 +108,12 @@ yarn
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-enum">
+						<a href="enums/configuration_component_type.html" class="tsd-kind-icon">CONFIGURATION_<wbr>COMPONENT_<wbr>TYPE</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/contact_distance_proximity.html" class="tsd-kind-icon">CONTACT_<wbr>DISTANCE_<wbr>PROXIMITY</a>
+					</li>
+					<li class=" tsd-kind-enum">
 						<a href="enums/plotly_chart_type.html" class="tsd-kind-icon">PLOTLY_<wbr>CHART_<wbr>TYPE</a>
 					</li>
 					<li class=" tsd-kind-enum">
@@ -123,6 +129,9 @@ yarn
 						<a href="classes/chellcontext.html" class="tsd-kind-icon">Chell<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/chellradiogroup.html" class="tsd-kind-icon">Chell<wbr>Radio<wbr>Group</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/chellslider.html" class="tsd-kind-icon">Chell<wbr>Slider</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
@@ -133,6 +142,9 @@ yarn
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/contactmapclass.html" class="tsd-kind-icon">Contact<wbr>Map<wbr>Class</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/couplingcontainer.html" class="tsd-kind-icon">Coupling<wbr>Container</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/nglcomponentclass.html" class="tsd-kind-icon">NGLComponent<wbr>Class</a>
@@ -153,10 +165,19 @@ yarn
 						<a href="interfaces/icellcontext.html" class="tsd-kind-icon">ICell<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/ichellradiogroupprops.html" class="tsd-kind-icon">IChell<wbr>Radio<wbr>Group<wbr>Props</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/ichellradiogroupstate.html" class="tsd-kind-icon">IChell<wbr>Radio<wbr>Group<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/ichellsliderprops.html" class="tsd-kind-icon">IChell<wbr>Slider<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/ichellsliderstate.html" class="tsd-kind-icon">IChell<wbr>Slider<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/ichellwidgetprops.html" class="tsd-kind-icon">IChell<wbr>Widget<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/icontactmapchartdata.html" class="tsd-kind-icon">IContact<wbr>Map<wbr>Chart<wbr>Data</a>
@@ -344,6 +365,9 @@ yarn
 					<li class=" tsd-kind-function">
 						<a href="globals.html#createdistancerepresentation" class="tsd-kind-icon">create<wbr>Distance<wbr>Representation</a>
 					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#derivecontactwithpdb" class="tsd-kind-icon">derive<wbr>Contact<wbr>WithPDB</a>
+					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#derivespringdata" class="tsd-kind-icon">derive<wbr>Spring<wbr>Data</a>
 					</li>
@@ -356,7 +380,7 @@ yarn
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#fetchcategoricalcolordata" class="tsd-kind-icon">fetch<wbr>Categorical<wbr>Color<wbr>Data</a>
 					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
+					<li class=" tsd-kind-function">
 						<a href="globals.html#fetchcontactmapdata" class="tsd-kind-icon">fetch<wbr>Contact<wbr>Map<wbr>Data</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
@@ -365,8 +389,14 @@ yarn
 					<li class=" tsd-kind-function">
 						<a href="globals.html#fetchjsonfile" class="tsd-kind-icon">fetchJSONFile</a>
 					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="globals.html#fetchngldata" class="tsd-kind-icon">fetchNGLData</a>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#fetchngldatafromdirectory" class="tsd-kind-icon">fetchNGLData<wbr>From<wbr>Directory</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#fetchngldatafromfile" class="tsd-kind-icon">fetchNGLData<wbr>From<wbr>File</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#fetchpdbfile" class="tsd-kind-icon">fetchPDBFile</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#fetchspringcoordinatedata" class="tsd-kind-icon">fetch<wbr>Spring<wbr>Coordinate<wbr>Data</a>
@@ -393,16 +423,25 @@ yarn
 						<a href="globals.html#generatescattergldata" class="tsd-kind-icon">generate<wbr>ScatterGLData</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#generatesecstructxaxissegment" class="tsd-kind-icon">generate<wbr>Sec<wbr>StructXAxis<wbr>Segment</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#generatesecstructyaxissegment" class="tsd-kind-icon">generate<wbr>Sec<wbr>StructYAxis<wbr>Segment</a>
+						<a href="globals.html#generatesecondarystructaxissegments" class="tsd-kind-icon">generate<wbr>Secondary<wbr>Struct<wbr>Axis<wbr>Segments</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#generatesecondarystructureaxis" class="tsd-kind-icon">generate<wbr>Secondary<wbr>Structure<wbr>Axis</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="globals.html#generatexaxissecstructsegment" class="tsd-kind-icon">generateXAxis<wbr>Sec<wbr>Struct<wbr>Segment</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#generateyaxissecstructsegment" class="tsd-kind-icon">generateYAxis<wbr>Sec<wbr>Struct<wbr>Segment</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#getcalphaatomindexfromresidue" class="tsd-kind-icon">getCAlpha<wbr>Atom<wbr>Index<wbr>From<wbr>Residue</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="globals.html#getcouplingscoresdata" class="tsd-kind-icon">get<wbr>Coupling<wbr>Scores<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#getmindistbetweenresidues" class="tsd-kind-icon">get<wbr>Min<wbr>Dist<wbr>Between<wbr>Residues</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#getsecondarystructuredata" class="tsd-kind-icon">get<wbr>Secondary<wbr>Structure<wbr>Data</a>

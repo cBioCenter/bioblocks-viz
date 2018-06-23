@@ -3,12 +3,14 @@ import toJson from 'enzyme-to-json';
 
 import * as React from 'react';
 
-import { ICouplingScore, SECONDARY_STRUCTURE_CODES } from '../../data/chell-data';
+import { Structure } from 'ngl';
+import { CONTACT_DISTANCE_PROXIMITY, ICouplingScore, SECONDARY_STRUCTURE_CODES } from '../../data/chell-data';
+import { CouplingContainer } from '../../data/CouplingContainer';
 import { PredictedContactMap, PredictedContactMapClass } from '../PredictedContactMap';
 
 describe('PredictedContactMap', () => {
   const emptyData = {
-    couplingScores: [],
+    couplingScores: new CouplingContainer(),
     secondaryStructures: [],
   };
 
@@ -44,7 +46,16 @@ describe('PredictedContactMap', () => {
   );
 
   const sampleData = {
-    couplingScores: Array.from(uniqueScores),
+    couplingScores: new CouplingContainer(Array.from(uniqueScores)),
+    secondaryStructures: [
+      { resno: 30, structId: 'C' as keyof typeof SECONDARY_STRUCTURE_CODES },
+      { resno: 31, structId: 'C' as keyof typeof SECONDARY_STRUCTURE_CODES },
+    ],
+  };
+
+  const sampleDataWithPDB = {
+    couplingScores: new CouplingContainer(Array.from(uniqueScores)),
+    pdbData: new Structure(),
     secondaryStructures: [
       { resno: 30, structId: 'C' as keyof typeof SECONDARY_STRUCTURE_CODES },
       { resno: 31, structId: 'C' as keyof typeof SECONDARY_STRUCTURE_CODES },
@@ -52,15 +63,15 @@ describe('PredictedContactMap', () => {
   };
 
   describe('Snapshots', () => {
-    test('Should match existing snapshot when given no data.', () => {
+    it('Should match existing snapshot when given no data.', () => {
       expect(toJson(shallow(<PredictedContactMap />))).toMatchSnapshot();
     });
 
-    test('Should match existing snapshot when given empty data.', () => {
+    it('Should match existing snapshot when given empty data.', () => {
       expect(toJson(shallow(<PredictedContactMap data={emptyData} />))).toMatchSnapshot();
     });
 
-    test('Should match snapshot when locked residues are added.', async () => {
+    it('Should match snapshot when locked residues are added.', async () => {
       const wrapper = await shallow(<PredictedContactMap />);
       const expectedSelectedPoints = {
         '37,46': [37, 46],
@@ -74,37 +85,49 @@ describe('PredictedContactMap', () => {
     });
   });
 
-  test('Should update linear distance filter when appropriate slider is updated.', () => {
-    const wrapper = shallow(<PredictedContactMap data={sampleData} />);
-    const instance = wrapper.instance() as PredictedContactMapClass;
-    const expected = 10;
-    expect(instance.state.linearDistFilter).not.toBe(expected);
-    instance.onLinearDistFilterChange()(expected);
-    instance.forceUpdate();
-    expect(instance.state.linearDistFilter).toBe(expected);
+  describe('Sliders', () => {
+    it('Should update linear distance filter when appropriate slider is updated.', () => {
+      const wrapper = shallow(<PredictedContactMap data={sampleData} />);
+      const instance = wrapper.instance() as PredictedContactMapClass;
+      const expected = 10;
+      expect(instance.state.linearDistFilter).not.toBe(expected);
+      instance.onLinearDistFilterChange()(expected);
+      instance.forceUpdate();
+      expect(instance.state.linearDistFilter).toBe(expected);
+    });
+
+    it('Should update number of predicted contacts to show when appropriate slider is updated.', () => {
+      const wrapper = shallow(<PredictedContactMap data={sampleData} />);
+      const instance = wrapper.instance() as PredictedContactMapClass;
+      const expectedCount = 50;
+      expect(instance.state.numPredictionsToShow).not.toBe(expectedCount);
+      instance.onNumPredictionsToShowChange()(expectedCount);
+      wrapper.update();
+      expect(instance.state.numPredictionsToShow).toBe(expectedCount);
+    });
+
+    it('Should update # of predicted contacts to show when appropriate slider is updated.', () => {
+      const wrapper = shallow(<PredictedContactMap data={sampleData} />);
+      const instance = wrapper.instance() as PredictedContactMapClass;
+      const expected = 20;
+      expect(instance.state.numPredictionsToShow).not.toBe(expected);
+      instance.onNumPredictionsToShowChange()(expected);
+      wrapper.update();
+      expect(instance.state.numPredictionsToShow).toBe(expected);
+    });
+
+    it('Should update how Measured Proximity is determined.', () => {
+      const wrapper = shallow(<PredictedContactMap data={sampleData} />);
+      const instance = wrapper.instance() as PredictedContactMapClass;
+      const expected = CONTACT_DISTANCE_PROXIMITY.C_ALPHA;
+      expect(instance.state.measuredProximity).not.toBe(expected);
+      instance.onMeasuredProximityChange()(Object.values(CONTACT_DISTANCE_PROXIMITY).indexOf(expected));
+      wrapper.update();
+      expect(instance.state.measuredProximity).toBe(expected);
+    });
   });
 
-  test('Should update number of predicted contacts to show when appropriate slider is updated.', () => {
-    const wrapper = shallow(<PredictedContactMap data={sampleData} />);
-    const instance = wrapper.instance() as PredictedContactMapClass;
-    const expectedCount = 50;
-    expect(instance.state.numPredictionsToShow).not.toBe(expectedCount);
-    instance.onNumPredictionsToShowChange()(expectedCount);
-    wrapper.update();
-    expect(instance.state.numPredictionsToShow).toBe(expectedCount);
-  });
-
-  test('Should update # of predicted contacts to show when appropriate slider is updated.', () => {
-    const wrapper = shallow(<PredictedContactMap data={sampleData} />);
-    const instance = wrapper.instance() as PredictedContactMapClass;
-    const expected = 20;
-    expect(instance.state.numPredictionsToShow).not.toBe(expected);
-    instance.onNumPredictionsToShowChange()(expected);
-    wrapper.update();
-    expect(instance.state.numPredictionsToShow).toBe(expected);
-  });
-
-  test('Should update chain length when new data is provided.', () => {
+  it('Should update chain length when new non-pdb data is provided.', () => {
     const expected = 57;
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);
     expect(wrapper.state().numPredictionsToShow).not.toBe(expected);
@@ -114,7 +137,17 @@ describe('PredictedContactMap', () => {
     expect(wrapper.state().chainLength).toBe(expected);
   });
 
-  test('Should update number of predictions to show when new data is provided.', () => {
+  it('Should update chain length when new pdb data is provided.', () => {
+    const expected = 57;
+    const wrapper = shallow(<PredictedContactMap data={emptyData} />);
+    expect(wrapper.state().numPredictionsToShow).not.toBe(expected);
+    wrapper.setProps({
+      data: sampleDataWithPDB,
+    });
+    expect(wrapper.state().chainLength).toBe(expected);
+  });
+
+  it('Should update number of predictions to show when new data is provided.', () => {
     const expected = 28;
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);
     expect(wrapper.state().numPredictionsToShow).not.toBe(expected);
@@ -124,7 +157,7 @@ describe('PredictedContactMap', () => {
     expect(wrapper.state().numPredictionsToShow).toBe(expected);
   });
 
-  test('Should update number of predictions to show when new value is received.', () => {
+  it('Should update number of predictions to show when new value is received.', () => {
     const expected = 28;
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);
     expect(wrapper.state().numPredictionsToShow).not.toBe(expected);
@@ -134,11 +167,37 @@ describe('PredictedContactMap', () => {
     expect(wrapper.state().numPredictionsToShow).toBe(expected);
   });
 
-  test('Should update points to plot when new data is provided.', () => {
+  it('Should update points to plot when new data is provided.', () => {
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);
     expect(wrapper.state().pointsToPlot).toEqual([]);
     wrapper.setProps({
       data: sampleData,
+    });
+    expect(wrapper.state().pointsToPlot).not.toEqual([]);
+    expect(wrapper.state().pointsToPlot).toMatchSnapshot();
+  });
+
+  it('Should update points to plot using closest atom for distance determination.', () => {
+    const wrapper = shallow(<PredictedContactMap data={emptyData} />);
+    expect(wrapper.state().pointsToPlot).toEqual([]);
+    wrapper.setProps({
+      data: sampleDataWithPDB,
+    });
+    wrapper.setState({
+      measuredProximity: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
+    });
+    expect(wrapper.state().pointsToPlot).not.toEqual([]);
+    expect(wrapper.state().pointsToPlot).toMatchSnapshot();
+  });
+
+  it('Should update points to plot using C-Alpha for distance determination.', () => {
+    const wrapper = shallow(<PredictedContactMap data={emptyData} />);
+    expect(wrapper.state().pointsToPlot).toEqual([]);
+    wrapper.setProps({
+      data: sampleDataWithPDB,
+    });
+    wrapper.setState({
+      measuredProximity: CONTACT_DISTANCE_PROXIMITY.C_ALPHA,
     });
     expect(wrapper.state().pointsToPlot).not.toEqual([]);
     expect(wrapper.state().pointsToPlot).toMatchSnapshot();

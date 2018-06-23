@@ -2,6 +2,7 @@ import Slider, { SliderProps } from 'rc-slider';
 import * as React from 'react';
 
 import 'rc-slider/assets/index.css';
+import { IChellWidgetProps } from './ChellWidget';
 
 /** Function signature that is invoked on slider events. */
 export type ChellSliderCallback =
@@ -15,10 +16,7 @@ export type ChellSliderCallback =
  *
  * @export
  */
-export interface IChellSliderProps {
-  /** CSS class to identify this slider. */
-  className?: string;
-
+export interface IChellSliderProps extends IChellWidgetProps {
   /** Value the slider is set to. */
   value: number;
 
@@ -43,9 +41,6 @@ export interface IChellSliderProps {
 
   /** Props specific to the underlying rc-slider component. */
   sliderProps?: SliderProps;
-
-  /** Style for the Slider. */
-  style?: React.CSSProperties[] | React.CSSProperties;
 }
 
 /**

@@ -1,9 +1,10 @@
-import { ISecondaryStructureData, SECONDARY_STRUCTURE_CODES } from './../data/chell-data';
+import { CONTACT_DISTANCE_PROXIMITY, ISecondaryStructureData, SECONDARY_STRUCTURE_CODES } from './../data/chell-data';
+import { CouplingContainer } from './../data/CouplingContainer';
 import { fetchCSVFile, fetchJSONFile } from './FetchHelper';
 
 import * as NGL from 'ngl';
 import { ISpringCategoricalColorData, ISpringCategoricalColorDataInput, ISpringGraphData } from 'spring';
-import { CONTACT_MAP_DATA_TYPE, IContactMapData, ICouplingScore, VIZ_TYPE } from '../data/chell-data';
+import { CONTACT_MAP_DATA_TYPE, IContactMapData, VIZ_TYPE } from '../data/chell-data';
 
 export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
   switch (viz) {
@@ -12,7 +13,7 @@ export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
     case VIZ_TYPE.SPRING:
       return deriveSpringData(dataDir);
     case VIZ_TYPE.NGL:
-      return fetchNGLData(dataDir);
+      return fetchNGLDataFromDirectory(dataDir);
     case VIZ_TYPE.CONTACT_MAP:
       return fetchContactMapData(dataDir);
     default:
@@ -81,28 +82,6 @@ const fetchCategoricalColorData = async (file: string): Promise<ISpringCategoric
   return output;
 };
 
-/*
-TODO Currently not being used by Spring. Remove? Use in future Spring work?
-export const fetchColorData = async (file: string) => {
-  const colorText: string = await fetchCSVFile(file);
-  const dict: { [k: string]: any } = {};
-  colorText.split('\n').forEach((entry, index, array) => {
-    if (entry.length > 0) {
-      const items = entry.split(',');
-      const gene = items[0];
-      const expArray: any[] = [];
-      items.forEach((e, i, a) => {
-        if (i > 0) {
-          expArray.push(parseFloat(e));
-        }
-      });
-      dict[gene] = expArray;
-    }
-  });
-  return dict;
-};
-*/
-
 const fetchSpringCoordinateData = async (file: string) => {
   const coordinateText: string = await fetchCSVFile(file);
 
@@ -143,21 +122,101 @@ const fetchGraphData = async (file: string) => {
   return data;
 };
 
-const fetchNGLData = async (dir: string) => {
+export const fetchNGLDataFromDirectory = async (dir: string) => {
   if (dir.length === 0) {
     return Promise.reject('Empty path.');
   }
   const file = `${dir}/protein.pdb`;
-  const data = await NGL.autoLoad(file);
-  return data as NGL.Structure;
+  return fetchNGLDataFromFile(file);
 };
 
-const fetchContactMapData = async (dir: string): Promise<IContactMapData> => {
+export const fetchNGLDataFromFile = async (file: string) => (await NGL.autoLoad(file)) as NGL.Structure;
+
+export const deriveContactWithPDB = (
+  couplingContainer: CouplingContainer,
+  nglData: NGL.Structure,
+  measuredProximity: CONTACT_DISTANCE_PROXIMITY,
+) => {
+  const result = new CouplingContainer(couplingContainer.rankedContacts);
+  const offset = nglData.residueStore.resno[0];
+  const alphaId = nglData.atomMap.dict['CA|C'];
+
+  nglData.eachResidue(outerResidue => {
+    const firstResidueIndex = outerResidue.resno - offset;
+    nglData.eachResidue(innerResidue => {
+      if (outerResidue.resno <= result.chainLength && innerResidue.resno <= result.chainLength) {
+        const secondResidueIndex = innerResidue.resno - offset;
+
+        if (measuredProximity === CONTACT_DISTANCE_PROXIMITY.C_ALPHA) {
+          const firstResidueCAlphaIndex = getCAlphaAtomIndexFromResidue(nglData, firstResidueIndex, alphaId);
+          const secondResidueCAlphaIndex = getCAlphaAtomIndexFromResidue(nglData, secondResidueIndex, alphaId);
+          result.addCouplingScore({
+            dist: nglData
+              .getAtomProxy(firstResidueCAlphaIndex)
+              .distanceTo(nglData.getAtomProxy(secondResidueCAlphaIndex)),
+            i: outerResidue.resno,
+            j: innerResidue.resno,
+          });
+        } else {
+          result.addCouplingScore({
+            dist: getMinDistBetweenResidues(nglData, firstResidueIndex, secondResidueIndex),
+            i: outerResidue.resno,
+            j: innerResidue.resno,
+          });
+        }
+      }
+    });
+  });
+
+  return result;
+};
+
+const getCAlphaAtomIndexFromResidue = (nglData: NGL.Structure, residueIndex: number, alphaId: number) => {
+  const atomOffset = nglData.residueStore.atomOffset[residueIndex];
+  const atomCount = nglData.residueStore.atomCount[residueIndex];
+
+  let result = atomOffset;
+  while (nglData.residueStore.residueTypeId[result] !== alphaId && result < atomOffset + atomCount) {
+    result++;
+  }
+
+  return result;
+};
+
+const getMinDistBetweenResidues = (nglData: NGL.Structure, firstResidueIndex: number, secondResidueIndex: number) => {
+  const firstResCount = nglData.residueStore.atomCount[firstResidueIndex];
+  const secondResCount = nglData.residueStore.atomCount[secondResidueIndex];
+  const firstAtomIndex = nglData.residueStore.atomOffset[firstResidueIndex];
+  const secondAtomIndex = nglData.residueStore.atomOffset[secondResidueIndex];
+
+  let minDist = Number.MAX_SAFE_INTEGER;
+  for (let firstCounter = 0; firstCounter < firstResCount; ++firstCounter) {
+    for (let secondCounter = 0; secondCounter < secondResCount; ++secondCounter) {
+      minDist = Math.min(
+        minDist,
+        nglData
+          .getAtomProxy(firstAtomIndex + firstCounter)
+          .distanceTo(nglData.getAtomProxy(secondAtomIndex + secondCounter)),
+      );
+    }
+  }
+  return minDist;
+};
+
+export const fetchContactMapData = async (dir: string): Promise<IContactMapData> => {
   const contactMapFiles = ['coupling_scores.csv', 'distance_map.csv'];
   const promiseResults = await Promise.all(contactMapFiles.map(file => fetchCSVFile(`${dir}/${file}`)));
 
+  let pdbData = undefined as NGL.Structure | undefined;
+  try {
+    pdbData = await fetchNGLDataFromFile(`${dir}/protein.pdb`);
+  } catch (e) {
+    console.log(`No PDB data found for ContactMap, continuing. Error: ${e}`);
+  }
+
   const data: CONTACT_MAP_DATA_TYPE = {
     couplingScores: getCouplingScoresData(promiseResults[0]),
+    pdbData,
     secondaryStructures: getSecondaryStructureData(promiseResults[1]),
   };
 
@@ -177,14 +236,15 @@ const fetchContactMapData = async (dir: string): Promise<IContactMapData> => {
  * @param line The csv file as a single string.
  * @returns Array of CouplingScores suitable for chell-viz consumption.
  */
-export const getCouplingScoresData = (line: string): ICouplingScore[] => {
-  return line
+export const getCouplingScoresData = (line: string): CouplingContainer => {
+  const couplingScores = new CouplingContainer();
+  line
     .split('\n')
     .slice(1)
     .filter(row => row.split(',').length >= 13)
     .map(row => {
       const items = row.split(',');
-      return {
+      couplingScores.addCouplingScore({
         i: parseFloat(items[0]),
         // tslint:disable-next-line:object-literal-sort-keys
         A_i: items[1],
@@ -199,8 +259,9 @@ export const getCouplingScoresData = (line: string): ICouplingScore[] => {
         dist_multimer: parseFloat(items[10]),
         dist: parseFloat(items[11]),
         precision: parseFloat(items[12]),
-      };
+      });
     });
+  return couplingScores;
 };
 
 /**
@@ -229,3 +290,25 @@ export const getSecondaryStructureData = (line: string): ISecondaryStructureData
       };
     });
 };
+
+/*
+TODO Currently not being used by Spring. Remove? Use in future Spring work?
+export const fetchColorData = async (file: string) => {
+  const colorText: string = await fetchCSVFile(file);
+  const dict: { [k: string]: any } = {};
+  colorText.split('\n').forEach((entry, index, array) => {
+    if (entry.length > 0) {
+      const items = entry.split(',');
+      const gene = items[0];
+      const expArray: any[] = [];
+      items.forEach((e, i, a) => {
+        if (i > 0) {
+          expArray.push(parseFloat(e));
+        }
+      });
+      dict[gene] = expArray;
+    }
+  });
+  return dict;
+};
+*/

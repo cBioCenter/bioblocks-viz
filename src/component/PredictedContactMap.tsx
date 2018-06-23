@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { initialResidueContext } from '../context/ResidueContext';
-import { IContactMapData, ICouplingScore } from '../data/chell-data';
+import { CONFIGURATION_COMPONENT_TYPE, CONTACT_DISTANCE_PROXIMITY, IContactMapData } from '../data/chell-data';
+import { CouplingContainer } from '../data/CouplingContainer';
+import { deriveContactWithPDB } from '../helper/DataHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
 import { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';
 import ContactMap, { IContactMapConfiguration } from './ContactMap';
@@ -8,7 +10,7 @@ import ContactMap, { IContactMapConfiguration } from './ContactMap';
 export const defaultPredictedContactMapProps = {
   correctColor: '#ff0000',
   data: {
-    couplingScores: [],
+    couplingScores: new CouplingContainer(),
     secondaryStructures: [],
   } as IContactMapData,
   height: 400,
@@ -23,6 +25,7 @@ export const initialPredictedContactMapState = {
   chainLength: -1,
   linearDistFilter: 5,
   measuredContactDistFilter: 5,
+  measuredProximity: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
   numPredictionsToShow: -1,
   pointsToPlot: [] as IContactMapChartData[],
 };
@@ -31,46 +34,6 @@ export type PredictedContactMapProps = {} & typeof defaultPredictedContactMapPro
 export type PredictedContactMapState = Readonly<typeof initialPredictedContactMapState>;
 
 export class PredictedContactMapClass extends React.Component<PredictedContactMapProps, PredictedContactMapState> {
-  /**
-   * Determine which contacts in a set of coupling scores are observed.
-   *
-   * @param contacts Set of contacts, usually generated from coupling_scores.csv.
-   * @param [actualDistFilter=5] For each score, if dist <= linearDistFilter, it is considered observed.
-   * @returns Contacts that should be considered observed int he current data set.
-   */
-  protected static getObservedContacts = (contacts: ICouplingScore[], actualDistFilter = 5) =>
-    contacts.filter(residuePair => residuePair.dist <= actualDistFilter);
-
-  /**
-   * Determine which contacts in a set of coupling scores are predicted as well as which are correct.
-   *
-   * @param contacts Set of contacts, usually generated from coupling_scores.csv.
-   * @param totalPredictionsToShow How many predictions, max, to return.
-   * @param [linearDistFilter=5] For each score, if |i - j| >= linearDistFilter, it will be a candidate for being correct/incorrect.
-   * @param [measuredContactDistFilter=5]  If the dist for the contact is less than predictionCutoffDist, it is considered correct.
-   * @returns The list of correct and incorrect contacts.
-   */
-  protected static getPredictedContacts(
-    contacts: ICouplingScore[],
-    totalPredictionsToShow: number,
-    linearDistFilter = 5,
-    measuredContactDistFilter = 5,
-  ) {
-    const result = {
-      correct: new Array<ICouplingScore>(),
-      predicted: new Array<ICouplingScore>(),
-    };
-    for (const contact of contacts
-      .filter(score => Math.abs(score.i - score.j) >= linearDistFilter)
-      .slice(0, totalPredictionsToShow)) {
-      if (contact.dist < measuredContactDistFilter) {
-        result.correct.push(contact);
-      }
-      result.predicted.push(contact);
-    }
-    return result;
-  }
-
   public readonly state: PredictedContactMapState = initialPredictedContactMapState;
 
   constructor(props: PredictedContactMapProps) {
@@ -89,66 +52,69 @@ export class PredictedContactMapClass extends React.Component<PredictedContactMa
     });
   };
 
+  public onMeasuredProximityChange = () => (value: number) => {
+    this.setState({
+      measuredProximity: Object.values(CONTACT_DISTANCE_PROXIMITY)[value],
+    });
+  };
+
   public componentDidUpdate(prevProps: PredictedContactMapProps, prevState: PredictedContactMapState) {
     const { correctColor, data, incorrectColor, observedColor } = this.props;
-    const { linearDistFilter, measuredContactDistFilter, numPredictionsToShow } = this.state;
+    const { linearDistFilter, measuredContactDistFilter, measuredProximity, numPredictionsToShow } = this.state;
 
     const isRecomputeNeeded =
       data.couplingScores !== prevProps.data.couplingScores ||
       linearDistFilter !== prevState.linearDistFilter ||
       measuredContactDistFilter !== prevState.measuredContactDistFilter ||
+      measuredProximity !== prevState.measuredProximity ||
       numPredictionsToShow !== prevState.numPredictionsToShow;
     if (isRecomputeNeeded) {
-      const chainLength = data.couplingScores.reduce((a, b) => Math.max(a, Math.max(b.i, b.j)), 0);
-      if (isRecomputeNeeded) {
-        const observedContacts = PredictedContactMapClass.getObservedContacts(
-          data.couplingScores,
-          measuredContactDistFilter,
-        );
-        const allPredictions = PredictedContactMapClass.getPredictedContacts(
-          data.couplingScores,
-          numPredictionsToShow,
-          linearDistFilter,
-        );
+      const couplingScores = data.pdbData
+        ? deriveContactWithPDB(data.couplingScores, data.pdbData, measuredProximity)
+        : data.couplingScores;
 
-        const correctPredictionPercent = (
-          (allPredictions.correct.length / allPredictions.predicted.length) *
-          100
-        ).toFixed(2);
-        const newPoints = [
-          generateChartDataEntry(
-            'x+y',
-            { start: observedColor, end: 'rgb(100,177,200)' },
-            'Known Structure Contact',
-            '(from PDB structure)',
-            4,
-            observedContacts,
-          ),
-          generateChartDataEntry(
-            'x+y',
-            incorrectColor,
-            'Predicted Contact',
-            `(N=${numPredictionsToShow}, L=${chainLength})`,
-            4,
-            allPredictions.predicted,
-          ),
-          generateChartDataEntry(
-            'x+y',
-            correctColor,
-            'Correct Prediction',
-            `(N=${allPredictions.correct.length}, ${correctPredictionPercent}%)`,
-            6,
-            allPredictions.correct,
-          ),
-        ] as IContactMapChartData[];
+      const { chainLength } = couplingScores;
+      const observedContacts = couplingScores.getObservedContacts(measuredContactDistFilter);
 
-        this.setState({
-          chainLength,
-          numPredictionsToShow:
-            data.couplingScores !== prevProps.data.couplingScores ? Math.floor(chainLength / 2) : numPredictionsToShow,
-          pointsToPlot: newPoints,
-        });
-      }
+      const allPredictions = couplingScores.getPredictedContacts(numPredictionsToShow, linearDistFilter);
+
+      const correctPredictionPercent = (
+        (allPredictions.correct.length / allPredictions.predicted.length) *
+        100
+      ).toFixed(2);
+      const newPoints = [
+        generateChartDataEntry(
+          'x+y',
+          { start: observedColor, end: 'rgb(100,177,200)' },
+          'Known Structure Contact',
+          '(from PDB structure)',
+          4,
+          observedContacts,
+        ),
+        generateChartDataEntry(
+          'x+y',
+          incorrectColor,
+          'Predicted Contact',
+          `(N=${numPredictionsToShow}, L=${chainLength})`,
+          4,
+          allPredictions.predicted,
+        ),
+        generateChartDataEntry(
+          'x+y',
+          correctColor,
+          'Correct Prediction',
+          `(N=${allPredictions.correct.length}, ${correctPredictionPercent}%)`,
+          6,
+          allPredictions.correct,
+        ),
+      ] as IContactMapChartData[];
+
+      this.setState({
+        chainLength,
+        numPredictionsToShow:
+          data.couplingScores !== prevProps.data.couplingScores ? Math.floor(chainLength / 2) : numPredictionsToShow,
+        pointsToPlot: newPoints,
+      });
     }
   }
 
@@ -169,8 +135,20 @@ export class PredictedContactMapClass extends React.Component<PredictedContactMa
 
   protected getContactMapConfigs = (): IContactMapConfiguration[] => [
     {
+      name: 'Calculate Distance: Closest Atom - C-Alpha',
+      onChange: this.onMeasuredProximityChange(),
+      type: CONFIGURATION_COMPONENT_TYPE.RADIO,
+      values: {
+        current: Object.keys(CONTACT_DISTANCE_PROXIMITY).indexOf(this.state.measuredProximity),
+        max: 1,
+        min: 0,
+        options: Object.values(CONTACT_DISTANCE_PROXIMITY),
+      },
+    },
+    {
       name: 'Linear Distance Filter (|i - j|)',
       onChange: this.onLinearDistFilterChange(),
+      type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
       values: {
         current: this.state.linearDistFilter,
         max: 10,
@@ -180,6 +158,7 @@ export class PredictedContactMapClass extends React.Component<PredictedContactMa
     {
       name: 'Top N Predictions to Show',
       onChange: this.onNumPredictionsToShowChange(),
+      type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
       values: {
         current: this.state.numPredictionsToShow,
         max: this.state.chainLength,

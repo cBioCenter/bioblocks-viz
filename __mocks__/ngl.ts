@@ -66,16 +66,36 @@ class MockStage {
   return new MockStage(canvas);
 });
 
+const sampleResidues = [{ resno: 1 }, { resno: 2 }];
+
 (ngl.Structure as any).mockImplementation(() => {
   return {
+    atomMap: { dict: { 'CA|C': 2 } },
+    eachResidue: jest.fn(cb => sampleResidues.map(residue => cb(residue))),
+    getAtomProxy: jest.fn(() => ({
+      distanceTo: (...args: any[]) => 1,
+    })),
     getSequence: jest.fn(() => []),
     residueMap: {
       list: [],
     },
+    residueStore: {
+      atomCount: [2, 2],
+      atomOffset: [0, 2],
+      // We are the priests, of the Temples of Syrinx.
+      // Our great computers fill the hollowed halls.
+      residueTypeId: [2, 1, 1, 2],
+      resno: [1, 2],
+    },
   };
 });
 
-(ngl.autoLoad as any) = jest.fn(() => Promise.resolve('Mock NGL path.'));
+(ngl.autoLoad as any) = jest.fn(
+  (path: string) =>
+    path.localeCompare('error/protein.pdb') === 0
+      ? Promise.reject('Invalid NGL path.')
+      : Promise.resolve('Mock NGL path.'),
+);
 
 // @ts-ignore
 ngl.MouseActions = {

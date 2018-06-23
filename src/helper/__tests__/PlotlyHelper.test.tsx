@@ -15,12 +15,12 @@ describe('generateScatterGLData', () => {
     ],
   };
 
-  test('Should create the expected plotly scatter data format when given defaults.', () => {
+  it('Should create the expected plotly scatter data format when given defaults.', () => {
     const result = generateScatterGLData(sampleInput, false);
     expect(result).toMatchSnapshot();
   });
 
-  test('Should create the expected plotly scatter data format when points are mirrored.', () => {
+  it('Should create the expected plotly scatter data format when points are mirrored.', () => {
     const result = generateScatterGLData(sampleInput, true);
     expect(result.x).toEqual([9, 7, 8, 6]);
     expect(result.y).toEqual([8, 6, 9, 7]);
@@ -42,12 +42,12 @@ describe('generatePointCloudData', () => {
     ],
   };
 
-  test('Should create the expected plotly point cloud data format when given defaults.', () => {
+  it('Should create the expected plotly point cloud data format when given defaults.', () => {
     const result = generatePointCloudData(sampleInput, false);
     expect(result).toMatchSnapshot();
   });
 
-  test('Should create the expected plotly point cloud data format when points are mirrored.', () => {
+  it('Should create the expected plotly point cloud data format when points are mirrored.', () => {
     const result = generatePointCloudData(sampleInput, true);
     const expected = new Float32Array([1, 2, 3, 4, 4, 3, 2, 1]);
     expect(result.xy).toEqual(expected);
@@ -55,17 +55,17 @@ describe('generatePointCloudData', () => {
 });
 
 describe('generateSecondaryStructureAxis', () => {
-  test('Should handle empty secondary structure.', () => {
+  it('Should handle empty secondary structure.', () => {
     const result = generateSecondaryStructureAxis([]);
     expect(result).toEqual([]);
   });
 
-  test('Should handle secondary structure containing a single residue.', () => {
+  it('Should handle secondary structure containing a single residue.', () => {
     const result = generateSecondaryStructureAxis([{ resno: 1, structId: 'G' }]);
     expect(result).toMatchSnapshot();
   });
 
-  test('Should handle secondary structure containing a chain of residues with the same structure.', () => {
+  it('Should handle secondary structure containing a chain of residues with the same structure.', () => {
     const result = generateSecondaryStructureAxis([
       { resno: 1, structId: 'G' },
       { resno: 2, structId: 'G' },
@@ -74,7 +74,7 @@ describe('generateSecondaryStructureAxis', () => {
     expect(result).toMatchSnapshot();
   });
 
-  test('Should handle secondary structure containing alternating chains of residues with different structures.', () => {
+  it('Should handle secondary structure containing alternating chains of residues with different structures.', () => {
     const result = generateSecondaryStructureAxis([
       { resno: 1, structId: 'G' },
       { resno: 2, structId: 'G' },

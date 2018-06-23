@@ -80,8 +80,6 @@ declare module 'ngl' {
 
     /**
      * Creates an instance of ResidueMap.
-     * @param {Structure} structure
-     * @memberof ResidueMap
      */
     constructor(structure: Structure);
 
@@ -141,13 +139,11 @@ declare module 'ngl' {
 
     /**
      * Creates an instance of ResidueType.
-     * @param {Structure} structure The structure object.
-     * @param {string} resname Name of the residue.
-     * @param {number[]} atomTypeIdList List of IDs of AtomTypes corresponding to the atoms of the residue.
-     * @param {boolean} hetero Hetero flag.
-     * @param {string} chemCompType Chemical component type.
-     * @param {IResidueBonds} [bonds]
-     * @memberof ResidueType
+     * @param structure The structure object.
+     * @param resname Name of the residue.
+     * @param atomTypeIdList List of IDs of AtomTypes corresponding to the atoms of the residue.
+     * @param hetero Hetero flag.
+     * @param chemCompType Chemical component type.
      */
     constructor(
       structure: Structure,
@@ -161,8 +157,6 @@ declare module 'ngl' {
     // Methods
     /**
      * For bonds with order > 1, pick a reference atom.
-     *
-     * @memberof ResidueType
      */
     public assignBondReferenceAtomIndices(): void;
 
@@ -170,15 +164,11 @@ declare module 'ngl' {
 
     /**
      * BondGraph - represents the bonding in this residue: { ai1: [ ai2, ai3, ...], ...}
-     *
-     * @memberof ResidueType
      */
     public calculateBondGraph(): void;
 
     /**
-     * Find all rings up to 2 * RingFinderMaxDepth
-     *
-     * @memberof ResidueType
+     * Find all rings up to 2 * RingFinderMaxDepth.
      */
     public calculateRings(): void;
 
@@ -250,9 +240,6 @@ declare module 'ngl' {
 
   /**
    * Store base class.
-   *
-   * @export
-   * @class Store
    */
   export class Store {
     [k: string]: any;
@@ -268,8 +255,6 @@ declare module 'ngl' {
 
     /**
      * Creates an instance of Store.
-     * @param {number} [size]
-     * @memberof Store
      */
     public constructor(size?: number);
 
@@ -277,86 +262,71 @@ declare module 'ngl' {
     /**
      * Initialize the store.
      *
-     * @param {number} size Size to initialize.
-     * @memberof Store
+     * @param size Size to initialize.
      */
     public _init(size: number): void;
 
     /**
      * Initialize a field.
      *
-     * @param {string} name Field name.
-     * @param {number} size Element size.
-     * @param {TypedArrayString} type Data type, one of int8, int16, int32, uint8, uint16, uint32, float32.
-     * @memberof Store
+     * @param name Field name.
+     * @param size Element size.
+     * @param type Data type, one of int8, int16, int32, uint8, uint16, uint32, float32.
      */
     public _initField(name: string, size: number, type: TypedArrayString): void;
 
     /**
      * Add a field.
      *
-     * @param {string} name Field name.
-     * @param {number} size Element size.
-     * @param {TypedArrayString} type Data type, one of int8, int16, int32, uint8, uint16, uint32, float32.
-     * @memberof Store
+     * @param name Field name.
+     * @param size Element size.
+     * @param type Data type, one of int8, int16, int32, uint8, uint16, uint32, float32.
      */
     public addField(name: string, size: number, type: TypedArrayString): void;
 
     /**
      * Empty the store.
-     *
-     * @memberof Store
      */
     public clear(): void;
 
     /**
      * Copy data from one store to another.
      *
-     * @param {Store} other Store to copy from.
-     * @param {number} thisOffset Offset to start copying to.
-     * @param {number} otherOffset Offset to start copying from.
-     * @param {number} length Number of entries to copy.
-     * @memberof Store
+     * @param other Store to copy from.
+     * @param thisOffset Offset to start copying to.
+     * @param otherOffset Offset to start copying from.
+     * @param length Number of entries to copy.
      */
     public copyFrom(other: Store, thisOffset: number, otherOffset: number, length: number): void;
 
     /**
      * Copy data within this store.
      *
-     * @param {number} offsetTarget
-     * @param {number} offsetSource
-     * @param {number} length Number of entries to copy.
-     * @memberof Store
+     * @param length Number of entries to copy.
      */
     public copyWithin(offsetTarget: number, offsetSource: number, length: number): void;
 
     /**
      * Dispose of the store entries and fields.
-     *
-     * @memberof Store
      */
     public dispose(): void;
 
     /**
      * Resize the store to 1.5 times its current size if full.
-     *
-     * @memberof Store
      */
     public growIfFull(): void;
 
     /**
      * Resize the store to the new size.
      *
-     * @param {(undefined | number)} [size] New size.
-     * @memberof Store
+     * @param [size] New size.
      */
     public resize(size?: undefined | number): void;
 
     /**
      * Sort entries in the store given the compare function.
      *
-     * @param {(a: any, b: any) => number} compareFunction Function to sort by.
-     * @memberof Store
+     * @param compareFunction Function to sort by.
      */
     public sort(compareFunction: (a: any, b: any) => number): void;
   }

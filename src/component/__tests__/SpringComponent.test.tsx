@@ -7,7 +7,7 @@ import { ISpringGraphData } from 'spring';
 import SpringComponent from '../SpringComponent';
 
 describe('SpringComponent', () => {
-  test('Should match existing snapshot when given simple data.', () => {
+  it('Should match existing snapshot when given simple data.', () => {
     const data: ISpringGraphData = { nodes: [], links: [] };
     expect(toJson(shallow(<SpringComponent data={data} />))).toMatchSnapshot();
   });

@@ -108,7 +108,7 @@ export const secondaryStructureAxisDefaults = (entry: ISecondaryStructureData): 
   hoverinfo: 'name',
   line: {
     color: secStructColorMap[entry.structId],
-    width: 5,
+    width: entry.structId === 'C' ? 0 : 5,
   },
   mode: 'lines',
   name: SECONDARY_STRUCTURE_CODES[entry.structId],
@@ -121,7 +121,7 @@ export const secondaryStructureAxisDefaults = (entry: ISecondaryStructureData): 
  *
  * @param entry A Single residue-secondary structure element.
  */
-export const generateSecStructXAxisSegment = (entry: ISecondaryStructureData): Partial<IPlotlyData> => ({
+export const generateXAxisSecStructSegment = (entry: ISecondaryStructureData): Partial<IPlotlyData> => ({
   ...secondaryStructureAxisDefaults(entry),
   orientation: 'h',
   x: [entry.resno - 1, entry.resno],
@@ -135,7 +135,7 @@ export const generateSecStructXAxisSegment = (entry: ISecondaryStructureData): P
  *
  * @param entry A Single residue-secondary structure element.
  */
-export const generateSecStructYAxisSegment = (entry: ISecondaryStructureData): Partial<IPlotlyData> => ({
+export const generateYAxisSecStructSegment = (entry: ISecondaryStructureData): Partial<IPlotlyData> => ({
   ...secondaryStructureAxisDefaults(entry),
   orientation: 'v',
   x: [1, 1],
@@ -143,6 +143,16 @@ export const generateSecStructYAxisSegment = (entry: ISecondaryStructureData): P
   y: [entry.resno - 1, entry.resno],
   yaxis: 'y',
 });
+
+/**
+ * Generate the X and Y axis data object to represent the secondary structure.
+ *
+ * @param entry A Single residue-secondary structure element.
+ */
+export const generateSecondaryStructAxisSegments = (entry: ISecondaryStructureData) => [
+  generateXAxisSecStructSegment(entry),
+  generateYAxisSecStructSegment(entry),
+];
 
 /**
  * Generate all of the box plots for the secondary structure of a sequence.
@@ -160,26 +170,15 @@ export const generateSecStructYAxisSegment = (entry: ISecondaryStructureData): P
  */
 export const generateSecondaryStructureAxis = (sequence: ISecondaryStructureData[]): Array<Partial<IPlotlyData>> =>
   sequence.length >= 1
-    ? sequence.slice(1, sequence.length).reduce(
-        (prev, current, index) => {
-          if (sequence[index].structId !== current.structId) {
-            prev.push(generateSecStructXAxisSegment(current));
-            prev.push(generateSecStructYAxisSegment(current));
-          } else {
-            (prev[prev.length - 2].x as Datum[]).push(current.resno - 1);
-            (prev[prev.length - 2].y as Datum[]).push(1);
-            (prev[prev.length - 1].x as Datum[]).push(1);
-            (prev[prev.length - 1].y as Datum[]).push(current.resno - 1);
-          }
-          return prev;
-        },
-        [
-          {
-            ...generateSecStructXAxisSegment(sequence[0]),
-          },
-          {
-            ...generateSecStructYAxisSegment(sequence[0]),
-          },
-        ],
-      )
+    ? sequence.slice(1, sequence.length).reduce((resultingAxis, current, index) => {
+        if (sequence[index].structId !== current.structId) {
+          resultingAxis.push(...generateSecondaryStructAxisSegments(current));
+        } else {
+          (resultingAxis[resultingAxis.length - 2].x as Datum[]).push(current.resno - 1);
+          (resultingAxis[resultingAxis.length - 2].y as Datum[]).push(1);
+          (resultingAxis[resultingAxis.length - 1].x as Datum[]).push(1);
+          (resultingAxis[resultingAxis.length - 1].y as Datum[]).push(current.resno - 1);
+        }
+        return resultingAxis;
+      }, generateSecondaryStructAxisSegments(sequence[0]))
     : [];
