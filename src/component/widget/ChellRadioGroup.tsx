@@ -5,7 +5,7 @@ import { IChellWidgetProps } from './ChellWidget';
 export interface IChellRadioGroupProps extends IChellWidgetProps {
   id: string;
   options: string[];
-  onChange?: (event: React.FormEvent<HTMLInputElement>, data: CheckboxProps) => void;
+  onChange?: (value: any) => void;
 }
 
 export interface IChellRadioGroupState {
@@ -25,7 +25,7 @@ export default class ChellRadioGroup extends React.Component<IChellRadioGroupPro
       selectedIndex: index,
     });
     if (this.props.onChange) {
-      this.props.onChange(event, data);
+      this.props.onChange(index);
     }
   };
 

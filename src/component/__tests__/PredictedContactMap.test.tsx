@@ -121,14 +121,14 @@ describe('PredictedContactMap', () => {
       const instance = wrapper.instance() as PredictedContactMapClass;
       const expected = CONTACT_DISTANCE_PROXIMITY.C_ALPHA;
       expect(instance.state.measuredProximity).not.toBe(expected);
-      instance.onMeasuredProximityChange()(expected);
+      instance.onMeasuredProximityChange()(Object.values(CONTACT_DISTANCE_PROXIMITY).indexOf(expected));
       wrapper.update();
       expect(instance.state.measuredProximity).toBe(expected);
     });
   });
 
   it('Should update chain length when new non-pdb data is provided.', () => {
-    const expected = 56;
+    const expected = 57;
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);
     expect(wrapper.state().numPredictionsToShow).not.toBe(expected);
     wrapper.setProps({
@@ -138,7 +138,7 @@ describe('PredictedContactMap', () => {
   });
 
   it('Should update chain length when new pdb data is provided.', () => {
-    const expected = 56;
+    const expected = 57;
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);
     expect(wrapper.state().numPredictionsToShow).not.toBe(expected);
     wrapper.setProps({

@@ -52,9 +52,9 @@ export class PredictedContactMapClass extends React.Component<PredictedContactMa
     });
   };
 
-  public onMeasuredProximityChange = () => (value: CONTACT_DISTANCE_PROXIMITY) => {
+  public onMeasuredProximityChange = () => (value: number) => {
     this.setState({
-      measuredProximity: value,
+      measuredProximity: Object.values(CONTACT_DISTANCE_PROXIMITY)[value],
     });
   };
 
