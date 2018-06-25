@@ -136,10 +136,11 @@ export const fetchNGLDataFromFile = async (file: string) => (await NGL.autoLoad(
 export const fetchContactMapData = async (dir: string): Promise<IContactMapData> => {
   const contactMapFiles = ['coupling_scores.csv', 'distance_map.csv'];
   const promiseResults = await Promise.all(contactMapFiles.map(file => fetchCSVFile(`${dir}/${file}`)));
+  const pdbData = await ChellPDB.createPDB(`${dir}/protein.pdb`);
 
   const data: CONTACT_MAP_DATA_TYPE = {
     couplingScores: getCouplingScoresData(promiseResults[0]),
-    pdbData: new ChellPDB(`${dir}/protein.pdb`),
+    pdbData,
     secondaryStructures: getSecondaryStructureData(promiseResults[1]),
   };
 

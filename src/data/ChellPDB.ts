@@ -10,16 +10,20 @@ import { CouplingContainer } from './CouplingContainer';
  */
 export class ChellPDB {
   [key: string]: any;
-  protected nglData: NGL.Structure = new NGL.Structure();
-  protected readonly NGL_C_ALPHA_INDEX = 'CA|C';
 
   /**
-   * Creates an instance of ChellPDB.
-   * @param [filename=''] Location of the PDB file to be loaded.
+   * Creates an instance of ChellPDB with PDB data.
+   *
+   * !IMPORTANT! Since fetching the data is an asynchronous action, this must be used to create a new instance!
    */
-  constructor(filename: string = '') {
-    this.loadPdbFile(filename);
+  public static async createPDB(filename: string = '') {
+    const result = new ChellPDB();
+    result.nglData = await fetchNGLDataFromFile(filename);
+    return result;
   }
+
+  protected nglData: NGL.Structure = new NGL.Structure();
+  protected readonly NGL_C_ALPHA_INDEX = 'CA|C';
 
   /**
    * Given some existing coupling scores, a new CouplingContainer will be created with data augmented with info derived from this PDB.

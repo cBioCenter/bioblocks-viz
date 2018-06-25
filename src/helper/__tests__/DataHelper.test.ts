@@ -101,13 +101,13 @@ describe('DataHelper', () => {
     });
 
     it('Should load pdb data if available.', async () => {
-      const expected = new ChellPDB();
+      const expected = await ChellPDB.createPDB();
       const response = {
         couplingScores: new CouplingContainer(),
         pdbData: expected,
         secondaryStructures: [],
       };
-      fetchMock.mockResponse(JSON.stringify(response));
+      fetchMock.mockResponse(stringifyCircularJSON(response));
 
       const result = (await fetchAppropriateData(VIZ_TYPE.CONTACT_MAP, '')) as IContactMapData;
       expect(stringifyCircularJSON(result.pdbData)).toEqual(stringifyCircularJSON(expected));
