@@ -118,12 +118,4 @@ export class ChellPDB {
     }
     return minDist;
   }
-
-  protected async loadPdbFile(filename: string) {
-    try {
-      this.nglData = await fetchNGLDataFromFile(filename);
-    } catch (e) {
-      console.log(`Unable to parse PDB file ${filename}! Error: ${e}`);
-    }
-  }
 }
