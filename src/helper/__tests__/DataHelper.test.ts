@@ -1,6 +1,7 @@
 import * as fetchMock from 'jest-fetch-mock';
-import { Structure } from 'ngl';
+import { inspect as stringifyCircularJSON } from 'util';
 import { IContactMapData, SPRING_DATA_TYPE, VIZ_TYPE } from '../../data/chell-data';
+import { ChellPDB } from '../../data/ChellPDB';
 import { CouplingContainer } from '../../data/CouplingContainer';
 import { fetchAppropriateData, getCouplingScoresData, getSecondaryStructureData } from '../DataHelper';
 
@@ -100,26 +101,16 @@ describe('DataHelper', () => {
     });
 
     it('Should load pdb data if available.', async () => {
-      const expected = {
+      const expected = await ChellPDB.createPDB();
+      const response = {
         couplingScores: new CouplingContainer(),
-        pdbData: new Structure(),
+        pdbData: expected,
         secondaryStructures: [],
       };
-      fetchMock.mockResponse(JSON.stringify(expected));
+      fetchMock.mockResponse(stringifyCircularJSON(response));
 
       const result = (await fetchAppropriateData(VIZ_TYPE.CONTACT_MAP, '')) as IContactMapData;
-      expect(result.pdbData).toEqual('Mock NGL path.');
-    });
-
-    it('Should load data even if pdb data if available.', async () => {
-      const expected = {
-        couplingScores: new CouplingContainer(),
-        secondaryStructures: [],
-      };
-      fetchMock.mockResponse(JSON.stringify(expected));
-
-      const result = (await fetchAppropriateData(VIZ_TYPE.CONTACT_MAP, 'error')) as IContactMapData;
-      expect(result.pdbData).toEqual(undefined);
+      expect(stringifyCircularJSON(result.pdbData)).toEqual(stringifyCircularJSON(expected));
     });
   });
 

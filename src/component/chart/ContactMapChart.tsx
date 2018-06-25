@@ -5,7 +5,8 @@ import * as React from 'react';
 
 import { ISecondaryStructureData, RESIDUE_TYPE } from '../../data/chell-data';
 
-import { generateScatterGLData, generateSecondaryStructureAxis } from '../../helper/PlotlyHelper';
+import SecondaryStructureAxis from '../../data/SecondaryStructureAxis';
+import { generateScatterGLData } from '../../helper/PlotlyHelper';
 import { withDefaultProps } from '../../helper/ReactHelper';
 import PlotlyChart, { defaultPlotlyLayout, IPlotlyData } from './PlotlyChart';
 
@@ -116,7 +117,7 @@ class ContactMapChartClass extends React.Component<IContactMapChartProps, any> {
     let plotlyData = [...contactData.map(entry => dataTransformFn(entry, true))];
 
     if (secondaryStructures && secondaryStructures.length >= 1) {
-      plotlyData = [...plotlyData, ...generateSecondaryStructureAxis(secondaryStructures)];
+      plotlyData = [...plotlyData, ...new SecondaryStructureAxis(secondaryStructures).axis];
     }
 
     return (

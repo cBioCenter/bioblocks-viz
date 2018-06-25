@@ -92,9 +92,7 @@ const sampleResidues = [{ resno: 1 }, { resno: 2 }];
 
 (ngl.autoLoad as any) = jest.fn(
   (path: string) =>
-    path.localeCompare('error/protein.pdb') === 0
-      ? Promise.reject('Invalid NGL path.')
-      : Promise.resolve('Mock NGL path.'),
+    path.localeCompare('error/protein.pdb') === 0 ? Promise.reject('Invalid NGL path.') : new NGL.Structure(),
 );
 
 // @ts-ignore

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { initialResidueContext } from '../context/ResidueContext';
 import { CONFIGURATION_COMPONENT_TYPE, CONTACT_DISTANCE_PROXIMITY, IContactMapData } from '../data/chell-data';
+import { ChellPDB } from '../data/ChellPDB';
 import { CouplingContainer } from '../data/CouplingContainer';
-import { deriveContactWithPDB } from '../helper/DataHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
 import { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';
 import ContactMap, { IContactMapConfiguration } from './ContactMap';
@@ -11,6 +11,7 @@ export const defaultPredictedContactMapProps = {
   correctColor: '#ff0000',
   data: {
     couplingScores: new CouplingContainer(),
+    pdbData: new ChellPDB(),
     secondaryStructures: [],
   } as IContactMapData,
   height: 400,
@@ -69,12 +70,13 @@ export class PredictedContactMapClass extends React.Component<PredictedContactMa
       measuredProximity !== prevState.measuredProximity ||
       numPredictionsToShow !== prevState.numPredictionsToShow;
     if (isRecomputeNeeded) {
-      const couplingScores = data.pdbData
-        ? deriveContactWithPDB(data.couplingScores, data.pdbData, measuredProximity)
-        : data.couplingScores;
+      const couplingScores = data.pdbData.generateCouplingsAmendedWithPDB(
+        data.couplingScores.rankedContacts,
+        measuredProximity,
+      );
 
       const { chainLength } = couplingScores;
-      const observedContacts = couplingScores.getObservedContacts(measuredContactDistFilter);
+      const observedContacts = couplingScores.getObservedContacts(measuredContactDistFilter, linearDistFilter);
 
       const allPredictions = couplingScores.getPredictedContacts(numPredictionsToShow, linearDistFilter);
 
