@@ -1,10 +1,11 @@
-import { CONTACT_DISTANCE_PROXIMITY, ISecondaryStructureData, SECONDARY_STRUCTURE_CODES } from './../data/chell-data';
+import { ISecondaryStructureData, SECONDARY_STRUCTURE_CODES } from './../data/chell-data';
 import { CouplingContainer } from './../data/CouplingContainer';
 import { fetchCSVFile, fetchJSONFile } from './FetchHelper';
 
 import * as NGL from 'ngl';
 import { ISpringCategoricalColorData, ISpringCategoricalColorDataInput, ISpringGraphData } from 'spring';
 import { CONTACT_MAP_DATA_TYPE, IContactMapData, VIZ_TYPE } from '../data/chell-data';
+import { ChellPDB } from '../data/ChellPDB';
 
 export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
   switch (viz) {
@@ -132,91 +133,13 @@ export const fetchNGLDataFromDirectory = async (dir: string) => {
 
 export const fetchNGLDataFromFile = async (file: string) => (await NGL.autoLoad(file)) as NGL.Structure;
 
-export const deriveContactWithPDB = (
-  couplingContainer: CouplingContainer,
-  nglData: NGL.Structure,
-  measuredProximity: CONTACT_DISTANCE_PROXIMITY,
-) => {
-  const result = new CouplingContainer(couplingContainer.rankedContacts);
-  const offset = nglData.residueStore.resno[0];
-  const alphaId = nglData.atomMap.dict['CA|C'];
-
-  nglData.eachResidue(outerResidue => {
-    const firstResidueIndex = outerResidue.resno - offset;
-    nglData.eachResidue(innerResidue => {
-      if (outerResidue.resno <= result.chainLength && innerResidue.resno <= result.chainLength) {
-        const secondResidueIndex = innerResidue.resno - offset;
-
-        if (measuredProximity === CONTACT_DISTANCE_PROXIMITY.C_ALPHA) {
-          const firstResidueCAlphaIndex = getCAlphaAtomIndexFromResidue(nglData, firstResidueIndex, alphaId);
-          const secondResidueCAlphaIndex = getCAlphaAtomIndexFromResidue(nglData, secondResidueIndex, alphaId);
-          result.addCouplingScore({
-            dist: nglData
-              .getAtomProxy(firstResidueCAlphaIndex)
-              .distanceTo(nglData.getAtomProxy(secondResidueCAlphaIndex)),
-            i: outerResidue.resno,
-            j: innerResidue.resno,
-          });
-        } else {
-          result.addCouplingScore({
-            dist: getMinDistBetweenResidues(nglData, firstResidueIndex, secondResidueIndex),
-            i: outerResidue.resno,
-            j: innerResidue.resno,
-          });
-        }
-      }
-    });
-  });
-
-  return result;
-};
-
-const getCAlphaAtomIndexFromResidue = (nglData: NGL.Structure, residueIndex: number, alphaId: number) => {
-  const atomOffset = nglData.residueStore.atomOffset[residueIndex];
-  const atomCount = nglData.residueStore.atomCount[residueIndex];
-
-  let result = atomOffset;
-  while (nglData.residueStore.residueTypeId[result] !== alphaId && result < atomOffset + atomCount) {
-    result++;
-  }
-
-  return result;
-};
-
-const getMinDistBetweenResidues = (nglData: NGL.Structure, firstResidueIndex: number, secondResidueIndex: number) => {
-  const firstResCount = nglData.residueStore.atomCount[firstResidueIndex];
-  const secondResCount = nglData.residueStore.atomCount[secondResidueIndex];
-  const firstAtomIndex = nglData.residueStore.atomOffset[firstResidueIndex];
-  const secondAtomIndex = nglData.residueStore.atomOffset[secondResidueIndex];
-
-  let minDist = Number.MAX_SAFE_INTEGER;
-  for (let firstCounter = 0; firstCounter < firstResCount; ++firstCounter) {
-    for (let secondCounter = 0; secondCounter < secondResCount; ++secondCounter) {
-      minDist = Math.min(
-        minDist,
-        nglData
-          .getAtomProxy(firstAtomIndex + firstCounter)
-          .distanceTo(nglData.getAtomProxy(secondAtomIndex + secondCounter)),
-      );
-    }
-  }
-  return minDist;
-};
-
 export const fetchContactMapData = async (dir: string): Promise<IContactMapData> => {
   const contactMapFiles = ['coupling_scores.csv', 'distance_map.csv'];
   const promiseResults = await Promise.all(contactMapFiles.map(file => fetchCSVFile(`${dir}/${file}`)));
 
-  let pdbData = undefined as NGL.Structure | undefined;
-  try {
-    pdbData = await fetchNGLDataFromFile(`${dir}/protein.pdb`);
-  } catch (e) {
-    console.log(`No PDB data found for ContactMap, continuing. Error: ${e}`);
-  }
-
   const data: CONTACT_MAP_DATA_TYPE = {
     couplingScores: getCouplingScoresData(promiseResults[0]),
-    pdbData,
+    pdbData: new ChellPDB(`${dir}/protein.pdb`),
     secondaryStructures: getSecondaryStructureData(promiseResults[1]),
   };
 

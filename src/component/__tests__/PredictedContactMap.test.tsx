@@ -3,14 +3,15 @@ import toJson from 'enzyme-to-json';
 
 import * as React from 'react';
 
-import { Structure } from 'ngl';
 import { CONTACT_DISTANCE_PROXIMITY, ICouplingScore, SECONDARY_STRUCTURE_CODES } from '../../data/chell-data';
+import { ChellPDB } from '../../data/ChellPDB';
 import { CouplingContainer } from '../../data/CouplingContainer';
 import { PredictedContactMap, PredictedContactMapClass } from '../PredictedContactMap';
 
 describe('PredictedContactMap', () => {
   const emptyData = {
     couplingScores: new CouplingContainer(),
+    pdbData: new ChellPDB(),
     secondaryStructures: [],
   };
 
@@ -47,6 +48,7 @@ describe('PredictedContactMap', () => {
 
   const sampleData = {
     couplingScores: new CouplingContainer(Array.from(uniqueScores)),
+    pdbData: new ChellPDB(),
     secondaryStructures: [
       { resno: 30, structId: 'C' as keyof typeof SECONDARY_STRUCTURE_CODES },
       { resno: 31, structId: 'C' as keyof typeof SECONDARY_STRUCTURE_CODES },
@@ -55,7 +57,7 @@ describe('PredictedContactMap', () => {
 
   const sampleDataWithPDB = {
     couplingScores: new CouplingContainer(Array.from(uniqueScores)),
-    pdbData: new Structure(),
+    pdbData: new ChellPDB(),
     secondaryStructures: [
       { resno: 30, structId: 'C' as keyof typeof SECONDARY_STRUCTURE_CODES },
       { resno: 31, structId: 'C' as keyof typeof SECONDARY_STRUCTURE_CODES },

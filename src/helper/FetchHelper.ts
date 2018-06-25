@@ -16,14 +16,5 @@ export const fetchJSONFile = async (filename: string) => {
   }
 };
 
-export const fetchPDBFile = async (filename: string) => {
-  const response = await fetch(filename);
-  if (response.ok) {
-    return await response.json();
-  } else {
-    throw new Error(genErrorMsg('PDB', response));
-  }
-};
-
 const genErrorMsg = (fileType: string, response: Response) =>
   `Chell-viz error fetching ${fileType} File!\nStatus: ${response.status}\nMessage: ${response.statusText}\n`;

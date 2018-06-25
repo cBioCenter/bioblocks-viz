@@ -88,6 +88,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/categoryselector.html" class="tsd-kind-icon">Category<wbr>Selector</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/chellcontext.html" class="tsd-kind-icon">Chell<wbr>Context</a></li>
+								<li class="tsd-kind-class"><a href="classes/chellpdb.html" class="tsd-kind-icon">ChellPDB</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/chellradiogroup.html" class="tsd-kind-icon">Chell<wbr>Radio<wbr>Group</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/chellslider.html" class="tsd-kind-icon">Chell<wbr>Slider</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/chellvizapp.html" class="tsd-kind-icon">Chell<wbr>Viz<wbr>App</a></li>
@@ -187,7 +188,6 @@
 								<li class="tsd-kind-function"><a href="globals.html#springcomponent" class="tsd-kind-icon">Spring<wbr>Component</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#createballstickrepresentation" class="tsd-kind-icon">create<wbr>Ball<wbr>Stick<wbr>Representation</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#createdistancerepresentation" class="tsd-kind-icon">create<wbr>Distance<wbr>Representation</a></li>
-								<li class="tsd-kind-function"><a href="globals.html#derivecontactwithpdb" class="tsd-kind-icon">derive<wbr>Contact<wbr>WithPDB</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#derivespringdata" class="tsd-kind-icon">derive<wbr>Spring<wbr>Data</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#fetchappropriatedata" class="tsd-kind-icon">fetch<wbr>Appropriate<wbr>Data</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#fetchcsvfile" class="tsd-kind-icon">fetchCSVFile</a></li>
@@ -197,7 +197,6 @@
 								<li class="tsd-kind-function"><a href="globals.html#fetchjsonfile" class="tsd-kind-icon">fetchJSONFile</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#fetchngldatafromdirectory" class="tsd-kind-icon">fetchNGLData<wbr>From<wbr>Directory</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#fetchngldatafromfile" class="tsd-kind-icon">fetchNGLData<wbr>From<wbr>File</a></li>
-								<li class="tsd-kind-function"><a href="globals.html#fetchpdbfile" class="tsd-kind-icon">fetchPDBFile</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#fetchspringcoordinatedata" class="tsd-kind-icon">fetch<wbr>Spring<wbr>Coordinate<wbr>Data</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#fetchtsnecoordinatedata" class="tsd-kind-icon">fetchTSne<wbr>Coordinate<wbr>Data</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#generrormsg" class="tsd-kind-icon">gen<wbr>Error<wbr>Msg</a></li>
@@ -210,9 +209,7 @@
 								<li class="tsd-kind-function"><a href="globals.html#generatesecondarystructureaxis" class="tsd-kind-icon">generate<wbr>Secondary<wbr>Structure<wbr>Axis</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#generatexaxissecstructsegment" class="tsd-kind-icon">generateXAxis<wbr>Sec<wbr>Struct<wbr>Segment</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#generateyaxissecstructsegment" class="tsd-kind-icon">generateYAxis<wbr>Sec<wbr>Struct<wbr>Segment</a></li>
-								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#getcalphaatomindexfromresidue" class="tsd-kind-icon">getCAlpha<wbr>Atom<wbr>Index<wbr>From<wbr>Residue</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#getcouplingscoresdata" class="tsd-kind-icon">get<wbr>Coupling<wbr>Scores<wbr>Data</a></li>
-								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#getmindistbetweenresidues" class="tsd-kind-icon">get<wbr>Min<wbr>Dist<wbr>Between<wbr>Residues</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#getsecondarystructuredata" class="tsd-kind-icon">get<wbr>Secondary<wbr>Structure<wbr>Data</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#secondarystructureaxisdefaults" class="tsd-kind-icon">secondary<wbr>Structure<wbr>Axis<wbr>Defaults</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#withdefaultprops" class="tsd-kind-icon">with<wbr>Default<wbr>Props</a></li>
@@ -250,7 +247,7 @@
 					<div class="tsd-signature tsd-kind-icon">CELL_<wbr>TYPE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/chell-data.ts:18</li>
+							<li>Defined in src/data/chell-data.ts:19</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -265,7 +262,7 @@
 					<div class="tsd-signature tsd-kind-icon">CHELL_<wbr>DATA_<wbr>TYPE<span class="tsd-signature-symbol">:</span> <a href="globals.html#contact_map_data_type" class="tsd-signature-type">CONTACT_MAP_DATA_TYPE</a><span class="tsd-signature-symbol"> | </span><a href="globals.html#ngl_data_type" class="tsd-signature-type">NGL_DATA_TYPE</a><span class="tsd-signature-symbol"> | </span><a href="globals.html#spring_data_type" class="tsd-signature-type">SPRING_DATA_TYPE</a><span class="tsd-signature-symbol"> | </span><a href="globals.html#t_sne_data_type" class="tsd-signature-type">T_SNE_DATA_TYPE</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/chell-data.ts:14</li>
+							<li>Defined in src/data/chell-data.ts:15</li>
 						</ul>
 					</aside>
 				</section>
@@ -285,7 +282,7 @@
 					<div class="tsd-signature tsd-kind-icon">CONTACT_<wbr>MAP_<wbr>DATA_<wbr>TYPE<span class="tsd-signature-symbol">:</span> <a href="interfaces/icontactmapdata.html" class="tsd-signature-type">IContactMapData</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/chell-data.ts:9</li>
+							<li>Defined in src/data/chell-data.ts:10</li>
 						</ul>
 					</aside>
 				</section>
@@ -419,7 +416,7 @@
 					<div class="tsd-signature tsd-kind-icon">NGL_<wbr>DATA_<wbr>TYPE<span class="tsd-signature-symbol">:</span> <a href="classes/_ngl_.structure.html" class="tsd-signature-type">Structure</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/chell-data.ts:10</li>
+							<li>Defined in src/data/chell-data.ts:11</li>
 						</ul>
 					</aside>
 				</section>
@@ -459,7 +456,7 @@
 					<div class="tsd-signature tsd-kind-icon">Predicted<wbr>Contact<wbr>Map<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/PredictedContactMap.tsx:33</li>
+							<li>Defined in src/component/PredictedContactMap.tsx:34</li>
 						</ul>
 					</aside>
 				</section>
@@ -469,7 +466,7 @@
 					<div class="tsd-signature tsd-kind-icon">Predicted<wbr>Contact<wbr>Map<wbr>State<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/PredictedContactMap.tsx:34</li>
+							<li>Defined in src/component/PredictedContactMap.tsx:35</li>
 						</ul>
 					</aside>
 				</section>
@@ -479,7 +476,7 @@
 					<div class="tsd-signature tsd-kind-icon">RESIDUE_<wbr>TYPE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/chell-data.ts:19</li>
+							<li>Defined in src/data/chell-data.ts:20</li>
 						</ul>
 					</aside>
 				</section>
@@ -509,7 +506,7 @@
 					<div class="tsd-signature tsd-kind-icon">SPRING_<wbr>DATA_<wbr>TYPE<span class="tsd-signature-symbol">:</span> <a href="interfaces/_spring_.ispringgraphdata.html" class="tsd-signature-type">ISpringGraphData</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/chell-data.ts:11</li>
+							<li>Defined in src/data/chell-data.ts:12</li>
 						</ul>
 					</aside>
 				</section>
@@ -539,7 +536,7 @@
 					<div class="tsd-signature tsd-kind-icon">T_<wbr>SNE_<wbr>DATA_<wbr>TYPE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/chell-data.ts:12</li>
+							<li>Defined in src/data/chell-data.ts:13</li>
 						</ul>
 					</aside>
 				</section>
@@ -654,7 +651,7 @@
 					<div class="tsd-signature tsd-kind-icon">Predicted<wbr>Contact<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultPredictedContactMapProps, PredictedContactMapClass)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/PredictedContactMap.tsx:171</li>
+							<li>Defined in src/component/PredictedContactMap.tsx:173</li>
 						</ul>
 					</aside>
 				</section>
@@ -868,35 +865,6 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="derivecontactwithpdb" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> derive<wbr>Contact<wbr>WithPDB</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">derive<wbr>Contact<wbr>WithPDB<span class="tsd-signature-symbol">(</span>couplingContainer<span class="tsd-signature-symbol">: </span><a href="classes/couplingcontainer.html" class="tsd-signature-type">CouplingContainer</a>, nglData<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NGL.Structure</span>, measuredProximity<span class="tsd-signature-symbol">: </span><a href="enums/contact_distance_proximity.html" class="tsd-signature-type">CONTACT_DISTANCE_PROXIMITY</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/couplingcontainer.html" class="tsd-signature-type">CouplingContainer</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/helper/DataHelper.ts:135</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>couplingContainer: <a href="classes/couplingcontainer.html" class="tsd-signature-type">CouplingContainer</a></h5>
-								</li>
-								<li>
-									<h5>nglData: <span class="tsd-signature-type">NGL.Structure</span></h5>
-								</li>
-								<li>
-									<h5>measuredProximity: <a href="enums/contact_distance_proximity.html" class="tsd-signature-type">CONTACT_DISTANCE_PROXIMITY</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="classes/couplingcontainer.html" class="tsd-signature-type">CouplingContainer</a></h4>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
 					<a name="derivespringdata" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> derive<wbr>Spring<wbr>Data</h3>
@@ -907,7 +875,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:24</li>
+									<li>Defined in src/helper/DataHelper.ts:25</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -924,13 +892,13 @@
 					<a name="fetchappropriatedata" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> fetch<wbr>Appropriate<wbr>Data</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">fetch<wbr>Appropriate<wbr>Data<span class="tsd-signature-symbol">(</span>viz<span class="tsd-signature-symbol">: </span><a href="enums/viz_type.html" class="tsd-signature-type">VIZ_TYPE</a>, dataDir<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="classes/_ngl_.structure.html" class="tsd-signature-type">Structure</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/icontactmapdata.html" class="tsd-signature-type">IContactMapData</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/_spring_.ispringgraphdata.html" class="tsd-signature-type">ISpringGraphData</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">fetch<wbr>Appropriate<wbr>Data<span class="tsd-signature-symbol">(</span>viz<span class="tsd-signature-symbol">: </span><a href="enums/viz_type.html" class="tsd-signature-type">VIZ_TYPE</a>, dataDir<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/_spring_.ispringgraphdata.html" class="tsd-signature-type">ISpringGraphData</a><span class="tsd-signature-symbol"> | </span><a href="classes/_ngl_.structure.html" class="tsd-signature-type">Structure</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/icontactmapdata.html" class="tsd-signature-type">IContactMapData</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:9</li>
+									<li>Defined in src/helper/DataHelper.ts:10</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -942,7 +910,7 @@
 									<h5>dataDir: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="classes/_ngl_.structure.html" class="tsd-signature-type">Structure</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/icontactmapdata.html" class="tsd-signature-type">IContactMapData</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/_spring_.ispringgraphdata.html" class="tsd-signature-type">ISpringGraphData</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/_spring_.ispringgraphdata.html" class="tsd-signature-type">ISpringGraphData</a><span class="tsd-signature-symbol"> | </span><a href="classes/_ngl_.structure.html" class="tsd-signature-type">Structure</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/icontactmapdata.html" class="tsd-signature-type">IContactMapData</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -979,7 +947,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:57</li>
+									<li>Defined in src/helper/DataHelper.ts:58</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1002,7 +970,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:206</li>
+									<li>Defined in src/helper/DataHelper.ts:136</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1025,7 +993,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:117</li>
+									<li>Defined in src/helper/DataHelper.ts:118</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1071,7 +1039,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:125</li>
+									<li>Defined in src/helper/DataHelper.ts:126</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1094,7 +1062,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:133</li>
+									<li>Defined in src/helper/DataHelper.ts:134</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1104,29 +1072,6 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="classes/_ngl_.structure.html" class="tsd-signature-type">Structure</a><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="fetchpdbfile" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> fetchPDBFile</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">fetchPDBFile<span class="tsd-signature-symbol">(</span>filename<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/helper/FetchHelper.ts:19</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>filename: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1140,7 +1085,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:85</li>
+									<li>Defined in src/helper/DataHelper.ts:86</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1163,7 +1108,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:104</li>
+									<li>Defined in src/helper/DataHelper.ts:105</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1186,7 +1131,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/FetchHelper.ts:28</li>
+									<li>Defined in src/helper/FetchHelper.ts:19</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1525,35 +1470,6 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
-					<a name="getcalphaatomindexfromresidue" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> getCAlpha<wbr>Atom<wbr>Index<wbr>From<wbr>Residue</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">getCAlpha<wbr>Atom<wbr>Index<wbr>From<wbr>Residue<span class="tsd-signature-symbol">(</span>nglData<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NGL.Structure</span>, residueIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, alphaId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/helper/DataHelper.ts:174</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>nglData: <span class="tsd-signature-type">NGL.Structure</span></h5>
-								</li>
-								<li>
-									<h5>residueIndex: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>alphaId: <span class="tsd-signature-type">number</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
 					<a name="getcouplingscoresdata" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Coupling<wbr>Scores<wbr>Data</h3>
@@ -1564,7 +1480,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:239</li>
+									<li>Defined in src/helper/DataHelper.ts:162</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1593,35 +1509,6 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
-					<a name="getmindistbetweenresidues" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Min<wbr>Dist<wbr>Between<wbr>Residues</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Min<wbr>Dist<wbr>Between<wbr>Residues<span class="tsd-signature-symbol">(</span>nglData<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NGL.Structure</span>, firstResidueIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, secondResidueIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/helper/DataHelper.ts:186</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>nglData: <span class="tsd-signature-type">NGL.Structure</span></h5>
-								</li>
-								<li>
-									<h5>firstResidueIndex: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>secondResidueIndex: <span class="tsd-signature-type">number</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
 					<a name="getsecondarystructuredata" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Secondary<wbr>Structure<wbr>Data</h3>
@@ -1632,7 +1519,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:280</li>
+									<li>Defined in src/helper/DataHelper.ts:203</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2369,7 +2256,7 @@
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 						<a name="defaultpredictedcontactmapprops.data" class="tsd-anchor"></a>
 						<h3>data</h3>
-						<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <a href="interfaces/icontactmapdata.html" class="tsd-signature-type">IContactMapData</a><span class="tsd-signature-symbol"> =&nbsp;{couplingScores: new CouplingContainer(),secondaryStructures: [],} as IContactMapData</span></div>
+						<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <a href="interfaces/icontactmapdata.html" class="tsd-signature-type">IContactMapData</a><span class="tsd-signature-symbol"> =&nbsp;{couplingScores: new CouplingContainer(),pdbData: new ChellPDB(),secondaryStructures: [],} as IContactMapData</span></div>
 						<aside class="tsd-sources">
 							<ul>
 								<li>Defined in src/component/PredictedContactMap.tsx:12</li>
@@ -2382,7 +2269,7 @@
 						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/PredictedContactMap.tsx:16</li>
+								<li>Defined in src/component/PredictedContactMap.tsx:17</li>
 							</ul>
 						</aside>
 					</section>
@@ -2392,7 +2279,7 @@
 						<div class="tsd-signature tsd-kind-icon">incorrect<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;#000000&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/PredictedContactMap.tsx:17</li>
+								<li>Defined in src/component/PredictedContactMap.tsx:18</li>
 							</ul>
 						</aside>
 					</section>
@@ -2402,7 +2289,7 @@
 						<div class="tsd-signature tsd-kind-icon">observed<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;#0000ff&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/PredictedContactMap.tsx:19</li>
+								<li>Defined in src/component/PredictedContactMap.tsx:20</li>
 							</ul>
 						</aside>
 					</section>
@@ -2412,7 +2299,7 @@
 						<div class="tsd-signature tsd-kind-icon">padding<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/PredictedContactMap.tsx:20</li>
+								<li>Defined in src/component/PredictedContactMap.tsx:21</li>
 							</ul>
 						</aside>
 					</section>
@@ -2422,7 +2309,7 @@
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/PredictedContactMap.tsx:21</li>
+								<li>Defined in src/component/PredictedContactMap.tsx:22</li>
 							</ul>
 						</aside>
 					</section>
@@ -2744,7 +2631,7 @@
 					<div class="tsd-signature tsd-kind-icon">initial<wbr>Predicted<wbr>Contact<wbr>Map<wbr>State<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/PredictedContactMap.tsx:24</li>
+							<li>Defined in src/component/PredictedContactMap.tsx:25</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -2753,7 +2640,7 @@
 						<div class="tsd-signature tsd-kind-icon">chain<wbr>Length<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;-1</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/PredictedContactMap.tsx:25</li>
+								<li>Defined in src/component/PredictedContactMap.tsx:26</li>
 							</ul>
 						</aside>
 					</section>
@@ -2763,7 +2650,7 @@
 						<div class="tsd-signature tsd-kind-icon">linear<wbr>Dist<wbr>Filter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;5</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/PredictedContactMap.tsx:26</li>
+								<li>Defined in src/component/PredictedContactMap.tsx:27</li>
 							</ul>
 						</aside>
 					</section>
@@ -2773,7 +2660,7 @@
 						<div class="tsd-signature tsd-kind-icon">measured<wbr>Contact<wbr>Dist<wbr>Filter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;5</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/PredictedContactMap.tsx:27</li>
+								<li>Defined in src/component/PredictedContactMap.tsx:28</li>
 							</ul>
 						</aside>
 					</section>
@@ -2783,7 +2670,7 @@
 						<div class="tsd-signature tsd-kind-icon">measured<wbr>Proximity<span class="tsd-signature-symbol">:</span> <a href="enums/contact_distance_proximity.html" class="tsd-signature-type">CONTACT_DISTANCE_PROXIMITY</a><span class="tsd-signature-symbol"> =&nbsp;CONTACT_DISTANCE_PROXIMITY.CLOSEST</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/PredictedContactMap.tsx:28</li>
+								<li>Defined in src/component/PredictedContactMap.tsx:29</li>
 							</ul>
 						</aside>
 					</section>
@@ -2793,7 +2680,7 @@
 						<div class="tsd-signature tsd-kind-icon">num<wbr>Predictions<wbr>ToShow<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;-1</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/PredictedContactMap.tsx:29</li>
+								<li>Defined in src/component/PredictedContactMap.tsx:30</li>
 							</ul>
 						</aside>
 					</section>
@@ -2803,7 +2690,7 @@
 						<div class="tsd-signature tsd-kind-icon">points<wbr>ToPlot<span class="tsd-signature-symbol">:</span> <a href="interfaces/icontactmapchartdata.html" class="tsd-signature-type">IContactMapChartData</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[] as IContactMapChartData[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/PredictedContactMap.tsx:30</li>
+								<li>Defined in src/component/PredictedContactMap.tsx:31</li>
 							</ul>
 						</aside>
 					</section>
@@ -2965,6 +2852,9 @@
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/chellcontext.html" class="tsd-kind-icon">Chell<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/chellpdb.html" class="tsd-kind-icon">ChellPDB</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/chellradiogroup.html" class="tsd-kind-icon">Chell<wbr>Radio<wbr>Group</a>
@@ -3203,9 +3093,6 @@
 					<li class=" tsd-kind-function">
 						<a href="globals.html#createdistancerepresentation" class="tsd-kind-icon">create<wbr>Distance<wbr>Representation</a>
 					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#derivecontactwithpdb" class="tsd-kind-icon">derive<wbr>Contact<wbr>WithPDB</a>
-					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#derivespringdata" class="tsd-kind-icon">derive<wbr>Spring<wbr>Data</a>
 					</li>
@@ -3232,9 +3119,6 @@
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#fetchngldatafromfile" class="tsd-kind-icon">fetchNGLData<wbr>From<wbr>File</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#fetchpdbfile" class="tsd-kind-icon">fetchPDBFile</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#fetchspringcoordinatedata" class="tsd-kind-icon">fetch<wbr>Spring<wbr>Coordinate<wbr>Data</a>
@@ -3272,14 +3156,8 @@
 					<li class=" tsd-kind-function">
 						<a href="globals.html#generateyaxissecstructsegment" class="tsd-kind-icon">generateYAxis<wbr>Sec<wbr>Struct<wbr>Segment</a>
 					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="globals.html#getcalphaatomindexfromresidue" class="tsd-kind-icon">getCAlpha<wbr>Atom<wbr>Index<wbr>From<wbr>Residue</a>
-					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#getcouplingscoresdata" class="tsd-kind-icon">get<wbr>Coupling<wbr>Scores<wbr>Data</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="globals.html#getmindistbetweenresidues" class="tsd-kind-icon">get<wbr>Min<wbr>Dist<wbr>Between<wbr>Residues</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#getsecondarystructuredata" class="tsd-kind-icon">get<wbr>Secondary<wbr>Structure<wbr>Data</a>
