@@ -96,18 +96,24 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="secondarystructureaxis.html#axis" class="tsd-kind-icon">axis</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="secondarystructureaxis.html#axes" class="tsd-kind-icon">axes</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="secondarystructureaxis.html#colormap" class="tsd-kind-icon">color<wbr>Map</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Accessors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="secondarystructureaxis.html#axis" class="tsd-kind-icon">axis</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-private-protected">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="secondarystructureaxis.html#generatesecondarystructaxissegments" class="tsd-kind-icon">generate<wbr>Secondary<wbr>Struct<wbr>Axis<wbr>Segments</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="secondarystructureaxis.html#generatesecondarystructureaxis" class="tsd-kind-icon">generate<wbr>Secondary<wbr>Structure<wbr>Axis</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="secondarystructureaxis.html#addsequencetoaxis" class="tsd-kind-icon">add<wbr>Sequence<wbr>ToAxis</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="secondarystructureaxis.html#generatexaxissecstructsegment" class="tsd-kind-icon">generateXAxis<wbr>Sec<wbr>Struct<wbr>Segment</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="secondarystructureaxis.html#generateyaxissecstructsegment" class="tsd-kind-icon">generateYAxis<wbr>Sec<wbr>Struct<wbr>Segment</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="secondarystructureaxis.html#secondarystructureaxisdefaults" class="tsd-kind-icon">secondary<wbr>Structure<wbr>Axis<wbr>Defaults</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="secondarystructureaxis.html#setupsecondarystructureaxes" class="tsd-kind-icon">setup<wbr>Secondary<wbr>Structure<wbr>Axes</a></li>
 							</ul>
 						</section>
 					</div>
@@ -125,7 +131,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/data/SecondaryStructureAxis.ts:12</li>
+									<li>Defined in src/data/SecondaryStructureAxis.ts:20</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -159,20 +165,15 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="axis" class="tsd-anchor"></a>
-					<h3>axis</h3>
-					<div class="tsd-signature tsd-kind-icon">axis<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;Array&lt;Partial&lt;IPlotlyData&gt;&gt;()</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="axes" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> axes</h3>
+					<div class="tsd-signature tsd-kind-icon">axes<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#secondary_structure_keys" class="tsd-signature-type">SECONDARY_STRUCTURE_KEYS</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/iaxismapping.html" class="tsd-signature-type">IAxisMapping</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new Map()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/SecondaryStructureAxis.ts:12</li>
+							<li>Defined in src/data/SecondaryStructureAxis.ts:16</li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The axis in Plotly parlance, pass this along to have it drawn.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="colormap" class="tsd-anchor"></a>
@@ -180,7 +181,7 @@
 					<div class="tsd-signature tsd-kind-icon">color<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/SecondaryStructureAxis.ts:25</li>
+							<li>Defined in src/data/SecondaryStructureAxis.ts:33</li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -193,72 +194,48 @@
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<a name="generatesecondarystructaxissegments" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> generate<wbr>Secondary<wbr>Struct<wbr>Axis<wbr>Segments</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">generate<wbr>Secondary<wbr>Struct<wbr>Axis<wbr>Segments<span class="tsd-signature-symbol">(</span>entry<span class="tsd-signature-symbol">: </span><a href="../interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">[]</span></li>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="axis" class="tsd-anchor"></a>
+					<h3>axis</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> axis<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"G"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"H"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"I"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"T"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"E"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"B"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"S"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"C"</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/iaxismapping.html" class="tsd-signature-type">IAxisMapping</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/data/SecondaryStructureAxis.ts:96</li>
+									<li>Defined in src/data/SecondaryStructureAxis.ts:18</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Generate the X and Y axis data object to represent the secondary structure.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>entry: <a href="../interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>A Single residue-secondary structure element.</p>
-										</div>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">[]</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"G"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"H"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"I"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"T"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"E"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"B"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"S"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"C"</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/iaxismapping.html" class="tsd-signature-type">IAxisMapping</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
+				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<a name="generatesecondarystructureaxis" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> generate<wbr>Secondary<wbr>Structure<wbr>Axis</h3>
+					<a name="addsequencetoaxis" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> add<wbr>Sequence<wbr>ToAxis</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">generate<wbr>Secondary<wbr>Structure<wbr>Axis<span class="tsd-signature-symbol">(</span>sequence<span class="tsd-signature-symbol">: </span><a href="../interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Sequence<wbr>ToAxis<span class="tsd-signature-symbol">(</span>sequence<span class="tsd-signature-symbol">: </span><a href="../interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/data/SecondaryStructureAxis.ts:48</li>
+									<li>Defined in src/data/SecondaryStructureAxis.ts:64</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Generate all of the scatter plots for the secondary structure of a sequence.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>sequence: <a href="../interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a><span class="tsd-signature-symbol">[]</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>All of the pairs of residue numbers with corresponding secondary structure codes.</p>
-										</div>
-									</div>
+									<h5>sequence: <a href="../interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>An array of data objects where each element represents a secondary structure chunk.</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -266,13 +243,13 @@
 					<a name="generatexaxissecstructsegment" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> generateXAxis<wbr>Sec<wbr>Struct<wbr>Segment</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">generateXAxis<wbr>Sec<wbr>Struct<wbr>Segment<span class="tsd-signature-symbol">(</span>entry<span class="tsd-signature-symbol">: </span><a href="../interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">generateXAxis<wbr>Sec<wbr>Struct<wbr>Segment<span class="tsd-signature-symbol">(</span>code<span class="tsd-signature-symbol">: </span><a href="../globals.html#secondary_structure_keys" class="tsd-signature-type">SECONDARY_STRUCTURE_KEYS</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/data/SecondaryStructureAxis.ts:68</li>
+									<li>Defined in src/data/SecondaryStructureAxis.ts:73</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -283,12 +260,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>entry: <a href="../interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>A Single residue-secondary structure element.</p>
-										</div>
-									</div>
+									<h5>code: <a href="../globals.html#secondary_structure_keys" class="tsd-signature-type">SECONDARY_STRUCTURE_KEYS</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -299,13 +271,13 @@
 					<a name="generateyaxissecstructsegment" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> generateYAxis<wbr>Sec<wbr>Struct<wbr>Segment</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">generateYAxis<wbr>Sec<wbr>Struct<wbr>Segment<span class="tsd-signature-symbol">(</span>entry<span class="tsd-signature-symbol">: </span><a href="../interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">generateYAxis<wbr>Sec<wbr>Struct<wbr>Segment<span class="tsd-signature-symbol">(</span>code<span class="tsd-signature-symbol">: </span><a href="../globals.html#secondary_structure_keys" class="tsd-signature-type">SECONDARY_STRUCTURE_KEYS</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/data/SecondaryStructureAxis.ts:82</li>
+									<li>Defined in src/data/SecondaryStructureAxis.ts:87</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -316,12 +288,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>entry: <a href="../interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>A Single residue-secondary structure element.</p>
-										</div>
-									</div>
+									<h5>code: <a href="../globals.html#secondary_structure_keys" class="tsd-signature-type">SECONDARY_STRUCTURE_KEYS</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -332,33 +299,45 @@
 					<a name="secondarystructureaxisdefaults" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> secondary<wbr>Structure<wbr>Axis<wbr>Defaults</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">secondary<wbr>Structure<wbr>Axis<wbr>Defaults<span class="tsd-signature-symbol">(</span>entry<span class="tsd-signature-symbol">: </span><a href="../interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">secondary<wbr>Structure<wbr>Axis<wbr>Defaults<span class="tsd-signature-symbol">(</span>code<span class="tsd-signature-symbol">: </span><a href="../globals.html#secondary_structure_keys" class="tsd-signature-type">SECONDARY_STRUCTURE_KEYS</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/data/SecondaryStructureAxis.ts:107</li>
+									<li>Defined in src/data/SecondaryStructureAxis.ts:96</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Generate a Plotly data object with elements shared between x/y axis.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>entry: <a href="../interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>A Single residue-secondary structure element.</p>
-										</div>
-									</div>
+									<h5>code: <a href="../globals.html#secondary_structure_keys" class="tsd-signature-type">SECONDARY_STRUCTURE_KEYS</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Plotly data object with axis options shared between x and y axis.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="setupsecondarystructureaxes" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> setup<wbr>Secondary<wbr>Structure<wbr>Axes</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">setup<wbr>Secondary<wbr>Structure<wbr>Axes<span class="tsd-signature-symbol">(</span>sequence<span class="tsd-signature-symbol">: </span><a href="../interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/data/SecondaryStructureAxis.ts:42</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>sequence: <a href="../interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -382,17 +361,17 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="secondarystructureaxis.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="secondarystructureaxis.html#axis" class="tsd-kind-icon">axis</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="secondarystructureaxis.html#axes" class="tsd-kind-icon">axes</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="secondarystructureaxis.html#colormap" class="tsd-kind-icon">color<wbr>Map</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-								<a href="secondarystructureaxis.html#generatesecondarystructaxissegments" class="tsd-kind-icon">generate<wbr>Secondary<wbr>Struct<wbr>Axis<wbr>Segments</a>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="secondarystructureaxis.html#axis" class="tsd-kind-icon">axis</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-								<a href="secondarystructureaxis.html#generatesecondarystructureaxis" class="tsd-kind-icon">generate<wbr>Secondary<wbr>Structure<wbr>Axis</a>
+								<a href="secondarystructureaxis.html#addsequencetoaxis" class="tsd-kind-icon">add<wbr>Sequence<wbr>ToAxis</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 								<a href="secondarystructureaxis.html#generatexaxissecstructsegment" class="tsd-kind-icon">generateXAxis<wbr>Sec<wbr>Struct<wbr>Segment</a>
@@ -402,6 +381,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 								<a href="secondarystructureaxis.html#secondarystructureaxisdefaults" class="tsd-kind-icon">secondary<wbr>Structure<wbr>Axis<wbr>Defaults</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="secondarystructureaxis.html#setupsecondarystructureaxes" class="tsd-kind-icon">setup<wbr>Secondary<wbr>Structure<wbr>Axes</a>
 							</li>
 						</ul>
 					</li>

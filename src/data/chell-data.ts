@@ -66,7 +66,7 @@ export enum CONFIGURATION_COMPONENT_TYPE {
 
 export interface ISecondaryStructureData {
   resno: number;
-  structId: keyof typeof SECONDARY_STRUCTURE_CODES;
+  structId: SECONDARY_STRUCTURE_KEYS;
 }
 
 export interface IDistanceMapMonomer {
@@ -89,6 +89,8 @@ export enum SECONDARY_STRUCTURE_CODES {
   'S' = 'BEND',
   'C' = 'COIL',
 }
+
+export type SECONDARY_STRUCTURE_KEYS = keyof typeof SECONDARY_STRUCTURE_CODES;
 
 export interface ISecondaryStructure {
   code: SECONDARY_STRUCTURE_CODES;
