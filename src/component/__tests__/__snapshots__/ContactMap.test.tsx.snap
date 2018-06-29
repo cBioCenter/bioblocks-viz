@@ -1,5 +1,110 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ContactMap Configuration Should match existing snapshot when given configurations. 1`] = `
+<div
+  id="ContactMapComponent"
+  style={
+    Object {
+      "padding": 0,
+    }
+  }
+>
+  <ContactMapChartClass
+    candidateResidues={Array []}
+    contactData={
+      Array [
+        Object {
+          "hoverinfo": "none",
+          "marker": Object {
+            "color": "#ff8800",
+            "line": Object {
+              "color": "#ff8800",
+              "width": 3,
+            },
+            "symbol": "circle-open",
+          },
+          "name": "Selected Res. Pairs",
+          "nodeSize": 6,
+          "points": Array [],
+          "subtitle": "",
+        },
+      ]
+    }
+    dataTransformFn={[Function]}
+    heightModifier={0.3}
+    legendModifiers={
+      Object {
+        "y": -0.1,
+      }
+    }
+    marginModifiers={
+      Object {
+        "b": 40,
+      }
+    }
+    onClickCallback={[Function]}
+    onHoverCallback={[Function]}
+    onSelectedCallback={[Function]}
+    range={64}
+    secondaryStructures={Array []}
+  />
+  <Accordion
+    fluid={true}
+    styled={true}
+  >
+    <AccordionTitle
+      active={false}
+      className="contact-map-configuration-toggle"
+      index={1}
+      onClick={[Function]}
+    >
+      <Icon
+        as="i"
+        name="dropdown"
+      />
+      Configuration
+    </AccordionTitle>
+    <AccordionContent
+      active={false}
+    >
+      <ChellSlider
+        className="node-size-slider-0"
+        key="node-size-slider-0"
+        label="Selected Res. Pairs - Node Size"
+        max={20}
+        min={1}
+        onChange={[Function]}
+        style={
+          Object {
+            "width": 360,
+          }
+        }
+        value={6}
+      />
+      <ChellSlider
+        className="sample-slider"
+        key="sample-slider"
+        label="sample slider"
+        max={10}
+        min={0}
+        onChange={[MockFunction]}
+        style={
+          Object {
+            "width": 360,
+          }
+        }
+        value={5}
+      />
+      <ChellRadioGroup
+        id="sample-radio"
+        key="radio-group-sample-radio"
+        onChange={[MockFunction]}
+      />
+    </AccordionContent>
+  </Accordion>
+</div>
+`;
+
 exports[`ContactMap Snapshots Should match existing snapshot when given empty data. 1`] = `<[object Object] />`;
 
 exports[`ContactMap Snapshots Should match existing snapshot when given no data. 1`] = `<[object Object] />`;
