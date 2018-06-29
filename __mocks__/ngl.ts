@@ -66,12 +66,35 @@ class MockStage {
   return new MockStage(canvas);
 });
 
-const sampleResidues = [{ isProtein: jest.fn(() => true), resno: 1 }, { isProtein: jest.fn(() => true), resno: 2 }];
+const genericResidue = (resno: number) => ({
+  isHelix: () => false,
+  isProtein: () => true,
+  isSheet: () => false,
+  isTurn: () => false,
+  resno,
+});
 
-(ngl.Structure as any).mockImplementation(() => {
+const helixResidue = (resno: number) => ({
+  ...genericResidue(resno),
+  isHelix: () => true,
+});
+
+const sheetResidue = (resno: number) => ({
+  ...genericResidue(resno),
+  isSheet: () => true,
+});
+
+const turnResidue = (resno: number) => ({
+  ...genericResidue(resno),
+  isTurn: () => true,
+});
+
+const sampleResidues = [helixResidue(1), sheetResidue(2), turnResidue(3)];
+
+(ngl.Structure as any).mockImplementation((name: string) => {
   return {
     atomMap: { dict: { 'CA|C': 2 } },
-    eachResidue: jest.fn(cb => sampleResidues.map(residue => cb(residue))),
+    eachResidue: jest.fn(cb => (name.localeCompare('sample.pdb') ? sampleResidues.map(residue => cb(residue)) : {})),
     getAtomProxy: jest.fn(() => ({
       distanceTo: (...args: any[]) => 1,
     })),
@@ -92,7 +115,7 @@ const sampleResidues = [{ isProtein: jest.fn(() => true), resno: 1 }, { isProtei
 
 (ngl.autoLoad as any) = jest.fn(
   (path: string) =>
-    path.localeCompare('error/protein.pdb') === 0 ? Promise.reject('Invalid NGL path.') : new NGL.Structure(),
+    path.localeCompare('error/protein.pdb') === 0 ? Promise.reject('Invalid NGL path.') : new NGL.Structure(path),
 );
 
 // @ts-ignore

@@ -2,24 +2,10 @@
 
 exports[`ContactMapChart Should match existing snapshot when given simple data. 1`] = `
 <PlotlyChartClass
+  candidateResidues={Array []}
   config={Object {}}
-  data={
-    Array [
-      Object {
-        "hoverinfo": "x+y+z",
-        "marker": Object {
-          "color": Array [],
-          "size": 0,
-        },
-        "mode": "markers",
-        "name": " undefined",
-        "type": "scattergl",
-        "x": Array [],
-        "y": Array [],
-        "z": Array [],
-      },
-    ]
-  }
+  data={Array []}
+  dataTransformFn={[Function]}
   layout={
     Object {
       "height": 520,

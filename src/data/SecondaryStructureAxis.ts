@@ -1,6 +1,6 @@
 import { Datum } from 'plotly.js';
 import { IPlotlyData } from '../component/chart/PlotlyChart';
-import { ISecondaryStructureData, SECONDARY_STRUCTURE_KEYS } from './chell-data';
+import { SECONDARY_STRUCTURE_KEYS, SECONDARY_STRUCTURE_SECTION } from './chell-data';
 
 export interface IAxisMapping {
   x: Partial<IPlotlyData>;
@@ -29,7 +29,7 @@ export default class SecondaryStructureAxis {
    *     }] How to color the different secondary structure types.
    */
   constructor(
-    sequence: ISecondaryStructureData[],
+    sequence: SECONDARY_STRUCTURE_SECTION[],
     readonly colorMap: { [key: string]: string } = {
       C: 'red',
       E: 'green',
@@ -39,30 +39,20 @@ export default class SecondaryStructureAxis {
     this.setupSecondaryStructureAxes(sequence);
   }
 
-  protected setupSecondaryStructureAxes = (sequence: ISecondaryStructureData[]): void => {
-    for (let i = 0; i < sequence.length; ++i) {
-      const seq = sequence[i];
-      if (!this.axes.get(seq.structId)) {
-        this.axes.set(seq.structId, {
-          x: this.generateXAxisSecStructSegment(seq.structId),
-          y: this.generateYAxisSecStructSegment(seq.structId),
+  protected setupSecondaryStructureAxes = (sections: SECONDARY_STRUCTURE_SECTION[]): void => {
+    for (const chellSection of sections) {
+      const { label, section } = chellSection;
+      if (!this.axes.get(label)) {
+        this.axes.set(label, {
+          x: this.generateXAxisSecStructSegment(label),
+          y: this.generateYAxisSecStructSegment(label),
         });
       }
-      (this.axes.get(seq.structId)!.x.x! as Datum[]).push(seq.resno);
-      (this.axes.get(seq.structId)!.x.y! as Datum[]).push(1);
-      (this.axes.get(seq.structId)!.y.y! as Datum[]).push(seq.resno);
-      (this.axes.get(seq.structId)!.y.x! as Datum[]).push(1);
-      if (i + 1 < sequence.length && sequence[i + 1].structId !== seq.structId) {
-        (this.axes.get(seq.structId)!.x.x! as Datum[]).push(seq.resno);
-        (this.axes.get(seq.structId)!.x.y! as Datum[]).push(null as any);
-        (this.axes.get(seq.structId)!.y.y! as Datum[]).push(seq.resno);
-        (this.axes.get(seq.structId)!.y.x! as Datum[]).push(null as any);
-      }
+      (this.axes.get(label)!.x.x! as Datum[]).push(section.start, section.end, section.end);
+      (this.axes.get(label)!.x.y! as Datum[]).push(1, 1, null);
+      (this.axes.get(label)!.y.y! as Datum[]).push(section.start, section.end, section.end);
+      (this.axes.get(label)!.y.x! as Datum[]).push(1, 1, null);
     }
-  };
-
-  protected addSequenceToAxis = (sequence: ISecondaryStructureData): void => {
-    return;
   };
 
   /**

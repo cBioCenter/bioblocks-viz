@@ -5,7 +5,7 @@ import * as React from 'react';
 import * as Renderer from 'react-test-renderer';
 
 import { initialResidueContext, IResidueContext } from '../../context/ResidueContext';
-import { CONFIGURATION_COMPONENT_TYPE, ICouplingScore, SECONDARY_STRUCTURE_CODES } from '../../data/chell-data';
+import { CONFIGURATION_COMPONENT_TYPE, ICouplingScore, SECONDARY_STRUCTURE_SECTION } from '../../data/chell-data';
 import { PlotlyChartClass } from '../chart/PlotlyChart';
 import ContactMap, { ContactMapClass, ContactMapProps } from '../ContactMap';
 
@@ -112,9 +112,11 @@ describe('ContactMap', () => {
       ],
     })),
     secondaryStructures: [
-      { resno: 30, structId: 'C' as keyof typeof SECONDARY_STRUCTURE_CODES },
-      { resno: 31, structId: 'C' as keyof typeof SECONDARY_STRUCTURE_CODES },
-    ],
+      {
+        label: 'C',
+        section: { start: 30, end: 31, length: 2 },
+      },
+    ] as SECONDARY_STRUCTURE_SECTION[],
   };
 
   describe('Snapshots', () => {

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { initialResidueContext } from '../context/ResidueContext';
 import { CONFIGURATION_COMPONENT_TYPE, CONTACT_DISTANCE_PROXIMITY, IContactMapData } from '../data/chell-data';
-import { ChellPDB } from '../data/ChellPDB';
 import { CouplingContainer } from '../data/CouplingContainer';
 import { withDefaultProps } from '../helper/ReactHelper';
 import { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';
@@ -11,8 +10,6 @@ export const defaultPredictedContactMapProps = {
   correctColor: '#ff0000',
   data: {
     couplingScores: new CouplingContainer(),
-    pdbData: new ChellPDB(),
-    secondaryStructures: [],
   } as IContactMapData,
   height: 400,
   incorrectColor: '#000000',
@@ -70,10 +67,9 @@ export class PredictedContactMapClass extends React.Component<PredictedContactMa
       measuredProximity !== prevState.measuredProximity ||
       numPredictionsToShow !== prevState.numPredictionsToShow;
     if (isRecomputeNeeded) {
-      const couplingScores = data.pdbData.generateCouplingsAmendedWithPDB(
-        data.couplingScores.rankedContacts,
-        measuredProximity,
-      );
+      const couplingScores = data.pdbData
+        ? data.pdbData.generateCouplingsAmendedWithPDB(data.couplingScores.rankedContacts, measuredProximity)
+        : new CouplingContainer(data.couplingScores.rankedContacts);
 
       const { chainLength } = couplingScores;
       const observedContacts = couplingScores.getObservedContacts(measuredContactDistFilter, linearDistFilter);
@@ -128,7 +124,10 @@ export class PredictedContactMapClass extends React.Component<PredictedContactMa
         <ContactMap
           chainLength={chainLength}
           configurations={this.getContactMapConfigs()}
-          data={{ computedPoints: pointsToPlot, secondaryStructures: data.secondaryStructures }}
+          data={{
+            computedPoints: pointsToPlot,
+            secondaryStructures: data.pdbData ? data.pdbData.secondaryStructureSections : [],
+          }}
           {...passThroughProps}
         />
       </div>

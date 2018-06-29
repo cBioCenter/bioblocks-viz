@@ -49,43 +49,6 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
             "rowCounter": 0,
             "totalStoredContacts": 0,
           },
-          "pdbData": ChellPDB {
-            "NGL_C_ALPHA_INDEX": "CA|C",
-            "nglData": Object {
-              "atomMap": Object {
-                "dict": Object {
-                  "CA|C": 2,
-                },
-              },
-              "eachResidue": [MockFunction],
-              "getAtomProxy": [MockFunction],
-              "getSequence": [MockFunction],
-              "residueMap": Object {
-                "list": Array [],
-              },
-              "residueStore": Object {
-                "atomCount": Array [
-                  2,
-                  2,
-                ],
-                "atomOffset": Array [
-                  0,
-                  2,
-                ],
-                "residueTypeId": Array [
-                  2,
-                  1,
-                  1,
-                  2,
-                ],
-                "resno": Array [
-                  1,
-                  2,
-                ],
-              },
-            },
-          },
-          "secondaryStructures": Array [],
         }
       }
       height={420}

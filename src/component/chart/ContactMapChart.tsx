@@ -3,7 +3,7 @@
 import * as plotly from 'plotly.js/dist/plotly';
 import * as React from 'react';
 
-import { ISecondaryStructureData, RESIDUE_TYPE } from '../../data/chell-data';
+import { RESIDUE_TYPE, SECONDARY_STRUCTURE_SECTION } from '../../data/chell-data';
 
 import SecondaryStructureAxis from '../../data/SecondaryStructureAxis';
 import { generateScatterGLData } from '../../helper/PlotlyHelper';
@@ -26,7 +26,11 @@ export interface IContactMapChartProps {
   onSelectedCallback: (...args: any[]) => void;
   onUnHoverCallback: (...args: any[]) => void;
   range: number;
-  secondaryStructures?: ISecondaryStructureData[];
+  secondaryStructures?: SECONDARY_STRUCTURE_SECTION[];
+}
+
+export interface IContactMapChartState {
+  plotlyData: Array<Partial<IPlotlyData>>;
 }
 
 const defaultContactMapChartProps: Partial<IContactMapChartProps> = {
@@ -96,34 +100,37 @@ export interface IContactMapChartPoint {
  * Will transform data and setup layout from science/chell data type into the Plotly type.
  * @extends {React.Component<IContactMapChartProps, any>}
  */
-class ContactMapChartClass extends React.Component<IContactMapChartProps, any> {
-  constructor(props: any) {
+class ContactMapChartClass extends React.Component<IContactMapChartProps, IContactMapChartState> {
+  constructor(props: IContactMapChartProps) {
     super(props);
+    this.state = {
+      plotlyData: [],
+    };
+  }
+
+  public componentDidUpdate(prevProps: IContactMapChartProps) {
+    const { contactData, dataTransformFn, secondaryStructures } = this.props;
+    if (prevProps.contactData !== contactData || prevProps.secondaryStructures !== secondaryStructures) {
+      let plotlyData = [...contactData.map(entry => dataTransformFn(entry, true))];
+
+      if (secondaryStructures && secondaryStructures.length >= 1) {
+        const axis = new SecondaryStructureAxis(secondaryStructures).axis;
+        const axisData = Array.from(axis.values()).reduce((prev, cur) => {
+          prev.push(...[cur.x, cur.y]);
+          return prev;
+        }, new Array());
+        plotlyData = [...plotlyData, ...axisData];
+      }
+      this.setState({
+        plotlyData,
+      });
+    }
   }
 
   public render() {
-    const {
-      candidateResidues,
-      contactData,
-      dataTransformFn,
-      heightModifier,
-      legendModifiers,
-      marginModifiers,
-      range,
-      secondaryStructures,
-      ...props
-    } = this.props;
+    const { contactData, heightModifier, legendModifiers, marginModifiers, range, ...props } = this.props;
 
-    let plotlyData = [...contactData.map(entry => dataTransformFn(entry, true))];
-
-    if (secondaryStructures && secondaryStructures.length >= 1) {
-      const axis = new SecondaryStructureAxis(secondaryStructures).axis;
-      const foo = Array.from(axis.values()).reduce((prev, cur) => {
-        prev.push(...[cur.x, cur.y]);
-        return prev;
-      }, new Array());
-      plotlyData = [...plotlyData, ...foo];
-    }
+    const { plotlyData } = this.state;
 
     return (
       <PlotlyChart

@@ -6,8 +6,8 @@ import ResidueContext, { initialResidueContext, ResidueSelection } from '../cont
 import {
   CONFIGURATION_COMPONENT_TYPE,
   ICouplingScore,
-  ISecondaryStructureData,
   RESIDUE_TYPE,
+  SECONDARY_STRUCTURE_SECTION,
 } from '../data/chell-data';
 import { withDefaultProps } from '../helper/ReactHelper';
 import ContactMapChart, { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';
@@ -36,7 +36,7 @@ export const defaultContactMapProps = {
   configurations: new Array<IContactMapConfiguration>(),
   data: {
     computedPoints: new Array<IContactMapChartData>(),
-    secondaryStructures: new Array<ISecondaryStructureData>(),
+    secondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
   },
   enableSliders: true,
   height: 400,
@@ -140,7 +140,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
   protected renderContactMapChart(
     pointsToPlot: IContactMapChartData[],
-    secondaryStructures: ISecondaryStructureData[],
+    secondaryStructures: SECONDARY_STRUCTURE_SECTION[],
   ) {
     const { addHoveredResidues, candidateResidues, chainLength, onBoxSelection, toggleLockedResiduePair } = this.props;
     return (
