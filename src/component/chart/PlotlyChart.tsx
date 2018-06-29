@@ -59,6 +59,7 @@ export const defaultPlotlyConfig: Partial<Plotly.Config> = {
 
 export const defaultPlotlyLayout: Partial<IPlotlyLayout> = {
   autosize: true,
+  dragmode: 'zoom',
   height: 400,
   hovermode: 'closest',
   legend: {},

@@ -117,7 +117,12 @@ class ContactMapChartClass extends React.Component<IContactMapChartProps, any> {
     let plotlyData = [...contactData.map(entry => dataTransformFn(entry, true))];
 
     if (secondaryStructures && secondaryStructures.length >= 1) {
-      plotlyData = [...plotlyData, ...new SecondaryStructureAxis(secondaryStructures).axis];
+      const axis = new SecondaryStructureAxis(secondaryStructures).axis;
+      const foo = Array.from(axis.values()).reduce((prev, cur) => {
+        prev.push(...[cur.x, cur.y]);
+        return prev;
+      }, new Array());
+      plotlyData = [...plotlyData, ...foo];
     }
 
     return (

@@ -92,7 +92,7 @@ Array [
         "j": 50,
       },
     ],
-    "subtitle": "(N=28, L=57)",
+    "subtitle": "(N=28, L=56)",
   },
   Object {
     "hoverinfo": "x+y",
@@ -205,7 +205,7 @@ Array [
         "j": 50,
       },
     ],
-    "subtitle": "(N=-1, L=57)",
+    "subtitle": "(N=-1, L=56)",
   },
   Object {
     "hoverinfo": "x+y",
@@ -313,7 +313,7 @@ Array [
         "j": 50,
       },
     ],
-    "subtitle": "(N=-1, L=57)",
+    "subtitle": "(N=-1, L=56)",
   },
   Object {
     "hoverinfo": "x+y",

@@ -138,12 +138,12 @@ export const fetchContactMapData = async (dir: string): Promise<IContactMapData>
   const promiseResults = await Promise.all(contactMapFiles.map(file => fetchCSVFile(`${dir}/${file}`)));
   const pdbData = await ChellPDB.createPDB(`${dir}/protein.pdb`);
 
+  console.log(getCouplingScoresData(promiseResults[0]));
   const data: CONTACT_MAP_DATA_TYPE = {
     couplingScores: getCouplingScoresData(promiseResults[0]),
     pdbData,
-    secondaryStructures: getSecondaryStructureData(promiseResults[1]),
+    secondaryStructures: pdbData.secondaryStructure,
   };
-
   return data;
 };
 

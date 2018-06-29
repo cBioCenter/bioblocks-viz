@@ -130,7 +130,7 @@ describe('PredictedContactMap', () => {
   });
 
   it('Should update chain length when new non-pdb data is provided.', () => {
-    const expected = 57;
+    const expected = 56;
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);
     expect(wrapper.state().numPredictionsToShow).not.toBe(expected);
     wrapper.setProps({
@@ -140,7 +140,7 @@ describe('PredictedContactMap', () => {
   });
 
   it('Should update chain length when new pdb data is provided.', () => {
-    const expected = 57;
+    const expected = 56;
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);
     expect(wrapper.state().numPredictionsToShow).not.toBe(expected);
     wrapper.setProps({

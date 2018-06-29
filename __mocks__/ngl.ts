@@ -66,7 +66,7 @@ class MockStage {
   return new MockStage(canvas);
 });
 
-const sampleResidues = [{ resno: 1 }, { resno: 2 }];
+const sampleResidues = [{ isProtein: jest.fn(() => true), resno: 1 }, { isProtein: jest.fn(() => true), resno: 2 }];
 
 (ngl.Structure as any).mockImplementation(() => {
   return {

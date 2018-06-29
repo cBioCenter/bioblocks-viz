@@ -1,6 +1,11 @@
 import * as NGL from 'ngl';
 import { fetchNGLDataFromFile } from '../helper/DataHelper';
-import { CONTACT_DISTANCE_PROXIMITY, ICouplingScore } from './chell-data';
+import {
+  CONTACT_DISTANCE_PROXIMITY,
+  ICouplingScore,
+  ISecondaryStructureData,
+  SECONDARY_STRUCTURE_CODES,
+} from './chell-data';
 import { CouplingContainer } from './CouplingContainer';
 
 /**
@@ -11,6 +16,23 @@ import { CouplingContainer } from './CouplingContainer';
 export class ChellPDB {
   [key: string]: any;
 
+  public get secondaryStructure(): ISecondaryStructureData[] {
+    const result = new Array<ISecondaryStructureData>();
+    this.nglData.eachResidue(residue => {
+      if (residue.isProtein()) {
+        let structId: keyof typeof SECONDARY_STRUCTURE_CODES = 'C';
+        if (residue.isSheet()) {
+          structId = 'E';
+        } else if (residue.isHelix()) {
+          structId = 'H';
+        } else if (residue.isTurn()) {
+          return;
+        }
+        result.push({ resno: residue.resno, structId });
+      }
+    });
+    return result;
+  }
   /**
    * Creates an instance of ChellPDB with PDB data.
    *
@@ -44,7 +66,7 @@ export class ChellPDB {
     this.nglData.eachResidue(outerResidue => {
       const firstResidueIndex = outerResidue.resno - offset;
       this.nglData.eachResidue(innerResidue => {
-        if (outerResidue.resno <= result.chainLength && innerResidue.resno <= result.chainLength) {
+        if (outerResidue.isProtein() && innerResidue.isProtein()) {
           const secondResidueIndex = innerResidue.resno - offset;
 
           if (measuredProximity === CONTACT_DISTANCE_PROXIMITY.C_ALPHA) {

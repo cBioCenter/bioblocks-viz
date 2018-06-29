@@ -30,7 +30,7 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
   }
 
   public get chainLength() {
-    return this.contacts.length + 1;
+    return this.contacts.length;
   }
 
   public get rankedContacts() {
