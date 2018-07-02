@@ -114,7 +114,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
           onMouseLeave={this.onCanvasLeave}
         />
         <GridRow>
-          <Button onClick={this.props.removeAllLockedResiduePairs}>Remove Locked Distance Pairs</Button>
+          <Button onClick={this.props.removeAllLockedResiduePairs}>Remove All Locked Distance Pairs</Button>
         </GridRow>
       </div>
     );
