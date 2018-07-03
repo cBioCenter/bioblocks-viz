@@ -27,7 +27,7 @@ exports[`NGLComponent Should match existing snapshot when canvas isn't available
       onClick={[Function]}
       role="button"
     >
-      Remove Locked Distance Pairs
+      Remove All Locked Distance Pairs
     </button>
   </div>
 </div>
@@ -96,7 +96,7 @@ exports[`NGLComponent Should match existing snapshot when given sample data 1`] 
             onClick={[Function]}
             role="button"
           >
-            Remove Locked Distance Pairs
+            Remove All Locked Distance Pairs
           </button>
         </Button>
       </div>
