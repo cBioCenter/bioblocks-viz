@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import CellContext, { initialCellContext } from '../context/CellContext';
-import ResidueContext, { initialResidueContext } from '../context/ResidueContext';
 import { CELL_TYPE, RESIDUE_TYPE } from '../data/chell-data';
+import CellContext, { initialCellContext } from './CellContext';
+import ResidueContext, { initialResidueContext } from './ResidueContext';
 
 export const initialState = {
   cellContext: {

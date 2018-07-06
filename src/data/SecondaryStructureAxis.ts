@@ -48,10 +48,10 @@ export default class SecondaryStructureAxis {
           y: this.generateYAxisSecStructSegment(label),
         });
       }
-      (this.axes.get(label)!.x.x! as Datum[]).push(section.start, section.end, section.end);
-      (this.axes.get(label)!.x.y! as Datum[]).push(1, 1, null);
-      (this.axes.get(label)!.y.y! as Datum[]).push(section.start, section.end, section.end);
-      (this.axes.get(label)!.y.x! as Datum[]).push(1, 1, null);
+      (this.axes.get(label)!.x.x! as Datum[]).push(section.start, section.start, section.end, section.end);
+      (this.axes.get(label)!.x.y! as Datum[]).push(null, 1, 1, null);
+      (this.axes.get(label)!.y.y! as Datum[]).push(section.start, section.start, section.end, section.end);
+      (this.axes.get(label)!.y.x! as Datum[]).push(null, 1, 1, null);
     }
   };
 

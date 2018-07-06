@@ -1,5 +1,5 @@
-import { ISecondaryStructureData, SECONDARY_STRUCTURE_CODES } from './../data/chell-data';
-import { CouplingContainer } from './../data/CouplingContainer';
+import { ISecondaryStructureData, SECONDARY_STRUCTURE_CODES } from '../data/chell-data';
+import { CouplingContainer } from '../data/CouplingContainer';
 import { fetchCSVFile, fetchJSONFile } from './FetchHelper';
 
 import * as NGL from 'ngl';

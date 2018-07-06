@@ -1020,11 +1020,13 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "type": "scatter",
               "x": Array [
                 30,
+                30,
                 31,
                 31,
               ],
               "xaxis": "x",
               "y": Array [
+                null,
                 1,
                 1,
                 null,
@@ -1044,12 +1046,14 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "showlegend": false,
               "type": "scatter",
               "x": Array [
+                null,
                 1,
                 1,
                 null,
               ],
               "xaxis": "x2",
               "y": Array [
+                30,
                 30,
                 31,
                 31,

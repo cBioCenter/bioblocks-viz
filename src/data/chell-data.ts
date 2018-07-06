@@ -71,6 +71,7 @@ export interface ISecondaryStructureData {
 }
 
 export type SECONDARY_STRUCTURE_SECTION = Chell1DSection<SECONDARY_STRUCTURE_KEYS>;
+export type SECONDARY_STRUCTURE = Array<Chell1DSection<SECONDARY_STRUCTURE_KEYS>>;
 
 export interface IResiduePair {
   i: number;

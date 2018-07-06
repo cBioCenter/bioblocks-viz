@@ -1,4 +1,4 @@
-import * as plotly from 'plotly.js/dist/plotly';
+import * as plotly from 'plotly.js';
 import * as React from 'react';
 import { Accordion, Icon } from 'semantic-ui-react';
 
@@ -12,7 +12,6 @@ import {
 import { withDefaultProps } from '../helper/ReactHelper';
 import ContactMapChart, { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';
 import ChellRadioGroup from './widget/ChellRadioGroup';
-// import ChellSlider, { ChellSliderCallback } from './ChellSlider';
 import ChellSlider from './widget/ChellSlider';
 
 export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
