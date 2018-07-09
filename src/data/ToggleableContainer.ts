@@ -1,3 +1,8 @@
+/**
+ * An array providing an API to easily toggle-insert an element - meaning, add the item if it isn't present, or remove it if it is.
+ *
+ * @export
+ */
 export default class ToggleableContainer<T> {
   protected iteratorCounter = 0;
   protected elements = new Array<T>();
@@ -15,11 +20,11 @@ export default class ToggleableContainer<T> {
   }
 
   public add(...items: T[]) {
-    this.elements.push(...items);
+    this.elements = [...this.elements, ...items];
   }
 
   public clear() {
-    this.elements.splice(0, this.length);
+    this.elements = [];
   }
 
   public next(value?: any): IteratorResult<T> {
@@ -41,14 +46,28 @@ export default class ToggleableContainer<T> {
   public remove(element: T) {
     const searchIndex = this.elements.indexOf(element);
     if (searchIndex >= 0) {
-      this.elements.splice(searchIndex, 1);
+      this.elements = [...this.elements.slice(0, searchIndex), ...this.elements.slice(searchIndex + 1)];
     }
   }
 
+  public toArray() {
+    return Array.from(this.elements);
+  }
+
+  /**
+   * Either adds or removes an element from this container - whatever is opposite of the current state.
+   *
+   * @example const result = new ToggleableContainer<number>();
+   * result.toggle(4);
+   * console.log(result.toArray()); // [4]
+   * result.toggle(4);
+   * console.log(result.toArray()); // []
+   *
+   * @param element Element to be toggled in/out.
+   */
   public toggle(element: T) {
-    const searchIndex = this.elements.indexOf(element);
-    if (searchIndex >= 0) {
-      this.elements.splice(searchIndex, 1);
+    if (this.elements.includes(element)) {
+      this.remove(element);
     } else {
       this.add(element);
     }

@@ -1,9 +1,17 @@
 import * as React from 'react';
 import { SECONDARY_STRUCTURE_SECTION } from '../data/chell-data';
-import ToggleableContainer from '../data/ToggleableContainer';
 
 export const initialSecondaryStructureContext = {
-  selectedSecondaryStructures: new ToggleableContainer<SECONDARY_STRUCTURE_SECTION>(),
+  addSecondaryStructure: (section: SECONDARY_STRUCTURE_SECTION) => {
+    return;
+  },
+  clearSecondaryStructure: () => {
+    return;
+  },
+  removeSecondaryStructure: (section: SECONDARY_STRUCTURE_SECTION) => {
+    return;
+  },
+  selectedSecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
 };
 
 export type SecondaryStructureContextState = Readonly<typeof initialSecondaryStructureContext>;
@@ -12,7 +20,10 @@ export class SecondaryStructureContextHandler extends React.Component<any, Secon
   public constructor(props: any) {
     super(props);
     this.state = {
-      selectedSecondaryStructures: new ToggleableContainer<SECONDARY_STRUCTURE_SECTION>(),
+      addSecondaryStructure: this.onAddSecondaryStructure(),
+      clearSecondaryStructure: this.onClearSecondaryStructure(),
+      removeSecondaryStructure: this.onRemoveSecondaryStructure(),
+      selectedSecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
     };
   }
 
@@ -21,6 +32,25 @@ export class SecondaryStructureContextHandler extends React.Component<any, Secon
       <SecondaryStructureContext.Provider value={this.state}>{this.props.children}</SecondaryStructureContext.Provider>
     );
   }
+
+  protected onAddSecondaryStructure = () => (section: SECONDARY_STRUCTURE_SECTION) => {
+    this.setState({
+      selectedSecondaryStructures: [...this.state.selectedSecondaryStructures, section],
+    });
+  };
+
+  protected onClearSecondaryStructure = () => () => {
+    this.setState({
+      selectedSecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
+    });
+  };
+
+  protected onRemoveSecondaryStructure = () => (sectionToRemove: SECONDARY_STRUCTURE_SECTION) => {
+    const prev = this.state.selectedSecondaryStructures;
+    this.setState({
+      selectedSecondaryStructures: prev.filter((section, index) => index !== prev.indexOf(sectionToRemove)),
+    });
+  };
 }
 
 const SecondaryStructureContext = React.createContext(initialSecondaryStructureContext);

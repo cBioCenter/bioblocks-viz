@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Accordion, Icon } from 'semantic-ui-react';
 
 import ResidueContext, { initialResidueContext, ResidueSelection } from '../context/ResidueContext';
+import { initialSecondaryStructureContext, SecondaryStructureContext } from '../context/SecondaryStructureContext';
 import {
   CONFIGURATION_COMPONENT_TYPE,
   ICouplingScore,
@@ -41,6 +42,7 @@ export const defaultContactMapProps = {
   height: 400,
   highlightColor: '#ff8800',
   ...initialResidueContext,
+  ...initialSecondaryStructureContext,
   onBoxSelection: undefined as undefined | ((residues: RESIDUE_TYPE[]) => void),
   padding: 0,
   width: 400,
@@ -251,17 +253,29 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
   protected onMouseEnter = (cb: (residue: RESIDUE_TYPE[]) => void) => (e: plotly.PlotMouseEvent) => {
     const { points } = e;
-    cb([points[0].x, points[0].y]);
+    if (points[0].data.yaxis !== 'y2' && points[0].data.xaxis !== 'x2') {
+      cb([points[0].x, points[0].y]);
+    }
   };
 
   protected onMouseClick = (cb: (residues: RESIDUE_TYPE[]) => void) => (e: plotly.PlotMouseEvent) => {
     const { points } = e;
-    cb([points[0].x, points[0].y]);
+    if (points[0].data.yaxis === 'y2') {
+      const { addSecondaryStructure, data } = this.props;
+      for (const section of data.secondaryStructures) {
+        if (points[0].x >= section.start && points[0].x <= section.end) {
+          addSecondaryStructure(section);
+        }
+      }
+    } else {
+      cb([points[0].x, points[0].y]);
+    }
   };
 
   protected onMouseSelect = (cb?: (residues: RESIDUE_TYPE[]) => void) => (
     e: plotly.PlotSelectionEvent = { points: [] },
   ) => {
+    const {} = this.props;
     const { points } = e;
     if (cb) {
       // For the contact map, all the x/y values are mirrored and correspond directly with i/j values.
@@ -279,7 +293,13 @@ type requiredProps = Partial<typeof defaultContactMapProps> &
   Required<Omit<ContactMapProps, keyof typeof defaultContactMapProps>>;
 
 const ContactMap = (props: requiredProps) => (
-  <ResidueContext.Consumer>{context => <ContactMapWithDefaultProps {...props} {...context} />}</ResidueContext.Consumer>
+  <SecondaryStructureContext.Consumer>
+    {secStructContext => (
+      <ResidueContext.Consumer>
+        {residueContext => <ContactMapWithDefaultProps {...props} {...residueContext} {...secStructContext} />}
+      </ResidueContext.Consumer>
+    )}
+  </SecondaryStructureContext.Consumer>
 );
 
 export default ContactMap;

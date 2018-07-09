@@ -6,39 +6,40 @@
  * @export
  */
 class Chell1DSection<T> {
-  protected end: number = 0;
-  protected start: number = 0;
+  protected sectionEnd: number = 0;
+  protected sectionStart: number = 0;
 
-  public get section() {
-    const { end, label, start } = this;
-    return {
-      end,
-      label,
-      length: end - start + 1,
-      start,
-    };
+  public get end() {
+    return this.sectionEnd;
+  }
+
+  public get length() {
+    return this.sectionEnd - this.sectionStart + 1;
+  }
+  public get start() {
+    return this.sectionStart;
   }
 
   public constructor(readonly label: T, start: number, end: number = start) {
-    this.end = Math.max(end, start);
-    this.start = Math.min(start, end);
+    this.sectionEnd = Math.max(end, start);
+    this.sectionStart = Math.min(start, end);
   }
 
   public updateStart(newNum: number) {
-    if (newNum > this.end) {
-      this.start = this.end;
-      this.end = newNum;
+    if (newNum > this.sectionEnd) {
+      this.sectionStart = this.sectionEnd;
+      this.sectionEnd = newNum;
     } else {
-      this.start = newNum;
+      this.sectionStart = newNum;
     }
   }
 
   public updateEnd(newNum: number) {
-    if (newNum < this.start) {
-      this.end = this.start;
-      this.start = newNum;
+    if (newNum < this.sectionStart) {
+      this.sectionEnd = this.sectionStart;
+      this.sectionStart = newNum;
     } else {
-      this.end = newNum;
+      this.sectionEnd = newNum;
     }
   }
 }

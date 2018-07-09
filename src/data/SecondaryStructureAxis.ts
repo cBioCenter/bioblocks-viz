@@ -41,16 +41,16 @@ export default class SecondaryStructureAxis {
 
   protected setupSecondaryStructureAxes = (sections: SECONDARY_STRUCTURE_SECTION[]): void => {
     for (const chellSection of sections) {
-      const { label, section } = chellSection;
+      const { end, label, start } = chellSection;
       if (!this.axes.get(label)) {
         this.axes.set(label, {
           x: this.generateXAxisSecStructSegment(label),
           y: this.generateYAxisSecStructSegment(label),
         });
       }
-      (this.axes.get(label)!.x.x! as Datum[]).push(section.start, section.start, section.end, section.end);
+      (this.axes.get(label)!.x.x! as Datum[]).push(start, start, end, end);
       (this.axes.get(label)!.x.y! as Datum[]).push(null, 1, 1, null);
-      (this.axes.get(label)!.y.y! as Datum[]).push(section.start, section.start, section.end, section.end);
+      (this.axes.get(label)!.y.y! as Datum[]).push(start, start, end, end);
       (this.axes.get(label)!.y.x! as Datum[]).push(null, 1, 1, null);
     }
   };
