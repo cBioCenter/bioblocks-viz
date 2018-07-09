@@ -13,6 +13,7 @@ exports[`ResidueContext Should match the default snapshot. 1`] = `
   removeCandidateResidues={[Function]}
   removeHoveredResidues={[Function]}
   removeLockedResiduePair={[Function]}
+  removeNonLockedResidues={[Function]}
   toggleLockedResiduePair={[Function]}
 />
 `;

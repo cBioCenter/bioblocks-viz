@@ -95,8 +95,8 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
 
         this.setState({
           activeRepresentations: [
-            ...this.highlightCandidateResidues(structureComponent, hoveredResidues),
-            ...this.highlightCandidateResidues(structureComponent, candidateResidues),
+            // ...this.highlightCandidateResidues(structureComponent, hoveredResidues),
+            // ...this.highlightCandidateResidues(structureComponent, candidateResidues),
             ...this.highlightCandidateResidues(
               structureComponent,
               [...candidateResidues, ...hoveredResidues]
@@ -210,18 +210,17 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
   };
 
   protected highlightCandidateResidues(structureComponent: StructureComponent, residues: RESIDUE_TYPE[]) {
-    const { residueOffset } = this.state;
     const reps = new Array<NGL.RepresentationElement>();
 
-    const residueWithOffset = residues.map(res => res - residueOffset);
+    if (residues.length >= 1) {
+      const { residueOffset } = this.state;
+      const residueWithOffset = residues.map(res => res - residueOffset);
 
-    if (residueWithOffset.length !== 0) {
       reps.push(createBallStickRepresentation(structureComponent, residueWithOffset));
-    }
-
-    if (residueWithOffset.length >= 2) {
-      const selection = residueWithOffset.join('.CA, ') + '.CA';
-      reps.push(createDistanceRepresentation(structureComponent, selection));
+      if (residueWithOffset.length >= 2) {
+        const selection = residueWithOffset.join('.CA, ') + '.CA';
+        reps.push(createDistanceRepresentation(structureComponent, selection));
+      }
     }
 
     return reps;
@@ -233,14 +232,11 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
 
     lockedResidues.forEach(residues => {
       const residueWithOffset = residues.map(res => res - residueOffset);
+      reps.push(createBallStickRepresentation(structureComponent, residueWithOffset));
 
       if (residueWithOffset.length >= 2) {
         const selection = residueWithOffset.join('.CA, ') + '.CA';
         reps.push(createDistanceRepresentation(structureComponent, selection));
-      }
-
-      if (residueWithOffset.length !== 0) {
-        reps.push(createBallStickRepresentation(structureComponent, residueWithOffset));
       }
     });
 

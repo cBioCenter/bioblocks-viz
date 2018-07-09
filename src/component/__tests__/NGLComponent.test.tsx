@@ -87,11 +87,11 @@ describe('NGLComponent', () => {
       hoveredResidues: [1],
     });
 
-    expect(instance.state.residueSelectionRepresentations.get('1')).toEqual(expectedRep);
+    expect(instance.state.activeRepresentations).toEqual(expectedRep);
   });
 
   it('Should show the distance and ball+stick representation for locked residues.', () => {
-    const expectedRep = ['distance', 'ball+stick'];
+    const expectedRep = ['ball+stick', 'distance', 'ball+stick', 'distance'];
     const Component = getComponentWithContext();
     const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
     const instance = wrapper.instance() as NGLComponentClass;
@@ -105,12 +105,11 @@ describe('NGLComponent', () => {
       ),
     });
 
-    expect(instance.state.residueSelectionRepresentations.get('1,2')).toEqual(expectedRep);
-    expect(instance.state.residueSelectionRepresentations.get('3,4')).toEqual(expectedRep);
+    expect(instance.state.activeRepresentations).toEqual(expectedRep);
   });
 
   it('Should show the distance and ball+stick representation for multiple hovered residues.', () => {
-    const expectedRep = ['distance', 'ball+stick'];
+    const expectedRep = ['ball+stick', 'distance'];
     const Component = getComponentWithContext();
     const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
     const instance = wrapper.instance() as NGLComponentClass;
@@ -121,7 +120,20 @@ describe('NGLComponent', () => {
 
     wrapper.update();
 
-    expect(instance.state.residueSelectionRepresentations.get('7,8')).toEqual(expectedRep);
+    expect(instance.state.activeRepresentations).toEqual(expectedRep);
+  });
+
+  it('Should show the ribbon representation for selected secondary structures.', () => {
+    const expectedRep = ['ribbon'];
+    const Component = getComponentWithContext();
+    const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
+    const instance = wrapper.instance() as NGLComponentClass;
+
+    wrapper.setProps({
+      selectedSecondaryStructures: [{ start: 1, end: 2 }],
+    });
+
+    expect(instance.state.activeRepresentations).toEqual(expectedRep);
   });
 
   it('Should follow candidate selection flow.', () => {
@@ -185,39 +197,10 @@ describe('NGLComponent', () => {
       instance.state.stage!.mouseControls.run(NGL.MouseActions.HOVER_PICK, instance.state.stage, opts);
     };
 
-    const simulateClickEvent = (wrapper: ReactWrapper<any, any>, opts: object) => {
+    const simulateClickEvent = (wrapper: ReactWrapper<any, any>, opts?: object) => {
       const instance = wrapper.instance() as NGLComponentClass;
       instance.state.stage!.signals.clicked.dispatch(opts);
     };
-
-    // @ts-ignore
-    // TODO Add each to official jest types - Jest is as v23 but types are for v22 so far.
-    it.each([{ atom: { resno: 4 } }, { closestBondAtom: { resno: 4 } }])(
-      'Should handle hover events by adding the hovered residue.',
-      async (pickingResult: any) => {
-        const expectedRep = ['ball+stick'];
-        const Component = getComponentWithContext();
-        const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
-        simulateHoverEvent(wrapper, pickingResult);
-        expect(wrapper.instance().state.residueSelectionRepresentations.get('4')).toEqual(expectedRep);
-      },
-    );
-
-    it('Should handle hover events when there is a candidate residue.', async () => {
-      const Component = getComponentWithContext();
-      const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
-      wrapper.setProps({
-        candidateResidues: [4],
-      });
-      simulateHoverEvent(wrapper, { atom: { resno: 3 } });
-      const expected = new Map(
-        Object.entries({
-          '3': ['ball+stick'],
-          '3,4': ['distance', 'ball+stick'],
-        }),
-      );
-      expect(wrapper.state().residueSelectionRepresentations).toEqual(expected);
-    });
 
     it('Should handle hover events when there is no hovered or candidate residue.', async () => {
       const Component = getComponentWithContext();
@@ -229,12 +212,7 @@ describe('NGLComponent', () => {
         removeHoveredResidues: removeHoveredResiduesSpy,
       });
       simulateHoverEvent(wrapper, { atom: { resno: 3 } });
-      const expected = new Map(
-        Object.entries({
-          '3': ['ball+stick'],
-        }),
-      );
-      expect(wrapper.state().residueSelectionRepresentations).toEqual(expected);
+      simulateHoverEvent(wrapper, { closestBondAtom: { resno: 3 } });
       simulateHoverEvent(wrapper, {});
       expect(removeHoveredResiduesSpy).toHaveBeenCalledTimes(0);
     });
@@ -250,12 +228,6 @@ describe('NGLComponent', () => {
         removeHoveredResidues: removeHoveredResiduesSpy,
       });
       simulateHoverEvent(wrapper, { atom: { resno: 3 } });
-      const expected = new Map(
-        Object.entries({
-          '3': ['ball+stick'],
-        }),
-      );
-      expect(wrapper.state().residueSelectionRepresentations).toEqual(expected);
       simulateHoverEvent(wrapper, {});
       expect(removeHoveredResiduesSpy).toHaveBeenCalledTimes(1);
     });
@@ -263,19 +235,16 @@ describe('NGLComponent', () => {
     it('Should clear candidate and hovered residues when the mouse leaves the canvas.', async () => {
       const Component = getComponentWithContext();
       const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
-      const removeHoveredResiduesSpy = jest.fn();
-      const removeCandidateResiduesSpy = jest.fn();
+      const removeNonLockedResiduesSpy = jest.fn();
 
       wrapper.setProps({
         candidateResidues: [3],
         hoveredResidues: [4],
-        removeCandidateResidues: removeCandidateResiduesSpy,
-        removeHoveredResidues: removeHoveredResiduesSpy,
+        removeNonLockedResidues: removeNonLockedResiduesSpy,
       });
 
       wrapper.find('.NGLCanvas').simulate('mouseleave');
-      expect(removeCandidateResiduesSpy).toHaveBeenCalledTimes(1);
-      expect(removeHoveredResiduesSpy).toHaveBeenCalledTimes(1);
+      expect(removeNonLockedResiduesSpy).toHaveBeenCalledTimes(1);
     });
 
     // @ts-ignore
@@ -332,19 +301,17 @@ describe('NGLComponent', () => {
     });
 
     it('Should handle clicking off-component.', async () => {
+      const expected = new Array<string>();
       const Component = getComponentWithContext();
       const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
-      wrapper.instance().state.structureComponent!.addRepresentation('ball+stick');
-      wrapper.setState({
-        residueSelectionRepresentations: new Map(
-          Object.entries({
-            '4': ['ball+stick'],
-          }),
-        ),
+      const removeNonLockedResiduesSpy = jest.fn();
+      wrapper.setProps({
+        hoveredResidues: [1],
+        removeNonLockedResidues: removeNonLockedResiduesSpy,
       });
-      simulateClickEvent(wrapper, {});
-      wrapper.update();
-      expect(wrapper.state().residueSelectionRepresentations).toEqual(new Map());
+      expect(wrapper.state().activeRepresentations).not.toEqual(expected);
+      simulateClickEvent(wrapper, undefined);
+      expect(removeNonLockedResiduesSpy).toHaveBeenCalledTimes(1);
     });
   });
 });

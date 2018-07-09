@@ -12,6 +12,9 @@ export const initialSecondaryStructureContext = {
     return;
   },
   selectedSecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
+  toggleSecondaryStructure: (section: SECONDARY_STRUCTURE_SECTION) => {
+    return;
+  },
 };
 
 export type SecondaryStructureContextState = Readonly<typeof initialSecondaryStructureContext>;
@@ -24,6 +27,7 @@ export class SecondaryStructureContextHandler extends React.Component<any, Secon
       clearSecondaryStructure: this.onClearSecondaryStructure(),
       removeSecondaryStructure: this.onRemoveSecondaryStructure(),
       selectedSecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
+      toggleSecondaryStructure: this.onToggleSecondaryStructure(),
     };
   }
 
@@ -50,6 +54,14 @@ export class SecondaryStructureContextHandler extends React.Component<any, Secon
     this.setState({
       selectedSecondaryStructures: prev.filter((section, index) => index !== prev.indexOf(sectionToRemove)),
     });
+  };
+
+  protected onToggleSecondaryStructure = () => (section: SECONDARY_STRUCTURE_SECTION) => {
+    if (this.state.selectedSecondaryStructures.includes(section)) {
+      this.onRemoveSecondaryStructure()(section);
+    } else {
+      this.onAddSecondaryStructure()(section);
+    }
   };
 }
 

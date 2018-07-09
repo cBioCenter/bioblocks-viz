@@ -113,8 +113,10 @@ describe('ContactMap', () => {
     })),
     secondaryStructures: [
       {
+        end: 31,
         label: 'C',
-        section: { start: 30, end: 31, length: 2 },
+        length: 2,
+        start: 30,
       },
     ] as SECONDARY_STRUCTURE_SECTION[],
   };

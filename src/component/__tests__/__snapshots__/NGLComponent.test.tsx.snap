@@ -38,8 +38,10 @@ exports[`NGLComponent Should match existing snapshot when given sample data 1`] 
   addCandidateResidues={[Function]}
   addHoveredResidues={[Function]}
   addLockedResiduePair={[Function]}
+  addSecondaryStructure={[Function]}
   candidateResidues={Array []}
   clearAllResidues={[Function]}
+  clearSecondaryStructure={[Function]}
   data={
     Object {
       "residueStore": Object {
@@ -61,7 +63,11 @@ exports[`NGLComponent Should match existing snapshot when given sample data 1`] 
   removeCandidateResidues={[Function]}
   removeHoveredResidues={[Function]}
   removeLockedResiduePair={[Function]}
+  removeNonLockedResidues={[Function]}
+  removeSecondaryStructure={[Function]}
+  selectedSecondaryStructures={Array []}
   toggleLockedResiduePair={[Function]}
+  toggleSecondaryStructure={[Function]}
   width={400}
 >
   <div
