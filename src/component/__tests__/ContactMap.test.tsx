@@ -1,9 +1,11 @@
 import { CommonWrapper, mount, ReactWrapper, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
+import * as plotly from 'plotly.js';
 import * as React from 'react';
 import * as Renderer from 'react-test-renderer';
 
+import { IMockPlotlyCanvas } from '__mocks__/plotly';
 import { initialResidueContext, IResidueContext } from '../../context/ResidueContext';
 import { CONFIGURATION_COMPONENT_TYPE, ICouplingScore, SECONDARY_STRUCTURE_SECTION } from '../../data/chell-data';
 import { PlotlyChartClass } from '../chart/PlotlyChart';
@@ -51,11 +53,19 @@ const getShallowContactMap = (props?: Partial<ContactMapProps>) => {
  * Helper function to dispatch an event through plotly.
  *
  * @param wrapper The PlotlyChart.
- * @param event The name of the event to dispatch.
+ * @param eventName The name of the event to dispatch.
+ * @param [data={ x: 0, y: 0 }] Custom plotly data for the event.
  */
-const dispatchPlotlyEvent = (wrapper: ReactWrapper, eventName: string) => {
+const dispatchPlotlyEvent = (
+  wrapper: ReactWrapper,
+  eventName: string,
+  data: Partial<plotly.PlotScatterDataPoint> = { x: 0, y: 0 },
+) => {
   const plotlyWrapper = wrapper.find('PlotlyChartClass') as CommonWrapper;
-  (plotlyWrapper.instance() as PlotlyChartClass).plotlyCanvas!.dispatchEvent(new Event(eventName));
+  const canvas = (plotlyWrapper.instance() as PlotlyChartClass).plotlyCanvas;
+  if (canvas) {
+    (canvas as IMockPlotlyCanvas).dispatchEvent(new Event(eventName), data);
+  }
 };
 
 describe('ContactMap', () => {
