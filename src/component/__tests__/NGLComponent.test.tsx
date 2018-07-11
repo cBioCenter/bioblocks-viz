@@ -78,7 +78,7 @@ describe('NGLComponent', () => {
   });
 
   it('Should show the ball+stick representation for hovered residues.', () => {
-    const expectedRep = ['ball+stick'];
+    const expectedRep = 'ball+stick';
     const Component = getComponentWithContext();
     const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
     const instance = wrapper.instance() as NGLComponentClass;
@@ -87,7 +87,7 @@ describe('NGLComponent', () => {
       hoveredResidues: [1],
     });
 
-    expect(instance.state.activeRepresentations).toEqual(expectedRep);
+    expect(instance.state.activeRepresentations[0].name()).toEqual(expectedRep);
   });
 
   it('Should show the distance and ball+stick representation for locked residues.', () => {
@@ -105,7 +105,10 @@ describe('NGLComponent', () => {
       ),
     });
 
-    expect(instance.state.activeRepresentations).toEqual(expectedRep);
+    const { activeRepresentations } = instance.state;
+    for (let i = 0; i < activeRepresentations.length; i++) {
+      expect(activeRepresentations[i].name()).toEqual(expectedRep[i]);
+    }
   });
 
   it('Should show the distance and ball+stick representation for multiple hovered residues.', () => {
@@ -120,7 +123,11 @@ describe('NGLComponent', () => {
 
     wrapper.update();
 
-    expect(instance.state.activeRepresentations).toEqual(expectedRep);
+    const { activeRepresentations } = instance.state;
+    expect(activeRepresentations.length).toEqual(expectedRep.length);
+    for (let i = 0; i < activeRepresentations.length; i++) {
+      expect(activeRepresentations[i].name()).toEqual(expectedRep[i]);
+    }
   });
 
   it('Should show the cartoon representation for selected secondary structures.', () => {
@@ -133,7 +140,11 @@ describe('NGLComponent', () => {
       selectedSecondaryStructures: [{ start: 1, end: 2 }],
     });
 
-    expect(instance.state.activeRepresentations).toEqual(expectedRep);
+    const { activeRepresentations } = instance.state;
+    expect(activeRepresentations.length).toEqual(expectedRep.length);
+    for (let i = 0; i < activeRepresentations.length; i++) {
+      expect(activeRepresentations[i].name()).toEqual(expectedRep[i]);
+    }
   });
 
   it('Should follow candidate selection flow.', () => {

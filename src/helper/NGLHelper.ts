@@ -45,9 +45,12 @@ export const createSecStructRepresentation = (
   section: SECONDARY_STRUCTURE_SECTION,
   radiusScale: number = 2,
   color: string = 'yellow',
-) =>
-  structureComponent.addRepresentation('cartoon', {
+) => {
+  const rep = structureComponent.addRepresentation('cartoon', {
     color,
     radiusScale,
     sele: `${section.start}-${section.end}`,
   });
+  rep.setParameters({ wireframe: true });
+  return rep;
+};

@@ -188,7 +188,7 @@ describe('ContactMap', () => {
     const onSelectedSpy = jest.fn();
     const wrapper = await getMountedContactMap({ data: sampleData, onBoxSelection: onSelectedSpy });
     dispatchPlotlyEvent(wrapper, 'plotly_selected');
-    expect(onSelectedSpy).toHaveBeenLastCalledWith([0]);
+    expect(onSelectedSpy).toHaveBeenLastCalledWith([0, 0]);
   });
 
   it('Should clear state if new data is given.', async () => {

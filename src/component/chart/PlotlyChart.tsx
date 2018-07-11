@@ -6,6 +6,8 @@ import * as React from 'react';
 // https://github.com/plotly/plotly-webpack#the-easy-way-recommended
 import * as plotly from 'plotly.js/dist/plotly';
 
+import { CHELL_CHART_EVENT_TYPE, CHELL_CHART_PIECE } from '../../data/chell-data';
+import ChellChartEvent from '../../data/event/ChellChartEvent';
 import { withDefaultProps } from '../../helper/ReactHelper';
 
 export enum PLOTLY_CHART_TYPE {
@@ -45,10 +47,10 @@ export interface IPlotlyChartProps {
   config?: Partial<Plotly.Config>;
   data: Array<Partial<IPlotlyData>>;
   layout?: Partial<IPlotlyLayout>;
-  onClickCallback?: ((event: plotly.PlotMouseEvent) => void);
-  onHoverCallback?: ((event: plotly.PlotMouseEvent) => void);
-  onSelectedCallback?: ((event: plotly.PlotSelectionEvent) => void);
-  onUnHoverCallback?: ((event: plotly.PlotMouseEvent) => void);
+  onClickCallback?: ((event: ChellChartEvent) => void);
+  onHoverCallback?: ((event: ChellChartEvent) => void);
+  onSelectedCallback?: ((event: ChellChartEvent) => void);
+  onUnHoverCallback?: ((event: ChellChartEvent) => void);
 }
 
 export const defaultPlotlyConfig: Partial<Plotly.Config> = {
@@ -267,31 +269,64 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
     );
   };
 
+  protected deriveChartPiece = (x: number, y: number, data?: plotly.ScatterData) => {
+    if (data) {
+      const isExtraXAxis = data.xaxis && data.xaxis !== 'x';
+      const isExtraYAxis = data.yaxis && data.yaxis !== 'y';
+      if (isExtraXAxis || isExtraYAxis) {
+        return {
+          chartPiece: CHELL_CHART_PIECE.AXIS,
+          selectedPoints: isExtraXAxis ? [y] : [x],
+        };
+      }
+    }
+    return {
+      chartPiece: CHELL_CHART_PIECE.POINT,
+      selectedPoints: [x, y],
+    };
+  };
+
   protected onClick = (event: plotly.PlotMouseEvent) => {
     const { onClickCallback } = this.props;
     if (onClickCallback) {
-      onClickCallback(event);
+      const { data, x, y } = event.points[0];
+      const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, data);
+      onClickCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.CLICK, chartPiece, selectedPoints));
     }
   };
 
   protected onHover = (event: plotly.PlotMouseEvent) => {
     const { onHoverCallback } = this.props;
     if (onHoverCallback) {
-      onHoverCallback(event);
+      const { data, x, y } = event.points[0];
+      const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, data);
+      onHoverCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.CLICK, chartPiece, selectedPoints));
     }
   };
 
   protected onSelect = (event: plotly.PlotSelectionEvent) => {
     const { onSelectedCallback } = this.props;
     if (onSelectedCallback) {
-      onSelectedCallback(event);
+      const allPoints = event.points.reduce((prev, cur) => {
+        prev.push(...[cur.x, cur.y]);
+        return prev;
+      }, new Array<number>());
+      const { x, y } = event.points[0];
+      const { chartPiece } = this.deriveChartPiece(x, y);
+      onSelectedCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.CLICK, chartPiece, allPoints));
     }
   };
 
   protected onUnHover = (event: plotly.PlotMouseEvent) => {
     const { onUnHoverCallback } = this.props;
     if (onUnHoverCallback) {
-      onUnHoverCallback(event);
+      if (event) {
+        const { data, x, y } = event.points[0];
+        const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, data);
+        onUnHoverCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.UNHOVER, chartPiece, selectedPoints));
+      } else {
+        onUnHoverCallback(event);
+      }
     }
   };
 }

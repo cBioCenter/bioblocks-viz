@@ -12,6 +12,7 @@ export const initialSecondaryStructureContext = {
     return;
   },
   selectedSecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
+  temporarySecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
   toggleSecondaryStructure: (section: SECONDARY_STRUCTURE_SECTION) => {
     return;
   },
@@ -27,6 +28,7 @@ export class SecondaryStructureContextHandler extends React.Component<any, Secon
       clearSecondaryStructure: this.onClearSecondaryStructure(),
       removeSecondaryStructure: this.onRemoveSecondaryStructure(),
       selectedSecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
+      temporarySecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
       toggleSecondaryStructure: this.onToggleSecondaryStructure(),
     };
   }
@@ -46,6 +48,7 @@ export class SecondaryStructureContextHandler extends React.Component<any, Secon
   protected onClearSecondaryStructure = () => () => {
     this.setState({
       selectedSecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
+      temporarySecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
     });
   };
 
@@ -53,14 +56,20 @@ export class SecondaryStructureContextHandler extends React.Component<any, Secon
     const prev = this.state.selectedSecondaryStructures;
     this.setState({
       selectedSecondaryStructures: prev.filter((section, index) => index !== prev.indexOf(sectionToRemove)),
+      temporarySecondaryStructures: prev.filter((section, index) => index !== prev.indexOf(sectionToRemove)),
     });
   };
 
-  protected onToggleSecondaryStructure = () => (section: SECONDARY_STRUCTURE_SECTION) => {
-    if (this.state.selectedSecondaryStructures.includes(section)) {
-      this.onRemoveSecondaryStructure()(section);
+  protected onToggleSecondaryStructure = () => (sectionToToggle: SECONDARY_STRUCTURE_SECTION) => {
+    const prev = this.state.temporarySecondaryStructures;
+    if (this.state.temporarySecondaryStructures.includes(sectionToToggle)) {
+      this.setState({
+        temporarySecondaryStructures: prev.filter((section, index) => index !== prev.indexOf(section)),
+      });
     } else {
-      this.onAddSecondaryStructure()(section);
+      this.setState({
+        temporarySecondaryStructures: [...this.state.temporarySecondaryStructures, sectionToToggle],
+      });
     }
   };
 }

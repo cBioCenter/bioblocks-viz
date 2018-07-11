@@ -3,7 +3,10 @@ import toJson from 'enzyme-to-json';
 
 import * as React from 'react';
 
+import { IMockPlotlyCanvas } from '__mocks__/plotly';
 import { IMockDict } from 'configs/SetupJest';
+import { CHELL_CHART_EVENT_TYPE, CHELL_CHART_PIECE } from '../../../data/chell-data';
+import ChellChartEvent from '../../../data/event/ChellChartEvent';
 import { IPlotlyChartProps, IPlotlyData, PlotlyChartClass } from '../PlotlyChart';
 
 beforeEach(() => {
@@ -40,8 +43,11 @@ describe('PlotlyChart', () => {
    * @param wrapper The PlotlyChart.
    * @param event The name of the event to dispatch.
    */
-  const dispatchPlotlyEvent = (wrapper: CommonWrapper, event: string) => {
-    (wrapper.instance() as PlotlyChartClass).plotlyCanvas!.dispatchEvent(new Event(event));
+  const dispatchPlotlyEvent = (wrapper: CommonWrapper, event: string, data: object = { data: {}, x: 0, y: 0 }) => {
+    const canvas = (wrapper.instance() as PlotlyChartClass).plotlyCanvas;
+    if (canvas) {
+      (canvas as IMockPlotlyCanvas).dispatchEvent(new Event(event), data);
+    }
   };
 
   it('Should match existing snapshot when given empty data.', () => {
@@ -115,6 +121,45 @@ describe('PlotlyChart', () => {
     });
     dispatchPlotlyEvent(wrapper, 'plotly_click');
     expect(onClickSpy).toBeCalled();
+  });
+
+  it('Should return the appropriate event when plotly emits a click event on a point.', async () => {
+    const onClickSpy = jest.fn();
+    const wrapper = await getMountedPlotlyChart({
+      data: sampleData,
+      onClickCallback: onClickSpy,
+    });
+    dispatchPlotlyEvent(wrapper, 'plotly_click', { x: 1, y: 2 });
+    const chellEvent = onClickSpy.mock.calls[0][0] as ChellChartEvent;
+    expect(chellEvent.chartPiece).toBe(CHELL_CHART_PIECE.POINT);
+    expect(chellEvent.type).toBe(CHELL_CHART_EVENT_TYPE.CLICK);
+    expect(chellEvent.selectedPoints).toEqual([1, 2]);
+  });
+
+  it('Should return the appropriate event when plotly emits a click event on a secondary x axis.', async () => {
+    const onClickSpy = jest.fn();
+    const wrapper = await getMountedPlotlyChart({
+      data: sampleData,
+      onClickCallback: onClickSpy,
+    });
+    dispatchPlotlyEvent(wrapper, 'plotly_click', { data: { xaxis: 'x2', yaxis: 'y' }, x: 1, y: 2 });
+    const chellEvent = onClickSpy.mock.calls[0][0] as ChellChartEvent;
+    expect(chellEvent.chartPiece).toBe(CHELL_CHART_PIECE.AXIS);
+    expect(chellEvent.type).toBe(CHELL_CHART_EVENT_TYPE.CLICK);
+    expect(chellEvent.selectedPoints).toEqual([2]);
+  });
+
+  it('Should return the appropriate event when plotly emits a click event on a secondary y axis.', async () => {
+    const onClickSpy = jest.fn();
+    const wrapper = await getMountedPlotlyChart({
+      data: sampleData,
+      onClickCallback: onClickSpy,
+    });
+    dispatchPlotlyEvent(wrapper, 'plotly_click', { data: { xaxis: 'x', yaxis: 'y2' }, x: 1, y: 2 });
+    const chellEvent = onClickSpy.mock.calls[0][0] as ChellChartEvent;
+    expect(chellEvent.chartPiece).toBe(CHELL_CHART_PIECE.AXIS);
+    expect(chellEvent.type).toBe(CHELL_CHART_EVENT_TYPE.CLICK);
+    expect(chellEvent.selectedPoints).toEqual([1]);
   });
 
   it('Should call the appropriate callback when plotly emits a hover event.', async () => {
