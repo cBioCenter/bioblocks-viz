@@ -45,6 +45,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
     onClickCallback={[Function]}
     onHoverCallback={[Function]}
     onSelectedCallback={[Function]}
+    onUnHoverCallback={[Function]}
     range={64}
     secondaryStructures={Array []}
   />
@@ -696,6 +697,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
   removeNonLockedResidues={[Function]}
   removeSecondaryStructure={[Function]}
   selectedSecondaryStructures={Array []}
+  temporarySecondaryStructures={Array []}
   toggleLockedResiduePair={[Function]}
   toggleSecondaryStructure={[Function]}
   width={400}
@@ -816,6 +818,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       onClickCallback={[Function]}
       onHoverCallback={[Function]}
       onSelectedCallback={[Function]}
+      onUnHoverCallback={[Function]}
       range={64}
       secondaryStructures={
         Array [
@@ -1108,6 +1111,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         onClickCallback={[Function]}
         onHoverCallback={[Function]}
         onSelectedCallback={[Function]}
+        onUnHoverCallback={[Function]}
         secondaryStructures={
           Array [
             Array [

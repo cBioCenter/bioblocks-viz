@@ -1,4 +1,3 @@
-import * as plotly from 'plotly.js';
 import * as React from 'react';
 import { Accordion, Icon } from 'semantic-ui-react';
 
@@ -152,6 +151,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
         onClickCallback={this.onMouseClick(toggleLockedResiduePair)}
         onHoverCallback={this.onMouseEnter(addHoveredResidues)}
         onSelectedCallback={this.onMouseSelect(onBoxSelection)}
+        onUnHoverCallback={this.onMouseLeave()}
         range={chainLength + 5}
         secondaryStructures={data.secondaryStructures}
       />
@@ -252,15 +252,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
   protected onShowConfigurationToggle = () => () => this.setState({ showConfiguration: !this.state.showConfiguration });
 
-  protected onMouseEnter = (cb: (residue: RESIDUE_TYPE[]) => void) => (e: plotly.PlotMouseEvent) => {
-    const { points } = e;
-    const isSecStruct = points[0].data && (points[0].data.yaxis === 'y2' || points[0].data.xaxis === 'x2');
-    if (!isSecStruct) {
-      cb([points[0].x, points[0].y]);
-    }
-  };
-
-  protected onMouseClick = (cb: (residues: RESIDUE_TYPE[]) => void) => (e: ChellChartEvent) => {
+  protected onMouseEnter = (cb: (residue: RESIDUE_TYPE[]) => void) => (e: ChellChartEvent) => {
     if (e.isAxis()) {
       const { toggleSecondaryStructure, data } = this.props;
 
@@ -276,15 +268,49 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     }
   };
 
-  protected onMouseSelect = (cb?: (residues: RESIDUE_TYPE[]) => void) => (
-    e: plotly.PlotSelectionEvent = { points: [] },
-  ) => {
-    const {} = this.props;
-    const { points } = e;
+  protected onMouseLeave = (cb?: (residue: RESIDUE_TYPE[]) => void) => (e: ChellChartEvent) => {
+    if (e.isAxis()) {
+      const { selectedSecondaryStructures, data, removeSecondaryStructure } = this.props;
+
+      for (const secondaryStructure of data.secondaryStructures) {
+        for (const section of secondaryStructure) {
+          if (section.contains(...e.selectedPoints)) {
+            if (!selectedSecondaryStructures.includes(section)) {
+              removeSecondaryStructure(section);
+            }
+          }
+        }
+      }
+    } else if (cb) {
+      cb(e.selectedPoints);
+    }
+  };
+
+  protected onMouseClick = (cb: (residues: RESIDUE_TYPE[]) => void) => (e: ChellChartEvent) => {
+    if (e.isAxis()) {
+      const { addSecondaryStructure, data, removeSecondaryStructure, selectedSecondaryStructures } = this.props;
+
+      for (const secondaryStructure of data.secondaryStructures) {
+        for (const section of secondaryStructure) {
+          if (section.contains(...e.selectedPoints)) {
+            if (selectedSecondaryStructures.includes(section)) {
+              removeSecondaryStructure(section);
+            } else {
+              addSecondaryStructure(section);
+            }
+          }
+        }
+      }
+    } else {
+      cb(e.selectedPoints);
+    }
+  };
+
+  protected onMouseSelect = (cb?: (residues: RESIDUE_TYPE[]) => void) => (e: ChellChartEvent) => {
     if (cb) {
       // For the contact map, all the x/y values are mirrored and correspond directly with i/j values.
       // Thus, all the residue numbers can be obtained by getting either all x or values from ths selected points.
-      cb(points.map(point => point.x));
+      cb(e.selectedPoints.map(point => point));
     }
   };
 }

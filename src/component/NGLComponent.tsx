@@ -5,7 +5,7 @@ import { Button, GridRow } from 'semantic-ui-react';
 
 import ResidueContext, { initialResidueContext, ResidueSelection } from '../context/ResidueContext';
 import { initialSecondaryStructureContext, SecondaryStructureContext } from '../context/SecondaryStructureContext';
-import { RESIDUE_TYPE } from '../data/chell-data';
+import { RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../data/chell-data';
 import {
   createBallStickRepresentation,
   createDistanceRepresentation,
@@ -80,13 +80,20 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
       stage.removeAllComponents();
       this.addStructureToStage(data, stage);
     } else if (stage && structureComponent) {
-      const { candidateResidues, hoveredResidues, lockedResiduePairs, selectedSecondaryStructures } = this.props;
+      const {
+        candidateResidues,
+        hoveredResidues,
+        lockedResiduePairs,
+        selectedSecondaryStructures,
+        temporarySecondaryStructures,
+      } = this.props;
 
       const isHighlightUpdateNeeded =
         hoveredResidues !== prevProps.hoveredResidues ||
         candidateResidues !== prevProps.candidateResidues ||
         lockedResiduePairs !== prevProps.lockedResiduePairs ||
-        selectedSecondaryStructures !== prevProps.selectedSecondaryStructures;
+        selectedSecondaryStructures !== prevProps.selectedSecondaryStructures ||
+        temporarySecondaryStructures !== prevProps.temporarySecondaryStructures;
 
       if (isHighlightUpdateNeeded) {
         for (const rep of this.state.activeRepresentations) {
@@ -104,7 +111,10 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
                 .sort(),
             ),
             ...this.highlightLockedDistancePairs(structureComponent, lockedResiduePairs),
-            ...this.highlightSecondaryStructures(structureComponent),
+            ...this.highlightSecondaryStructures(structureComponent, [
+              ...selectedSecondaryStructures,
+              ...temporarySecondaryStructures,
+            ]),
           ],
         });
       }
@@ -247,11 +257,13 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
     return reps;
   }
 
-  protected highlightSecondaryStructures(structureComponent: StructureComponent) {
-    const { selectedSecondaryStructures } = this.props;
+  protected highlightSecondaryStructures(
+    structureComponent: StructureComponent,
+    secondaryStructures: SECONDARY_STRUCTURE,
+  ) {
     const reps = new Array<NGL.RepresentationElement>();
 
-    for (const structure of selectedSecondaryStructures) {
+    for (const structure of secondaryStructures) {
       reps.push(createSecStructRepresentation(structureComponent, structure));
     }
     return reps;

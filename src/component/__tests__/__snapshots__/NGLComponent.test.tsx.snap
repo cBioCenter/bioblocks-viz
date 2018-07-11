@@ -66,6 +66,7 @@ exports[`NGLComponent Should match existing snapshot when given sample data 1`] 
   removeNonLockedResidues={[Function]}
   removeSecondaryStructure={[Function]}
   selectedSecondaryStructures={Array []}
+  temporarySecondaryStructures={Array []}
   toggleLockedResiduePair={[Function]}
   toggleSecondaryStructure={[Function]}
   width={400}

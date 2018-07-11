@@ -1,6 +1,7 @@
 import * as React from 'react';
 import CellContext from '../context/CellContext';
 import { T_SNE_DATA_TYPE } from '../data/chell-data';
+import ChellChartEvent from '../data/event/ChellChartEvent';
 import { withDefaultProps } from '../helper/ReactHelper';
 import { defaultPlotlyConfig, defaultPlotlyLayout } from './chart/PlotlyChart';
 import PlotlyChart from './chart/PlotlyChart';
@@ -66,9 +67,9 @@ const TComponent = withDefaultProps(
       );
     }
 
-    protected onMouseSelect = (cb: (cells: number[]) => void) => (e: Plotly.PlotSelectionEvent) => {
-      if (e.points) {
-        cb(e.points.map(point => point.pointNumber));
+    protected onMouseSelect = (cb: (cells: number[]) => void) => (e: ChellChartEvent) => {
+      if (e.selectedPoints) {
+        cb(e.selectedPoints.map(point => point));
       }
     };
   },
