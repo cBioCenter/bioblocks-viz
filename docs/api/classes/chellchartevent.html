@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PickingBehavior | chell-viz</title>
+	<title>ChellChartEvent | chell-viz</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_ngl_.html">&quot;ngl&quot;</a>
-				</li>
-				<li>
-					<a href="_ngl_.pickingbehavior.html">PickingBehavior</a>
+					<a href="chellchartevent.html">ChellChartEvent</a>
 				</li>
 			</ul>
-			<h1>Class PickingBehavior</h1>
+			<h1>Class ChellChartEvent</h1>
 		</div>
 	</div>
 </header>
@@ -71,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">PickingBehavior</span>
+						<span class="target">ChellChartEvent</span>
 					</li>
 				</ul>
 			</section>
@@ -82,24 +79,21 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_ngl_.pickingbehavior.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="chellchartevent.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_ngl_.pickingbehavior.html#controls" class="tsd-kind-icon">controls</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_ngl_.pickingbehavior.html#mouse" class="tsd-kind-icon">mouse</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_ngl_.pickingbehavior.html#stage" class="tsd-kind-icon">stage</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_ngl_.pickingbehavior.html#viewer" class="tsd-kind-icon">viewer</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="chellchartevent.html#chartpiece" class="tsd-kind-icon">chart<wbr>Piece</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="chellchartevent.html#selectedpoints" class="tsd-kind-icon">selected<wbr>Points</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="chellchartevent.html#type" class="tsd-kind-icon">type</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ngl_.pickingbehavior.html#_onclick" class="tsd-kind-icon">_on<wbr>Click</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ngl_.pickingbehavior.html#_onhover" class="tsd-kind-icon">_on<wbr>Hover</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ngl_.pickingbehavior.html#dispose" class="tsd-kind-icon">dispose</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="chellchartevent.html#isaxis" class="tsd-kind-icon">is<wbr>Axis</a></li>
 							</ul>
 						</section>
 					</div>
@@ -111,22 +105,28 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Picking<wbr>Behavior<span class="tsd-signature-symbol">(</span>stage<span class="tsd-signature-symbol">: </span><a href="_ngl_.stage.html" class="tsd-signature-type">Stage</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_ngl_.pickingbehavior.html" class="tsd-signature-type">PickingBehavior</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Chell<wbr>Chart<wbr>Event<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><a href="../enums/chell_chart_event_type.html" class="tsd-signature-type">CHELL_CHART_EVENT_TYPE</a>, chartPiece<span class="tsd-signature-symbol">: </span><a href="../enums/chell_chart_piece.html" class="tsd-signature-type">CHELL_CHART_PIECE</a>, selectedPoints<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="chellchartevent.html" class="tsd-signature-type">ChellChartEvent</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/f1b23c05/types/ngl/stage/stage.d.ts#L117">types/ngl/stage/stage.d.ts:117</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/f1b23c05/src/data/event/ChellChartEvent.ts#L3">src/data/event/ChellChartEvent.ts:3</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>stage: <a href="_ngl_.stage.html" class="tsd-signature-type">Stage</a></h5>
+									<h5>type: <a href="../enums/chell_chart_event_type.html" class="tsd-signature-type">CHELL_CHART_EVENT_TYPE</a></h5>
+								</li>
+								<li>
+									<h5>chartPiece: <a href="../enums/chell_chart_piece.html" class="tsd-signature-type">CHELL_CHART_PIECE</a></h5>
+								</li>
+								<li>
+									<h5>selectedPoints: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_ngl_.pickingbehavior.html" class="tsd-signature-type">PickingBehavior</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="chellchartevent.html" class="tsd-signature-type">ChellChartEvent</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -134,42 +134,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="controls" class="tsd-anchor"></a>
-					<h3>controls</h3>
-					<div class="tsd-signature tsd-kind-icon">controls<span class="tsd-signature-symbol">:</span> <a href="_ngl_.mousecontrols.html" class="tsd-signature-type">MouseControls</a></div>
+					<a name="chartpiece" class="tsd-anchor"></a>
+					<h3>chart<wbr>Piece</h3>
+					<div class="tsd-signature tsd-kind-icon">chart<wbr>Piece<span class="tsd-signature-symbol">:</span> <a href="../enums/chell_chart_piece.html" class="tsd-signature-type">CHELL_CHART_PIECE</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/f1b23c05/types/ngl/stage/stage.d.ts#L114">types/ngl/stage/stage.d.ts:114</a></li>
+							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/f1b23c05/src/data/event/ChellChartEvent.ts#L6">src/data/event/ChellChartEvent.ts:6</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="mouse" class="tsd-anchor"></a>
-					<h3>mouse</h3>
-					<div class="tsd-signature tsd-kind-icon">mouse<span class="tsd-signature-symbol">:</span> <a href="_ngl_.mouseobserver.html" class="tsd-signature-type">MouseObserver</a></div>
+					<a name="selectedpoints" class="tsd-anchor"></a>
+					<h3>selected<wbr>Points</h3>
+					<div class="tsd-signature tsd-kind-icon">selected<wbr>Points<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/f1b23c05/types/ngl/stage/stage.d.ts#L115">types/ngl/stage/stage.d.ts:115</a></li>
+							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/f1b23c05/src/data/event/ChellChartEvent.ts#L7">src/data/event/ChellChartEvent.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="stage" class="tsd-anchor"></a>
-					<h3>stage</h3>
-					<div class="tsd-signature tsd-kind-icon">stage<span class="tsd-signature-symbol">:</span> <a href="_ngl_.stage.html" class="tsd-signature-type">Stage</a></div>
+					<a name="type" class="tsd-anchor"></a>
+					<h3>type</h3>
+					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../enums/chell_chart_event_type.html" class="tsd-signature-type">CHELL_CHART_EVENT_TYPE</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/f1b23c05/types/ngl/stage/stage.d.ts#L116">types/ngl/stage/stage.d.ts:116</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="viewer" class="tsd-anchor"></a>
-					<h3>viewer</h3>
-					<div class="tsd-signature tsd-kind-icon">viewer<span class="tsd-signature-symbol">:</span> <a href="_ngl_.viewer.html" class="tsd-signature-type">Viewer</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/f1b23c05/types/ngl/stage/stage.d.ts#L117">types/ngl/stage/stage.d.ts:117</a></li>
+							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/f1b23c05/src/data/event/ChellChartEvent.ts#L5">src/data/event/ChellChartEvent.ts:5</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -177,71 +167,19 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="_onclick" class="tsd-anchor"></a>
-					<h3>_on<wbr>Click</h3>
+					<a name="isaxis" class="tsd-anchor"></a>
+					<h3>is<wbr>Axis</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">_on<wbr>Click<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Axis<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/f1b23c05/types/ngl/stage/stage.d.ts#L122">types/ngl/stage/stage.d.ts:122</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/f1b23c05/src/data/event/ChellChartEvent.ts#L10">src/data/event/ChellChartEvent.ts:10</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>x: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>y: <span class="tsd-signature-type">number</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="_onhover" class="tsd-anchor"></a>
-					<h3>_on<wbr>Hover</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">_on<wbr>Hover<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/f1b23c05/types/ngl/stage/stage.d.ts#L123">types/ngl/stage/stage.d.ts:123</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>x: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>y: <span class="tsd-signature-type">number</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="dispose" class="tsd-anchor"></a>
-					<h3>dispose</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">dispose<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/f1b23c05/types/ngl/stage/stage.d.ts#L124">types/ngl/stage/stage.d.ts:124</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -253,47 +191,29 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_deep_equal_.html">"deep-<wbr>equal"</a>
-					</li>
-					<li class="current tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_ngl_.html">"ngl"</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_spring_.html">"spring"</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-module">
-						<a href="_ngl_.pickingbehavior.html" class="tsd-kind-icon">Picking<wbr>Behavior</a>
+					<li class="current tsd-kind-class">
+						<a href="chellchartevent.html" class="tsd-kind-icon">Chell<wbr>Chart<wbr>Event</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_ngl_.pickingbehavior.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="chellchartevent.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_ngl_.pickingbehavior.html#controls" class="tsd-kind-icon">controls</a>
+								<a href="chellchartevent.html#chartpiece" class="tsd-kind-icon">chart<wbr>Piece</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_ngl_.pickingbehavior.html#mouse" class="tsd-kind-icon">mouse</a>
+								<a href="chellchartevent.html#selectedpoints" class="tsd-kind-icon">selected<wbr>Points</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_ngl_.pickingbehavior.html#stage" class="tsd-kind-icon">stage</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_ngl_.pickingbehavior.html#viewer" class="tsd-kind-icon">viewer</a>
+								<a href="chellchartevent.html#type" class="tsd-kind-icon">type</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_ngl_.pickingbehavior.html#_onclick" class="tsd-kind-icon">_on<wbr>Click</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_ngl_.pickingbehavior.html#_onhover" class="tsd-kind-icon">_on<wbr>Hover</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_ngl_.pickingbehavior.html#dispose" class="tsd-kind-icon">dispose</a>
+								<a href="chellchartevent.html#isaxis" class="tsd-kind-icon">is<wbr>Axis</a>
 							</li>
 						</ul>
 					</li>
