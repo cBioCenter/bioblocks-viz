@@ -29,6 +29,7 @@ describe('SecondaryStructureAxis', () => {
     };
     const result = new SecondaryStructureAxis(
       [genSeqEntry(0, 'B'), genSeqEntry(1, 'C'), genSeqEntry(2, 'E')],
+      0,
       newColorMap,
     );
     expect(result.axis.get('B')).not.toBeUndefined();

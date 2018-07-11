@@ -39,6 +39,10 @@ class MockStage {
     },
   };
 
+  public viewer = {
+    requestRender: () => jest.fn(),
+  };
+
   constructor(canvas: HTMLElement) {
     return;
   }

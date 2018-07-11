@@ -1,6 +1,6 @@
 import { Datum } from 'plotly.js';
 import { IPlotlyData } from '../component/chart/PlotlyChart';
-import { SECONDARY_STRUCTURE_KEYS, SECONDARY_STRUCTURE_SECTION } from './chell-data';
+import { SECONDARY_STRUCTURE, SECONDARY_STRUCTURE_KEYS } from './chell-data';
 
 export interface IAxisMapping {
   x: Partial<IPlotlyData>;
@@ -29,23 +29,25 @@ export default class SecondaryStructureAxis {
    *     }] How to color the different secondary structure types.
    */
   constructor(
-    sequence: SECONDARY_STRUCTURE_SECTION[],
+    sequence: SECONDARY_STRUCTURE,
+    index: number = 0,
     readonly colorMap: { [key: string]: string } = {
       C: 'red',
       E: 'green',
       H: 'blue',
     },
   ) {
-    this.setupSecondaryStructureAxes(sequence);
+    this.setupSecondaryStructureAxes(sequence, index + 2);
   }
 
-  protected setupSecondaryStructureAxes = (sections: SECONDARY_STRUCTURE_SECTION[]): void => {
+  protected setupSecondaryStructureAxes = (sections: SECONDARY_STRUCTURE, index: number): void => {
     for (const chellSection of sections) {
+      console.log(chellSection);
       const { end, label, start } = chellSection;
       if (!this.axes.get(label)) {
         this.axes.set(label, {
-          x: this.generateXAxisSecStructSegment(label),
-          y: this.generateYAxisSecStructSegment(label),
+          x: this.generateXAxisSecStructSegment(label, index),
+          y: this.generateYAxisSecStructSegment(label, index),
         });
       }
       (this.axes.get(label)!.x.x! as Datum[]).push(start, start, end, end);
@@ -60,13 +62,13 @@ export default class SecondaryStructureAxis {
    *
    * @param entry A Single residue-secondary structure element.
    */
-  protected generateXAxisSecStructSegment = (code: SECONDARY_STRUCTURE_KEYS): Partial<IPlotlyData> => ({
+  protected generateXAxisSecStructSegment = (code: SECONDARY_STRUCTURE_KEYS, index: number): Partial<IPlotlyData> => ({
     ...this.secondaryStructureAxisDefaults(code),
     orientation: 'h',
     x: [],
     xaxis: 'x',
     y: [],
-    yaxis: 'y2',
+    yaxis: `y${index}`,
   });
 
   /**
@@ -74,11 +76,11 @@ export default class SecondaryStructureAxis {
    *
    * @param entry A Single residue-secondary structure element.
    */
-  protected generateYAxisSecStructSegment = (code: SECONDARY_STRUCTURE_KEYS): Partial<IPlotlyData> => ({
+  protected generateYAxisSecStructSegment = (code: SECONDARY_STRUCTURE_KEYS, index: number): Partial<IPlotlyData> => ({
     ...this.secondaryStructureAxisDefaults(code),
     orientation: 'v',
     x: [],
-    xaxis: 'x2',
+    xaxis: `x${index}`,
     y: [],
     yaxis: 'y',
   });

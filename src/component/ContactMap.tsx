@@ -4,12 +4,7 @@ import { Accordion, Icon } from 'semantic-ui-react';
 
 import ResidueContext, { initialResidueContext, ResidueSelection } from '../context/ResidueContext';
 import { initialSecondaryStructureContext, SecondaryStructureContext } from '../context/SecondaryStructureContext';
-import {
-  CONFIGURATION_COMPONENT_TYPE,
-  ICouplingScore,
-  RESIDUE_TYPE,
-  SECONDARY_STRUCTURE_SECTION,
-} from '../data/chell-data';
+import { CONFIGURATION_COMPONENT_TYPE, ICouplingScore, RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../data/chell-data';
 import { withDefaultProps } from '../helper/ReactHelper';
 import ContactMapChart, { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';
 import ChellRadioGroup from './widget/ChellRadioGroup';
@@ -36,7 +31,7 @@ export const defaultContactMapProps = {
   configurations: new Array<IContactMapConfiguration>(),
   data: {
     computedPoints: new Array<IContactMapChartData>(),
-    secondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
+    secondaryStructures: new Array<SECONDARY_STRUCTURE>(),
   },
   enableSliders: true,
   height: 400,
@@ -68,9 +63,10 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
   }
 
   public componentDidUpdate(prevProps: ContactMapProps) {
-    const { clearAllResidues, data, lockedResiduePairs } = this.props;
+    const { data, lockedResiduePairs } = this.props;
     if (data !== prevProps.data) {
-      clearAllResidues();
+      this.props.clearAllResidues();
+      this.props.clearSecondaryStructure();
       this.setupPointsToPlot(data.computedPoints);
     } else if (lockedResiduePairs !== prevProps.lockedResiduePairs) {
       this.setupPointsToPlot(data.computedPoints, lockedResiduePairs);
@@ -78,14 +74,14 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
   }
 
   public render() {
-    const { data, enableSliders, padding, width } = this.props;
+    const { enableSliders, padding, width } = this.props;
     const { pointsToPlot } = this.state;
 
     const sliderStyle = { width: width * 0.9 };
 
     return (
       <div id="ContactMapComponent" style={{ padding }}>
-        {this.renderContactMapChart(pointsToPlot, data.secondaryStructures)}
+        {this.renderContactMapChart(pointsToPlot)}
         {enableSliders && this.renderConfigSliders(sliderStyle, pointsToPlot)}
       </div>
     );
@@ -139,11 +135,15 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     });
   }
 
-  protected renderContactMapChart(
-    pointsToPlot: IContactMapChartData[],
-    secondaryStructures: SECONDARY_STRUCTURE_SECTION[],
-  ) {
-    const { addHoveredResidues, candidateResidues, chainLength, onBoxSelection, toggleLockedResiduePair } = this.props;
+  protected renderContactMapChart(pointsToPlot: IContactMapChartData[]) {
+    const {
+      addHoveredResidues,
+      candidateResidues,
+      chainLength,
+      data,
+      onBoxSelection,
+      toggleLockedResiduePair,
+    } = this.props;
     return (
       <ContactMapChart
         candidateResidues={candidateResidues}
@@ -152,7 +152,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
         onHoverCallback={this.onMouseEnter(addHoveredResidues)}
         onSelectedCallback={this.onMouseSelect(onBoxSelection)}
         range={chainLength + 5}
-        secondaryStructures={secondaryStructures}
+        secondaryStructures={data.secondaryStructures}
       />
     );
   }
@@ -267,11 +267,14 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
     if (isSecStruct) {
       const { toggleSecondaryStructure, data } = this.props;
-      for (const section of data.secondaryStructures) {
-        if (isYSecondary && points[0].x >= section.start && points[0].x <= section.end) {
-          toggleSecondaryStructure(section);
-        } else if (isXSecondary && points[0].y >= section.start && points[0].y <= section.end) {
-          toggleSecondaryStructure(section);
+
+      for (const secondaryStructure of data.secondaryStructures) {
+        for (const section of secondaryStructure) {
+          if (isYSecondary && points[0].x >= section.start && points[0].x <= section.end) {
+            toggleSecondaryStructure(section);
+          } else if (isXSecondary && points[0].y >= section.start && points[0].y <= section.end) {
+            toggleSecondaryStructure(section);
+          }
         }
       }
     } else {

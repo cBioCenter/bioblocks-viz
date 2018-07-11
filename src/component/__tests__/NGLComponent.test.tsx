@@ -123,8 +123,8 @@ describe('NGLComponent', () => {
     expect(instance.state.activeRepresentations).toEqual(expectedRep);
   });
 
-  it('Should show the ribbon representation for selected secondary structures.', () => {
-    const expectedRep = ['ribbon'];
+  it('Should show the cartoon representation for selected secondary structures.', () => {
+    const expectedRep = ['cartoon'];
     const Component = getComponentWithContext();
     const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
     const instance = wrapper.instance() as NGLComponentClass;

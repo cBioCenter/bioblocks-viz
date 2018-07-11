@@ -7,7 +7,7 @@ import * as Renderer from 'react-test-renderer';
 
 import { IMockPlotlyCanvas } from '__mocks__/plotly';
 import { initialResidueContext, IResidueContext } from '../../context/ResidueContext';
-import { CONFIGURATION_COMPONENT_TYPE, ICouplingScore, SECONDARY_STRUCTURE_SECTION } from '../../data/chell-data';
+import { CONFIGURATION_COMPONENT_TYPE, ICouplingScore, SECONDARY_STRUCTURE } from '../../data/chell-data';
 import { PlotlyChartClass } from '../chart/PlotlyChart';
 import ContactMap, { ContactMapClass, ContactMapProps } from '../ContactMap';
 
@@ -122,13 +122,15 @@ describe('ContactMap', () => {
       ],
     })),
     secondaryStructures: [
-      {
-        end: 31,
-        label: 'C',
-        length: 2,
-        start: 30,
-      },
-    ] as SECONDARY_STRUCTURE_SECTION[],
+      [
+        {
+          end: 31,
+          label: 'C',
+          length: 2,
+          start: 30,
+        },
+      ],
+    ] as SECONDARY_STRUCTURE[],
   };
 
   describe('Snapshots', () => {

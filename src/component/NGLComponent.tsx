@@ -79,7 +79,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
     if (data && stage && isNewData) {
       stage.removeAllComponents();
       this.addStructureToStage(data, stage);
-    } else if (structureComponent) {
+    } else if (stage && structureComponent) {
       const { candidateResidues, hoveredResidues, lockedResiduePairs, selectedSecondaryStructures } = this.props;
 
       const isHighlightUpdateNeeded =
@@ -108,6 +108,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
           ],
         });
       }
+      stage.viewer.requestRender();
     }
   }
 

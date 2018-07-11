@@ -3,7 +3,7 @@
 import * as plotly from 'plotly.js';
 import * as React from 'react';
 
-import { RESIDUE_TYPE, SECONDARY_STRUCTURE_SECTION } from '../../data/chell-data';
+import { RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../../data/chell-data';
 
 import SecondaryStructureAxis from '../../data/SecondaryStructureAxis';
 import { generateScatterGLData } from '../../helper/PlotlyHelper';
@@ -26,7 +26,7 @@ export interface IContactMapChartProps {
   onSelectedCallback: (...args: any[]) => void;
   onUnHoverCallback: (...args: any[]) => void;
   range: number;
-  secondaryStructures?: SECONDARY_STRUCTURE_SECTION[];
+  secondaryStructures: SECONDARY_STRUCTURE[];
 }
 
 export interface IContactMapChartState {
@@ -44,6 +44,7 @@ const defaultContactMapChartProps: Partial<IContactMapChartProps> = {
     b: 40,
   },
   range: 100,
+  secondaryStructures: [],
 };
 
 export interface IContactMapChartData extends Partial<IPlotlyData> {
@@ -111,16 +112,16 @@ class ContactMapChartClass extends React.Component<IContactMapChartProps, IConta
   public componentDidUpdate(prevProps: IContactMapChartProps) {
     const { contactData, dataTransformFn, secondaryStructures } = this.props;
     if (prevProps.contactData !== contactData || prevProps.secondaryStructures !== secondaryStructures) {
-      let plotlyData = [...contactData.map(entry => dataTransformFn(entry, true))];
+      const plotlyData = [...contactData.map(entry => dataTransformFn(entry, true))];
 
-      if (secondaryStructures && secondaryStructures.length >= 1) {
-        const axis = new SecondaryStructureAxis(secondaryStructures).axis;
+      secondaryStructures.forEach((secondaryStructure, index) => {
+        const axis = new SecondaryStructureAxis(secondaryStructure, index).axis;
         const axisData = Array.from(axis.values()).reduce((prev, cur) => {
           prev.push(...[cur.x, cur.y]);
           return prev;
         }, new Array());
-        plotlyData = [...plotlyData, ...axisData];
-      }
+        plotlyData.push(...axisData);
+      });
       this.setState({
         plotlyData,
       });

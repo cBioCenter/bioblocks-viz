@@ -42,5 +42,6 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
       },
     }
   }
+  secondaryStructures={Array []}
 />
 `;

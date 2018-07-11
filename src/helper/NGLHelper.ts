@@ -43,10 +43,10 @@ export const createBallStickRepresentation = (structureComponent: NGL.StructureC
 export const createSecStructRepresentation = (
   structureComponent: NGL.StructureComponent,
   section: SECONDARY_STRUCTURE_SECTION,
-  radiusScale: number = 5,
-  color: string = 'pink',
+  radiusScale: number = 2,
+  color: string = 'yellow',
 ) =>
-  structureComponent.addRepresentation('ribbon', {
+  structureComponent.addRepresentation('cartoon', {
     color,
     radiusScale,
     sele: `${section.start}-${section.end}`,

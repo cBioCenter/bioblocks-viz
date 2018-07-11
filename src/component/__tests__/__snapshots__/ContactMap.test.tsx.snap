@@ -662,12 +662,14 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         },
       ],
       "secondaryStructures": Array [
-        Object {
-          "end": 31,
-          "label": "C",
-          "length": 2,
-          "start": 30,
-        },
+        Array [
+          Object {
+            "end": 31,
+            "label": "C",
+            "length": 2,
+            "start": 30,
+          },
+        ],
       ],
     }
   }
@@ -817,12 +819,14 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       range={64}
       secondaryStructures={
         Array [
-          Object {
-            "end": 31,
-            "label": "C",
-            "length": 2,
-            "start": 30,
-          },
+          Array [
+            Object {
+              "end": 31,
+              "label": "C",
+              "length": 2,
+              "start": 30,
+            },
+          ],
         ]
       }
     >
@@ -1106,12 +1110,14 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         onSelectedCallback={[Function]}
         secondaryStructures={
           Array [
-            Object {
-              "end": 31,
-              "label": "C",
-              "length": 2,
-              "start": 30,
-            },
+            Array [
+              Object {
+                "end": 31,
+                "label": "C",
+                "length": 2,
+                "start": 30,
+              },
+            ],
           ]
         }
       >
