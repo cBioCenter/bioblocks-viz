@@ -130,7 +130,6 @@ class ContactMapChartClass extends React.Component<IContactMapChartProps, IConta
 
   public render() {
     const { contactData, heightModifier, legendModifiers, marginModifiers, range, ...props } = this.props;
-
     const { plotlyData } = this.state;
 
     return (

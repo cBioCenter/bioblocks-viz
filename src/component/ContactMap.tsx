@@ -270,9 +270,9 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
       for (const secondaryStructure of data.secondaryStructures) {
         for (const section of secondaryStructure) {
-          if (isYSecondary && points[0].x >= section.start && points[0].x <= section.end) {
+          if (isYSecondary && section.contains(points[0].x)) {
             toggleSecondaryStructure(section);
-          } else if (isXSecondary && points[0].y >= section.start && points[0].y <= section.end) {
+          } else if (isXSecondary && section.contains(points[0].y)) {
             toggleSecondaryStructure(section);
           }
         }
