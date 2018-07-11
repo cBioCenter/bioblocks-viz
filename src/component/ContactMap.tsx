@@ -5,6 +5,7 @@ import { Accordion, Icon } from 'semantic-ui-react';
 import ResidueContext, { initialResidueContext, ResidueSelection } from '../context/ResidueContext';
 import { initialSecondaryStructureContext, SecondaryStructureContext } from '../context/SecondaryStructureContext';
 import { CONFIGURATION_COMPONENT_TYPE, ICouplingScore, RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../data/chell-data';
+import ChellChartEvent from '../data/event/ChellChartEvent';
 import { withDefaultProps } from '../helper/ReactHelper';
 import ContactMapChart, { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';
 import ChellRadioGroup from './widget/ChellRadioGroup';
@@ -259,26 +260,19 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     }
   };
 
-  protected onMouseClick = (cb: (residues: RESIDUE_TYPE[]) => void) => (e: plotly.PlotMouseEvent) => {
-    const { points } = e;
-    const isXSecondary = points[0].data && points[0].data.xaxis !== 'x';
-    const isYSecondary = points[0].data && points[0].data.yaxis !== 'y';
-    const isSecStruct = isXSecondary || isYSecondary;
-
-    if (isSecStruct) {
+  protected onMouseClick = (cb: (residues: RESIDUE_TYPE[]) => void) => (e: ChellChartEvent) => {
+    if (e.isAxis()) {
       const { toggleSecondaryStructure, data } = this.props;
 
       for (const secondaryStructure of data.secondaryStructures) {
         for (const section of secondaryStructure) {
-          if (isYSecondary && section.contains(points[0].x)) {
-            toggleSecondaryStructure(section);
-          } else if (isXSecondary && section.contains(points[0].y)) {
+          if (section.contains(...e.selectedPoints)) {
             toggleSecondaryStructure(section);
           }
         }
       }
     } else {
-      cb([points[0].x, points[0].y]);
+      cb(e.selectedPoints);
     }
   };
 

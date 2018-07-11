@@ -108,6 +108,9 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
           ],
         });
       }
+    }
+
+    if (stage) {
       stage.viewer.requestRender();
     }
   }

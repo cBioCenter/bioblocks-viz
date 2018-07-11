@@ -6,6 +6,8 @@ import * as React from 'react';
 // https://github.com/plotly/plotly-webpack#the-easy-way-recommended
 import * as plotly from 'plotly.js/dist/plotly';
 
+import { CHELL_CHART_EVENT_TYPE, CHELL_CHART_PIECE } from '../../data/chell-data';
+import ChellChartEvent from '../../data/event/ChellChartEvent';
 import { withDefaultProps } from '../../helper/ReactHelper';
 
 export enum PLOTLY_CHART_TYPE {
@@ -45,7 +47,7 @@ export interface IPlotlyChartProps {
   config?: Partial<Plotly.Config>;
   data: Array<Partial<IPlotlyData>>;
   layout?: Partial<IPlotlyLayout>;
-  onClickCallback?: ((event: plotly.PlotMouseEvent) => void);
+  onClickCallback?: ((event: ChellChartEvent) => void);
   onHoverCallback?: ((event: plotly.PlotMouseEvent) => void);
   onSelectedCallback?: ((event: plotly.PlotSelectionEvent) => void);
   onUnHoverCallback?: ((event: plotly.PlotMouseEvent) => void);
@@ -267,10 +269,29 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
     );
   };
 
+  protected deriveChartPiece = (data: plotly.ScatterData, x: number, y: number) => {
+    if (data) {
+      const isExtraXAxis = data.xaxis && data.xaxis !== 'x';
+      const isExtraYAxis = data.yaxis && data.yaxis !== 'y';
+      if (isExtraXAxis || isExtraYAxis) {
+        return {
+          chartPiece: CHELL_CHART_PIECE.AXIS,
+          selectedPoints: isExtraXAxis ? [y] : [x],
+        };
+      }
+    }
+    return {
+      chartPiece: CHELL_CHART_PIECE.POINT,
+      selectedPoints: [x, y],
+    };
+  };
+
   protected onClick = (event: plotly.PlotMouseEvent) => {
     const { onClickCallback } = this.props;
     if (onClickCallback) {
-      onClickCallback(event);
+      const { data, x, y } = event.points[0];
+      const { chartPiece, selectedPoints } = this.deriveChartPiece(data, x, y);
+      onClickCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.CLICK, chartPiece, selectedPoints));
     }
   };
 

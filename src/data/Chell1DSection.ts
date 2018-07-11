@@ -26,8 +26,13 @@ class Chell1DSection<T> {
     this.sectionStart = Math.min(start, end);
   }
 
-  public contains(value: number) {
-    return value >= this.sectionStart && value <= this.sectionEnd;
+  public contains(...values: number[]) {
+    for (const value of values) {
+      if (value < this.sectionStart || value > this.sectionEnd) {
+        return false;
+      }
+    }
+    return true;
   }
 
   public updateStart(newNum: number) {

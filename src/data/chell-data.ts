@@ -4,6 +4,7 @@
 // TypeScript Version: 2.8
 import { Structure } from 'ngl';
 import { ISpringGraphData } from 'spring';
+
 import Chell1DSection from './Chell1DSection';
 import { ChellPDB } from './ChellPDB';
 import { CouplingContainer } from './CouplingContainer';
@@ -95,4 +96,16 @@ export interface ISecondaryStructure {
   code: SECONDARY_STRUCTURE_CODES;
   name: string;
   minResidueLength: number;
+}
+
+export enum CHELL_CHART_EVENT_TYPE {
+  CLICK,
+  HOVER,
+  SELECTION,
+  UNHOVER,
+}
+
+export enum CHELL_CHART_PIECE {
+  AXIS,
+  POINT,
 }

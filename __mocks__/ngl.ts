@@ -50,7 +50,7 @@ class MockStage {
   public addComponentFromObject = () => ({
     addRepresentation: (name: string, ...args: any[]) => {
       this.reprList.push(name);
-      return name;
+      return { name: () => name, setParameters: jest.fn() };
     },
     hasRepresentation: (name: string, ...args: any[]) => this.reprList.indexOf(name) !== -1,
     removeRepresentation: (name: string, ...args: any[]) => {
