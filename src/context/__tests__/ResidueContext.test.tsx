@@ -21,7 +21,9 @@ describe('ResidueContext', () => {
     wrapper.root.props.addLockedResiduePair();
     wrapper.root.props.clearAllResidues();
     wrapper.root.props.removeAllLockedResiduePairs();
+    wrapper.root.props.removeHoveredResidues();
     wrapper.root.props.removeLockedResiduePair();
+    wrapper.root.props.removeNonLockedResidues();
     wrapper.root.props.toggleLockedResiduePair();
     expect(wrapper.root.props).toEqual(initialResidueContext);
   });
