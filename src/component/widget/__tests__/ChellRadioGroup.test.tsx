@@ -20,12 +20,12 @@ describe('ChellRadioGroup', () => {
     const onChangeSpy = jest.fn();
     const wrapper = shallow(sampleChellSlider({ options: ['sandor', 'gregor'], onChange: onChangeSpy }));
     const expected = 1;
-    expect(wrapper.state().selectedIndex).not.toBe(expected);
+    expect(wrapper.state('selectedIndex')).not.toBe(expected);
     wrapper
       .find(Radio)
       .at(1)
       .simulate('change');
-    expect(wrapper.state().selectedIndex).toBe(expected);
+    expect(wrapper.state('selectedIndex')).toBe(expected);
     expect(onChangeSpy).toHaveBeenCalled();
   });
 });

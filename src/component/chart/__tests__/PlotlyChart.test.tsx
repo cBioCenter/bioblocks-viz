@@ -1,4 +1,4 @@
-import { CommonWrapper, mount, shallow } from 'enzyme';
+import { CommonWrapper, mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import * as React from 'react';
@@ -54,27 +54,26 @@ describe('PlotlyChart', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  it('Should handle callbacks.', () => {
+  it('Should handle callbacks.', async () => {
     const spies: IMockDict = {
       onClickSpy: jest.fn(),
       onHoverSpy: jest.fn(),
       onSelectedSpy: jest.fn(),
       onUnHoverSpy: jest.fn(),
     };
-    const wrapper = shallow(
-      <PlotlyChartClass
-        data={sampleData}
-        onClickCallback={spies.onClickSpy}
-        onHoverCallback={spies.onHoverSpy}
-        onSelectedCallback={spies.onSelectedSpy}
-        onUnHoverCallback={spies.onUnHoverSpy}
-      />,
-    );
 
-    wrapper.instance().props.onClickCallback();
-    wrapper.instance().props.onHoverCallback();
-    wrapper.instance().props.onSelectedCallback();
-    wrapper.instance().props.onUnHoverCallback();
+    const wrapper = await getMountedPlotlyChart({
+      data: sampleData,
+      onClickCallback: spies.onClickSpy,
+      onHoverCallback: spies.onHoverSpy,
+      onSelectedCallback: spies.onSelectedSpy,
+      onUnHoverCallback: spies.onUnHoverSpy,
+    });
+
+    dispatchPlotlyEvent(wrapper, 'plotly_click');
+    dispatchPlotlyEvent(wrapper, 'plotly_hover');
+    dispatchPlotlyEvent(wrapper, 'plotly_selected');
+    dispatchPlotlyEvent(wrapper, 'plotly_unhover');
 
     for (const key of Object.keys(spies)) {
       expect(spies[key]).toHaveBeenCalledTimes(1);

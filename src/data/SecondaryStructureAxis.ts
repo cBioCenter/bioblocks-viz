@@ -42,7 +42,6 @@ export default class SecondaryStructureAxis {
 
   protected setupSecondaryStructureAxes = (sections: SECONDARY_STRUCTURE, index: number): void => {
     for (const chellSection of sections) {
-      console.log(chellSection);
       const { end, label, start } = chellSection;
       if (!this.axes.get(label)) {
         this.axes.set(label, {

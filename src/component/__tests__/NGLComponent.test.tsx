@@ -284,7 +284,7 @@ describe('NGLComponent', () => {
       const Component = getComponentWithContext();
       const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
       const removedLockedSpy = jest.fn();
-      wrapper.instance().state.structureComponent!.addRepresentation('distance');
+      (wrapper.state('structureComponent') as NGL.StructureComponent).addRepresentation('distance');
       wrapper.setProps({
         lockedResiduePairs: new Map(
           Object.entries({
@@ -309,7 +309,7 @@ describe('NGLComponent', () => {
         hoveredResidues: [1],
         removeNonLockedResidues: removeNonLockedResiduesSpy,
       });
-      expect(wrapper.state().activeRepresentations).not.toEqual(expected);
+      expect(wrapper.state('activeRepresentations')).not.toEqual(expected);
       simulateClickEvent(wrapper, undefined);
       expect(removeNonLockedResiduesSpy).toHaveBeenCalledTimes(1);
     });

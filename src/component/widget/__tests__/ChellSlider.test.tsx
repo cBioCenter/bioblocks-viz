@@ -20,10 +20,10 @@ describe('ChellSlider', () => {
     const expected = 42;
     const wrapper = shallow(sampleChellSlider({ onChange: onChangeSpy }));
 
-    expect(wrapper.state().value).not.toBe(expected);
+    expect(wrapper.state('value')).not.toBe(expected);
     wrapper.find(Slider).simulate('change', expected);
     expect(onChangeSpy).toHaveBeenLastCalledWith(expected);
-    expect(wrapper.state().value).toBe(expected);
+    expect(wrapper.state('value')).toBe(expected);
   });
 
   it('Should handle onAfterChange callbacks.', () => {
@@ -31,9 +31,9 @@ describe('ChellSlider', () => {
     const expected = 42;
     const wrapper = shallow(sampleChellSlider({ onAfterChange: onAfterChangeSpy }));
 
-    expect(wrapper.state().value).not.toBe(expected);
+    expect(wrapper.state('value')).not.toBe(expected);
     wrapper.find(Slider).simulate('afterChange', expected);
     expect(onAfterChangeSpy).toHaveBeenLastCalledWith(expected);
-    expect(wrapper.state().value).toBe(expected);
+    expect(wrapper.state('value')).toBe(expected);
   });
 });

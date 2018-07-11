@@ -33,8 +33,8 @@ describe('VizSelectorPanel', () => {
       <VizSelectorPanel data={emptyData} supportedVisualizations={[VIZ_TYPE.NGL, VIZ_TYPE.CONTACT_MAP]} />,
     );
     const expected = VIZ_TYPE.CONTACT_MAP;
-    expect(wrapper.state().selectedViz).not.toBe(expected);
+    expect(wrapper.state('selectedViz')).not.toBe(expected);
     wrapper.find(Dropdown).simulate('change', {}, { value: expected });
-    expect(wrapper.state().selectedViz).toBe(expected);
+    expect(wrapper.state('selectedViz')).toBe(expected);
   });
 });
