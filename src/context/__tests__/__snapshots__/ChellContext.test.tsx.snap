@@ -1,33 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ChellContext Should match the default snapshot. 1`] = `
-<[object Object]
-  value={
-    Object {
-      "addCells": [Function],
-      "currentCells": Array [],
-      "removeAllCells": [Function],
-      "removeCells": [Function],
-    }
-  }
->
+<SecondaryStructureContextHandler>
   <[object Object]
     value={
       Object {
-        "addCandidateResidues": [Function],
-        "addHoveredResidues": [Function],
-        "addLockedResiduePair": [Function],
-        "candidateResidues": Array [],
-        "clearAllResidues": [Function],
-        "hoveredResidues": Array [],
-        "lockedResiduePairs": Map {},
-        "removeAllLockedResiduePairs": [Function],
-        "removeCandidateResidues": [Function],
-        "removeHoveredResidues": [Function],
-        "removeLockedResiduePair": [Function],
-        "toggleLockedResiduePair": [Function],
+        "addCells": [Function],
+        "currentCells": Array [],
+        "removeAllCells": [Function],
+        "removeCells": [Function],
       }
     }
-  />
-</[object Object]>
+  >
+    <[object Object]
+      value={
+        Object {
+          "addCandidateResidues": [Function],
+          "addHoveredResidues": [Function],
+          "addLockedResiduePair": [Function],
+          "candidateResidues": Array [],
+          "clearAllResidues": [Function],
+          "hoveredResidues": Array [],
+          "lockedResiduePairs": Map {},
+          "removeAllLockedResiduePairs": [Function],
+          "removeCandidateResidues": [Function],
+          "removeHoveredResidues": [Function],
+          "removeLockedResiduePair": [Function],
+          "removeNonLockedResidues": [Function],
+          "toggleLockedResiduePair": [Function],
+        }
+      }
+    />
+  </[object Object]>
+</SecondaryStructureContextHandler>
 `;

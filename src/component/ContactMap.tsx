@@ -1,18 +1,13 @@
-import * as plotly from 'plotly.js/dist/plotly';
+import * as plotly from 'plotly.js';
 import * as React from 'react';
 import { Accordion, Icon } from 'semantic-ui-react';
 
 import ResidueContext, { initialResidueContext, ResidueSelection } from '../context/ResidueContext';
-import {
-  CONFIGURATION_COMPONENT_TYPE,
-  ICouplingScore,
-  ISecondaryStructureData,
-  RESIDUE_TYPE,
-} from '../data/chell-data';
+import { initialSecondaryStructureContext, SecondaryStructureContext } from '../context/SecondaryStructureContext';
+import { CONFIGURATION_COMPONENT_TYPE, ICouplingScore, RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../data/chell-data';
 import { withDefaultProps } from '../helper/ReactHelper';
 import ContactMapChart, { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';
 import ChellRadioGroup from './widget/ChellRadioGroup';
-// import ChellSlider, { ChellSliderCallback } from './ChellSlider';
 import ChellSlider from './widget/ChellSlider';
 
 export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
@@ -36,12 +31,13 @@ export const defaultContactMapProps = {
   configurations: new Array<IContactMapConfiguration>(),
   data: {
     computedPoints: new Array<IContactMapChartData>(),
-    secondaryStructures: new Array<ISecondaryStructureData>(),
+    secondaryStructures: new Array<SECONDARY_STRUCTURE>(),
   },
   enableSliders: true,
   height: 400,
   highlightColor: '#ff8800',
   ...initialResidueContext,
+  ...initialSecondaryStructureContext,
   onBoxSelection: undefined as undefined | ((residues: RESIDUE_TYPE[]) => void),
   padding: 0,
   width: 400,
@@ -67,9 +63,10 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
   }
 
   public componentDidUpdate(prevProps: ContactMapProps) {
-    const { clearAllResidues, data, lockedResiduePairs } = this.props;
+    const { data, lockedResiduePairs } = this.props;
     if (data !== prevProps.data) {
-      clearAllResidues();
+      this.props.clearAllResidues();
+      this.props.clearSecondaryStructure();
       this.setupPointsToPlot(data.computedPoints);
     } else if (lockedResiduePairs !== prevProps.lockedResiduePairs) {
       this.setupPointsToPlot(data.computedPoints, lockedResiduePairs);
@@ -77,14 +74,14 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
   }
 
   public render() {
-    const { data, enableSliders, padding, width } = this.props;
+    const { enableSliders, padding, width } = this.props;
     const { pointsToPlot } = this.state;
 
     const sliderStyle = { width: width * 0.9 };
 
     return (
       <div id="ContactMapComponent" style={{ padding }}>
-        {this.renderContactMapChart(pointsToPlot, data.secondaryStructures)}
+        {this.renderContactMapChart(pointsToPlot)}
         {enableSliders && this.renderConfigSliders(sliderStyle, pointsToPlot)}
       </div>
     );
@@ -138,11 +135,15 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     });
   }
 
-  protected renderContactMapChart(
-    pointsToPlot: IContactMapChartData[],
-    secondaryStructures: ISecondaryStructureData[],
-  ) {
-    const { addHoveredResidues, candidateResidues, chainLength, onBoxSelection, toggleLockedResiduePair } = this.props;
+  protected renderContactMapChart(pointsToPlot: IContactMapChartData[]) {
+    const {
+      addHoveredResidues,
+      candidateResidues,
+      chainLength,
+      data,
+      onBoxSelection,
+      toggleLockedResiduePair,
+    } = this.props;
     return (
       <ContactMapChart
         candidateResidues={candidateResidues}
@@ -151,7 +152,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
         onHoverCallback={this.onMouseEnter(addHoveredResidues)}
         onSelectedCallback={this.onMouseSelect(onBoxSelection)}
         range={chainLength + 5}
-        secondaryStructures={secondaryStructures}
+        secondaryStructures={data.secondaryStructures}
       />
     );
   }
@@ -252,17 +253,39 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
   protected onMouseEnter = (cb: (residue: RESIDUE_TYPE[]) => void) => (e: plotly.PlotMouseEvent) => {
     const { points } = e;
-    cb([points[0].x, points[0].y]);
+    const isSecStruct = points[0].data && (points[0].data.yaxis === 'y2' || points[0].data.xaxis === 'x2');
+    if (!isSecStruct) {
+      cb([points[0].x, points[0].y]);
+    }
   };
 
   protected onMouseClick = (cb: (residues: RESIDUE_TYPE[]) => void) => (e: plotly.PlotMouseEvent) => {
     const { points } = e;
-    cb([points[0].x, points[0].y]);
+    const isXSecondary = points[0].data && points[0].data.xaxis === 'x2';
+    const isYSecondary = points[0].data && points[0].data.yaxis === 'y2';
+    const isSecStruct = isXSecondary || isYSecondary;
+
+    if (isSecStruct) {
+      const { toggleSecondaryStructure, data } = this.props;
+
+      for (const secondaryStructure of data.secondaryStructures) {
+        for (const section of secondaryStructure) {
+          if (isYSecondary && points[0].x >= section.start && points[0].x <= section.end) {
+            toggleSecondaryStructure(section);
+          } else if (isXSecondary && points[0].y >= section.start && points[0].y <= section.end) {
+            toggleSecondaryStructure(section);
+          }
+        }
+      }
+    } else {
+      cb([points[0].x, points[0].y]);
+    }
   };
 
   protected onMouseSelect = (cb?: (residues: RESIDUE_TYPE[]) => void) => (
     e: plotly.PlotSelectionEvent = { points: [] },
   ) => {
+    const {} = this.props;
     const { points } = e;
     if (cb) {
       // For the contact map, all the x/y values are mirrored and correspond directly with i/j values.
@@ -280,7 +303,13 @@ type requiredProps = Partial<typeof defaultContactMapProps> &
   Required<Omit<ContactMapProps, keyof typeof defaultContactMapProps>>;
 
 const ContactMap = (props: requiredProps) => (
-  <ResidueContext.Consumer>{context => <ContactMapWithDefaultProps {...props} {...context} />}</ResidueContext.Consumer>
+  <SecondaryStructureContext.Consumer>
+    {secStructContext => (
+      <ResidueContext.Consumer>
+        {residueContext => <ContactMapWithDefaultProps {...props} {...residueContext} {...secStructContext} />}
+      </ResidueContext.Consumer>
+    )}
+  </SecondaryStructureContext.Consumer>
 );
 
 export default ContactMap;

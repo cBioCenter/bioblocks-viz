@@ -37,23 +37,23 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
       <VizPanelContainerClass
         dataDirs={
           Array [
-            "assets/centroids",
-            "assets/centroids_subset",
-            "assets/ngl",
-            "assets/spring2/full",
+            "assets/contact_map/example1",
+            "assets/contact_map/example2",
+            "assets/contact_map/example3",
+            "assets/beta_lactamase",
           ]
         }
         initialVisualizations={
           Array [
-            "T-SNE",
-            "Spring",
+            "Contact Map",
+            "NGL",
           ]
         }
         numPanels={2}
         supportedVisualizations={
           Array [
-            "T-SNE",
-            "Spring",
+            "Contact Map",
+            "NGL",
           ]
         }
       />

@@ -1,8 +1,10 @@
-import { SECONDARY_STRUCTURE_CODES } from '../chell-data';
+import { SECONDARY_STRUCTURE_CODES, SECONDARY_STRUCTURE_KEYS } from '../chell-data';
+import Chell1DSection from '../Chell1DSection';
 import { SecondaryStructureAxis } from '../SecondaryStructureAxis';
 
 describe('SecondaryStructureAxis', () => {
-  const genSeqEntry = (resno: number, structId: keyof typeof SECONDARY_STRUCTURE_CODES) => ({ resno, structId });
+  const genSeqEntry = (resno: number, structId: keyof typeof SECONDARY_STRUCTURE_CODES) =>
+    new Chell1DSection<SECONDARY_STRUCTURE_KEYS>(structId, resno);
 
   it('Should create an empty axis when no secondary structure is provided.', () => {
     const result = new SecondaryStructureAxis([]);
@@ -27,6 +29,7 @@ describe('SecondaryStructureAxis', () => {
     };
     const result = new SecondaryStructureAxis(
       [genSeqEntry(0, 'B'), genSeqEntry(1, 'C'), genSeqEntry(2, 'E')],
+      0,
       newColorMap,
     );
     expect(result.axis.get('B')).not.toBeUndefined();

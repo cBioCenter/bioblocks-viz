@@ -4,8 +4,10 @@ import {
   CONTACT_DISTANCE_PROXIMITY,
   ICouplingScore,
   ISecondaryStructureData,
-  SECONDARY_STRUCTURE_CODES,
+  SECONDARY_STRUCTURE_KEYS,
+  SECONDARY_STRUCTURE_SECTION,
 } from './chell-data';
+import Chell1DSection from './Chell1DSection';
 import { CouplingContainer } from './CouplingContainer';
 
 /**
@@ -16,11 +18,33 @@ import { CouplingContainer } from './CouplingContainer';
 export class ChellPDB {
   [key: string]: any;
 
+  public get secondaryStructureSections(): SECONDARY_STRUCTURE_SECTION[] {
+    const result = new Array<SECONDARY_STRUCTURE_SECTION>();
+    this.nglData.eachResidue(residue => {
+      if (residue.isProtein()) {
+        let structId = 'C' as SECONDARY_STRUCTURE_KEYS;
+        if (residue.isSheet()) {
+          structId = 'E';
+        } else if (residue.isHelix()) {
+          structId = 'H';
+        } else if (residue.isTurn()) {
+          return;
+        }
+        if (result.length >= 1 && result[result.length - 1].label === structId) {
+          result[result.length - 1].updateEnd(residue.resno);
+        } else {
+          result.push(new Chell1DSection(structId, residue.resno));
+        }
+      }
+    });
+    return result;
+  }
+
   public get secondaryStructure(): ISecondaryStructureData[] {
     const result = new Array<ISecondaryStructureData>();
     this.nglData.eachResidue(residue => {
       if (residue.isProtein()) {
-        let structId: keyof typeof SECONDARY_STRUCTURE_CODES = 'C';
+        let structId = 'C' as SECONDARY_STRUCTURE_KEYS;
         if (residue.isSheet()) {
           structId = 'E';
         } else if (residue.isHelix()) {
@@ -46,6 +70,8 @@ export class ChellPDB {
 
   protected nglData: NGL.Structure = new NGL.Structure();
   protected readonly NGL_C_ALPHA_INDEX = 'CA|C';
+
+  private constructor() {}
 
   /**
    * Given some existing coupling scores, a new CouplingContainer will be created with data augmented with info derived from this PDB.

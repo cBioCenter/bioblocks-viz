@@ -113,7 +113,7 @@ describe('ChellContext', () => {
         hoveredResidues: [],
       };
       instance.onAddHoveredResidues([7]);
-      instance.onRemoveHoveredResidue();
+      instance.onRemoveHoveredResidues();
       expect(instance.state.residueContext).toEqual(expectedState);
     });
 

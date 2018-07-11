@@ -4,6 +4,7 @@
 // TypeScript Version: 2.8
 import { Structure } from 'ngl';
 import { ISpringGraphData } from 'spring';
+import Chell1DSection from './Chell1DSection';
 import { ChellPDB } from './ChellPDB';
 import { CouplingContainer } from './CouplingContainer';
 
@@ -28,7 +29,7 @@ export enum VIZ_TYPE {
 
 export interface IContactMapData {
   couplingScores: CouplingContainer;
-  pdbData: ChellPDB;
+  pdbData?: ChellPDB;
   secondaryStructures: ISecondaryStructureData[];
 }
 
@@ -69,10 +70,8 @@ export interface ISecondaryStructureData {
   structId: SECONDARY_STRUCTURE_KEYS;
 }
 
-export interface IDistanceMapMonomer {
-  id: number;
-  sec_struct_3state: string;
-}
+export type SECONDARY_STRUCTURE_SECTION = Chell1DSection<SECONDARY_STRUCTURE_KEYS>;
+export type SECONDARY_STRUCTURE = Array<Chell1DSection<SECONDARY_STRUCTURE_KEYS>>;
 
 export interface IResiduePair {
   i: number;

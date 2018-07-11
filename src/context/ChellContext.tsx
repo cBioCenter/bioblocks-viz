@@ -1,8 +1,9 @@
 import * as React from 'react';
 
-import CellContext, { initialCellContext } from '../context/CellContext';
-import ResidueContext, { initialResidueContext } from '../context/ResidueContext';
 import { CELL_TYPE, RESIDUE_TYPE } from '../data/chell-data';
+import CellContext, { initialCellContext } from './CellContext';
+import ResidueContext, { initialResidueContext } from './ResidueContext';
+import { initialSecondaryStructureContext, SecondaryStructureContextHandler } from './SecondaryStructureContext';
 
 export const initialState = {
   cellContext: {
@@ -10,6 +11,9 @@ export const initialState = {
   },
   residueContext: {
     ...initialResidueContext,
+  },
+  secondaryStructureContext: {
+    ...initialSecondaryStructureContext,
   },
 };
 
@@ -36,18 +40,24 @@ export default class ChellContext extends React.Component<any, ChellContextState
         clearAllResidues: this.onClearAllResidues,
         removeAllLockedResiduePairs: this.onRemoveAllLockedResiduePairs,
         removeCandidateResidues: this.onRemoveCandidateResidue,
-        removeHoveredResidues: this.onRemoveHoveredResidue,
+        removeHoveredResidues: this.onRemoveHoveredResidues,
         removeLockedResiduePair: this.onRemoveLockedResiduePair,
+        removeNonLockedResidues: this.onRemoveNonLockedResidues,
         toggleLockedResiduePair: this.onToggleLockedResiduePair,
+      },
+      secondaryStructureContext: {
+        ...this.state.secondaryStructureContext,
       },
     };
   }
 
   public render() {
     return (
-      <CellContext.Provider value={this.state.cellContext}>
-        <ResidueContext.Provider value={this.state.residueContext}>{this.props.children}</ResidueContext.Provider>
-      </CellContext.Provider>
+      <SecondaryStructureContextHandler>
+        <CellContext.Provider value={this.state.cellContext}>
+          <ResidueContext.Provider value={this.state.residueContext}>{this.props.children}</ResidueContext.Provider>
+        </CellContext.Provider>
+      </SecondaryStructureContextHandler>
     );
   }
 
@@ -142,7 +152,7 @@ export default class ChellContext extends React.Component<any, ChellContextState
     });
   };
 
-  public onRemoveHoveredResidue = () => {
+  public onRemoveHoveredResidues = () => {
     this.setState({
       residueContext: {
         ...this.state.residueContext,
@@ -164,6 +174,16 @@ export default class ChellContext extends React.Component<any, ChellContextState
         },
       });
     }
+  };
+
+  public onRemoveNonLockedResidues = () => {
+    this.setState({
+      residueContext: {
+        ...this.state.residueContext,
+        candidateResidues: [],
+        hoveredResidues: [],
+      },
+    });
   };
 
   public onToggleLockedResiduePair = (residues: RESIDUE_TYPE[]) => {

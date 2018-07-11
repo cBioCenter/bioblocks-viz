@@ -585,9 +585,11 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
   addCandidateResidues={[Function]}
   addHoveredResidues={[Function]}
   addLockedResiduePair={[Function]}
+  addSecondaryStructure={[Function]}
   candidateResidues={Array []}
   chainLength={59}
   clearAllResidues={[Function]}
+  clearSecondaryStructure={[Function]}
   configurations={Array []}
   data={
     Object {
@@ -660,14 +662,14 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         },
       ],
       "secondaryStructures": Array [
-        Object {
-          "resno": 30,
-          "structId": "C",
-        },
-        Object {
-          "resno": 31,
-          "structId": "C",
-        },
+        Array [
+          Object {
+            "end": 31,
+            "label": "C",
+            "length": 2,
+            "start": 30,
+          },
+        ],
       ],
     }
   }
@@ -691,7 +693,11 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
   removeCandidateResidues={[Function]}
   removeHoveredResidues={[Function]}
   removeLockedResiduePair={[Function]}
+  removeNonLockedResidues={[Function]}
+  removeSecondaryStructure={[Function]}
+  selectedSecondaryStructures={Array []}
   toggleLockedResiduePair={[Function]}
+  toggleSecondaryStructure={[Function]}
   width={400}
 >
   <div
@@ -813,18 +819,19 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       range={64}
       secondaryStructures={
         Array [
-          Object {
-            "resno": 30,
-            "structId": "C",
-          },
-          Object {
-            "resno": 31,
-            "structId": "C",
-          },
+          Array [
+            Object {
+              "end": 31,
+              "label": "C",
+              "length": 2,
+              "start": 30,
+            },
+          ],
         ]
       }
     >
       <PlotlyChartClass
+        candidateResidues={Array []}
         config={Object {}}
         data={
           Array [
@@ -1019,12 +1026,16 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "type": "scatter",
               "x": Array [
                 30,
+                30,
+                31,
                 31,
               ],
               "xaxis": "x",
               "y": Array [
+                null,
                 1,
                 1,
+                null,
               ],
               "yaxis": "y2",
             },
@@ -1041,18 +1052,23 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "showlegend": false,
               "type": "scatter",
               "x": Array [
+                null,
                 1,
                 1,
+                null,
               ],
               "xaxis": "x2",
               "y": Array [
                 30,
+                30,
+                31,
                 31,
               ],
               "yaxis": "y",
             },
           ]
         }
+        dataTransformFn={[Function]}
         layout={
           Object {
             "height": 520,
@@ -1092,6 +1108,18 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         onClickCallback={[Function]}
         onHoverCallback={[Function]}
         onSelectedCallback={[Function]}
+        secondaryStructures={
+          Array [
+            Array [
+              Object {
+                "end": 31,
+                "label": "C",
+                "length": 2,
+                "start": 30,
+              },
+            ],
+          ]
+        }
       >
         <div
           className="plotly-chart"

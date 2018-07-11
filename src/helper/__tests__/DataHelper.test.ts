@@ -19,15 +19,10 @@ describe('DataHelper', () => {
   });
 
   describe('Contact Map', () => {
-    it('Should return empty data for an incorrect location.', async () => {
-      const expected = {
-        couplingScores: new CouplingContainer(),
-        secondaryStructures: [],
-      };
-      fetchMock.mockResponse(JSON.stringify(expected));
-      const result = (await fetchAppropriateData(VIZ_TYPE.CONTACT_MAP, '')) as IContactMapData;
-      expect(result.couplingScores.allContacts).toEqual(expected.couplingScores.allContacts);
-      expect(result.secondaryStructures).toEqual(expected.secondaryStructures);
+    it('Should throw on incorrect location.', async () => {
+      const reason = 'Empty path.';
+      expect.assertions(1);
+      await expect(fetchAppropriateData(VIZ_TYPE.CONTACT_MAP, '')).rejects.toBe(reason);
     });
 
     const couplingScoresCsv =
@@ -101,7 +96,7 @@ describe('DataHelper', () => {
     });
 
     it('Should load pdb data if available.', async () => {
-      const expected = await ChellPDB.createPDB();
+      const expected = await ChellPDB.createPDB('sample/protein.pdb');
       const response = {
         couplingScores: new CouplingContainer(),
         pdbData: expected,
@@ -109,7 +104,7 @@ describe('DataHelper', () => {
       };
       fetchMock.mockResponse(stringifyCircularJSON(response));
 
-      const result = (await fetchAppropriateData(VIZ_TYPE.CONTACT_MAP, '')) as IContactMapData;
+      const result = (await fetchAppropriateData(VIZ_TYPE.CONTACT_MAP, 'sample')) as IContactMapData;
       expect(stringifyCircularJSON(result.pdbData)).toEqual(stringifyCircularJSON(expected));
     });
   });

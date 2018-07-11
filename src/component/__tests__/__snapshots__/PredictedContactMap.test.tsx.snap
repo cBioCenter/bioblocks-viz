@@ -400,6 +400,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
     removeCandidateResidues={[Function]}
     removeHoveredResidues={[Function]}
     removeLockedResiduePair={[Function]}
+    removeNonLockedResidues={[Function]}
     toggleLockedResiduePair={[Function]}
     width={400}
   />
@@ -472,6 +473,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
     removeCandidateResidues={[Function]}
     removeHoveredResidues={[Function]}
     removeLockedResiduePair={[Function]}
+    removeNonLockedResidues={[Function]}
     toggleLockedResiduePair={[Function]}
     width={400}
   />
@@ -554,6 +556,7 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
     removeCandidateResidues={[Function]}
     removeHoveredResidues={[Function]}
     removeLockedResiduePair={[Function]}
+    removeNonLockedResidues={[Function]}
     toggleLockedResiduePair={[Function]}
     width={400}
   />

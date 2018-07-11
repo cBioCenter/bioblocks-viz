@@ -5,21 +5,25 @@ module.exports = {
   react: (...args: any[]) => mockCanvas,
 };
 
-export class MockPlotlyHTMLElement {
+export interface IMockPlotlyCanvas {
+  dispatchEvent(event: Event, data: Partial<plotly.PlotScatterDataPoint>): boolean;
+}
+
+export class MockPlotlyHTMLElement implements IMockPlotlyCanvas {
   protected callbacks = new Map<string, (...args: any[]) => void>();
 
   public on = (event: string, callback: (...args: any[]) => void) => {
     this.callbacks.set(event, callback);
   };
 
-  public dispatchEvent(event: Event): boolean {
+  public dispatchEvent(event: Event, data: Partial<plotly.PlotScatterDataPoint>): boolean {
     const cb = this.callbacks.get(event.type);
     if (cb) {
       switch (event.type) {
         case 'plotly_click':
         case 'plotly_hover':
         case 'plotly_selected':
-          cb({ points: [{ x: 0, y: 0 }] });
+          cb({ points: [{ ...data }] });
           break;
         default:
           cb();

@@ -1,5 +1,5 @@
-import { ISecondaryStructureData, SECONDARY_STRUCTURE_CODES } from './../data/chell-data';
-import { CouplingContainer } from './../data/CouplingContainer';
+import { ISecondaryStructureData, SECONDARY_STRUCTURE_CODES } from '../data/chell-data';
+import { CouplingContainer } from '../data/CouplingContainer';
 import { fetchCSVFile, fetchJSONFile } from './FetchHelper';
 
 import * as NGL from 'ngl';
@@ -134,15 +134,17 @@ export const fetchNGLDataFromDirectory = async (dir: string) => {
 export const fetchNGLDataFromFile = async (file: string) => (await NGL.autoLoad(file)) as NGL.Structure;
 
 export const fetchContactMapData = async (dir: string): Promise<IContactMapData> => {
+  if (dir.length === 0) {
+    return Promise.reject('Empty path.');
+  }
   const contactMapFiles = ['coupling_scores.csv', 'distance_map.csv'];
   const promiseResults = await Promise.all(contactMapFiles.map(file => fetchCSVFile(`${dir}/${file}`)));
   const pdbData = await ChellPDB.createPDB(`${dir}/protein.pdb`);
 
-  console.log(getCouplingScoresData(promiseResults[0]));
   const data: CONTACT_MAP_DATA_TYPE = {
     couplingScores: getCouplingScoresData(promiseResults[0]),
     pdbData,
-    secondaryStructures: pdbData.secondaryStructure,
+    secondaryStructures: pdbData.rawsecondaryStructure,
   };
   return data;
 };
