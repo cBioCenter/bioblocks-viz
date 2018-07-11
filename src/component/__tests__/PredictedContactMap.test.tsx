@@ -130,76 +130,76 @@ describe('PredictedContactMap', () => {
   it('Should update chain length when new non-pdb data is provided.', () => {
     const expected = 56;
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);
-    expect(wrapper.state().numPredictionsToShow).not.toBe(expected);
+    expect(wrapper.state('numPredictionsToShow')).not.toBe(expected);
     wrapper.setProps({
       data: sampleData,
     });
-    expect(wrapper.state().chainLength).toBe(expected);
+    expect(wrapper.state('chainLength')).toBe(expected);
   });
 
   it('Should update chain length when new pdb data is provided.', async () => {
     const expected = 56;
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);
-    expect(wrapper.state().numPredictionsToShow).not.toBe(expected);
+    expect(wrapper.state('numPredictionsToShow')).not.toBe(expected);
     wrapper.setProps({
       data: await sampleDataWithPDB(),
     });
-    expect(wrapper.state().chainLength).toBe(expected);
+    expect(wrapper.state('chainLength')).toBe(expected);
   });
 
   it('Should update number of predictions to show when new data is provided.', () => {
     const expected = 28;
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);
-    expect(wrapper.state().numPredictionsToShow).not.toBe(expected);
+    expect(wrapper.state('numPredictionsToShow')).not.toBe(expected);
     wrapper.setProps({
       data: sampleData,
     });
-    expect(wrapper.state().numPredictionsToShow).toBe(expected);
+    expect(wrapper.state('numPredictionsToShow')).toBe(expected);
   });
 
   it('Should update number of predictions to show when new value is received.', () => {
     const expected = 28;
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);
-    expect(wrapper.state().numPredictionsToShow).not.toBe(expected);
+    expect(wrapper.state('numPredictionsToShow')).not.toBe(expected);
     wrapper.setState({
       numPredictionsToShow: expected,
     });
-    expect(wrapper.state().numPredictionsToShow).toBe(expected);
+    expect(wrapper.state('numPredictionsToShow')).toBe(expected);
   });
 
   it('Should update points to plot when new data is provided.', () => {
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);
-    expect(wrapper.state().pointsToPlot).toEqual([]);
+    expect(wrapper.state('pointsToPlot')).toEqual([]);
     wrapper.setProps({
       data: sampleData,
     });
-    expect(wrapper.state().pointsToPlot).not.toEqual([]);
-    expect(wrapper.state().pointsToPlot).toMatchSnapshot();
+    expect(wrapper.state('pointsToPlot')).not.toEqual([]);
+    expect(wrapper.state('pointsToPlot')).toMatchSnapshot();
   });
 
   it('Should update points to plot using closest atom for distance determination.', async () => {
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);
-    expect(wrapper.state().pointsToPlot).toEqual([]);
+    expect(wrapper.state('pointsToPlot')).toEqual([]);
     wrapper.setProps({
       data: await sampleDataWithPDB(),
     });
     wrapper.setState({
       measuredProximity: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
     });
-    expect(wrapper.state().pointsToPlot).not.toEqual([]);
-    expect(wrapper.state().pointsToPlot).toMatchSnapshot();
+    expect(wrapper.state('pointsToPlot')).not.toEqual([]);
+    expect(wrapper.state('pointsToPlot')).toMatchSnapshot();
   });
 
   it('Should update points to plot using C-Alpha for distance determination.', async () => {
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);
-    expect(wrapper.state().pointsToPlot).toEqual([]);
+    expect(wrapper.state('pointsToPlot')).toEqual([]);
     wrapper.setProps({
       data: await sampleDataWithPDB(),
     });
     wrapper.setState({
       measuredProximity: CONTACT_DISTANCE_PROXIMITY.C_ALPHA,
     });
-    expect(wrapper.state().pointsToPlot).not.toEqual([]);
-    expect(wrapper.state().pointsToPlot).toMatchSnapshot();
+    expect(wrapper.state('pointsToPlot')).not.toEqual([]);
+    expect(wrapper.state('pointsToPlot')).toMatchSnapshot();
   });
 });

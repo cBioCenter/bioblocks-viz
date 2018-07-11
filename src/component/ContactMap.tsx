@@ -261,8 +261,8 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
   protected onMouseClick = (cb: (residues: RESIDUE_TYPE[]) => void) => (e: plotly.PlotMouseEvent) => {
     const { points } = e;
-    const isXSecondary = points[0].data && points[0].data.xaxis === 'x2';
-    const isYSecondary = points[0].data && points[0].data.yaxis === 'y2';
+    const isXSecondary = points[0].data && points[0].data.xaxis !== 'x';
+    const isYSecondary = points[0].data && points[0].data.yaxis !== 'y';
     const isSecStruct = isXSecondary || isYSecondary;
 
     if (isSecStruct) {
@@ -270,9 +270,9 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
       for (const secondaryStructure of data.secondaryStructures) {
         for (const section of secondaryStructure) {
-          if (isYSecondary && points[0].x >= section.start && points[0].x <= section.end) {
+          if (isYSecondary && section.contains(points[0].x)) {
             toggleSecondaryStructure(section);
-          } else if (isXSecondary && points[0].y >= section.start && points[0].y <= section.end) {
+          } else if (isXSecondary && section.contains(points[0].y)) {
             toggleSecondaryStructure(section);
           }
         }

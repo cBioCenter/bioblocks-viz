@@ -244,6 +244,31 @@ describe('ChellContext', () => {
       expect(instance.state.residueContext).toEqual(expectedState);
     });
 
+    it('Should allow all non-locked residue pairs to be removed.', () => {
+      const instance = shallow(<ChellContext />).instance() as ChellContext;
+      const initialState = instance.state.residueContext;
+      const lockedPairs = new Map(Object.entries({ '4,5': [4, 5] }));
+      const expectedState = {
+        ...initialState,
+        candidateResidues: [],
+        hoveredResidues: [],
+        lockedResiduePairs: lockedPairs,
+      };
+      instance.onAddCandidateResidues([1]);
+      instance.onAddHoveredResidues([2, 3]);
+      instance.onAddLockedResiduePair([4, 5]);
+
+      expect(instance.state.residueContext).toEqual({
+        ...initialState,
+        candidateResidues: [1],
+        hoveredResidues: [2, 3],
+        lockedResiduePairs: lockedPairs,
+      });
+
+      instance.onRemoveNonLockedResidues();
+      expect(instance.state.residueContext).toEqual(expectedState);
+    });
+
     it('Should allow a locked residue pair to be toggled.', () => {
       const instance = shallow(<ChellContext />).instance() as ChellContext;
       const initialState = instance.state.residueContext;

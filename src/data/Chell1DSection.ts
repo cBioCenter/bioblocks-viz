@@ -16,6 +16,7 @@ class Chell1DSection<T> {
   public get length() {
     return this.sectionEnd - this.sectionStart + 1;
   }
+
   public get start() {
     return this.sectionStart;
   }
@@ -23,6 +24,10 @@ class Chell1DSection<T> {
   public constructor(readonly label: T, start: number, end: number = start) {
     this.sectionEnd = Math.max(end, start);
     this.sectionStart = Math.min(start, end);
+  }
+
+  public contains(value: number) {
+    return value >= this.sectionStart && value <= this.sectionEnd;
   }
 
   public updateStart(newNum: number) {

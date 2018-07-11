@@ -49,4 +49,14 @@ describe('Chell1DSection', () => {
     expect(result.end).toBe(10);
     expect(result.length).toBe(8);
   });
+
+  it('Should allow for determining if a number is within the section range.', () => {
+    const result = new Chell1DSection('Nirvana', 3, 7);
+
+    expect(result.contains(2)).toEqual(false);
+    expect(result.contains(3)).toEqual(true);
+    expect(result.contains(5)).toEqual(true);
+    expect(result.contains(7)).toEqual(true);
+    expect(result.contains(8)).toEqual(false);
+  });
 });
