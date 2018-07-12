@@ -1,6 +1,6 @@
 import { Datum } from 'plotly.js';
 import { IPlotlyData } from '../component/chart/PlotlyChart';
-import { SECONDARY_STRUCTURE, SECONDARY_STRUCTURE_KEYS } from './chell-data';
+import { SECONDARY_STRUCTURE, SECONDARY_STRUCTURE_KEYS, SECONDARY_STRUCTURE_SECTION } from './chell-data';
 
 export interface IAxisMapping {
   x: Partial<IPlotlyData>;
@@ -40,19 +40,34 @@ export default class SecondaryStructureAxis {
     this.setupSecondaryStructureAxes(sequence, index + 2);
   }
 
+  protected derivePointsInAxis = (section: SECONDARY_STRUCTURE_SECTION) => {
+    const result = {
+      main: [section.start],
+      opposite: [null] as Array<number | null>,
+    };
+    for (let i = section.start; i <= section.end; ++i) {
+      result.main.push(i);
+      result.opposite.push(1);
+    }
+    result.main.push(section.end);
+    result.opposite.push(null);
+    return result;
+  };
+
   protected setupSecondaryStructureAxes = (sections: SECONDARY_STRUCTURE, index: number): void => {
     for (const chellSection of sections) {
-      const { end, label, start } = chellSection;
+      const { label } = chellSection;
       if (!this.axes.get(label)) {
         this.axes.set(label, {
           x: this.generateXAxisSecStructSegment(label, index),
           y: this.generateYAxisSecStructSegment(label, index),
         });
       }
-      (this.axes.get(label)!.x.x! as Datum[]).push(start, start, end, end);
-      (this.axes.get(label)!.x.y! as Datum[]).push(null, 1, 1, null);
-      (this.axes.get(label)!.y.y! as Datum[]).push(start, start, end, end);
-      (this.axes.get(label)!.y.x! as Datum[]).push(null, 1, 1, null);
+      const points = this.derivePointsInAxis(chellSection);
+      (this.axes.get(label)!.x.x! as Datum[]).push(...points.main);
+      (this.axes.get(label)!.x.y! as Datum[]).push(...points.opposite);
+      (this.axes.get(label)!.y.y! as Datum[]).push(...points.main);
+      (this.axes.get(label)!.y.x! as Datum[]).push(...points.opposite);
     }
   };
 
