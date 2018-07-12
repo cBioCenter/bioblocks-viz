@@ -27,7 +27,9 @@ export class InfoPanelClass extends React.Component<InfoPanelProps, any> {
 
   public render() {
     const { data, height, lockedResiduePairs, width, selectedSecondaryStructures } = this.props;
-    const unassignedResidues = data.pdbData ? this.renderUnassignedResidues(data.pdbData) : [];
+    const unassignedResidues = data.pdbData
+      ? this.renderUnassignedResidues(data.pdbData)
+      : [<Label key={'unassigned-residues-none'} />];
     return (
       <div className="InfoPanel" style={{ height, width }}>
         <Accordion
