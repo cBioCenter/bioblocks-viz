@@ -119,6 +119,7 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="chellpdb.html#eachresidue" class="tsd-kind-icon">each<wbr>Residue</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="chellpdb.html#generatecouplingsamendedwithpdb" class="tsd-kind-icon">generate<wbr>Couplings<wbr>Amended<wbr>WithPDB</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="chellpdb.html#getcalphaatomindexfromresidue" class="tsd-kind-icon">getCAlpha<wbr>Atom<wbr>Index<wbr>From<wbr>Residue</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="chellpdb.html#getmindistbetweenresidues" class="tsd-kind-icon">get<wbr>Min<wbr>Dist<wbr>Between<wbr>Residues</a></li>
@@ -140,7 +141,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/70699f91/src/data/ChellPDB.ts#L72">src/data/ChellPDB.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/5793522b/src/data/ChellPDB.ts#L72">src/data/ChellPDB.ts:72</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="chellpdb.html" class="tsd-signature-type">ChellPDB</a></h4>
@@ -156,7 +157,7 @@
 					<div class="tsd-signature tsd-kind-icon">NGL_<wbr><wbr>C_ALPHA_<wbr>INDEX<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"CA|C"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;CA|C&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/70699f91/src/data/ChellPDB.ts#L72">src/data/ChellPDB.ts:72</a></li>
+							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/5793522b/src/data/ChellPDB.ts#L72">src/data/ChellPDB.ts:72</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -166,7 +167,7 @@
 					<div class="tsd-signature tsd-kind-icon">ngl<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">NGL.Structure</span><span class="tsd-signature-symbol"> =&nbsp;new NGL.Structure()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/70699f91/src/data/ChellPDB.ts#L71">src/data/ChellPDB.ts:71</a></li>
+							<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/5793522b/src/data/ChellPDB.ts#L71">src/data/ChellPDB.ts:71</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -183,7 +184,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/70699f91/src/data/ChellPDB.ts#L43">src/data/ChellPDB.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/5793522b/src/data/ChellPDB.ts#L43">src/data/ChellPDB.ts:43</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -200,7 +201,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/70699f91/src/data/ChellPDB.ts#L21">src/data/ChellPDB.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/5793522b/src/data/ChellPDB.ts#L21">src/data/ChellPDB.ts:21</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../globals.html#secondary_structure_section" class="tsd-signature-type">SECONDARY_STRUCTURE_SECTION</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -211,6 +212,47 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="eachresidue" class="tsd-anchor"></a>
+					<h3>each<wbr>Residue</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">each<wbr>Residue<span class="tsd-signature-symbol">(</span>callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/5793522b/src/data/ChellPDB.ts#L76">src/data/ChellPDB.ts:76</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>callback: <span class="tsd-signature-type">function</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>residue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NGL.ResidueProxy</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>residue: <span class="tsd-signature-type">NGL.ResidueProxy</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="generatecouplingsamendedwithpdb" class="tsd-anchor"></a>
 					<h3>generate<wbr>Couplings<wbr>Amended<wbr>WithPDB</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -220,7 +262,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/70699f91/src/data/ChellPDB.ts#L83">src/data/ChellPDB.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/5793522b/src/data/ChellPDB.ts#L86">src/data/ChellPDB.ts:86</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -258,7 +300,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/70699f91/src/data/ChellPDB.ts#L129">src/data/ChellPDB.ts:129</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/5793522b/src/data/ChellPDB.ts#L132">src/data/ChellPDB.ts:132</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -296,7 +338,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/70699f91/src/data/ChellPDB.ts#L149">src/data/ChellPDB.ts:149</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/5793522b/src/data/ChellPDB.ts#L152">src/data/ChellPDB.ts:152</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -334,7 +376,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/70699f91/src/data/ChellPDB.ts#L65">src/data/ChellPDB.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/CBioCenter/chell-viz/blob/5793522b/src/data/ChellPDB.ts#L65">src/data/ChellPDB.ts:65</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -384,6 +426,9 @@
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="chellpdb.html#secondarystructuresections" class="tsd-kind-icon">secondary<wbr>Structure<wbr>Sections</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="chellpdb.html#eachresidue" class="tsd-kind-icon">each<wbr>Residue</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="chellpdb.html#generatecouplingsamendedwithpdb" class="tsd-kind-icon">generate<wbr>Couplings<wbr>Amended<wbr>WithPDB</a>
