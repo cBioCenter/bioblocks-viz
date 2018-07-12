@@ -1020,7 +1020,12 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "hoverinfo": "name",
               "line": Object {
                 "color": "red",
-                "width": 5,
+                "shape": "spline",
+                "smoothing": 1.3,
+                "width": 2,
+              },
+              "marker": Object {
+                "symbol": Array [],
               },
               "mode": "lines",
               "name": "C",
@@ -1047,7 +1052,12 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "hoverinfo": "name",
               "line": Object {
                 "color": "red",
-                "width": 5,
+                "shape": "spline",
+                "smoothing": 1.3,
+                "width": 2,
+              },
+              "marker": Object {
+                "symbol": Array [],
               },
               "mode": "lines",
               "name": "C",
