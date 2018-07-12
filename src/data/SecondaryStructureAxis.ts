@@ -48,9 +48,28 @@ export default class SecondaryStructureAxis {
     for (let i = section.start; i <= section.end; ++i) {
       result.main.push(i);
       result.opposite.push(1);
+
+      // Creating diagonals for alpha helix.
+      if (section.label === 'H') {
+        result.main.push(i + 0.5);
+        result.opposite.push(i % 2 ? 0 : 2);
+      }
     }
+
     result.main.push(section.end);
     result.opposite.push(null);
+
+    return result;
+  };
+
+  protected deriveSymbolsInAxis = (section: SECONDARY_STRUCTURE_SECTION) => {
+    const result = new Array();
+    const blankSymbol = 'line-ne';
+    result.push(blankSymbol);
+    for (let i = section.start; i < section.end; ++i) {
+      result.push(blankSymbol);
+    }
+
     return result;
   };
 
@@ -63,11 +82,42 @@ export default class SecondaryStructureAxis {
           y: this.generateYAxisSecStructSegment(label, index),
         });
       }
+
       const points = this.derivePointsInAxis(chellSection);
       (this.axes.get(label)!.x.x! as Datum[]).push(...points.main);
       (this.axes.get(label)!.x.y! as Datum[]).push(...points.opposite);
       (this.axes.get(label)!.y.y! as Datum[]).push(...points.main);
       (this.axes.get(label)!.y.x! as Datum[]).push(...points.opposite);
+
+      if (chellSection.label === 'E') {
+        const symbols = new Array<string>(this.axes.get(label)!.x.x!.length);
+        for (let i = 0; i < symbols.length - 2; ++i) {
+          symbols[i] = 'line-ne';
+        }
+
+        this.axes.get(label)!.x.mode = 'lines+markers';
+        this.axes.get(label)!.x.marker = {
+          color: this.colorMap[chellSection.label],
+          size: 10,
+          symbol: [
+            ...this.axes.get(label)!.x.marker!.symbol,
+            ...this.deriveSymbolsInAxis(chellSection),
+            'triangle-right',
+            'line-ne',
+          ],
+        };
+        this.axes.get(label)!.y.mode = 'lines+markers';
+        this.axes.get(label)!.y.marker = {
+          color: this.colorMap[chellSection.label],
+          size: 10,
+          symbol: [
+            ...this.axes.get(label)!.y.marker!.symbol,
+            ...this.deriveSymbolsInAxis(chellSection),
+            'triangle-down',
+            'line-ne',
+          ],
+        };
+      }
     }
   };
 
@@ -104,8 +154,12 @@ export default class SecondaryStructureAxis {
     hoverinfo: 'name',
     line: {
       color: this.colorMap[code],
-      // width: code === 'C' ? 0 : 5,
-      width: 5,
+      shape: 'spline',
+      smoothing: 1.3,
+      width: code === 'H' ? 1 : 2,
+    },
+    marker: {
+      symbol: [],
     },
     mode: 'lines',
     name: code,
