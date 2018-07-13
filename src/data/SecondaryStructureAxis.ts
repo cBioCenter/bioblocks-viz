@@ -45,15 +45,12 @@ export default class SecondaryStructureAxis {
       main: [section.start],
       opposite: [null] as Array<number | null>,
     };
+
+    const isHelix = section.label === 'H';
+
     for (let i = section.start; i <= section.end; ++i) {
       result.main.push(i);
-      result.opposite.push(1);
-
-      // Creating diagonals for alpha helix.
-      if (section.label === 'H') {
-        result.main.push(i + 0.5);
-        result.opposite.push(i % 2 ? 0 : 2);
-      }
+      result.opposite.push(isHelix ? Math.sin(i - section.start) : 0);
     }
 
     result.main.push(section.end);
@@ -74,8 +71,12 @@ export default class SecondaryStructureAxis {
   };
 
   protected setupSecondaryStructureAxes = (sections: SECONDARY_STRUCTURE, index: number): void => {
-    for (const chellSection of sections) {
-      const { label } = chellSection;
+    for (const section of sections) {
+      if (section.label === 'E' && section.length <= 2) {
+        continue;
+      }
+
+      const { label } = section;
       if (!this.axes.get(label)) {
         this.axes.set(label, {
           x: this.generateXAxisSecStructSegment(label, index),
@@ -83,13 +84,13 @@ export default class SecondaryStructureAxis {
         });
       }
 
-      const points = this.derivePointsInAxis(chellSection);
+      const points = this.derivePointsInAxis(section);
       (this.axes.get(label)!.x.x! as Datum[]).push(...points.main);
       (this.axes.get(label)!.x.y! as Datum[]).push(...points.opposite);
       (this.axes.get(label)!.y.y! as Datum[]).push(...points.main);
       (this.axes.get(label)!.y.x! as Datum[]).push(...points.opposite);
 
-      if (chellSection.label === 'E') {
+      if (section.label === 'E') {
         const symbols = new Array<string>(this.axes.get(label)!.x.x!.length);
         for (let i = 0; i < symbols.length - 2; ++i) {
           symbols[i] = 'line-ne';
@@ -97,22 +98,22 @@ export default class SecondaryStructureAxis {
 
         this.axes.get(label)!.x.mode = 'lines+markers';
         this.axes.get(label)!.x.marker = {
-          color: this.colorMap[chellSection.label],
+          color: this.colorMap[section.label],
           size: 10,
           symbol: [
             ...this.axes.get(label)!.x.marker!.symbol,
-            ...this.deriveSymbolsInAxis(chellSection),
+            ...this.deriveSymbolsInAxis(section),
             'triangle-right',
             'line-ne',
           ],
         };
         this.axes.get(label)!.y.mode = 'lines+markers';
         this.axes.get(label)!.y.marker = {
-          color: this.colorMap[chellSection.label],
+          color: this.colorMap[section.label],
           size: 10,
           symbol: [
             ...this.axes.get(label)!.y.marker!.symbol,
-            ...this.deriveSymbolsInAxis(chellSection),
+            ...this.deriveSymbolsInAxis(section),
             'triangle-down',
             'line-ne',
           ],
