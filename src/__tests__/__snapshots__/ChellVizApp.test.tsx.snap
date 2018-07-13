@@ -12,35 +12,10 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
       <VizPanelContainerClass
         dataDirs={
           Array [
+            "assets/beta_lactamase",
             "assets/contact_map/example1",
             "assets/contact_map/example2",
             "assets/contact_map/example3",
-            "assets/beta_lactamase",
-          ]
-        }
-        initialVisualizations={
-          Array [
-            "Contact Map",
-            "NGL",
-          ]
-        }
-        numPanels={2}
-        supportedVisualizations={
-          Array [
-            "Contact Map",
-            "NGL",
-          ]
-        }
-      />
-    </GridRow>
-    <GridRow>
-      <VizPanelContainerClass
-        dataDirs={
-          Array [
-            "assets/contact_map/example1",
-            "assets/contact_map/example2",
-            "assets/contact_map/example3",
-            "assets/beta_lactamase",
           ]
         }
         initialVisualizations={

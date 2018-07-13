@@ -55,7 +55,10 @@ export interface IPlotlyChartProps {
 
 export const defaultPlotlyConfig: Partial<Plotly.Config> = {
   displayModeBar: false,
+  doubleClick: 'reset+autosize',
   scrollZoom: true,
+  showAxisDragHandles: false,
+  staticPlot: false,
   // modeBarButtons: [['zoomOut2d', 'zoomIn2d'], ['resetScale2d', 'autoScale2d'], ['select2d', 'pan2d']],
 };
 
@@ -124,16 +127,19 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
    * Sends a draw call to Plotly since it is using canvas/WebGL which is outside of the locus of control for React.
    */
   public draw = async () => {
-    const { layout, config } = this.props;
-    this.plotlyFormattedData = [...this.plotlyFormattedData];
-    if (this.plotlyCanvas) {
-      // plotly.react will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
-      this.plotlyCanvas = await plotly.react(
-        this.plotlyCanvas,
+    const { config, layout } = this.props;
+    if (this.plotlyCanvas && this.canvasRef) {
+      // TODO Try using plotly.react since it will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
+      // TODO However plotly.react is currently causing a WebGL error, so we're using newPlot for now.
+
+      await plotly.purge(this.plotlyCanvas);
+      plotly.newPlot(
+        this.canvasRef,
         this.plotlyFormattedData,
         this.getMergedLayout(layout, this.plotlyFormattedData),
         this.getMergedConfig(config),
       );
+      this.attachListeners();
     }
   };
 

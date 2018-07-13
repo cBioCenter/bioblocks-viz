@@ -23,6 +23,7 @@ export type RESIDUE_TYPE = number;
 
 export enum VIZ_TYPE {
   CONTACT_MAP = 'Contact Map',
+  INFO_PANEL = 'Info Panel',
   NGL = 'NGL',
   SPRING = 'Spring',
   'T-SNE' = 'T-SNE',

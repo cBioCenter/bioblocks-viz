@@ -119,7 +119,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
         .map(key => ({ i: lockedResiduePairs.get(key)![0], j: lockedResiduePairs.get(key)![1], dist: 0 })),
       {
         marker: {
-          color: highlightColor,
+          color: new Array<string>(lockedResiduePairs.size * 2).fill(highlightColor),
           line: {
             color: highlightColor,
             width: 3,

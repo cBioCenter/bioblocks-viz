@@ -28,7 +28,6 @@ export const defaultNGLProps = {
 
 export const initialNGLState = {
   activeRepresentations: new Array<NGL.RepresentationElement>(),
-  residueOffset: 0,
   stage: undefined as NGL.Stage | undefined,
   structureComponent: undefined as NGL.StructureComponent | undefined,
 };
@@ -102,8 +101,6 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
 
         this.setState({
           activeRepresentations: [
-            // ...this.highlightCandidateResidues(structureComponent, hoveredResidues),
-            // ...this.highlightCandidateResidues(structureComponent, candidateResidues),
             ...this.highlightCandidateResidues(
               structureComponent,
               [...candidateResidues, ...hoveredResidues]
@@ -159,7 +156,6 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
     const structureComponent = stage.addComponentFromObject(data);
 
     this.setState({
-      residueOffset: data.residueStore.resno[0],
       structureComponent,
     });
 
@@ -179,8 +175,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
     if (structureComponent) {
       if (pickingProxy && (pickingProxy.atom || pickingProxy.closestBondAtom)) {
         const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
-        const resno = atom.resno + this.state.residueOffset;
-        addHoveredResidues([resno]);
+        addHoveredResidues([atom.resno]);
       } else if (candidateResidues.length === 0 && hoveredResidues.length !== 0) {
         removeHoveredResidues();
       }
@@ -201,20 +196,16 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
       const isDistancePicker = pickingProxy.picker && pickingProxy.picker.type === 'distance';
 
       if (isDistancePicker) {
-        const residues = [
-          pickingProxy.distance.atom1.resno + this.state.residueOffset,
-          pickingProxy.distance.atom2.resno + this.state.residueOffset,
-        ];
+        const residues = [pickingProxy.distance.atom1.resno, pickingProxy.distance.atom2.resno];
         removeLockedResiduePair(residues);
       } else if (pickingProxy.atom || pickingProxy.closestBondAtom) {
         const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
-        const resno = atom.resno + this.state.residueOffset;
 
         if (candidateResidues.length >= 1) {
-          addLockedResiduePair([...candidateResidues, resno]);
+          addLockedResiduePair([...candidateResidues, atom.resno]);
           removeCandidateResidues();
         } else {
-          addCandidateResidues([resno]);
+          addCandidateResidues([atom.resno]);
         }
       }
     } else {
@@ -227,12 +218,9 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
     const reps = new Array<NGL.RepresentationElement>();
 
     if (residues.length >= 1) {
-      const { residueOffset } = this.state;
-      const residueWithOffset = residues.map(res => res - residueOffset);
-
-      reps.push(createBallStickRepresentation(structureComponent, residueWithOffset));
-      if (residueWithOffset.length >= 2) {
-        const selection = residueWithOffset.join('.CA, ') + '.CA';
+      reps.push(createBallStickRepresentation(structureComponent, residues));
+      if (residues.length >= 2) {
+        const selection = residues.join('.CA, ') + '.CA';
         reps.push(createDistanceRepresentation(structureComponent, selection));
       }
     }
@@ -241,15 +229,13 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
   }
 
   protected highlightLockedDistancePairs(structureComponent: StructureComponent, lockedResidues: ResidueSelection) {
-    const { residueOffset } = this.state;
     const reps = new Array<NGL.RepresentationElement>();
 
     lockedResidues.forEach(residues => {
-      const residueWithOffset = residues.map(res => res - residueOffset);
-      reps.push(createBallStickRepresentation(structureComponent, residueWithOffset));
+      reps.push(createBallStickRepresentation(structureComponent, residues));
 
-      if (residueWithOffset.length >= 2) {
-        const selection = residueWithOffset.join('.CA, ') + '.CA';
+      if (residues.length >= 2) {
+        const selection = residues.join('.CA, ') + '.CA';
         reps.push(createDistanceRepresentation(structureComponent, selection));
       }
     });

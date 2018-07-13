@@ -3,6 +3,7 @@ import { Card, Dropdown, DropdownItemProps } from 'semantic-ui-react';
 import { ISpringGraphData } from 'spring';
 import { CHELL_DATA_TYPE, IContactMapData, NGL_DATA_TYPE, T_SNE_DATA_TYPE, VIZ_TYPE } from '../data/chell-data';
 import { withDefaultProps } from '../helper/ReactHelper';
+import InfoPanel from './InfoPanel';
 import NGLComponent from './NGLComponent';
 import PredictedContactMap from './PredictedContactMap';
 import SpringComponent from './SpringComponent';
@@ -106,6 +107,8 @@ const VizSelectorPanel = withDefaultProps(
               width={paddedWidth}
             />
           );
+        case VIZ_TYPE.INFO_PANEL:
+          return <InfoPanel data={data['Contact Map'] as Partial<IContactMapData>} />;
         default:
           throw new Error(`Unknown viz: ${viz}`);
       }

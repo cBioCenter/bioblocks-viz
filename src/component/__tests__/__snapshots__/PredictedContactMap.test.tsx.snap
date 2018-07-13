@@ -52,6 +52,7 @@ Array [
         ],
       ],
     },
+    "mode": "lines+markers",
     "name": "Known Structure Contact",
     "nodeSize": 4,
     "points": Array [
@@ -73,6 +74,7 @@ Array [
     "marker": Object {
       "color": "#000000",
     },
+    "mode": "lines+markers",
     "name": "Predicted Contact",
     "nodeSize": 4,
     "points": Array [
@@ -99,6 +101,7 @@ Array [
     "marker": Object {
       "color": "#ff0000",
     },
+    "mode": "lines+markers",
     "name": "Correct Prediction",
     "nodeSize": 6,
     "points": Array [
@@ -170,6 +173,7 @@ Array [
         ],
       ],
     },
+    "mode": "lines+markers",
     "name": "Known Structure Contact",
     "nodeSize": 4,
     "points": Array [
@@ -191,6 +195,7 @@ Array [
     "marker": Object {
       "color": "#000000",
     },
+    "mode": "lines+markers",
     "name": "Predicted Contact",
     "nodeSize": 4,
     "points": Array [
@@ -212,6 +217,7 @@ Array [
     "marker": Object {
       "color": "#ff0000",
     },
+    "mode": "lines+markers",
     "name": "Correct Prediction",
     "nodeSize": 6,
     "points": Array [
@@ -278,6 +284,7 @@ Array [
         ],
       ],
     },
+    "mode": "lines+markers",
     "name": "Known Structure Contact",
     "nodeSize": 4,
     "points": Array [
@@ -299,6 +306,7 @@ Array [
     "marker": Object {
       "color": "#000000",
     },
+    "mode": "lines+markers",
     "name": "Predicted Contact",
     "nodeSize": 4,
     "points": Array [
@@ -320,6 +328,7 @@ Array [
     "marker": Object {
       "color": "#ff0000",
     },
+    "mode": "lines+markers",
     "name": "Correct Prediction",
     "nodeSize": 6,
     "points": Array [

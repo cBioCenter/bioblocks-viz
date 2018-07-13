@@ -73,6 +73,9 @@ export class ChellPDB {
 
   private constructor() {}
 
+  public eachResidue(callback: (residue: NGL.ResidueProxy) => void) {
+    this.nglData.eachResidue(callback);
+  }
   /**
    * Given some existing coupling scores, a new CouplingContainer will be created with data augmented with info derived from this PDB.
    *
