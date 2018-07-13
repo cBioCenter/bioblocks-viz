@@ -129,9 +129,7 @@ export default class SecondaryStructureAxis {
   protected generateXAxisSecStructSegment = (code: SECONDARY_STRUCTURE_KEYS, index: number): Partial<IPlotlyData> => ({
     ...this.secondaryStructureAxisDefaults(code),
     orientation: 'h',
-    x: [],
     xaxis: 'x',
-    y: [],
     yaxis: `y${index}`,
   });
 
@@ -143,9 +141,7 @@ export default class SecondaryStructureAxis {
   protected generateYAxisSecStructSegment = (code: SECONDARY_STRUCTURE_KEYS, index: number): Partial<IPlotlyData> => ({
     ...this.secondaryStructureAxisDefaults(code),
     orientation: 'v',
-    x: [],
     xaxis: `x${index}`,
-    y: [],
     yaxis: 'y',
   });
 
@@ -156,7 +152,7 @@ export default class SecondaryStructureAxis {
       color: this.colorMap[code],
       shape: 'spline',
       smoothing: 1.3,
-      width: code === 'H' ? 1 : 2,
+      width: code === 'H' ? 1 : 5,
     },
     marker: {
       symbol: [],
@@ -165,6 +161,8 @@ export default class SecondaryStructureAxis {
     name: code,
     showlegend: false,
     type: 'scatter',
+    x: [],
+    y: [],
   });
 }
 

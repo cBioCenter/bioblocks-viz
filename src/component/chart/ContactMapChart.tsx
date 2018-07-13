@@ -82,6 +82,7 @@ export const generateChartDataEntry = (
             [1.0, 'rgb(255,255,255)'],
           ],
         },
+  mode: 'lines+markers',
   name,
   nodeSize,
   points,
