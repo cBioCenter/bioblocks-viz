@@ -2,7 +2,9 @@ import { generatePointCloudData, generateScatterGLData } from '../PlotlyHelper';
 
 describe('generateScatterGLData', () => {
   const sampleInput = {
-    color: 'blue',
+    marker: {
+      color: 'blue',
+    },
     name: 'da-bo-dee',
     nodeSize: 4,
     points: [
@@ -24,6 +26,11 @@ describe('generateScatterGLData', () => {
     const result = generateScatterGLData(sampleInput, true);
     expect(result.x).toEqual([9, 7, 8, 6]);
     expect(result.y).toEqual([8, 6, 9, 7]);
+  });
+
+  it('Should use z values for color when points are not mirrored and no explicit color is provided.', () => {
+    const result = generateScatterGLData({ ...sampleInput, marker: {} }, false);
+    expect(result.marker && result.marker.color).toEqual([6, 2]);
   });
 });
 

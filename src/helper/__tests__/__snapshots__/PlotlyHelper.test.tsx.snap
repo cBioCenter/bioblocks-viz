@@ -21,10 +21,7 @@ exports[`generateScatterGLData Should create the expected plotly scatter data fo
 Object {
   "hoverinfo": "x+y+z",
   "marker": Object {
-    "color": Array [
-      6,
-      2,
-    ],
+    "color": "blue",
     "size": 4,
   },
   "mode": "markers",
