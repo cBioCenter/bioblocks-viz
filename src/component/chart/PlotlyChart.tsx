@@ -105,9 +105,8 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
   public attachListeners() {
     if (this.plotlyCanvas) {
       this.plotlyCanvas.on('plotly_click', this.onClick);
-      this.plotlyCanvas.on('plotly_selected', this.onSelect);
-
       this.plotlyCanvas.on('plotly_hover', this.onHover);
+      this.plotlyCanvas.on('plotly_selected', this.onSelect);
       this.plotlyCanvas.on('plotly_unhover', this.onUnHover);
     }
     window.removeEventListener('resize', this.resize);
@@ -199,7 +198,7 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
    *
    * @param ids All of the axis ids associated with plotly data.
    */
-  protected generatePlotlyAxis = (ids: Set<string>) =>
+  protected generateExtraPlotlyAxis = (ids: Set<string>) =>
     Array.from(ids.values())
       .filter(id => id.length >= 2) // Ignores { xaxis: x } and { yaxis: y }.
       .map(id => {
@@ -208,6 +207,7 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
         return {
           [`${axisId}axis${axisNum}`]: {
             // TODO Have this number - 0.05 - be configurable. Requires some design work to look good for various numbers of total axes.
+            autosize: false,
             domain: [1 - 0.05 * (axisNum - 1), 1 - 0.05 * (axisNum - 2)],
             visible: false,
           },
@@ -239,8 +239,8 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
 
     // TODO Have the spacing number - 0.05 - be configurable. Requires some design work to look good for various numbers of total axes.
     const result = {
-      ...this.generatePlotlyAxis(uniqueXAxisIds),
-      ...this.generatePlotlyAxis(uniqueYAxisIds),
+      ...this.generateExtraPlotlyAxis(uniqueXAxisIds),
+      ...this.generateExtraPlotlyAxis(uniqueYAxisIds),
       xaxis: {
         domain: [0, 1 - 0.05 * uniqueXAxisIds.size],
         range: [30],
