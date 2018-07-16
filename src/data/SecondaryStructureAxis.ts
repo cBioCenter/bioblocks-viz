@@ -22,6 +22,8 @@ export default class SecondaryStructureAxis {
   /**
    * Creates an instance of SecondaryStructureAxis.
    * @param sequence Sequence of secondary structures.
+   * @param axisIndex Index of this axis - For example, 2 would create a x2 and y2 axis.
+   * @param minimumRequiredResidues How many residues must be present to be considered for the axis.
    * @param [colorMap={
    *       C: 'red',
    *       E: 'green',
@@ -30,14 +32,15 @@ export default class SecondaryStructureAxis {
    */
   constructor(
     sequence: SECONDARY_STRUCTURE,
-    index: number = 0,
+    axisIndex: number = 0,
+    readonly minimumRequiredResidues: number = 2,
     readonly colorMap: { [key: string]: string } = {
       C: 'red',
       E: 'green',
       H: 'blue',
     },
   ) {
-    this.setupSecondaryStructureAxes(sequence, index + 2);
+    this.setupSecondaryStructureAxes(sequence, axisIndex + 2);
   }
 
   protected derivePointsInAxis = (section: SECONDARY_STRUCTURE_SECTION) => {
@@ -45,15 +48,12 @@ export default class SecondaryStructureAxis {
       main: [section.start],
       opposite: [null] as Array<number | null>,
     };
+
+    const isHelix = section.label === 'H';
+
     for (let i = section.start; i <= section.end; ++i) {
       result.main.push(i);
-      result.opposite.push(1);
-
-      // Creating diagonals for alpha helix.
-      if (section.label === 'H') {
-        result.main.push(i + 0.5);
-        result.opposite.push(i % 2 ? 0 : 2);
-      }
+      result.opposite.push(isHelix ? Math.sin(i - section.start) : 0);
     }
 
     result.main.push(section.end);
@@ -73,23 +73,27 @@ export default class SecondaryStructureAxis {
     return result;
   };
 
-  protected setupSecondaryStructureAxes = (sections: SECONDARY_STRUCTURE, index: number): void => {
-    for (const chellSection of sections) {
-      const { label } = chellSection;
+  protected setupSecondaryStructureAxes = (sections: SECONDARY_STRUCTURE, axisIndex: number): void => {
+    for (const section of sections) {
+      if (section.length <= this.minimumRequiredResidues) {
+        continue;
+      }
+
+      const { label } = section;
       if (!this.axes.get(label)) {
         this.axes.set(label, {
-          x: this.generateXAxisSecStructSegment(label, index),
-          y: this.generateYAxisSecStructSegment(label, index),
+          x: this.generateXAxisSecStructSegment(label, axisIndex),
+          y: this.generateYAxisSecStructSegment(label, axisIndex),
         });
       }
 
-      const points = this.derivePointsInAxis(chellSection);
+      const points = this.derivePointsInAxis(section);
       (this.axes.get(label)!.x.x! as Datum[]).push(...points.main);
       (this.axes.get(label)!.x.y! as Datum[]).push(...points.opposite);
       (this.axes.get(label)!.y.y! as Datum[]).push(...points.main);
       (this.axes.get(label)!.y.x! as Datum[]).push(...points.opposite);
 
-      if (chellSection.label === 'E') {
+      if (section.label === 'E') {
         const symbols = new Array<string>(this.axes.get(label)!.x.x!.length);
         for (let i = 0; i < symbols.length - 2; ++i) {
           symbols[i] = 'line-ne';
@@ -97,22 +101,22 @@ export default class SecondaryStructureAxis {
 
         this.axes.get(label)!.x.mode = 'lines+markers';
         this.axes.get(label)!.x.marker = {
-          color: this.colorMap[chellSection.label],
+          color: this.colorMap[section.label],
           size: 10,
           symbol: [
             ...this.axes.get(label)!.x.marker!.symbol,
-            ...this.deriveSymbolsInAxis(chellSection),
+            ...this.deriveSymbolsInAxis(section),
             'triangle-right',
             'line-ne',
           ],
         };
         this.axes.get(label)!.y.mode = 'lines+markers';
         this.axes.get(label)!.y.marker = {
-          color: this.colorMap[chellSection.label],
+          color: this.colorMap[section.label],
           size: 10,
           symbol: [
             ...this.axes.get(label)!.y.marker!.symbol,
-            ...this.deriveSymbolsInAxis(chellSection),
+            ...this.deriveSymbolsInAxis(section),
             'triangle-down',
             'line-ne',
           ],
@@ -126,11 +130,14 @@ export default class SecondaryStructureAxis {
    *
    * @param entry A Single residue-secondary structure element.
    */
-  protected generateXAxisSecStructSegment = (code: SECONDARY_STRUCTURE_KEYS, index: number): Partial<IPlotlyData> => ({
+  protected generateXAxisSecStructSegment = (
+    code: SECONDARY_STRUCTURE_KEYS,
+    axisIndex: number,
+  ): Partial<IPlotlyData> => ({
     ...this.secondaryStructureAxisDefaults(code),
     orientation: 'h',
     xaxis: 'x',
-    yaxis: `y${index}`,
+    yaxis: `y${axisIndex}`,
   });
 
   /**

@@ -12,12 +12,12 @@ describe('SecondaryStructureAxis', () => {
   });
 
   it('Should handle an axis made up of a single secondary structure entry.', () => {
-    const result = new SecondaryStructureAxis([genSeqEntry(0, 'E')]);
+    const result = new SecondaryStructureAxis([genSeqEntry(0, 'E')], 0, 0);
     expect(result.axis.size).toBe(1);
   });
 
   it('Should handle an axis made up of different secondary structure types.', () => {
-    const result = new SecondaryStructureAxis([genSeqEntry(0, 'B'), genSeqEntry(1, 'C'), genSeqEntry(2, 'E')]);
+    const result = new SecondaryStructureAxis([genSeqEntry(0, 'B'), genSeqEntry(1, 'C'), genSeqEntry(2, 'E')], 0, 0);
     expect(result.axis.size).toBe(3);
   });
 
@@ -29,6 +29,7 @@ describe('SecondaryStructureAxis', () => {
     };
     const result = new SecondaryStructureAxis(
       [genSeqEntry(0, 'B'), genSeqEntry(1, 'C'), genSeqEntry(2, 'E')],
+      0,
       0,
       newColorMap,
     );
