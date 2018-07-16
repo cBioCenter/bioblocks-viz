@@ -1053,8 +1053,8 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "xaxis": "x",
               "y": Array [
                 null,
-                1,
-                1,
+                0,
+                0,
                 null,
               ],
               "yaxis": "y2",
@@ -1078,8 +1078,8 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "type": "scatter",
               "x": Array [
                 null,
-                1,
-                1,
+                0,
+                0,
                 null,
               ],
               "xaxis": "x2",

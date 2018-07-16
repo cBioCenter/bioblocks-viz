@@ -22,6 +22,8 @@ export default class SecondaryStructureAxis {
   /**
    * Creates an instance of SecondaryStructureAxis.
    * @param sequence Sequence of secondary structures.
+   * @param axisIndex Index of this axis - For example, 2 would create a x2 and y2 axis.
+   * @param minimumRequiredResidues How many residues must be present to be considered for the axis.
    * @param [colorMap={
    *       C: 'red',
    *       E: 'green',
@@ -30,14 +32,15 @@ export default class SecondaryStructureAxis {
    */
   constructor(
     sequence: SECONDARY_STRUCTURE,
-    index: number = 0,
+    axisIndex: number = 0,
+    readonly minimumRequiredResidues: number = 2,
     readonly colorMap: { [key: string]: string } = {
       C: 'red',
       E: 'green',
       H: 'blue',
     },
   ) {
-    this.setupSecondaryStructureAxes(sequence, index + 2);
+    this.setupSecondaryStructureAxes(sequence, axisIndex + 2);
   }
 
   protected derivePointsInAxis = (section: SECONDARY_STRUCTURE_SECTION) => {
@@ -70,17 +73,17 @@ export default class SecondaryStructureAxis {
     return result;
   };
 
-  protected setupSecondaryStructureAxes = (sections: SECONDARY_STRUCTURE, index: number): void => {
+  protected setupSecondaryStructureAxes = (sections: SECONDARY_STRUCTURE, axisIndex: number): void => {
     for (const section of sections) {
-      if (section.label === 'E' && section.length <= 2) {
+      if (section.label === 'E' && section.length <= this.minimumRequiredResidues) {
         continue;
       }
 
       const { label } = section;
       if (!this.axes.get(label)) {
         this.axes.set(label, {
-          x: this.generateXAxisSecStructSegment(label, index),
-          y: this.generateYAxisSecStructSegment(label, index),
+          x: this.generateXAxisSecStructSegment(label, axisIndex),
+          y: this.generateYAxisSecStructSegment(label, axisIndex),
         });
       }
 
@@ -127,11 +130,14 @@ export default class SecondaryStructureAxis {
    *
    * @param entry A Single residue-secondary structure element.
    */
-  protected generateXAxisSecStructSegment = (code: SECONDARY_STRUCTURE_KEYS, index: number): Partial<IPlotlyData> => ({
+  protected generateXAxisSecStructSegment = (
+    code: SECONDARY_STRUCTURE_KEYS,
+    axisIndex: number,
+  ): Partial<IPlotlyData> => ({
     ...this.secondaryStructureAxisDefaults(code),
     orientation: 'h',
     xaxis: 'x',
-    yaxis: `y${index}`,
+    yaxis: `y${axisIndex}`,
   });
 
   /**
