@@ -20,6 +20,7 @@ export interface IContactMapChartProps {
   };
   marginModifiers: {
     b: number;
+    l: number;
   };
   onClickCallback: (...args: any[]) => void;
   onHoverCallback: (...args: any[]) => void;
@@ -42,6 +43,7 @@ const defaultContactMapChartProps: Partial<IContactMapChartProps> = {
   },
   marginModifiers: {
     b: 40,
+    l: 12,
   },
   range: 100,
   secondaryStructures: [],
@@ -66,7 +68,7 @@ export const generateChartDataEntry = (
   hoverinfo,
   marker:
     typeof color === 'string'
-      ? { color }
+      ? { color: new Array(points.length * 2).fill(color) }
       : {
           colorscale: [
             [0.0, 'rgb(12,50,102)'],
@@ -145,6 +147,7 @@ class ContactMapChartClass extends React.Component<IContactMapChartProps, IConta
           },
           margin: {
             b: contactData.length * marginModifiers.b,
+            l: contactData.length * marginModifiers.l,
           },
           showlegend: true,
           xaxis: {

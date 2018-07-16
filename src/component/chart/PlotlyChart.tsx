@@ -194,30 +194,6 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
   }
 
   /**
-   * Generate axis data for those beyond the original x/yaxis.
-   *
-   * @param ids All of the axis ids associated with plotly data.
-   */
-  protected generateExtraPlotlyAxis = (ids: Set<string>) =>
-    Array.from(ids.values())
-      .filter(id => id.length >= 2) // Ignores { xaxis: x } and { yaxis: y }.
-      .map(id => {
-        const axisId = id.substr(0, 1);
-        const axisNum = Number.parseInt(id.substr(1));
-        return {
-          [`${axisId}axis${axisNum}`]: {
-            // TODO Have this number - 0.05 - be configurable. Requires some design work to look good for various numbers of total axes.
-            autosize: false,
-            domain: [1 - 0.05 * (axisNum - 1), 1 - 0.05 * (axisNum - 2)],
-            visible: false,
-          },
-        };
-      })
-      .reduce((prev, curr) => {
-        return Object.assign(prev, { ...curr });
-      }, {});
-
-  /**
    * Create [0-n] plotly axes given some plotly data.
    *
    * @param allData The already formatted Plotly data - meaning each data should have the proper axis already assigned.
@@ -244,15 +220,64 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
       xaxis: {
         domain: [0, 1 - 0.05 * uniqueXAxisIds.size],
         range: [30],
+        zeroline: false,
       },
       yaxis: {
         domain: [0, 1 - 0.05 * uniqueXAxisIds.size],
         range: [30],
+        zeroline: false,
       },
-    };
+    } as Partial<IPlotlyLayout>;
 
     return result;
   }
+
+  protected deriveChartPiece = (x: number, y: number, data?: plotly.ScatterData) => {
+    if (data) {
+      const isExtraXAxis = data.xaxis && data.xaxis !== 'x';
+      const isExtraYAxis = data.yaxis && data.yaxis !== 'y';
+      if (isExtraXAxis || isExtraYAxis) {
+        return {
+          chartPiece: CHELL_CHART_PIECE.AXIS,
+          selectedPoints: isExtraXAxis ? [y] : [x],
+        };
+      }
+    }
+    return {
+      chartPiece: CHELL_CHART_PIECE.POINT,
+      selectedPoints: [x, y],
+    };
+  };
+
+  /**
+   * Generate axis data for those beyond the original x/yaxis.
+   *
+   * @param ids All of the axis ids associated with plotly data.
+   */
+  protected generateExtraPlotlyAxis = (ids: Set<string>): Partial<IPlotlyLayout> => {
+    return Array.from(ids.values())
+      .filter(id => id.length >= 2) // Ignores { xaxis: x } and { yaxis: y }.
+      .map(id => {
+        const axisId = id.substr(0, 1);
+        const axisNum = Number.parseInt(id.substr(1));
+        return {
+          [`${axisId}axis${axisNum}`]: {
+            // TODO Have this number - 0.05 - be configurable. Requires some design work to look good for various numbers of total axes.
+            autosize: false,
+            domain: [1 - 0.05 * (axisNum - 1), 1 - 0.05 * (axisNum - 2)],
+            dragmode: 'select',
+            fixedrange: true,
+            margin: {
+              autoexpand: false,
+            },
+            visible: false,
+          } as Partial<Plotly.LayoutAxis>,
+        };
+      })
+      .reduce((prev, curr) => {
+        return Object.assign(prev, { ...curr });
+      }, {});
+  };
 
   protected getMergedConfig = (config: Partial<Plotly.Config> = {}): Plotly.Config => {
     return Object.assign(
@@ -273,23 +298,6 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
         .mergeDeep(Immutable.fromJS(Object.assign({}, layout)))
         .toJS(),
     );
-  };
-
-  protected deriveChartPiece = (x: number, y: number, data?: plotly.ScatterData) => {
-    if (data) {
-      const isExtraXAxis = data.xaxis && data.xaxis !== 'x';
-      const isExtraYAxis = data.yaxis && data.yaxis !== 'y';
-      if (isExtraXAxis || isExtraYAxis) {
-        return {
-          chartPiece: CHELL_CHART_PIECE.AXIS,
-          selectedPoints: isExtraXAxis ? [y] : [x],
-        };
-      }
-    }
-    return {
-      chartPiece: CHELL_CHART_PIECE.POINT,
-      selectedPoints: [x, y],
-    };
   };
 
   protected onClick = (event: plotly.PlotMouseEvent) => {
