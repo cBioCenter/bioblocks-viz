@@ -4,6 +4,7 @@ const generateWallabyConfig = wallaby => ({
     type: 'node',
   },
   files: [
+    'configs/SetupJest.ts',
     'tsconfig.json',
     '__mocks__/**/*.+(js|jsx|ts|tsx|json|snap|css|less|sass|scss|jpg|jpeg|gif|png|svg)',
     'src/**/*.+(js|jsx|ts|tsx|json|snap|css|less|sass|scss|jpg|jpeg|gif|png|svg)',

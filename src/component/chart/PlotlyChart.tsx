@@ -48,14 +48,16 @@ export interface IPlotlyChartProps {
   data: Array<Partial<IPlotlyData>>;
   layout?: Partial<IPlotlyLayout>;
   onClickCallback?: ((event: ChellChartEvent) => void);
+  onDoubleClickCallback?: ((event: ChellChartEvent) => void);
   onHoverCallback?: ((event: ChellChartEvent) => void);
   onSelectedCallback?: ((event: ChellChartEvent) => void);
   onUnHoverCallback?: ((event: ChellChartEvent) => void);
+  onRelayoutCallback?: ((event: ChellChartEvent) => void);
 }
 
 export const defaultPlotlyConfig: Partial<Plotly.Config> = {
   displayModeBar: false,
-  doubleClick: 'reset+autosize',
+  doubleClick: 'reset',
   scrollZoom: true,
   showAxisDragHandles: false,
   staticPlot: false,
@@ -96,8 +98,9 @@ export const defaultPlotlyChartProps: Partial<IPlotlyChartProps> = {
  */
 export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
   public plotlyCanvas: plotly.PlotlyHTMLElement | null = null;
-  protected plotlyFormattedData: Array<Partial<IPlotlyData>> = [];
+  protected isDoubleClickInProgress = false; // Makes sure single click isn't fired when double click is in flight. Required due to https://github.com/plotly/plotly.js/issues/1546
   protected canvasRef: HTMLDivElement | null = null;
+  protected plotlyFormattedData: Array<Partial<IPlotlyData>> = [];
 
   /**
    * Setup all the event listeners for the plotly canvas.
@@ -105,9 +108,10 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
   public attachListeners() {
     if (this.plotlyCanvas) {
       this.plotlyCanvas.on('plotly_click', this.onClick);
-      this.plotlyCanvas.on('plotly_selected', this.onSelect);
-
+      this.plotlyCanvas.on('plotly_doubleclick', this.onDoubleClick);
       this.plotlyCanvas.on('plotly_hover', this.onHover);
+      this.plotlyCanvas.on('plotly_relayout', this.onRelayout);
+      this.plotlyCanvas.on('plotly_selected', this.onSelect);
       this.plotlyCanvas.on('plotly_unhover', this.onUnHover);
     }
     window.removeEventListener('resize', this.resize);
@@ -132,7 +136,7 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
       // TODO Try using plotly.react since it will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
       // TODO However plotly.react is currently causing a WebGL error, so we're using newPlot for now.
 
-      await plotly.purge(this.plotlyCanvas);
+      // await plotly.purge(this.plotlyCanvas);
       plotly.newPlot(
         this.canvasRef,
         this.plotlyFormattedData,
@@ -195,29 +199,6 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
   }
 
   /**
-   * Generate axis data for those beyond the original x/yaxis.
-   *
-   * @param ids All of the axis ids associated with plotly data.
-   */
-  protected generatePlotlyAxis = (ids: Set<string>) =>
-    Array.from(ids.values())
-      .filter(id => id.length >= 2) // Ignores { xaxis: x } and { yaxis: y }.
-      .map(id => {
-        const axisId = id.substr(0, 1);
-        const axisNum = Number.parseInt(id.substr(1));
-        return {
-          [`${axisId}axis${axisNum}`]: {
-            // TODO Have this number - 0.05 - be configurable. Requires some design work to look good for various numbers of total axes.
-            domain: [1 - 0.05 * (axisNum - 1), 1 - 0.05 * (axisNum - 2)],
-            visible: false,
-          },
-        };
-      })
-      .reduce((prev, curr) => {
-        return Object.assign(prev, { ...curr });
-      }, {});
-
-  /**
    * Create [0-n] plotly axes given some plotly data.
    *
    * @param allData The already formatted Plotly data - meaning each data should have the proper axis already assigned.
@@ -239,20 +220,69 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
 
     // TODO Have the spacing number - 0.05 - be configurable. Requires some design work to look good for various numbers of total axes.
     const result = {
-      ...this.generatePlotlyAxis(uniqueXAxisIds),
-      ...this.generatePlotlyAxis(uniqueYAxisIds),
+      ...this.generateExtraPlotlyAxis(uniqueXAxisIds),
+      ...this.generateExtraPlotlyAxis(uniqueYAxisIds),
       xaxis: {
         domain: [0, 1 - 0.05 * uniqueXAxisIds.size],
         range: [30],
+        zeroline: false,
       },
       yaxis: {
         domain: [0, 1 - 0.05 * uniqueXAxisIds.size],
         range: [30],
+        zeroline: false,
       },
-    };
+    } as Partial<IPlotlyLayout>;
 
     return result;
   }
+
+  protected deriveChartPiece = (x: number, y: number, data?: plotly.ScatterData) => {
+    if (data) {
+      const isExtraXAxis = data.xaxis && data.xaxis !== 'x';
+      const isExtraYAxis = data.yaxis && data.yaxis !== 'y';
+      if (isExtraXAxis || isExtraYAxis) {
+        return {
+          chartPiece: CHELL_CHART_PIECE.AXIS,
+          selectedPoints: isExtraXAxis ? [y] : [x],
+        };
+      }
+    }
+    return {
+      chartPiece: CHELL_CHART_PIECE.POINT,
+      selectedPoints: [x, y],
+    };
+  };
+
+  /**
+   * Generate axis data for those beyond the original x/yaxis.
+   *
+   * @param ids All of the axis ids associated with plotly data.
+   */
+  protected generateExtraPlotlyAxis = (ids: Set<string>): Partial<IPlotlyLayout> => {
+    return Array.from(ids.values())
+      .filter(id => id.length >= 2) // Ignores { xaxis: x } and { yaxis: y }.
+      .map(id => {
+        const axisId = id.substr(0, 1);
+        const axisNum = Number.parseInt(id.substr(1));
+        return {
+          [`${axisId}axis${axisNum}`]: {
+            // TODO Have this number - 0.05 - be configurable. Requires some design work to look good for various numbers of total axes.
+            autosize: false,
+            domain: [1 - 0.05 * (axisNum - 1), 1 - 0.05 * (axisNum - 2)],
+            dragmode: 'select',
+            fixedrange: true,
+            margin: {
+              autoexpand: false,
+            },
+            visible: false,
+          } as Partial<Plotly.LayoutAxis>,
+        };
+      })
+      .reduce((prev, curr) => {
+        return Object.assign(prev, { ...curr });
+      }, {});
+  };
 
   protected getMergedConfig = (config: Partial<Plotly.Config> = {}): Plotly.Config => {
     return Object.assign(
@@ -275,29 +305,22 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
     );
   };
 
-  protected deriveChartPiece = (x: number, y: number, data?: plotly.ScatterData) => {
-    if (data) {
-      const isExtraXAxis = data.xaxis && data.xaxis !== 'x';
-      const isExtraYAxis = data.yaxis && data.yaxis !== 'y';
-      if (isExtraXAxis || isExtraYAxis) {
-        return {
-          chartPiece: CHELL_CHART_PIECE.AXIS,
-          selectedPoints: isExtraXAxis ? [y] : [x],
-        };
+  protected onClick = (event: plotly.PlotMouseEvent) => {
+    if (!this.isDoubleClickInProgress) {
+      const { onClickCallback } = this.props;
+      if (onClickCallback) {
+        const { data, x, y } = event.points[0];
+        const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, data);
+        onClickCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.CLICK, chartPiece, selectedPoints));
       }
     }
-    return {
-      chartPiece: CHELL_CHART_PIECE.POINT,
-      selectedPoints: [x, y],
-    };
   };
 
-  protected onClick = (event: plotly.PlotMouseEvent) => {
-    const { onClickCallback } = this.props;
-    if (onClickCallback) {
-      const { data, x, y } = event.points[0];
-      const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, data);
-      onClickCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.CLICK, chartPiece, selectedPoints));
+  protected onDoubleClick = () => {
+    this.isDoubleClickInProgress = true;
+    const { onDoubleClickCallback } = this.props;
+    if (onDoubleClickCallback) {
+      onDoubleClickCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.DOUBLE_CLICK));
     }
   };
 
@@ -307,6 +330,14 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
       const { data, x, y } = event.points[0];
       const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, data);
       onHoverCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.CLICK, chartPiece, selectedPoints));
+    }
+  };
+
+  protected onRelayout = (event: plotly.PlotRelayoutEvent) => {
+    this.isDoubleClickInProgress = false;
+    const { onRelayoutCallback } = this.props;
+    if (onRelayoutCallback) {
+      onRelayoutCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.RELAYOUT));
     }
   };
 
@@ -325,14 +356,10 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
 
   protected onUnHover = (event: plotly.PlotMouseEvent) => {
     const { onUnHoverCallback } = this.props;
-    if (onUnHoverCallback) {
-      if (event) {
-        const { data, x, y } = event.points[0];
-        const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, data);
-        onUnHoverCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.UNHOVER, chartPiece, selectedPoints));
-      } else {
-        onUnHoverCallback(event);
-      }
+    if (event && onUnHoverCallback) {
+      const { data, x, y } = event.points[0];
+      const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, data);
+      onUnHoverCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.UNHOVER, chartPiece, selectedPoints));
     }
   };
 }

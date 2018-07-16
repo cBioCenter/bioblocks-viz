@@ -20,6 +20,7 @@ export interface IContactMapChartProps {
   };
   marginModifiers: {
     b: number;
+    l: number;
   };
   onClickCallback: (...args: any[]) => void;
   onHoverCallback: (...args: any[]) => void;
@@ -42,6 +43,7 @@ const defaultContactMapChartProps: Partial<IContactMapChartProps> = {
   },
   marginModifiers: {
     b: 40,
+    l: 12,
   },
   range: 100,
   secondaryStructures: [],
@@ -66,7 +68,7 @@ export const generateChartDataEntry = (
   hoverinfo,
   marker:
     typeof color === 'string'
-      ? { color }
+      ? { color: new Array(points.length * 2).fill(color) }
       : {
           colorscale: [
             [0.0, 'rgb(12,50,102)'],
@@ -110,22 +112,14 @@ class ContactMapChartClass extends React.Component<IContactMapChartProps, IConta
     };
   }
 
-  public componentDidUpdate(prevProps: IContactMapChartProps) {
-    const { contactData, dataTransformFn, secondaryStructures } = this.props;
-    if (prevProps.contactData !== contactData || prevProps.secondaryStructures !== secondaryStructures) {
-      const plotlyData = [...contactData.map(entry => dataTransformFn(entry, true))];
+  public componentDidMount() {
+    this.setupData();
+  }
 
-      secondaryStructures.forEach((secondaryStructure, index) => {
-        const axis = new SecondaryStructureAxis(secondaryStructure, index).axis;
-        const axisData = Array.from(axis.values()).reduce((prev, cur) => {
-          prev.push(...[cur.x, cur.y]);
-          return prev;
-        }, new Array());
-        plotlyData.push(...axisData);
-      });
-      this.setState({
-        plotlyData,
-      });
+  public componentDidUpdate(prevProps: IContactMapChartProps) {
+    const { contactData, secondaryStructures } = this.props;
+    if (prevProps.contactData !== contactData || prevProps.secondaryStructures !== secondaryStructures) {
+      this.setupData();
     }
   }
 
@@ -145,6 +139,7 @@ class ContactMapChartClass extends React.Component<IContactMapChartProps, IConta
           },
           margin: {
             b: contactData.length * marginModifiers.b,
+            l: contactData.length * marginModifiers.l,
           },
           showlegend: true,
           xaxis: {
@@ -167,6 +162,22 @@ class ContactMapChartClass extends React.Component<IContactMapChartProps, IConta
         {...props}
       />
     );
+  }
+
+  protected setupData() {
+    const { contactData, dataTransformFn, secondaryStructures } = this.props;
+    const plotlyData = [...contactData.map(entry => dataTransformFn(entry, true))];
+    secondaryStructures.forEach((secondaryStructure, index) => {
+      const axis = new SecondaryStructureAxis(secondaryStructure, index).axis;
+      const axisData = Array.from(axis.values()).reduce((prev, cur) => {
+        prev.push(...[cur.x, cur.y]);
+        return prev;
+      }, new Array());
+      plotlyData.push(...axisData);
+    });
+    this.setState({
+      plotlyData,
+    });
   }
 }
 

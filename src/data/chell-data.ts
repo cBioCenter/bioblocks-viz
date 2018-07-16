@@ -101,7 +101,9 @@ export interface ISecondaryStructure {
 
 export enum CHELL_CHART_EVENT_TYPE {
   CLICK,
+  DOUBLE_CLICK,
   HOVER,
+  RELAYOUT,
   SELECTION,
   UNHOVER,
 }

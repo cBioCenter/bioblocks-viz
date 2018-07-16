@@ -24,6 +24,7 @@ export class MockPlotlyHTMLElement implements IMockPlotlyCanvas {
       switch (event.type) {
         case 'plotly_click':
         case 'plotly_hover':
+        case 'plotly_unhover':
         case 'plotly_selected':
           cb({ points: [{ ...data }] });
           break;

@@ -72,7 +72,14 @@ Array [
   Object {
     "hoverinfo": "x+y",
     "marker": Object {
-      "color": "#000000",
+      "color": Array [
+        "#000000",
+        "#000000",
+        "#000000",
+        "#000000",
+        "#000000",
+        "#000000",
+      ],
     },
     "mode": "lines+markers",
     "name": "Predicted Contact",
@@ -99,7 +106,12 @@ Array [
   Object {
     "hoverinfo": "x+y",
     "marker": Object {
-      "color": "#ff0000",
+      "color": Array [
+        "#ff0000",
+        "#ff0000",
+        "#ff0000",
+        "#ff0000",
+      ],
     },
     "mode": "lines+markers",
     "name": "Correct Prediction",
@@ -193,7 +205,12 @@ Array [
   Object {
     "hoverinfo": "x+y",
     "marker": Object {
-      "color": "#000000",
+      "color": Array [
+        "#000000",
+        "#000000",
+        "#000000",
+        "#000000",
+      ],
     },
     "mode": "lines+markers",
     "name": "Predicted Contact",
@@ -215,7 +232,10 @@ Array [
   Object {
     "hoverinfo": "x+y",
     "marker": Object {
-      "color": "#ff0000",
+      "color": Array [
+        "#ff0000",
+        "#ff0000",
+      ],
     },
     "mode": "lines+markers",
     "name": "Correct Prediction",
@@ -304,7 +324,12 @@ Array [
   Object {
     "hoverinfo": "x+y",
     "marker": Object {
-      "color": "#000000",
+      "color": Array [
+        "#000000",
+        "#000000",
+        "#000000",
+        "#000000",
+      ],
     },
     "mode": "lines+markers",
     "name": "Predicted Contact",
@@ -326,7 +351,10 @@ Array [
   Object {
     "hoverinfo": "x+y",
     "marker": Object {
-      "color": "#ff0000",
+      "color": Array [
+        "#ff0000",
+        "#ff0000",
+      ],
     },
     "mode": "lines+markers",
     "name": "Correct Prediction",

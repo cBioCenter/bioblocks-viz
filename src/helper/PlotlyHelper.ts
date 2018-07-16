@@ -31,11 +31,20 @@ export const generateScatterData = (
   const xValues = points.map(data => data.i);
   const yValues = points.map(data => data.j);
   const zValues = points.map(data => data.dist);
+
+  let color = new Array<string | number>(mirrorPoints ? zValues.length * 2 : zValues.length);
+
+  if (entry.marker && typeof entry.marker.color === 'string') {
+    color.fill(entry.marker.color);
+  } else {
+    color = mirrorPoints ? zValues.concat(zValues) : zValues;
+  }
+
   return {
     hoverinfo: 'x+y+z',
     marker: Object.assign(
       {
-        color: mirrorPoints ? zValues.concat(zValues) : zValues,
+        color,
         size: entry.nodeSize,
       },
       marker,
