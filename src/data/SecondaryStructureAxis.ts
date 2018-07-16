@@ -75,7 +75,7 @@ export default class SecondaryStructureAxis {
 
   protected setupSecondaryStructureAxes = (sections: SECONDARY_STRUCTURE, axisIndex: number): void => {
     for (const section of sections) {
-      if (section.label === 'E' && section.length <= this.minimumRequiredResidues) {
+      if (section.length <= this.minimumRequiredResidues) {
         continue;
       }
 
