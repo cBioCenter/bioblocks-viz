@@ -3,8 +3,8 @@ import { CHELL_CHART_EVENT_TYPE, CHELL_CHART_PIECE } from '../chell-data';
 export default class ChellChartEvent {
   public constructor(
     readonly type: CHELL_CHART_EVENT_TYPE,
-    readonly chartPiece: CHELL_CHART_PIECE,
-    readonly selectedPoints: number[],
+    readonly chartPiece?: CHELL_CHART_PIECE,
+    readonly selectedPoints: number[] = [],
   ) {}
 
   public isAxis() {

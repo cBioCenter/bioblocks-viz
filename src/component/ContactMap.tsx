@@ -142,6 +142,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
       chainLength,
       data,
       onBoxSelection,
+      removeHoveredResidues,
       toggleLockedResiduePair,
     } = this.props;
     return (
@@ -151,7 +152,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
         onClickCallback={this.onMouseClick(toggleLockedResiduePair)}
         onHoverCallback={this.onMouseEnter(addHoveredResidues)}
         onSelectedCallback={this.onMouseSelect(onBoxSelection)}
-        onUnHoverCallback={this.onMouseLeave()}
+        onUnHoverCallback={this.onMouseLeave(removeHoveredResidues)}
         range={chainLength + 5}
         secondaryStructures={data.secondaryStructures}
       />

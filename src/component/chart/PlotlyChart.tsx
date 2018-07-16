@@ -48,9 +48,11 @@ export interface IPlotlyChartProps {
   data: Array<Partial<IPlotlyData>>;
   layout?: Partial<IPlotlyLayout>;
   onClickCallback?: ((event: ChellChartEvent) => void);
+  onDoubleClickCallback?: ((event: ChellChartEvent) => void);
   onHoverCallback?: ((event: ChellChartEvent) => void);
   onSelectedCallback?: ((event: ChellChartEvent) => void);
   onUnHoverCallback?: ((event: ChellChartEvent) => void);
+  onRelayoutCallback?: ((event: ChellChartEvent) => void);
 }
 
 export const defaultPlotlyConfig: Partial<Plotly.Config> = {
@@ -316,6 +318,10 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
 
   protected onDoubleClick = () => {
     this.isDoubleClickInProgress = true;
+    const { onDoubleClickCallback } = this.props;
+    if (onDoubleClickCallback) {
+      onDoubleClickCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.DOUBLE_CLICK));
+    }
   };
 
   protected onHover = (event: plotly.PlotMouseEvent) => {
@@ -324,6 +330,14 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
       const { data, x, y } = event.points[0];
       const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, data);
       onHoverCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.CLICK, chartPiece, selectedPoints));
+    }
+  };
+
+  protected onRelayout = (event: plotly.PlotRelayoutEvent) => {
+    this.isDoubleClickInProgress = false;
+    const { onRelayoutCallback } = this.props;
+    if (onRelayoutCallback) {
+      onRelayoutCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.RELAYOUT));
     }
   };
 
@@ -340,20 +354,12 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
     }
   };
 
-  protected onRelayout = (event: plotly.PlotRelayoutEvent) => {
-    this.isDoubleClickInProgress = false;
-  };
-
   protected onUnHover = (event: plotly.PlotMouseEvent) => {
     const { onUnHoverCallback } = this.props;
-    if (onUnHoverCallback) {
-      if (event) {
-        const { data, x, y } = event.points[0];
-        const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, data);
-        onUnHoverCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.UNHOVER, chartPiece, selectedPoints));
-      } else {
-        onUnHoverCallback(event);
-      }
+    if (event && onUnHoverCallback) {
+      const { data, x, y } = event.points[0];
+      const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, data);
+      onUnHoverCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.UNHOVER, chartPiece, selectedPoints));
     }
   };
 }

@@ -36,6 +36,46 @@ exports[`PlotlyChart Should attach events when the container is attached. 1`] = 
 </PlotlyChartClass>
 `;
 
+exports[`PlotlyChart Should handle extra axes correctly. 1`] = `
+<PlotlyChartClass
+  config={Object {}}
+  data={
+    Array [
+      Object {
+        "marker": Object {
+          "color": "blue",
+        },
+        "mode": "markers",
+        "type": "pointcloud",
+        "uid": "adam",
+        "xy": Float32Array [
+          1,
+          2,
+          3,
+          4,
+        ],
+      },
+      Object {
+        "xaxis": "x2",
+      },
+      Object {
+        "yaxis": "y2",
+      },
+    ]
+  }
+  layout={Object {}}
+>
+  <div
+    className="plotly-chart"
+    style={
+      Object {
+        "marginBottom": 5,
+      }
+    }
+  />
+</PlotlyChartClass>
+`;
+
 exports[`PlotlyChart Should match existing snapshot when given empty data. 1`] = `
 <PlotlyChartClass
   config={Object {}}

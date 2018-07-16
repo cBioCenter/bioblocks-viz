@@ -63,7 +63,9 @@ describe('PlotlyChart', () => {
   it('Should handle callbacks.', async () => {
     const spies: IMockDict = {
       onClickSpy: jest.fn(),
+      onDoubleClickSpy: jest.fn(),
       onHoverSpy: jest.fn(),
+      onRelayoutSpy: jest.fn(),
       onSelectedSpy: jest.fn(),
       onUnHoverSpy: jest.fn(),
     };
@@ -71,13 +73,17 @@ describe('PlotlyChart', () => {
     const wrapper = await getMountedPlotlyChart({
       data: sampleData,
       onClickCallback: spies.onClickSpy,
+      onDoubleClickCallback: spies.onDoubleClickSpy,
       onHoverCallback: spies.onHoverSpy,
+      onRelayoutCallback: spies.onRelayoutSpy,
       onSelectedCallback: spies.onSelectedSpy,
       onUnHoverCallback: spies.onUnHoverSpy,
     });
 
     dispatchPlotlyEvent(wrapper, 'plotly_click');
+    dispatchPlotlyEvent(wrapper, 'plotly_doubleclick');
     dispatchPlotlyEvent(wrapper, 'plotly_hover');
+    dispatchPlotlyEvent(wrapper, 'plotly_relayout');
     dispatchPlotlyEvent(wrapper, 'plotly_selected');
     dispatchPlotlyEvent(wrapper, 'plotly_unhover');
 
@@ -172,16 +178,6 @@ describe('PlotlyChart', () => {
     expect(onHoverSpy).toBeCalled();
   });
 
-  it('Should call the appropriate callback when plotly emits a un-hover event.', async () => {
-    const onUnHoverSpy = jest.fn();
-    const wrapper = await getMountedPlotlyChart({
-      data: sampleData,
-      onUnHoverCallback: onUnHoverSpy,
-    });
-    dispatchPlotlyEvent(wrapper, 'plotly_unhover');
-    expect(onUnHoverSpy).toBeCalled();
-  });
-
   it('Should call the appropriate callback when plotly emits a selected event.', async () => {
     const onSelectedSpy = jest.fn();
     const wrapper = await getMountedPlotlyChart({
@@ -270,5 +266,13 @@ describe('PlotlyChart', () => {
     });
 
     expect(drawSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('Should handle extra axes correctly.', async () => {
+    const wrapper = await getMountedPlotlyChart({
+      data: [...sampleData, ...[{ xaxis: 'x2' }, { yaxis: 'y2' }]],
+    });
+
+    expect(wrapper).toMatchSnapshot();
   });
 });
