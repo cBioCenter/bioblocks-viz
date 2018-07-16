@@ -16,6 +16,7 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
       },
       "margin": Object {
         "b": 40,
+        "l": 12,
       },
       "showlegend": true,
       "xaxis": Object {

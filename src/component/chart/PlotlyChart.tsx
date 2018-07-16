@@ -55,7 +55,7 @@ export interface IPlotlyChartProps {
 
 export const defaultPlotlyConfig: Partial<Plotly.Config> = {
   displayModeBar: false,
-  doubleClick: 'reset+autosize',
+  doubleClick: 'reset',
   scrollZoom: true,
   showAxisDragHandles: false,
   staticPlot: false,
@@ -96,8 +96,9 @@ export const defaultPlotlyChartProps: Partial<IPlotlyChartProps> = {
  */
 export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
   public plotlyCanvas: plotly.PlotlyHTMLElement | null = null;
-  protected plotlyFormattedData: Array<Partial<IPlotlyData>> = [];
+  protected isDoubleClickInProgress = false; // Makes sure single click isn't fired when double click is in flight. Required due to https://github.com/plotly/plotly.js/issues/1546
   protected canvasRef: HTMLDivElement | null = null;
+  protected plotlyFormattedData: Array<Partial<IPlotlyData>> = [];
 
   /**
    * Setup all the event listeners for the plotly canvas.
@@ -105,7 +106,9 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
   public attachListeners() {
     if (this.plotlyCanvas) {
       this.plotlyCanvas.on('plotly_click', this.onClick);
+      this.plotlyCanvas.on('plotly_doubleclick', this.onDoubleClick);
       this.plotlyCanvas.on('plotly_hover', this.onHover);
+      this.plotlyCanvas.on('plotly_relayout', this.onRelayout);
       this.plotlyCanvas.on('plotly_selected', this.onSelect);
       this.plotlyCanvas.on('plotly_unhover', this.onUnHover);
     }
@@ -131,7 +134,7 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
       // TODO Try using plotly.react since it will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
       // TODO However plotly.react is currently causing a WebGL error, so we're using newPlot for now.
 
-      await plotly.purge(this.plotlyCanvas);
+      // await plotly.purge(this.plotlyCanvas);
       plotly.newPlot(
         this.canvasRef,
         this.plotlyFormattedData,
@@ -301,12 +304,18 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
   };
 
   protected onClick = (event: plotly.PlotMouseEvent) => {
-    const { onClickCallback } = this.props;
-    if (onClickCallback) {
-      const { data, x, y } = event.points[0];
-      const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, data);
-      onClickCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.CLICK, chartPiece, selectedPoints));
+    if (!this.isDoubleClickInProgress) {
+      const { onClickCallback } = this.props;
+      if (onClickCallback) {
+        const { data, x, y } = event.points[0];
+        const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, data);
+        onClickCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.CLICK, chartPiece, selectedPoints));
+      }
     }
+  };
+
+  protected onDoubleClick = () => {
+    this.isDoubleClickInProgress = true;
   };
 
   protected onHover = (event: plotly.PlotMouseEvent) => {
@@ -329,6 +338,10 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
       const { chartPiece } = this.deriveChartPiece(x, y);
       onSelectedCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.CLICK, chartPiece, allPoints));
     }
+  };
+
+  protected onRelayout = (event: plotly.PlotRelayoutEvent) => {
+    this.isDoubleClickInProgress = false;
   };
 
   protected onUnHover = (event: plotly.PlotMouseEvent) => {

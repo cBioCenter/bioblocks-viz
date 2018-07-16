@@ -41,6 +41,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
     marginModifiers={
       Object {
         "b": 40,
+        "l": 12,
       }
     }
     onClickCallback={[Function]}
@@ -820,6 +821,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       marginModifiers={
         Object {
           "b": 40,
+          "l": 12,
         }
       }
       onClickCallback={[Function]}
@@ -1040,6 +1042,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             },
             "margin": Object {
               "b": 280,
+              "l": 84,
             },
             "showlegend": true,
             "xaxis": Object {
