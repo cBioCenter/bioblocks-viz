@@ -1,10 +1,470 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ContactMapChart Should match existing snapshot when given data with extra axes. 1`] = `
+<PlotlyChartClass
+  candidateResidues={Array []}
+  config={Object {}}
+  data={
+    Array [
+      Object {
+        "hoverinfo": "x+y+z",
+        "marker": Object {
+          "color": Array [],
+          "size": 0,
+        },
+        "mode": "markers",
+        "name": " undefined",
+        "type": "scattergl",
+        "x": Array [],
+        "y": Array [],
+        "z": Array [],
+      },
+      Object {
+        "connectgaps": false,
+        "hoverinfo": "name",
+        "line": Object {
+          "color": "blue",
+          "shape": "spline",
+          "smoothing": 1.3,
+          "width": 1,
+        },
+        "marker": Object {
+          "symbol": Array [],
+        },
+        "mode": "lines",
+        "name": "H",
+        "orientation": "h",
+        "showlegend": false,
+        "type": "scatter",
+        "x": Array [
+          0,
+          0,
+          1,
+          2,
+          2,
+        ],
+        "xaxis": "x",
+        "y": Array [
+          null,
+          0,
+          0.8414709848078965,
+          0.9092974268256817,
+          null,
+        ],
+        "yaxis": "y2",
+      },
+      Object {
+        "connectgaps": false,
+        "hoverinfo": "name",
+        "line": Object {
+          "color": "blue",
+          "shape": "spline",
+          "smoothing": 1.3,
+          "width": 1,
+        },
+        "marker": Object {
+          "symbol": Array [],
+        },
+        "mode": "lines",
+        "name": "H",
+        "orientation": "v",
+        "showlegend": false,
+        "type": "scatter",
+        "x": Array [
+          null,
+          0,
+          0.8414709848078965,
+          0.9092974268256817,
+          null,
+        ],
+        "xaxis": "x2",
+        "y": Array [
+          0,
+          0,
+          1,
+          2,
+          2,
+        ],
+        "yaxis": "y",
+      },
+    ]
+  }
+  dataTransformFn={[Function]}
+  layout={
+    Object {
+      "height": 520,
+      "legend": Object {
+        "orientation": "h",
+        "y": -0.1,
+        "yanchor": "bottom",
+      },
+      "margin": Object {
+        "b": 40,
+        "l": 12,
+      },
+      "showlegend": true,
+      "xaxis": Object {
+        "autorange": false,
+        "nticks": 10,
+        "range": Array [
+          1,
+          100,
+        ],
+        "showline": true,
+        "tickmode": "auto",
+        "title": "Residue #",
+      },
+      "yaxis": Object {
+        "autorange": false,
+        "nticks": 10,
+        "range": Array [
+          100,
+          1,
+        ],
+        "showline": true,
+        "tickmode": "auto",
+        "title": "Residue #",
+      },
+    }
+  }
+  secondaryStructures={
+    Array [
+      Array [
+        Chell1DSection {
+          "label": "H",
+          "sectionEnd": 2,
+          "sectionStart": 0,
+        },
+        Chell1DSection {
+          "label": "E",
+          "sectionEnd": 3,
+          "sectionStart": 3,
+        },
+      ],
+    ]
+  }
+/>
+`;
+
+exports[`ContactMapChart Should match existing snapshot when given data with multiple secondary structures. 1`] = `
+<PlotlyChartClass
+  candidateResidues={Array []}
+  config={Object {}}
+  data={
+    Array [
+      Object {
+        "hoverinfo": "x+y+z",
+        "marker": Object {
+          "color": Array [],
+          "size": 0,
+        },
+        "mode": "markers",
+        "name": " undefined",
+        "type": "scattergl",
+        "x": Array [],
+        "y": Array [],
+        "z": Array [],
+      },
+      Object {
+        "connectgaps": false,
+        "hoverinfo": "name",
+        "line": Object {
+          "color": "blue",
+          "shape": "spline",
+          "smoothing": 1.3,
+          "width": 1,
+        },
+        "marker": Object {
+          "symbol": Array [],
+        },
+        "mode": "lines",
+        "name": "H",
+        "orientation": "h",
+        "showlegend": false,
+        "type": "scatter",
+        "x": Array [
+          0,
+          0,
+          1,
+          2,
+          2,
+        ],
+        "xaxis": "x",
+        "y": Array [
+          null,
+          0,
+          0.8414709848078965,
+          0.9092974268256817,
+          null,
+        ],
+        "yaxis": "y2",
+      },
+      Object {
+        "connectgaps": false,
+        "hoverinfo": "name",
+        "line": Object {
+          "color": "blue",
+          "shape": "spline",
+          "smoothing": 1.3,
+          "width": 1,
+        },
+        "marker": Object {
+          "symbol": Array [],
+        },
+        "mode": "lines",
+        "name": "H",
+        "orientation": "v",
+        "showlegend": false,
+        "type": "scatter",
+        "x": Array [
+          null,
+          0,
+          0.8414709848078965,
+          0.9092974268256817,
+          null,
+        ],
+        "xaxis": "x2",
+        "y": Array [
+          0,
+          0,
+          1,
+          2,
+          2,
+        ],
+        "yaxis": "y",
+      },
+      Object {
+        "connectgaps": false,
+        "hoverinfo": "name",
+        "line": Object {
+          "color": "red",
+          "shape": "spline",
+          "smoothing": 1.3,
+          "width": 5,
+        },
+        "marker": Object {
+          "symbol": Array [],
+        },
+        "mode": "lines",
+        "name": "C",
+        "orientation": "h",
+        "showlegend": false,
+        "type": "scatter",
+        "x": Array [
+          0,
+          0,
+          1,
+          2,
+          2,
+        ],
+        "xaxis": "x",
+        "y": Array [
+          null,
+          0,
+          0,
+          0,
+          null,
+        ],
+        "yaxis": "y3",
+      },
+      Object {
+        "connectgaps": false,
+        "hoverinfo": "name",
+        "line": Object {
+          "color": "red",
+          "shape": "spline",
+          "smoothing": 1.3,
+          "width": 5,
+        },
+        "marker": Object {
+          "symbol": Array [],
+        },
+        "mode": "lines",
+        "name": "C",
+        "orientation": "v",
+        "showlegend": false,
+        "type": "scatter",
+        "x": Array [
+          null,
+          0,
+          0,
+          0,
+          null,
+        ],
+        "xaxis": "x3",
+        "y": Array [
+          0,
+          0,
+          1,
+          2,
+          2,
+        ],
+        "yaxis": "y",
+      },
+      Object {
+        "connectgaps": false,
+        "hoverinfo": "name",
+        "line": Object {
+          "color": "blue",
+          "shape": "spline",
+          "smoothing": 1.3,
+          "width": 1,
+        },
+        "marker": Object {
+          "symbol": Array [],
+        },
+        "mode": "lines",
+        "name": "H",
+        "orientation": "h",
+        "showlegend": false,
+        "type": "scatter",
+        "x": Array [
+          11,
+          11,
+          12,
+          13,
+          14,
+          14,
+        ],
+        "xaxis": "x",
+        "y": Array [
+          null,
+          0,
+          0.8414709848078965,
+          0.9092974268256817,
+          0.1411200080598672,
+          null,
+        ],
+        "yaxis": "y3",
+      },
+      Object {
+        "connectgaps": false,
+        "hoverinfo": "name",
+        "line": Object {
+          "color": "blue",
+          "shape": "spline",
+          "smoothing": 1.3,
+          "width": 1,
+        },
+        "marker": Object {
+          "symbol": Array [],
+        },
+        "mode": "lines",
+        "name": "H",
+        "orientation": "v",
+        "showlegend": false,
+        "type": "scatter",
+        "x": Array [
+          null,
+          0,
+          0.8414709848078965,
+          0.9092974268256817,
+          0.1411200080598672,
+          null,
+        ],
+        "xaxis": "x3",
+        "y": Array [
+          11,
+          11,
+          12,
+          13,
+          14,
+          14,
+        ],
+        "yaxis": "y",
+      },
+    ]
+  }
+  dataTransformFn={[Function]}
+  layout={
+    Object {
+      "height": 520,
+      "legend": Object {
+        "orientation": "h",
+        "y": -0.1,
+        "yanchor": "bottom",
+      },
+      "margin": Object {
+        "b": 40,
+        "l": 12,
+      },
+      "showlegend": true,
+      "xaxis": Object {
+        "autorange": false,
+        "nticks": 10,
+        "range": Array [
+          1,
+          100,
+        ],
+        "showline": true,
+        "tickmode": "auto",
+        "title": "Residue #",
+      },
+      "yaxis": Object {
+        "autorange": false,
+        "nticks": 10,
+        "range": Array [
+          100,
+          1,
+        ],
+        "showline": true,
+        "tickmode": "auto",
+        "title": "Residue #",
+      },
+    }
+  }
+  secondaryStructures={
+    Array [
+      Array [
+        Chell1DSection {
+          "label": "H",
+          "sectionEnd": 2,
+          "sectionStart": 0,
+        },
+        Chell1DSection {
+          "label": "E",
+          "sectionEnd": 3,
+          "sectionStart": 3,
+        },
+      ],
+      Array [
+        Chell1DSection {
+          "label": "C",
+          "sectionEnd": 2,
+          "sectionStart": 0,
+        },
+        Chell1DSection {
+          "label": "H",
+          "sectionEnd": 14,
+          "sectionStart": 11,
+        },
+      ],
+    ]
+  }
+/>
+`;
+
 exports[`ContactMapChart Should match existing snapshot when given simple data. 1`] = `
 <PlotlyChartClass
   candidateResidues={Array []}
   config={Object {}}
-  data={Array []}
+  data={
+    Array [
+      Object {
+        "hoverinfo": "x+y+z",
+        "marker": Object {
+          "color": Array [],
+          "size": 0,
+        },
+        "mode": "markers",
+        "name": " undefined",
+        "type": "scattergl",
+        "x": Array [],
+        "y": Array [],
+        "z": Array [],
+      },
+    ]
+  }
   dataTransformFn={[Function]}
   layout={
     Object {
