@@ -138,6 +138,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
           ref={el => (this.canvas = el)}
           style={{ height, width }}
           onMouseLeave={this.onCanvasLeave}
+          onKeyDown={this.onKeyDown}
         />
         <GridRow>
           <Button onClick={this.props.removeAllLockedResiduePairs}>Remove All Locked Distance Pairs</Button>
@@ -258,6 +259,14 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
   protected onCanvasLeave = () => {
     const { removeNonLockedResidues } = this.props;
     removeNonLockedResidues();
+  };
+
+  protected onKeyDown = (e: React.KeyboardEvent) => {
+    const ESC_KEY_CODE = 27;
+
+    if (e.which === ESC_KEY_CODE || e.keyCode === ESC_KEY_CODE) {
+      this.props.removeNonLockedResidues();
+    }
   };
 }
 
