@@ -1,7 +1,18 @@
 // tslint:disable:max-classes-per-file
 declare module 'ngl' {
   import { Signal } from 'signals';
-  import { Box3, Color, Group, OrthographicCamera, PerspectiveCamera, Quaternion, Scene, WebGLRenderer } from 'three';
+  import {
+    Box3,
+    Color,
+    Group,
+    OrthographicCamera,
+    PerspectiveCamera,
+    Quaternion,
+    Scene,
+    Vector2,
+    Vector3,
+    WebGLRenderer,
+  } from 'three';
 
   export type CameraType = 'perspective' | 'orthographic' | 'stereo';
 
@@ -104,6 +115,8 @@ declare module 'ngl' {
 
   export class ViewerControls {
     constructor(stage: Stage);
+
+    public getPositionOnCanvas(position: Vector3, optionalTarget?: Vector2): Vector2;
   }
 
   export class ViewerSignals {}

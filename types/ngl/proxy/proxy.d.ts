@@ -334,7 +334,7 @@ declare module 'ngl' {
      *
      * @returns Target vector.
      */
-    public positionToVector3(v: Vector3): Vector3;
+    public positionToVector3(v?: Vector3): Vector3;
     public qualifiedName(noResname?: boolean): string;
     public toObject(): {
       altloc: string;
