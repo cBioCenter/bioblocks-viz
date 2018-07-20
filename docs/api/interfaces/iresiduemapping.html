@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IImageParameters | chell-viz</title>
+	<title>IResidueMapping | chell-viz</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_ngl_.html">&quot;ngl&quot;</a>
-				</li>
-				<li>
-					<a href="_ngl_.iimageparameters.html">IImageParameters</a>
+					<a href="iresiduemapping.html">IResidueMapping</a>
 				</li>
 			</ul>
-			<h1>Interface IImageParameters</h1>
+			<h1>Interface IResidueMapping</h1>
 		</div>
 	</div>
 </header>
@@ -71,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IImageParameters</span>
+						<span class="target">IResidueMapping</span>
 					</li>
 				</ul>
 			</section>
@@ -82,11 +79,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.iimageparameters.html#antialias" class="tsd-kind-icon">antialias</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.iimageparameters.html#factor" class="tsd-kind-icon">factor</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.iimageparameters.html#onprogress" class="tsd-kind-icon">on<wbr>Progress</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.iimageparameters.html#transparent" class="tsd-kind-icon">transparent</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.iimageparameters.html#trim" class="tsd-kind-icon">trim</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iresiduemapping.html#pdbresname" class="tsd-kind-icon">pdb<wbr>Resname</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iresiduemapping.html#pdbresno" class="tsd-kind-icon">pdb<wbr>Resno</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iresiduemapping.html#uniprotresname" class="tsd-kind-icon">uni<wbr>Prot<wbr>Resname</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iresiduemapping.html#uniprotresno" class="tsd-kind-icon">uni<wbr>Prot<wbr>Resno</a></li>
 							</ul>
 						</section>
 					</div>
@@ -95,54 +91,64 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="antialias" class="tsd-anchor"></a>
-					<h3>antialias</h3>
-					<div class="tsd-signature tsd-kind-icon">antialias<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="pdbresname" class="tsd-anchor"></a>
+					<h3>pdb<wbr>Resname</h3>
+					<div class="tsd-signature tsd-kind-icon">pdb<wbr>Resname<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in types/ngl/viewer/viewer.d.ts:21</li>
+							<li>Defined in src/helper/ResidueMapper.ts:10</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Name of the residue in the PDB file.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="factor" class="tsd-anchor"></a>
-					<h3>factor</h3>
-					<div class="tsd-signature tsd-kind-icon">factor<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="pdbresno" class="tsd-anchor"></a>
+					<h3>pdb<wbr>Resno</h3>
+					<div class="tsd-signature tsd-kind-icon">pdb<wbr>Resno<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in types/ngl/viewer/viewer.d.ts:22</li>
+							<li>Defined in src/helper/ResidueMapper.ts:13</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Number of the residue in the PDB file.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="onprogress" class="tsd-anchor"></a>
-					<h3>on<wbr>Progress</h3>
-					<div class="tsd-signature tsd-kind-icon">on<wbr>Progress<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
+					<a name="uniprotresname" class="tsd-anchor"></a>
+					<h3>uni<wbr>Prot<wbr>Resname</h3>
+					<div class="tsd-signature tsd-kind-icon">uni<wbr>Prot<wbr>Resname<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in types/ngl/viewer/viewer.d.ts:23</li>
+							<li>Defined in src/helper/ResidueMapper.ts:16</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Name of the residue from UniProt.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="transparent" class="tsd-anchor"></a>
-					<h3>transparent</h3>
-					<div class="tsd-signature tsd-kind-icon">transparent<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="uniprotresno" class="tsd-anchor"></a>
+					<h3>uni<wbr>Prot<wbr>Resno</h3>
+					<div class="tsd-signature tsd-kind-icon">uni<wbr>Prot<wbr>Resno<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in types/ngl/viewer/viewer.d.ts:24</li>
+							<li>Defined in src/helper/ResidueMapper.ts:19</li>
 						</ul>
 					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="trim" class="tsd-anchor"></a>
-					<h3>trim</h3>
-					<div class="tsd-signature tsd-kind-icon">trim<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in types/ngl/viewer/viewer.d.ts:25</li>
-						</ul>
-					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Number of the residue from UniProt.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -152,38 +158,26 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_deep_equal_.html">"deep-<wbr>equal"</a>
-					</li>
-					<li class="current tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_ngl_.html">"ngl"</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_spring_.html">"spring"</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="_ngl_.iimageparameters.html" class="tsd-kind-icon">IImage<wbr>Parameters</a>
+					<li class="current tsd-kind-interface">
+						<a href="iresiduemapping.html" class="tsd-kind-icon">IResidue<wbr>Mapping</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.iimageparameters.html#antialias" class="tsd-kind-icon">antialias</a>
+								<a href="iresiduemapping.html#pdbresname" class="tsd-kind-icon">pdb<wbr>Resname</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.iimageparameters.html#factor" class="tsd-kind-icon">factor</a>
+								<a href="iresiduemapping.html#pdbresno" class="tsd-kind-icon">pdb<wbr>Resno</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.iimageparameters.html#onprogress" class="tsd-kind-icon">on<wbr>Progress</a>
+								<a href="iresiduemapping.html#uniprotresname" class="tsd-kind-icon">uni<wbr>Prot<wbr>Resname</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.iimageparameters.html#transparent" class="tsd-kind-icon">transparent</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.iimageparameters.html#trim" class="tsd-kind-icon">trim</a>
+								<a href="iresiduemapping.html#uniprotresno" class="tsd-kind-icon">uni<wbr>Prot<wbr>Resno</a>
 							</li>
 						</ul>
 					</li>

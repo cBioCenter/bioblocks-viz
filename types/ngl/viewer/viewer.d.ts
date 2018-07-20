@@ -5,6 +5,7 @@ declare module 'ngl' {
     Box3,
     Color,
     Group,
+    Matrix4,
     OrthographicCamera,
     PerspectiveCamera,
     Quaternion,
@@ -114,9 +115,97 @@ declare module 'ngl' {
   }
 
   export class ViewerControls {
+    public stage: Stage;
+    public viewer: Viewer;
+
     constructor(stage: Stage);
 
+    // Getters.
+    public position(): Vector3;
+    public rotation(): Quaternion;
+
+    // Methods
+
+    /**
+     * Align scene to basis matrix/
+     *
+     * @param basis Basis matrix.
+     */
+    public align(basis: Matrix4 | number[]): void;
+
+    /**
+     * Apply rotation matrix to scene
+     *
+     * @param matrix Rotation matrix
+     */
+    public applyMatrix(matrix: Matrix4 | number[]): void;
+
+    /**
+     * Center scene.
+     *
+     * @param position Center position.
+     */
+    public center(position: Vector3 | number[]): void;
+
+    /**
+     * Trigger render and emit changed event.
+     */
+    public changed(): void;
+
+    /**
+     * Camera distance.
+     *
+     * @param z Distance.
+     */
+    public distance(z: number): void;
+
+    public getCanvasScaleFactor(z?: number): number;
+
+    /**
+     * Get scene orientation.
+     *
+     * @param [optionalTarget] Pre-allocated target matrix.
+     * @returns Scene orientation.
+     */
+    public getOrientation(optionalTarget?: Matrix4): any;
+
     public getPositionOnCanvas(position: Vector3, optionalTarget?: Vector2): Vector2;
+
+    /**
+     * Set scene orientation.
+     *
+     * @param [orientation] Scene orientation.
+     */
+    public orient(orientation?: Matrix4): void;
+
+    /**
+     * Rotate scene.
+     *
+     * @param quaternion Rotation quaternion.
+     */
+    public rotate(quaternion: Quaternion | number[]): void;
+
+    /**
+     * Spin scene on axis.
+     *
+     * @param axis Rotation axis.
+     * @param angle Amount to spin.
+     */
+    public spin(axis: Vector3 | number[], angle: number): void;
+
+    /**
+     * Translate scene.
+     *
+     * @param vector Translation vector.
+     */
+    public translate(vector: Vector3 | number[]): void;
+
+    /**
+     * Zoom scene
+     *
+     * @param delta zoom change.
+     */
+    public zoom(delta: number): void;
   }
 
   export class ViewerSignals {}

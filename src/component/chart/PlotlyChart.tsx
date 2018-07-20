@@ -264,7 +264,7 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
       .filter(id => id.length >= 2) // Ignores { xaxis: x } and { yaxis: y }.
       .map(id => {
         const axisId = id.substr(0, 1);
-        const axisNum = Number.parseInt(id.substr(1));
+        const axisNum = Number.parseInt(id.substr(1), 10);
         return {
           [`${axisId}axis${axisNum}`]: {
             // TODO Have this number - 0.05 - be configurable. Requires some design work to look good for various numbers of total axes.
