@@ -199,9 +199,9 @@ export const getCouplingScoresData = (line: string): CouplingContainer => {
         j: parseFloat(items[1]),
         // tslint:disable-next-line:object-literal-sort-keys
         cn: parseFloat(items[2]),
+        dist: parseFloat(items[3]),
         A_i: items[10],
         A_j: items[11],
-        dist: parseFloat(items[3]),
         // fn: parseFloat(items[4]),
         // segment_i: items[6],
         // segment_j: items[7],
