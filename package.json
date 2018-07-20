@@ -102,7 +102,7 @@
     "deploy:gh-pages": "gh-pages -d dist && git reset --hard HEAD",
     "predoc": "rm -rf lib node_modules/typedoc/node_modules/typescript/lib",
     "doc": "typedoc --tsconfig ./configs/tsconfig.doc.json",
-    "doc:prepush": "yarn doc && git add docs/api && git add -u docs/api",
+    "doc:prepush": "yarn doc && git add docs/api && git add -u docs/api && git commit -m docs",
     "lint": "npm-run-all lint:*",
     "lint:src": "tslint --project ./",
     "lint:markdown": "markdownlint ./ -c ./markdownlint.json -i node_modules",
