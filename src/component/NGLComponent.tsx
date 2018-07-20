@@ -138,6 +138,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
           ref={el => (this.canvas = el)}
           style={{ height, width }}
           onMouseLeave={this.onCanvasLeave}
+          onKeyDown={this.onKeyDown}
         />
         <GridRow>
           <Button onClick={this.props.removeAllLockedResiduePairs}>Remove All Locked Distance Pairs</Button>
@@ -182,35 +183,54 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
     }
   }
 
-  protected onClick = (pickingProxy: PickingProxy) => {
+  protected onClick = (pickingProxy: PickingProxy, foo: any, ...args: any[]) => {
     const {
       addCandidateResidues,
       addLockedResiduePair,
       candidateResidues,
+      hoveredResidues,
       removeCandidateResidues,
       removeNonLockedResidues,
       removeLockedResiduePair,
     } = this.props;
     const { structureComponent } = this.state;
-    if (pickingProxy && structureComponent) {
-      const isDistancePicker = pickingProxy.picker && pickingProxy.picker.type === 'distance';
+    if (structureComponent) {
+      if (pickingProxy) {
+        const isDistancePicker = pickingProxy.picker && pickingProxy.picker.type === 'distance';
 
-      if (isDistancePicker) {
-        const residues = [pickingProxy.distance.atom1.resno, pickingProxy.distance.atom2.resno];
-        removeLockedResiduePair(residues);
-      } else if (pickingProxy.atom || pickingProxy.closestBondAtom) {
-        const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
+        if (isDistancePicker) {
+          const residues = [pickingProxy.distance.atom1.resno, pickingProxy.distance.atom2.resno];
+          removeLockedResiduePair(residues);
+        } else if (pickingProxy.atom || pickingProxy.closestBondAtom) {
+          const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
 
-        if (candidateResidues.length >= 1) {
-          addLockedResiduePair([...candidateResidues, atom.resno]);
-          removeCandidateResidues();
-        } else {
-          addCandidateResidues([atom.resno]);
+          if (candidateResidues.length >= 1) {
+            addLockedResiduePair([...candidateResidues, atom.resno]);
+            removeCandidateResidues();
+          } else {
+            addCandidateResidues([atom.resno]);
+          }
         }
+      } else if (candidateResidues.length >= 1 && hoveredResidues.length >= 1) {
+        const { canvasPosition } = structureComponent.stage.mouseObserver;
+        hoveredResidues.forEach(residue => {
+          const atomProxy = structureComponent.structure.getAtomProxy(
+            structureComponent.structure.getResidueProxy(residue).getAtomIndexByName('CA|C'),
+          );
+          const atomPosition = structureComponent.stage.viewerControls.getPositionOnCanvas(
+            atomProxy.positionToVector3(),
+          );
+          if (canvasPosition.distanceTo(atomPosition) > 50) {
+            removeNonLockedResidues();
+          } else {
+            addLockedResiduePair([...candidateResidues, residue]);
+            removeCandidateResidues();
+          }
+        });
+      } else {
+        // User clicked off-structure, so clear non-locked residue state.
+        removeNonLockedResidues();
       }
-    } else {
-      // User clicked off-structure, so clear non-locked residue state.
-      removeNonLockedResidues();
     }
   };
 
@@ -258,6 +278,14 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
   protected onCanvasLeave = () => {
     const { removeNonLockedResidues } = this.props;
     removeNonLockedResidues();
+  };
+
+  protected onKeyDown = (e: React.KeyboardEvent) => {
+    const ESC_KEY_CODE = 27;
+
+    if (e.which === ESC_KEY_CODE || e.keyCode === ESC_KEY_CODE) {
+      this.props.removeNonLockedResidues();
+    }
   };
 }
 

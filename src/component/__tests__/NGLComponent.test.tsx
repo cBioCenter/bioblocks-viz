@@ -324,5 +324,21 @@ describe('NGLComponent', () => {
       simulateClickEvent(wrapper, undefined);
       expect(removeNonLockedResiduesSpy).toHaveBeenCalledTimes(1);
     });
+
+    it('Should handle pressing ESC.', async () => {
+      const Component = getComponentWithContext();
+      const removeNonLockedResiduesSpy = jest.fn();
+      const wrapper = mount(
+        <Component.NGLComponentClass
+          data={sampleData}
+          candidateResidues={[1]}
+          hoveredResidues={[2]}
+          removeNonLockedResidues={removeNonLockedResiduesSpy}
+        />,
+      );
+
+      wrapper.find('.NGLCanvas').simulate('keyDown', { keyCode: 27 });
+      expect(removeNonLockedResiduesSpy).toHaveBeenCalledTimes(1);
+    });
   });
 });

@@ -11,6 +11,7 @@ exports[`NGLComponent Should match existing snapshot when canvas isn't available
 >
   <div
     className="NGLCanvas"
+    onKeyDown={[Function]}
     onMouseLeave={[Function]}
     style={
       Object {
@@ -81,6 +82,7 @@ exports[`NGLComponent Should match existing snapshot when given sample data 1`] 
   >
     <div
       className="NGLCanvas"
+      onKeyDown={[Function]}
       onMouseLeave={[Function]}
       style={
         Object {
