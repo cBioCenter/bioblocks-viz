@@ -3,6 +3,7 @@ import { CouplingContainer } from '../data/CouplingContainer';
 import { fetchCSVFile, fetchJSONFile } from './FetchHelper';
 
 import * as NGL from 'ngl';
+
 import { ISpringCategoricalColorData, ISpringCategoricalColorDataInput, ISpringGraphData } from 'spring';
 import { CONTACT_MAP_DATA_TYPE, IContactMapData, VIZ_TYPE } from '../data/chell-data';
 import { ChellPDB } from '../data/ChellPDB';
@@ -141,12 +142,35 @@ export const fetchContactMapData = async (dir: string): Promise<IContactMapData>
   const contactMapFiles = ['coupling_scores.csv', 'distance_map.csv'];
   const promiseResults = await Promise.all(contactMapFiles.map(file => fetchCSVFile(`${dir}/${file}`)));
   const pdbData = await ChellPDB.createPDB(`${dir}/protein.pdb`);
-
   const data: CONTACT_MAP_DATA_TYPE = {
     couplingScores: getCouplingScoresData(promiseResults[0]),
     pdbData,
     secondaryStructures: pdbData.rawsecondaryStructure,
   };
+
+  console.log(data.couplingScores);
+  const seq = new Array<string>();
+  for (let i = 0; i < 300; ++i) {
+    const row = data.couplingScores.allContacts[i];
+    if (row) {
+      for (const col of row) {
+        if (col && col.A_i && col.A_j) {
+          if (col.i < col.j) {
+            // console.log(`${col.i}: ${col.A_i}`);
+            seq.push(col.A_i);
+          } else {
+            // console.log(`${col.j}: ${col.A_j}`);
+            seq.push(col.A_j);
+          }
+
+          break;
+        }
+      }
+    }
+  }
+
+  console.log(seq.join(''));
+
   return data;
 };
 
@@ -167,25 +191,24 @@ export const getCouplingScoresData = (line: string): CouplingContainer => {
   const couplingScores = new CouplingContainer();
   line
     .split('\n')
-    .slice(1)
-    .filter(row => row.split(',').length >= 13)
+    .filter(row => row.split(',').length >= 12)
     .map(row => {
       const items = row.split(',');
       couplingScores.addCouplingScore({
         i: parseFloat(items[0]),
+        j: parseFloat(items[1]),
         // tslint:disable-next-line:object-literal-sort-keys
-        A_i: items[1],
-        j: parseFloat(items[2]),
-        A_j: items[3],
-        fn: parseFloat(items[4]),
-        cn: parseFloat(items[5]),
-        segment_i: items[6],
-        segment_j: items[7],
-        probability: parseFloat(items[8]),
-        dist_intra: parseFloat(items[9]),
-        dist_multimer: parseFloat(items[10]),
-        dist: parseFloat(items[11]),
-        precision: parseFloat(items[12]),
+        cn: parseFloat(items[2]),
+        A_i: items[10],
+        A_j: items[11],
+        dist: parseFloat(items[3]),
+        // fn: parseFloat(items[4]),
+        // segment_i: items[6],
+        // segment_j: items[7],
+        // probability: parseFloat(items[8]),
+        // dist_intra: parseFloat(items[9]),
+        // dist_multimer: parseFloat(items[10]),
+        // precision: parseFloat(items[12]),
       });
     });
   return couplingScores;

@@ -87,20 +87,15 @@ export class ChellPDB {
     couplingScores: ICouplingScore[],
     measuredProximity: CONTACT_DISTANCE_PROXIMITY,
   ) {
-    const { residueStore } = this.nglData;
     const result = new CouplingContainer(couplingScores);
-    const offset = residueStore.resno[0];
     const alphaId = this.nglData.atomMap.dict[this.NGL_C_ALPHA_INDEX];
 
     this.nglData.eachResidue(outerResidue => {
-      const firstResidueIndex = outerResidue.resno - offset;
       this.nglData.eachResidue(innerResidue => {
         if (outerResidue.isProtein() && innerResidue.isProtein()) {
-          const secondResidueIndex = innerResidue.resno - offset;
-
           if (measuredProximity === CONTACT_DISTANCE_PROXIMITY.C_ALPHA) {
-            const firstResidueCAlphaIndex = this.getCAlphaAtomIndexFromResidue(firstResidueIndex, alphaId);
-            const secondResidueCAlphaIndex = this.getCAlphaAtomIndexFromResidue(secondResidueIndex, alphaId);
+            const firstResidueCAlphaIndex = this.getCAlphaAtomIndexFromResidue(outerResidue.index, alphaId);
+            const secondResidueCAlphaIndex = this.getCAlphaAtomIndexFromResidue(innerResidue.index, alphaId);
             result.addCouplingScore({
               dist: this.nglData
                 .getAtomProxy(firstResidueCAlphaIndex)
@@ -110,7 +105,7 @@ export class ChellPDB {
             });
           } else {
             result.addCouplingScore({
-              dist: this.getMinDistBetweenResidues(firstResidueIndex, secondResidueIndex),
+              dist: this.getMinDistBetweenResidues(outerResidue.index, innerResidue.index),
               i: outerResidue.resno,
               j: innerResidue.resno,
             });
