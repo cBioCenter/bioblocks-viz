@@ -107,6 +107,7 @@
     "lint:src": "tslint --project ./",
     "lint:markdown": "markdownlint ./ -c ./markdownlint.json -i node_modules",
     "precommit": "lint-staged && yarn test:staged && yarn doc:precommit",
+    "prepush": "yarn lint",
     "prepublish": "rm -rf lib && tsc -p configs/tsconfig.publish.json",
     "start": "webpack-dev-server --open --mode development --config ./configs/webpack.dev.ts",
     "start:hot": "webpack-dev-server --hot-only --open --mode development --config ./configs/webpack.dev.ts",
