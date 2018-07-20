@@ -12,6 +12,7 @@ import {
   createSecStructRepresentation,
 } from '../helper/NGLHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
+// import ChellTooltip from './widget/ChellTooltip';
 
 export type NGL_HOVER_CB_RESULT_TYPE = number;
 
@@ -133,6 +134,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
     const { height, padding, width } = this.props;
     return (
       <div className="NGLComponent" style={{ padding }}>
+        {/* <ChellTooltip message={'hi!'} />*/}
         <div
           className="NGLCanvas"
           ref={el => (this.canvas = el)}

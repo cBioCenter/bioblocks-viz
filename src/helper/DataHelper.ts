@@ -7,6 +7,7 @@ import * as NGL from 'ngl';
 import { ISpringCategoricalColorData, ISpringCategoricalColorDataInput, ISpringGraphData } from 'spring';
 import { CONTACT_MAP_DATA_TYPE, IContactMapData, VIZ_TYPE } from '../data/chell-data';
 import { ChellPDB } from '../data/ChellPDB';
+import { generateResidueMapping, IResidueMapping } from './ResidueMapper';
 
 export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
   switch (viz) {
@@ -77,9 +78,9 @@ const fetchCategoricalColorData = async (file: string): Promise<ISpringCategoric
     if (typeof hex === 'number') {
       output.label_colors[key] = hex;
     } else if (hex.charAt(0) === '#') {
-      output.label_colors[key] = Number.parseInt('0x' + hex.slice(1));
+      output.label_colors[key] = Number.parseInt('0x' + hex.slice(1), 16);
     } else {
-      output.label_colors[key] = Number.parseInt(hex);
+      output.label_colors[key] = Number.parseInt(hex, 16);
     }
   }
   return output;
@@ -139,77 +140,58 @@ export const fetchContactMapData = async (dir: string): Promise<IContactMapData>
   if (dir.length === 0) {
     return Promise.reject('Empty path.');
   }
-  const contactMapFiles = ['coupling_scores.csv', 'distance_map.csv'];
+  const contactMapFiles = ['coupling_scores.csv', 'residue_mapping.csv'];
   const promiseResults = await Promise.all(contactMapFiles.map(file => fetchCSVFile(`${dir}/${file}`)));
   const pdbData = await ChellPDB.createPDB(`${dir}/protein.pdb`);
   const data: CONTACT_MAP_DATA_TYPE = {
-    couplingScores: getCouplingScoresData(promiseResults[0]),
+    couplingScores: getCouplingScoresData(promiseResults[0], generateResidueMapping(promiseResults[1])),
     pdbData,
     secondaryStructures: pdbData.rawsecondaryStructure,
   };
-
-  console.log(data.couplingScores);
-  const seq = new Array<string>();
-  for (let i = 0; i < 300; ++i) {
-    const row = data.couplingScores.allContacts[i];
-    if (row) {
-      for (const col of row) {
-        if (col && col.A_i && col.A_j) {
-          if (col.i < col.j) {
-            // console.log(`${col.i}: ${col.A_i}`);
-            seq.push(col.A_i);
-          } else {
-            // console.log(`${col.j}: ${col.A_j}`);
-            seq.push(col.A_j);
-          }
-
-          break;
-        }
-      }
-    }
-  }
-
-  console.log(seq.join(''));
 
   return data;
 };
 
 /**
- * Parses a coupling_scores.csv file to generate the appropriate data structure.
+ * Parses a coupling_scores.csv file to generate the appropriate data structure
+ *
  *
  * !Important!
- * The first line in the csv will be ignored as it is assumed to be a csv header.
- *
- * !Important!
- * Currently 13 fields are assumed to be part of a single coupling score.
- * As such, any rows with less thirteen will be ignored.
+ * Currently 12 fields are assumed to be part of a single coupling score.
+ * As such, any rows with less will be ignored.
  *
  * @param line The csv file as a single string.
+ * @param residueMapping Maps the coupling_score.csv residue number to the pdb's residue number.
  * @returns Array of CouplingScores suitable for chell-viz consumption.
  */
-export const getCouplingScoresData = (line: string): CouplingContainer => {
+export const getCouplingScoresData = (line: string, residueMapping: IResidueMapping[] = []): CouplingContainer => {
   const couplingScores = new CouplingContainer();
   line
     .split('\n')
     .filter(row => row.split(',').length >= 12)
     .map(row => {
       const items = row.split(',');
-      couplingScores.addCouplingScore({
-        i: parseFloat(items[0]),
-        j: parseFloat(items[1]),
-        // tslint:disable-next-line:object-literal-sort-keys
-        cn: parseFloat(items[2]),
-        dist: parseFloat(items[3]),
-        A_i: items[10],
-        A_j: items[11],
-        // fn: parseFloat(items[4]),
-        // segment_i: items[6],
-        // segment_j: items[7],
-        // probability: parseFloat(items[8]),
-        // dist_intra: parseFloat(items[9]),
-        // dist_multimer: parseFloat(items[10]),
-        // precision: parseFloat(items[12]),
-      });
+      const uniProtIndexI = parseInt(items[0], 10) - 1;
+      const uniProtIndexJ = parseInt(items[1], 10) - 1;
+      if (residueMapping.length >= 1) {
+        couplingScores.addCouplingScore({
+          A_i: residueMapping[uniProtIndexI].pdbResname,
+          A_j: residueMapping[uniProtIndexJ].pdbResname,
+          cn: parseFloat(items[2]),
+          dist: parseFloat(items[3]),
+          i: residueMapping[uniProtIndexI].pdbResno,
+          j: residueMapping[uniProtIndexJ].pdbResno,
+        });
+      } else {
+        couplingScores.addCouplingScore({
+          A_i: items[10],
+          A_j: items[11],
+          cn: parseFloat(items[2]),
+          dist: parseFloat(items[3]),
+          i: parseInt(items[0], 10),
+          j: parseInt(items[1], 10),
+        });
+      }
     });
   return couplingScores;
 };
