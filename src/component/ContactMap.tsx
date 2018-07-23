@@ -272,7 +272,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
   protected onMouseLeave = (cb?: (residue: RESIDUE_TYPE[]) => void) => (e: ChellChartEvent) => {
     if (e.isAxis()) {
-      const { selectedSecondaryStructures, data, removeSecondaryStructure } = this.props;
+      const { data, removeSecondaryStructure, selectedSecondaryStructures } = this.props;
 
       for (const secondaryStructure of data.secondaryStructures) {
         for (const section of secondaryStructure) {

@@ -14,6 +14,22 @@ export default class AuxiliaryAxis<T extends string> {
     return this.axes;
   }
 
+  public get xAxes() {
+    const result = new Array<Partial<IPlotlyData>>();
+    this.axes.forEach(value => {
+      result.push(value.x);
+    });
+    return result;
+  }
+
+  public get yAxes() {
+    const result = new Array<Partial<IPlotlyData>>();
+    this.axes.forEach(value => {
+      result.push(value.y);
+    });
+    return result;
+  }
+
   constructor(
     readonly sections: Array<Chell1DSection<T>>,
     readonly axisIndex: number = 2,
@@ -91,7 +107,7 @@ export default class AuxiliaryAxis<T extends string> {
       color: this.colorMap && this.colorMap[key] ? this.colorMap[key] : this.defaultColor,
       shape: 'spline',
       smoothing: 1.3,
-      width: 2,
+      width: 1.5,
     },
     marker: {
       symbol: [],
