@@ -155,6 +155,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
         onUnHoverCallback={this.onMouseLeave(removeHoveredResidues)}
         range={chainLength + 5}
         secondaryStructures={data.secondaryStructures}
+        selectedSecondaryStructures={[this.props.selectedSecondaryStructures]}
       />
     );
   }

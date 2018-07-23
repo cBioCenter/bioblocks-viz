@@ -28,6 +28,7 @@ export interface IContactMapChartProps {
   onUnHoverCallback: (...args: any[]) => void;
   range: number;
   secondaryStructures: SECONDARY_STRUCTURE[];
+  selectedSecondaryStructures: SECONDARY_STRUCTURE[];
 }
 
 export interface IContactMapChartState {
@@ -47,6 +48,7 @@ const defaultContactMapChartProps: Partial<IContactMapChartProps> = {
   },
   range: 100,
   secondaryStructures: [],
+  selectedSecondaryStructures: [],
 };
 
 export interface IContactMapChartData extends Partial<IPlotlyData> {
@@ -117,8 +119,12 @@ class ContactMapChartClass extends React.Component<IContactMapChartProps, IConta
   }
 
   public componentDidUpdate(prevProps: IContactMapChartProps) {
-    const { contactData, secondaryStructures } = this.props;
-    if (prevProps.contactData !== contactData || prevProps.secondaryStructures !== secondaryStructures) {
+    const { contactData, secondaryStructures, selectedSecondaryStructures } = this.props;
+    if (
+      prevProps.contactData !== contactData ||
+      prevProps.secondaryStructures !== secondaryStructures ||
+      prevProps.selectedSecondaryStructures !== selectedSecondaryStructures
+    ) {
       this.setupData();
     }
   }
@@ -165,14 +171,17 @@ class ContactMapChartClass extends React.Component<IContactMapChartProps, IConta
   }
 
   protected setupData() {
-    const { contactData, dataTransformFn, secondaryStructures } = this.props;
+    const { contactData, dataTransformFn, secondaryStructures, selectedSecondaryStructures } = this.props;
     const plotlyData = [...contactData.map(entry => dataTransformFn(entry, true))];
-    secondaryStructures.forEach((secondaryStructure, index) => {
-      const axis = new SecondaryStructureAxis(secondaryStructure, index).axis;
-      const axisData = Array.from(axis.values()).reduce((prev, cur) => {
-        prev.push(...[cur.x, cur.y]);
-        return prev;
-      }, new Array());
+    [...secondaryStructures, ...selectedSecondaryStructures].forEach((secondaryStructure, index) => {
+      const axis =
+        secondaryStructure.length === 11
+          ? new SecondaryStructureAxis(secondaryStructure, index).axis
+          : new SecondaryStructureAxis(secondaryStructure, 0, 2, 'highlight').axis;
+      const axisData = Array.from(axis.values()).reduce((result, cur) => {
+        result.push(...[cur.x, cur.y]);
+        return result;
+      }, new Array<Partial<IPlotlyData>>());
       plotlyData.push(...axisData);
     });
     this.setState({

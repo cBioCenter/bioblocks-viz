@@ -38,6 +38,7 @@ describe('SecondaryStructureAxis', () => {
       [...genSeqEntry('B', 0), ...genSeqEntry('C', 1), ...genSeqEntry('E', 2)],
       0,
       0,
+      'axis',
       newColorMap,
     );
     expect(result.axis.get('B')).not.toBeUndefined();
