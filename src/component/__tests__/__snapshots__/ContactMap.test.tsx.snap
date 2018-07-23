@@ -50,6 +50,11 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
     onUnHoverCallback={[Function]}
     range={64}
     secondaryStructures={Array []}
+    selectedSecondaryStructures={
+      Array [
+        Array [],
+      ]
+    }
   />
   <Accordion
     fluid={true}
@@ -841,6 +846,11 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           ],
         ]
       }
+      selectedSecondaryStructures={
+        Array [
+          Array [],
+        ]
+      }
     >
       <PlotlyChartClass
         candidateResidues={Array []}
@@ -1083,6 +1093,11 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 "start": 30,
               },
             ],
+          ]
+        }
+        selectedSecondaryStructures={
+          Array [
+            Array [],
           ]
         }
       >

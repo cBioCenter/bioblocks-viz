@@ -23,10 +23,10 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
         "connectgaps": false,
         "hoverinfo": "name",
         "line": Object {
-          "color": "blue",
+          "color": "orange",
           "shape": "spline",
           "smoothing": 1.3,
-          "width": 1,
+          "width": 2,
         },
         "marker": Object {
           "symbol": Array [],
@@ -46,9 +46,9 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
         "xaxis": "x",
         "y": Array [
           null,
-          0,
-          0.8414709848078965,
-          0.9092974268256817,
+          -1,
+          -1,
+          -1,
           null,
         ],
         "yaxis": "y2",
@@ -57,10 +57,10 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
         "connectgaps": false,
         "hoverinfo": "name",
         "line": Object {
-          "color": "blue",
+          "color": "orange",
           "shape": "spline",
           "smoothing": 1.3,
-          "width": 1,
+          "width": 2,
         },
         "marker": Object {
           "symbol": Array [],
@@ -72,9 +72,9 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
         "type": "scatter",
         "x": Array [
           null,
-          0,
-          0.8414709848078965,
-          0.9092974268256817,
+          -1,
+          -1,
+          -1,
           null,
         ],
         "xaxis": "x2",
@@ -143,6 +143,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
       ],
     ]
   }
+  selectedSecondaryStructures={Array []}
 />
 `;
 
@@ -169,10 +170,10 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
         "connectgaps": false,
         "hoverinfo": "name",
         "line": Object {
-          "color": "blue",
+          "color": "orange",
           "shape": "spline",
           "smoothing": 1.3,
-          "width": 1,
+          "width": 2,
         },
         "marker": Object {
           "symbol": Array [],
@@ -192,9 +193,9 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
         "xaxis": "x",
         "y": Array [
           null,
-          0,
-          0.8414709848078965,
-          0.9092974268256817,
+          -1,
+          -1,
+          -1,
           null,
         ],
         "yaxis": "y2",
@@ -203,10 +204,10 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
         "connectgaps": false,
         "hoverinfo": "name",
         "line": Object {
-          "color": "blue",
+          "color": "orange",
           "shape": "spline",
           "smoothing": 1.3,
-          "width": 1,
+          "width": 2,
         },
         "marker": Object {
           "symbol": Array [],
@@ -218,9 +219,9 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
         "type": "scatter",
         "x": Array [
           null,
-          0,
-          0.8414709848078965,
-          0.9092974268256817,
+          -1,
+          -1,
+          -1,
           null,
         ],
         "xaxis": "x2",
@@ -237,10 +238,10 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
         "connectgaps": false,
         "hoverinfo": "name",
         "line": Object {
-          "color": "red",
+          "color": "orange",
           "shape": "spline",
           "smoothing": 1.3,
-          "width": 5,
+          "width": 2,
         },
         "marker": Object {
           "symbol": Array [],
@@ -260,21 +261,21 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
         "xaxis": "x",
         "y": Array [
           null,
-          0,
-          0,
-          0,
+          -1,
+          -1,
+          -1,
           null,
         ],
-        "yaxis": "y3",
+        "yaxis": "y2",
       },
       Object {
         "connectgaps": false,
         "hoverinfo": "name",
         "line": Object {
-          "color": "red",
+          "color": "orange",
           "shape": "spline",
           "smoothing": 1.3,
-          "width": 5,
+          "width": 2,
         },
         "marker": Object {
           "symbol": Array [],
@@ -286,12 +287,12 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
         "type": "scatter",
         "x": Array [
           null,
-          0,
-          0,
-          0,
+          -1,
+          -1,
+          -1,
           null,
         ],
-        "xaxis": "x3",
+        "xaxis": "x2",
         "y": Array [
           0,
           0,
@@ -305,10 +306,10 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
         "connectgaps": false,
         "hoverinfo": "name",
         "line": Object {
-          "color": "blue",
+          "color": "orange",
           "shape": "spline",
           "smoothing": 1.3,
-          "width": 1,
+          "width": 2,
         },
         "marker": Object {
           "symbol": Array [],
@@ -329,22 +330,22 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
         "xaxis": "x",
         "y": Array [
           null,
-          0,
-          0.8414709848078965,
-          0.9092974268256817,
-          0.1411200080598672,
+          -1,
+          -1,
+          -1,
+          -1,
           null,
         ],
-        "yaxis": "y3",
+        "yaxis": "y2",
       },
       Object {
         "connectgaps": false,
         "hoverinfo": "name",
         "line": Object {
-          "color": "blue",
+          "color": "orange",
           "shape": "spline",
           "smoothing": 1.3,
-          "width": 1,
+          "width": 2,
         },
         "marker": Object {
           "symbol": Array [],
@@ -356,13 +357,13 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
         "type": "scatter",
         "x": Array [
           null,
-          0,
-          0.8414709848078965,
-          0.9092974268256817,
-          0.1411200080598672,
+          -1,
+          -1,
+          -1,
+          -1,
           null,
         ],
-        "xaxis": "x3",
+        "xaxis": "x2",
         "y": Array [
           11,
           11,
@@ -441,6 +442,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
       ],
     ]
   }
+  selectedSecondaryStructures={Array []}
 />
 `;
 
@@ -504,5 +506,6 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
     }
   }
   secondaryStructures={Array []}
+  selectedSecondaryStructures={Array []}
 />
 `;

@@ -28,16 +28,19 @@ export default class SecondaryStructureAxis {
    *       C: 'red',
    *       E: 'green',
    *       H: 'blue',
+   *       HIGHLIGHT: 'orange',
    *     }] How to color the different secondary structure types.
    */
   constructor(
     sequence: SECONDARY_STRUCTURE,
     axisIndex: number = 0,
     readonly minimumRequiredResidues: number = 2,
+    readonly renderType = 'axis' as 'axis' | 'highlight',
     readonly colorMap: { [key: string]: string } = {
       C: 'red',
       E: 'green',
       H: 'blue',
+      HIGHLIGHT: 'orange',
     },
   ) {
     this.setupSecondaryStructureAxes(sequence, axisIndex + 2);
@@ -53,7 +56,11 @@ export default class SecondaryStructureAxis {
 
     for (let i = section.start; i <= section.end; ++i) {
       result.main.push(i);
-      result.opposite.push(isHelix ? Math.sin(i - section.start) : 0);
+      if (this.renderType === 'axis') {
+        result.opposite.push(isHelix ? Math.sin(i - section.start) : 0);
+      } else {
+        result.opposite.push(-1);
+      }
     }
 
     result.main.push(section.end);
@@ -80,7 +87,7 @@ export default class SecondaryStructureAxis {
       }
 
       const { label } = section;
-      if (!this.axes.get(label)) {
+      if (!this.axes.has(label)) {
         this.axes.set(label, {
           x: this.generateXAxisSecStructSegment(label, axisIndex),
           y: this.generateYAxisSecStructSegment(label, axisIndex),
@@ -93,7 +100,7 @@ export default class SecondaryStructureAxis {
       (this.axes.get(label)!.y.y! as Datum[]).push(...points.main);
       (this.axes.get(label)!.y.x! as Datum[]).push(...points.opposite);
 
-      if (section.label === 'E') {
+      if (section.label === 'E' && this.renderType !== 'highlight') {
         const symbols = new Array<string>(this.axes.get(label)!.x.x!.length);
         for (let i = 0; i < symbols.length - 2; ++i) {
           symbols[i] = 'line-ne';
@@ -156,10 +163,10 @@ export default class SecondaryStructureAxis {
     connectgaps: false,
     hoverinfo: 'name',
     line: {
-      color: this.colorMap[code],
+      color: this.renderType === 'highlight' ? this.colorMap.HIGHLIGHT : this.colorMap[code],
       shape: 'spline',
       smoothing: 1.3,
-      width: code === 'H' ? 1 : 5,
+      width: this.renderType === 'highlight' ? 2 : code === 'H' ? 1 : 5,
     },
     marker: {
       symbol: [],
