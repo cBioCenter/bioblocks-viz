@@ -5,10 +5,11 @@ import * as React from 'react';
 
 import { RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../../data/chell-data';
 
-import SecondaryStructureAxis from '../../data/SecondaryStructureAxis';
 import { generateScatterGLData } from '../../helper/PlotlyHelper';
 import { withDefaultProps } from '../../helper/ReactHelper';
+import AuxiliaryAxis from './AuxiliaryAxis';
 import PlotlyChart, { defaultPlotlyLayout, IPlotlyData } from './PlotlyChart';
+import SecondaryStructureAxis from './SecondaryStructureAxis';
 
 export interface IContactMapChartProps {
   candidateResidues: RESIDUE_TYPE[];
@@ -173,17 +174,24 @@ class ContactMapChartClass extends React.Component<IContactMapChartProps, IConta
   protected setupData() {
     const { contactData, dataTransformFn, secondaryStructures, selectedSecondaryStructures } = this.props;
     const plotlyData = [...contactData.map(entry => dataTransformFn(entry, true))];
-    [...secondaryStructures, ...selectedSecondaryStructures].forEach((secondaryStructure, index) => {
-      const axis =
-        secondaryStructure.length === 11
-          ? new SecondaryStructureAxis(secondaryStructure, index).axis
-          : new SecondaryStructureAxis(secondaryStructure, 0, 2, 'highlight').axis;
+    secondaryStructures.forEach((secondaryStructure, index) => {
+      const axis = new SecondaryStructureAxis(secondaryStructure, 2, index + 2).axis;
       const axisData = Array.from(axis.values()).reduce((result, cur) => {
         result.push(...[cur.x, cur.y]);
         return result;
       }, new Array<Partial<IPlotlyData>>());
       plotlyData.push(...axisData);
     });
+
+    selectedSecondaryStructures.forEach((selectedStructure, index) => {
+      const axis = new AuxiliaryAxis(selectedStructure, index + 2, 'orange').axis;
+      const axisData = Array.from(axis.values()).reduce((result, cur) => {
+        result.push(...[cur.x, cur.y]);
+        return result;
+      }, new Array<Partial<IPlotlyData>>());
+      plotlyData.push(...axisData);
+    });
+
     this.setState({
       plotlyData,
     });
