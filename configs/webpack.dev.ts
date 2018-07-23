@@ -1,7 +1,7 @@
 import { Config } from 'html-webpack-plugin';
 import * as webpack from 'webpack';
 import * as merge from 'webpack-merge';
-import * as common from 'webpack.common';
+import * as common from '../webpack.common';
 
 const devConfig: Config = {
   devServer: {
