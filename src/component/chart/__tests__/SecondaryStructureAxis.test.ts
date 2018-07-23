@@ -1,6 +1,7 @@
-import { SECONDARY_STRUCTURE, SECONDARY_STRUCTURE_CODES, SECONDARY_STRUCTURE_KEYS } from '../chell-data';
-import Chell1DSection from '../Chell1DSection';
-import { IAxisMapping, SecondaryStructureAxis } from '../SecondaryStructureAxis';
+import { SECONDARY_STRUCTURE, SECONDARY_STRUCTURE_CODES, SECONDARY_STRUCTURE_KEYS } from '../../../data/chell-data';
+import Chell1DSection from '../../../data/Chell1DSection';
+import { IAxisMapping } from '../AuxiliaryAxis';
+import { SecondaryStructureAxis } from '../SecondaryStructureAxis';
 
 describe('SecondaryStructureAxis', () => {
   const genSeqEntry = (
@@ -30,20 +31,17 @@ describe('SecondaryStructureAxis', () => {
 
   it('Should allow custom color mappings.', () => {
     const newColorMap = {
-      B: 'black',
       C: 'purple',
       E: 'orange',
+      H: 'black',
     };
     const result = new SecondaryStructureAxis(
-      [...genSeqEntry('B', 0), ...genSeqEntry('C', 1), ...genSeqEntry('E', 2)],
+      [...genSeqEntry('C', 1), ...genSeqEntry('E', 2), ...genSeqEntry('H', 0)],
       0,
-      0,
-      'axis',
+      2,
+      'black',
       newColorMap,
     );
-    expect(result.axis.get('B')).not.toBeUndefined();
-    expect(result.axis.get('B')!.x.line!.color).toBe('black');
-    expect(result.axis.get('B')!.y.line!.color).toBe('black');
 
     expect(result.axis.get('C')).not.toBeUndefined();
     expect(result.axis.get('C')!.x.line!.color).toBe('purple');
@@ -52,6 +50,10 @@ describe('SecondaryStructureAxis', () => {
     expect(result.axis.get('E')).not.toBeUndefined();
     expect(result.axis.get('E')!.x.line!.color).toBe('orange');
     expect(result.axis.get('E')!.y.line!.color).toBe('orange');
+
+    expect(result.axis.get('H')).not.toBeUndefined();
+    expect(result.axis.get('H')!.x.line!.color).toBe('black');
+    expect(result.axis.get('H')!.y.line!.color).toBe('black');
   });
 
   describe('Alpha Helix', () => {

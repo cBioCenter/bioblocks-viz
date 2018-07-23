@@ -40,9 +40,11 @@ export class SecondaryStructureContextHandler extends React.Component<any, Secon
   }
 
   protected onAddSecondaryStructure = () => (section: SECONDARY_STRUCTURE_SECTION) => {
-    this.setState({
-      selectedSecondaryStructures: [...this.state.selectedSecondaryStructures, section],
-    });
+    if (!this.state.selectedSecondaryStructures.includes(section)) {
+      this.setState({
+        selectedSecondaryStructures: [...this.state.selectedSecondaryStructures, section],
+      });
+    }
   };
 
   protected onClearSecondaryStructure = () => () => {
