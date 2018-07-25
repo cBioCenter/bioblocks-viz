@@ -1,6 +1,6 @@
 // We need to use dist/plotly to avoid forcing users to do some webpack gymnastics:
 // https://github.com/plotly/plotly-webpack#the-easy-way-recommended
-import * as plotly from 'plotly.js';
+import * as plotly from 'plotly.js/dist/plotly';
 import * as React from 'react';
 
 import { RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../../data/chell-data';
