@@ -237,6 +237,7 @@
 								<li class="tsd-kind-function"><a href="globals.html#generatescattergldata" class="tsd-kind-icon">generate<wbr>ScatterGLData</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#getcouplingscoresdata" class="tsd-kind-icon">get<wbr>Coupling<wbr>Scores<wbr>Data</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#getsecondarystructuredata" class="tsd-kind-icon">get<wbr>Secondary<wbr>Structure<wbr>Data</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#readuploadedfileastext" class="tsd-kind-icon">read<wbr>Uploaded<wbr>File<wbr>AsText</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#withdefaultprops" class="tsd-kind-icon">with<wbr>Default<wbr>Props</a></li>
 							</ul>
 						</section>
@@ -684,7 +685,7 @@
 					<div class="tsd-signature tsd-kind-icon">Viz<wbr>Panel<wbr>Container<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/container/VizPanelContainer.tsx:21</li>
+							<li>Defined in src/container/VizPanelContainer.tsx:24</li>
 						</ul>
 					</aside>
 				</section>
@@ -694,7 +695,7 @@
 					<div class="tsd-signature tsd-kind-icon">Viz<wbr>Panel<wbr>Container<wbr>State<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/container/VizPanelContainer.tsx:25</li>
+							<li>Defined in src/container/VizPanelContainer.tsx:28</li>
 						</ul>
 					</aside>
 				</section>
@@ -899,7 +900,7 @@
 					<div class="tsd-signature tsd-kind-icon">Viz<wbr>Panel<wbr>Container<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;withDefaultProps(defaultVizPanelProps, VizPanelContainerClass)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/container/VizPanelContainer.tsx:111</li>
+							<li>Defined in src/container/VizPanelContainer.tsx:162</li>
 						</ul>
 					</aside>
 				</section>
@@ -1750,6 +1751,29 @@
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a><span class="tsd-signature-symbol">[]</span></h4>
 							<p>Array of SecondaryStructure mappings suitable for chell-viz consumption.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="readuploadedfileastext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> read<wbr>Uploaded<wbr>File<wbr>AsText</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">read<wbr>Uploaded<wbr>File<wbr>AsText<span class="tsd-signature-symbol">(</span>inputFile<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">File</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/helper/FetchHelper.ts:23</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>inputFile: <span class="tsd-signature-type">File</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -2662,7 +2686,7 @@
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in src/component/VizSelectorPanel.tsx:12</li>
-							<li>Defined in src/container/VizPanelContainer.tsx:10</li>
+							<li>Defined in src/container/VizPanelContainer.tsx:13</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -2696,7 +2720,7 @@
 						<div class="tsd-signature tsd-kind-icon">initial<wbr>Visualizations<span class="tsd-signature-symbol">:</span> <a href="enums/viz_type.html" class="tsd-signature-type">VIZ_TYPE</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[] as VIZ_TYPE[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/container/VizPanelContainer.tsx:11</li>
+								<li>Defined in src/container/VizPanelContainer.tsx:14</li>
 							</ul>
 						</aside>
 					</section>
@@ -2716,7 +2740,7 @@
 						<div class="tsd-signature tsd-kind-icon">num<wbr>Panels<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">1</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">2</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">3</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">4</span><span class="tsd-signature-symbol"> =&nbsp;1 as 1 | 2 | 3 | 4</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/container/VizPanelContainer.tsx:13</li>
+								<li>Defined in src/container/VizPanelContainer.tsx:16</li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -3059,7 +3083,7 @@
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in src/component/VizSelectorPanel.tsx:21</li>
-							<li>Defined in src/container/VizPanelContainer.tsx:16</li>
+							<li>Defined in src/container/VizPanelContainer.tsx:19</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -3068,7 +3092,7 @@
 						<div class="tsd-signature tsd-kind-icon">current<wbr>Data<wbr>Dir<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/container/VizPanelContainer.tsx:17</li>
+								<li>Defined in src/container/VizPanelContainer.tsx:20</li>
 							</ul>
 						</aside>
 					</section>
@@ -3078,7 +3102,7 @@
 						<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;{} as Partial&lt;{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }&gt;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/container/VizPanelContainer.tsx:18</li>
+								<li>Defined in src/container/VizPanelContainer.tsx:21</li>
 							</ul>
 						</aside>
 						<div class="tsd-type-declaration">
@@ -3526,6 +3550,9 @@
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#getsecondarystructuredata" class="tsd-kind-icon">get<wbr>Secondary<wbr>Structure<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#readuploadedfileastext" class="tsd-kind-icon">read<wbr>Uploaded<wbr>File<wbr>AsText</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#withdefaultprops" class="tsd-kind-icon">with<wbr>Default<wbr>Props</a>

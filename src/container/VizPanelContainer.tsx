@@ -1,11 +1,14 @@
 import * as React from 'react';
-import { Dropdown, Grid, GridColumn, GridRow } from 'semantic-ui-react';
+import { Button, Dropdown, Grid, GridColumn, GridRow, Label } from 'semantic-ui-react';
 import { CHELL_DATA_TYPE, VIZ_TYPE } from '../data/chell-data';
 
 import VizSelectorPanel from '../component/VizSelectorPanel';
 import ChellContext from '../context/ChellContext';
-import { fetchAppropriateData } from '../helper/DataHelper';
+import { ChellPDB } from '../data/ChellPDB';
+import { fetchAppropriateData, getCouplingScoresData } from '../helper/DataHelper';
+import { readUploadedFileAsText } from '../helper/FetchHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
+import { generateResidueMapping } from '../helper/ResidueMapper';
 
 export const defaultVizPanelProps = {
   initialVisualizations: [] as VIZ_TYPE[],
@@ -83,6 +86,8 @@ export class VizPanelContainerClass extends React.Component<VizPanelContainerPro
             (panel, index) => <GridColumn key={index}>{panel}</GridColumn>,
           )}
         </ChellContext>
+
+        {this.renderFileUploadForm()}
       </Grid>
     );
   }
@@ -100,6 +105,52 @@ export class VizPanelContainerClass extends React.Component<VizPanelContainerPro
     }
     return result;
   }
+
+  protected renderFileUploadForm = () => (
+    <Label as="label" basic={true} htmlFor="upload">
+      <Button
+        icon="upload"
+        label={{
+          basic: true,
+          content: 'Upload',
+        }}
+        labelPosition="right"
+      />
+      <input id="upload" onChange={this.onDataUpload} hidden={true} type={'file'} multiple={true} required={true} />
+    </Label>
+  );
+
+  protected onDataUpload = async (e: React.ChangeEvent) => {
+    const fileList = (e.target as HTMLInputElement).files;
+    if (fileList) {
+      const files = Array.from(fileList);
+      const pdbIndex = files.findIndex(file => file.name.endsWith('.pdb'));
+      const mappingIndex = files.findIndex(file => file.name.localeCompare('residue_mapping.csv') === 0);
+      const couplingIndex = files.findIndex((file, index) => file.name.endsWith('.csv') && index !== mappingIndex);
+      if (pdbIndex === -1 || mappingIndex === -1 || couplingIndex === -1) {
+        alert(
+          'Incorrect files uploaded! Please upload a file named residue_mapping.csv as well as a .pdb and .csv file!',
+        );
+      } else {
+        const pdbData = await ChellPDB.createPDBFromFile(files[pdbIndex]);
+        const couplingResult = await readUploadedFileAsText(files[couplingIndex]);
+        const mappingResult = await readUploadedFileAsText(files[mappingIndex]);
+
+        const data = {
+          couplingScores: getCouplingScoresData(couplingResult, generateResidueMapping(mappingResult)),
+          pdbData,
+          secondaryStructures: pdbData.rawsecondaryStructure,
+        };
+
+        this.setState({
+          data: {
+            ...this.state.data,
+            'Contact Map': data,
+          },
+        });
+      }
+    }
+  };
 
   protected onDataDirChange = (event: React.SyntheticEvent<any>, data: any) => {
     this.setState({
