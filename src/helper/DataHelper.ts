@@ -184,8 +184,8 @@ export const getCouplingScoresData = (line: string, residueMapping: IResidueMapp
         });
       } else {
         couplingScores.addCouplingScore({
-          A_i: items[10],
-          A_j: items[11],
+          A_i: items[items.length - 3],
+          A_j: items[items.length - 2],
           cn: parseFloat(items[2]),
           dist: parseFloat(items[3]),
           i: parseInt(items[0], 10),

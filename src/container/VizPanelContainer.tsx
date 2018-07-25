@@ -146,6 +146,7 @@ export class VizPanelContainerClass extends React.Component<VizPanelContainerPro
           data: {
             ...this.state.data,
             'Contact Map': data,
+            NGL: pdbData.nglStructure,
           },
         });
       }

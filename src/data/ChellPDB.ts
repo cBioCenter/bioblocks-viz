@@ -70,11 +70,15 @@ export class ChellPDB {
 
   public static async createPDBFromFile(file: File) {
     const result = new ChellPDB();
-    result.nglData = await await NGL.autoLoad(file);
+    result.nglData = await NGL.autoLoad(file);
     return result;
   }
 
   protected nglData: NGL.Structure = new NGL.Structure();
+  public get nglStructure() {
+    return this.nglData;
+  }
+
   protected readonly NGL_C_ALPHA_INDEX = 'CA|C';
 
   private constructor() {}
@@ -96,6 +100,10 @@ export class ChellPDB {
     const result = new CouplingContainer(couplingScores);
     const alphaId = this.nglData.atomMap.dict[this.NGL_C_ALPHA_INDEX];
 
+    const minDist: {
+      [key: string]: number;
+    } = {};
+
     this.nglData.eachResidue(outerResidue => {
       this.nglData.eachResidue(innerResidue => {
         if (outerResidue.isProtein() && innerResidue.isProtein()) {
@@ -110,8 +118,15 @@ export class ChellPDB {
               j: innerResidue.resno,
             });
           } else {
+            const key = `${Math.min(outerResidue.resno, innerResidue.resno)},${Math.max(
+              outerResidue.resno,
+              innerResidue.resno,
+            )}`;
+            if (!minDist[key]) {
+              minDist[key] = this.getMinDistBetweenResidues(outerResidue.index, innerResidue.index);
+            }
             result.addCouplingScore({
-              dist: this.getMinDistBetweenResidues(outerResidue.index, innerResidue.index),
+              dist: minDist[key],
               i: outerResidue.resno,
               j: innerResidue.resno,
             });
