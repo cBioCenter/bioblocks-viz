@@ -68,6 +68,12 @@ export class ChellPDB {
     return result;
   }
 
+  public static async createPDBFromFile(file: File) {
+    const result = new ChellPDB();
+    result.nglData = await await NGL.autoLoad(file);
+    return result;
+  }
+
   protected nglData: NGL.Structure = new NGL.Structure();
   protected readonly NGL_C_ALPHA_INDEX = 'CA|C';
 

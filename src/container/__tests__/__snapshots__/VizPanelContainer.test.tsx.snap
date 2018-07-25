@@ -46,6 +46,32 @@ exports[`VizPanelContainer Should match existing snapshot when given a single vi
       />
     </GridColumn>
   </ChellContext>
+  <Label
+    as="label"
+    basic={true}
+    htmlFor="upload"
+  >
+    <Button
+      as="button"
+      icon="upload"
+      label={
+        Object {
+          "basic": true,
+          "content": "Upload",
+        }
+      }
+      labelPosition="right"
+      role="button"
+    />
+    <input
+      hidden={true}
+      id="upload"
+      multiple={true}
+      onChange={[Function]}
+      required={true}
+      type="file"
+    />
+  </Label>
 </Grid>
 `;
 
@@ -130,5 +156,31 @@ exports[`VizPanelContainer Should match existing snapshot when given multiple vi
       />
     </GridColumn>
   </ChellContext>
+  <Label
+    as="label"
+    basic={true}
+    htmlFor="upload"
+  >
+    <Button
+      as="button"
+      icon="upload"
+      label={
+        Object {
+          "basic": true,
+          "content": "Upload",
+        }
+      }
+      labelPosition="right"
+      role="button"
+    />
+    <input
+      hidden={true}
+      id="upload"
+      multiple={true}
+      onChange={[Function]}
+      required={true}
+      type="file"
+    />
+  </Label>
 </Grid>
 `;

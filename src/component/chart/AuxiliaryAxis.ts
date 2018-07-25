@@ -10,10 +10,16 @@ export interface IAxisMapping {
 export default class AuxiliaryAxis<T extends string> {
   protected axes: Map<T, IAxisMapping> = new Map();
 
+  /**
+   * Get all the axis objects belonging to this Auxiliary Axis.
+   */
   public get axis() {
     return this.axes;
   }
 
+  /**
+   * Get all the x-axis objects belonging to this Auxiliary Axis.
+   */
   public get xAxes() {
     const result = new Array<Partial<IPlotlyData>>();
     this.axes.forEach(value => {
@@ -22,6 +28,9 @@ export default class AuxiliaryAxis<T extends string> {
     return result;
   }
 
+  /**
+   * Get all the y-axis objects belonging to this Auxiliary Axis.
+   */
   public get yAxes() {
     const result = new Array<Partial<IPlotlyData>>();
     this.axes.forEach(value => {
