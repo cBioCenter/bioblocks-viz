@@ -325,6 +325,36 @@ describe('NGLComponent', () => {
       expect(removeNonLockedResiduesSpy).toHaveBeenCalledTimes(1);
     });
 
+    it('Should add the hovered residue if the user clicks within a certain distance (snapping).', async () => {
+      const expected = new Array<string>();
+      const Component = getComponentWithContext();
+      const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
+      const addLockedResiduePairSpy = jest.fn();
+      wrapper.setProps({
+        addLockedResiduePair: addLockedResiduePairSpy,
+        candidateResidues: [0],
+        hoveredResidues: [1],
+      });
+      expect(wrapper.state('activeRepresentations')).not.toEqual(expected);
+      simulateClickEvent(wrapper, undefined);
+      expect(addLockedResiduePairSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it('Should remove the hovered residue if the user clicks within beyond a certain distance (snapping).', async () => {
+      const expected = new Array<string>();
+      const Component = getComponentWithContext();
+      const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
+      const removeNonLockedResiduesSpy = jest.fn();
+      wrapper.setProps({
+        candidateResidues: [0],
+        hoveredResidues: [51],
+        removeNonLockedResidues: removeNonLockedResiduesSpy,
+      });
+      expect(wrapper.state('activeRepresentations')).not.toEqual(expected);
+      simulateClickEvent(wrapper, undefined);
+      expect(removeNonLockedResiduesSpy).toHaveBeenCalledTimes(1);
+    });
+
     it('Should handle pressing ESC.', async () => {
       const Component = getComponentWithContext();
       const removeNonLockedResiduesSpy = jest.fn();
