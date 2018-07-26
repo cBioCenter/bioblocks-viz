@@ -7,7 +7,13 @@ import * as Renderer from 'react-test-renderer';
 
 import { IMockPlotlyCanvas } from '__mocks__/plotly';
 import { initialResidueContext, IResidueContext } from '../../context/ResidueContext';
-import { CONFIGURATION_COMPONENT_TYPE, ICouplingScore, SECONDARY_STRUCTURE } from '../../data/chell-data';
+import {
+  CONFIGURATION_COMPONENT_TYPE,
+  ICouplingScore,
+  SECONDARY_STRUCTURE,
+  SECONDARY_STRUCTURE_KEYS,
+} from '../../data/chell-data';
+import Chell1DSection from '../../data/Chell1DSection';
 import { PlotlyChartClass } from '../chart/PlotlyChart';
 import ContactMap, { ContactMapClass, ContactMapProps } from '../ContactMap';
 
@@ -168,27 +174,152 @@ describe('ContactMap', () => {
     });
   });
 
-  it('Should invoke callback to add locked residues when a click event is fired.', async () => {
-    const onClickSpy = jest.fn();
-    const wrapper = await getMountedContactMap({ toggleLockedResiduePair: onClickSpy, data: sampleData });
-    dispatchPlotlyEvent(wrapper, 'plotly_click');
+  describe('Callbacks', () => {
+    it('Should invoke callback to add locked residues when a click event is fired.', async () => {
+      const onClickSpy = jest.fn();
+      const wrapper = await getMountedContactMap({ toggleLockedResiduePair: onClickSpy, data: sampleData });
+      dispatchPlotlyEvent(wrapper, 'plotly_click');
 
-    expect(onClickSpy).toHaveBeenCalledTimes(1);
-  });
+      expect(onClickSpy).toHaveBeenCalledTimes(1);
+    });
 
-  it('Should invoke callback to add hovered residues when a click event is fired.', async () => {
-    const onHoverSpy = jest.fn();
-    const wrapper = await getMountedContactMap({ addHoveredResidues: onHoverSpy, data: sampleData });
-    dispatchPlotlyEvent(wrapper, 'plotly_hover');
+    it('Should invoke callback to add hovered residues when a click event is fired.', async () => {
+      const onHoverSpy = jest.fn();
+      const wrapper = await getMountedContactMap({ addHoveredResidues: onHoverSpy, data: sampleData });
+      dispatchPlotlyEvent(wrapper, 'plotly_hover');
 
-    expect(onHoverSpy).toHaveBeenCalledTimes(1);
-  });
+      expect(onHoverSpy).toHaveBeenCalledTimes(1);
+    });
 
-  it('Should invoke callback for selected residues when a click event is fired.', async () => {
-    const onSelectedSpy = jest.fn();
-    const wrapper = await getMountedContactMap({ data: sampleData, onBoxSelection: onSelectedSpy });
-    dispatchPlotlyEvent(wrapper, 'plotly_selected');
-    expect(onSelectedSpy).toHaveBeenLastCalledWith([0, 0]);
+    it('Should invoke callback to remove hovered residues when the mouse leaves.', async () => {
+      const onHoverSpy = jest.fn();
+      const wrapper = await getMountedContactMap({ removeHoveredResidues: onHoverSpy, data: sampleData });
+      dispatchPlotlyEvent(wrapper, 'plotly_unhover');
+
+      expect(onHoverSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it('Should invoke callback for selected residues when a click event is fired.', async () => {
+      const onSelectedSpy = jest.fn();
+      const wrapper = await getMountedContactMap({ data: sampleData, onBoxSelection: onSelectedSpy });
+      dispatchPlotlyEvent(wrapper, 'plotly_selected');
+      expect(onSelectedSpy).toHaveBeenLastCalledWith([0, 0]);
+    });
+
+    it('Should invoke callback for adding a secondary structure when a mouse clicks it the first time.', async () => {
+      const addSecondaryStructureSpy = jest.fn();
+      const testSecStruct = new Chell1DSection<SECONDARY_STRUCTURE_KEYS>('C', 0, 10);
+      const wrapper = await getMountedContactMap({
+        addSecondaryStructure: addSecondaryStructureSpy,
+        data: {
+          ...sampleData,
+          secondaryStructures: [[testSecStruct]],
+        },
+      });
+      const data: Partial<plotly.PlotScatterDataPoint> = {
+        data: { type: 'scattergl', xaxis: 'x2' } as any,
+        x: 0,
+        y: 0,
+      };
+      dispatchPlotlyEvent(wrapper, 'plotly_click', data);
+      expect(addSecondaryStructureSpy).toHaveBeenLastCalledWith(testSecStruct);
+    });
+
+    it('Should invoke callback for removing a secondary structure when a mouse clicks one that is already locked', async () => {
+      const removeSecondaryStructureSpy = jest.fn();
+      const testSecStruct = new Chell1DSection<SECONDARY_STRUCTURE_KEYS>('C', 0, 10);
+      const wrapper = await getMountedContactMap({
+        data: {
+          ...sampleData,
+          secondaryStructures: [[testSecStruct]],
+        },
+        removeSecondaryStructure: removeSecondaryStructureSpy,
+        selectedSecondaryStructures: [testSecStruct],
+      });
+      const data: Partial<plotly.PlotScatterDataPoint> = {
+        data: { type: 'scattergl', xaxis: 'x2' } as any,
+        x: 0,
+        y: 0,
+      };
+      dispatchPlotlyEvent(wrapper, 'plotly_click', data);
+      expect(removeSecondaryStructureSpy).toHaveBeenLastCalledWith(testSecStruct);
+    });
+
+    it('Should invoke callback for toggling a secondary structure when a mouse hovers over it.', async () => {
+      const toggleSecondaryStructureSpy = jest.fn();
+      const testSecStruct = new Chell1DSection<SECONDARY_STRUCTURE_KEYS>('C', 0, 10);
+      const wrapper = await getMountedContactMap({
+        data: {
+          ...sampleData,
+          secondaryStructures: [[testSecStruct]],
+        },
+        toggleSecondaryStructure: toggleSecondaryStructureSpy,
+      });
+      const data: Partial<plotly.PlotScatterDataPoint> = {
+        data: { type: 'scattergl', xaxis: 'x2' } as any,
+        x: 0,
+        y: 0,
+      };
+      dispatchPlotlyEvent(wrapper, 'plotly_hover', data);
+      expect(toggleSecondaryStructureSpy).toHaveBeenLastCalledWith(testSecStruct);
+    });
+
+    it('Should not invoke callback for toggling a secondary structure when a mouse hovers over a different structure.', async () => {
+      const toggleSecondaryStructureSpy = jest.fn();
+      const testSecStruct = new Chell1DSection<SECONDARY_STRUCTURE_KEYS>('C', 10, 11);
+      const wrapper = await getMountedContactMap({
+        data: {
+          ...sampleData,
+          secondaryStructures: [[testSecStruct]],
+        },
+        toggleSecondaryStructure: toggleSecondaryStructureSpy,
+      });
+      const data: Partial<plotly.PlotScatterDataPoint> = {
+        data: { type: 'scattergl', xaxis: 'x2' } as any,
+        x: 0,
+        y: 0,
+      };
+      dispatchPlotlyEvent(wrapper, 'plotly_hover', data);
+      expect(toggleSecondaryStructureSpy).not.toHaveBeenCalled();
+    });
+
+    it('Should invoke callback for removing a secondary structure when a mouse leaves it.', async () => {
+      const removeSecondaryStructureSpy = jest.fn();
+      const testSecStruct = new Chell1DSection<SECONDARY_STRUCTURE_KEYS>('C', 0, 10);
+      const wrapper = await getMountedContactMap({
+        data: {
+          ...sampleData,
+          secondaryStructures: [[testSecStruct]],
+        },
+        removeSecondaryStructure: removeSecondaryStructureSpy,
+      });
+      const data: Partial<plotly.PlotScatterDataPoint> = {
+        data: { type: 'scattergl', xaxis: 'x2' } as any,
+        x: 0,
+        y: 0,
+      };
+      dispatchPlotlyEvent(wrapper, 'plotly_unhover', data);
+      expect(removeSecondaryStructureSpy).toHaveBeenLastCalledWith(testSecStruct);
+    });
+
+    it('Should not invoke callback for toggling a secondary structure when a mouse leaves a different structure.', async () => {
+      const toggleSecondaryStructureSpy = jest.fn();
+      const testSecStruct = new Chell1DSection<SECONDARY_STRUCTURE_KEYS>('C', 10, 11);
+      const wrapper = await getMountedContactMap({
+        data: {
+          ...sampleData,
+          secondaryStructures: [[testSecStruct]],
+        },
+        toggleSecondaryStructure: toggleSecondaryStructureSpy,
+      });
+      const data: Partial<plotly.PlotScatterDataPoint> = {
+        data: { type: 'scattergl', xaxis: 'x2' } as any,
+        x: 0,
+        y: 0,
+      };
+      dispatchPlotlyEvent(wrapper, 'plotly_unhover', data);
+      expect(toggleSecondaryStructureSpy).not.toHaveBeenCalled();
+    });
   });
 
   it('Should clear state if new data is given.', async () => {

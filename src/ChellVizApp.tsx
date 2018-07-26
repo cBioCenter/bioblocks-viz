@@ -17,6 +17,7 @@ export class ChellVizApp extends React.Component<any, any> {
               numPanels={2}
             />
           </GridRow>
+          {/*
           <GridRow>
             <VizPanelContainer
               dataDirs={['centroids', 'centroids_subset', 'ngl', 'spring2/full'].map(dir => `assets/${dir}`)}
@@ -25,6 +26,7 @@ export class ChellVizApp extends React.Component<any, any> {
               numPanels={2}
             />
           </GridRow>
+          */}
         </Grid>
       </div>
     );
