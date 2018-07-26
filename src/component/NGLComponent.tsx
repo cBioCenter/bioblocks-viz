@@ -41,7 +41,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
 
   public canvas: HTMLElement | null = null;
 
-  constructor(props: any) {
+  constructor(props: NGLComponentProps) {
     super(props);
   }
 
@@ -134,7 +134,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
     const { height, padding, width } = this.props;
     return (
       <div className="NGLComponent" style={{ padding }}>
-        {/* <ChellTooltip message={'hi!'} />*/}
+        {/* <ChellTooltip message={'hi!'} timeout={5000} /> */}
         <div
           className="NGLCanvas"
           ref={el => (this.canvas = el)}
