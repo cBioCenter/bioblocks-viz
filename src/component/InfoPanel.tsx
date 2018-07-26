@@ -35,11 +35,14 @@ export class InfoPanelClass extends React.Component<InfoPanelProps, any> {
         <Accordion
           exclusive={false}
           panels={[
-            {
-              content: this.renderSecondaryStructures(data.pdbData ? data.pdbData.secondaryStructureSections : []),
-              key: 'all-secondary-structures',
-              title: `All Secondary Structures (${data.pdbData ? data.pdbData.secondaryStructureSections.length : 0}):`,
-            },
+            data.pdbData &&
+              data.pdbData.secondaryStructureSections.map(secondaryStructure => ({
+                content: this.renderSecondaryStructures(secondaryStructure),
+                key: 'all-secondary-structures',
+                title: `All Secondary Structures (${
+                  data.pdbData ? data.pdbData.secondaryStructureSections.length : 0
+                }):`,
+              })),
             {
               content: unassignedResidues,
               key: 'unassigned-residues',
@@ -84,12 +87,15 @@ export class InfoPanelClass extends React.Component<InfoPanelProps, any> {
     pdbData.eachResidue(residue => {
       if (residue.isProtein()) {
         let isUnassigned = true;
-        for (const section of pdbData.secondaryStructureSections) {
-          if (section.contains(residue.resno)) {
-            isUnassigned = false;
-            break;
+        for (const secondaryStructure of pdbData.secondaryStructureSections) {
+          for (const section of secondaryStructure) {
+            if (section.contains(residue.resno)) {
+              isUnassigned = false;
+              break;
+            }
           }
         }
+
         if (isUnassigned) {
           result.push(
             <Label key={`unassigned-residue-${residue.resno}`}>

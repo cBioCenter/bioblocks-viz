@@ -18,10 +18,14 @@ import { CouplingContainer } from './CouplingContainer';
 export class ChellPDB {
   [key: string]: any;
 
-  public get secondaryStructureSections(): SECONDARY_STRUCTURE_SECTION[] {
-    const result = new Array<SECONDARY_STRUCTURE_SECTION>();
+  public get secondaryStructureSections(): SECONDARY_STRUCTURE_SECTION[][] {
+    const result = new Array<SECONDARY_STRUCTURE_SECTION[]>();
     this.nglData.eachResidue(residue => {
       if (residue.isProtein()) {
+        const { chainIndex } = residue;
+        while (!result[chainIndex]) {
+          result.push(new Array<SECONDARY_STRUCTURE_SECTION>());
+        }
         let structId = 'C' as SECONDARY_STRUCTURE_KEYS;
         if (residue.isSheet()) {
           structId = 'E';
@@ -30,10 +34,10 @@ export class ChellPDB {
         } else if (residue.isTurn()) {
           return;
         }
-        if (result.length >= 1 && result[result.length - 1].label === structId) {
-          result[result.length - 1].updateEnd(residue.resno);
+        if (result[chainIndex].length >= 1 && result[chainIndex][result[chainIndex].length - 1].label === structId) {
+          result[chainIndex][result[chainIndex].length - 1].updateEnd(residue.resno);
         } else {
-          result.push(new Chell1DSection(structId, residue.resno));
+          result[chainIndex].push(new Chell1DSection(structId, residue.resno));
         }
       }
     });

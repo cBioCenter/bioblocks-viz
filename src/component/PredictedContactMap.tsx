@@ -126,7 +126,7 @@ export class PredictedContactMapClass extends React.Component<PredictedContactMa
           configurations={this.getContactMapConfigs()}
           data={{
             computedPoints: pointsToPlot,
-            secondaryStructures: data.pdbData ? [data.pdbData.secondaryStructureSections] : [],
+            secondaryStructures: data.pdbData ? data.pdbData.secondaryStructureSections : [],
           }}
           {...passThroughProps}
         />
