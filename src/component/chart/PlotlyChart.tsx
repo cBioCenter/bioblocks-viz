@@ -1,6 +1,7 @@
 import * as deepEqual from 'deep-equal';
 import * as Immutable from 'immutable';
 import * as React from 'react';
+import { Dimmer, Loader } from 'semantic-ui-react';
 
 // We need to use dist/plotly to avoid forcing users to do some webpack gymnastics:
 // https://github.com/plotly/plotly-webpack#the-easy-way-recommended
@@ -168,16 +169,11 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
 
   public async componentDidMount() {
     if (this.canvasRef && !this.plotlyCanvas) {
-      const { data, layout, config } = this.props;
+      const { data } = this.props;
       // !Important! This is to make a DEEP COPY of the data because Plotly will modify it, thus causing false positive data updates.
       this.plotlyFormattedData = Immutable.fromJS(data).toJS();
 
-      this.plotlyCanvas = await plotly.react(
-        this.canvasRef,
-        this.plotlyFormattedData,
-        this.getMergedLayout(layout, this.plotlyFormattedData),
-        this.getMergedConfig(config),
-      );
+      this.plotlyCanvas = await plotly.react(this.canvasRef, this.plotlyFormattedData);
 
       this.attachListeners();
       this.draw();
@@ -194,7 +190,16 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
 
   public render() {
     return (
-      <div className={'plotly-chart'} ref={node => (this.canvasRef = node ? node : null)} style={{ marginBottom: 5 }} />
+      <div className={'PlotlyChart'}>
+        <Dimmer active={this.props.data.length === 0}>
+          <Loader />
+        </Dimmer>
+        <div
+          className={'plotly-chart'}
+          ref={node => (this.canvasRef = node ? node : null)}
+          style={{ marginBottom: 5 }}
+        />
+      </div>
     );
   }
 

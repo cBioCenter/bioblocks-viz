@@ -45,7 +45,7 @@ const defaultContactMapChartProps: Partial<IContactMapChartProps> = {
   },
   marginModifiers: {
     b: 40,
-    l: 12,
+    l: 16,
   },
   range: 100,
   secondaryStructures: [],
