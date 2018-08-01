@@ -26,13 +26,39 @@ exports[`PlotlyChart Should attach events when the container is attached. 1`] = 
   onSelectedCallback={[MockFunction]}
 >
   <div
-    className="plotly-chart"
-    style={
-      Object {
-        "marginBottom": 5,
+    className="PlotlyChart"
+  >
+    <Dimmer
+      active={false}
+    >
+      <div
+        className="ui dimmer"
+        onClick={[Function]}
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="center"
+          >
+            <Loader>
+              <div
+                className="ui loader"
+              />
+            </Loader>
+          </div>
+        </div>
+      </div>
+    </Dimmer>
+    <div
+      className="plotly-chart"
+      style={
+        Object {
+          "marginBottom": 5,
+        }
       }
-    }
-  />
+    />
+  </div>
 </PlotlyChartClass>
 `;
 
@@ -66,13 +92,39 @@ exports[`PlotlyChart Should handle extra axes correctly. 1`] = `
   layout={Object {}}
 >
   <div
-    className="plotly-chart"
-    style={
-      Object {
-        "marginBottom": 5,
+    className="PlotlyChart"
+  >
+    <Dimmer
+      active={false}
+    >
+      <div
+        className="ui dimmer"
+        onClick={[Function]}
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="center"
+          >
+            <Loader>
+              <div
+                className="ui loader"
+              />
+            </Loader>
+          </div>
+        </div>
+      </div>
+    </Dimmer>
+    <div
+      className="plotly-chart"
+      style={
+        Object {
+          "marginBottom": 5,
+        }
       }
-    }
-  />
+    />
+  </div>
 </PlotlyChartClass>
 `;
 
@@ -83,13 +135,39 @@ exports[`PlotlyChart Should match existing snapshot when given empty data. 1`] =
   layout={Object {}}
 >
   <div
-    className="plotly-chart"
-    style={
-      Object {
-        "marginBottom": 5,
+    className="PlotlyChart"
+  >
+    <Dimmer
+      active={true}
+    >
+      <div
+        className="ui active transition visible dimmer"
+        onClick={[Function]}
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="center"
+          >
+            <Loader>
+              <div
+                className="ui loader"
+              />
+            </Loader>
+          </div>
+        </div>
+      </div>
+    </Dimmer>
+    <div
+      className="plotly-chart"
+      style={
+        Object {
+          "marginBottom": 5,
+        }
       }
-    }
-  />
+    />
+  </div>
 </PlotlyChartClass>
 `;
 
@@ -117,12 +195,38 @@ exports[`PlotlyChart Should match existing snapshot when given sample data. 1`] 
   layout={Object {}}
 >
   <div
-    className="plotly-chart"
-    style={
-      Object {
-        "marginBottom": 5,
+    className="PlotlyChart"
+  >
+    <Dimmer
+      active={false}
+    >
+      <div
+        className="ui dimmer"
+        onClick={[Function]}
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="center"
+          >
+            <Loader>
+              <div
+                className="ui loader"
+              />
+            </Loader>
+          </div>
+        </div>
+      </div>
+    </Dimmer>
+    <div
+      className="plotly-chart"
+      style={
+        Object {
+          "marginBottom": 5,
+        }
       }
-    }
-  />
+    />
+  </div>
 </PlotlyChartClass>
 `;

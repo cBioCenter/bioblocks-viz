@@ -58,6 +58,7 @@
       "node_modules"
     ],
     "testResultsProcessor": "jest-junit",
+    "testURL": "http://localhost",
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest"
     },
