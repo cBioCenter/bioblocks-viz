@@ -258,7 +258,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#axes">axes</a></p>
 						<ul>
-							<li>Defined in src/component/chart/AuxiliaryAxis.ts:11</li>
+							<li>Defined in src/component/chart/AuxiliaryAxis.ts:19</li>
 						</ul>
 					</aside>
 				</section>
@@ -429,7 +429,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#axis">axis</a></p>
 								<ul>
-									<li>Defined in src/component/chart/AuxiliaryAxis.ts:16</li>
+									<li>Defined in src/component/chart/AuxiliaryAxis.ts:24</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -452,7 +452,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#xaxes">xAxes</a></p>
 								<ul>
-									<li>Defined in src/component/chart/AuxiliaryAxis.ts:23</li>
+									<li>Defined in src/component/chart/AuxiliaryAxis.ts:31</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -475,7 +475,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#yaxes">yAxes</a></p>
 								<ul>
-									<li>Defined in src/component/chart/AuxiliaryAxis.ts:34</li>
+									<li>Defined in src/component/chart/AuxiliaryAxis.ts:42</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -501,13 +501,23 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#auxiliaryaxisdefaults">auxiliaryAxisDefaults</a></p>
 								<ul>
-									<li>Defined in src/component/chart/AuxiliaryAxis.ts:112</li>
+									<li>Defined in src/component/chart/AuxiliaryAxis.ts:127</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Default plotly data for an axis.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>key: <a href="../globals.html#secondary_structure_keys" class="tsd-signature-type">SECONDARY_STRUCTURE_KEYS</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The label for this piece of data.</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -525,13 +535,23 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#derivepointsinaxis">derivePointsInAxis</a></p>
 								<ul>
-									<li>Defined in src/component/chart/AuxiliaryAxis.ts:55</li>
+									<li>Defined in src/component/chart/AuxiliaryAxis.ts:151</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Determines the points that make up the axis for both the main and opposite axis side.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>section: <a href="chell1dsection.html" class="tsd-signature-type">Chell1DSection</a><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#secondary_structure_keys" class="tsd-signature-type">SECONDARY_STRUCTURE_KEYS</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The section of data to derive points for.</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
@@ -556,19 +576,31 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/chart/SecondaryStructureAxis.ts:61</li>
+									<li>Defined in src/component/chart/SecondaryStructureAxis.ts:72</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generate the Plotly layout specific to beta sheet representation.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>data: <a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Data for this axis.</p>
+									</div>
 								</li>
 								<li>
 									<h5>symbols: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The symbols that make up this axis. Should be an array of empty lines with an arrow at the end.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Plotly layout specific to beta sheet representation.</p>
 						</li>
 					</ul>
 				</section>
@@ -583,13 +615,23 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#generatexaxissegment">generateXAxisSegment</a></p>
 								<ul>
-									<li>Defined in src/component/chart/AuxiliaryAxis.ts:98</li>
+									<li>Defined in src/component/chart/AuxiliaryAxis.ts:103</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Plotly data specific for the x axis.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>key: <a href="../globals.html#secondary_structure_keys" class="tsd-signature-type">SECONDARY_STRUCTURE_KEYS</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The label for this piece of data.</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -607,13 +649,23 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#generateyaxissegment">generateYAxisSegment</a></p>
 								<ul>
-									<li>Defined in src/component/chart/AuxiliaryAxis.ts:105</li>
+									<li>Defined in src/component/chart/AuxiliaryAxis.ts:115</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Plotly data specific for the y axis.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>key: <a href="../globals.html#secondary_structure_keys" class="tsd-signature-type">SECONDARY_STRUCTURE_KEYS</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The label for this piece of data.</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span></h4>

@@ -171,6 +171,11 @@ class ContactMapChartClass extends React.Component<IContactMapChartProps, IConta
     );
   }
 
+  /**
+   * Sets up the chart and axis data for the ContactMap.
+   *
+   * Transforms all data from chell terminology to data properly formatted for Plotly consumption.
+   */
   protected setupData() {
     const { contactData, dataTransformFn, secondaryStructures, selectedSecondaryStructures } = this.props;
     const plotlyData = [...contactData.map(entry => dataTransformFn(entry, true))];
