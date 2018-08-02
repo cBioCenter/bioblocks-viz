@@ -30,7 +30,7 @@ export const readUploadedFileAsText = (inputFile: File): Promise<string> => {
     };
 
     temporaryFileReader.onload = () => {
-      resolve(temporaryFileReader.result);
+      resolve(temporaryFileReader.result as any);
     };
     temporaryFileReader.readAsText(inputFile);
   });

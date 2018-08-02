@@ -31,15 +31,15 @@ exports[`PlotlyChart Should attach events when the container is attached. 1`] = 
     <Dimmer
       active={false}
     >
-      <div
-        className="ui dimmer"
-        onClick={[Function]}
+      <DimmerInner
+        active={false}
       >
         <div
-          className="content"
+          className="ui dimmer"
+          onClick={[Function]}
         >
           <div
-            className="center"
+            className="content"
           >
             <Loader>
               <div
@@ -48,7 +48,7 @@ exports[`PlotlyChart Should attach events when the container is attached. 1`] = 
             </Loader>
           </div>
         </div>
-      </div>
+      </DimmerInner>
     </Dimmer>
     <div
       className="plotly-chart"
@@ -97,15 +97,15 @@ exports[`PlotlyChart Should handle extra axes correctly. 1`] = `
     <Dimmer
       active={false}
     >
-      <div
-        className="ui dimmer"
-        onClick={[Function]}
+      <DimmerInner
+        active={false}
       >
         <div
-          className="content"
+          className="ui dimmer"
+          onClick={[Function]}
         >
           <div
-            className="center"
+            className="content"
           >
             <Loader>
               <div
@@ -114,7 +114,7 @@ exports[`PlotlyChart Should handle extra axes correctly. 1`] = `
             </Loader>
           </div>
         </div>
-      </div>
+      </DimmerInner>
     </Dimmer>
     <div
       className="plotly-chart"
@@ -140,15 +140,15 @@ exports[`PlotlyChart Should match existing snapshot when given empty data. 1`] =
     <Dimmer
       active={true}
     >
-      <div
-        className="ui active transition visible dimmer"
-        onClick={[Function]}
+      <DimmerInner
+        active={true}
       >
         <div
-          className="content"
+          className="ui active transition visible dimmer"
+          onClick={[Function]}
         >
           <div
-            className="center"
+            className="content"
           >
             <Loader>
               <div
@@ -157,7 +157,7 @@ exports[`PlotlyChart Should match existing snapshot when given empty data. 1`] =
             </Loader>
           </div>
         </div>
-      </div>
+      </DimmerInner>
     </Dimmer>
     <div
       className="plotly-chart"
@@ -200,15 +200,15 @@ exports[`PlotlyChart Should match existing snapshot when given sample data. 1`] 
     <Dimmer
       active={false}
     >
-      <div
-        className="ui dimmer"
-        onClick={[Function]}
+      <DimmerInner
+        active={false}
       >
         <div
-          className="content"
+          className="ui dimmer"
+          onClick={[Function]}
         >
           <div
-            className="center"
+            className="content"
           >
             <Loader>
               <div
@@ -217,7 +217,7 @@ exports[`PlotlyChart Should match existing snapshot when given sample data. 1`] 
             </Loader>
           </div>
         </div>
-      </div>
+      </DimmerInner>
     </Dimmer>
     <div
       className="plotly-chart"

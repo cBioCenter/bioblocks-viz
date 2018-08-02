@@ -2,6 +2,9 @@ import * as plotly from 'plotly.js';
 
 module.exports = {
   ...plotly,
+  Plots: {
+    resize: () => jest.fn(),
+  },
   newPlot: (...args: any[]) => mockCanvas,
   purge: jest.fn(),
   react: (...args: any[]) => mockCanvas,

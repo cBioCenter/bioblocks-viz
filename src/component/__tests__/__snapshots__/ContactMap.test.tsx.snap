@@ -104,12 +104,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
         className="content"
       >
         <div
-          className="center"
-        >
-          <div
-            className="ui loader"
-          />
-        </div>
+          className="ui loader"
+        />
       </div>
     </div>
     <div
@@ -144,12 +140,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
         className="content"
       >
         <div
-          className="center"
-        >
-          <div
-            className="ui loader"
-          />
-        </div>
+          className="ui loader"
+        />
       </div>
     </div>
     <div
@@ -1055,15 +1047,15 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           <Dimmer
             active={false}
           >
-            <div
-              className="ui dimmer"
-              onClick={[Function]}
+            <DimmerInner
+              active={false}
             >
               <div
-                className="content"
+                className="ui dimmer"
+                onClick={[Function]}
               >
                 <div
-                  className="center"
+                  className="content"
                 >
                   <Loader>
                     <div
@@ -1072,7 +1064,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   </Loader>
                 </div>
               </div>
-            </div>
+            </DimmerInner>
           </Dimmer>
           <div
             className="plotly-chart"

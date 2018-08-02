@@ -138,15 +138,4 @@ const sampleResidues = [helixResidue(1), sheetResidue(2), turnResidue(3)];
     path.localeCompare('error/protein.pdb') === 0 ? Promise.reject('Invalid NGL path.') : new NGL.Structure(path),
 );
 
-// @ts-ignore
-ngl.MouseActions = {
-  CLICK: 'click',
-  CLICK_PICK: 'clickPick',
-  DOUBLE_CLICK: 'doubleClick',
-  DRAG: 'drag',
-  HOVER: 'hover',
-  HOVER_PICK: 'hoverPick',
-  SCROLL: 'scroll',
-};
-
 module.exports = ngl;
