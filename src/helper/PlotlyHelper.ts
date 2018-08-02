@@ -1,3 +1,4 @@
+import { Color } from 'plotly.js/dist/plotly';
 import { IContactMapChartData } from '../component/chart/ContactMapChart';
 import { IPlotlyData, PLOTLY_CHART_TYPE } from '../component/chart/PlotlyChart';
 
@@ -42,13 +43,11 @@ export const generateScatterData = (
 
   return {
     hoverinfo: 'x+y+z',
-    marker: Object.assign(
-      {
-        color,
-        size: entry.nodeSize,
-      },
-      marker,
-    ),
+    marker: {
+      color: color as Color | number[],
+      size: entry.nodeSize,
+      ...marker,
+    },
     mode: 'markers',
     name: `${name} ${subtitle}`,
     type: PLOTLY_CHART_TYPE.scatter,

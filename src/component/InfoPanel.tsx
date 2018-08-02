@@ -3,15 +3,21 @@ import { Accordion, Label } from 'semantic-ui-react';
 
 import ResidueContext, { initialResidueContext, ResidueSelection } from '../context/ResidueContext';
 import SecondaryStructureContext, { initialSecondaryStructureContext } from '../context/SecondaryStructureContext';
-import { IContactMapData, SECONDARY_STRUCTURE, SECONDARY_STRUCTURE_CODES } from '../data/chell-data';
+import {
+  IContactMapData,
+  ISecondaryStructureData,
+  SECONDARY_STRUCTURE,
+  SECONDARY_STRUCTURE_CODES,
+} from '../data/chell-data';
 import { ChellPDB } from '../data/ChellPDB';
 import { CouplingContainer } from '../data/CouplingContainer';
 import { withDefaultProps } from '../helper/ReactHelper';
 
 export const defaultInfoPanelProps = {
-  data: {
+  data: new Object({
     couplingScores: new CouplingContainer(),
-  } as IContactMapData,
+    secondaryStructures: new Array<ISecondaryStructureData>(),
+  }) as IContactMapData,
   height: 400,
   ...initialResidueContext,
   ...initialSecondaryStructureContext,
@@ -101,7 +107,8 @@ export class InfoPanelClass extends React.Component<InfoPanelProps, any> {
             <Label key={`unassigned-residue-${residue.resno}`}>
               {`[${
                 residue.resno
-              }: isCg? ${residue.isCg()}, isDna? ${residue.isDna()}, isHelix? ${residue.isHelix()}, isNucleic? ${residue.isNucleic()}, isProtein? ${residue.isProtein()}, isPolymer? ${residue.isPolymer()}, isSaccharide? ${residue.isSaccharide()}, isSheet? ${residue.isSheet()}, isTurn? ${residue.isTurn()}`}}
+              }: isCg? ${residue.isCg()}, isDna? ${residue.isDna()}, isHelix? ${residue.isHelix()}, isNucleic? ${residue.isNucleic()}, isProtein? ${residue.isProtein()}, isPolymer? ${residue.isPolymer()}, isSaccharide? ${residue.isSaccharide()}, isSheet? ${residue.isSheet()}, isTurn? ${residue.isTurn()}`}
+              }
             </Label>,
           );
         }

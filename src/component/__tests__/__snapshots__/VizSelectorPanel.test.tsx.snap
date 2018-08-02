@@ -49,6 +49,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
             "rowCounter": 0,
             "totalStoredContacts": 0,
           },
+          "secondaryStructures": Array [],
         }
       }
       height={420}

@@ -1,5 +1,5 @@
 import * as NGL from 'ngl';
-import { PickingProxy, Stage, StructureComponent } from 'ngl';
+
 import * as React from 'react';
 import { Button, GridRow } from 'semantic-ui-react';
 
@@ -166,13 +166,13 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
 
     structureComponent.stage.mouseControls.add(
       NGL.MouseActions.HOVER_PICK,
-      (aStage: Stage, pickingProxy: PickingProxy) => this.onHover(aStage, pickingProxy),
+      (aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) => this.onHover(aStage, pickingProxy),
     );
 
     stage.signals.clicked.add(this.onClick);
   }
 
-  protected onHover(aStage: Stage, pickingProxy: PickingProxy) {
+  protected onHover(aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) {
     const { addHoveredResidues, candidateResidues, hoveredResidues, removeHoveredResidues } = this.props;
     const { structureComponent } = this.state;
     if (structureComponent) {
@@ -185,7 +185,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
     }
   }
 
-  protected onClick = (pickingProxy: PickingProxy, foo: any, ...args: any[]) => {
+  protected onClick = (pickingProxy: NGL.PickingProxy, foo: any, ...args: any[]) => {
     const {
       addCandidateResidues,
       addLockedResiduePair,
@@ -236,7 +236,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
     }
   };
 
-  protected highlightCandidateResidues(structureComponent: StructureComponent, residues: RESIDUE_TYPE[]) {
+  protected highlightCandidateResidues(structureComponent: NGL.StructureComponent, residues: RESIDUE_TYPE[]) {
     const reps = new Array<NGL.RepresentationElement>();
 
     if (residues.length >= 1) {
@@ -250,7 +250,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
     return reps;
   }
 
-  protected highlightLockedDistancePairs(structureComponent: StructureComponent, lockedResidues: ResidueSelection) {
+  protected highlightLockedDistancePairs(structureComponent: NGL.StructureComponent, lockedResidues: ResidueSelection) {
     const reps = new Array<NGL.RepresentationElement>();
 
     lockedResidues.forEach(residues => {
@@ -266,7 +266,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
   }
 
   protected highlightSecondaryStructures(
-    structureComponent: StructureComponent,
+    structureComponent: NGL.StructureComponent,
     secondaryStructures: SECONDARY_STRUCTURE,
   ) {
     const reps = new Array<NGL.RepresentationElement>();

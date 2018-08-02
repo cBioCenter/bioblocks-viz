@@ -6,7 +6,7 @@ export interface IChellTooltipProps {
   timeout?: number;
 }
 
-const defaultStyle = {
+const defaultStyle: React.CSSProperties = {
   backgroundColor: 'rgba(0, 244, 0, 0.6)',
   color: 'lightgrey',
   display: 'block',
@@ -15,7 +15,7 @@ const defaultStyle = {
   pointerEvents: 'none',
   position: 'absolute',
   zIndex: 10,
-} as React.CSSProperties;
+};
 
 export const initialTooltipState = {
   show: true,

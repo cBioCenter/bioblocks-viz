@@ -18,7 +18,7 @@ export const defaultVizPanelProps = {
 
 export const initialVizPanelState = {
   currentDataDir: '',
-  data: {} as Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>,
+  data: new Object() as Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>,
 };
 
 export type VizPanelContainerProps = {
@@ -83,7 +83,9 @@ export class VizPanelContainerClass extends React.Component<VizPanelContainerPro
         </GridRow>
         <ChellContext>
           {this.renderPanels(this.props.numPanels, this.state.data, this.props.initialVisualizations).map(
-            (panel, index) => <GridColumn key={index}>{panel}</GridColumn>,
+            (panel, index) => (
+              <GridColumn key={index}>{panel}</GridColumn>
+            ),
           )}
         </ChellContext>
 

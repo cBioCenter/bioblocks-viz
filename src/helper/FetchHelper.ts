@@ -1,7 +1,7 @@
 export const fetchCSVFile = async (filename: string) => {
   const response = await fetch(filename);
   if (response.ok) {
-    return await response.text();
+    return response.text();
   } else {
     throw new Error(genErrorMsg('CSV', response));
   }
@@ -10,7 +10,7 @@ export const fetchCSVFile = async (filename: string) => {
 export const fetchJSONFile = async (filename: string) => {
   const response = await fetch(filename);
   if (response.ok) {
-    return await response.json();
+    return response.json();
   } else {
     throw new Error(genErrorMsg('JSON', response));
   }

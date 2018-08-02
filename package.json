@@ -82,16 +82,16 @@
       "lib"
     ],
     "linters": {
-      "*.{md,ts,tsx}": [
-        "prettier --write",
-        "git add"
-      ],
       "*.md": [
         "markdownlint -c ./markdownlint.json",
         "git add"
       ],
       "*.{ts,tsx}": [
         "tslint",
+        "git add"
+      ],
+      "*.{md,ts,tsx}": [
+        "prettier --write",
         "git add"
       ]
     }
@@ -123,6 +123,7 @@
   },
   "dependencies": {
     "d3": "^5.4.0",
+    "deep-equal": "^1.0.1",
     "immutable": "^3.8.2",
     "ngl": "^2.0.0-dev.32",
     "pixi.js": "^4.7.3",
@@ -156,7 +157,6 @@
     "copy-webpack-plugin": "^4.5.1",
     "cross-env": "^5.1.4",
     "css-loader": "^1.0.0",
-    "deep-equal": "^1.0.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.3",

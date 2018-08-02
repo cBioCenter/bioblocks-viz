@@ -224,7 +224,7 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
     }
 
     // TODO Have the spacing number - 0.05 - be configurable. Requires some design work to look good for various numbers of total axes.
-    const result = {
+    const result: Partial<IPlotlyLayout> = {
       ...this.generateExtraPlotlyAxis(uniqueXAxisIds),
       ...this.generateExtraPlotlyAxis(uniqueYAxisIds),
       xaxis: {
@@ -237,7 +237,7 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
         range: [30],
         zeroline: false,
       },
-    } as Partial<IPlotlyLayout>;
+    };
 
     return result;
   }
@@ -270,7 +270,7 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
       .map(id => {
         const axisId = id.substr(0, 1);
         const axisNum = Number.parseInt(id.substr(1), 10);
-        return {
+        const result: Partial<Plotly.LayoutAxis> = {
           [`${axisId}axis${axisNum}`]: {
             // TODO Have this number - 0.05 - be configurable. Requires some design work to look good for various numbers of total axes.
             autosize: false,
@@ -281,33 +281,32 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
               autoexpand: false,
             },
             visible: false,
-          } as Partial<Plotly.LayoutAxis>,
+          },
         };
+        return result;
       })
       .reduce((prev, curr) => {
-        return Object.assign(prev, { ...curr });
+        return { ...prev, ...curr };
       }, {});
   };
 
   protected getMergedConfig = (config: Partial<Plotly.Config> = {}): Plotly.Config => {
-    return Object.assign(
-      {},
-      Immutable.fromJS(Object.assign({}, defaultPlotlyConfig))
-        .mergeDeep(Immutable.fromJS(Object.assign({}, config)))
+    return {
+      ...Immutable.fromJS({ ...defaultPlotlyConfig })
+        .mergeDeep(Immutable.fromJS({ ...config }))
         .toJS(),
-    );
+    };
   };
 
   protected getMergedLayout = (
     layout: Partial<Plotly.Layout> = {},
     plotlyFormattedData: Array<Partial<IPlotlyData>> = [],
   ): Plotly.Layout => {
-    return Object.assign(
-      {},
-      Immutable.fromJS(Object.assign({}, { ...defaultPlotlyLayout, ...this.deriveAxisParams(plotlyFormattedData) }))
-        .mergeDeep(Immutable.fromJS(Object.assign({}, layout)))
+    return {
+      ...Immutable.fromJS({ ...defaultPlotlyLayout, ...this.deriveAxisParams(plotlyFormattedData) })
+        .mergeDeep(Immutable.fromJS({ ...layout }))
         .toJS(),
-    );
+    };
   };
 
   protected onClick = (event: plotly.PlotMouseEvent) => {

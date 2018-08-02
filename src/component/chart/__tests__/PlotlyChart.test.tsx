@@ -14,16 +14,15 @@ beforeEach(() => {
 });
 
 describe('PlotlyChart', () => {
-  const sampleData = [
+  const sampleData: Array<Partial<IPlotlyData>> = [
     {
       marker: {
         color: 'blue',
       },
       mode: 'markers',
       type: 'pointcloud',
-      uid: 'adam',
       xy: new Float32Array([1, 2, 3, 4]),
-    } as Partial<IPlotlyData>,
+    },
   ];
   /**
    * Helper function to create and wait for a PlotlyChart to be mounted.

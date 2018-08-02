@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { initialResidueContext } from '../context/ResidueContext';
-import { CONFIGURATION_COMPONENT_TYPE, CONTACT_DISTANCE_PROXIMITY, IContactMapData } from '../data/chell-data';
+import {
+  CONFIGURATION_COMPONENT_TYPE,
+  CONTACT_DISTANCE_PROXIMITY,
+  IContactMapData,
+  ISecondaryStructureData,
+} from '../data/chell-data';
 import { CouplingContainer } from '../data/CouplingContainer';
 import { withDefaultProps } from '../helper/ReactHelper';
 import { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';
@@ -8,9 +13,10 @@ import ContactMap, { IContactMapConfiguration } from './ContactMap';
 
 export const defaultPredictedContactMapProps = {
   correctColor: '#ff0000',
-  data: {
+  data: new Object({
     couplingScores: new CouplingContainer(),
-  } as IContactMapData,
+    secondaryStructures: new Array<ISecondaryStructureData>(),
+  }) as IContactMapData,
   height: 400,
   incorrectColor: '#000000',
   ...initialResidueContext,
