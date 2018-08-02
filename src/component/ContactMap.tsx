@@ -108,30 +108,36 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     const pointsLength = pointsToPlot.length;
     const nodeSize = pointsLength >= 2 && pointsToPlot[pointsLength - 1] ? pointsToPlot[pointsLength - 1].nodeSize : 6;
 
-    const highlightedPoints = generateChartDataEntry(
-      'none',
-      highlightColor,
-      'Selected Res. Pairs',
-      '',
-      nodeSize,
-      Array.from(lockedResiduePairs.keys())
-        .filter(key => lockedResiduePairs.get(key)!.length === 2)
-        .map(key => ({ i: lockedResiduePairs.get(key)![0], j: lockedResiduePairs.get(key)![1], dist: 0 })),
-      {
-        marker: {
-          color: new Array<string>(lockedResiduePairs.size * 2).fill(highlightColor),
-          line: {
-            color: highlightColor,
-            width: 3,
+    const result = new Array<IContactMapChartData>(...points);
+
+    if (lockedResiduePairs.size > 0) {
+      result.push(
+        generateChartDataEntry(
+          'none',
+          highlightColor,
+          'Selected Res. Pairs',
+          '',
+          nodeSize,
+          Array.from(lockedResiduePairs.keys())
+            .filter(key => lockedResiduePairs.get(key)!.length === 2)
+            .map(key => ({ i: lockedResiduePairs.get(key)![0], j: lockedResiduePairs.get(key)![1], dist: 0 })),
+          {
+            marker: {
+              color: new Array<string>(lockedResiduePairs.size * 2).fill(highlightColor),
+              line: {
+                color: highlightColor,
+                width: 3,
+              },
+              symbol: 'circle-open',
+            },
           },
-          symbol: 'circle-open',
-        },
-      },
-    );
+        ),
+      );
+    }
 
     this.setState({
       ...this.state,
-      pointsToPlot: [...points, highlightedPoints],
+      pointsToPlot: [...result],
     });
   }
 

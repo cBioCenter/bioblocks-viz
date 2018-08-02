@@ -1,6 +1,6 @@
 {
   "name": "chell-viz",
-  "version": "0.0.55",
+  "version": "0.0.56",
   "author": "Biostatistics and Computational Biology at Dana-Farber <bcb@jimmy.harvard.edu>",
   "license": "MIT",
   "engines": {
@@ -42,6 +42,10 @@
     "modulePathIgnorePatterns": [
       "dist"
     ],
+    "reporters": [
+      "default",
+      "jest-junit"
+    ],
     "setupFiles": [
       "./configs/SetupJest.ts"
     ],
@@ -57,7 +61,7 @@
       "dist",
       "node_modules"
     ],
-    "testResultsProcessor": "jest-junit",
+    "testURL": "http://localhost",
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest"
     },
@@ -78,16 +82,16 @@
       "lib"
     ],
     "linters": {
-      "*.{md,ts,tsx}": [
-        "prettier --write",
-        "git add"
-      ],
       "*.md": [
         "markdownlint -c ./markdownlint.json",
         "git add"
       ],
       "*.{ts,tsx}": [
         "tslint",
+        "git add"
+      ],
+      "*.{md,ts,tsx}": [
+        "prettier --write",
         "git add"
       ]
     }
@@ -103,7 +107,7 @@
     "predoc": "rm -rf lib node_modules/typedoc/node_modules/typescript/lib",
     "doc": "typedoc --tsconfig ./configs/tsconfig.doc.json",
     "doc:precommit": "yarn doc && git add docs/api && git add -u docs/api",
-    "lint": "npm-run-all lint:*",
+    "lint": "yarn npm-run-all lint:*",
     "lint:src": "tslint --project ./",
     "lint:markdown": "markdownlint ./ -c ./markdownlint.json -i node_modules",
     "precommit": "lint-staged && yarn test:staged && yarn doc:precommit",
@@ -119,6 +123,7 @@
   },
   "dependencies": {
     "d3": "^5.4.0",
+    "deep-equal": "^1.0.1",
     "immutable": "^3.8.2",
     "ngl": "^2.0.0-dev.32",
     "pixi.js": "^4.7.3",
@@ -126,24 +131,24 @@
     "rc-slider": "^8.6.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    "semantic-ui-react": "^0.80.2"
+    "semantic-ui-react": "^0.82.1"
   },
   "devDependencies": {
     "@types/clean-webpack-plugin": "^0.1.2",
     "@types/copy-webpack-plugin": "^4.4.1",
     "@types/d3": "^5.0.0",
     "@types/enzyme": "^3.1.10",
-    "@types/html-webpack-plugin": "^2.30.3",
-    "@types/jest": "^22.2.3",
-    "@types/node": "^9.6.5",
+    "@types/html-webpack-plugin": "^3.2.0",
+    "@types/jest": "^23.3.1",
+    "@types/node": "^10.5.5",
     "@types/pixi.js": "^4.7.3",
     "@types/plotly.js": "^1.37.0",
     "@types/rc-slider": "^8.2.3",
-    "@types/react": "16.4.1",
+    "@types/react": "^16.4.7",
     "@types/react-dom": "^16.0.5",
     "@types/react-test-renderer": "^16.0.1",
     "@types/signals": "^1.0.1",
-    "@types/three": "^0.91.11",
+    "@types/three": "^0.92.14",
     "@types/wallabyjs": "^0.0.6",
     "@types/webpack-env": "^1.13.6",
     "@types/webpack-merge": "^4.1.3",
@@ -151,8 +156,7 @@
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.1",
     "cross-env": "^5.1.4",
-    "css-loader": "^0.28.11",
-    "deep-equal": "^1.0.1",
+    "css-loader": "^1.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.3",
@@ -166,20 +170,20 @@
     "jest": "^23.1.0",
     "jest-enzyme": "^6.0.0",
     "jest-fetch-mock": "^1.6.2",
-    "jest-junit": "^3.7.0",
+    "jest-junit": "^5.1.0",
     "jquery": "^3.3.1",
     "jsdom": "^11.10.0",
     "lint-staged": "^7.1.0",
-    "markdownlint-cli": "^0.8.1",
+    "markdownlint-cli": "^0.12.0",
     "npm-run-all": "^4.1.3",
     "prettier": "^1.12.1",
     "react-test-renderer": "^16.3.2",
     "signals": "^1.0.0",
     "style-loader": "^0.21.0",
-    "three": "^0.92.0",
-    "ts-jest": "^22.4.5",
+    "three": "^0.95.0",
+    "ts-jest": "^23.0.1",
     "ts-loader": "^4.2.0",
-    "ts-node": "^6.0.3",
+    "ts-node": "^7.0.0",
     "tslint": "^5.10.0",
     "tslint-config-prettier": "^1.12.0",
     "tslint-eslint-rules": "^5.1.0",
@@ -188,7 +192,7 @@
     "typedoc": "^0.11.1",
     "typescript": "^2.9.1",
     "webpack": "^4.8.0",
-    "webpack-cli": "^2.1.3",
+    "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.4",
     "webpack-merge": "^4.1.2"
   },

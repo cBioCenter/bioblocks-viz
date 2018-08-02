@@ -32,23 +32,13 @@ export const generateScatterData = (
   const yValues = points.map(data => data.j);
   const zValues = points.map(data => data.dist);
 
-  let color = new Array<string | number>(mirrorPoints ? zValues.length * 2 : zValues.length);
-
-  if (entry.marker && typeof entry.marker.color === 'string') {
-    color.fill(entry.marker.color);
-  } else {
-    color = mirrorPoints ? zValues.concat(zValues) : zValues;
-  }
-
   return {
     hoverinfo: 'x+y+z',
-    marker: Object.assign(
-      {
-        color,
-        size: entry.nodeSize,
-      },
-      marker,
-    ),
+    marker: {
+      color: derivePlotlyColor(mirrorPoints, zValues, entry),
+      size: entry.nodeSize,
+      ...marker,
+    },
     mode: 'markers',
     name: `${name} ${subtitle}`,
     type: PLOTLY_CHART_TYPE.scatter,
@@ -56,6 +46,15 @@ export const generateScatterData = (
     y: mirrorPoints ? [...yValues, ...xValues] : yValues,
     z: mirrorPoints ? [...zValues, ...zValues] : zValues,
   };
+};
+
+const derivePlotlyColor = (mirrorPoints: boolean, zValues: number[], entry: IContactMapChartData) => {
+  if (entry.marker && typeof entry.marker.color === 'string') {
+    const totalColors = mirrorPoints ? zValues.length * 2 : zValues.length;
+    return new Array<string>(totalColors).fill(entry.marker.color);
+  } else {
+    return mirrorPoints ? zValues.concat(zValues) : zValues;
+  }
 };
 
 export const generateFloat32ArrayFromContacts = (array: Array<{ i: number; j: number }>) => {

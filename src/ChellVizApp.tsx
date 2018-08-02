@@ -11,7 +11,7 @@ export class ChellVizApp extends React.Component<any, any> {
         <Grid centered={true} divided={'vertically'}>
           <GridRow>
             <VizPanelContainer
-              dataDirs={['assets/beta_lactamase', ...['1', '2', '3'].map(dir => `assets/contact_map/example${dir}`)]}
+              dataDirs={['assets/beta_lactamase', 'assets/METI']}
               supportedVisualizations={[VIZ_TYPE.CONTACT_MAP, VIZ_TYPE.NGL]}
               initialVisualizations={[VIZ_TYPE.CONTACT_MAP, VIZ_TYPE.NGL]}
               numPanels={2}

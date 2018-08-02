@@ -1,12 +1,23 @@
-import { ISecondaryStructureData, SECONDARY_STRUCTURE_CODES } from '../data/chell-data';
+import {
+  CONTACT_MAP_DATA_TYPE,
+  IContactMapData,
+  ISecondaryStructureData,
+  SECONDARY_STRUCTURE_CODES,
+  VIZ_TYPE,
+} from '../data/chell-data';
 import { CouplingContainer } from '../data/CouplingContainer';
 import { fetchCSVFile, fetchJSONFile } from './FetchHelper';
 
 import * as NGL from 'ngl';
 
-import { ISpringCategoricalColorData, ISpringCategoricalColorDataInput, ISpringGraphData } from 'spring';
-import { CONTACT_MAP_DATA_TYPE, IContactMapData, VIZ_TYPE } from '../data/chell-data';
 import { ChellPDB } from '../data/ChellPDB';
+import {
+  ISpringCategoricalColorData,
+  ISpringCategoricalColorDataInput,
+  ISpringGraphData,
+  ISpringLink,
+  ISpringNode,
+} from '../data/Spring';
 import { generateResidueMapping, IResidueMapping } from './ResidueMapper';
 
 export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
@@ -31,31 +42,39 @@ const deriveSpringData = async (dataDir: string) => {
   // const colorData = await this.fetchColorData(`${this.props.dataDir}/color_data_gene_sets.csv`);
   const catColorData = await fetchCategoricalColorData(`${dataDir}/categorical_coloring_data.json`);
 
-  const nodeDict: any = {};
+  const nodeDict = getNodesFromGraph(graphData, coordinates, catColorData);
 
-  for (let i = 0; i < graphData.nodes.length; ++i) {
-    const node = graphData.nodes[i];
-    nodeDict[node.number] = node;
-    if (node.number in coordinates) {
-      node.fixed = true;
-      node.x = coordinates[node.number][0];
-      node.y = coordinates[node.number][1];
-    }
-    const label = catColorData.label_list[i];
-    node.category = label;
-    node.colorHex = catColorData.label_colors[label];
-  }
+  graphData.links = foo(graphData.links, nodeDict);
 
-  graphData.links.forEach(link => {
-    const source = nodeDict[link.source as string];
-    const target = nodeDict[link.target as string];
+  return graphData;
+};
+
+const foo = (links: ISpringLink[], nodeDict: { [index: number]: ISpringNode }) =>
+  links.map(link => {
+    const source = nodeDict[link.source as number];
+    const target = nodeDict[link.target as number];
     if (source && target) {
       link.source = source;
       link.target = target;
     }
+    return link;
   });
 
-  return graphData;
+const getNodesFromGraph = (graphData: ISpringGraphData, coords: number[][], colorData: ISpringCategoricalColorData) => {
+  const nodeDict: { [index: number]: ISpringNode } = {};
+  for (let i = 0; i < graphData.nodes.length; ++i) {
+    const node = graphData.nodes[i];
+    nodeDict[node.number] = node;
+    if (node.number in coords) {
+      node.fixed = true;
+      node.x = coords[node.number][0];
+      node.y = coords[node.number][1];
+    }
+    const label = colorData.label_list[i];
+    node.category = label;
+    node.colorHex = colorData.label_colors[label];
+  }
+  return nodeDict;
 };
 
 const fetchCategoricalColorData = async (file: string): Promise<ISpringCategoricalColorData> => {

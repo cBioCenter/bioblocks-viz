@@ -9,7 +9,7 @@ export interface ICellContext {
   removeCells: (cells: CELL_TYPE[]) => void;
 }
 
-export const initialCellContext = {
+export const initialCellContext: ICellContext = {
   addCells: (cells: CELL_TYPE[]) => {
     return;
   },
@@ -20,7 +20,7 @@ export const initialCellContext = {
   removeCells: (cells: CELL_TYPE[]) => {
     return;
   },
-} as ICellContext;
+};
 
 const CellContext = React.createContext({
   ...initialCellContext,

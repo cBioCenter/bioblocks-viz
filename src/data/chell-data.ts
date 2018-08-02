@@ -3,7 +3,7 @@
 // Definitions by: cBioCenter @ Dana-Farber <https://github.com/cBioCenter/>, James Lindsay <https://github.com/jim-bo>, Nick Gauthier <https://github.com/npgauth>, Drew Diamantoukos <https://github.com/MercifulCode>,
 // TypeScript Version: 2.8
 import { Structure } from 'ngl';
-import { ISpringGraphData } from 'spring';
+import { ISpringGraphData } from './Spring';
 
 import Chell1DSection from './Chell1DSection';
 import { ChellPDB } from './ChellPDB';

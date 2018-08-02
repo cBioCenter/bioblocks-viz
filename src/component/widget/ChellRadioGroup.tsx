@@ -34,20 +34,23 @@ export default class ChellRadioGroup extends React.Component<IChellRadioGroupPro
     return (
       <Form>
         <Form.Field>How to calculate distance between two residues:</Form.Field>
-        {options.map((option, index) => (
-          <Form.Field key={`${id}-${option}`}>
-            <Radio
-              label={option.toLocaleLowerCase()}
-              name={option}
-              value={index}
-              checked={this.state.selectedIndex === index}
-              onChange={this.handleChange(index)}
-            />
-          </Form.Field>
-        ))}
+        {this.renderOptions(id, options)}
       </Form>
     );
   }
+
+  protected renderOptions = (id: string, options: string[]) =>
+    options.map((option, index) => (
+      <Form.Field key={`${id}-${option}`}>
+        <Radio
+          label={option.toLocaleLowerCase()}
+          name={option}
+          value={index}
+          checked={this.state.selectedIndex === index}
+          onChange={this.handleChange(index)}
+        />
+      </Form.Field>
+    ));
 }
 
 export { ChellRadioGroup };

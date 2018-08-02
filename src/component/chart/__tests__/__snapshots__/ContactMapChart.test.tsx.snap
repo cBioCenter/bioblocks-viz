@@ -100,7 +100,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
       },
       "margin": Object {
         "b": 40,
-        "l": 12,
+        "l": 16,
       },
       "showlegend": true,
       "xaxis": Object {
@@ -387,7 +387,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
       },
       "margin": Object {
         "b": 40,
-        "l": 12,
+        "l": 16,
       },
       "showlegend": true,
       "xaxis": Object {
@@ -478,7 +478,7 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
       },
       "margin": Object {
         "b": 40,
-        "l": 12,
+        "l": 16,
       },
       "showlegend": true,
       "xaxis": Object {

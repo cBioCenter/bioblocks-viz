@@ -11,26 +11,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
 >
   <ContactMapChartClass
     candidateResidues={Array []}
-    contactData={
-      Array [
-        Object {
-          "hoverinfo": "none",
-          "marker": Object {
-            "color": Array [],
-            "line": Object {
-              "color": "#ff8800",
-              "width": 3,
-            },
-            "symbol": "circle-open",
-          },
-          "mode": "lines+markers",
-          "name": "Selected Res. Pairs",
-          "nodeSize": 6,
-          "points": Array [],
-          "subtitle": "",
-        },
-      ]
-    }
+    contactData={Array []}
     dataTransformFn={[Function]}
     heightModifier={0.3}
     legendModifiers={
@@ -41,7 +22,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
     marginModifiers={
       Object {
         "b": 40,
-        "l": 12,
+        "l": 16,
       }
     }
     onClickCallback={[Function]}
@@ -75,20 +56,6 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
     <AccordionContent
       active={false}
     >
-      <ChellSlider
-        className="node-size-slider-0"
-        key="node-size-slider-0"
-        label="Selected Res. Pairs - Node Size"
-        max={20}
-        min={1}
-        onChange={[Function]}
-        style={
-          Object {
-            "width": 360,
-          }
-        }
-        value={6}
-      />
       <ChellSlider
         className="sample-slider"
         key="sample-slider"
@@ -127,13 +94,29 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
   }
 >
   <div
-    className="plotly-chart"
-    style={
-      Object {
-        "marginBottom": 5,
+    className="PlotlyChart"
+  >
+    <div
+      className="ui dimmer"
+      onClick={[Function]}
+    >
+      <div
+        className="content"
+      >
+        <div
+          className="ui loader"
+        />
+      </div>
+    </div>
+    <div
+      className="plotly-chart"
+      style={
+        Object {
+          "marginBottom": 5,
+        }
       }
-    }
-  />
+    />
+  </div>
 </div>
 `;
 
@@ -147,13 +130,29 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
   }
 >
   <div
-    className="plotly-chart"
-    style={
-      Object {
-        "marginBottom": 5,
+    className="PlotlyChart"
+  >
+    <div
+      className="ui dimmer"
+      onClick={[Function]}
+    >
+      <div
+        className="content"
+      >
+        <div
+          className="ui loader"
+        />
+      </div>
+    </div>
+    <div
+      className="plotly-chart"
+      style={
+        Object {
+          "marginBottom": 5,
+        }
       }
-    }
-  />
+    />
+  </div>
   <div
     className="accordion ui fluid styled"
   >
@@ -524,65 +523,6 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
           />
         </div>
       </div>
-      <div
-        className="node-size-slider-6"
-        style={
-          Object {
-            "padding": 20,
-          }
-        }
-      >
-        <p>
-          Selected Res. Pairs - Node Size: 6
-        </p>
-        <div
-          className="rc-slider"
-          onBlur={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
-          onTouchStart={[Function]}
-          style={
-            Object {
-              "width": 360,
-            }
-          }
-        >
-          <div
-            className="rc-slider-rail"
-            style={Object {}}
-          />
-          <div
-            className="rc-slider-track"
-            style={
-              Object {
-                "left": "0%",
-                "width": "26.31578947368421%",
-              }
-            }
-          />
-          <div
-            className="rc-slider-step"
-          />
-          <div
-            aria-disabled={false}
-            aria-valuemax={20}
-            aria-valuemin={1}
-            aria-valuenow={6}
-            className="rc-slider-handle"
-            role="slider"
-            style={
-              Object {
-                "left": "26.31578947368421%",
-              }
-            }
-            tabIndex={0}
-          />
-          <div
-            className="rc-slider-mark"
-          />
-        </div>
-      </div>
     </div>
   </div>
 </div>
@@ -804,7 +744,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             },
             "mode": "lines+markers",
             "name": "Selected Res. Pairs",
-            "nodeSize": 6,
+            "nodeSize": 4,
             "points": Array [
               Object {
                 "dist": 0,
@@ -826,7 +766,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       marginModifiers={
         Object {
           "b": 40,
-          "l": 12,
+          "l": 16,
         }
       }
       onClickCallback={[Function]}
@@ -1020,7 +960,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   "color": "#ff8800",
                   "width": 3,
                 },
-                "size": 6,
+                "size": 4,
                 "symbol": "circle-open",
               },
               "mode": "markers",
@@ -1052,7 +992,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             },
             "margin": Object {
               "b": 280,
-              "l": 84,
+              "l": 112,
             },
             "showlegend": true,
             "xaxis": Object {
@@ -1102,13 +1042,39 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         }
       >
         <div
-          className="plotly-chart"
-          style={
-            Object {
-              "marginBottom": 5,
+          className="PlotlyChart"
+        >
+          <Dimmer
+            active={false}
+          >
+            <DimmerInner
+              active={false}
+            >
+              <div
+                className="ui dimmer"
+                onClick={[Function]}
+              >
+                <div
+                  className="content"
+                >
+                  <Loader>
+                    <div
+                      className="ui loader"
+                    />
+                  </Loader>
+                </div>
+              </div>
+            </DimmerInner>
+          </Dimmer>
+          <div
+            className="plotly-chart"
+            style={
+              Object {
+                "marginBottom": 5,
+              }
             }
-          }
-        />
+          />
+        </div>
       </PlotlyChartClass>
     </ContactMapChartClass>
     <Accordion
@@ -2104,7 +2070,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                     "width": 360,
                   }
                 }
-                value={6}
+                value={4}
               >
                 <div
                   className="node-size-slider-6"
@@ -2115,7 +2081,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   }
                 >
                   <p>
-                    Selected Res. Pairs - Node Size: 6
+                    Selected Res. Pairs - Node Size: 4
                   </p>
                   <ComponentEnhancer(undefined)
                     activeDotStyle={Object {}}
@@ -2149,7 +2115,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         Object {},
                       ]
                     }
-                    value={6}
+                    value={4}
                     vertical={false}
                   >
                     <div
@@ -2172,7 +2138,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       <Track
                         className="rc-slider-track"
                         included={true}
-                        length={26.31578947368421}
+                        length={15.789473684210526}
                         offset={0}
                         style={Object {}}
                         vertical={false}
@@ -2182,7 +2148,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                           style={
                             Object {
                               "left": "0%",
-                              "width": "26.31578947368421%",
+                              "width": "15.789473684210526%",
                             }
                           }
                         />
@@ -2198,7 +2164,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         min={1}
                         prefixCls="rc-slider"
                         step={1}
-                        upperBound={6}
+                        upperBound={4}
                         vertical={false}
                       >
                         <div
@@ -2211,21 +2177,21 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         key="0"
                         max={20}
                         min={1}
-                        offset={26.31578947368421}
+                        offset={15.789473684210526}
                         style={Object {}}
-                        value={6}
+                        value={4}
                         vertical={false}
                       >
                         <div
                           aria-disabled={false}
                           aria-valuemax={20}
                           aria-valuemin={1}
-                          aria-valuenow={6}
+                          aria-valuenow={4}
                           className="rc-slider-handle"
                           role="slider"
                           style={
                             Object {
-                              "left": "26.31578947368421%",
+                              "left": "15.789473684210526%",
                             }
                           }
                           tabIndex={0}
@@ -2238,7 +2204,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         marks={Object {}}
                         max={20}
                         min={1}
-                        upperBound={6}
+                        upperBound={4}
                         vertical={false}
                       >
                         <div

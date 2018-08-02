@@ -37,15 +37,9 @@ export interface IResidueMapping {
  */
 export const generateResidueMapping = (text: string): IResidueMapping[] => {
   const headers = text.split('\n')[0].split('\t');
-  const headerMap: { [key: string]: number } = {};
-  if (headers.length >= EXPECTED_HEADERS.length) {
-    EXPECTED_HEADERS.map(header => {
-      if (!headers.includes(header)) {
-        throw new Error(`Missing error ${header} in indextableplus file!`);
-      }
-      headerMap[header] = headers.indexOf(header);
-    });
-  }
+  const headerMap: {
+    [key: string]: number;
+  } = getResidueMappingHeaders(headers);
   return text
     .split('\n')
     .slice(1)
@@ -61,4 +55,19 @@ export const generateResidueMapping = (text: string): IResidueMapping[] => {
       }
       return result;
     }, new Array<IResidueMapping>());
+};
+
+const getResidueMappingHeaders = (headers: string[]) => {
+  const headerMap: {
+    [key: string]: number;
+  } = {};
+  if (headers.length >= EXPECTED_HEADERS.length) {
+    EXPECTED_HEADERS.map(header => {
+      if (!headers.includes(header)) {
+        throw new Error(`Missing error ${header} in indextableplus file!`);
+      }
+      headerMap[header] = headers.indexOf(header);
+    });
+  }
+  return headerMap;
 };

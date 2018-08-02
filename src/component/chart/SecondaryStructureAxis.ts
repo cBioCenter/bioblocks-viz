@@ -33,16 +33,20 @@ export default class SecondaryStructureAxis extends AuxiliaryAxis<SECONDARY_STRU
   protected setupAuxiliaryAxis() {
     super.setupAuxiliaryAxis();
     const sheetAxis = this.axes.get('E');
+    const BLANK_LINE = 'line-ne';
+    const TRIANGLE_RIGHT = 'triangle-right';
+    const TRIANGLE_DOWN = 'triangle-down';
+
     if (sheetAxis && sheetAxis.x.x && sheetAxis.x.y) {
       const symbols = {
-        main: new Array<string>(sheetAxis.x.x.length).fill('line-ne'),
-        opposite: new Array<string>(sheetAxis.x.x.length).fill('line-ne'),
+        main: new Array<string>(sheetAxis.x.x.length).fill(BLANK_LINE),
+        opposite: new Array<string>(sheetAxis.x.x.length).fill(BLANK_LINE),
       };
 
       for (let i = 1; i < sheetAxis.x.x.length - 1; ++i) {
         if (sheetAxis.x.y[i + 1] === null) {
-          symbols.main[i] = 'triangle-right';
-          symbols.opposite[i] = 'triangle-down';
+          symbols.main[i] = TRIANGLE_RIGHT;
+          symbols.opposite[i] = TRIANGLE_DOWN;
         }
       }
 
@@ -58,6 +62,13 @@ export default class SecondaryStructureAxis extends AuxiliaryAxis<SECONDARY_STRU
     }
   }
 
+  /**
+   * Generate the Plotly layout specific to beta sheet representation.
+   *
+   * @param data Data for this axis.
+   * @param symbols The symbols that make up this axis. Should be an array of empty lines with an arrow at the end.
+   * @returns Plotly layout specific to beta sheet representation.
+   */
   protected generateBetaSheetStyle(data: Partial<IPlotlyData>, symbols: string[]): Partial<IPlotlyData> {
     return {
       line: {
