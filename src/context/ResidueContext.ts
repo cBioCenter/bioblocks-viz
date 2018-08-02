@@ -19,7 +19,7 @@ export interface IResidueContext {
   toggleLockedResiduePair: (residues: RESIDUE_TYPE[]) => void;
 }
 
-export const initialResidueContext = {
+export const initialResidueContext: IResidueContext = {
   addCandidateResidues: (residues: RESIDUE_TYPE[]) => {
     return;
   },
@@ -47,13 +47,13 @@ export const initialResidueContext = {
   removeLockedResiduePair: (residues: RESIDUE_TYPE[]) => {
     return;
   },
-  removeNonLockedResidues: (residues: RESIDUE_TYPE[]) => {
+  removeNonLockedResidues: () => {
     return;
   },
   toggleLockedResiduePair: (residues: RESIDUE_TYPE[]) => {
     return;
   },
-} as IResidueContext;
+};
 
 const ResidueContext = React.createContext({
   ...initialResidueContext,

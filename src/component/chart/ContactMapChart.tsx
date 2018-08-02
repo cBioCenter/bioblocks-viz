@@ -1,6 +1,6 @@
 // We need to use dist/plotly to avoid forcing users to do some webpack gymnastics:
 // https://github.com/plotly/plotly-webpack#the-easy-way-recommended
-import * as plotly from 'plotly.js/dist/plotly';
+import * as plotly from 'plotly.js';
 import * as React from 'react';
 
 import { RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../../data/chell-data';
@@ -45,7 +45,7 @@ const defaultContactMapChartProps: Partial<IContactMapChartProps> = {
   },
   marginModifiers: {
     b: 40,
-    l: 12,
+    l: 16,
   },
   range: 100,
   secondaryStructures: [],
@@ -171,6 +171,11 @@ class ContactMapChartClass extends React.Component<IContactMapChartProps, IConta
     );
   }
 
+  /**
+   * Sets up the chart and axis data for the ContactMap.
+   *
+   * Transforms all data from chell terminology to data properly formatted for Plotly consumption.
+   */
   protected setupData() {
     const { contactData, dataTransformFn, secondaryStructures, selectedSecondaryStructures } = this.props;
     const plotlyData = [...contactData.map(entry => dataTransformFn(entry, true))];

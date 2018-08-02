@@ -1,12 +1,17 @@
-import { ISecondaryStructureData, SECONDARY_STRUCTURE_CODES } from '../data/chell-data';
+import {
+  CONTACT_MAP_DATA_TYPE,
+  IContactMapData,
+  ISecondaryStructureData,
+  SECONDARY_STRUCTURE_CODES,
+  VIZ_TYPE,
+} from '../data/chell-data';
 import { CouplingContainer } from '../data/CouplingContainer';
 import { fetchCSVFile, fetchJSONFile } from './FetchHelper';
 
 import * as NGL from 'ngl';
 
-import { ISpringCategoricalColorData, ISpringCategoricalColorDataInput, ISpringGraphData } from 'spring';
-import { CONTACT_MAP_DATA_TYPE, IContactMapData, VIZ_TYPE } from '../data/chell-data';
 import { ChellPDB } from '../data/ChellPDB';
+import { ISpringCategoricalColorData, ISpringCategoricalColorDataInput, ISpringGraphData } from '../data/Spring';
 import { generateResidueMapping, IResidueMapping } from './ResidueMapper';
 
 export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {

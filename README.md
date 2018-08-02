@@ -1,6 +1,6 @@
 # [Chell Visualization Library](https://cbiocenter.github.io/chell-viz/)
 
-[![CircleCI](https://circleci.com/gh/cBioCenter/chell-viz.svg?style=shield)](https://circleci.com/gh/cBioCenter/chell-viz)[![GitHub license](https://img.shields.io/github/license/cBioCenter/chell-viz.svg?style=flat)](https://github.com/cBioCenter/chell-viz/blob/master/LICENSE)[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)[![Coverage Status](https://img.shields.io/codecov/c/github/cBioCenter/chell-viz/master.svg)](https://codecov.io/gh/cBioCenter/chell-viz/branch/master)
+[![npm version](https://badge.fury.io/js/chell-viz.svg)](https://badge.fury.io/js/chell-viz)[![CircleCI](https://circleci.com/gh/cBioCenter/chell-viz.svg?style=shield)](https://circleci.com/gh/cBioCenter/chell-viz)[![GitHub license](https://img.shields.io/github/license/cBioCenter/chell-viz.svg?style=flat)](https://github.com/cBioCenter/chell-viz/blob/master/LICENSE)[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)[![Coverage Status](https://img.shields.io/codecov/c/github/cBioCenter/chell-viz/master.svg)](https://codecov.io/gh/cBioCenter/chell-viz/branch/master)
 
 ## Intro
 
@@ -14,20 +14,20 @@ Please see the [Getting Started](https://cbiocenter.github.io/chell-viz/docs/DEV
 
 ## Getting Started (For Non-Development Use)
 
-* Clone the repository:
+- Clone the repository:
 
 ```sh
 git clone https://github.com/cBioCenter/chell-viz
 ```
 
-* Install dependencies with [yarn](https://yarnpkg.com/):
+- Install dependencies with [yarn](https://yarnpkg.com/):
 
 ```sh
 cd chell-viz
 yarn
 ```
 
-* Start a local server to see the components in action!
+- Start a local server to see the components in action!
 
 ```sh
 yarn start

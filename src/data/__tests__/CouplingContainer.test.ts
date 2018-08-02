@@ -43,13 +43,13 @@ describe('CouplingContainer', () => {
   it('Should allow iterators to iterate through existing contacts.', () => {
     const result = new CouplingContainer(sampleContacts);
     for (const contact of result) {
-      expect(sampleContacts).toContain(contact);
+      expect(sampleContacts).toContainEqual(contact);
     }
   });
 
   it('Should allow retrieving the contacts sorted by rank.', () => {
     const result = new CouplingContainer(sampleContacts).rankedContacts;
-    const expected = [sampleContacts[2], sampleContacts[0], sampleContacts[3]];
+    const expected = [sampleContacts[2], sampleContacts[1], sampleContacts[3]];
     expect(result).toEqual(expected);
   });
 
@@ -57,7 +57,7 @@ describe('CouplingContainer', () => {
     const dummyScores = [{ i: 1, j: 1, dist: 0 }, { i: 2, j: 2, dist: 1 }, { i: 11, j: 11, dist: 11 }];
     for (const score of dummyScores) {
       const result = new CouplingContainer([score, ...sampleContacts]).rankedContacts;
-      const expected = [sampleContacts[2], sampleContacts[0], sampleContacts[3], score];
+      const expected = [sampleContacts[2], sampleContacts[1], sampleContacts[3], score];
       expect(result).toEqual(expected);
     }
   });

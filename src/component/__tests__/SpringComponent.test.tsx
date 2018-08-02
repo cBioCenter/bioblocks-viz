@@ -3,7 +3,7 @@ import toJson from 'enzyme-to-json';
 
 import * as React from 'react';
 
-import { ISpringGraphData } from 'spring';
+import { ISpringGraphData } from '../../data/Spring';
 import SpringComponent from '../SpringComponent';
 
 describe('SpringComponent', () => {

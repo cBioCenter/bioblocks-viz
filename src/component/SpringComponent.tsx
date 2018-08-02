@@ -1,17 +1,17 @@
 import * as d3 from 'd3';
 import * as PIXI from 'pixi.js';
 import * as React from 'react';
-import { ISpringGraphData, ISpringLink, ISpringNode } from 'spring';
 import CellContext, { initialCellContext } from '../context/CellContext';
 import { SPRING_DATA_TYPE } from '../data/chell-data';
+import { ISpringGraphData, ISpringLink, ISpringNode } from '../data/Spring';
 import { withDefaultProps } from '../helper/ReactHelper';
 
 export const defaultSpringProps = {
   canvasBackgroundColor: 0xcccccc,
-  data: {
-    links: [],
-    nodes: [],
-  } as SPRING_DATA_TYPE,
+  data: new Object({
+    links: new Array<ISpringLink>(),
+    nodes: new Array<ISpringNode>(),
+  }) as SPRING_DATA_TYPE,
   height: 450,
   ...initialCellContext,
   padding: 0,
@@ -45,10 +45,9 @@ export const SpringComponentWithDefaultProps = withDefaultProps(
         view: this.canvasElement,
       });
 
-      const { pixiApp } = this;
       const { data, selectedCategory } = this.props;
       if (data) {
-        pixiApp.stage.removeChildren();
+        this.pixiApp.stage.removeChildren();
 
         this.nodeSprites = new PIXI.Container();
         this.edgeSprites = new PIXI.Container();
@@ -58,8 +57,8 @@ export const SpringComponentWithDefaultProps = withDefaultProps(
 
         this.centerCanvas(data);
 
-        pixiApp.stage.addChild(this.edgeSprites);
-        pixiApp.stage.addChild(this.nodeSprites);
+        this.pixiApp.stage.addChild(this.edgeSprites);
+        this.pixiApp.stage.addChild(this.nodeSprites);
       }
     }
 
@@ -67,8 +66,7 @@ export const SpringComponentWithDefaultProps = withDefaultProps(
       const { data, selectedCategory } = this.props;
       const isNewData = data && data !== prevProps.data;
       if (isNewData) {
-        const { pixiApp } = this;
-        pixiApp.stage.removeChildren();
+        this.pixiApp.stage.removeChildren();
 
         this.nodeSprites = new PIXI.Container();
         this.edgeSprites = new PIXI.Container();
@@ -78,8 +76,8 @@ export const SpringComponentWithDefaultProps = withDefaultProps(
 
         this.centerCanvas(data);
 
-        pixiApp.stage.addChild(this.edgeSprites);
-        pixiApp.stage.addChild(this.nodeSprites);
+        this.pixiApp.stage.addChild(this.edgeSprites);
+        this.pixiApp.stage.addChild(this.nodeSprites);
       } else if (selectedCategory !== prevProps.selectedCategory) {
         this.updateNodeSprites(data.nodes, this.nodeSprites, (node: ISpringNode) => node.category === selectedCategory);
         this.edgeSprites.removeChildren();
@@ -141,7 +139,7 @@ export const SpringComponentWithDefaultProps = withDefaultProps(
 
     protected generateNodeSprites(nodes: ISpringNode[] = [], container: PIXI.Container, category?: string) {
       const SPRITE_IMG_SIZE = 32;
-      const scaleFactor = 0.5 * 32 / SPRITE_IMG_SIZE;
+      const scaleFactor = (0.5 * 32) / SPRITE_IMG_SIZE;
 
       // TODO: Evaluate ParticleContainer is PIXI v5. The v4 version doesn't play nice with sprites rendered via PIXI.Graphics.
       // this.sprites = new PIXI.particles.ParticleContainer(data.nodes.length);
@@ -172,16 +170,11 @@ export const SpringComponentWithDefaultProps = withDefaultProps(
       for (let i = 0; i < container.children.length; ++i) {
         const node = nodes[i];
         const sprite = container.children[i];
-        if (conditionFn(node)) {
-          sprite.alpha = 1;
-        } else {
-          sprite.alpha = 0.1;
-        }
+        sprite.alpha = conditionFn(node) ? 1 : 0.1;
       }
     }
 
     protected centerCanvas(data: ISpringGraphData) {
-      const { edgeSprites, nodeSprites } = this;
       const { height, width } = this.props;
       const allXs = data.nodes.map(node => node.x);
       const allYs = data.nodes.map(node => node.y);
@@ -202,16 +195,16 @@ export const SpringComponentWithDefaultProps = withDefaultProps(
 
       const delta = {
         scale: scale - this.nodeSprites.scale.x,
-        x: width / 2 - (max.x + min.x) / 2 * scale - nodeSprites.position.x,
-        y: height / 2 + 30 - (max.y + min.y) / 2 * scale - nodeSprites.position.y,
+        x: width / 2 - ((max.x + min.x) / 2) * scale - this.nodeSprites.position.x,
+        y: height / 2 + 30 - ((max.y + min.y) / 2) * scale - this.nodeSprites.position.y,
       };
 
-      nodeSprites.position.x += delta.x;
-      nodeSprites.position.y += delta.y;
-      nodeSprites.scale.x += delta.scale;
-      nodeSprites.scale.y += delta.scale;
-      edgeSprites.position = nodeSprites.position;
-      edgeSprites.scale = nodeSprites.scale;
+      this.nodeSprites.position.x += delta.x;
+      this.nodeSprites.position.y += delta.y;
+      this.nodeSprites.scale.x += delta.scale;
+      this.nodeSprites.scale.y += delta.scale;
+      this.edgeSprites.position = this.nodeSprites.position;
+      this.edgeSprites.scale = this.nodeSprites.scale;
     }
   },
 );

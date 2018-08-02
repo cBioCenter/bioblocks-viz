@@ -148,10 +148,10 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
       this.totalStoredContacts++;
       this.contacts[minResidueIndex][maxResidueIndex] = score;
     } else {
-      this.contacts[minResidueIndex][maxResidueIndex] = Object.assign(
-        this.contacts[minResidueIndex][maxResidueIndex],
-        score,
-      );
+      this.contacts[minResidueIndex][maxResidueIndex] = {
+        ...this.contacts[minResidueIndex][maxResidueIndex],
+        ...score,
+      };
     }
   }
 }

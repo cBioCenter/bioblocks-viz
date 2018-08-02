@@ -28,6 +28,12 @@ class MockStage {
     },
   };
 
+  public mouseObserver = {
+    canvasPosition: {
+      distanceTo: jest.fn(pos => pos),
+    },
+  };
+
   public signals = {
     clicked: {
       add: (callback: (...args: any[]) => void) => this.events.set('click', callback),
@@ -43,6 +49,10 @@ class MockStage {
     requestRender: () => jest.fn(),
   };
 
+  public viewerControls = {
+    getPositionOnCanvas: (pos: number) => pos,
+  };
+
   constructor(canvas: HTMLElement) {
     return;
   }
@@ -56,10 +66,12 @@ class MockStage {
     removeRepresentation: (name: string, ...args: any[]) => {
       this.reprList.splice(this.reprList.indexOf(name), 1);
     },
-
     stage: {
       mouseControls: this.mouseControls,
+      mouseObserver: this.mouseObserver,
+      viewerControls: this.viewerControls,
     },
+    structure: new ngl.Structure(),
   });
   public defaultFileRepresentation = (...args: any[]) => jest.fn();
   public dispose = () => jest.fn();
@@ -99,8 +111,12 @@ const sampleResidues = [helixResidue(1), sheetResidue(2), turnResidue(3)];
   return {
     atomMap: { dict: { 'CA|C': 2 } },
     eachResidue: jest.fn(cb => (name.localeCompare('sample.pdb') ? sampleResidues.map(residue => cb(residue)) : {})),
-    getAtomProxy: jest.fn(() => ({
-      distanceTo: (...args: any[]) => 1,
+    getAtomProxy: jest.fn(index => ({
+      distanceTo: (pos: number) => pos + index,
+      positionToVector3: () => index,
+    })),
+    getResidueProxy: jest.fn(resno => ({
+      getAtomIndexByName: (...args: any[]) => resno,
     })),
     getSequence: jest.fn(() => []),
     residueMap: {
@@ -121,16 +137,5 @@ const sampleResidues = [helixResidue(1), sheetResidue(2), turnResidue(3)];
   (path: string) =>
     path.localeCompare('error/protein.pdb') === 0 ? Promise.reject('Invalid NGL path.') : new NGL.Structure(path),
 );
-
-// @ts-ignore
-ngl.MouseActions = {
-  CLICK: 'click',
-  CLICK_PICK: 'clickPick',
-  DOUBLE_CLICK: 'doubleClick',
-  DRAG: 'drag',
-  HOVER: 'hover',
-  HOVER_PICK: 'hoverPick',
-  SCROLL: 'scroll',
-};
 
 module.exports = ngl;

@@ -1,7 +1,10 @@
 import Slider, { SliderProps } from 'rc-slider';
 import * as React from 'react';
 
+// https://github.com/react-component/slider/ requires the css imported like this.
+// tslint:disable-next-line:no-submodule-imports
 import 'rc-slider/assets/index.css';
+
 import { IChellWidgetProps } from './ChellWidget';
 
 /** Function signature that is invoked on slider events. */

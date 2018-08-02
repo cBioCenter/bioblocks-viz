@@ -3,8 +3,7 @@ import CellContext from '../context/CellContext';
 import { T_SNE_DATA_TYPE } from '../data/chell-data';
 import ChellChartEvent from '../data/event/ChellChartEvent';
 import { withDefaultProps } from '../helper/ReactHelper';
-import { defaultPlotlyConfig, defaultPlotlyLayout } from './chart/PlotlyChart';
-import PlotlyChart from './chart/PlotlyChart';
+import PlotlyChart, { defaultPlotlyConfig, defaultPlotlyLayout } from './chart/PlotlyChart';
 
 export const defaultTComponentProps = {
   data: [[0], [0]] as T_SNE_DATA_TYPE,

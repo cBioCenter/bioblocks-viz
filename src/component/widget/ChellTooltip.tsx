@@ -1,50 +1,55 @@
 import * as React from 'react';
 
-const defaultTooltipProps = {
-  style: {
-    backgroundColor: 'rgba(0, 244, 0, 0.6)',
-    color: 'lightgrey',
-    display: 'block',
-    fontFamily: 'sans-serif',
-    padding: '0.5em',
-    pointerEvents: 'none',
-    position: 'absolute',
-    zIndex: 10,
-  } as React.CSSProperties,
-  timeout: 0,
-};
-
-export const defaultTooltipState = {
-  show: true,
-};
-
-export type ChellTooltipProps = {
+export interface IChellTooltipProps {
+  style?: React.CSSProperties;
   message: string;
-} & typeof defaultTooltipProps;
+  timeout?: number;
+}
 
-export type ChellTooltipState = {} & typeof defaultTooltipState;
+const defaultStyle: React.CSSProperties = {
+  backgroundColor: 'rgba(0, 244, 0, 0.6)',
+  color: 'lightgrey',
+  display: 'block',
+  fontFamily: 'sans-serif',
+  padding: '0.5em',
+  pointerEvents: 'none',
+  position: 'absolute',
+  zIndex: 10,
+};
 
-class ChellTooltip extends React.Component<ChellTooltipProps, ChellTooltipState> {
-  public static getDerivedStateFromProps(props: ChellTooltipProps) {
-    if (props.timeout === 0) {
-      return { show: true };
-    }
-  }
+export const initialTooltipState = {
+  show: true,
+  timer: undefined as undefined | NodeJS.Timer | number,
+};
 
-  constructor(props: ChellTooltipProps) {
+export type ChellTooltipState = Readonly<typeof initialTooltipState>;
+
+class ChellTooltip extends React.Component<IChellTooltipProps, ChellTooltipState> {
+  public readonly state: ChellTooltipState = initialTooltipState;
+
+  constructor(props: IChellTooltipProps) {
     super(props);
   }
 
-  public componentDidUpdate(nextProps: ChellTooltipProps) {
-    if (nextProps.timeout > 0) {
-      setTimeout(() => {
-        this.setState({ show: false });
-      }, nextProps.timeout);
+  public componentDidUpdate(nextProps: IChellTooltipProps) {
+    const { timeout = 0 } = nextProps;
+    if (!this.state.timer && timeout > 0) {
+      const timer = setTimeout(() => this.setState({ show: false }), timeout);
+      this.setState({
+        timer,
+      });
+    }
+  }
+
+  public componentWillUnmount() {
+    const { timer } = this.state;
+    if (timer) {
+      clearTimeout(timer as number);
     }
   }
 
   public render() {
-    const { message, style } = this.props;
+    const { message, style = defaultStyle } = this.props;
     const { show } = this.state;
     return (
       show && (
@@ -57,5 +62,4 @@ class ChellTooltip extends React.Component<ChellTooltipProps, ChellTooltipState>
 }
 
 export default ChellTooltip;
-
 export { ChellTooltip };

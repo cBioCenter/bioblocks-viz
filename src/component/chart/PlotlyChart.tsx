@@ -1,6 +1,7 @@
 import * as deepEqual from 'deep-equal';
 import * as Immutable from 'immutable';
 import * as React from 'react';
+import { Dimmer, Loader } from 'semantic-ui-react';
 
 // We need to use dist/plotly to avoid forcing users to do some webpack gymnastics:
 // https://github.com/plotly/plotly-webpack#the-easy-way-recommended
@@ -168,16 +169,11 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
 
   public async componentDidMount() {
     if (this.canvasRef && !this.plotlyCanvas) {
-      const { data, layout, config } = this.props;
+      const { data } = this.props;
       // !Important! This is to make a DEEP COPY of the data because Plotly will modify it, thus causing false positive data updates.
       this.plotlyFormattedData = Immutable.fromJS(data).toJS();
 
-      this.plotlyCanvas = await plotly.react(
-        this.canvasRef,
-        this.plotlyFormattedData,
-        this.getMergedLayout(layout, this.plotlyFormattedData),
-        this.getMergedConfig(config),
-      );
+      this.plotlyCanvas = await plotly.react(this.canvasRef, this.plotlyFormattedData);
 
       this.attachListeners();
       this.draw();
@@ -194,7 +190,16 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
 
   public render() {
     return (
-      <div className={'plotly-chart'} ref={node => (this.canvasRef = node ? node : null)} style={{ marginBottom: 5 }} />
+      <div className={'PlotlyChart'}>
+        <Dimmer active={this.props.data.length === 0}>
+          <Loader />
+        </Dimmer>
+        <div
+          className={'plotly-chart'}
+          ref={node => (this.canvasRef = node ? node : null)}
+          style={{ marginBottom: 5 }}
+        />
+      </div>
     );
   }
 
@@ -219,7 +224,7 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
     }
 
     // TODO Have the spacing number - 0.05 - be configurable. Requires some design work to look good for various numbers of total axes.
-    const result = {
+    const result: Partial<IPlotlyLayout> = {
       ...this.generateExtraPlotlyAxis(uniqueXAxisIds),
       ...this.generateExtraPlotlyAxis(uniqueYAxisIds),
       xaxis: {
@@ -232,7 +237,7 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
         range: [30],
         zeroline: false,
       },
-    } as Partial<IPlotlyLayout>;
+    };
 
     return result;
   }
@@ -265,7 +270,7 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
       .map(id => {
         const axisId = id.substr(0, 1);
         const axisNum = Number.parseInt(id.substr(1), 10);
-        return {
+        const result: Partial<Plotly.LayoutAxis> = {
           [`${axisId}axis${axisNum}`]: {
             // TODO Have this number - 0.05 - be configurable. Requires some design work to look good for various numbers of total axes.
             autosize: false,
@@ -276,33 +281,32 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
               autoexpand: false,
             },
             visible: false,
-          } as Partial<Plotly.LayoutAxis>,
+          },
         };
+        return result;
       })
       .reduce((prev, curr) => {
-        return Object.assign(prev, { ...curr });
+        return { ...prev, ...curr };
       }, {});
   };
 
   protected getMergedConfig = (config: Partial<Plotly.Config> = {}): Plotly.Config => {
-    return Object.assign(
-      {},
-      Immutable.fromJS(Object.assign({}, defaultPlotlyConfig))
-        .mergeDeep(Immutable.fromJS(Object.assign({}, config)))
+    return {
+      ...Immutable.fromJS({ ...defaultPlotlyConfig })
+        .mergeDeep(Immutable.fromJS({ ...config }))
         .toJS(),
-    );
+    };
   };
 
   protected getMergedLayout = (
     layout: Partial<Plotly.Layout> = {},
     plotlyFormattedData: Array<Partial<IPlotlyData>> = [],
   ): Plotly.Layout => {
-    return Object.assign(
-      {},
-      Immutable.fromJS(Object.assign({}, { ...defaultPlotlyLayout, ...this.deriveAxisParams(plotlyFormattedData) }))
-        .mergeDeep(Immutable.fromJS(Object.assign({}, layout)))
+    return {
+      ...Immutable.fromJS({ ...defaultPlotlyLayout, ...this.deriveAxisParams(plotlyFormattedData) })
+        .mergeDeep(Immutable.fromJS({ ...layout }))
         .toJS(),
-    );
+    };
   };
 
   protected onClick = (event: plotly.PlotMouseEvent) => {
