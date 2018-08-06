@@ -169,7 +169,6 @@ describe('PredictedContactMap', () => {
 
   it('Should update points to plot when new data is provided.', () => {
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);
-    expect(wrapper.state('pointsToPlot')).toEqual([]);
     wrapper.setProps({
       data: sampleData,
     });
@@ -179,7 +178,6 @@ describe('PredictedContactMap', () => {
 
   it('Should update points to plot using closest atom for distance determination.', async () => {
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);
-    expect(wrapper.state('pointsToPlot')).toEqual([]);
     wrapper.setProps({
       data: await sampleDataWithPDB(),
     });
@@ -192,7 +190,6 @@ describe('PredictedContactMap', () => {
 
   it('Should update points to plot using C-Alpha for distance determination.', async () => {
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);
-    expect(wrapper.state('pointsToPlot')).toEqual([]);
     wrapper.setProps({
       data: await sampleDataWithPDB(),
     });

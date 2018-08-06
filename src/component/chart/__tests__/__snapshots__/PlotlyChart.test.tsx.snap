@@ -28,13 +28,13 @@ exports[`PlotlyChart Should attach events when the container is attached. 1`] = 
     className="PlotlyChart"
   >
     <Dimmer
-      active={false}
+      active={true}
     >
       <DimmerInner
-        active={false}
+        active={true}
       >
         <div
-          className="ui dimmer"
+          className="ui active transition visible dimmer"
           onClick={[Function]}
         >
           <div
@@ -93,13 +93,13 @@ exports[`PlotlyChart Should handle extra axes correctly. 1`] = `
     className="PlotlyChart"
   >
     <Dimmer
-      active={false}
+      active={true}
     >
       <DimmerInner
-        active={false}
+        active={true}
       >
         <div
-          className="ui dimmer"
+          className="ui active transition visible dimmer"
           onClick={[Function]}
         >
           <div
@@ -195,13 +195,13 @@ exports[`PlotlyChart Should match existing snapshot when given sample data. 1`] 
     className="PlotlyChart"
   >
     <Dimmer
-      active={false}
+      active={true}
     >
       <DimmerInner
-        active={false}
+        active={true}
       >
         <div
-          className="ui dimmer"
+          className="ui active transition visible dimmer"
           onClick={[Function]}
         >
           <div
