@@ -97,7 +97,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
     className="PlotlyChart"
   >
     <div
-      className="ui dimmer"
+      className="ui active transition visible dimmer"
       onClick={[Function]}
     >
       <div
@@ -133,7 +133,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
     className="PlotlyChart"
   >
     <div
-      className="ui dimmer"
+      className="ui active transition visible dimmer"
       onClick={[Function]}
     >
       <div

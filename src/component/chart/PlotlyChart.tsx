@@ -184,6 +184,7 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
     if (this.plotlyCanvas) {
       plotly.purge(this.plotlyCanvas);
       this.plotlyCanvas = null;
+      this.canvasRef = null;
     }
     window.removeEventListener('resize', this.resize);
   }
@@ -191,7 +192,7 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
   public render() {
     return (
       <div className={'PlotlyChart'}>
-        <Dimmer active={this.props.data.length === 0}>
+        <Dimmer active={this.isDataLoaded()}>
           <Loader />
         </Dimmer>
         <div
@@ -366,6 +367,13 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
       onUnHoverCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.UNHOVER, chartPiece, selectedPoints));
     }
   };
+
+  /**
+   * Is the data ready to be plotted?
+   */
+  private isDataLoaded = () =>
+    this.props.data.length === 0 ||
+    this.plotlyFormattedData.filter(dataPoint => dataPoint.x && dataPoint.x.length >= 1).length === 0;
 }
 
 const PlotlyChart = withDefaultProps(defaultPlotlyChartProps, PlotlyChartClass);
