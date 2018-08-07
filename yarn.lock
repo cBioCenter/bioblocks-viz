@@ -35,11 +35,10 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
-"@babel/runtime@^7.0.0-beta.49":
-  version "7.0.0-beta.55"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.0.0-beta.55.tgz#0bc33aa5a6ac0b012f37e25b9e6aaa2e489a916b"
+"@babel/runtime@^7.0.0-beta.56":
+  version "7.0.0-beta.56"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.0.0-beta.56.tgz#cda612dffd5b1719a7b8e91e3040bd6ae64de8b0"
   dependencies:
-    core-js "^2.5.7"
     regenerator-runtime "^0.12.0"
 
 "@choojs/findup@^0.2.0":
@@ -401,13 +400,9 @@
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
 
-"@types/node@*":
-  version "10.5.5"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.5.5.tgz#8e84d24e896cd77b0d4f73df274027e3149ec2ba"
-
-"@types/node@^10.5.5":
-  version "10.5.6"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.5.6.tgz#1640f021dd0eaf12e731e54198c12ad2e020dc8e"
+"@types/node@*", "@types/node@^10.5.5":
+  version "10.5.7"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.5.7.tgz#960d9feb3ade2233bcc9843c918d740b4f78a7cf"
 
 "@types/pixi.js@^4.7.3":
   version "4.8.0"
@@ -418,6 +413,12 @@
   resolved "https://registry.yarnpkg.com/@types/plotly.js/-/plotly.js-1.38.5.tgz#5c20ae4084f2bc6425585e9091a7f1d8b3a99c1d"
   dependencies:
     "@types/d3" "*"
+
+"@types/prop-types@*":
+  version "15.5.4"
+  resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.4.tgz#9e6199bad131786e24c2baa2a82705a02139fbf8"
+  dependencies:
+    "@types/react" "*"
 
 "@types/rc-slider@^8.2.3":
   version "8.2.5"
@@ -433,22 +434,23 @@
     "@types/react" "*"
 
 "@types/react-dom@^16.0.5":
-  version "16.0.6"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.0.6.tgz#f1a65a4e7be8ed5d123f8b3b9eacc913e35a1a3c"
+  version "16.0.7"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.0.7.tgz#54d0f867a76b90597e8432030d297982f25c20ba"
   dependencies:
     "@types/node" "*"
     "@types/react" "*"
 
 "@types/react-test-renderer@^16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@types/react-test-renderer/-/react-test-renderer-16.0.1.tgz#36ee8c4fe33c61d460ad0e7bc42a2d0ddcc775a1"
+  version "16.0.2"
+  resolved "https://registry.yarnpkg.com/@types/react-test-renderer/-/react-test-renderer-16.0.2.tgz#2715eae40df08f80b3620c498598c8615693b6c6"
   dependencies:
     "@types/react" "*"
 
 "@types/react@*", "@types/react@^16.4.7":
-  version "16.4.7"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.7.tgz#f33f6d759a7e1833befa15224d68942d178a5a3f"
+  version "16.4.8"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.8.tgz#ff0440429783df0927bdcd430fa1225f7c08cf36"
   dependencies:
+    "@types/prop-types" "*"
     csstype "^2.2.0"
 
 "@types/relateurl@*":
@@ -2038,7 +2040,7 @@ core-js@^1.0.0:
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
 
-core-js@^2.4.0, core-js@^2.5.0, core-js@^2.5.7:
+core-js@^2.4.0, core-js@^2.5.0:
   version "2.5.7"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.7.tgz#f972608ff0cead68b841a16a932d0b183791814e"
 
@@ -5704,8 +5706,8 @@ kdbush@^1.0.1:
   resolved "https://registry.yarnpkg.com/kdbush/-/kdbush-1.0.1.tgz#3cbd03e9dead9c0f6f66ccdb96450e5cecc640e0"
 
 keyboard-key@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/keyboard-key/-/keyboard-key-1.0.1.tgz#a946294fe59ad5431c63a3ea269f023e51fac6aa"
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/keyboard-key/-/keyboard-key-1.0.2.tgz#212e14dde4c2059814336159bbc5acd0a348ca6b"
 
 killable@^1.0.0:
   version "1.0.0"
@@ -8018,8 +8020,8 @@ regenerator-runtime@^0.11.0:
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
 
 regenerator-runtime@^0.12.0:
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.12.0.tgz#8052ac952d85b10f3425192cd0c53f45cf65c6cb"
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.12.1.tgz#fa1a71544764c036f8c49b13a08b2594c9f8a0de"
 
 regex-cache@^0.4.2:
   version "0.4.4"
@@ -8505,10 +8507,10 @@ selfsigned@^1.9.1:
     node-forge "0.7.5"
 
 semantic-ui-react@^0.82.1:
-  version "0.82.1"
-  resolved "https://registry.yarnpkg.com/semantic-ui-react/-/semantic-ui-react-0.82.1.tgz#fa779a20bad064ca7b333bc719dae120b795f740"
+  version "0.82.2"
+  resolved "https://registry.yarnpkg.com/semantic-ui-react/-/semantic-ui-react-0.82.2.tgz#725f6a1a5f007cebff66c2c9f697b165ce1ebceb"
   dependencies:
-    "@babel/runtime" "^7.0.0-beta.49"
+    "@babel/runtime" "^7.0.0-beta.56"
     classnames "^2.2.5"
     keyboard-key "^1.0.1"
     lodash "^4.17.10"
