@@ -10,7 +10,7 @@ import { IPlotlyData } from './PlotlyChart';
 export default class SecondaryStructureAxis extends AuxiliaryAxis<SECONDARY_STRUCTURE_KEYS> {
   constructor(
     readonly sections: SECONDARY_STRUCTURE,
-    readonly minimumRequiredResidues: number = 2,
+    readonly minimumRequiredResidues: number = 3,
     readonly axisIndex: number = 2,
     readonly defaultColor = 'black',
     readonly colorMap: { [key: string]: string } = {
