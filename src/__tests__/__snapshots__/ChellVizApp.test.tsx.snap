@@ -38,7 +38,8 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
         dataDirs={
           Array [
             "assets/beta_lactamase",
-            "assets/METI",
+            "assets/5P21",
+            "assets/IF1",
           ]
         }
         initialVisualizations={
