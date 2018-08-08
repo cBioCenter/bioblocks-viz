@@ -18,11 +18,11 @@ jobs:
       - run: yarn lint
       - run: 'yarn test:cover'
       - store_artifacts:
-          path: dist/jest/test-results
+          path: dist/test-results
           destination: test-results
       - store_artifacts:
-          path: dist/jest/coverage
+          path: dist/test-results/jest/coverage
           destination: coverage
       - store_test_results:
-          path: dist/jest/test-results
+          path: dist/test-results
       - run: 'bash <(curl -s https://codecov.io/bash)'

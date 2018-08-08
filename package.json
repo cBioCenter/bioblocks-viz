@@ -18,7 +18,7 @@
     "collectCoverageFrom": [
       "src/**/*.{ts,tsx}"
     ],
-    "coverageDirectory": "dist/jest/coverage",
+    "coverageDirectory": "dist/test-results/jest/coverage",
     "coverageThreshold": {
       "global": {
         "functions": 75,
@@ -79,7 +79,7 @@
   "jest-junit": {
     "ancestorSeparator": " › ",
     "classNameTemplate": "{classname}",
-    "output": "dist/jest/test-results/junit.xml",
+    "output": "dist/test-results/jest/results.xml",
     "suiteName": "Chell-Viz Jest Tests",
     "titleTemplate": "{title}"
   },
@@ -122,8 +122,8 @@
     "start": "webpack-dev-server --open --mode development --config ./configs/webpack.dev.ts",
     "start:hot": "webpack-dev-server --hot-only --open --mode development --config ./configs/webpack.dev.ts",
     "start:prod": "webpack-dev-server --open --mode production ./configs/webpack.prod.ts",
-    "pretest": "yarn build:test && mkdir -p dist/jest/test-results",
-    "test": "cross-env TEST_REPORT_PATH=dist/jest/test-results jest",
+    "pretest": "yarn build:test && mkdir -p dist/test-results/jest",
+    "test": "cross-env TEST_REPORT_PATH=dist/test-results/jest jest",
     "test:cover": "yarn test --collectCoverage true",
     "test:staged": "jest --onlyChanged"
   },

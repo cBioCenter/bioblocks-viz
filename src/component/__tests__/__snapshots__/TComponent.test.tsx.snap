@@ -9,6 +9,8 @@ exports[`TComponent Should match existing snapshot when given simple data. 1`] =
     }
   }
 >
-  <[object Object] />
+  <ContextConsumer>
+    <Component />
+  </ContextConsumer>
 </div>
 `;
