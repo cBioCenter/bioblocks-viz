@@ -53,6 +53,9 @@ const TComponent = withDefaultProps(
                 layout={{
                   ...defaultPlotlyLayout,
                   height,
+                  margin: {
+                    b: 20,
+                  },
                   width,
                   yaxis: {
                     autorange: true,
