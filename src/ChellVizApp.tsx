@@ -19,7 +19,7 @@ export class ChellVizApp extends React.Component<any, any> {
           </GridRow>
           <GridRow>
             <VizPanelContainer
-              dataDirs={['assets/beta_lactamase', 'assets/5P21', 'assets/IF1']}
+              dataDirs={['assets/beta_lactamase', 'assets/5P21', 'assets/P01112']}
               supportedVisualizations={[VIZ_TYPE.CONTACT_MAP, VIZ_TYPE.NGL]}
               initialVisualizations={[VIZ_TYPE.CONTACT_MAP, VIZ_TYPE.NGL]}
               numPanels={2}
