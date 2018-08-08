@@ -79,7 +79,7 @@
   "jest-junit": {
     "ancestorSeparator": " › ",
     "classNameTemplate": "{classname}",
-    "output": "dist/test-results/jest/junit.xml",
+    "output": "dist/test-results/jest/results.xml",
     "suiteName": "Chell-Viz Jest Tests",
     "titleTemplate": "{title}"
   },
