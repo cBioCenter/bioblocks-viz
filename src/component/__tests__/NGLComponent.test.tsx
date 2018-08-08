@@ -199,7 +199,7 @@ describe('NGLComponent', () => {
     const wrapper = mount(<Component.NGLComponentClass />);
     expect(wrapper.get(0)).not.toBeNull();
     wrapper.unmount();
-    expect(wrapper.get(0)).toBeNull();
+    expect(wrapper.get(0)).toBeUndefined();
   });
 
   describe('Events', () => {

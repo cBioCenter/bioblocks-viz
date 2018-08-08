@@ -2,7 +2,7 @@
 
 exports[`ChellContext Should match the default snapshot. 1`] = `
 <SecondaryStructureContextHandler>
-  <[object Object]
+  <ContextProvider
     value={
       Object {
         "addCells": [Function],
@@ -12,7 +12,7 @@ exports[`ChellContext Should match the default snapshot. 1`] = `
       }
     }
   >
-    <[object Object]
+    <ContextProvider
       value={
         Object {
           "addCandidateResidues": [Function],
@@ -31,6 +31,6 @@ exports[`ChellContext Should match the default snapshot. 1`] = `
         }
       }
     />
-  </[object Object]>
+  </ContextProvider>
 </SecondaryStructureContextHandler>
 `;
