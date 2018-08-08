@@ -19,6 +19,12 @@
       "src/**/*.{ts,tsx}"
     ],
     "coverageDirectory": "dist/jest/coverage",
+    "coverageThreshold": {
+      "global": {
+        "functions": 75,
+        "lines": 75
+      }
+    },
     "globals": {
       "ts-jest": {
         "skipBabel": true,
