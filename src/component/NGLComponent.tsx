@@ -48,15 +48,15 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
   public componentDidMount() {
     if (this.canvas) {
       const stage = new NGL.Stage(this.canvas);
+      const { data } = this.props;
+
+      if (data) {
+        this.initData(data, stage);
+      }
 
       this.setState({
         stage,
       });
-
-      const { data } = this.props;
-      if (data) {
-        this.addStructureToStage(data, stage);
-      }
     }
   }
 
@@ -76,10 +76,10 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
     const { stage, structureComponent } = this.state;
 
     const isNewData = data && data !== prevProps.data;
-    if (data && stage && isNewData) {
-      stage.removeAllComponents();
-      this.addStructureToStage(data, stage);
-    } else if (stage && structureComponent) {
+    if (data && isNewData && stage) {
+      this.initData(data, stage);
+    }
+    if (stage && structureComponent) {
       const {
         candidateResidues,
         hoveredResidues,
@@ -101,24 +101,9 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
         }
 
         this.setState({
-          activeRepresentations: [
-            ...this.highlightCandidateResidues(
-              structureComponent,
-              [...candidateResidues, ...hoveredResidues]
-                .filter((value, index, array) => array.indexOf(value) === index)
-                .sort(),
-            ),
-            ...this.highlightLockedDistancePairs(structureComponent, lockedResiduePairs),
-            ...this.highlightSecondaryStructures(structureComponent, [
-              ...selectedSecondaryStructures,
-              ...temporarySecondaryStructures,
-            ]),
-          ],
+          activeRepresentations: this.deriveActiveRepresentations(structureComponent),
         });
       }
-    }
-
-    if (stage) {
       stage.viewer.requestRender();
     }
   }
@@ -149,6 +134,36 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
     );
   }
 
+  protected initData(structure: NGL.Structure, stage: NGL.Stage) {
+    stage.removeAllComponents();
+    this.addStructureToStage(structure, stage);
+  }
+
+  protected deriveActiveRepresentations(structureComponent: NGL.StructureComponent) {
+    const {
+      candidateResidues,
+      hoveredResidues,
+      lockedResiduePairs,
+      selectedSecondaryStructures,
+      temporarySecondaryStructures,
+    } = this.props;
+    const result = [
+      ...this.highlightCandidateResidues(
+        structureComponent,
+        [...candidateResidues, ...hoveredResidues]
+          .filter((value, index, array) => array.indexOf(value) === index)
+          .sort(),
+      ),
+      ...this.highlightLockedDistancePairs(structureComponent, lockedResiduePairs),
+      ...this.highlightSecondaryStructures(structureComponent, [
+        ...selectedSecondaryStructures,
+        ...temporarySecondaryStructures,
+      ]),
+    ];
+
+    return result;
+  }
+
   /**
    * Adds a NGL structure to the stage.
    *
@@ -158,18 +173,20 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
   protected addStructureToStage(data: NGL.Structure, stage: NGL.Stage) {
     const structureComponent = stage.addComponentFromObject(data);
 
-    this.setState({
-      structureComponent,
-    });
-
-    stage.defaultFileRepresentation(structureComponent);
-
     structureComponent.stage.mouseControls.add(
       NGL.MouseActions.HOVER_PICK,
       (aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) => this.onHover(aStage, pickingProxy),
     );
 
+    stage.defaultFileRepresentation(structureComponent);
     stage.signals.clicked.add(this.onClick);
+    stage.viewer.requestRender();
+
+    this.setState({
+      activeRepresentations: this.deriveActiveRepresentations(structureComponent),
+      stage,
+      structureComponent,
+    });
   }
 
   protected onHover(aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) {

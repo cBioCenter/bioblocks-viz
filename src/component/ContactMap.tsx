@@ -64,11 +64,7 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
   public componentDidUpdate(prevProps: ContactMapProps) {
     const { data, lockedResiduePairs } = this.props;
-    if (data !== prevProps.data) {
-      this.props.clearAllResidues();
-      this.props.clearSecondaryStructure();
-      this.setupPointsToPlot(data.computedPoints);
-    } else if (lockedResiduePairs !== prevProps.lockedResiduePairs) {
+    if (data !== prevProps.data || lockedResiduePairs !== prevProps.lockedResiduePairs) {
       this.setupPointsToPlot(data.computedPoints, lockedResiduePairs);
     }
   }
