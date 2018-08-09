@@ -322,7 +322,7 @@ describe('ContactMap', () => {
     });
   });
 
-  it('Should clear state if new data is given.', async () => {
+  it('Should _not_ clear residues when given new data.', async () => {
     const onClearResidueSpy = jest.fn();
     const wrapper = await getMountedContactMap({ clearAllResidues: onClearResidueSpy, data: sampleData });
     await wrapper.update();
@@ -330,7 +330,7 @@ describe('ContactMap', () => {
       data: emptyData,
     });
     await wrapper.update();
-    expect(onClearResidueSpy).toHaveBeenCalledTimes(1);
+    expect(onClearResidueSpy).toHaveBeenCalledTimes(0);
   });
 
   describe('Configuration', () => {
