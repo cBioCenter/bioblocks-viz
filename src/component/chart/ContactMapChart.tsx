@@ -180,7 +180,7 @@ class ContactMapChartClass extends React.Component<IContactMapChartProps, IConta
     const { contactData, dataTransformFn, secondaryStructures, selectedSecondaryStructures } = this.props;
     const plotlyData = [...contactData.map(entry => dataTransformFn(entry, true))];
     secondaryStructures.forEach((secondaryStructure, index) => {
-      const axis = new SecondaryStructureAxis(secondaryStructure, 2, index + 2);
+      const axis = new SecondaryStructureAxis(secondaryStructure, 5, index + 2);
       plotlyData.push(...axis.xAxes, ...axis.yAxes);
     });
 
