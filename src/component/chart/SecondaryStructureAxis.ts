@@ -8,6 +8,11 @@ import { IPlotlyData } from './PlotlyChart';
  * @export
  */
 export default class SecondaryStructureAxis extends AuxiliaryAxis<SECONDARY_STRUCTURE_KEYS> {
+  protected static centerSectionPositionFn = (section: SECONDARY_STRUCTURE_SECTION, index: number) => ({
+    main: index,
+    opposite: 0,
+  });
+
   constructor(
     readonly sections: SECONDARY_STRUCTURE,
     readonly minimumRequiredResidues: number = 3,
@@ -19,7 +24,8 @@ export default class SecondaryStructureAxis extends AuxiliaryAxis<SECONDARY_STRU
       H: 'blue',
     },
     readonly dataTransformFn = {
-      E: (section: SECONDARY_STRUCTURE_SECTION, index: number) => ({ main: index, opposite: 0 }),
+      C: SecondaryStructureAxis.centerSectionPositionFn,
+      E: SecondaryStructureAxis.centerSectionPositionFn,
       H: (section: SECONDARY_STRUCTURE_SECTION, index: number) => ({
         main: index,
         opposite: Math.sin(index - section.start),
