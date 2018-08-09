@@ -52,10 +52,7 @@ workflows:
   version: 2
   test-deploy:
     jobs:
-      - build:
-          filters:
-            tags:
-              only: /^v.*/
+      - build
       - deploy:
           requires:
             - test
