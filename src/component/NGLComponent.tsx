@@ -1,5 +1,5 @@
+import { cloneDeep } from 'lodash';
 import * as NGL from 'ngl';
-
 import * as React from 'react';
 import { Button, GridRow } from 'semantic-ui-react';
 
@@ -12,7 +12,6 @@ import {
   createSecStructRepresentation,
 } from '../helper/NGLHelper';
 import { withDefaultProps } from '../helper/ReactHelper';
-// import ChellTooltip from './widget/ChellTooltip';
 
 export type NGL_HOVER_CB_RESULT_TYPE = number;
 
@@ -119,7 +118,6 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
     const { height, padding, width } = this.props;
     return (
       <div className="NGLComponent" style={{ padding }}>
-        {/* <ChellTooltip message={'hi!'} timeout={5000} /> */}
         <div
           className="NGLCanvas"
           ref={el => (this.canvas = el)}
@@ -136,7 +134,11 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
 
   protected initData(structure: NGL.Structure, stage: NGL.Stage) {
     stage.removeAllComponents();
-    this.addStructureToStage(structure, stage);
+
+    // !IMPORTANT! We need to deeply clone the NGL data!
+    // If we have multiple NGL components displaying the same data, removing the component will affect
+    // the others because they (internally) delete keys/references.
+    this.addStructureToStage(cloneDeep(structure), stage);
   }
 
   protected deriveActiveRepresentations(structureComponent: NGL.StructureComponent) {

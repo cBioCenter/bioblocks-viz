@@ -128,10 +128,12 @@
     "test:staged": "jest --onlyChanged"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.116",
     "d3": "^5.4.0",
     "deep-equal": "^1.0.1",
     "immutable": "^3.8.2",
-    "ngl": "^2.0.0-dev.32",
+    "lodash": "^4.17.10",
+    "ngl": "^2.0.0-dev.33",
     "pixi.js": "^4.7.3",
     "plotly.js": "^1.38.0",
     "rc-slider": "^8.6.1",
@@ -188,7 +190,7 @@
     "signals": "^1.0.0",
     "style-loader": "^0.21.0",
     "three": "^0.95.0",
-    "ts-jest": "^23.0.1",
+    "ts-jest": "23.0.1",
     "ts-loader": "^4.2.0",
     "ts-node": "^7.0.0",
     "tslint": "^5.10.0",

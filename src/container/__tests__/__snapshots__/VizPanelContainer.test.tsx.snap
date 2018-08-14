@@ -23,7 +23,6 @@ exports[`VizPanelContainer Should match existing snapshot when given a single vi
       onChange={[Function]}
       openOnFocus={true}
       options={Array []}
-      placeholder="Select Data Directory"
       renderLabel={[Function]}
       search={true}
       searchInput="text"
@@ -111,7 +110,7 @@ exports[`VizPanelContainer Should match existing snapshot when given multiple vi
           },
         ]
       }
-      placeholder="Select Data Directory"
+      placeholder="first"
       renderLabel={[Function]}
       search={true}
       searchInput="text"
