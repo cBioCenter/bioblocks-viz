@@ -192,7 +192,7 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
   public render() {
     return (
       <div className={'PlotlyChart'}>
-        <Dimmer active={this.isDataLoaded()}>
+        <Dimmer active={!this.isDataLoaded()}>
           <Loader />
         </Dimmer>
         <div
@@ -371,9 +371,12 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
   /**
    * Is the data ready to be plotted?
    */
-  private isDataLoaded = () =>
-    this.props.data.length === 0 ||
-    this.plotlyFormattedData.filter(dataPoint => dataPoint.x && dataPoint.x.length >= 1).length === 0;
+  private isDataLoaded() {
+    return (
+      this.props.data.length > 0 ||
+      this.plotlyFormattedData.filter(dataPoint => dataPoint.x && dataPoint.x.length >= 1).length > 0
+    );
+  }
 }
 
 const PlotlyChart = withDefaultProps(defaultPlotlyChartProps, PlotlyChartClass);

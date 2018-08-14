@@ -73,39 +73,47 @@ const VizSelectorPanel = withDefaultProps(
       switch (viz) {
         case VIZ_TYPE['T-SNE']:
           return (
-            <TComponent
-              data={data['T-SNE'] as T_SNE_DATA_TYPE}
-              height={paddedHeight}
-              padding={padding}
-              width={paddedWidth}
-            />
+            data['T-SNE'] && (
+              <TComponent
+                data={data['T-SNE'] as T_SNE_DATA_TYPE}
+                height={paddedHeight}
+                padding={padding}
+                width={paddedWidth}
+              />
+            )
           );
         case VIZ_TYPE.SPRING:
           return (
-            <SpringComponent
-              data={data.Spring as ISpringGraphData}
-              height={paddedHeight}
-              padding={padding}
-              width={paddedWidth}
-            />
+            data.Spring && (
+              <SpringComponent
+                data={data.Spring as ISpringGraphData}
+                height={paddedHeight}
+                padding={padding}
+                width={paddedWidth}
+              />
+            )
           );
         case VIZ_TYPE.NGL:
           return (
-            <NGLComponent
-              data={data.NGL as NGL_DATA_TYPE}
-              height={paddedHeight}
-              padding={padding}
-              width={paddedWidth}
-            />
+            data.NGL && (
+              <NGLComponent
+                data={data.NGL as NGL_DATA_TYPE}
+                height={paddedHeight}
+                padding={padding}
+                width={paddedWidth}
+              />
+            )
           );
         case VIZ_TYPE.CONTACT_MAP:
           return (
-            <PredictedContactMap
-              data={data['Contact Map'] as IContactMapData}
-              height={paddedHeight}
-              padding={padding}
-              width={paddedWidth}
-            />
+            data['Contact Map'] && (
+              <PredictedContactMap
+                data={data['Contact Map'] as IContactMapData}
+                height={paddedHeight}
+                padding={padding}
+                width={paddedWidth}
+              />
+            )
           );
         case VIZ_TYPE.INFO_PANEL:
           return <InfoPanel data={data['Contact Map'] as Partial<IContactMapData>} />;
