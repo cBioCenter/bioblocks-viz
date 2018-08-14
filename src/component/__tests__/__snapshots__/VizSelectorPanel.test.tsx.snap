@@ -31,42 +31,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
   <Card
     fluid={true}
     raised={true}
-  >
-    <PredictedContactMapClass
-      addCandidateResidues={[Function]}
-      addHoveredResidues={[Function]}
-      addLockedResiduePair={[Function]}
-      candidateResidues={Array []}
-      clearAllResidues={[Function]}
-      correctColor="#ff0000"
-      data={
-        Object {
-          "couplingScores": CouplingContainer {
-            "colCounter": 0,
-            "contacts": Array [],
-            "getCouplingScore": [Function],
-            "includes": [Function],
-            "rowCounter": 0,
-            "totalStoredContacts": 0,
-          },
-          "secondaryStructures": Array [],
-        }
-      }
-      height={420}
-      hoveredResidues={Array []}
-      incorrectColor="#000000"
-      lockedResiduePairs={Map {}}
-      observedColor="#0000ff"
-      padding={15}
-      removeAllLockedResiduePairs={[Function]}
-      removeCandidateResidues={[Function]}
-      removeHoveredResidues={[Function]}
-      removeLockedResiduePair={[Function]}
-      removeNonLockedResidues={[Function]}
-      toggleLockedResiduePair={[Function]}
-      width={420}
-    />
-  </Card>
+  />
 </div>
 `;
 
@@ -138,13 +103,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
   <Card
     fluid={true}
     raised={true}
-  >
-    <NGLComponent
-      height={420}
-      padding={15}
-      width={420}
-    />
-  </Card>
+  />
 </div>
 `;
 
@@ -179,13 +138,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
   <Card
     fluid={true}
     raised={true}
-  >
-    <SpringComponent
-      height={420}
-      padding={15}
-      width={420}
-    />
-  </Card>
+  />
 </div>
 `;
 
@@ -220,24 +173,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
   <Card
     fluid={true}
     raised={true}
-  >
-    <TComponentClass
-      data={
-        Array [
-          Array [
-            0,
-          ],
-          Array [
-            0,
-          ],
-        ]
-      }
-      height={420}
-      padding={15}
-      pointColor="#000000"
-      width={420}
-    />
-  </Card>
+  />
 </div>
 `;
 
@@ -272,23 +208,6 @@ exports[`VizSelectorPanel Should match existing snapshot when given no initial v
   <Card
     fluid={true}
     raised={true}
-  >
-    <TComponentClass
-      data={
-        Array [
-          Array [
-            0,
-          ],
-          Array [
-            0,
-          ],
-        ]
-      }
-      height={420}
-      padding={15}
-      pointColor="#000000"
-      width={420}
-    />
-  </Card>
+  />
 </div>
 `;
