@@ -1,3 +1,4 @@
+import { cloneDeep } from 'lodash';
 import * as React from 'react';
 import { Card, Dropdown, DropdownItemProps } from 'semantic-ui-react';
 import { CHELL_DATA_TYPE, IContactMapData, NGL_DATA_TYPE, T_SNE_DATA_TYPE, VIZ_TYPE } from '../data/chell-data';
@@ -97,7 +98,10 @@ const VizSelectorPanel = withDefaultProps(
           return (
             data.NGL && (
               <NGLComponent
-                data={data.NGL as NGL_DATA_TYPE}
+                // !IMPORTANT! We need to deeply clone the NGL data!
+                // If we have multiple NGL components displaying the same data, removing the component will affect
+                // the others because they (internally) delete keys/references.
+                data={cloneDeep(data.NGL) as NGL_DATA_TYPE}
                 height={paddedHeight}
                 padding={padding}
                 width={paddedWidth}
