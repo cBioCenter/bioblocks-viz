@@ -77,7 +77,7 @@ export class VizPanelContainerClass extends React.Component<VizPanelContainerPro
                 return { key: dir, text: dir, value: dir };
               }),
             ]}
-            placeholder={'Select Data Directory'}
+            placeholder={this.props.dataDirs[0]}
             search={true}
           />
         </GridRow>
