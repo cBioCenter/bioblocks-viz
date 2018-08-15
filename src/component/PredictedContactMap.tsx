@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { initialResidueContext } from '../context/ResidueContext';
 import {
   CONFIGURATION_COMPONENT_TYPE,
   CONTACT_DISTANCE_PROXIMITY,
@@ -7,23 +6,18 @@ import {
   ISecondaryStructureData,
 } from '../data/chell-data';
 import { CouplingContainer } from '../data/CouplingContainer';
-import { withDefaultProps } from '../helper/ReactHelper';
 import { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';
 import ContactMap, { IContactMapConfiguration } from './ContactMap';
 
-export const defaultPredictedContactMapProps = {
-  correctColor: '#ff0000',
-  data: new Object({
-    couplingScores: new CouplingContainer(),
-    secondaryStructures: new Array<ISecondaryStructureData>(),
-  }) as IContactMapData,
-  height: 400,
-  incorrectColor: '#000000',
-  ...initialResidueContext,
-  observedColor: '#0000ff',
-  padding: 0,
-  width: 400,
-};
+export interface IPredictedContactMapProps {
+  correctColor: string;
+  data: IContactMapData;
+  height: number;
+  incorrectColor: string;
+  observedColor: string;
+  padding: number;
+  width: number;
+}
 
 export const initialPredictedContactMapState = {
   chainLength: -1,
@@ -34,13 +28,25 @@ export const initialPredictedContactMapState = {
   pointsToPlot: [] as IContactMapChartData[],
 };
 
-export type PredictedContactMapProps = {} & typeof defaultPredictedContactMapProps;
-export type PredictedContactMapState = Readonly<typeof initialPredictedContactMapState>;
+export type PredictedContactMapState = typeof initialPredictedContactMapState;
 
-export class PredictedContactMapClass extends React.Component<PredictedContactMapProps, PredictedContactMapState> {
+export class PredictedContactMap extends React.Component<IPredictedContactMapProps, PredictedContactMapState> {
+  public static defaultProps: Partial<IPredictedContactMapProps> = {
+    correctColor: '#ff0000',
+    data: new Object({
+      couplingScores: new CouplingContainer(),
+      secondaryStructures: new Array<ISecondaryStructureData>(),
+    }) as IContactMapData,
+    height: 400,
+    incorrectColor: '#000000',
+    observedColor: '#0000ff',
+    padding: 0,
+    width: 400,
+  };
+
   public readonly state: PredictedContactMapState = initialPredictedContactMapState;
 
-  constructor(props: PredictedContactMapProps) {
+  constructor(props: IPredictedContactMapProps) {
     super(props);
   }
 
@@ -66,7 +72,7 @@ export class PredictedContactMapClass extends React.Component<PredictedContactMa
     this.setupData(true);
   }
 
-  public componentDidUpdate(prevProps: PredictedContactMapProps, prevState: PredictedContactMapState) {
+  public componentDidUpdate(prevProps: IPredictedContactMapProps, prevState: PredictedContactMapState) {
     const { data } = this.props;
     const { linearDistFilter, measuredContactDistFilter, measuredProximity, numPredictionsToShow } = this.state;
 
@@ -187,7 +193,5 @@ export class PredictedContactMapClass extends React.Component<PredictedContactMa
     });
   }
 }
-
-export const PredictedContactMap = withDefaultProps(defaultPredictedContactMapProps, PredictedContactMapClass);
 
 export default PredictedContactMap;

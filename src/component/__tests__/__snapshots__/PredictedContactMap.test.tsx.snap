@@ -326,12 +326,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
   id="PredictedContactMapComponent"
 >
   <ContactMap
-    addCandidateResidues={[Function]}
-    addHoveredResidues={[Function]}
-    addLockedResiduePair={[Function]}
-    candidateResidues={Array []}
     chainLength={0}
-    clearAllResidues={[Function]}
     configurations={
       Array [
         Object {
@@ -457,17 +452,9 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
       }
     }
     height={400}
-    hoveredResidues={Array []}
     incorrectColor="#000000"
-    lockedResiduePairs={Map {}}
     observedColor="#0000ff"
     padding={0}
-    removeAllLockedResiduePairs={[Function]}
-    removeCandidateResidues={[Function]}
-    removeHoveredResidues={[Function]}
-    removeLockedResiduePair={[Function]}
-    removeNonLockedResidues={[Function]}
-    toggleLockedResiduePair={[Function]}
     width={400}
   />
 </div>
@@ -478,12 +465,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
   id="PredictedContactMapComponent"
 >
   <ContactMap
-    addCandidateResidues={[Function]}
-    addHoveredResidues={[Function]}
-    addLockedResiduePair={[Function]}
-    candidateResidues={Array []}
     chainLength={0}
-    clearAllResidues={[Function]}
     configurations={
       Array [
         Object {
@@ -609,17 +591,9 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
       }
     }
     height={400}
-    hoveredResidues={Array []}
     incorrectColor="#000000"
-    lockedResiduePairs={Map {}}
     observedColor="#0000ff"
     padding={0}
-    removeAllLockedResiduePairs={[Function]}
-    removeCandidateResidues={[Function]}
-    removeHoveredResidues={[Function]}
-    removeLockedResiduePair={[Function]}
-    removeNonLockedResidues={[Function]}
-    toggleLockedResiduePair={[Function]}
     width={400}
   />
 </div>
@@ -630,12 +604,7 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
   id="PredictedContactMapComponent"
 >
   <ContactMap
-    addCandidateResidues={[Function]}
-    addHoveredResidues={[Function]}
-    addLockedResiduePair={[Function]}
-    candidateResidues={Array []}
     chainLength={0}
-    clearAllResidues={[Function]}
     configurations={
       Array [
         Object {
@@ -761,7 +730,6 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
       }
     }
     height={400}
-    hoveredResidues={Array []}
     incorrectColor="#000000"
     lockedResiduePairs={
       Object {
@@ -776,12 +744,6 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
     }
     observedColor="#0000ff"
     padding={0}
-    removeAllLockedResiduePairs={[Function]}
-    removeCandidateResidues={[Function]}
-    removeHoveredResidues={[Function]}
-    removeLockedResiduePair={[Function]}
-    removeNonLockedResidues={[Function]}
-    toggleLockedResiduePair={[Function]}
     width={400}
   />
 </div>
