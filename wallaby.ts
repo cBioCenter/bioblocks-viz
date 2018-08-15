@@ -1,4 +1,4 @@
-const generateWallabyConfig = wallaby => ({
+const generateWallabyConfig = (wallaby: any) => ({
   env: {
     runner: 'node',
     type: 'node',
