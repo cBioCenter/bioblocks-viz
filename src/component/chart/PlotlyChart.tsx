@@ -10,7 +10,6 @@ import * as plotly from 'plotly.js/dist/plotly';
 
 import { CHELL_CHART_EVENT_TYPE, CHELL_CHART_PIECE } from '../../data/chell-data';
 import ChellChartEvent from '../../data/event/ChellChartEvent';
-import { withDefaultProps } from '../../helper/ReactHelper';
 
 export enum PLOTLY_CHART_TYPE {
   /** [Plotly Bar Chart](https://plot.ly/javascript/bar-charts/) */
@@ -83,12 +82,6 @@ export const defaultPlotlyLayout: Partial<IPlotlyLayout> = {
   width: 400,
 };
 
-export const defaultPlotlyChartProps: Partial<IPlotlyChartProps> = {
-  config: {},
-  data: [],
-  layout: {},
-};
-
 /**
  * React wrapper for a Plotly Chart.
  *
@@ -98,7 +91,13 @@ export const defaultPlotlyChartProps: Partial<IPlotlyChartProps> = {
  * @export
  * @extends {React.Component<IPlotlyChartProps, any>}
  */
-export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
+export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
+  public static defaultProps: Partial<IPlotlyChartProps> = {
+    config: {},
+    data: [],
+    layout: {},
+  };
+
   public plotlyCanvas: plotly.PlotlyHTMLElement | null = null;
   protected isDoubleClickInProgress = false; // Makes sure single click isn't fired when double click is in flight. Required due to https://github.com/plotly/plotly.js/issues/1546
   protected canvasRef: HTMLDivElement | null = null;
@@ -192,7 +191,7 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
 
   public render() {
     return (
-      <div className={'PlotlyChart'}>
+      <div>
         <Dimmer active={!this.isDataLoaded()}>
           <Loader />
         </Dimmer>
@@ -380,7 +379,4 @@ export class PlotlyChartClass extends React.Component<IPlotlyChartProps, any> {
   }
 }
 
-const PlotlyChart = withDefaultProps(defaultPlotlyChartProps, PlotlyChartClass);
-
 export default PlotlyChart;
-export { PlotlyChart };

@@ -101,9 +101,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
     }
   }
 >
-  <div
-    className="PlotlyChart"
-  >
+  <div>
     <div
       className="ui dimmer"
       onClick={[Function]}
@@ -137,9 +135,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
     }
   }
 >
-  <div
-    className="PlotlyChart"
-  >
+  <div>
     <div
       className="ui dimmer"
       onClick={[Function]}
@@ -800,7 +796,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         ]
       }
     >
-      <PlotlyChartClass
+      <PlotlyChart
         candidateResidues={Array []}
         config={Object {}}
         data={
@@ -1049,9 +1045,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           ]
         }
       >
-        <div
-          className="PlotlyChart"
-        >
+        <div>
           <Dimmer
             active={false}
           >
@@ -1083,7 +1077,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             }
           />
         </div>
-      </PlotlyChartClass>
+      </PlotlyChart>
     </ContactMapChart>
     <Accordion
       fluid={true}

@@ -14,7 +14,7 @@ import {
   SECONDARY_STRUCTURE_KEYS,
 } from '../../data/chell-data';
 import Chell1DSection from '../../data/Chell1DSection';
-import { PlotlyChartClass } from '../chart/PlotlyChart';
+import { PlotlyChart } from '../chart/PlotlyChart';
 import ContactMap, { ContactMapClass, ContactMapProps } from '../ContactMap';
 
 // https://medium.com/@ryandrewjohnson/unit-testing-components-using-reacts-new-context-api-4a5219f4b3fe
@@ -67,8 +67,8 @@ const dispatchPlotlyEvent = (
   eventName: string,
   data: Partial<plotly.PlotScatterDataPoint> = { x: 0, y: 0 },
 ) => {
-  const plotlyWrapper = wrapper.find('PlotlyChartClass') as CommonWrapper;
-  const canvas = (plotlyWrapper.instance() as PlotlyChartClass).plotlyCanvas;
+  const plotlyWrapper = wrapper.find('PlotlyChart') as CommonWrapper;
+  const canvas = (plotlyWrapper.instance() as PlotlyChart).plotlyCanvas;
   if (canvas) {
     (canvas as IMockPlotlyCanvas).dispatchEvent(new Event(eventName), data);
   }
