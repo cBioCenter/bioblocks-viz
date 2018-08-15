@@ -16,7 +16,7 @@ import {
 } from '../../data/chell-data';
 import Chell1DSection from '../../data/Chell1DSection';
 import { PlotlyChart } from '../chart/PlotlyChart';
-import ContactMap, { ContactMapClass, ContactMapState, IContactMapProps } from '../ContactMap';
+import ContactMap, { ContactMapClass, IContactMapProps } from '../ContactMap';
 
 // https://medium.com/@ryandrewjohnson/unit-testing-components-using-reacts-new-context-api-4a5219f4b3fe
 // Provides a dummy context for unit testing purposes.
