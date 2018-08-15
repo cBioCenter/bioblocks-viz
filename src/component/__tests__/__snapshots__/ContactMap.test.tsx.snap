@@ -9,7 +9,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
     }
   }
 >
-  <ContactMapChartClass
+  <ContactMapChart
     candidateResidues={Array []}
     contactData={Array []}
     dataTransformFn={[Function]}
@@ -665,7 +665,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       }
     }
   >
-    <ContactMapChartClass
+    <ContactMapChart
       candidateResidues={Array []}
       contactData={
         Array [
@@ -1084,7 +1084,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           />
         </div>
       </PlotlyChartClass>
-    </ContactMapChartClass>
+    </ContactMapChart>
     <Accordion
       fluid={true}
       styled={true}
