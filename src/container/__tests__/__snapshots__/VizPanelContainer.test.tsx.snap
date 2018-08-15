@@ -35,7 +35,7 @@ exports[`VizPanelContainer Should match existing snapshot when given a single vi
     <GridColumn
       key="0"
     >
-      <VizSelectorPanelClass
+      <VizSelectorPanel
         data={Object {}}
         height={450}
         initialViz="T-SNE"
@@ -123,7 +123,7 @@ exports[`VizPanelContainer Should match existing snapshot when given multiple vi
     <GridColumn
       key="0"
     >
-      <VizSelectorPanelClass
+      <VizSelectorPanel
         data={Object {}}
         height={450}
         initialViz="Contact Map"
@@ -140,7 +140,7 @@ exports[`VizPanelContainer Should match existing snapshot when given multiple vi
     <GridColumn
       key="1"
     >
-      <VizSelectorPanelClass
+      <VizSelectorPanel
         data={Object {}}
         height={450}
         initialViz="NGL"

@@ -18,7 +18,8 @@ jobs:
       
       - run: 'yarn build:prod'
       - run: 'yarn lint'
-      - run: 'yarn test:cover'
+      // maxWorkers flag resolves potential timeout issue, via https://vgpena.github.io/jest-circleci/
+      - run: 'yarn test:cover --maxWorkers=2'
       - store_artifacts:
           path: dist/test-results
           destination: test-results

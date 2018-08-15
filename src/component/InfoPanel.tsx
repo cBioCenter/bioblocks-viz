@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { Accordion, Label } from 'semantic-ui-react';
 
-import ResidueContext, { initialResidueContext, ResidueSelection } from '../context/ResidueContext';
-import SecondaryStructureContext, { initialSecondaryStructureContext } from '../context/SecondaryStructureContext';
+import ResidueContext, { initialResidueContext, IResidueContext, ResidueSelection } from '../context/ResidueContext';
+import SecondaryStructureContext, {
+  initialSecondaryStructureContext,
+  ISecondaryStructureContext,
+} from '../context/SecondaryStructureContext';
 import {
   IContactMapData,
   ISecondaryStructureData,
@@ -11,28 +14,33 @@ import {
 } from '../data/chell-data';
 import { ChellPDB } from '../data/ChellPDB';
 import { CouplingContainer } from '../data/CouplingContainer';
-import { withDefaultProps } from '../helper/ReactHelper';
 
-export const defaultInfoPanelProps = {
-  data: new Object({
-    couplingScores: new CouplingContainer(),
-    secondaryStructures: new Array<ISecondaryStructureData>(),
-  }) as IContactMapData,
-  height: 400,
-  ...initialResidueContext,
-  ...initialSecondaryStructureContext,
-  width: 400,
-};
+export interface IInfoPanelProps {
+  data: IContactMapData;
+  height: number;
+  width: 400;
+  residueContext: IResidueContext;
+  secondaryStructureContext: ISecondaryStructureContext;
+}
 
-export type InfoPanelProps = {} & typeof defaultInfoPanelProps;
+export class InfoPanelClass extends React.Component<IInfoPanelProps, any> {
+  public static defaultProps: Partial<IInfoPanelProps> = {
+    data: {
+      couplingScores: new CouplingContainer(),
+      secondaryStructures: new Array<ISecondaryStructureData>(),
+    },
+    height: 400,
+    residueContext: { ...initialResidueContext },
+    secondaryStructureContext: { ...initialSecondaryStructureContext },
+    width: 400,
+  };
 
-export class InfoPanelClass extends React.Component<InfoPanelProps, any> {
-  constructor(props: InfoPanelProps) {
+  constructor(props: IInfoPanelProps) {
     super(props);
   }
 
   public render() {
-    const { data, height, lockedResiduePairs, width, selectedSecondaryStructures } = this.props;
+    const { data, height, residueContext, width, secondaryStructureContext } = this.props;
     const unassignedResidues = data.pdbData
       ? this.renderUnassignedResidues(data.pdbData)
       : [<Label key={'unassigned-residues-none'} />];
@@ -55,14 +63,14 @@ export class InfoPanelClass extends React.Component<InfoPanelProps, any> {
               title: `Unassigned Residues (${unassignedResidues.length}):`,
             },
             {
-              content: this.renderSecondaryStructures(selectedSecondaryStructures),
+              content: this.renderSecondaryStructures(secondaryStructureContext.selectedSecondaryStructures),
               key: 'selected-secondary-structures',
-              title: `Selected Secondary Structures (${selectedSecondaryStructures.length}):`,
+              title: `Selected Secondary Structures (${secondaryStructureContext.selectedSecondaryStructures.length}):`,
             },
             {
-              content: this.renderLockedResiduePairs(lockedResiduePairs),
+              content: this.renderLockedResiduePairs(residueContext.lockedResiduePairs),
               key: 'selected-residue-pairs',
-              title: `Selected Residue Pairs (${lockedResiduePairs.size}):`,
+              title: `Selected Residue Pairs (${residueContext.lockedResiduePairs.size}):`,
             },
           ]}
         />
@@ -118,13 +126,11 @@ export class InfoPanelClass extends React.Component<InfoPanelProps, any> {
   }
 }
 
-export const InfoPanelWithDefaultProps = withDefaultProps(defaultInfoPanelProps, InfoPanelClass);
-
 const InfoPanel = (props: any) => (
   <SecondaryStructureContext.Consumer>
     {secStructContext => (
       <ResidueContext.Consumer>
-        {residueContext => <InfoPanelWithDefaultProps {...props} {...residueContext} {...secStructContext} />}
+        {residueContext => <InfoPanel {...props} {...residueContext} {...secStructContext} />}
       </ResidueContext.Consumer>
     )}
   </SecondaryStructureContext.Consumer>
