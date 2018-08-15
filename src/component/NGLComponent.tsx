@@ -3,28 +3,31 @@ import * as NGL from 'ngl';
 import * as React from 'react';
 import { Button, GridRow } from 'semantic-ui-react';
 
-import ResidueContext, { initialResidueContext, ResidueSelection } from '../context/ResidueContext';
-import { initialSecondaryStructureContext, SecondaryStructureContext } from '../context/SecondaryStructureContext';
+import ResidueContext, { initialResidueContext, IResidueContext, ResidueSelection } from '../context/ResidueContext';
+import {
+  initialSecondaryStructureContext,
+  ISecondaryStructureContext,
+  SecondaryStructureContext,
+} from '../context/SecondaryStructureContext';
 import { RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../data/chell-data';
 import {
   createBallStickRepresentation,
   createDistanceRepresentation,
   createSecStructRepresentation,
 } from '../helper/NGLHelper';
-import { withDefaultProps } from '../helper/ReactHelper';
 
 export type NGL_HOVER_CB_RESULT_TYPE = number;
 
 export type RepresentationDict = Map<string, NGL.RepresentationElement[]>;
 
-export const defaultNGLProps = {
-  data: undefined as NGL.Structure | undefined,
-  height: 400,
-  ...initialResidueContext,
-  ...initialSecondaryStructureContext,
-  padding: 0,
-  width: 400,
-};
+export interface INGLComponentProps {
+  data?: NGL.Structure;
+  height: number;
+  residueContext: IResidueContext;
+  secondaryStructureContext: ISecondaryStructureContext;
+  padding: number;
+  width: number;
+}
 
 export const initialNGLState = {
   activeRepresentations: new Array<NGL.RepresentationElement>(),
@@ -32,15 +35,23 @@ export const initialNGLState = {
   structureComponent: undefined as NGL.StructureComponent | undefined,
 };
 
-export type NGLComponentProps = {} & typeof defaultNGLProps;
 export type NGLComponentState = Readonly<typeof initialNGLState>;
 
-export class NGLComponentClass extends React.Component<NGLComponentProps, NGLComponentState> {
+export class NGLComponentClass extends React.Component<INGLComponentProps, NGLComponentState> {
+  public static defaultProps: Partial<INGLComponentProps> = {
+    height: 400,
+    padding: 0,
+    residueContext: { ...initialResidueContext },
+    secondaryStructureContext: {
+      ...initialSecondaryStructureContext,
+    },
+    width: 400,
+  };
   public readonly state: NGLComponentState = initialNGLState;
 
   public canvas: HTMLElement | null = null;
 
-  constructor(props: NGLComponentProps) {
+  constructor(props: INGLComponentProps) {
     super(props);
   }
 
@@ -70,7 +81,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
     }
   }
 
-  public componentDidUpdate(prevProps: NGLComponentProps, prevState: NGLComponentState) {
+  public componentDidUpdate(prevProps: INGLComponentProps, prevState: NGLComponentState) {
     const { data } = this.props;
     const { stage, structureComponent } = this.state;
 
@@ -79,20 +90,11 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
       this.initData(data, stage);
     }
     if (stage && structureComponent) {
-      const {
-        candidateResidues,
-        hoveredResidues,
-        lockedResiduePairs,
-        selectedSecondaryStructures,
-        temporarySecondaryStructures,
-      } = this.props;
+      const { residueContext, secondaryStructureContext } = this.props;
 
       const isHighlightUpdateNeeded =
-        hoveredResidues !== prevProps.hoveredResidues ||
-        candidateResidues !== prevProps.candidateResidues ||
-        lockedResiduePairs !== prevProps.lockedResiduePairs ||
-        selectedSecondaryStructures !== prevProps.selectedSecondaryStructures ||
-        temporarySecondaryStructures !== prevProps.temporarySecondaryStructures;
+        residueContext !== prevProps.residueContext ||
+        secondaryStructureContext !== prevProps.secondaryStructureContext;
 
       if (isHighlightUpdateNeeded) {
         for (const rep of this.state.activeRepresentations) {
@@ -115,7 +117,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
    * @returns The NGL Component
    */
   public render() {
-    const { height, padding, width } = this.props;
+    const { height, padding, residueContext, width } = this.props;
     return (
       <div className="NGLComponent" style={{ padding }}>
         <div
@@ -126,7 +128,7 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
           onKeyDown={this.onKeyDown}
         />
         <GridRow>
-          <Button onClick={this.props.removeAllLockedResiduePairs}>Remove All Locked Distance Pairs</Button>
+          <Button onClick={residueContext.removeAllLockedResiduePairs}>Remove All Locked Distance Pairs</Button>
         </GridRow>
       </div>
     );
@@ -142,24 +144,18 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
   }
 
   protected deriveActiveRepresentations(structureComponent: NGL.StructureComponent) {
-    const {
-      candidateResidues,
-      hoveredResidues,
-      lockedResiduePairs,
-      selectedSecondaryStructures,
-      temporarySecondaryStructures,
-    } = this.props;
+    const { residueContext, secondaryStructureContext } = this.props;
     const result = [
       ...this.highlightCandidateResidues(
         structureComponent,
-        [...candidateResidues, ...hoveredResidues]
+        [...residueContext.candidateResidues, ...residueContext.hoveredResidues]
           .filter((value, index, array) => array.indexOf(value) === index)
           .sort(),
       ),
-      ...this.highlightLockedDistancePairs(structureComponent, lockedResiduePairs),
+      ...this.highlightLockedDistancePairs(structureComponent, residueContext.lockedResiduePairs),
       ...this.highlightSecondaryStructures(structureComponent, [
-        ...selectedSecondaryStructures,
-        ...temporarySecondaryStructures,
+        ...secondaryStructureContext.selectedSecondaryStructures,
+        ...secondaryStructureContext.temporarySecondaryStructures,
       ]),
     ];
 
@@ -192,28 +188,20 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
   }
 
   protected onHover(aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) {
-    const { addHoveredResidues, candidateResidues, hoveredResidues, removeHoveredResidues } = this.props;
+    const { residueContext } = this.props;
     const { structureComponent } = this.state;
     if (structureComponent) {
       if (pickingProxy && (pickingProxy.atom || pickingProxy.closestBondAtom)) {
         const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
-        addHoveredResidues([atom.resno]);
-      } else if (candidateResidues.length === 0 && hoveredResidues.length !== 0) {
-        removeHoveredResidues();
+        residueContext.addHoveredResidues([atom.resno]);
+      } else if (residueContext.candidateResidues.length === 0 && residueContext.hoveredResidues.length !== 0) {
+        residueContext.removeHoveredResidues();
       }
     }
   }
 
   protected onClick = (pickingProxy: NGL.PickingProxy, foo: any, ...args: any[]) => {
-    const {
-      addCandidateResidues,
-      addLockedResiduePair,
-      candidateResidues,
-      hoveredResidues,
-      removeCandidateResidues,
-      removeNonLockedResidues,
-      removeLockedResiduePair,
-    } = this.props;
+    const { residueContext } = this.props;
     const { structureComponent } = this.state;
     if (structureComponent) {
       if (pickingProxy) {
@@ -221,20 +209,20 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
 
         if (isDistancePicker) {
           const residues = [pickingProxy.distance.atom1.resno, pickingProxy.distance.atom2.resno];
-          removeLockedResiduePair(residues);
+          residueContext.removeLockedResiduePair(residues);
         } else if (pickingProxy.atom || pickingProxy.closestBondAtom) {
           const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
 
-          if (candidateResidues.length >= 1) {
-            addLockedResiduePair([...candidateResidues, atom.resno]);
-            removeCandidateResidues();
+          if (residueContext.candidateResidues.length >= 1) {
+            residueContext.addLockedResiduePair([...residueContext.candidateResidues, atom.resno]);
+            residueContext.removeCandidateResidues();
           } else {
-            addCandidateResidues([atom.resno]);
+            residueContext.addCandidateResidues([atom.resno]);
           }
         }
-      } else if (candidateResidues.length >= 1 && hoveredResidues.length >= 1) {
+      } else if (residueContext.candidateResidues.length >= 1 && residueContext.hoveredResidues.length >= 1) {
         const { canvasPosition } = structureComponent.stage.mouseObserver;
-        hoveredResidues.forEach(residue => {
+        residueContext.hoveredResidues.forEach(residue => {
           const atomProxy = structureComponent.structure.getAtomProxy(
             structureComponent.structure.getResidueProxy(residue).getAtomIndexByName('CA|C'),
           );
@@ -242,15 +230,15 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
             atomProxy.positionToVector3(),
           );
           if (canvasPosition.distanceTo(atomPosition) > 50) {
-            removeNonLockedResidues();
+            residueContext.removeNonLockedResidues();
           } else {
-            addLockedResiduePair([...candidateResidues, residue]);
-            removeCandidateResidues();
+            residueContext.addLockedResiduePair([...residueContext.candidateResidues, residue]);
+            residueContext.removeCandidateResidues();
           }
         });
       } else {
         // User clicked off-structure, so clear non-locked residue state.
-        removeNonLockedResidues();
+        residueContext.removeNonLockedResidues();
       }
     }
   };
@@ -297,30 +285,28 @@ export class NGLComponentClass extends React.Component<NGLComponentProps, NGLCom
   }
 
   protected onCanvasLeave = () => {
-    const { removeNonLockedResidues } = this.props;
-    removeNonLockedResidues();
+    const { residueContext } = this.props;
+    residueContext.removeNonLockedResidues();
   };
 
   protected onKeyDown = (e: React.KeyboardEvent) => {
     const ESC_KEY_CODE = 27;
 
     if (e.which === ESC_KEY_CODE || e.keyCode === ESC_KEY_CODE) {
-      this.props.removeNonLockedResidues();
+      const { residueContext } = this.props;
+      residueContext.removeNonLockedResidues();
     }
   };
 }
 
-export const NGLComponentWithDefaultProps = withDefaultProps(defaultNGLProps, NGLComponentClass);
-
-// TODO The required props should be discernable from `withDefaultProps` without needing to duplicate.
-// However the Context consumer syntax is still new to me and I can't find the right combination :(
-type requiredProps = Partial<typeof defaultNGLProps> & Required<Omit<NGLComponentProps, keyof typeof defaultNGLProps>>;
+type requiredProps = Omit<INGLComponentProps, keyof typeof NGLComponentClass.defaultProps> &
+  Partial<INGLComponentProps>;
 
 const NGLComponent = (props: requiredProps) => (
   <SecondaryStructureContext.Consumer>
     {secStructContext => (
       <ResidueContext.Consumer>
-        {residueContext => <NGLComponentWithDefaultProps {...props} {...residueContext} {...secStructContext} />}
+        {residueContext => <NGLComponentClass {...props} {...residueContext} {...secStructContext} />}
       </ResidueContext.Consumer>
     )}
   </SecondaryStructureContext.Consumer>
