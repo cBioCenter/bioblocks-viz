@@ -534,14 +534,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
 
 exports[`ContactMap Snapshots Should match snapshot when locked residues are added. 1`] = `
 <ContactMapClass
-  addCandidateResidues={[Function]}
-  addHoveredResidues={[Function]}
-  addLockedResiduePair={[Function]}
-  addSecondaryStructure={[Function]}
-  candidateResidues={Array []}
   chainLength={59}
-  clearAllResidues={[Function]}
-  clearSecondaryStructure={[Function]}
   configurations={Array []}
   data={
     Object {
@@ -628,7 +621,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
   enableSliders={true}
   height={400}
   highlightColor="#ff8800"
-  hoveredResidues={Array []}
   lockedResiduePairs={
     Map {
       "8" => Array [
@@ -641,16 +633,33 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
     }
   }
   padding={0}
-  removeAllLockedResiduePairs={[Function]}
-  removeCandidateResidues={[Function]}
-  removeHoveredResidues={[Function]}
-  removeLockedResiduePair={[Function]}
-  removeNonLockedResidues={[Function]}
-  removeSecondaryStructure={[Function]}
-  selectedSecondaryStructures={Array []}
-  temporarySecondaryStructures={Array []}
-  toggleLockedResiduePair={[Function]}
-  toggleSecondaryStructure={[Function]}
+  residueContext={
+    Object {
+      "addCandidateResidues": [Function],
+      "addHoveredResidues": [Function],
+      "addLockedResiduePair": [Function],
+      "candidateResidues": Array [],
+      "clearAllResidues": [Function],
+      "hoveredResidues": Array [],
+      "lockedResiduePairs": Map {},
+      "removeAllLockedResiduePairs": [Function],
+      "removeCandidateResidues": [Function],
+      "removeHoveredResidues": [Function],
+      "removeLockedResiduePair": [Function],
+      "removeNonLockedResidues": [Function],
+      "toggleLockedResiduePair": [Function],
+    }
+  }
+  secondaryStructureContext={
+    Object {
+      "addSecondaryStructure": [Function],
+      "clearSecondaryStructure": [Function],
+      "removeSecondaryStructure": [Function],
+      "selectedSecondaryStructures": Array [],
+      "temporarySecondaryStructures": Array [],
+      "toggleSecondaryStructure": [Function],
+    }
+  }
   width={400}
 >
   <div
@@ -730,33 +739,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 "j": 57,
               },
             ],
-          },
-          Object {
-            "hoverinfo": "none",
-            "marker": Object {
-              "color": Array [
-                "#ff8800",
-                "#ff8800",
-                "#ff8800",
-                "#ff8800",
-              ],
-              "line": Object {
-                "color": "#ff8800",
-                "width": 3,
-              },
-              "symbol": "circle-open",
-            },
-            "mode": "lines+markers",
-            "name": "Selected Res. Pairs",
-            "nodeSize": 4,
-            "points": Array [
-              Object {
-                "dist": 0,
-                "i": 37,
-                "j": 46,
-              },
-            ],
-            "subtitle": "",
           },
         ]
       }
@@ -951,38 +933,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 1.3,
               ],
             },
-            Object {
-              "hoverinfo": "x+y+z",
-              "marker": Object {
-                "color": Array [
-                  "#ff8800",
-                  "#ff8800",
-                  "#ff8800",
-                  "#ff8800",
-                ],
-                "line": Object {
-                  "color": "#ff8800",
-                  "width": 3,
-                },
-                "size": 4,
-                "symbol": "circle-open",
-              },
-              "mode": "markers",
-              "name": "Selected Res. Pairs ",
-              "type": "scattergl",
-              "x": Array [
-                37,
-                46,
-              ],
-              "y": Array [
-                46,
-                37,
-              ],
-              "z": Array [
-                0,
-                0,
-              ],
-            },
           ]
         }
         dataTransformFn={[Function]}
@@ -991,12 +941,12 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             "height": 520,
             "legend": Object {
               "orientation": "h",
-              "y": -0.7000000000000001,
+              "y": -0.6000000000000001,
               "yanchor": "bottom",
             },
             "margin": Object {
-              "b": 280,
-              "l": 112,
+              "b": 240,
+              "l": 96,
             },
             "showlegend": true,
             "xaxis": Object {
@@ -1927,163 +1877,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 >
                   <p>
                     5 - Node Size: 4
-                  </p>
-                  <ComponentEnhancer(undefined)
-                    activeDotStyle={Object {}}
-                    className=""
-                    disabled={false}
-                    dotStyle={Object {}}
-                    dots={false}
-                    handle={[Function]}
-                    handleStyle={
-                      Array [
-                        Object {},
-                      ]
-                    }
-                    included={true}
-                    marks={Object {}}
-                    max={20}
-                    min={1}
-                    onAfterChange={[Function]}
-                    onBeforeChange={[Function]}
-                    onChange={[Function]}
-                    prefixCls="rc-slider"
-                    railStyle={Object {}}
-                    step={1}
-                    style={
-                      Object {
-                        "width": 360,
-                      }
-                    }
-                    trackStyle={
-                      Array [
-                        Object {},
-                      ]
-                    }
-                    value={4}
-                    vertical={false}
-                  >
-                    <div
-                      className="rc-slider"
-                      onBlur={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      onMouseDown={[Function]}
-                      onTouchStart={[Function]}
-                      style={
-                        Object {
-                          "width": 360,
-                        }
-                      }
-                    >
-                      <div
-                        className="rc-slider-rail"
-                        style={Object {}}
-                      />
-                      <Track
-                        className="rc-slider-track"
-                        included={true}
-                        length={15.789473684210526}
-                        offset={0}
-                        style={Object {}}
-                        vertical={false}
-                      >
-                        <div
-                          className="rc-slider-track"
-                          style={
-                            Object {
-                              "left": "0%",
-                              "width": "15.789473684210526%",
-                            }
-                          }
-                        />
-                      </Track>
-                      <Steps
-                        activeDotStyle={Object {}}
-                        dotStyle={Object {}}
-                        dots={false}
-                        included={true}
-                        lowerBound={1}
-                        marks={Object {}}
-                        max={20}
-                        min={1}
-                        prefixCls="rc-slider"
-                        step={1}
-                        upperBound={4}
-                        vertical={false}
-                      >
-                        <div
-                          className="rc-slider-step"
-                        />
-                      </Steps>
-                      <Handle
-                        className="rc-slider-handle"
-                        disabled={false}
-                        key="0"
-                        max={20}
-                        min={1}
-                        offset={15.789473684210526}
-                        style={Object {}}
-                        value={4}
-                        vertical={false}
-                      >
-                        <div
-                          aria-disabled={false}
-                          aria-valuemax={20}
-                          aria-valuemin={1}
-                          aria-valuenow={4}
-                          className="rc-slider-handle"
-                          role="slider"
-                          style={
-                            Object {
-                              "left": "15.789473684210526%",
-                            }
-                          }
-                          tabIndex={0}
-                        />
-                      </Handle>
-                      <Marks
-                        className="rc-slider-mark"
-                        included={true}
-                        lowerBound={1}
-                        marks={Object {}}
-                        max={20}
-                        min={1}
-                        upperBound={4}
-                        vertical={false}
-                      >
-                        <div
-                          className="rc-slider-mark"
-                        />
-                      </Marks>
-                    </div>
-                  </ComponentEnhancer(undefined)>
-                </div>
-              </ChellSlider>
-              <ChellSlider
-                className="node-size-slider-6"
-                key="node-size-slider-6"
-                label="Selected Res. Pairs - Node Size"
-                max={20}
-                min={1}
-                onChange={[Function]}
-                style={
-                  Object {
-                    "width": 360,
-                  }
-                }
-                value={4}
-              >
-                <div
-                  className="node-size-slider-6"
-                  style={
-                    Object {
-                      "padding": 20,
-                    }
-                  }
-                >
-                  <p>
-                    Selected Res. Pairs - Node Size: 4
                   </p>
                   <ComponentEnhancer(undefined)
                     activeDotStyle={Object {}}

@@ -1,11 +1,14 @@
 import * as React from 'react';
 import { Accordion, Icon } from 'semantic-ui-react';
 
-import ResidueContext, { initialResidueContext, ResidueSelection } from '../context/ResidueContext';
-import { initialSecondaryStructureContext, SecondaryStructureContext } from '../context/SecondaryStructureContext';
+import ResidueContext, { initialResidueContext, IResidueContext, ResidueSelection } from '../context/ResidueContext';
+import {
+  initialSecondaryStructureContext,
+  ISecondaryStructureContext,
+  SecondaryStructureContext,
+} from '../context/SecondaryStructureContext';
 import { CONFIGURATION_COMPONENT_TYPE, ICouplingScore, RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../data/chell-data';
 import ChellChartEvent from '../data/event/ChellChartEvent';
-import { withDefaultProps } from '../helper/ReactHelper';
 import ContactMapChart, { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';
 import ChellRadioGroup from './widget/ChellRadioGroup';
 import ChellSlider from './widget/ChellSlider';
@@ -26,35 +29,55 @@ export interface IContactMapConfiguration {
   };
 }
 
-export const defaultContactMapProps = {
-  chainLength: 59,
-  configurations: new Array<IContactMapConfiguration>(),
+export interface IContactMapProps {
+  chainLength: number;
+  configurations: IContactMapConfiguration[];
   data: {
-    computedPoints: new Array<IContactMapChartData>(),
-    secondaryStructures: new Array<SECONDARY_STRUCTURE>(),
-  },
-  enableSliders: true,
-  height: 400,
-  highlightColor: '#ff8800',
-  ...initialResidueContext,
-  ...initialSecondaryStructureContext,
-  onBoxSelection: undefined as undefined | ((residues: RESIDUE_TYPE[]) => void),
-  padding: 0,
-  width: 400,
-};
+    computedPoints: IContactMapChartData[];
+    secondaryStructures: SECONDARY_STRUCTURE[];
+  };
+  enableSliders: boolean;
+  height: number;
+  highlightColor: string;
+  onBoxSelection?: ((residues: RESIDUE_TYPE[]) => void);
+  padding: number;
+  residueContext: IResidueContext;
+  secondaryStructureContext: ISecondaryStructureContext;
+  width: number;
+}
 
 export const initialContactMapState = {
   pointsToPlot: new Array<IContactMapChartData>(),
   showConfiguration: false,
 };
 
-export type ContactMapProps = {} & typeof defaultContactMapProps;
 export type ContactMapState = Readonly<typeof initialContactMapState>;
 
-export class ContactMapClass extends React.Component<ContactMapProps, ContactMapState> {
+export class ContactMapClass extends React.Component<IContactMapProps, ContactMapState> {
+  public static defaultProps: Partial<IContactMapProps> = {
+    chainLength: 59,
+    configurations: new Array<IContactMapConfiguration>(),
+    data: {
+      computedPoints: new Array<IContactMapChartData>(),
+      secondaryStructures: new Array<SECONDARY_STRUCTURE>(),
+    },
+    enableSliders: true,
+    height: 400,
+    highlightColor: '#ff8800',
+    onBoxSelection: undefined as undefined | ((residues: RESIDUE_TYPE[]) => void),
+    padding: 0,
+    residueContext: {
+      ...initialResidueContext,
+    },
+    secondaryStructureContext: {
+      ...initialSecondaryStructureContext,
+    },
+    width: 400,
+  };
+
   public readonly state: ContactMapState = initialContactMapState;
 
-  constructor(props: ContactMapProps) {
+  constructor(props: IContactMapProps) {
     super(props);
   }
 
@@ -62,10 +85,10 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
     this.setupPointsToPlot(this.props.data.computedPoints);
   }
 
-  public componentDidUpdate(prevProps: ContactMapProps) {
-    const { data, lockedResiduePairs } = this.props;
-    if (data !== prevProps.data || lockedResiduePairs !== prevProps.lockedResiduePairs) {
-      this.setupPointsToPlot(data.computedPoints, lockedResiduePairs);
+  public componentDidUpdate(prevProps: IContactMapProps) {
+    const { data, residueContext } = this.props;
+    if (data !== prevProps.data || residueContext.lockedResiduePairs !== prevProps.residueContext.lockedResiduePairs) {
+      this.setupPointsToPlot(data.computedPoints, residueContext.lockedResiduePairs);
     }
   }
 
@@ -138,26 +161,18 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
   }
 
   protected renderContactMapChart(pointsToPlot: IContactMapChartData[]) {
-    const {
-      addHoveredResidues,
-      candidateResidues,
-      chainLength,
-      data,
-      onBoxSelection,
-      removeHoveredResidues,
-      toggleLockedResiduePair,
-    } = this.props;
+    const { chainLength, data, onBoxSelection, residueContext, secondaryStructureContext } = this.props;
     return (
       <ContactMapChart
-        candidateResidues={candidateResidues}
+        candidateResidues={residueContext.candidateResidues}
         contactData={pointsToPlot}
-        onClickCallback={this.onMouseClick(toggleLockedResiduePair)}
-        onHoverCallback={this.onMouseEnter(addHoveredResidues)}
+        onClickCallback={this.onMouseClick(residueContext.toggleLockedResiduePair)}
+        onHoverCallback={this.onMouseEnter(residueContext.addHoveredResidues)}
         onSelectedCallback={this.onMouseSelect(onBoxSelection)}
-        onUnHoverCallback={this.onMouseLeave(removeHoveredResidues)}
+        onUnHoverCallback={this.onMouseLeave(residueContext.removeHoveredResidues)}
         range={chainLength + 5}
         secondaryStructures={data.secondaryStructures}
-        selectedSecondaryStructures={[this.props.selectedSecondaryStructures]}
+        selectedSecondaryStructures={[secondaryStructureContext.selectedSecondaryStructures]}
       />
     );
   }
@@ -258,12 +273,12 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
   protected onMouseEnter = (cb: (residue: RESIDUE_TYPE[]) => void) => (e: ChellChartEvent) => {
     if (e.isAxis()) {
-      const { toggleSecondaryStructure, data } = this.props;
+      const { secondaryStructureContext, data } = this.props;
 
       for (const secondaryStructure of data.secondaryStructures) {
         for (const section of secondaryStructure) {
           if (section.contains(...e.selectedPoints)) {
-            toggleSecondaryStructure(section);
+            secondaryStructureContext.toggleSecondaryStructure(section);
           }
         }
       }
@@ -274,13 +289,13 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
   protected onMouseLeave = (cb?: (residue: RESIDUE_TYPE[]) => void) => (e: ChellChartEvent) => {
     if (e.isAxis()) {
-      const { data, removeSecondaryStructure, selectedSecondaryStructures } = this.props;
+      const { data, secondaryStructureContext } = this.props;
 
       for (const secondaryStructure of data.secondaryStructures) {
         for (const section of secondaryStructure) {
           if (section.contains(...e.selectedPoints)) {
-            if (!selectedSecondaryStructures.includes(section)) {
-              removeSecondaryStructure(section);
+            if (!secondaryStructureContext.selectedSecondaryStructures.includes(section)) {
+              secondaryStructureContext.removeSecondaryStructure(section);
             }
           }
         }
@@ -292,15 +307,15 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
 
   protected onMouseClick = (cb: (residues: RESIDUE_TYPE[]) => void) => (e: ChellChartEvent) => {
     if (e.isAxis()) {
-      const { addSecondaryStructure, data, removeSecondaryStructure, selectedSecondaryStructures } = this.props;
+      const { data, secondaryStructureContext } = this.props;
 
       for (const secondaryStructure of data.secondaryStructures) {
         for (const section of secondaryStructure) {
           if (section.contains(...e.selectedPoints)) {
-            if (selectedSecondaryStructures.includes(section)) {
-              removeSecondaryStructure(section);
+            if (secondaryStructureContext.selectedSecondaryStructures.includes(section)) {
+              secondaryStructureContext.removeSecondaryStructure(section);
             } else {
-              addSecondaryStructure(section);
+              secondaryStructureContext.addSecondaryStructure(section);
             }
           }
         }
@@ -319,18 +334,13 @@ export class ContactMapClass extends React.Component<ContactMapProps, ContactMap
   };
 }
 
-export const ContactMapWithDefaultProps = withDefaultProps(defaultContactMapProps, ContactMapClass);
-
-// TODO The required props should be discernable from `withDefaultProps` without needing to duplicate.
-// However the Context consumer syntax is still new to me and I can't find the right combination :(
-type requiredProps = Partial<typeof defaultContactMapProps> &
-  Required<Omit<ContactMapProps, keyof typeof defaultContactMapProps>>;
+type requiredProps = Omit<IContactMapProps, keyof typeof ContactMapClass.defaultProps> & Partial<IContactMapProps>;
 
 const ContactMap = (props: requiredProps) => (
   <SecondaryStructureContext.Consumer>
-    {secStructContext => (
+    {secondaryStructureContext => (
       <ResidueContext.Consumer>
-        {residueContext => <ContactMapWithDefaultProps {...props} {...residueContext} {...secStructContext} />}
+        {residueContext => <ContactMapClass {...{ ...props, residueContext, secondaryStructureContext }} />}
       </ResidueContext.Consumer>
     )}
   </SecondaryStructureContext.Consumer>
