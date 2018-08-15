@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { VIZ_TYPE } from '../../data/chell-data';
 import { fetchAppropriateData } from '../../helper/DataHelper';
-import VizPanelContainer, { VizPanelContainerClass } from '../VizPanelContainer';
+import VizPanelContainer from '../VizPanelContainer';
 
 describe('VizPanelContainer', () => {
   beforeEach(() => {
@@ -50,7 +50,7 @@ describe('VizPanelContainer', () => {
       />,
     );
 
-    const instance = wrapper.instance() as VizPanelContainerClass;
+    const instance = wrapper.instance() as VizPanelContainer;
     const initialData = instance.state.data;
     wrapper.setState({
       currentDataDir: 'second',
@@ -71,7 +71,7 @@ describe('VizPanelContainer', () => {
       />,
     ).update();
 
-    const instance = wrapper.instance() as VizPanelContainerClass;
+    const instance = wrapper.instance() as VizPanelContainer;
     const initialData = instance.state.data;
     wrapper.setState({
       currentDataDir: 'first',
@@ -92,7 +92,7 @@ describe('VizPanelContainer', () => {
     );
     const expected = 'second';
     wrapper.find('.viz-panel-container-dropdown').simulate('change', {}, { value: expected });
-    const instance = wrapper.instance() as VizPanelContainerClass;
+    const instance = wrapper.instance() as VizPanelContainer;
     expect(instance.state.currentDataDir).toBe(expected);
   });
 });

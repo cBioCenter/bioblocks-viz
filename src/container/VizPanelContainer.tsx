@@ -7,30 +7,32 @@ import ChellContext from '../context/ChellContext';
 import { ChellPDB } from '../data/ChellPDB';
 import { fetchAppropriateData, getCouplingScoresData } from '../helper/DataHelper';
 import { readUploadedFileAsText } from '../helper/FetchHelper';
-import { withDefaultProps } from '../helper/ReactHelper';
 import { generateResidueMapping } from '../helper/ResidueMapper';
 
-export const defaultVizPanelProps = {
-  initialVisualizations: [] as VIZ_TYPE[],
+export interface IVizPanelProps {
+  dataDirs: string[];
+  initialVisualizations: VIZ_TYPE[];
   /** Number of panels to be controlled by this container. Currently limited to 4. */
-  numPanels: 1 as 1 | 2 | 3 | 4,
-};
+  numPanels: 1 | 2 | 3 | 4;
+  supportedVisualizations: VIZ_TYPE[];
+}
 
 export const initialVizPanelState = {
   currentDataDir: '',
   data: new Object() as Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>,
 };
 
-export type VizPanelContainerProps = {
-  dataDirs: string[];
-  supportedVisualizations: VIZ_TYPE[];
-} & typeof defaultVizPanelProps;
 export type VizPanelContainerState = Readonly<typeof initialVizPanelState>;
 
-export class VizPanelContainerClass extends React.Component<VizPanelContainerProps, VizPanelContainerState> {
+export class VizPanelContainer extends React.Component<IVizPanelProps, VizPanelContainerState> {
+  public static defaultProps = {
+    initialVisualizations: [] as VIZ_TYPE[],
+    /** Number of panels to be controlled by this container. Currently limited to 4. */
+    numPanels: 1,
+  };
   public readonly state: VizPanelContainerState = initialVizPanelState;
 
-  constructor(props: VizPanelContainerProps) {
+  constructor(props: IVizPanelProps) {
     super(props);
     this.state = {
       ...this.state,
@@ -50,7 +52,7 @@ export class VizPanelContainerClass extends React.Component<VizPanelContainerPro
     });
   }
 
-  public async componentDidUpdate(prevProps: VizPanelContainerProps, prevState: VizPanelContainerState) {
+  public async componentDidUpdate(prevProps: IVizPanelProps, prevState: VizPanelContainerState) {
     if (prevState.currentDataDir !== this.state.currentDataDir) {
       const results: Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }> = {};
       for (const viz of this.props.supportedVisualizations) {
@@ -162,7 +164,4 @@ export class VizPanelContainerClass extends React.Component<VizPanelContainerPro
   };
 }
 
-const VizPanelContainer = withDefaultProps(defaultVizPanelProps, VizPanelContainerClass);
-
 export default VizPanelContainer;
-export { VizPanelContainer };
