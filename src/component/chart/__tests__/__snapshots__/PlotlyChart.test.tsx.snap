@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PlotlyChart Should attach events when the container is attached. 1`] = `
-<PlotlyChartClass
+<PlotlyChart
   config={Object {}}
   data={
     Array [
@@ -24,9 +24,7 @@ exports[`PlotlyChart Should attach events when the container is attached. 1`] = 
   onClickCallback={[MockFunction]}
   onSelectedCallback={[MockFunction]}
 >
-  <div
-    className="PlotlyChart"
-  >
+  <div>
     <Dimmer
       active={false}
     >
@@ -58,11 +56,11 @@ exports[`PlotlyChart Should attach events when the container is attached. 1`] = 
       }
     />
   </div>
-</PlotlyChartClass>
+</PlotlyChart>
 `;
 
 exports[`PlotlyChart Should handle extra axes correctly. 1`] = `
-<PlotlyChartClass
+<PlotlyChart
   config={Object {}}
   data={
     Array [
@@ -89,9 +87,7 @@ exports[`PlotlyChart Should handle extra axes correctly. 1`] = `
   }
   layout={Object {}}
 >
-  <div
-    className="PlotlyChart"
-  >
+  <div>
     <Dimmer
       active={false}
     >
@@ -123,18 +119,16 @@ exports[`PlotlyChart Should handle extra axes correctly. 1`] = `
       }
     />
   </div>
-</PlotlyChartClass>
+</PlotlyChart>
 `;
 
 exports[`PlotlyChart Should match existing snapshot when given empty data. 1`] = `
-<PlotlyChartClass
+<PlotlyChart
   config={Object {}}
   data={Array []}
   layout={Object {}}
 >
-  <div
-    className="PlotlyChart"
-  >
+  <div>
     <Dimmer
       active={true}
     >
@@ -166,11 +160,11 @@ exports[`PlotlyChart Should match existing snapshot when given empty data. 1`] =
       }
     />
   </div>
-</PlotlyChartClass>
+</PlotlyChart>
 `;
 
 exports[`PlotlyChart Should match existing snapshot when given sample data. 1`] = `
-<PlotlyChartClass
+<PlotlyChart
   config={Object {}}
   data={
     Array [
@@ -191,9 +185,7 @@ exports[`PlotlyChart Should match existing snapshot when given sample data. 1`] 
   }
   layout={Object {}}
 >
-  <div
-    className="PlotlyChart"
-  >
+  <div>
     <Dimmer
       active={false}
     >
@@ -225,5 +217,5 @@ exports[`PlotlyChart Should match existing snapshot when given sample data. 1`] 
       }
     />
   </div>
-</PlotlyChartClass>
+</PlotlyChart>
 `;
