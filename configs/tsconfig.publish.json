@@ -4,7 +4,8 @@
     "declaration": true,
     "outDir": "../lib",
     "pretty": true,
-    "sourceMap": false
+    "sourceMap": false,
+    "target": "es6"
   },
   "files": ["../chell-viz.ts"],
   "include": ["../src/**/*", "../types"],
