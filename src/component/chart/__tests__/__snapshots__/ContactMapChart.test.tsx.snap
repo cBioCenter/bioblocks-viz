@@ -27,12 +27,12 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
       "height": 520,
       "legend": Object {
         "orientation": "h",
-        "y": -0.1,
+        "y": -0.4,
         "yanchor": "bottom",
       },
       "margin": Object {
-        "b": 40,
-        "l": 16,
+        "b": 25,
+        "l": 50,
       },
       "showlegend": true,
       "xaxis": Object {
@@ -106,12 +106,12 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
       "height": 520,
       "legend": Object {
         "orientation": "h",
-        "y": -0.1,
+        "y": -0.4,
         "yanchor": "bottom",
       },
       "margin": Object {
-        "b": 40,
-        "l": 16,
+        "b": 25,
+        "l": 50,
       },
       "showlegend": true,
       "xaxis": Object {
@@ -197,12 +197,12 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
       "height": 520,
       "legend": Object {
         "orientation": "h",
-        "y": -0.1,
+        "y": -0.4,
         "yanchor": "bottom",
       },
       "margin": Object {
-        "b": 40,
-        "l": 16,
+        "b": 25,
+        "l": 50,
       },
       "showlegend": true,
       "xaxis": Object {

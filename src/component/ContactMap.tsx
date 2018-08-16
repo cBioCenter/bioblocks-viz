@@ -340,7 +340,13 @@ const ContactMap = (props: requiredProps) => (
   <SecondaryStructureContext.Consumer>
     {secondaryStructureContext => (
       <ResidueContext.Consumer>
-        {residueContext => <ContactMapClass {...{ ...props, residueContext, secondaryStructureContext }} />}
+        {residueContext => (
+          <ContactMapClass
+            {...props}
+            residueContext={{ ...residueContext }}
+            secondaryStructureContext={{ ...secondaryStructureContext }}
+          />
+        )}
       </ResidueContext.Consumer>
     )}
   </SecondaryStructureContext.Consumer>

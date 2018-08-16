@@ -96,11 +96,11 @@ class ContactMapChart extends React.Component<IContactMapChartProps, IContactMap
     dataTransformFn: generateScatterGLData,
     heightModifier: 0.3,
     legendModifiers: {
-      y: -0.1,
+      y: -0.4,
     },
     marginModifiers: {
-      b: 40,
-      l: 16,
+      b: 25,
+      l: 50,
     },
     range: 100,
     secondaryStructures: [],
@@ -140,12 +140,12 @@ class ContactMapChart extends React.Component<IContactMapChartProps, IContactMap
           height: defaultPlotlyLayout.height! + defaultPlotlyLayout.height! * heightModifier,
           legend: {
             orientation: 'h',
-            y: legendModifiers.y * contactData.length,
+            y: legendModifiers.y,
             yanchor: 'bottom',
           },
           margin: {
-            b: contactData.length * marginModifiers.b,
-            l: contactData.length * marginModifiers.l,
+            b: marginModifiers.b,
+            l: marginModifiers.l,
           },
           showlegend: true,
           xaxis: {

@@ -306,7 +306,13 @@ const NGLComponent = (props: requiredProps) => (
   <SecondaryStructureContext.Consumer>
     {secStructContext => (
       <ResidueContext.Consumer>
-        {residueContext => <NGLComponentClass {...props} {...residueContext} {...secStructContext} />}
+        {residueContext => (
+          <NGLComponentClass
+            {...props}
+            residueContext={{ ...residueContext }}
+            secondaryStructureContext={{ ...secStructContext }}
+          />
+        )}
       </ResidueContext.Consumer>
     )}
   </SecondaryStructureContext.Consumer>

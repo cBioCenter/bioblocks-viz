@@ -16,13 +16,13 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
     heightModifier={0.3}
     legendModifiers={
       Object {
-        "y": -0.1,
+        "y": -0.4,
       }
     }
     marginModifiers={
       Object {
-        "b": 40,
-        "l": 16,
+        "b": 25,
+        "l": 50,
       }
     }
     onClickCallback={[Function]}
@@ -746,13 +746,13 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       heightModifier={0.3}
       legendModifiers={
         Object {
-          "y": -0.1,
+          "y": -0.4,
         }
       }
       marginModifiers={
         Object {
-          "b": 40,
-          "l": 16,
+          "b": 25,
+          "l": 50,
         }
       }
       onClickCallback={[Function]}
@@ -941,12 +941,12 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             "height": 520,
             "legend": Object {
               "orientation": "h",
-              "y": -0.6000000000000001,
+              "y": -0.4,
               "yanchor": "bottom",
             },
             "margin": Object {
-              "b": 240,
-              "l": 96,
+              "b": 25,
+              "l": 50,
             },
             "showlegend": true,
             "xaxis": Object {

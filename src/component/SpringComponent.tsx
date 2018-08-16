@@ -215,9 +215,7 @@ type requiredProps = Omit<ISpringComponentProps, keyof typeof SpringComponentCla
 
 const SpringComponent = (props: requiredProps) => (
   <CellContext.Consumer>
-    {({ currentCells }) => (
-      <SpringComponentClass {...{ ...props, ...SpringComponentClass.defaultProps }} currentCells={currentCells} />
-    )}
+    {({ currentCells }) => <SpringComponentClass {...props} currentCells={currentCells} />}
   </CellContext.Consumer>
 );
 
