@@ -1,7 +1,16 @@
 import * as React from 'react';
 import { SECONDARY_STRUCTURE_SECTION } from '../data/chell-data';
 
-export const initialSecondaryStructureContext = {
+export interface ISecondaryStructureContext {
+  addSecondaryStructure: (section: SECONDARY_STRUCTURE_SECTION) => void;
+  clearSecondaryStructure: () => void;
+  removeSecondaryStructure: (section: SECONDARY_STRUCTURE_SECTION) => void;
+  selectedSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
+  temporarySecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
+  toggleSecondaryStructure: (section: SECONDARY_STRUCTURE_SECTION) => void;
+}
+
+export const initialSecondaryStructureContext: ISecondaryStructureContext = {
   addSecondaryStructure: (section: SECONDARY_STRUCTURE_SECTION) => {
     return;
   },

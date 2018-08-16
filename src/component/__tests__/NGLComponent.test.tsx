@@ -5,6 +5,7 @@ import * as Renderer from 'react-test-renderer';
 
 import toJson from 'enzyme-to-json';
 import { initialResidueContext, IResidueContext } from '../../context/ResidueContext';
+import { initialSecondaryStructureContext } from '../../context/SecondaryStructureContext';
 import NGLComponent, { NGLComponentClass } from '../NGLComponent';
 
 // https://medium.com/@ryandrewjohnson/unit-testing-components-using-reacts-new-context-api-4a5219f4b3fe
@@ -84,7 +85,10 @@ describe('NGLComponent', () => {
     const instance = wrapper.instance() as NGLComponentClass;
 
     wrapper.setProps({
-      hoveredResidues: [1],
+      residueContext: {
+        ...initialResidueContext,
+        hoveredResidues: [1],
+      },
     });
 
     expect(instance.state.activeRepresentations[0].name()).toEqual(expectedRep);
@@ -97,12 +101,15 @@ describe('NGLComponent', () => {
     const instance = wrapper.instance() as NGLComponentClass;
 
     wrapper.setProps({
-      lockedResiduePairs: new Map(
-        Object.entries({
-          '1,2': [1, 2],
-          '3,4': [3, 4],
-        }),
-      ),
+      residueContext: {
+        ...initialResidueContext,
+        lockedResiduePairs: new Map(
+          Object.entries({
+            '1,2': [1, 2],
+            '3,4': [3, 4],
+          }),
+        ),
+      },
     });
 
     const { activeRepresentations } = instance.state;
@@ -118,7 +125,10 @@ describe('NGLComponent', () => {
     const instance = wrapper.instance() as NGLComponentClass;
 
     wrapper.setProps({
-      hoveredResidues: [7, 8],
+      residueContext: {
+        ...initialResidueContext,
+        hoveredResidues: [7, 8],
+      },
     });
 
     wrapper.update();
@@ -137,7 +147,10 @@ describe('NGLComponent', () => {
     const instance = wrapper.instance() as NGLComponentClass;
 
     wrapper.setProps({
-      selectedSecondaryStructures: [{ start: 1, end: 2 }],
+      secondaryStructureContext: {
+        ...initialSecondaryStructureContext,
+        selectedSecondaryStructures: [{ start: 1, end: 2 }],
+      },
     });
 
     const { activeRepresentations } = instance.state;
@@ -189,7 +202,7 @@ describe('NGLComponent', () => {
   it('Should call appropriate residue clearing callback.', () => {
     const Component = getComponentWithContext();
     const removeSpy = jest.fn();
-    const wrapper = mount(<Component.NGLComponentClass removeAllLockedResiduePairs={removeSpy} />);
+    const wrapper = mount(<Component.NGLComponentClass residueContext={{ removeAllLockedResiduePairs: removeSpy }} />);
     wrapper.find('Button').simulate('click');
     expect(removeSpy).toHaveBeenCalledTimes(1);
   });
@@ -219,8 +232,11 @@ describe('NGLComponent', () => {
 
       const removeHoveredResiduesSpy = jest.fn();
       wrapper.setProps({
-        candidateResidues: [],
-        removeHoveredResidues: removeHoveredResiduesSpy,
+        residueContext: {
+          ...initialResidueContext,
+          candidateResidues: [],
+          removeHoveredResidues: removeHoveredResiduesSpy,
+        },
       });
       simulateHoverEvent(wrapper, { atom: { resno: 3 } });
       simulateHoverEvent(wrapper, { closestBondAtom: { resno: 3 } });
@@ -234,9 +250,12 @@ describe('NGLComponent', () => {
 
       const removeHoveredResiduesSpy = jest.fn();
       wrapper.setProps({
-        candidateResidues: [],
-        hoveredResidues: [3],
-        removeHoveredResidues: removeHoveredResiduesSpy,
+        residueContext: {
+          ...initialResidueContext,
+          candidateResidues: [],
+          hoveredResidues: [3],
+          removeHoveredResidues: removeHoveredResiduesSpy,
+        },
       });
       simulateHoverEvent(wrapper, { atom: { resno: 3 } });
       simulateHoverEvent(wrapper, {});
@@ -249,9 +268,12 @@ describe('NGLComponent', () => {
       const removeNonLockedResiduesSpy = jest.fn();
 
       wrapper.setProps({
-        candidateResidues: [3],
-        hoveredResidues: [4],
-        removeNonLockedResidues: removeNonLockedResiduesSpy,
+        residueContext: {
+          ...initialResidueContext,
+          candidateResidues: [3],
+          hoveredResidues: [4],
+          removeNonLockedResidues: removeNonLockedResiduesSpy,
+        },
       });
 
       wrapper.find('.NGLCanvas').simulate('mouseleave');
@@ -267,8 +289,11 @@ describe('NGLComponent', () => {
         const Component = getComponentWithContext();
         const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
         wrapper.setProps({
-          addLockedResiduePair: addLockedSpy,
-          candidateResidues: [2],
+          residueContext: {
+            ...initialResidueContext,
+            addLockedResiduePair: addLockedSpy,
+            candidateResidues: [2],
+          },
         });
         simulateClickEvent(wrapper, pickingResult);
         expect(addLockedSpy).toHaveBeenCalledWith([2, 4]);
@@ -284,7 +309,10 @@ describe('NGLComponent', () => {
         const Component = getComponentWithContext();
         const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
         wrapper.setProps({
-          addCandidateResidues: addCandidateSpy,
+          residueContext: {
+            ...initialResidueContext,
+            addCandidateResidues: addCandidateSpy,
+          },
         });
         simulateClickEvent(wrapper, pickingResult);
         expect(addCandidateSpy).toHaveBeenCalledWith([4]);
@@ -297,12 +325,15 @@ describe('NGLComponent', () => {
       const removedLockedSpy = jest.fn();
       (wrapper.state('structureComponent') as NGL.StructureComponent).addRepresentation('distance');
       wrapper.setProps({
-        lockedResiduePairs: new Map(
-          Object.entries({
-            '4,7': [4, 7],
-          }),
-        ),
-        removeLockedResiduePair: removedLockedSpy,
+        residueContext: {
+          ...initialResidueContext,
+          lockedResiduePairs: new Map(
+            Object.entries({
+              '4,7': [4, 7],
+            }),
+          ),
+          removeLockedResiduePair: removedLockedSpy,
+        },
       });
       simulateClickEvent(wrapper, {
         distance: { atom1: { resno: 4 }, atom2: { resno: 7 } },
@@ -317,8 +348,11 @@ describe('NGLComponent', () => {
       const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
       const removeNonLockedResiduesSpy = jest.fn();
       wrapper.setProps({
-        hoveredResidues: [1],
-        removeNonLockedResidues: removeNonLockedResiduesSpy,
+        residueContext: {
+          ...initialResidueContext,
+          hoveredResidues: [1],
+          removeNonLockedResidues: removeNonLockedResiduesSpy,
+        },
       });
       expect(wrapper.state('activeRepresentations')).not.toEqual(expected);
       simulateClickEvent(wrapper, undefined);
@@ -331,9 +365,12 @@ describe('NGLComponent', () => {
       const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
       const addLockedResiduePairSpy = jest.fn();
       wrapper.setProps({
-        addLockedResiduePair: addLockedResiduePairSpy,
-        candidateResidues: [0],
-        hoveredResidues: [1],
+        residueContext: {
+          ...initialResidueContext,
+          addLockedResiduePair: addLockedResiduePairSpy,
+          candidateResidues: [0],
+          hoveredResidues: [1],
+        },
       });
       expect(wrapper.state('activeRepresentations')).not.toEqual(expected);
       simulateClickEvent(wrapper, undefined);
@@ -346,9 +383,12 @@ describe('NGLComponent', () => {
       const wrapper = mount(<Component.NGLComponentClass data={sampleData} />);
       const removeNonLockedResiduesSpy = jest.fn();
       wrapper.setProps({
-        candidateResidues: [0],
-        hoveredResidues: [51],
-        removeNonLockedResidues: removeNonLockedResiduesSpy,
+        residueContext: {
+          ...initialResidueContext,
+          candidateResidues: [0],
+          hoveredResidues: [51],
+          removeNonLockedResidues: removeNonLockedResiduesSpy,
+        },
       });
       expect(wrapper.state('activeRepresentations')).not.toEqual(expected);
       simulateClickEvent(wrapper, undefined);
@@ -361,9 +401,12 @@ describe('NGLComponent', () => {
       const wrapper = mount(
         <Component.NGLComponentClass
           data={sampleData}
-          candidateResidues={[1]}
-          hoveredResidues={[2]}
-          removeNonLockedResidues={removeNonLockedResiduesSpy}
+          residueContext={{
+            ...initialResidueContext,
+            candidateResidues: [1],
+            hoveredResidues: [2],
+            removeNonLockedResidues: removeNonLockedResiduesSpy,
+          }}
         />,
       );
 

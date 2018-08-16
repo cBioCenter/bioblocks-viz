@@ -6,7 +6,6 @@ import * as React from 'react';
 import { RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../../data/chell-data';
 
 import { generateScatterGLData } from '../../helper/PlotlyHelper';
-import { withDefaultProps } from '../../helper/ReactHelper';
 import AuxiliaryAxis from './AuxiliaryAxis';
 import PlotlyChart, { defaultPlotlyLayout, IPlotlyData } from './PlotlyChart';
 import SecondaryStructureAxis from './SecondaryStructureAxis';
@@ -35,22 +34,6 @@ export interface IContactMapChartProps {
 export interface IContactMapChartState {
   plotlyData: Array<Partial<IPlotlyData>>;
 }
-
-const defaultContactMapChartProps: Partial<IContactMapChartProps> = {
-  candidateResidues: new Array<RESIDUE_TYPE>(),
-  dataTransformFn: generateScatterGLData,
-  heightModifier: 0.3,
-  legendModifiers: {
-    y: -0.1,
-  },
-  marginModifiers: {
-    b: 40,
-    l: 16,
-  },
-  range: 100,
-  secondaryStructures: [],
-  selectedSecondaryStructures: [],
-};
 
 export interface IContactMapChartData extends Partial<IPlotlyData> {
   name: string;
@@ -107,7 +90,23 @@ export interface IContactMapChartPoint {
  * Will transform data and setup layout from science/chell data type into the Plotly type.
  * @extends {React.Component<IContactMapChartProps, any>}
  */
-class ContactMapChartClass extends React.Component<IContactMapChartProps, IContactMapChartState> {
+class ContactMapChart extends React.Component<IContactMapChartProps, IContactMapChartState> {
+  public static defaultProps: Partial<IContactMapChartProps> = {
+    candidateResidues: new Array<RESIDUE_TYPE>(),
+    dataTransformFn: generateScatterGLData,
+    heightModifier: 0.3,
+    legendModifiers: {
+      y: -0.4,
+    },
+    marginModifiers: {
+      b: 25,
+      l: 50,
+    },
+    range: 100,
+    secondaryStructures: [],
+    selectedSecondaryStructures: [],
+  };
+
   constructor(props: IContactMapChartProps) {
     super(props);
     this.state = {
@@ -141,12 +140,12 @@ class ContactMapChartClass extends React.Component<IContactMapChartProps, IConta
           height: defaultPlotlyLayout.height! + defaultPlotlyLayout.height! * heightModifier,
           legend: {
             orientation: 'h',
-            y: legendModifiers.y * contactData.length,
+            y: legendModifiers.y,
             yanchor: 'bottom',
           },
           margin: {
-            b: contactData.length * marginModifiers.b,
-            l: contactData.length * marginModifiers.l,
+            b: marginModifiers.b,
+            l: marginModifiers.l,
           },
           showlegend: true,
           xaxis: {
@@ -194,7 +193,5 @@ class ContactMapChartClass extends React.Component<IContactMapChartProps, IConta
     });
   }
 }
-
-export const ContactMapChart = withDefaultProps(defaultContactMapChartProps, ContactMapChartClass);
 
 export default ContactMapChart;

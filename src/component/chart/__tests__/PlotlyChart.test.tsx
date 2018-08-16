@@ -7,7 +7,7 @@ import { IMockPlotlyCanvas } from '__mocks__/plotly';
 import { IMockDict } from 'configs/SetupJest';
 import { CHELL_CHART_EVENT_TYPE, CHELL_CHART_PIECE } from '../../../data/chell-data';
 import ChellChartEvent from '../../../data/event/ChellChartEvent';
-import { IPlotlyChartProps, IPlotlyData, PlotlyChartClass } from '../PlotlyChart';
+import { IPlotlyChartProps, IPlotlyData, PlotlyChart } from '../PlotlyChart';
 
 beforeEach(() => {
   jest.resetModules();
@@ -31,7 +31,7 @@ describe('PlotlyChart', () => {
    * @returns A wrapper for the PlotlyChart that has been mounted.
    */
   const getMountedPlotlyChart = async (props: IPlotlyChartProps) => {
-    const wrapper = mount(<PlotlyChartClass {...props} />);
+    const wrapper = mount(<PlotlyChart {...props} />);
     await wrapper.update();
     return wrapper;
   };
@@ -43,19 +43,19 @@ describe('PlotlyChart', () => {
    * @param event The name of the event to dispatch.
    */
   const dispatchPlotlyEvent = (wrapper: CommonWrapper, event: string, data: object = { data: {}, x: 0, y: 0 }) => {
-    const canvas = (wrapper.instance() as PlotlyChartClass).plotlyCanvas;
+    const canvas = (wrapper.instance() as PlotlyChart).plotlyCanvas;
     if (canvas) {
       (canvas as IMockPlotlyCanvas).dispatchEvent(new Event(event), data);
     }
   };
 
   it('Should match existing snapshot when given empty data.', () => {
-    const wrapper = mount(<PlotlyChartClass data={[]} />);
+    const wrapper = mount(<PlotlyChart data={[]} />);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
   it('Should match existing snapshot when given sample data.', () => {
-    const wrapper = mount(<PlotlyChartClass data={sampleData} />);
+    const wrapper = mount(<PlotlyChart data={sampleData} />);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
@@ -110,7 +110,7 @@ describe('PlotlyChart', () => {
     const onResizeSpy = jest.fn();
 
     const wrapper = await getMountedPlotlyChart({ data: sampleData });
-    const chartInstance = wrapper.instance() as PlotlyChartClass;
+    const chartInstance = wrapper.instance() as PlotlyChart;
 
     chartInstance.resize = onResizeSpy;
     chartInstance.attachListeners();
@@ -192,7 +192,7 @@ describe('PlotlyChart', () => {
       data: sampleData,
     });
 
-    const chartInstance = wrapper.instance() as PlotlyChartClass;
+    const chartInstance = wrapper.instance() as PlotlyChart;
 
     expect(chartInstance.plotlyCanvas).not.toBeNull();
     wrapper.unmount();
@@ -204,7 +204,7 @@ describe('PlotlyChart', () => {
       data: sampleData,
     });
 
-    const chartInstance = wrapper.instance() as PlotlyChartClass;
+    const chartInstance = wrapper.instance() as PlotlyChart;
     const drawSpy = jest.fn();
     chartInstance.draw = drawSpy;
 
@@ -220,7 +220,7 @@ describe('PlotlyChart', () => {
       data: sampleData,
     });
 
-    const chartInstance = wrapper.instance() as PlotlyChartClass;
+    const chartInstance = wrapper.instance() as PlotlyChart;
     const drawSpy = jest.fn();
     chartInstance.draw = drawSpy;
 
@@ -236,7 +236,7 @@ describe('PlotlyChart', () => {
       data: sampleData,
     });
 
-    const chartInstance = wrapper.instance() as PlotlyChartClass;
+    const chartInstance = wrapper.instance() as PlotlyChart;
     const drawSpy = jest.fn();
     chartInstance.draw = drawSpy;
 
@@ -254,7 +254,7 @@ describe('PlotlyChart', () => {
       data: sampleData,
     });
 
-    const chartInstance = wrapper.instance() as PlotlyChartClass;
+    const chartInstance = wrapper.instance() as PlotlyChart;
     const drawSpy = jest.fn();
     chartInstance.draw = drawSpy;
 

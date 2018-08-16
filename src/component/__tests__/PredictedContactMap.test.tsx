@@ -6,7 +6,7 @@ import * as React from 'react';
 import { CONTACT_DISTANCE_PROXIMITY, ICouplingScore, SECONDARY_STRUCTURE_CODES } from '../../data/chell-data';
 import { ChellPDB } from '../../data/ChellPDB';
 import { CouplingContainer } from '../../data/CouplingContainer';
-import { PredictedContactMap, PredictedContactMapClass } from '../PredictedContactMap';
+import { PredictedContactMap } from '../PredictedContactMap';
 
 describe('PredictedContactMap', () => {
   const emptyData = {
@@ -88,7 +88,7 @@ describe('PredictedContactMap', () => {
   describe('Sliders', () => {
     it('Should update linear distance filter when appropriate slider is updated.', () => {
       const wrapper = shallow(<PredictedContactMap data={sampleData} />);
-      const instance = wrapper.instance() as PredictedContactMapClass;
+      const instance = wrapper.instance() as PredictedContactMap;
       const expected = 10;
       expect(instance.state.linearDistFilter).not.toBe(expected);
       instance.onLinearDistFilterChange()(expected);
@@ -98,7 +98,7 @@ describe('PredictedContactMap', () => {
 
     it('Should update number of predicted contacts to show when appropriate slider is updated.', () => {
       const wrapper = shallow(<PredictedContactMap data={sampleData} />);
-      const instance = wrapper.instance() as PredictedContactMapClass;
+      const instance = wrapper.instance() as PredictedContactMap;
       const expectedCount = 50;
       expect(instance.state.numPredictionsToShow).not.toBe(expectedCount);
       instance.onNumPredictionsToShowChange()(expectedCount);
@@ -108,7 +108,7 @@ describe('PredictedContactMap', () => {
 
     it('Should update # of predicted contacts to show when appropriate slider is updated.', () => {
       const wrapper = shallow(<PredictedContactMap data={sampleData} />);
-      const instance = wrapper.instance() as PredictedContactMapClass;
+      const instance = wrapper.instance() as PredictedContactMap;
       const expected = 20;
       expect(instance.state.numPredictionsToShow).not.toBe(expected);
       instance.onNumPredictionsToShowChange()(expected);
@@ -118,7 +118,7 @@ describe('PredictedContactMap', () => {
 
     it('Should update how Measured Proximity is determined.', () => {
       const wrapper = shallow(<PredictedContactMap data={sampleData} />);
-      const instance = wrapper.instance() as PredictedContactMapClass;
+      const instance = wrapper.instance() as PredictedContactMap;
       const expected = CONTACT_DISTANCE_PROXIMITY.C_ALPHA;
       expect(instance.state.measuredProximity).not.toBe(expected);
       instance.onMeasuredProximityChange()(Object.values(CONTACT_DISTANCE_PROXIMITY).indexOf(expected));

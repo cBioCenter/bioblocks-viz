@@ -36,13 +36,6 @@ exports[`NGLComponent Should match existing snapshot when canvas isn't available
 
 exports[`NGLComponent Should match existing snapshot when given sample data 1`] = `
 <NGLComponentClass
-  addCandidateResidues={[Function]}
-  addHoveredResidues={[Function]}
-  addLockedResiduePair={[Function]}
-  addSecondaryStructure={[Function]}
-  candidateResidues={Array []}
-  clearAllResidues={[Function]}
-  clearSecondaryStructure={[Function]}
   data={
     Object {
       "residueStore": Object {
@@ -57,19 +50,34 @@ exports[`NGLComponent Should match existing snapshot when given sample data 1`] 
     }
   }
   height={400}
-  hoveredResidues={Array []}
-  lockedResiduePairs={Map {}}
   padding={0}
-  removeAllLockedResiduePairs={[Function]}
-  removeCandidateResidues={[Function]}
-  removeHoveredResidues={[Function]}
-  removeLockedResiduePair={[Function]}
-  removeNonLockedResidues={[Function]}
-  removeSecondaryStructure={[Function]}
-  selectedSecondaryStructures={Array []}
-  temporarySecondaryStructures={Array []}
-  toggleLockedResiduePair={[Function]}
-  toggleSecondaryStructure={[Function]}
+  residueContext={
+    Object {
+      "addCandidateResidues": [Function],
+      "addHoveredResidues": [Function],
+      "addLockedResiduePair": [Function],
+      "candidateResidues": Array [],
+      "clearAllResidues": [Function],
+      "hoveredResidues": Array [],
+      "lockedResiduePairs": Map {},
+      "removeAllLockedResiduePairs": [Function],
+      "removeCandidateResidues": [Function],
+      "removeHoveredResidues": [Function],
+      "removeLockedResiduePair": [Function],
+      "removeNonLockedResidues": [Function],
+      "toggleLockedResiduePair": [Function],
+    }
+  }
+  secondaryStructureContext={
+    Object {
+      "addSecondaryStructure": [Function],
+      "clearSecondaryStructure": [Function],
+      "removeSecondaryStructure": [Function],
+      "selectedSecondaryStructures": Array [],
+      "temporarySecondaryStructures": Array [],
+      "toggleSecondaryStructure": [Function],
+    }
+  }
   width={400}
 >
   <div
