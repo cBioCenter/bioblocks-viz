@@ -1,10 +1,11 @@
 import * as React from 'react';
-import CellContext from '../context/CellContext';
+import CellContext, { ICellContext, initialCellContext } from '../context/CellContext';
 import { T_SNE_DATA_TYPE } from '../data/chell-data';
 import ChellChartEvent from '../data/event/ChellChartEvent';
 import PlotlyChart, { defaultPlotlyConfig, defaultPlotlyLayout } from './chart/PlotlyChart';
 
 export interface ITComponentProps {
+  cellContext: ICellContext;
   data: T_SNE_DATA_TYPE;
   height: number;
   padding: number;
@@ -12,8 +13,11 @@ export interface ITComponentProps {
   width: number;
 }
 
-export class TComponent extends React.Component<ITComponentProps, any> {
+class TComponentClass extends React.Component<ITComponentProps, any> {
   public static defaultProps: ITComponentProps = {
+    cellContext: {
+      ...initialCellContext,
+    },
     data: [[0], [0]],
     height: 400,
     padding: 0,
@@ -26,45 +30,52 @@ export class TComponent extends React.Component<ITComponentProps, any> {
   }
 
   public render() {
-    const { data, height, padding, pointColor, width } = this.props;
-
+    const { cellContext, data, height, padding, pointColor, width } = this.props;
     return (
       <div id="TComponent" style={{ padding }}>
-        <CellContext.Consumer>
-          {({ addCells }) => (
-            <PlotlyChart
-              config={{
-                ...defaultPlotlyConfig,
-                modeBarButtons: [['zoomOut2d', 'zoomIn2d'], ['resetScale2d', 'autoScale2d'], ['select2d', 'pan2d']],
-              }}
-              data={[
-                {
-                  marker: {
-                    color: pointColor,
-                  },
-                  mode: 'markers',
-                  type: 'scatter',
-                  x: data.map(ele => ele[0]),
-                  xaxis: 'x',
-                  y: data.map(ele => ele[1]),
-                  yaxis: 'y',
-                },
-              ]}
-              layout={{
-                ...defaultPlotlyLayout,
-                height,
-                margin: {
-                  b: 20,
-                },
-                width,
-                yaxis: {
-                  autorange: true,
-                },
-              }}
-              onSelectedCallback={this.onMouseSelect(addCells)}
-            />
-          )}
-        </CellContext.Consumer>
+        <PlotlyChart
+          config={{
+            ...defaultPlotlyConfig,
+            modeBarButtons: [['zoomOut2d', 'zoomIn2d'], ['resetScale2d', 'autoScale2d'], ['select2d', 'pan2d']],
+          }}
+          data={[
+            {
+              marker: {
+                color: pointColor,
+                opacity: 0.5,
+              },
+              mode: 'markers',
+              type: 'scattergl',
+              x: data.map(ele => ele[0]),
+              xaxis: 'x',
+              y: data.map(ele => ele[1]),
+              yaxis: 'y',
+            },
+            {
+              marker: {
+                color: '#ff0000',
+              },
+              mode: 'markers',
+              type: 'scatter',
+              x: cellContext.currentCells.map(val => data[val][0]),
+              xaxis: 'x',
+              y: cellContext.currentCells.map(val => data[val][1]),
+              yaxis: 'y',
+            },
+          ]}
+          layout={{
+            ...defaultPlotlyLayout,
+            height,
+            margin: {
+              b: 20,
+            },
+            width,
+            yaxis: {
+              autorange: true,
+            },
+          }}
+          onSelectedCallback={this.onMouseSelect(cellContext.addCells)}
+        />
       </div>
     );
   }
@@ -76,4 +87,13 @@ export class TComponent extends React.Component<ITComponentProps, any> {
   };
 }
 
+type requiredProps = Omit<ITComponentProps, keyof typeof TComponentClass.defaultProps> & Partial<ITComponentProps>;
+
+const TComponent = (props: requiredProps) => (
+  <CellContext.Consumer>
+    {cellContext => <TComponentClass {...props} cellContext={{ ...cellContext }} />}
+  </CellContext.Consumer>
+);
+
 export default TComponent;
+export { TComponent };

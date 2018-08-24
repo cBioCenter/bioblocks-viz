@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SpringContainer Should match existing snapshot. 1`] = `
+<IframeComm
+  attributes={
+    Object {
+      "frameBorder": 1,
+      "height": "100%",
+      "src": "http://localhost:11037/springViewer.html?datasets/example/full",
+      "width": 1200,
+    }
+  }
+  handleReady={[Function]}
+  handleReceiveMessage={[Function]}
+  postMessageData="postMessageData"
+  serializeMessage={true}
+  targetOrigin="http://localhost:11037"
+/>
+`;

@@ -14,11 +14,6 @@ exports[`CategorySelector Should match existing snapshot when given simple data.
   options={
     Array [
       Object {
-        "key": "all",
-        "text": "all",
-        "value": undefined,
-      },
-      Object {
         "key": "Costello Music",
         "text": "Costello Music",
         "value": "Costello Music",
