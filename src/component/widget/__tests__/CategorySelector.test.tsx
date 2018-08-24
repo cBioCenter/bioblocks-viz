@@ -24,7 +24,7 @@ describe('CategorySelector', () => {
     const onCategoryChangeSpy = jest.fn();
     const selectorWrapper = mount(<CategorySelector categories={categories} onCategoryChange={onCategoryChangeSpy} />);
 
-    const selectionIndex = 5;
+    const selectionIndex = categories.indexOf('Here We Stand');
     selectorWrapper.find(Dropdown).simulate('click');
     selectorWrapper
       .find(DropdownItem)

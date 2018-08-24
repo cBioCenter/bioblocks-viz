@@ -12,10 +12,10 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
       <VizPanelContainer
         dataDirs={
           Array [
+            "assets/spring2/full",
             "assets/centroids",
             "assets/centroids_subset",
             "assets/ngl",
-            "assets/spring2/full",
           ]
         }
         initialVisualizations={

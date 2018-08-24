@@ -62,6 +62,7 @@ export default class ChellContext extends React.Component<any, ChellContextState
   }
 
   public onAddCells = (cells: CELL_TYPE[]) => {
+    console.log(`adding cells: ${cells}`);
     this.setState({
       cellContext: {
         ...this.state.cellContext,

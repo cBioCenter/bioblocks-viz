@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Card, Dropdown, DropdownItemProps } from 'semantic-ui-react';
+import SpringContainer from '../container/SpringContainer';
 import { CHELL_DATA_TYPE, IContactMapData, NGL_DATA_TYPE, T_SNE_DATA_TYPE, VIZ_TYPE } from '../data/chell-data';
 import { ISpringGraphData } from '../data/Spring';
 import InfoPanel from './InfoPanel';
 import NGLComponent from './NGLComponent';
 import PredictedContactMap from './PredictedContactMap';
-import SpringComponent from './SpringComponent';
 import TComponent from './TComponent';
 
 export interface IVizPanelProps {
@@ -85,11 +85,11 @@ export class VizSelectorPanel extends React.Component<IVizPanelProps, IVizPanelS
       case VIZ_TYPE.SPRING:
         return (
           data.Spring && (
-            <SpringComponent
+            <SpringContainer
               data={data.Spring as ISpringGraphData}
-              height={paddedHeight}
+              height={this.props.height}
               padding={padding}
-              width={paddedWidth}
+              width={this.props.width}
             />
           )
         );

@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`SpringComponent Should match existing snapshot when given simple data. 1`] = `
-<ContextConsumer>
-  <Component />
-</ContextConsumer>
-`;
