@@ -4,6 +4,7 @@ import { CELL_TYPE, RESIDUE_TYPE } from '../data/chell-data';
 import CellContext, { initialCellContext } from './CellContext';
 import ResidueContext, { initialResidueContext } from './ResidueContext';
 import { initialSecondaryStructureContext, SecondaryStructureContextHandler } from './SecondaryStructureContext';
+import { initialSpringContext, SpringContextHandler } from './SpringContext';
 
 export const initialState = {
   cellContext: {
@@ -14,6 +15,9 @@ export const initialState = {
   },
   secondaryStructureContext: {
     ...initialSecondaryStructureContext,
+  },
+  springContext: {
+    ...initialSpringContext,
   },
 };
 
@@ -48,15 +52,20 @@ export default class ChellContext extends React.Component<any, ChellContextState
       secondaryStructureContext: {
         ...this.state.secondaryStructureContext,
       },
+      springContext: {
+        ...this.state.springContext,
+      },
     };
   }
 
   public render() {
     return (
       <SecondaryStructureContextHandler>
-        <CellContext.Provider value={this.state.cellContext}>
-          <ResidueContext.Provider value={this.state.residueContext}>{this.props.children}</ResidueContext.Provider>
-        </CellContext.Provider>
+        <SpringContextHandler>
+          <CellContext.Provider value={this.state.cellContext}>
+            <ResidueContext.Provider value={this.state.residueContext}>{this.props.children}</ResidueContext.Provider>
+          </CellContext.Provider>
+        </SpringContextHandler>
       </SecondaryStructureContextHandler>
     );
   }

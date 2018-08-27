@@ -41,15 +41,20 @@ const deriveSpringData = async (dataDir: string) => {
   const graphData = await fetchGraphData(`${dataDir}/graph_data.json`);
   // const colorData = await this.fetchColorData(`${this.props.dataDir}/color_data_gene_sets.csv`);
   const catColorData = await fetchCategoricalColorData(`${dataDir}/categorical_coloring_data.json`);
-
   const nodeDict = getNodesFromGraph(graphData, coordinates, catColorData);
 
-  graphData.links = foo(graphData.links, nodeDict);
+  graphData.links = assignSpringLinks(graphData.links, nodeDict);
 
+  /*
+  console.log(`Variable 'coordinates':\n${coordinates}\n${JSON.stringify(coordinates, null, 2)}`);
+  console.log(`Variable 'graphData':\n${graphData}\n${JSON.stringify(graphData, null, 2)}`);
+  console.log(`Variable 'catColorData':\n${catColorData}\n${JSON.stringify(catColorData, null, 2)}`);
+  console.log(`Variable 'nodeDict':\n${nodeDict}\n${JSON.stringify(nodeDict, null, 2)}`);
+*/
   return graphData;
 };
 
-const foo = (links: ISpringLink[], nodeDict: { [index: number]: ISpringNode }) =>
+const assignSpringLinks = (links: ISpringLink[], nodeDict: { [index: number]: ISpringNode }) =>
   links.map(link => {
     const source = nodeDict[link.source as number];
     const target = nodeDict[link.target as number];
@@ -105,7 +110,7 @@ const fetchCategoricalColorData = async (file: string): Promise<ISpringCategoric
   return output;
 };
 
-const fetchSpringCoordinateData = async (file: string) => {
+export const fetchSpringCoordinateData = async (file: string) => {
   const coordinateText: string = await fetchCSVFile(file);
 
   const coordinates: number[][] = [];
