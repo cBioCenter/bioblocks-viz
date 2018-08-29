@@ -30,7 +30,7 @@ describe('generateScatterGLData', () => {
 
   it('Should use z values for color when points are not mirrored and no explicit color is provided.', () => {
     const result = generateScatterGLData({ ...sampleInput, marker: {} }, false);
-    expect(result.marker && result.marker.color).toEqual([6, 2]);
+    expect(result.marker && result.marker.color).toEqual(['6', '2']);
   });
 });
 
