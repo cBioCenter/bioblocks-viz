@@ -159,7 +159,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     const correctPredictionPercent = ((allPredictions.correct.length / allPredictions.predicted.length) * 100).toFixed(
       2,
     );
-    const newPoints = [
+    const newPoints: IContactMapChartData[] = [
       generateChartDataEntry(
         'x+y',
         { start: observedColor, end: 'rgb(100,177,200)' },
@@ -184,7 +184,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
         6,
         allPredictions.correct,
       ),
-    ] as IContactMapChartData[];
+    ];
 
     this.setState({
       chainLength,

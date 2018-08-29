@@ -2,6 +2,7 @@ import * as React from 'react';
 import IframeComm from 'react-iframe-comm';
 
 import CellContext, { ICellContext, initialCellContext } from '../context/CellContext';
+import SpringContext, { initialSpringContext, ISpringContext } from '../context/SpringContext';
 import { SPRING_DATA_TYPE } from '../data/chell-data';
 import { ISpringLink, ISpringNode } from '../data/Spring';
 
@@ -11,11 +12,16 @@ export interface ISpringContainerProps {
   height: number | string;
   padding: number | string;
   selectedCategory: string;
+  springContext: ISpringContext;
   springUrl: string;
   width: number | string;
 }
 
-export class SpringContainerClass extends React.Component<ISpringContainerProps, any> {
+export interface ISpringContainerState {
+  postMessageData: object;
+}
+
+export class SpringContainerClass extends React.Component<ISpringContainerProps, ISpringContainerState> {
   public static defaultProps = {
     cellContext: {
       ...initialCellContext,
@@ -27,12 +33,23 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
     height: '100%',
     padding: 0,
     selectedCategory: '',
-    springUrl: 'http://localhost:11037/springViewer.html?datasets/example/full',
+    springContext: {
+      ...initialSpringContext,
+    },
+    springUrl: 'http://localhost:11037/springViewer.html?datasets/hpc/full',
     width: 1200,
   };
 
   constructor(props: ISpringContainerProps) {
     super(props);
+    this.state = {
+      postMessageData: {
+        payload: {
+          coordinates: props.springContext.coordinates,
+        },
+        type: 'init',
+      },
+    };
   }
 
   public render() {
@@ -45,32 +62,34 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
       width,
     };
 
-    const postMessageData = 'postMessageData';
-
-    const onReceiveMessage = (msg: MessageEvent) => {
-      if (msg.data.type === 'selected-cells-update') {
-        console.log(msg);
-        this.props.cellContext.addCells(msg.data.payload.indices);
-      } else {
-        console.log(`Got this msg for ya: ${JSON.stringify(msg)}`);
-      }
-    };
-
-    const onReady = () => {
-      console.log('onReady');
-    };
-
     const targetOriginPieces = springUrl.split('/');
     return (
       <IframeComm
         attributes={attributes}
-        postMessageData={postMessageData}
-        handleReady={onReady}
-        handleReceiveMessage={onReceiveMessage}
+        postMessageData={this.state.postMessageData}
+        handleReady={this.onReady}
+        handleReceiveMessage={this.onReceiveMessage}
         targetOrigin={targetOriginPieces[0] + '//' + targetOriginPieces[2]}
       />
     );
   }
+
+  protected onReady = () => {
+    console.log('onReady called');
+  };
+
+  protected onReceiveMessage = (msg: MessageEvent) => {
+    switch (msg.data.type) {
+      case 'selected-cells-update': {
+        console.log(msg);
+        this.props.cellContext.addCells(msg.data.payload.indices);
+        break;
+      }
+      default: {
+        console.log(`Got this msg for ya: ${JSON.stringify(msg)}`);
+      }
+    }
+  };
 }
 
 type requiredProps = Omit<ISpringContainerProps, keyof typeof SpringContainerClass.defaultProps> &
@@ -78,7 +97,13 @@ type requiredProps = Omit<ISpringContainerProps, keyof typeof SpringContainerCla
 
 const SpringContainer = (props: requiredProps) => (
   <CellContext.Consumer>
-    {cellContext => <SpringContainerClass {...props} cellContext={{ ...cellContext }} />}
+    {cellContext => (
+      <SpringContext.Consumer>
+        {springContext => (
+          <SpringContainerClass {...props} cellContext={{ ...cellContext }} springContext={{ ...springContext }} />
+        )}
+      </SpringContext.Consumer>
+    )}
   </CellContext.Consumer>
 );
 

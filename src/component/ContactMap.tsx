@@ -120,7 +120,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     });
   };
 
-  protected setupPointsToPlot(points: IContactMapChartData[], lockedResiduePairs: ResidueSelection = new Map()) {
+  protected setupPointsToPlot(points: IContactMapChartData[] = [], lockedResiduePairs: ResidueSelection = new Map()) {
     const { highlightColor } = this.props;
     const { pointsToPlot } = this.state;
 

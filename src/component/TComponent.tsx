@@ -42,7 +42,8 @@ class TComponentClass extends React.Component<ITComponentProps, any> {
             {
               marker: {
                 color: pointColor,
-                opacity: 0.5,
+                opacity: 0.25,
+                size: 4,
               },
               mode: 'markers',
               type: 'scattergl',
@@ -54,6 +55,7 @@ class TComponentClass extends React.Component<ITComponentProps, any> {
             {
               marker: {
                 color: '#ff0000',
+                size: 6,
               },
               mode: 'markers',
               type: 'scatter',

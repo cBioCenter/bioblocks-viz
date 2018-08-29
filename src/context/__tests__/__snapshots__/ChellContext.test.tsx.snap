@@ -2,35 +2,37 @@
 
 exports[`ChellContext Should match the default snapshot. 1`] = `
 <SecondaryStructureContextHandler>
-  <ContextProvider
-    value={
-      Object {
-        "addCells": [Function],
-        "currentCells": Array [],
-        "removeAllCells": [Function],
-        "removeCells": [Function],
-      }
-    }
-  >
+  <SpringContextHandler>
     <ContextProvider
       value={
         Object {
-          "addCandidateResidues": [Function],
-          "addHoveredResidues": [Function],
-          "addLockedResiduePair": [Function],
-          "candidateResidues": Array [],
-          "clearAllResidues": [Function],
-          "hoveredResidues": Array [],
-          "lockedResiduePairs": Map {},
-          "removeAllLockedResiduePairs": [Function],
-          "removeCandidateResidues": [Function],
-          "removeHoveredResidues": [Function],
-          "removeLockedResiduePair": [Function],
-          "removeNonLockedResidues": [Function],
-          "toggleLockedResiduePair": [Function],
+          "addCells": [Function],
+          "currentCells": Array [],
+          "removeAllCells": [Function],
+          "removeCells": [Function],
         }
       }
-    />
-  </ContextProvider>
+    >
+      <ContextProvider
+        value={
+          Object {
+            "addCandidateResidues": [Function],
+            "addHoveredResidues": [Function],
+            "addLockedResiduePair": [Function],
+            "candidateResidues": Array [],
+            "clearAllResidues": [Function],
+            "hoveredResidues": Array [],
+            "lockedResiduePairs": Map {},
+            "removeAllLockedResiduePairs": [Function],
+            "removeCandidateResidues": [Function],
+            "removeHoveredResidues": [Function],
+            "removeLockedResiduePair": [Function],
+            "removeNonLockedResidues": [Function],
+            "toggleLockedResiduePair": [Function],
+          }
+        }
+      />
+    </ContextProvider>
+  </SpringContextHandler>
 </SecondaryStructureContextHandler>
 `;
