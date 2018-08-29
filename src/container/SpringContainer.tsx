@@ -36,7 +36,7 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
     springContext: {
       ...initialSpringContext,
     },
-    springUrl: 'http://localhost:11037/springViewer.html?datasets/example/full',
+    springUrl: 'http://localhost:11037/springViewer.html?datasets/hpc/full',
     width: 1200,
   };
 
@@ -50,10 +50,6 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
         type: 'init',
       },
     };
-  }
-
-  public componentDidUpdate(nextProps: ISpringContainerProps) {
-    console.log(`Update! ${JSON.stringify(nextProps)}`);
   }
 
   public render() {

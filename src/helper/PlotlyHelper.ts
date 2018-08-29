@@ -49,11 +49,14 @@ export const generateScatterData = (
 };
 
 const derivePlotlyColor = (mirrorPoints: boolean, zValues: number[], entry: IContactMapChartData) => {
+  const totalColors = mirrorPoints ? zValues.length * 2 : zValues.length;
+  const result = new Array<Plotly.Color>(totalColors);
+
   if (entry.marker && typeof entry.marker.color === 'string') {
-    const totalColors = mirrorPoints ? zValues.length * 2 : zValues.length;
-    return new Array<string>(totalColors).fill(entry.marker.color);
+    return result.fill(entry.marker.color);
   } else {
-    return mirrorPoints ? zValues.concat(zValues) : zValues;
+    const zStrings = zValues.map(val => val.toString());
+    return mirrorPoints ? [...zStrings, ...zStrings] : zStrings;
   }
 };
 

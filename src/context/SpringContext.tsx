@@ -18,7 +18,7 @@ export class SpringContextHandler extends React.Component<any, SpringContextStat
   }
 
   public async componentDidMount() {
-    const coords = await fetchSpringCoordinateData('assets/spring2/full/coordinates.txt');
+    const coords = await fetchSpringCoordinateData('assets/datasets/hpc/full/coordinates.txt');
     this.setState({
       coordinates: coords,
     });
