@@ -18,6 +18,7 @@ import {
   ISpringLink,
   ISpringNode,
 } from '../data/Spring';
+import { getCouplingHeaderIndices } from './CouplingMapper';
 import { generateResidueMapping, IResidueMapping } from './ResidueMapper';
 
 export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
@@ -189,9 +190,13 @@ export const fetchContactMapData = async (dir: string): Promise<IContactMapData>
  * @returns Array of CouplingScores suitable for chell-viz consumption.
  */
 export const getCouplingScoresData = (line: string, residueMapping: IResidueMapping[] = []): CouplingContainer => {
+  const headerRow = line.split('\n')[0].split(',');
+  const headerIndices = getCouplingHeaderIndices(headerRow);
+  const isHeaderPresent = headerRow.includes('dist');
   const couplingScores = new CouplingContainer();
   line
     .split('\n')
+    .slice(isHeaderPresent ? 1 : 0)
     .filter(row => row.split(',').length >= 12)
     .map(row => {
       const items = row.split(',');
@@ -201,19 +206,19 @@ export const getCouplingScoresData = (line: string, residueMapping: IResidueMapp
         couplingScores.addCouplingScore({
           A_i: residueMapping[uniProtIndexI].pdbResname,
           A_j: residueMapping[uniProtIndexJ].pdbResname,
-          cn: parseFloat(items[2]),
-          dist: parseFloat(items[3]),
+          cn: parseFloat(items[headerIndices.cn]),
+          dist: parseFloat(items[headerIndices.dist]),
           i: residueMapping[uniProtIndexI].pdbResno,
           j: residueMapping[uniProtIndexJ].pdbResno,
         });
       } else {
         couplingScores.addCouplingScore({
-          A_i: items[items.length - 3],
-          A_j: items[items.length - 2],
-          cn: parseFloat(items[2]),
-          dist: parseFloat(items[3]),
-          i: parseInt(items[0], 10),
-          j: parseInt(items[1], 10),
+          A_i: items[headerIndices.A_i],
+          A_j: items[headerIndices.A_j],
+          cn: parseFloat(items[headerIndices.cn]),
+          dist: parseFloat(items[headerIndices.dist]),
+          i: parseInt(items[headerIndices.i], 10),
+          j: parseInt(items[headerIndices.j], 10),
         });
       }
     });

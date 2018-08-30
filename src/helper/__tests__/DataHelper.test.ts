@@ -31,6 +31,11 @@ describe('DataHelper', () => {
 
     const couplingScoresCsvWithNewline = couplingScoresCsv + '\n';
 
+    const couplingScoresCsvWithHeaders =
+      'i,A_i,j,A_j,fn,cn,segment_i,segment_j,probability,dist_intra,dist_multimer,dist,precision,\n\
+      56,N,58,K,0,0.846606,A,A,0.9999062540489566,2.439798557258364,47.877125070329775,2.439798557258364,1.0,\n\
+      45,L,46,G,0,0.653624,A,A,0.9921059888909092,1.3037864088875917,37.58818230508094,1.3037864088875917,1.0,';
+
     const firstScore = {
       i: 56,
       // tslint:disable-next-line:object-literal-sort-keys
@@ -73,6 +78,12 @@ describe('DataHelper', () => {
 
     it('Should parse contact monomer data correctly when csv file has newline.', () => {
       const data = getCouplingScoresData(couplingScoresCsvWithNewline);
+      const expected = new CouplingContainer([firstScore, secondScore]);
+      expect(data.allContacts).toEqual(expected.allContacts);
+    });
+
+    it('Should parse contact monomer data correctly when csv file has headers.', () => {
+      const data = getCouplingScoresData(couplingScoresCsvWithHeaders);
       const expected = new CouplingContainer([firstScore, secondScore]);
       expect(data.allContacts).toEqual(expected.allContacts);
     });
