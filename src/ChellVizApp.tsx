@@ -11,7 +11,7 @@ export class ChellVizApp extends React.Component<any, any> {
         <Grid centered={true} divided={'vertically'}>
           <GridRow>
             <VizPanelContainer
-              dataDirs={['spring2/full', 'centroids', 'centroids_subset', 'ngl'].map(dir => `assets/${dir}`)}
+              dataDirs={['hpc/full'].map(dir => `assets/datasets/${dir}`)}
               initialVisualizations={[VIZ_TYPE['T-SNE'], VIZ_TYPE.SPRING]}
               supportedVisualizations={[VIZ_TYPE['T-SNE'], VIZ_TYPE.SPRING]}
               numPanels={2}
