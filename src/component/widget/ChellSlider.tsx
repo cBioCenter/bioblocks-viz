@@ -70,15 +70,6 @@ export default class ChellSlider extends React.Component<IChellSliderProps, IChe
     };
   }
 
-  public componentDidUpdate(prevProps: IChellSliderProps, prevState: IChellSliderState) {
-    const { value } = this.props;
-    if (value !== this.state.value) {
-      this.setState({
-        value,
-      });
-    }
-  }
-
   public render() {
     const {
       className,
