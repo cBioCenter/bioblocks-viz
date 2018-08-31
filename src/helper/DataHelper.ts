@@ -133,7 +133,7 @@ export const fetchSpringCoordinateData = async (file: string) => {
 export const fetchTSneCoordinateData = async (dataDir: string) => {
   const colorText: string = await fetchCSVFile(`${dataDir}/tsne_output.csv`);
   const result: number[][] = [];
-  colorText.split('\n').forEach((entry, index, array) => {
+  colorText.split('\n').forEach(entry => {
     if (entry.length > 0) {
       const items = entry.split(',');
       const coordinates = [parseFloat(items[0]), parseFloat(items[1])];
