@@ -93,7 +93,7 @@ type requiredProps = Omit<ITComponentProps, keyof typeof TComponentClass.default
 
 const TComponent = (props: requiredProps) => (
   <CellContext.Consumer>
-    {cellContext => <TComponentClass {...props} cellContext={{ ...cellContext }} />}
+    {cellContext => <TComponentClass {...props} cellContext={{ ...cellContext, ...props.cellContext }} />}
   </CellContext.Consumer>
 );
 

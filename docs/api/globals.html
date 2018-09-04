@@ -110,6 +110,7 @@
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/springcontainerclass.html" class="tsd-kind-icon">Spring<wbr>Container<wbr>Class</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/springcontexthandler.html" class="tsd-kind-icon">Spring<wbr>Context<wbr>Handler</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter tsd-is-not-exported"><a href="classes/tcomponentclass.html" class="tsd-kind-icon">TComponent<wbr>Class</a></li>
+								<li class="tsd-kind-class tsd-has-type-parameter tsd-is-not-exported"><a href="classes/tframecomponentclass.html" class="tsd-kind-icon">TFrame<wbr>Component<wbr>Class</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/vizpanelcontainer.html" class="tsd-kind-icon">Viz<wbr>Panel<wbr>Container</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/vizselectorpanel.html" class="tsd-kind-icon">Viz<wbr>Selector<wbr>Panel</a></li>
 							</ul>
@@ -231,6 +232,7 @@
 								<li class="tsd-kind-function"><a href="globals.html#nglcomponent" class="tsd-kind-icon">NGLComponent</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#springcontainer" class="tsd-kind-icon">Spring<wbr>Container</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#tcomponent" class="tsd-kind-icon">TComponent</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#tframecomponent" class="tsd-kind-icon">TFrame<wbr>Component</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#assignspringlinks" class="tsd-kind-icon">assign<wbr>Spring<wbr>Links</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#createballstickrepresentation" class="tsd-kind-icon">create<wbr>Ball<wbr>Stick<wbr>Representation</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#createdistancerepresentation" class="tsd-kind-icon">create<wbr>Distance<wbr>Representation</a></li>
@@ -691,13 +693,14 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-is-not-exported">
 					<a name="requiredprops" class="tsd-anchor"></a>
 					<h3>required<wbr>Props</h3>
-					<div class="tsd-signature tsd-kind-icon">required<wbr>Props<span class="tsd-signature-symbol">:</span> <a href="globals.html#omit" class="tsd-signature-type">Omit</a><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/itcomponentprops.html" class="tsd-signature-type">ITComponentProps</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">keyof ITComponentProps</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/itcomponentprops.html" class="tsd-signature-type">ITComponentProps</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">required<wbr>Props<span class="tsd-signature-symbol">:</span> <a href="globals.html#omit" class="tsd-signature-type">Omit</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ITComponentProps</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">keyof ITComponentProps</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ITComponentProps</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in src/container/SpringContainer.tsx:95</li>
 							<li>Defined in src/component/NGLComponent.tsx:302</li>
 							<li>Defined in src/component/ContactMap.tsx:337</li>
 							<li>Defined in src/component/TComponent.tsx:92</li>
+							<li>Defined in src/component/TFrameComponent.tsx:80</li>
 						</ul>
 					</aside>
 				</section>
@@ -900,6 +903,29 @@
 							<aside class="tsd-sources">
 								<ul>
 									<li>Defined in src/component/TComponent.tsx:94</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>props: <a href="globals.html#requiredprops" class="tsd-signature-type">requiredProps</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="tframecomponent" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> TFrame<wbr>Component</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">TFrame<wbr>Component<span class="tsd-signature-symbol">(</span>props<span class="tsd-signature-symbol">: </span><a href="globals.html#requiredprops" class="tsd-signature-type">requiredProps</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/component/TFrameComponent.tsx:82</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2964,6 +2990,9 @@
 					<li class=" tsd-kind-class tsd-has-type-parameter tsd-is-not-exported">
 						<a href="classes/tcomponentclass.html" class="tsd-kind-icon">TComponent<wbr>Class</a>
 					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter tsd-is-not-exported">
+						<a href="classes/tframecomponentclass.html" class="tsd-kind-icon">TFrame<wbr>Component<wbr>Class</a>
+					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/vizpanelcontainer.html" class="tsd-kind-icon">Viz<wbr>Panel<wbr>Container</a>
 					</li>
@@ -3266,6 +3295,9 @@
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#tcomponent" class="tsd-kind-icon">TComponent</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#tframecomponent" class="tsd-kind-icon">TFrame<wbr>Component</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#assignspringlinks" class="tsd-kind-icon">assign<wbr>Spring<wbr>Links</a>
