@@ -10,7 +10,10 @@ import * as webpack from 'webpack';
 import * as path from 'path';
 
 module.exports = {
-  entry: './index.tsx',
+  entry: {
+    app: './index.tsx',
+    tcontainer: './TContainer.tsx',
+  },
   module: {
     rules: [
       {
@@ -35,17 +38,26 @@ module.exports = {
     ],
   },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
+      chunks: ['app'],
       favicon: 'assets/favicons/favicon.ico',
       filename: 'app.html',
       inject: true,
       template: './index.html',
       title: 'Development',
+    }),
+    new HtmlWebpackPlugin({
+      chunks: ['tcontainer'],
+      favicon: 'assets/favicons/favicon.ico',
+      filename: 'TContainer.html',
+      inject: true,
+      template: './TContainer.html',
+      title: 'TContainer',
     }),
     new CopyWebpackPlugin([
       {
