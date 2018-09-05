@@ -27,6 +27,7 @@ export enum VIZ_TYPE {
   NGL = 'NGL',
   SPRING = 'Spring',
   'T-SNE' = 'T-SNE',
+  'T-SNE-FRAME' = 'T-SNE-FRAME',
 }
 
 export interface IContactMapData {

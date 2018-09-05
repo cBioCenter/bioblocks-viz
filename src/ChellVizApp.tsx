@@ -12,9 +12,9 @@ export class ChellVizApp extends React.Component<any, any> {
           <GridRow>
             <VizPanelContainer
               dataDirs={['hpc/full'].map(dir => `assets/datasets/${dir}`)}
-              initialVisualizations={[VIZ_TYPE['T-SNE'], VIZ_TYPE.SPRING]}
-              supportedVisualizations={[VIZ_TYPE['T-SNE'], VIZ_TYPE.SPRING]}
-              numPanels={2}
+              initialVisualizations={[VIZ_TYPE['T-SNE'], VIZ_TYPE.SPRING, VIZ_TYPE['T-SNE-FRAME']]}
+              supportedVisualizations={[VIZ_TYPE['T-SNE'], VIZ_TYPE.SPRING, VIZ_TYPE['T-SNE-FRAME']]}
+              numPanels={3}
             />
           </GridRow>
           <GridRow>

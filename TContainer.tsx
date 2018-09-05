@@ -4,6 +4,7 @@ import * as ReactDOM from 'react-dom';
 import TComponent from './src/component/TComponent';
 
 window.addEventListener('message', msg => {
+  console.log(msg);
   try {
     const parsedData = JSON.parse(msg.data);
     if (parsedData.type === 'loaded') {
