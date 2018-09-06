@@ -445,7 +445,7 @@
 					<div class="tsd-signature tsd-kind-icon">NGLComponent<wbr>State<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/NGLComponent.tsx:38</li>
+							<li>Defined in src/component/NGLComponent.tsx:39</li>
 						</ul>
 					</aside>
 				</section>
@@ -699,7 +699,7 @@
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in src/container/SpringContainer.tsx:94</li>
-							<li>Defined in src/component/NGLComponent.tsx:302</li>
+							<li>Defined in src/component/NGLComponent.tsx:315</li>
 							<li>Defined in src/component/ContactMap.tsx:337</li>
 							<li>Defined in src/component/TComponent.tsx:96</li>
 							<li>Defined in src/component/TensorTComponent.tsx:96</li>
@@ -859,7 +859,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/NGLComponent.tsx:305</li>
+									<li>Defined in src/component/NGLComponent.tsx:318</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1264,7 +1264,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:166</li>
+									<li>Defined in src/helper/DataHelper.ts:167</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1350,7 +1350,7 @@
 					<a name="fetchngldatafromfile" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> fetchNGLData<wbr>From<wbr>File</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">fetchNGLData<wbr>From<wbr>File<span class="tsd-signature-symbol">(</span>file<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="classes/_ngl_.structure.html" class="tsd-signature-type">Structure</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">fetchNGLData<wbr>From<wbr>File<span class="tsd-signature-symbol">(</span>file<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">?: </span><a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">NGL.ILoaderParameters</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="classes/_ngl_.structure.html" class="tsd-signature-type">Structure</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -1363,6 +1363,9 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>file: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> params: <a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">NGL.ILoaderParameters</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="classes/_ngl_.structure.html" class="tsd-signature-type">Structure</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -1445,7 +1448,7 @@
 					<a name="generatechartdataentry" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> generate<wbr>Chart<wbr>Data<wbr>Entry</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">generate<wbr>Chart<wbr>Data<wbr>Entry<span class="tsd-signature-symbol">(</span>hoverinfo<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"all"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"none"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"skip"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+z"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+z+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+z+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+z"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+z+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+z+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+z"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+z+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+z+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+y+x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+y+x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+y+x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+y"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+y+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+y+name"</span>, color<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span>, name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, subtitle<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, nodeSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, points<span class="tsd-signature-symbol">: </span><a href="interfaces/icontactmapchartpoint.html" class="tsd-signature-type">IContactMapChartPoint</a><span class="tsd-signature-symbol">[]</span>, extra<span class="tsd-signature-symbol">?: </span><a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/icontactmapchartdata.html" class="tsd-signature-type">IContactMapChartData</a></li>
+						<li class="tsd-signature tsd-kind-icon">generate<wbr>Chart<wbr>Data<wbr>Entry<span class="tsd-signature-symbol">(</span>hoverinfo<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"all"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"none"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"skip"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+z"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+z+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+z+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+z"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+z+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+z+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+z"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+z+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+z+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+y+x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+y+x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+y+x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+y"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+y+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+y+name"</span>, color<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span>, name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, subtitle<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, nodeSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, points<span class="tsd-signature-symbol">: </span><a href="interfaces/icontactmapchartpoint.html" class="tsd-signature-type">IContactMapChartPoint</a><span class="tsd-signature-symbol">[]</span>, extra<span class="tsd-signature-symbol">?: </span><a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/icontactmapchartdata.html" class="tsd-signature-type">IContactMapChartData</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -1457,7 +1460,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>hoverinfo: <span class="tsd-signature-type">"all"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"none"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"skip"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+z"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+z+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+z+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+z"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+z+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+z+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+z"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+z+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+z+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+y+x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+y+x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+y+x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+y"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+y+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+y+name"</span></h5>
+									<h5>hoverinfo: <span class="tsd-signature-type">"name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"all"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"none"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"skip"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+z"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+z+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"x+y+z+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+z"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+z+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+z+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+z"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+z+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"y+x+z+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+y+x"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+y+x+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+y+x+name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+y"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+y+text"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"z+x+y+name"</span></h5>
 								</li>
 								<li>
 									<h5>color: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span></h5>
@@ -1731,7 +1734,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:194</li>
+									<li>Defined in src/helper/DataHelper.ts:195</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1838,7 +1841,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:243</li>
+									<li>Defined in src/helper/DataHelper.ts:244</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2313,7 +2316,7 @@
 					<div class="tsd-signature tsd-kind-icon">initialNGLState<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/NGLComponent.tsx:32</li>
+							<li>Defined in src/component/NGLComponent.tsx:33</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -2322,7 +2325,7 @@
 						<div class="tsd-signature tsd-kind-icon">active<wbr>Representations<span class="tsd-signature-symbol">:</span> <a href="classes/_ngl_.representationelement.html" class="tsd-signature-type">RepresentationElement</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;new Array&lt;NGL.RepresentationElement&gt;()</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/NGLComponent.tsx:33</li>
+								<li>Defined in src/component/NGLComponent.tsx:34</li>
 							</ul>
 						</aside>
 					</section>
@@ -2332,7 +2335,7 @@
 						<div class="tsd-signature tsd-kind-icon">stage<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="classes/_ngl_.stage.html" class="tsd-signature-type">Stage</a><span class="tsd-signature-symbol"> =&nbsp;undefined as NGL.Stage | undefined</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/NGLComponent.tsx:34</li>
+								<li>Defined in src/component/NGLComponent.tsx:35</li>
 							</ul>
 						</aside>
 					</section>
@@ -2342,7 +2345,7 @@
 						<div class="tsd-signature tsd-kind-icon">structure<wbr>Component<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="classes/_ngl_.structurecomponent.html" class="tsd-signature-type">StructureComponent</a><span class="tsd-signature-symbol"> =&nbsp;undefined as NGL.StructureComponent | undefined</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/NGLComponent.tsx:35</li>
+								<li>Defined in src/component/NGLComponent.tsx:36</li>
 							</ul>
 						</aside>
 					</section>
