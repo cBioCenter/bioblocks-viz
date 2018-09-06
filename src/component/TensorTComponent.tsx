@@ -10,7 +10,7 @@ export interface ITComponentProps {
   cellContext: ICellContext;
   data: T_SNE_DATA_TYPE;
   height: number;
-  padding: number;
+  padding: number | string;
   pointColor: string;
   width: number;
 }

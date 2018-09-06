@@ -34,6 +34,76 @@ exports[`NGLComponent Should match existing snapshot when canvas isn't available
 </div>
 `;
 
+exports[`NGLComponent Should match existing snapshot when configuration is disabled 1`] = `
+<NGLComponentClass
+  data={
+    Object {
+      "residueStore": Object {
+        "resno": Array [
+          0,
+          1,
+          2,
+          3,
+          4,
+        ],
+      },
+    }
+  }
+  height={400}
+  padding={0}
+  residueContext={
+    Object {
+      "addCandidateResidues": [Function],
+      "addHoveredResidues": [Function],
+      "addLockedResiduePair": [Function],
+      "candidateResidues": Array [],
+      "clearAllResidues": [Function],
+      "hoveredResidues": Array [],
+      "lockedResiduePairs": Map {},
+      "removeAllLockedResiduePairs": [Function],
+      "removeCandidateResidues": [Function],
+      "removeHoveredResidues": [Function],
+      "removeLockedResiduePair": [Function],
+      "removeNonLockedResidues": [Function],
+      "toggleLockedResiduePair": [Function],
+    }
+  }
+  secondaryStructureContext={
+    Object {
+      "addSecondaryStructure": [Function],
+      "clearSecondaryStructure": [Function],
+      "removeSecondaryStructure": [Function],
+      "selectedSecondaryStructures": Array [],
+      "temporarySecondaryStructures": Array [],
+      "toggleSecondaryStructure": [Function],
+    }
+  }
+  showConfiguration={false}
+  width={400}
+>
+  <div
+    className="NGLComponent"
+    style={
+      Object {
+        "padding": 0,
+      }
+    }
+  >
+    <div
+      className="NGLCanvas"
+      onKeyDown={[Function]}
+      onMouseLeave={[Function]}
+      style={
+        Object {
+          "height": 400,
+          "width": 400,
+        }
+      }
+    />
+  </div>
+</NGLComponentClass>
+`;
+
 exports[`NGLComponent Should match existing snapshot when given sample data 1`] = `
 <NGLComponentClass
   data={
@@ -78,6 +148,7 @@ exports[`NGLComponent Should match existing snapshot when given sample data 1`] 
       "toggleSecondaryStructure": [Function],
     }
   }
+  showConfiguration={true}
   width={400}
 >
   <div

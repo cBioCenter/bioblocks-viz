@@ -39,6 +39,12 @@ describe('NGLComponent', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
+  it('Should match existing snapshot when configuration is disabled', () => {
+    const Component = getComponentWithContext();
+    const wrapper = mount(<Component.NGLComponentClass data={sampleData} showConfiguration={false} />);
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+
   it('Should handle prop updates.', () => {
     const Component = getComponentWithContext();
     const wrapper = mount(<Component.NGLComponentClass />);

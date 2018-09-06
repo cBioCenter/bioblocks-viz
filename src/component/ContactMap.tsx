@@ -40,7 +40,7 @@ export interface IContactMapProps {
   height: number;
   highlightColor: string;
   onBoxSelection?: ((residues: RESIDUE_TYPE[]) => void);
-  padding: number;
+  padding: number | string;
   residueContext: IResidueContext;
   secondaryStructureContext: ISecondaryStructureContext;
   width: number;
