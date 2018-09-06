@@ -190,6 +190,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
           onFocus={[Function]}
           onKeyDown={[Function]}
           onMouseDown={[Function]}
+          onMouseUp={[Function]}
           onTouchStart={[Function]}
           style={
             Object {
@@ -219,6 +220,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
             aria-valuemin={1}
             aria-valuenow={4}
             className="rc-slider-handle"
+            onBlur={[Function]}
+            onKeyDown={[Function]}
             role="slider"
             style={
               Object {
@@ -249,6 +252,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
           onFocus={[Function]}
           onKeyDown={[Function]}
           onMouseDown={[Function]}
+          onMouseUp={[Function]}
           onTouchStart={[Function]}
           style={
             Object {
@@ -278,6 +282,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
             aria-valuemin={1}
             aria-valuenow={4}
             className="rc-slider-handle"
+            onBlur={[Function]}
+            onKeyDown={[Function]}
             role="slider"
             style={
               Object {
@@ -308,6 +314,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
           onFocus={[Function]}
           onKeyDown={[Function]}
           onMouseDown={[Function]}
+          onMouseUp={[Function]}
           onTouchStart={[Function]}
           style={
             Object {
@@ -337,6 +344,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
             aria-valuemin={1}
             aria-valuenow={4}
             className="rc-slider-handle"
+            onBlur={[Function]}
+            onKeyDown={[Function]}
             role="slider"
             style={
               Object {
@@ -367,6 +376,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
           onFocus={[Function]}
           onKeyDown={[Function]}
           onMouseDown={[Function]}
+          onMouseUp={[Function]}
           onTouchStart={[Function]}
           style={
             Object {
@@ -396,6 +406,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
             aria-valuemin={1}
             aria-valuenow={4}
             className="rc-slider-handle"
+            onBlur={[Function]}
+            onKeyDown={[Function]}
             role="slider"
             style={
               Object {
@@ -426,6 +438,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
           onFocus={[Function]}
           onKeyDown={[Function]}
           onMouseDown={[Function]}
+          onMouseUp={[Function]}
           onTouchStart={[Function]}
           style={
             Object {
@@ -455,6 +468,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
             aria-valuemin={1}
             aria-valuenow={4}
             className="rc-slider-handle"
+            onBlur={[Function]}
+            onKeyDown={[Function]}
             role="slider"
             style={
               Object {
@@ -485,6 +500,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
           onFocus={[Function]}
           onKeyDown={[Function]}
           onMouseDown={[Function]}
+          onMouseUp={[Function]}
           onTouchStart={[Function]}
           style={
             Object {
@@ -514,6 +530,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
             aria-valuemin={1}
             aria-valuenow={4}
             className="rc-slider-handle"
+            onBlur={[Function]}
+            onKeyDown={[Function]}
             role="slider"
             style={
               Object {
@@ -1134,6 +1152,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       onFocus={[Function]}
                       onKeyDown={[Function]}
                       onMouseDown={[Function]}
+                      onMouseUp={[Function]}
                       onTouchStart={[Function]}
                       style={
                         Object {
@@ -1188,6 +1207,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         max={20}
                         min={1}
                         offset={15.789473684210526}
+                        prefixCls="rc-slider"
                         style={Object {}}
                         value={4}
                         vertical={false}
@@ -1198,6 +1218,8 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                           aria-valuemin={1}
                           aria-valuenow={4}
                           className="rc-slider-handle"
+                          onBlur={[Function]}
+                          onKeyDown={[Function]}
                           role="slider"
                           style={
                             Object {
@@ -1214,6 +1236,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         marks={Object {}}
                         max={20}
                         min={1}
+                        onClickLabel={[Function]}
                         upperBound={4}
                         vertical={false}
                       >
@@ -1291,6 +1314,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       onFocus={[Function]}
                       onKeyDown={[Function]}
                       onMouseDown={[Function]}
+                      onMouseUp={[Function]}
                       onTouchStart={[Function]}
                       style={
                         Object {
@@ -1345,6 +1369,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         max={20}
                         min={1}
                         offset={15.789473684210526}
+                        prefixCls="rc-slider"
                         style={Object {}}
                         value={4}
                         vertical={false}
@@ -1355,6 +1380,8 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                           aria-valuemin={1}
                           aria-valuenow={4}
                           className="rc-slider-handle"
+                          onBlur={[Function]}
+                          onKeyDown={[Function]}
                           role="slider"
                           style={
                             Object {
@@ -1371,6 +1398,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         marks={Object {}}
                         max={20}
                         min={1}
+                        onClickLabel={[Function]}
                         upperBound={4}
                         vertical={false}
                       >
@@ -1448,6 +1476,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       onFocus={[Function]}
                       onKeyDown={[Function]}
                       onMouseDown={[Function]}
+                      onMouseUp={[Function]}
                       onTouchStart={[Function]}
                       style={
                         Object {
@@ -1502,6 +1531,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         max={20}
                         min={1}
                         offset={15.789473684210526}
+                        prefixCls="rc-slider"
                         style={Object {}}
                         value={4}
                         vertical={false}
@@ -1512,6 +1542,8 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                           aria-valuemin={1}
                           aria-valuenow={4}
                           className="rc-slider-handle"
+                          onBlur={[Function]}
+                          onKeyDown={[Function]}
                           role="slider"
                           style={
                             Object {
@@ -1528,6 +1560,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         marks={Object {}}
                         max={20}
                         min={1}
+                        onClickLabel={[Function]}
                         upperBound={4}
                         vertical={false}
                       >
@@ -1605,6 +1638,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       onFocus={[Function]}
                       onKeyDown={[Function]}
                       onMouseDown={[Function]}
+                      onMouseUp={[Function]}
                       onTouchStart={[Function]}
                       style={
                         Object {
@@ -1659,6 +1693,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         max={20}
                         min={1}
                         offset={15.789473684210526}
+                        prefixCls="rc-slider"
                         style={Object {}}
                         value={4}
                         vertical={false}
@@ -1669,6 +1704,8 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                           aria-valuemin={1}
                           aria-valuenow={4}
                           className="rc-slider-handle"
+                          onBlur={[Function]}
+                          onKeyDown={[Function]}
                           role="slider"
                           style={
                             Object {
@@ -1685,6 +1722,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         marks={Object {}}
                         max={20}
                         min={1}
+                        onClickLabel={[Function]}
                         upperBound={4}
                         vertical={false}
                       >
@@ -1762,6 +1800,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       onFocus={[Function]}
                       onKeyDown={[Function]}
                       onMouseDown={[Function]}
+                      onMouseUp={[Function]}
                       onTouchStart={[Function]}
                       style={
                         Object {
@@ -1816,6 +1855,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         max={20}
                         min={1}
                         offset={15.789473684210526}
+                        prefixCls="rc-slider"
                         style={Object {}}
                         value={4}
                         vertical={false}
@@ -1826,6 +1866,8 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                           aria-valuemin={1}
                           aria-valuenow={4}
                           className="rc-slider-handle"
+                          onBlur={[Function]}
+                          onKeyDown={[Function]}
                           role="slider"
                           style={
                             Object {
@@ -1842,6 +1884,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         marks={Object {}}
                         max={20}
                         min={1}
+                        onClickLabel={[Function]}
                         upperBound={4}
                         vertical={false}
                       >
@@ -1919,6 +1962,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       onFocus={[Function]}
                       onKeyDown={[Function]}
                       onMouseDown={[Function]}
+                      onMouseUp={[Function]}
                       onTouchStart={[Function]}
                       style={
                         Object {
@@ -1973,6 +2017,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         max={20}
                         min={1}
                         offset={15.789473684210526}
+                        prefixCls="rc-slider"
                         style={Object {}}
                         value={4}
                         vertical={false}
@@ -1983,6 +2028,8 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                           aria-valuemin={1}
                           aria-valuenow={4}
                           className="rc-slider-handle"
+                          onBlur={[Function]}
+                          onKeyDown={[Function]}
                           role="slider"
                           style={
                             Object {
@@ -1999,6 +2046,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         marks={Object {}}
                         max={20}
                         min={1}
+                        onClickLabel={[Function]}
                         upperBound={4}
                         vertical={false}
                       >

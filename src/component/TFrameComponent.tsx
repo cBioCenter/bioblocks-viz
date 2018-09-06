@@ -31,10 +31,12 @@ class TFrameComponentClass extends React.Component<ITComponentProps, any> {
     const { cellContext, data, padding, pointColor } = props;
     this.state = {
       postMessageData: {
-        cellContext,
-        data,
-        padding,
-        pointColor,
+        payload: {
+          cellContext,
+          data,
+          padding,
+          pointColor,
+        },
         type: 'loaded',
       },
     };
@@ -45,10 +47,12 @@ class TFrameComponentClass extends React.Component<ITComponentProps, any> {
 
     this.setState({
       postMessageData: {
-        cellContext,
-        data,
-        padding,
-        pointColor,
+        payload: {
+          cellContext,
+          data,
+          padding,
+          pointColor,
+        },
         type: 'loaded',
       },
     });
@@ -56,6 +60,28 @@ class TFrameComponentClass extends React.Component<ITComponentProps, any> {
     if (cellContext && cellContext !== prevProps.cellContext) {
       this.forceUpdate();
     }
+  }
+
+  public componentWillReceiveProps(nextProps: ITComponentProps) {
+    let payload = {};
+    Object.entries(nextProps).forEach(pair => {
+      const key = pair['0'];
+      // @ts-ignore
+      if (nextProps[key] !== this.props[key]) {
+        payload = {
+          ...payload,
+          // @ts-ignore
+          [key]: nextProps[key],
+        };
+      }
+    });
+
+    this.setState({
+      postMessageData: {
+        payload,
+        type: 'loaded',
+      },
+    });
   }
 
   public shouldComponentUpdate(nextProps: ITComponentProps) {

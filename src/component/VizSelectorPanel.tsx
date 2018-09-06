@@ -7,6 +7,8 @@ import InfoPanel from './InfoPanel';
 import NGLComponent from './NGLComponent';
 import PredictedContactMap from './PredictedContactMap';
 import TComponent from './TComponent';
+import TensorTComponent from './TensorTComponent';
+import TFrameComponent from './TFrameComponent';
 
 export interface IVizPanelProps {
   data: Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>;
@@ -75,6 +77,28 @@ export class VizSelectorPanel extends React.Component<IVizPanelProps, IVizPanelS
         return (
           data['T-SNE'] && (
             <TComponent
+              data={data['T-SNE'] as T_SNE_DATA_TYPE}
+              height={paddedHeight}
+              padding={padding}
+              width={paddedWidth}
+            />
+          )
+        );
+      case VIZ_TYPE['TENSOR-T-SNE']:
+        return (
+          data['T-SNE'] && (
+            <TensorTComponent
+              data={data['T-SNE'] as T_SNE_DATA_TYPE}
+              height={paddedHeight}
+              padding={padding}
+              width={paddedWidth}
+            />
+          )
+        );
+      case VIZ_TYPE['T-SNE-FRAME']:
+        return (
+          data['T-SNE'] && (
+            <TFrameComponent
               data={data['T-SNE'] as T_SNE_DATA_TYPE}
               height={paddedHeight}
               padding={padding}

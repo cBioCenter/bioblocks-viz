@@ -19,13 +19,15 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
           Array [
             "T-SNE",
             "Spring",
+            "T-SNE-FRAME",
           ]
         }
-        numPanels={2}
+        numPanels={3}
         supportedVisualizations={
           Array [
             "T-SNE",
             "Spring",
+            "T-SNE-FRAME",
           ]
         }
       />

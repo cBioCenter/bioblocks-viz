@@ -81,7 +81,6 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
   protected onReceiveMessage = (msg: MessageEvent) => {
     switch (msg.data.type) {
       case 'selected-cells-update': {
-        console.log(msg);
         this.props.cellContext.addCells(msg.data.payload.indices);
         break;
       }

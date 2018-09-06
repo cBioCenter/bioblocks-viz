@@ -1,4 +1,6 @@
+import memoizeOne from 'memoize-one';
 import * as React from 'react';
+
 import CellContext, { ICellContext, initialCellContext } from '../context/CellContext';
 import { T_SNE_DATA_TYPE } from '../data/chell-data';
 import ChellChartEvent from '../data/event/ChellChartEvent';
@@ -25,6 +27,8 @@ class TComponentClass extends React.Component<ITComponentProps, any> {
     width: 400,
   };
 
+  protected getXs = memoizeOne((data: number[][]) => data.map(ele => ele[0]));
+
   constructor(props: ITComponentProps) {
     super(props);
   }
@@ -47,7 +51,7 @@ class TComponentClass extends React.Component<ITComponentProps, any> {
               },
               mode: 'markers',
               type: 'scattergl',
-              x: data.map(ele => ele[0]),
+              x: this.getXs(data),
               xaxis: 'x',
               y: data.map(ele => ele[1]),
               yaxis: 'y',

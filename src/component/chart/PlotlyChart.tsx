@@ -138,7 +138,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
       // TODO However plotly.react is currently causing a WebGL error, so we're using newPlot for now.
 
       // await plotly.purge(this.plotlyCanvas);
-      plotly.newPlot(
+      plotly.react(
         this.canvasRef,
         this.plotlyFormattedData,
         this.getMergedLayout(layout, this.plotlyFormattedData),
