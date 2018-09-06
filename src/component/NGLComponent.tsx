@@ -21,12 +21,14 @@ export type NGL_HOVER_CB_RESULT_TYPE = number;
 export type RepresentationDict = Map<string, NGL.RepresentationElement[]>;
 
 export interface INGLComponentProps {
-  data?: NGL.Structure;
-  height: number;
+  data: NGL.Structure;
+  height: number | string;
+  onResize: (event?: UIEvent) => void;
   residueContext: IResidueContext;
   secondaryStructureContext: ISecondaryStructureContext;
-  padding: number;
-  width: number;
+  showConfiguration: boolean;
+  padding: number | string;
+  width: number | string;
 }
 
 export const initialNGLState = {
@@ -45,6 +47,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     secondaryStructureContext: {
       ...initialSecondaryStructureContext,
     },
+    showConfiguration: true,
     width: 400,
   };
   public readonly state: NGLComponentState = initialNGLState;
@@ -68,6 +71,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
         stage,
       });
     }
+    window.addEventListener('resize', event => this.onResizeHandler(event), false);
   }
 
   public componentWillUnmount() {
@@ -79,6 +83,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
         stage: undefined,
       });
     }
+    window.removeEventListener('resize', () => this.onResizeHandler());
   }
 
   public componentDidUpdate(prevProps: INGLComponentProps, prevState: NGLComponentState) {
@@ -117,7 +122,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
    * @returns The NGL Component
    */
   public render() {
-    const { height, padding, residueContext, width } = this.props;
+    const { height, padding, residueContext, showConfiguration, width } = this.props;
     return (
       <div className="NGLComponent" style={{ padding }}>
         <div
@@ -127,9 +132,11 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
           onMouseLeave={this.onCanvasLeave}
           onKeyDown={this.onKeyDown}
         />
-        <GridRow>
-          <Button onClick={residueContext.removeAllLockedResiduePairs}>Remove All Locked Distance Pairs</Button>
-        </GridRow>
+        {showConfiguration && (
+          <GridRow>
+            <Button onClick={residueContext.removeAllLockedResiduePairs}>Remove All Locked Distance Pairs</Button>
+          </GridRow>
+        )}
       </div>
     );
   }
@@ -287,6 +294,17 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
   protected onCanvasLeave = () => {
     const { residueContext } = this.props;
     residueContext.removeNonLockedResidues();
+  };
+
+  protected onResizeHandler = (event?: UIEvent) => {
+    const { onResize } = this.props;
+    const { stage } = this.state;
+    if (stage) {
+      stage.handleResize();
+    }
+    if (onResize) {
+      onResize(event);
+    }
   };
 
   protected onKeyDown = (e: React.KeyboardEvent) => {

@@ -15,7 +15,7 @@ export interface IPredictedContactMapProps {
   height: number;
   incorrectColor: string;
   observedColor: string;
-  padding: number;
+  padding: number | string;
   width: number;
 }
 

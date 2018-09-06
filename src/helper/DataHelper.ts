@@ -161,7 +161,8 @@ export const fetchNGLDataFromDirectory = async (dir: string) => {
   return fetchNGLDataFromFile(file);
 };
 
-export const fetchNGLDataFromFile = async (file: string) => (await NGL.autoLoad(file)) as NGL.Structure;
+export const fetchNGLDataFromFile = async (file: string | File | Blob, params: Partial<NGL.ILoaderParameters> = {}) =>
+  (await NGL.autoLoad(file, params)) as NGL.Structure;
 
 export const fetchContactMapData = async (dir: string): Promise<IContactMapData> => {
   if (dir.length === 0) {
