@@ -21,8 +21,9 @@ export type NGL_HOVER_CB_RESULT_TYPE = number;
 export type RepresentationDict = Map<string, NGL.RepresentationElement[]>;
 
 export interface INGLComponentProps {
-  data?: NGL.Structure;
+  data: NGL.Structure;
   height: number | string;
+  onResize: (event?: UIEvent) => void;
   residueContext: IResidueContext;
   secondaryStructureContext: ISecondaryStructureContext;
   showConfiguration: boolean;
@@ -70,7 +71,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
         stage,
       });
     }
-    window.addEventListener('resize', event => this.onResize(), false);
+    window.addEventListener('resize', event => this.onResizeHandler(event), false);
   }
 
   public componentWillUnmount() {
@@ -82,7 +83,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
         stage: undefined,
       });
     }
-    window.removeEventListener('resize', () => this.onResize());
+    window.removeEventListener('resize', () => this.onResizeHandler());
   }
 
   public componentDidUpdate(prevProps: INGLComponentProps, prevState: NGLComponentState) {
@@ -295,10 +296,14 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     residueContext.removeNonLockedResidues();
   };
 
-  protected onResize = () => {
+  protected onResizeHandler = (event?: UIEvent) => {
+    const { onResize } = this.props;
     const { stage } = this.state;
     if (stage) {
       stage.handleResize();
+    }
+    if (onResize) {
+      onResize(event);
     }
   };
 

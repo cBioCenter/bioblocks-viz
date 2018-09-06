@@ -75,6 +75,7 @@ class MockStage {
   });
   public defaultFileRepresentation = (...args: any[]) => jest.fn();
   public dispose = () => jest.fn();
+  public handleResize = () => jest.fn();
   public removeAllComponents = () => jest.fn();
 }
 

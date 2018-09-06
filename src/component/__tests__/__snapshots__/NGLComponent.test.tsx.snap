@@ -1,194 +1,271 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NGLComponent Should match existing snapshot when canvas isn't available. 1`] = `
-<div
-  className="NGLComponent"
-  style={
-    Object {
-      "padding": 0,
-    }
-  }
->
-  <div
-    className="NGLCanvas"
-    onKeyDown={[Function]}
-    onMouseLeave={[Function]}
-    style={
+<NGLComponent>
+  <NGLComponentClass
+    height={400}
+    padding={0}
+    residueContext={
       Object {
-        "height": 400,
-        "width": 400,
+        "addCandidateResidues": [Function],
+        "addHoveredResidues": [Function],
+        "addLockedResiduePair": [Function],
+        "candidateResidues": Array [],
+        "clearAllResidues": [Function],
+        "hoveredResidues": Array [],
+        "lockedResiduePairs": Map {},
+        "removeAllLockedResiduePairs": [Function],
+        "removeCandidateResidues": [Function],
+        "removeHoveredResidues": [Function],
+        "removeLockedResiduePair": [Function],
+        "removeNonLockedResidues": [Function],
+        "toggleLockedResiduePair": [Function],
       }
     }
-  />
-  <div
-    className="row"
+    secondaryStructureContext={
+      Object {
+        "addSecondaryStructure": [Function],
+        "clearSecondaryStructure": [Function],
+        "removeSecondaryStructure": [Function],
+        "selectedSecondaryStructures": Array [],
+        "temporarySecondaryStructures": Array [],
+        "toggleSecondaryStructure": [Function],
+      }
+    }
+    showConfiguration={true}
+    width={400}
   >
-    <button
-      className="ui button"
-      onClick={[Function]}
-      role="button"
+    <div
+      className="NGLComponent"
+      style={
+        Object {
+          "padding": 0,
+        }
+      }
     >
-      Remove All Locked Distance Pairs
-    </button>
-  </div>
-</div>
-`;
-
-exports[`NGLComponent Should match existing snapshot when configuration is disabled 1`] = `
-<NGLComponentClass
-  data={
-    Object {
-      "residueStore": Object {
-        "resno": Array [
-          0,
-          1,
-          2,
-          3,
-          4,
-        ],
-      },
-    }
-  }
-  height={400}
-  padding={0}
-  residueContext={
-    Object {
-      "addCandidateResidues": [Function],
-      "addHoveredResidues": [Function],
-      "addLockedResiduePair": [Function],
-      "candidateResidues": Array [],
-      "clearAllResidues": [Function],
-      "hoveredResidues": Array [],
-      "lockedResiduePairs": Map {},
-      "removeAllLockedResiduePairs": [Function],
-      "removeCandidateResidues": [Function],
-      "removeHoveredResidues": [Function],
-      "removeLockedResiduePair": [Function],
-      "removeNonLockedResidues": [Function],
-      "toggleLockedResiduePair": [Function],
-    }
-  }
-  secondaryStructureContext={
-    Object {
-      "addSecondaryStructure": [Function],
-      "clearSecondaryStructure": [Function],
-      "removeSecondaryStructure": [Function],
-      "selectedSecondaryStructures": Array [],
-      "temporarySecondaryStructures": Array [],
-      "toggleSecondaryStructure": [Function],
-    }
-  }
-  showConfiguration={false}
-  width={400}
->
-  <div
-    className="NGLComponent"
-    style={
-      Object {
-        "padding": 0,
-      }
-    }
-  >
-    <div
-      className="NGLCanvas"
-      onKeyDown={[Function]}
-      onMouseLeave={[Function]}
-      style={
-        Object {
-          "height": 400,
-          "width": 400,
-        }
-      }
-    />
-  </div>
-</NGLComponentClass>
-`;
-
-exports[`NGLComponent Should match existing snapshot when given sample data 1`] = `
-<NGLComponentClass
-  data={
-    Object {
-      "residueStore": Object {
-        "resno": Array [
-          0,
-          1,
-          2,
-          3,
-          4,
-        ],
-      },
-    }
-  }
-  height={400}
-  padding={0}
-  residueContext={
-    Object {
-      "addCandidateResidues": [Function],
-      "addHoveredResidues": [Function],
-      "addLockedResiduePair": [Function],
-      "candidateResidues": Array [],
-      "clearAllResidues": [Function],
-      "hoveredResidues": Array [],
-      "lockedResiduePairs": Map {},
-      "removeAllLockedResiduePairs": [Function],
-      "removeCandidateResidues": [Function],
-      "removeHoveredResidues": [Function],
-      "removeLockedResiduePair": [Function],
-      "removeNonLockedResidues": [Function],
-      "toggleLockedResiduePair": [Function],
-    }
-  }
-  secondaryStructureContext={
-    Object {
-      "addSecondaryStructure": [Function],
-      "clearSecondaryStructure": [Function],
-      "removeSecondaryStructure": [Function],
-      "selectedSecondaryStructures": Array [],
-      "temporarySecondaryStructures": Array [],
-      "toggleSecondaryStructure": [Function],
-    }
-  }
-  showConfiguration={true}
-  width={400}
->
-  <div
-    className="NGLComponent"
-    style={
-      Object {
-        "padding": 0,
-      }
-    }
-  >
-    <div
-      className="NGLCanvas"
-      onKeyDown={[Function]}
-      onMouseLeave={[Function]}
-      style={
-        Object {
-          "height": 400,
-          "width": 400,
-        }
-      }
-    />
-    <GridRow>
       <div
-        className="row"
-      >
-        <Button
-          as="button"
-          onClick={[Function]}
-          role="button"
+        className="NGLCanvas"
+        onKeyDown={[Function]}
+        onMouseLeave={[Function]}
+        style={
+          Object {
+            "height": 400,
+            "width": 400,
+          }
+        }
+      />
+      <GridRow>
+        <div
+          className="row"
         >
-          <button
-            className="ui button"
+          <Button
+            as="button"
             onClick={[Function]}
             role="button"
           >
-            Remove All Locked Distance Pairs
-          </button>
-        </Button>
-      </div>
-    </GridRow>
-  </div>
-</NGLComponentClass>
+            <button
+              className="ui button"
+              onClick={[Function]}
+              role="button"
+            >
+              Remove All Locked Distance Pairs
+            </button>
+          </Button>
+        </div>
+      </GridRow>
+    </div>
+  </NGLComponentClass>
+</NGLComponent>
+`;
+
+exports[`NGLComponent Should match existing snapshot when configuration is disabled 1`] = `
+<NGLComponent
+  data={
+    Object {
+      "residueStore": Object {
+        "resno": Uint32Array [
+          0,
+          1,
+          2,
+          3,
+          4,
+        ],
+      },
+    }
+  }
+  showConfiguration={false}
+>
+  <NGLComponentClass
+    data={
+      Object {
+        "residueStore": Object {
+          "resno": Uint32Array [
+            0,
+            1,
+            2,
+            3,
+            4,
+          ],
+        },
+      }
+    }
+    height={400}
+    padding={0}
+    residueContext={
+      Object {
+        "addCandidateResidues": [Function],
+        "addHoveredResidues": [Function],
+        "addLockedResiduePair": [Function],
+        "candidateResidues": Array [],
+        "clearAllResidues": [Function],
+        "hoveredResidues": Array [],
+        "lockedResiduePairs": Map {},
+        "removeAllLockedResiduePairs": [Function],
+        "removeCandidateResidues": [Function],
+        "removeHoveredResidues": [Function],
+        "removeLockedResiduePair": [Function],
+        "removeNonLockedResidues": [Function],
+        "toggleLockedResiduePair": [Function],
+      }
+    }
+    secondaryStructureContext={
+      Object {
+        "addSecondaryStructure": [Function],
+        "clearSecondaryStructure": [Function],
+        "removeSecondaryStructure": [Function],
+        "selectedSecondaryStructures": Array [],
+        "temporarySecondaryStructures": Array [],
+        "toggleSecondaryStructure": [Function],
+      }
+    }
+    showConfiguration={false}
+    width={400}
+  >
+    <div
+      className="NGLComponent"
+      style={
+        Object {
+          "padding": 0,
+        }
+      }
+    >
+      <div
+        className="NGLCanvas"
+        onKeyDown={[Function]}
+        onMouseLeave={[Function]}
+        style={
+          Object {
+            "height": 400,
+            "width": 400,
+          }
+        }
+      />
+    </div>
+  </NGLComponentClass>
+</NGLComponent>
+`;
+
+exports[`NGLComponent Should match existing snapshot when given sample data 1`] = `
+<NGLComponent
+  data={
+    Object {
+      "residueStore": Object {
+        "resno": Uint32Array [
+          0,
+          1,
+          2,
+          3,
+          4,
+        ],
+      },
+    }
+  }
+>
+  <NGLComponentClass
+    data={
+      Object {
+        "residueStore": Object {
+          "resno": Uint32Array [
+            0,
+            1,
+            2,
+            3,
+            4,
+          ],
+        },
+      }
+    }
+    height={400}
+    padding={0}
+    residueContext={
+      Object {
+        "addCandidateResidues": [Function],
+        "addHoveredResidues": [Function],
+        "addLockedResiduePair": [Function],
+        "candidateResidues": Array [],
+        "clearAllResidues": [Function],
+        "hoveredResidues": Array [],
+        "lockedResiduePairs": Map {},
+        "removeAllLockedResiduePairs": [Function],
+        "removeCandidateResidues": [Function],
+        "removeHoveredResidues": [Function],
+        "removeLockedResiduePair": [Function],
+        "removeNonLockedResidues": [Function],
+        "toggleLockedResiduePair": [Function],
+      }
+    }
+    secondaryStructureContext={
+      Object {
+        "addSecondaryStructure": [Function],
+        "clearSecondaryStructure": [Function],
+        "removeSecondaryStructure": [Function],
+        "selectedSecondaryStructures": Array [],
+        "temporarySecondaryStructures": Array [],
+        "toggleSecondaryStructure": [Function],
+      }
+    }
+    showConfiguration={true}
+    width={400}
+  >
+    <div
+      className="NGLComponent"
+      style={
+        Object {
+          "padding": 0,
+        }
+      }
+    >
+      <div
+        className="NGLCanvas"
+        onKeyDown={[Function]}
+        onMouseLeave={[Function]}
+        style={
+          Object {
+            "height": 400,
+            "width": 400,
+          }
+        }
+      />
+      <GridRow>
+        <div
+          className="row"
+        >
+          <Button
+            as="button"
+            onClick={[Function]}
+            role="button"
+          >
+            <button
+              className="ui button"
+              onClick={[Function]}
+              role="button"
+            >
+              Remove All Locked Distance Pairs
+            </button>
+          </Button>
+        </div>
+      </GridRow>
+    </div>
+  </NGLComponentClass>
+</NGLComponent>
 `;
