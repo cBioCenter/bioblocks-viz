@@ -111,6 +111,7 @@
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/springcontexthandler.html" class="tsd-kind-icon">Spring<wbr>Context<wbr>Handler</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter tsd-is-not-exported"><a href="classes/tcomponentclass.html" class="tsd-kind-icon">TComponent<wbr>Class</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter tsd-is-not-exported"><a href="classes/tframecomponentclass.html" class="tsd-kind-icon">TFrame<wbr>Component<wbr>Class</a></li>
+								<li class="tsd-kind-class tsd-has-type-parameter tsd-is-not-exported"><a href="classes/tensortcomponentclass.html" class="tsd-kind-icon">TensorTComponent<wbr>Class</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/vizpanelcontainer.html" class="tsd-kind-icon">Viz<wbr>Panel<wbr>Container</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/vizselectorpanel.html" class="tsd-kind-icon">Viz<wbr>Selector<wbr>Panel</a></li>
 							</ul>
@@ -233,6 +234,7 @@
 								<li class="tsd-kind-function"><a href="globals.html#springcontainer" class="tsd-kind-icon">Spring<wbr>Container</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#tcomponent" class="tsd-kind-icon">TComponent</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#tframecomponent" class="tsd-kind-icon">TFrame<wbr>Component</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#tensortcomponent" class="tsd-kind-icon">TensorTComponent</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#assignspringlinks" class="tsd-kind-icon">assign<wbr>Spring<wbr>Links</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#createballstickrepresentation" class="tsd-kind-icon">create<wbr>Ball<wbr>Stick<wbr>Representation</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#createdistancerepresentation" class="tsd-kind-icon">create<wbr>Distance<wbr>Representation</a></li>
@@ -596,7 +598,7 @@
 					<div class="tsd-signature tsd-kind-icon">SECONDARY_<wbr>STRUCTURE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="classes/chell1dsection.html" class="tsd-signature-type">Chell1DSection</a><span class="tsd-signature-symbol">&lt;</span><a href="globals.html#secondary_structure_keys" class="tsd-signature-type">SECONDARY_STRUCTURE_KEYS</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/chell-data.ts:77</li>
+							<li>Defined in src/data/chell-data.ts:78</li>
 						</ul>
 					</aside>
 				</section>
@@ -606,7 +608,7 @@
 					<div class="tsd-signature tsd-kind-icon">SECONDARY_<wbr>STRUCTURE_<wbr>KEYS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">keyof SECONDARY_STRUCTURE_CODES</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/chell-data.ts:95</li>
+							<li>Defined in src/data/chell-data.ts:96</li>
 						</ul>
 					</aside>
 				</section>
@@ -616,7 +618,7 @@
 					<div class="tsd-signature tsd-kind-icon">SECONDARY_<wbr>STRUCTURE_<wbr>SECTION<span class="tsd-signature-symbol">:</span> <a href="classes/chell1dsection.html" class="tsd-signature-type">Chell1DSection</a><span class="tsd-signature-symbol">&lt;</span><a href="globals.html#secondary_structure_keys" class="tsd-signature-type">SECONDARY_STRUCTURE_KEYS</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/chell-data.ts:76</li>
+							<li>Defined in src/data/chell-data.ts:77</li>
 						</ul>
 					</aside>
 				</section>
@@ -696,11 +698,12 @@
 					<div class="tsd-signature tsd-kind-icon">required<wbr>Props<span class="tsd-signature-symbol">:</span> <a href="globals.html#omit" class="tsd-signature-type">Omit</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ITComponentProps</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">keyof ITComponentProps</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ITComponentProps</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/container/SpringContainer.tsx:95</li>
+							<li>Defined in src/container/SpringContainer.tsx:94</li>
 							<li>Defined in src/component/NGLComponent.tsx:302</li>
 							<li>Defined in src/component/ContactMap.tsx:337</li>
-							<li>Defined in src/component/TComponent.tsx:92</li>
-							<li>Defined in src/component/TFrameComponent.tsx:80</li>
+							<li>Defined in src/component/TComponent.tsx:96</li>
+							<li>Defined in src/component/TensorTComponent.tsx:96</li>
+							<li>Defined in src/component/TFrameComponent.tsx:106</li>
 						</ul>
 					</aside>
 				</section>
@@ -879,7 +882,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/container/SpringContainer.tsx:98</li>
+									<li>Defined in src/container/SpringContainer.tsx:97</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -902,7 +905,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/TComponent.tsx:94</li>
+									<li>Defined in src/component/TComponent.tsx:98</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -925,7 +928,30 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/TFrameComponent.tsx:82</li>
+									<li>Defined in src/component/TFrameComponent.tsx:108</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>props: <a href="globals.html#requiredprops" class="tsd-signature-type">requiredProps</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="tensortcomponent" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> TensorTComponent</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">TensorTComponent<span class="tsd-signature-symbol">(</span>props<span class="tsd-signature-symbol">: </span><a href="globals.html#requiredprops" class="tsd-signature-type">requiredProps</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/component/TensorTComponent.tsx:99</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -948,7 +974,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:59</li>
+									<li>Defined in src/helper/DataHelper.ts:60</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1143,7 +1169,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:41</li>
+									<li>Defined in src/helper/DataHelper.ts:42</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1215,7 +1241,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:87</li>
+									<li>Defined in src/helper/DataHelper.ts:88</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1238,7 +1264,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:165</li>
+									<li>Defined in src/helper/DataHelper.ts:166</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1261,7 +1287,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:147</li>
+									<li>Defined in src/helper/DataHelper.ts:148</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1307,7 +1333,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:155</li>
+									<li>Defined in src/helper/DataHelper.ts:156</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1330,7 +1356,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:163</li>
+									<li>Defined in src/helper/DataHelper.ts:164</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1353,7 +1379,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:115</li>
+									<li>Defined in src/helper/DataHelper.ts:116</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1376,7 +1402,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:134</li>
+									<li>Defined in src/helper/DataHelper.ts:135</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1705,7 +1731,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:193</li>
+									<li>Defined in src/helper/DataHelper.ts:194</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1750,7 +1776,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:70</li>
+									<li>Defined in src/helper/DataHelper.ts:71</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1812,7 +1838,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/DataHelper.ts:242</li>
+									<li>Defined in src/helper/DataHelper.ts:243</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2993,6 +3019,9 @@
 					<li class=" tsd-kind-class tsd-has-type-parameter tsd-is-not-exported">
 						<a href="classes/tframecomponentclass.html" class="tsd-kind-icon">TFrame<wbr>Component<wbr>Class</a>
 					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter tsd-is-not-exported">
+						<a href="classes/tensortcomponentclass.html" class="tsd-kind-icon">TensorTComponent<wbr>Class</a>
+					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/vizpanelcontainer.html" class="tsd-kind-icon">Viz<wbr>Panel<wbr>Container</a>
 					</li>
@@ -3298,6 +3327,9 @@
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#tframecomponent" class="tsd-kind-icon">TFrame<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#tensortcomponent" class="tsd-kind-icon">TensorTComponent</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#assignspringlinks" class="tsd-kind-icon">assign<wbr>Spring<wbr>Links</a>

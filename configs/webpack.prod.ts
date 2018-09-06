@@ -5,9 +5,7 @@ import * as common from '../webpack.chell-common';
 module.exports = merge(common, {
   mode: 'production',
   optimization: {
-    splitChunks: {
-      chunks: 'all',
-    },
+    minimize: true,
   },
   plugins: [
     new webpack.DefinePlugin({

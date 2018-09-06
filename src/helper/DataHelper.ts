@@ -25,6 +25,7 @@ export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
   switch (viz) {
     case VIZ_TYPE['T-SNE']:
     case VIZ_TYPE['T-SNE-FRAME']:
+    case VIZ_TYPE['TENSOR-T-SNE']:
       return fetchTSneCoordinateData(dataDir);
     case VIZ_TYPE.SPRING:
       return deriveSpringData(dataDir);

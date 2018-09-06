@@ -177,6 +177,76 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
 </div>
 `;
 
+exports[`VizSelectorPanel Should match existing snapshot when given initial viz of T-SNE-FRAME. 1`] = `
+<div
+  className="VizSelectorPanel"
+  style={
+    Object {
+      "width": 450,
+    }
+  }
+>
+  <Dropdown
+    additionLabel="Add "
+    additionPosition="top"
+    closeOnBlur={true}
+    deburr={false}
+    defaultValue="T-SNE-FRAME"
+    fluid={true}
+    icon="dropdown"
+    minCharacters={1}
+    noResultsMessage="No results found."
+    onChange={[Function]}
+    openOnFocus={true}
+    options={Array []}
+    renderLabel={[Function]}
+    searchInput="text"
+    selectOnBlur={true}
+    selectOnNavigation={true}
+    wrapSelection={true}
+  />
+  <Card
+    fluid={true}
+    raised={true}
+  />
+</div>
+`;
+
+exports[`VizSelectorPanel Should match existing snapshot when given initial viz of TENSOR-T-SNE. 1`] = `
+<div
+  className="VizSelectorPanel"
+  style={
+    Object {
+      "width": 450,
+    }
+  }
+>
+  <Dropdown
+    additionLabel="Add "
+    additionPosition="top"
+    closeOnBlur={true}
+    deburr={false}
+    defaultValue="TENSOR-T-SNE"
+    fluid={true}
+    icon="dropdown"
+    minCharacters={1}
+    noResultsMessage="No results found."
+    onChange={[Function]}
+    openOnFocus={true}
+    options={Array []}
+    renderLabel={[Function]}
+    searchInput="text"
+    selectOnBlur={true}
+    selectOnNavigation={true}
+    wrapSelection={true}
+  />
+  <Card
+    fluid={true}
+    raised={true}
+  />
+</div>
+`;
+
 exports[`VizSelectorPanel Should match existing snapshot when given no initial visualization. 1`] = `
 <div
   className="VizSelectorPanel"

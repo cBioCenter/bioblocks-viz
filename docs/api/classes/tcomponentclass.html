@@ -95,10 +95,11 @@
 								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported"><a href="tcomponentclass.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-inherited tsd-is-not-exported">
+						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="tcomponentclass.html#context" class="tsd-kind-icon">context</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-not-exported"><a href="tcomponentclass.html#getxs" class="tsd-kind-icon">get<wbr>Xs</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="tcomponentclass.html#props" class="tsd-kind-icon">props</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="tcomponentclass.html#refs" class="tsd-kind-icon">refs</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="tcomponentclass.html#state" class="tsd-kind-icon">state</a></li>
@@ -147,7 +148,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.__constructor</p>
 								<ul>
-									<li>Defined in src/component/TComponent.tsx:26</li>
+									<li>Defined in src/component/TComponent.tsx:30</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -161,7 +162,7 @@
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-not-exported">
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 					<a name="context" class="tsd-anchor"></a>
@@ -180,6 +181,16 @@
 							</dd>
 						</dl>
 					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-not-exported">
+					<a name="getxs" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Xs</h3>
+					<div class="tsd-signature tsd-kind-icon">get<wbr>Xs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol"> =&nbsp;memoizeOne((data: number[][]) &#x3D;&gt; data.map(ele &#x3D;&gt; ele[0]))</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/component/TComponent.tsx:30</li>
+						</ul>
+					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 					<a name="props" class="tsd-anchor"></a>
@@ -692,7 +703,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/TComponent.tsx:85</li>
+									<li>Defined in src/component/TComponent.tsx:89</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -734,7 +745,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.render</p>
 								<ul>
-									<li>Defined in src/component/TComponent.tsx:32</li>
+									<li>Defined in src/component/TComponent.tsx:36</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
@@ -823,7 +834,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/TComponent.tsx:17</li>
+							<li>Defined in src/component/TComponent.tsx:19</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -832,7 +843,7 @@
 						<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[[0], [0]]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/TComponent.tsx:21</li>
+								<li>Defined in src/component/TComponent.tsx:23</li>
 							</ul>
 						</aside>
 					</section>
@@ -842,7 +853,7 @@
 						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/TComponent.tsx:22</li>
+								<li>Defined in src/component/TComponent.tsx:24</li>
 							</ul>
 						</aside>
 					</section>
@@ -852,7 +863,7 @@
 						<div class="tsd-signature tsd-kind-icon">padding<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/TComponent.tsx:23</li>
+								<li>Defined in src/component/TComponent.tsx:25</li>
 							</ul>
 						</aside>
 					</section>
@@ -862,7 +873,7 @@
 						<div class="tsd-signature tsd-kind-icon">point<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;#000000&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/TComponent.tsx:24</li>
+								<li>Defined in src/component/TComponent.tsx:26</li>
 							</ul>
 						</aside>
 					</section>
@@ -872,7 +883,7 @@
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/TComponent.tsx:25</li>
+								<li>Defined in src/component/TComponent.tsx:27</li>
 							</ul>
 						</aside>
 					</section>
@@ -882,7 +893,7 @@
 						<div class="tsd-signature tsd-kind-icon">cell<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/TComponent.tsx:18</li>
+								<li>Defined in src/component/TComponent.tsx:20</li>
 							</ul>
 						</aside>
 					</section>
@@ -909,6 +920,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 								<a href="tcomponentclass.html#context" class="tsd-kind-icon">context</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-not-exported">
+								<a href="tcomponentclass.html#getxs" class="tsd-kind-icon">get<wbr>Xs</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 								<a href="tcomponentclass.html#props" class="tsd-kind-icon">props</a>

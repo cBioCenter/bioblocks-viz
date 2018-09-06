@@ -26,6 +26,7 @@ export enum VIZ_TYPE {
   INFO_PANEL = 'Info Panel',
   NGL = 'NGL',
   SPRING = 'Spring',
+  'TENSOR-T-SNE' = 'TENSOR-T-SNE',
   'T-SNE' = 'T-SNE',
   'T-SNE-FRAME' = 'T-SNE-FRAME',
 }
