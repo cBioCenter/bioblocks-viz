@@ -1,7 +1,6 @@
 import { CommonWrapper, mount, ReactWrapper, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-
-import * as plotly from 'plotly.js';
+import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 import * as Renderer from 'react-test-renderer';
 
