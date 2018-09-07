@@ -43,7 +43,7 @@
     ],
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.ts",
-      "plotly.js/dist/plotly": "<rootDir>/__mocks__/plotly.ts"
+      "plotly.js-gl2d-dist": "<rootDir>/__mocks__/plotly.ts"
     },
     "modulePathIgnorePatterns": [
       "dist"
@@ -103,8 +103,11 @@
     }
   },
   "scripts": {
+    "analyzebundle": "webpack-bundle-analyzer webpack-stats.json dist",
     "build": "webpack --config ./configs/webpack.dev.ts",
+    "build:analyze": "yarn --silent build --profile --json > webpack-stats.json && yarn analyzebundle",
     "build:prod": "webpack --config ./configs/webpack.prod.ts",
+    "build:prod:analyze": "yarn --silent build:prod --profile --json > webpack-stats.json && yarn analyzebundle",
     "build:test": "tsc",
     "deploy": "yarn build:prod && yarn deploy:doc && yarn deploy:gh-pages",
     "deploy:demo": "yarn build && yarn deploy:doc && yarn deploy:gh-pages",
@@ -138,11 +141,12 @@
     "memoize-one": "^4.0.2",
     "ngl": "^2.0.0-dev.33",
     "pixi.js": "^4.7.3",
-    "plotly.js": "^1.38.0",
+    "plotly.js-gl2d-dist": "^1.40.1",
     "rc-slider": "^8.6.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-iframe-comm": "^1.2.2",
+    "react-loadable": "^5.5.0",
     "semantic-ui-react": "^0.82.1"
   },
   "devDependencies": {
@@ -155,14 +159,16 @@
     "@types/memoize-one": "^3.1.1",
     "@types/node": "^10.5.5",
     "@types/pixi.js": "^4.7.3",
-    "@types/plotly.js": "^1.37.0",
+    "@types/plotly.js": "^1.38.8",
     "@types/rc-slider": "^8.2.3",
     "@types/react": "^16.4.7",
     "@types/react-dom": "^16.0.5",
+    "@types/react-loadable": "^5.4.1",
     "@types/react-test-renderer": "^16.0.1",
     "@types/signals": "^1.0.1",
     "@types/three": "^0.92.14",
     "@types/wallabyjs": "^0.0.6",
+    "@types/webpack-bundle-analyzer": "^2.9.2",
     "@types/webpack-env": "^1.13.6",
     "@types/webpack-merge": "^4.1.3",
     "canvas-prebuilt": "^1.6.5-prerelease.1",
@@ -206,6 +212,7 @@
     "typedoc": "^0.12.0",
     "typescript": "^3.0.1",
     "webpack": "^4.8.0",
+    "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.4",
     "webpack-merge": "^4.1.2"

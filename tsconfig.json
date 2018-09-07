@@ -13,7 +13,7 @@
     "outDir": "./dist/",
     "paths": {
       "jest": ["node_modules/@types/jest/index.d.ts"],
-      "plotly.js/dist/plotly": ["node_modules/@types/plotly.js"],
+      "plotly.js-gl2d-dist": ["node_modules/@types/plotly.js"],
       "react": ["node_modules/@types/react"],
       "semantic-ui-react": ["node_modules/semantic-ui-react/index.d.ts"]
     },

@@ -181,8 +181,7 @@ export const fetchContactMapData = async (dir: string): Promise<IContactMapData>
 };
 
 /**
- * Parses a coupling_scores.csv file to generate the appropriate data structure
- *
+ * Parses a coupling_scores.csv file to generate the appropriate data structure.
  *
  * !Important!
  * Currently 12 fields are assumed to be part of a single coupling score.

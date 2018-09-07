@@ -3,4 +3,5 @@ dist
 lib
 
 yarn-error.log
+webpack-stats.json
 .DS_STORE
