@@ -1,4 +1,4 @@
-import * as plotly from 'plotly.js';
+import * as plotly from 'plotly.js-gl2d-dist';
 
 module.exports = {
   ...plotly,

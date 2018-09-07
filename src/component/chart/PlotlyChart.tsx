@@ -1,12 +1,8 @@
 import * as deepEqual from 'deep-equal';
 import * as Immutable from 'immutable';
+import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react';
-
-// We need to use dist/plotly to avoid forcing users to do some webpack gymnastics:
-// https://github.com/plotly/plotly-webpack#the-easy-way-recommended
-/* prettier-ignore */
-import * as plotly from 'plotly.js/dist/plotly';
 
 import { CHELL_CHART_EVENT_TYPE, CHELL_CHART_PIECE } from '../../data/chell-data';
 import ChellChartEvent from '../../data/event/ChellChartEvent';
