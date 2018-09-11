@@ -6,7 +6,7 @@ import {
   VIZ_TYPE,
 } from '../data/chell-data';
 import { CouplingContainer } from '../data/CouplingContainer';
-import { fetchCSVFile, fetchJSONFile } from './FetchHelper';
+import { fetchCSVFile, fetchJSONFile, readFileAsText } from './FetchHelper';
 
 import * as NGL from 'ngl';
 
@@ -39,21 +39,23 @@ export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
   }
 };
 
+export const fetchAppropriateDataFromFile = async (viz: VIZ_TYPE, file: File) => {
+  switch (viz) {
+    case VIZ_TYPE.NGL:
+      return fetchNGLDataFromFile(file);
+    case VIZ_TYPE.CONTACT_MAP:
+      return { couplingScores: getCouplingScoresData(await readFileAsText(file)) };
+    default:
+      return Promise.reject({ error: `Currently no appropriate data getter for ${viz} files` });
+  }
+};
+
 const deriveSpringData = async (dataDir: string) => {
   const coordinates = await fetchSpringCoordinateData(`${dataDir}/coordinates.txt`);
   const graphData = await fetchGraphData(`${dataDir}/graph_data.json`);
-  // const colorData = await this.fetchColorData(`${this.props.dataDir}/color_data_gene_sets.csv`);
   const catColorData = await fetchCategoricalColorData(`${dataDir}/categorical_coloring_data.json`);
   const nodeDict = getNodesFromGraph(graphData, coordinates, catColorData);
-
   graphData.links = assignSpringLinks(graphData.links, nodeDict);
-
-  /*
-  console.log(`Variable 'coordinates':\n${coordinates}\n${JSON.stringify(coordinates, null, 2)}`);
-  console.log(`Variable 'graphData':\n${graphData}\n${JSON.stringify(graphData, null, 2)}`);
-  console.log(`Variable 'catColorData':\n${catColorData}\n${JSON.stringify(catColorData, null, 2)}`);
-  console.log(`Variable 'nodeDict':\n${nodeDict}\n${JSON.stringify(nodeDict, null, 2)}`);
-*/
   return graphData;
 };
 
@@ -174,7 +176,6 @@ export const fetchContactMapData = async (dir: string): Promise<IContactMapData>
   const data: CONTACT_MAP_DATA_TYPE = {
     couplingScores: getCouplingScoresData(promiseResults[0], generateResidueMapping(promiseResults[1])),
     pdbData,
-    secondaryStructures: pdbData.rawsecondaryStructure,
   };
 
   return data;

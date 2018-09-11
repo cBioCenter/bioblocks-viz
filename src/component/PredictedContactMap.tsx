@@ -12,6 +12,7 @@ import ContactMap, { IContactMapConfiguration } from './ContactMap';
 export interface IPredictedContactMapProps {
   correctColor: string;
   data: IContactMapData;
+  enableSliders: boolean;
   height: number;
   incorrectColor: string;
   observedColor: string;
@@ -37,6 +38,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
       couplingScores: new CouplingContainer(),
       secondaryStructures: new Array<ISecondaryStructureData>(),
     }) as IContactMapData,
+    enableSliders: true,
     height: 400,
     incorrectColor: '#000000',
     observedColor: '#0000ff',
@@ -159,6 +161,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     const correctPredictionPercent = ((allPredictions.correct.length / allPredictions.predicted.length) * 100).toFixed(
       2,
     );
+
     const newPoints: IContactMapChartData[] = [
       generateChartDataEntry(
         'x+y',

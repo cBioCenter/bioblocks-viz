@@ -140,7 +140,6 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
         this.getMergedLayout(layout, this.plotlyFormattedData),
         this.getMergedConfig(config),
       );
-      this.attachListeners();
     }
   };
 

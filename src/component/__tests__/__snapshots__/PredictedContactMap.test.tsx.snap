@@ -529,6 +529,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
         "secondaryStructures": Array [],
       }
     }
+    enableSliders={true}
     height={400}
     incorrectColor="#000000"
     observedColor="#0000ff"
@@ -668,6 +669,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
         "secondaryStructures": Array [],
       }
     }
+    enableSliders={true}
     height={400}
     incorrectColor="#000000"
     observedColor="#0000ff"
@@ -807,6 +809,7 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
         "secondaryStructures": Array [],
       }
     }
+    enableSliders={true}
     height={400}
     incorrectColor="#000000"
     lockedResiduePairs={

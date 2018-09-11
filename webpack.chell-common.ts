@@ -12,6 +12,7 @@ import * as path from 'path';
 module.exports = {
   entry: {
     app: './index.tsx',
+    example: './examples/example.tsx',
     tcontainer: './TContainer.tsx',
   },
   module: {
@@ -37,8 +38,31 @@ module.exports = {
       },
     ],
   },
+  optimization: {
+    splitChunks: {
+      automaticNameDelimiter: '~',
+      cacheGroups: {
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+        vendors: {
+          priority: -10,
+          test: /[\\/]node_modules[\\/]/,
+        },
+      },
+      chunks: 'all',
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      maxSize: 0,
+      minChunks: 1,
+      minSize: 30000,
+      name: true,
+    },
+  },
   output: {
-    filename: '[name].js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
@@ -50,6 +74,14 @@ module.exports = {
       inject: true,
       template: './index.html',
       title: 'Development',
+    }),
+    new HtmlWebpackPlugin({
+      chunks: ['example'],
+      favicon: 'assets/favicons/favicon.ico',
+      filename: 'example.html',
+      inject: true,
+      template: './examples/example.html',
+      title: 'Chell - Contact Map / NGL Example',
     }),
     new HtmlWebpackPlugin({
       chunks: ['tcontainer'],

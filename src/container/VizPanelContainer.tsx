@@ -6,7 +6,7 @@ import VizSelectorPanel from '../component/VizSelectorPanel';
 import ChellContext from '../context/ChellContext';
 import { ChellPDB } from '../data/ChellPDB';
 import { fetchAppropriateData, getCouplingScoresData } from '../helper/DataHelper';
-import { readUploadedFileAsText } from '../helper/FetchHelper';
+import { readFileAsText } from '../helper/FetchHelper';
 import { generateResidueMapping } from '../helper/ResidueMapper';
 
 export interface IVizPanelProps {
@@ -111,16 +111,16 @@ export class VizPanelContainer extends React.Component<IVizPanelProps, VizPanelC
   }
 
   protected renderFileUploadForm = () => (
-    <Label as="label" basic={true} htmlFor="upload">
+    <Label as="label" basic={true} htmlFor={'upload'}>
       <Button
-        icon="upload"
+        icon={'upload'}
         label={{
           basic: true,
           content: 'Upload',
         }}
-        labelPosition="right"
+        labelPosition={'right'}
       />
-      <input id="upload" onChange={this.onDataUpload} hidden={true} type={'file'} multiple={true} required={true} />
+      <input id={'upload'} onChange={this.onDataUpload} hidden={true} type={'file'} multiple={true} required={true} />
     </Label>
   );
 
@@ -137,13 +137,12 @@ export class VizPanelContainer extends React.Component<IVizPanelProps, VizPanelC
         );
       } else {
         const pdbData = await ChellPDB.createPDBFromFile(files[pdbIndex]);
-        const couplingResult = await readUploadedFileAsText(files[couplingIndex]);
-        const mappingResult = await readUploadedFileAsText(files[mappingIndex]);
+        const couplingResult = await readFileAsText(files[couplingIndex]);
+        const mappingResult = await readFileAsText(files[mappingIndex]);
 
         const data = {
           couplingScores: getCouplingScoresData(couplingResult, generateResidueMapping(mappingResult)),
           pdbData,
-          secondaryStructures: pdbData.rawsecondaryStructure,
         };
 
         this.setState({

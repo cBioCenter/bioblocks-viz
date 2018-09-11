@@ -21,7 +21,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
     }
     marginModifiers={
       Object {
-        "b": 25,
+        "b": 50,
         "l": 50,
       }
     }
@@ -769,7 +769,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       }
       marginModifiers={
         Object {
-          "b": 25,
+          "b": 50,
           "l": 50,
         }
       }
@@ -963,7 +963,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "yanchor": "bottom",
             },
             "margin": Object {
-              "b": 25,
+              "b": 50,
               "l": 50,
             },
             "showlegend": true,
