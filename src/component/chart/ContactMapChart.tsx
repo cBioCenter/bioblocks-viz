@@ -97,7 +97,7 @@ class ContactMapChart extends React.Component<IContactMapChartProps, IContactMap
       y: -0.4,
     },
     marginModifiers: {
-      b: 25,
+      b: 50,
       l: 50,
     },
     range: 100,

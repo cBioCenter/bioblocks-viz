@@ -161,6 +161,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     const correctPredictionPercent = ((allPredictions.correct.length / allPredictions.predicted.length) * 100).toFixed(
       2,
     );
+
     const newPoints: IContactMapChartData[] = [
       generateChartDataEntry(
         'x+y',
