@@ -1,5 +1,3 @@
-import * as tf from '@tensorflow/tfjs';
-import * as tsne from '@tensorflow/tfjs-tsne';
 import * as d3 from 'd3';
 
 import * as React from 'react';
@@ -39,6 +37,9 @@ class TensorTComponentClass extends React.Component<ITComponentProps, any> {
     const { height, pointColor, width } = this.props;
 
     // Create some data
+    const tf = await import('@tensorflow/tfjs');
+    const tsne = await import('@tensorflow/tfjs-tsne');
+
     const tsneData = tf.randomUniform([2000, 10]);
     // Initialize the tsne optimizer
     const tsneOpt = tsne.tsne(tsneData);

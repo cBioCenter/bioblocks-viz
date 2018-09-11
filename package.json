@@ -26,6 +26,7 @@
       }
     },
     "globals": {
+      "DEV": true,
       "ts-jest": {
         "skipBabel": false,
         "tsConfigFile": "tsconfig.json"
@@ -53,7 +54,7 @@
       "jest-junit"
     ],
     "setupFiles": [
-      "./configs/SetupJest.ts"
+      "<rootDir>/configs/SetupJest.ts"
     ],
     "setupTestFrameworkScriptFile": "jest-enzyme",
     "snapshotSerializers": [
@@ -154,6 +155,7 @@
     "@types/copy-webpack-plugin": "^4.4.1",
     "@types/d3": "^5.0.0",
     "@types/enzyme": "^3.1.10",
+    "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/html-webpack-plugin": "^3.2.0",
     "@types/jest": "^23.3.1",
     "@types/memoize-one": "^3.1.1",
