@@ -1,15 +1,12 @@
 import * as React from 'react';
 
-import { CELL_TYPE, RESIDUE_TYPE } from '../data/chell-data';
-import CellContext, { initialCellContext } from './CellContext';
+import { RESIDUE_TYPE } from '../data/chell-data';
+import { CellContextHandler } from './CellContext';
 import ResidueContext, { initialResidueContext } from './ResidueContext';
 import { initialSecondaryStructureContext, SecondaryStructureContextHandler } from './SecondaryStructureContext';
 import { initialSpringContext, SpringContextHandler } from './SpringContext';
 
 export const initialState = {
-  cellContext: {
-    ...initialCellContext,
-  },
   residueContext: {
     ...initialResidueContext,
   },
@@ -30,12 +27,6 @@ export default class ChellContext extends React.Component<any, ChellContextState
     super(props);
     this.state = {
       ...this.state,
-      cellContext: {
-        ...this.state.cellContext,
-        addCells: this.onAddCells,
-        removeAllCells: this.onRemoveAllCells,
-        removeCells: this.onRemoveCells,
-      },
       residueContext: {
         ...this.state.residueContext,
         addCandidateResidues: this.onAddCandidateResidues,
@@ -62,41 +53,13 @@ export default class ChellContext extends React.Component<any, ChellContextState
     return (
       <SecondaryStructureContextHandler>
         <SpringContextHandler>
-          <CellContext.Provider value={this.state.cellContext}>
+          <CellContextHandler>
             <ResidueContext.Provider value={this.state.residueContext}>{this.props.children}</ResidueContext.Provider>
-          </CellContext.Provider>
+          </CellContextHandler>
         </SpringContextHandler>
       </SecondaryStructureContextHandler>
     );
   }
-
-  public onAddCells = (cells: CELL_TYPE[]) => {
-    this.setState({
-      cellContext: {
-        ...this.state.cellContext,
-        currentCells: cells,
-      },
-    });
-  };
-
-  public onRemoveAllCells = () => {
-    this.setState({
-      cellContext: {
-        ...this.state.cellContext,
-        currentCells: [],
-      },
-    });
-  };
-
-  public onRemoveCells = (cellsToRemove: CELL_TYPE[]) => {
-    const { currentCells } = this.state.cellContext;
-    this.setState({
-      cellContext: {
-        ...this.state.cellContext,
-        currentCells: currentCells.filter(cell => cellsToRemove.indexOf(cell) === -1),
-      },
-    });
-  };
 
   public onAddCandidateResidues = (candidateResidues: RESIDUE_TYPE[]) => {
     this.setState({

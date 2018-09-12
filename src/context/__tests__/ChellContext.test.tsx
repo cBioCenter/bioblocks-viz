@@ -10,55 +10,6 @@ describe('ChellContext', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  describe('Cell Context', () => {
-    it('Should correctly add cells.', () => {
-      const instance = shallow(<ChellContext />).instance() as ChellContext;
-      const initialState = instance.state;
-      const expectedState = {
-        ...initialState.cellContext,
-        currentCells: [1, 2, 3, 4],
-      };
-      instance.onAddCells([1, 2, 3, 4]);
-      expect(instance.state.cellContext).toEqual(expectedState);
-    });
-
-    it('Should remove old cells when new ones are added.', () => {
-      const instance = shallow(<ChellContext />).instance() as ChellContext;
-      const initialState = instance.state.cellContext;
-      const expectedState = {
-        ...initialState,
-        currentCells: [1, 4],
-      };
-      instance.onAddCells([1, 2, 3, 4]);
-      instance.onAddCells([1, 4]);
-      expect(instance.state.cellContext).toEqual(expectedState);
-    });
-
-    it('Should allow specific cells to be removed', () => {
-      const instance = shallow(<ChellContext />).instance() as ChellContext;
-      const initialState = instance.state.cellContext;
-      const expectedState = {
-        ...initialState,
-        currentCells: [2],
-      };
-      instance.onAddCells([1, 2, 3, 4]);
-      instance.onRemoveCells([1, 3, 4]);
-      expect(instance.state.cellContext).toEqual(expectedState);
-    });
-
-    it('Should allow all cells to be removed', () => {
-      const instance = shallow(<ChellContext />).instance() as ChellContext;
-      const initialState = instance.state.cellContext;
-      const expectedState = {
-        ...initialState,
-        currentCells: [],
-      };
-      instance.onAddCells([1, 2, 3, 4]);
-      instance.onRemoveAllCells();
-      expect(instance.state.cellContext).toEqual(expectedState);
-    });
-  });
-
   describe('Residue Context', () => {
     it('Should add the candidate residue correctly.', () => {
       const instance = shallow(<ChellContext />).instance() as ChellContext;

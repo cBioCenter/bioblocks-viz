@@ -3,16 +3,7 @@
 exports[`ChellContext Should match the default snapshot. 1`] = `
 <SecondaryStructureContextHandler>
   <SpringContextHandler>
-    <ContextProvider
-      value={
-        Object {
-          "addCells": [Function],
-          "currentCells": Array [],
-          "removeAllCells": [Function],
-          "removeCells": [Function],
-        }
-      }
-    >
+    <CellContextHandler>
       <ContextProvider
         value={
           Object {
@@ -32,7 +23,7 @@ exports[`ChellContext Should match the default snapshot. 1`] = `
           }
         }
       />
-    </ContextProvider>
+    </CellContextHandler>
   </SpringContextHandler>
 </SecondaryStructureContextHandler>
 `;

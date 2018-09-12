@@ -1,7 +1,8 @@
+import { shallow } from 'enzyme';
 import * as React from 'react';
 import * as Renderer from 'react-test-renderer';
 
-import CellContext, { initialCellContext } from '../CellContext';
+import CellContext, { CellContextHandler, initialCellContext } from '../CellContext';
 
 describe('CellContext', () => {
   it('Should match the default snapshot.', () => {
@@ -20,5 +21,54 @@ describe('CellContext', () => {
     wrapper.root.props.removeAllCells();
     wrapper.root.props.removeCells();
     expect(wrapper.root.props).toEqual(initialCellContext);
+  });
+
+  describe('Cell Context', () => {
+    it('Should correctly add cells.', () => {
+      const instance = shallow(<CellContextHandler />).instance() as CellContextHandler;
+      const initialState = instance.state;
+      const expectedState = {
+        ...initialState,
+        currentCells: [1, 2, 3, 4],
+      };
+      instance.state.addCells([1, 2, 3, 4]);
+      expect(instance.state).toEqual(expectedState);
+    });
+
+    it('Should remove old cells when new ones are added.', async () => {
+      const instance = shallow(<CellContextHandler />).instance() as CellContextHandler;
+      const initialState = instance.state;
+      const expectedState = {
+        ...initialState,
+        currentCells: [1, 4],
+      };
+      instance.state.addCells([1, 2, 3, 4]);
+      instance.state.addCells([1, 4]);
+      expect(instance.state).toEqual(expectedState);
+    });
+
+    it('Should allow specific cells to be removed', () => {
+      const instance = shallow(<CellContextHandler />).instance() as CellContextHandler;
+      const initialState = instance.state;
+      const expectedState = {
+        ...initialState,
+        currentCells: [2],
+      };
+      instance.state.addCells([1, 2, 3, 4]);
+      instance.state.removeCells([1, 3, 4]);
+      expect(instance.state).toEqual(expectedState);
+    });
+
+    it('Should allow all cells to be removed', () => {
+      const instance = shallow(<CellContextHandler />).instance() as CellContextHandler;
+      const initialState = instance.state;
+      const expectedState = {
+        ...initialState,
+        currentCells: [],
+      };
+      instance.state.addCells([1, 2, 3, 4]);
+      instance.state.removeAllCells();
+      expect(instance.state).toEqual(expectedState);
+    });
   });
 });
