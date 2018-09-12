@@ -37,7 +37,7 @@ class TensorTComponentClass extends React.Component<ITComponentProps, any> {
     const { height, pointColor, width } = this.props;
 
     // Create some data
-    const tf = await import('@tensorflow/tfjs');
+    const tf = await import('@tensorflow/tfjs-core');
     const tsne = await import('@tensorflow/tfjs-tsne');
 
     const tsneData = tf.randomUniform([2000, 10]);
