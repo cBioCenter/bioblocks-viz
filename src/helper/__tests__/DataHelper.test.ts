@@ -3,7 +3,13 @@ import { inspect as stringifyCircularJSON } from 'util';
 import { IContactMapData, SPRING_DATA_TYPE, VIZ_TYPE } from '../../data/chell-data';
 import { ChellPDB } from '../../data/ChellPDB';
 import { CouplingContainer } from '../../data/CouplingContainer';
-import { fetchAppropriateData, getCouplingScoresData, getSecondaryStructureData } from '../DataHelper';
+import {
+  augmentCouplingScoresWithResidueMapping,
+  fetchAppropriateData,
+  getCouplingScoresData,
+  getSecondaryStructureData,
+} from '../DataHelper';
+import { generateResidueMapping } from '../ResidueMapper';
 
 describe('DataHelper', () => {
   beforeEach(() => {
@@ -26,48 +32,57 @@ describe('DataHelper', () => {
     });
 
     const couplingScoresCsv =
-      '56,58,0.846606,2.439798557258364,A,A,0.9999062540489566,2.439798557258364,47.877125070329775,1.0,N,K,\n\
-      45,46,0.653624,1.3037864088875917,A,A,0.9921059888909092,1.3037864088875917,37.58818230508094,1.0,L,G,';
+      '145,81,0.79312,7.5652,A,A,0.9,2.4,47,1.0,E,R,\n\
+      179,66,0.78681,3.5872,A,A,0.9,1.3,37,1.0,T,M,';
 
     const couplingScoresCsvWithNewline = couplingScoresCsv + '\n';
 
     const couplingScoresCsvWithHeaders =
-      'i,A_i,j,A_j,fn,cn,segment_i,segment_j,probability,dist_intra,dist_multimer,dist,precision,\n\
-      56,N,58,K,0,0.846606,A,A,0.9999062540489566,2.439798557258364,47.877125070329775,2.439798557258364,1.0,\n\
-      45,L,46,G,0,0.653624,A,A,0.9921059888909092,1.3037864088875917,37.58818230508094,1.3037864088875917,1.0,';
+      'i,j,cn,dist,A_i,A_j,segment_i,segment_j,probability,dist_intra,dist_multimer,dist,precision,\n' +
+      '145,81,0.79312,7.5652,E,R,0,0,0,0,1.0,14,18\n\
+      179,66,0.78681,3.5872,T,M,0,0,0,1.0,24,51';
+
+    const residueMappingCsv =
+      'up_index	up_residue	ss_pred	ss_conf	msa_index	msa_cons%	msa_cons	in_const	pdb_atom	pdb_chain	pdb_index	pdb_residue	pdb_x_pos	pdb_y_pos	pdb_z_pos\n\
+      66	M	H	1	66	51	*	*	340	A	68	M	11.714	0.502	32.231\n\
+      81	R	H	2	81	18	*	*	448	A	83	R	-4.075	-8.650	45.662\n\
+      145	E	H	8	145	14	*	*	936	A	147	E	7.560	-10.561	44.062\n\
+      179	T	C	8	179	24	*	*	1219	A	181	T	12.019	-5.034	29.684';
 
     const firstScore = {
-      i: 56,
-      // tslint:disable-next-line:object-literal-sort-keys
-      A_i: 'N',
-      j: 58,
-      A_j: 'K',
-      // fn: 0,
-      cn: 0.846606,
-      // segment_i: 'A',
-      // segment_j: 'A',
-      // probability: 0.9999062540489566,
-      // dist_intra: 2.439798557258364,
-      // dist_multimer: 47.877125070329775,
-      dist: 2.439798557258364,
-      // precision: 1.0,
+      A_i: 'E',
+      A_j: 'R',
+      cn: 0.79312,
+      dist: 7.5652,
+      i: 145,
+      j: 81,
+    };
+
+    const firstScorePDB = {
+      A_i: 'E',
+      A_j: 'R',
+      cn: 0.79312,
+      dist: 7.5652,
+      i: 147,
+      j: 83,
     };
 
     const secondScore = {
-      i: 45,
-      // tslint:disable-next-line:object-literal-sort-keys
-      A_i: 'L',
-      j: 46,
-      A_j: 'G',
-      // fn: 0,
-      cn: 0.653624,
-      // segment_i: 'A',
-      // segment_j: 'A',
-      // probability: 0.9921059888909092,
-      // dist_intra: 1.3037864088875917,
-      // dist_multimer: 37.58818230508094,
-      dist: 1.3037864088875917,
-      // precision: 1.0,
+      A_i: 'T',
+      A_j: 'M',
+      cn: 0.78681,
+      dist: 3.5872,
+      i: 179,
+      j: 66,
+    };
+
+    const secondScorePDB = {
+      A_i: 'T',
+      A_j: 'M',
+      cn: 0.78681,
+      dist: 3.5872,
+      i: 181,
+      j: 68,
     };
 
     it('Should parse contact monomer data correctly.', () => {
@@ -88,6 +103,21 @@ describe('DataHelper', () => {
       expect(data.allContacts).toEqual(expected.allContacts);
     });
 
+    it('Should allow the residue mapping and coupling score csv to be combined to generate the CouplingContainer.', () => {
+      const residueMapping = generateResidueMapping(residueMappingCsv);
+      const data = getCouplingScoresData(couplingScoresCsvWithHeaders, residueMapping);
+      const expected = new CouplingContainer([firstScorePDB, secondScorePDB]);
+      expect(data.allContacts).toEqual(expected.allContacts);
+    });
+
+    it('Should allow a previously created coupling score csv to be augmented with a residue mapping csv.', () => {
+      const data = getCouplingScoresData(couplingScoresCsvWithHeaders);
+      const residueMapping = generateResidueMapping(residueMappingCsv);
+      const result = augmentCouplingScoresWithResidueMapping(data, residueMapping);
+      const expected = new CouplingContainer([firstScorePDB, secondScorePDB]);
+      expect(result.allContacts).toEqual(expected.allContacts);
+    });
+
     const secondaryStructureCsv = ',id,sec_struct_3state\n\
       0,30,C\n\
       1,31,C';
@@ -100,7 +130,7 @@ describe('DataHelper', () => {
       expect(data).toEqual(expectedSecondaryData);
     });
 
-    it('Should parse secondary structure data correctly when csv file has newline.', () => {
+    it('Should parse secondary structure data correctly when the csv file has newline.', () => {
       const data = getSecondaryStructureData(secondaryStructureCsvWithNewline);
       expect(data).toEqual(expectedSecondaryData);
     });
