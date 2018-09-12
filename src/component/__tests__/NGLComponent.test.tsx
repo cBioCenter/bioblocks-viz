@@ -1,5 +1,4 @@
 import { mount, ReactWrapper } from 'enzyme';
-import toJson from 'enzyme-to-json';
 import * as NGL from 'ngl';
 import * as React from 'react';
 
@@ -20,12 +19,12 @@ describe('NGLComponent', () => {
 
   it('Should match existing snapshot when given sample data', () => {
     const wrapper = mount(<NGLComponent data={sampleData} />);
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
   it('Should match existing snapshot when configuration is disabled', () => {
     const wrapper = mount(<NGLComponent data={sampleData} showConfiguration={false} />);
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
   it('Should handle prop updates.', () => {

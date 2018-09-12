@@ -1,5 +1,4 @@
 import { CommonWrapper, mount, ReactWrapper, shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
 import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 import * as Renderer from 'react-test-renderer';
@@ -142,11 +141,11 @@ describe('ContactMap', () => {
 
   describe('Snapshots', () => {
     it('Should match existing snapshot when given no data.', () => {
-      expect(toJson(shallow(<ContactMap />))).toMatchSnapshot();
+      expect(shallow(<ContactMap />)).toMatchSnapshot();
     });
 
     it('Should match existing snapshot when given empty data.', () => {
-      expect(toJson(shallow(<ContactMap data={emptyData} />))).toMatchSnapshot();
+      expect(shallow(<ContactMap data={emptyData} />)).toMatchSnapshot();
     });
 
     it('Should match existing snapshot when given sample data and sliders are _not_ enabled.', () => {
@@ -171,7 +170,7 @@ describe('ContactMap', () => {
         lockedResiduePairs: expectedSelectedPoints,
       });
       await wrapper.update();
-      expect(toJson(wrapper)).toMatchSnapshot();
+      expect(wrapper).toMatchSnapshot();
     });
   });
 
@@ -415,7 +414,7 @@ describe('ContactMap', () => {
         },
       ];
       const wrapper = getShallowContactMap({ configurations });
-      expect(toJson(wrapper)).toMatchSnapshot();
+      expect(wrapper).toMatchSnapshot();
     });
 
     it('Should invoke appropriate configuration callback.', () => {

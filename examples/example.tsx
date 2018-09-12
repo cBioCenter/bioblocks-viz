@@ -4,7 +4,7 @@ import { Button, Grid, GridColumn, GridRow, Header, Label, Segment } from 'seman
 
 import { NGLComponent } from '../src/component/NGLComponent';
 import { PredictedContactMap } from '../src/component/PredictedContactMap';
-import { ChellContext } from '../src/context/ChellContext';
+import { CouplingContext } from '../src/context/CouplingContext';
 import { CONTACT_MAP_DATA_TYPE, NGL_DATA_TYPE, VIZ_TYPE } from '../src/data/chell-data';
 import { ChellPDB } from '../src/data/ChellPDB';
 import { CouplingContainer } from '../src/data/CouplingContainer';
@@ -41,7 +41,7 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
           Chell - ContactMap.IO
         </Header>
         <Segment attached={true} raised={true}>
-          <ChellContext>
+          <CouplingContext>
             <Grid>
               <GridRow columns={2} centered={true}>
                 <GridColumn>
@@ -58,7 +58,7 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
                 <GridColumn>{this.renderMultiFileUploadForm()}</GridColumn>
               </GridRow>
             </Grid>
-          </ChellContext>
+          </CouplingContext>
         </Segment>
         {this.renderErrorMessage()}
       </div>
