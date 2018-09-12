@@ -32,6 +32,18 @@ class MockStage {
     canvasPosition: {
       distanceTo: jest.fn(pos => pos),
     },
+    down: {
+      distanceTo: jest.fn(pos => pos),
+    },
+    position: {
+      distanceTo: jest.fn(pos => pos),
+    },
+    prevClickCP: {
+      distanceTo: jest.fn(pos => pos),
+    },
+    prevPosition: {
+      distanceTo: jest.fn(pos => pos),
+    },
   };
 
   public signals = {

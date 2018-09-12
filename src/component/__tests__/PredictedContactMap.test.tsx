@@ -1,6 +1,4 @@
 import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-
 import * as React from 'react';
 
 import { CONTACT_DISTANCE_PROXIMITY, ICouplingScore, SECONDARY_STRUCTURE_CODES } from '../../data/chell-data';
@@ -64,11 +62,11 @@ describe('PredictedContactMap', () => {
 
   describe('Snapshots', () => {
     it('Should match existing snapshot when given no data.', () => {
-      expect(toJson(shallow(<PredictedContactMap />))).toMatchSnapshot();
+      expect(shallow(<PredictedContactMap />)).toMatchSnapshot();
     });
 
     it('Should match existing snapshot when given empty data.', () => {
-      expect(toJson(shallow(<PredictedContactMap data={emptyData} />))).toMatchSnapshot();
+      expect(shallow(<PredictedContactMap data={emptyData} />)).toMatchSnapshot();
     });
 
     it('Should match snapshot when locked residues are added.', async () => {
@@ -81,7 +79,7 @@ describe('PredictedContactMap', () => {
         lockedResiduePairs: expectedSelectedPoints,
       });
       await wrapper.update();
-      expect(toJson(wrapper)).toMatchSnapshot();
+      expect(wrapper).toMatchSnapshot();
     });
   });
 

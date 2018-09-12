@@ -2,6 +2,7 @@ import { cloneDeep } from 'lodash';
 import * as NGL from 'ngl';
 import * as React from 'react';
 import { Button, GridRow } from 'semantic-ui-react';
+import { Vector2 } from 'three';
 
 import ResidueContext, { initialResidueContext, IResidueContext, ResidueSelection } from '../context/ResidueContext';
 import {
@@ -185,6 +186,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
 
     stage.defaultFileRepresentation(structureComponent);
     stage.signals.clicked.add(this.onClick);
+
     stage.viewer.requestRender();
 
     this.setState({
@@ -207,10 +209,10 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     }
   }
 
-  protected onClick = (pickingProxy: NGL.PickingProxy, foo: any, ...args: any[]) => {
+  protected onClick = (pickingProxy: NGL.PickingProxy) => {
     const { residueContext } = this.props;
     const { structureComponent } = this.state;
-    if (structureComponent) {
+    if (this.canvas && structureComponent) {
       if (pickingProxy) {
         const isDistancePicker = pickingProxy.picker && pickingProxy.picker.type === 'distance';
 
@@ -228,19 +230,38 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
           }
         }
       } else if (residueContext.candidateResidues.length >= 1 && residueContext.hoveredResidues.length >= 1) {
-        const { canvasPosition } = structureComponent.stage.mouseObserver;
-        residueContext.hoveredResidues.forEach(residue => {
-          const atomProxy = structureComponent.structure.getAtomProxy(
-            structureComponent.structure.getResidueProxy(residue).getAtomIndexByName('CA|C'),
+        residueContext.hoveredResidues.forEach(residueIndex => {
+          const getMinDist = (residueStore: NGL.ResidueStore, target: Vector2) => {
+            let minDist = Number.MAX_SAFE_INTEGER;
+            const atomOffset = residueStore.atomOffset[residueIndex];
+            const atomCount = residueStore.atomCount[residueIndex];
+            for (let i = 0; i < atomCount; ++i) {
+              const atomProxy = structureComponent.structure.getAtomProxy(atomOffset + i);
+              const atomPosition = structureComponent.stage.viewerControls.getPositionOnCanvas(
+                atomProxy.positionToVector3(),
+              );
+              minDist = Math.min(minDist, target.distanceTo(atomPosition));
+            }
+            return minDist;
+          };
+
+          // ! IMPORTANT !
+          // This is a rather brute force approach to see if the mouse is close to a residue.
+          // The main problem is __reliably__ getting the (x,y) of where the user clicked and the "residue" they were closest to.
+          const { down, canvasPosition, position, prevClickCP, prevPosition } = structureComponent.stage.mouseObserver;
+          const minDistances = [down, canvasPosition, prevClickCP, prevPosition, position].map(pos =>
+            getMinDist(structureComponent.structure.residueStore, pos),
           );
-          const atomPosition = structureComponent.stage.viewerControls.getPositionOnCanvas(
-            atomProxy.positionToVector3(),
-          );
-          if (canvasPosition.distanceTo(atomPosition) > 50) {
-            residueContext.removeNonLockedResidues();
-          } else {
-            residueContext.addLockedResiduePair([...residueContext.candidateResidues, residue]);
+
+          // Shorthand to make it clearer that this method is just checking if any distance is within 100.
+          const isWithinSnappingDistance = (distances: number[], limit = 100) =>
+            distances.filter(dist => dist < limit).length >= 1;
+
+          if (isWithinSnappingDistance(minDistances)) {
+            residueContext.addLockedResiduePair([...residueContext.candidateResidues, residueIndex]);
             residueContext.removeCandidateResidues();
+          } else {
+            residueContext.removeNonLockedResidues();
           }
         });
       } else {

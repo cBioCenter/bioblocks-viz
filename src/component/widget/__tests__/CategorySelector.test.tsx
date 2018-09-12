@@ -1,6 +1,4 @@
 import { mount, shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-
 import * as React from 'react';
 
 import { Dropdown, DropdownItem } from 'semantic-ui-react';
@@ -17,7 +15,7 @@ describe('CategorySelector', () => {
 
   it('Should match existing snapshot when given simple data.', () => {
     const selectorWrapper = shallow(<CategorySelector categories={categories} />);
-    expect(toJson(selectorWrapper)).toMatchSnapshot();
+    expect(selectorWrapper).toMatchSnapshot();
   });
 
   it('Should invoke callback if provided when category is selected', () => {

@@ -1,5 +1,9 @@
-const jestGlobal = global as any;
+import { configure } from 'enzyme';
+import * as Adapter from 'enzyme-adapter-react-16';
 
+configure({ adapter: new Adapter() });
+
+const jestGlobal = global as any;
 // tslint:disable-next-line:no-var-requires
 jestGlobal.fetch = require('jest-fetch-mock');
 

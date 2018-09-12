@@ -203,9 +203,9 @@ export const getCouplingScoresData = (line: string, residueMapping: IResidueMapp
     .filter(row => row.split(',').length >= 12)
     .map(row => {
       const items = row.split(',');
-      const uniProtIndexI = parseInt(items[0], 10) - 1;
-      const uniProtIndexJ = parseInt(items[1], 10) - 1;
       if (residueMapping.length >= 1) {
+        const uniProtIndexI = residueMapping.findIndex(mapping => mapping.uniProtResno === parseInt(items[0], 10));
+        const uniProtIndexJ = residueMapping.findIndex(mapping => mapping.uniProtResno === parseInt(items[1], 10));
         couplingScores.addCouplingScore({
           A_i: residueMapping[uniProtIndexI].pdbResname,
           A_j: residueMapping[uniProtIndexJ].pdbResname,
@@ -226,6 +226,27 @@ export const getCouplingScoresData = (line: string, residueMapping: IResidueMapp
       }
     });
   return couplingScores;
+};
+
+export const augmentCouplingScoresWithResidueMapping = (
+  couplingScores: CouplingContainer,
+  residueMapping: IResidueMapping[] = [],
+): CouplingContainer => {
+  const result = new CouplingContainer();
+  for (const score of couplingScores) {
+    const mappedIndexI = residueMapping.findIndex(mapping => mapping.uniProtResno === score.i);
+    const mappedIndexJ = residueMapping.findIndex(mapping => mapping.uniProtResno === score.j);
+
+    result.addCouplingScore({
+      A_i: residueMapping[mappedIndexI].pdbResname,
+      A_j: residueMapping[mappedIndexJ].pdbResname,
+      cn: score.cn,
+      dist: score.dist,
+      i: residueMapping[mappedIndexI].pdbResno,
+      j: residueMapping[mappedIndexJ].pdbResno,
+    });
+  }
+  return result;
 };
 
 /**

@@ -61,6 +61,11 @@ export class ChellPDB {
     });
     return result;
   }
+  public get nglStructure() {
+    return this.nglData;
+  }
+
+  public static readonly NGL_C_ALPHA_INDEX = 'CA|C';
   /**
    * Creates an instance of ChellPDB with PDB data.
    *
@@ -79,11 +84,6 @@ export class ChellPDB {
   }
 
   protected nglData: NGL.Structure = new NGL.Structure();
-  public get nglStructure() {
-    return this.nglData;
-  }
-
-  protected readonly NGL_C_ALPHA_INDEX = 'CA|C';
 
   private constructor() {}
 
@@ -149,7 +149,7 @@ export class ChellPDB {
    * @param alphaId Index that determines if an atom is a c-alpha.
    * @returns Index of the c-alpha atom with respect to the array of all of the atoms.
    */
-  protected getCAlphaAtomIndexFromResidue(residueIndex: number, alphaId: number): number {
+  public getCAlphaAtomIndexFromResidue(residueIndex: number, alphaId: number): number {
     const { residueStore } = this.nglData;
     const atomOffset = residueStore.atomOffset[residueIndex];
     const atomCount = residueStore.atomCount[residueIndex];

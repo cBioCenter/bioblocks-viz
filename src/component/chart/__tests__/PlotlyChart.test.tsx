@@ -1,6 +1,4 @@
 import { CommonWrapper, mount } from 'enzyme';
-import toJson from 'enzyme-to-json';
-
 import * as React from 'react';
 
 import { IMockPlotlyCanvas } from '__mocks__/plotly';
@@ -51,12 +49,12 @@ describe('PlotlyChart', () => {
 
   it('Should match existing snapshot when given empty data.', () => {
     const wrapper = mount(<PlotlyChart data={[]} />);
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
   it('Should match existing snapshot when given sample data.', () => {
     const wrapper = mount(<PlotlyChart data={sampleData} />);
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
   it('Should handle callbacks.', async () => {
@@ -103,7 +101,7 @@ describe('PlotlyChart', () => {
       onSelectedCallback: spies.onSelectedSpy,
     });
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
   it('Should call the appropriate callback when the window is resized.', async () => {

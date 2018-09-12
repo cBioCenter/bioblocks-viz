@@ -1,6 +1,4 @@
 import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-
 import * as React from 'react';
 
 import { SECONDARY_STRUCTURE, SECONDARY_STRUCTURE_CODES, SECONDARY_STRUCTURE_KEYS } from '../../../data/chell-data';
@@ -25,7 +23,7 @@ describe('ContactMapChart', () => {
 
   it('Should match existing snapshot when given simple data.', () => {
     const wrapper = shallow(<ContactMapChart contactData={emptyData} />);
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
   it('Should match existing snapshot when given data with extra axes.', () => {
@@ -35,7 +33,7 @@ describe('ContactMapChart', () => {
         secondaryStructures={[[...genSeqEntry('H', 0, 3), ...genSeqEntry('E', 3, 1)]]}
       />,
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
   it('Should match existing snapshot when given data with multiple secondary structures.', () => {
@@ -48,6 +46,6 @@ describe('ContactMapChart', () => {
         ]}
       />,
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 });

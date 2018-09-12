@@ -1,11 +1,11 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import ChellContext from '../ChellContext';
+import CouplingContext from '../CouplingContext';
 
-describe('ChellContext', () => {
+describe('CouplingContext', () => {
   it('Should match the default snapshot.', () => {
-    const wrapper = shallow(<ChellContext />);
+    const wrapper = shallow(<CouplingContext />);
     expect(wrapper).toMatchSnapshot();
   });
 });

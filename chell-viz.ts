@@ -21,8 +21,10 @@ export { default as VizPanelContainer } from './src/container/VizPanelContainer'
 
 export * from './src/context/CellContext';
 export * from './src/context/ChellContext';
+export * from './src/context/CouplingContext';
 export * from './src/context/ResidueContext';
 export * from './src/context/SecondaryStructureContext';
+export * from './src/context/SpringContext';
 
 export * from './src/data/chell-data';
 export * from './src/data/Chell1DSection';

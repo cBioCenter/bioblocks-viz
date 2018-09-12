@@ -1,6 +1,4 @@
 import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-
 import * as React from 'react';
 
 import { VIZ_TYPE } from '../../data/chell-data';
@@ -19,22 +17,20 @@ describe('VizPanelContainer', () => {
     const wrapper = await shallow(
       <VizPanelContainer dataDirs={[]} initialVisualizations={[]} numPanels={1} supportedVisualizations={[]} />,
     ).update();
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
   it('Should match existing snapshot when given multiple visualizations to render.', () => {
     const visualizations = [VIZ_TYPE.CONTACT_MAP, VIZ_TYPE.NGL];
 
     expect(
-      toJson(
-        shallow(
-          <VizPanelContainer
-            dataDirs={['first', 'second']}
-            initialVisualizations={visualizations}
-            numPanels={2}
-            supportedVisualizations={visualizations}
-          />,
-        ),
+      shallow(
+        <VizPanelContainer
+          dataDirs={['first', 'second']}
+          initialVisualizations={visualizations}
+          numPanels={2}
+          supportedVisualizations={visualizations}
+        />,
       ),
     ).toMatchSnapshot();
   });

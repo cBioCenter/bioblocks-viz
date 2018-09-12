@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CouplingContext Should match the default snapshot. 1`] = `
+<SecondaryStructureContextHandler>
+  <ResidueContextHandler />
+</SecondaryStructureContextHandler>
+`;

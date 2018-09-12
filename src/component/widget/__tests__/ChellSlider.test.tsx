@@ -1,5 +1,4 @@
 import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
 
 import * as React from 'react';
 
@@ -12,7 +11,7 @@ describe('ChellSlider', () => {
   );
   it('Should match existing snapshot when given simple data.', () => {
     const wrapper = shallow(sampleChellSlider());
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
   it('Should handle onChange callbacks.', () => {

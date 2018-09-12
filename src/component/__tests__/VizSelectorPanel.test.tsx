@@ -1,23 +1,21 @@
 import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-
 import * as React from 'react';
-import { VIZ_TYPE } from '../../data/chell-data';
-
 import { Dropdown } from 'semantic-ui-react';
+
+import { VIZ_TYPE } from '../../data/chell-data';
 import VizSelectorPanel from '../VizSelectorPanel';
 
 describe('VizSelectorPanel', () => {
   const emptyData = {};
 
   it('Should match existing snapshot when given no initial visualization.', () => {
-    expect(toJson(shallow(<VizSelectorPanel data={emptyData} />))).toMatchSnapshot();
+    expect(shallow(<VizSelectorPanel data={emptyData} />)).toMatchSnapshot();
   });
 
   Object.keys(VIZ_TYPE).forEach(vizKey => {
     const viz = VIZ_TYPE[vizKey as keyof typeof VIZ_TYPE];
     it(`Should match existing snapshot when given initial viz of ${viz}.`, () => {
-      expect(toJson(shallow(<VizSelectorPanel data={emptyData} initialViz={viz} />))).toMatchSnapshot();
+      expect(shallow(<VizSelectorPanel data={emptyData} initialViz={viz} />)).toMatchSnapshot();
     });
   });
 
