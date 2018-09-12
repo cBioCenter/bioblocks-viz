@@ -5926,8 +5926,8 @@ please-upgrade-node@^3.0.2:
     semver-compare "^1.0.0"
 
 plotly.js-gl2d-dist@^1.40.1:
-  version "1.40.1"
-  resolved "https://registry.yarnpkg.com/plotly.js-gl2d-dist/-/plotly.js-gl2d-dist-1.40.1.tgz#af5b0ab2bb3121edaa8f6772fbd70efc3dda82f5"
+  version "1.41.0"
+  resolved "https://registry.yarnpkg.com/plotly.js-gl2d-dist/-/plotly.js-gl2d-dist-1.41.0.tgz#4511a10ef62b86482202769f0a0d31faa8ca1000"
 
 pn@^1.1.0:
   version "1.1.0"
