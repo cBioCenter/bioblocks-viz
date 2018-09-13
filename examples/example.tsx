@@ -8,6 +8,7 @@ import { CouplingContext } from '../src/context/CouplingContext';
 import { CONTACT_MAP_DATA_TYPE, NGL_DATA_TYPE, VIZ_TYPE } from '../src/data/chell-data';
 import { ChellPDB } from '../src/data/ChellPDB';
 import { CouplingContainer } from '../src/data/CouplingContainer';
+import { IProtein } from '../src/data/Protein';
 import { getCouplingScoresData } from '../src/helper/DataHelper';
 import { readFileAsText } from '../src/helper/FetchHelper';
 import { generateResidueMapping, IResidueMapping } from '../src/helper/ResidueMapper';
@@ -34,6 +35,12 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
     };
   }
 
+  public async componentDidMount() {
+    const result = await fetch('https://www.ebi.ac.uk/proteins/api/proteins/Q13485');
+    const protein = (await result.json()) as IProtein;
+    console.log(protein);
+    console.log();
+  }
   public render() {
     return (
       <div id="ChellVizApp" style={{ backgroundColor: '#dddddd', height: '1000px' }}>
