@@ -1,4 +1,4 @@
-import * as plotly from 'plotly.js-gl2d-dist';
+import * as plotly from 'plotly.js-dist';
 import * as React from 'react';
 
 import { RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../../data/chell-data';

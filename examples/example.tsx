@@ -2,13 +2,13 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Button, Grid, GridColumn, GridRow, Header, Label, Segment } from 'semantic-ui-react';
 
+import { FeatureViewer } from '../src/component/FeatureViewer';
 import { NGLComponent } from '../src/component/NGLComponent';
 import { PredictedContactMap } from '../src/component/PredictedContactMap';
 import { CouplingContext } from '../src/context/CouplingContext';
 import { CONTACT_MAP_DATA_TYPE, NGL_DATA_TYPE, VIZ_TYPE } from '../src/data/chell-data';
 import { ChellPDB } from '../src/data/ChellPDB';
 import { CouplingContainer } from '../src/data/CouplingContainer';
-import { IProtein } from '../src/data/Protein';
 import { getCouplingScoresData } from '../src/helper/DataHelper';
 import { readFileAsText } from '../src/helper/FetchHelper';
 import { generateResidueMapping, IResidueMapping } from '../src/helper/ResidueMapper';
@@ -35,12 +35,6 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
     };
   }
 
-  public async componentDidMount() {
-    const result = await fetch('https://www.ebi.ac.uk/proteins/api/proteins/Q13485');
-    const protein = (await result.json()) as IProtein;
-    console.log(protein);
-    console.log();
-  }
   public render() {
     return (
       <div id="ChellVizApp" style={{ backgroundColor: '#dddddd', height: '1000px' }}>
@@ -68,6 +62,18 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
           </CouplingContext>
         </Segment>
         {this.renderErrorMessage()}
+        <Header as={'h2'} attached={'top'}>
+          Feature Viewer
+        </Header>
+        <Segment attached={true} raised={true}>
+          <Grid>
+            <GridRow centered={true}>
+              <GridColumn>
+                <FeatureViewer proteinId={'Q13485'} />
+              </GridColumn>
+            </GridRow>
+          </Grid>
+        </Segment>
       </div>
     );
   }
