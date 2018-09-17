@@ -2,9 +2,9 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Button, Grid, GridColumn, GridRow, Header, Label, Segment } from 'semantic-ui-react';
 
-import { FeatureViewer } from '../src/component/FeatureViewer';
 import { NGLComponent } from '../src/component/NGLComponent';
 import { PredictedContactMap } from '../src/component/PredictedContactMap';
+import { ProteinFeatureViewer } from '../src/container/ProteinFeatureViewer';
 import { CouplingContext } from '../src/context/CouplingContext';
 import { CONTACT_MAP_DATA_TYPE, NGL_DATA_TYPE, VIZ_TYPE } from '../src/data/chell-data';
 import { ChellPDB } from '../src/data/ChellPDB';
@@ -38,6 +38,15 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
   public render() {
     return (
       <div id="ChellVizApp" style={{ backgroundColor: '#dddddd', height: '1000px' }}>
+        {this.renderFeatureViewer()}
+        {this.renderCouplingComponents()}
+      </div>
+    );
+  }
+
+  protected renderCouplingComponents = () => {
+    return (
+      <div>
         <Header as={'h1'} attached={'top'}>
           Chell - ContactMap.IO
         </Header>
@@ -62,6 +71,13 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
           </CouplingContext>
         </Segment>
         {this.renderErrorMessage()}
+      </div>
+    );
+  };
+
+  protected renderFeatureViewer = () => {
+    return (
+      <div>
         <Header as={'h2'} attached={'top'}>
           Feature Viewer
         </Header>
@@ -69,14 +85,14 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
           <Grid>
             <GridRow centered={true}>
               <GridColumn>
-                <FeatureViewer proteinId={'Q13485'} />
+                <ProteinFeatureViewer />
               </GridColumn>
             </GridRow>
           </Grid>
         </Segment>
       </div>
     );
-  }
+  };
 
   protected renderErrorMessage = () =>
     this.state.errorMsg.length === 0 ? null : (

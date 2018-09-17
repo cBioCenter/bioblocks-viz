@@ -87,7 +87,9 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iplotlychartprops.html#onhovercallback" class="tsd-kind-icon">on<wbr>Hover<wbr>Callback</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iplotlychartprops.html#onrelayoutcallback" class="tsd-kind-icon">on<wbr>Relayout<wbr>Callback</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iplotlychartprops.html#onselectedcallback" class="tsd-kind-icon">on<wbr>Selected<wbr>Callback</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iplotlychartprops.html#onselectingcallback" class="tsd-kind-icon">on<wbr>Selecting<wbr>Callback</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iplotlychartprops.html#onunhovercallback" class="tsd-kind-icon">on<wbr>UnHover<wbr>Callback</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iplotlychartprops.html#showloader" class="tsd-kind-icon">show<wbr>Loader</a></li>
 							</ul>
 						</section>
 					</div>
@@ -97,7 +99,7 @@
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="config" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> config</h3>
+					<h3>config</h3>
 					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Plotly.Config</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
@@ -117,7 +119,7 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="layout" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> layout</h3>
+					<h3>layout</h3>
 					<div class="tsd-signature tsd-kind-icon">layout<span class="tsd-signature-symbol">:</span> <a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="iplotlylayout.html" class="tsd-signature-type">IPlotlyLayout</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
@@ -161,7 +163,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Relayout<wbr>Callback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/chart/PlotlyChart.tsx:52</li>
+							<li>Defined in src/component/chart/PlotlyChart.tsx:53</li>
 						</ul>
 					</aside>
 				</section>
@@ -176,12 +178,32 @@
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="onselectingcallback" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Selecting<wbr>Callback</h3>
+					<div class="tsd-signature tsd-kind-icon">on<wbr>Selecting<wbr>Callback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/component/chart/PlotlyChart.tsx:51</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="onunhovercallback" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>UnHover<wbr>Callback</h3>
 					<div class="tsd-signature tsd-kind-icon">on<wbr>UnHover<wbr>Callback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/chart/PlotlyChart.tsx:51</li>
+							<li>Defined in src/component/chart/PlotlyChart.tsx:52</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="showloader" class="tsd-anchor"></a>
+					<h3>show<wbr>Loader</h3>
+					<div class="tsd-signature tsd-kind-icon">show<wbr>Loader<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/component/chart/PlotlyChart.tsx:54</li>
 						</ul>
 					</aside>
 				</section>
@@ -227,7 +249,13 @@
 								<a href="iplotlychartprops.html#onselectedcallback" class="tsd-kind-icon">on<wbr>Selected<wbr>Callback</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="iplotlychartprops.html#onselectingcallback" class="tsd-kind-icon">on<wbr>Selecting<wbr>Callback</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="iplotlychartprops.html#onunhovercallback" class="tsd-kind-icon">on<wbr>UnHover<wbr>Callback</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="iplotlychartprops.html#showloader" class="tsd-kind-icon">show<wbr>Loader</a>
 							</li>
 						</ul>
 					</li>

@@ -41,15 +41,17 @@ export interface IPlotlyLayout extends Plotly.Layout {
 }
 
 export interface IPlotlyChartProps {
-  config?: Partial<Plotly.Config>;
+  config: Partial<Plotly.Config>;
   data: Array<Partial<IPlotlyData>>;
-  layout?: Partial<IPlotlyLayout>;
+  layout: Partial<IPlotlyLayout>;
   onClickCallback?: ((event: ChellChartEvent) => void);
   onDoubleClickCallback?: ((event: ChellChartEvent) => void);
   onHoverCallback?: ((event: ChellChartEvent) => void);
   onSelectedCallback?: ((event: ChellChartEvent) => void);
+  onSelectingCallback?: ((event: ChellChartEvent) => void);
   onUnHoverCallback?: ((event: ChellChartEvent) => void);
   onRelayoutCallback?: ((event: ChellChartEvent) => void);
+  showLoader: boolean;
 }
 
 export const defaultPlotlyConfig: Partial<Plotly.Config> = {
@@ -92,6 +94,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     config: {},
     data: [],
     layout: {},
+    showLoader: true,
   };
 
   public plotlyCanvas: plotly.PlotlyHTMLElement | null = null;
@@ -109,6 +112,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
       this.plotlyCanvas.on('plotly_hover', this.onHover);
       this.plotlyCanvas.on('plotly_relayout', this.onRelayout);
       this.plotlyCanvas.on('plotly_selected', this.onSelect);
+      this.plotlyCanvas.on('plotly_selecting', this.onSelecting);
       this.plotlyCanvas.on('plotly_unhover', this.onUnHover);
     }
     window.removeEventListener('resize', this.resize);
@@ -185,11 +189,14 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   }
 
   public render() {
+    const { showLoader } = this.props;
     return (
       <div>
-        <Dimmer active={!this.isDataLoaded()}>
-          <Loader />
-        </Dimmer>
+        {showLoader && (
+          <Dimmer active={!this.isDataLoaded()}>
+            <Loader />
+          </Dimmer>
+        )}
         <div
           className={'plotly-chart'}
           ref={node => (this.canvasRef = node ? node : null)}
@@ -341,16 +348,33 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     }
   };
 
-  protected onSelect = (event: plotly.PlotSelectionEvent) => {
+  protected onSelect = async (event: plotly.PlotSelectionEvent) => {
     const { onSelectedCallback } = this.props;
-    if (onSelectedCallback) {
-      const allPoints = event.points.reduce((prev, cur) => {
-        prev.push(...[cur.x, cur.y]);
-        return prev;
-      }, new Array<number>());
-      const { x, y } = event.points[0];
-      const { chartPiece } = this.deriveChartPiece(x, y);
-      onSelectedCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.CLICK, chartPiece, allPoints));
+    if (event && onSelectedCallback) {
+      let allPoints = new Array<number>();
+      if (event.points.length >= 1) {
+        allPoints = event.points.reduce((prev, cur) => {
+          prev.push(...[cur.x, cur.y]);
+          return prev;
+        }, allPoints);
+      } else if (event.range) {
+        // If it is a range, it is a box and so the coordinates can be directly accessed like so.
+        allPoints.push(event.range.x[0], event.range.y[0], event.range.x[1], event.range.y[1]);
+      }
+      const { chartPiece } =
+        allPoints.length > 0
+          ? this.deriveChartPiece(allPoints[0], allPoints[1])
+          : { chartPiece: CHELL_CHART_PIECE.POINT };
+      onSelectedCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.SELECTION, chartPiece, allPoints));
+    }
+    await this.draw();
+  };
+
+  protected onSelecting = async (event: plotly.PlotSelectionEvent) => {
+    const { onSelectingCallback } = this.props;
+    if (onSelectingCallback) {
+      // this.plotlyCanvas = await plotly.restyle(this.plotlyCanvas, 'marker.color' as any, ['grey', 'grey'] as any);
+      onSelectingCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.CLICK));
     }
   };
 

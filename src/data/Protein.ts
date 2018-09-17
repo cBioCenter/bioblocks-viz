@@ -305,6 +305,7 @@ export interface ISequence {
 }
 
 export interface IProtein {
+  [key: string]: any;
   accession: string;
   comments: Array<Partial<IComment>>;
   dbReferences: Array<Partial<IDbReference>>;
