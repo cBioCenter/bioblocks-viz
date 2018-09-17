@@ -82,13 +82,7 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
           Feature Viewer
         </Header>
         <Segment attached={true} raised={true}>
-          <Grid>
-            <GridRow centered={true}>
-              <GridColumn>
-                <ProteinFeatureViewer />
-              </GridColumn>
-            </GridRow>
-          </Grid>
+          <ProteinFeatureViewer />
         </Segment>
       </div>
     );

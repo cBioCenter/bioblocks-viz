@@ -81,8 +81,8 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ifeatureviewerstate.html#data" class="tsd-kind-icon">data</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ifeatureviewerstate.html#domaindata" class="tsd-kind-icon">domain<wbr>Data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ifeatureviewerstate.html#hoveredfeatureindex" class="tsd-kind-icon">hovered<wbr>Feature<wbr>Index</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ifeatureviewerstate.html#layout" class="tsd-kind-icon">layout</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ifeatureviewerstate.html#panels" class="tsd-kind-icon">panels</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ifeatureviewerstate.html#plotlydata" class="tsd-kind-icon">plotly<wbr>Data</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ifeatureviewerstate.html#protein" class="tsd-kind-icon">protein</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ifeatureviewerstate.html#proteinid" class="tsd-kind-icon">protein<wbr>Id</a></li>
@@ -98,10 +98,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="data" class="tsd-anchor"></a>
 					<h3>data</h3>
-					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/container/ProteinFeatureViewer.tsx:9</li>
+							<li>Defined in src/container/ProteinFeatureViewer.tsx:10</li>
 						</ul>
 					</aside>
 				</section>
@@ -111,7 +111,17 @@
 					<div class="tsd-signature tsd-kind-icon">domain<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/tintedchell1dsection.html" class="tsd-signature-type">TintedChell1DSection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/container/ProteinFeatureViewer.tsx:10</li>
+							<li>Defined in src/container/ProteinFeatureViewer.tsx:11</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="hoveredfeatureindex" class="tsd-anchor"></a>
+					<h3>hovered<wbr>Feature<wbr>Index</h3>
+					<div class="tsd-signature tsd-kind-icon">hovered<wbr>Feature<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/component/FeatureViewer.tsx:16</li>
 						</ul>
 					</aside>
 				</section>
@@ -121,27 +131,17 @@
 					<div class="tsd-signature tsd-kind-icon">layout<span class="tsd-signature-symbol">:</span> <a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Plotly.Layout</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/FeatureViewer.tsx:16</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="panels" class="tsd-anchor"></a>
-					<h3>panels</h3>
-					<div class="tsd-signature tsd-kind-icon">panels<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in src/container/ProteinFeatureViewer.tsx:11</li>
+							<li>Defined in src/component/FeatureViewer.tsx:17</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="plotlydata" class="tsd-anchor"></a>
 					<h3>plotly<wbr>Data</h3>
-					<div class="tsd-signature tsd-kind-icon">plotly<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<div class="tsd-signature tsd-kind-icon">plotly<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/FeatureViewer.tsx:17</li>
+							<li>Defined in src/component/FeatureViewer.tsx:18</li>
 						</ul>
 					</aside>
 				</section>
@@ -171,7 +171,7 @@
 					<div class="tsd-signature tsd-kind-icon">selected<wbr>Feature<wbr>Indices<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/FeatureViewer.tsx:18</li>
+							<li>Defined in src/component/FeatureViewer.tsx:19</li>
 						</ul>
 					</aside>
 				</section>
@@ -209,10 +209,10 @@
 								<a href="ifeatureviewerstate.html#domaindata" class="tsd-kind-icon">domain<wbr>Data</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="ifeatureviewerstate.html#layout" class="tsd-kind-icon">layout</a>
+								<a href="ifeatureviewerstate.html#hoveredfeatureindex" class="tsd-kind-icon">hovered<wbr>Feature<wbr>Index</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="ifeatureviewerstate.html#panels" class="tsd-kind-icon">panels</a>
+								<a href="ifeatureviewerstate.html#layout" class="tsd-kind-icon">layout</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="ifeatureviewerstate.html#plotlydata" class="tsd-kind-icon">plotly<wbr>Data</a>

@@ -1,14 +1,14 @@
 import * as React from 'react';
+import { Form, GridColumn, GridRow } from 'semantic-ui-react';
 
-import { Accordion, AccordionContentProps, Form, Grid, GridColumn, GridRow } from 'semantic-ui-react';
+import { IPlotlyData } from '../component/chart/PlotlyChart';
 import { FeatureViewer } from '../component/FeatureViewer';
 import { IProtein } from '../data/Protein';
 import { TintedChell1DSection } from '../data/TintedChell1DSection';
 
 export interface IFeatureViewerState {
-  data: any[];
+  data: Array<Partial<IPlotlyData>>;
   domainData: Array<TintedChell1DSection<string>>;
-  panels: any[];
   protein?: IProtein;
   proteinId: string;
   showGrouped: boolean;
@@ -20,7 +20,6 @@ class ProteinFeatureViewer extends React.Component<any, IFeatureViewerState> {
     this.state = {
       data: [],
       domainData: [],
-      panels: [],
       proteinId: 'Q13485',
       showGrouped: true,
     };
@@ -33,40 +32,24 @@ class ProteinFeatureViewer extends React.Component<any, IFeatureViewerState> {
   public componentDidUpdate(prevProps: any, prevState: IFeatureViewerState) {
     const { protein } = this.state;
     console.log(protein);
-    /*
-    if (protein && protein !== prevState.protein) {
-      this.setState({
-        panels: [
-          {
-            content: {
-              content: this.renderSubPanels('protein', protein),
-            },
-            key: 'protein-panel',
-            title: protein.id,
-          },
-        ],
-      });
-    }*/
   }
 
   public render() {
     const { domainData, protein, proteinId, showGrouped } = this.state;
     return (
       <div className={'protein-feature-viewer'}>
-        <Grid>
-          <GridRow columns={2} centered={true} stretched={false}>
-            <GridColumn>
-              <FeatureViewer data={domainData} title={protein ? protein.id : ''} showGrouped={showGrouped} />
-            </GridColumn>
-            <GridColumn>
-              <Form onSubmit={this.onProteinInputSubmit}>
-                <Form.Input onChange={this.onProteinInputChange} value={proteinId} fluid={false} width={'three'} />
-                <Form.Button>Submit Protein ID</Form.Button>
-                <Form.Checkbox defaultChecked={true} label={'Show grouped?'} onChange={this.onShowGroupedChange} />
-              </Form>
-            </GridColumn>
-          </GridRow>
-        </Grid>
+        <GridRow centered={true} stretched={false}>
+          <GridColumn>
+            <FeatureViewer data={domainData} title={protein ? protein.id : ''} showGrouped={showGrouped} />
+          </GridColumn>
+          <GridColumn>
+            <Form onSubmit={this.onProteinInputSubmit}>
+              <Form.Input onChange={this.onProteinInputChange} value={proteinId} fluid={false} width={'three'} />
+              <Form.Button>Submit Protein ID</Form.Button>
+              <Form.Checkbox defaultChecked={true} label={'Show grouped?'} onChange={this.onShowGroupedChange} />
+            </Form>
+          </GridColumn>
+        </GridRow>
       </div>
     );
   }
@@ -93,7 +76,6 @@ class ProteinFeatureViewer extends React.Component<any, IFeatureViewerState> {
           colors[index % colors.length],
         );
       }),
-      panels: [],
       protein,
     });
   }
@@ -101,25 +83,6 @@ class ProteinFeatureViewer extends React.Component<any, IFeatureViewerState> {
   protected onProteinInputSubmit = async (e: React.FormEvent, data: any) => {
     await this.deriveProteinData();
   };
-
-  protected renderSubPanels(name: string, value: any) {
-    const subPanels: AccordionContentProps[] = Object.keys(value).map((key, index) => {
-      return {
-        content:
-          Array.isArray(value[key]) || typeof value[key] === 'object' ? (
-            {
-              content: this.renderSubPanels(`${name}-${key}`, value[key]),
-            }
-          ) : (
-            <div>{value[key]}</div>
-          ),
-        key: `${name}-${key}`,
-        title: key,
-      };
-    });
-    const result = <Accordion.Accordion panels={subPanels} fluid={'true'} />;
-    return result;
-  }
 
   protected onShowGroupedChange = (e: React.FormEvent, data: any) => {
     this.setState({

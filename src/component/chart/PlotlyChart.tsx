@@ -31,6 +31,8 @@ export interface IPlotlyData extends plotly.ScatterData {
   showlegend: boolean;
   // TODO Open PR to add these missing Plotly types. - https://plot.ly/javascript/reference/#box
 
+  textfont: Partial<plotly.Font>;
+
   type: PLOTLY_CHART_TYPE | 'bar' | 'pointcloud' | 'scatter' | 'scattergl' | 'scatter3d';
 }
 
@@ -41,17 +43,16 @@ export interface IPlotlyLayout extends Plotly.Layout {
 }
 
 export interface IPlotlyChartProps {
-  config: Partial<Plotly.Config>;
+  config?: Partial<Plotly.Config>;
   data: Array<Partial<IPlotlyData>>;
-  layout: Partial<IPlotlyLayout>;
+  layout?: Partial<IPlotlyLayout>;
   onClickCallback?: ((event: ChellChartEvent) => void);
   onDoubleClickCallback?: ((event: ChellChartEvent) => void);
   onHoverCallback?: ((event: ChellChartEvent) => void);
   onSelectedCallback?: ((event: ChellChartEvent) => void);
-  onSelectingCallback?: ((event: ChellChartEvent) => void);
   onUnHoverCallback?: ((event: ChellChartEvent) => void);
   onRelayoutCallback?: ((event: ChellChartEvent) => void);
-  showLoader: boolean;
+  showLoader?: boolean;
 }
 
 export const defaultPlotlyConfig: Partial<Plotly.Config> = {
@@ -112,7 +113,6 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
       this.plotlyCanvas.on('plotly_hover', this.onHover);
       this.plotlyCanvas.on('plotly_relayout', this.onRelayout);
       this.plotlyCanvas.on('plotly_selected', this.onSelect);
-      this.plotlyCanvas.on('plotly_selecting', this.onSelecting);
       this.plotlyCanvas.on('plotly_unhover', this.onUnHover);
     }
     window.removeEventListener('resize', this.resize);
@@ -315,9 +315,17 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   protected onClick = (event: plotly.PlotMouseEvent) => {
     if (!this.isDoubleClickInProgress) {
       const { onClickCallback } = this.props;
-      if (onClickCallback) {
-        const { data, x, y } = event.points[0];
-        const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, data);
+      if (event.points && event.points.length > 0 && onClickCallback) {
+        const wasFillClicked = !event.points[0].data || (!event.points[0].data.x && !event.points[0].data.y);
+        console.log(wasFillClicked);
+        console.log(event.points);
+        const { x, y } = wasFillClicked
+          ? event.points[0]
+          : { x: event.points[0].data.x[0] as number, y: event.points[0].data.y[0] as number };
+
+        const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, event.points[0].data);
+        console.log(chartPiece);
+        console.log(selectedPoints);
         onClickCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.CLICK, chartPiece, selectedPoints));
       }
     }
@@ -333,9 +341,13 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
 
   protected onHover = (event: plotly.PlotMouseEvent) => {
     const { onHoverCallback } = this.props;
-    if (onHoverCallback && event.points) {
-      const { data, x, y } = event.points[0];
-      const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, data);
+    if (event.points && event.points[0] && onHoverCallback) {
+      const wasFillClicked = !event.points[0].data || (!event.points[0].x && !event.points[0].y);
+      const { x, y } = wasFillClicked
+        ? event.points[0]
+        : { x: event.points[0].data.x[0] as number, y: event.points[0].data.y[0] as number };
+
+      const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, event.points[0].data);
       onHoverCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.CLICK, chartPiece, selectedPoints));
     }
   };
@@ -368,14 +380,6 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
       onSelectedCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.SELECTION, chartPiece, allPoints));
     }
     await this.draw();
-  };
-
-  protected onSelecting = async (event: plotly.PlotSelectionEvent) => {
-    const { onSelectingCallback } = this.props;
-    if (onSelectingCallback) {
-      // this.plotlyCanvas = await plotly.restyle(this.plotlyCanvas, 'marker.color' as any, ['grey', 'grey'] as any);
-      onSelectingCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.CLICK));
-    }
   };
 
   protected onUnHover = (event: plotly.PlotMouseEvent) => {

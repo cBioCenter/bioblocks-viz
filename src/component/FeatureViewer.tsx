@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { ChellChartEvent } from '../data/event/ChellChartEvent';
 import { TintedChell1DSection } from '../data/TintedChell1DSection';
-import { PlotlyChart } from './chart/PlotlyChart';
+import { IPlotlyData, PlotlyChart } from './chart/PlotlyChart';
 
 export interface IFeatureViewerProps {
   data: Array<TintedChell1DSection<string>>;
@@ -13,8 +13,9 @@ export interface IFeatureViewerProps {
 }
 
 export interface IFeatureViewerState {
+  hoveredFeatureIndex: number;
   layout: Partial<Plotly.Layout>;
-  plotlyData: any;
+  plotlyData: Array<Partial<IPlotlyData>>;
   selectedFeatureIndices: Set<number>;
 }
 
@@ -25,57 +26,91 @@ class FeatureViewer extends React.Component<IFeatureViewerProps, IFeatureViewerS
     width: 600,
   };
 
-  public static getDerivedStateFromProps(nextProps: IFeatureViewerProps, nextState: IFeatureViewerState) {
+  public static getDerivedStateFromProps(
+    nextProps: IFeatureViewerProps,
+    nextState: IFeatureViewerState,
+  ): Partial<IFeatureViewerState> {
     const { data, height, showGrouped, title, width } = nextProps;
-    const { selectedFeatureIndices } = nextState;
+    const { hoveredFeatureIndex, selectedFeatureIndices } = nextState;
 
-    const plotlyData = data.map((datum, index) => ({
-      fillcolor: datum.color,
-      hoverinfo: 'text',
-      hoveron: 'boxes',
-      line: selectedFeatureIndices.has(index)
-        ? {
-            color: 'yellow',
-            width: 2,
-          }
-        : {
-            width: 0,
-          },
-      mode: 'lines+text',
-      name: datum.label,
-      orientation: 'h',
-      showLegend: true,
-      text: 'Hello hello hello',
-      textposition: 'bottom',
-      type: 'box',
-      x: [datum.start, datum.end],
-      y: showGrouped ? [1, 1] : [index, index],
-    }));
-
+    let minRange = 0;
     let maxRange = 100;
-    plotlyData.forEach(datum => {
-      maxRange = Math.max(maxRange, datum.x[1]);
+
+    const plotlyData = data.map((datum, index) => {
+      minRange = Math.min(minRange, datum.start, datum.end);
+      maxRange = Math.max(maxRange, datum.start, datum.end);
+      const plotlyDatum: Partial<IPlotlyData> = {
+        fill: 'toself',
+        fillcolor: datum.color.toString(),
+        hoverinfo: 'none',
+        hoveron: 'fills',
+        line: selectedFeatureIndices.has(index)
+          ? {
+              color: 'orange',
+              width: 3,
+            }
+          : {
+              width: 0,
+            },
+        mode: 'text+lines',
+        name: `${datum.label}`,
+        text: [datum.label],
+        textfont: { color: ['#FFFFFF'] },
+        type: 'scatter',
+        // Creates a 'box' so we can fill it and hover over it and add a point to the middle for the label.
+        x: [
+          datum.end - (datum.end - datum.start) / 2,
+          null,
+          datum.start,
+          datum.start,
+          datum.end,
+          datum.end,
+          datum.start,
+        ],
+        y: showGrouped
+          ? [0.5, null, 0, 1, 1, 0, 0]
+          : [index + 0.5, null, index + 1, index, index, index + 1, index + 1],
+      };
+      return plotlyDatum;
     });
+
+    const hoveredDatum = plotlyData[hoveredFeatureIndex];
 
     return {
       layout: {
-        boxmode: showGrouped ? 'grouped' : 'overlay',
+        annotations:
+          hoveredFeatureIndex >= 0
+            ? [
+                {
+                  arrowhead: 0,
+                  arrowsize: 1,
+                  arrowwidth: 1,
+                  ax: 0,
+                  ay: -25,
+                  bgcolor: '#ffffff',
+                  bordercolor: '#000000',
+                  showarrow: true,
+                  text: '<a href="http://pfam.xfam.org/family/PF03165">PFAM</a>',
+                  x: hoveredDatum.x ? (hoveredDatum.x[0] as number) : 0,
+                  xref: 'x',
+                  y: hoveredDatum.y ? (hoveredDatum.y[hoveredDatum.y.length - 2] as number) : hoveredFeatureIndex,
+                  yref: 'y',
+                },
+              ]
+            : [],
         dragmode: 'select',
         height,
-        legend: {
-          traceorder: 'reversed',
-        },
         margin: {
           b: 30,
           t: 60,
         },
-        showlegend: true,
+        showlegend: false,
         title,
         width,
         xaxis:
           data.length > 0
             ? {
-                range: [0, maxRange],
+                range: [minRange, maxRange],
                 showgrid: false,
                 tick0: 0,
                 tickmode: 'auto',
@@ -83,6 +118,7 @@ class FeatureViewer extends React.Component<IFeatureViewerProps, IFeatureViewerS
               }
             : { visible: false },
         yaxis: {
+          range: [0, showGrouped ? 2 : data.length],
           visible: false,
         },
       },
@@ -93,6 +129,7 @@ class FeatureViewer extends React.Component<IFeatureViewerProps, IFeatureViewerS
   constructor(props: IFeatureViewerProps) {
     super(props);
     this.state = {
+      hoveredFeatureIndex: -1,
       layout: {},
       plotlyData: [],
       selectedFeatureIndices: new Set<number>(),
@@ -107,12 +144,31 @@ class FeatureViewer extends React.Component<IFeatureViewerProps, IFeatureViewerS
           data={this.state.plotlyData}
           layout={this.state.layout}
           onClickCallback={this.onFeatureClick}
+          onHoverCallback={this.onFeatureHover}
           onSelectedCallback={this.onFeatureSelect}
           showLoader={false}
         />
       </div>
     );
   }
+
+  protected onFeatureHover = (event: ChellChartEvent) => {
+    const { data } = this.props;
+    let hoveredFeatureIndex = -1;
+    // TODO Handle vertical viewer, better selection logic.
+    const xCoords = [event.selectedPoints[0], event.selectedPoints[2]];
+    for (let i = 0; i < data.length; ++i) {
+      for (const xCoord of xCoords) {
+        if (data[i].contains(xCoord)) {
+          hoveredFeatureIndex = i;
+        }
+      }
+    }
+
+    this.setState({
+      hoveredFeatureIndex,
+    });
+  };
 
   protected onFeatureSelect = (event: ChellChartEvent) => {
     const { data } = this.props;
