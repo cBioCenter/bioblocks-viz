@@ -40,7 +40,12 @@ class ProteinFeatureViewer extends React.Component<any, IFeatureViewerState> {
       <div className={'protein-feature-viewer'}>
         <GridRow centered={true} stretched={false}>
           <GridColumn>
-            <FeatureViewer data={domainData} title={protein ? protein.id : ''} showGrouped={showGrouped} />
+            <FeatureViewer
+              data={domainData}
+              onHoverCallback={this.renderAnnotation}
+              title={protein ? protein.id : ''}
+              showGrouped={showGrouped}
+            />
           </GridColumn>
           <GridColumn>
             <Form onSubmit={this.onProteinInputSubmit}>
@@ -88,6 +93,20 @@ class ProteinFeatureViewer extends React.Component<any, IFeatureViewerState> {
     this.setState({
       showGrouped: data.checked,
     });
+  };
+
+  protected renderAnnotation = (proteinId: string, index: number) => {
+    const { domainData, protein } = this.state;
+    if (protein) {
+      const pFamId = protein.dbReferences
+        .filter(dbRef => dbRef.type === 'Pfam')
+        .filter(pFamRef => pFamRef.properties && pFamRef.properties['entry name'] === proteinId)[0].id;
+
+      return `${proteinId}: ${proteinId} domain (${domainData[index].start} - ${
+        domainData[index].end
+      })<br /><a href="http://pfam.xfam.org/family/${pFamId}">PFAM</a> <a href="http://mutationaligner.org/domains/${pFamId}">Mutagen Aligner</a>`;
+    }
+    return '';
   };
 }
 

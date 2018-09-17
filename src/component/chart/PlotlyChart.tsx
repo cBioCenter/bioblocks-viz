@@ -317,15 +317,11 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
       const { onClickCallback } = this.props;
       if (event.points && event.points.length > 0 && onClickCallback) {
         const wasFillClicked = !event.points[0].data || (!event.points[0].data.x && !event.points[0].data.y);
-        console.log(wasFillClicked);
-        console.log(event.points);
         const { x, y } = wasFillClicked
           ? event.points[0]
           : { x: event.points[0].data.x[0] as number, y: event.points[0].data.y[0] as number };
 
         const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, event.points[0].data);
-        console.log(chartPiece);
-        console.log(selectedPoints);
         onClickCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.CLICK, chartPiece, selectedPoints));
       }
     }
@@ -342,13 +338,14 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   protected onHover = (event: plotly.PlotMouseEvent) => {
     const { onHoverCallback } = this.props;
     if (event.points && event.points[0] && onHoverCallback) {
-      const wasFillClicked = !event.points[0].data || (!event.points[0].x && !event.points[0].y);
-      const { x, y } = wasFillClicked
-        ? event.points[0]
-        : { x: event.points[0].data.x[0] as number, y: event.points[0].data.y[0] as number };
+      const wasFillHovered = event.points[0].data && event.points[0].data.x && event.points[0].data.y;
+      const { x, y } = wasFillHovered
+        ? { x: event.points[0].data.x[0] as number, y: event.points[0].data.y[0] as number }
+        : event.points[0];
 
       const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, event.points[0].data);
-      onHoverCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.CLICK, chartPiece, selectedPoints));
+
+      onHoverCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.HOVER, chartPiece, selectedPoints));
     }
   };
 

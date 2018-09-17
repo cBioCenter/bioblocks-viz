@@ -7,6 +7,7 @@ import { IPlotlyData, PlotlyChart } from './chart/PlotlyChart';
 export interface IFeatureViewerProps {
   data: Array<TintedChell1DSection<string>>;
   height: number;
+  onHoverCallback?: (label: string, index: number) => string;
   showGrouped: boolean;
   title: string;
   width: number;
@@ -14,6 +15,7 @@ export interface IFeatureViewerProps {
 
 export interface IFeatureViewerState {
   hoveredFeatureIndex: number;
+  hoverAnnotationText: string;
   layout: Partial<Plotly.Layout>;
   plotlyData: Array<Partial<IPlotlyData>>;
   selectedFeatureIndices: Set<number>;
@@ -31,7 +33,7 @@ class FeatureViewer extends React.Component<IFeatureViewerProps, IFeatureViewerS
     nextState: IFeatureViewerState,
   ): Partial<IFeatureViewerState> {
     const { data, height, showGrouped, title, width } = nextProps;
-    const { hoveredFeatureIndex, selectedFeatureIndices } = nextState;
+    const { hoverAnnotationText, hoveredFeatureIndex, selectedFeatureIndices } = nextState;
 
     let minRange = 0;
     let maxRange = 100;
@@ -75,13 +77,13 @@ class FeatureViewer extends React.Component<IFeatureViewerProps, IFeatureViewerS
     });
 
     const hoveredDatum = plotlyData[hoveredFeatureIndex];
-
     return {
       layout: {
         annotations:
           hoveredFeatureIndex >= 0
             ? [
                 {
+                  align: 'left',
                   arrowhead: 0,
                   arrowsize: 1,
                   arrowwidth: 1,
@@ -89,11 +91,12 @@ class FeatureViewer extends React.Component<IFeatureViewerProps, IFeatureViewerS
                   ay: -25,
                   bgcolor: '#ffffff',
                   bordercolor: '#000000',
+                  borderpad: 5,
                   showarrow: true,
-                  text: '<a href="http://pfam.xfam.org/family/PF03165">PFAM</a>',
+                  text: hoverAnnotationText,
                   x: hoveredDatum.x ? (hoveredDatum.x[0] as number) : 0,
                   xref: 'x',
-                  y: hoveredDatum.y ? (hoveredDatum.y[hoveredDatum.y.length - 2] as number) : hoveredFeatureIndex,
+                  y: hoveredDatum.y ? (hoveredDatum.y[hoveredDatum.y.length - 3] as number) : hoveredFeatureIndex,
                   yref: 'y',
                 },
               ]
@@ -129,6 +132,7 @@ class FeatureViewer extends React.Component<IFeatureViewerProps, IFeatureViewerS
   constructor(props: IFeatureViewerProps) {
     super(props);
     this.state = {
+      hoverAnnotationText: '',
       hoveredFeatureIndex: -1,
       layout: {},
       plotlyData: [],
@@ -153,7 +157,7 @@ class FeatureViewer extends React.Component<IFeatureViewerProps, IFeatureViewerS
   }
 
   protected onFeatureHover = (event: ChellChartEvent) => {
-    const { data } = this.props;
+    const { data, onHoverCallback } = this.props;
     let hoveredFeatureIndex = -1;
     // TODO Handle vertical viewer, better selection logic.
     const xCoords = [event.selectedPoints[0], event.selectedPoints[2]];
@@ -166,6 +170,7 @@ class FeatureViewer extends React.Component<IFeatureViewerProps, IFeatureViewerS
     }
 
     this.setState({
+      hoverAnnotationText: onHoverCallback ? onHoverCallback(data[hoveredFeatureIndex].label, hoveredFeatureIndex) : '',
       hoveredFeatureIndex,
     });
   };

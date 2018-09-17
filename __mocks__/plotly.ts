@@ -22,8 +22,6 @@ export class MockPlotlyHTMLElement implements IMockPlotlyCanvas {
   };
 
   public dispatchEvent(event: Event, data: Partial<plotly.PlotScatterDataPoint>): boolean {
-    console.log(data);
-    console.log({ points: [{ ...data }] });
     const cb = this.callbacks.get(event.type);
     if (cb) {
       switch (event.type) {
