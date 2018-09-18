@@ -50,56 +50,6 @@ exports[`ProteinFeatureViewer Should default to an invalid range if there is a p
 </div>
 `;
 
-exports[`ProteinFeatureViewer Should match the default snapshot 1`] = `
-<div
-  className="protein-feature-viewer"
->
-  <GridRow
-    centered={true}
-    stretched={false}
-  >
-    <GridColumn>
-      <FeatureViewer
-        data={Array []}
-        height={200}
-        onHoverCallback={[Function]}
-        showGrouped={true}
-        title=""
-        width={600}
-      />
-    </GridColumn>
-    <GridColumn>
-      <Form
-        as="form"
-        onSubmit={[Function]}
-      >
-        <FormInput
-          as={[Function]}
-          control={[Function]}
-          fluid={false}
-          onChange={[Function]}
-          value="Q9NYJ7"
-          width="three"
-        />
-        <FormButton
-          as={[Function]}
-          control={[Function]}
-        >
-          Submit Protein ID
-        </FormButton>
-        <FormCheckbox
-          as={[Function]}
-          control={[Function]}
-          defaultChecked={true}
-          label="Show grouped?"
-          onChange={[Function]}
-        />
-      </Form>
-    </GridColumn>
-  </GridRow>
-</div>
-`;
-
 exports[`ProteinFeatureViewer Should match the default snapshot. 1`] = `
 <div
   className="protein-feature-viewer"

@@ -363,7 +363,6 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
       let allPoints = new Array<number>();
       if (event.points.length >= 1) {
         allPoints = event.points.reduce((prev, cur) => {
-          console.log(cur);
           prev.push(...[cur.x, cur.y]);
           return prev;
         }, allPoints);
@@ -371,7 +370,6 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
         // If it is a range, it is a box and so the coordinates can be directly accessed like so.
         allPoints.push(event.range.x[0], event.range.y[0], event.range.x[1], event.range.y[1]);
       }
-      console.log(event.points);
       const { chartPiece } =
         allPoints.length > 0
           ? this.deriveChartPiece(allPoints[0], allPoints[1])

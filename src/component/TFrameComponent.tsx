@@ -98,7 +98,6 @@ class TFrameComponentClass extends React.Component<ITComponentProps, any> {
       width,
     };
 
-    console.log(this.state.postMessageData);
     return <IframeComm attributes={attributes} postMessageData={this.state.postMessageData} />;
   }
 }
