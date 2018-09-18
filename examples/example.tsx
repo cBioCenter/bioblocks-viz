@@ -202,6 +202,11 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
         const pdbData = await ChellPDB.createPDBFromFile(file);
         this.setState({
           [VIZ_TYPE.NGL]: pdbData.nglStructure,
+          [VIZ_TYPE.CONTACT_MAP]: {
+            couplingScores: pdbData.contactInformation,
+            pdbData,
+            secondaryStructures: pdbData.secondaryStructure,
+          },
           errorMsg: '',
           pdbData,
         });

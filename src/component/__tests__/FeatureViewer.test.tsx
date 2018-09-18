@@ -73,7 +73,7 @@ describe('ProteinFeatureViewer', () => {
 
     it('Should handle clicking a single feature.', async () => {
       const wrapper = await mount(<FeatureViewer data={sampleData} />);
-      dispatchPlotlyEvent(wrapper, 'plotly_click', { x: 2002 });
+      dispatchPlotlyEvent(wrapper, 'plotly_click', { x: 2002, y: 1 });
       const state = wrapper.instance().state as IFeatureViewerState;
       expect(Array.from(state.selectedFeatureIndices)).toEqual([1]);
     });

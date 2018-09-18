@@ -316,11 +316,8 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     if (!this.isDoubleClickInProgress) {
       const { onClickCallback } = this.props;
       if (event.points && event.points.length > 0 && onClickCallback) {
-        const wasFillClicked = !event.points[0].data || (!event.points[0].data.x && !event.points[0].data.y);
-        const { x, y } = wasFillClicked
-          ? event.points[0]
-          : { x: event.points[0].data.x[0] as number, y: event.points[0].data.y[0] as number };
-
+        const x = event.points[0].x ? event.points[0].x : (event.points[0].data.x[0] as number);
+        const y = event.points[0].y ? event.points[0].y : (event.points[0].data.y[0] as number);
         const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, event.points[0].data);
         onClickCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.CLICK, chartPiece, selectedPoints));
       }

@@ -44,6 +44,26 @@ export class ChellPDB {
     return result;
   }
 
+  public get contactInformation(): CouplingContainer {
+    const result = new CouplingContainer();
+    this.nglData.eachResidue(outerResidue => {
+      if (outerResidue.isProtein()) {
+        const i = outerResidue.resno;
+        this.nglData.eachResidue(innerResidue => {
+          const j = innerResidue.resno;
+          if (innerResidue.isProtein() && i !== j) {
+            result.addCouplingScore({
+              dist: this.getMinDistBetweenResidues(i, j),
+              i,
+              j,
+            });
+          }
+        });
+      }
+    });
+    return result;
+  }
+
   public get secondaryStructure(): ISecondaryStructureData[] {
     const result = new Array<ISecondaryStructureData>();
     this.nglData.eachResidue(residue => {
@@ -61,6 +81,7 @@ export class ChellPDB {
     });
     return result;
   }
+
   public get nglStructure() {
     return this.nglData;
   }
