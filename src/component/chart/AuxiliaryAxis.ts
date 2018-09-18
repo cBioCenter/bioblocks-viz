@@ -1,4 +1,4 @@
-import { Datum } from 'plotly.js-dist';
+import { Datum } from 'plotly.js-gl2d-dist';
 import Chell1DSection from '../../data/Chell1DSection';
 import { IPlotlyData } from './PlotlyChart';
 

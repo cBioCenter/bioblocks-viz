@@ -1,6 +1,6 @@
 import { CommonWrapper, mount, ReactWrapper, shallow } from 'enzyme';
 import * as fetchMock from 'jest-fetch-mock';
-import * as plotly from 'plotly.js-dist';
+import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 
 import { IMockPlotlyCanvas } from '__mocks__/plotly';

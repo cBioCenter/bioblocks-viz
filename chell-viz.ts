@@ -10,12 +10,14 @@ export { default as ChellWidget } from './src/component/widget/ChellWidget';
 
 export { default as CategorySelector } from './src/component/widget/CategorySelector';
 export { default as ContactMap } from './src/component/ContactMap';
+export { default as FeatureViewer } from './src/component/FeatureViewer';
 export { default as InfoPanel } from './src/component/InfoPanel';
 export { default as NGLComponent } from './src/component/NGLComponent';
 export { default as PredictedContactMap } from './src/component/PredictedContactMap';
 export { default as TComponent } from './src/component/TComponent';
 export { default as VizSelectorPanel } from './src/component/VizSelectorPanel';
 
+export { default as ProteinFeatureViewer } from './src/container/ProteinFeatureViewer';
 export { default as SpringContainer } from './src/container/SpringContainer';
 export { default as VizPanelContainer } from './src/container/VizPanelContainer';
 
@@ -28,10 +30,12 @@ export * from './src/context/SpringContext';
 
 export * from './src/data/chell-data';
 export * from './src/data/Chell1DSection';
+export * from './src/data/TintedChell1DSection';
 export * from './src/data/ChellPDB';
 export * from './src/data/CouplingContainer';
 export * from './src/data/Spring';
 
+export * from './src/helper/ColorMapper';
 export * from './src/helper/DataHelper';
 export * from './src/helper/FetchHelper';
 export * from './src/helper/NGLHelper';

@@ -1,6 +1,6 @@
 {
   "name": "chell-viz",
-  "version": "0.0.73",
+  "version": "0.0.74",
   "author": "Biostatistics and Computational Biology at Dana-Farber <bcb@jimmy.harvard.edu>",
   "license": "MIT",
   "engines": {
@@ -44,7 +44,7 @@
     ],
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.ts",
-      "plotly.js-dist": "<rootDir>/__mocks__/plotly.ts"
+      "plotly.js-gl2d-dist": "<rootDir>/__mocks__/plotly.ts"
     },
     "modulePathIgnorePatterns": [
       "dist"
@@ -143,7 +143,7 @@
     "memoize-one": "^4.0.2",
     "ngl": "^2.0.0-dev.33",
     "pixi.js": "^4.7.3",
-    "plotly.js-dist": "^1.41.1",
+    "plotly.js-gl2d-dist": "^1.41.1",
     "rc-slider": "^8.6.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
