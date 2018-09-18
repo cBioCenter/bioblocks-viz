@@ -1,4 +1,4 @@
-import * as plotly from 'plotly.js-gl2d-dist';
+import * as plotly from 'plotly.js-dist';
 
 module.exports = {
   ...plotly,
@@ -11,7 +11,7 @@ module.exports = {
 };
 
 export interface IMockPlotlyCanvas {
-  dispatchEvent(event: Event, data: Partial<plotly.PlotScatterDataPoint>): boolean;
+  dispatchEvent(event: Event, data: Partial<plotly.PlotScatterDataPoint> | plotly.SelectionRange): boolean;
 }
 
 export class MockPlotlyHTMLElement implements IMockPlotlyCanvas {

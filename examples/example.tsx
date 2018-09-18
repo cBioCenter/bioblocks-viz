@@ -4,6 +4,7 @@ import { Button, Grid, GridColumn, GridRow, Header, Label, Segment } from 'seman
 
 import { NGLComponent } from '../src/component/NGLComponent';
 import { PredictedContactMap } from '../src/component/PredictedContactMap';
+import { ProteinFeatureViewer } from '../src/container/ProteinFeatureViewer';
 import { CouplingContext } from '../src/context/CouplingContext';
 import { CONTACT_MAP_DATA_TYPE, NGL_DATA_TYPE, VIZ_TYPE } from '../src/data/chell-data';
 import { ChellPDB } from '../src/data/ChellPDB';
@@ -37,6 +38,15 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
   public render() {
     return (
       <div id="ChellVizApp" style={{ backgroundColor: '#dddddd', height: '1000px' }}>
+        {this.renderFeatureViewer()}
+        {this.renderCouplingComponents()}
+      </div>
+    );
+  }
+
+  protected renderCouplingComponents = () => {
+    return (
+      <div>
         <Header as={'h1'} attached={'top'}>
           Chell - ContactMap.IO
         </Header>
@@ -63,7 +73,20 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
         {this.renderErrorMessage()}
       </div>
     );
-  }
+  };
+
+  protected renderFeatureViewer = () => {
+    return (
+      <div>
+        <Header as={'h2'} attached={'top'}>
+          Feature Viewer
+        </Header>
+        <Segment attached={true} raised={true}>
+          <ProteinFeatureViewer />
+        </Segment>
+      </div>
+    );
+  };
 
   protected renderErrorMessage = () =>
     this.state.errorMsg.length === 0 ? null : (

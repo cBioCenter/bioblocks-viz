@@ -76,6 +76,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
     ]
   }
   selectedSecondaryStructures={Array []}
+  showLoader={true}
 />
 `;
 
@@ -167,6 +168,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
     ]
   }
   selectedSecondaryStructures={Array []}
+  showLoader={true}
 />
 `;
 
@@ -231,5 +233,6 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
   }
   secondaryStructures={Array []}
   selectedSecondaryStructures={Array []}
+  showLoader={true}
 />
 `;

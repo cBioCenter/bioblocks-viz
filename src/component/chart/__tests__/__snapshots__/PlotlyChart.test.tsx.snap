@@ -23,6 +23,7 @@ exports[`PlotlyChart Should attach events when the container is attached. 1`] = 
   layout={Object {}}
   onClickCallback={[MockFunction]}
   onSelectedCallback={[MockFunction]}
+  showLoader={true}
 >
   <div>
     <Dimmer
@@ -86,6 +87,7 @@ exports[`PlotlyChart Should handle extra axes correctly. 1`] = `
     ]
   }
   layout={Object {}}
+  showLoader={true}
 >
   <div>
     <Dimmer
@@ -127,6 +129,7 @@ exports[`PlotlyChart Should match existing snapshot when given empty data. 1`] =
   config={Object {}}
   data={Array []}
   layout={Object {}}
+  showLoader={true}
 >
   <div>
     <Dimmer
@@ -184,6 +187,7 @@ exports[`PlotlyChart Should match existing snapshot when given sample data. 1`] 
     ]
   }
   layout={Object {}}
+  showLoader={true}
 >
   <div>
     <Dimmer

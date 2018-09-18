@@ -1,6 +1,6 @@
 import * as deepEqual from 'deep-equal';
 import * as Immutable from 'immutable';
-import * as plotly from 'plotly.js-gl2d-dist';
+import * as plotly from 'plotly.js-dist';
 import * as React from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react';
 
@@ -31,6 +31,8 @@ export interface IPlotlyData extends plotly.ScatterData {
   showlegend: boolean;
   // TODO Open PR to add these missing Plotly types. - https://plot.ly/javascript/reference/#box
 
+  textfont: Partial<plotly.Font>;
+
   type: PLOTLY_CHART_TYPE | 'bar' | 'pointcloud' | 'scatter' | 'scattergl' | 'scatter3d';
 }
 
@@ -50,6 +52,7 @@ export interface IPlotlyChartProps {
   onSelectedCallback?: ((event: ChellChartEvent) => void);
   onUnHoverCallback?: ((event: ChellChartEvent) => void);
   onRelayoutCallback?: ((event: ChellChartEvent) => void);
+  showLoader?: boolean;
 }
 
 export const defaultPlotlyConfig: Partial<Plotly.Config> = {
@@ -92,6 +95,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     config: {},
     data: [],
     layout: {},
+    showLoader: true,
   };
 
   public plotlyCanvas: plotly.PlotlyHTMLElement | null = null;
@@ -185,11 +189,14 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   }
 
   public render() {
+    const { showLoader } = this.props;
     return (
       <div>
-        <Dimmer active={!this.isDataLoaded()}>
-          <Loader />
-        </Dimmer>
+        {showLoader && (
+          <Dimmer active={!this.isDataLoaded()}>
+            <Loader />
+          </Dimmer>
+        )}
         <div
           className={'plotly-chart'}
           ref={node => (this.canvasRef = node ? node : null)}
@@ -308,9 +315,13 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   protected onClick = (event: plotly.PlotMouseEvent) => {
     if (!this.isDoubleClickInProgress) {
       const { onClickCallback } = this.props;
-      if (onClickCallback) {
-        const { data, x, y } = event.points[0];
-        const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, data);
+      if (event.points && event.points.length > 0 && onClickCallback) {
+        const wasFillClicked = !event.points[0].data || (!event.points[0].data.x && !event.points[0].data.y);
+        const { x, y } = wasFillClicked
+          ? event.points[0]
+          : { x: event.points[0].data.x[0] as number, y: event.points[0].data.y[0] as number };
+
+        const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, event.points[0].data);
         onClickCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.CLICK, chartPiece, selectedPoints));
       }
     }
@@ -326,10 +337,15 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
 
   protected onHover = (event: plotly.PlotMouseEvent) => {
     const { onHoverCallback } = this.props;
-    if (onHoverCallback && event.points) {
-      const { data, x, y } = event.points[0];
-      const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, data);
-      onHoverCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.CLICK, chartPiece, selectedPoints));
+    if (event.points && event.points[0] && onHoverCallback) {
+      const wasFillHovered = event.points[0].data && event.points[0].data.x && event.points[0].data.y;
+      const { x, y } = wasFillHovered
+        ? { x: event.points[0].data.x[0] as number, y: event.points[0].data.y[0] as number }
+        : event.points[0];
+
+      const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, event.points[0].data);
+
+      onHoverCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.HOVER, chartPiece, selectedPoints));
     }
   };
 
@@ -341,17 +357,26 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     }
   };
 
-  protected onSelect = (event: plotly.PlotSelectionEvent) => {
+  protected onSelect = async (event: plotly.PlotSelectionEvent) => {
     const { onSelectedCallback } = this.props;
-    if (onSelectedCallback) {
-      const allPoints = event.points.reduce((prev, cur) => {
-        prev.push(...[cur.x, cur.y]);
-        return prev;
-      }, new Array<number>());
-      const { x, y } = event.points[0];
-      const { chartPiece } = this.deriveChartPiece(x, y);
-      onSelectedCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.CLICK, chartPiece, allPoints));
+    if (event && onSelectedCallback) {
+      let allPoints = new Array<number>();
+      if (event.points.length >= 1) {
+        allPoints = event.points.reduce((prev, cur) => {
+          prev.push(...[cur.x, cur.y]);
+          return prev;
+        }, allPoints);
+      } else if (event.range) {
+        // If it is a range, it is a box and so the coordinates can be directly accessed like so.
+        allPoints.push(event.range.x[0], event.range.y[0], event.range.x[1], event.range.y[1]);
+      }
+      const { chartPiece } =
+        allPoints.length > 0
+          ? this.deriveChartPiece(allPoints[0], allPoints[1])
+          : { chartPiece: CHELL_CHART_PIECE.POINT };
+      onSelectedCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.SELECTION, chartPiece, allPoints));
     }
+    await this.draw();
   };
 
   protected onUnHover = (event: plotly.PlotMouseEvent) => {

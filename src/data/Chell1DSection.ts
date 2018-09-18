@@ -28,7 +28,7 @@ class Chell1DSection<T> {
 
   public contains(...values: number[]) {
     for (const value of values) {
-      if (value < this.sectionStart || value > this.sectionEnd) {
+      if (value < this.sectionStart || value > this.sectionEnd || value === undefined) {
         return false;
       }
     }

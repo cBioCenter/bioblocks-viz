@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProteinFeatureViewer Should match the default snapshot 1`] = `
+<div
+  style={
+    Object {
+      "height": 200,
+      "width": 600,
+    }
+  }
+>
+  <PlotlyChart
+    config={Object {}}
+    data={Array []}
+    layout={
+      Object {
+        "annotations": Array [],
+        "dragmode": "select",
+        "height": 200,
+        "margin": Object {
+          "b": 30,
+          "t": 60,
+        },
+        "showlegend": false,
+        "title": "",
+        "width": 600,
+        "xaxis": Object {
+          "visible": false,
+        },
+        "yaxis": Object {
+          "range": Array [
+            0,
+            0,
+          ],
+          "visible": false,
+        },
+      }
+    }
+    onClickCallback={[Function]}
+    onHoverCallback={[Function]}
+    onSelectedCallback={[Function]}
+    showLoader={false}
+  />
+</div>
+`;
+
+exports[`ProteinFeatureViewer Should match the default snapshot. 1`] = `
+<div
+  style={
+    Object {
+      "height": 200,
+      "width": 600,
+    }
+  }
+>
+  <PlotlyChart
+    config={Object {}}
+    data={Array []}
+    layout={
+      Object {
+        "annotations": Array [],
+        "dragmode": "select",
+        "height": 200,
+        "margin": Object {
+          "b": 30,
+          "t": 60,
+        },
+        "showlegend": false,
+        "title": "",
+        "width": 600,
+        "xaxis": Object {
+          "visible": false,
+        },
+        "yaxis": Object {
+          "range": Array [
+            0,
+            0,
+          ],
+          "visible": false,
+        },
+      }
+    }
+    onClickCallback={[Function]}
+    onHoverCallback={[Function]}
+    onSelectedCallback={[Function]}
+    showLoader={false}
+  />
+</div>
+`;
