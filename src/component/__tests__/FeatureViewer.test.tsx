@@ -80,7 +80,7 @@ describe('ProteinFeatureViewer', () => {
 
     it('Should handle hovering over a single feature.', async () => {
       const wrapper = await mount(<FeatureViewer data={sampleData} />);
-      dispatchPlotlyEvent(wrapper, 'plotly_hover', { x: 2013 });
+      dispatchPlotlyEvent(wrapper, 'plotly_hover', { x: 2013, y: 1 });
       const state = wrapper.instance().state as IFeatureViewerState;
       expect(state.hoveredFeatureIndex).toEqual(2);
       expect(state.hoverAnnotationText).toEqual('');

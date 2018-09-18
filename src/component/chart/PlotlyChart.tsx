@@ -335,11 +335,8 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   protected onHover = (event: plotly.PlotMouseEvent) => {
     const { onHoverCallback } = this.props;
     if (event.points && event.points[0] && onHoverCallback) {
-      const wasFillHovered = event.points[0].data && event.points[0].data.x && event.points[0].data.y;
-      const { x, y } = wasFillHovered
-        ? { x: event.points[0].data.x[0] as number, y: event.points[0].data.y[0] as number }
-        : event.points[0];
-
+      const x = event.points[0].x ? event.points[0].x : (event.points[0].data.x[0] as number);
+      const y = event.points[0].y ? event.points[0].y : (event.points[0].data.y[0] as number);
       const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, event.points[0].data);
 
       onHoverCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.HOVER, chartPiece, selectedPoints));

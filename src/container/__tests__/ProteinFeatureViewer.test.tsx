@@ -25,7 +25,7 @@ describe('ProteinFeatureViewer', () => {
   const dispatchPlotlyEvent = (
     wrapper: ReactWrapper,
     eventName: string,
-    data: Partial<plotly.PlotScatterDataPoint> = { x: 0, y: 0 },
+    data: Partial<plotly.PlotScatterDataPoint> | plotly.SelectionRange = { x: [0], y: [0] },
   ) => {
     const plotlyWrapper = wrapper.find('PlotlyChart') as CommonWrapper;
     const canvas = (plotlyWrapper.instance() as PlotlyChart).plotlyCanvas;
@@ -126,7 +126,7 @@ describe('ProteinFeatureViewer', () => {
     setTimeout(() => {
       wrapper.update();
       expect(wrapper.state('protein')).toEqual(sampleProtein);
-      dispatchPlotlyEvent(wrapper, 'plotly_hover', { x: 42 });
+      dispatchPlotlyEvent(wrapper, 'plotly_hover', { x: [42], y: [1] });
       const featureViewerState = wrapper
         .find(FeatureViewer)
         .at(0)
@@ -161,7 +161,7 @@ describe('ProteinFeatureViewer', () => {
 
     setTimeout(() => {
       wrapper.update();
-      dispatchPlotlyEvent(wrapper, 'plotly_hover', { x: 42 });
+      dispatchPlotlyEvent(wrapper, 'plotly_hover', { x: [42], y: [0] });
       const featureViewerState = wrapper
         .find(FeatureViewer)
         .at(0)
@@ -189,7 +189,7 @@ describe('ProteinFeatureViewer', () => {
 
     setTimeout(() => {
       wrapper.update();
-      dispatchPlotlyEvent(wrapper, 'plotly_hover', { x: 42 });
+      dispatchPlotlyEvent(wrapper, 'plotly_hover', { x: [42], y: [0] });
       const featureViewerState = wrapper
         .find(FeatureViewer)
         .at(0)
@@ -210,7 +210,7 @@ describe('ProteinFeatureViewer', () => {
       wrapper.setState({
         protein: undefined,
       });
-      dispatchPlotlyEvent(wrapper, 'plotly_hover', { x: 42 });
+      dispatchPlotlyEvent(wrapper, 'plotly_hover', { x: [42], y: [0] });
       const featureViewerState = wrapper
         .find(FeatureViewer)
         .at(0)
