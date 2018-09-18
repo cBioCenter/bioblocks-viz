@@ -1,4 +1,4 @@
-import { Color } from 'plotly.js-dist';
+import { Color } from 'plotly.js-gl2d-dist';
 import { SemanticCOLORS } from 'semantic-ui-react';
 
 /**

@@ -1,6 +1,6 @@
 import * as deepEqual from 'deep-equal';
 import * as Immutable from 'immutable';
-import * as plotly from 'plotly.js-dist';
+import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react';
 
