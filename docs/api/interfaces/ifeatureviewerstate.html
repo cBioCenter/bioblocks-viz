@@ -79,8 +79,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ifeatureviewerstate.html#data" class="tsd-kind-icon">data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ifeatureviewerstate.html#hoverannotationtext" class="tsd-kind-icon">hover<wbr>Annotation<wbr>Text</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ifeatureviewerstate.html#hoveredfeatureindex" class="tsd-kind-icon">hovered<wbr>Feature<wbr>Index</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ifeatureviewerstate.html#layout" class="tsd-kind-icon">layout</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ifeatureviewerstate.html#plotlydata" class="tsd-kind-icon">plotly<wbr>Data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ifeatureviewerstate.html#selectedfeatureindices" class="tsd-kind-icon">selected<wbr>Feature<wbr>Indices</a></li>
 							</ul>
 						</section>
 					</div>
@@ -89,12 +92,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="data" class="tsd-anchor"></a>
-					<h3>data</h3>
-					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<a name="hoverannotationtext" class="tsd-anchor"></a>
+					<h3>hover<wbr>Annotation<wbr>Text</h3>
+					<div class="tsd-signature tsd-kind-icon">hover<wbr>Annotation<wbr>Text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/ebf379ce/src/component/FeatureViewer.tsx#L13">src/component/FeatureViewer.tsx:13</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/ca6d75f5/src/component/FeatureViewer.tsx#L18">src/component/FeatureViewer.tsx:18</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="hoveredfeatureindex" class="tsd-anchor"></a>
+					<h3>hovered<wbr>Feature<wbr>Index</h3>
+					<div class="tsd-signature tsd-kind-icon">hovered<wbr>Feature<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/ca6d75f5/src/component/FeatureViewer.tsx#L17">src/component/FeatureViewer.tsx:17</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -104,7 +117,27 @@
 					<div class="tsd-signature tsd-kind-icon">layout<span class="tsd-signature-symbol">:</span> <a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Plotly.Layout</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/ebf379ce/src/component/FeatureViewer.tsx#L14">src/component/FeatureViewer.tsx:14</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/ca6d75f5/src/component/FeatureViewer.tsx#L19">src/component/FeatureViewer.tsx:19</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="plotlydata" class="tsd-anchor"></a>
+					<h3>plotly<wbr>Data</h3>
+					<div class="tsd-signature tsd-kind-icon">plotly<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/ca6d75f5/src/component/FeatureViewer.tsx#L20">src/component/FeatureViewer.tsx:20</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="selectedfeatureindices" class="tsd-anchor"></a>
+					<h3>selected<wbr>Feature<wbr>Indices</h3>
+					<div class="tsd-signature tsd-kind-icon">selected<wbr>Feature<wbr>Indices<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/ca6d75f5/src/component/FeatureViewer.tsx#L21">src/component/FeatureViewer.tsx:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -126,10 +159,19 @@
 						<a href="ifeatureviewerstate.html" class="tsd-kind-icon">IFeature<wbr>Viewer<wbr>State</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="ifeatureviewerstate.html#data" class="tsd-kind-icon">data</a>
+								<a href="ifeatureviewerstate.html#hoverannotationtext" class="tsd-kind-icon">hover<wbr>Annotation<wbr>Text</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="ifeatureviewerstate.html#hoveredfeatureindex" class="tsd-kind-icon">hovered<wbr>Feature<wbr>Index</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="ifeatureviewerstate.html#layout" class="tsd-kind-icon">layout</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="ifeatureviewerstate.html#plotlydata" class="tsd-kind-icon">plotly<wbr>Data</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="ifeatureviewerstate.html#selectedfeatureindices" class="tsd-kind-icon">selected<wbr>Feature<wbr>Indices</a>
 							</li>
 						</ul>
 					</li>
