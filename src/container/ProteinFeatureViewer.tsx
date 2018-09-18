@@ -5,8 +5,13 @@ import { IPlotlyData } from '../component/chart/PlotlyChart';
 import { FeatureViewer } from '../component/FeatureViewer';
 import { IProtein } from '../data/Protein';
 import { TintedChell1DSection } from '../data/TintedChell1DSection';
+import ColorMapper from '../helper/ColorMapper';
 
-export interface IFeatureViewerState {
+export interface IProteinFeatureViewerProps {
+  initialProteinId: string;
+}
+
+export interface IProteinFeatureViewerState {
   data: Array<Partial<IPlotlyData>>;
   domainData: Array<TintedChell1DSection<string>>;
   protein?: IProtein;
@@ -14,24 +19,24 @@ export interface IFeatureViewerState {
   showGrouped: boolean;
 }
 
-class ProteinFeatureViewer extends React.Component<any, IFeatureViewerState> {
-  constructor(props: any) {
+class ProteinFeatureViewer extends React.Component<IProteinFeatureViewerProps, IProteinFeatureViewerState> {
+  public static defaultProps: Partial<IProteinFeatureViewerProps> = {
+    // initialProteinId: 'Q13485',
+    initialProteinId: 'Q9NYJ7',
+  };
+
+  constructor(props: IProteinFeatureViewerProps) {
     super(props);
     this.state = {
       data: [],
       domainData: [],
-      proteinId: 'Q13485',
+      proteinId: props.initialProteinId,
       showGrouped: true,
     };
   }
 
   public async componentDidMount() {
     await this.deriveProteinData();
-  }
-
-  public componentDidUpdate(prevProps: any, prevState: IFeatureViewerState) {
-    const { protein } = this.state;
-    console.log(protein);
   }
 
   public render() {
@@ -42,7 +47,7 @@ class ProteinFeatureViewer extends React.Component<any, IFeatureViewerState> {
           <GridColumn>
             <FeatureViewer
               data={domainData}
-              onHoverCallback={this.renderAnnotation}
+              onHoverCallback={this.renderAnnotationText}
               title={protein ? protein.id : ''}
               showGrouped={showGrouped}
             />
@@ -66,23 +71,29 @@ class ProteinFeatureViewer extends React.Component<any, IFeatureViewerState> {
   };
 
   protected async deriveProteinData() {
-    const result = await fetch(`https://www.ebi.ac.uk/proteins/api/proteins/${this.state.proteinId}`);
-    const protein = (await result.json()) as IProtein;
-    const domains = protein.features.filter(feature => feature.type === 'DOMAIN');
+    try {
+      const result = await fetch(`https://www.ebi.ac.uk/proteins/api/proteins/${this.state.proteinId}`);
+      const protein = (await result.json()) as IProtein;
+      const domains = protein.features.filter(feature => feature.type === 'DOMAIN');
+      const colorMapper = new ColorMapper<string>();
 
-    const colors = ['red', 'green', 'blue'];
-    this.setState({
-      domainData: domains.map((domain, index) => {
-        const { begin, description = '', end } = domain;
-        return new TintedChell1DSection(
-          description,
-          begin ? Number.parseInt(begin, 10) : -1,
-          end ? Number.parseInt(end, 10) : -1,
-          colors[index % colors.length],
-        );
-      }),
-      protein,
-    });
+      this.setState({
+        domainData: domains.map((domain, index) => {
+          const { begin, description = '', end } = domain;
+          // This matches domains that do and do not have other of the same domain in the protein.
+          const domainName = description.split('-like')[0];
+          return new TintedChell1DSection(
+            domainName,
+            begin ? Number.parseInt(begin, 10) : -1,
+            end ? Number.parseInt(end, 10) : -1,
+            colorMapper.getColorFor(domainName),
+          );
+        }),
+        protein,
+      });
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   protected onProteinInputSubmit = async (e: React.FormEvent, data: any) => {
@@ -95,18 +106,23 @@ class ProteinFeatureViewer extends React.Component<any, IFeatureViewerState> {
     });
   };
 
-  protected renderAnnotation = (proteinId: string, index: number) => {
+  protected renderAnnotationText = (proteinId: string, index: number) => {
     const { domainData, protein } = this.state;
-    if (protein) {
-      const pFamId = protein.dbReferences
-        .filter(dbRef => dbRef.type === 'Pfam')
-        .filter(pFamRef => pFamRef.properties && pFamRef.properties['entry name'] === proteinId)[0].id;
+    const pFamIds = protein
+      ? protein.dbReferences.filter(dbRef => dbRef.type === 'Pfam').filter(pFamRef => {
+          const { properties } = pFamRef;
+          const entryName = properties ? properties['entry name'] : null;
+          return entryName && (entryName === proteinId || entryName.localeCompare(`${proteinId}-like ${index}`));
+        })
+      : [];
 
-      return `${proteinId}: ${proteinId} domain (${domainData[index].start} - ${
-        domainData[index].end
-      })<br /><a href="http://pfam.xfam.org/family/${pFamId}">PFAM</a> <a href="http://mutationaligner.org/domains/${pFamId}">Mutagen Aligner</a>`;
-    }
-    return '';
+    return pFamIds.length >= 1
+      ? `${proteinId}: ${proteinId} domain (${domainData[index].start} - ${
+          domainData[index].end
+        })<br /><a href="http://pfam.xfam.org/family/${
+          pFamIds[0].id
+        }">PFAM</a> <a href="http://mutationaligner.org/domains/${pFamIds[0].id}">Mutagen Aligner</a>`
+      : '';
   };
 }
 

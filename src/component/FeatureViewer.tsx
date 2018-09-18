@@ -23,6 +23,7 @@ export interface IFeatureViewerState {
 
 class FeatureViewer extends React.Component<IFeatureViewerProps, IFeatureViewerState> {
   public static defaultProps: Partial<IFeatureViewerProps> = {
+    data: [],
     height: 200,
     title: '',
     width: 600,
@@ -41,6 +42,9 @@ class FeatureViewer extends React.Component<IFeatureViewerProps, IFeatureViewerS
     const plotlyData = data.map((datum, index) => {
       minRange = Math.min(minRange, datum.start, datum.end);
       maxRange = Math.max(maxRange, datum.start, datum.end);
+      const yIndex = showGrouped
+        ? index
+        : data.findIndex(candidateDatum => datum.label.localeCompare(candidateDatum.label) === 0);
       const plotlyDatum: Partial<IPlotlyData> = {
         fill: 'toself',
         fillcolor: datum.color.toString(),
@@ -71,7 +75,7 @@ class FeatureViewer extends React.Component<IFeatureViewerProps, IFeatureViewerS
         ],
         y: showGrouped
           ? [0.5, null, 0, 1, 1, 0, 0]
-          : [index + 0.5, null, index + 1, index, index, index + 1, index + 1],
+          : [yIndex + 0.5, null, yIndex + 1, yIndex, yIndex, yIndex + 1, yIndex + 1],
       };
       return plotlyDatum;
     });
@@ -80,7 +84,7 @@ class FeatureViewer extends React.Component<IFeatureViewerProps, IFeatureViewerS
     return {
       layout: {
         annotations:
-          hoveredFeatureIndex >= 0
+          hoveredFeatureIndex >= 0 && hoveredDatum.x && hoveredDatum.y
             ? [
                 {
                   align: 'left',
@@ -94,9 +98,9 @@ class FeatureViewer extends React.Component<IFeatureViewerProps, IFeatureViewerS
                   borderpad: 5,
                   showarrow: true,
                   text: hoverAnnotationText,
-                  x: hoveredDatum.x ? (hoveredDatum.x[0] as number) : 0,
+                  x: hoveredDatum.x[0] as number,
                   xref: 'x',
-                  y: hoveredDatum.y ? (hoveredDatum.y[hoveredDatum.y.length - 3] as number) : hoveredFeatureIndex,
+                  y: hoveredDatum.y[hoveredDatum.y.length - 3] as number,
                   yref: 'y',
                 },
               ]
@@ -113,7 +117,7 @@ class FeatureViewer extends React.Component<IFeatureViewerProps, IFeatureViewerS
         xaxis:
           data.length > 0
             ? {
-                range: [minRange, maxRange],
+                range: [minRange, maxRange + 200],
                 showgrid: false,
                 tick0: 0,
                 tickmode: 'auto',
@@ -170,7 +174,10 @@ class FeatureViewer extends React.Component<IFeatureViewerProps, IFeatureViewerS
     }
 
     this.setState({
-      hoverAnnotationText: onHoverCallback ? onHoverCallback(data[hoveredFeatureIndex].label, hoveredFeatureIndex) : '',
+      hoverAnnotationText:
+        onHoverCallback && hoveredFeatureIndex >= 0
+          ? onHoverCallback(data[hoveredFeatureIndex].label, hoveredFeatureIndex)
+          : '',
       hoveredFeatureIndex,
     });
   };

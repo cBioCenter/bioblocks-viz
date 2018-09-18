@@ -11,7 +11,7 @@ module.exports = {
 };
 
 export interface IMockPlotlyCanvas {
-  dispatchEvent(event: Event, data: Partial<plotly.PlotScatterDataPoint>): boolean;
+  dispatchEvent(event: Event, data: Partial<plotly.PlotScatterDataPoint> | plotly.SelectionRange): boolean;
 }
 
 export class MockPlotlyHTMLElement implements IMockPlotlyCanvas {
