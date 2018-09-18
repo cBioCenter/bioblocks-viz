@@ -16,6 +16,7 @@ import { generateResidueMapping, IResidueMapping } from '../src/helper/ResidueMa
 export interface IExampleAppState {
   [VIZ_TYPE.CONTACT_MAP]: CONTACT_MAP_DATA_TYPE;
   [VIZ_TYPE.NGL]?: NGL_DATA_TYPE;
+  arePredictionsAvailable: boolean;
   couplingScores: string;
   errorMsg: string;
   pdbData?: ChellPDB;
@@ -28,7 +29,9 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
     this.state = {
       [VIZ_TYPE.CONTACT_MAP]: {
         couplingScores: new CouplingContainer(),
+        secondaryStructures: [],
       },
+      arePredictionsAvailable: true,
       couplingScores: '',
       errorMsg: '',
       residueMapping: [],
@@ -45,6 +48,7 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
   }
 
   protected renderCouplingComponents = () => {
+    const { arePredictionsAvailable } = this.state;
     return (
       <div>
         <Header as={'h1'} attached={'top'}>
@@ -58,14 +62,18 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
                   <NGLComponent data={this.state[VIZ_TYPE.NGL]} showConfiguration={false} />
                 </GridColumn>
                 <GridColumn>
-                  <PredictedContactMap data={this.state[VIZ_TYPE.CONTACT_MAP]} enableSliders={false} />
+                  {arePredictionsAvailable ? (
+                    <PredictedContactMap
+                      data={{ couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores }}
+                      enableSliders={false}
+                    />
+                  ) : null}
                 </GridColumn>
               </GridRow>
               <GridRow columns={4}>
                 <GridColumn>{this.renderPDBUploadForm()}</GridColumn>
                 <GridColumn>{this.renderCouplingScoresUploadForm()}</GridColumn>
                 <GridColumn>{this.renderResidueMappingUploadForm()}</GridColumn>
-                <GridColumn>{this.renderMultiFileUploadForm()}</GridColumn>
               </GridRow>
             </Grid>
           </CouplingContext>
@@ -120,9 +128,6 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
   protected renderCouplingScoresUploadForm = () =>
     this.renderUploadForm(this.onCouplingScoreUpload, 'coupling-score', 'Coupling Scores');
 
-  protected renderMultiFileUploadForm = () =>
-    this.renderUploadForm(this.onMultiFileUpload, 'multi-upload', 'Upload Multiple Files', true);
-
   protected renderPDBUploadForm = () => this.renderUploadForm(this.onPDBUpload, 'pdb', 'PDB');
 
   protected renderResidueMappingUploadForm = () =>
@@ -139,6 +144,7 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
           [VIZ_TYPE.CONTACT_MAP]: {
             couplingScores,
             pdbData: this.state.pdbData,
+            secondaryStructures: [],
           },
           couplingScores: parsedFile,
           errorMsg: '',
@@ -149,51 +155,6 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
     }
   };
 
-  protected onMultiFileUpload = async (e: React.ChangeEvent) => {
-    const fileList = (e.target as HTMLInputElement).files;
-    let pdbData = this.state.pdbData;
-    let residueMapping = this.state.residueMapping;
-    let couplingScores = this.state.couplingScores;
-
-    if (fileList && fileList.length <= 3) {
-      for (const file of Array.from(fileList)) {
-        if (file.name.endsWith('.pdb')) {
-          pdbData = await ChellPDB.createPDBFromFile(file);
-        } else if (
-          file.name.endsWith('.csv') ||
-          file.name.endsWith('.indextable') ||
-          file.name.endsWith('.indextableplus')
-        ) {
-          const parsedFile = await readFileAsText(file);
-          const generatedMapping = generateResidueMapping(parsedFile);
-          if (generatedMapping.length !== 0) {
-            residueMapping = generatedMapping;
-          } else if (file.name.endsWith('.csv')) {
-            couplingScores = parsedFile;
-          }
-        } else {
-          alert(`Unable to parse file '${file.name}'!`);
-        }
-      }
-    } else {
-      alert(
-        'Incorrect files uploaded! Please upload a file named residue_mapping.csv as well as a .pdb and .csv file!',
-      );
-    }
-
-    this.setState({
-      couplingScores,
-      pdbData,
-      residueMapping,
-      [VIZ_TYPE.CONTACT_MAP]: {
-        couplingScores: getCouplingScoresData(couplingScores, residueMapping),
-        errorMsg: '',
-        pdbData,
-      },
-      [VIZ_TYPE.NGL]: pdbData ? pdbData.nglStructure : undefined,
-    });
-  };
-
   protected onPDBUpload = async (e: React.ChangeEvent) => {
     const files = (e.target as HTMLInputElement).files;
     const file = files ? files.item(0) : null;
@@ -202,6 +163,11 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
         const pdbData = await ChellPDB.createPDBFromFile(file);
         this.setState({
           [VIZ_TYPE.NGL]: pdbData.nglStructure,
+          [VIZ_TYPE.CONTACT_MAP]: {
+            couplingScores: pdbData.contactInformation,
+            pdbData,
+            secondaryStructures: pdbData.secondaryStructure,
+          },
           errorMsg: '',
           pdbData,
         });
@@ -223,9 +189,10 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
         this.setState({
           [VIZ_TYPE.CONTACT_MAP]: {
             couplingScores: getCouplingScoresData(this.state.couplingScores, residueMapping),
-            errorMsg: '',
             pdbData: this.state.pdbData,
+            secondaryStructures: [],
           },
+          errorMsg: '',
           residueMapping,
         });
       } catch (e) {

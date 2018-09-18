@@ -65,7 +65,7 @@ const getShallowContactMap = (props?: Partial<IContactMapProps>) => {
 const dispatchPlotlyEvent = (
   wrapper: ReactWrapper,
   eventName: string,
-  data: Partial<plotly.PlotScatterDataPoint> = { x: 0, y: 0 },
+  data: Partial<plotly.PlotScatterDataPoint> | plotly.SelectionRange = { x: [0], y: [0] },
 ) => {
   const plotlyWrapper = wrapper.find('PlotlyChart') as CommonWrapper;
   const canvas = (plotlyWrapper.instance() as PlotlyChart).plotlyCanvas;
@@ -212,7 +212,7 @@ describe('ContactMap', () => {
       const onSelectedSpy = jest.fn();
       const wrapper = await getMountedContactMap({ data: sampleData, onBoxSelection: onSelectedSpy });
       dispatchPlotlyEvent(wrapper, 'plotly_selected');
-      expect(onSelectedSpy).toHaveBeenLastCalledWith([0, 0]);
+      expect(onSelectedSpy).toHaveBeenLastCalledWith([[0], [0]]);
     });
 
     it('Should invoke callback for adding a secondary structure when a mouse clicks it the first time.', async () => {
@@ -228,10 +228,10 @@ describe('ContactMap', () => {
           addSecondaryStructure: addSecondaryStructureSpy,
         },
       });
-      const data: Partial<plotly.PlotScatterDataPoint> = {
+      const data: Partial<plotly.PlotScatterDataPoint> | plotly.SelectionRange = {
         data: { type: 'scattergl', xaxis: 'x2' } as any,
-        x: 0,
-        y: 0,
+        x: [0],
+        y: [0],
       };
       dispatchPlotlyEvent(wrapper, 'plotly_click', data);
       expect(addSecondaryStructureSpy).toHaveBeenLastCalledWith(testSecStruct);
@@ -251,10 +251,10 @@ describe('ContactMap', () => {
           selectedSecondaryStructures: [testSecStruct],
         },
       });
-      const data: Partial<plotly.PlotScatterDataPoint> = {
+      const data: Partial<plotly.PlotScatterDataPoint> | plotly.SelectionRange = {
         data: { type: 'scattergl', xaxis: 'x2' } as any,
-        x: 0,
-        y: 0,
+        x: [0],
+        y: [0],
       };
       dispatchPlotlyEvent(wrapper, 'plotly_click', data);
       expect(removeSecondaryStructureSpy).toHaveBeenLastCalledWith(testSecStruct);
@@ -273,10 +273,10 @@ describe('ContactMap', () => {
           toggleSecondaryStructure: toggleSecondaryStructureSpy,
         },
       });
-      const data: Partial<plotly.PlotScatterDataPoint> = {
+      const data: Partial<plotly.PlotScatterDataPoint> | plotly.SelectionRange = {
         data: { type: 'scattergl', xaxis: 'x2' } as any,
-        x: 0,
-        y: 0,
+        x: [0],
+        y: [0],
       };
       dispatchPlotlyEvent(wrapper, 'plotly_hover', data);
       expect(toggleSecondaryStructureSpy).toHaveBeenLastCalledWith(testSecStruct);
@@ -296,10 +296,10 @@ describe('ContactMap', () => {
           toggleSecondaryStructure: toggleSecondaryStructureSpy,
         },
       });
-      const data: Partial<plotly.PlotScatterDataPoint> = {
+      const data: Partial<plotly.PlotScatterDataPoint> | plotly.SelectionRange = {
         data: { type: 'scattergl', xaxis: 'x2' } as any,
-        x: 0,
-        y: 0,
+        x: [0],
+        y: [0],
       };
       dispatchPlotlyEvent(wrapper, 'plotly_hover', data);
       expect(toggleSecondaryStructureSpy).not.toHaveBeenCalled();

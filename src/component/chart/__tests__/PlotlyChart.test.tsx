@@ -40,7 +40,7 @@ describe('PlotlyChart', () => {
    * @param wrapper The PlotlyChart.
    * @param event The name of the event to dispatch.
    */
-  const dispatchPlotlyEvent = (wrapper: CommonWrapper, event: string, data: object = { data: {}, x: 0, y: 0 }) => {
+  const dispatchPlotlyEvent = (wrapper: CommonWrapper, event: string, data: object = { data: {}, x: [0], y: [0] }) => {
     const canvas = (wrapper.instance() as PlotlyChart).plotlyCanvas;
     if (canvas) {
       (canvas as IMockPlotlyCanvas).dispatchEvent(new Event(event), data);
