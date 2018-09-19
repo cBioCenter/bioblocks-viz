@@ -79,10 +79,16 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
   }
 
   public getAminoAcidOfContact(resno: number): IAminoAcid | undefined {
-    const contact = this.allContacts[resno - 1]
-      ? this.allContacts[resno - 1].find(aContact => aContact !== undefined && aContact.A_j !== undefined)
-      : undefined;
-    return contact ? AMINO_ACIDS_BY_SINGLE_LETTER_CODE[contact.A_j as AMINO_ACID_SINGLE_LETTER_CODES] : undefined;
+    const outerContacts = this.allContacts.find(outerContact => outerContact !== undefined);
+    const contact = outerContacts ? outerContacts.find(aContact => aContact !== undefined) : undefined;
+    if (contact) {
+      if (contact.i === resno) {
+        return AMINO_ACIDS_BY_SINGLE_LETTER_CODE[contact.A_i as AMINO_ACID_SINGLE_LETTER_CODES];
+      } else {
+        return AMINO_ACIDS_BY_SINGLE_LETTER_CODE[contact.A_j as AMINO_ACID_SINGLE_LETTER_CODES];
+      }
+    }
+    return undefined;
   }
 
   /**
@@ -137,7 +143,7 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
   public includes = (firstRes: number, secondRes: number) =>
     this.contacts[Math.min(firstRes, secondRes) - 1][Math.max(firstRes, secondRes) - 1] !== undefined;
 
-  public next(value?: any): IteratorResult<ICouplingScore> {
+  public next(): IteratorResult<ICouplingScore> {
     for (let i = this.rowCounter; i < this.contacts.length; ++i) {
       if (this.contacts[i]) {
         for (let j = this.colCounter; j < this.contacts[i].length; ++j) {

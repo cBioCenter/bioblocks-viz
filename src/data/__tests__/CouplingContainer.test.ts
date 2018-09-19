@@ -1,3 +1,4 @@
+import { AMINO_ACIDS_BY_SINGLE_LETTER_CODE } from '../AminoAcid';
 import { ICouplingScore } from '../chell-data';
 import { CouplingContainer } from '../CouplingContainer';
 
@@ -60,5 +61,29 @@ describe('CouplingContainer', () => {
       const expected = [sampleContacts[2], sampleContacts[1], sampleContacts[3], score];
       expect(result).toEqual(expected);
     }
+  });
+
+  describe('Amino acid helper', () => {
+    it('Should return undefined when retrieving an amino acid from an empty Coupling Container.', () => {
+      const result = new CouplingContainer();
+      expect(result.getAminoAcidOfContact(2)).toEqual(undefined);
+      expect(() => new CouplingContainer().getAminoAcidOfContact(0)).not.toThrow();
+    });
+
+    it('Should return undefined when an amino acid that has not been stored is retrieved.', () => {
+      const result = new CouplingContainer(sampleContacts).getAminoAcidOfContact(0);
+      expect(result).toEqual(undefined);
+      expect(() => new CouplingContainer(sampleContacts).getAminoAcidOfContact(0)).not.toThrow();
+    });
+
+    it('Should allow the correct amino acid corresponding to an individual contact to be retrieved.', () => {
+      const contact: ICouplingScore[] = [
+        { A_i: 'A', A_j: 'N', cn: 0.5, i: 1, j: 2, dist: 1 },
+        { A_i: 'N', A_j: 'A', cn: 0.5, i: 2, j: 1, dist: 1 },
+      ];
+      const container = new CouplingContainer(contact);
+      expect(container.getAminoAcidOfContact(1)).toEqual(AMINO_ACIDS_BY_SINGLE_LETTER_CODE.A);
+      expect(container.getAminoAcidOfContact(2)).toEqual(AMINO_ACIDS_BY_SINGLE_LETTER_CODE.N);
+    });
   });
 });
