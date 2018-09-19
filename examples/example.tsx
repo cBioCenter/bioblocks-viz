@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Button, Grid, GridColumn, GridRow, Header, Label, Segment } from 'semantic-ui-react';
 
+import { ContactMap } from '../src/component/ContactMap';
 import { NGLComponent } from '../src/component/NGLComponent';
 import { PredictedContactMap } from '../src/component/PredictedContactMap';
 import { ProteinFeatureViewer } from '../src/container/ProteinFeatureViewer';
@@ -31,7 +32,7 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
         couplingScores: new CouplingContainer(),
         secondaryStructures: [],
       },
-      arePredictionsAvailable: true,
+      arePredictionsAvailable: false,
       couplingScores: '',
       errorMsg: '',
       residueMapping: [],
@@ -64,10 +65,21 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
                 <GridColumn>
                   {arePredictionsAvailable ? (
                     <PredictedContactMap
-                      data={{ couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores }}
+                      data={{
+                        couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
+                        secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
+                      }}
                       enableSliders={false}
                     />
-                  ) : null}
+                  ) : (
+                    <ContactMap
+                      data={{
+                        couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
+                        secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
+                      }}
+                      enableSliders={false}
+                    />
+                  )}
                 </GridColumn>
               </GridRow>
               <GridRow columns={4}>
@@ -166,7 +178,7 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
           [VIZ_TYPE.CONTACT_MAP]: {
             couplingScores: pdbData.contactInformation,
             pdbData,
-            secondaryStructures: pdbData.secondaryStructure,
+            secondaryStructures: pdbData.secondaryStructureSections,
           },
           errorMsg: '',
           pdbData,

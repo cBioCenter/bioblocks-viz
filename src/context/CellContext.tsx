@@ -17,7 +17,7 @@ export const initialCellContext = {
 
 export type ICellContext = typeof initialCellContext;
 
-export class CellContextHandler extends React.Component<any, ICellContext> {
+export class CellContext extends React.Component<any, ICellContext> {
   public constructor(props: any) {
     super(props);
     this.state = {
@@ -29,7 +29,7 @@ export class CellContextHandler extends React.Component<any, ICellContext> {
   }
 
   public render() {
-    return <CellContext.Provider value={this.state}>{this.props.children}</CellContext.Provider>;
+    return <CellContextWrapper.Provider value={this.state}>{this.props.children}</CellContextWrapper.Provider>;
   }
 
   protected onAddCells = (cells: CELL_TYPE[]) => {
@@ -52,7 +52,7 @@ export class CellContextHandler extends React.Component<any, ICellContext> {
   };
 }
 
-const CellContext = React.createContext(initialCellContext);
+const CellContextWrapper = React.createContext(initialCellContext);
 
-export default CellContext;
-export { CellContext };
+export default CellContextWrapper;
+export { CellContextWrapper };

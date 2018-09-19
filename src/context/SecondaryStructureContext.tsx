@@ -29,7 +29,7 @@ export const initialSecondaryStructureContext: ISecondaryStructureContext = {
 
 export type SecondaryStructureContextState = Readonly<typeof initialSecondaryStructureContext>;
 
-export class SecondaryStructureContextHandler extends React.Component<any, SecondaryStructureContextState> {
+export class SecondaryStructureContext extends React.Component<any, SecondaryStructureContextState> {
   public constructor(props: any) {
     super(props);
     this.state = {
@@ -44,7 +44,9 @@ export class SecondaryStructureContextHandler extends React.Component<any, Secon
 
   public render() {
     return (
-      <SecondaryStructureContext.Provider value={this.state}>{this.props.children}</SecondaryStructureContext.Provider>
+      <SecondaryStructureContextWrapper.Provider value={this.state}>
+        {this.props.children}
+      </SecondaryStructureContextWrapper.Provider>
     );
   }
 
@@ -85,7 +87,7 @@ export class SecondaryStructureContextHandler extends React.Component<any, Secon
   };
 }
 
-const SecondaryStructureContext = React.createContext(initialSecondaryStructureContext);
+const SecondaryStructureContextWrapper = React.createContext(initialSecondaryStructureContext);
 
-export default SecondaryStructureContext;
-export { SecondaryStructureContext };
+export default SecondaryStructureContextWrapper;
+export { SecondaryStructureContextWrapper };

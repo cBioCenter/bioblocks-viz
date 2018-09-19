@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button, Dropdown, Grid, GridColumn, GridRow, Label } from 'semantic-ui-react';
-import { CHELL_DATA_TYPE, VIZ_TYPE } from '../data/chell-data';
+import { CHELL_DATA_TYPE, IContactMapData, VIZ_TYPE } from '../data/chell-data';
 
 import VizSelectorPanel from '../component/VizSelectorPanel';
 import ChellContext from '../context/ChellContext';
@@ -140,9 +140,10 @@ export class VizPanelContainer extends React.Component<IVizPanelProps, VizPanelC
         const couplingResult = await readFileAsText(files[couplingIndex]);
         const mappingResult = await readFileAsText(files[mappingIndex]);
 
-        const data = {
+        const data: IContactMapData = {
           couplingScores: getCouplingScoresData(couplingResult, generateResidueMapping(mappingResult)),
           pdbData,
+          secondaryStructures: [],
         };
 
         this.setState({

@@ -4,11 +4,16 @@ import * as React from 'react';
 import { Button, GridRow } from 'semantic-ui-react';
 import { Vector2 } from 'three';
 
-import ResidueContext, { initialResidueContext, IResidueContext, ResidueSelection } from '../context/ResidueContext';
+import {
+  initialResidueContext,
+  IResidueContext,
+  ResidueContextWrapper,
+  ResidueSelection,
+} from '../context/ResidueContext';
 import {
   initialSecondaryStructureContext,
   ISecondaryStructureContext,
-  SecondaryStructureContext,
+  SecondaryStructureContextWrapper,
 } from '../context/SecondaryStructureContext';
 import { RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../data/chell-data';
 import {
@@ -342,9 +347,9 @@ type requiredProps = Omit<INGLComponentProps, keyof typeof NGLComponentClass.def
   Partial<INGLComponentProps>;
 
 const NGLComponent = (props: requiredProps) => (
-  <SecondaryStructureContext.Consumer>
+  <SecondaryStructureContextWrapper.Consumer>
     {secStructContext => (
-      <ResidueContext.Consumer>
+      <ResidueContextWrapper.Consumer>
         {residueContext => (
           <NGLComponentClass
             {...props}
@@ -352,9 +357,9 @@ const NGLComponent = (props: requiredProps) => (
             secondaryStructureContext={{ ...secStructContext }}
           />
         )}
-      </ResidueContext.Consumer>
+      </ResidueContextWrapper.Consumer>
     )}
-  </SecondaryStructureContext.Consumer>
+  </SecondaryStructureContextWrapper.Consumer>
 );
 
 export default NGLComponent;

@@ -2,12 +2,12 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import * as Renderer from 'react-test-renderer';
 
-import CellContext, { CellContextHandler, initialCellContext } from '../CellContext';
+import { CellContext, CellContextWrapper, initialCellContext } from '../CellContext';
 
 describe('CellContext', () => {
   it('Should match the default snapshot.', () => {
     const wrapper = Renderer.create(
-      <CellContext.Consumer>{context => React.createElement('div', context)}</CellContext.Consumer>,
+      <CellContextWrapper.Consumer>{context => React.createElement('div', context)}</CellContextWrapper.Consumer>,
     );
     expect(wrapper.toJSON()).toMatchSnapshot();
     expect(wrapper.root.props).toEqual(initialCellContext);
@@ -15,7 +15,7 @@ describe('CellContext', () => {
 
   it('Should have empty initial functions that produce 0 side effects.', () => {
     const wrapper = Renderer.create(
-      <CellContext.Consumer>{context => React.createElement('div', context)}</CellContext.Consumer>,
+      <CellContextWrapper.Consumer>{context => React.createElement('div', context)}</CellContextWrapper.Consumer>,
     );
     wrapper.root.props.addCells();
     wrapper.root.props.removeAllCells();
@@ -25,7 +25,7 @@ describe('CellContext', () => {
 
   describe('Cell Context', () => {
     it('Should correctly add cells.', () => {
-      const instance = shallow(<CellContextHandler />).instance() as CellContextHandler;
+      const instance = shallow(<CellContext />).instance() as CellContext;
       const initialState = instance.state;
       const expectedState = {
         ...initialState,
@@ -36,7 +36,7 @@ describe('CellContext', () => {
     });
 
     it('Should remove old cells when new ones are added.', async () => {
-      const instance = shallow(<CellContextHandler />).instance() as CellContextHandler;
+      const instance = shallow(<CellContext />).instance() as CellContext;
       const initialState = instance.state;
       const expectedState = {
         ...initialState,
@@ -48,7 +48,7 @@ describe('CellContext', () => {
     });
 
     it('Should allow specific cells to be removed', () => {
-      const instance = shallow(<CellContextHandler />).instance() as CellContextHandler;
+      const instance = shallow(<CellContext />).instance() as CellContext;
       const initialState = instance.state;
       const expectedState = {
         ...initialState,
@@ -60,7 +60,7 @@ describe('CellContext', () => {
     });
 
     it('Should allow all cells to be removed', () => {
-      const instance = shallow(<CellContextHandler />).instance() as CellContextHandler;
+      const instance = shallow(<CellContext />).instance() as CellContext;
       const initialState = instance.state;
       const expectedState = {
         ...initialState,

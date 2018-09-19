@@ -41,7 +41,7 @@ export const initialResidueContext = {
 
 export type IResidueContext = typeof initialResidueContext;
 
-export class ResidueContextHandler extends React.Component<any, IResidueContext> {
+export class ResidueContext extends React.Component<any, IResidueContext> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -60,7 +60,7 @@ export class ResidueContextHandler extends React.Component<any, IResidueContext>
   }
 
   public render() {
-    return <ResidueContext.Provider value={this.state}>{this.props.children}</ResidueContext.Provider>;
+    return <ResidueContextWrapper.Provider value={this.state}>{this.props.children}</ResidueContextWrapper.Provider>;
   }
 
   protected onAddCandidateResidues = (candidateResidues: RESIDUE_TYPE[]) => {
@@ -149,9 +149,9 @@ export class ResidueContextHandler extends React.Component<any, IResidueContext>
   };
 }
 
-const ResidueContext = React.createContext({
+const ResidueContextWrapper = React.createContext({
   ...initialResidueContext,
 });
 
-export default ResidueContext;
-export { ResidueContext };
+export default ResidueContextWrapper;
+export { ResidueContextWrapper };

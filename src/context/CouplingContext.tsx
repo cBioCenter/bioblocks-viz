@@ -1,26 +1,41 @@
 import * as React from 'react';
 
-import { ResidueContextHandler } from './ResidueContext';
-import { SecondaryStructureContextHandler } from './SecondaryStructureContext';
+import { CouplingContainer } from '../data/CouplingContainer';
+import { ResidueContext } from './ResidueContext';
+import { SecondaryStructureContext } from './SecondaryStructureContext';
+
+export const initialCouplingContext = {
+  couplingScores: new CouplingContainer(),
+};
+
+export type ICouplingContext = typeof initialCouplingContext;
 
 /**
  * Shorthand for passing contexts relevant for Coupling Scores - Primarily interaction with residues and secondary structures.
  *
  * @export
- * @extends {React.Component<any, any>}
+ * @extends {React.Component<any, ICouplingContext>}
  */
-export default class CouplingContext extends React.Component<any, any> {
+export class CouplingContext extends React.Component<any, ICouplingContext> {
   constructor(props: any) {
     super(props);
+    this.state = {
+      couplingScores: new CouplingContainer(),
+    };
   }
 
   public render() {
     return (
-      <SecondaryStructureContextHandler>
-        <ResidueContextHandler>{this.props.children}</ResidueContextHandler>
-      </SecondaryStructureContextHandler>
+      <SecondaryStructureContext>
+        <ResidueContext>
+          <CouplingContextWrapper.Provider value={this.state}>{this.props.children}</CouplingContextWrapper.Provider>
+        </ResidueContext>
+      </SecondaryStructureContext>
     );
   }
 }
 
-export { CouplingContext };
+const CouplingContextWrapper = React.createContext(initialCouplingContext);
+
+export default CouplingContextWrapper;
+export { CouplingContextWrapper };

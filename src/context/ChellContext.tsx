@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import { CellContextHandler } from './CellContext';
-import { ResidueContextHandler } from './ResidueContext';
-import { SecondaryStructureContextHandler } from './SecondaryStructureContext';
-import { SpringContextHandler } from './SpringContext';
+import { CellContext } from './CellContext';
+import { ResidueContext } from './ResidueContext';
+import { SecondaryStructureContext } from './SecondaryStructureContext';
+import { SpringContext } from './SpringContext';
 
 /**
  * Shorthand for passing all Chell contexts down.
@@ -18,13 +18,13 @@ export default class ChellContext extends React.Component<any, any> {
 
   public render() {
     return (
-      <SecondaryStructureContextHandler>
-        <SpringContextHandler>
-          <CellContextHandler>
-            <ResidueContextHandler>{this.props.children}</ResidueContextHandler>
-          </CellContextHandler>
-        </SpringContextHandler>
-      </SecondaryStructureContextHandler>
+      <SecondaryStructureContext>
+        <SpringContext>
+          <CellContext>
+            <ResidueContext>{this.props.children}</ResidueContext>
+          </CellContext>
+        </SpringContext>
+      </SecondaryStructureContext>
     );
   }
 }

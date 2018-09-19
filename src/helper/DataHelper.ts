@@ -176,6 +176,7 @@ export const fetchContactMapData = async (dir: string): Promise<IContactMapData>
   const data: CONTACT_MAP_DATA_TYPE = {
     couplingScores: getCouplingScoresData(promiseResults[0], generateResidueMapping(promiseResults[1])),
     pdbData,
+    secondaryStructures: [],
   };
 
   return data;

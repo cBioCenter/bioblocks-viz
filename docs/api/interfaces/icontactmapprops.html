@@ -79,12 +79,13 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icontactmapprops.html#chainlength" class="tsd-kind-icon">chain<wbr>Length</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icontactmapprops.html#configurations" class="tsd-kind-icon">configurations</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icontactmapprops.html#data" class="tsd-kind-icon">data</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icontactmapprops.html#enablesliders" class="tsd-kind-icon">enable<wbr>Sliders</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icontactmapprops.html#formattedpoints" class="tsd-kind-icon">formatted<wbr>Points</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icontactmapprops.html#height" class="tsd-kind-icon">height</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icontactmapprops.html#highlightcolor" class="tsd-kind-icon">highlight<wbr>Color</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icontactmapprops.html#observedcolor" class="tsd-kind-icon">observed<wbr>Color</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icontactmapprops.html#onboxselection" class="tsd-kind-icon">on<wbr>Box<wbr>Selection</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icontactmapprops.html#padding" class="tsd-kind-icon">padding</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icontactmapprops.html#residuecontext" class="tsd-kind-icon">residue<wbr>Context</a></li>
@@ -98,45 +99,24 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="chainlength" class="tsd-anchor"></a>
-					<h3>chain<wbr>Length</h3>
-					<div class="tsd-signature tsd-kind-icon">chain<wbr>Length<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in src/component/ContactMap.tsx:33</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="configurations" class="tsd-anchor"></a>
 					<h3>configurations</h3>
 					<div class="tsd-signature tsd-kind-icon">configurations<span class="tsd-signature-symbol">:</span> <a href="icontactmapconfiguration.html" class="tsd-signature-type">IContactMapConfiguration</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/ContactMap.tsx:34</li>
+							<li>Defined in src/component/ContactMap.tsx:45</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="data" class="tsd-anchor"></a>
 					<h3>data</h3>
-					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <a href="icontactmapdata.html" class="tsd-signature-type">IContactMapData</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/ContactMap.tsx:35</li>
+							<li>Defined in src/component/ContactMap.tsx:46</li>
 						</ul>
 					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter">
-								<h5>computed<wbr>Points<span class="tsd-signature-symbol">: </span><a href="icontactmapchartdata.html" class="tsd-signature-type">IContactMapChartData</a><span class="tsd-signature-symbol">[]</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>secondary<wbr>Structures<span class="tsd-signature-symbol">: </span><a href="../globals.html#secondary_structure" class="tsd-signature-type">SECONDARY_STRUCTURE</a><span class="tsd-signature-symbol">[]</span></h5>
-							</li>
-						</ul>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="enablesliders" class="tsd-anchor"></a>
@@ -144,7 +124,17 @@
 					<div class="tsd-signature tsd-kind-icon">enable<wbr>Sliders<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/ContactMap.tsx:39</li>
+							<li>Defined in src/component/ContactMap.tsx:47</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="formattedpoints" class="tsd-anchor"></a>
+					<h3>formatted<wbr>Points</h3>
+					<div class="tsd-signature tsd-kind-icon">formatted<wbr>Points<span class="tsd-signature-symbol">:</span> <a href="icontactmapchartdata.html" class="tsd-signature-type">IContactMapChartData</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/component/ContactMap.tsx:48</li>
 						</ul>
 					</aside>
 				</section>
@@ -154,7 +144,7 @@
 					<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/ContactMap.tsx:40</li>
+							<li>Defined in src/component/ContactMap.tsx:49</li>
 						</ul>
 					</aside>
 				</section>
@@ -164,7 +154,17 @@
 					<div class="tsd-signature tsd-kind-icon">highlight<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/ContactMap.tsx:41</li>
+							<li>Defined in src/component/ContactMap.tsx:50</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="observedcolor" class="tsd-anchor"></a>
+					<h3>observed<wbr>Color</h3>
+					<div class="tsd-signature tsd-kind-icon">observed<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/component/ContactMap.tsx:51</li>
 						</ul>
 					</aside>
 				</section>
@@ -174,7 +174,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Box<wbr>Selection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/ContactMap.tsx:42</li>
+							<li>Defined in src/component/ContactMap.tsx:52</li>
 						</ul>
 					</aside>
 				</section>
@@ -184,7 +184,7 @@
 					<div class="tsd-signature tsd-kind-icon">padding<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/ContactMap.tsx:43</li>
+							<li>Defined in src/component/ContactMap.tsx:53</li>
 						</ul>
 					</aside>
 				</section>
@@ -194,7 +194,7 @@
 					<div class="tsd-signature tsd-kind-icon">residue<wbr>Context<span class="tsd-signature-symbol">:</span> <a href="../globals.html#iresiduecontext" class="tsd-signature-type">IResidueContext</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/ContactMap.tsx:44</li>
+							<li>Defined in src/component/ContactMap.tsx:54</li>
 						</ul>
 					</aside>
 				</section>
@@ -204,7 +204,7 @@
 					<div class="tsd-signature tsd-kind-icon">secondary<wbr>Structure<wbr>Context<span class="tsd-signature-symbol">:</span> <a href="isecondarystructurecontext.html" class="tsd-signature-type">ISecondaryStructureContext</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/ContactMap.tsx:45</li>
+							<li>Defined in src/component/ContactMap.tsx:55</li>
 						</ul>
 					</aside>
 				</section>
@@ -214,7 +214,7 @@
 					<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/ContactMap.tsx:46</li>
+							<li>Defined in src/component/ContactMap.tsx:56</li>
 						</ul>
 					</aside>
 				</section>
@@ -236,9 +236,6 @@
 						<a href="icontactmapprops.html" class="tsd-kind-icon">IContact<wbr>Map<wbr>Props</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="icontactmapprops.html#chainlength" class="tsd-kind-icon">chain<wbr>Length</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="icontactmapprops.html#configurations" class="tsd-kind-icon">configurations</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
@@ -248,10 +245,16 @@
 								<a href="icontactmapprops.html#enablesliders" class="tsd-kind-icon">enable<wbr>Sliders</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="icontactmapprops.html#formattedpoints" class="tsd-kind-icon">formatted<wbr>Points</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="icontactmapprops.html#height" class="tsd-kind-icon">height</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="icontactmapprops.html#highlightcolor" class="tsd-kind-icon">highlight<wbr>Color</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="icontactmapprops.html#observedcolor" class="tsd-kind-icon">observed<wbr>Color</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="icontactmapprops.html#onboxselection" class="tsd-kind-icon">on<wbr>Box<wbr>Selection</a>

@@ -34,7 +34,7 @@ export enum VIZ_TYPE {
 export interface IContactMapData {
   couplingScores: CouplingContainer;
   pdbData?: ChellPDB;
-  secondaryStructures?: ISecondaryStructureData[];
+  secondaryStructures: SECONDARY_STRUCTURE[];
 }
 
 export interface IMonomerContact {

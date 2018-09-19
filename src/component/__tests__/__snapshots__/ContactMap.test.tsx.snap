@@ -11,7 +11,66 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
 >
   <ContactMapChart
     candidateResidues={Array []}
-    contactData={Array []}
+    contactData={
+      Array [
+        Object {
+          "hoverinfo": "x+y",
+          "marker": Object {
+            "colorscale": Array [
+              Array [
+                0,
+                "rgb(12,50,102)",
+              ],
+              Array [
+                0.1,
+                "rgb(17,83,150)",
+              ],
+              Array [
+                0.2,
+                "rgb(40,114,175)",
+              ],
+              Array [
+                0.3,
+                "rgb(71,147,193)",
+              ],
+              Array [
+                0.4,
+                "rgb(111,175,209)",
+              ],
+              Array [
+                0.5,
+                "rgb(160,202,222)",
+              ],
+              Array [
+                0.6,
+                "rgb(200,219,237)",
+              ],
+              Array [
+                0.7,
+                "rgb(224,235,246)",
+              ],
+              Array [
+                0.8,
+                "rgb(247,251,255)",
+              ],
+              Array [
+                0.9,
+                "rgb(249,253,255)",
+              ],
+              Array [
+                1,
+                "rgb(255,255,255)",
+              ],
+            ],
+          },
+          "mode": "lines+markers",
+          "name": "Known Structure Contact",
+          "nodeSize": 4,
+          "points": Array [],
+          "subtitle": "(from PDB structure)",
+        },
+      ]
+    }
     dataTransformFn={[Function]}
     heightModifier={0.3}
     legendModifiers={
@@ -29,7 +88,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
     onHoverCallback={[Function]}
     onSelectedCallback={[Function]}
     onUnHoverCallback={[Function]}
-    range={64}
+    range={5}
     secondaryStructures={Array []}
     selectedSecondaryStructures={
       Array [
@@ -56,6 +115,20 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
     <AccordionContent
       active={false}
     >
+      <ChellSlider
+        className="node-size-slider-0"
+        key="node-size-slider-0"
+        label="Known Structure Contact - Node Size"
+        max={20}
+        min={1}
+        onChange={[Function]}
+        style={
+          Object {
+            "width": 360,
+          }
+        }
+        value={4}
+      />
       <ChellSlider
         className="sample-slider"
         key="sample-slider"
@@ -182,317 +255,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
         }
       >
         <p>
-          0 - Node Size: 4
-        </p>
-        <div
-          className="rc-slider"
-          onBlur={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
-          onMouseUp={[Function]}
-          onTouchStart={[Function]}
-          style={
-            Object {
-              "width": 360,
-            }
-          }
-        >
-          <div
-            className="rc-slider-rail"
-            style={Object {}}
-          />
-          <div
-            className="rc-slider-track"
-            style={
-              Object {
-                "left": "0%",
-                "width": "15.789473684210526%",
-              }
-            }
-          />
-          <div
-            className="rc-slider-step"
-          />
-          <div
-            aria-disabled={false}
-            aria-valuemax={20}
-            aria-valuemin={1}
-            aria-valuenow={4}
-            className="rc-slider-handle"
-            onBlur={[Function]}
-            onKeyDown={[Function]}
-            role="slider"
-            style={
-              Object {
-                "left": "15.789473684210526%",
-              }
-            }
-            tabIndex={0}
-          />
-          <div
-            className="rc-slider-mark"
-          />
-        </div>
-      </div>
-      <div
-        className="node-size-slider-1"
-        style={
-          Object {
-            "padding": 20,
-          }
-        }
-      >
-        <p>
-          1 - Node Size: 4
-        </p>
-        <div
-          className="rc-slider"
-          onBlur={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
-          onMouseUp={[Function]}
-          onTouchStart={[Function]}
-          style={
-            Object {
-              "width": 360,
-            }
-          }
-        >
-          <div
-            className="rc-slider-rail"
-            style={Object {}}
-          />
-          <div
-            className="rc-slider-track"
-            style={
-              Object {
-                "left": "0%",
-                "width": "15.789473684210526%",
-              }
-            }
-          />
-          <div
-            className="rc-slider-step"
-          />
-          <div
-            aria-disabled={false}
-            aria-valuemax={20}
-            aria-valuemin={1}
-            aria-valuenow={4}
-            className="rc-slider-handle"
-            onBlur={[Function]}
-            onKeyDown={[Function]}
-            role="slider"
-            style={
-              Object {
-                "left": "15.789473684210526%",
-              }
-            }
-            tabIndex={0}
-          />
-          <div
-            className="rc-slider-mark"
-          />
-        </div>
-      </div>
-      <div
-        className="node-size-slider-2"
-        style={
-          Object {
-            "padding": 20,
-          }
-        }
-      >
-        <p>
-          2 - Node Size: 4
-        </p>
-        <div
-          className="rc-slider"
-          onBlur={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
-          onMouseUp={[Function]}
-          onTouchStart={[Function]}
-          style={
-            Object {
-              "width": 360,
-            }
-          }
-        >
-          <div
-            className="rc-slider-rail"
-            style={Object {}}
-          />
-          <div
-            className="rc-slider-track"
-            style={
-              Object {
-                "left": "0%",
-                "width": "15.789473684210526%",
-              }
-            }
-          />
-          <div
-            className="rc-slider-step"
-          />
-          <div
-            aria-disabled={false}
-            aria-valuemax={20}
-            aria-valuemin={1}
-            aria-valuenow={4}
-            className="rc-slider-handle"
-            onBlur={[Function]}
-            onKeyDown={[Function]}
-            role="slider"
-            style={
-              Object {
-                "left": "15.789473684210526%",
-              }
-            }
-            tabIndex={0}
-          />
-          <div
-            className="rc-slider-mark"
-          />
-        </div>
-      </div>
-      <div
-        className="node-size-slider-3"
-        style={
-          Object {
-            "padding": 20,
-          }
-        }
-      >
-        <p>
-          3 - Node Size: 4
-        </p>
-        <div
-          className="rc-slider"
-          onBlur={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
-          onMouseUp={[Function]}
-          onTouchStart={[Function]}
-          style={
-            Object {
-              "width": 360,
-            }
-          }
-        >
-          <div
-            className="rc-slider-rail"
-            style={Object {}}
-          />
-          <div
-            className="rc-slider-track"
-            style={
-              Object {
-                "left": "0%",
-                "width": "15.789473684210526%",
-              }
-            }
-          />
-          <div
-            className="rc-slider-step"
-          />
-          <div
-            aria-disabled={false}
-            aria-valuemax={20}
-            aria-valuemin={1}
-            aria-valuenow={4}
-            className="rc-slider-handle"
-            onBlur={[Function]}
-            onKeyDown={[Function]}
-            role="slider"
-            style={
-              Object {
-                "left": "15.789473684210526%",
-              }
-            }
-            tabIndex={0}
-          />
-          <div
-            className="rc-slider-mark"
-          />
-        </div>
-      </div>
-      <div
-        className="node-size-slider-4"
-        style={
-          Object {
-            "padding": 20,
-          }
-        }
-      >
-        <p>
-          4 - Node Size: 4
-        </p>
-        <div
-          className="rc-slider"
-          onBlur={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
-          onMouseUp={[Function]}
-          onTouchStart={[Function]}
-          style={
-            Object {
-              "width": 360,
-            }
-          }
-        >
-          <div
-            className="rc-slider-rail"
-            style={Object {}}
-          />
-          <div
-            className="rc-slider-track"
-            style={
-              Object {
-                "left": "0%",
-                "width": "15.789473684210526%",
-              }
-            }
-          />
-          <div
-            className="rc-slider-step"
-          />
-          <div
-            aria-disabled={false}
-            aria-valuemax={20}
-            aria-valuemin={1}
-            aria-valuenow={4}
-            className="rc-slider-handle"
-            onBlur={[Function]}
-            onKeyDown={[Function]}
-            role="slider"
-            style={
-              Object {
-                "left": "15.789473684210526%",
-              }
-            }
-            tabIndex={0}
-          />
-          <div
-            className="rc-slider-mark"
-          />
-        </div>
-      </div>
-      <div
-        className="node-size-slider-5"
-        style={
-          Object {
-            "padding": 20,
-          }
-        }
-      >
-        <p>
-          5 - Node Size: 4
+          Known Structure Contact - Node Size: 4
         </p>
         <div
           className="rc-slider"
@@ -552,78 +315,410 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
 
 exports[`ContactMap Snapshots Should match snapshot when locked residues are added. 1`] = `
 <ContactMapClass
-  chainLength={59}
   configurations={Array []}
   data={
     Object {
-      "computedPoints": Array [
-        Object {
-          "name": "0",
-          "nodeSize": 4,
-          "points": Array [
-            Object {
-              "dist": 2.4,
-              "i": 56,
-              "j": 50,
-            },
-          ],
-        },
-        Object {
-          "name": "1",
-          "nodeSize": 4,
-          "points": Array [
-            Object {
-              "dist": 20.4,
-              "i": 42,
-              "j": 50,
-            },
-          ],
-        },
-        Object {
-          "name": "2",
-          "nodeSize": 4,
-          "points": Array [
+      "couplingScores": CouplingContainer {
+        "colCounter": 0,
+        "contacts": Array [
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          Array [
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
             Object {
               "dist": 1.3,
               "i": 41,
               "j": 52,
             },
           ],
-        },
-        Object {
-          "name": "3",
-          "nodeSize": 4,
-          "points": Array [
+          Array [
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
             Object {
-              "dist": 1.3,
-              "i": 45,
-              "j": 46,
+              "dist": 20.4,
+              "i": 42,
+              "j": 50,
             },
           ],
-        },
-        Object {
-          "name": "4",
-          "nodeSize": 4,
-          "points": Array [
+          undefined,
+          Array [
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
             Object {
               "dist": 1.3,
               "i": 44,
               "j": 45,
             },
           ],
-        },
-        Object {
-          "name": "5",
-          "nodeSize": 4,
-          "points": Array [
+          Array [
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            Object {
+              "dist": 1.3,
+              "i": 45,
+              "j": 46,
+            },
+          ],
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          Array [
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            Object {
+              "dist": 2.4,
+              "i": 56,
+              "j": 50,
+            },
+          ],
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          Array [
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
             Object {
               "dist": 1.3,
               "i": 56,
               "j": 57,
             },
           ],
-        },
-      ],
+        ],
+        "getCouplingScore": [Function],
+        "includes": [Function],
+        "rowCounter": 0,
+        "totalStoredContacts": 6,
+      },
       "secondaryStructures": Array [
         Array [
           Object {
@@ -637,6 +732,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
     }
   }
   enableSliders={true}
+  formattedPoints={Array []}
   height={400}
   highlightColor="#ff8800"
   lockedResiduePairs={
@@ -650,6 +746,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       ],
     }
   }
+  observedColor="#0000ff"
   padding={0}
   residueContext={
     Object {
@@ -693,29 +790,57 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       contactData={
         Array [
           Object {
-            "name": "0",
-            "nodeSize": 4,
-            "points": Array [
-              Object {
-                "dist": 2.4,
-                "i": 56,
-                "j": 50,
-              },
-            ],
-          },
-          Object {
-            "name": "1",
-            "nodeSize": 4,
-            "points": Array [
-              Object {
-                "dist": 20.4,
-                "i": 42,
-                "j": 50,
-              },
-            ],
-          },
-          Object {
-            "name": "2",
+            "hoverinfo": "x+y",
+            "marker": Object {
+              "colorscale": Array [
+                Array [
+                  0,
+                  "rgb(12,50,102)",
+                ],
+                Array [
+                  0.1,
+                  "rgb(17,83,150)",
+                ],
+                Array [
+                  0.2,
+                  "rgb(40,114,175)",
+                ],
+                Array [
+                  0.3,
+                  "rgb(71,147,193)",
+                ],
+                Array [
+                  0.4,
+                  "rgb(111,175,209)",
+                ],
+                Array [
+                  0.5,
+                  "rgb(160,202,222)",
+                ],
+                Array [
+                  0.6,
+                  "rgb(200,219,237)",
+                ],
+                Array [
+                  0.7,
+                  "rgb(224,235,246)",
+                ],
+                Array [
+                  0.8,
+                  "rgb(247,251,255)",
+                ],
+                Array [
+                  0.9,
+                  "rgb(249,253,255)",
+                ],
+                Array [
+                  1,
+                  "rgb(255,255,255)",
+                ],
+              ],
+            },
+            "mode": "lines+markers",
+            "name": "Known Structure Contact",
             "nodeSize": 4,
             "points": Array [
               Object {
@@ -723,40 +848,13 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 "i": 41,
                 "j": 52,
               },
-            ],
-          },
-          Object {
-            "name": "3",
-            "nodeSize": 4,
-            "points": Array [
               Object {
-                "dist": 1.3,
-                "i": 45,
-                "j": 46,
-              },
-            ],
-          },
-          Object {
-            "name": "4",
-            "nodeSize": 4,
-            "points": Array [
-              Object {
-                "dist": 1.3,
-                "i": 44,
-                "j": 45,
-              },
-            ],
-          },
-          Object {
-            "name": "5",
-            "nodeSize": 4,
-            "points": Array [
-              Object {
-                "dist": 1.3,
+                "dist": 2.4,
                 "i": 56,
-                "j": 57,
+                "j": 50,
               },
             ],
+            "subtitle": "(from PDB structure)",
           },
         ]
       }
@@ -777,19 +875,8 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       onHoverCallback={[Function]}
       onSelectedCallback={[Function]}
       onUnHoverCallback={[Function]}
-      range={64}
-      secondaryStructures={
-        Array [
-          Array [
-            Object {
-              "end": 31,
-              "label": "C",
-              "length": 2,
-              "start": 30,
-            },
-          ],
-        ]
-      }
+      range={61}
+      secondaryStructures={Array []}
       selectedSecondaryStructures={
         Array [
           Array [],
@@ -805,150 +892,79 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "hoverinfo": "x+y+z",
               "marker": Object {
                 "color": Array [
-                  "2.4",
-                  "2.4",
-                ],
-                "size": 4,
-              },
-              "mode": "markers",
-              "name": "0 undefined",
-              "type": "scattergl",
-              "x": Array [
-                56,
-                50,
-              ],
-              "y": Array [
-                50,
-                56,
-              ],
-              "z": Array [
-                2.4,
-                2.4,
-              ],
-            },
-            Object {
-              "hoverinfo": "x+y+z",
-              "marker": Object {
-                "color": Array [
-                  "20.4",
-                  "20.4",
-                ],
-                "size": 4,
-              },
-              "mode": "markers",
-              "name": "1 undefined",
-              "type": "scattergl",
-              "x": Array [
-                42,
-                50,
-              ],
-              "y": Array [
-                50,
-                42,
-              ],
-              "z": Array [
-                20.4,
-                20.4,
-              ],
-            },
-            Object {
-              "hoverinfo": "x+y+z",
-              "marker": Object {
-                "color": Array [
                   "1.3",
+                  "2.4",
                   "1.3",
+                  "2.4",
+                ],
+                "colorscale": Array [
+                  Array [
+                    0,
+                    "rgb(12,50,102)",
+                  ],
+                  Array [
+                    0.1,
+                    "rgb(17,83,150)",
+                  ],
+                  Array [
+                    0.2,
+                    "rgb(40,114,175)",
+                  ],
+                  Array [
+                    0.3,
+                    "rgb(71,147,193)",
+                  ],
+                  Array [
+                    0.4,
+                    "rgb(111,175,209)",
+                  ],
+                  Array [
+                    0.5,
+                    "rgb(160,202,222)",
+                  ],
+                  Array [
+                    0.6,
+                    "rgb(200,219,237)",
+                  ],
+                  Array [
+                    0.7,
+                    "rgb(224,235,246)",
+                  ],
+                  Array [
+                    0.8,
+                    "rgb(247,251,255)",
+                  ],
+                  Array [
+                    0.9,
+                    "rgb(249,253,255)",
+                  ],
+                  Array [
+                    1,
+                    "rgb(255,255,255)",
+                  ],
                 ],
                 "size": 4,
               },
               "mode": "markers",
-              "name": "2 undefined",
+              "name": "Known Structure Contact (from PDB structure)",
               "type": "scattergl",
               "x": Array [
                 41,
+                56,
                 52,
+                50,
               ],
               "y": Array [
                 52,
+                50,
                 41,
-              ],
-              "z": Array [
-                1.3,
-                1.3,
-              ],
-            },
-            Object {
-              "hoverinfo": "x+y+z",
-              "marker": Object {
-                "color": Array [
-                  "1.3",
-                  "1.3",
-                ],
-                "size": 4,
-              },
-              "mode": "markers",
-              "name": "3 undefined",
-              "type": "scattergl",
-              "x": Array [
-                45,
-                46,
-              ],
-              "y": Array [
-                46,
-                45,
-              ],
-              "z": Array [
-                1.3,
-                1.3,
-              ],
-            },
-            Object {
-              "hoverinfo": "x+y+z",
-              "marker": Object {
-                "color": Array [
-                  "1.3",
-                  "1.3",
-                ],
-                "size": 4,
-              },
-              "mode": "markers",
-              "name": "4 undefined",
-              "type": "scattergl",
-              "x": Array [
-                44,
-                45,
-              ],
-              "y": Array [
-                45,
-                44,
-              ],
-              "z": Array [
-                1.3,
-                1.3,
-              ],
-            },
-            Object {
-              "hoverinfo": "x+y+z",
-              "marker": Object {
-                "color": Array [
-                  "1.3",
-                  "1.3",
-                ],
-                "size": 4,
-              },
-              "mode": "markers",
-              "name": "5 undefined",
-              "type": "scattergl",
-              "x": Array [
-                56,
-                57,
-              ],
-              "y": Array [
-                57,
                 56,
               ],
               "z": Array [
                 1.3,
+                2.4,
                 1.3,
+                2.4,
               ],
             },
           ]
@@ -972,7 +988,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "nticks": 10,
               "range": Array [
                 1,
-                64,
+                61,
               ],
               "showline": true,
               "tickmode": "auto",
@@ -982,7 +998,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "autorange": false,
               "nticks": 10,
               "range": Array [
-                64,
+                61,
                 1,
               ],
               "showline": true,
@@ -995,18 +1011,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         onHoverCallback={[Function]}
         onSelectedCallback={[Function]}
         onUnHoverCallback={[Function]}
-        secondaryStructures={
-          Array [
-            Array [
-              Object {
-                "end": 31,
-                "label": "C",
-                "length": 2,
-                "start": 30,
-              },
-            ],
-          ]
-        }
+        secondaryStructures={Array []}
         selectedSecondaryStructures={
           Array [
             Array [],
@@ -1090,7 +1095,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               <ChellSlider
                 className="node-size-slider-0"
                 key="node-size-slider-0"
-                label="0 - Node Size"
+                label="Known Structure Contact - Node Size"
                 max={20}
                 min={1}
                 onChange={[Function]}
@@ -1110,817 +1115,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   }
                 >
                   <p>
-                    0 - Node Size: 4
-                  </p>
-                  <ComponentEnhancer(undefined)
-                    activeDotStyle={Object {}}
-                    className=""
-                    disabled={false}
-                    dotStyle={Object {}}
-                    dots={false}
-                    handle={[Function]}
-                    handleStyle={
-                      Array [
-                        Object {},
-                      ]
-                    }
-                    included={true}
-                    marks={Object {}}
-                    max={20}
-                    min={1}
-                    onAfterChange={[Function]}
-                    onBeforeChange={[Function]}
-                    onChange={[Function]}
-                    prefixCls="rc-slider"
-                    railStyle={Object {}}
-                    step={1}
-                    style={
-                      Object {
-                        "width": 360,
-                      }
-                    }
-                    trackStyle={
-                      Array [
-                        Object {},
-                      ]
-                    }
-                    value={4}
-                    vertical={false}
-                  >
-                    <div
-                      className="rc-slider"
-                      onBlur={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      onMouseDown={[Function]}
-                      onMouseUp={[Function]}
-                      onTouchStart={[Function]}
-                      style={
-                        Object {
-                          "width": 360,
-                        }
-                      }
-                    >
-                      <div
-                        className="rc-slider-rail"
-                        style={Object {}}
-                      />
-                      <Track
-                        className="rc-slider-track"
-                        included={true}
-                        length={15.789473684210526}
-                        offset={0}
-                        style={Object {}}
-                        vertical={false}
-                      >
-                        <div
-                          className="rc-slider-track"
-                          style={
-                            Object {
-                              "left": "0%",
-                              "width": "15.789473684210526%",
-                            }
-                          }
-                        />
-                      </Track>
-                      <Steps
-                        activeDotStyle={Object {}}
-                        dotStyle={Object {}}
-                        dots={false}
-                        included={true}
-                        lowerBound={1}
-                        marks={Object {}}
-                        max={20}
-                        min={1}
-                        prefixCls="rc-slider"
-                        step={1}
-                        upperBound={4}
-                        vertical={false}
-                      >
-                        <div
-                          className="rc-slider-step"
-                        />
-                      </Steps>
-                      <Handle
-                        className="rc-slider-handle"
-                        disabled={false}
-                        key="0"
-                        max={20}
-                        min={1}
-                        offset={15.789473684210526}
-                        prefixCls="rc-slider"
-                        style={Object {}}
-                        value={4}
-                        vertical={false}
-                      >
-                        <div
-                          aria-disabled={false}
-                          aria-valuemax={20}
-                          aria-valuemin={1}
-                          aria-valuenow={4}
-                          className="rc-slider-handle"
-                          onBlur={[Function]}
-                          onKeyDown={[Function]}
-                          role="slider"
-                          style={
-                            Object {
-                              "left": "15.789473684210526%",
-                            }
-                          }
-                          tabIndex={0}
-                        />
-                      </Handle>
-                      <Marks
-                        className="rc-slider-mark"
-                        included={true}
-                        lowerBound={1}
-                        marks={Object {}}
-                        max={20}
-                        min={1}
-                        onClickLabel={[Function]}
-                        upperBound={4}
-                        vertical={false}
-                      >
-                        <div
-                          className="rc-slider-mark"
-                        />
-                      </Marks>
-                    </div>
-                  </ComponentEnhancer(undefined)>
-                </div>
-              </ChellSlider>
-              <ChellSlider
-                className="node-size-slider-1"
-                key="node-size-slider-1"
-                label="1 - Node Size"
-                max={20}
-                min={1}
-                onChange={[Function]}
-                style={
-                  Object {
-                    "width": 360,
-                  }
-                }
-                value={4}
-              >
-                <div
-                  className="node-size-slider-1"
-                  style={
-                    Object {
-                      "padding": 20,
-                    }
-                  }
-                >
-                  <p>
-                    1 - Node Size: 4
-                  </p>
-                  <ComponentEnhancer(undefined)
-                    activeDotStyle={Object {}}
-                    className=""
-                    disabled={false}
-                    dotStyle={Object {}}
-                    dots={false}
-                    handle={[Function]}
-                    handleStyle={
-                      Array [
-                        Object {},
-                      ]
-                    }
-                    included={true}
-                    marks={Object {}}
-                    max={20}
-                    min={1}
-                    onAfterChange={[Function]}
-                    onBeforeChange={[Function]}
-                    onChange={[Function]}
-                    prefixCls="rc-slider"
-                    railStyle={Object {}}
-                    step={1}
-                    style={
-                      Object {
-                        "width": 360,
-                      }
-                    }
-                    trackStyle={
-                      Array [
-                        Object {},
-                      ]
-                    }
-                    value={4}
-                    vertical={false}
-                  >
-                    <div
-                      className="rc-slider"
-                      onBlur={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      onMouseDown={[Function]}
-                      onMouseUp={[Function]}
-                      onTouchStart={[Function]}
-                      style={
-                        Object {
-                          "width": 360,
-                        }
-                      }
-                    >
-                      <div
-                        className="rc-slider-rail"
-                        style={Object {}}
-                      />
-                      <Track
-                        className="rc-slider-track"
-                        included={true}
-                        length={15.789473684210526}
-                        offset={0}
-                        style={Object {}}
-                        vertical={false}
-                      >
-                        <div
-                          className="rc-slider-track"
-                          style={
-                            Object {
-                              "left": "0%",
-                              "width": "15.789473684210526%",
-                            }
-                          }
-                        />
-                      </Track>
-                      <Steps
-                        activeDotStyle={Object {}}
-                        dotStyle={Object {}}
-                        dots={false}
-                        included={true}
-                        lowerBound={1}
-                        marks={Object {}}
-                        max={20}
-                        min={1}
-                        prefixCls="rc-slider"
-                        step={1}
-                        upperBound={4}
-                        vertical={false}
-                      >
-                        <div
-                          className="rc-slider-step"
-                        />
-                      </Steps>
-                      <Handle
-                        className="rc-slider-handle"
-                        disabled={false}
-                        key="0"
-                        max={20}
-                        min={1}
-                        offset={15.789473684210526}
-                        prefixCls="rc-slider"
-                        style={Object {}}
-                        value={4}
-                        vertical={false}
-                      >
-                        <div
-                          aria-disabled={false}
-                          aria-valuemax={20}
-                          aria-valuemin={1}
-                          aria-valuenow={4}
-                          className="rc-slider-handle"
-                          onBlur={[Function]}
-                          onKeyDown={[Function]}
-                          role="slider"
-                          style={
-                            Object {
-                              "left": "15.789473684210526%",
-                            }
-                          }
-                          tabIndex={0}
-                        />
-                      </Handle>
-                      <Marks
-                        className="rc-slider-mark"
-                        included={true}
-                        lowerBound={1}
-                        marks={Object {}}
-                        max={20}
-                        min={1}
-                        onClickLabel={[Function]}
-                        upperBound={4}
-                        vertical={false}
-                      >
-                        <div
-                          className="rc-slider-mark"
-                        />
-                      </Marks>
-                    </div>
-                  </ComponentEnhancer(undefined)>
-                </div>
-              </ChellSlider>
-              <ChellSlider
-                className="node-size-slider-2"
-                key="node-size-slider-2"
-                label="2 - Node Size"
-                max={20}
-                min={1}
-                onChange={[Function]}
-                style={
-                  Object {
-                    "width": 360,
-                  }
-                }
-                value={4}
-              >
-                <div
-                  className="node-size-slider-2"
-                  style={
-                    Object {
-                      "padding": 20,
-                    }
-                  }
-                >
-                  <p>
-                    2 - Node Size: 4
-                  </p>
-                  <ComponentEnhancer(undefined)
-                    activeDotStyle={Object {}}
-                    className=""
-                    disabled={false}
-                    dotStyle={Object {}}
-                    dots={false}
-                    handle={[Function]}
-                    handleStyle={
-                      Array [
-                        Object {},
-                      ]
-                    }
-                    included={true}
-                    marks={Object {}}
-                    max={20}
-                    min={1}
-                    onAfterChange={[Function]}
-                    onBeforeChange={[Function]}
-                    onChange={[Function]}
-                    prefixCls="rc-slider"
-                    railStyle={Object {}}
-                    step={1}
-                    style={
-                      Object {
-                        "width": 360,
-                      }
-                    }
-                    trackStyle={
-                      Array [
-                        Object {},
-                      ]
-                    }
-                    value={4}
-                    vertical={false}
-                  >
-                    <div
-                      className="rc-slider"
-                      onBlur={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      onMouseDown={[Function]}
-                      onMouseUp={[Function]}
-                      onTouchStart={[Function]}
-                      style={
-                        Object {
-                          "width": 360,
-                        }
-                      }
-                    >
-                      <div
-                        className="rc-slider-rail"
-                        style={Object {}}
-                      />
-                      <Track
-                        className="rc-slider-track"
-                        included={true}
-                        length={15.789473684210526}
-                        offset={0}
-                        style={Object {}}
-                        vertical={false}
-                      >
-                        <div
-                          className="rc-slider-track"
-                          style={
-                            Object {
-                              "left": "0%",
-                              "width": "15.789473684210526%",
-                            }
-                          }
-                        />
-                      </Track>
-                      <Steps
-                        activeDotStyle={Object {}}
-                        dotStyle={Object {}}
-                        dots={false}
-                        included={true}
-                        lowerBound={1}
-                        marks={Object {}}
-                        max={20}
-                        min={1}
-                        prefixCls="rc-slider"
-                        step={1}
-                        upperBound={4}
-                        vertical={false}
-                      >
-                        <div
-                          className="rc-slider-step"
-                        />
-                      </Steps>
-                      <Handle
-                        className="rc-slider-handle"
-                        disabled={false}
-                        key="0"
-                        max={20}
-                        min={1}
-                        offset={15.789473684210526}
-                        prefixCls="rc-slider"
-                        style={Object {}}
-                        value={4}
-                        vertical={false}
-                      >
-                        <div
-                          aria-disabled={false}
-                          aria-valuemax={20}
-                          aria-valuemin={1}
-                          aria-valuenow={4}
-                          className="rc-slider-handle"
-                          onBlur={[Function]}
-                          onKeyDown={[Function]}
-                          role="slider"
-                          style={
-                            Object {
-                              "left": "15.789473684210526%",
-                            }
-                          }
-                          tabIndex={0}
-                        />
-                      </Handle>
-                      <Marks
-                        className="rc-slider-mark"
-                        included={true}
-                        lowerBound={1}
-                        marks={Object {}}
-                        max={20}
-                        min={1}
-                        onClickLabel={[Function]}
-                        upperBound={4}
-                        vertical={false}
-                      >
-                        <div
-                          className="rc-slider-mark"
-                        />
-                      </Marks>
-                    </div>
-                  </ComponentEnhancer(undefined)>
-                </div>
-              </ChellSlider>
-              <ChellSlider
-                className="node-size-slider-3"
-                key="node-size-slider-3"
-                label="3 - Node Size"
-                max={20}
-                min={1}
-                onChange={[Function]}
-                style={
-                  Object {
-                    "width": 360,
-                  }
-                }
-                value={4}
-              >
-                <div
-                  className="node-size-slider-3"
-                  style={
-                    Object {
-                      "padding": 20,
-                    }
-                  }
-                >
-                  <p>
-                    3 - Node Size: 4
-                  </p>
-                  <ComponentEnhancer(undefined)
-                    activeDotStyle={Object {}}
-                    className=""
-                    disabled={false}
-                    dotStyle={Object {}}
-                    dots={false}
-                    handle={[Function]}
-                    handleStyle={
-                      Array [
-                        Object {},
-                      ]
-                    }
-                    included={true}
-                    marks={Object {}}
-                    max={20}
-                    min={1}
-                    onAfterChange={[Function]}
-                    onBeforeChange={[Function]}
-                    onChange={[Function]}
-                    prefixCls="rc-slider"
-                    railStyle={Object {}}
-                    step={1}
-                    style={
-                      Object {
-                        "width": 360,
-                      }
-                    }
-                    trackStyle={
-                      Array [
-                        Object {},
-                      ]
-                    }
-                    value={4}
-                    vertical={false}
-                  >
-                    <div
-                      className="rc-slider"
-                      onBlur={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      onMouseDown={[Function]}
-                      onMouseUp={[Function]}
-                      onTouchStart={[Function]}
-                      style={
-                        Object {
-                          "width": 360,
-                        }
-                      }
-                    >
-                      <div
-                        className="rc-slider-rail"
-                        style={Object {}}
-                      />
-                      <Track
-                        className="rc-slider-track"
-                        included={true}
-                        length={15.789473684210526}
-                        offset={0}
-                        style={Object {}}
-                        vertical={false}
-                      >
-                        <div
-                          className="rc-slider-track"
-                          style={
-                            Object {
-                              "left": "0%",
-                              "width": "15.789473684210526%",
-                            }
-                          }
-                        />
-                      </Track>
-                      <Steps
-                        activeDotStyle={Object {}}
-                        dotStyle={Object {}}
-                        dots={false}
-                        included={true}
-                        lowerBound={1}
-                        marks={Object {}}
-                        max={20}
-                        min={1}
-                        prefixCls="rc-slider"
-                        step={1}
-                        upperBound={4}
-                        vertical={false}
-                      >
-                        <div
-                          className="rc-slider-step"
-                        />
-                      </Steps>
-                      <Handle
-                        className="rc-slider-handle"
-                        disabled={false}
-                        key="0"
-                        max={20}
-                        min={1}
-                        offset={15.789473684210526}
-                        prefixCls="rc-slider"
-                        style={Object {}}
-                        value={4}
-                        vertical={false}
-                      >
-                        <div
-                          aria-disabled={false}
-                          aria-valuemax={20}
-                          aria-valuemin={1}
-                          aria-valuenow={4}
-                          className="rc-slider-handle"
-                          onBlur={[Function]}
-                          onKeyDown={[Function]}
-                          role="slider"
-                          style={
-                            Object {
-                              "left": "15.789473684210526%",
-                            }
-                          }
-                          tabIndex={0}
-                        />
-                      </Handle>
-                      <Marks
-                        className="rc-slider-mark"
-                        included={true}
-                        lowerBound={1}
-                        marks={Object {}}
-                        max={20}
-                        min={1}
-                        onClickLabel={[Function]}
-                        upperBound={4}
-                        vertical={false}
-                      >
-                        <div
-                          className="rc-slider-mark"
-                        />
-                      </Marks>
-                    </div>
-                  </ComponentEnhancer(undefined)>
-                </div>
-              </ChellSlider>
-              <ChellSlider
-                className="node-size-slider-4"
-                key="node-size-slider-4"
-                label="4 - Node Size"
-                max={20}
-                min={1}
-                onChange={[Function]}
-                style={
-                  Object {
-                    "width": 360,
-                  }
-                }
-                value={4}
-              >
-                <div
-                  className="node-size-slider-4"
-                  style={
-                    Object {
-                      "padding": 20,
-                    }
-                  }
-                >
-                  <p>
-                    4 - Node Size: 4
-                  </p>
-                  <ComponentEnhancer(undefined)
-                    activeDotStyle={Object {}}
-                    className=""
-                    disabled={false}
-                    dotStyle={Object {}}
-                    dots={false}
-                    handle={[Function]}
-                    handleStyle={
-                      Array [
-                        Object {},
-                      ]
-                    }
-                    included={true}
-                    marks={Object {}}
-                    max={20}
-                    min={1}
-                    onAfterChange={[Function]}
-                    onBeforeChange={[Function]}
-                    onChange={[Function]}
-                    prefixCls="rc-slider"
-                    railStyle={Object {}}
-                    step={1}
-                    style={
-                      Object {
-                        "width": 360,
-                      }
-                    }
-                    trackStyle={
-                      Array [
-                        Object {},
-                      ]
-                    }
-                    value={4}
-                    vertical={false}
-                  >
-                    <div
-                      className="rc-slider"
-                      onBlur={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      onMouseDown={[Function]}
-                      onMouseUp={[Function]}
-                      onTouchStart={[Function]}
-                      style={
-                        Object {
-                          "width": 360,
-                        }
-                      }
-                    >
-                      <div
-                        className="rc-slider-rail"
-                        style={Object {}}
-                      />
-                      <Track
-                        className="rc-slider-track"
-                        included={true}
-                        length={15.789473684210526}
-                        offset={0}
-                        style={Object {}}
-                        vertical={false}
-                      >
-                        <div
-                          className="rc-slider-track"
-                          style={
-                            Object {
-                              "left": "0%",
-                              "width": "15.789473684210526%",
-                            }
-                          }
-                        />
-                      </Track>
-                      <Steps
-                        activeDotStyle={Object {}}
-                        dotStyle={Object {}}
-                        dots={false}
-                        included={true}
-                        lowerBound={1}
-                        marks={Object {}}
-                        max={20}
-                        min={1}
-                        prefixCls="rc-slider"
-                        step={1}
-                        upperBound={4}
-                        vertical={false}
-                      >
-                        <div
-                          className="rc-slider-step"
-                        />
-                      </Steps>
-                      <Handle
-                        className="rc-slider-handle"
-                        disabled={false}
-                        key="0"
-                        max={20}
-                        min={1}
-                        offset={15.789473684210526}
-                        prefixCls="rc-slider"
-                        style={Object {}}
-                        value={4}
-                        vertical={false}
-                      >
-                        <div
-                          aria-disabled={false}
-                          aria-valuemax={20}
-                          aria-valuemin={1}
-                          aria-valuenow={4}
-                          className="rc-slider-handle"
-                          onBlur={[Function]}
-                          onKeyDown={[Function]}
-                          role="slider"
-                          style={
-                            Object {
-                              "left": "15.789473684210526%",
-                            }
-                          }
-                          tabIndex={0}
-                        />
-                      </Handle>
-                      <Marks
-                        className="rc-slider-mark"
-                        included={true}
-                        lowerBound={1}
-                        marks={Object {}}
-                        max={20}
-                        min={1}
-                        onClickLabel={[Function]}
-                        upperBound={4}
-                        vertical={false}
-                      >
-                        <div
-                          className="rc-slider-mark"
-                        />
-                      </Marks>
-                    </div>
-                  </ComponentEnhancer(undefined)>
-                </div>
-              </ChellSlider>
-              <ChellSlider
-                className="node-size-slider-5"
-                key="node-size-slider-5"
-                label="5 - Node Size"
-                max={20}
-                min={1}
-                onChange={[Function]}
-                style={
-                  Object {
-                    "width": 360,
-                  }
-                }
-                value={4}
-              >
-                <div
-                  className="node-size-slider-5"
-                  style={
-                    Object {
-                      "padding": 20,
-                    }
-                  }
-                >
-                  <p>
-                    5 - Node Size: 4
+                    Known Structure Contact - Node Size: 4
                   </p>
                   <ComponentEnhancer(undefined)
                     activeDotStyle={Object {}}
