@@ -186,7 +186,8 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
         const couplingScores = getCouplingScoresData(parsedFile, this.state.residueMapping);
 
         if (this.state.pdbData) {
-          this.state.pdbData.isResidueMappingNeeded(couplingScores);
+          const mismatches = this.state.pdbData.getResidueNumberingMismatches(couplingScores);
+          console.log(mismatches);
         }
 
         this.setState({

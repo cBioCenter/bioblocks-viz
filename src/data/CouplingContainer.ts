@@ -79,13 +79,15 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
   }
 
   public getAminoAcidOfContact(resno: number): IAminoAcid | undefined {
-    const outerContacts = this.allContacts.find(outerContact => outerContact !== undefined);
-    const contact = outerContacts ? outerContacts.find(aContact => aContact !== undefined) : undefined;
-    if (contact) {
-      if (contact.i === resno) {
-        return AMINO_ACIDS_BY_SINGLE_LETTER_CODE[contact.A_i as AMINO_ACID_SINGLE_LETTER_CODES];
-      } else {
-        return AMINO_ACIDS_BY_SINGLE_LETTER_CODE[contact.A_j as AMINO_ACID_SINGLE_LETTER_CODES];
+    for (const outerContact of this.allContacts) {
+      if (outerContact) {
+        for (const innerContact of outerContact) {
+          if (innerContact && innerContact.i === resno && innerContact.A_i) {
+            return AMINO_ACIDS_BY_SINGLE_LETTER_CODE[innerContact.A_i as AMINO_ACID_SINGLE_LETTER_CODES];
+          } else if (innerContact && innerContact.j === resno && innerContact.A_j) {
+            return AMINO_ACIDS_BY_SINGLE_LETTER_CODE[innerContact.A_j as AMINO_ACID_SINGLE_LETTER_CODES];
+          }
+        }
       }
     }
     return undefined;

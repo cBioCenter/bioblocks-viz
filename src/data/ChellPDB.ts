@@ -29,8 +29,6 @@ export interface IResidueMismatchResult {
  * @export
  */
 export class ChellPDB {
-  [key: string]: any;
-
   public get secondaryStructureSections(): SECONDARY_STRUCTURE_SECTION[][] {
     const result = new Array<SECONDARY_STRUCTURE_SECTION[]>();
     this.nglData.eachResidue(residue => {
@@ -136,7 +134,7 @@ export class ChellPDB {
     measuredProximity: CONTACT_DISTANCE_PROXIMITY,
   ) {
     const result = new CouplingContainer(couplingScores);
-    const alphaId = this.nglData.atomMap.dict[this.NGL_C_ALPHA_INDEX];
+    const alphaId = this.nglData.atomMap.dict[ChellPDB.NGL_C_ALPHA_INDEX];
 
     const minDist: {
       [key: string]: number;
