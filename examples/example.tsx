@@ -20,6 +20,11 @@ export interface IExampleAppState {
   arePredictionsAvailable: boolean;
   couplingScores: string;
   errorMsg: string;
+  filenames?: Partial<{
+    couplings: string;
+    pdb: string;
+    residue_mapper: string;
+  }>;
   pdbData?: ChellPDB;
   residueMapping: IResidueMapping[];
 }
@@ -48,8 +53,7 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
     );
   }
 
-  protected renderCouplingComponents = () => {
-    const { arePredictionsAvailable } = this.state;
+  protected renderCouplingComponents = ({ arePredictionsAvailable } = this.state) => {
     return (
       <div>
         <Header as={'h1'} attached={'top'}>
@@ -58,11 +62,11 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
         <Segment attached={true} raised={true}>
           <CouplingContext>
             <Grid>
-              <GridRow columns={2} centered={true}>
-                <GridColumn>
-                  <NGLComponent data={this.state[VIZ_TYPE.NGL]} showConfiguration={false} />
+              <GridRow centered={true} verticalAlign={'middle'}>
+                <GridColumn width={6}>
+                  <NGLComponent backgroundColor={'black'} data={this.state[VIZ_TYPE.NGL]} showConfiguration={false} />
                 </GridColumn>
-                <GridColumn>
+                <GridColumn width={6}>
                   {arePredictionsAvailable ? (
                     <PredictedContactMap
                       data={{
@@ -82,10 +86,10 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
                   )}
                 </GridColumn>
               </GridRow>
-              <GridRow columns={4}>
-                <GridColumn>{this.renderPDBUploadForm()}</GridColumn>
-                <GridColumn>{this.renderCouplingScoresUploadForm()}</GridColumn>
-                <GridColumn>{this.renderResidueMappingUploadForm()}</GridColumn>
+              <GridRow centered={true} verticalAlign={'bottom'}>
+                <GridColumn width={3}>{this.renderPDBUploadForm()}</GridColumn>
+                <GridColumn width={3}>{this.renderCouplingScoresUploadForm()}</GridColumn>
+                <GridColumn width={3}>{this.renderResidueMappingUploadForm()}</GridColumn>
               </GridRow>
             </Grid>
           </CouplingContext>
@@ -137,13 +141,41 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
     </Label>
   );
 
-  protected renderCouplingScoresUploadForm = () =>
-    this.renderUploadForm(this.onCouplingScoreUpload, 'coupling-score', 'Coupling Scores');
+  protected renderCouplingScoresUploadForm = ({ filenames } = this.state) => (
+    <div>
+      {filenames &&
+        filenames.couplings && (
+          <GridRow>
+            <Label>{filenames.couplings}</Label>
+          </GridRow>
+        )}
+      <GridRow>{this.renderUploadForm(this.onCouplingScoreUpload, 'coupling-score', 'Coupling Scores')}</GridRow>
+    </div>
+  );
 
-  protected renderPDBUploadForm = () => this.renderUploadForm(this.onPDBUpload, 'pdb', 'PDB');
+  protected renderPDBUploadForm = ({ filenames } = this.state) => (
+    <div>
+      {filenames &&
+        filenames.pdb && (
+          <GridRow>
+            <Label>{filenames.pdb}</Label>
+          </GridRow>
+        )}
+      <GridRow>{this.renderUploadForm(this.onPDBUpload, 'pdb', 'PDB')}</GridRow>
+    </div>
+  );
 
-  protected renderResidueMappingUploadForm = () =>
-    this.renderUploadForm(this.onResidueMappingUpload, 'residue-mapping', 'Residue Mapping');
+  protected renderResidueMappingUploadForm = ({ filenames } = this.state) => (
+    <div>
+      {filenames &&
+        filenames.residue_mapper && (
+          <GridRow>
+            <Label>{filenames.residue_mapper}</Label>
+          </GridRow>
+        )}
+      <GridRow>{this.renderUploadForm(this.onResidueMappingUpload, 'residue-mapping', 'Residue Mapping')}</GridRow>
+    </div>
+  );
 
   protected onCouplingScoreUpload = async (e: React.ChangeEvent) => {
     const files = (e.target as HTMLInputElement).files;
@@ -152,14 +184,24 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
       try {
         const parsedFile = await readFileAsText(file);
         const couplingScores = getCouplingScoresData(parsedFile, this.state.residueMapping);
+
+        if (this.state.pdbData) {
+          this.state.pdbData.isResidueMappingNeeded(couplingScores);
+        }
+
         this.setState({
           [VIZ_TYPE.CONTACT_MAP]: {
             couplingScores,
             pdbData: this.state.pdbData,
             secondaryStructures: [],
           },
+          arePredictionsAvailable: true,
           couplingScores: parsedFile,
           errorMsg: '',
+          filenames: {
+            ...this.state.filenames,
+            couplings: file.name,
+          },
         });
       } catch (e) {
         console.log(e);
@@ -175,12 +217,19 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
         const pdbData = await ChellPDB.createPDBFromFile(file);
         this.setState({
           [VIZ_TYPE.NGL]: pdbData.nglStructure,
-          [VIZ_TYPE.CONTACT_MAP]: {
-            couplingScores: pdbData.contactInformation,
-            pdbData,
-            secondaryStructures: pdbData.secondaryStructureSections,
-          },
+          [VIZ_TYPE.CONTACT_MAP]:
+            this.state[VIZ_TYPE.CONTACT_MAP].couplingScores.totalContacts === 0
+              ? {
+                  couplingScores: pdbData.contactInformation,
+                  pdbData,
+                  secondaryStructures: pdbData.secondaryStructureSections,
+                }
+              : this.state[VIZ_TYPE.CONTACT_MAP],
           errorMsg: '',
+          filenames: {
+            ...this.state.filenames,
+            pdb: file.name,
+          },
           pdbData,
         });
       } else {
@@ -205,6 +254,10 @@ class ExampleApp extends React.Component<any, IExampleAppState> {
             secondaryStructures: [],
           },
           errorMsg: '',
+          filenames: {
+            ...this.state.filenames,
+            residue_mapper: file.name,
+          },
           residueMapping,
         });
       } catch (e) {

@@ -1,5 +1,12 @@
 import * as NGL from 'ngl';
+
 import { fetchNGLDataFromFile } from '../helper/DataHelper';
+import {
+  AMINO_ACID_THREE_LETTER_CODES,
+  AMINO_ACIDS_BY_SINGLE_LETTER_CODE,
+  AMINO_ACIDS_BY_THREE_LETTER_CODE,
+  IAminoAcid,
+} from './AminoAcid';
 import {
   CONTACT_DISTANCE_PROXIMITY,
   ICouplingScore,
@@ -9,6 +16,12 @@ import {
 } from './chell-data';
 import Chell1DSection from './Chell1DSection';
 import { CouplingContainer } from './CouplingContainer';
+
+export interface IResidueMismatchResult {
+  couplingAminoAcid: IAminoAcid;
+  pdbAminoAcid: IAminoAcid;
+  resno: number;
+}
 
 /**
  * A ChellPDB instance provides an API to interact with a loaded PDB file while hiding the implementation details of how it is loaded.
@@ -190,7 +203,7 @@ export class ChellPDB {
    * @param secondResidueIndex Index of the second residue with respect to the array of all residues.
    * @returns Shortest distance between the two residues in ångströms.
    */
-  protected getMinDistBetweenResidues(firstResidueIndex: number, secondResidueIndex: number) {
+  public getMinDistBetweenResidues(firstResidueIndex: number, secondResidueIndex: number) {
     const { residueStore } = this.nglData;
     const firstResCount = residueStore.atomCount[firstResidueIndex];
     const secondResCount = residueStore.atomCount[secondResidueIndex];
@@ -209,5 +222,25 @@ export class ChellPDB {
       }
     }
     return minDist;
+  }
+
+  public getResidueNumberingMismatches(contacts: CouplingContainer) {
+    const result = new Array<IResidueMismatchResult>();
+    this.eachResidue(residue => {
+      const pdbResCode = residue.resname.toUpperCase();
+      const couplingAminoAcid = contacts.getAminoAcidOfContact(residue.resno);
+      if (
+        couplingAminoAcid &&
+        AMINO_ACIDS_BY_THREE_LETTER_CODE[pdbResCode as AMINO_ACID_THREE_LETTER_CODES] !==
+          AMINO_ACIDS_BY_SINGLE_LETTER_CODE[couplingAminoAcid.singleLetterCode]
+      ) {
+        result.push({
+          couplingAminoAcid,
+          pdbAminoAcid: AMINO_ACIDS_BY_THREE_LETTER_CODE[pdbResCode as AMINO_ACID_THREE_LETTER_CODES],
+          resno: residue.resno,
+        });
+      }
+    });
+    return result;
   }
 }

@@ -32,8 +32,8 @@ describe('DataHelper', () => {
     });
 
     const couplingScoresCsv =
-      '145,81,0.79312,7.5652,A,A,0.9,2.4,47,1.0,E,R,\n\
-      179,66,0.78681,3.5872,A,A,0.9,1.3,37,1.0,T,M,';
+      '145,81,0.79312,7.5652,A,A,0.9,2.4,47,1.0,E,R\n\
+      179,66,0.78681,3.5872,A,A,0.9,1.3,37,1.0,T,M';
 
     const couplingScoresCsvWithNewline = couplingScoresCsv + '\n';
 

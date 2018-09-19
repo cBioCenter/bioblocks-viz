@@ -1,3 +1,4 @@
+import { AMINO_ACID_SINGLE_LETTER_CODES, AMINO_ACIDS_BY_SINGLE_LETTER_CODE, IAminoAcid } from './AminoAcid';
 import { ICouplingScore } from './chell-data';
 
 /**
@@ -54,34 +55,35 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
     return this;
   }
 
-  public next(value?: any): IteratorResult<ICouplingScore> {
-    for (let i = this.rowCounter; i < this.contacts.length; ++i) {
-      if (this.contacts[i]) {
-        for (let j = this.colCounter; j < this.contacts[i].length; ++j) {
-          const score = this.contacts[i][j];
-          if (score) {
-            this.rowCounter = i;
-            this.colCounter = j + 1;
-            return {
-              done: false,
-              value: score,
-            };
-          }
-        }
-        this.colCounter = 0;
-      }
+  /**
+   * Add a coupling score to this collection. If there is already an entry for this (i,j) contact, it will be overridden!
+   *
+   * @param score A Coupling Score to add to the collection.
+   */
+  public addCouplingScore(score: ICouplingScore): void {
+    const { i, j } = score;
+    const minResidueIndex = Math.min(i, j) - 1;
+    const maxResidueIndex = Math.max(i, j) - 1;
+    if (!this.contacts[minResidueIndex]) {
+      this.contacts[minResidueIndex] = new Array<ICouplingScore>();
     }
-
-    this.rowCounter = 0;
-    this.colCounter = 0;
-    return {
-      done: true,
-      value: null as any,
-    };
+    if (!this.contacts[minResidueIndex][maxResidueIndex]) {
+      this.totalStoredContacts++;
+      this.contacts[minResidueIndex][maxResidueIndex] = score;
+    } else {
+      this.contacts[minResidueIndex][maxResidueIndex] = {
+        ...this.contacts[minResidueIndex][maxResidueIndex],
+        ...score,
+      };
+    }
   }
 
-  public includes = (firstRes: number, secondRes: number) =>
-    this.contacts[Math.min(firstRes, secondRes) - 1][Math.max(firstRes, secondRes) - 1] !== undefined;
+  public getAminoAcidOfContact(resno: number): IAminoAcid | undefined {
+    const contact = this.allContacts[resno - 1]
+      ? this.allContacts[resno - 1].find(aContact => aContact !== undefined && aContact.A_j !== undefined)
+      : undefined;
+    return contact ? AMINO_ACIDS_BY_SINGLE_LETTER_CODE[contact.A_j as AMINO_ACID_SINGLE_LETTER_CODES] : undefined;
+  }
 
   /**
    * Determine which contacts in this coupling container are observed.
@@ -132,26 +134,32 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
   public getCouplingScore = (firstRes: number, secondRes: number): ICouplingScore =>
     this.contacts[Math.min(firstRes, secondRes) - 1][Math.max(firstRes, secondRes) - 1];
 
-  /**
-   * Add a coupling score to this collection. If there is already an entry for this (i,j) contact, it will be overridden!
-   *
-   * @param score A Coupling Score to add to the collection.
-   */
-  public addCouplingScore(score: ICouplingScore): void {
-    const { i, j } = score;
-    const minResidueIndex = Math.min(i, j) - 1;
-    const maxResidueIndex = Math.max(i, j) - 1;
-    if (!this.contacts[minResidueIndex]) {
-      this.contacts[minResidueIndex] = new Array<ICouplingScore>();
+  public includes = (firstRes: number, secondRes: number) =>
+    this.contacts[Math.min(firstRes, secondRes) - 1][Math.max(firstRes, secondRes) - 1] !== undefined;
+
+  public next(value?: any): IteratorResult<ICouplingScore> {
+    for (let i = this.rowCounter; i < this.contacts.length; ++i) {
+      if (this.contacts[i]) {
+        for (let j = this.colCounter; j < this.contacts[i].length; ++j) {
+          const score = this.contacts[i][j];
+          if (score) {
+            this.rowCounter = i;
+            this.colCounter = j + 1;
+            return {
+              done: false,
+              value: score,
+            };
+          }
+        }
+        this.colCounter = 0;
+      }
     }
-    if (!this.contacts[minResidueIndex][maxResidueIndex]) {
-      this.totalStoredContacts++;
-      this.contacts[minResidueIndex][maxResidueIndex] = score;
-    } else {
-      this.contacts[minResidueIndex][maxResidueIndex] = {
-        ...this.contacts[minResidueIndex][maxResidueIndex],
-        ...score,
-      };
-    }
+
+    this.rowCounter = 0;
+    this.colCounter = 0;
+    return {
+      done: true,
+      value: null as any,
+    };
   }
 }

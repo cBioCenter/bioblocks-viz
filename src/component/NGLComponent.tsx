@@ -27,6 +27,7 @@ export type NGL_HOVER_CB_RESULT_TYPE = number;
 export type RepresentationDict = Map<string, NGL.RepresentationElement[]>;
 
 export interface INGLComponentProps {
+  backgroundColor?: string | number;
   data: NGL.Structure;
   height: number | string;
   onResize: (event?: UIEvent) => void;
@@ -64,9 +65,9 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     super(props);
   }
 
-  public componentDidMount() {
+  public componentDidMount({ backgroundColor } = this.props) {
     if (this.canvas) {
-      const stage = new NGL.Stage(this.canvas);
+      const stage = new NGL.Stage(this.canvas, { backgroundColor });
       const { data } = this.props;
 
       if (data) {
