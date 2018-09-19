@@ -226,22 +226,18 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     configurations: IContactMapConfiguration[],
     sliderStyle: React.CSSProperties[] | React.CSSProperties,
   ) {
-    const result = [];
-    for (const config of configurations) {
+    return configurations.map(config => {
       const id = config.name
         .toLowerCase()
         .split(' ')
         .join('-');
       switch (config.type) {
         case CONFIGURATION_COMPONENT_TYPE.SLIDER:
-          result.push(this.renderConfigurationSlider(config, id, sliderStyle));
-          break;
+          return this.renderConfigurationSlider(config, id, sliderStyle);
         case CONFIGURATION_COMPONENT_TYPE.RADIO:
-          result.push(this.renderConfigurationRadioButton(config, id));
-          break;
+          return this.renderConfigurationRadioButton(config, id);
       }
-    }
-    return result;
+    });
   }
 
   protected renderConfigurationSlider(
