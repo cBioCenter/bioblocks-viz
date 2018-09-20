@@ -1,17 +1,16 @@
 import * as React from 'react';
 import { Accordion, Label } from 'semantic-ui-react';
 
-import ResidueContext, { initialResidueContext, IResidueContext, ResidueSelection } from '../context/ResidueContext';
-import SecondaryStructureContext, {
+import ResidueContextHandler, {
+  initialResidueContext,
+  IResidueContext,
+  ResidueSelection,
+} from '../context/ResidueContext';
+import SecondaryStructureContextWrapper, {
   initialSecondaryStructureContext,
   ISecondaryStructureContext,
 } from '../context/SecondaryStructureContext';
-import {
-  IContactMapData,
-  ISecondaryStructureData,
-  SECONDARY_STRUCTURE,
-  SECONDARY_STRUCTURE_CODES,
-} from '../data/chell-data';
+import { IContactMapData, SECONDARY_STRUCTURE, SECONDARY_STRUCTURE_CODES } from '../data/chell-data';
 import { ChellPDB } from '../data/ChellPDB';
 import { CouplingContainer } from '../data/CouplingContainer';
 
@@ -27,7 +26,7 @@ export class InfoPanelClass extends React.Component<IInfoPanelProps, any> {
   public static defaultProps: Partial<IInfoPanelProps> = {
     data: {
       couplingScores: new CouplingContainer(),
-      secondaryStructures: new Array<ISecondaryStructureData>(),
+      secondaryStructures: new Array<SECONDARY_STRUCTURE>(),
     },
     height: 400,
     residueContext: { ...initialResidueContext },
@@ -127,13 +126,13 @@ export class InfoPanelClass extends React.Component<IInfoPanelProps, any> {
 }
 
 const InfoPanel = (props: any) => (
-  <SecondaryStructureContext.Consumer>
+  <SecondaryStructureContextWrapper.Consumer>
     {secStructContext => (
-      <ResidueContext.Consumer>
+      <ResidueContextHandler.Consumer>
         {residueContext => <InfoPanel {...props} {...residueContext} {...secStructContext} />}
-      </ResidueContext.Consumer>
+      </ResidueContextHandler.Consumer>
     )}
-  </SecondaryStructureContext.Consumer>
+  </SecondaryStructureContextWrapper.Consumer>
 );
 
 export default InfoPanel;

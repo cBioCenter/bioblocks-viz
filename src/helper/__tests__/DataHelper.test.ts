@@ -1,6 +1,6 @@
 import * as fetchMock from 'jest-fetch-mock';
 import { inspect as stringifyCircularJSON } from 'util';
-import { IContactMapData, SPRING_DATA_TYPE, VIZ_TYPE } from '../../data/chell-data';
+import { IContactMapData, ICouplingScore, SPRING_DATA_TYPE, VIZ_TYPE } from '../../data/chell-data';
 import { ChellPDB } from '../../data/ChellPDB';
 import { CouplingContainer } from '../../data/CouplingContainer';
 import {
@@ -32,8 +32,8 @@ describe('DataHelper', () => {
     });
 
     const couplingScoresCsv =
-      '145,81,0.79312,7.5652,A,A,0.9,2.4,47,1.0,E,R,\n\
-      179,66,0.78681,3.5872,A,A,0.9,1.3,37,1.0,T,M,';
+      '145,81,0.79312,7.5652,A,A,0.9,2.4,47,1.0,E,R\n\
+      179,66,0.78681,3.5872,A,A,0.9,1.3,37,1.0,T,M';
 
     const couplingScoresCsvWithNewline = couplingScoresCsv + '\n';
 
@@ -49,7 +49,7 @@ describe('DataHelper', () => {
       145	E	H	8	145	14	*	*	936	A	147	E	7.560	-10.561	44.062\n\
       179	T	C	8	179	24	*	*	1219	A	181	T	12.019	-5.034	29.684';
 
-    const firstScore = {
+    const firstScore: ICouplingScore = {
       A_i: 'E',
       A_j: 'R',
       cn: 0.79312,
@@ -58,7 +58,7 @@ describe('DataHelper', () => {
       j: 81,
     };
 
-    const firstScorePDB = {
+    const firstScorePDB: ICouplingScore = {
       A_i: 'E',
       A_j: 'R',
       cn: 0.79312,
@@ -67,7 +67,7 @@ describe('DataHelper', () => {
       j: 83,
     };
 
-    const secondScore = {
+    const secondScore: ICouplingScore = {
       A_i: 'T',
       A_j: 'M',
       cn: 0.78681,
@@ -76,7 +76,7 @@ describe('DataHelper', () => {
       j: 66,
     };
 
-    const secondScorePDB = {
+    const secondScorePDB: ICouplingScore = {
       A_i: 'T',
       A_j: 'M',
       cn: 0.78681,

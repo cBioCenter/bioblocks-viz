@@ -1,6 +1,6 @@
 const generateDefaultHeaderIndices = (items: string[]): { [key: string]: number } => ({
-  A_i: items.length - 3,
-  A_j: items.length - 2,
+  A_i: items.length - 2,
+  A_j: items.length - 1,
   cn: 2,
   dist: 3,
   i: 0,

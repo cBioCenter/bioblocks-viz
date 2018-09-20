@@ -1,7 +1,13 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { CONTACT_DISTANCE_PROXIMITY, ICouplingScore, SECONDARY_STRUCTURE_CODES } from '../../data/chell-data';
+import {
+  CONTACT_DISTANCE_PROXIMITY,
+  IContactMapData,
+  ICouplingScore,
+  SECONDARY_STRUCTURE_KEYS,
+} from '../../data/chell-data';
+import Chell1DSection from '../../data/Chell1DSection';
 import { ChellPDB } from '../../data/ChellPDB';
 import { CouplingContainer } from '../../data/CouplingContainer';
 import { PredictedContactMap } from '../PredictedContactMap';
@@ -43,21 +49,15 @@ describe('PredictedContactMap', () => {
     ]),
   );
 
-  const sampleData = {
+  const sampleData: IContactMapData = {
     couplingScores: new CouplingContainer(Array.from(uniqueScores)),
-    secondaryStructures: [
-      { resno: 30, structId: 'C' as keyof typeof SECONDARY_STRUCTURE_CODES },
-      { resno: 31, structId: 'C' as keyof typeof SECONDARY_STRUCTURE_CODES },
-    ],
+    secondaryStructures: [[new Chell1DSection<SECONDARY_STRUCTURE_KEYS>('C', 30, 31)]],
   };
 
-  const sampleDataWithPDB = async () => ({
+  const sampleDataWithPDB = async (): Promise<IContactMapData> => ({
     couplingScores: new CouplingContainer(Array.from(uniqueScores)),
     pdbData: await ChellPDB.createPDB('sample/protein.pdb'),
-    secondaryStructures: [
-      { resno: 30, structId: 'C' as keyof typeof SECONDARY_STRUCTURE_CODES },
-      { resno: 31, structId: 'C' as keyof typeof SECONDARY_STRUCTURE_CODES },
-    ],
+    secondaryStructures: [[new Chell1DSection<SECONDARY_STRUCTURE_KEYS>('C', 30, 31)]],
   });
 
   describe('Snapshots', () => {
@@ -123,36 +123,6 @@ describe('PredictedContactMap', () => {
       wrapper.update();
       expect(instance.state.measuredProximity).toBe(expected);
     });
-  });
-
-  it('Should update chain length when new non-pdb data is provided.', () => {
-    const expected = 56;
-    const wrapper = shallow(<PredictedContactMap data={emptyData} />);
-    expect(wrapper.state('numPredictionsToShow')).not.toBe(expected);
-    wrapper.setProps({
-      data: sampleData,
-    });
-    expect(wrapper.state('chainLength')).toBe(expected);
-  });
-
-  it('Should update chain length when new pdb data is provided.', async () => {
-    const expected = 56;
-    const wrapper = shallow(<PredictedContactMap data={emptyData} />);
-    expect(wrapper.state('numPredictionsToShow')).not.toBe(expected);
-    wrapper.setProps({
-      data: await sampleDataWithPDB(),
-    });
-    expect(wrapper.state('chainLength')).toBe(expected);
-  });
-
-  it('Should update number of predictions to show when new data is provided.', () => {
-    const expected = 28;
-    const wrapper = shallow(<PredictedContactMap data={emptyData} />);
-    expect(wrapper.state('numPredictionsToShow')).not.toBe(expected);
-    wrapper.setProps({
-      data: sampleData,
-    });
-    expect(wrapper.state('numPredictionsToShow')).toBe(expected);
   });
 
   it('Should update number of predictions to show when new value is received.', () => {

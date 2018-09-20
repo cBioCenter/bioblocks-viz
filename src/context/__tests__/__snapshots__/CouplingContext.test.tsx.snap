@@ -1,7 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CouplingContext Should match the default snapshot. 1`] = `
-<SecondaryStructureContextHandler>
-  <ResidueContextHandler />
-</SecondaryStructureContextHandler>
+<SecondaryStructureContext>
+  <ResidueContext>
+    <ContextProvider
+      value={
+        Object {
+          "couplingScores": CouplingContainer {
+            "colCounter": 0,
+            "contacts": Array [],
+            "getCouplingScore": [Function],
+            "includes": [Function],
+            "indexRange": Object {
+              "max": 50,
+              "min": 1,
+            },
+            "rowCounter": 0,
+            "totalStoredContacts": 0,
+          },
+        }
+      }
+    />
+  </ResidueContext>
+</SecondaryStructureContext>
 `;

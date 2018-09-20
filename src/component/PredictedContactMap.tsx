@@ -3,7 +3,7 @@ import {
   CONFIGURATION_COMPONENT_TYPE,
   CONTACT_DISTANCE_PROXIMITY,
   IContactMapData,
-  ISecondaryStructureData,
+  SECONDARY_STRUCTURE,
 } from '../data/chell-data';
 import { CouplingContainer } from '../data/CouplingContainer';
 import { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';
@@ -15,15 +15,12 @@ export interface IPredictedContactMapProps {
   enableSliders: boolean;
   height: number;
   incorrectColor: string;
-  observedColor: string;
-  padding: number | string;
+  style: React.CSSProperties;
   width: number;
 }
 
 export const initialPredictedContactMapState = {
-  chainLength: -1,
   linearDistFilter: 5,
-  measuredContactDistFilter: 5,
   measuredProximity: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
   numPredictionsToShow: -1,
   pointsToPlot: [] as IContactMapChartData[],
@@ -34,15 +31,13 @@ export type PredictedContactMapState = typeof initialPredictedContactMapState;
 export class PredictedContactMap extends React.Component<IPredictedContactMapProps, PredictedContactMapState> {
   public static defaultProps: Partial<IPredictedContactMapProps> = {
     correctColor: '#ff0000',
-    data: new Object({
+    data: {
       couplingScores: new CouplingContainer(),
-      secondaryStructures: new Array<ISecondaryStructureData>(),
-    }) as IContactMapData,
+      secondaryStructures: new Array<SECONDARY_STRUCTURE>(),
+    },
     enableSliders: true,
     height: 400,
     incorrectColor: '#000000',
-    observedColor: '#0000ff',
-    padding: 0,
     width: 400,
   };
 
@@ -76,12 +71,11 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
 
   public componentDidUpdate(prevProps: IPredictedContactMapProps, prevState: PredictedContactMapState) {
     const { data } = this.props;
-    const { linearDistFilter, measuredContactDistFilter, measuredProximity, numPredictionsToShow } = this.state;
+    const { linearDistFilter, measuredProximity, numPredictionsToShow } = this.state;
 
     const isRecomputeNeeded =
       data.couplingScores !== prevProps.data.couplingScores ||
       linearDistFilter !== prevState.linearDistFilter ||
-      measuredContactDistFilter !== prevState.measuredContactDistFilter ||
       measuredProximity !== prevState.measuredProximity ||
       numPredictionsToShow !== prevState.numPredictionsToShow;
     if (isRecomputeNeeded) {
@@ -90,17 +84,18 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
   }
 
   public render() {
-    const { data, ...passThroughProps } = this.props;
-    const { chainLength, pointsToPlot } = this.state;
+    const { data, style, ...passThroughProps } = this.props;
+    const { pointsToPlot } = this.state;
     return (
-      <div id="PredictedContactMapComponent">
+      <div id="PredictedContactMapComponent" style={{ ...style }}>
         <ContactMap
-          chainLength={chainLength}
           configurations={this.getContactMapConfigs()}
           data={{
-            computedPoints: pointsToPlot,
+            couplingScores: data.couplingScores,
+            pdbData: data.pdbData,
             secondaryStructures: data.pdbData ? data.pdbData.secondaryStructureSections : [],
           }}
+          formattedPoints={pointsToPlot}
           {...passThroughProps}
         />
       </div>
@@ -135,7 +130,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
       type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
       values: {
         current: this.state.numPredictionsToShow,
-        max: this.state.chainLength,
+        max: this.props.data.couplingScores.chainLength,
         min: 1,
       },
     },
@@ -147,14 +142,13 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
    * @param isNewData Is this an entirely new dataset?
    */
   protected setupData(isNewData: boolean) {
-    const { correctColor, data, incorrectColor, observedColor } = this.props;
-    const { linearDistFilter, measuredContactDistFilter, measuredProximity, numPredictionsToShow } = this.state;
+    const { correctColor, data, incorrectColor } = this.props;
+    const { linearDistFilter, measuredProximity, numPredictionsToShow } = this.state;
     const couplingScores = data.pdbData
       ? data.pdbData.generateCouplingsAmendedWithPDB(data.couplingScores.rankedContacts, measuredProximity)
       : new CouplingContainer(data.couplingScores.rankedContacts);
 
     const { chainLength } = couplingScores;
-    const observedContacts = couplingScores.getObservedContacts(measuredContactDistFilter, linearDistFilter);
 
     const allPredictions = couplingScores.getPredictedContacts(numPredictionsToShow, linearDistFilter);
 
@@ -163,14 +157,6 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     );
 
     const newPoints: IContactMapChartData[] = [
-      generateChartDataEntry(
-        'x+y',
-        { start: observedColor, end: 'rgb(100,177,200)' },
-        'Known Structure Contact',
-        '(from PDB structure)',
-        4,
-        observedContacts,
-      ),
       generateChartDataEntry(
         'x+y',
         incorrectColor,
@@ -190,7 +176,6 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     ];
 
     this.setState({
-      chainLength,
       numPredictionsToShow: isNewData ? Math.floor(chainLength / 2) : numPredictionsToShow,
       pointsToPlot: newPoints,
     });

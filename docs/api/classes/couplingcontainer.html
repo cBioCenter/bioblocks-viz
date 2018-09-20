@@ -69,7 +69,7 @@
 					<div class="lead">
 						<p>A CouplingContainer provides access to the coupling information of residue pairs.</p>
 					</div>
-					<p>Behind the scenes, it is backed by a spare 2D array to avoid data duplication and provide O(1) access.</p>
+					<p>Behind the scenes, it is backed by a sparse 2D array to avoid data duplication and provide O(1) access.</p>
 					<dl class="tsd-comment-tags">
 						<dt>export</dt>
 						<dd></dd>
@@ -115,6 +115,8 @@
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="couplingcontainer.html#allcontacts" class="tsd-kind-icon">all<wbr>Contacts</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="couplingcontainer.html#chainlength" class="tsd-kind-icon">chain<wbr>Length</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="couplingcontainer.html#rankedcontacts" class="tsd-kind-icon">ranked<wbr>Contacts</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="couplingcontainer.html#residueindexrange" class="tsd-kind-icon">residue<wbr>Index<wbr>Range</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="couplingcontainer.html#sequence" class="tsd-kind-icon">sequence</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="couplingcontainer.html#totalcontacts" class="tsd-kind-icon">total<wbr>Contacts</a></li>
 							</ul>
 						</section>
@@ -123,11 +125,18 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="couplingcontainer.html#___iterator" class="tsd-kind-icon">__@iterator</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="couplingcontainer.html#addcouplingscore" class="tsd-kind-icon">add<wbr>Coupling<wbr>Score</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="couplingcontainer.html#getaminoacidofcontact" class="tsd-kind-icon">get<wbr>Amino<wbr>Acid<wbr>OfContact</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="couplingcontainer.html#getcouplingscore" class="tsd-kind-icon">get<wbr>Coupling<wbr>Score</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="couplingcontainer.html#getobservedcontacts" class="tsd-kind-icon">get<wbr>Observed<wbr>Contacts</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="couplingcontainer.html#getpredictedcontacts" class="tsd-kind-icon">get<wbr>Predicted<wbr>Contacts</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="couplingcontainer.html#includes" class="tsd-kind-icon">includes</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="couplingcontainer.html#next" class="tsd-kind-icon">next</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-private-protected">
+							<h3>Object literals</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-object-literal tsd-parent-kind-class tsd-is-protected"><a href="couplingcontainer.html#indexrange" class="tsd-kind-icon">index<wbr>Range</a></li>
 							</ul>
 						</section>
 					</div>
@@ -145,7 +154,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/data/CouplingContainer.ts:20</li>
+									<li>Defined in src/data/CouplingContainer.ts:26</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -167,7 +176,7 @@
 					<div class="tsd-signature tsd-kind-icon">col<wbr>Counter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/CouplingContainer.ts:20</li>
+							<li>Defined in src/data/CouplingContainer.ts:26</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -182,7 +191,7 @@
 					<div class="tsd-signature tsd-kind-icon">contacts<span class="tsd-signature-symbol">:</span> <a href="../interfaces/icouplingscore.html" class="tsd-signature-type">ICouplingScore</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;new Array&lt;ICouplingScore[]&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/CouplingContainer.ts:11</li>
+							<li>Defined in src/data/CouplingContainer.ts:12</li>
 						</ul>
 					</aside>
 				</section>
@@ -192,7 +201,7 @@
 					<div class="tsd-signature tsd-kind-icon">row<wbr>Counter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/CouplingContainer.ts:17</li>
+							<li>Defined in src/data/CouplingContainer.ts:23</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -207,7 +216,7 @@
 					<div class="tsd-signature tsd-kind-icon">total<wbr>Stored<wbr>Contacts<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/CouplingContainer.ts:14</li>
+							<li>Defined in src/data/CouplingContainer.ts:15</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -229,7 +238,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/data/CouplingContainer.ts:28</li>
+									<li>Defined in src/data/CouplingContainer.ts:34</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/icouplingscore.html" class="tsd-signature-type">ICouplingScore</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h4>
@@ -246,7 +255,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/data/CouplingContainer.ts:32</li>
+									<li>Defined in src/data/CouplingContainer.ts:38</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -263,10 +272,52 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/data/CouplingContainer.ts:36</li>
+									<li>Defined in src/data/CouplingContainer.ts:42</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/icouplingscore.html" class="tsd-signature-type">ICouplingScore</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="residueindexrange" class="tsd-anchor"></a>
+					<h3>residue<wbr>Index<wbr>Range</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> residueIndexRange<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/data/CouplingContainer.ts:55</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter">
+									<h5>max<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>min<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="sequence" class="tsd-anchor"></a>
+					<h3>sequence</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> sequence<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/data/CouplingContainer.ts:59</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -280,7 +331,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/data/CouplingContainer.ts:49</li>
+									<li>Defined in src/data/CouplingContainer.ts:71</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -300,7 +351,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/data/CouplingContainer.ts:53</li>
+									<li>Defined in src/data/CouplingContainer.ts:75</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/icouplingscore.html" class="tsd-signature-type">ICouplingScore</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -317,7 +368,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/data/CouplingContainer.ts:140</li>
+									<li>Defined in src/data/CouplingContainer.ts:84</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -339,6 +390,32 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getaminoacidofcontact" class="tsd-anchor"></a>
+					<h3>get<wbr>Amino<wbr>Acid<wbr>OfContact</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Amino<wbr>Acid<wbr>OfContact<span class="tsd-signature-symbol">(</span>resno<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/data/CouplingContainer.ts:107</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>resno: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">undefined</span>
+							</h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="getcouplingscore" class="tsd-anchor"></a>
 					<h3>get<wbr>Coupling<wbr>Score</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -348,7 +425,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/data/CouplingContainer.ts:132</li>
+									<li>Defined in src/data/CouplingContainer.ts:171</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -379,7 +456,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/data/CouplingContainer.ts:93</li>
+									<li>Defined in src/data/CouplingContainer.ts:132</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -411,7 +488,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/data/CouplingContainer.ts:112</li>
+									<li>Defined in src/data/CouplingContainer.ts:151</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -457,7 +534,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/data/CouplingContainer.ts:83</li>
+									<li>Defined in src/data/CouplingContainer.ts:174</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -477,24 +554,51 @@
 					<a name="next" class="tsd-anchor"></a>
 					<h3>next</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">next<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IteratorResult</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/icouplingscore.html" class="tsd-signature-type">ICouplingScore</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">next<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IteratorResult</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/icouplingscore.html" class="tsd-signature-type">ICouplingScore</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/data/CouplingContainer.ts:57</li>
+									<li>Defined in src/data/CouplingContainer.ts:177</li>
 								</ul>
 							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> value: <span class="tsd-signature-type">any</span></h5>
-								</li>
-							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IteratorResult</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/icouplingscore.html" class="tsd-signature-type">ICouplingScore</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
+				<h2>Object literals</h2>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-class tsd-is-protected">
+					<a name="indexrange" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> index<wbr>Range</h3>
+					<div class="tsd-signature tsd-kind-icon">index<wbr>Range<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/data/CouplingContainer.ts:17</li>
+						</ul>
+					</aside>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="indexrange.max" class="tsd-anchor"></a>
+						<h3>max</h3>
+						<div class="tsd-signature tsd-kind-icon">max<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;50</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/data/CouplingContainer.ts:18</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="indexrange.min" class="tsd-anchor"></a>
+						<h3>min</h3>
+						<div class="tsd-signature tsd-kind-icon">min<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/data/CouplingContainer.ts:19</li>
+							</ul>
+						</aside>
+					</section>
 				</section>
 			</section>
 		</div>
@@ -538,6 +642,12 @@
 								<a href="couplingcontainer.html#rankedcontacts" class="tsd-kind-icon">ranked<wbr>Contacts</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="couplingcontainer.html#residueindexrange" class="tsd-kind-icon">residue<wbr>Index<wbr>Range</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="couplingcontainer.html#sequence" class="tsd-kind-icon">sequence</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="couplingcontainer.html#totalcontacts" class="tsd-kind-icon">total<wbr>Contacts</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -545,6 +655,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="couplingcontainer.html#addcouplingscore" class="tsd-kind-icon">add<wbr>Coupling<wbr>Score</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="couplingcontainer.html#getaminoacidofcontact" class="tsd-kind-icon">get<wbr>Amino<wbr>Acid<wbr>OfContact</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="couplingcontainer.html#getcouplingscore" class="tsd-kind-icon">get<wbr>Coupling<wbr>Score</a>
@@ -560,6 +673,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="couplingcontainer.html#next" class="tsd-kind-icon">next</a>
+							</li>
+							<li class=" tsd-kind-object-literal tsd-parent-kind-class tsd-is-protected">
+								<a href="couplingcontainer.html#indexrange" class="tsd-kind-icon">index<wbr>Range</a>
 							</li>
 						</ul>
 					</li>

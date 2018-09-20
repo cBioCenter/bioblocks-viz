@@ -123,7 +123,7 @@ export class VizSelectorPanel extends React.Component<IVizPanelProps, IVizPanelS
             <NGLComponent
               data={data.NGL as NGL_DATA_TYPE}
               height={paddedHeight}
-              padding={padding}
+              style={{ padding }}
               width={paddedWidth}
             />
           )
@@ -134,7 +134,7 @@ export class VizSelectorPanel extends React.Component<IVizPanelProps, IVizPanelS
             <PredictedContactMap
               data={data['Contact Map'] as IContactMapData}
               height={paddedHeight}
-              padding={padding}
+              style={{ padding }}
               width={paddedWidth}
             />
           )

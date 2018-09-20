@@ -4,11 +4,16 @@ import * as React from 'react';
 import { Button, GridRow } from 'semantic-ui-react';
 import { Vector2 } from 'three';
 
-import ResidueContext, { initialResidueContext, IResidueContext, ResidueSelection } from '../context/ResidueContext';
+import {
+  initialResidueContext,
+  IResidueContext,
+  ResidueContextWrapper,
+  ResidueSelection,
+} from '../context/ResidueContext';
 import {
   initialSecondaryStructureContext,
   ISecondaryStructureContext,
-  SecondaryStructureContext,
+  SecondaryStructureContextWrapper,
 } from '../context/SecondaryStructureContext';
 import { RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../data/chell-data';
 import {
@@ -22,13 +27,14 @@ export type NGL_HOVER_CB_RESULT_TYPE = number;
 export type RepresentationDict = Map<string, NGL.RepresentationElement[]>;
 
 export interface INGLComponentProps {
+  backgroundColor?: string | number;
   data: NGL.Structure;
   height: number | string;
   onResize: (event?: UIEvent) => void;
   residueContext: IResidueContext;
   secondaryStructureContext: ISecondaryStructureContext;
   showConfiguration: boolean;
-  padding: number | string;
+  style: React.CSSProperties;
   width: number | string;
 }
 
@@ -43,7 +49,6 @@ export type NGLComponentState = Readonly<typeof initialNGLState>;
 export class NGLComponentClass extends React.Component<INGLComponentProps, NGLComponentState> {
   public static defaultProps: Partial<INGLComponentProps> = {
     height: 400,
-    padding: 0,
     residueContext: { ...initialResidueContext },
     secondaryStructureContext: {
       ...initialSecondaryStructureContext,
@@ -59,9 +64,9 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     super(props);
   }
 
-  public componentDidMount() {
+  public componentDidMount({ backgroundColor } = this.props) {
     if (this.canvas) {
-      const stage = new NGL.Stage(this.canvas);
+      const stage = new NGL.Stage(this.canvas, { backgroundColor });
       const { data } = this.props;
 
       if (data) {
@@ -123,9 +128,9 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
    * @returns The NGL Component
    */
   public render() {
-    const { height, padding, residueContext, showConfiguration, width } = this.props;
+    const { height, residueContext, showConfiguration, style, width } = this.props;
     return (
-      <div className="NGLComponent" style={{ padding }}>
+      <div className="NGLComponent" style={{ ...style }}>
         <div
           className="NGLCanvas"
           ref={el => (this.canvas = el)}
@@ -342,9 +347,9 @@ type requiredProps = Omit<INGLComponentProps, keyof typeof NGLComponentClass.def
   Partial<INGLComponentProps>;
 
 const NGLComponent = (props: requiredProps) => (
-  <SecondaryStructureContext.Consumer>
+  <SecondaryStructureContextWrapper.Consumer>
     {secStructContext => (
-      <ResidueContext.Consumer>
+      <ResidueContextWrapper.Consumer>
         {residueContext => (
           <NGLComponentClass
             {...props}
@@ -352,9 +357,9 @@ const NGLComponent = (props: requiredProps) => (
             secondaryStructureContext={{ ...secStructContext }}
           />
         )}
-      </ResidueContext.Consumer>
+      </ResidueContextWrapper.Consumer>
     )}
-  </SecondaryStructureContext.Consumer>
+  </SecondaryStructureContextWrapper.Consumer>
 );
 
 export default NGLComponent;

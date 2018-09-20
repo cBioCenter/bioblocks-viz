@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import CouplingContext from '../CouplingContext';
+import { CouplingContext } from '../CouplingContext';
 
 describe('CouplingContext', () => {
   it('Should match the default snapshot.', () => {

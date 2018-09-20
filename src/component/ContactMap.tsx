@@ -1,13 +1,25 @@
 import * as React from 'react';
 import { Accordion, Icon } from 'semantic-ui-react';
 
-import ResidueContext, { initialResidueContext, IResidueContext, ResidueSelection } from '../context/ResidueContext';
+import {
+  initialResidueContext,
+  IResidueContext,
+  ResidueContextWrapper,
+  ResidueSelection,
+} from '../context/ResidueContext';
 import {
   initialSecondaryStructureContext,
   ISecondaryStructureContext,
-  SecondaryStructureContext,
+  SecondaryStructureContextWrapper,
 } from '../context/SecondaryStructureContext';
-import { CONFIGURATION_COMPONENT_TYPE, ICouplingScore, RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../data/chell-data';
+import {
+  CONFIGURATION_COMPONENT_TYPE,
+  IContactMapData,
+  ICouplingScore,
+  RESIDUE_TYPE,
+  SECONDARY_STRUCTURE,
+} from '../data/chell-data';
+import { CouplingContainer } from '../data/CouplingContainer';
 import ChellChartEvent from '../data/event/ChellChartEvent';
 import ContactMapChart, { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';
 import ChellRadioGroup from './widget/ChellRadioGroup';
@@ -30,19 +42,17 @@ export interface IContactMapConfiguration {
 }
 
 export interface IContactMapProps {
-  chainLength: number;
   configurations: IContactMapConfiguration[];
-  data: {
-    computedPoints: IContactMapChartData[];
-    secondaryStructures: SECONDARY_STRUCTURE[];
-  };
+  data: IContactMapData;
   enableSliders: boolean;
+  formattedPoints: IContactMapChartData[];
   height: number;
   highlightColor: string;
+  observedColor: string;
   onBoxSelection?: ((residues: RESIDUE_TYPE[]) => void);
-  padding: number | string;
   residueContext: IResidueContext;
   secondaryStructureContext: ISecondaryStructureContext;
+  style: React.CSSProperties;
   width: number;
 }
 
@@ -55,17 +65,17 @@ export type ContactMapState = Readonly<typeof initialContactMapState>;
 
 export class ContactMapClass extends React.Component<IContactMapProps, ContactMapState> {
   public static defaultProps: Partial<IContactMapProps> = {
-    chainLength: 59,
     configurations: new Array<IContactMapConfiguration>(),
     data: {
-      computedPoints: new Array<IContactMapChartData>(),
+      couplingScores: new CouplingContainer(),
       secondaryStructures: new Array<SECONDARY_STRUCTURE>(),
     },
     enableSliders: true,
+    formattedPoints: new Array<IContactMapChartData>(),
     height: 400,
     highlightColor: '#ff8800',
+    observedColor: '#0000ff',
     onBoxSelection: undefined as undefined | ((residues: RESIDUE_TYPE[]) => void),
-    padding: 0,
     residueContext: {
       ...initialResidueContext,
     },
@@ -82,24 +92,24 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
   }
 
   public componentDidMount() {
-    this.setupPointsToPlot(this.props.data.computedPoints);
+    this.setupPointsToPlot(this.props.data.couplingScores);
   }
 
   public componentDidUpdate(prevProps: IContactMapProps) {
     const { data, residueContext } = this.props;
     if (data !== prevProps.data || residueContext.lockedResiduePairs !== prevProps.residueContext.lockedResiduePairs) {
-      this.setupPointsToPlot(data.computedPoints, residueContext.lockedResiduePairs);
+      this.setupPointsToPlot(data.couplingScores, residueContext.lockedResiduePairs);
     }
   }
 
   public render() {
-    const { enableSliders, padding, width } = this.props;
+    const { enableSliders, style, width } = this.props;
     const { pointsToPlot } = this.state;
 
     const sliderStyle = { width: width * 0.9 };
 
     return (
-      <div id="ContactMapComponent" style={{ padding }}>
+      <div id="ContactMapComponent" style={{ ...style }}>
         {this.renderContactMapChart(pointsToPlot)}
         {enableSliders && this.renderConfigSliders(sliderStyle, pointsToPlot)}
       </div>
@@ -120,14 +130,24 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     });
   };
 
-  protected setupPointsToPlot(points: IContactMapChartData[] = [], lockedResiduePairs: ResidueSelection = new Map()) {
-    const { highlightColor } = this.props;
+  protected setupPointsToPlot(points: CouplingContainer, lockedResiduePairs: ResidueSelection = new Map()) {
+    const { formattedPoints, observedColor, highlightColor } = this.props;
     const { pointsToPlot } = this.state;
 
     const pointsLength = pointsToPlot.length;
     const nodeSize = pointsLength >= 2 && pointsToPlot[pointsLength - 1] ? pointsToPlot[pointsLength - 1].nodeSize : 6;
 
-    const result = new Array<IContactMapChartData>(...points);
+    const result = new Array<IContactMapChartData>(
+      generateChartDataEntry(
+        'x+y',
+        { start: observedColor, end: 'rgb(100,177,200)' },
+        'Known Structure Contact',
+        '(from PDB structure)',
+        4,
+        points.getObservedContacts(),
+      ),
+      ...formattedPoints,
+    );
 
     if (lockedResiduePairs.size > 0) {
       result.push(
@@ -161,7 +181,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
   }
 
   protected renderContactMapChart(pointsToPlot: IContactMapChartData[]) {
-    const { chainLength, data, onBoxSelection, residueContext, secondaryStructureContext } = this.props;
+    const { data, onBoxSelection, residueContext, secondaryStructureContext } = this.props;
     return (
       <ContactMapChart
         candidateResidues={residueContext.candidateResidues}
@@ -170,8 +190,8 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
         onHoverCallback={this.onMouseEnter(residueContext.addHoveredResidues)}
         onSelectedCallback={this.onMouseSelect(onBoxSelection)}
         onUnHoverCallback={this.onMouseLeave(residueContext.removeHoveredResidues)}
-        range={chainLength + 5}
-        secondaryStructures={data.secondaryStructures}
+        range={data.couplingScores.residueIndexRange.max + 20}
+        secondaryStructures={data.pdbData ? data.pdbData.secondaryStructureSections : []}
         selectedSecondaryStructures={[secondaryStructureContext.selectedSecondaryStructures]}
       />
     );
@@ -226,22 +246,18 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     configurations: IContactMapConfiguration[],
     sliderStyle: React.CSSProperties[] | React.CSSProperties,
   ) {
-    const result = [];
-    for (const config of configurations) {
+    return configurations.map(config => {
       const id = config.name
         .toLowerCase()
         .split(' ')
         .join('-');
       switch (config.type) {
         case CONFIGURATION_COMPONENT_TYPE.SLIDER:
-          result.push(this.renderConfigurationSlider(config, id, sliderStyle));
-          break;
+          return this.renderConfigurationSlider(config, id, sliderStyle);
         case CONFIGURATION_COMPONENT_TYPE.RADIO:
-          result.push(this.renderConfigurationRadioButton(config, id));
-          break;
+          return this.renderConfigurationRadioButton(config, id);
       }
-    }
-    return result;
+    });
   }
 
   protected renderConfigurationSlider(
@@ -337,9 +353,9 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 type requiredProps = Omit<IContactMapProps, keyof typeof ContactMapClass.defaultProps> & Partial<IContactMapProps>;
 
 const ContactMap = (props: requiredProps) => (
-  <SecondaryStructureContext.Consumer>
+  <SecondaryStructureContextWrapper.Consumer>
     {secondaryStructureContext => (
-      <ResidueContext.Consumer>
+      <ResidueContextWrapper.Consumer>
         {residueContext => (
           <ContactMapClass
             {...props}
@@ -347,9 +363,9 @@ const ContactMap = (props: requiredProps) => (
             secondaryStructureContext={{ ...secondaryStructureContext }}
           />
         )}
-      </ResidueContext.Consumer>
+      </ResidueContextWrapper.Consumer>
     )}
-  </SecondaryStructureContext.Consumer>
+  </SecondaryStructureContextWrapper.Consumer>
 );
 
 export default ContactMap;

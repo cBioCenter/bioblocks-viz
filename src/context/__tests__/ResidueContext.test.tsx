@@ -2,12 +2,12 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import * as Renderer from 'react-test-renderer';
 
-import { initialResidueContext, ResidueContext, ResidueContextHandler } from '../ResidueContext';
+import { initialResidueContext, ResidueContext, ResidueContextWrapper } from '../ResidueContext';
 
 describe('ResidueContext', () => {
   it('Should match the default snapshot.', () => {
     const wrapper = Renderer.create(
-      <ResidueContext.Consumer>{context => React.createElement('div', context)}</ResidueContext.Consumer>,
+      <ResidueContextWrapper.Consumer>{context => React.createElement('div', context)}</ResidueContextWrapper.Consumer>,
     );
     expect(wrapper.toJSON()).toMatchSnapshot();
     expect(wrapper.root.props).toEqual(initialResidueContext);
@@ -15,7 +15,7 @@ describe('ResidueContext', () => {
 
   it('Should have empty initial functions that produce 0 side effects.', () => {
     const wrapper = Renderer.create(
-      <ResidueContext.Consumer>{context => React.createElement('div', context)}</ResidueContext.Consumer>,
+      <ResidueContextWrapper.Consumer>{context => React.createElement('div', context)}</ResidueContextWrapper.Consumer>,
     );
     wrapper.root.props.addCandidateResidues();
     wrapper.root.props.addHoveredResidues();
@@ -30,7 +30,7 @@ describe('ResidueContext', () => {
   });
 
   it('Should add the candidate residue correctly.', () => {
-    const instance = shallow(<ResidueContextHandler />).instance() as ResidueContextHandler;
+    const instance = shallow(<ResidueContext />).instance() as ResidueContext;
     const initialState = instance.state;
     const expectedState = {
       ...initialState,
@@ -41,7 +41,7 @@ describe('ResidueContext', () => {
   });
 
   it('Should remove the candidate residue correctly.', () => {
-    const instance = shallow(<ResidueContextHandler />).instance() as ResidueContextHandler;
+    const instance = shallow(<ResidueContext />).instance() as ResidueContext;
     const initialState = instance.state;
     const expectedState = {
       ...initialState,
@@ -53,7 +53,7 @@ describe('ResidueContext', () => {
   });
 
   it('Should add a single hovered residue.', () => {
-    const instance = shallow(<ResidueContextHandler />).instance() as ResidueContextHandler;
+    const instance = shallow(<ResidueContext />).instance() as ResidueContext;
     const initialState = instance.state;
     const expectedState = {
       ...initialState,
@@ -64,7 +64,7 @@ describe('ResidueContext', () => {
   });
 
   it('Should add multiple residues as hovered residues.', () => {
-    const instance = shallow(<ResidueContextHandler />).instance() as ResidueContextHandler;
+    const instance = shallow(<ResidueContext />).instance() as ResidueContext;
     const initialState = instance.state;
     const expectedState = {
       ...initialState,
@@ -75,7 +75,7 @@ describe('ResidueContext', () => {
   });
 
   it('Should remove the hovered residue correctly.', () => {
-    const instance = shallow(<ResidueContextHandler />).instance() as ResidueContextHandler;
+    const instance = shallow(<ResidueContext />).instance() as ResidueContext;
     const initialState = instance.state;
     const expectedState = {
       ...initialState,
@@ -87,7 +87,7 @@ describe('ResidueContext', () => {
   });
 
   it('Should add a locked residue pair correctly.', () => {
-    const instance = shallow(<ResidueContextHandler />).instance() as ResidueContextHandler;
+    const instance = shallow(<ResidueContext />).instance() as ResidueContext;
     const initialState = instance.state;
     const expectedState = {
       ...initialState,
@@ -102,7 +102,7 @@ describe('ResidueContext', () => {
   });
 
   it('Should allow multiple locked residues to be added in various dimensions correctly.', () => {
-    const instance = shallow(<ResidueContextHandler />).instance() as ResidueContextHandler;
+    const instance = shallow(<ResidueContext />).instance() as ResidueContext;
     const initialState = instance.state;
     const expectedState = {
       ...initialState,
@@ -121,7 +121,7 @@ describe('ResidueContext', () => {
   });
 
   it('Should map identical residue pairs regardless of the order they are supplied.', () => {
-    const instance = shallow(<ResidueContextHandler />).instance() as ResidueContextHandler;
+    const instance = shallow(<ResidueContext />).instance() as ResidueContext;
     const initialState = instance.state;
     const expectedState = {
       ...initialState,
@@ -137,7 +137,7 @@ describe('ResidueContext', () => {
   });
 
   it('Should allow locked residues to be removed while preserving the other pairs.', () => {
-    const instance = shallow(<ResidueContextHandler />).instance() as ResidueContextHandler;
+    const instance = shallow(<ResidueContext />).instance() as ResidueContext;
     const initialState = instance.state;
     const expectedState = {
       ...initialState,
@@ -156,7 +156,7 @@ describe('ResidueContext', () => {
   });
 
   it('Should not alter current state if non-existing residue pair is requested to be removed.', () => {
-    const instance = shallow(<ResidueContextHandler />).instance() as ResidueContextHandler;
+    const instance = shallow(<ResidueContext />).instance() as ResidueContext;
     const initialState = instance.state;
     const expectedState = {
       ...initialState,
@@ -176,7 +176,7 @@ describe('ResidueContext', () => {
   });
 
   it('Should allow all locked residues to be removed.', () => {
-    const instance = shallow(<ResidueContextHandler />).instance() as ResidueContextHandler;
+    const instance = shallow(<ResidueContext />).instance() as ResidueContext;
     const initialState = instance.state;
     const expectedState = {
       ...initialState,
@@ -190,7 +190,7 @@ describe('ResidueContext', () => {
   });
 
   it('Should allow all residues to be removed.', () => {
-    const instance = shallow(<ResidueContextHandler />).instance() as ResidueContextHandler;
+    const instance = shallow(<ResidueContext />).instance() as ResidueContext;
     const initialState = instance.state;
     const expectedState = {
       ...initialState,
@@ -214,7 +214,7 @@ describe('ResidueContext', () => {
   });
 
   it('Should allow all non-locked residue pairs to be removed.', () => {
-    const instance = shallow(<ResidueContextHandler />).instance() as ResidueContextHandler;
+    const instance = shallow(<ResidueContext />).instance() as ResidueContext;
     const initialState = instance.state;
     const lockedPairs = new Map(Object.entries({ '4,5': [4, 5] }));
     const expectedState = {
@@ -239,7 +239,7 @@ describe('ResidueContext', () => {
   });
 
   it('Should allow a locked residue pair to be toggled.', () => {
-    const instance = shallow(<ResidueContextHandler />).instance() as ResidueContextHandler;
+    const instance = shallow(<ResidueContext />).instance() as ResidueContext;
     const initialState = instance.state;
     const expectedState = {
       ...initialState,

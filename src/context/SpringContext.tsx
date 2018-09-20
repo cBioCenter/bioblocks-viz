@@ -11,7 +11,7 @@ export const initialSpringContext: ISpringContext = {
 
 export type SpringContextState = Readonly<typeof initialSpringContext>;
 
-export class SpringContextHandler extends React.Component<any, SpringContextState> {
+export class SpringContext extends React.Component<any, SpringContextState> {
   public constructor(props: any) {
     super(props);
     this.state = initialSpringContext;
@@ -25,11 +25,11 @@ export class SpringContextHandler extends React.Component<any, SpringContextStat
   }
 
   public render() {
-    return <SpringContext.Provider value={this.state}>{this.props.children}</SpringContext.Provider>;
+    return <SpringContextWrapper.Provider value={this.state}>{this.props.children}</SpringContextWrapper.Provider>;
   }
 }
 
-const SpringContext = React.createContext(initialSpringContext);
+const SpringContextWrapper = React.createContext(initialSpringContext);
 
-export default SpringContext;
-export { SpringContext };
+export default SpringContextWrapper;
+export { SpringContextWrapper };

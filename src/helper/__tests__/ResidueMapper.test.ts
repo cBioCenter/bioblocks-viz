@@ -5,20 +5,20 @@ describe('ResidueMapper', () => {
 
   it('Should map residues correctly when given properly formatted indextableplus text.', () => {
     const result = generateResidueMapping(simpleFile);
-    const expected = [
+    const expected: IResidueMapping[] = [
       {
-        pdbResname: 'H',
+        pdbResCode: 'H',
         pdbResno: 26,
-        uniProtResname: 'H',
+        uniProtResCode: 'H',
         uniProtResno: 24,
       },
       {
-        pdbResname: 'P',
+        pdbResCode: 'P',
         pdbResno: 27,
-        uniProtResname: 'P',
+        uniProtResCode: 'P',
         uniProtResno: 25,
       },
-    ] as IResidueMapping[];
+    ];
     expect(result).toEqual(expected);
   });
 
@@ -33,17 +33,17 @@ describe('ResidueMapper', () => {
   });
 
   it('Should skip empty lines.', () => {
-    const expected = [
+    const expected: IResidueMapping[] = [
       {
-        pdbResname: 'H',
+        pdbResCode: 'H',
         pdbResno: 26,
-        uniProtResname: 'H',
+        uniProtResCode: 'H',
         uniProtResno: 24,
       },
       {
-        pdbResname: 'P',
+        pdbResCode: 'P',
         pdbResno: 27,
-        uniProtResname: 'P',
+        uniProtResCode: 'P',
         uniProtResno: 25,
       },
     ] as IResidueMapping[];

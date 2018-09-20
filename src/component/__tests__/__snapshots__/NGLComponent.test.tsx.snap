@@ -4,7 +4,6 @@ exports[`NGLComponent Should match existing snapshot when canvas isn't available
 <NGLComponent>
   <NGLComponentClass
     height={400}
-    padding={0}
     residueContext={
       Object {
         "addCandidateResidues": [Function],
@@ -37,11 +36,7 @@ exports[`NGLComponent Should match existing snapshot when canvas isn't available
   >
     <div
       className="NGLComponent"
-      style={
-        Object {
-          "padding": 0,
-        }
-      }
+      style={Object {}}
     >
       <div
         className="NGLCanvas"
@@ -110,7 +105,6 @@ exports[`NGLComponent Should match existing snapshot when configuration is disab
       }
     }
     height={400}
-    padding={0}
     residueContext={
       Object {
         "addCandidateResidues": [Function],
@@ -143,11 +137,7 @@ exports[`NGLComponent Should match existing snapshot when configuration is disab
   >
     <div
       className="NGLComponent"
-      style={
-        Object {
-          "padding": 0,
-        }
-      }
+      style={Object {}}
     >
       <div
         className="NGLCanvas"
@@ -196,7 +186,6 @@ exports[`NGLComponent Should match existing snapshot when given sample data 1`] 
       }
     }
     height={400}
-    padding={0}
     residueContext={
       Object {
         "addCandidateResidues": [Function],
@@ -229,11 +218,7 @@ exports[`NGLComponent Should match existing snapshot when given sample data 1`] 
   >
     <div
       className="NGLComponent"
-      style={
-        Object {
-          "padding": 0,
-        }
-      }
+      style={Object {}}
     >
       <div
         className="NGLCanvas"

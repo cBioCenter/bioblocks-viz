@@ -1,5 +1,5 @@
-import * as deepEqual from 'deep-equal';
 import * as Immutable from 'immutable';
+import { isEqual } from 'lodash';
 import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react';
@@ -158,8 +158,8 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     // !Important! Likely requires another crack at state/context.
     if (
       JSON.stringify(data) !== JSON.stringify(prevProps.data) ||
-      !deepEqual(layout, prevProps.layout) ||
-      !deepEqual(config, prevProps.config)
+      !isEqual(layout, prevProps.layout) ||
+      !isEqual(config, prevProps.config)
     ) {
       this.plotlyFormattedData = Immutable.fromJS(data).toJS();
       this.draw();

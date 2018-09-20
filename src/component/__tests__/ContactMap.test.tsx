@@ -8,11 +8,13 @@ import { initialResidueContext, IResidueContext } from '../../context/ResidueCon
 import { initialSecondaryStructureContext } from '../../context/SecondaryStructureContext';
 import {
   CONFIGURATION_COMPONENT_TYPE,
+  IContactMapData,
   ICouplingScore,
   SECONDARY_STRUCTURE,
   SECONDARY_STRUCTURE_KEYS,
 } from '../../data/chell-data';
 import Chell1DSection from '../../data/Chell1DSection';
+import { CouplingContainer } from '../../data/CouplingContainer';
 import { PlotlyChart } from '../chart/PlotlyChart';
 import ContactMap, { ContactMapClass, IContactMapProps } from '../ContactMap';
 
@@ -80,7 +82,7 @@ describe('ContactMap', () => {
   });
 
   const emptyData = {
-    computedPoints: [],
+    couplingScores: new CouplingContainer(),
     secondaryStructures: [],
   };
 
@@ -115,18 +117,14 @@ describe('ContactMap', () => {
     ]),
   );
 
-  const sampleData = {
-    computedPoints: Array.from(uniqueScores).map((value, index) => ({
-      name: index.toString(),
-      nodeSize: 4,
-      points: [
-        {
-          dist: value.dist,
-          i: value.i,
-          j: value.j,
-        },
-      ],
-    })),
+  const sampleData: IContactMapData = {
+    couplingScores: new CouplingContainer(
+      Array.from(uniqueScores).map((value, index) => ({
+        dist: value.dist,
+        i: value.i,
+        j: value.j,
+      })),
+    ),
     secondaryStructures: [
       [
         {

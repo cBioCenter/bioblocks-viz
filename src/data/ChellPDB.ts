@@ -1,5 +1,12 @@
 import * as NGL from 'ngl';
+
 import { fetchNGLDataFromFile } from '../helper/DataHelper';
+import {
+  AMINO_ACID_THREE_LETTER_CODE,
+  AMINO_ACIDS_BY_SINGLE_LETTER_CODE,
+  AMINO_ACIDS_BY_THREE_LETTER_CODE,
+  IAminoAcid,
+} from './AminoAcid';
 import {
   CONTACT_DISTANCE_PROXIMITY,
   ICouplingScore,
@@ -10,13 +17,59 @@ import {
 import Chell1DSection from './Chell1DSection';
 import { CouplingContainer } from './CouplingContainer';
 
+export interface IResidueMismatchResult {
+  couplingAminoAcid: IAminoAcid;
+  pdbAminoAcid: IAminoAcid;
+  resno: number;
+}
+
 /**
  * A ChellPDB instance provides an API to interact with a loaded PDB file while hiding the implementation details of how it is loaded.
  *
  * @export
  */
 export class ChellPDB {
-  [key: string]: any;
+  public get contactInformation(): CouplingContainer {
+    const result = new CouplingContainer();
+    this.nglData.eachResidue(outerResidue => {
+      if (outerResidue.isProtein()) {
+        const i = outerResidue.resno;
+        this.nglData.eachResidue(innerResidue => {
+          const j = innerResidue.resno;
+          if (innerResidue.isProtein() && i !== j) {
+            result.addCouplingScore({
+              dist: this.getMinDistBetweenResidues(i, j),
+              i,
+              j,
+            });
+          }
+        });
+      }
+    });
+    return result;
+  }
+
+  public get nglStructure(): NGL.Structure {
+    return this.nglData;
+  }
+
+  public get secondaryStructure(): ISecondaryStructureData[] {
+    const result = new Array<ISecondaryStructureData>();
+    this.nglData.eachResidue(residue => {
+      if (residue.isProtein()) {
+        let structId = 'C' as SECONDARY_STRUCTURE_KEYS;
+        if (residue.isSheet()) {
+          structId = 'E';
+        } else if (residue.isHelix()) {
+          structId = 'H';
+        } else if (residue.isTurn()) {
+          return;
+        }
+        result.push({ resno: residue.resno, structId });
+      }
+    });
+    return result;
+  }
 
   public get secondaryStructureSections(): SECONDARY_STRUCTURE_SECTION[][] {
     const result = new Array<SECONDARY_STRUCTURE_SECTION[]>();
@@ -44,46 +97,8 @@ export class ChellPDB {
     return result;
   }
 
-  public get contactInformation(): CouplingContainer {
-    const result = new CouplingContainer();
-    this.nglData.eachResidue(outerResidue => {
-      if (outerResidue.isProtein()) {
-        const i = outerResidue.resno;
-        this.nglData.eachResidue(innerResidue => {
-          const j = innerResidue.resno;
-          if (innerResidue.isProtein() && i !== j) {
-            result.addCouplingScore({
-              dist: this.getMinDistBetweenResidues(i, j),
-              i,
-              j,
-            });
-          }
-        });
-      }
-    });
-    return result;
-  }
-
-  public get secondaryStructure(): ISecondaryStructureData[] {
-    const result = new Array<ISecondaryStructureData>();
-    this.nglData.eachResidue(residue => {
-      if (residue.isProtein()) {
-        let structId = 'C' as SECONDARY_STRUCTURE_KEYS;
-        if (residue.isSheet()) {
-          structId = 'E';
-        } else if (residue.isHelix()) {
-          structId = 'H';
-        } else if (residue.isTurn()) {
-          return;
-        }
-        result.push({ resno: residue.resno, structId });
-      }
-    });
-    return result;
-  }
-
-  public get nglStructure() {
-    return this.nglData;
+  public get sequence(): string {
+    return this.nglData ? this.nglData.getSequence().join('') : '';
   }
 
   public static readonly NGL_C_ALPHA_INDEX = 'CA|C';
@@ -123,7 +138,7 @@ export class ChellPDB {
     measuredProximity: CONTACT_DISTANCE_PROXIMITY,
   ) {
     const result = new CouplingContainer(couplingScores);
-    const alphaId = this.nglData.atomMap.dict[this.NGL_C_ALPHA_INDEX];
+    const alphaId = this.nglData.atomMap.dict[ChellPDB.NGL_C_ALPHA_INDEX];
 
     const minDist: {
       [key: string]: number;
@@ -190,7 +205,7 @@ export class ChellPDB {
    * @param secondResidueIndex Index of the second residue with respect to the array of all residues.
    * @returns Shortest distance between the two residues in ångströms.
    */
-  protected getMinDistBetweenResidues(firstResidueIndex: number, secondResidueIndex: number) {
+  public getMinDistBetweenResidues(firstResidueIndex: number, secondResidueIndex: number) {
     const { residueStore } = this.nglData;
     const firstResCount = residueStore.atomCount[firstResidueIndex];
     const secondResCount = residueStore.atomCount[secondResidueIndex];
@@ -209,5 +224,25 @@ export class ChellPDB {
       }
     }
     return minDist;
+  }
+
+  public getResidueNumberingMismatches(contacts: CouplingContainer) {
+    const result = new Array<IResidueMismatchResult>();
+    this.eachResidue(residue => {
+      const pdbResCode = residue.resname.toUpperCase();
+      const couplingAminoAcid = contacts.getAminoAcidOfContact(residue.resno);
+      if (
+        couplingAminoAcid &&
+        AMINO_ACIDS_BY_THREE_LETTER_CODE[pdbResCode as AMINO_ACID_THREE_LETTER_CODE] !==
+          AMINO_ACIDS_BY_SINGLE_LETTER_CODE[couplingAminoAcid.singleLetterCode]
+      ) {
+        result.push({
+          couplingAminoAcid,
+          pdbAminoAcid: AMINO_ACIDS_BY_THREE_LETTER_CODE[pdbResCode as AMINO_ACID_THREE_LETTER_CODE],
+          resno: residue.resno,
+        });
+      }
+    });
+    return result;
   }
 }

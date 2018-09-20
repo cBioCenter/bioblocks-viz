@@ -1,3 +1,5 @@
+import { AMINO_ACID_SINGLE_LETTER_CODE } from '../data/AminoAcid';
+
 const UNI_PROT_RESNO_HEADER = 'up_index';
 const UNI_PROT_RESNAME_HEADER = 'up_residue';
 const PDB_RESNO_HEADER = 'pdb_index';
@@ -7,13 +9,13 @@ const EXPECTED_HEADERS = [UNI_PROT_RESNO_HEADER, UNI_PROT_RESNAME_HEADER, PDB_RE
 
 export interface IResidueMapping {
   /** Name of the residue in the PDB file. */
-  pdbResname: string;
+  pdbResCode: AMINO_ACID_SINGLE_LETTER_CODE;
 
   /** Number of the residue in the PDB file. */
   pdbResno: number;
 
   /** Name of the residue from UniProt. */
-  uniProtResname: string;
+  uniProtResCode: AMINO_ACID_SINGLE_LETTER_CODE;
 
   /** Number of the residue from UniProt. */
   uniProtResno: number;
@@ -47,9 +49,9 @@ export const generateResidueMapping = (text: string): IResidueMapping[] => {
       const splitLine = line.split('\t');
       if (splitLine.length >= EXPECTED_HEADERS.length) {
         result.push({
-          pdbResname: splitLine[headerMap[PDB_RESNAME_HEADER]],
+          pdbResCode: splitLine[headerMap[PDB_RESNAME_HEADER]] as AMINO_ACID_SINGLE_LETTER_CODE,
           pdbResno: parseInt(splitLine[headerMap[PDB_RESNO_HEADER]], 10),
-          uniProtResname: splitLine[headerMap[UNI_PROT_RESNAME_HEADER]],
+          uniProtResCode: splitLine[headerMap[UNI_PROT_RESNAME_HEADER]] as AMINO_ACID_SINGLE_LETTER_CODE,
           uniProtResno: parseInt(splitLine[headerMap[UNI_PROT_RESNO_HEADER]], 10),
         });
       }

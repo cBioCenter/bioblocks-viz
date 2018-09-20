@@ -10,6 +10,7 @@ import { fetchCSVFile, fetchJSONFile, readFileAsText } from './FetchHelper';
 
 import * as NGL from 'ngl';
 
+import { AMINO_ACID_SINGLE_LETTER_CODE } from '../data/AminoAcid';
 import { ChellPDB } from '../data/ChellPDB';
 import {
   ISpringCategoricalColorData,
@@ -176,6 +177,7 @@ export const fetchContactMapData = async (dir: string): Promise<IContactMapData>
   const data: CONTACT_MAP_DATA_TYPE = {
     couplingScores: getCouplingScoresData(promiseResults[0], generateResidueMapping(promiseResults[1])),
     pdbData,
+    secondaryStructures: [],
   };
 
   return data;
@@ -207,8 +209,8 @@ export const getCouplingScoresData = (line: string, residueMapping: IResidueMapp
         const uniProtIndexI = residueMapping.findIndex(mapping => mapping.uniProtResno === parseInt(items[0], 10));
         const uniProtIndexJ = residueMapping.findIndex(mapping => mapping.uniProtResno === parseInt(items[1], 10));
         couplingScores.addCouplingScore({
-          A_i: residueMapping[uniProtIndexI].pdbResname,
-          A_j: residueMapping[uniProtIndexJ].pdbResname,
+          A_i: residueMapping[uniProtIndexI].pdbResCode,
+          A_j: residueMapping[uniProtIndexJ].pdbResCode,
           cn: parseFloat(items[headerIndices.cn]),
           dist: parseFloat(items[headerIndices.dist]),
           i: residueMapping[uniProtIndexI].pdbResno,
@@ -216,8 +218,8 @@ export const getCouplingScoresData = (line: string, residueMapping: IResidueMapp
         });
       } else {
         couplingScores.addCouplingScore({
-          A_i: items[headerIndices.A_i],
-          A_j: items[headerIndices.A_j],
+          A_i: items[headerIndices.A_i] as AMINO_ACID_SINGLE_LETTER_CODE,
+          A_j: items[headerIndices.A_j] as AMINO_ACID_SINGLE_LETTER_CODE,
           cn: parseFloat(items[headerIndices.cn]),
           dist: parseFloat(items[headerIndices.dist]),
           i: parseInt(items[headerIndices.i], 10),
@@ -238,8 +240,8 @@ export const augmentCouplingScoresWithResidueMapping = (
     const mappedIndexJ = residueMapping.findIndex(mapping => mapping.uniProtResno === score.j);
 
     result.addCouplingScore({
-      A_i: residueMapping[mappedIndexI].pdbResname,
-      A_j: residueMapping[mappedIndexJ].pdbResname,
+      A_i: residueMapping[mappedIndexI].pdbResCode,
+      A_j: residueMapping[mappedIndexJ].pdbResCode,
       cn: score.cn,
       dist: score.dist,
       i: residueMapping[mappedIndexI].pdbResno,
