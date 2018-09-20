@@ -1,10 +1,10 @@
-import { AMINO_ACID_SINGLE_LETTER_CODES, AMINO_ACIDS_BY_SINGLE_LETTER_CODE, IAminoAcid } from './AminoAcid';
+import { AMINO_ACIDS_BY_SINGLE_LETTER_CODE, IAminoAcid } from './AminoAcid';
 import { ICouplingScore } from './chell-data';
 
 /**
  * A CouplingContainer provides access to the coupling information of residue pairs.
  *
- * Behind the scenes, it is backed by a spare 2D array to avoid data duplication and provide O(1) access.
+ * Behind the scenes, it is backed by a sparse 2D array to avoid data duplication and provide O(1) access.
  *
  * @export
  */
@@ -13,6 +13,11 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
 
   /** How many distinct contacts are currently stored. */
   protected totalStoredContacts: number = 0;
+
+  protected indexRange = {
+    max: 50,
+    min: 1,
+  };
 
   /** Used for iterator access. */
   private rowCounter = 0;
@@ -31,7 +36,7 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
   }
 
   public get chainLength() {
-    return this.contacts.length;
+    return this.indexRange.max - this.indexRange.min + 1;
   }
 
   public get rankedContacts() {
@@ -45,6 +50,22 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
       }
       return 0;
     });
+  }
+
+  public get residueIndexRange() {
+    return this.indexRange;
+  }
+
+  public get sequence() {
+    let result = '';
+    for (let i = this.indexRange.min; i <= this.indexRange.max; ++i) {
+      const aminoAcid = this.getAminoAcidOfContact(i);
+      if (aminoAcid) {
+        result += aminoAcid.singleLetterCode;
+      }
+    }
+
+    return result;
   }
 
   public get totalContacts() {
@@ -76,16 +97,24 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
         ...score,
       };
     }
+
+    this.indexRange = {
+      max: Math.max(this.indexRange.max, maxResidueIndex + 1),
+      min: Math.min(this.indexRange.min, minResidueIndex + 1),
+    };
   }
 
   public getAminoAcidOfContact(resno: number): IAminoAcid | undefined {
+    if (resno > this.chainLength + 1) {
+      return undefined;
+    }
     for (const outerContact of this.allContacts) {
       if (outerContact) {
         for (const innerContact of outerContact) {
           if (innerContact && innerContact.i === resno && innerContact.A_i) {
-            return AMINO_ACIDS_BY_SINGLE_LETTER_CODE[innerContact.A_i as AMINO_ACID_SINGLE_LETTER_CODES];
+            return AMINO_ACIDS_BY_SINGLE_LETTER_CODE[innerContact.A_i];
           } else if (innerContact && innerContact.j === resno && innerContact.A_j) {
-            return AMINO_ACIDS_BY_SINGLE_LETTER_CODE[innerContact.A_j as AMINO_ACID_SINGLE_LETTER_CODES];
+            return AMINO_ACIDS_BY_SINGLE_LETTER_CODE[innerContact.A_j];
           }
         }
       }

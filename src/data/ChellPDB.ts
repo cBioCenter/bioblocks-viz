@@ -2,7 +2,7 @@ import * as NGL from 'ngl';
 
 import { fetchNGLDataFromFile } from '../helper/DataHelper';
 import {
-  AMINO_ACID_THREE_LETTER_CODES,
+  AMINO_ACID_THREE_LETTER_CODE,
   AMINO_ACIDS_BY_SINGLE_LETTER_CODE,
   AMINO_ACIDS_BY_THREE_LETTER_CODE,
   IAminoAcid,
@@ -29,6 +29,48 @@ export interface IResidueMismatchResult {
  * @export
  */
 export class ChellPDB {
+  public get contactInformation(): CouplingContainer {
+    const result = new CouplingContainer();
+    this.nglData.eachResidue(outerResidue => {
+      if (outerResidue.isProtein()) {
+        const i = outerResidue.resno;
+        this.nglData.eachResidue(innerResidue => {
+          const j = innerResidue.resno;
+          if (innerResidue.isProtein() && i !== j) {
+            result.addCouplingScore({
+              dist: this.getMinDistBetweenResidues(i, j),
+              i,
+              j,
+            });
+          }
+        });
+      }
+    });
+    return result;
+  }
+
+  public get nglStructure(): NGL.Structure {
+    return this.nglData;
+  }
+
+  public get secondaryStructure(): ISecondaryStructureData[] {
+    const result = new Array<ISecondaryStructureData>();
+    this.nglData.eachResidue(residue => {
+      if (residue.isProtein()) {
+        let structId = 'C' as SECONDARY_STRUCTURE_KEYS;
+        if (residue.isSheet()) {
+          structId = 'E';
+        } else if (residue.isHelix()) {
+          structId = 'H';
+        } else if (residue.isTurn()) {
+          return;
+        }
+        result.push({ resno: residue.resno, structId });
+      }
+    });
+    return result;
+  }
+
   public get secondaryStructureSections(): SECONDARY_STRUCTURE_SECTION[][] {
     const result = new Array<SECONDARY_STRUCTURE_SECTION[]>();
     this.nglData.eachResidue(residue => {
@@ -55,46 +97,8 @@ export class ChellPDB {
     return result;
   }
 
-  public get contactInformation(): CouplingContainer {
-    const result = new CouplingContainer();
-    this.nglData.eachResidue(outerResidue => {
-      if (outerResidue.isProtein()) {
-        const i = outerResidue.resno;
-        this.nglData.eachResidue(innerResidue => {
-          const j = innerResidue.resno;
-          if (innerResidue.isProtein() && i !== j) {
-            result.addCouplingScore({
-              dist: this.getMinDistBetweenResidues(i, j),
-              i,
-              j,
-            });
-          }
-        });
-      }
-    });
-    return result;
-  }
-
-  public get secondaryStructure(): ISecondaryStructureData[] {
-    const result = new Array<ISecondaryStructureData>();
-    this.nglData.eachResidue(residue => {
-      if (residue.isProtein()) {
-        let structId = 'C' as SECONDARY_STRUCTURE_KEYS;
-        if (residue.isSheet()) {
-          structId = 'E';
-        } else if (residue.isHelix()) {
-          structId = 'H';
-        } else if (residue.isTurn()) {
-          return;
-        }
-        result.push({ resno: residue.resno, structId });
-      }
-    });
-    return result;
-  }
-
-  public get nglStructure() {
-    return this.nglData;
+  public get sequence() {
+    return this.nglData.getSequence().join('');
   }
 
   public static readonly NGL_C_ALPHA_INDEX = 'CA|C';
@@ -229,12 +233,12 @@ export class ChellPDB {
       const couplingAminoAcid = contacts.getAminoAcidOfContact(residue.resno);
       if (
         couplingAminoAcid &&
-        AMINO_ACIDS_BY_THREE_LETTER_CODE[pdbResCode as AMINO_ACID_THREE_LETTER_CODES] !==
+        AMINO_ACIDS_BY_THREE_LETTER_CODE[pdbResCode as AMINO_ACID_THREE_LETTER_CODE] !==
           AMINO_ACIDS_BY_SINGLE_LETTER_CODE[couplingAminoAcid.singleLetterCode]
       ) {
         result.push({
           couplingAminoAcid,
-          pdbAminoAcid: AMINO_ACIDS_BY_THREE_LETTER_CODE[pdbResCode as AMINO_ACID_THREE_LETTER_CODES],
+          pdbAminoAcid: AMINO_ACIDS_BY_THREE_LETTER_CODE[pdbResCode as AMINO_ACID_THREE_LETTER_CODE],
           resno: residue.resno,
         });
       }

@@ -1,4 +1,4 @@
-export type AMINO_ACID_SINGLE_LETTER_CODES =
+export type AMINO_ACID_SINGLE_LETTER_CODE =
   | 'A'
   | 'R'
   | 'N'
@@ -20,7 +20,7 @@ export type AMINO_ACID_SINGLE_LETTER_CODES =
   | 'Y'
   | 'V';
 
-export type AMINO_ACID_THREE_LETTER_CODES =
+export type AMINO_ACID_THREE_LETTER_CODE =
   | 'ALA'
   | 'ARG'
   | 'ASN'
@@ -44,8 +44,8 @@ export type AMINO_ACID_THREE_LETTER_CODES =
 
 export interface IAminoAcid {
   fullName: string;
-  threeLetterCode: AMINO_ACID_THREE_LETTER_CODES;
-  singleLetterCode: AMINO_ACID_SINGLE_LETTER_CODES;
+  threeLetterCode: AMINO_ACID_THREE_LETTER_CODE;
+  singleLetterCode: AMINO_ACID_SINGLE_LETTER_CODE;
 }
 
 const Ala: IAminoAcid = { fullName: 'Alanine', singleLetterCode: 'A', threeLetterCode: 'ALA' };
@@ -70,7 +70,7 @@ const Tyr: IAminoAcid = { fullName: 'Tyrosine', singleLetterCode: 'Y', threeLett
 const Val: IAminoAcid = { fullName: 'Valine', singleLetterCode: 'V', threeLetterCode: 'VAL' };
 
 // tslint:disable:object-literal-sort-keys
-export const AMINO_ACIDS_BY_SINGLE_LETTER_CODE: { [key in AMINO_ACID_SINGLE_LETTER_CODES]: IAminoAcid } = {
+export const AMINO_ACIDS_BY_SINGLE_LETTER_CODE: { [key in AMINO_ACID_SINGLE_LETTER_CODE]: IAminoAcid } = {
   A: Ala,
   R: Arg,
   N: Asn,
@@ -94,7 +94,7 @@ export const AMINO_ACIDS_BY_SINGLE_LETTER_CODE: { [key in AMINO_ACID_SINGLE_LETT
 };
 // tslint:enable:object-literal-sort-keys
 
-export const AMINO_ACIDS_BY_THREE_LETTER_CODE: { [key in AMINO_ACID_THREE_LETTER_CODES]: IAminoAcid } = {
+export const AMINO_ACIDS_BY_THREE_LETTER_CODE: { [key in AMINO_ACID_THREE_LETTER_CODE]: IAminoAcid } = {
   ALA: Ala,
   ARG: Arg,
   ASN: Asn,

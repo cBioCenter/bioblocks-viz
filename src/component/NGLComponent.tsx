@@ -34,7 +34,7 @@ export interface INGLComponentProps {
   residueContext: IResidueContext;
   secondaryStructureContext: ISecondaryStructureContext;
   showConfiguration: boolean;
-  padding: number | string;
+  style: React.CSSProperties;
   width: number | string;
 }
 
@@ -49,7 +49,6 @@ export type NGLComponentState = Readonly<typeof initialNGLState>;
 export class NGLComponentClass extends React.Component<INGLComponentProps, NGLComponentState> {
   public static defaultProps: Partial<INGLComponentProps> = {
     height: 400,
-    padding: 0,
     residueContext: { ...initialResidueContext },
     secondaryStructureContext: {
       ...initialSecondaryStructureContext,
@@ -129,9 +128,9 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
    * @returns The NGL Component
    */
   public render() {
-    const { height, padding, residueContext, showConfiguration, width } = this.props;
+    const { height, residueContext, showConfiguration, style, width } = this.props;
     return (
-      <div className="NGLComponent" style={{ padding }}>
+      <div className="NGLComponent" style={{ ...style }}>
         <div
           className="NGLCanvas"
           ref={el => (this.canvas = el)}

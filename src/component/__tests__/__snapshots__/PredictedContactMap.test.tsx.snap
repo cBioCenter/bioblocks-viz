@@ -34,7 +34,7 @@ Array [
         "j": 50,
       },
     ],
-    "subtitle": "(N=28, L=56)",
+    "subtitle": "(N=28, L=57)",
   },
   Object {
     "hoverinfo": "x+y",
@@ -100,7 +100,7 @@ Array [
         "j": 50,
       },
     ],
-    "subtitle": "(N=28, L=56)",
+    "subtitle": "(N=28, L=57)",
   },
   Object {
     "hoverinfo": "x+y",
@@ -166,7 +166,7 @@ Array [
         "j": 50,
       },
     ],
-    "subtitle": "(N=28, L=56)",
+    "subtitle": "(N=28, L=57)",
   },
   Object {
     "hoverinfo": "x+y",
@@ -201,6 +201,7 @@ Array [
 exports[`PredictedContactMap Snapshots Should match existing snapshot when given empty data. 1`] = `
 <div
   id="PredictedContactMapComponent"
+  style={Object {}}
 >
   <ContactMap
     configurations={
@@ -234,8 +235,8 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
           "onChange": [Function],
           "type": "SLIDER",
           "values": Object {
-            "current": 0,
-            "max": 0,
+            "current": 25,
+            "max": 50,
             "min": 1,
           },
         },
@@ -249,9 +250,14 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
           "contacts": Array [],
           "getCouplingScore": [Function],
           "includes": [Function],
+          "indexRange": Object {
+            "max": 50,
+            "min": 1,
+          },
           "rowCounter": 0,
           "totalStoredContacts": 0,
         },
+        "pdbData": undefined,
         "secondaryStructures": Array [],
       }
     }
@@ -267,7 +273,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
           "name": "Predicted Contact",
           "nodeSize": 4,
           "points": Array [],
-          "subtitle": "(N=0, L=0)",
+          "subtitle": "(N=25, L=50)",
         },
         Object {
           "hoverinfo": "x+y",
@@ -284,7 +290,6 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
     }
     height={400}
     incorrectColor="#000000"
-    padding={0}
     width={400}
   />
 </div>
@@ -293,6 +298,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
 exports[`PredictedContactMap Snapshots Should match existing snapshot when given no data. 1`] = `
 <div
   id="PredictedContactMapComponent"
+  style={Object {}}
 >
   <ContactMap
     configurations={
@@ -326,8 +332,8 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
           "onChange": [Function],
           "type": "SLIDER",
           "values": Object {
-            "current": 0,
-            "max": 0,
+            "current": 25,
+            "max": 50,
             "min": 1,
           },
         },
@@ -341,9 +347,14 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
           "contacts": Array [],
           "getCouplingScore": [Function],
           "includes": [Function],
+          "indexRange": Object {
+            "max": 50,
+            "min": 1,
+          },
           "rowCounter": 0,
           "totalStoredContacts": 0,
         },
+        "pdbData": undefined,
         "secondaryStructures": Array [],
       }
     }
@@ -359,7 +370,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
           "name": "Predicted Contact",
           "nodeSize": 4,
           "points": Array [],
-          "subtitle": "(N=0, L=0)",
+          "subtitle": "(N=25, L=50)",
         },
         Object {
           "hoverinfo": "x+y",
@@ -376,7 +387,6 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
     }
     height={400}
     incorrectColor="#000000"
-    padding={0}
     width={400}
   />
 </div>
@@ -385,6 +395,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
 exports[`PredictedContactMap Snapshots Should match snapshot when locked residues are added. 1`] = `
 <div
   id="PredictedContactMapComponent"
+  style={Object {}}
 >
   <ContactMap
     configurations={
@@ -418,8 +429,8 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
           "onChange": [Function],
           "type": "SLIDER",
           "values": Object {
-            "current": 0,
-            "max": 0,
+            "current": 25,
+            "max": 50,
             "min": 1,
           },
         },
@@ -433,9 +444,14 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
           "contacts": Array [],
           "getCouplingScore": [Function],
           "includes": [Function],
+          "indexRange": Object {
+            "max": 50,
+            "min": 1,
+          },
           "rowCounter": 0,
           "totalStoredContacts": 0,
         },
+        "pdbData": undefined,
         "secondaryStructures": Array [],
       }
     }
@@ -451,7 +467,7 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
           "name": "Predicted Contact",
           "nodeSize": 4,
           "points": Array [],
-          "subtitle": "(N=0, L=0)",
+          "subtitle": "(N=25, L=50)",
         },
         Object {
           "hoverinfo": "x+y",
@@ -479,7 +495,6 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
         ],
       }
     }
-    padding={0}
     width={400}
   />
 </div>

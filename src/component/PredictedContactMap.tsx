@@ -15,7 +15,7 @@ export interface IPredictedContactMapProps {
   enableSliders: boolean;
   height: number;
   incorrectColor: string;
-  padding: number | string;
+  style: React.CSSProperties;
   width: number;
 }
 
@@ -38,7 +38,6 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     enableSliders: true,
     height: 400,
     incorrectColor: '#000000',
-    padding: 0,
     width: 400,
   };
 
@@ -85,14 +84,15 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
   }
 
   public render() {
-    const { data, ...passThroughProps } = this.props;
+    const { data, style, ...passThroughProps } = this.props;
     const { pointsToPlot } = this.state;
     return (
-      <div id="PredictedContactMapComponent">
+      <div id="PredictedContactMapComponent" style={{ ...style }}>
         <ContactMap
           configurations={this.getContactMapConfigs()}
           data={{
             couplingScores: data.couplingScores,
+            pdbData: data.pdbData,
             secondaryStructures: data.pdbData ? data.pdbData.secondaryStructureSections : [],
           }}
           formattedPoints={pointsToPlot}

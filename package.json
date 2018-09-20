@@ -1,6 +1,6 @@
 {
   "name": "chell-viz",
-  "version": "0.0.75",
+  "version": "0.0.76",
   "author": "Biostatistics and Computational Biology at Dana-Farber <bcb@jimmy.harvard.edu>",
   "license": "MIT",
   "engines": {
@@ -137,7 +137,6 @@
     "@tensorflow/tfjs-tsne": "^0.2.0",
     "@types/lodash": "^4.14.116",
     "d3": "^5.4.0",
-    "deep-equal": "^1.0.1",
     "immutable": "^3.8.2",
     "lodash": "^4.17.10",
     "memoize-one": "^4.0.2",

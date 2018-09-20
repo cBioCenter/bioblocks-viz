@@ -125,16 +125,6 @@ describe('PredictedContactMap', () => {
     });
   });
 
-  it('Should update number of predictions to show when new data is provided.', () => {
-    const expected = 28;
-    const wrapper = shallow(<PredictedContactMap data={emptyData} />);
-    expect(wrapper.state('numPredictionsToShow')).not.toBe(expected);
-    wrapper.setProps({
-      data: sampleData,
-    });
-    expect(wrapper.state('numPredictionsToShow')).toBe(expected);
-  });
-
   it('Should update number of predictions to show when new value is received.', () => {
     const expected = 28;
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);

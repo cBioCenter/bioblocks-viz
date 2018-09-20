@@ -3,11 +3,7 @@
 exports[`ContactMap Configuration Should match existing snapshot when given configurations. 1`] = `
 <div
   id="ContactMapComponent"
-  style={
-    Object {
-      "padding": 0,
-    }
-  }
+  style={Object {}}
 >
   <ContactMapChart
     candidateResidues={Array []}
@@ -88,7 +84,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
     onHoverCallback={[Function]}
     onSelectedCallback={[Function]}
     onUnHoverCallback={[Function]}
-    range={5}
+    range={70}
     secondaryStructures={Array []}
     selectedSecondaryStructures={
       Array [
@@ -168,11 +164,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
 exports[`ContactMap Snapshots Should match existing snapshot when given sample data and sliders are _not_ enabled. 1`] = `
 <div
   id="ContactMapComponent"
-  style={
-    Object {
-      "padding": 0,
-    }
-  }
+  style={Object {}}
 >
   <div>
     <div
@@ -202,11 +194,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given sample d
 exports[`ContactMap Snapshots Should match existing snapshot when given sample data and sliders are enabled. 1`] = `
 <div
   id="ContactMapComponent"
-  style={
-    Object {
-      "padding": 0,
-    }
-  }
+  style={Object {}}
 >
   <div>
     <div
@@ -716,6 +704,10 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         ],
         "getCouplingScore": [Function],
         "includes": [Function],
+        "indexRange": Object {
+          "max": 57,
+          "min": 1,
+        },
         "rowCounter": 0,
         "totalStoredContacts": 6,
       },
@@ -747,7 +739,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
     }
   }
   observedColor="#0000ff"
-  padding={0}
   residueContext={
     Object {
       "addCandidateResidues": [Function],
@@ -779,11 +770,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
 >
   <div
     id="ContactMapComponent"
-    style={
-      Object {
-        "padding": 0,
-      }
-    }
+    style={Object {}}
   >
     <ContactMapChart
       candidateResidues={Array []}
@@ -875,7 +862,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       onHoverCallback={[Function]}
       onSelectedCallback={[Function]}
       onUnHoverCallback={[Function]}
-      range={61}
+      range={77}
       secondaryStructures={Array []}
       selectedSecondaryStructures={
         Array [
@@ -988,7 +975,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "nticks": 10,
               "range": Array [
                 1,
-                61,
+                77,
               ],
               "showline": true,
               "tickmode": "auto",
@@ -998,7 +985,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "autorange": false,
               "nticks": 10,
               "range": Array [
-                61,
+                77,
                 1,
               ],
               "showline": true,

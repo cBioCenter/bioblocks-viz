@@ -50,9 +50,9 @@ export interface IContactMapProps {
   highlightColor: string;
   observedColor: string;
   onBoxSelection?: ((residues: RESIDUE_TYPE[]) => void);
-  padding: number | string;
   residueContext: IResidueContext;
   secondaryStructureContext: ISecondaryStructureContext;
+  style: React.CSSProperties;
   width: number;
 }
 
@@ -76,7 +76,6 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     highlightColor: '#ff8800',
     observedColor: '#0000ff',
     onBoxSelection: undefined as undefined | ((residues: RESIDUE_TYPE[]) => void),
-    padding: 0,
     residueContext: {
       ...initialResidueContext,
     },
@@ -104,13 +103,13 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
   }
 
   public render() {
-    const { enableSliders, padding, width } = this.props;
+    const { enableSliders, style, width } = this.props;
     const { pointsToPlot } = this.state;
 
     const sliderStyle = { width: width * 0.9 };
 
     return (
-      <div id="ContactMapComponent" style={{ padding }}>
+      <div id="ContactMapComponent" style={{ ...style }}>
         {this.renderContactMapChart(pointsToPlot)}
         {enableSliders && this.renderConfigSliders(sliderStyle, pointsToPlot)}
       </div>
@@ -191,7 +190,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
         onHoverCallback={this.onMouseEnter(residueContext.addHoveredResidues)}
         onSelectedCallback={this.onMouseSelect(onBoxSelection)}
         onUnHoverCallback={this.onMouseLeave(residueContext.removeHoveredResidues)}
-        range={data.couplingScores.chainLength + 5}
+        range={data.couplingScores.residueIndexRange.max + 20}
         secondaryStructures={data.pdbData ? data.pdbData.secondaryStructureSections : []}
         selectedSecondaryStructures={[secondaryStructureContext.selectedSecondaryStructures]}
       />

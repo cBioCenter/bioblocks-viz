@@ -5,7 +5,8 @@
 import { Structure } from 'ngl';
 import { ISpringGraphData } from './Spring';
 
-import Chell1DSection from './Chell1DSection';
+import { AMINO_ACID_SINGLE_LETTER_CODE } from './AminoAcid';
+import { Chell1DSection } from './Chell1DSection';
 import { ChellPDB } from './ChellPDB';
 import { CouplingContainer } from './CouplingContainer';
 
@@ -45,9 +46,9 @@ export interface IMonomerContact {
 
 export interface ICouplingScore {
   i: number;
-  A_i?: string;
+  A_i?: AMINO_ACID_SINGLE_LETTER_CODE;
   j: number;
-  A_j?: string;
+  A_j?: AMINO_ACID_SINGLE_LETTER_CODE;
   fn?: number;
   cn?: number;
   segment_i?: string;
