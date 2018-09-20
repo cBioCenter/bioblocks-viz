@@ -1,6 +1,17 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Button, Grid, GridColumn, GridRow, Header, Label, Message, Segment } from 'semantic-ui-react';
+import {
+  Accordion,
+  Button,
+  Grid,
+  GridColumn,
+  GridRow,
+  Header,
+  Label,
+  Message,
+  Segment,
+  TextArea,
+} from 'semantic-ui-react';
 
 import { ContactMap } from '../src/component/ContactMap';
 import { NGLComponent } from '../src/component/NGLComponent';
@@ -73,9 +84,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
       const mismatches = pdbData.getResidueNumberingMismatches(couplingScores);
       if (mismatches.length >= 1) {
         this.setState({
-          errorMsg: `${mismatches.length} mismatches detected between coupling scores and PDB!
-              Coupling Sequence: ${couplingScores.sequence}\n\
-              PDB Sequence: ${this.state.pdbData!.sequence}`,
+          errorMsg: `${mismatches.length} mismatches detected between coupling scores and PDB!`,
           isResidueMappingNeeded: true,
         });
       }
@@ -85,8 +94,8 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
   public render({ style } = this.props) {
     return (
       <div id="ChellVizApp" style={{ ...style, height: '1000px' }}>
-        {this.renderFeatureViewer()}
         {this.renderCouplingComponents()}
+        {this.renderFeatureViewer()}
       </div>
     );
   }
@@ -100,17 +109,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
         <Header as={'h1'} attached={'top'}>
           Chell - ContactMap.IO
         </Header>
-        {errorMsg.length > 1 && (
-          <Message warning={true}>
-            {isResidueMappingNeeded && (
-              <Message.Header>
-                Residue numbering mismatch detected - Please upload a residue mapping file for more accurate
-                interactions!
-              </Message.Header>
-            )}
-            {errorMsg}
-          </Message>
-        )}
+        {errorMsg.length > 1 && this.renderErrorMessage()}
         <Segment attached={true} raised={true}>
           <CouplingContext>
             <Grid centered={true}>
@@ -159,6 +158,47 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
       </div>
     );
   };
+
+  protected renderErrorMessage = ({ errorMsg, isResidueMappingNeeded } = this.state) => {
+    return (
+      <Message warning={true}>
+        {isResidueMappingNeeded && this.state.pdbData ? (
+          <div>
+            <Message.Header>
+              Residue numbering mismatch detected - Please upload a residue mapping file for more accurate interactions!
+            </Message.Header>
+            <Message.List>{errorMsg}</Message.List>
+            <Message.Content>
+              <Accordion
+                fluid={true}
+                exclusive={false}
+                defaultActiveIndex={[]}
+                panels={[
+                  this.renderSequenceAccordionMessage('PDB', this.state.pdbData.sequence),
+                  this.renderSequenceAccordionMessage(
+                    'Couplings Score',
+                    this.state[VIZ_TYPE.CONTACT_MAP].couplingScores.sequence,
+                  ),
+                ]}
+              />
+            </Message.Content>
+          </div>
+        ) : (
+          errorMsg
+        )}
+      </Message>
+    );
+  };
+
+  protected renderSequenceAccordionMessage = (title: string, content: string) => ({
+    content: {
+      content: <TextArea style={{ width: '90%' }} value={content} />,
+    },
+    key: `panel-${title}`,
+    title: {
+      content: `${title} (${content.length} Amino Acids)`,
+    },
+  });
 
   protected renderFeatureViewer = () => {
     return (
@@ -360,7 +400,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
         this.setState({
           errorMsg: `Unable to load Residue Mapping file '${
             file.name
-          }' - Make sure the file ends in one of the following: ${validFileExtensions.join(', ')}`,
+          }' - Make sure the file ends in one of the following: '${validFileExtensions.join("', '")}'`,
         });
       }
     }

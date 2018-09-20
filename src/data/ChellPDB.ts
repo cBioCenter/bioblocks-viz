@@ -97,8 +97,8 @@ export class ChellPDB {
     return result;
   }
 
-  public get sequence() {
-    return this.nglData.getSequence().join('');
+  public get sequence(): string {
+    return this.nglData ? this.nglData.getSequence().join('') : '';
   }
 
   public static readonly NGL_C_ALPHA_INDEX = 'CA|C';
