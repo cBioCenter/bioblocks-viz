@@ -16,7 +16,6 @@ import {
 import { ContactMap } from '../src/component/ContactMap';
 import { NGLComponent } from '../src/component/NGLComponent';
 import { PredictedContactMap } from '../src/component/PredictedContactMap';
-import { ProteinFeatureViewer } from '../src/container/ProteinFeatureViewer';
 import { CouplingContext } from '../src/context/CouplingContext';
 import { CONTACT_MAP_DATA_TYPE, NGL_DATA_TYPE, VIZ_TYPE } from '../src/data/chell-data';
 import { ChellPDB } from '../src/data/ChellPDB';
@@ -95,7 +94,6 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     return (
       <div id="ChellVizApp" style={{ ...style, height: '1000px' }}>
         {this.renderCouplingComponents()}
-        {this.renderFeatureViewer()}
       </div>
     );
   }
@@ -199,19 +197,6 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
       content: `${title} (${content.length} Amino Acids)`,
     },
   });
-
-  protected renderFeatureViewer = () => {
-    return (
-      <div>
-        <Header as={'h2'} attached={'top'}>
-          Feature Viewer
-        </Header>
-        <Segment attached={true} raised={true}>
-          <ProteinFeatureViewer />
-        </Segment>
-      </div>
-    );
-  };
 
   protected renderUploadForm = (
     onChange: (e: React.ChangeEvent<Element>) => void,

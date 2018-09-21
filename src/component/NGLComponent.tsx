@@ -69,9 +69,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
       const stage = new NGL.Stage(this.canvas, { backgroundColor });
       const { data } = this.props;
 
-      if (data) {
-        this.initData(data, stage);
-      }
+      this.initData(stage, data);
 
       this.setState({
         stage,
@@ -96,10 +94,10 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     const { data } = this.props;
     const { stage, structureComponent } = this.state;
 
-    const isNewData = data && data !== prevProps.data;
-    if (data && isNewData && stage) {
-      this.initData(data, stage);
+    if (stage && data !== prevProps.data) {
+      this.initData(stage, data);
     }
+
     if (stage && structureComponent) {
       const { residueContext, secondaryStructureContext } = this.props;
 
@@ -147,13 +145,15 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     );
   }
 
-  protected initData(structure: NGL.Structure, stage: NGL.Stage) {
+  protected initData(stage: NGL.Stage, structure?: NGL.Structure) {
     stage.removeAllComponents();
 
-    // !IMPORTANT! We need to deeply clone the NGL data!
-    // If we have multiple NGL components displaying the same data, removing the component will affect
-    // the others because they (internally) delete keys/references.
-    this.addStructureToStage(cloneDeep(structure), stage);
+    if (structure) {
+      // !IMPORTANT! We need to deeply clone the NGL data!
+      // If we have multiple NGL components displaying the same data, removing the component will affect
+      // the others because they (internally) delete keys/references.
+      this.addStructureToStage(cloneDeep(structure), stage);
+    }
   }
 
   protected deriveActiveRepresentations(structureComponent: NGL.StructureComponent) {
