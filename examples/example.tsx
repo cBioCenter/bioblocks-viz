@@ -75,7 +75,6 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
   public componentDidUpdate(prevProps: IExampleAppProps, prevState: IExampleAppState) {
     const { pdbData } = this.state;
     const { couplingScores } = this.state[VIZ_TYPE.CONTACT_MAP];
-
     if (
       pdbData &&
       (couplingScores !== prevState[VIZ_TYPE.CONTACT_MAP].couplingScores || pdbData !== prevState.pdbData)
@@ -100,7 +99,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
 
   protected renderCouplingComponents = (
     { style } = this.props,
-    { arePredictionsAvailable, errorMsg, isResidueMappingNeeded } = this.state,
+    { arePredictionsAvailable, errorMsg, isResidueMappingNeeded, pdbData } = this.state,
   ) => {
     return (
       <div>
@@ -125,7 +124,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                     <PredictedContactMap
                       data={{
                         couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
-                        pdbData: this.state.pdbData,
+                        pdbData,
                         secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
                       }}
                       enableSliders={false}
@@ -135,7 +134,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                     <ContactMap
                       data={{
                         couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
-                        pdbData: this.state.pdbData,
+                        pdbData,
                         secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
                       }}
                       enableSliders={false}
@@ -163,7 +162,8 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
         {isResidueMappingNeeded && this.state.pdbData ? (
           <div>
             <Message.Header>
-              Residue numbering mismatch detected - Please upload a residue mapping file for more accurate interactions!
+              Residue numbering mismatch detected - Please upload a residue mapping file to correct the position
+              numbering differences!
             </Message.Header>
             <Message.List>{errorMsg}</Message.List>
             <Message.Content>
@@ -203,30 +203,32 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     id: string,
     content: string,
     disabled = false,
-  ) => (
-    <GridColumn>
-      <Label as="label" basic={true} htmlFor={id}>
-        <Button
-          disabled={disabled}
-          icon={'upload'}
-          label={{
-            basic: true,
-            content,
-          }}
-          labelPosition={'right'}
-        />
-        <input
-          disabled={disabled}
-          id={id}
-          onChange={onChange}
-          hidden={true}
-          type={'file'}
-          required={true}
-          multiple={false}
-        />
-      </Label>
-    </GridColumn>
-  );
+  ) => {
+    return (
+      <GridColumn>
+        <Label as="label" basic={true} htmlFor={id}>
+          <Button
+            disabled={disabled}
+            icon={'upload'}
+            label={{
+              basic: true,
+              content,
+            }}
+            labelPosition={'right'}
+          />
+          <input
+            disabled={disabled}
+            id={id}
+            onChange={onChange}
+            hidden={true}
+            type={'file'}
+            required={true}
+            multiple={false}
+          />
+        </Label>
+      </GridColumn>
+    );
+  };
 
   protected renderUploadLabel = (label: string | undefined) =>
     label ? (
@@ -235,17 +237,19 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
       </GridColumn>
     ) : null;
 
-  protected renderCouplingScoresUploadForm = ({ couplingScores, filenames } = this.state) => (
-    <div>
-      {this.renderUploadLabel(filenames.couplings)}
-      {this.renderUploadForm(
-        this.onCouplingScoreUpload,
-        'coupling-score',
-        'Coupling Scores',
-        couplingScores.length > 0,
-      )}
-    </div>
-  );
+  protected renderCouplingScoresUploadForm = ({ couplingScores, filenames } = this.state) => {
+    return (
+      <GridRow>
+        {this.renderUploadLabel(filenames.couplings)}
+        {this.renderUploadForm(
+          this.onCouplingScoreUpload,
+          'coupling-score',
+          'Coupling Scores',
+          couplingScores.length > 0,
+        )}
+      </GridRow>
+    );
+  };
 
   protected renderPDBUploadForm = ({ filenames, pdbData } = this.state) => (
     <GridRow>
@@ -279,13 +283,13 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     </GridRow>
   );
 
-  protected onClearAll = () => {
-    this.setState({
-      ...ExampleApp.initialState,
-    });
+  protected onClearAll = async () => {
+    await this.setState(ExampleApp.initialState);
+    await this.forceUpdate();
   };
 
   protected onCouplingScoreUpload = async (e: React.ChangeEvent) => {
+    e.persist();
     const files = (e.target as HTMLInputElement).files;
     const file = files ? files.item(0) : null;
     if (file !== null) {
@@ -321,9 +325,12 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
         });
       }
     }
+    // !IMPORTANT! Allows same user to clear data and then re-upload same file!
+    (e.target as HTMLInputElement).value = '';
   };
 
   protected onPDBUpload = async (e: React.ChangeEvent) => {
+    e.persist();
     const files = (e.target as HTMLInputElement).files;
     const file = files ? files.item(0) : null;
     if (file !== null) {
@@ -352,13 +359,15 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
         });
       }
     }
+    // !IMPORTANT! Allows same user to clear data and then re-upload same file!
+    (e.target as HTMLInputElement).value = '';
   };
 
   protected onResidueMappingUpload = async (e: React.ChangeEvent) => {
+    e.persist();
     const files = (e.target as HTMLInputElement).files;
     const file = files ? files.item(0) : null;
     const validFileExtensions = ['csv', 'indextable', 'indextableplus'];
-
     if (file !== null) {
       const isValidFile = validFileExtensions.reduce((prev, ext) => prev || file.name.endsWith(`.${ext}`), false);
       if (isValidFile) {
@@ -389,6 +398,8 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
         });
       }
     }
+    // !IMPORTANT! Allows same user to clear data and then re-upload same file!
+    (e.target as HTMLInputElement).value = '';
   };
 }
 
