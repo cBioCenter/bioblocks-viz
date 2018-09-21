@@ -413,10 +413,6 @@
   version "10.10.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.10.1.tgz#d5c96ca246a418404914d180b7fdd625ad18eca6"
 
-"@types/pixi.js@^4.7.3":
-  version "4.8.0"
-  resolved "https://registry.yarnpkg.com/@types/pixi.js/-/pixi.js-4.8.0.tgz#961056751780046fe5da2166669a0f1e964a7b92"
-
 "@types/plotly.js@^1.38.8":
   version "1.38.8"
   resolved "https://registry.yarnpkg.com/@types/plotly.js/-/plotly.js-1.38.8.tgz#731a9d467c8b46098fa9db1fcc85e7086cb9a998"
