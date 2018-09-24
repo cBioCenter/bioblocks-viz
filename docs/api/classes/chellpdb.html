@@ -116,6 +116,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="chellpdb.html#eachresidue" class="tsd-kind-icon">each<wbr>Residue</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="chellpdb.html#generatecouplingsamendedwithpdb" class="tsd-kind-icon">generate<wbr>Couplings<wbr>Amended<wbr>WithPDB</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="chellpdb.html#getcalphaatomindexfromresidue" class="tsd-kind-icon">getCAlpha<wbr>Atom<wbr>Index<wbr>From<wbr>Residue</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="chellpdb.html#getmindistbetweenresidueindices" class="tsd-kind-icon">get<wbr>Min<wbr>Dist<wbr>Between<wbr>Residue<wbr>Indices</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="chellpdb.html#getmindistbetweenresidues" class="tsd-kind-icon">get<wbr>Min<wbr>Dist<wbr>Between<wbr>Residues</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="chellpdb.html#getresiduenumberingmismatches" class="tsd-kind-icon">get<wbr>Residue<wbr>Numbering<wbr>Mismatches</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="chellpdb.html#createpdb" class="tsd-kind-icon">createPDB</a></li>
@@ -375,11 +376,49 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="getmindistbetweenresidueindices" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Min<wbr>Dist<wbr>Between<wbr>Residue<wbr>Indices</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Min<wbr>Dist<wbr>Between<wbr>Residue<wbr>Indices<span class="tsd-signature-symbol">(</span>indexI<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, indexJ<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/data/ChellPDB.ts:242</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Helper function to find the smallest possible distance between two residues via their atoms.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>indexI: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Index of the first residue with respect to the array of all residues.</p>
+									</div>
+								</li>
+								<li>
+									<h5>indexJ: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Index of the second residue with respect to the array of all residues.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<p>Shortest distance between the two residues in ångströms.</p>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="getmindistbetweenresidues" class="tsd-anchor"></a>
 					<h3>get<wbr>Min<wbr>Dist<wbr>Between<wbr>Residues</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Min<wbr>Dist<wbr>Between<wbr>Residues<span class="tsd-signature-symbol">(</span>firstResidueIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, secondResidueIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Min<wbr>Dist<wbr>Between<wbr>Residues<span class="tsd-signature-symbol">(</span>resnoI<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, resnoJ<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -396,15 +435,15 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>firstResidueIndex: <span class="tsd-signature-type">number</span></h5>
+									<h5>resnoI: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Index of the first residue with respect to the array of all residues.</p>
+										<p>The first residue.</p>
 									</div>
 								</li>
 								<li>
-									<h5>secondResidueIndex: <span class="tsd-signature-type">number</span></h5>
+									<h5>resnoJ: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Index of the second residue with respect to the array of all residues.</p>
+										<p>The second residue.</p>
 									</div>
 								</li>
 							</ul>
@@ -423,7 +462,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/data/ChellPDB.ts:229</li>
+									<li>Defined in src/data/ChellPDB.ts:215</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -537,6 +576,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="chellpdb.html#getcalphaatomindexfromresidue" class="tsd-kind-icon">getCAlpha<wbr>Atom<wbr>Index<wbr>From<wbr>Residue</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="chellpdb.html#getmindistbetweenresidueindices" class="tsd-kind-icon">get<wbr>Min<wbr>Dist<wbr>Between<wbr>Residue<wbr>Indices</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="chellpdb.html#getmindistbetweenresidues" class="tsd-kind-icon">get<wbr>Min<wbr>Dist<wbr>Between<wbr>Residues</a>

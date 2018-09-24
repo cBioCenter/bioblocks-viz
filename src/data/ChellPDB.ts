@@ -163,7 +163,7 @@ export class ChellPDB {
               innerResidue.resno,
             )}`;
             if (!minDist[key]) {
-              minDist[key] = this.getMinDistBetweenResidues(outerResidue.index, innerResidue.index);
+              minDist[key] = this.getMinDistBetweenResidueIndices(outerResidue.index, innerResidue.index);
             }
             result.addCouplingScore({
               dist: minDist[key],
@@ -201,29 +201,15 @@ export class ChellPDB {
   /**
    * Helper function to find the smallest possible distance between two residues via their atoms.
    *
-   * @param firstResidueIndex Index of the first residue with respect to the array of all residues.
-   * @param secondResidueIndex Index of the second residue with respect to the array of all residues.
+   * @param resnoI The first residue.
+   * @param resnoJ The second residue.
    * @returns Shortest distance between the two residues in ångströms.
    */
-  public getMinDistBetweenResidues(firstResidueIndex: number, secondResidueIndex: number) {
-    const { residueStore } = this.nglData;
-    const firstResCount = residueStore.atomCount[firstResidueIndex];
-    const secondResCount = residueStore.atomCount[secondResidueIndex];
-    const firstAtomIndex = residueStore.atomOffset[firstResidueIndex];
-    const secondAtomIndex = residueStore.atomOffset[secondResidueIndex];
-
-    let minDist = Number.MAX_SAFE_INTEGER;
-    for (let firstCounter = 0; firstCounter < firstResCount; ++firstCounter) {
-      for (let secondCounter = 0; secondCounter < secondResCount; ++secondCounter) {
-        minDist = Math.min(
-          minDist,
-          this.nglData
-            .getAtomProxy(firstAtomIndex + firstCounter)
-            .distanceTo(this.nglData.getAtomProxy(secondAtomIndex + secondCounter)),
-        );
-      }
-    }
-    return minDist;
+  public getMinDistBetweenResidues(resnoI: number, resnoJ: number) {
+    return this.getMinDistBetweenResidueIndices(
+      this.nglData.residueStore.resno.indexOf(resnoI),
+      this.nglData.residueStore.resno.indexOf(resnoJ),
+    );
   }
 
   public getResidueNumberingMismatches(contacts: CouplingContainer) {
@@ -244,5 +230,33 @@ export class ChellPDB {
       }
     });
     return result;
+  }
+
+  /**
+   * Helper function to find the smallest possible distance between two residues via their atoms.
+   *
+   * @param indexI Index of the first residue with respect to the array of all residues.
+   * @param indexJ Index of the second residue with respect to the array of all residues.
+   * @returns Shortest distance between the two residues in ångströms.
+   */
+  protected getMinDistBetweenResidueIndices(indexI: number, indexJ: number) {
+    const { residueStore } = this.nglData;
+    const firstResCount = residueStore.atomCount[indexI];
+    const secondResCount = residueStore.atomCount[indexJ];
+    const firstAtomIndex = residueStore.atomOffset[indexI];
+    const secondAtomIndex = residueStore.atomOffset[indexJ];
+
+    let minDist = Number.MAX_SAFE_INTEGER;
+    for (let firstCounter = 0; firstCounter < firstResCount; ++firstCounter) {
+      for (let secondCounter = 0; secondCounter < secondResCount; ++secondCounter) {
+        minDist = Math.min(
+          minDist,
+          this.nglData
+            .getAtomProxy(firstAtomIndex + firstCounter)
+            .distanceTo(this.nglData.getAtomProxy(secondAtomIndex + secondCounter)),
+        );
+      }
+    }
+    return minDist;
   }
 }
