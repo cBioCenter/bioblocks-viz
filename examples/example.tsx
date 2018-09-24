@@ -127,7 +127,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                         pdbData,
                         secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
                       }}
-                      enableSliders={false}
+                      enableSliders={true}
                       style={{ ...style, width: 400 }}
                     />
                   ) : (
@@ -137,7 +137,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                         pdbData,
                         secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
                       }}
-                      enableSliders={false}
+                      enableSliders={true}
                       style={{ ...style, width: 400 }}
                     />
                   )}
