@@ -137,13 +137,12 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
       // TODO Try using plotly.react since it will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
       // TODO However plotly.react is currently causing a WebGL error, so we're using newPlot for now.
 
+      const mergedLayout = this.getMergedLayout(layout, this.plotlyFormattedData);
+      const mergedConfig = this.getMergedConfig(config);
+      // console.log(mergedLayout);
+      // console.log(mergedConfig);
       // await plotly.purge(this.plotlyCanvas);
-      plotly.react(
-        this.canvasRef,
-        this.plotlyFormattedData,
-        this.getMergedLayout(layout, this.plotlyFormattedData),
-        this.getMergedConfig(config),
-      );
+      this.plotlyCanvas = await plotly.react(this.canvasRef, this.plotlyFormattedData, mergedLayout, mergedConfig);
     }
   };
 
