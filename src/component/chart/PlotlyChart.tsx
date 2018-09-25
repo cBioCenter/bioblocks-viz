@@ -134,9 +134,6 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   public draw = async () => {
     const { config, layout } = this.props;
     if (this.plotlyCanvas && this.canvasRef) {
-      // TODO Try using plotly.react since it will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
-      // TODO However plotly.react is currently causing a WebGL error, so we're using newPlot for now.
-
       const mergedLayout = this.getMergedLayout(layout, this.plotlyFormattedData);
       const mergedConfig = this.getMergedConfig(config);
       // console.log(mergedLayout);
@@ -153,13 +150,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
    */
   public componentDidUpdate(prevProps: IPlotlyChartProps) {
     const { data, layout, config } = this.props;
-    // !Important! This logic should be refactored for performance to not use JSON stringify.
-    // !Important! Likely requires another crack at state/context.
-    if (
-      JSON.stringify(data) !== JSON.stringify(prevProps.data) ||
-      !isEqual(layout, prevProps.layout) ||
-      !isEqual(config, prevProps.config)
-    ) {
+    if (!isEqual(data, prevProps.data) || !isEqual(layout, prevProps.layout) || !isEqual(config, prevProps.config)) {
       this.plotlyFormattedData = Immutable.fromJS(data).toJS();
       this.draw();
     }
@@ -303,7 +294,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   protected getMergedLayout = (
     layout: Partial<Plotly.Layout> = {},
     plotlyFormattedData: Array<Partial<IPlotlyData>> = [],
-  ): Plotly.Layout => {
+  ): Partial<Plotly.Layout> => {
     return {
       ...Immutable.fromJS({ ...defaultPlotlyLayout, ...this.deriveAxisParams(plotlyFormattedData) })
         .mergeDeep(Immutable.fromJS({ ...layout }))
