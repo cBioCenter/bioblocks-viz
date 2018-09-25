@@ -17,6 +17,7 @@ import { ContactMap } from '../src/component/ContactMap';
 import { NGLComponent } from '../src/component/NGLComponent';
 import { PredictedContactMap } from '../src/component/PredictedContactMap';
 import { CouplingContext } from '../src/context/CouplingContext';
+import ResidueContextWrapper, { IResidueContext } from '../src/context/ResidueContext';
 import { CONTACT_MAP_DATA_TYPE, NGL_DATA_TYPE, VIZ_TYPE } from '../src/data/chell-data';
 import { ChellPDB } from '../src/data/ChellPDB';
 import { CouplingContainer } from '../src/data/CouplingContainer';
@@ -109,47 +110,51 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
         {errorMsg.length > 1 && this.renderErrorMessage()}
         <Segment attached={true} raised={true}>
           <CouplingContext>
-            <Grid centered={true}>
-              <GridRow verticalAlign={'middle'}>
-                <GridColumn width={6}>
-                  <NGLComponent
-                    backgroundColor={'black'}
-                    data={this.state[VIZ_TYPE.NGL]}
-                    showConfiguration={false}
-                    style={{ ...style, width: 400 }}
-                  />
-                </GridColumn>
-                <GridColumn width={6}>
-                  {arePredictionsAvailable ? (
-                    <PredictedContactMap
-                      data={{
-                        couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
-                        pdbData,
-                        secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
-                      }}
-                      enableSliders={true}
-                      style={{ ...style, width: 400 }}
-                    />
-                  ) : (
-                    <ContactMap
-                      data={{
-                        couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
-                        pdbData,
-                        secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
-                      }}
-                      enableSliders={true}
-                      style={{ ...style, width: 400 }}
-                    />
-                  )}
-                </GridColumn>
-              </GridRow>
-              <GridRow columns={4} centered={true} textAlign={'center'} verticalAlign={'bottom'}>
-                <GridColumn>{this.renderPDBUploadForm()}</GridColumn>
-                <GridColumn>{this.renderCouplingScoresUploadForm()}</GridColumn>
-                {isResidueMappingNeeded && <GridColumn>{this.renderResidueMappingUploadForm()}</GridColumn>}
-                <GridColumn>{this.renderClearAllButton()}</GridColumn>
-              </GridRow>
-            </Grid>
+            <ResidueContextWrapper.Consumer>
+              {residueContext => (
+                <Grid centered={true}>
+                  <GridRow verticalAlign={'middle'}>
+                    <GridColumn width={6}>
+                      <NGLComponent
+                        backgroundColor={'black'}
+                        data={this.state[VIZ_TYPE.NGL]}
+                        showConfiguration={false}
+                        style={{ ...style, width: 400 }}
+                      />
+                    </GridColumn>
+                    <GridColumn width={6}>
+                      {arePredictionsAvailable ? (
+                        <PredictedContactMap
+                          data={{
+                            couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
+                            pdbData,
+                            secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
+                          }}
+                          enableSliders={true}
+                          style={{ ...style, width: 400 }}
+                        />
+                      ) : (
+                        <ContactMap
+                          data={{
+                            couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
+                            pdbData,
+                            secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
+                          }}
+                          enableSliders={true}
+                          style={{ ...style, width: 400 }}
+                        />
+                      )}
+                    </GridColumn>
+                  </GridRow>
+                  <GridRow columns={4} centered={true} textAlign={'center'} verticalAlign={'bottom'}>
+                    <GridColumn>{this.renderPDBUploadForm()}</GridColumn>
+                    <GridColumn>{this.renderCouplingScoresUploadForm()}</GridColumn>
+                    {isResidueMappingNeeded && <GridColumn>{this.renderResidueMappingUploadForm()}</GridColumn>}
+                    <GridColumn>{this.renderClearAllButton(residueContext)}</GridColumn>
+                  </GridRow>
+                </Grid>
+              )}
+            </ResidueContextWrapper.Consumer>
           </CouplingContext>
         </Segment>
       </div>
@@ -265,7 +270,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     </GridRow>
   );
 
-  protected renderClearAllButton = () => (
+  protected renderClearAllButton = (residueContext: IResidueContext) => (
     <GridRow verticalAlign={'middle'} columns={1} centered={true}>
       <GridColumn>
         <Label as="label" basic={true} htmlFor={'clear-data'}>
@@ -276,15 +281,16 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
               content: 'Clear Data',
             }}
             labelPosition={'right'}
-            onClick={this.onClearAll}
+            onClick={this.onClearAll(residueContext)}
           />
         </Label>
       </GridColumn>
     </GridRow>
   );
 
-  protected onClearAll = async () => {
+  protected onClearAll = (residueContext: IResidueContext) => async () => {
     await this.setState(ExampleApp.initialState);
+    residueContext.clearAllResidues();
     await this.forceUpdate();
   };
 

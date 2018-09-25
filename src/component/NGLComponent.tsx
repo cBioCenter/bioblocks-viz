@@ -98,7 +98,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
       this.initData(stage, data);
     }
 
-    if (stage && structureComponent) {
+    if (stage && data && structureComponent) {
       const { residueContext, secondaryStructureContext } = this.props;
 
       const isHighlightUpdateNeeded =
@@ -153,6 +153,10 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
       // If we have multiple NGL components displaying the same data, removing the component will affect
       // the others because they (internally) delete keys/references.
       this.addStructureToStage(cloneDeep(structure), stage);
+    } else {
+      this.setState({
+        structureComponent: undefined,
+      });
     }
   }
 
