@@ -107,6 +107,7 @@
     "analyzebundle": "webpack-bundle-analyzer webpack-stats.json dist",
     "build": "webpack --config ./configs/webpack.dev.ts",
     "build:analyze": "yarn --silent build --profile --json > webpack-stats.json && yarn analyzebundle",
+    "build:example:prod": "yarn build:prod && ts-node configs/CreateExampleRelease.ts",
     "build:prod": "webpack --config ./configs/webpack.prod.ts",
     "build:prod:analyze": "yarn --silent build:prod --profile --json > webpack-stats.json && yarn analyzebundle",
     "build:test": "tsc",
