@@ -6,7 +6,7 @@
 
 Visualization components for use in [Human Cell Atlas](https://www.humancellatlas.org/) portals, such as with [Chell](https://github.com/cBioCenter/chell).
 
-Check out the [API Docs](https://cbiocenter.github.io/chell-viz/docs/api/index.html) or some [live examples](https://cbiocenter.github.io/chell-viz/app.html)!
+Check out the [API Docs](https://cbiocenter.github.io/chell-viz/docs/api/index.html), some [live examples](https://cbiocenter.github.io/chell-viz/app.html), or even the [Contact Map](http://contactmap.org) site!
 
 ## Getting Started (For Development Use)
 
