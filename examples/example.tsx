@@ -265,7 +265,6 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
       {this.renderUploadLabel(filenames.pdb)}
       {this.renderUploadForm(this.onPDBUpload, 'pdb', 'PDB', pdbData !== undefined)}
       <ChellRadioGroup
-        disabled={this.state.pdbData !== undefined}
         id={'radio-group-measured-proximity'}
         options={Object.values(CONTACT_DISTANCE_PROXIMITY)}
         onChange={this.onMeasuredProximityChange()}

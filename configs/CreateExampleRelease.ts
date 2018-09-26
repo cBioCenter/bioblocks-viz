@@ -27,6 +27,8 @@ assetFilesToCopy.forEach(file => {
   execSync(`cp -r ${distDir}/${file} ${releaseDir}/assets/`);
 });
 
+execSync(`chmod -R og+rx ${releaseDir}`);
+
 const resultMessage = `Created ${dirName} to be deployed!\n\
 To transfer to prod server, run 'scp -r ${releaseDir} $PROD_HOSTNAME'.\n\
 Ensure 'PROD_HOSTNAME' is substituted yourself or otherwise set as an environment variable.`;
