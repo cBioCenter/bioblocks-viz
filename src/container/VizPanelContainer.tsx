@@ -136,7 +136,7 @@ export class VizPanelContainer extends React.Component<IVizPanelProps, VizPanelC
           'Incorrect files uploaded! Please upload a file named residue_mapping.csv as well as a .pdb and .csv file!',
         );
       } else {
-        const pdbData = await ChellPDB.createPDBFromFile(files[pdbIndex]);
+        const pdbData = await ChellPDB.createPDB(files[pdbIndex]);
         const couplingResult = await readFileAsText(files[couplingIndex]);
         const mappingResult = await readFileAsText(files[mappingIndex]);
 

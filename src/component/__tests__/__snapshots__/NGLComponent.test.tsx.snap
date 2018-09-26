@@ -4,6 +4,7 @@ exports[`NGLComponent Should match existing snapshot when canvas isn't available
 <NGLComponent>
   <NGLComponentClass
     height={400}
+    measuredProximity="C-α"
     residueContext={
       Object {
         "addCandidateResidues": [Function],
@@ -105,6 +106,7 @@ exports[`NGLComponent Should match existing snapshot when configuration is disab
       }
     }
     height={400}
+    measuredProximity="C-α"
     residueContext={
       Object {
         "addCandidateResidues": [Function],
@@ -186,6 +188,7 @@ exports[`NGLComponent Should match existing snapshot when given sample data 1`] 
       }
     }
     height={400}
+    measuredProximity="C-α"
     residueContext={
       Object {
         "addCandidateResidues": [Function],

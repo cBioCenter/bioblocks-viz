@@ -103,6 +103,7 @@ export interface ISecondaryStructure {
 }
 
 export enum CHELL_CHART_EVENT_TYPE {
+  AFTER_PLOT,
   CLICK,
   DOUBLE_CLICK,
   HOVER,

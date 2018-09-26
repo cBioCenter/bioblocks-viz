@@ -32,7 +32,6 @@ export interface IPlotlyData extends plotly.ScatterData {
   // TODO Open PR to add these missing Plotly types. - https://plot.ly/javascript/reference/#box
 
   textfont: Partial<plotly.Font>;
-
   type: PLOTLY_CHART_TYPE | 'bar' | 'pointcloud' | 'scatter' | 'scattergl' | 'scatter3d';
 }
 
@@ -46,6 +45,7 @@ export interface IPlotlyChartProps {
   config?: Partial<Plotly.Config>;
   data: Array<Partial<IPlotlyData>>;
   layout?: Partial<IPlotlyLayout>;
+  onAfterPlotCallback?: ((event: ChellChartEvent) => void);
   onClickCallback?: ((event: ChellChartEvent) => void);
   onDoubleClickCallback?: ((event: ChellChartEvent) => void);
   onHoverCallback?: ((event: ChellChartEvent) => void);
@@ -102,16 +102,18 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   protected isDoubleClickInProgress = false; // Makes sure single click isn't fired when double click is in flight. Required due to https://github.com/plotly/plotly.js/issues/1546
   protected canvasRef: HTMLDivElement | null = null;
   protected plotlyFormattedData: Array<Partial<IPlotlyData>> = [];
+  protected savedAxisZoom?: { xaxis: plotly.PlotAxis; yaxis: plotly.PlotAxis };
 
   /**
    * Setup all the event listeners for the plotly canvas.
    */
   public attachListeners() {
     if (this.plotlyCanvas) {
+      this.plotlyCanvas.on('plotly_afterplot', this.onAfterPlot);
       this.plotlyCanvas.on('plotly_click', this.onClick);
       this.plotlyCanvas.on('plotly_doubleclick', this.onDoubleClick);
       this.plotlyCanvas.on('plotly_hover', this.onHover);
-      this.plotlyCanvas.on('plotly_relayout', this.onRelayout);
+      this.plotlyCanvas.on('plotly_relayout', this.onRelayout as any);
       this.plotlyCanvas.on('plotly_selected', this.onSelect);
       this.plotlyCanvas.on('plotly_unhover', this.onUnHover);
     }
@@ -134,16 +136,9 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   public draw = async () => {
     const { config, layout } = this.props;
     if (this.plotlyCanvas && this.canvasRef) {
-      // TODO Try using plotly.react since it will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
-      // TODO However plotly.react is currently causing a WebGL error, so we're using newPlot for now.
-
-      // await plotly.purge(this.plotlyCanvas);
-      plotly.react(
-        this.canvasRef,
-        this.plotlyFormattedData,
-        this.getMergedLayout(layout, this.plotlyFormattedData),
-        this.getMergedConfig(config),
-      );
+      const mergedLayout = this.getMergedLayout(layout, this.plotlyFormattedData);
+      const mergedConfig = this.getMergedConfig(config);
+      this.plotlyCanvas = await plotly.react(this.canvasRef, this.plotlyFormattedData, mergedLayout, mergedConfig);
     }
   };
 
@@ -154,14 +149,10 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
    */
   public componentDidUpdate(prevProps: IPlotlyChartProps) {
     const { data, layout, config } = this.props;
-    // !Important! This logic should be refactored for performance to not use JSON stringify.
-    // !Important! Likely requires another crack at state/context.
-    if (
-      JSON.stringify(data) !== JSON.stringify(prevProps.data) ||
-      !isEqual(layout, prevProps.layout) ||
-      !isEqual(config, prevProps.config)
-    ) {
-      this.plotlyFormattedData = Immutable.fromJS(data).toJS();
+    if (!isEqual(data, prevProps.data) || !isEqual(layout, prevProps.layout) || !isEqual(config, prevProps.config)) {
+      this.plotlyFormattedData = isEqual(data, prevProps.data)
+        ? this.plotlyFormattedData
+        : Immutable.fromJS(data).toJS();
       this.draw();
     }
   }
@@ -304,12 +295,26 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   protected getMergedLayout = (
     layout: Partial<Plotly.Layout> = {},
     plotlyFormattedData: Array<Partial<IPlotlyData>> = [],
-  ): Plotly.Layout => {
-    return {
+  ): Partial<Plotly.Layout> => {
+    const result = {
       ...Immutable.fromJS({ ...defaultPlotlyLayout, ...this.deriveAxisParams(plotlyFormattedData) })
         .mergeDeep(Immutable.fromJS({ ...layout }))
         .toJS(),
     };
+
+    if (this.savedAxisZoom && result.xaxis && result.yaxis) {
+      result.xaxis.range = this.savedAxisZoom.xaxis.range;
+      result.yaxis.range = this.savedAxisZoom.yaxis.range;
+    }
+
+    return result;
+  };
+
+  protected onAfterPlot = () => {
+    const { onAfterPlotCallback } = this.props;
+    if (onAfterPlotCallback) {
+      onAfterPlotCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.AFTER_PLOT));
+    }
   };
 
   protected onClick = (event: plotly.PlotMouseEvent) => {
@@ -343,8 +348,26 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     }
   };
 
-  protected onRelayout = (event: plotly.PlotRelayoutEvent) => {
+  protected onRelayout = (event: plotly.PlotRelayoutEvent & { [key: string]: number }) => {
     this.isDoubleClickInProgress = false;
+    // !IMPORTANT! Yes, these numbers have to be accessed like this, see:
+    // https://plot.ly/javascript/plotlyjs-function-reference/#plotlyrestyle
+    // https://github.com/plotly/plotly.js/issues/2843
+    const axisKeys = ['xaxis.range[0]', 'xaxis.range[1]', 'yaxis.range[0]', 'yaxis.range[1]'];
+    const isEventFormattedCorrect =
+      event !== undefined && axisKeys.reduce((prev, cur) => prev && event[cur] !== undefined, true) === true;
+    this.savedAxisZoom = isEventFormattedCorrect
+      ? {
+          xaxis: {
+            autorange: false,
+            range: [event[axisKeys[0]], event[axisKeys[1]]],
+          },
+          yaxis: {
+            autorange: false,
+            range: [event[axisKeys[2]], event[axisKeys[3]]],
+          },
+        }
+      : undefined;
     const { onRelayoutCallback } = this.props;
     if (onRelayoutCallback) {
       onRelayoutCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.RELAYOUT));

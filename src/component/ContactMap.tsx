@@ -118,6 +118,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 
   public onNodeSizeChange = (index: number) => (value: number) => {
     const { pointsToPlot } = this.state;
+
     this.setState({
       pointsToPlot: [
         ...pointsToPlot.slice(0, index),
@@ -134,16 +135,23 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     const { formattedPoints, observedColor, highlightColor } = this.props;
     const { pointsToPlot } = this.state;
 
-    const pointsLength = pointsToPlot.length;
-    const nodeSize = pointsLength >= 2 && pointsToPlot[pointsLength - 1] ? pointsToPlot[pointsLength - 1].nodeSize : 6;
+    const chartNames = {
+      known: 'Known Structure Contact',
+      selected: 'Selected Res. Pairs',
+    };
+
+    const nodeSizes = {
+      known: pointsToPlot.findIndex(entry => entry.name === chartNames.known),
+      selected: pointsToPlot.findIndex(entry => entry.name === chartNames.selected),
+    };
 
     const result = new Array<IContactMapChartData>(
       generateChartDataEntry(
         'x+y',
         { start: observedColor, end: 'rgb(100,177,200)' },
-        'Known Structure Contact',
+        chartNames.known,
         '(from PDB structure)',
-        4,
+        nodeSizes.known >= 0 ? pointsToPlot[nodeSizes.known].nodeSize : 4,
         points.getObservedContacts(),
       ),
       ...formattedPoints,
@@ -154,9 +162,9 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
         generateChartDataEntry(
           'none',
           highlightColor,
-          'Selected Res. Pairs',
+          chartNames.selected,
           '',
-          nodeSize,
+          nodeSizes.selected >= 0 ? pointsToPlot[nodeSizes.selected].nodeSize : 6,
           Array.from(lockedResiduePairs.keys())
             .filter(key => lockedResiduePairs.get(key)!.length === 2)
             .map(key => ({ i: lockedResiduePairs.get(key)![0], j: lockedResiduePairs.get(key)![1], dist: 0 })),
