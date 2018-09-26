@@ -15,7 +15,8 @@ import {
   ISecondaryStructureContext,
   SecondaryStructureContextWrapper,
 } from '../context/SecondaryStructureContext';
-import { RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../data/chell-data';
+import { CONTACT_DISTANCE_PROXIMITY, RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../data/chell-data';
+import { ChellPDB } from '../data/ChellPDB';
 import {
   createBallStickRepresentation,
   createDistanceRepresentation,
@@ -30,6 +31,7 @@ export interface INGLComponentProps {
   backgroundColor?: string | number;
   data: NGL.Structure;
   height: number | string;
+  measuredProximity: CONTACT_DISTANCE_PROXIMITY;
   onResize: (event?: UIEvent) => void;
   residueContext: IResidueContext;
   secondaryStructureContext: ISecondaryStructureContext;
@@ -40,6 +42,7 @@ export interface INGLComponentProps {
 
 export const initialNGLState = {
   activeRepresentations: new Array<NGL.RepresentationElement>(),
+  pdbData: undefined as ChellPDB | undefined,
   stage: undefined as NGL.Stage | undefined,
   structureComponent: undefined as NGL.StructureComponent | undefined,
 };
@@ -49,6 +52,7 @@ export type NGLComponentState = Readonly<typeof initialNGLState>;
 export class NGLComponentClass extends React.Component<INGLComponentProps, NGLComponentState> {
   public static defaultProps: Partial<INGLComponentProps> = {
     height: 400,
+    measuredProximity: CONTACT_DISTANCE_PROXIMITY.C_ALPHA,
     residueContext: { ...initialResidueContext },
     secondaryStructureContext: {
       ...initialSecondaryStructureContext,
@@ -153,8 +157,12 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
       // If we have multiple NGL components displaying the same data, removing the component will affect
       // the others because they (internally) delete keys/references.
       this.addStructureToStage(cloneDeep(structure), stage);
+      this.setState({
+        pdbData: ChellPDB.createPDBFromNGLData(structure),
+      });
     } else {
       this.setState({
+        pdbData: undefined,
         structureComponent: undefined,
       });
     }
@@ -280,14 +288,29 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     }
   };
 
+  protected getDistanceRepForResidues(
+    structureComponent: NGL.StructureComponent,
+    residues: RESIDUE_TYPE[],
+    pdbData: ChellPDB,
+  ) {
+    const { measuredProximity } = this.props;
+
+    if (measuredProximity === CONTACT_DISTANCE_PROXIMITY.C_ALPHA) {
+      return createDistanceRepresentation(structureComponent, residues.join('.CA, ') + '.CA');
+    } else {
+      const { atomIndexI, atomIndexJ } = pdbData.getMinDistBetweenResidues(residues[0], residues[1]);
+      return createDistanceRepresentation(structureComponent, [atomIndexI, atomIndexJ]);
+    }
+  }
+
   protected highlightCandidateResidues(structureComponent: NGL.StructureComponent, residues: RESIDUE_TYPE[]) {
     const reps = new Array<NGL.RepresentationElement>();
+    const { pdbData } = this.state;
 
     if (residues.length >= 1) {
       reps.push(createBallStickRepresentation(structureComponent, residues));
-      if (residues.length >= 2) {
-        const selection = residues.join('.CA, ') + '.CA';
-        reps.push(createDistanceRepresentation(structureComponent, selection));
+      if (residues.length >= 2 && pdbData) {
+        reps.push(this.getDistanceRepForResidues(structureComponent, residues, pdbData));
       }
     }
 
@@ -295,14 +318,15 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
   }
 
   protected highlightLockedDistancePairs(structureComponent: NGL.StructureComponent, lockedResidues: ResidueSelection) {
+    const { pdbData } = this.state;
+
     const reps = new Array<NGL.RepresentationElement>();
 
     lockedResidues.forEach(residues => {
       reps.push(createBallStickRepresentation(structureComponent, residues));
 
-      if (residues.length >= 2) {
-        const selection = residues.join('.CA, ') + '.CA';
-        reps.push(createDistanceRepresentation(structureComponent, selection));
+      if (residues.length >= 2 && pdbData) {
+        reps.push(this.getDistanceRepForResidues(structureComponent, residues, pdbData));
       }
     });
 

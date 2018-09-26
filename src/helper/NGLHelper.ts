@@ -11,12 +11,12 @@ import { RESIDUE_TYPE, SECONDARY_STRUCTURE_SECTION } from '../data/chell-data';
  */
 export const createDistanceRepresentation = (
   structureComponent: NGL.StructureComponent,
-  selection: string,
+  selection: string | number[],
   color: string = 'skyblue',
   labelUnit: string = 'angstrom',
 ) =>
   structureComponent.addRepresentation('distance', {
-    atomPair: [selection.split(',')],
+    atomPair: Array.isArray(selection) ? [selection] : [selection.split(',')],
     color,
     labelUnit,
   });

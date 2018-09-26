@@ -121,6 +121,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                       <NGLComponent
                         backgroundColor={'black'}
                         data={this.state[VIZ_TYPE.NGL]}
+                        measuredProximity={this.state.measuredProximity}
                         showConfiguration={false}
                         style={{ ...style, width: 400 }}
                       />
@@ -355,7 +356,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     const file = files ? files.item(0) : null;
     if (file !== null) {
       if (file.name.endsWith('.pdb')) {
-        const pdbData = await ChellPDB.createPDBFromFile(file);
+        const pdbData = await ChellPDB.createPDB(file);
         const couplingScores = pdbData.amendPDBWithCouplingScores(
           this.state[VIZ_TYPE.CONTACT_MAP].couplingScores.rankedContacts,
           measuredProximity,
@@ -385,7 +386,6 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
   };
 
   protected onMeasuredProximityChange = () => (value: number) => {
-    console.log(Object.values(CONTACT_DISTANCE_PROXIMITY)[value]);
     this.setState({
       measuredProximity: Object.values(CONTACT_DISTANCE_PROXIMITY)[value],
     });

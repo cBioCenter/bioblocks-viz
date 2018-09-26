@@ -1,6 +1,5 @@
 import * as NGL from 'ngl';
 
-import { fetchNGLDataFromFile } from '../helper/DataHelper';
 import {
   AMINO_ACID_THREE_LETTER_CODE,
   AMINO_ACIDS_BY_SINGLE_LETTER_CODE,
@@ -36,15 +35,15 @@ export class ChellPDB {
    *
    * !IMPORTANT! Since fetching the data is an asynchronous action, this must be used to create a new instance!
    */
-  public static async createPDB(filename: string = '') {
+  public static async createPDB(file: File | string = '') {
     const result = new ChellPDB();
-    result.nglData = await fetchNGLDataFromFile(filename);
+    result.nglData = await NGL.autoLoad(file);
     return result;
   }
 
-  public static async createPDBFromFile(file: File) {
+  public static createPDBFromNGLData(nglData: NGL.Structure) {
     const result = new ChellPDB();
-    result.nglData = await NGL.autoLoad(file);
+    result.nglData = nglData;
     return result;
   }
 
@@ -60,7 +59,7 @@ export class ChellPDB {
             const j = innerResidue.resno;
             if (innerResidue.isProtein() && i !== j) {
               result.addCouplingScore({
-                dist: this.getMinDistBetweenResidues(i, j),
+                dist: this.getMinDistBetweenResidues(i, j).dist,
                 i,
                 j,
               });
@@ -167,7 +166,7 @@ export class ChellPDB {
               innerResidue.resno,
             )}`;
             if (!minDist[key]) {
-              minDist[key] = this.getMinDistBetweenResidueIndices(outerResidue.index, innerResidue.index);
+              minDist[key] = this.getMinDistBetweenResidueIndices(outerResidue.index, innerResidue.index).dist;
             }
             result.addCouplingScore({
               dist: minDist[key],
@@ -180,7 +179,6 @@ export class ChellPDB {
     });
 
     this.contactInfo = result;
-    console.log(this.contactInfo.getObservedContacts());
     return this.contactInfo;
   }
 
@@ -252,17 +250,25 @@ export class ChellPDB {
     const firstAtomIndex = residueStore.atomOffset[indexI];
     const secondAtomIndex = residueStore.atomOffset[indexJ];
 
-    let minDist = Number.MAX_SAFE_INTEGER;
+    let result = {
+      atomIndexI: -1,
+      atomIndexJ: -1,
+      dist: Number.MAX_SAFE_INTEGER,
+    };
     for (let firstCounter = 0; firstCounter < firstResCount; ++firstCounter) {
       for (let secondCounter = 0; secondCounter < secondResCount; ++secondCounter) {
-        minDist = Math.min(
-          minDist,
-          this.nglData
-            .getAtomProxy(firstAtomIndex + firstCounter)
-            .distanceTo(this.nglData.getAtomProxy(secondAtomIndex + secondCounter)),
-        );
+        const atomIndexI = firstAtomIndex + firstCounter;
+        const atomIndexJ = secondAtomIndex + secondCounter;
+        const dist = this.nglData.getAtomProxy(atomIndexI).distanceTo(this.nglData.getAtomProxy(atomIndexJ));
+        if (dist < result.dist) {
+          result = {
+            atomIndexI,
+            atomIndexJ,
+            dist,
+          };
+        }
       }
     }
-    return minDist;
+    return result;
   }
 }
