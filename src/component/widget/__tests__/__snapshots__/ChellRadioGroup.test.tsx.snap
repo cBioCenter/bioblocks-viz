@@ -12,6 +12,7 @@ exports[`ChellRadioGroup Should match existing snapshot when given simple data. 
   >
     <Radio
       checked={true}
+      disabled={false}
       label="first"
       name="first"
       onChange={[Function]}

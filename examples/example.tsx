@@ -16,9 +16,10 @@ import {
 import { ContactMap } from '../src/component/ContactMap';
 import { NGLComponent } from '../src/component/NGLComponent';
 import { PredictedContactMap } from '../src/component/PredictedContactMap';
+import { ChellRadioGroup } from '../src/component/widget/ChellRadioGroup';
 import { CouplingContext } from '../src/context/CouplingContext';
-import ResidueContextWrapper, { IResidueContext } from '../src/context/ResidueContext';
-import { CONTACT_MAP_DATA_TYPE, NGL_DATA_TYPE, VIZ_TYPE } from '../src/data/chell-data';
+import { IResidueContext, ResidueContextWrapper } from '../src/context/ResidueContext';
+import { CONTACT_DISTANCE_PROXIMITY, CONTACT_MAP_DATA_TYPE, NGL_DATA_TYPE, VIZ_TYPE } from '../src/data/chell-data';
 import { ChellPDB } from '../src/data/ChellPDB';
 import { CouplingContainer } from '../src/data/CouplingContainer';
 import { getCouplingScoresData } from '../src/helper/DataHelper';
@@ -40,6 +41,7 @@ export interface IExampleAppState {
     pdb: string;
     residue_mapper: string;
   }>;
+  measuredProximity: CONTACT_DISTANCE_PROXIMITY;
   isResidueMappingNeeded: boolean;
   pdbData?: ChellPDB;
   residueMapping: IResidueMapping[];
@@ -64,6 +66,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     errorMsg: '',
     filenames: {},
     isResidueMappingNeeded: false,
+    measuredProximity: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
     pdbData: undefined,
     residueMapping: [],
   };
@@ -146,7 +149,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                       )}
                     </GridColumn>
                   </GridRow>
-                  <GridRow columns={4} centered={true} textAlign={'center'} verticalAlign={'bottom'}>
+                  <GridRow columns={4} centered={true} textAlign={'center'} verticalAlign={'top'}>
                     <GridColumn>{this.renderPDBUploadForm()}</GridColumn>
                     <GridColumn>{this.renderCouplingScoresUploadForm()}</GridColumn>
                     {isResidueMappingNeeded && <GridColumn>{this.renderResidueMappingUploadForm()}</GridColumn>}
@@ -260,6 +263,13 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     <GridRow>
       {this.renderUploadLabel(filenames.pdb)}
       {this.renderUploadForm(this.onPDBUpload, 'pdb', 'PDB', pdbData !== undefined)}
+      <ChellRadioGroup
+        disabled={this.state.pdbData !== undefined}
+        id={'radio-group-measured-proximity'}
+        options={Object.values(CONTACT_DISTANCE_PROXIMITY)}
+        onChange={this.onMeasuredProximityChange()}
+        title={'Measuring proximity'}
+      />
     </GridRow>
   );
 
@@ -296,6 +306,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
 
   protected onCouplingScoreUpload = async (e: React.ChangeEvent) => {
     e.persist();
+    const { measuredProximity, pdbData } = this.state;
     const files = (e.target as HTMLInputElement).files;
     const file = files ? files.item(0) : null;
     if (file !== null) {
@@ -304,12 +315,14 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
           const parsedFile = await readFileAsText(file);
           const couplingScores = getCouplingScoresData(parsedFile, this.state.residueMapping);
 
-          const mismatches = this.state.pdbData ? this.state.pdbData.getResidueNumberingMismatches(couplingScores) : [];
+          const mismatches = pdbData ? pdbData.getResidueNumberingMismatches(couplingScores) : [];
           const isResidueMappingNeeded = mismatches.length > 0;
 
           this.setState({
             [VIZ_TYPE.CONTACT_MAP]: {
-              couplingScores,
+              couplingScores: pdbData
+                ? pdbData.amendPDBWithCouplingScores(couplingScores.rankedContacts, measuredProximity)
+                : couplingScores,
               pdbData: this.state.pdbData,
               secondaryStructures: [],
             },
@@ -337,21 +350,23 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
 
   protected onPDBUpload = async (e: React.ChangeEvent) => {
     e.persist();
+    const { measuredProximity } = this.state;
     const files = (e.target as HTMLInputElement).files;
     const file = files ? files.item(0) : null;
     if (file !== null) {
       if (file.name.endsWith('.pdb')) {
         const pdbData = await ChellPDB.createPDBFromFile(file);
+        const couplingScores = pdbData.amendPDBWithCouplingScores(
+          this.state[VIZ_TYPE.CONTACT_MAP].couplingScores.rankedContacts,
+          measuredProximity,
+        );
         this.setState({
           [VIZ_TYPE.NGL]: pdbData.nglStructure,
-          [VIZ_TYPE.CONTACT_MAP]:
-            this.state[VIZ_TYPE.CONTACT_MAP].couplingScores.totalContacts === 0
-              ? {
-                  couplingScores: pdbData.contactInformation,
-                  pdbData,
-                  secondaryStructures: pdbData.secondaryStructureSections,
-                }
-              : this.state[VIZ_TYPE.CONTACT_MAP],
+          [VIZ_TYPE.CONTACT_MAP]: {
+            couplingScores,
+            pdbData,
+            secondaryStructures: pdbData.secondaryStructureSections,
+          },
           errorMsg: '',
           filenames: {
             ...this.state.filenames,
@@ -369,8 +384,16 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     (e.target as HTMLInputElement).value = '';
   };
 
+  protected onMeasuredProximityChange = () => (value: number) => {
+    console.log(Object.values(CONTACT_DISTANCE_PROXIMITY)[value]);
+    this.setState({
+      measuredProximity: Object.values(CONTACT_DISTANCE_PROXIMITY)[value],
+    });
+  };
+
   protected onResidueMappingUpload = async (e: React.ChangeEvent) => {
     e.persist();
+    const { measuredProximity, pdbData } = this.state;
     const files = (e.target as HTMLInputElement).files;
     const file = files ? files.item(0) : null;
     const validFileExtensions = ['csv', 'indextable', 'indextableplus'];
@@ -380,10 +403,12 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
         try {
           const parsedFile = await readFileAsText(file);
           const residueMapping = generateResidueMapping(parsedFile);
+          const couplingScores = getCouplingScoresData(this.state.couplingScores, residueMapping);
           this.setState({
             [VIZ_TYPE.CONTACT_MAP]: {
-              couplingScores: getCouplingScoresData(this.state.couplingScores, residueMapping),
-              pdbData: this.state.pdbData,
+              couplingScores: pdbData
+                ? pdbData.amendPDBWithCouplingScores(couplingScores.rankedContacts, measuredProximity)
+                : couplingScores,
               secondaryStructures: [],
             },
             errorMsg: '',

@@ -29,24 +29,48 @@ export interface IResidueMismatchResult {
  * @export
  */
 export class ChellPDB {
-  public get contactInformation(): CouplingContainer {
-    const result = new CouplingContainer();
-    this.nglData.eachResidue(outerResidue => {
-      if (outerResidue.isProtein()) {
-        const i = outerResidue.resno;
-        this.nglData.eachResidue(innerResidue => {
-          const j = innerResidue.resno;
-          if (innerResidue.isProtein() && i !== j) {
-            result.addCouplingScore({
-              dist: this.getMinDistBetweenResidues(i, j),
-              i,
-              j,
-            });
-          }
-        });
-      }
-    });
+  public static readonly NGL_C_ALPHA_INDEX = 'CA|C';
+
+  /**
+   * Creates an instance of ChellPDB with PDB data.
+   *
+   * !IMPORTANT! Since fetching the data is an asynchronous action, this must be used to create a new instance!
+   */
+  public static async createPDB(filename: string = '') {
+    const result = new ChellPDB();
+    result.nglData = await fetchNGLDataFromFile(filename);
     return result;
+  }
+
+  public static async createPDBFromFile(file: File) {
+    const result = new ChellPDB();
+    result.nglData = await NGL.autoLoad(file);
+    return result;
+  }
+
+  protected contactInfo?: CouplingContainer = undefined;
+
+  public get contactInformation(): CouplingContainer {
+    if (!this.contactInfo) {
+      const result = new CouplingContainer();
+      this.nglData.eachResidue(outerResidue => {
+        if (outerResidue.isProtein()) {
+          const i = outerResidue.resno;
+          this.nglData.eachResidue(innerResidue => {
+            const j = innerResidue.resno;
+            if (innerResidue.isProtein() && i !== j) {
+              result.addCouplingScore({
+                dist: this.getMinDistBetweenResidues(i, j),
+                i,
+                j,
+              });
+            }
+          });
+        }
+      });
+      this.contactInfo = result;
+    }
+    return this.contactInfo;
   }
 
   public get nglStructure(): NGL.Structure {
@@ -101,24 +125,6 @@ export class ChellPDB {
     return this.nglData ? this.nglData.getSequence().join('') : '';
   }
 
-  public static readonly NGL_C_ALPHA_INDEX = 'CA|C';
-  /**
-   * Creates an instance of ChellPDB with PDB data.
-   *
-   * !IMPORTANT! Since fetching the data is an asynchronous action, this must be used to create a new instance!
-   */
-  public static async createPDB(filename: string = '') {
-    const result = new ChellPDB();
-    result.nglData = await fetchNGLDataFromFile(filename);
-    return result;
-  }
-
-  public static async createPDBFromFile(file: File) {
-    const result = new ChellPDB();
-    result.nglData = await NGL.autoLoad(file);
-    return result;
-  }
-
   protected nglData: NGL.Structure = new NGL.Structure();
 
   private constructor() {}
@@ -126,6 +132,7 @@ export class ChellPDB {
   public eachResidue(callback: (residue: NGL.ResidueProxy) => void) {
     this.nglData.eachResidue(callback);
   }
+
   /**
    * Given some existing coupling scores, a new CouplingContainer will be created with data augmented with info derived from this PDB.
    *
@@ -133,10 +140,7 @@ export class ChellPDB {
    * @param measuredProximity How to calculate the distance between two residues.
    * @returns A CouplingContainer with contact information from both the original array and this PDB file.
    */
-  public generateCouplingsAmendedWithPDB(
-    couplingScores: ICouplingScore[],
-    measuredProximity: CONTACT_DISTANCE_PROXIMITY,
-  ) {
+  public amendPDBWithCouplingScores(couplingScores: ICouplingScore[], measuredProximity: CONTACT_DISTANCE_PROXIMITY) {
     const result = new CouplingContainer(couplingScores);
     const alphaId = this.nglData.atomMap.dict[ChellPDB.NGL_C_ALPHA_INDEX];
 
@@ -175,7 +179,9 @@ export class ChellPDB {
       });
     });
 
-    return result;
+    this.contactInfo = result;
+    console.log(this.contactInfo.getObservedContacts());
+    return this.contactInfo;
   }
 
   /**

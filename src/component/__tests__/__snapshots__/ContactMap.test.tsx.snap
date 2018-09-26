@@ -140,9 +140,11 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
         value={5}
       />
       <ChellRadioGroup
+        disabled={false}
         id="sample-radio"
         key="radio-group-sample-radio"
         onChange={[MockFunction]}
+        title="How to calculate distance between two residues:"
       />
     </AccordionContent>
   </Accordion>

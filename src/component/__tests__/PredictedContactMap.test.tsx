@@ -1,14 +1,8 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import {
-  CONTACT_DISTANCE_PROXIMITY,
-  IContactMapData,
-  ICouplingScore,
-  SECONDARY_STRUCTURE_KEYS,
-} from '../../data/chell-data';
+import { IContactMapData, ICouplingScore, SECONDARY_STRUCTURE_KEYS } from '../../data/chell-data';
 import Chell1DSection from '../../data/Chell1DSection';
-import { ChellPDB } from '../../data/ChellPDB';
 import { CouplingContainer } from '../../data/CouplingContainer';
 import { PredictedContactMap } from '../PredictedContactMap';
 
@@ -53,12 +47,6 @@ describe('PredictedContactMap', () => {
     couplingScores: new CouplingContainer(Array.from(uniqueScores)),
     secondaryStructures: [[new Chell1DSection<SECONDARY_STRUCTURE_KEYS>('C', 30, 31)]],
   };
-
-  const sampleDataWithPDB = async (): Promise<IContactMapData> => ({
-    couplingScores: new CouplingContainer(Array.from(uniqueScores)),
-    pdbData: await ChellPDB.createPDB('sample/protein.pdb'),
-    secondaryStructures: [[new Chell1DSection<SECONDARY_STRUCTURE_KEYS>('C', 30, 31)]],
-  });
 
   describe('Snapshots', () => {
     it('Should match existing snapshot when given no data.', () => {
@@ -113,16 +101,6 @@ describe('PredictedContactMap', () => {
       wrapper.update();
       expect(instance.state.numPredictionsToShow).toBe(expected);
     });
-
-    it('Should update how Measured Proximity is determined.', () => {
-      const wrapper = shallow(<PredictedContactMap data={sampleData} />);
-      const instance = wrapper.instance() as PredictedContactMap;
-      const expected = CONTACT_DISTANCE_PROXIMITY.C_ALPHA;
-      expect(instance.state.measuredProximity).not.toBe(expected);
-      instance.onMeasuredProximityChange()(Object.values(CONTACT_DISTANCE_PROXIMITY).indexOf(expected));
-      wrapper.update();
-      expect(instance.state.measuredProximity).toBe(expected);
-    });
   });
 
   it('Should update number of predictions to show when new value is received.', () => {
@@ -139,30 +117,6 @@ describe('PredictedContactMap', () => {
     const wrapper = shallow(<PredictedContactMap data={emptyData} />);
     wrapper.setProps({
       data: sampleData,
-    });
-    expect(wrapper.state('pointsToPlot')).not.toEqual([]);
-    expect(wrapper.state('pointsToPlot')).toMatchSnapshot();
-  });
-
-  it('Should update points to plot using closest atom for distance determination.', async () => {
-    const wrapper = shallow(<PredictedContactMap data={emptyData} />);
-    wrapper.setProps({
-      data: await sampleDataWithPDB(),
-    });
-    wrapper.setState({
-      measuredProximity: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
-    });
-    expect(wrapper.state('pointsToPlot')).not.toEqual([]);
-    expect(wrapper.state('pointsToPlot')).toMatchSnapshot();
-  });
-
-  it('Should update points to plot using C-Alpha for distance determination.', async () => {
-    const wrapper = shallow(<PredictedContactMap data={emptyData} />);
-    wrapper.setProps({
-      data: await sampleDataWithPDB(),
-    });
-    wrapper.setState({
-      measuredProximity: CONTACT_DISTANCE_PROXIMITY.C_ALPHA,
     });
     expect(wrapper.state('pointsToPlot')).not.toEqual([]);
     expect(wrapper.state('pointsToPlot')).toMatchSnapshot();
