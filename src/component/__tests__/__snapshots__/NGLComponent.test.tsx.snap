@@ -3,6 +3,22 @@
 exports[`NGLComponent Should match existing snapshot when canvas isn't available. 1`] = `
 <NGLComponent>
   <NGLComponentClass
+    couplingContext={
+      Object {
+        "couplingScores": CouplingContainer {
+          "colCounter": 0,
+          "contacts": Array [],
+          "getCouplingScore": [Function],
+          "includes": [Function],
+          "indexRange": Object {
+            "max": 50,
+            "min": 1,
+          },
+          "rowCounter": 0,
+          "totalStoredContacts": 0,
+        },
+      }
+    }
     height={400}
     measuredProximity="C-α"
     residueContext={
@@ -92,6 +108,22 @@ exports[`NGLComponent Should match existing snapshot when configuration is disab
   showConfiguration={false}
 >
   <NGLComponentClass
+    couplingContext={
+      Object {
+        "couplingScores": CouplingContainer {
+          "colCounter": 0,
+          "contacts": Array [],
+          "getCouplingScore": [Function],
+          "includes": [Function],
+          "indexRange": Object {
+            "max": 50,
+            "min": 1,
+          },
+          "rowCounter": 0,
+          "totalStoredContacts": 0,
+        },
+      }
+    }
     data={
       Object {
         "residueStore": Object {
@@ -174,6 +206,22 @@ exports[`NGLComponent Should match existing snapshot when given sample data 1`] 
   }
 >
   <NGLComponentClass
+    couplingContext={
+      Object {
+        "couplingScores": CouplingContainer {
+          "colCounter": 0,
+          "contacts": Array [],
+          "getCouplingScore": [Function],
+          "includes": [Function],
+          "indexRange": Object {
+            "max": 50,
+            "min": 1,
+          },
+          "rowCounter": 0,
+          "totalStoredContacts": 0,
+        },
+      }
+    }
     data={
       Object {
         "residueStore": Object {

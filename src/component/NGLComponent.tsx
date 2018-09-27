@@ -4,17 +4,9 @@ import * as React from 'react';
 import { Button, GridRow } from 'semantic-ui-react';
 import { Vector2 } from 'three';
 
-import {
-  initialResidueContext,
-  IResidueContext,
-  ResidueContextWrapper,
-  ResidueSelection,
-} from '../context/ResidueContext';
-import {
-  initialSecondaryStructureContext,
-  ISecondaryStructureContext,
-  SecondaryStructureContextWrapper,
-} from '../context/SecondaryStructureContext';
+import { ICouplingContext, initialCouplingContext, withCouplingContext } from '../context/CouplingContext';
+import { initialResidueContext, IResidueContext, ResidueSelection } from '../context/ResidueContext';
+import { initialSecondaryStructureContext, ISecondaryStructureContext } from '../context/SecondaryStructureContext';
 import { CONTACT_DISTANCE_PROXIMITY, RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../data/chell-data';
 import { ChellPDB } from '../data/ChellPDB';
 import {
@@ -29,6 +21,7 @@ export type RepresentationDict = Map<string, NGL.RepresentationElement[]>;
 
 export interface INGLComponentProps {
   backgroundColor?: string | number;
+  couplingContext: ICouplingContext;
   data: NGL.Structure;
   height: number | string;
   measuredProximity: CONTACT_DISTANCE_PROXIMITY;
@@ -51,6 +44,7 @@ export type NGLComponentState = Readonly<typeof initialNGLState>;
 
 export class NGLComponentClass extends React.Component<INGLComponentProps, NGLComponentState> {
   public static defaultProps: Partial<INGLComponentProps> = {
+    couplingContext: { ...initialCouplingContext },
     height: 400,
     measuredProximity: CONTACT_DISTANCE_PROXIMITY.C_ALPHA,
     residueContext: { ...initialResidueContext },
@@ -374,21 +368,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
 type requiredProps = Omit<INGLComponentProps, keyof typeof NGLComponentClass.defaultProps> &
   Partial<INGLComponentProps>;
 
-const NGLComponent = (props: requiredProps) => (
-  <SecondaryStructureContextWrapper.Consumer>
-    {secStructContext => (
-      <ResidueContextWrapper.Consumer>
-        {residueContext => (
-          <NGLComponentClass
-            {...props}
-            residueContext={{ ...residueContext }}
-            secondaryStructureContext={{ ...secStructContext }}
-          />
-        )}
-      </ResidueContextWrapper.Consumer>
-    )}
-  </SecondaryStructureContextWrapper.Consumer>
-);
+const NGLComponent = (props: requiredProps) => withCouplingContext(NGLComponentClass)({ ...props });
 
 export default NGLComponent;
 export { NGLComponent };
