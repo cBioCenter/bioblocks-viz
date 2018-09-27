@@ -110,7 +110,7 @@
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/contactmapchart.html" class="tsd-kind-icon">Contact<wbr>Map<wbr>Chart</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/contactmapclass.html" class="tsd-kind-icon">Contact<wbr>Map<wbr>Class</a></li>
 								<li class="tsd-kind-class"><a href="classes/couplingcontainer.html" class="tsd-kind-icon">Coupling<wbr>Container</a></li>
-								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/couplingcontext.html" class="tsd-kind-icon">Coupling<wbr>Context</a></li>
+								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/couplingcontextclass.html" class="tsd-kind-icon">Coupling<wbr>Context<wbr>Class</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/featureviewer.html" class="tsd-kind-icon">Feature<wbr>Viewer</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/infopanelclass.html" class="tsd-kind-icon">Info<wbr>Panel<wbr>Class</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/nglcomponentclass.html" class="tsd-kind-icon">NGLComponent<wbr>Class</a></li>
@@ -245,7 +245,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-variable"><a href="globals.html#amino_acids" class="tsd-kind-icon">AMINO_<wbr>ACIDS</a></li>
 								<li class="tsd-kind-variable"><a href="globals.html#cellcontextwrapper" class="tsd-kind-icon">Cell<wbr>Context<wbr>Wrapper</a></li>
-								<li class="tsd-kind-variable"><a href="globals.html#couplingcontextwrapper" class="tsd-kind-icon">Coupling<wbr>Context<wbr>Wrapper</a></li>
+								<li class="tsd-kind-variable"><a href="globals.html#couplingcontext" class="tsd-kind-icon">Coupling<wbr>Context</a></li>
 								<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#expected_headers" class="tsd-kind-icon">EXPECTED_<wbr>HEADERS</a></li>
 								<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#pdb_resname_header" class="tsd-kind-icon">PDB_<wbr>RESNAME_<wbr>HEADER</a></li>
 								<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#pdb_resno_header" class="tsd-kind-icon">PDB_<wbr>RESNO_<wbr>HEADER</a></li>
@@ -299,6 +299,7 @@
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#getresiduemappingheaders" class="tsd-kind-icon">get<wbr>Residue<wbr>Mapping<wbr>Headers</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#getsecondarystructuredata" class="tsd-kind-icon">get<wbr>Secondary<wbr>Structure<wbr>Data</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#readfileastext" class="tsd-kind-icon">read<wbr>File<wbr>AsText</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#withcouplingcontext" class="tsd-kind-icon">with<wbr>Coupling<wbr>Context</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -1066,9 +1067,9 @@
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-variable">
-					<a name="couplingcontextwrapper" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> Coupling<wbr>Context<wbr>Wrapper</h3>
-					<div class="tsd-signature tsd-kind-icon">Coupling<wbr>Context<wbr>Wrapper<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Context</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;React.createContext(initialCouplingContext)</span></div>
+					<a name="couplingcontext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Coupling<wbr>Context</h3>
+					<div class="tsd-signature tsd-kind-icon">Coupling<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Context</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;React.createContext(initialCouplingContext)</span></div>
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in src/context/CouplingContext.tsx:38</li>
@@ -2323,6 +2324,29 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="withcouplingcontext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> with<wbr>Coupling<wbr>Context</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">with<wbr>Coupling<wbr>Context<span class="tsd-signature-symbol">(</span>Component<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CouplingContextWrapper</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/context/CouplingContext.tsx:40</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>Component: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">CouplingContextWrapper</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -4937,7 +4961,7 @@
 						<a href="classes/couplingcontainer.html" class="tsd-kind-icon">Coupling<wbr>Container</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="classes/couplingcontext.html" class="tsd-kind-icon">Coupling<wbr>Context</a>
+						<a href="classes/couplingcontextclass.html" class="tsd-kind-icon">Coupling<wbr>Context<wbr>Class</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/featureviewer.html" class="tsd-kind-icon">Feature<wbr>Viewer</a>
@@ -5297,7 +5321,7 @@
 						<a href="globals.html#cellcontextwrapper" class="tsd-kind-icon">Cell<wbr>Context<wbr>Wrapper</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="globals.html#couplingcontextwrapper" class="tsd-kind-icon">Coupling<wbr>Context<wbr>Wrapper</a>
+						<a href="globals.html#couplingcontext" class="tsd-kind-icon">Coupling<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="globals.html#expected_headers" class="tsd-kind-icon">EXPECTED_<wbr>HEADERS</a>
@@ -5442,6 +5466,9 @@
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#readfileastext" class="tsd-kind-icon">read<wbr>File<wbr>AsText</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#withcouplingcontext" class="tsd-kind-icon">with<wbr>Coupling<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-object-literal">
 						<a href="globals.html#amino_acids_by_single_letter_code" class="tsd-kind-icon">AMINO_<wbr>ACIDS_<wbr>BY_<wbr>SINGLE_<wbr>LETTER_<wbr>CODE</a>

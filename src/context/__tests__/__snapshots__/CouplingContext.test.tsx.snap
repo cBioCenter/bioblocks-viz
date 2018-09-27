@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[` 1`] = `
+<component
+  foo={3}
+/>
+`;
+
+exports[`CouplingContext Higher Order Component Should provide a wrapper hoc function. 1`] = `[Function]`;
+
 exports[`CouplingContext Should match the default snapshot. 1`] = `
 <SecondaryStructureContext>
   <ResidueContext>

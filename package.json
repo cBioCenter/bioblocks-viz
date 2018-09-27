@@ -148,7 +148,6 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-iframe-comm": "^1.2.2",
-    "react-loadable": "^5.5.0",
     "semantic-ui-react": "^0.82.1"
   },
   "devDependencies": {
@@ -165,7 +164,6 @@
     "@types/rc-slider": "^8.2.3",
     "@types/react": "^16.4.7",
     "@types/react-dom": "^16.0.5",
-    "@types/react-loadable": "^5.4.1",
     "@types/react-test-renderer": "^16.0.1",
     "@types/signals": "^1.0.1",
     "@types/three": "^0.92.22",
