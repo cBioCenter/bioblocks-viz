@@ -17,7 +17,7 @@ import { ContactMap } from '../src/component/ContactMap';
 import { NGLComponent } from '../src/component/NGLComponent';
 import { PredictedContactMap } from '../src/component/PredictedContactMap';
 import { ChellRadioGroup } from '../src/component/widget/ChellRadioGroup';
-import { CouplingContext } from '../src/context/CouplingContext';
+import { CouplingContextClass } from '../src/context/CouplingContext';
 import { IResidueContext, ResidueContextWrapper } from '../src/context/ResidueContext';
 import { CONTACT_DISTANCE_PROXIMITY, CONTACT_MAP_DATA_TYPE, NGL_DATA_TYPE, VIZ_TYPE } from '../src/data/chell-data';
 import { ChellPDB } from '../src/data/ChellPDB';
@@ -112,7 +112,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
         </Header>
         {errorMsg.length > 1 && this.renderErrorMessage()}
         <Segment attached={true} raised={true}>
-          <CouplingContext>
+          <CouplingContextClass>
             <ResidueContextWrapper.Consumer>
               {residueContext => (
                 <Grid centered={true}>
@@ -159,7 +159,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                 </Grid>
               )}
             </ResidueContextWrapper.Consumer>
-          </CouplingContext>
+          </CouplingContextClass>
         </Segment>
       </div>
     );
