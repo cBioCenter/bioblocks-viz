@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Button, GridRow } from 'semantic-ui-react';
 import { Vector2 } from 'three';
 
-import { ICouplingContext, initialCouplingContext, withCouplingContext } from '../context/CouplingContext';
+import withCouplingContext, { ICouplingContext, initialCouplingContext } from '../context/CouplingContext';
 import { initialResidueContext, IResidueContext, ResidueSelection } from '../context/ResidueContext';
 import { initialSecondaryStructureContext, ISecondaryStructureContext } from '../context/SecondaryStructureContext';
 import { CONTACT_DISTANCE_PROXIMITY, RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../data/chell-data';
@@ -20,16 +20,16 @@ export type NGL_HOVER_CB_RESULT_TYPE = number;
 export type RepresentationDict = Map<string, NGL.RepresentationElement[]>;
 
 export interface INGLComponentProps {
-  backgroundColor?: string | number;
+  backgroundColor: string | number;
   couplingContext: ICouplingContext;
-  data: NGL.Structure;
+  data: NGL.Structure | undefined;
   height: number | string;
   measuredProximity: CONTACT_DISTANCE_PROXIMITY;
-  onResize: (event?: UIEvent) => void;
+  onResize?: (event?: UIEvent) => void;
   residueContext: IResidueContext;
   secondaryStructureContext: ISecondaryStructureContext;
   showConfiguration: boolean;
-  style: React.CSSProperties;
+  style?: React.CSSProperties;
   width: number | string;
 }
 
@@ -43,8 +43,10 @@ export const initialNGLState = {
 export type NGLComponentState = Readonly<typeof initialNGLState>;
 
 export class NGLComponentClass extends React.Component<INGLComponentProps, NGLComponentState> {
-  public static defaultProps: Partial<INGLComponentProps> = {
+  public static defaultProps = {
+    backgroundColor: '#000000',
     couplingContext: { ...initialCouplingContext },
+    data: undefined,
     height: 400,
     measuredProximity: CONTACT_DISTANCE_PROXIMITY.C_ALPHA,
     residueContext: { ...initialResidueContext },

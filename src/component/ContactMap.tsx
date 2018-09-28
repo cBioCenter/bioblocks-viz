@@ -7,10 +7,9 @@ import {
   ResidueContextWrapper,
   ResidueSelection,
 } from '../context/ResidueContext';
-import {
+import SecondaryStructureContextWrapper, {
   initialSecondaryStructureContext,
   ISecondaryStructureContext,
-  SecondaryStructureContextWrapper,
 } from '../context/SecondaryStructureContext';
 import {
   CONFIGURATION_COMPONENT_TYPE,
@@ -52,7 +51,7 @@ export interface IContactMapProps {
   onBoxSelection?: ((residues: RESIDUE_TYPE[]) => void);
   residueContext: IResidueContext;
   secondaryStructureContext: ISecondaryStructureContext;
-  style: React.CSSProperties;
+  style?: React.CSSProperties;
   width: number;
 }
 
@@ -64,7 +63,7 @@ export const initialContactMapState = {
 export type ContactMapState = Readonly<typeof initialContactMapState>;
 
 export class ContactMapClass extends React.Component<IContactMapProps, ContactMapState> {
-  public static defaultProps: Partial<IContactMapProps> = {
+  public static defaultProps = {
     configurations: new Array<IContactMapConfiguration>(),
     data: {
       couplingScores: new CouplingContainer(),
@@ -75,7 +74,6 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     height: 400,
     highlightColor: '#ff8800',
     observedColor: '#0000ff',
-    onBoxSelection: undefined as undefined | ((residues: RESIDUE_TYPE[]) => void),
     residueContext: {
       ...initialResidueContext,
     },

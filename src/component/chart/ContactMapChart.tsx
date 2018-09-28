@@ -20,10 +20,10 @@ export interface IContactMapChartProps {
     b: number;
     l: number;
   };
-  onClickCallback: (...args: any[]) => void;
-  onHoverCallback: (...args: any[]) => void;
-  onSelectedCallback: (...args: any[]) => void;
-  onUnHoverCallback: (...args: any[]) => void;
+  onClickCallback?: (...args: any[]) => void;
+  onHoverCallback?: (...args: any[]) => void;
+  onSelectedCallback?: (...args: any[]) => void;
+  onUnHoverCallback?: (...args: any[]) => void;
   range: number;
   secondaryStructures: SECONDARY_STRUCTURE[];
   selectedSecondaryStructures: SECONDARY_STRUCTURE[];
@@ -89,7 +89,7 @@ export interface IContactMapChartPoint {
  * @extends {React.Component<IContactMapChartProps, any>}
  */
 class ContactMapChart extends React.Component<IContactMapChartProps, IContactMapChartState> {
-  public static defaultProps: Partial<IContactMapChartProps> = {
+  public static defaultProps = {
     candidateResidues: new Array<RESIDUE_TYPE>(),
     dataTransformFn: generateScatterGLData,
     heightModifier: 0.3,

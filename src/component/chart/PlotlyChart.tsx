@@ -91,7 +91,7 @@ export const defaultPlotlyLayout: Partial<IPlotlyLayout> = {
  * @extends {React.Component<IPlotlyChartProps, any>}
  */
 export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
-  public static defaultProps: Partial<IPlotlyChartProps> = {
+  public static defaultProps = {
     config: {},
     data: [],
     layout: {},

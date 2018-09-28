@@ -16,7 +16,7 @@ export interface ITComponentProps {
 }
 
 class TComponentClass extends React.Component<ITComponentProps, any> {
-  public static defaultProps: ITComponentProps = {
+  public static defaultProps = {
     cellContext: {
       ...initialCellContext,
     },

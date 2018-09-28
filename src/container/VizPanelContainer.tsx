@@ -25,7 +25,7 @@ export const initialVizPanelState = {
 export type VizPanelContainerState = Readonly<typeof initialVizPanelState>;
 
 export class VizPanelContainer extends React.Component<IVizPanelProps, VizPanelContainerState> {
-  public static defaultProps: Partial<IVizPanelProps> = {
+  public static defaultProps = {
     initialVisualizations: [] as VIZ_TYPE[],
     /** Number of panels to be controlled by this container. Currently limited to 4. */
     numPanels: 1,

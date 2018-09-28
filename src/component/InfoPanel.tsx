@@ -6,7 +6,7 @@ import ResidueContextHandler, {
   IResidueContext,
   ResidueSelection,
 } from '../context/ResidueContext';
-import SecondaryStructureContextWrapper, {
+import SecondaryStructureContext, {
   initialSecondaryStructureContext,
   ISecondaryStructureContext,
 } from '../context/SecondaryStructureContext';
@@ -23,7 +23,7 @@ export interface IInfoPanelProps {
 }
 
 export class InfoPanelClass extends React.Component<IInfoPanelProps, any> {
-  public static defaultProps: Partial<IInfoPanelProps> = {
+  public static defaultProps = {
     data: {
       couplingScores: new CouplingContainer(),
       secondaryStructures: new Array<SECONDARY_STRUCTURE>(),
@@ -126,13 +126,13 @@ export class InfoPanelClass extends React.Component<IInfoPanelProps, any> {
 }
 
 const InfoPanel = (props: any) => (
-  <SecondaryStructureContextWrapper.Consumer>
+  <SecondaryStructureContext.Consumer>
     {secStructContext => (
       <ResidueContextHandler.Consumer>
         {residueContext => <InfoPanel {...props} {...residueContext} {...secStructContext} />}
       </ResidueContextHandler.Consumer>
     )}
-  </SecondaryStructureContextWrapper.Consumer>
+  </SecondaryStructureContext.Consumer>
 );
 
 export default InfoPanel;
