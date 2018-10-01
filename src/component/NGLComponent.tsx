@@ -14,6 +14,7 @@ import {
   createDistanceRepresentation,
   createSecStructRepresentation,
 } from '../helper/NGLHelper';
+import { withDimmedLoader } from '../hoc/DimmedComponent';
 
 export type NGL_HOVER_CB_RESULT_TYPE = number;
 
@@ -24,6 +25,7 @@ export interface INGLComponentProps {
   couplingContext: ICouplingContext;
   data: NGL.Structure | undefined;
   height: number | string;
+  isDataLoading: boolean;
   measuredProximity: CONTACT_DISTANCE_PROXIMITY;
   onResize?: (event?: UIEvent) => void;
   residueContext: IResidueContext;
@@ -48,6 +50,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     couplingContext: { ...initialCouplingContext },
     data: undefined,
     height: 400,
+    isDataLoading: false,
     measuredProximity: CONTACT_DISTANCE_PROXIMITY.C_ALPHA,
     residueContext: { ...initialResidueContext },
     secondaryStructureContext: {
@@ -126,16 +129,19 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
    * @returns The NGL Component
    */
   public render() {
-    const { height, residueContext, showConfiguration, style, width } = this.props;
+    const { height, isDataLoading, residueContext, showConfiguration, style, width } = this.props;
     return (
       <div className="NGLComponent" style={{ ...style }}>
-        <div
-          className="NGLCanvas"
-          ref={el => (this.canvas = el)}
-          style={{ height, width }}
-          onMouseLeave={this.onCanvasLeave}
-          onKeyDown={this.onKeyDown}
-        />
+        {withDimmedLoader(
+          <div
+            className="NGLCanvas"
+            ref={el => (this.canvas = el)}
+            style={{ height, width }}
+            onMouseLeave={this.onCanvasLeave}
+            onKeyDown={this.onKeyDown}
+          />,
+          isDataLoading,
+        )}
         {showConfiguration && (
           <GridRow>
             <Button onClick={residueContext.removeAllLockedResiduePairs}>Remove All Locked Distance Pairs</Button>

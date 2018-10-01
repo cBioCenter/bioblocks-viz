@@ -21,6 +21,7 @@ exports[`NGLComponent Should match existing snapshot when canvas isn't available
       }
     }
     height={400}
+    isDataLoading={false}
     measuredProximity="C-α"
     residueContext={
       Object {
@@ -56,17 +57,47 @@ exports[`NGLComponent Should match existing snapshot when canvas isn't available
       className="NGLComponent"
       style={Object {}}
     >
-      <div
-        className="NGLCanvas"
-        onKeyDown={[Function]}
-        onMouseLeave={[Function]}
-        style={
-          Object {
-            "height": 400,
-            "width": 400,
-          }
-        }
-      />
+      <DimmerDimmable
+        dimmed={true}
+      >
+        <div
+          className="dimmed dimmable"
+        >
+          <Dimmer
+            active={false}
+          >
+            <DimmerInner
+              active={false}
+            >
+              <div
+                className="ui dimmer"
+                onClick={[Function]}
+              >
+                <div
+                  className="content"
+                >
+                  <Loader>
+                    <div
+                      className="ui loader"
+                    />
+                  </Loader>
+                </div>
+              </div>
+            </DimmerInner>
+          </Dimmer>
+          <div
+            className="NGLCanvas"
+            onKeyDown={[Function]}
+            onMouseLeave={[Function]}
+            style={
+              Object {
+                "height": 400,
+                "width": 400,
+              }
+            }
+          />
+        </div>
+      </DimmerDimmable>
       <GridRow>
         <div
           className="row"
@@ -140,6 +171,7 @@ exports[`NGLComponent Should match existing snapshot when configuration is disab
       }
     }
     height={400}
+    isDataLoading={false}
     measuredProximity="C-α"
     residueContext={
       Object {
@@ -175,17 +207,47 @@ exports[`NGLComponent Should match existing snapshot when configuration is disab
       className="NGLComponent"
       style={Object {}}
     >
-      <div
-        className="NGLCanvas"
-        onKeyDown={[Function]}
-        onMouseLeave={[Function]}
-        style={
-          Object {
-            "height": 400,
-            "width": 400,
-          }
-        }
-      />
+      <DimmerDimmable
+        dimmed={true}
+      >
+        <div
+          className="dimmed dimmable"
+        >
+          <Dimmer
+            active={false}
+          >
+            <DimmerInner
+              active={false}
+            >
+              <div
+                className="ui dimmer"
+                onClick={[Function]}
+              >
+                <div
+                  className="content"
+                >
+                  <Loader>
+                    <div
+                      className="ui loader"
+                    />
+                  </Loader>
+                </div>
+              </div>
+            </DimmerInner>
+          </Dimmer>
+          <div
+            className="NGLCanvas"
+            onKeyDown={[Function]}
+            onMouseLeave={[Function]}
+            style={
+              Object {
+                "height": 400,
+                "width": 400,
+              }
+            }
+          />
+        </div>
+      </DimmerDimmable>
     </div>
   </NGLComponentClass>
 </NGLComponent>
@@ -239,6 +301,7 @@ exports[`NGLComponent Should match existing snapshot when given sample data 1`] 
       }
     }
     height={400}
+    isDataLoading={false}
     measuredProximity="C-α"
     residueContext={
       Object {
@@ -274,17 +337,47 @@ exports[`NGLComponent Should match existing snapshot when given sample data 1`] 
       className="NGLComponent"
       style={Object {}}
     >
-      <div
-        className="NGLCanvas"
-        onKeyDown={[Function]}
-        onMouseLeave={[Function]}
-        style={
-          Object {
-            "height": 400,
-            "width": 400,
-          }
-        }
-      />
+      <DimmerDimmable
+        dimmed={true}
+      >
+        <div
+          className="dimmed dimmable"
+        >
+          <Dimmer
+            active={false}
+          >
+            <DimmerInner
+              active={false}
+            >
+              <div
+                className="ui dimmer"
+                onClick={[Function]}
+              >
+                <div
+                  className="content"
+                >
+                  <Loader>
+                    <div
+                      className="ui loader"
+                    />
+                  </Loader>
+                </div>
+              </div>
+            </DimmerInner>
+          </Dimmer>
+          <div
+            className="NGLCanvas"
+            onKeyDown={[Function]}
+            onMouseLeave={[Function]}
+            style={
+              Object {
+                "height": 400,
+                "width": 400,
+              }
+            }
+          />
+        </div>
+      </DimmerDimmable>
       <GridRow>
         <div
           className="row"

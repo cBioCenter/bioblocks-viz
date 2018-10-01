@@ -10,6 +10,7 @@ export interface IPredictedContactMapProps {
   enableSliders: boolean;
   height: number;
   incorrectColor: string;
+  isDataLoading: boolean;
   style?: React.CSSProperties;
   width: number;
 }
@@ -32,6 +33,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     enableSliders: true,
     height: 400,
     incorrectColor: '#000000',
+    isDataLoading: false,
     width: 400,
   };
 
