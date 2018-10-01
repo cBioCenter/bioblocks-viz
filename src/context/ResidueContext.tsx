@@ -90,27 +90,27 @@ export class ResidueContext extends React.Component<any, IResidueContext> {
 
   protected onClearAllResidues = () => {
     this.setState({
-      candidateResidues: [],
-      hoveredResidues: [],
-      lockedResiduePairs: new Map(),
+      candidateResidues: new Array<RESIDUE_TYPE>(),
+      hoveredResidues: new Array<RESIDUE_TYPE>(),
+      lockedResiduePairs: new Map() as ResidueSelection,
     });
   };
 
   protected onRemoveAllLockedResiduePairs = () => {
     this.setState({
-      lockedResiduePairs: new Map(),
+      lockedResiduePairs: new Map() as ResidueSelection,
     });
   };
 
   protected onRemoveCandidateResidue = () => {
     this.setState({
-      candidateResidues: [],
+      candidateResidues: new Array<RESIDUE_TYPE>(),
     });
   };
 
   protected onRemoveHoveredResidues = () => {
     this.setState({
-      hoveredResidues: [],
+      hoveredResidues: new Array<RESIDUE_TYPE>(),
     });
   };
 
@@ -128,8 +128,8 @@ export class ResidueContext extends React.Component<any, IResidueContext> {
 
   protected onRemoveNonLockedResidues = () => {
     this.setState({
-      candidateResidues: [],
-      hoveredResidues: [],
+      candidateResidues: new Array<RESIDUE_TYPE>(),
+      hoveredResidues: new Array<RESIDUE_TYPE>(),
     });
   };
 

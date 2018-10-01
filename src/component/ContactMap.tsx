@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Accordion, Icon } from 'semantic-ui-react';
+import { Accordion, Dimmer, Icon, Loader } from 'semantic-ui-react';
 
 import {
   initialResidueContext,
@@ -20,7 +20,6 @@ import {
 } from '../data/chell-data';
 import { CouplingContainer } from '../data/CouplingContainer';
 import ChellChartEvent from '../data/event/ChellChartEvent';
-import { withDimmedLoader } from '../hoc/DimmedComponent';
 import ContactMapChart, { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';
 import ChellRadioGroup from './widget/ChellRadioGroup';
 import ChellSlider from './widget/ChellSlider';
@@ -111,7 +110,13 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 
     return (
       <div id="ContactMapComponent" style={{ ...style }}>
-        {withDimmedLoader(this.renderContactMapChart(pointsToPlot), isDataLoading)}
+        <Dimmer.Dimmable dimmed={true}>
+          <Dimmer active={isDataLoading}>
+            <Loader />
+          </Dimmer>
+          {this.renderContactMapChart(pointsToPlot)}
+        </Dimmer.Dimmable>
+
         {enableSliders && this.renderConfigSliders(sliderStyle, pointsToPlot)}
       </div>
     );

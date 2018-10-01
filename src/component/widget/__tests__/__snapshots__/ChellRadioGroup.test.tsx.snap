@@ -7,18 +7,20 @@ exports[`ChellRadioGroup Should match existing snapshot when given simple data. 
   <FormField>
     How to calculate distance between two residues:
   </FormField>
-  <FormField
+  <GridRow
     key="Sample-first"
   >
-    <Radio
-      checked={true}
-      disabled={false}
-      label="first"
-      name="first"
-      onChange={[Function]}
-      type="radio"
-      value={0}
-    />
-  </FormField>
+    <FormField>
+      <Radio
+        checked={true}
+        disabled={false}
+        label="first"
+        name="first"
+        onChange={[Function]}
+        type="radio"
+        value={0}
+      />
+    </FormField>
+  </GridRow>
 </Form>
 `;

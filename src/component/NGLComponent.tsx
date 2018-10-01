@@ -1,7 +1,7 @@
 import { cloneDeep } from 'lodash';
 import * as NGL from 'ngl';
 import * as React from 'react';
-import { Button, GridRow } from 'semantic-ui-react';
+import { Button, Dimmer, GridRow, Loader } from 'semantic-ui-react';
 import { Vector2 } from 'three';
 
 import withCouplingContext, { ICouplingContext, initialCouplingContext } from '../context/CouplingContext';
@@ -14,7 +14,6 @@ import {
   createDistanceRepresentation,
   createSecStructRepresentation,
 } from '../helper/NGLHelper';
-import { withDimmedLoader } from '../hoc/DimmedComponent';
 
 export type NGL_HOVER_CB_RESULT_TYPE = number;
 
@@ -132,16 +131,20 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     const { height, isDataLoading, residueContext, showConfiguration, style, width } = this.props;
     return (
       <div className="NGLComponent" style={{ ...style }}>
-        {withDimmedLoader(
-          <div
-            className="NGLCanvas"
-            ref={el => (this.canvas = el)}
-            style={{ height, width }}
-            onMouseLeave={this.onCanvasLeave}
-            onKeyDown={this.onKeyDown}
-          />,
-          isDataLoading,
-        )}
+        {
+          <Dimmer.Dimmable dimmed={true}>
+            <Dimmer active={isDataLoading}>
+              <Loader />
+            </Dimmer>
+            <div
+              className="NGLCanvas"
+              ref={el => (this.canvas = el)}
+              style={{ height, width }}
+              onMouseLeave={this.onCanvasLeave}
+              onKeyDown={this.onKeyDown}
+            />
+          </Dimmer.Dimmable>
+        }
         {showConfiguration && (
           <GridRow>
             <Button onClick={residueContext.removeAllLockedResiduePairs}>Remove All Locked Distance Pairs</Button>

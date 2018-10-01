@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CheckboxProps, Form, Radio } from 'semantic-ui-react';
+import { CheckboxProps, Form, Grid, Radio } from 'semantic-ui-react';
 import { IChellWidgetProps } from './ChellWidget';
 
 export interface IChellRadioGroupProps extends IChellWidgetProps {
@@ -48,16 +48,18 @@ export default class ChellRadioGroup extends React.Component<IChellRadioGroupPro
 
   protected renderOptions = (id: string, options: string[], disabled: boolean) =>
     options.map((option, index) => (
-      <Form.Field key={`${id}-${option}`}>
-        <Radio
-          disabled={disabled}
-          label={option.toLocaleLowerCase()}
-          name={option}
-          value={index}
-          checked={this.state.selectedIndex === index}
-          onChange={this.handleChange(index)}
-        />
-      </Form.Field>
+      <Grid.Row key={`${id}-${option}`}>
+        <Form.Field>
+          <Radio
+            checked={this.state.selectedIndex === index}
+            disabled={disabled}
+            label={option.toLocaleLowerCase()}
+            name={option}
+            onChange={this.handleChange(index)}
+            value={index}
+          />
+        </Form.Field>
+      </Grid.Row>
     ));
 }
 
