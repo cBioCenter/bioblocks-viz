@@ -17,7 +17,7 @@ import { ContactMap } from '../src/component/ContactMap';
 import { NGLComponent } from '../src/component/NGLComponent';
 import { PredictedContactMap } from '../src/component/PredictedContactMap';
 import { ChellRadioGroup } from '../src/component/widget/ChellRadioGroup';
-import { CouplingContext } from '../src/context/CouplingContext';
+import { CouplingContextClass } from '../src/context/CouplingContext';
 import { IResidueContext, ResidueContextWrapper } from '../src/context/ResidueContext';
 import { CONTACT_DISTANCE_PROXIMITY, CONTACT_MAP_DATA_TYPE, NGL_DATA_TYPE, VIZ_TYPE } from '../src/data/chell-data';
 import { ChellPDB } from '../src/data/ChellPDB';
@@ -31,8 +31,11 @@ export interface IExampleAppProps {
 }
 
 export interface IExampleAppState {
-  [VIZ_TYPE.CONTACT_MAP]: CONTACT_MAP_DATA_TYPE;
-  [VIZ_TYPE.NGL]?: NGL_DATA_TYPE;
+  [VIZ_TYPE.CONTACT_MAP]: CONTACT_MAP_DATA_TYPE & { isLoading: boolean };
+  [VIZ_TYPE.NGL]: {
+    isLoading: boolean;
+    pdbData?: NGL_DATA_TYPE;
+  };
   arePredictionsAvailable: boolean;
   couplingScores: string;
   errorMsg: string;
@@ -57,10 +60,14 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
   protected static initialState: IExampleAppState = {
     [VIZ_TYPE.CONTACT_MAP]: {
       couplingScores: new CouplingContainer(),
+      isLoading: false,
       pdbData: undefined,
       secondaryStructures: [],
     },
-    [VIZ_TYPE.NGL]: undefined,
+    [VIZ_TYPE.NGL]: {
+      isLoading: false,
+      pdbData: undefined,
+    },
     arePredictionsAvailable: false,
     couplingScores: '',
     errorMsg: '',
@@ -112,7 +119,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
         </Header>
         {errorMsg.length > 1 && this.renderErrorMessage()}
         <Segment attached={true} raised={true}>
-          <CouplingContext>
+          <CouplingContextClass>
             <ResidueContextWrapper.Consumer>
               {residueContext => (
                 <Grid centered={true}>
@@ -120,7 +127,8 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                     <GridColumn width={6}>
                       <NGLComponent
                         backgroundColor={'black'}
-                        data={this.state[VIZ_TYPE.NGL]}
+                        data={this.state[VIZ_TYPE.NGL].pdbData}
+                        isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
                         measuredProximity={this.state.measuredProximity}
                         showConfiguration={false}
                         style={{ ...style, width: 400 }}
@@ -135,6 +143,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                             secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
                           }}
                           enableSliders={true}
+                          isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
                           style={{ ...style, width: 400 }}
                         />
                       ) : (
@@ -145,6 +154,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                             secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
                           }}
                           enableSliders={true}
+                          isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
                           style={{ ...style, width: 400 }}
                         />
                       )}
@@ -159,7 +169,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                 </Grid>
               )}
             </ResidueContextWrapper.Consumer>
-          </CouplingContext>
+          </CouplingContextClass>
         </Segment>
       </div>
     );
@@ -312,6 +322,12 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     if (file !== null) {
       if (file.name.endsWith('.csv')) {
         try {
+          this.setState({
+            [VIZ_TYPE.CONTACT_MAP]: {
+              ...this.state[VIZ_TYPE.CONTACT_MAP],
+              isLoading: true,
+            },
+          });
           const parsedFile = await readFileAsText(file);
           const couplingScores = getCouplingScoresData(parsedFile, this.state.residueMapping);
 
@@ -323,6 +339,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
               couplingScores: pdbData
                 ? pdbData.amendPDBWithCouplingScores(couplingScores.rankedContacts, measuredProximity)
                 : couplingScores,
+              isLoading: false,
               pdbData: this.state.pdbData,
               secondaryStructures: [],
             },
@@ -355,17 +372,31 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     const file = files ? files.item(0) : null;
     if (file !== null) {
       if (file.name.endsWith('.pdb')) {
+        this.setState({
+          [VIZ_TYPE.CONTACT_MAP]: {
+            ...this.state[VIZ_TYPE.CONTACT_MAP],
+            isLoading: true,
+          },
+          [VIZ_TYPE.NGL]: {
+            ...this.state[VIZ_TYPE.NGL],
+            isLoading: true,
+          },
+        });
         const pdbData = await ChellPDB.createPDB(file);
         const couplingScores = pdbData.amendPDBWithCouplingScores(
           this.state[VIZ_TYPE.CONTACT_MAP].couplingScores.rankedContacts,
           measuredProximity,
         );
         this.setState({
-          [VIZ_TYPE.NGL]: pdbData.nglStructure,
           [VIZ_TYPE.CONTACT_MAP]: {
             couplingScores,
+            isLoading: false,
             pdbData,
             secondaryStructures: pdbData.secondaryStructureSections,
+          },
+          [VIZ_TYPE.NGL]: {
+            isLoading: false,
+            pdbData: pdbData.nglStructure,
           },
           errorMsg: '',
           filenames: {
@@ -400,6 +431,12 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
       const isValidFile = validFileExtensions.reduce((prev, ext) => prev || file.name.endsWith(`.${ext}`), false);
       if (isValidFile) {
         try {
+          this.setState({
+            [VIZ_TYPE.CONTACT_MAP]: {
+              ...this.state[VIZ_TYPE.CONTACT_MAP],
+              isLoading: true,
+            },
+          });
           const parsedFile = await readFileAsText(file);
           const residueMapping = generateResidueMapping(parsedFile);
           const couplingScores = getCouplingScoresData(this.state.couplingScores, residueMapping);
@@ -408,6 +445,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
               couplingScores: pdbData
                 ? pdbData.amendPDBWithCouplingScores(couplingScores.rankedContacts, measuredProximity)
                 : couplingScores,
+              isLoading: false,
               secondaryStructures: [],
             },
             errorMsg: '',

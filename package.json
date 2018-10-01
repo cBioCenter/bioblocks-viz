@@ -1,6 +1,6 @@
 {
   "name": "chell-viz",
-  "version": "0.0.78",
+  "version": "0.0.79",
   "author": "Biostatistics and Computational Biology at Dana-Farber <bcb@jimmy.harvard.edu>",
   "license": "MIT",
   "engines": {
@@ -28,8 +28,8 @@
     "globals": {
       "DEV": true,
       "ts-jest": {
-        "skipBabel": false,
-        "tsConfigFile": "tsconfig.json"
+        "tsConfig": "tsconfig.json",
+        "babelConfig": true
       }
     },
     "moduleDirectories": [
@@ -38,9 +38,9 @@
       "types"
     ],
     "moduleFileExtensions": [
+      "js",
       "ts",
-      "tsx",
-      "js"
+      "tsx"
     ],
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.ts",
@@ -49,6 +49,7 @@
     "modulePathIgnorePatterns": [
       "dist"
     ],
+    "preset": "ts-jest",
     "reporters": [
       "default",
       "jest-junit"
@@ -121,8 +122,6 @@
     "lint": "yarn npm-run-all lint:*",
     "lint:src": "tslint --project ./",
     "lint:markdown": "markdownlint ./ -c ./markdownlint.json -i node_modules",
-    "precommit": "lint-staged && yarn test:staged && yarn doc:precommit",
-    "prepush": "yarn lint",
     "prepublish": "rm -rf lib && tsc -p configs/tsconfig.publish.json",
     "start": "webpack-dev-server --open --mode development --config ./configs/webpack.dev.ts",
     "start:hot": "webpack-dev-server --hot-only --open --mode development --config ./configs/webpack.dev.ts",
@@ -148,7 +147,6 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-iframe-comm": "^1.2.2",
-    "react-loadable": "^5.5.0",
     "semantic-ui-react": "^0.82.1"
   },
   "devDependencies": {
@@ -165,7 +163,6 @@
     "@types/rc-slider": "^8.2.3",
     "@types/react": "^16.4.7",
     "@types/react-dom": "^16.0.5",
-    "@types/react-loadable": "^5.4.1",
     "@types/react-test-renderer": "^16.0.1",
     "@types/signals": "^1.0.1",
     "@types/three": "^0.92.22",
@@ -186,7 +183,7 @@
     "global": "^4.3.2",
     "graceful-fs": "^4.1.11",
     "html-webpack-plugin": "^4.0.0-alpha.2",
-    "husky": "^0.14.3",
+    "husky": "^1.0.1",
     "ify-loader": "^1.1.0",
     "jest": "^23.1.0",
     "jest-environment-enzyme": "^6.0.4",
@@ -204,7 +201,7 @@
     "signals": "^1.0.0",
     "style-loader": "^0.23.0",
     "three": "^0.96.0",
-    "ts-jest": "23.1.4",
+    "ts-jest": "^23.10.2",
     "ts-loader": "^5.1.0",
     "ts-node": "^7.0.0",
     "tslint": "^5.10.0",
@@ -222,6 +219,12 @@
   },
   "bugs": {
     "url": "https://github.com/cBioCenter/chell-viz/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn lint",
+      "pre-commit": "lint-staged && yarn test:staged && yarn doc:precommit"
+    }
   },
   "repository": {
     "type": "git",

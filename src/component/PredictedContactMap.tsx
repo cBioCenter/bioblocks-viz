@@ -10,7 +10,8 @@ export interface IPredictedContactMapProps {
   enableSliders: boolean;
   height: number;
   incorrectColor: string;
-  style: React.CSSProperties;
+  isDataLoading: boolean;
+  style?: React.CSSProperties;
   width: number;
 }
 
@@ -23,7 +24,7 @@ export const initialPredictedContactMapState = {
 export type PredictedContactMapState = typeof initialPredictedContactMapState;
 
 export class PredictedContactMap extends React.Component<IPredictedContactMapProps, PredictedContactMapState> {
-  public static defaultProps: Partial<IPredictedContactMapProps> = {
+  public static defaultProps = {
     correctColor: '#ff0000',
     data: {
       couplingScores: new CouplingContainer(),
@@ -32,6 +33,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     enableSliders: true,
     height: 400,
     incorrectColor: '#000000',
+    isDataLoading: false,
     width: 400,
   };
 

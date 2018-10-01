@@ -30,7 +30,7 @@ export interface IVizPanelState {
  * @extends {React.Component<VizPanelProps, VizPanelState>}
  */
 export class VizSelectorPanel extends React.Component<IVizPanelProps, IVizPanelState> {
-  public static defaultProps: Partial<IVizPanelProps> = {
+  public static defaultProps = {
     data: new Object(),
     height: 450,
     initialViz: VIZ_TYPE['T-SNE'],

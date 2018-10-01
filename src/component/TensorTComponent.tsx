@@ -14,7 +14,7 @@ export interface ITComponentProps {
 }
 
 class TensorTComponentClass extends React.Component<ITComponentProps, any> {
-  public static defaultProps: ITComponentProps = {
+  public static defaultProps = {
     cellContext: {
       ...initialCellContext,
     },

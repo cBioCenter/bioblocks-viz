@@ -20,7 +20,7 @@ export interface IProteinFeatureViewerState {
 }
 
 class ProteinFeatureViewer extends React.Component<IProteinFeatureViewerProps, IProteinFeatureViewerState> {
-  public static defaultProps: Partial<IProteinFeatureViewerProps> = {
+  public static defaultProps = {
     // initialProteinId: 'Q13485',
     initialProteinId: 'Q9NYJ7',
   };

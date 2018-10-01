@@ -17,3 +17,9 @@ declare namespace NodeJS {
     window: any;
   }
 }
+
+// Quick fix due to compilation issue with TS3.1 lib.dom type: https://github.com/Microsoft/TypeScript/wiki/Breaking-Changes#typescript-31
+// tslint:disable-next-line:interface-name
+interface WebGLRenderingContext {
+  getExtension(extensionName: any): any;
+}

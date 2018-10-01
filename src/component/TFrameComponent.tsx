@@ -13,7 +13,7 @@ export interface ITComponentProps {
 }
 
 class TFrameComponentClass extends React.Component<ITComponentProps, any> {
-  public static defaultProps: ITComponentProps = {
+  public static defaultProps = {
     cellContext: {
       ...initialCellContext,
     },

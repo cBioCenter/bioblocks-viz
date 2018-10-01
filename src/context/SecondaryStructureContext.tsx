@@ -89,5 +89,15 @@ export class SecondaryStructureContext extends React.Component<any, SecondaryStr
 
 const SecondaryStructureContextWrapper = React.createContext(initialSecondaryStructureContext);
 
+export const withSecondaryStructureContext = (Component: any) => {
+  return function SecondaryStructureContextHOC(props: any) {
+    return (
+      <SecondaryStructureContextWrapper.Consumer>
+        {secondaryStructure => <Component {...props} secondaryStructureContext={secondaryStructure} />}
+      </SecondaryStructureContextWrapper.Consumer>
+    );
+  };
+};
+
 export default SecondaryStructureContextWrapper;
 export { SecondaryStructureContextWrapper };

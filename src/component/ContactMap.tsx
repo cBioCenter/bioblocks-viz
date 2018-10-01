@@ -7,10 +7,9 @@ import {
   ResidueContextWrapper,
   ResidueSelection,
 } from '../context/ResidueContext';
-import {
+import SecondaryStructureContextWrapper, {
   initialSecondaryStructureContext,
   ISecondaryStructureContext,
-  SecondaryStructureContextWrapper,
 } from '../context/SecondaryStructureContext';
 import {
   CONFIGURATION_COMPONENT_TYPE,
@@ -21,6 +20,7 @@ import {
 } from '../data/chell-data';
 import { CouplingContainer } from '../data/CouplingContainer';
 import ChellChartEvent from '../data/event/ChellChartEvent';
+import { withDimmedLoader } from '../hoc/DimmedComponent';
 import ContactMapChart, { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';
 import ChellRadioGroup from './widget/ChellRadioGroup';
 import ChellSlider from './widget/ChellSlider';
@@ -48,11 +48,12 @@ export interface IContactMapProps {
   formattedPoints: IContactMapChartData[];
   height: number;
   highlightColor: string;
+  isDataLoading: boolean;
   observedColor: string;
   onBoxSelection?: ((residues: RESIDUE_TYPE[]) => void);
   residueContext: IResidueContext;
   secondaryStructureContext: ISecondaryStructureContext;
-  style: React.CSSProperties;
+  style?: React.CSSProperties;
   width: number;
 }
 
@@ -64,7 +65,7 @@ export const initialContactMapState = {
 export type ContactMapState = Readonly<typeof initialContactMapState>;
 
 export class ContactMapClass extends React.Component<IContactMapProps, ContactMapState> {
-  public static defaultProps: Partial<IContactMapProps> = {
+  public static defaultProps = {
     configurations: new Array<IContactMapConfiguration>(),
     data: {
       couplingScores: new CouplingContainer(),
@@ -74,8 +75,8 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     formattedPoints: new Array<IContactMapChartData>(),
     height: 400,
     highlightColor: '#ff8800',
+    isDataLoading: false,
     observedColor: '#0000ff',
-    onBoxSelection: undefined as undefined | ((residues: RESIDUE_TYPE[]) => void),
     residueContext: {
       ...initialResidueContext,
     },
@@ -103,14 +104,14 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
   }
 
   public render() {
-    const { enableSliders, style, width } = this.props;
+    const { enableSliders, isDataLoading, style, width } = this.props;
     const { pointsToPlot } = this.state;
 
     const sliderStyle = { width: width * 0.9 };
 
     return (
       <div id="ContactMapComponent" style={{ ...style }}>
-        {this.renderContactMapChart(pointsToPlot)}
+        {withDimmedLoader(this.renderContactMapChart(pointsToPlot), isDataLoading)}
         {enableSliders && this.renderConfigSliders(sliderStyle, pointsToPlot)}
       </div>
     );

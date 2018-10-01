@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 import { CouplingContainer } from '../data/CouplingContainer';
-import { ResidueContext } from './ResidueContext';
-import { SecondaryStructureContext } from './SecondaryStructureContext';
+import { ResidueContext, ResidueContextWrapper } from './ResidueContext';
+import { SecondaryStructureContext, SecondaryStructureContextWrapper } from './SecondaryStructureContext';
 
 export const initialCouplingContext = {
   couplingScores: new CouplingContainer(),
@@ -16,7 +16,7 @@ export type ICouplingContext = typeof initialCouplingContext;
  * @export
  * @extends {React.Component<any, ICouplingContext>}
  */
-export class CouplingContext extends React.Component<any, ICouplingContext> {
+export class CouplingContextClass extends React.Component<any, ICouplingContext> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -28,14 +28,39 @@ export class CouplingContext extends React.Component<any, ICouplingContext> {
     return (
       <SecondaryStructureContext>
         <ResidueContext>
-          <CouplingContextWrapper.Provider value={this.state}>{this.props.children}</CouplingContextWrapper.Provider>
+          <CouplingContext.Provider value={this.state}>{this.props.children}</CouplingContext.Provider>
         </ResidueContext>
       </SecondaryStructureContext>
     );
   }
 }
 
-const CouplingContextWrapper = React.createContext(initialCouplingContext);
+export const CouplingContext = React.createContext(initialCouplingContext);
 
-export default CouplingContextWrapper;
-export { CouplingContextWrapper };
+const withCouplingContext = (Component: any) => {
+  return function CouplingContextWrapper(props: any) {
+    return (
+      <CouplingContext.Consumer>
+        {couplingContext => (
+          <SecondaryStructureContextWrapper.Consumer>
+            {secStructContext => (
+              <ResidueContextWrapper.Consumer>
+                {residueContext => (
+                  <Component
+                    {...props}
+                    residueContext={{ ...residueContext }}
+                    secondaryStructureContext={{ ...secStructContext }}
+                    couplingContext={{ ...couplingContext }}
+                  />
+                )}
+              </ResidueContextWrapper.Consumer>
+            )}
+          </SecondaryStructureContextWrapper.Consumer>
+        )}
+      </CouplingContext.Consumer>
+    );
+  };
+};
+
+export default withCouplingContext;
+export { withCouplingContext };

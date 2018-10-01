@@ -153,5 +153,15 @@ const ResidueContextWrapper = React.createContext({
   ...initialResidueContext,
 });
 
+export const withResidueContext = (Component: any) => {
+  return function ResidueContextHOC(props: any) {
+    return (
+      <ResidueContextWrapper.Consumer>
+        {residueContext => <Component {...props} residueContext={residueContext} />}
+      </ResidueContextWrapper.Consumer>
+    );
+  };
+};
+
 export default ResidueContextWrapper;
 export { ResidueContextWrapper };

@@ -22,9 +22,10 @@ export interface IFeatureViewerState {
 }
 
 class FeatureViewer extends React.Component<IFeatureViewerProps, IFeatureViewerState> {
-  public static defaultProps: Partial<IFeatureViewerProps> = {
+  public static defaultProps = {
     data: [],
     height: 200,
+    showGrouped: false,
     title: '',
     width: 600,
   };

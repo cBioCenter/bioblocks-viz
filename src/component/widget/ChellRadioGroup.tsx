@@ -15,7 +15,7 @@ export interface IChellRadioGroupState {
 }
 
 export default class ChellRadioGroup extends React.Component<IChellRadioGroupProps, IChellRadioGroupState> {
-  public static defaultProps: Partial<IChellRadioGroupProps> = {
+  public static defaultProps = {
     disabled: false,
     title: 'How to calculate distance between two residues:',
   };
