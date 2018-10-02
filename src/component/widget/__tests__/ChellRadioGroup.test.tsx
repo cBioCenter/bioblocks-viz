@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { Radio } from 'semantic-ui-react';
+import { Form } from 'semantic-ui-react';
 import ChellRadioGroup, { IChellRadioGroupProps } from '../ChellRadioGroup';
 
 describe('ChellRadioGroup', () => {
@@ -20,7 +20,7 @@ describe('ChellRadioGroup', () => {
     const expected = 1;
     expect(wrapper.state('selectedIndex')).not.toBe(expected);
     wrapper
-      .find(Radio)
+      .find(Form.Radio)
       .at(1)
       .simulate('change');
     expect(wrapper.state('selectedIndex')).toBe(expected);

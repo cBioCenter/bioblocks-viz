@@ -65,11 +65,6 @@ export enum CONTACT_DISTANCE_PROXIMITY {
   C_ALPHA = 'C-α',
 }
 
-export enum CONFIGURATION_COMPONENT_TYPE {
-  RADIO = 'RADIO',
-  SLIDER = 'SLIDER',
-}
-
 export interface ISecondaryStructureData {
   resno: number;
   structId: SECONDARY_STRUCTURE_KEYS;

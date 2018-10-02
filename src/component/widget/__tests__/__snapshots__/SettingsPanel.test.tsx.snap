@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChellSlider Should match the existing snapshot when given no configurations. 1`] = `
+<div>
+  <Grid
+    columns={1}
+  >
+    <GridColumn>
+      <Button
+        as="button"
+        basic={true}
+        floated="right"
+        icon="settings"
+        onClick={[Function]}
+        role="button"
+      />
+    </GridColumn>
+    <SidebarPushable>
+      <Sidebar
+        animation="overlay"
+        as={[Function]}
+        direction="left"
+        duration={500}
+        inverted={true}
+        style={
+          Object {
+            "opacity": 0.85,
+            "width": "100%",
+          }
+        }
+        vertical={true}
+        visible={false}
+      >
+        <Grid
+          centered={true}
+        />
+      </Sidebar>
+      <SidebarPusher />
+    </SidebarPushable>
+  </Grid>
+</div>
+`;

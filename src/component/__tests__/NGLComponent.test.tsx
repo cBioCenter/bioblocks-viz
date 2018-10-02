@@ -1,4 +1,4 @@
-import { mount, ReactWrapper } from 'enzyme';
+import { mount, ReactWrapper, shallow } from 'enzyme';
 import * as NGL from 'ngl';
 import * as React from 'react';
 
@@ -13,18 +13,8 @@ describe('NGLComponent', () => {
     },
   };
 
-  it("Should match existing snapshot when canvas isn't available.", () => {
-    expect(mount(<NGLComponent />)).toMatchSnapshot();
-  });
-
-  it('Should match existing snapshot when given sample data', () => {
-    const wrapper = mount(<NGLComponent data={sampleData} />);
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('Should match existing snapshot when configuration is disabled', () => {
-    const wrapper = mount(<NGLComponent data={sampleData} showConfiguration={false} />);
-    expect(wrapper).toMatchSnapshot();
+  it('Should match existing snapshot when unconnected to a context.', () => {
+    expect(shallow(<NGLComponentClass />)).toMatchSnapshot();
   });
 
   it('Should handle prop updates.', () => {
@@ -176,7 +166,10 @@ describe('NGLComponent', () => {
     const wrapper = mount(
       <NGLComponentClass residueContext={{ ...initialResidueContext, removeAllLockedResiduePairs: removeSpy }} />,
     );
-    wrapper.find('Button').simulate('click');
+    wrapper
+      .find('#remove-all-locked-distance-pairs-0')
+      .at(0)
+      .simulate('click');
     expect(removeSpy).toHaveBeenCalledTimes(1);
   });
 
@@ -382,6 +375,14 @@ describe('NGLComponent', () => {
 
       global.dispatchEvent(new Event('resize'));
       expect(onResizeSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it('Should remove the onResize handler when unmounted.', async () => {
+      const onResizeSpy = jest.fn();
+      const wrapper = mount(<NGLComponent onResize={onResizeSpy} />);
+      await wrapper.unmount();
+      global.dispatchEvent(new Event('resize'));
+      expect(onResizeSpy).toHaveBeenCalledTimes(0);
     });
   });
 });

@@ -1,238 +1,259 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ContactMapChart Should match existing snapshot when given data with extra axes. 1`] = `
-<PlotlyChart
-  candidateResidues={Array []}
-  config={Object {}}
-  data={
-    Array [
-      Object {
-        "hoverinfo": "x+y+z",
-        "marker": Object {
-          "color": Array [],
-          "size": 0,
-        },
-        "mode": "markers",
-        "name": " undefined",
-        "type": "scattergl",
-        "x": Array [],
-        "y": Array [],
-        "z": Array [],
-      },
-    ]
-  }
-  dataTransformFn={[Function]}
-  layout={
-    Object {
-      "height": 520,
-      "legend": Object {
-        "orientation": "h",
-        "y": -0.4,
-        "yanchor": "bottom",
-      },
-      "margin": Object {
-        "b": 50,
-        "l": 50,
-      },
-      "showlegend": true,
-      "xaxis": Object {
-        "autorange": false,
-        "nticks": 10,
-        "range": Array [
-          1,
-          100,
-        ],
-        "showline": true,
-        "tickmode": "auto",
-        "title": "Residue #",
-      },
-      "yaxis": Object {
-        "autorange": false,
-        "nticks": 10,
-        "range": Array [
-          100,
-          1,
-        ],
-        "showline": true,
-        "tickmode": "auto",
-        "title": "Residue #",
-      },
-    }
-  }
-  secondaryStructures={
-    Array [
+<SettingsPanel
+  configurations={Array []}
+  direction="left"
+  inverted={true}
+  width="100%"
+>
+  <PlotlyChart
+    candidateResidues={Array []}
+    config={Object {}}
+    data={
       Array [
-        Chell1DSection {
-          "label": "H",
-          "sectionEnd": 2,
-          "sectionStart": 0,
+        Object {
+          "hoverinfo": "x+y+z",
+          "marker": Object {
+            "color": Array [],
+            "size": 0,
+          },
+          "mode": "markers",
+          "name": " undefined",
+          "type": "scattergl",
+          "x": Array [],
+          "y": Array [],
+          "z": Array [],
         },
-        Chell1DSection {
-          "label": "E",
-          "sectionEnd": 3,
-          "sectionStart": 3,
+      ]
+    }
+    dataTransformFn={[Function]}
+    layout={
+      Object {
+        "height": 520,
+        "legend": Object {
+          "orientation": "h",
+          "y": -0.4,
+          "yanchor": "bottom",
         },
-      ],
-    ]
-  }
-  selectedSecondaryStructures={Array []}
-  showLoader={true}
-/>
+        "margin": Object {
+          "b": 75,
+          "l": 65,
+        },
+        "showlegend": true,
+        "xaxis": Object {
+          "autorange": false,
+          "nticks": 10,
+          "range": Array [
+            1,
+            100,
+          ],
+          "showline": true,
+          "tickmode": "auto",
+          "title": "Residue #",
+        },
+        "yaxis": Object {
+          "autorange": false,
+          "nticks": 10,
+          "range": Array [
+            100,
+            1,
+          ],
+          "showline": true,
+          "tickmode": "auto",
+          "title": "Residue #",
+        },
+      }
+    }
+    secondaryStructures={
+      Array [
+        Array [
+          Chell1DSection {
+            "label": "H",
+            "sectionEnd": 2,
+            "sectionStart": 0,
+          },
+          Chell1DSection {
+            "label": "E",
+            "sectionEnd": 3,
+            "sectionStart": 3,
+          },
+        ],
+      ]
+    }
+    selectedSecondaryStructures={Array []}
+    showLoader={true}
+  />
+</SettingsPanel>
 `;
 
 exports[`ContactMapChart Should match existing snapshot when given data with multiple secondary structures. 1`] = `
-<PlotlyChart
-  candidateResidues={Array []}
-  config={Object {}}
-  data={
-    Array [
-      Object {
-        "hoverinfo": "x+y+z",
-        "marker": Object {
-          "color": Array [],
-          "size": 0,
+<SettingsPanel
+  configurations={Array []}
+  direction="left"
+  inverted={true}
+  width="100%"
+>
+  <PlotlyChart
+    candidateResidues={Array []}
+    config={Object {}}
+    data={
+      Array [
+        Object {
+          "hoverinfo": "x+y+z",
+          "marker": Object {
+            "color": Array [],
+            "size": 0,
+          },
+          "mode": "markers",
+          "name": " undefined",
+          "type": "scattergl",
+          "x": Array [],
+          "y": Array [],
+          "z": Array [],
         },
-        "mode": "markers",
-        "name": " undefined",
-        "type": "scattergl",
-        "x": Array [],
-        "y": Array [],
-        "z": Array [],
-      },
-    ]
-  }
-  dataTransformFn={[Function]}
-  layout={
-    Object {
-      "height": 520,
-      "legend": Object {
-        "orientation": "h",
-        "y": -0.4,
-        "yanchor": "bottom",
-      },
-      "margin": Object {
-        "b": 50,
-        "l": 50,
-      },
-      "showlegend": true,
-      "xaxis": Object {
-        "autorange": false,
-        "nticks": 10,
-        "range": Array [
-          1,
-          100,
-        ],
-        "showline": true,
-        "tickmode": "auto",
-        "title": "Residue #",
-      },
-      "yaxis": Object {
-        "autorange": false,
-        "nticks": 10,
-        "range": Array [
-          100,
-          1,
-        ],
-        "showline": true,
-        "tickmode": "auto",
-        "title": "Residue #",
-      },
+      ]
     }
-  }
-  secondaryStructures={
-    Array [
+    dataTransformFn={[Function]}
+    layout={
+      Object {
+        "height": 520,
+        "legend": Object {
+          "orientation": "h",
+          "y": -0.4,
+          "yanchor": "bottom",
+        },
+        "margin": Object {
+          "b": 75,
+          "l": 65,
+        },
+        "showlegend": true,
+        "xaxis": Object {
+          "autorange": false,
+          "nticks": 10,
+          "range": Array [
+            1,
+            100,
+          ],
+          "showline": true,
+          "tickmode": "auto",
+          "title": "Residue #",
+        },
+        "yaxis": Object {
+          "autorange": false,
+          "nticks": 10,
+          "range": Array [
+            100,
+            1,
+          ],
+          "showline": true,
+          "tickmode": "auto",
+          "title": "Residue #",
+        },
+      }
+    }
+    secondaryStructures={
       Array [
-        Chell1DSection {
-          "label": "H",
-          "sectionEnd": 2,
-          "sectionStart": 0,
-        },
-        Chell1DSection {
-          "label": "E",
-          "sectionEnd": 3,
-          "sectionStart": 3,
-        },
-      ],
-      Array [
-        Chell1DSection {
-          "label": "C",
-          "sectionEnd": 2,
-          "sectionStart": 0,
-        },
-        Chell1DSection {
-          "label": "H",
-          "sectionEnd": 14,
-          "sectionStart": 11,
-        },
-      ],
-    ]
-  }
-  selectedSecondaryStructures={Array []}
-  showLoader={true}
-/>
+        Array [
+          Chell1DSection {
+            "label": "H",
+            "sectionEnd": 2,
+            "sectionStart": 0,
+          },
+          Chell1DSection {
+            "label": "E",
+            "sectionEnd": 3,
+            "sectionStart": 3,
+          },
+        ],
+        Array [
+          Chell1DSection {
+            "label": "C",
+            "sectionEnd": 2,
+            "sectionStart": 0,
+          },
+          Chell1DSection {
+            "label": "H",
+            "sectionEnd": 14,
+            "sectionStart": 11,
+          },
+        ],
+      ]
+    }
+    selectedSecondaryStructures={Array []}
+    showLoader={true}
+  />
+</SettingsPanel>
 `;
 
 exports[`ContactMapChart Should match existing snapshot when given simple data. 1`] = `
-<PlotlyChart
-  candidateResidues={Array []}
-  config={Object {}}
-  data={
-    Array [
-      Object {
-        "hoverinfo": "x+y+z",
-        "marker": Object {
-          "color": Array [],
-          "size": 0,
+<SettingsPanel
+  configurations={Array []}
+  direction="left"
+  inverted={true}
+  width="100%"
+>
+  <PlotlyChart
+    candidateResidues={Array []}
+    config={Object {}}
+    data={
+      Array [
+        Object {
+          "hoverinfo": "x+y+z",
+          "marker": Object {
+            "color": Array [],
+            "size": 0,
+          },
+          "mode": "markers",
+          "name": " undefined",
+          "type": "scattergl",
+          "x": Array [],
+          "y": Array [],
+          "z": Array [],
         },
-        "mode": "markers",
-        "name": " undefined",
-        "type": "scattergl",
-        "x": Array [],
-        "y": Array [],
-        "z": Array [],
-      },
-    ]
-  }
-  dataTransformFn={[Function]}
-  layout={
-    Object {
-      "height": 520,
-      "legend": Object {
-        "orientation": "h",
-        "y": -0.4,
-        "yanchor": "bottom",
-      },
-      "margin": Object {
-        "b": 50,
-        "l": 50,
-      },
-      "showlegend": true,
-      "xaxis": Object {
-        "autorange": false,
-        "nticks": 10,
-        "range": Array [
-          1,
-          100,
-        ],
-        "showline": true,
-        "tickmode": "auto",
-        "title": "Residue #",
-      },
-      "yaxis": Object {
-        "autorange": false,
-        "nticks": 10,
-        "range": Array [
-          100,
-          1,
-        ],
-        "showline": true,
-        "tickmode": "auto",
-        "title": "Residue #",
-      },
+      ]
     }
-  }
-  secondaryStructures={Array []}
-  selectedSecondaryStructures={Array []}
-  showLoader={true}
-/>
+    dataTransformFn={[Function]}
+    layout={
+      Object {
+        "height": 520,
+        "legend": Object {
+          "orientation": "h",
+          "y": -0.4,
+          "yanchor": "bottom",
+        },
+        "margin": Object {
+          "b": 75,
+          "l": 65,
+        },
+        "showlegend": true,
+        "xaxis": Object {
+          "autorange": false,
+          "nticks": 10,
+          "range": Array [
+            1,
+            100,
+          ],
+          "showline": true,
+          "tickmode": "auto",
+          "title": "Residue #",
+        },
+        "yaxis": Object {
+          "autorange": false,
+          "nticks": 10,
+          "range": Array [
+            100,
+            1,
+          ],
+          "showline": true,
+          "tickmode": "auto",
+          "title": "Residue #",
+        },
+      }
+    }
+    secondaryStructures={Array []}
+    selectedSecondaryStructures={Array []}
+    showLoader={true}
+  />
+</SettingsPanel>
 `;

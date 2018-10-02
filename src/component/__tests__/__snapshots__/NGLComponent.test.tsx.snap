@@ -1,403 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NGLComponent Should match existing snapshot when canvas isn't available. 1`] = `
-<NGLComponent>
-  <NGLComponentClass
-    backgroundColor="#000000"
-    couplingContext={
-      Object {
-        "couplingScores": CouplingContainer {
-          "colCounter": 0,
-          "contacts": Array [],
-          "getCouplingScore": [Function],
-          "includes": [Function],
-          "indexRange": Object {
-            "max": 50,
-            "min": 1,
-          },
-          "rowCounter": 0,
-          "totalStoredContacts": 0,
-        },
-      }
-    }
-    height={400}
-    isDataLoading={false}
-    measuredProximity="C-α"
-    residueContext={
-      Object {
-        "addCandidateResidues": [Function],
-        "addHoveredResidues": [Function],
-        "addLockedResiduePair": [Function],
-        "candidateResidues": Array [],
-        "clearAllResidues": [Function],
-        "hoveredResidues": Array [],
-        "lockedResiduePairs": Map {},
-        "removeAllLockedResiduePairs": [Function],
-        "removeCandidateResidues": [Function],
-        "removeHoveredResidues": [Function],
-        "removeLockedResiduePair": [Function],
-        "removeNonLockedResidues": [Function],
-        "toggleLockedResiduePair": [Function],
-      }
-    }
-    secondaryStructureContext={
-      Object {
-        "addSecondaryStructure": [Function],
-        "clearSecondaryStructure": [Function],
-        "removeSecondaryStructure": [Function],
-        "selectedSecondaryStructures": Array [],
-        "temporarySecondaryStructures": Array [],
-        "toggleSecondaryStructure": [Function],
-      }
-    }
-    showConfiguration={true}
-    width={400}
-  >
-    <div
-      className="NGLComponent"
-      style={Object {}}
-    >
-      <DimmerDimmable
-        dimmed={true}
-      >
-        <div
-          className="dimmed dimmable"
-        >
-          <Dimmer
-            active={false}
-          >
-            <DimmerInner
-              active={false}
-            >
-              <div
-                className="ui dimmer"
-                onClick={[Function]}
-              >
-                <div
-                  className="content"
-                >
-                  <Loader>
-                    <div
-                      className="ui loader"
-                    />
-                  </Loader>
-                </div>
-              </div>
-            </DimmerInner>
-          </Dimmer>
-          <div
-            className="NGLCanvas"
-            onKeyDown={[Function]}
-            onMouseLeave={[Function]}
-            style={
-              Object {
-                "height": 400,
-                "width": 400,
-              }
-            }
-          />
-        </div>
-      </DimmerDimmable>
-      <GridRow>
-        <div
-          className="row"
-        >
-          <Button
-            as="button"
-            onClick={[Function]}
-            role="button"
-          >
-            <button
-              className="ui button"
-              onClick={[Function]}
-              role="button"
-            >
-              Remove All Locked Distance Pairs
-            </button>
-          </Button>
-        </div>
-      </GridRow>
-    </div>
-  </NGLComponentClass>
-</NGLComponent>
-`;
-
-exports[`NGLComponent Should match existing snapshot when configuration is disabled 1`] = `
-<NGLComponent
-  data={
-    Object {
-      "residueStore": Object {
-        "resno": Uint32Array [
-          0,
-          1,
-          2,
-          3,
-          4,
-        ],
-      },
-    }
-  }
-  showConfiguration={false}
+exports[`NGLComponent Should match existing snapshot when unconnected to a context. 1`] = `
+<div
+  className="NGLComponent"
+  style={Object {}}
 >
-  <NGLComponentClass
-    backgroundColor="#000000"
-    couplingContext={
-      Object {
-        "couplingScores": CouplingContainer {
-          "colCounter": 0,
-          "contacts": Array [],
-          "getCouplingScore": [Function],
-          "includes": [Function],
-          "indexRange": Object {
-            "max": 50,
-            "min": 1,
-          },
-          "rowCounter": 0,
-          "totalStoredContacts": 0,
-        },
-      }
-    }
-    data={
-      Object {
-        "residueStore": Object {
-          "resno": Uint32Array [
-            0,
-            1,
-            2,
-            3,
-            4,
-          ],
-        },
-      }
-    }
-    height={400}
-    isDataLoading={false}
-    measuredProximity="C-α"
-    residueContext={
-      Object {
-        "addCandidateResidues": [Function],
-        "addHoveredResidues": [Function],
-        "addLockedResiduePair": [Function],
-        "candidateResidues": Array [],
-        "clearAllResidues": [Function],
-        "hoveredResidues": Array [],
-        "lockedResiduePairs": Map {},
-        "removeAllLockedResiduePairs": [Function],
-        "removeCandidateResidues": [Function],
-        "removeHoveredResidues": [Function],
-        "removeLockedResiduePair": [Function],
-        "removeNonLockedResidues": [Function],
-        "toggleLockedResiduePair": [Function],
-      }
-    }
-    secondaryStructureContext={
-      Object {
-        "addSecondaryStructure": [Function],
-        "clearSecondaryStructure": [Function],
-        "removeSecondaryStructure": [Function],
-        "selectedSecondaryStructures": Array [],
-        "temporarySecondaryStructures": Array [],
-        "toggleSecondaryStructure": [Function],
-      }
-    }
-    showConfiguration={false}
-    width={400}
+  <DimmerDimmable
+    dimmed={true}
   >
-    <div
-      className="NGLComponent"
-      style={Object {}}
+    <Dimmer
+      active={false}
     >
-      <DimmerDimmable
-        dimmed={true}
-      >
-        <div
-          className="dimmed dimmable"
-        >
-          <Dimmer
-            active={false}
-          >
-            <DimmerInner
-              active={false}
-            >
-              <div
-                className="ui dimmer"
-                onClick={[Function]}
-              >
-                <div
-                  className="content"
-                >
-                  <Loader>
-                    <div
-                      className="ui loader"
-                    />
-                  </Loader>
-                </div>
-              </div>
-            </DimmerInner>
-          </Dimmer>
-          <div
-            className="NGLCanvas"
-            onKeyDown={[Function]}
-            onMouseLeave={[Function]}
-            style={
-              Object {
-                "height": 400,
-                "width": 400,
-              }
-            }
-          />
-        </div>
-      </DimmerDimmable>
-    </div>
-  </NGLComponentClass>
-</NGLComponent>
-`;
-
-exports[`NGLComponent Should match existing snapshot when given sample data 1`] = `
-<NGLComponent
-  data={
-    Object {
-      "residueStore": Object {
-        "resno": Uint32Array [
-          0,
-          1,
-          2,
-          3,
-          4,
-        ],
-      },
-    }
-  }
->
-  <NGLComponentClass
-    backgroundColor="#000000"
-    couplingContext={
-      Object {
-        "couplingScores": CouplingContainer {
-          "colCounter": 0,
-          "contacts": Array [],
-          "getCouplingScore": [Function],
-          "includes": [Function],
-          "indexRange": Object {
-            "max": 50,
-            "min": 1,
+      <Loader />
+    </Dimmer>
+    <SettingsPanel
+      configurations={
+        Array [
+          Object {
+            "name": "Remove All Locked Distance Pairs",
+            "onClick": [Function],
+            "type": "BUTTON",
           },
-          "rowCounter": 0,
-          "totalStoredContacts": 0,
-        },
+          Object {
+            "current": "CLOSEST",
+            "name": "Measuring Proximity",
+            "onChange": [Function],
+            "options": Array [
+              "CLOSEST",
+              "C-α",
+            ],
+            "type": "RADIO",
+          },
+        ]
       }
-    }
-    data={
-      Object {
-        "residueStore": Object {
-          "resno": Uint32Array [
-            0,
-            1,
-            2,
-            3,
-            4,
-          ],
-        },
-      }
-    }
-    height={400}
-    isDataLoading={false}
-    measuredProximity="C-α"
-    residueContext={
-      Object {
-        "addCandidateResidues": [Function],
-        "addHoveredResidues": [Function],
-        "addLockedResiduePair": [Function],
-        "candidateResidues": Array [],
-        "clearAllResidues": [Function],
-        "hoveredResidues": Array [],
-        "lockedResiduePairs": Map {},
-        "removeAllLockedResiduePairs": [Function],
-        "removeCandidateResidues": [Function],
-        "removeHoveredResidues": [Function],
-        "removeLockedResiduePair": [Function],
-        "removeNonLockedResidues": [Function],
-        "toggleLockedResiduePair": [Function],
-      }
-    }
-    secondaryStructureContext={
-      Object {
-        "addSecondaryStructure": [Function],
-        "clearSecondaryStructure": [Function],
-        "removeSecondaryStructure": [Function],
-        "selectedSecondaryStructures": Array [],
-        "temporarySecondaryStructures": Array [],
-        "toggleSecondaryStructure": [Function],
-      }
-    }
-    showConfiguration={true}
-    width={400}
-  >
-    <div
-      className="NGLComponent"
-      style={Object {}}
+      direction="left"
+      inverted={true}
+      width="100%"
     >
-      <DimmerDimmable
-        dimmed={true}
-      >
-        <div
-          className="dimmed dimmable"
-        >
-          <Dimmer
-            active={false}
-          >
-            <DimmerInner
-              active={false}
-            >
-              <div
-                className="ui dimmer"
-                onClick={[Function]}
-              >
-                <div
-                  className="content"
-                >
-                  <Loader>
-                    <div
-                      className="ui loader"
-                    />
-                  </Loader>
-                </div>
-              </div>
-            </DimmerInner>
-          </Dimmer>
-          <div
-            className="NGLCanvas"
-            onKeyDown={[Function]}
-            onMouseLeave={[Function]}
-            style={
-              Object {
-                "height": 400,
-                "width": 400,
-              }
-            }
-          />
-        </div>
-      </DimmerDimmable>
-      <GridRow>
-        <div
-          className="row"
-        >
-          <Button
-            as="button"
-            onClick={[Function]}
-            role="button"
-          >
-            <button
-              className="ui button"
-              onClick={[Function]}
-              role="button"
-            >
-              Remove All Locked Distance Pairs
-            </button>
-          </Button>
-        </div>
-      </GridRow>
-    </div>
-  </NGLComponentClass>
-</NGLComponent>
+      <div
+        className="NGLCanvas"
+        onKeyDown={[Function]}
+        onMouseLeave={[Function]}
+        style={
+          Object {
+            "height": 400,
+            "width": 400,
+          }
+        }
+      />
+    </SettingsPanel>
+  </DimmerDimmable>
+</div>
 `;

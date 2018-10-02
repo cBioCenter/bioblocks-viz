@@ -6,7 +6,6 @@ export { default as SecondaryStructureAxis } from './src/component/chart/Seconda
 export { default as ChellRadioGroup } from './src/component/widget/ChellRadioGroup';
 export { default as ChellSlider } from './src/component/widget/ChellSlider';
 export { default as ChellTooltip } from './src/component/widget/ChellTooltip';
-export { default as ChellWidget } from './src/component/widget/ChellWidget';
 
 export { default as CategorySelector } from './src/component/widget/CategorySelector';
 export { default as ContactMap } from './src/component/ContactMap';

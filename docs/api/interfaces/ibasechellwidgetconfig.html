@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IChellWidgetProps | chell-viz</title>
+	<title>IBaseChellWidgetConfig | chell-viz</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="ichellwidgetprops.html">IChellWidgetProps</a>
+					<a href="ibasechellwidgetconfig.html">IBaseChellWidgetConfig</a>
 				</li>
 			</ul>
-			<h1>Interface IChellWidgetProps</h1>
+			<h1>Interface IBaseChellWidgetConfig</h1>
 		</div>
 	</div>
 </header>
@@ -68,15 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IChellWidgetProps</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<a href="ichellradiogroupprops.html" class="tsd-signature-type">IChellRadioGroupProps</a>
-							</li>
-							<li>
-								<a href="ichellsliderprops.html" class="tsd-signature-type">IChellSliderProps</a>
-							</li>
-						</ul>
+						<span class="target">IBaseChellWidgetConfig</span>
 					</li>
 				</ul>
 			</section>
@@ -87,8 +79,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ichellwidgetprops.html#classname" class="tsd-kind-icon">class<wbr>Name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ichellwidgetprops.html#style" class="tsd-kind-icon">style</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ibasechellwidgetconfig.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ibasechellwidgetconfig.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ibasechellwidgetconfig.html#onchange" class="tsd-kind-icon">on<wbr>Change</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ibasechellwidgetconfig.html#style" class="tsd-kind-icon">style</a></li>
 							</ul>
 						</section>
 					</div>
@@ -97,22 +91,42 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="classname" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> class<wbr>Name</h3>
-					<div class="tsd-signature tsd-kind-icon">class<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<a name="id" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/widget/ChellWidget.ts:4</li>
+							<li>Defined in src/data/ChellConfig.ts:10</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/data/ChellConfig.ts:11</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="onchange" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Change</h3>
+					<div class="tsd-signature tsd-kind-icon">on<wbr>Change<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/data/ChellConfig.ts:12</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="style" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> style</h3>
-					<div class="tsd-signature tsd-kind-icon">style<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CSSProperties</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CSSProperties</span></div>
+					<div class="tsd-signature tsd-kind-icon">style<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">React.CSSProperties</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/widget/ChellWidget.ts:5</li>
+							<li>Defined in src/data/ChellConfig.ts:13</li>
 						</ul>
 					</aside>
 				</section>
@@ -131,13 +145,19 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="ichellwidgetprops.html" class="tsd-kind-icon">IChell<wbr>Widget<wbr>Props</a>
+						<a href="ibasechellwidgetconfig.html" class="tsd-kind-icon">IBase<wbr>Chell<wbr>Widget<wbr>Config</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="ichellwidgetprops.html#classname" class="tsd-kind-icon">class<wbr>Name</a>
+								<a href="ibasechellwidgetconfig.html#id" class="tsd-kind-icon">id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="ichellwidgetprops.html#style" class="tsd-kind-icon">style</a>
+								<a href="ibasechellwidgetconfig.html#name" class="tsd-kind-icon">name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="ibasechellwidgetconfig.html#onchange" class="tsd-kind-icon">on<wbr>Change</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="ibasechellwidgetconfig.html#style" class="tsd-kind-icon">style</a>
 							</li>
 						</ul>
 					</li>
