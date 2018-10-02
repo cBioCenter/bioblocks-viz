@@ -376,5 +376,13 @@ describe('NGLComponent', () => {
       global.dispatchEvent(new Event('resize'));
       expect(onResizeSpy).toHaveBeenCalledTimes(1);
     });
+
+    it('Should remove the onResize handler when unmounted.', async () => {
+      const onResizeSpy = jest.fn();
+      const wrapper = mount(<NGLComponent onResize={onResizeSpy} />);
+      await wrapper.unmount();
+      global.dispatchEvent(new Event('resize'));
+      expect(onResizeSpy).toHaveBeenCalledTimes(0);
+    });
   });
 });

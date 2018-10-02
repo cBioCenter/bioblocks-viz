@@ -77,7 +77,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
         stage,
       });
     }
-    window.addEventListener('resize', event => this.onResizeHandler(event), false);
+    window.addEventListener('resize', this.onResizeHandler, false);
   }
 
   public componentWillUnmount() {
@@ -89,7 +89,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
         stage: undefined,
       });
     }
-    window.removeEventListener('resize', () => this.onResizeHandler());
+    window.removeEventListener('resize', this.onResizeHandler);
   }
 
   public componentDidUpdate(prevProps: INGLComponentProps, prevState: NGLComponentState) {

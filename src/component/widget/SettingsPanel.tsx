@@ -29,7 +29,7 @@ class SettingsPanel extends React.Component<SettingsPanelProps, ISettingsPanelSt
     width: '100%',
   };
 
-  constructor(props: any) {
+  constructor(props: SettingsPanelProps) {
     super(props);
     this.state = {
       visible: false,
@@ -84,11 +84,11 @@ class SettingsPanel extends React.Component<SettingsPanelProps, ISettingsPanelSt
                 .join('-') + `-${index}`;
           switch (config.type) {
             case CONFIGURATION_COMPONENT_TYPE.BUTTON:
-              return <Grid.Row>{this.renderConfigurationButton(config, id)}</Grid.Row>;
+              return <Grid.Row key={id}>{this.renderConfigurationButton(config, id)}</Grid.Row>;
             case CONFIGURATION_COMPONENT_TYPE.RADIO:
-              return <Grid.Row>{this.renderConfigurationRadioButton(config, id)}</Grid.Row>;
+              return <Grid.Row key={id}>{this.renderConfigurationRadioButton(config, id)}</Grid.Row>;
             case CONFIGURATION_COMPONENT_TYPE.SLIDER:
-              return <Grid.Row>{this.renderConfigurationSlider(config, id)}</Grid.Row>;
+              return <Grid.Row key={id}>{this.renderConfigurationSlider(config, id)}</Grid.Row>;
           }
         })}
       </Grid>
@@ -97,7 +97,7 @@ class SettingsPanel extends React.Component<SettingsPanelProps, ISettingsPanelSt
 
   public renderConfigurationButton(config: ButtonWidgetConfig, id: string) {
     return (
-      <Button compact={true} id={id} key={id} onClick={config.onClick} style={{ ...config.style }}>
+      <Button compact={true} id={id} onClick={config.onClick} style={{ ...config.style }}>
         {config.name}
       </Button>
     );
@@ -106,7 +106,6 @@ class SettingsPanel extends React.Component<SettingsPanelProps, ISettingsPanelSt
   public renderConfigurationRadioButton(config: RadioWidgetConfig, id: string) {
     return (
       <ChellRadioGroup
-        key={id}
         id={id}
         options={config.options!}
         onChange={config.onChange}
@@ -119,7 +118,6 @@ class SettingsPanel extends React.Component<SettingsPanelProps, ISettingsPanelSt
     return (
       <ChellSlider
         className={id}
-        key={id}
         label={config.name}
         max={config.values.max}
         min={config.values.min}

@@ -89,7 +89,6 @@ export default class ChellSlider extends React.Component<ChellSliderProps, IChel
           min={min}
           onAfterChange={this.onAfterChange(onAfterChange)}
           onChange={this.onChange(onChange)}
-          style={style}
           value={value}
           {...remainingProps}
         />

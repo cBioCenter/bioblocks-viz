@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { SECONDARY_STRUCTURE, SECONDARY_STRUCTURE_CODES, SECONDARY_STRUCTURE_KEYS } from '../../../data/chell-data';
 import Chell1DSection from '../../../data/Chell1DSection';
-import ContactMapChart from '../ContactMapChart';
+import ContactMapChart, { IContactMapChartState } from '../ContactMapChart';
 
 describe('ContactMapChart', () => {
   const genSeqEntry = (
@@ -47,5 +47,19 @@ describe('ContactMapChart', () => {
       />,
     );
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('Should be able to determine the number of legend entries that will be created..', () => {
+    const wrapper = shallow(
+      <ContactMapChart
+        contactData={[
+          { name: 'first', nodeSize: 10, points: [] },
+          { name: 'second', nodeSize: 10, points: [] },
+          { name: 'first', nodeSize: 10, points: [] },
+        ]}
+      />,
+    );
+    const state = wrapper.state() as IContactMapChartState;
+    expect(state.numLegends).toEqual(2);
   });
 });

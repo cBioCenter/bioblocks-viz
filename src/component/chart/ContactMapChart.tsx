@@ -33,6 +33,7 @@ export interface IContactMapChartProps {
 }
 
 export interface IContactMapChartState {
+  numLegends: number;
   plotlyData: Array<Partial<IPlotlyData>>;
 }
 
@@ -102,7 +103,7 @@ class ContactMapChart extends React.Component<IContactMapChartProps, IContactMap
     },
     marginModifiers: {
       b: 75,
-      l: 75,
+      l: 65,
     },
     range: 100,
     secondaryStructures: [],
@@ -112,6 +113,7 @@ class ContactMapChart extends React.Component<IContactMapChartProps, IContactMap
   constructor(props: IContactMapChartProps) {
     super(props);
     this.state = {
+      numLegends: 0,
       plotlyData: [],
     };
   }
@@ -201,6 +203,9 @@ class ContactMapChart extends React.Component<IContactMapChartProps, IContactMap
     });
 
     this.setState({
+      numLegends: new Set(
+        plotlyData.filter(datum => datum.showlegend !== false && datum.name !== undefined).map(legend => legend.name),
+      ).size,
       plotlyData,
     });
   }

@@ -123,7 +123,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
       marginModifiers={
         Object {
           "b": 75,
-          "l": 75,
+          "l": 65,
         }
       }
       onClickCallback={[Function]}
@@ -755,7 +755,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           marginModifiers={
             Object {
               "b": 75,
-              "l": 75,
+              "l": 65,
             }
           }
           onClickCallback={[Function]}
@@ -878,13 +878,14 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                 <div
                                   className="ui centered grid"
                                 >
-                                  <GridRow>
+                                  <GridRow
+                                    key="node-size-slider-0"
+                                  >
                                     <div
                                       className="row"
                                     >
                                       <ChellSlider
                                         className="node-size-slider-0"
-                                        key="node-size-slider-0"
                                         label="Node size for Known Structure Contact"
                                         max={20}
                                         min={1}
@@ -932,12 +933,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                             prefixCls="rc-slider"
                                             railStyle={Object {}}
                                             step={1}
-                                            style={
-                                              Object {
-                                                "color": "white",
-                                                "width": 360,
-                                              }
-                                            }
                                             trackStyle={
                                               Array [
                                                 Object {},
@@ -954,12 +949,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                               onMouseDown={[Function]}
                                               onMouseUp={[Function]}
                                               onTouchStart={[Function]}
-                                              style={
-                                                Object {
-                                                  "color": "white",
-                                                  "width": 360,
-                                                }
-                                              }
                                             >
                                               <div
                                                 className="rc-slider-rail"
@@ -1158,7 +1147,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                 },
                                 "margin": Object {
                                   "b": 75,
-                                  "l": 75,
+                                  "l": 65,
                                 },
                                 "showlegend": true,
                                 "xaxis": Object {
