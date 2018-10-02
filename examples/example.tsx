@@ -16,7 +16,6 @@ import {
 import { ContactMap } from '../src/component/ContactMap';
 import { NGLComponent } from '../src/component/NGLComponent';
 import { PredictedContactMap } from '../src/component/PredictedContactMap';
-import { ChellRadioGroup } from '../src/component/widget/ChellRadioGroup';
 import { CouplingContextClass } from '../src/context/CouplingContext';
 import { IResidueContext, ResidueContextWrapper } from '../src/context/ResidueContext';
 import { CONTACT_DISTANCE_PROXIMITY, CONTACT_MAP_DATA_TYPE, NGL_DATA_TYPE, VIZ_TYPE } from '../src/data/chell-data';
@@ -126,11 +125,9 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                   <GridRow verticalAlign={'middle'}>
                     <GridColumn width={6}>
                       <NGLComponent
-                        backgroundColor={'black'}
                         data={this.state[VIZ_TYPE.NGL].pdbData}
                         isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
                         measuredProximity={this.state.measuredProximity}
-                        showConfiguration={false}
                         style={{ ...style, width: 400 }}
                       />
                     </GridColumn>
@@ -142,7 +139,6 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                             pdbData,
                             secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
                           }}
-                          enableSliders={true}
                           isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
                           style={{ ...style, width: 400 }}
                         />
@@ -153,7 +149,6 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                             pdbData,
                             secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
                           }}
-                          enableSliders={true}
                           isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
                           style={{ ...style, width: 400 }}
                         />
@@ -274,12 +269,6 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     <GridRow>
       {this.renderUploadLabel(filenames.pdb)}
       {this.renderUploadForm(this.onPDBUpload, 'pdb', 'PDB', pdbData !== undefined)}
-      <ChellRadioGroup
-        id={'radio-group-measured-proximity'}
-        options={Object.values(CONTACT_DISTANCE_PROXIMITY)}
-        onChange={this.onMeasuredProximityChange()}
-        title={'Measuring proximity'}
-      />
     </GridRow>
   );
 

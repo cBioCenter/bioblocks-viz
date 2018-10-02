@@ -1,19 +1,21 @@
 import { cloneDeep } from 'lodash';
 import * as NGL from 'ngl';
 import * as React from 'react';
-import { Button, Dimmer, GridRow, Loader } from 'semantic-ui-react';
+import { Dimmer, Loader } from 'semantic-ui-react';
 import { Vector2 } from 'three';
 
-import withCouplingContext, { ICouplingContext, initialCouplingContext } from '../context/CouplingContext';
+import { ICouplingContext, initialCouplingContext, withCouplingContext } from '../context/CouplingContext';
 import { initialResidueContext, IResidueContext, ResidueSelection } from '../context/ResidueContext';
 import { initialSecondaryStructureContext, ISecondaryStructureContext } from '../context/SecondaryStructureContext';
 import { CONTACT_DISTANCE_PROXIMITY, RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../data/chell-data';
+import { CONFIGURATION_COMPONENT_TYPE } from '../data/ChellConfig';
 import { ChellPDB } from '../data/ChellPDB';
 import {
   createBallStickRepresentation,
   createDistanceRepresentation,
   createSecStructRepresentation,
 } from '../helper/NGLHelper';
+import { SettingsPanel } from './widget/SettingsPanel';
 
 export type NGL_HOVER_CB_RESULT_TYPE = number;
 
@@ -29,7 +31,6 @@ export interface INGLComponentProps {
   onResize?: (event?: UIEvent) => void;
   residueContext: IResidueContext;
   secondaryStructureContext: ISecondaryStructureContext;
-  showConfiguration: boolean;
   style?: React.CSSProperties;
   width: number | string;
 }
@@ -45,7 +46,7 @@ export type NGLComponentState = Readonly<typeof initialNGLState>;
 
 export class NGLComponentClass extends React.Component<INGLComponentProps, NGLComponentState> {
   public static defaultProps = {
-    backgroundColor: '#000000',
+    backgroundColor: '#ffffff',
     couplingContext: { ...initialCouplingContext },
     data: undefined,
     height: 400,
@@ -55,7 +56,6 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     secondaryStructureContext: {
       ...initialSecondaryStructureContext,
     },
-    showConfiguration: true,
     width: 400,
   };
   public readonly state: NGLComponentState = initialNGLState;
@@ -128,7 +128,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
    * @returns The NGL Component
    */
   public render() {
-    const { height, isDataLoading, residueContext, showConfiguration, style, width } = this.props;
+    const { height, isDataLoading, residueContext, style, width } = this.props;
     return (
       <div className="NGLComponent" style={{ ...style }}>
         {
@@ -136,20 +136,34 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
             <Dimmer active={isDataLoading}>
               <Loader />
             </Dimmer>
-            <div
-              className="NGLCanvas"
-              ref={el => (this.canvas = el)}
-              style={{ height, width }}
-              onMouseLeave={this.onCanvasLeave}
-              onKeyDown={this.onKeyDown}
-            />
+            <SettingsPanel
+              configurations={[
+                {
+                  name: 'Remove All Locked Distance Pairs',
+                  onClick: residueContext.removeAllLockedResiduePairs,
+                  type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
+                },
+                {
+                  current: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
+                  name: 'Measuring Proximity',
+                  onChange: () => {
+                    return;
+                  },
+                  options: Object.values(CONTACT_DISTANCE_PROXIMITY),
+                  type: CONFIGURATION_COMPONENT_TYPE.RADIO,
+                },
+              ]}
+            >
+              <div
+                className="NGLCanvas"
+                ref={el => (this.canvas = el)}
+                style={{ height, width }}
+                onMouseLeave={this.onCanvasLeave}
+                onKeyDown={this.onKeyDown}
+              />
+            </SettingsPanel>
           </Dimmer.Dimmable>
         }
-        {showConfiguration && (
-          <GridRow>
-            <Button onClick={residueContext.removeAllLockedResiduePairs}>Remove All Locked Distance Pairs</Button>
-          </GridRow>
-        )}
       </div>
     );
   }

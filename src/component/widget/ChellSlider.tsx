@@ -5,8 +5,6 @@ import * as React from 'react';
 // tslint:disable-next-line:no-submodule-imports
 import 'rc-slider/assets/index.css';
 
-import { IChellWidgetProps } from './ChellWidget';
-
 /** Function signature that is invoked on slider events. */
 export type ChellSliderCallback =
   /**
@@ -19,7 +17,7 @@ export type ChellSliderCallback =
  *
  * @export
  */
-export interface IChellSliderProps extends IChellWidgetProps {
+export type ChellSliderProps = {
   /** Value the slider is set to. */
   value: number;
 
@@ -42,9 +40,9 @@ export interface IChellSliderProps extends IChellWidgetProps {
   /** Invoked when the value is in the middle of changing but user has not committed to the change. */
   onChange?: ChellSliderCallback;
 
-  /** Props specific to the underlying rc-slider component. */
-  sliderProps?: SliderProps;
-}
+  /** Style for the slider. */
+  style?: React.CSSProperties;
+} & Partial<Omit<SliderProps, 'style'>>; // Ignore the style prop from the React slider so we can better control it.
 
 /**
  * State of the Chell Slider.
@@ -60,10 +58,10 @@ export interface IChellSliderState {
  * Represents a simple 2d slider, allowing a value to be selected between a minimum and maximum.
  *
  * @export
- * @extends {React.Component<IChellSliderProps, IChellSliderState>}
+ * @extends {React.Component<ChellSliderProps, IChellSliderState>}
  */
-export default class ChellSlider extends React.Component<IChellSliderProps, IChellSliderState> {
-  constructor(props: IChellSliderProps) {
+export default class ChellSlider extends React.Component<ChellSliderProps, IChellSliderState> {
+  constructor(props: ChellSliderProps) {
     super(props);
     this.state = {
       value: props.value,
@@ -80,11 +78,11 @@ export default class ChellSlider extends React.Component<IChellSliderProps, IChe
       label,
       onAfterChange,
       onChange,
-      sliderProps,
       style,
+      ...remainingProps
     } = this.props;
     return (
-      <div className={className} style={{ padding: 20 }}>
+      <div className={className} style={{ padding: 25, ...style }}>
         {!hideLabelValue && <p>{`${label}: ${this.state.value}`}</p>}
         <Slider
           max={max}
@@ -93,7 +91,7 @@ export default class ChellSlider extends React.Component<IChellSliderProps, IChe
           onChange={this.onChange(onChange)}
           style={style}
           value={value}
-          {...sliderProps}
+          {...remainingProps}
         />
       </div>
     );

@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { CONFIGURATION_COMPONENT_TYPE, IContactMapData, SECONDARY_STRUCTURE } from '../data/chell-data';
+import { IContactMapData, SECONDARY_STRUCTURE } from '../data/chell-data';
+import { ChellWidgetConfig, CONFIGURATION_COMPONENT_TYPE } from '../data/ChellConfig';
 import { CouplingContainer } from '../data/CouplingContainer';
 import { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';
-import ContactMap, { IContactMapConfiguration } from './ContactMap';
+import { ContactMap } from './ContactMap';
 
 export interface IPredictedContactMapProps {
   correctColor: string;
   data: IContactMapData;
-  enableSliders: boolean;
   height: number;
   incorrectColor: string;
   isDataLoading: boolean;
@@ -30,7 +30,6 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
       couplingScores: new CouplingContainer(),
       secondaryStructures: new Array<SECONDARY_STRUCTURE>(),
     },
-    enableSliders: true,
     height: 400,
     incorrectColor: '#000000',
     isDataLoading: false,
@@ -91,7 +90,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     );
   }
 
-  protected getContactMapConfigs = (): IContactMapConfiguration[] => [
+  protected getContactMapConfigs = (): ChellWidgetConfig[] => [
     {
       name: 'Linear Distance Filter (|i - j|)',
       onChange: this.onLinearDistFilterChange(),

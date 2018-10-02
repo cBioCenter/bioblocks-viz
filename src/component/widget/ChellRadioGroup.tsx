@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { CheckboxProps, Form, Grid, Radio } from 'semantic-ui-react';
-import { IChellWidgetProps } from './ChellWidget';
+import { CheckboxProps, Form } from 'semantic-ui-react';
 
-export interface IChellRadioGroupProps extends IChellWidgetProps {
+export interface IChellRadioGroupProps {
   disabled: boolean;
   id: string;
   options: string[];
   onChange?: (value: any) => void;
+  style: React.CSSProperties;
   title: string;
 }
 
@@ -17,6 +17,7 @@ export interface IChellRadioGroupState {
 export default class ChellRadioGroup extends React.Component<IChellRadioGroupProps, IChellRadioGroupState> {
   public static defaultProps = {
     disabled: false,
+    style: {},
     title: 'How to calculate distance between two residues:',
   };
 
@@ -31,35 +32,33 @@ export default class ChellRadioGroup extends React.Component<IChellRadioGroupPro
     this.setState({
       selectedIndex: index,
     });
+
     if (this.props.onChange) {
       this.props.onChange(index);
     }
   };
 
   public render() {
-    const { disabled, id, options, title } = this.props;
+    const { disabled, id, options, style, title } = this.props;
     return (
-      <Form>
+      <Form style={style}>
         <Form.Field>{title}</Form.Field>
-        {this.renderOptions(id, options, disabled)}
+        <Form.Group widths={'equal'}>{this.renderOptions(id, options, disabled, style)}</Form.Group>
       </Form>
     );
   }
 
-  protected renderOptions = (id: string, options: string[], disabled: boolean) =>
+  protected renderOptions = (id: string, options: string[], disabled: boolean, style: React.CSSProperties) =>
     options.map((option, index) => (
-      <Grid.Row key={`${id}-${option}`}>
-        <Form.Field>
-          <Radio
-            checked={this.state.selectedIndex === index}
-            disabled={disabled}
-            label={option.toLocaleLowerCase()}
-            name={option}
-            onChange={this.handleChange(index)}
-            value={index}
-          />
-        </Form.Field>
-      </Grid.Row>
+      <Form.Radio
+        checked={this.state.selectedIndex === index}
+        disabled={disabled}
+        key={`${id}-${option}`}
+        label={{ children: option.toLocaleLowerCase(), style }}
+        name={option}
+        onChange={this.handleChange(index)}
+        value={index}
+      />
     ));
 }
 

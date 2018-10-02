@@ -1,22 +1,16 @@
 import { CommonWrapper, mount, ReactWrapper, shallow } from 'enzyme';
 import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
-import * as Renderer from 'react-test-renderer';
 
 import { IMockPlotlyCanvas } from '__mocks__/plotly';
 import { initialResidueContext, IResidueContext } from '../../context/ResidueContext';
 import { initialSecondaryStructureContext } from '../../context/SecondaryStructureContext';
-import {
-  CONFIGURATION_COMPONENT_TYPE,
-  IContactMapData,
-  ICouplingScore,
-  SECONDARY_STRUCTURE,
-  SECONDARY_STRUCTURE_KEYS,
-} from '../../data/chell-data';
+import { IContactMapData, ICouplingScore, SECONDARY_STRUCTURE, SECONDARY_STRUCTURE_KEYS } from '../../data/chell-data';
 import Chell1DSection from '../../data/Chell1DSection';
+import { ChellWidgetConfig, CONFIGURATION_COMPONENT_TYPE } from '../../data/ChellConfig';
 import { CouplingContainer } from '../../data/CouplingContainer';
 import { PlotlyChart } from '../chart/PlotlyChart';
-import ContactMap, { ContactMapClass, IContactMapProps } from '../ContactMap';
+import ContactMap, { IContactMapProps } from '../ContactMap';
 
 // https://medium.com/@ryandrewjohnson/unit-testing-components-using-reacts-new-context-api-4a5219f4b3fe
 // Provides a dummy context for unit testing purposes.
@@ -144,16 +138,6 @@ describe('ContactMap', () => {
 
     it('Should match existing snapshot when given empty data.', () => {
       expect(shallow(<ContactMap data={emptyData} />)).toMatchSnapshot();
-    });
-
-    it('Should match existing snapshot when given sample data and sliders are _not_ enabled.', () => {
-      const component = Renderer.create(<ContactMap data={sampleData} enableSliders={false} />);
-      expect(component.toJSON()).toMatchSnapshot();
-    });
-
-    it('Should match existing snapshot when given sample data and sliders are enabled.', () => {
-      const component = Renderer.create(<ContactMap data={sampleData} enableSliders={true} />);
-      expect(component.toJSON()).toMatchSnapshot();
     });
 
     it('Should match snapshot when locked residues are added.', async () => {
@@ -363,33 +347,8 @@ describe('ContactMap', () => {
   });
 
   describe('Configuration', () => {
-    it('Should update the state when the configuration accordion is clicked.', () => {
-      const wrapper = getShallowContactMap({ data: sampleData, enableSliders: true });
-      const instance = wrapper.instance() as ContactMapClass;
-      const initialState = instance.state.showConfiguration;
-      wrapper
-        .find('.contact-map-configuration-toggle')
-        .at(0)
-        .simulate('click');
-      expect(instance.state.showConfiguration).toBe(!initialState);
-    });
-
-    it('Should update node size when appropriate slider is updated.', () => {
-      const wrapper = getShallowContactMap({ data: sampleData, enableSliders: true });
-      const setStateSpy = jest.fn();
-      wrapper.instance().setState = setStateSpy;
-      wrapper.update();
-      const expectedSize = 11;
-      wrapper
-        .find('.node-size-slider-0')
-        .at(0)
-        .simulate('change', expectedSize);
-      const newState = setStateSpy.mock.calls[setStateSpy.mock.calls.length - 1];
-      expect(newState[0].pointsToPlot[0].nodeSize).toBe(expectedSize);
-    });
-
     it('Should match existing snapshot when given configurations.', () => {
-      const configurations = [
+      const configurations: ChellWidgetConfig[] = [
         {
           name: 'sample slider',
           onChange: jest.fn(),
@@ -401,41 +360,15 @@ describe('ContactMap', () => {
           },
         },
         {
+          current: 'yes',
           name: 'sample radio',
           onChange: jest.fn(),
+          options: ['yes', 'no'],
           type: CONFIGURATION_COMPONENT_TYPE.RADIO,
-          values: {
-            current: 5,
-            max: 10,
-            min: 0,
-          },
         },
       ];
       const wrapper = getShallowContactMap({ configurations });
       expect(wrapper).toMatchSnapshot();
-    });
-
-    it('Should invoke appropriate configuration callback.', () => {
-      const onChangeSpy = jest.fn();
-      const expectedValue = 7;
-      const configurations = [
-        {
-          name: 'sample',
-          onChange: onChangeSpy,
-          type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
-          values: {
-            current: 5,
-            max: 10,
-            min: 0,
-          },
-        },
-      ];
-      const wrapper = getShallowContactMap({ configurations });
-      wrapper
-        .find('.sample')
-        .at(0)
-        .simulate('change', expectedValue);
-      expect(onChangeSpy).toHaveBeenLastCalledWith(expectedValue);
     });
   });
 });

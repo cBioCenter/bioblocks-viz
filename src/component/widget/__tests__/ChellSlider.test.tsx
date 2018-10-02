@@ -3,10 +3,10 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import Slider from 'rc-slider';
-import ChellSlider, { IChellSliderProps } from '../ChellSlider';
+import ChellSlider, { ChellSliderProps } from '../ChellSlider';
 
 describe('ChellSlider', () => {
-  const sampleChellSlider = (props: Partial<IChellSliderProps> = {}) => (
+  const sampleChellSlider = (props: Partial<ChellSliderProps> = {}) => (
     <ChellSlider value={1} max={100} min={1} label={'test'} {...props} />
   );
   it('Should match existing snapshot when given simple data.', () => {

@@ -1,256 +1,56 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NGLComponent Should match existing snapshot when canvas isn't available. 1`] = `
-<NGLComponent>
-  <NGLComponentClass
-    backgroundColor="#000000"
-    couplingContext={
-      Object {
-        "couplingScores": CouplingContainer {
-          "colCounter": 0,
-          "contacts": Array [],
-          "getCouplingScore": [Function],
-          "includes": [Function],
-          "indexRange": Object {
-            "max": 50,
-            "min": 1,
-          },
-          "rowCounter": 0,
-          "totalStoredContacts": 0,
-        },
-      }
-    }
-    height={400}
-    isDataLoading={false}
-    measuredProximity="C-α"
-    residueContext={
-      Object {
-        "addCandidateResidues": [Function],
-        "addHoveredResidues": [Function],
-        "addLockedResiduePair": [Function],
-        "candidateResidues": Array [],
-        "clearAllResidues": [Function],
-        "hoveredResidues": Array [],
-        "lockedResiduePairs": Map {},
-        "removeAllLockedResiduePairs": [Function],
-        "removeCandidateResidues": [Function],
-        "removeHoveredResidues": [Function],
-        "removeLockedResiduePair": [Function],
-        "removeNonLockedResidues": [Function],
-        "toggleLockedResiduePair": [Function],
-      }
-    }
-    secondaryStructureContext={
-      Object {
-        "addSecondaryStructure": [Function],
-        "clearSecondaryStructure": [Function],
-        "removeSecondaryStructure": [Function],
-        "selectedSecondaryStructures": Array [],
-        "temporarySecondaryStructures": Array [],
-        "toggleSecondaryStructure": [Function],
-      }
-    }
-    showConfiguration={true}
-    width={400}
-  >
-    <div
-      className="NGLComponent"
-      style={Object {}}
-    >
-      <DimmerDimmable
-        dimmed={true}
-      >
-        <div
-          className="dimmed dimmable"
-        >
-          <Dimmer
-            active={false}
-          >
-            <DimmerInner
-              active={false}
-            >
-              <div
-                className="ui dimmer"
-                onClick={[Function]}
-              >
-                <div
-                  className="content"
-                >
-                  <Loader>
-                    <div
-                      className="ui loader"
-                    />
-                  </Loader>
-                </div>
-              </div>
-            </DimmerInner>
-          </Dimmer>
-          <div
-            className="NGLCanvas"
-            onKeyDown={[Function]}
-            onMouseLeave={[Function]}
-            style={
-              Object {
-                "height": 400,
-                "width": 400,
-              }
-            }
-          />
-        </div>
-      </DimmerDimmable>
-      <GridRow>
-        <div
-          className="row"
-        >
-          <Button
-            as="button"
-            onClick={[Function]}
-            role="button"
-          >
-            <button
-              className="ui button"
-              onClick={[Function]}
-              role="button"
-            >
-              Remove All Locked Distance Pairs
-            </button>
-          </Button>
-        </div>
-      </GridRow>
-    </div>
-  </NGLComponentClass>
-</NGLComponent>
-`;
-
-exports[`NGLComponent Should match existing snapshot when configuration is disabled 1`] = `
-<NGLComponent
-  data={
-    Object {
-      "residueStore": Object {
-        "resno": Uint32Array [
-          0,
-          1,
-          2,
-          3,
-          4,
-        ],
-      },
-    }
-  }
-  showConfiguration={false}
+<div
+  className="NGLComponent"
+  style={Object {}}
 >
-  <NGLComponentClass
-    backgroundColor="#000000"
-    couplingContext={
-      Object {
-        "couplingScores": CouplingContainer {
-          "colCounter": 0,
-          "contacts": Array [],
-          "getCouplingScore": [Function],
-          "includes": [Function],
-          "indexRange": Object {
-            "max": 50,
-            "min": 1,
-          },
-          "rowCounter": 0,
-          "totalStoredContacts": 0,
-        },
-      }
-    }
-    data={
-      Object {
-        "residueStore": Object {
-          "resno": Uint32Array [
-            0,
-            1,
-            2,
-            3,
-            4,
-          ],
-        },
-      }
-    }
-    height={400}
-    isDataLoading={false}
-    measuredProximity="C-α"
-    residueContext={
-      Object {
-        "addCandidateResidues": [Function],
-        "addHoveredResidues": [Function],
-        "addLockedResiduePair": [Function],
-        "candidateResidues": Array [],
-        "clearAllResidues": [Function],
-        "hoveredResidues": Array [],
-        "lockedResiduePairs": Map {},
-        "removeAllLockedResiduePairs": [Function],
-        "removeCandidateResidues": [Function],
-        "removeHoveredResidues": [Function],
-        "removeLockedResiduePair": [Function],
-        "removeNonLockedResidues": [Function],
-        "toggleLockedResiduePair": [Function],
-      }
-    }
-    secondaryStructureContext={
-      Object {
-        "addSecondaryStructure": [Function],
-        "clearSecondaryStructure": [Function],
-        "removeSecondaryStructure": [Function],
-        "selectedSecondaryStructures": Array [],
-        "temporarySecondaryStructures": Array [],
-        "toggleSecondaryStructure": [Function],
-      }
-    }
-    showConfiguration={false}
-    width={400}
+  <DimmerDimmable
+    dimmed={true}
   >
-    <div
-      className="NGLComponent"
-      style={Object {}}
+    <Dimmer
+      active={false}
     >
-      <DimmerDimmable
-        dimmed={true}
-      >
-        <div
-          className="dimmed dimmable"
-        >
-          <Dimmer
-            active={false}
-          >
-            <DimmerInner
-              active={false}
-            >
-              <div
-                className="ui dimmer"
-                onClick={[Function]}
-              >
-                <div
-                  className="content"
-                >
-                  <Loader>
-                    <div
-                      className="ui loader"
-                    />
-                  </Loader>
-                </div>
-              </div>
-            </DimmerInner>
-          </Dimmer>
-          <div
-            className="NGLCanvas"
-            onKeyDown={[Function]}
-            onMouseLeave={[Function]}
-            style={
-              Object {
-                "height": 400,
-                "width": 400,
-              }
-            }
-          />
-        </div>
-      </DimmerDimmable>
-    </div>
-  </NGLComponentClass>
-</NGLComponent>
+      <Loader />
+    </Dimmer>
+    <SettingsPanel
+      configurations={
+        Array [
+          Object {
+            "name": "Remove All Locked Distance Pairs",
+            "onClick": [Function],
+            "type": "BUTTON",
+          },
+          Object {
+            "current": "CLOSEST",
+            "name": "Measuring Proximity",
+            "onChange": [Function],
+            "options": Array [
+              "CLOSEST",
+              "C-α",
+            ],
+            "type": "RADIO",
+          },
+        ]
+      }
+      direction="left"
+      inverted={true}
+      width="100%"
+    >
+      <div
+        className="NGLCanvas"
+        onKeyDown={[Function]}
+        onMouseLeave={[Function]}
+        style={
+          Object {
+            "height": 400,
+            "width": 400,
+          }
+        }
+      />
+    </SettingsPanel>
+  </DimmerDimmable>
+</div>
 `;
 
 exports[`NGLComponent Should match existing snapshot when given sample data 1`] = `
@@ -270,7 +70,7 @@ exports[`NGLComponent Should match existing snapshot when given sample data 1`] 
   }
 >
   <NGLComponentClass
-    backgroundColor="#000000"
+    backgroundColor="#ffffff"
     couplingContext={
       Object {
         "couplingScores": CouplingContainer {
@@ -330,7 +130,6 @@ exports[`NGLComponent Should match existing snapshot when given sample data 1`] 
         "toggleSecondaryStructure": [Function],
       }
     }
-    showConfiguration={true}
     width={400}
   >
     <div
@@ -365,39 +164,616 @@ exports[`NGLComponent Should match existing snapshot when given sample data 1`] 
               </div>
             </DimmerInner>
           </Dimmer>
-          <div
-            className="NGLCanvas"
-            onKeyDown={[Function]}
-            onMouseLeave={[Function]}
-            style={
-              Object {
-                "height": 400,
-                "width": 400,
-              }
+          <SettingsPanel
+            configurations={
+              Array [
+                Object {
+                  "name": "Remove All Locked Distance Pairs",
+                  "onClick": [Function],
+                  "type": "BUTTON",
+                },
+                Object {
+                  "current": "CLOSEST",
+                  "name": "Measuring Proximity",
+                  "onChange": [Function],
+                  "options": Array [
+                    "CLOSEST",
+                    "C-α",
+                  ],
+                  "type": "RADIO",
+                },
+              ]
             }
-          />
+            direction="left"
+            inverted={true}
+            width="100%"
+          >
+            <div>
+              <Grid
+                columns={1}
+              >
+                <div
+                  className="ui one column grid"
+                >
+                  <GridColumn>
+                    <div
+                      className="column"
+                    >
+                      <Button
+                        as="button"
+                        basic={true}
+                        floated="right"
+                        icon="settings"
+                        onClick={[Function]}
+                        role="button"
+                      >
+                        <button
+                          className="ui basic icon right floated button"
+                          onClick={[Function]}
+                          role="button"
+                        >
+                          <Icon
+                            as="i"
+                            name="settings"
+                          >
+                            <i
+                              aria-hidden="true"
+                              className="settings icon"
+                            />
+                          </Icon>
+                        </button>
+                      </Button>
+                    </div>
+                  </GridColumn>
+                  <SidebarPushable>
+                    <div
+                      className="pushable"
+                    >
+                      <Sidebar
+                        animation="overlay"
+                        as={[Function]}
+                        direction="left"
+                        duration={500}
+                        inverted={true}
+                        style={
+                          Object {
+                            "opacity": 0.85,
+                            "width": "100%",
+                          }
+                        }
+                        vertical={true}
+                        visible={false}
+                      >
+                        <Ref
+                          innerRef={[Function]}
+                        >
+                          <Menu
+                            className="ui overlay left sidebar"
+                            inverted={true}
+                            style={
+                              Object {
+                                "opacity": 0.85,
+                                "width": "100%",
+                              }
+                            }
+                            vertical={true}
+                          >
+                            <div
+                              className="ui inverted vertical ui overlay left sidebar menu"
+                              style={
+                                Object {
+                                  "opacity": 0.85,
+                                  "width": "100%",
+                                }
+                              }
+                            >
+                              <Button
+                                as="button"
+                                compact={true}
+                                id="remove-all-locked-distance-pairs-0"
+                                key="remove-all-locked-distance-pairs-0"
+                                onClick={[Function]}
+                                role="button"
+                                style={
+                                  Object {
+                                    "color": "white",
+                                  }
+                                }
+                              >
+                                <button
+                                  className="ui compact button"
+                                  id="remove-all-locked-distance-pairs-0"
+                                  onClick={[Function]}
+                                  role="button"
+                                  style={
+                                    Object {
+                                      "color": "white",
+                                    }
+                                  }
+                                >
+                                  Remove All Locked Distance Pairs
+                                </button>
+                              </Button>
+                              <ChellRadioGroup
+                                disabled={false}
+                                id="measuring-proximity-1"
+                                key="measuring-proximity-1"
+                                onChange={[Function]}
+                                options={
+                                  Array [
+                                    "CLOSEST",
+                                    "C-α",
+                                  ]
+                                }
+                                style={
+                                  Object {
+                                    "color": "white",
+                                  }
+                                }
+                                title="How to calculate distance between two residues:"
+                              >
+                                <Form
+                                  as="form"
+                                  style={
+                                    Object {
+                                      "color": "white",
+                                    }
+                                  }
+                                >
+                                  <form
+                                    className="ui form"
+                                    onSubmit={[Function]}
+                                    style={
+                                      Object {
+                                        "color": "white",
+                                      }
+                                    }
+                                  >
+                                    <FormField>
+                                      <div
+                                        className="field"
+                                      >
+                                        How to calculate distance between two residues:
+                                      </div>
+                                    </FormField>
+                                    <FormField
+                                      key="measuring-proximity-1-CLOSEST"
+                                    >
+                                      <div
+                                        className="field"
+                                      >
+                                        <Radio
+                                          checked={true}
+                                          disabled={false}
+                                          label={
+                                            Object {
+                                              "children": "closest",
+                                              "style": Object {
+                                                "color": "white",
+                                              },
+                                            }
+                                          }
+                                          name="CLOSEST"
+                                          onChange={[Function]}
+                                          type="radio"
+                                          value={0}
+                                        >
+                                          <Checkbox
+                                            checked={true}
+                                            disabled={false}
+                                            label={
+                                              Object {
+                                                "children": "closest",
+                                                "style": Object {
+                                                  "color": "white",
+                                                },
+                                              }
+                                            }
+                                            name="CLOSEST"
+                                            onChange={[Function]}
+                                            radio={true}
+                                            type="radio"
+                                            value={0}
+                                          >
+                                            <div
+                                              className="ui checked radio checkbox"
+                                              onChange={[Function]}
+                                              onClick={[Function]}
+                                              onMouseDown={[Function]}
+                                            >
+                                              <input
+                                                checked={true}
+                                                className="hidden"
+                                                disabled={false}
+                                                name="CLOSEST"
+                                                onClick={[Function]}
+                                                readOnly={true}
+                                                tabIndex={0}
+                                                type="radio"
+                                                value={0}
+                                              />
+                                              <label
+                                                style={
+                                                  Object {
+                                                    "color": "white",
+                                                  }
+                                                }
+                                              >
+                                                closest
+                                              </label>
+                                            </div>
+                                          </Checkbox>
+                                        </Radio>
+                                      </div>
+                                    </FormField>
+                                    <FormField
+                                      key="measuring-proximity-1-C-α"
+                                    >
+                                      <div
+                                        className="field"
+                                      >
+                                        <Radio
+                                          checked={false}
+                                          disabled={false}
+                                          label={
+                                            Object {
+                                              "children": "c-α",
+                                              "style": Object {
+                                                "color": "white",
+                                              },
+                                            }
+                                          }
+                                          name="C-α"
+                                          onChange={[Function]}
+                                          type="radio"
+                                          value={1}
+                                        >
+                                          <Checkbox
+                                            checked={false}
+                                            disabled={false}
+                                            label={
+                                              Object {
+                                                "children": "c-α",
+                                                "style": Object {
+                                                  "color": "white",
+                                                },
+                                              }
+                                            }
+                                            name="C-α"
+                                            onChange={[Function]}
+                                            radio={true}
+                                            type="radio"
+                                            value={1}
+                                          >
+                                            <div
+                                              className="ui radio checkbox"
+                                              onChange={[Function]}
+                                              onClick={[Function]}
+                                              onMouseDown={[Function]}
+                                            >
+                                              <input
+                                                checked={false}
+                                                className="hidden"
+                                                disabled={false}
+                                                name="C-α"
+                                                onClick={[Function]}
+                                                readOnly={true}
+                                                tabIndex={0}
+                                                type="radio"
+                                                value={1}
+                                              />
+                                              <label
+                                                style={
+                                                  Object {
+                                                    "color": "white",
+                                                  }
+                                                }
+                                              >
+                                                c-α
+                                              </label>
+                                            </div>
+                                          </Checkbox>
+                                        </Radio>
+                                      </div>
+                                    </FormField>
+                                  </form>
+                                </Form>
+                              </ChellRadioGroup>
+                            </div>
+                          </Menu>
+                        </Ref>
+                      </Sidebar>
+                      <SidebarPusher>
+                        <div
+                          className="pusher"
+                        >
+                          <div
+                            className="NGLCanvas"
+                            onKeyDown={[Function]}
+                            onMouseLeave={[Function]}
+                            style={
+                              Object {
+                                "height": 400,
+                                "width": 400,
+                              }
+                            }
+                          />
+                        </div>
+                      </SidebarPusher>
+                    </div>
+                  </SidebarPushable>
+                </div>
+              </Grid>
+            </div>
+          </SettingsPanel>
         </div>
       </DimmerDimmable>
-      <GridRow>
-        <div
-          className="row"
-        >
-          <Button
-            as="button"
-            onClick={[Function]}
-            role="button"
-          >
-            <button
-              className="ui button"
-              onClick={[Function]}
-              role="button"
-            >
-              Remove All Locked Distance Pairs
-            </button>
-          </Button>
-        </div>
-      </GridRow>
     </div>
   </NGLComponentClass>
 </NGLComponent>
+`;
+
+exports[`NGLComponent Should match existing snapshot when u 1`] = `
+<div
+  className="NGLComponent"
+  style={Object {}}
+>
+  <DimmerDimmable
+    dimmed={true}
+  >
+    <Dimmer
+      active={false}
+    >
+      <Loader />
+    </Dimmer>
+    <SettingsPanel
+      configurations={
+        Array [
+          Object {
+            "name": "Remove All Locked Distance Pairs",
+            "onClick": [Function],
+            "type": "BUTTON",
+          },
+          Object {
+            "current": "CLOSEST",
+            "name": "Measuring Proximity",
+            "onChange": [Function],
+            "options": Array [
+              "CLOSEST",
+              "C-α",
+            ],
+            "type": "RADIO",
+          },
+        ]
+      }
+      direction="left"
+      inverted={true}
+      width="100%"
+    >
+      <div
+        className="NGLCanvas"
+        onKeyDown={[Function]}
+        onMouseLeave={[Function]}
+        style={
+          Object {
+            "height": 400,
+            "width": 400,
+          }
+        }
+      />
+    </SettingsPanel>
+  </DimmerDimmable>
+</div>
+`;
+
+exports[`NGLComponent Should match existing snapshot when un 1`] = `
+<div
+  className="NGLComponent"
+  style={Object {}}
+>
+  <DimmerDimmable
+    dimmed={true}
+  >
+    <Dimmer
+      active={false}
+    >
+      <Loader />
+    </Dimmer>
+    <SettingsPanel
+      configurations={
+        Array [
+          Object {
+            "name": "Remove All Locked Distance Pairs",
+            "onClick": [Function],
+            "type": "BUTTON",
+          },
+          Object {
+            "current": "CLOSEST",
+            "name": "Measuring Proximity",
+            "onChange": [Function],
+            "options": Array [
+              "CLOSEST",
+              "C-α",
+            ],
+            "type": "RADIO",
+          },
+        ]
+      }
+      direction="left"
+      inverted={true}
+      width="100%"
+    >
+      <div
+        className="NGLCanvas"
+        onKeyDown={[Function]}
+        onMouseLeave={[Function]}
+        style={
+          Object {
+            "height": 400,
+            "width": 400,
+          }
+        }
+      />
+    </SettingsPanel>
+  </DimmerDimmable>
+</div>
+`;
+
+exports[`NGLComponent Should match existing snapshot when unconnecte 1`] = `
+<div
+  className="NGLComponent"
+  style={Object {}}
+>
+  <DimmerDimmable
+    dimmed={true}
+  >
+    <Dimmer
+      active={false}
+    >
+      <Loader />
+    </Dimmer>
+    <SettingsPanel
+      configurations={
+        Array [
+          Object {
+            "name": "Remove All Locked Distance Pairs",
+            "onClick": [Function],
+            "type": "BUTTON",
+          },
+          Object {
+            "current": "CLOSEST",
+            "name": "Measuring Proximity",
+            "onChange": [Function],
+            "options": Array [
+              "CLOSEST",
+              "C-α",
+            ],
+            "type": "RADIO",
+          },
+        ]
+      }
+      direction="left"
+      inverted={true}
+      width="100%"
+    >
+      <div
+        className="NGLCanvas"
+        onKeyDown={[Function]}
+        onMouseLeave={[Function]}
+        style={
+          Object {
+            "height": 400,
+            "width": 400,
+          }
+        }
+      />
+    </SettingsPanel>
+  </DimmerDimmable>
+</div>
+`;
+
+exports[`NGLComponent Should match existing snapshot when unconnected to 1`] = `
+<div
+  className="NGLComponent"
+  style={Object {}}
+>
+  <DimmerDimmable
+    dimmed={true}
+  >
+    <Dimmer
+      active={false}
+    >
+      <Loader />
+    </Dimmer>
+    <SettingsPanel
+      configurations={
+        Array [
+          Object {
+            "name": "Remove All Locked Distance Pairs",
+            "onClick": [Function],
+            "type": "BUTTON",
+          },
+          Object {
+            "current": "CLOSEST",
+            "name": "Measuring Proximity",
+            "onChange": [Function],
+            "options": Array [
+              "CLOSEST",
+              "C-α",
+            ],
+            "type": "RADIO",
+          },
+        ]
+      }
+      direction="left"
+      inverted={true}
+      width="100%"
+    >
+      <div
+        className="NGLCanvas"
+        onKeyDown={[Function]}
+        onMouseLeave={[Function]}
+        style={
+          Object {
+            "height": 400,
+            "width": 400,
+          }
+        }
+      />
+    </SettingsPanel>
+  </DimmerDimmable>
+</div>
+`;
+
+exports[`NGLComponent Should match existing snapshot when unconnected to a context. 1`] = `
+<div
+  className="NGLComponent"
+  style={Object {}}
+>
+  <DimmerDimmable
+    dimmed={true}
+  >
+    <Dimmer
+      active={false}
+    >
+      <Loader />
+    </Dimmer>
+    <SettingsPanel
+      configurations={
+        Array [
+          Object {
+            "name": "Remove All Locked Distance Pairs",
+            "onClick": [Function],
+            "type": "BUTTON",
+          },
+          Object {
+            "current": "CLOSEST",
+            "name": "Measuring Proximity",
+            "onChange": [Function],
+            "options": Array [
+              "CLOSEST",
+              "C-α",
+            ],
+            "type": "RADIO",
+          },
+        ]
+      }
+      direction="left"
+      inverted={true}
+      width="100%"
+    >
+      <div
+        className="NGLCanvas"
+        onKeyDown={[Function]}
+        onMouseLeave={[Function]}
+        style={
+          Object {
+            "height": 400,
+            "width": 400,
+          }
+        }
+      />
+    </SettingsPanel>
+  </DimmerDimmable>
+</div>
 `;

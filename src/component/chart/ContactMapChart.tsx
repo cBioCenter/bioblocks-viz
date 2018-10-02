@@ -3,13 +3,16 @@ import * as React from 'react';
 
 import { RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../../data/chell-data';
 
+import { ChellWidgetConfig } from '../../data/ChellConfig';
 import { generateScatterGLData } from '../../helper/PlotlyHelper';
-import AuxiliaryAxis from './AuxiliaryAxis';
-import PlotlyChart, { defaultPlotlyLayout, IPlotlyData } from './PlotlyChart';
-import SecondaryStructureAxis from './SecondaryStructureAxis';
+import { SettingsPanel } from '../widget/SettingsPanel';
+import { AuxiliaryAxis } from './AuxiliaryAxis';
+import { defaultPlotlyLayout, IPlotlyData, PlotlyChart } from './PlotlyChart';
+import { SecondaryStructureAxis } from './SecondaryStructureAxis';
 
 export interface IContactMapChartProps {
   candidateResidues: RESIDUE_TYPE[];
+  configurations: ChellWidgetConfig[];
   contactData: IContactMapChartData[];
   dataTransformFn: (entry: IContactMapChartData, mirrorPoints: boolean) => Partial<IPlotlyData>;
   heightModifier: number;
@@ -91,14 +94,15 @@ export interface IContactMapChartPoint {
 class ContactMapChart extends React.Component<IContactMapChartProps, IContactMapChartState> {
   public static defaultProps = {
     candidateResidues: new Array<RESIDUE_TYPE>(),
+    configurations: new Array<ChellWidgetConfig>(),
     dataTransformFn: generateScatterGLData,
     heightModifier: 0.3,
     legendModifiers: {
       y: -0.4,
     },
     marginModifiers: {
-      b: 50,
-      l: 50,
+      b: 75,
+      l: 75,
     },
     range: 100,
     secondaryStructures: [],
@@ -128,43 +132,53 @@ class ContactMapChart extends React.Component<IContactMapChartProps, IContactMap
   }
 
   public render() {
-    const { contactData, heightModifier, legendModifiers, marginModifiers, range, ...props } = this.props;
+    const {
+      configurations,
+      contactData,
+      heightModifier,
+      legendModifiers,
+      marginModifiers,
+      range,
+      ...props
+    } = this.props;
     const { plotlyData } = this.state;
 
     return (
-      <PlotlyChart
-        data={plotlyData}
-        layout={{
-          height: defaultPlotlyLayout.height! + defaultPlotlyLayout.height! * heightModifier,
-          legend: {
-            orientation: 'h',
-            y: legendModifiers.y,
-            yanchor: 'bottom',
-          },
-          margin: {
-            b: marginModifiers.b,
-            l: marginModifiers.l,
-          },
-          showlegend: true,
-          xaxis: {
-            autorange: false,
-            nticks: 10,
-            range: [1, range],
-            showline: true,
-            tickmode: 'auto',
-            title: 'Residue #',
-          },
-          yaxis: {
-            autorange: false,
-            nticks: 10,
-            range: [1, range].reverse(),
-            showline: true,
-            tickmode: 'auto',
-            title: 'Residue #',
-          },
-        }}
-        {...props}
-      />
+      <SettingsPanel configurations={configurations}>
+        <PlotlyChart
+          data={plotlyData}
+          layout={{
+            height: defaultPlotlyLayout.height! + defaultPlotlyLayout.height! * heightModifier,
+            legend: {
+              orientation: 'h',
+              y: legendModifiers.y,
+              yanchor: 'bottom',
+            },
+            margin: {
+              b: marginModifiers.b,
+              l: marginModifiers.l,
+            },
+            showlegend: true,
+            xaxis: {
+              autorange: false,
+              nticks: 10,
+              range: [1, range],
+              showline: true,
+              tickmode: 'auto',
+              title: 'Residue #',
+            },
+            yaxis: {
+              autorange: false,
+              nticks: 10,
+              range: [1, range].reverse(),
+              showline: true,
+              tickmode: 'auto',
+              title: 'Residue #',
+            },
+          }}
+          {...props}
+        />
+      </SettingsPanel>
     );
   }
 
