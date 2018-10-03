@@ -2,7 +2,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Button } from 'semantic-ui-react';
 
-import { ISettingsPanelState, SettingsPanel } from '../SettingsPanel';
+import { ISettingsPanelState, SettingsPanel } from '~chell-viz~/component';
 
 describe('ChellSlider', () => {
   it('Should match the existing snapshot when given no configurations.', () => {

@@ -1,26 +1,28 @@
-import {
-  CONTACT_MAP_DATA_TYPE,
-  IContactMapData,
-  ISecondaryStructureData,
-  SECONDARY_STRUCTURE_CODES,
-  VIZ_TYPE,
-} from '../data/ChellData';
-import { CouplingContainer } from '../data/CouplingContainer';
-import { fetchCSVFile, fetchJSONFile, readFileAsText } from './FetchHelper';
-
 import * as NGL from 'ngl';
 
-import { AMINO_ACID_SINGLE_LETTER_CODE } from '../data/AminoAcid';
-import { ChellPDB } from '../data/ChellPDB';
 import {
+  AMINO_ACID_SINGLE_LETTER_CODE,
+  ChellPDB,
+  CONTACT_MAP_DATA_TYPE,
+  CouplingContainer,
+  IContactMapData,
+  ISecondaryStructureData,
   ISpringCategoricalColorData,
   ISpringCategoricalColorDataInput,
   ISpringGraphData,
   ISpringLink,
   ISpringNode,
-} from '../data/Spring';
-import { getCouplingHeaderIndices } from './CouplingMapper';
-import { generateResidueMapping, IResidueMapping } from './ResidueMapper';
+  SECONDARY_STRUCTURE_CODES,
+  VIZ_TYPE,
+} from '~chell-viz~/data';
+import {
+  fetchCSVFile,
+  fetchJSONFile,
+  generateResidueMapping,
+  getCouplingHeaderIndices,
+  IResidueMapping,
+  readFileAsText,
+} from '~chell-viz~/helper';
 
 export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
   switch (viz) {
@@ -102,7 +104,7 @@ const fetchCategoricalColorData = async (file: string): Promise<ISpringCategoric
 
   const { label_colors } = input[Object.keys(input)[0]];
 
-  // The input file might specify hex values as either 0xrrggbb or #rrggbb, so we might need to convert the input to a consistent output format.
+  // The input file might specify hex values as either 0xrrggbb or #rrggbb, so we need to convert the input to a consistent output format.
   for (const key of Object.keys(label_colors)) {
     const hex = label_colors[key];
     if (typeof hex === 'number') {

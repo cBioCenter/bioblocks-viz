@@ -1,6 +1,4 @@
-import { AMINO_ACIDS_BY_SINGLE_LETTER_CODE } from '../AminoAcid';
-import { ICouplingScore } from '../ChellData';
-import { CouplingContainer } from '../CouplingContainer';
+import { AMINO_ACIDS_BY_SINGLE_LETTER_CODE, CouplingContainer, ICouplingScore } from '~chell-viz~/data';
 
 describe('CouplingContainer', () => {
   // This same intentionally includes a mirrored pair, [i=1,j=0] and [i=0][j=1].

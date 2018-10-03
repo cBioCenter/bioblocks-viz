@@ -4,11 +4,10 @@ import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 import { Form } from 'semantic-ui-react';
 
-import { IMockPlotlyCanvas } from '__mocks__/plotly';
-import { PlotlyChart } from '../../component/chart/PlotlyChart';
-import { FeatureViewer, IFeatureViewerState } from '../../component/FeatureViewer';
-import { IProtein } from '../../data/Protein';
-import { ProteinFeatureViewer } from '../ProteinFeatureViewer';
+import { FeatureViewer, IFeatureViewerState, PlotlyChart } from '~chell-viz~/component';
+import { ProteinFeatureViewer } from '~chell-viz~/container';
+import { IProtein } from '~chell-viz~/data';
+import { IMockPlotlyCanvas } from '~chell-viz~/test';
 
 describe('ProteinFeatureViewer', () => {
   beforeEach(() => {
@@ -132,7 +131,9 @@ describe('ProteinFeatureViewer', () => {
         .at(0)
         .instance().state as IFeatureViewerState;
       const expected =
-        'MH1: MH1 domain (18 - 142)<br /><a href="http://pfam.xfam.org/family/PF03165">PFAM</a> <a href="http://mutationaligner.org/domains/PF03165">Mutagen Aligner</a>';
+        'MH1: MH1 domain (18 - 142)<br />\
+        <a href="http://pfam.xfam.org/family/PF03165">PFAM</a> \
+        <a href="http://mutationaligner.org/domains/PF03165">Mutagen Aligner</a>';
       expect(featureViewerState.hoverAnnotationText).toEqual(expected);
       done();
     });

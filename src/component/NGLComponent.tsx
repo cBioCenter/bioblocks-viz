@@ -4,18 +4,29 @@ import * as React from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react';
 import { Vector2 } from 'three';
 
-import { ICouplingContext, initialCouplingContext, withCouplingContext } from '../context/CouplingContext';
-import { initialResidueContext, IResidueContext, ResidueSelection } from '../context/ResidueContext';
-import { initialSecondaryStructureContext, ISecondaryStructureContext } from '../context/SecondaryStructureContext';
-import { CONFIGURATION_COMPONENT_TYPE } from '../data/ChellConfig';
-import { CONTACT_DISTANCE_PROXIMITY, RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../data/ChellData';
-import { ChellPDB } from '../data/ChellPDB';
+import { SettingsPanel } from '~chell-viz~/component';
+import {
+  ICouplingContext,
+  initialCouplingContext,
+  initialResidueContext,
+  initialSecondaryStructureContext,
+  IResidueContext,
+  ISecondaryStructureContext,
+  ResidueSelection,
+  withCouplingContext,
+} from '~chell-viz~/context';
+import {
+  ChellPDB,
+  CONFIGURATION_COMPONENT_TYPE,
+  CONTACT_DISTANCE_PROXIMITY,
+  RESIDUE_TYPE,
+  SECONDARY_STRUCTURE,
+} from '~chell-viz~/data';
 import {
   createBallStickRepresentation,
   createDistanceRepresentation,
   createSecStructRepresentation,
-} from '../helper/NGLHelper';
-import { SettingsPanel } from './widget/SettingsPanel';
+} from '~chell-viz~/helper';
 
 export type NGL_HOVER_CB_RESULT_TYPE = number;
 
@@ -393,7 +404,4 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
 type requiredProps = Omit<INGLComponentProps, keyof typeof NGLComponentClass.defaultProps> &
   Partial<INGLComponentProps>;
 
-const NGLComponent = (props: requiredProps) => withCouplingContext(NGLComponentClass)({ ...props });
-
-export default NGLComponent;
-export { NGLComponent };
+export const NGLComponent = (props: requiredProps) => withCouplingContext(NGLComponentClass)({ ...props });

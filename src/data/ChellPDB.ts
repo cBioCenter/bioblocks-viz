@@ -4,17 +4,15 @@ import {
   AMINO_ACID_THREE_LETTER_CODE,
   AMINO_ACIDS_BY_SINGLE_LETTER_CODE,
   AMINO_ACIDS_BY_THREE_LETTER_CODE,
-  IAminoAcid,
-} from './AminoAcid';
-import Chell1DSection from './Chell1DSection';
-import {
+  Chell1DSection,
   CONTACT_DISTANCE_PROXIMITY,
+  CouplingContainer,
+  IAminoAcid,
   ICouplingScore,
   ISecondaryStructureData,
   SECONDARY_STRUCTURE_KEYS,
   SECONDARY_STRUCTURE_SECTION,
-} from './ChellData';
-import { CouplingContainer } from './CouplingContainer';
+} from '~chell-viz~/data';
 
 export interface IResidueMismatchResult {
   couplingAminoAcid: IAminoAcid;

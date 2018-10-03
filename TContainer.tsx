@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import TComponent from './src/component/TComponent';
+import { TComponent } from './src/component/TComponent';
 
 let props = {};
 

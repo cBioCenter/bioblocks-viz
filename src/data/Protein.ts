@@ -1,4 +1,5 @@
 /* cSpell:disable */
+// tslint:disable:max-line-length
 
 export interface Info {
   created: string;

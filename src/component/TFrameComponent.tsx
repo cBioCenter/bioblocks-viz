@@ -1,7 +1,8 @@
 import * as React from 'react';
 import IframeComm from 'react-iframe-comm';
-import CellContext, { ICellContext, initialCellContext } from '../context/CellContext';
-import { T_SNE_DATA_TYPE } from '../data/ChellData';
+
+import { CellContextWrapper, ICellContext, initialCellContext } from '~chell-viz~/context';
+import { T_SNE_DATA_TYPE } from '~chell-viz~/data';
 
 export interface ITFrameComponentProps {
   cellContext: ICellContext;
@@ -105,11 +106,8 @@ class TFrameComponentClass extends React.Component<ITFrameComponentProps, any> {
 type requiredProps = Omit<ITFrameComponentProps, keyof typeof TFrameComponentClass.defaultProps> &
   Partial<ITFrameComponentProps>;
 
-const TFrameComponent = (props: requiredProps) => (
-  <CellContext.Consumer>
+export const TFrameComponent = (props: requiredProps) => (
+  <CellContextWrapper.Consumer>
     {cellContext => <TFrameComponentClass {...props} cellContext={{ ...cellContext }} />}
-  </CellContext.Consumer>
+  </CellContextWrapper.Consumer>
 );
-
-export default TFrameComponent;
-export { TFrameComponent };

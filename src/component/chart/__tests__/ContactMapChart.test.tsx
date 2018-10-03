@@ -1,13 +1,13 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { ContactMapChart, IContactMapChartState } from '~chell-viz~/component';
 import {
   Chell1DSection,
   SECONDARY_STRUCTURE,
   SECONDARY_STRUCTURE_CODES,
   SECONDARY_STRUCTURE_KEYS,
-} from '../../../data';
-import ContactMapChart, { IContactMapChartState } from '../ContactMapChart';
+} from '~chell-viz~/data';
 
 describe('ContactMapChart', () => {
   const genSeqEntry = (

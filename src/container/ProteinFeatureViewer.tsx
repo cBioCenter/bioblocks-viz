@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { Form, GridColumn, GridRow } from 'semantic-ui-react';
 
-import { IPlotlyData } from '../component/chart/PlotlyChart';
-import { FeatureViewer } from '../component/FeatureViewer';
-import { IProtein } from '../data/Protein';
-import { TintedChell1DSection } from '../data/TintedChell1DSection';
-import ColorMapper from '../helper/ColorMapper';
+import { FeatureViewer } from '~chell-viz~/component';
+import { IPlotlyData, IProtein, TintedChell1DSection } from '~chell-viz~/data';
+import { ColorMapper } from '~chell-viz~/helper';
 
 export interface IProteinFeatureViewerProps {
   initialProteinId: string;
@@ -19,7 +17,7 @@ export interface IProteinFeatureViewerState {
   showGrouped: boolean;
 }
 
-class ProteinFeatureViewer extends React.Component<IProteinFeatureViewerProps, IProteinFeatureViewerState> {
+export class ProteinFeatureViewer extends React.Component<IProteinFeatureViewerProps, IProteinFeatureViewerState> {
   public static defaultProps = {
     // initialProteinId: 'Q13485',
     initialProteinId: 'Q9NYJ7',
@@ -125,6 +123,3 @@ class ProteinFeatureViewer extends React.Component<IProteinFeatureViewerProps, I
       : '';
   };
 }
-
-export { ProteinFeatureViewer };
-export default ProteinFeatureViewer;

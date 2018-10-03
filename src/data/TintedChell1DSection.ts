@@ -1,5 +1,6 @@
 import { Color } from 'plotly.js-gl2d-dist';
-import Chell1DSection from './Chell1DSection';
+
+import { Chell1DSection } from '~chell-viz~/data';
 
 /**
  * Class to encapsulate a 1 Dimensional data segment that has an associated color with it.
@@ -7,7 +8,7 @@ import Chell1DSection from './Chell1DSection';
  * @export
  * @extends Chell1DSection
  */
-class TintedChell1DSection<T> extends Chell1DSection<T> {
+export class TintedChell1DSection<T> extends Chell1DSection<T> {
   protected sectionColor: Color = 'orange';
 
   public get color() {
@@ -23,7 +24,3 @@ class TintedChell1DSection<T> extends Chell1DSection<T> {
     this.sectionColor = color;
   }
 }
-
-export default TintedChell1DSection;
-
-export { TintedChell1DSection };

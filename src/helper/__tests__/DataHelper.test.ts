@@ -1,15 +1,21 @@
 import * as fetchMock from 'jest-fetch-mock';
 import { inspect as stringifyCircularJSON } from 'util';
-import { IContactMapData, ICouplingScore, SPRING_DATA_TYPE, VIZ_TYPE } from '../../data/ChellData';
-import { ChellPDB } from '../../data/ChellPDB';
-import { CouplingContainer } from '../../data/CouplingContainer';
+
+import {
+  ChellPDB,
+  CouplingContainer,
+  IContactMapData,
+  ICouplingScore,
+  SPRING_DATA_TYPE,
+  VIZ_TYPE,
+} from '~chell-viz~/data';
 import {
   augmentCouplingScoresWithResidueMapping,
   fetchAppropriateData,
+  generateResidueMapping,
   getCouplingScoresData,
   getSecondaryStructureData,
-} from '../DataHelper';
-import { generateResidueMapping } from '../ResidueMapper';
+} from '~chell-viz~/helper';
 
 describe('DataHelper', () => {
   beforeEach(() => {
@@ -43,6 +49,7 @@ describe('DataHelper', () => {
       179,66,0.78681,3.5872,T,M,0,0,0,1.0,24,51';
 
     const residueMappingCsv =
+      // tslint:disable-next-line:max-line-length
       'up_index	up_residue	ss_pred	ss_conf	msa_index	msa_cons%	msa_cons	in_const	pdb_atom	pdb_chain	pdb_index	pdb_residue	pdb_x_pos	pdb_y_pos	pdb_z_pos\n\
       66	M	H	1	66	51	*	*	340	A	68	M	11.714	0.502	32.231\n\
       81	R	H	2	81	18	*	*	448	A	83	R	-4.075	-8.650	45.662\n\

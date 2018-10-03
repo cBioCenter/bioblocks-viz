@@ -2,15 +2,19 @@ import { CommonWrapper, mount, ReactWrapper, shallow } from 'enzyme';
 import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 
-import { IMockPlotlyCanvas } from '__mocks__/plotly';
-import { initialResidueContext, IResidueContext } from '../../context/ResidueContext';
-import { initialSecondaryStructureContext } from '../../context/SecondaryStructureContext';
-import Chell1DSection from '../../data/Chell1DSection';
-import { ChellWidgetConfig, CONFIGURATION_COMPONENT_TYPE } from '../../data/ChellConfig';
-import { IContactMapData, ICouplingScore, SECONDARY_STRUCTURE, SECONDARY_STRUCTURE_KEYS } from '../../data/ChellData';
-import { CouplingContainer } from '../../data/CouplingContainer';
-import { PlotlyChart } from '../chart/PlotlyChart';
-import ContactMap, { IContactMapProps } from '../ContactMap';
+import { ContactMap, IContactMapProps, PlotlyChart } from '~chell-viz~/component';
+import { initialResidueContext, initialSecondaryStructureContext, IResidueContext } from '~chell-viz~/context';
+import {
+  Chell1DSection,
+  ChellWidgetConfig,
+  CONFIGURATION_COMPONENT_TYPE,
+  CouplingContainer,
+  IContactMapData,
+  ICouplingScore,
+  SECONDARY_STRUCTURE,
+  SECONDARY_STRUCTURE_KEYS,
+} from '~chell-viz~/data';
+import { IMockPlotlyCanvas } from '~chell-viz~/test';
 
 // https://medium.com/@ryandrewjohnson/unit-testing-components-using-reacts-new-context-api-4a5219f4b3fe
 // Provides a dummy context for unit testing purposes.
@@ -145,7 +149,7 @@ describe('ContactMap', () => {
       const expectedSelectedPoints = new Map(
         Object.entries({
           '37,46': [37, 46],
-          '8': [8],
+          8: [8],
         }),
       );
       wrapper.setProps({

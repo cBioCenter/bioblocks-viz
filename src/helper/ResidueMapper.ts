@@ -1,4 +1,4 @@
-import { AMINO_ACID_SINGLE_LETTER_CODE } from '../data/AminoAcid';
+import { AMINO_ACID_SINGLE_LETTER_CODE } from '~chell-viz~/data';
 
 const UNI_PROT_RESNO_HEADER = 'up_index';
 const UNI_PROT_RESNAME_HEADER = 'up_residue';

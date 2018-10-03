@@ -1,8 +1,8 @@
 import { mount, shallow } from 'enzyme';
 import * as React from 'react';
-
 import { Dropdown, DropdownItem } from 'semantic-ui-react';
-import CategorySelector from '../CategorySelector';
+
+import { CategorySelector } from '~chell-viz~/component';
 
 describe('CategorySelector', () => {
   const categories = [

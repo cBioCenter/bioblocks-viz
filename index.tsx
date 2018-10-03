@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { ChellVizApp as App } from './src/ChellVizApp';
+import { ChellVizApp as App } from './src';
 
 ReactDOM.render(<App />, document.getElementById('app-root'));
 

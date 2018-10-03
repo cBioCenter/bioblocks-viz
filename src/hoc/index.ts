@@ -1,1 +1,1 @@
-export * from './DimmedComponent';
+export * from './DimmedLoader';

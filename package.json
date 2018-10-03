@@ -43,8 +43,15 @@
       "tsx"
     ],
     "moduleNameMapper": {
-      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.ts",
-      "plotly.js-gl2d-dist": "<rootDir>/__mocks__/plotly.ts"
+      "~chell-viz~/component": "<rootDir>/src/component",
+      "~chell-viz~/container": "<rootDir>/src/container",
+      "~chell-viz~/context": "<rootDir>/src/context",
+      "~chell-viz~/data": "<rootDir>/src/data",
+      "~chell-viz~/helper": "<rootDir>/src/helper",
+      "~chell-viz~/hoc": "<rootDir>/src/hoc",
+      "~chell-viz~/test": "<rootDir>/test",
+      "\\.(css|less)$": "<rootDir>/test/__mocks__/styleMock.ts",
+      "plotly.js-gl2d-dist": "<rootDir>/test/__mocks__/plotly.ts"
     },
     "modulePathIgnorePatterns": [
       "dist"
@@ -55,7 +62,7 @@
       "jest-junit"
     ],
     "setupFiles": [
-      "<rootDir>/configs/SetupJest.ts"
+      "<rootDir>/test/SetupJest.ts"
     ],
     "setupTestFrameworkScriptFile": "jest-enzyme",
     "snapshotSerializers": [
@@ -208,6 +215,7 @@
     "tslint-config-prettier": "^1.12.0",
     "tslint-eslint-rules": "^5.1.0",
     "tslint-jsdoc-rules": "^0.1.2",
+    "tslint-microsoft-contrib": "^5.2.1",
     "tslint-react": "^3.5.1",
     "typedoc": "^0.12.0",
     "typescript": "^3.0.1",

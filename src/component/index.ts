@@ -1,3 +1,6 @@
+export * from './chart';
+export * from './widget';
+
 export * from './ContactMap';
 export * from './FeatureViewer';
 export * from './InfoPanel';

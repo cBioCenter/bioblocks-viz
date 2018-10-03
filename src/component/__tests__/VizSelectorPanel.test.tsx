@@ -2,8 +2,8 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Dropdown } from 'semantic-ui-react';
 
-import { VIZ_TYPE } from '../../data/ChellData';
-import VizSelectorPanel from '../VizSelectorPanel';
+import { VizSelectorPanel } from '~chell-viz~/component';
+import { VIZ_TYPE } from '~chell-viz~/data';
 
 describe('VizSelectorPanel', () => {
   const emptyData = {};

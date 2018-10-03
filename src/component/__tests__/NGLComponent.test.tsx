@@ -2,9 +2,8 @@ import { mount, ReactWrapper, shallow } from 'enzyme';
 import * as NGL from 'ngl';
 import * as React from 'react';
 
-import { initialResidueContext } from '../../context/ResidueContext';
-import { initialSecondaryStructureContext } from '../../context/SecondaryStructureContext';
-import NGLComponent, { NGLComponentClass } from '../NGLComponent';
+import { NGLComponent, NGLComponentClass } from '~chell-viz~/component';
+import { initialResidueContext, initialSecondaryStructureContext } from '~chell-viz~/context';
 
 describe('NGLComponent', () => {
   const sampleData: any = {

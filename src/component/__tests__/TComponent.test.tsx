@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import TComponent from '../TComponent';
+import { TComponent } from '~chell-viz~/component';
 
 describe('TComponent', () => {
   it('Should match existing snapshot when given simple data.', () => {

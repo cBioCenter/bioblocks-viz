@@ -1,8 +1,7 @@
 import * as React from 'react';
 
-import { ChellChartEvent } from '../data/event/ChellChartEvent';
-import { TintedChell1DSection } from '../data/TintedChell1DSection';
-import { IPlotlyData, PlotlyChart } from './chart/PlotlyChart';
+import { PlotlyChart } from '~chell-viz~/component';
+import { ChellChartEvent, IPlotlyData, TintedChell1DSection } from '~chell-viz~/data';
 
 export interface IFeatureViewerProps {
   data: Array<TintedChell1DSection<string>>;
@@ -21,7 +20,7 @@ export interface IFeatureViewerState {
   selectedFeatureIndices: Set<number>;
 }
 
-class FeatureViewer extends React.Component<IFeatureViewerProps, IFeatureViewerState> {
+export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeatureViewerState> {
   public static defaultProps = {
     data: [],
     height: 200,
@@ -217,6 +216,3 @@ class FeatureViewer extends React.Component<IFeatureViewerProps, IFeatureViewerS
     });
   };
 }
-
-export { FeatureViewer };
-export default FeatureViewer;

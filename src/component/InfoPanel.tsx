@@ -1,18 +1,22 @@
 import * as React from 'react';
 import { Accordion, Label } from 'semantic-ui-react';
 
-import ResidueContextHandler, {
+import {
   initialResidueContext,
-  IResidueContext,
-  ResidueSelection,
-} from '../context/ResidueContext';
-import SecondaryStructureContext, {
   initialSecondaryStructureContext,
+  IResidueContext,
   ISecondaryStructureContext,
-} from '../context/SecondaryStructureContext';
-import { IContactMapData, SECONDARY_STRUCTURE, SECONDARY_STRUCTURE_CODES } from '../data/ChellData';
-import { ChellPDB } from '../data/ChellPDB';
-import { CouplingContainer } from '../data/CouplingContainer';
+  ResidueContextWrapper,
+  ResidueSelection,
+  SecondaryStructureContextWrapper,
+} from '~chell-viz~/context';
+import {
+  ChellPDB,
+  CouplingContainer,
+  IContactMapData,
+  SECONDARY_STRUCTURE,
+  SECONDARY_STRUCTURE_CODES,
+} from '~chell-viz~/data';
 
 export interface IInfoPanelProps {
   data: IContactMapData;
@@ -112,9 +116,15 @@ export class InfoPanelClass extends React.Component<IInfoPanelProps, any> {
         if (isUnassigned) {
           result.push(
             <Label key={`unassigned-residue-${residue.resno}`}>
-              {`[${
-                residue.resno
-              }: isCg? ${residue.isCg()}, isDna? ${residue.isDna()}, isHelix? ${residue.isHelix()}, isNucleic? ${residue.isNucleic()}, isProtein? ${residue.isProtein()}, isPolymer? ${residue.isPolymer()}, isSaccharide? ${residue.isSaccharide()}, isSheet? ${residue.isSheet()}, isTurn? ${residue.isTurn()}`}
+              {`[${residue.resno}: isCg? ${residue.isCg()}, \
+              isDna? ${residue.isDna()}, \
+              isHelix? ${residue.isHelix()}, \
+              isNucleic? ${residue.isNucleic()}, \
+              isProtein? ${residue.isProtein()}, \
+              isPolymer? ${residue.isPolymer()}, \
+              isSaccharide? ${residue.isSaccharide()}, \
+              isSheet? ${residue.isSheet()},\
+              isTurn? ${residue.isTurn()}`}
               }
             </Label>,
           );
@@ -126,14 +136,13 @@ export class InfoPanelClass extends React.Component<IInfoPanelProps, any> {
 }
 
 const InfoPanel = (props: any) => (
-  <SecondaryStructureContext.Consumer>
+  <SecondaryStructureContextWrapper.Consumer>
     {secStructContext => (
-      <ResidueContextHandler.Consumer>
+      <ResidueContextWrapper.Consumer>
         {residueContext => <InfoPanel {...props} {...residueContext} {...secStructContext} />}
-      </ResidueContextHandler.Consumer>
+      </ResidueContextWrapper.Consumer>
     )}
-  </SecondaryStructureContext.Consumer>
+  </SecondaryStructureContextWrapper.Consumer>
 );
 
-export default InfoPanel;
 export { InfoPanel };

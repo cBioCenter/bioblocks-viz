@@ -1,6 +1,6 @@
 import { Datum } from 'plotly.js-gl2d-dist';
-import Chell1DSection from '../../data/Chell1DSection';
-import { IPlotlyData } from './PlotlyChart';
+
+import { Chell1DSection, IPlotlyData } from '~chell-viz~/data';
 
 /**
  * Shorthand to refer to something with both an x and y axis.
@@ -15,7 +15,7 @@ export interface IAxisMapping {
 /**
  * Class to represent an extra x and/or y axis for a Plotly chart.
  */
-export default class AuxiliaryAxis<T extends string> {
+export class AuxiliaryAxis<T extends string> {
   protected axes: Map<T, IAxisMapping> = new Map();
 
   /**
@@ -169,5 +169,3 @@ export default class AuxiliaryAxis<T extends string> {
     return result;
   };
 }
-
-export { AuxiliaryAxis };

@@ -1,10 +1,15 @@
 import * as React from 'react';
 import IframeComm from 'react-iframe-comm';
 
-import CellContext, { ICellContext, initialCellContext } from '../context/CellContext';
-import SpringContext, { initialSpringContext, ISpringContext } from '../context/SpringContext';
-import { SPRING_DATA_TYPE } from '../data/ChellData';
-import { ISpringLink, ISpringNode } from '../data/Spring';
+import {
+  CellContextWrapper,
+  ICellContext,
+  initialCellContext,
+  initialSpringContext,
+  ISpringContext,
+  SpringContextWrapper,
+} from '~chell-viz~/context';
+import { ISpringLink, ISpringNode, SPRING_DATA_TYPE } from '~chell-viz~/data';
 
 export interface ISpringContainerProps {
   cellContext: ICellContext;
@@ -94,17 +99,14 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
 type requiredProps = Omit<ISpringContainerProps, keyof typeof SpringContainerClass.defaultProps> &
   Partial<ISpringContainerProps>;
 
-const SpringContainer = (props: requiredProps) => (
-  <CellContext.Consumer>
+export const SpringContainer = (props: requiredProps) => (
+  <CellContextWrapper.Consumer>
     {cellContext => (
-      <SpringContext.Consumer>
+      <SpringContextWrapper.Consumer>
         {springContext => (
           <SpringContainerClass {...props} cellContext={{ ...cellContext }} springContext={{ ...springContext }} />
         )}
-      </SpringContext.Consumer>
+      </SpringContextWrapper.Consumer>
     )}
-  </CellContext.Consumer>
+  </CellContextWrapper.Consumer>
 );
-
-export default SpringContainer;
-export { SpringContainer };

@@ -1,15 +1,14 @@
 import * as React from 'react';
 import { Button, Grid, Menu, Sidebar, SidebarProps } from 'semantic-ui-react';
 
+import { ChellRadioGroup, ChellSlider } from '~chell-viz~/component';
 import {
   ButtonWidgetConfig,
   ChellWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
   RadioWidgetConfig,
   SliderWidgetConfig,
-} from '../../data/ChellConfig';
-import { ChellRadioGroup } from './ChellRadioGroup';
-import { ChellSlider } from './ChellSlider';
+} from '~chell-viz~/data';
 
 export interface ISettingsPanelState {
   visible: boolean;
@@ -21,7 +20,7 @@ export type SettingsPanelProps = {
   width?: number | string;
 } & Partial<Omit<SidebarProps, 'width'>>;
 
-class SettingsPanel extends React.Component<SettingsPanelProps, ISettingsPanelState> {
+export class SettingsPanel extends React.Component<SettingsPanelProps, ISettingsPanelState> {
   public static defaultProps = {
     configurations: new Array<ChellWidgetConfig>(),
     direction: 'left',
@@ -128,6 +127,3 @@ class SettingsPanel extends React.Component<SettingsPanelProps, ISettingsPanelSt
     );
   }
 }
-
-export { SettingsPanel };
-export default SettingsPanel;

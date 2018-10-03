@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { SECONDARY_STRUCTURE_SECTION } from '../data/ChellData';
+
+import { SECONDARY_STRUCTURE_SECTION } from '~chell-viz~/data';
 
 export interface ISecondaryStructureContext {
   addSecondaryStructure: (section: SECONDARY_STRUCTURE_SECTION) => void;
@@ -99,5 +100,4 @@ export const withSecondaryStructureContext = (Component: any) => {
   };
 };
 
-export default SecondaryStructureContextWrapper;
 export { SecondaryStructureContextWrapper };

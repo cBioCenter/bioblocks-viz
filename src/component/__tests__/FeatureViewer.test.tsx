@@ -3,10 +3,9 @@ import * as fetchMock from 'jest-fetch-mock';
 import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 
-import { IMockPlotlyCanvas } from '__mocks__/plotly';
-import { PlotlyChart } from '../../component/chart/PlotlyChart';
-import TintedChell1DSection from '../../data/TintedChell1DSection';
-import { FeatureViewer, IFeatureViewerState } from '../FeatureViewer';
+import { FeatureViewer, IFeatureViewerState, PlotlyChart } from '~chell-viz~/component';
+import { TintedChell1DSection } from '~chell-viz~/data';
+import { IMockPlotlyCanvas } from '~chell-viz~/test';
 
 describe('ProteinFeatureViewer', () => {
   beforeEach(() => {

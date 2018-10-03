@@ -1,23 +1,35 @@
 {
   "defaultSeverity": "error",
   "extends": [
-    "tslint:latest",
-    "tslint:recommended",
-    "tslint-jsdoc-rules",
-    "tslint-react",
+    "tslint-config-prettier",
     "tslint-eslint-rules",
-    "tslint-config-prettier"
+    "tslint-jsdoc-rules",
+    // "tslint-microsoft-contrib",
+    "tslint-react",
+    "tslint:latest",
+    "tslint:recommended"
   ],
   "jsRules": {},
   "rules": {
+    "arrow-parens": false,
     "jsdoc-format": [true],
+    "jsx-curly-spacing": false,
+    "jsx-no-multiline-js": false,
+    "max-line-length": [true, 140],
+    "missing-jsdoc": false,
     "no-console": false,
-    "no-implicit-dependencies": [true, "dev", ["__mocks__", "configs"]],
+    "no-implicit-dependencies": [true, "dev", ["~root", "~chell-viz~", "__mocks__", "configs"]],
     "no-namespace": [true, "allow-declarations"],
     "no-redundant-jsdoc": true,
     "no-reference": false,
-    "no-submodule-imports": [true, "__mocks__", "configs", "plotly.js/dist/plotly"],
-    "quotemark": [true, "jsx-double", "single", "avoid-escape"]
+    "no-submodule-imports": [true, "~root", "~chell-viz~", "__mocks__", "configs", "plotly.js/dist/plotly"],
+    "no-suspicious-comment": false,
+    "object-literal-key-quotes": [true, "as-needed"],
+    "prefer-array-literal": false,
+    "quotemark": [true, "jsx-double", "single", "avoid-escape"],
+    "semicolon": [true, "always", "ignore-bound-class-methods"],
+    "trailing-comma": [true, { "esSpecCompliant": true }]
+    // "no-relative-imports": true,
   },
   "rulesDirectory": []
 }

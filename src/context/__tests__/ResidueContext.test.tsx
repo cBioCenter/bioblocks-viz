@@ -2,7 +2,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import * as Renderer from 'react-test-renderer';
 
-import { initialResidueContext, ResidueContext, ResidueContextWrapper } from '../ResidueContext';
+import { initialResidueContext, ResidueContext, ResidueContextWrapper } from '~chell-viz~/context';
 
 describe('ResidueContext', () => {
   it('Should match the default snapshot.', () => {
@@ -109,7 +109,7 @@ describe('ResidueContext', () => {
       lockedResiduePairs: new Map(
         Object.entries({
           '1,2': [1, 2],
-          '5': [5],
+          5: [5],
           '6,7,8,9': [6, 7, 8, 9],
         }),
       ),
@@ -163,7 +163,7 @@ describe('ResidueContext', () => {
       lockedResiduePairs: new Map(
         Object.entries({
           '1,2': [1, 2],
-          '5': [5],
+          5: [5],
           '6,7,8,9': [6, 7, 8, 9],
         }),
       ),

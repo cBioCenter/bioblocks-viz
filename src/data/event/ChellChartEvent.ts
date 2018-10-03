@@ -1,6 +1,6 @@
-import { CHELL_CHART_EVENT_TYPE, CHELL_CHART_PIECE } from '../ChellData';
+import { CHELL_CHART_EVENT_TYPE, CHELL_CHART_PIECE } from '~chell-viz~/data';
 
-export default class ChellChartEvent {
+export class ChellChartEvent {
   public constructor(
     readonly type: CHELL_CHART_EVENT_TYPE,
     readonly chartPiece?: CHELL_CHART_PIECE,
@@ -11,5 +11,3 @@ export default class ChellChartEvent {
     return this.chartPiece === CHELL_CHART_PIECE.AXIS;
   }
 }
-
-export { ChellChartEvent };

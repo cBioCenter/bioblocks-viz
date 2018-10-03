@@ -60,7 +60,7 @@ export interface IChellSliderState {
  * @export
  * @extends {React.Component<ChellSliderProps, IChellSliderState>}
  */
-export default class ChellSlider extends React.Component<ChellSliderProps, IChellSliderState> {
+export class ChellSlider extends React.Component<ChellSliderProps, IChellSliderState> {
   constructor(props: ChellSliderProps) {
     super(props);
     this.state = {
@@ -121,5 +121,3 @@ export default class ChellSlider extends React.Component<ChellSliderProps, IChel
     });
   };
 }
-
-export { ChellSlider };

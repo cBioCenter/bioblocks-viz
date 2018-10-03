@@ -1,14 +1,15 @@
 import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 
-import { RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../../data/ChellData';
-
-import { ChellWidgetConfig } from '../../data/ChellConfig';
-import { generateScatterGLData } from '../../helper/PlotlyHelper';
-import { SettingsPanel } from '../widget/SettingsPanel';
-import { AuxiliaryAxis } from './AuxiliaryAxis';
-import { defaultPlotlyLayout, IPlotlyData, PlotlyChart } from './PlotlyChart';
-import { SecondaryStructureAxis } from './SecondaryStructureAxis';
+import {
+  AuxiliaryAxis,
+  defaultPlotlyLayout,
+  PlotlyChart,
+  SecondaryStructureAxis,
+  SettingsPanel,
+} from '~chell-viz~/component';
+import { ChellWidgetConfig, IPlotlyData, RESIDUE_TYPE, SECONDARY_STRUCTURE } from '~chell-viz~/data';
+import { generateScatterGLData } from '~chell-viz~/helper';
 
 export interface IContactMapChartProps {
   candidateResidues: RESIDUE_TYPE[];
@@ -92,7 +93,7 @@ export interface IContactMapChartPoint {
  * Will transform data and setup layout from science/chell data type into the Plotly type.
  * @extends {React.Component<IContactMapChartProps, any>}
  */
-class ContactMapChart extends React.Component<IContactMapChartProps, IContactMapChartState> {
+export class ContactMapChart extends React.Component<IContactMapChartProps, IContactMapChartState> {
   public static defaultProps = {
     candidateResidues: new Array<RESIDUE_TYPE>(),
     configurations: new Array<ChellWidgetConfig>(),
@@ -210,6 +211,3 @@ class ContactMapChart extends React.Component<IContactMapChartProps, IContactMap
     });
   }
 }
-
-export { ContactMapChart };
-export default ContactMapChart;

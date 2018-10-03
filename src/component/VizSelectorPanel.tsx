@@ -1,14 +1,23 @@
 import * as React from 'react';
 import { Card, Dropdown, DropdownItemProps } from 'semantic-ui-react';
-import SpringContainer from '../container/SpringContainer';
-import { CHELL_DATA_TYPE, IContactMapData, NGL_DATA_TYPE, T_SNE_DATA_TYPE, VIZ_TYPE } from '../data/ChellData';
-import { ISpringGraphData } from '../data/Spring';
-import InfoPanel from './InfoPanel';
-import NGLComponent from './NGLComponent';
-import PredictedContactMap from './PredictedContactMap';
-import TComponent from './TComponent';
-import TensorTComponent from './TensorTComponent';
-import TFrameComponent from './TFrameComponent';
+
+import {
+  InfoPanel,
+  NGLComponent,
+  PredictedContactMap,
+  TComponent,
+  TensorTComponent,
+  TFrameComponent,
+} from '~chell-viz~/component';
+import { SpringContainer } from '~chell-viz~/container';
+import {
+  CHELL_DATA_TYPE,
+  IContactMapData,
+  ISpringGraphData,
+  NGL_DATA_TYPE,
+  T_SNE_DATA_TYPE,
+  VIZ_TYPE,
+} from '~chell-viz~/data';
 
 export interface IVizPanelProps {
   data: Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>;
@@ -162,5 +171,3 @@ export class VizSelectorPanel extends React.Component<IVizPanelProps, IVizPanelS
       .sort((a, b) => a.key.localeCompare(b.key));
   };
 }
-
-export default VizSelectorPanel;

@@ -1,8 +1,8 @@
 import * as d3 from 'd3';
-
 import * as React from 'react';
-import CellContext, { ICellContext, initialCellContext } from '../context/CellContext';
-import { T_SNE_DATA_TYPE } from '../data/ChellData';
+
+import { CellContextWrapper, ICellContext, initialCellContext } from '~chell-viz~/context';
+import { T_SNE_DATA_TYPE } from '~chell-viz~/data';
 
 export interface ITensorComponentProps {
   cellContext: ICellContext;
@@ -97,11 +97,8 @@ class TensorTComponentClass extends React.Component<ITensorComponentProps, any> 
 type requiredProps = Omit<ITensorComponentProps, keyof typeof TensorTComponentClass.defaultProps> &
   Partial<ITensorComponentProps>;
 
-const TensorTComponent = (props: requiredProps) => (
-  <CellContext.Consumer>
+export const TensorTComponent = (props: requiredProps) => (
+  <CellContextWrapper.Consumer>
     {cellContext => <TensorTComponentClass {...props} cellContext={{ ...cellContext, ...props.cellContext }} />}
-  </CellContext.Consumer>
+  </CellContextWrapper.Consumer>
 );
-
-export default TensorTComponent;
-export { TensorTComponent };

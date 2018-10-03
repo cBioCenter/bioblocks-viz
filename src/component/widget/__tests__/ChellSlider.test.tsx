@@ -1,9 +1,8 @@
 import { shallow } from 'enzyme';
-
+import Slider from 'rc-slider';
 import * as React from 'react';
 
-import Slider from 'rc-slider';
-import ChellSlider, { ChellSliderProps } from '../ChellSlider';
+import { ChellSlider, ChellSliderProps } from '~chell-viz~/component';
 
 describe('ChellSlider', () => {
   const sampleChellSlider = (props: Partial<ChellSliderProps> = {}) => (
