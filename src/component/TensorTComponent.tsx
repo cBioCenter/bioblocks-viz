@@ -2,9 +2,9 @@ import * as d3 from 'd3';
 
 import * as React from 'react';
 import CellContext, { ICellContext, initialCellContext } from '../context/CellContext';
-import { T_SNE_DATA_TYPE } from '../data/chell-data';
+import { T_SNE_DATA_TYPE } from '../data/ChellData';
 
-export interface ITComponentProps {
+export interface ITensorComponentProps {
   cellContext: ICellContext;
   data: T_SNE_DATA_TYPE;
   height: number;
@@ -13,7 +13,7 @@ export interface ITComponentProps {
   width: number;
 }
 
-class TensorTComponentClass extends React.Component<ITComponentProps, any> {
+class TensorTComponentClass extends React.Component<ITensorComponentProps, any> {
   public static defaultProps = {
     cellContext: {
       ...initialCellContext,
@@ -29,7 +29,7 @@ class TensorTComponentClass extends React.Component<ITComponentProps, any> {
   protected canvasContext: any = null;
   protected coordinates: any = null;
 
-  constructor(props: ITComponentProps) {
+  constructor(props: ITensorComponentProps) {
     super(props);
   }
 
@@ -94,8 +94,8 @@ class TensorTComponentClass extends React.Component<ITComponentProps, any> {
   }
 }
 
-type requiredProps = Omit<ITComponentProps, keyof typeof TensorTComponentClass.defaultProps> &
-  Partial<ITComponentProps>;
+type requiredProps = Omit<ITensorComponentProps, keyof typeof TensorTComponentClass.defaultProps> &
+  Partial<ITensorComponentProps>;
 
 const TensorTComponent = (props: requiredProps) => (
   <CellContext.Consumer>

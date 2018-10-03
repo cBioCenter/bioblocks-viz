@@ -6,14 +6,14 @@ import {
   AMINO_ACIDS_BY_THREE_LETTER_CODE,
   IAminoAcid,
 } from './AminoAcid';
+import Chell1DSection from './Chell1DSection';
 import {
   CONTACT_DISTANCE_PROXIMITY,
   ICouplingScore,
   ISecondaryStructureData,
   SECONDARY_STRUCTURE_KEYS,
   SECONDARY_STRUCTURE_SECTION,
-} from './chell-data';
-import Chell1DSection from './Chell1DSection';
+} from './ChellData';
 import { CouplingContainer } from './CouplingContainer';
 
 export interface IResidueMismatchResult {

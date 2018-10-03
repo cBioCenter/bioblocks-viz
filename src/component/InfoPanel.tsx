@@ -10,7 +10,7 @@ import SecondaryStructureContext, {
   initialSecondaryStructureContext,
   ISecondaryStructureContext,
 } from '../context/SecondaryStructureContext';
-import { IContactMapData, SECONDARY_STRUCTURE, SECONDARY_STRUCTURE_CODES } from '../data/chell-data';
+import { IContactMapData, SECONDARY_STRUCTURE, SECONDARY_STRUCTURE_CODES } from '../data/ChellData';
 import { ChellPDB } from '../data/ChellPDB';
 import { CouplingContainer } from '../data/CouplingContainer';
 

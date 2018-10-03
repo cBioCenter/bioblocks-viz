@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { VIZ_TYPE } from '../../data/chell-data';
+import { VIZ_TYPE } from '../../data/ChellData';
 import { fetchAppropriateData } from '../../helper/DataHelper';
 import VizPanelContainer from '../VizPanelContainer';
 

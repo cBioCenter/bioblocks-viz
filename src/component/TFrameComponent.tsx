@@ -1,9 +1,9 @@
 import * as React from 'react';
 import IframeComm from 'react-iframe-comm';
 import CellContext, { ICellContext, initialCellContext } from '../context/CellContext';
-import { T_SNE_DATA_TYPE } from '../data/chell-data';
+import { T_SNE_DATA_TYPE } from '../data/ChellData';
 
-export interface ITComponentProps {
+export interface ITFrameComponentProps {
   cellContext: ICellContext;
   data: T_SNE_DATA_TYPE;
   height: number | string;
@@ -12,7 +12,7 @@ export interface ITComponentProps {
   width: number | string;
 }
 
-class TFrameComponentClass extends React.Component<ITComponentProps, any> {
+class TFrameComponentClass extends React.Component<ITFrameComponentProps, any> {
   public static defaultProps = {
     cellContext: {
       ...initialCellContext,
@@ -26,7 +26,7 @@ class TFrameComponentClass extends React.Component<ITComponentProps, any> {
 
   protected iFrameRef: IframeComm | null = null;
 
-  constructor(props: ITComponentProps) {
+  constructor(props: ITFrameComponentProps) {
     super(props);
     const { cellContext, data, padding, pointColor } = props;
     this.state = {
@@ -42,7 +42,7 @@ class TFrameComponentClass extends React.Component<ITComponentProps, any> {
     };
   }
 
-  public componentDidUpdate(prevProps: ITComponentProps) {
+  public componentDidUpdate(prevProps: ITFrameComponentProps) {
     const { cellContext, data, padding, pointColor } = this.props;
 
     this.setState({
@@ -62,7 +62,7 @@ class TFrameComponentClass extends React.Component<ITComponentProps, any> {
     }
   }
 
-  public componentWillReceiveProps(nextProps: ITComponentProps) {
+  public componentWillReceiveProps(nextProps: ITFrameComponentProps) {
     let payload = {};
     Object.entries(nextProps).forEach(pair => {
       const key = pair['0'];
@@ -84,7 +84,7 @@ class TFrameComponentClass extends React.Component<ITComponentProps, any> {
     });
   }
 
-  public shouldComponentUpdate(nextProps: ITComponentProps) {
+  public shouldComponentUpdate(nextProps: ITFrameComponentProps) {
     return (
       nextProps.cellContext.currentCells && nextProps.cellContext.currentCells !== this.props.cellContext.currentCells
     );
@@ -102,7 +102,8 @@ class TFrameComponentClass extends React.Component<ITComponentProps, any> {
   }
 }
 
-type requiredProps = Omit<ITComponentProps, keyof typeof TFrameComponentClass.defaultProps> & Partial<ITComponentProps>;
+type requiredProps = Omit<ITFrameComponentProps, keyof typeof TFrameComponentClass.defaultProps> &
+  Partial<ITFrameComponentProps>;
 
 const TFrameComponent = (props: requiredProps) => (
   <CellContext.Consumer>

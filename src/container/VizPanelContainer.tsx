@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button, Dropdown, Grid, GridColumn, GridRow, Label } from 'semantic-ui-react';
-import { CHELL_DATA_TYPE, IContactMapData, VIZ_TYPE } from '../data/chell-data';
+import { CHELL_DATA_TYPE, IContactMapData, VIZ_TYPE } from '../data/ChellData';
 
 import VizSelectorPanel from '../component/VizSelectorPanel';
 import ChellContext from '../context/ChellContext';

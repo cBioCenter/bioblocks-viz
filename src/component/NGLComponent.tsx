@@ -7,8 +7,8 @@ import { Vector2 } from 'three';
 import { ICouplingContext, initialCouplingContext, withCouplingContext } from '../context/CouplingContext';
 import { initialResidueContext, IResidueContext, ResidueSelection } from '../context/ResidueContext';
 import { initialSecondaryStructureContext, ISecondaryStructureContext } from '../context/SecondaryStructureContext';
-import { CONTACT_DISTANCE_PROXIMITY, RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../data/chell-data';
 import { CONFIGURATION_COMPONENT_TYPE } from '../data/ChellConfig';
+import { CONTACT_DISTANCE_PROXIMITY, RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../data/ChellData';
 import { ChellPDB } from '../data/ChellPDB';
 import {
   createBallStickRepresentation,

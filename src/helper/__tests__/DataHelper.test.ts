@@ -1,6 +1,6 @@
 import * as fetchMock from 'jest-fetch-mock';
 import { inspect as stringifyCircularJSON } from 'util';
-import { IContactMapData, ICouplingScore, SPRING_DATA_TYPE, VIZ_TYPE } from '../../data/chell-data';
+import { IContactMapData, ICouplingScore, SPRING_DATA_TYPE, VIZ_TYPE } from '../../data/ChellData';
 import { ChellPDB } from '../../data/ChellPDB';
 import { CouplingContainer } from '../../data/CouplingContainer';
 import {

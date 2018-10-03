@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { CELL_TYPE } from '../data/chell-data';
+import { CELL_TYPE } from '../data/ChellData';
 
 export const initialCellContext = {
   addCells: (cells: CELL_TYPE[]) => {

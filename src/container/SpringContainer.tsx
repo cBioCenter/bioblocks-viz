@@ -3,7 +3,7 @@ import IframeComm from 'react-iframe-comm';
 
 import CellContext, { ICellContext, initialCellContext } from '../context/CellContext';
 import SpringContext, { initialSpringContext, ISpringContext } from '../context/SpringContext';
-import { SPRING_DATA_TYPE } from '../data/chell-data';
+import { SPRING_DATA_TYPE } from '../data/ChellData';
 import { ISpringLink, ISpringNode } from '../data/Spring';
 
 export interface ISpringContainerProps {

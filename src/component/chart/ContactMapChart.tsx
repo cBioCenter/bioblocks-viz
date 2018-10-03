@@ -1,7 +1,7 @@
 import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 
-import { RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../../data/chell-data';
+import { RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../../data/ChellData';
 
 import { ChellWidgetConfig } from '../../data/ChellConfig';
 import { generateScatterGLData } from '../../helper/PlotlyHelper';
@@ -211,4 +211,5 @@ class ContactMapChart extends React.Component<IContactMapChartProps, IContactMap
   }
 }
 
+export { ContactMapChart };
 export default ContactMapChart;

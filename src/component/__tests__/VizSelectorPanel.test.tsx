@@ -2,7 +2,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Dropdown } from 'semantic-ui-react';
 
-import { VIZ_TYPE } from '../../data/chell-data';
+import { VIZ_TYPE } from '../../data/ChellData';
 import VizSelectorPanel from '../VizSelectorPanel';
 
 describe('VizSelectorPanel', () => {

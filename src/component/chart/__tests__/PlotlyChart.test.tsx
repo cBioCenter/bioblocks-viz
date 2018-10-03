@@ -2,8 +2,8 @@ import { CommonWrapper, mount } from 'enzyme';
 import * as React from 'react';
 
 import { IMockPlotlyCanvas } from '__mocks__/plotly';
-import { IMockDict } from 'configs/SetupJest';
-import { CHELL_CHART_EVENT_TYPE, CHELL_CHART_PIECE } from '../../../data/chell-data';
+import { IMockDict } from '../../../../configs/SetupJest';
+import { CHELL_CHART_EVENT_TYPE, CHELL_CHART_PIECE } from '../../../data/ChellData';
 import ChellChartEvent from '../../../data/event/ChellChartEvent';
 import { IPlotlyChartProps, IPlotlyData, PlotlyChart } from '../PlotlyChart';
 

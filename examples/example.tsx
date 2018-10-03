@@ -18,7 +18,7 @@ import { NGLComponent } from '../src/component/NGLComponent';
 import { PredictedContactMap } from '../src/component/PredictedContactMap';
 import { CouplingContextClass } from '../src/context/CouplingContext';
 import { IResidueContext, ResidueContextWrapper } from '../src/context/ResidueContext';
-import { CONTACT_DISTANCE_PROXIMITY, CONTACT_MAP_DATA_TYPE, NGL_DATA_TYPE, VIZ_TYPE } from '../src/data/chell-data';
+import { CONTACT_DISTANCE_PROXIMITY, CONTACT_MAP_DATA_TYPE, NGL_DATA_TYPE, VIZ_TYPE } from '../src/data/ChellData';
 import { ChellPDB } from '../src/data/ChellPDB';
 import { CouplingContainer } from '../src/data/CouplingContainer';
 import { getCouplingScoresData } from '../src/helper/DataHelper';

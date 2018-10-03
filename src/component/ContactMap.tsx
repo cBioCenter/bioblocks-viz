@@ -11,8 +11,8 @@ import SecondaryStructureContextWrapper, {
   initialSecondaryStructureContext,
   ISecondaryStructureContext,
 } from '../context/SecondaryStructureContext';
-import { IContactMapData, ICouplingScore, RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../data/chell-data';
 import { ChellWidgetConfig, CONFIGURATION_COMPONENT_TYPE, SliderWidgetConfig } from '../data/ChellConfig';
+import { IContactMapData, ICouplingScore, RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../data/ChellData';
 import { CouplingContainer } from '../data/CouplingContainer';
 import ChellChartEvent from '../data/event/ChellChartEvent';
 import ContactMapChart, { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';

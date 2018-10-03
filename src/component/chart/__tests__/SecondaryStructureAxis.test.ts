@@ -1,5 +1,5 @@
-import { SECONDARY_STRUCTURE, SECONDARY_STRUCTURE_CODES, SECONDARY_STRUCTURE_KEYS } from '../../../data/chell-data';
 import Chell1DSection from '../../../data/Chell1DSection';
+import { SECONDARY_STRUCTURE, SECONDARY_STRUCTURE_CODES, SECONDARY_STRUCTURE_KEYS } from '../../../data/ChellData';
 import { IAxisMapping } from '../AuxiliaryAxis';
 import { SecondaryStructureAxis } from '../SecondaryStructureAxis';
 

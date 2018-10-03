@@ -1,8 +1,8 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { IContactMapData, ICouplingScore, SECONDARY_STRUCTURE_KEYS } from '../../data/chell-data';
 import Chell1DSection from '../../data/Chell1DSection';
+import { IContactMapData, ICouplingScore, SECONDARY_STRUCTURE_KEYS } from '../../data/ChellData';
 import { CouplingContainer } from '../../data/CouplingContainer';
 import { PredictedContactMap } from '../PredictedContactMap';
 

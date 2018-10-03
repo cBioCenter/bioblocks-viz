@@ -4,7 +4,7 @@ import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react';
 
-import { CHELL_CHART_EVENT_TYPE, CHELL_CHART_PIECE } from '../../data/chell-data';
+import { CHELL_CHART_EVENT_TYPE, CHELL_CHART_PIECE } from '../../data/ChellData';
 import ChellChartEvent from '../../data/event/ChellChartEvent';
 
 export enum PLOTLY_CHART_TYPE {

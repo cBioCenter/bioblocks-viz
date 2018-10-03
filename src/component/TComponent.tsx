@@ -2,7 +2,7 @@ import memoizeOne from 'memoize-one';
 import * as React from 'react';
 
 import CellContext, { ICellContext, initialCellContext } from '../context/CellContext';
-import { T_SNE_DATA_TYPE } from '../data/chell-data';
+import { T_SNE_DATA_TYPE } from '../data/ChellData';
 import ChellChartEvent from '../data/event/ChellChartEvent';
 import PlotlyChart, { defaultPlotlyConfig, defaultPlotlyLayout } from './chart/PlotlyChart';
 

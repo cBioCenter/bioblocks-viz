@@ -1,4 +1,4 @@
-import { SECONDARY_STRUCTURE, SECONDARY_STRUCTURE_KEYS, SECONDARY_STRUCTURE_SECTION } from '../../data/chell-data';
+import { SECONDARY_STRUCTURE, SECONDARY_STRUCTURE_KEYS, SECONDARY_STRUCTURE_SECTION } from '../../data/ChellData';
 import AuxiliaryAxis from './AuxiliaryAxis';
 import { IPlotlyData } from './PlotlyChart';
 

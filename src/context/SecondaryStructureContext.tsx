@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SECONDARY_STRUCTURE_SECTION } from '../data/chell-data';
+import { SECONDARY_STRUCTURE_SECTION } from '../data/ChellData';
 
 export interface ISecondaryStructureContext {
   addSecondaryStructure: (section: SECONDARY_STRUCTURE_SECTION) => void;

@@ -1,5 +1,5 @@
 import { AMINO_ACIDS_BY_SINGLE_LETTER_CODE } from '../AminoAcid';
-import { ICouplingScore } from '../chell-data';
+import { ICouplingScore } from '../ChellData';
 import { CouplingContainer } from '../CouplingContainer';
 
 describe('CouplingContainer', () => {

@@ -1,5 +1,5 @@
 import { AMINO_ACIDS_BY_SINGLE_LETTER_CODE, IAminoAcid } from './AminoAcid';
-import { ICouplingScore } from './chell-data';
+import { ICouplingScore } from './ChellData';
 
 /**
  * A CouplingContainer provides access to the coupling information of residue pairs.

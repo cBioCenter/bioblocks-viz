@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { IContactMapData, SECONDARY_STRUCTURE } from '../data/chell-data';
 import { ChellWidgetConfig, CONFIGURATION_COMPONENT_TYPE } from '../data/ChellConfig';
+import { IContactMapData, SECONDARY_STRUCTURE } from '../data/ChellData';
 import { CouplingContainer } from '../data/CouplingContainer';
 import { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';
 import { ContactMap } from './ContactMap';

@@ -1,5 +1,5 @@
 import * as NGL from 'ngl';
-import { RESIDUE_TYPE, SECONDARY_STRUCTURE_SECTION } from '../data/chell-data';
+import { RESIDUE_TYPE, SECONDARY_STRUCTURE_SECTION } from '../data/ChellData';
 
 /**
  * Draws a line between two residues in NGL.

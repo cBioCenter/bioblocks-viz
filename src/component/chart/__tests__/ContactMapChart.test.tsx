@@ -1,8 +1,12 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { SECONDARY_STRUCTURE, SECONDARY_STRUCTURE_CODES, SECONDARY_STRUCTURE_KEYS } from '../../../data/chell-data';
-import Chell1DSection from '../../../data/Chell1DSection';
+import {
+  Chell1DSection,
+  SECONDARY_STRUCTURE,
+  SECONDARY_STRUCTURE_CODES,
+  SECONDARY_STRUCTURE_KEYS,
+} from '../../../data';
 import ContactMapChart, { IContactMapChartState } from '../ContactMapChart';
 
 describe('ContactMapChart', () => {

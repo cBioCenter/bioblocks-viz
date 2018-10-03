@@ -4,7 +4,7 @@ import {
   ISecondaryStructureData,
   SECONDARY_STRUCTURE_CODES,
   VIZ_TYPE,
-} from '../data/chell-data';
+} from '../data/ChellData';
 import { CouplingContainer } from '../data/CouplingContainer';
 import { fetchCSVFile, fetchJSONFile, readFileAsText } from './FetchHelper';
 

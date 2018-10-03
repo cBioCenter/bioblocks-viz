@@ -1,4 +1,4 @@
-import { CHELL_CHART_EVENT_TYPE, CHELL_CHART_PIECE } from '../chell-data';
+import { CHELL_CHART_EVENT_TYPE, CHELL_CHART_PIECE } from '../ChellData';
 
 export default class ChellChartEvent {
   public constructor(

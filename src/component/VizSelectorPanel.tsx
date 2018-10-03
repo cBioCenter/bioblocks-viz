@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Card, Dropdown, DropdownItemProps } from 'semantic-ui-react';
 import SpringContainer from '../container/SpringContainer';
-import { CHELL_DATA_TYPE, IContactMapData, NGL_DATA_TYPE, T_SNE_DATA_TYPE, VIZ_TYPE } from '../data/chell-data';
+import { CHELL_DATA_TYPE, IContactMapData, NGL_DATA_TYPE, T_SNE_DATA_TYPE, VIZ_TYPE } from '../data/ChellData';
 import { ISpringGraphData } from '../data/Spring';
 import InfoPanel from './InfoPanel';
 import NGLComponent from './NGLComponent';
