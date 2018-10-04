@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, Dropdown, DropdownItemProps } from 'semantic-ui-react';
+import { Card, Dropdown, DropdownItemProps, DropdownProps } from 'semantic-ui-react';
 
 import {
   InfoPanel,
@@ -155,9 +155,9 @@ export class VizSelectorPanel extends React.Component<IVizPanelProps, IVizPanelS
     }
   }
 
-  protected onVizSelect = (event: React.SyntheticEvent<any>, data: any) => {
+  protected onVizSelect = (event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
     this.setState({
-      selectedViz: data.value,
+      selectedViz: data.value as VIZ_TYPE,
     });
   };
 

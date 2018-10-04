@@ -15,7 +15,6 @@ export interface IContactMapChartProps {
   candidateResidues: RESIDUE_TYPE[];
   configurations: ChellWidgetConfig[];
   contactData: IContactMapChartData[];
-  dataTransformFn: (entry: IContactMapChartData, mirrorPoints: boolean) => Partial<IPlotlyData>;
   heightModifier: number;
   legendModifiers: {
     y: number;
@@ -24,13 +23,14 @@ export interface IContactMapChartProps {
     b: number;
     l: number;
   };
-  onClickCallback?: (...args: any[]) => void;
-  onHoverCallback?: (...args: any[]) => void;
-  onSelectedCallback?: (...args: any[]) => void;
-  onUnHoverCallback?: (...args: any[]) => void;
   range: number;
   secondaryStructures: SECONDARY_STRUCTURE[];
   selectedSecondaryStructures: SECONDARY_STRUCTURE[];
+  dataTransformFn(entry: IContactMapChartData, mirrorPoints: boolean): Partial<IPlotlyData>;
+  onClickCallback?(...args: any[]): void;
+  onHoverCallback?(...args: any[]): void;
+  onSelectedCallback?(...args: any[]): void;
+  onUnHoverCallback?(...args: any[]): void;
 }
 
 export interface IContactMapChartState {
@@ -60,7 +60,7 @@ export const generateChartDataEntry = (
       ? { color: new Array(points.length * 2).fill(color) }
       : {
           colorscale: [
-            [0.0, 'rgb(12,50,102)'],
+            [0, 'rgb(12,50,102)'],
             [0.1, 'rgb(17,83,150)'],
             [0.2, 'rgb(40,114,175)'],
             [0.3, 'rgb(71,147,193)'],
@@ -70,7 +70,7 @@ export const generateChartDataEntry = (
             [0.7, 'rgb(224,235,246)'],
             [0.8, 'rgb(247,251,255)'],
             [0.9, 'rgb(249,253,255)'],
-            [1.0, 'rgb(255,255,255)'],
+            [1, 'rgb(255,255,255)'],
           ],
         },
   mode: 'lines+markers',
@@ -151,7 +151,9 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
         <PlotlyChart
           data={plotlyData}
           layout={{
-            height: defaultPlotlyLayout.height! + defaultPlotlyLayout.height! * heightModifier,
+            height: defaultPlotlyLayout.height
+              ? defaultPlotlyLayout.height + defaultPlotlyLayout.height * heightModifier
+              : undefined,
             legend: {
               orientation: 'h',
               y: legendModifiers.y,

@@ -32,7 +32,9 @@ describe('PlotlyChart', () => {
    */
   const getMountedPlotlyChart = async (props: IPlotlyChartProps) => {
     const wrapper = mount(<PlotlyChart {...props} />);
-    await wrapper.update();
+    wrapper.update();
+    await Promise.resolve();
+
     return wrapper;
   };
 
@@ -193,8 +195,8 @@ describe('PlotlyChart', () => {
     });
 
     const chartInstance = wrapper.instance() as PlotlyChart;
-
     expect(chartInstance.plotlyCanvas).not.toBeNull();
+    expect(chartInstance.plotlyCanvas).not.toBeUndefined();
     wrapper.unmount();
     expect(chartInstance.plotlyCanvas).toBeNull();
   });

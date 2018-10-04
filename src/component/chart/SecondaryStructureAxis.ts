@@ -1,4 +1,7 @@
+// tslint:disable-next-line:no-relative-imports
 import { AuxiliaryAxis } from './';
+
+// import { AuxiliaryAxis } from '~chell-viz~/component'; // TODO Fix the circular dependency this causes.
 
 import {
   IPlotlyData,
@@ -43,7 +46,7 @@ export class SecondaryStructureAxis extends AuxiliaryAxis<SECONDARY_STRUCTURE_KE
 
   protected setupAuxiliaryAxis() {
     super.setupAuxiliaryAxis();
-    const sheetAxis = this.axes.get('E');
+    const sheetAxis = this.getAxisById('E');
     const BLANK_LINE = 'line-ne';
     const TRIANGLE_RIGHT = 'triangle-right';
     const TRIANGLE_DOWN = 'triangle-down';

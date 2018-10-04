@@ -119,13 +119,13 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
    *
    * @param prevProps The previous props for the PlotlyChart.
    */
-  public componentDidUpdate(prevProps: IPlotlyChartProps) {
+  public async componentDidUpdate(prevProps: IPlotlyChartProps) {
     const { data, layout, config } = this.props;
     if (!isEqual(data, prevProps.data) || !isEqual(layout, prevProps.layout) || !isEqual(config, prevProps.config)) {
       this.plotlyFormattedData = isEqual(data, prevProps.data)
         ? this.plotlyFormattedData
-        : Immutable.fromJS(data).toJS();
-      this.draw();
+        : ((Immutable.fromJS(data) as Immutable.List<keyof IPlotlyData>).toJS() as IPlotlyData[]);
+      await this.draw();
     }
   }
 
@@ -133,7 +133,8 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     if (this.canvasRef && !this.plotlyCanvas) {
       const { data } = this.props;
       // !Important! This is to make a DEEP COPY of the data because Plotly will modify it, thus causing false positive data updates.
-      this.plotlyFormattedData = Immutable.fromJS(data).toJS();
+      const immutableData = Immutable.fromJS(data) as Immutable.List<keyof IPlotlyData>;
+      this.plotlyFormattedData = immutableData.toJS() as IPlotlyData[];
 
       this.plotlyCanvas = await plotly.react(this.canvasRef, this.plotlyFormattedData);
 
@@ -191,22 +192,20 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     }
 
     // TODO Have the spacing number - 0.05 - be configurable. Requires some design work to look good for various numbers of total axes.
-    const result: Partial<IPlotlyLayout> = {
+    return {
       ...this.generateExtraPlotlyAxis(uniqueXAxisIds),
       ...this.generateExtraPlotlyAxis(uniqueYAxisIds),
       xaxis: {
-        domain: [0, 1 - 0.05 * uniqueXAxisIds.size],
+        domain: [0, 1 - uniqueXAxisIds.size * 0.05],
         range: [30],
         zeroline: false,
       },
       yaxis: {
-        domain: [0, 1 - 0.05 * uniqueXAxisIds.size],
+        domain: [0, 1 - uniqueXAxisIds.size * 0.05],
         range: [30],
         zeroline: false,
       },
     };
-
-    return result;
   }
 
   protected deriveChartPiece = (x: number, y: number, data?: plotly.ScatterData) => {
@@ -220,6 +219,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
         };
       }
     }
+
     return {
       chartPiece: CHELL_CHART_PIECE.POINT,
       selectedPoints: [x, y],
@@ -237,11 +237,12 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
       .map(id => {
         const axisId = id.substr(0, 1);
         const axisNum = Number.parseInt(id.substr(1), 10);
-        const result: Partial<Plotly.LayoutAxis> = {
+
+        return {
           [`${axisId}axis${axisNum}`]: {
             // TODO Have this number - 0.05 - be configurable. Requires some design work to look good for various numbers of total axes.
             autosize: false,
-            domain: [1 - 0.05 * (axisNum - 1), 1 - 0.05 * (axisNum - 2)],
+            domain: [1 - (axisNum - 1) * 0.05, 1 - (axisNum - 2) * 0.05],
             dragmode: 'select',
             fixedrange: true,
             margin: {
@@ -250,7 +251,6 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
             visible: false,
           },
         };
-        return result;
       })
       .reduce((prev, curr) => {
         return { ...prev, ...curr };
@@ -258,21 +258,26 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   };
 
   protected getMergedConfig = (config: Partial<Plotly.Config> = {}): Plotly.Config => {
+    const copiedConfig = Immutable.fromJS({ ...defaultPlotlyConfig }) as Immutable.List<keyof Plotly.Config>;
+    const immutableConfigFromJs = Immutable.fromJS({ ...config }) as Immutable.List<keyof Plotly.Config>;
+
     return {
-      ...Immutable.fromJS({ ...defaultPlotlyConfig })
-        .mergeDeep(Immutable.fromJS({ ...config }))
-        .toJS(),
+      ...copiedConfig.mergeDeep(immutableConfigFromJs).toJS(),
     };
   };
 
   protected getMergedLayout = (
     layout: Partial<Plotly.Layout> = {},
     plotlyFormattedData: Array<Partial<IPlotlyData>> = [],
-  ): Partial<Plotly.Layout> => {
-    const result = {
-      ...Immutable.fromJS({ ...defaultPlotlyLayout, ...this.deriveAxisParams(plotlyFormattedData) })
-        .mergeDeep(Immutable.fromJS({ ...layout }))
-        .toJS(),
+  ) => {
+    const copiedLayout = Immutable.fromJS({ ...layout }) as Immutable.List<keyof Plotly.Layout>;
+    const copiedLayoutFromData = Immutable.fromJS({
+      ...defaultPlotlyLayout,
+      ...this.deriveAxisParams(plotlyFormattedData),
+    }) as Immutable.List<keyof Plotly.Layout>;
+
+    const result: Partial<Plotly.Layout> = {
+      ...copiedLayoutFromData.mergeDeep(copiedLayout).toJS(),
     };
 
     if (this.savedAxisZoom && result.xaxis && result.yaxis) {
@@ -354,6 +359,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
       if (event.points.length >= 1) {
         allPoints = event.points.reduce((prev, cur) => {
           prev.push(...[cur.x, cur.y]);
+
           return prev;
         }, allPoints);
       } else if (event.range) {

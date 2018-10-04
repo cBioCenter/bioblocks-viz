@@ -35,7 +35,7 @@ export class ChellPDB {
    */
   public static async createPDB(file: File | string = '') {
     const result = new ChellPDB();
-    result.nglData = await NGL.autoLoad(file);
+    result.nglData = (await NGL.autoLoad(file)) as NGL.Structure;
 
     return result;
   }
@@ -47,7 +47,7 @@ export class ChellPDB {
     return result;
   }
 
-  protected contactInfo?: CouplingContainer = undefined;
+  protected contactInfo?: CouplingContainer;
 
   public get contactInformation(): CouplingContainer {
     if (!this.contactInfo) {

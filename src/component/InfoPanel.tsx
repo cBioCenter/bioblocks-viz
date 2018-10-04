@@ -6,9 +6,9 @@ import {
   initialSecondaryStructureContext,
   IResidueContext,
   ISecondaryStructureContext,
-  ResidueContextWrapper,
+  ResidueContext,
   ResidueSelection,
-  SecondaryStructureContextWrapper,
+  SecondaryStructureContext,
 } from '~chell-viz~/context';
 import {
   ChellPDB,
@@ -47,6 +47,7 @@ export class InfoPanelClass extends React.Component<IInfoPanelProps, any> {
     const unassignedResidues = data.pdbData
       ? this.renderUnassignedResidues(data.pdbData)
       : [<Label key={'unassigned-residues-none'} />];
+
     return (
       <div className="InfoPanel" style={{ height, width }}>
         <Accordion
@@ -131,18 +132,19 @@ export class InfoPanelClass extends React.Component<IInfoPanelProps, any> {
         }
       }
     });
+
     return result;
   }
 }
 
 const InfoPanel = (props: any) => (
-  <SecondaryStructureContextWrapper.Consumer>
+  <SecondaryStructureContext.Consumer>
     {secStructContext => (
-      <ResidueContextWrapper.Consumer>
+      <ResidueContext.Consumer>
         {residueContext => <InfoPanel {...props} {...residueContext} {...secStructContext} />}
-      </ResidueContextWrapper.Consumer>
+      </ResidueContext.Consumer>
     )}
-  </SecondaryStructureContextWrapper.Consumer>
+  </SecondaryStructureContext.Consumer>
 );
 
 export { InfoPanel };

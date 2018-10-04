@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 import * as React from 'react';
 
-import { CellContextWrapper, ICellContext, initialCellContext } from '~chell-viz~/context';
+import { CellContext, ICellContext, initialCellContext } from '~chell-viz~/context';
 import { T_SNE_DATA_TYPE } from '~chell-viz~/data';
 
 export interface ITensorComponentProps {
@@ -25,8 +25,7 @@ class TensorTComponentClass extends React.Component<ITensorComponentProps, any> 
     width: 400,
   };
 
-  protected canvas: any = null;
-  protected canvasContext: any = null;
+  protected canvasContext: CanvasRenderingContext2D | null = null;
   protected coordinates: any = null;
 
   constructor(props: ITensorComponentProps) {
@@ -49,47 +48,50 @@ class TensorTComponentClass extends React.Component<ITensorComponentProps, any> 
     await tsneOpt.compute(500);
     this.coordinates = tsneOpt.coordinates();
 
-    this.canvas = d3
+    const canvasNode = d3
       .select('#TensorTComponentDiv')
       .append('canvas')
       .attr('width', width)
-      .attr('height', height);
+      .attr('height', height)
+      .node() as HTMLCanvasElement;
 
-    this.canvasContext = this.canvas.node().getContext('2d');
+    this.canvasContext = canvasNode === null ? null : canvasNode.getContext('2d');
+    if (this.canvasContext !== null) {
+      const tsneRunner = tsne.tsne(tsneData);
+      await tsneRunner.iterateKnn(5);
 
-    const embedder = tsne.tsne(tsneData);
-    await embedder.iterateKnn(5);
+      for (let i = 0; i < 5; i++) {
+        await tsneRunner.iterate(1); // You could also do a few more iterations in
+        // between downloading the data for display
+        const embeddedCoords = await tsneRunner.coordsArray();
 
-    for (let i = 0; i < 5; i++) {
-      await embedder.iterate(1); // You could also do a few more iterations in
-      // between downloading the data for display
-      const embeddedCoords = await embedder.coordsArray();
+        const x = d3
+          .scaleLinear()
+          .range([0, width])
+          .domain([0, 1]);
+        const y = d3
+          .scaleLinear()
+          .range([0, height])
+          .domain([0, 1]);
 
-      const x = d3
-        .scaleLinear()
-        .range([0, width])
-        .domain([0, 1]);
-      const y = d3
-        .scaleLinear()
-        .range([0, height])
-        .domain([0, 1]);
+        this.canvasContext.clearRect(0, 0, width, height);
+        for (const coord of embeddedCoords) {
+          this.canvasContext.font = '10px sans';
+          this.canvasContext.fillStyle = pointColor;
+          this.canvasContext.fillText('a', x(coord[0]), y(coord[1]));
+        }
 
-      this.canvasContext.clearRect(0, 0, width, height);
-      embeddedCoords.forEach((d: any) => {
-        this.canvasContext.font = '10px sans';
-        this.canvasContext.fillStyle = pointColor;
-        this.canvasContext.fillText('a', x(d[0]), y(d[1]));
-      });
+        await tf.nextFrame();
+      }
 
       await tf.nextFrame();
+      this.forceUpdate();
     }
-
-    await tf.nextFrame();
-    this.forceUpdate();
   }
 
   public render() {
     const { padding } = this.props;
+
     return <div id="TensorTComponentDiv" style={{ padding }} />;
   }
 }
@@ -98,7 +100,7 @@ type requiredProps = Omit<ITensorComponentProps, keyof typeof TensorTComponentCl
   Partial<ITensorComponentProps>;
 
 export const TensorTComponent = (props: requiredProps) => (
-  <CellContextWrapper.Consumer>
+  <CellContext.Consumer>
     {cellContext => <TensorTComponentClass {...props} cellContext={{ ...cellContext, ...props.cellContext }} />}
-  </CellContextWrapper.Consumer>
+  </CellContext.Consumer>
 );

@@ -1,15 +1,20 @@
 import * as React from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react';
 
-import { ContactMapChart, generateChartDataEntry, IContactMapChartData } from '~chell-viz~/component';
+import {
+  ContactMapChart,
+  generateChartDataEntry,
+  IContactMapChartData,
+  IContactMapChartPoint,
+} from '~chell-viz~/component';
 import {
   initialResidueContext,
   initialSecondaryStructureContext,
   IResidueContext,
   ISecondaryStructureContext,
-  ResidueContextWrapper,
+  ResidueContext,
   ResidueSelection,
-  SecondaryStructureContextWrapper,
+  SecondaryStructureContext,
 } from '~chell-viz~/context';
 import {
   ChellChartEvent,
@@ -151,6 +156,15 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     );
 
     if (lockedResiduePairs.size > 0) {
+      const chartPoints = Array.from(lockedResiduePairs.keys()).reduce((reduceResult, key) => {
+        const keyPair = lockedResiduePairs.get(key);
+        if (keyPair && keyPair.length === 2) {
+          reduceResult.push({ i: keyPair[0], j: keyPair[1], dist: 0 });
+        }
+
+        return reduceResult;
+      }, new Array<IContactMapChartPoint>());
+
       result.push(
         generateChartDataEntry(
           'none',
@@ -158,9 +172,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
           chartNames.selected,
           '',
           nodeSizes.selected >= 0 ? pointsToPlot[nodeSizes.selected].nodeSize : 6,
-          Array.from(lockedResiduePairs.keys())
-            .filter(key => lockedResiduePairs.get(key)!.length === 2)
-            .map(key => ({ i: lockedResiduePairs.get(key)![0], j: lockedResiduePairs.get(key)![1], dist: 0 })),
+          chartPoints,
           {
             marker: {
               color: new Array<string>(lockedResiduePairs.size * 2).fill(highlightColor),
@@ -183,6 +195,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 
   protected renderContactMapChart(pointsToPlot: IContactMapChartData[], configurations: ChellWidgetConfig[]) {
     const { data, onBoxSelection, residueContext, secondaryStructureContext } = this.props;
+
     return (
       <ContactMapChart
         candidateResidues={residueContext.candidateResidues}
@@ -199,25 +212,23 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     );
   }
 
-  protected generateNodeSizeSliderConfigs = (
-    entries: IContactMapChartData[],
-    style: React.CSSProperties,
-  ): SliderWidgetConfig[] =>
-    entries.map((entry, index) => {
-      const config: SliderWidgetConfig = {
-        id: `node-size-slider-${index}`,
-        name: `Node size for ${entry.name}`,
-        onChange: this.onNodeSizeChange(index),
-        style,
-        type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
-        values: {
-          current: entry.nodeSize,
-          max: 20,
-          min: 1,
-        },
-      };
-      return config;
-    });
+  protected generateNodeSizeSliderConfigs = (entries: IContactMapChartData[], style: React.CSSProperties) =>
+    entries.map(
+      (entry, index): SliderWidgetConfig => {
+        return {
+          id: `node-size-slider-${index}`,
+          name: `Node size for ${entry.name}`,
+          onChange: this.onNodeSizeChange(index),
+          style,
+          type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
+          values: {
+            current: entry.nodeSize,
+            max: 20,
+            min: 1,
+          },
+        };
+      },
+    );
 
   protected onMouseEnter = (cb: (residue: RESIDUE_TYPE[]) => void) => (e: ChellChartEvent) => {
     if (e.isAxis()) {
@@ -285,9 +296,9 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 type requiredProps = Omit<IContactMapProps, keyof typeof ContactMapClass.defaultProps> & Partial<IContactMapProps>;
 
 const ContactMap = (props: requiredProps) => (
-  <SecondaryStructureContextWrapper.Consumer>
+  <SecondaryStructureContext.Consumer>
     {secondaryStructureContext => (
-      <ResidueContextWrapper.Consumer>
+      <ResidueContext.Consumer>
         {residueContext => (
           <ContactMapClass
             {...props}
@@ -295,9 +306,9 @@ const ContactMap = (props: requiredProps) => (
             secondaryStructureContext={{ ...secondaryStructureContext }}
           />
         )}
-      </ResidueContextWrapper.Consumer>
+      </ResidueContext.Consumer>
     )}
-  </SecondaryStructureContextWrapper.Consumer>
+  </SecondaryStructureContext.Consumer>
 );
 
 export { ContactMap };

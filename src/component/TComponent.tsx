@@ -2,7 +2,7 @@ import memoizeOne from 'memoize-one';
 import * as React from 'react';
 
 import { defaultPlotlyConfig, defaultPlotlyLayout, PlotlyChart } from '~chell-viz~/component';
-import { CellContextWrapper, ICellContext, initialCellContext } from '~chell-viz~/context';
+import { CellContext, ICellContext, initialCellContext } from '~chell-viz~/context';
 import { ChellChartEvent, T_SNE_DATA_TYPE } from '~chell-viz~/data';
 
 export interface ITComponentProps {
@@ -96,7 +96,7 @@ class TComponentClass extends React.Component<ITComponentProps, any> {
 type requiredProps = Omit<ITComponentProps, keyof typeof TComponentClass.defaultProps> & Partial<ITComponentProps>;
 
 export const TComponent = (props: requiredProps) => (
-  <CellContextWrapper.Consumer>
+  <CellContext.Consumer>
     {cellContext => <TComponentClass {...props} cellContext={{ ...cellContext, ...props.cellContext }} />}
-  </CellContextWrapper.Consumer>
+  </CellContext.Consumer>
 );

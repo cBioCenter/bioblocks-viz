@@ -33,8 +33,8 @@ describe('ProteinFeatureViewer', () => {
     }
   };
 
-  // tslint:disable-next-line:mocha-no-side-effect-code
-  const sampleProtein: IProtein = require('./Q13485.json');
+  // tslint:disable-next-line:mocha-no-side-effect-code no-require-imports
+  const sampleProtein = require('./Q13485.json') as IProtein;
 
   it('Should match the default snapshot.', () => {
     const wrapper = shallow(<ProteinFeatureViewer />);
@@ -82,6 +82,12 @@ describe('ProteinFeatureViewer', () => {
       .find(Form.Checkbox)
       .at(0)
       .simulate('change', {}, { checked: true });
+    expect(wrapper.state('showGrouped')).toEqual(true);
+
+    wrapper
+      .find(Form.Checkbox)
+      .at(0)
+      .simulate('change', {}, {});
     expect(wrapper.state('showGrouped')).toEqual(true);
   });
 

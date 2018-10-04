@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ChellContext Should match the default snapshot. 1`] = `
-<SecondaryStructureContext>
-  <SpringContext>
-    <CellContext>
-      <ResidueContext />
-    </CellContext>
-  </SpringContext>
-</SecondaryStructureContext>
+<SecondaryStructureContextProvider>
+  <SpringContextProvider>
+    <CellContextProvider>
+      <ResidueContextProvider />
+    </CellContextProvider>
+  </SpringContextProvider>
+</SecondaryStructureContextProvider>
 `;

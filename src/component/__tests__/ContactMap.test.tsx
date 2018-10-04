@@ -2,8 +2,8 @@ import { CommonWrapper, mount, ReactWrapper, shallow } from 'enzyme';
 import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 
-import { ContactMap, IContactMapProps, PlotlyChart } from '~chell-viz~/component';
-import { initialResidueContext, initialSecondaryStructureContext, IResidueContext } from '~chell-viz~/context';
+import { ContactMap, ContactMapClass, IContactMapProps, PlotlyChart } from '~chell-viz~/component';
+import { initialResidueContext, initialSecondaryStructureContext } from '~chell-viz~/context';
 import {
   Chell1DSection,
   ChellWidgetConfig,
@@ -16,20 +16,6 @@ import {
 } from '~chell-viz~/data';
 import { IMockPlotlyCanvas } from '~chell-viz~/test';
 
-// https://medium.com/@ryandrewjohnson/unit-testing-components-using-reacts-new-context-api-4a5219f4b3fe
-// Provides a dummy context for unit testing purposes.
-const getComponentWithContext = (context: IResidueContext = { ...initialResidueContext }) => {
-  jest.doMock('../../context/ChellContext', () => {
-    return {
-      ChellContext: {
-        Consumer: (props: any) => props.children(context),
-      },
-    };
-  });
-
-  return require('../ContactMap');
-};
-
 /**
  * Helper function to create and wait for a ContactMap to be mounted.
  *
@@ -37,10 +23,10 @@ const getComponentWithContext = (context: IResidueContext = { ...initialResidueC
  * @returns A wrapper for the ContactMap that has been mounted.
  */
 const getMountedContactMap = async (props?: Partial<IContactMapProps>) => {
-  const Component = getComponentWithContext();
-  const wrapper = mount(<Component.ContactMapClass {...props} />);
-  await wrapper.mount();
-  await wrapper.update();
+  const wrapper = mount(<ContactMapClass {...props} />);
+  wrapper.mount();
+  wrapper.update();
+  await Promise.resolve();
 
   return wrapper;
 };
@@ -52,9 +38,7 @@ const getMountedContactMap = async (props?: Partial<IContactMapProps>) => {
  * @returns A wrapper for the ContactMap that has been shallowly created.
  */
 const getShallowContactMap = (props?: Partial<IContactMapProps>) => {
-  const Component = getComponentWithContext();
-
-  return shallow(<Component.ContactMapClass {...props} />);
+  return shallow(<ContactMapClass {...props} />);
 };
 
 /**
@@ -167,7 +151,7 @@ describe('ContactMap', () => {
       wrapper.setProps({
         lockedResiduePairs: expectedSelectedPoints,
       });
-      await wrapper.update();
+      wrapper.update();
       expect(wrapper).toMatchSnapshot();
     });
   });
@@ -354,11 +338,11 @@ describe('ContactMap', () => {
       data: sampleData,
       residueContext: { ...initialResidueContext, clearAllResidues: onClearResidueSpy },
     });
-    await wrapper.update();
+    wrapper.update();
     wrapper.setProps({
       data: emptyData,
     });
-    await wrapper.update();
+    wrapper.update();
     expect(onClearResidueSpy).toHaveBeenCalledTimes(0);
   });
 

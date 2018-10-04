@@ -1,11 +1,11 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { ChellContext } from '~chell-viz~/context';
+import { ChellContextProvider } from '~chell-viz~/context';
 
 describe('ChellContext', () => {
   it('Should match the default snapshot.', () => {
-    const wrapper = shallow(<ChellContext />);
+    const wrapper = shallow(<ChellContextProvider />);
     expect(wrapper).toMatchSnapshot();
   });
 });

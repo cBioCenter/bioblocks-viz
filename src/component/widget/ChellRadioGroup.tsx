@@ -40,6 +40,7 @@ export class ChellRadioGroup extends React.Component<IChellRadioGroupProps, IChe
 
   public render() {
     const { disabled, id, options, style, title } = this.props;
+
     return (
       <Form style={style}>
         <Form.Field>{title}</Form.Field>

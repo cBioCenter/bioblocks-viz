@@ -31,7 +31,7 @@ exports[`VizPanelContainer Should match existing snapshot when given a single vi
       wrapSelection={true}
     />
   </GridRow>
-  <ChellContext>
+  <ChellContextProvider>
     <GridColumn
       key="0"
     >
@@ -44,7 +44,7 @@ exports[`VizPanelContainer Should match existing snapshot when given a single vi
         width={450}
       />
     </GridColumn>
-  </ChellContext>
+  </ChellContextProvider>
   <Label
     as="label"
     basic={true}
@@ -119,7 +119,7 @@ exports[`VizPanelContainer Should match existing snapshot when given multiple vi
       wrapSelection={true}
     />
   </GridRow>
-  <ChellContext>
+  <ChellContextProvider>
     <GridColumn
       key="0"
     >
@@ -154,7 +154,7 @@ exports[`VizPanelContainer Should match existing snapshot when given multiple vi
         width={450}
       />
     </GridColumn>
-  </ChellContext>
+  </ChellContextProvider>
   <Label
     as="label"
     basic={true}

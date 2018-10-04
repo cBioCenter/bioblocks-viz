@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Form, GridColumn, GridRow } from 'semantic-ui-react';
+import { CheckboxProps, Form, FormProps, GridColumn, GridRow, InputOnChangeData } from 'semantic-ui-react';
 
 import { FeatureViewer } from '~chell-viz~/component';
 import { IPlotlyData, IProtein, TintedChell1DSection } from '~chell-viz~/data';
@@ -63,7 +63,7 @@ export class ProteinFeatureViewer extends React.Component<IProteinFeatureViewerP
     );
   }
 
-  protected onProteinInputChange = (e: React.FormEvent, data: any) => {
+  protected onProteinInputChange = (event: React.SyntheticEvent<HTMLInputElement>, data: InputOnChangeData) => {
     this.setState({
       proteinId: data.value,
     });
@@ -96,13 +96,13 @@ export class ProteinFeatureViewer extends React.Component<IProteinFeatureViewerP
     }
   }
 
-  protected onProteinInputSubmit = async (e: React.FormEvent, data: any) => {
+  protected onProteinInputSubmit = async (event: React.FormEvent<HTMLFormElement>, data: FormProps) => {
     await this.deriveProteinData();
   };
 
-  protected onShowGroupedChange = (e: React.FormEvent, data: any) => {
+  protected onShowGroupedChange = (event: React.FormEvent<HTMLInputElement>, data: CheckboxProps) => {
     this.setState({
-      showGrouped: data.checked,
+      showGrouped: data.checked !== undefined ? data.checked : this.state.showGrouped,
     });
   };
 

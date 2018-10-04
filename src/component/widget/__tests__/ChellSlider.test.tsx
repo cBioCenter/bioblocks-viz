@@ -1,5 +1,6 @@
 import { shallow } from 'enzyme';
-import rcSlider from 'rc-slider';
+// tslint:disable-next-line:import-name
+import Slider from 'rc-slider';
 import * as React from 'react';
 
 import { ChellSlider, ChellSliderProps } from '~chell-viz~/component';
@@ -19,7 +20,7 @@ describe('ChellSlider', () => {
     const wrapper = shallow(sampleChellSlider({ onChange: onChangeSpy }));
 
     expect(wrapper.state('value')).not.toBe(expected);
-    wrapper.find(rcSlider).simulate('change', expected);
+    wrapper.find(Slider).simulate('change', expected);
     expect(onChangeSpy).toHaveBeenLastCalledWith(expected);
     expect(wrapper.state('value')).toBe(expected);
   });
@@ -30,7 +31,7 @@ describe('ChellSlider', () => {
     const wrapper = shallow(sampleChellSlider({ onAfterChange: onAfterChangeSpy }));
 
     expect(wrapper.state('value')).not.toBe(expected);
-    wrapper.find(rcSlider).simulate('afterChange', expected);
+    wrapper.find(Slider).simulate('afterChange', expected);
     expect(onAfterChangeSpy).toHaveBeenLastCalledWith(expected);
     expect(wrapper.state('value')).toBe(expected);
   });

@@ -62,10 +62,11 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
     );
   }
 
-  public onButtonClick = (e: React.MouseEvent) =>
+  public onButtonClick = (e: React.MouseEvent) => {
     this.setState({
       visible: !this.state.visible,
     });
+  };
 
   public renderSettingsButton = () => (
     <Button icon={'settings'} basic={true} floated={'right'} onClick={this.onButtonClick} />
@@ -109,7 +110,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
     return (
       <ChellRadioGroup
         id={id}
-        options={config.options!}
+        options={config.options}
         onChange={config.onChange}
         style={{ color: 'white', ...config.style }}
       />

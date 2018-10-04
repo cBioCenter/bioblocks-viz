@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Button, Dropdown, Grid, GridColumn, GridRow, Label } from 'semantic-ui-react';
+import { Button, Dropdown, DropdownProps, Grid, GridColumn, GridRow, Label } from 'semantic-ui-react';
 
 import { VizSelectorPanel } from '~chell-viz~/component';
-import { ChellContext } from '~chell-viz~/context';
+import { ChellContextProvider } from '~chell-viz~/context';
 import { CHELL_DATA_TYPE, ChellPDB, IContactMapData, VIZ_TYPE } from '~chell-viz~/data';
 import {
   fetchAppropriateData,
@@ -47,7 +47,7 @@ export class VizPanelContainer extends React.Component<IVizPanelContainerProps, 
     for (const viz of this.props.supportedVisualizations) {
       results[viz] = await fetchAppropriateData(viz, this.state.currentDataDir);
     }
-    await this.setState({
+    this.setState({
       data: {
         ...results,
       },
@@ -61,7 +61,7 @@ export class VizPanelContainer extends React.Component<IVizPanelContainerProps, 
         results[viz] = await fetchAppropriateData(viz, this.state.currentDataDir);
       }
 
-      await this.setState({
+      this.setState({
         data: {
           ...results,
         },
@@ -85,21 +85,25 @@ export class VizPanelContainer extends React.Component<IVizPanelContainerProps, 
             search={true}
           />
         </GridRow>
-        <ChellContext>
+        <ChellContextProvider>
           {this.renderPanels(this.props.numPanels, this.state.data, this.props.initialVisualizations).map(
             (panel, index) => (
               <GridColumn key={index}>{panel}</GridColumn>
             ),
           )}
-        </ChellContext>
+        </ChellContextProvider>
 
         {this.renderFileUploadForm()}
       </Grid>
     );
   }
 
-  protected renderPanels(numPanels: number, data: any, initialVisualizations: VIZ_TYPE[]) {
-    const result = [];
+  protected renderPanels(
+    numPanels: number,
+    data: Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>,
+    initialVisualizations: VIZ_TYPE[],
+  ) {
+    const result: JSX.Element[] = [];
     for (let i = 0; i < numPanels; ++i) {
       result.push(
         <VizSelectorPanel
@@ -109,6 +113,7 @@ export class VizPanelContainer extends React.Component<IVizPanelContainerProps, 
         />,
       );
     }
+
     return result;
   }
 
@@ -159,9 +164,9 @@ export class VizPanelContainer extends React.Component<IVizPanelContainerProps, 
     }
   };
 
-  protected onDataDirChange = (event: React.SyntheticEvent<any>, data: any) => {
+  protected onDataDirChange = (event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
     this.setState({
-      currentDataDir: data.value,
+      currentDataDir: data.value as string,
     });
   };
 }

@@ -19,7 +19,7 @@ export const initialResidueContext = {
     return;
   },
   hoveredResidues: new Array<RESIDUE_TYPE>(),
-  lockedResiduePairs: new Map() as ResidueSelection,
+  lockedResiduePairs: new Map(),
   removeAllLockedResiduePairs: () => {
     return;
   },
@@ -42,7 +42,9 @@ export const initialResidueContext = {
 
 export type IResidueContext = typeof initialResidueContext;
 
-export class ResidueContext extends React.Component<any, IResidueContext> {
+const ResidueContext = React.createContext(initialResidueContext);
+
+export class ResidueContextProvider extends React.Component<any, IResidueContext> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -61,7 +63,7 @@ export class ResidueContext extends React.Component<any, IResidueContext> {
   }
 
   public render() {
-    return <ResidueContextWrapper.Provider value={this.state}>{this.props.children}</ResidueContextWrapper.Provider>;
+    return <ResidueContext.Provider value={this.state}>{this.props.children}</ResidueContext.Provider>;
   }
 
   protected onAddCandidateResidues = (candidateResidues: RESIDUE_TYPE[]) => {
@@ -93,13 +95,13 @@ export class ResidueContext extends React.Component<any, IResidueContext> {
     this.setState({
       candidateResidues: new Array<RESIDUE_TYPE>(),
       hoveredResidues: new Array<RESIDUE_TYPE>(),
-      lockedResiduePairs: new Map() as ResidueSelection,
+      lockedResiduePairs: new Map(),
     });
   };
 
   protected onRemoveAllLockedResiduePairs = () => {
     this.setState({
-      lockedResiduePairs: new Map() as ResidueSelection,
+      lockedResiduePairs: new Map(),
     });
   };
 
@@ -150,18 +152,10 @@ export class ResidueContext extends React.Component<any, IResidueContext> {
   };
 }
 
-const ResidueContextWrapper = React.createContext({
-  ...initialResidueContext,
-});
+export const withResidueContext = (Component: () => JSX.Element) => (props: any) => (
+  <ResidueContext.Consumer>
+    {residueContext => <Component {...props} residueContext={residueContext} />}
+  </ResidueContext.Consumer>
+);
 
-export const withResidueContext = (Component: any) => {
-  return function ResidueContextHOC(props: any) {
-    return (
-      <ResidueContextWrapper.Consumer>
-        {residueContext => <Component {...props} residueContext={residueContext} />}
-      </ResidueContextWrapper.Consumer>
-    );
-  };
-};
-
-export { ResidueContextWrapper };
+export { ResidueContext };

@@ -112,7 +112,7 @@ const fetchCategoricalColorData = async (file: string): Promise<ISpringCategoric
     if (typeof hex === 'number') {
       output.label_colors[key] = hex;
     } else if (hex.charAt(0) === '#') {
-      output.label_colors[key] = Number.parseInt('0x' + hex.slice(1), 16);
+      output.label_colors[key] = Number.parseInt(`0x${hex.slice(1)}`, 16);
     } else {
       output.label_colors[key] = Number.parseInt(hex, 16);
     }
@@ -181,7 +181,7 @@ export const fetchContactMapData = async (dir: string): Promise<IContactMapData>
     return Promise.reject('Empty path.');
   }
   const contactMapFiles = ['coupling_scores.csv', 'residue_mapping.csv'];
-  const promiseResults = await Promise.all(contactMapFiles.map(file => fetchCSVFile(`${dir}/${file}`)));
+  const promiseResults = await Promise.all(contactMapFiles.map(async file => fetchCSVFile(`${dir}/${file}`)));
   const pdbData = await ChellPDB.createPDB(`${dir}/protein.pdb`);
 
   return {
@@ -199,7 +199,7 @@ export const fetchContactMapData = async (dir: string): Promise<IContactMapData>
  * As such, any rows with less will be ignored.
  *
  * @param line The csv file as a single string.
- * @param residueMapping Maps the coupling_score.csv residue number to the pdb's residue number.
+ * @param residueMapping Maps the coupling_score.csv residue number to the residue number for the PDB.
  * @returns Array of CouplingScores suitable for chell-viz consumption.
  */
 export const getCouplingScoresData = (line: string, residueMapping: IResidueMapping[] = []): CouplingContainer => {

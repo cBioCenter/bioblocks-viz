@@ -31,17 +31,25 @@ describe('DataHelper', () => {
   });
 
   describe('Contact Map', () => {
+    const couplingScoresCsv =
+      '145,81,0.79312,7.5652,A,A,0.9,2.4,47,1.0,E,R\n\
+      179,66,0.78681,3.5872,A,A,0.9,1.3,37,1.0,T,M';
+    const secondaryStructureCsv = ',id,sec_struct_3state\n\
+      0,30,C\n\
+      1,31,C';
+
+    let couplingScoresCsvWithNewline: string;
+    let secondaryStructureCsvWithNewline: string;
+    beforeEach(() => {
+      couplingScoresCsvWithNewline = `${couplingScoresCsv}\n`;
+      secondaryStructureCsvWithNewline = `${secondaryStructureCsv}\n`;
+    });
+
     it('Should throw on incorrect location.', async () => {
       const reason = 'Empty path.';
       expect.assertions(1);
       await expect(fetchAppropriateData(VIZ_TYPE.CONTACT_MAP, '')).rejects.toBe(reason);
     });
-
-    const couplingScoresCsv =
-      '145,81,0.79312,7.5652,A,A,0.9,2.4,47,1.0,E,R\n\
-      179,66,0.78681,3.5872,A,A,0.9,1.3,37,1.0,T,M';
-
-    const couplingScoresCsvWithNewline = `${couplingScoresCsv}\n`;
 
     const couplingScoresCsvWithHeaders = `i,j,cn,dist,A_i,A_j,segment_i,segment_j,probability,dist_intra,dist_multimer,dist,precision,\n
       145,81,0.79312,7.5652,E,R,0,0,0,0,1.0,14,18\n\
@@ -124,11 +132,6 @@ describe('DataHelper', () => {
       expect(result.allContacts).toEqual(expected.allContacts);
     });
 
-    const secondaryStructureCsv = ',id,sec_struct_3state\n\
-      0,30,C\n\
-      1,31,C';
-
-    const secondaryStructureCsvWithNewline = `${secondaryStructureCsv}\n`;
     const expectedSecondaryData = [{ resno: 30, structId: 'C' }, { resno: 31, structId: 'C' }];
 
     it('Should parse secondary structure data correctly.', () => {

@@ -140,6 +140,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
    */
   public render() {
     const { height, isDataLoading, residueContext, style, width } = this.props;
+
     return (
       <div className="NGLComponent" style={{ ...style }}>
         {
@@ -167,10 +168,11 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
             >
               <div
                 className="NGLCanvas"
-                ref={el => (this.canvas = el)}
-                style={{ height, width }}
-                onMouseLeave={this.onCanvasLeave}
                 onKeyDown={this.onKeyDown}
+                onMouseLeave={this.onCanvasLeave}
+                ref={el => (this.canvas = el)}
+                role={'img'}
+                style={{ height, width }}
               />
             </SettingsPanel>
           </Dimmer.Dimmable>
@@ -200,7 +202,8 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
 
   protected deriveActiveRepresentations(structureComponent: NGL.StructureComponent) {
     const { residueContext, secondaryStructureContext } = this.props;
-    const result = [
+
+    return [
       ...this.highlightCandidateResidues(
         structureComponent,
         [...residueContext.candidateResidues, ...residueContext.hoveredResidues]
@@ -213,8 +216,6 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
         ...secondaryStructureContext.temporarySecondaryStructures,
       ]),
     ];
-
-    return result;
   }
 
   /**
@@ -228,7 +229,9 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
 
     structureComponent.stage.mouseControls.add(
       NGL.MouseActions.HOVER_PICK,
-      (aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) => this.onHover(aStage, pickingProxy),
+      (aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) => {
+        this.onHover(aStage, pickingProxy);
+      },
     );
 
     stage.defaultFileRepresentation(structureComponent);
@@ -289,6 +292,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
               );
               minDist = Math.min(minDist, target.distanceTo(atomPosition));
             }
+
             return minDist;
           };
 
@@ -326,9 +330,10 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     const { measuredProximity } = this.props;
 
     if (measuredProximity === CONTACT_DISTANCE_PROXIMITY.C_ALPHA) {
-      return createDistanceRepresentation(structureComponent, residues.join('.CA, ') + '.CA');
+      return createDistanceRepresentation(structureComponent, `${residues.join('.CA, ')}.CA`);
     } else {
       const { atomIndexI, atomIndexJ } = pdbData.getMinDistBetweenResidues(residues[0], residues[1]);
+
       return createDistanceRepresentation(structureComponent, [atomIndexI, atomIndexJ]);
     }
   }
@@ -372,6 +377,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     for (const structure of secondaryStructures) {
       reps.push(createSecStructRepresentation(structureComponent, structure));
     }
+
     return reps;
   }
 

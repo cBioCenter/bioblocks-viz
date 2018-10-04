@@ -46,24 +46,31 @@ describe('SecondaryStructureAxis', () => {
       newColorMap,
     );
 
-    expect(result.axis.get('C')).not.toBeUndefined();
-    expect(result.axis.get('C')!.x.line!.color).toBe('purple');
-    expect(result.axis.get('C')!.y.line!.color).toBe('purple');
+    const cAxis = result.getAxisById('C');
+    const eAxis = result.getAxisById('E');
+    const hAxis = result.getAxisById('H');
 
-    expect(result.axis.get('E')).not.toBeUndefined();
-    expect(result.axis.get('E')!.x.line!.color).toBe('orange');
-    expect(result.axis.get('E')!.y.line!.color).toBe('orange');
+    if (!cAxis || !eAxis || !hAxis) {
+      expect(cAxis).not.toBeUndefined();
+      expect(eAxis).not.toBeUndefined();
+      expect(hAxis).not.toBeUndefined();
+    } else {
+      expect(cAxis.x.line && cAxis.x.line.color).toBe(newColorMap.C);
+      expect(cAxis.y.line && cAxis.y.line.color).toBe(newColorMap.C);
 
-    expect(result.axis.get('H')).not.toBeUndefined();
-    expect(result.axis.get('H')!.x.line!.color).toBe('black');
-    expect(result.axis.get('H')!.y.line!.color).toBe('black');
+      expect(eAxis.x.line && eAxis.x.line.color).toBe(newColorMap.E);
+      expect(eAxis.y.line && eAxis.y.line.color).toBe(newColorMap.E);
+
+      expect(hAxis.x.line && hAxis.x.line.color).toBe(newColorMap.H);
+      expect(hAxis.y.line && hAxis.y.line.color).toBe(newColorMap.H);
+    }
   });
 
   describe('Alpha Helix', () => {
     it('Should use points for a sine wave for alpha helix secondary structures.', () => {
       const result = new SecondaryStructureAxis(genSeqEntry('H', 1, 5));
       const expectedMainAxis = [1, 1, 2, 3, 4, 5, 5];
-      const axis = result.axis.get('H') as RecursiveRequired<IAxisMapping>;
+      const axis = result.getAxisById('H') as RecursiveRequired<IAxisMapping>;
 
       expect(axis.x.x).toEqual(expectedMainAxis);
       expect(axis.y.y).toEqual(expectedMainAxis);
@@ -90,7 +97,7 @@ describe('SecondaryStructureAxis', () => {
       const rightArrow = 'triangle-right';
       const downArrow = 'triangle-down';
 
-      const axis = result.axis.get('E') as RecursiveRequired<IAxisMapping>;
+      const axis = result.getAxisById('E') as RecursiveRequired<IAxisMapping>;
 
       expect(axis.x.marker.symbol).toHaveLength(7);
       expect(axis.x.marker.symbol.length).toEqual(axis.y.marker.symbol.length);

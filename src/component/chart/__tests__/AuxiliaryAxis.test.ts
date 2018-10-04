@@ -51,12 +51,18 @@ describe('AuxiliaryAxis', () => {
     const result = new AuxiliaryAxis([...sampleSections, new Chell1DSection('unova', 494, 649)], 0, 'black', colorMap);
     expect(result.axis.size).toEqual(3);
 
-    expect(result.axis.get('johto')).not.toBeUndefined();
-    expect(result.axis.get('kanto')).not.toBeUndefined();
-    expect(result.axis.get('unova')).not.toBeUndefined();
+    const johtoAxis = result.getAxisById('johto');
+    const kantoAxis = result.getAxisById('kanto');
+    const unovaAxis = result.getAxisById('unova');
 
-    expect(result.axis.get('johto')!.x.line!.color).toEqual('gold');
-    expect(result.axis.get('kanto')!.x.line!.color).toEqual('red');
-    expect(result.axis.get('unova')!.x.line!.color).toEqual('black');
+    if (!johtoAxis || !kantoAxis || !unovaAxis) {
+      expect(johtoAxis).not.toBeUndefined();
+      expect(kantoAxis).not.toBeUndefined();
+      expect(unovaAxis).not.toBeUndefined();
+    } else {
+      expect(johtoAxis.x.line && johtoAxis.x.line.color).toEqual('gold');
+      expect(kantoAxis.x.line && kantoAxis.x.line.color).toEqual('red');
+      expect(unovaAxis.x.line && unovaAxis.x.line.color).toEqual('black');
+    }
   });
 });

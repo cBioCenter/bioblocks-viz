@@ -19,7 +19,7 @@ import {
   CONTACT_MAP_DATA_TYPE,
   ContactMap,
   CouplingContainer,
-  CouplingContextClass,
+  CouplingContextProvider,
   generateResidueMapping,
   getCouplingScoresData,
   IResidueContext,
@@ -28,7 +28,7 @@ import {
   NGLComponent,
   PredictedContactMap,
   readFileAsText,
-  ResidueContextWrapper,
+  ResidueContext,
   VIZ_TYPE,
 } from '~chell-viz~';
 
@@ -125,8 +125,8 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
         </Header>
         {errorMsg.length > 1 && this.renderErrorMessage()}
         <Segment attached={true} raised={true}>
-          <CouplingContextClass>
-            <ResidueContextWrapper.Consumer>
+          <CouplingContextProvider>
+            <ResidueContext.Consumer>
               {residueContext => (
                 <Grid centered={true}>
                   <GridRow verticalAlign={'middle'}>
@@ -170,8 +170,8 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                   </GridRow>
                 </Grid>
               )}
-            </ResidueContextWrapper.Consumer>
-          </CouplingContextClass>
+            </ResidueContext.Consumer>
+          </CouplingContextProvider>
         </Segment>
       </div>
     );
@@ -220,10 +220,10 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
   });
 
   protected renderUploadForm = (
-    onChange: (e: React.ChangeEvent<Element>) => void,
+    onChange: (e: React.ChangeEvent) => void,
     id: string,
     content: string,
-    disabled = false,
+    disabled?: boolean,
   ) => {
     return (
       <GridColumn>
@@ -305,9 +305,9 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
   );
 
   protected onClearAll = (residueContext: IResidueContext) => async () => {
-    await this.setState(ExampleApp.initialState);
+    this.setState(ExampleApp.initialState);
     residueContext.clearAllResidues();
-    await this.forceUpdate();
+    this.forceUpdate();
   };
 
   protected onCouplingScoreUpload = async (e: React.ChangeEvent) => {
@@ -413,7 +413,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
 
   protected onMeasuredProximityChange = () => (value: number) => {
     this.setState({
-      measuredProximity: Object.values(CONTACT_DISTANCE_PROXIMITY)[value],
+      measuredProximity: Object.values(CONTACT_DISTANCE_PROXIMITY)[value] as CONTACT_DISTANCE_PROXIMITY,
     });
   };
 

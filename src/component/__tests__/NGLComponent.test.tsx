@@ -186,12 +186,22 @@ describe('NGLComponent', () => {
   describe('Events', () => {
     const simulateHoverEvent = (wrapper: ReactWrapper<any, any>, opts: object) => {
       const instance = wrapper.instance() as NGLComponentClass;
-      instance.state.stage!.mouseControls.run(NGL.MouseActions.HOVER_PICK, instance.state.stage, opts);
+      const { stage } = instance.state;
+      if (stage) {
+        stage.mouseControls.run(NGL.MouseActions.HOVER_PICK, instance.state.stage, opts);
+      } else {
+        expect(stage).not.toBeUndefined();
+      }
     };
 
     const simulateClickEvent = (wrapper: ReactWrapper<any, any>, opts?: object) => {
       const instance = wrapper.instance() as NGLComponentClass;
-      instance.state.stage!.signals.clicked.dispatch(opts);
+      const { stage } = instance.state;
+      if (stage) {
+        stage.signals.clicked.dispatch(opts);
+      } else {
+        expect(stage).not.toBeUndefined();
+      }
     };
 
     it('Should handle hover events when there is no hovered or candidate residue.', async () => {
@@ -245,8 +255,7 @@ describe('NGLComponent', () => {
       expect(removeNonLockedResiduesSpy).toHaveBeenCalledTimes(1);
     });
 
-    // @ts-ignore
-    // TODO Add each to official jest types - Jest is as v23 but types are for v22 so far.
+    // tslint:disable-next-line:mocha-no-side-effect-code
     it.each([{ atom: { resno: 4 } }, { closestBondAtom: { resno: 4 } }])(
       'Should handle click events by creating a locked residue pair if there is a candidate.',
       async (pickingResult: NGL.PickingProxy) => {
@@ -264,8 +273,7 @@ describe('NGLComponent', () => {
       },
     );
 
-    // @ts-ignore
-    // TODO Add each to official jest types - Jest is as v23 but types are for v22 so far.
+    // tslint:disable-next-line:mocha-no-side-effect-code
     it.each([{ atom: { resno: 4 } }, { closestBondAtom: { resno: 4 } }])(
       'Should handle click events by creating a candidate residue when none is present.',
       async (pickingResult: NGL.PickingProxy) => {
@@ -285,7 +293,8 @@ describe('NGLComponent', () => {
     it('Should handle clicking on a distance representation.', async () => {
       const wrapper = mount(<NGLComponentClass data={sampleData} />);
       const removedLockedSpy = jest.fn();
-      (wrapper.state('structureComponent') as NGL.StructureComponent).addRepresentation('distance');
+      const structureComponent: NGL.StructureComponent = wrapper.state('structureComponent');
+      structureComponent.addRepresentation('distance');
       wrapper.setProps({
         residueContext: {
           ...initialResidueContext,
@@ -383,7 +392,7 @@ describe('NGLComponent', () => {
     it('Should remove the onResize handler when unmounted.', async () => {
       const onResizeSpy = jest.fn();
       const wrapper = mount(<NGLComponent onResize={onResizeSpy} />);
-      await wrapper.unmount();
+      wrapper.unmount();
       global.dispatchEvent(new Event('resize'));
       expect(onResizeSpy).toHaveBeenCalledTimes(0);
     });

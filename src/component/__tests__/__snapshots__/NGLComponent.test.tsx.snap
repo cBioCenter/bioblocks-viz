@@ -41,6 +41,7 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
         className="NGLCanvas"
         onKeyDown={[Function]}
         onMouseLeave={[Function]}
+        role="img"
         style={
           Object {
             "height": 400,

@@ -1,6 +1,8 @@
-// tslint:disable:max-classes-per-file
+// tslint:disable:max-classes-per-file no-reserved-keywords
 declare module 'ngl' {
-  export class AtomMap extends Store {}
+  export class AtomMap extends Store {
+    public dict: { [k: string]: number };
+  }
 
   export class AtomStore extends Store {
     // Properties

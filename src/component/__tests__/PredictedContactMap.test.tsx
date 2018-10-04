@@ -9,12 +9,47 @@ import {
   ICouplingScore,
   SECONDARY_STRUCTURE_KEYS,
 } from '~chell-viz~/data';
+import { getAsyncShallowComponent } from '~chell-viz~/test';
 
 describe('PredictedContactMap', () => {
-  const emptyData = {
-    couplingScores: new CouplingContainer(),
-    secondaryStructures: [],
-  };
+  let emptyData: IContactMapData;
+  let sampleCorrectPredictedContacts: ICouplingScore[];
+  let sampleData: IContactMapData;
+  let sampleIncorrectPredictedContacts: ICouplingScore[];
+  let sampleObservedContacts: ICouplingScore[];
+  let sampleOutOfLinearDistContacts: ICouplingScore[];
+  let uniqueScores: Set<ICouplingScore>;
+
+  beforeEach(() => {
+    emptyData = {
+      couplingScores: new CouplingContainer(),
+      secondaryStructures: [],
+    };
+
+    // Translated from example1/coupling_scores.csv
+    sampleCorrectPredictedContacts = [generateCouplingScore(56, 50, 2.4)];
+    sampleIncorrectPredictedContacts = [generateCouplingScore(42, 50, 20.4)];
+    sampleObservedContacts = [...sampleCorrectPredictedContacts, generateCouplingScore(41, 52, 1.3)];
+    sampleOutOfLinearDistContacts = [
+      generateCouplingScore(45, 46, 1.3),
+      generateCouplingScore(44, 45, 1.3),
+      generateCouplingScore(56, 57, 1.3),
+    ];
+
+    uniqueScores = new Set(
+      Array.from([
+        ...sampleCorrectPredictedContacts,
+        ...sampleIncorrectPredictedContacts,
+        ...sampleObservedContacts,
+        ...sampleOutOfLinearDistContacts,
+      ]),
+    );
+
+    sampleData = {
+      couplingScores: new CouplingContainer(Array.from(uniqueScores)),
+      secondaryStructures: [[new Chell1DSection<SECONDARY_STRUCTURE_KEYS>('C', 30, 31)]],
+    };
+  });
 
   const generateCouplingScore = (
     i: number,
@@ -28,30 +63,6 @@ describe('PredictedContactMap', () => {
     ...extra,
   });
 
-  // Translated from example1/coupling_scores.csv
-  const sampleCorrectPredictedContacts = [generateCouplingScore(56, 50, 2.4)];
-  const sampleIncorrectPredictedContacts = [generateCouplingScore(42, 50, 20.4)];
-  const sampleOutOfLinearDistContacts = [
-    generateCouplingScore(45, 46, 1.3),
-    generateCouplingScore(44, 45, 1.3),
-    generateCouplingScore(56, 57, 1.3),
-  ];
-  const sampleObservedContacts = [...sampleCorrectPredictedContacts, generateCouplingScore(41, 52, 1.3)];
-
-  const uniqueScores = new Set(
-    Array.from([
-      ...sampleCorrectPredictedContacts,
-      ...sampleIncorrectPredictedContacts,
-      ...sampleObservedContacts,
-      ...sampleOutOfLinearDistContacts,
-    ]),
-  );
-
-  const sampleData: IContactMapData = {
-    couplingScores: new CouplingContainer(Array.from(uniqueScores)),
-    secondaryStructures: [[new Chell1DSection<SECONDARY_STRUCTURE_KEYS>('C', 30, 31)]],
-  };
-
   describe('Snapshots', () => {
     it('Should match existing snapshot when given no data.', () => {
       expect(shallow(<PredictedContactMap />)).toMatchSnapshot();
@@ -62,7 +73,7 @@ describe('PredictedContactMap', () => {
     });
 
     it('Should match snapshot when locked residues are added.', async () => {
-      const wrapper = await shallow(<PredictedContactMap />);
+      const wrapper = await getAsyncShallowComponent(<PredictedContactMap />);
       const expectedSelectedPoints = {
         '37,46': [37, 46],
         8: [8],
@@ -70,7 +81,7 @@ describe('PredictedContactMap', () => {
       wrapper.setProps({
         lockedResiduePairs: expectedSelectedPoints,
       });
-      await wrapper.update();
+      wrapper.update();
       expect(wrapper).toMatchSnapshot();
     });
   });
