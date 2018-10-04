@@ -2,23 +2,22 @@
 
 <!-- TOC -->
 
-* [Getting Started With Chell-Viz Development](#getting-started-with-chell-viz-development)
-  * [Developer Tools](#developer-tools)
-    * [VS Code](#vs-code)
-      * [Extensions](#extensions)
-      * [Debugging](#debugging)
-      * [Formatting](#formatting)
-    * [iTerm2](#iterm2)
-    * [Oh My Zsh](#oh-my-zsh)
-    * [Ack](#ack)
-  * [Project Structure](#project-structure)
-    * [Frontend Stack](#frontend-stack)
-    * [Build System](#build-system)
-    * [The DevServer](#the-devserver)
-    * [Being The CI/CD You Want To See In The World](#being-the-cicd-you-want-to-see-in-the-world)
-      * [Pre-commit](#pre-commit)
-      * [Pre-push](#pre-push)
-      * [Circle CI](#circle-ci)
+- [Getting Started With Chell-Viz Development](#getting-started-with-chell-viz-development)
+  - [Developer Tools](#developer-tools)
+    - [VS Code](#vs-code)
+      - [Extensions](#extensions)
+      - [Debugging](#debugging)
+      - [Formatting](#formatting)
+    - [iTerm2](#iterm2)
+    - [Oh My Zsh](#oh-my-zsh)
+    - [Ack](#ack)
+  - [Project Structure](#project-structure)
+    - [Frontend Stack](#frontend-stack)
+    - [Build System](#build-system)
+    - [The DevServer](#the-devserver)
+    - [Being The CI/CD You Want To See In The World](#being-the-cicd-you-want-to-see-in-the-world)
+      - [Pre-commit](#pre-commit)
+      - [Circle CI](#circle-ci)
 
 <!-- /TOC -->
 
@@ -98,7 +97,7 @@ yarn start:prod
 yarn build:prod
 ```
 
-You can find the webpack config files inside the `configs` directory, as well as `webpack.common.ts` for configuration that is the same for both.
+You can find environment-specific webpack config files inside the `configs` directory, as well as `webpack.chell-common.ts` in the project root for the base config.
 
 Right now the differences are minimal, however the framework is now in place to (more easily) allow finer-grained configuration.
 
@@ -119,9 +118,9 @@ Currently we have 2 stages of checks for code when you are ready to submit a PR.
 
 The following will run when a commit is made:
 
-* [Linting](https://palantir.github.io/tslint/) and [formatting](https://prettier.io/) on _staged_ files.
-* [Documentation](http://typedoc.org/) generation.
-* Unit testing via Jest's [--onlyChanged](https://facebook.github.io/jest/docs/en/cli.html#onlychanged) flag.
+- [Linting](https://palantir.github.io/tslint/) and [formatting](https://prettier.io/) on _staged_ files.
+- [Documentation](http://typedoc.org/) generation.
+- Unit testing via Jest's [--onlyChanged](https://facebook.github.io/jest/docs/en/cli.html#onlychanged) flag.
 
 When formatting and adding documentation the resulting file changes will automagically be appended to your commit, requiring _no extra work on your part_!
 
