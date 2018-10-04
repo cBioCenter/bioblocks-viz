@@ -1,7 +1,10 @@
-import { SECONDARY_STRUCTURE, SECONDARY_STRUCTURE_CODES, SECONDARY_STRUCTURE_KEYS } from '../../../data/chell-data';
-import Chell1DSection from '../../../data/Chell1DSection';
-import { IAxisMapping } from '../AuxiliaryAxis';
-import { SecondaryStructureAxis } from '../SecondaryStructureAxis';
+import { IAxisMapping, SecondaryStructureAxis } from '~chell-viz~/component';
+import {
+  Chell1DSection,
+  SECONDARY_STRUCTURE,
+  SECONDARY_STRUCTURE_CODES,
+  SECONDARY_STRUCTURE_KEYS,
+} from '~chell-viz~/data';
 
 describe('SecondaryStructureAxis', () => {
   const genSeqEntry = (

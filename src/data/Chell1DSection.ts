@@ -5,7 +5,7 @@
  *
  * @export
  */
-class Chell1DSection<T> {
+export class Chell1DSection<T> {
   protected sectionEnd: number = 0;
   protected sectionStart: number = 0;
 
@@ -53,7 +53,3 @@ class Chell1DSection<T> {
     }
   }
 }
-
-export default Chell1DSection;
-
-export { Chell1DSection };

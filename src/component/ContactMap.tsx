@@ -1,21 +1,27 @@
 import * as React from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react';
 
+import { ContactMapChart, generateChartDataEntry, IContactMapChartData } from '~chell-viz~/component';
 import {
   initialResidueContext,
+  initialSecondaryStructureContext,
   IResidueContext,
+  ISecondaryStructureContext,
   ResidueContextWrapper,
   ResidueSelection,
-} from '../context/ResidueContext';
-import SecondaryStructureContextWrapper, {
-  initialSecondaryStructureContext,
-  ISecondaryStructureContext,
-} from '../context/SecondaryStructureContext';
-import { IContactMapData, ICouplingScore, RESIDUE_TYPE, SECONDARY_STRUCTURE } from '../data/chell-data';
-import { ChellWidgetConfig, CONFIGURATION_COMPONENT_TYPE, SliderWidgetConfig } from '../data/ChellConfig';
-import { CouplingContainer } from '../data/CouplingContainer';
-import ChellChartEvent from '../data/event/ChellChartEvent';
-import ContactMapChart, { generateChartDataEntry, IContactMapChartData } from './chart/ContactMapChart';
+  SecondaryStructureContextWrapper,
+} from '~chell-viz~/context';
+import {
+  ChellChartEvent,
+  ChellWidgetConfig,
+  CONFIGURATION_COMPONENT_TYPE,
+  CouplingContainer,
+  IContactMapData,
+  ICouplingScore,
+  RESIDUE_TYPE,
+  SECONDARY_STRUCTURE,
+  SliderWidgetConfig,
+} from '~chell-viz~/data';
 
 export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
 export type ContactMapCallback = (coupling: CONTACT_MAP_CB_RESULT_TYPE) => void;
@@ -294,5 +300,4 @@ const ContactMap = (props: requiredProps) => (
   </SecondaryStructureContextWrapper.Consumer>
 );
 
-export default ContactMap;
 export { ContactMap };

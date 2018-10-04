@@ -5,7 +5,7 @@ export interface ICategorySelectorProps {
   /** Categories to select from. */
   categories: string[];
   /** Callback for when a new category is selected. */
-  onCategoryChange?: (event: React.SyntheticEvent<any>, data: object) => void;
+  onCategoryChange?(event: React.SyntheticEvent<any>, data: object): void;
 }
 
 /**
@@ -13,7 +13,7 @@ export interface ICategorySelectorProps {
  *
  * @extends {React.Component<ICategorySelectorProps, any>}
  */
-export default class CategorySelector extends React.Component<ICategorySelectorProps, any> {
+export class CategorySelector extends React.Component<ICategorySelectorProps, any> {
   public static defaultProps = {
     categories: [],
   };
@@ -40,5 +40,3 @@ export default class CategorySelector extends React.Component<ICategorySelectorP
     );
   }
 }
-
-export { CategorySelector };

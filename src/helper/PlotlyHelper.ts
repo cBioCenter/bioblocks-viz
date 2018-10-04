@@ -1,5 +1,5 @@
-import { IContactMapChartData } from '../component/chart/ContactMapChart';
-import { IPlotlyData, PLOTLY_CHART_TYPE } from '../component/chart/PlotlyChart';
+import { IContactMapChartData } from '~chell-viz~/component';
+import { IPlotlyData, PLOTLY_CHART_TYPE } from '~chell-viz~/data';
 
 /**
  * Generate data in the expected format for a WebGL Scatter plot.
@@ -56,6 +56,7 @@ const derivePlotlyColor = (mirrorPoints: boolean, zValues: number[], entry: ICon
     return result.fill(entry.marker.color);
   } else {
     const zStrings = zValues.map(val => val.toString());
+
     return mirrorPoints ? [...zStrings, ...zStrings] : zStrings;
   }
 };
@@ -66,6 +67,7 @@ export const generateFloat32ArrayFromContacts = (array: Array<{ i: number; j: nu
     result[index * 2] = item.i;
     result[index * 2 + 1] = item.j;
   });
+
   return result;
 };
 
@@ -82,6 +84,7 @@ export const generatePointCloudData = (
 ): Partial<IPlotlyData> => {
   const { points } = entry;
   const coords = generateFloat32ArrayFromContacts(points);
+
   return {
     marker: {
       ...entry.marker,

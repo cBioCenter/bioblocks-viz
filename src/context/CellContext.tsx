@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { CELL_TYPE } from '../data/chell-data';
+import { CELL_TYPE } from '~chell-viz~/data';
 
 export const initialCellContext = {
   addCells: (cells: CELL_TYPE[]) => {
@@ -54,5 +54,4 @@ export class CellContext extends React.Component<any, ICellContext> {
 
 const CellContextWrapper = React.createContext(initialCellContext);
 
-export default CellContextWrapper;
 export { CellContextWrapper };

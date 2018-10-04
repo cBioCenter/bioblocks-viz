@@ -1,4 +1,4 @@
-import { ChellPDB } from '../ChellPDB';
+import { ChellPDB } from '~chell-viz~/data';
 
 describe('ChellPDB', () => {
   it('Should handle loading an existing PDB file.', () => {

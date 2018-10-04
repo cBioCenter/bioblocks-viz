@@ -24,7 +24,7 @@ export const initialTooltipState = {
 
 export type ChellTooltipState = Readonly<typeof initialTooltipState>;
 
-class ChellTooltip extends React.Component<IChellTooltipProps, ChellTooltipState> {
+export class ChellTooltip extends React.Component<IChellTooltipProps, ChellTooltipState> {
   public readonly state: ChellTooltipState = initialTooltipState;
 
   constructor(props: IChellTooltipProps) {
@@ -51,6 +51,7 @@ class ChellTooltip extends React.Component<IChellTooltipProps, ChellTooltipState
   public render() {
     const { message, style = defaultStyle } = this.props;
     const { show } = this.state;
+
     return (
       show && (
         <div style={style} className="ChellTooltip">
@@ -60,6 +61,3 @@ class ChellTooltip extends React.Component<IChellTooltipProps, ChellTooltipState
     );
   }
 }
-
-export default ChellTooltip;
-export { ChellTooltip };

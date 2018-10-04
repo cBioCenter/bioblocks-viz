@@ -1,6 +1,6 @@
 import * as fetchMock from 'jest-fetch-mock';
 
-import { fetchCSVFile, fetchJSONFile } from '../FetchHelper';
+import { fetchCSVFile, fetchJSONFile } from '~chell-viz~/helper';
 
 describe('FetchHelper', () => {
   beforeEach(() => {

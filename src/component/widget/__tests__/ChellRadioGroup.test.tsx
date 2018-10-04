@@ -1,8 +1,8 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
-
 import { Form } from 'semantic-ui-react';
-import ChellRadioGroup, { IChellRadioGroupProps } from '../ChellRadioGroup';
+
+import { ChellRadioGroup, IChellRadioGroupProps } from '~chell-viz~/component';
 
 describe('ChellRadioGroup', () => {
   const sampleChellSlider = (props: Partial<IChellRadioGroupProps> = {}) => (

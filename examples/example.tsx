@@ -13,17 +13,24 @@ import {
   TextArea,
 } from 'semantic-ui-react';
 
-import { ContactMap } from '../src/component/ContactMap';
-import { NGLComponent } from '../src/component/NGLComponent';
-import { PredictedContactMap } from '../src/component/PredictedContactMap';
-import { CouplingContextClass } from '../src/context/CouplingContext';
-import { IResidueContext, ResidueContextWrapper } from '../src/context/ResidueContext';
-import { CONTACT_DISTANCE_PROXIMITY, CONTACT_MAP_DATA_TYPE, NGL_DATA_TYPE, VIZ_TYPE } from '../src/data/chell-data';
-import { ChellPDB } from '../src/data/ChellPDB';
-import { CouplingContainer } from '../src/data/CouplingContainer';
-import { getCouplingScoresData } from '../src/helper/DataHelper';
-import { readFileAsText } from '../src/helper/FetchHelper';
-import { generateResidueMapping, IResidueMapping } from '../src/helper/ResidueMapper';
+import {
+  ChellPDB,
+  CONTACT_DISTANCE_PROXIMITY,
+  CONTACT_MAP_DATA_TYPE,
+  ContactMap,
+  CouplingContainer,
+  CouplingContextClass,
+  generateResidueMapping,
+  getCouplingScoresData,
+  IResidueContext,
+  IResidueMapping,
+  NGL_DATA_TYPE,
+  NGLComponent,
+  PredictedContactMap,
+  readFileAsText,
+  ResidueContextWrapper,
+  VIZ_TYPE,
+} from '~chell-viz~';
 
 export interface IExampleAppProps {
   style: React.CSSProperties;

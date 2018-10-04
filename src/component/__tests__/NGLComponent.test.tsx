@@ -2,16 +2,19 @@ import { mount, ReactWrapper, shallow } from 'enzyme';
 import * as NGL from 'ngl';
 import * as React from 'react';
 
-import { initialResidueContext } from '../../context/ResidueContext';
-import { initialSecondaryStructureContext } from '../../context/SecondaryStructureContext';
-import NGLComponent, { NGLComponentClass } from '../NGLComponent';
+import { NGLComponent, NGLComponentClass } from '~chell-viz~/component';
+import { initialResidueContext, initialSecondaryStructureContext } from '~chell-viz~/context';
 
 describe('NGLComponent', () => {
-  const sampleData: any = {
-    residueStore: {
-      resno: new Uint32Array([0, 1, 2, 3, 4]),
-    },
-  };
+  let sampleData: NGL.Structure;
+
+  beforeEach(() => {
+    sampleData = new NGL.Structure();
+    if (!sampleData.residueStore) {
+      sampleData.residueStore = new NGL.ResidueStore();
+    }
+    sampleData.residueStore.resno = new Uint32Array([0, 1, 2, 3, 4]);
+  });
 
   it('Should match existing snapshot when unconnected to a context.', () => {
     expect(shallow(<NGLComponentClass />)).toMatchSnapshot();

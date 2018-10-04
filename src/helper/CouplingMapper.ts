@@ -7,10 +7,12 @@ const generateDefaultHeaderIndices = (items: string[]): { [key: string]: number 
   j: 1,
 });
 
+// tslint:disable-next-line:export-name
 export const getCouplingHeaderIndices = (items: string[]) => {
   const result = generateDefaultHeaderIndices(items);
   Object.entries(result).map(pair => {
     result[pair[0]] = items.includes(pair[0]) ? items.indexOf(pair[0]) : pair[1];
   });
+
   return result;
 };

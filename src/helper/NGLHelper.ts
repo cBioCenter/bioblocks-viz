@@ -1,5 +1,6 @@
 import * as NGL from 'ngl';
-import { RESIDUE_TYPE, SECONDARY_STRUCTURE_SECTION } from '../data/chell-data';
+
+import { RESIDUE_TYPE, SECONDARY_STRUCTURE_SECTION } from '~chell-viz~/data';
 
 /**
  * Draws a line between two residues in NGL.
@@ -52,5 +53,6 @@ export const createSecStructRepresentation = (
     sele: `${section.start}-${section.end}`,
   });
   rep.setParameters({ wireframe: true });
+
   return rep;
 };

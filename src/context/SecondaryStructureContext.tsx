@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { SECONDARY_STRUCTURE_SECTION } from '../data/chell-data';
+
+import { SECONDARY_STRUCTURE_SECTION } from '~chell-viz~/data';
 
 export interface ISecondaryStructureContext {
-  addSecondaryStructure: (section: SECONDARY_STRUCTURE_SECTION) => void;
-  clearSecondaryStructure: () => void;
-  removeSecondaryStructure: (section: SECONDARY_STRUCTURE_SECTION) => void;
   selectedSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
   temporarySecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
-  toggleSecondaryStructure: (section: SECONDARY_STRUCTURE_SECTION) => void;
+  addSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
+  clearSecondaryStructure(): void;
+  removeSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
+  toggleSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
 }
 
 export const initialSecondaryStructureContext: ISecondaryStructureContext = {
@@ -87,17 +88,12 @@ export class SecondaryStructureContext extends React.Component<any, SecondaryStr
   };
 }
 
-const SecondaryStructureContextWrapper = React.createContext(initialSecondaryStructureContext);
+export const SecondaryStructureContextWrapper = React.createContext(initialSecondaryStructureContext);
 
-export const withSecondaryStructureContext = (Component: any) => {
-  return function SecondaryStructureContextHOC(props: any) {
-    return (
-      <SecondaryStructureContextWrapper.Consumer>
-        {secondaryStructure => <Component {...props} secondaryStructureContext={secondaryStructure} />}
-      </SecondaryStructureContextWrapper.Consumer>
-    );
-  };
+export const withSecondaryStructureContext = (Component: any) => (props: any) => {
+  return (
+    <SecondaryStructureContextWrapper.Consumer>
+      {secondaryStructure => <Component {...props} secondaryStructureContext={secondaryStructure} />}
+    </SecondaryStructureContextWrapper.Consumer>
+  );
 };
-
-export default SecondaryStructureContextWrapper;
-export { SecondaryStructureContextWrapper };

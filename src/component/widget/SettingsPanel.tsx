@@ -1,15 +1,14 @@
 import * as React from 'react';
 import { Button, Grid, Menu, Sidebar, SidebarProps } from 'semantic-ui-react';
 
+import { ChellRadioGroup, ChellSlider } from '~chell-viz~/component';
 import {
   ButtonWidgetConfig,
   ChellWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
   RadioWidgetConfig,
   SliderWidgetConfig,
-} from '../../data/ChellConfig';
-import { ChellRadioGroup } from './ChellRadioGroup';
-import { ChellSlider } from './ChellSlider';
+} from '~chell-viz~/data';
 
 export interface ISettingsPanelState {
   visible: boolean;
@@ -21,7 +20,7 @@ export type SettingsPanelProps = {
   width?: number | string;
 } & Partial<Omit<SidebarProps, 'width'>>;
 
-class SettingsPanel extends React.Component<SettingsPanelProps, ISettingsPanelState> {
+export class SettingsPanel extends React.Component<SettingsPanelProps, ISettingsPanelState> {
   public static defaultProps = {
     configurations: new Array<ChellWidgetConfig>(),
     direction: 'left',
@@ -78,10 +77,10 @@ class SettingsPanel extends React.Component<SettingsPanelProps, ISettingsPanelSt
         {configurations.map((config, index) => {
           const id = config.id
             ? config.id
-            : config.name
+            : `${config.name
                 .toLowerCase()
                 .split(' ')
-                .join('-') + `-${index}`;
+                .join('-')}-${index}`;
           switch (config.type) {
             case CONFIGURATION_COMPONENT_TYPE.BUTTON:
               return <Grid.Row key={id}>{this.renderConfigurationButton(config, id)}</Grid.Row>;
@@ -89,6 +88,9 @@ class SettingsPanel extends React.Component<SettingsPanelProps, ISettingsPanelSt
               return <Grid.Row key={id}>{this.renderConfigurationRadioButton(config, id)}</Grid.Row>;
             case CONFIGURATION_COMPONENT_TYPE.SLIDER:
               return <Grid.Row key={id}>{this.renderConfigurationSlider(config, id)}</Grid.Row>;
+            default: {
+              return <Grid.Row key={id}>{`configuration for ${id}`}</Grid.Row>;
+            }
           }
         })}
       </Grid>
@@ -128,6 +130,3 @@ class SettingsPanel extends React.Component<SettingsPanelProps, ISettingsPanelSt
     );
   }
 }
-
-export { SettingsPanel };
-export default SettingsPanel;

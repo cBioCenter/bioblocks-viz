@@ -109,10 +109,20 @@
     "@types/long" "~3.0.32"
     protobufjs "~6.8.6"
 
-"@tensorflow/tfjs-core@0.13.2", "@tensorflow/tfjs-core@^0.13.0":
+"@tensorflow/tfjs-core@0.13.2":
   version "0.13.2"
   resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-core/-/tfjs-core-0.13.2.tgz#edb0e4b9e42b04ca113a0ce80f211b22e2c85552"
   integrity sha512-0+/Lfjmv+eMibVaYCe2trSqps5+K+b5BZbzJTwbHM2fpV1l1XJpp6PLyZ05A4mhQcAiuIgNgim48H97Yl+yAMw==
+  dependencies:
+    "@types/seedrandom" "~2.4.27"
+    "@types/webgl-ext" "~0.0.29"
+    "@types/webgl2" "~0.0.4"
+    seedrandom "~2.4.3"
+
+"@tensorflow/tfjs-core@^0.13.0":
+  version "0.13.3"
+  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-core/-/tfjs-core-0.13.3.tgz#91606779094b43216ff47e6375a43b8ed354ef7e"
+  integrity sha512-MdOqTFs9M9xl4N/62f8VRB0+qefEaWPjE9WJNGLHtf9RbynrAs8Ii4KuEVBf7IzxrT8BMvLPmerBYalPAQnzrA==
   dependencies:
     "@types/seedrandom" "~2.4.27"
     "@types/webgl-ext" "~0.0.29"
@@ -449,9 +459,9 @@
     "@types/webpack" "*"
 
 "@types/jest@^23.3.1":
-  version "23.3.2"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.2.tgz#07b90f6adf75d42c34230c026a2529e56c249dbb"
-  integrity sha512-D1xlXHZpDonVX+VJ28XtcD5xlu8ex6Fc4cQNnrm2wJvlQnbec9RedhCrhQr6kRAE9XWHSec+JPuTmqJ9jC0qsA==
+  version "23.3.3"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.3.tgz#246ebcc52771d2327bb8e37aa971b412d9dc4237"
+  integrity sha512-G6EBrbjWDfmIpYu8UcRBOhwtDiYaLj5N5jUR5rx0YvbKxRBhXPZVLUmtfShewSUNKiQwpHavpML69a2WMbIlEQ==
 
 "@types/lodash@^4.14.110", "@types/lodash@^4.14.116":
   version "4.14.116"
@@ -489,9 +499,9 @@
   integrity sha512-Mash7eQv0HOs/fBVywUGR7NLSXyMl3XHkIo/kcWBgD9ppwPYOp8UDFxZfKy9hWeVHT2p+69vgXTPbPpoeqoM8w==
 
 "@types/node@^10.5.5":
-  version "10.11.3"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.11.3.tgz#c055536ac8a5e871701aa01914be5731539d01ee"
-  integrity sha512-3AvcEJAh9EMatxs+OxAlvAEs7OTy6AG94mcH1iqyVDwVVndekLxzwkWQ/Z4SDbY6GO2oyUXyWW8tQ4rENSSQVQ==
+  version "10.11.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.11.4.tgz#e8bd933c3f78795d580ae41d86590bfc1f4f389d"
+  integrity sha512-ojnbBiKkZFYRfQpmtnnWTMw+rzGp/JiystjluW9jgN3VzRwilXddJ6aGQ9V/7iuDG06SBgn7ozW9k3zcAnYjYQ==
 
 "@types/plotly.js@^1.38.8":
   version "1.38.8"
@@ -529,9 +539,9 @@
     "@types/react" "*"
 
 "@types/react-test-renderer@^16.0.1":
-  version "16.0.2"
-  resolved "https://registry.yarnpkg.com/@types/react-test-renderer/-/react-test-renderer-16.0.2.tgz#2715eae40df08f80b3620c498598c8615693b6c6"
-  integrity sha512-lK+a393eI42Bz47pLJ9g9XSy45BdAOtHjY8OYbvePw0T7zJc1kgnlVovu+D31dINpB5cKgkYVNq65A/EQWz6jQ==
+  version "16.0.3"
+  resolved "https://registry.yarnpkg.com/@types/react-test-renderer/-/react-test-renderer-16.0.3.tgz#cce5c983d66cc5c3582e7c2f44b274ab635a8acc"
+  integrity sha512-NWOAxVQeJxpXuNKgw83Hah0nquiw1nUexM9qY/Hk3a+XhZwgMtaa6GLA9E1TKMT75Odb3/KE/jiBO4enTuEJjQ==
   dependencies:
     "@types/react" "*"
 
@@ -577,9 +587,9 @@
   integrity sha512-42zEJkBpNfMEAvWR5WlwtTH22oDzcMjFsL9gDGExwF8X8WvAiw7Vwop7hPw03QT8TKfec83LwbHj6SvpqM4ELQ==
 
 "@types/three@^0.92.22":
-  version "0.92.23"
-  resolved "https://registry.yarnpkg.com/@types/three/-/three-0.92.23.tgz#3d2a2078f2eb22f8e064be80a035dfd8359909c1"
-  integrity sha512-uvCDd1BWIpwSlNzuInmBRTlr6OdOxpl0zy6W9BMLS0WDs9RRLZ/d2k7ttpN2s9bZgG+EjkvQdMgcSWWmpT7moQ==
+  version "0.92.24"
+  resolved "https://registry.yarnpkg.com/@types/three/-/three-0.92.24.tgz#ad5cba7950579daf5253ec819d706ff802fb1e8c"
+  integrity sha512-B+bYpY40/rTpb8LrSaED9wpG3IZwACpybHWj8volYwBalMJCzRmi+a6wRTkua7L3yO4YsQU0pah0jtmWo69mDQ==
 
 "@types/uglify-js@*":
   version "3.0.3"
@@ -8569,6 +8579,13 @@ tslint-jsdoc-rules@^0.1.2:
   dependencies:
     tslint "^3.2.2"
 
+tslint-microsoft-contrib@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/tslint-microsoft-contrib/-/tslint-microsoft-contrib-5.2.1.tgz#a6286839f800e2591d041ea2800c77487844ad81"
+  integrity sha512-PDYjvpo0gN9IfMULwKk0KpVOPMhU6cNoT9VwCOLeDl/QS8v8W2yspRpFFuUS7/c5EIH/n8ApMi8TxJAz1tfFUA==
+  dependencies:
+    tsutils "^2.27.2 <2.29.0"
+
 tslint-react@^3.5.1:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/tslint-react/-/tslint-react-3.6.0.tgz#7f462c95c4a0afaae82507f06517ff02942196a1"
@@ -8611,6 +8628,13 @@ tsutils@^2.13.1, tsutils@^2.27.2:
   version "2.29.0"
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.29.0.tgz#32b488501467acbedd4b85498673a0812aca0b99"
   integrity sha512-g5JVHCIJwzfISaXpXE1qvNalca5Jwob6FjI4AoPlqMusJ6ftFE7IkkFoMhVLRgK+4Kx3gkzb8UZK5t5yTTvEmA==
+  dependencies:
+    tslib "^1.8.1"
+
+"tsutils@^2.27.2 <2.29.0":
+  version "2.28.0"
+  resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.28.0.tgz#6bd71e160828f9d019b6f4e844742228f85169a1"
+  integrity sha512-bh5nAtW0tuhvOJnx1GLRn5ScraRLICGyJV5wJhtRWOLsxW70Kk5tZtpK3O/hW6LDnqKS9mlUMPZj9fEMJ0gxqA==
   dependencies:
     tslib "^1.8.1"
 

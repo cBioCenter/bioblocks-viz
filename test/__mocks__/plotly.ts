@@ -33,9 +33,9 @@ export class MockPlotlyHTMLElement implements IMockPlotlyCanvas {
           break;
         default:
           cb();
-          break;
       }
     }
+
     return true;
   }
 }

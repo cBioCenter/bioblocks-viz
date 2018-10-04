@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { fetchSpringCoordinateData } from '../helper/DataHelper';
+
+import { fetchSpringCoordinateData } from '~chell-viz~/helper';
 
 export interface ISpringContext {
   coordinates: number[][];
@@ -31,5 +32,4 @@ export class SpringContext extends React.Component<any, SpringContextState> {
 
 const SpringContextWrapper = React.createContext(initialSpringContext);
 
-export default SpringContextWrapper;
 export { SpringContextWrapper };

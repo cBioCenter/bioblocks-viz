@@ -1,4 +1,4 @@
-import { Chell1DSection } from '../Chell1DSection';
+import { Chell1DSection } from '~chell-viz~/data';
 
 describe('Chell1DSection', () => {
   it('Should allow a section to be created with a given start and end.', () => {

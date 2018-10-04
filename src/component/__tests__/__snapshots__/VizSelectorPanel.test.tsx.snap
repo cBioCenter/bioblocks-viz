@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`VizSelectorPanel Should match existing snapshot when given initial viz of Contact Map. 1`] = `
+exports[`VizSelectorPanel Should match existing snapshot for initial visualizations. 1`] = `
 <div
   className="VizSelectorPanel"
   style={
@@ -35,7 +35,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
 </div>
 `;
 
-exports[`VizSelectorPanel Should match existing snapshot when given initial viz of Info Panel. 1`] = `
+exports[`VizSelectorPanel Should match existing snapshot for initial visualizations. 2`] = `
 <div
   className="VizSelectorPanel"
   style={
@@ -72,7 +72,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
 </div>
 `;
 
-exports[`VizSelectorPanel Should match existing snapshot when given initial viz of NGL. 1`] = `
+exports[`VizSelectorPanel Should match existing snapshot for initial visualizations. 3`] = `
 <div
   className="VizSelectorPanel"
   style={
@@ -107,7 +107,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
 </div>
 `;
 
-exports[`VizSelectorPanel Should match existing snapshot when given initial viz of Spring. 1`] = `
+exports[`VizSelectorPanel Should match existing snapshot for initial visualizations. 4`] = `
 <div
   className="VizSelectorPanel"
   style={
@@ -142,7 +142,42 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
 </div>
 `;
 
-exports[`VizSelectorPanel Should match existing snapshot when given initial viz of T-SNE. 1`] = `
+exports[`VizSelectorPanel Should match existing snapshot for initial visualizations. 5`] = `
+<div
+  className="VizSelectorPanel"
+  style={
+    Object {
+      "width": 450,
+    }
+  }
+>
+  <Dropdown
+    additionLabel="Add "
+    additionPosition="top"
+    closeOnBlur={true}
+    deburr={false}
+    defaultValue="TENSOR-T-SNE"
+    fluid={true}
+    icon="dropdown"
+    minCharacters={1}
+    noResultsMessage="No results found."
+    onChange={[Function]}
+    openOnFocus={true}
+    options={Array []}
+    renderLabel={[Function]}
+    searchInput="text"
+    selectOnBlur={true}
+    selectOnNavigation={true}
+    wrapSelection={true}
+  />
+  <Card
+    fluid={true}
+    raised={true}
+  />
+</div>
+`;
+
+exports[`VizSelectorPanel Should match existing snapshot for initial visualizations. 6`] = `
 <div
   className="VizSelectorPanel"
   style={
@@ -177,7 +212,7 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
 </div>
 `;
 
-exports[`VizSelectorPanel Should match existing snapshot when given initial viz of T-SNE-FRAME. 1`] = `
+exports[`VizSelectorPanel Should match existing snapshot for initial visualizations. 7`] = `
 <div
   className="VizSelectorPanel"
   style={
@@ -192,41 +227,6 @@ exports[`VizSelectorPanel Should match existing snapshot when given initial viz 
     closeOnBlur={true}
     deburr={false}
     defaultValue="T-SNE-FRAME"
-    fluid={true}
-    icon="dropdown"
-    minCharacters={1}
-    noResultsMessage="No results found."
-    onChange={[Function]}
-    openOnFocus={true}
-    options={Array []}
-    renderLabel={[Function]}
-    searchInput="text"
-    selectOnBlur={true}
-    selectOnNavigation={true}
-    wrapSelection={true}
-  />
-  <Card
-    fluid={true}
-    raised={true}
-  />
-</div>
-`;
-
-exports[`VizSelectorPanel Should match existing snapshot when given initial viz of TENSOR-T-SNE. 1`] = `
-<div
-  className="VizSelectorPanel"
-  style={
-    Object {
-      "width": 450,
-    }
-  }
->
-  <Dropdown
-    additionLabel="Add "
-    additionPosition="top"
-    closeOnBlur={true}
-    deburr={false}
-    defaultValue="TENSOR-T-SNE"
     fluid={true}
     icon="dropdown"
     minCharacters={1}

@@ -1,8 +1,12 @@
 import * as React from 'react';
 
-import { CouplingContainer } from '../data/CouplingContainer';
-import { ResidueContext, ResidueContextWrapper } from './ResidueContext';
-import { SecondaryStructureContext, SecondaryStructureContextWrapper } from './SecondaryStructureContext';
+import {
+  ResidueContext,
+  ResidueContextWrapper,
+  SecondaryStructureContext,
+  SecondaryStructureContextWrapper,
+} from '~chell-viz~/context';
+import { CouplingContainer } from '~chell-viz~/data';
 
 export const initialCouplingContext = {
   couplingScores: new CouplingContainer(),
@@ -62,5 +66,4 @@ const withCouplingContext = (Component: any) => {
   };
 };
 
-export default withCouplingContext;
 export { withCouplingContext };

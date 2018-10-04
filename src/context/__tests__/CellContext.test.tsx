@@ -2,7 +2,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import * as Renderer from 'react-test-renderer';
 
-import { CellContext, CellContextWrapper, initialCellContext } from '../CellContext';
+import { CellContext, CellContextWrapper, initialCellContext } from '~chell-viz~/context';
 
 describe('CellContext', () => {
   it('Should match the default snapshot.', () => {

@@ -1,10 +1,9 @@
 import memoizeOne from 'memoize-one';
 import * as React from 'react';
 
-import CellContext, { ICellContext, initialCellContext } from '../context/CellContext';
-import { T_SNE_DATA_TYPE } from '../data/chell-data';
-import ChellChartEvent from '../data/event/ChellChartEvent';
-import PlotlyChart, { defaultPlotlyConfig, defaultPlotlyLayout } from './chart/PlotlyChart';
+import { defaultPlotlyConfig, defaultPlotlyLayout, PlotlyChart } from '~chell-viz~/component';
+import { CellContextWrapper, ICellContext, initialCellContext } from '~chell-viz~/context';
+import { ChellChartEvent, T_SNE_DATA_TYPE } from '~chell-viz~/data';
 
 export interface ITComponentProps {
   cellContext: ICellContext;
@@ -35,6 +34,7 @@ class TComponentClass extends React.Component<ITComponentProps, any> {
 
   public render() {
     const { cellContext, data, height, padding, pointColor, width } = this.props;
+
     return (
       <div id="TComponent" style={{ padding }}>
         <PlotlyChart
@@ -95,11 +95,8 @@ class TComponentClass extends React.Component<ITComponentProps, any> {
 
 type requiredProps = Omit<ITComponentProps, keyof typeof TComponentClass.defaultProps> & Partial<ITComponentProps>;
 
-const TComponent = (props: requiredProps) => (
-  <CellContext.Consumer>
+export const TComponent = (props: requiredProps) => (
+  <CellContextWrapper.Consumer>
     {cellContext => <TComponentClass {...props} cellContext={{ ...cellContext, ...props.cellContext }} />}
-  </CellContext.Consumer>
+  </CellContextWrapper.Consumer>
 );
-
-export default TComponent;
-export { TComponent };

@@ -1,15 +1,21 @@
 import * as fetchMock from 'jest-fetch-mock';
 import { inspect as stringifyCircularJSON } from 'util';
-import { IContactMapData, ICouplingScore, SPRING_DATA_TYPE, VIZ_TYPE } from '../../data/chell-data';
-import { ChellPDB } from '../../data/ChellPDB';
-import { CouplingContainer } from '../../data/CouplingContainer';
+
+import {
+  ChellPDB,
+  CouplingContainer,
+  IContactMapData,
+  ICouplingScore,
+  SPRING_DATA_TYPE,
+  VIZ_TYPE,
+} from '~chell-viz~/data';
 import {
   augmentCouplingScoresWithResidueMapping,
   fetchAppropriateData,
+  generateResidueMapping,
   getCouplingScoresData,
   getSecondaryStructureData,
-} from '../DataHelper';
-import { generateResidueMapping } from '../ResidueMapper';
+} from '~chell-viz~/helper';
 
 describe('DataHelper', () => {
   beforeEach(() => {
@@ -35,14 +41,14 @@ describe('DataHelper', () => {
       '145,81,0.79312,7.5652,A,A,0.9,2.4,47,1.0,E,R\n\
       179,66,0.78681,3.5872,A,A,0.9,1.3,37,1.0,T,M';
 
-    const couplingScoresCsvWithNewline = couplingScoresCsv + '\n';
+    const couplingScoresCsvWithNewline = `${couplingScoresCsv}\n`;
 
-    const couplingScoresCsvWithHeaders =
-      'i,j,cn,dist,A_i,A_j,segment_i,segment_j,probability,dist_intra,dist_multimer,dist,precision,\n' +
-      '145,81,0.79312,7.5652,E,R,0,0,0,0,1.0,14,18\n\
-      179,66,0.78681,3.5872,T,M,0,0,0,1.0,24,51';
+    const couplingScoresCsvWithHeaders = `i,j,cn,dist,A_i,A_j,segment_i,segment_j,probability,dist_intra,dist_multimer,dist,precision,\n
+      145,81,0.79312,7.5652,E,R,0,0,0,0,1.0,14,18\n\
+      179,66,0.78681,3.5872,T,M,0,0,0,1.0,24,51`;
 
     const residueMappingCsv =
+      // tslint:disable-next-line:max-line-length
       'up_index	up_residue	ss_pred	ss_conf	msa_index	msa_cons%	msa_cons	in_const	pdb_atom	pdb_chain	pdb_index	pdb_residue	pdb_x_pos	pdb_y_pos	pdb_z_pos\n\
       66	M	H	1	66	51	*	*	340	A	68	M	11.714	0.502	32.231\n\
       81	R	H	2	81	18	*	*	448	A	83	R	-4.075	-8.650	45.662\n\
@@ -122,7 +128,7 @@ describe('DataHelper', () => {
       0,30,C\n\
       1,31,C';
 
-    const secondaryStructureCsvWithNewline = secondaryStructureCsv + '\n';
+    const secondaryStructureCsvWithNewline = `${secondaryStructureCsv}\n`;
     const expectedSecondaryData = [{ resno: 30, structId: 'C' }, { resno: 31, structId: 'C' }];
 
     it('Should parse secondary structure data correctly.', () => {
@@ -207,7 +213,7 @@ describe('DataHelper', () => {
     });
 
     it('Should parse coordinate data that ends on a newline.', async () => {
-      fetchMock.mockResponseOnce(sampleSpringInput.coordinateData + '\n');
+      fetchMock.mockResponseOnce(`${sampleSpringInput.coordinateData}\n`);
       fetchMock.mockResponseOnce(JSON.stringify(sampleSpringInput.graphData));
       fetchMock.mockResponseOnce(JSON.stringify(sampleSpringInput.colorData));
       const springData = (await fetchAppropriateData(VIZ_TYPE.SPRING, 'hoenn')) as SPRING_DATA_TYPE;

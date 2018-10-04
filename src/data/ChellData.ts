@@ -1,14 +1,20 @@
 // Type definitions for Chell Visualization Library
 // Project: https://github.com/cBioCenter/chell-viz
-// Definitions by: cBioCenter @ Dana-Farber <https://github.com/cBioCenter/>, James Lindsay <https://github.com/jim-bo>, Nick Gauthier <https://github.com/npgauth>, Drew Diamantoukos <https://github.com/MercifulCode>,
-// TypeScript Version: 2.8
+// Definitions by:
+//  - cBioCenter @ Dana-Farber <https://github.com/cBioCenter/>
+//  - James Lindsay <https://github.com/jim-bo>
+//  - Nick Gauthier <https://github.com/npgauth>
+//  - Drew Diamantoukos <https://github.com/MercifulCode>,
+// TypeScript Version: 3.1
 import { Structure } from 'ngl';
-import { ISpringGraphData } from './Spring';
 
-import { AMINO_ACID_SINGLE_LETTER_CODE } from './AminoAcid';
-import { Chell1DSection } from './Chell1DSection';
-import { ChellPDB } from './ChellPDB';
-import { CouplingContainer } from './CouplingContainer';
+import {
+  AMINO_ACID_SINGLE_LETTER_CODE,
+  Chell1DSection,
+  ChellPDB,
+  CouplingContainer,
+  ISpringGraphData,
+} from '~chell-viz~/data';
 
 export type CONTACT_MAP_DATA_TYPE = IContactMapData;
 export type NGL_DATA_TYPE = Structure;

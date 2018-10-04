@@ -6,7 +6,7 @@ import { SemanticCOLORS } from 'semantic-ui-react';
  *
  * @export
  */
-export default class ColorMapper<T> {
+export class ColorMapper<T> {
   public static DEFAULT_COLORS: SemanticCOLORS[] = [
     'red',
     'green',
@@ -35,6 +35,7 @@ export default class ColorMapper<T> {
     if (!this.colorMap.has(key)) {
       this.addColorToMapper(key);
     }
+
     return this.colorMap.get(key) as Color;
   }
 
@@ -64,5 +65,3 @@ export default class ColorMapper<T> {
     }
   }
 }
-
-export { ColorMapper };

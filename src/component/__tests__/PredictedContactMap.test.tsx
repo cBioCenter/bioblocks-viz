@@ -1,10 +1,14 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { IContactMapData, ICouplingScore, SECONDARY_STRUCTURE_KEYS } from '../../data/chell-data';
-import Chell1DSection from '../../data/Chell1DSection';
-import { CouplingContainer } from '../../data/CouplingContainer';
-import { PredictedContactMap } from '../PredictedContactMap';
+import { PredictedContactMap } from '~chell-viz~/component';
+import {
+  Chell1DSection,
+  CouplingContainer,
+  IContactMapData,
+  ICouplingScore,
+  SECONDARY_STRUCTURE_KEYS,
+} from '~chell-viz~/data';
 
 describe('PredictedContactMap', () => {
   const emptyData = {
@@ -61,7 +65,7 @@ describe('PredictedContactMap', () => {
       const wrapper = await shallow(<PredictedContactMap />);
       const expectedSelectedPoints = {
         '37,46': [37, 46],
-        '8': [8],
+        8: [8],
       };
       wrapper.setProps({
         lockedResiduePairs: expectedSelectedPoints,

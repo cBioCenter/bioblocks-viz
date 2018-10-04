@@ -2,7 +2,7 @@
   "compilerOptions": {
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "downlevelIteration": true,
     "jsx": "react",
     "lib": ["dom", "es2015", "es2016", "es2017"],
@@ -12,6 +12,14 @@
     "noUnusedParameters": false,
     "outDir": "./dist/",
     "paths": {
+      "~chell-viz~": ["./src"],
+      "~chell-viz~/component": ["./src/component"],
+      "~chell-viz~/container": ["./src/container"],
+      "~chell-viz~/context": ["./src/context"],
+      "~chell-viz~/data": ["./src/data"],
+      "~chell-viz~/helper": ["./src/helper"],
+      "~chell-viz~/hoc": ["./src/hoc"],
+      "~chell-viz~/test": ["./test"],
       "jest": ["node_modules/@types/jest/index.d.ts"],
       "plotly.js-*": ["node_modules/@types/plotly.js"],
       "react": ["node_modules/@types/react"],
@@ -23,7 +31,7 @@
     "typeRoots": ["./types/", "./node_modules/@types"]
   },
   "exclude": ["node_modules"],
-  "include": ["examples/**/*", "src/**/*", "types", "configs/**/*", "__mocks__/**/*", "./chell-viz.ts"],
+  "include": ["examples/**/*", "src/**/*", "types", "configs/**/*", "test/__mocks__/**/*", "./chell-viz.ts"],
   "typeAcquisition": {
     "enable": false
   }

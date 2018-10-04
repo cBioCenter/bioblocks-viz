@@ -1,9 +1,9 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { VIZ_TYPE } from '../../data/chell-data';
-import { fetchAppropriateData } from '../../helper/DataHelper';
-import VizPanelContainer from '../VizPanelContainer';
+import { VizPanelContainer } from '~chell-viz~/container';
+import { VIZ_TYPE } from '~chell-viz~/data';
+import { fetchAppropriateData } from '~chell-viz~/helper';
 
 describe('VizPanelContainer', () => {
   beforeEach(() => {

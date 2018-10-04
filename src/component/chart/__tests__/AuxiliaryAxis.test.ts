@@ -1,8 +1,11 @@
-import Chell1DSection from '../../../data/Chell1DSection';
-import { AuxiliaryAxis } from '../AuxiliaryAxis';
+import { AuxiliaryAxis } from '~chell-viz~/component';
+import { Chell1DSection } from '~chell-viz~/data';
 
 describe('AuxiliaryAxis', () => {
-  const sampleSections = [new Chell1DSection('kanto', 1, 151), new Chell1DSection('johto', 152, 251)];
+  let sampleSections: Array<Chell1DSection<string>>;
+  beforeEach(() => {
+    sampleSections = [new Chell1DSection('kanto', 1, 151), new Chell1DSection('johto', 152, 251)];
+  });
 
   it('Should allow passing a specific axis index.', () => {
     const result = new AuxiliaryAxis(sampleSections, 4);

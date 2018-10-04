@@ -26,5 +26,8 @@
     "ångströms"
   ],
   "python.pythonPath": "/usr/local/bin/python3",
-  "typescript.tsdk": "./node_modules/typescript/lib"
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "tslint.configFile": "tslint.json",
+  "prettier.tslintIntegration": true,
+  "tslint.packageManager": "yarn"
 }

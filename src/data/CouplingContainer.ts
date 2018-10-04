@@ -1,5 +1,4 @@
-import { AMINO_ACIDS_BY_SINGLE_LETTER_CODE, IAminoAcid } from './AminoAcid';
-import { ICouplingScore } from './chell-data';
+import { AMINO_ACIDS_BY_SINGLE_LETTER_CODE, IAminoAcid, ICouplingScore } from '~chell-viz~/data';
 
 /**
  * A CouplingContainer provides access to the coupling information of residue pairs.
@@ -48,6 +47,7 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
       } else if (!a.cn && b.cn) {
         return 1;
       }
+
       return 0;
     });
   }
@@ -119,6 +119,7 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
         }
       }
     }
+
     return undefined;
   }
 
@@ -162,6 +163,7 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
       }
       result.predicted.push(contact);
     }
+
     return result;
   }
 
@@ -182,6 +184,7 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
           if (score) {
             this.rowCounter = i;
             this.colCounter = j + 1;
+
             return {
               done: false,
               value: score,
@@ -194,6 +197,7 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
 
     this.rowCounter = 0;
     this.colCounter = 0;
+
     return {
       done: true,
       value: null as any,

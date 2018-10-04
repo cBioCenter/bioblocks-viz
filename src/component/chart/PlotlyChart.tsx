@@ -4,42 +4,13 @@ import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react';
 
-import { CHELL_CHART_EVENT_TYPE, CHELL_CHART_PIECE } from '../../data/chell-data';
-import ChellChartEvent from '../../data/event/ChellChartEvent';
-
-export enum PLOTLY_CHART_TYPE {
-  /** [Plotly Bar Chart](https://plot.ly/javascript/bar-charts/) */
-  'bar' = 'bar',
-  /** [Plotly Point Cloud](https://plot.ly/javascript/pointcloud/) */
-  'pointcloud' = 'pointcloud',
-  /** [Plotly Line/Scatter Chart](https://plot.ly/javascript/line-and-scatter/) */
-  'scatter' = 'scatter',
-  /** [Plotly Line/Scatter Chart in WebGL](https://plot.ly/javascript/line-and-scatter/) */
-  'scattergl' = 'scattergl',
-  /** [Plotly 3D Scatter Plot](https://plot.ly/javascript/3d-scatter-plots/) */
-  'scatter3d' = 'scatter3d',
-}
-
-export interface IPlotlyData extends plotly.ScatterData {
-  // TODO Open PR to add these missing Plotly types. - https://plot.ly/javascript/reference/#box
-  /** [Plotly Box Plots](https://plot.ly/javascript/box-plots/) */
-  // 'box' = 'box',
-  boxpoints: 'all' | 'outliers' | 'suspectedoutliers' | false;
-  name: string;
-  notched: boolean;
-  orientation: 'h' | 'v';
-  showlegend: boolean;
-  // TODO Open PR to add these missing Plotly types. - https://plot.ly/javascript/reference/#box
-
-  textfont: Partial<plotly.Font>;
-  type: PLOTLY_CHART_TYPE | 'bar' | 'pointcloud' | 'scatter' | 'scattergl' | 'scatter3d';
-}
-
-export interface IPlotlyLayout extends Plotly.Layout {
-  // TODO Open PR to add these missing Plotly types. - https://plot.ly/javascript/reference/#box
-  xaxis2: Partial<Plotly.LayoutAxis>;
-  // TODO Open PR to add these missing Plotly types. - https://plot.ly/javascript/reference/#box
-}
+import {
+  CHELL_CHART_EVENT_TYPE,
+  CHELL_CHART_PIECE,
+  ChellChartEvent,
+  IPlotlyData,
+  IPlotlyLayout,
+} from '~chell-viz~/data';
 
 export interface IPlotlyChartProps {
   config?: Partial<Plotly.Config>;
@@ -99,7 +70,8 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   };
 
   public plotlyCanvas: plotly.PlotlyHTMLElement | null = null;
-  protected isDoubleClickInProgress = false; // Makes sure single click isn't fired when double click is in flight. Required due to https://github.com/plotly/plotly.js/issues/1546
+  // Makes sure single click isn't fired when double click is in flight. Required due to https://github.com/plotly/plotly.js/issues/1546
+  protected isDoubleClickInProgress = false;
   protected canvasRef: HTMLDivElement | null = null;
   protected plotlyFormattedData: Array<Partial<IPlotlyData>> = [];
   protected savedAxisZoom?: { xaxis: plotly.PlotAxis; yaxis: plotly.PlotAxis };
@@ -166,7 +138,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
       this.plotlyCanvas = await plotly.react(this.canvasRef, this.plotlyFormattedData);
 
       this.attachListeners();
-      this.draw();
+      await this.draw();
     }
   }
 
@@ -181,6 +153,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
 
   public render() {
     const { showLoader } = this.props;
+
     return (
       <div>
         {showLoader && (
@@ -415,5 +388,3 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     );
   }
 }
-
-export default PlotlyChart;

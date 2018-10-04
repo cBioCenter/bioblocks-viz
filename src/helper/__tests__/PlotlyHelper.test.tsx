@@ -1,4 +1,4 @@
-import { generatePointCloudData, generateScatterGLData } from '../PlotlyHelper';
+import { generatePointCloudData, generateScatterGLData } from '~chell-viz~/helper';
 
 describe('generateScatterGLData', () => {
   const sampleInput = {

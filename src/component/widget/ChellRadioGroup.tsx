@@ -5,16 +5,16 @@ export interface IChellRadioGroupProps {
   disabled: boolean;
   id: string;
   options: string[];
-  onChange?: (value: any) => void;
   style: React.CSSProperties;
   title: string;
+  onChange?(value: any): void;
 }
 
 export interface IChellRadioGroupState {
   selectedIndex: number;
 }
 
-export default class ChellRadioGroup extends React.Component<IChellRadioGroupProps, IChellRadioGroupState> {
+export class ChellRadioGroup extends React.Component<IChellRadioGroupProps, IChellRadioGroupState> {
   public static defaultProps = {
     disabled: false,
     style: {},
@@ -61,5 +61,3 @@ export default class ChellRadioGroup extends React.Component<IChellRadioGroupPro
       />
     ));
 }
-
-export { ChellRadioGroup };

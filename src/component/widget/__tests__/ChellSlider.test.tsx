@@ -1,9 +1,8 @@
 import { shallow } from 'enzyme';
-
+import rcSlider from 'rc-slider';
 import * as React from 'react';
 
-import Slider from 'rc-slider';
-import ChellSlider, { ChellSliderProps } from '../ChellSlider';
+import { ChellSlider, ChellSliderProps } from '~chell-viz~/component';
 
 describe('ChellSlider', () => {
   const sampleChellSlider = (props: Partial<ChellSliderProps> = {}) => (
@@ -20,7 +19,7 @@ describe('ChellSlider', () => {
     const wrapper = shallow(sampleChellSlider({ onChange: onChangeSpy }));
 
     expect(wrapper.state('value')).not.toBe(expected);
-    wrapper.find(Slider).simulate('change', expected);
+    wrapper.find(rcSlider).simulate('change', expected);
     expect(onChangeSpy).toHaveBeenLastCalledWith(expected);
     expect(wrapper.state('value')).toBe(expected);
   });
@@ -31,7 +30,7 @@ describe('ChellSlider', () => {
     const wrapper = shallow(sampleChellSlider({ onAfterChange: onAfterChangeSpy }));
 
     expect(wrapper.state('value')).not.toBe(expected);
-    wrapper.find(Slider).simulate('afterChange', expected);
+    wrapper.find(rcSlider).simulate('afterChange', expected);
     expect(onAfterChangeSpy).toHaveBeenLastCalledWith(expected);
     expect(wrapper.state('value')).toBe(expected);
   });

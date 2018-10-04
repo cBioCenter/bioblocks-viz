@@ -4,17 +4,15 @@ import {
   AMINO_ACID_THREE_LETTER_CODE,
   AMINO_ACIDS_BY_SINGLE_LETTER_CODE,
   AMINO_ACIDS_BY_THREE_LETTER_CODE,
-  IAminoAcid,
-} from './AminoAcid';
-import {
+  Chell1DSection,
   CONTACT_DISTANCE_PROXIMITY,
+  CouplingContainer,
+  IAminoAcid,
   ICouplingScore,
   ISecondaryStructureData,
   SECONDARY_STRUCTURE_KEYS,
   SECONDARY_STRUCTURE_SECTION,
-} from './chell-data';
-import Chell1DSection from './Chell1DSection';
-import { CouplingContainer } from './CouplingContainer';
+} from '~chell-viz~/data';
 
 export interface IResidueMismatchResult {
   couplingAminoAcid: IAminoAcid;
@@ -38,12 +36,14 @@ export class ChellPDB {
   public static async createPDB(file: File | string = '') {
     const result = new ChellPDB();
     result.nglData = await NGL.autoLoad(file);
+
     return result;
   }
 
   public static createPDBFromNGLData(nglData: NGL.Structure) {
     const result = new ChellPDB();
     result.nglData = nglData;
+
     return result;
   }
 
@@ -69,6 +69,7 @@ export class ChellPDB {
       });
       this.contactInfo = result;
     }
+
     return this.contactInfo;
   }
 
@@ -91,6 +92,7 @@ export class ChellPDB {
         result.push({ resno: residue.resno, structId });
       }
     });
+
     return result;
   }
 
@@ -117,6 +119,7 @@ export class ChellPDB {
         }
       }
     });
+
     return result;
   }
 
@@ -177,8 +180,8 @@ export class ChellPDB {
         }
       });
     });
-
     this.contactInfo = result;
+
     return this.contactInfo;
   }
 
@@ -233,6 +236,7 @@ export class ChellPDB {
         });
       }
     });
+
     return result;
   }
 
@@ -269,6 +273,7 @@ export class ChellPDB {
         }
       }
     }
+
     return result;
   }
 }

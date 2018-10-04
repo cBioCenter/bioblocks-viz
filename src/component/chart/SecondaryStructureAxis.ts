@@ -1,13 +1,18 @@
-import { SECONDARY_STRUCTURE, SECONDARY_STRUCTURE_KEYS, SECONDARY_STRUCTURE_SECTION } from '../../data/chell-data';
-import AuxiliaryAxis from './AuxiliaryAxis';
-import { IPlotlyData } from './PlotlyChart';
+import { AuxiliaryAxis } from './';
+
+import {
+  IPlotlyData,
+  SECONDARY_STRUCTURE,
+  SECONDARY_STRUCTURE_KEYS,
+  SECONDARY_STRUCTURE_SECTION,
+} from '~chell-viz~/data';
 
 /**
  * Class to represent the x and y axis for a secondary structure on a Plotly graph.
  *
  * @export
  */
-export default class SecondaryStructureAxis extends AuxiliaryAxis<SECONDARY_STRUCTURE_KEYS> {
+export class SecondaryStructureAxis extends AuxiliaryAxis<SECONDARY_STRUCTURE_KEYS> {
   protected static centerSectionPositionFn = (section: SECONDARY_STRUCTURE_SECTION, index: number) => ({
     main: index,
     opposite: 0,
@@ -91,5 +96,3 @@ export default class SecondaryStructureAxis extends AuxiliaryAxis<SECONDARY_STRU
     };
   }
 }
-
-export { SecondaryStructureAxis };

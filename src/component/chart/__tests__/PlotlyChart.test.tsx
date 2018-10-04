@@ -1,27 +1,29 @@
 import { CommonWrapper, mount } from 'enzyme';
 import * as React from 'react';
 
-import { IMockPlotlyCanvas } from '__mocks__/plotly';
-import { IMockDict } from 'configs/SetupJest';
-import { CHELL_CHART_EVENT_TYPE, CHELL_CHART_PIECE } from '../../../data/chell-data';
-import ChellChartEvent from '../../../data/event/ChellChartEvent';
-import { IPlotlyChartProps, IPlotlyData, PlotlyChart } from '../PlotlyChart';
+import { IPlotlyChartProps, PlotlyChart } from '~chell-viz~/component';
+import { CHELL_CHART_EVENT_TYPE, CHELL_CHART_PIECE, ChellChartEvent, IPlotlyData } from '~chell-viz~/data';
+import { IMockDict, IMockPlotlyCanvas } from '~chell-viz~/test';
 
 beforeEach(() => {
   jest.resetModules();
 });
 
 describe('PlotlyChart', () => {
-  const sampleData: Array<Partial<IPlotlyData>> = [
-    {
-      marker: {
-        color: 'blue',
+  let sampleData: Array<Partial<IPlotlyData>>;
+  beforeEach(() => {
+    sampleData = [
+      {
+        marker: {
+          color: 'blue',
+        },
+        mode: 'markers',
+        type: 'pointcloud',
+        xy: new Float32Array([1, 2, 3, 4]),
       },
-      mode: 'markers',
-      type: 'pointcloud',
-      xy: new Float32Array([1, 2, 3, 4]),
-    },
-  ];
+    ];
+  });
+
   /**
    * Helper function to create and wait for a PlotlyChart to be mounted.
    *

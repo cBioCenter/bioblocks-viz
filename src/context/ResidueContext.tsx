@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { RESIDUE_TYPE } from '../data/chell-data';
+
+import { RESIDUE_TYPE } from '~chell-viz~/data';
 
 export type ResidueSelection = Map<string, RESIDUE_TYPE[]>;
 
@@ -163,5 +164,4 @@ export const withResidueContext = (Component: any) => {
   };
 };
 
-export default ResidueContextWrapper;
 export { ResidueContextWrapper };

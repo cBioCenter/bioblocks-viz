@@ -1,26 +1,27 @@
-import {
-  CONTACT_MAP_DATA_TYPE,
-  IContactMapData,
-  ISecondaryStructureData,
-  SECONDARY_STRUCTURE_CODES,
-  VIZ_TYPE,
-} from '../data/chell-data';
-import { CouplingContainer } from '../data/CouplingContainer';
-import { fetchCSVFile, fetchJSONFile, readFileAsText } from './FetchHelper';
-
 import * as NGL from 'ngl';
 
-import { AMINO_ACID_SINGLE_LETTER_CODE } from '../data/AminoAcid';
-import { ChellPDB } from '../data/ChellPDB';
 import {
+  AMINO_ACID_SINGLE_LETTER_CODE,
+  ChellPDB,
+  CouplingContainer,
+  IContactMapData,
+  ISecondaryStructureData,
   ISpringCategoricalColorData,
   ISpringCategoricalColorDataInput,
   ISpringGraphData,
   ISpringLink,
   ISpringNode,
-} from '../data/Spring';
-import { getCouplingHeaderIndices } from './CouplingMapper';
-import { generateResidueMapping, IResidueMapping } from './ResidueMapper';
+  SECONDARY_STRUCTURE_CODES,
+  VIZ_TYPE,
+} from '~chell-viz~/data';
+import {
+  fetchCSVFile,
+  fetchJSONFile,
+  generateResidueMapping,
+  getCouplingHeaderIndices,
+  IResidueMapping,
+  readFileAsText,
+} from '~chell-viz~/helper';
 
 export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
   switch (viz) {
@@ -57,6 +58,7 @@ const deriveSpringData = async (dataDir: string) => {
   const catColorData = await fetchCategoricalColorData(`${dataDir}/categorical_coloring_data.json`);
   const nodeDict = getNodesFromGraph(graphData, coordinates, catColorData);
   graphData.links = assignSpringLinks(graphData.links, nodeDict);
+
   return graphData;
 };
 
@@ -68,6 +70,7 @@ const assignSpringLinks = (links: ISpringLink[], nodeDict: { [index: number]: IS
       link.source = source;
       link.target = target;
     }
+
     return link;
   });
 
@@ -85,6 +88,7 @@ const getNodesFromGraph = (graphData: ISpringGraphData, coords: number[][], colo
     node.category = label;
     node.colorHex = colorData.label_colors[label];
   }
+
   return nodeDict;
 };
 
@@ -102,7 +106,7 @@ const fetchCategoricalColorData = async (file: string): Promise<ISpringCategoric
 
   const { label_colors } = input[Object.keys(input)[0]];
 
-  // The input file might specify hex values as either 0xrrggbb or #rrggbb, so we might need to convert the input to a consistent output format.
+  // The input file might specify hex values as either 0xrrggbb or #rrggbb, so we need to convert the input to a consistent output format.
   for (const key of Object.keys(label_colors)) {
     const hex = label_colors[key];
     if (typeof hex === 'number') {
@@ -113,6 +117,7 @@ const fetchCategoricalColorData = async (file: string): Promise<ISpringCategoric
       output.label_colors[key] = Number.parseInt(hex, 16);
     }
   }
+
   return output;
 };
 
@@ -120,7 +125,7 @@ export const fetchSpringCoordinateData = async (file: string) => {
   const coordinateText: string = await fetchCSVFile(file);
 
   const coordinates: number[][] = [];
-  const rows = coordinateText!.split('\n');
+  const rows = coordinateText ? coordinateText.split('\n') : [];
   rows.forEach((entry, index, array) => {
     const items = entry.split(',');
     if (items.length >= 3) {
@@ -132,6 +137,7 @@ export const fetchSpringCoordinateData = async (file: string) => {
       throw new Error(`Unable to parse coordinate data - Row ${index} does not have at least 3 columns!`);
     }
   });
+
   return coordinates;
 };
 
@@ -145,6 +151,7 @@ export const fetchTSneCoordinateData = async (dataDir: string) => {
       result.push(coordinates);
     }
   });
+
   return result;
 };
 
@@ -153,6 +160,7 @@ const fetchGraphData = async (file: string) => {
   if (!data.nodes || !data.links) {
     throw new Error("Unable to parse graph data - does it have keys named 'nodes' and 'links'");
   }
+
   return data;
 };
 
@@ -161,6 +169,7 @@ export const fetchNGLDataFromDirectory = async (dir: string) => {
     return Promise.reject('Empty path.');
   }
   const file = `${dir}/protein.pdb`;
+
   return fetchNGLDataFromFile(file);
 };
 
@@ -174,13 +183,12 @@ export const fetchContactMapData = async (dir: string): Promise<IContactMapData>
   const contactMapFiles = ['coupling_scores.csv', 'residue_mapping.csv'];
   const promiseResults = await Promise.all(contactMapFiles.map(file => fetchCSVFile(`${dir}/${file}`)));
   const pdbData = await ChellPDB.createPDB(`${dir}/protein.pdb`);
-  const data: CONTACT_MAP_DATA_TYPE = {
+
+  return {
     couplingScores: getCouplingScoresData(promiseResults[0], generateResidueMapping(promiseResults[1])),
     pdbData,
     secondaryStructures: [],
   };
-
-  return data;
 };
 
 /**
@@ -227,6 +235,7 @@ export const getCouplingScoresData = (line: string, residueMapping: IResidueMapp
         });
       }
     });
+
   return couplingScores;
 };
 
@@ -248,6 +257,7 @@ export const augmentCouplingScoresWithResidueMapping = (
       j: residueMapping[mappedIndexJ].pdbResno,
     });
   }
+
   return result;
 };
 
@@ -271,6 +281,7 @@ export const getSecondaryStructureData = (line: string): ISecondaryStructureData
     .filter(row => row.split(',').length >= 3)
     .map(row => {
       const items = row.split(',');
+
       return {
         resno: parseFloat(items[1]),
         structId: items[2] as keyof typeof SECONDARY_STRUCTURE_CODES,

@@ -1,9 +1,6 @@
 import * as React from 'react';
 
-import { CellContext } from './CellContext';
-import { ResidueContext } from './ResidueContext';
-import { SecondaryStructureContext } from './SecondaryStructureContext';
-import { SpringContext } from './SpringContext';
+import { CellContext, ResidueContext, SecondaryStructureContext, SpringContext } from '~chell-viz~/context';
 
 /**
  * Shorthand for passing all Chell contexts down.
@@ -11,7 +8,7 @@ import { SpringContext } from './SpringContext';
  * @export
  * @extends {React.Component<any, any>}
  */
-export default class ChellContext extends React.Component<any, any> {
+export class ChellContext extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
   }
@@ -28,5 +25,3 @@ export default class ChellContext extends React.Component<any, any> {
     );
   }
 }
-
-export { ChellContext };
