@@ -10,6 +10,7 @@
  * https://facebook.github.io/jest/docs/en/manual-mocks.html
  */
 
+// tslint:disable:no-backbone-get-set-outside-model
 import * as NGL from 'ngl';
 
 const ngl = jest.genMockFromModule<typeof NGL>('ngl');
@@ -22,8 +23,9 @@ class MockStage {
   public mouseControls = {
     add: (eventName: string, callback: (...args: any[]) => void) => this.events.set(eventName, callback),
     run: (eventName: string, ...args: any[]) => {
-      if (this.events.get(eventName)) {
-        this.events.get(eventName)!(...args);
+      const cb = this.events.get(eventName);
+      if (cb !== undefined) {
+        cb(...args);
       }
     },
   };
@@ -50,8 +52,9 @@ class MockStage {
     clicked: {
       add: (callback: (...args: any[]) => void) => this.events.set('click', callback),
       dispatch: (...args: any[]) => {
-        if (this.events.get('click')) {
-          this.events.get('click')!(...args);
+        const cb = this.events.get('click');
+        if (cb !== undefined) {
+          cb(...args);
         }
       },
     },
@@ -72,6 +75,7 @@ class MockStage {
   public addComponentFromObject = () => ({
     addRepresentation: (name: string, ...args: any[]) => {
       this.reprList.push(name);
+
       return { name: () => name, setParameters: jest.fn() };
     },
     hasRepresentation: (name: string, ...args: any[]) => this.reprList.indexOf(name) !== -1,
@@ -123,13 +127,15 @@ const sampleResidues = [helixResidue(1), sheetResidue(2), turnResidue(3)];
 (ngl.Structure as any).mockImplementation((name: string) => {
   return {
     atomMap: { dict: { 'CA|C': 2 } },
-    eachResidue: jest.fn(cb => (name.localeCompare('sample.pdb') ? sampleResidues.map(residue => cb(residue)) : {})),
-    getAtomProxy: jest.fn(index => ({
+    eachResidue: jest.fn(
+      (cb: (...args: any[]) => void) => (name.localeCompare('sample.pdb') ? sampleResidues.map(cb) : {}),
+    ),
+    getAtomProxy: jest.fn((index: number) => ({
       distanceTo: (pos: number) => pos + index,
       positionToVector3: () => index,
     })),
     getResidueProxy: jest.fn(resno => ({
-      getAtomIndexByName: (...args: any[]) => resno,
+      getAtomIndexByName: () => resno,
     })),
     getSequence: jest.fn(() => []),
     residueMap: {

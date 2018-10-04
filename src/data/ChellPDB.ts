@@ -36,12 +36,14 @@ export class ChellPDB {
   public static async createPDB(file: File | string = '') {
     const result = new ChellPDB();
     result.nglData = await NGL.autoLoad(file);
+
     return result;
   }
 
   public static createPDBFromNGLData(nglData: NGL.Structure) {
     const result = new ChellPDB();
     result.nglData = nglData;
+
     return result;
   }
 
@@ -67,6 +69,7 @@ export class ChellPDB {
       });
       this.contactInfo = result;
     }
+
     return this.contactInfo;
   }
 
@@ -89,6 +92,7 @@ export class ChellPDB {
         result.push({ resno: residue.resno, structId });
       }
     });
+
     return result;
   }
 
@@ -115,6 +119,7 @@ export class ChellPDB {
         }
       }
     });
+
     return result;
   }
 
@@ -175,8 +180,8 @@ export class ChellPDB {
         }
       });
     });
-
     this.contactInfo = result;
+
     return this.contactInfo;
   }
 
@@ -231,6 +236,7 @@ export class ChellPDB {
         });
       }
     });
+
     return result;
   }
 
@@ -267,6 +273,7 @@ export class ChellPDB {
         }
       }
     }
+
     return result;
   }
 }

@@ -1,8 +1,9 @@
+// tslint:disable-next-line:import-name
 import Slider, { SliderProps } from 'rc-slider';
 import * as React from 'react';
 
 // https://github.com/react-component/slider/ requires the css imported like this.
-// tslint:disable-next-line:no-submodule-imports
+// tslint:disable-next-line:no-submodule-imports no-import-side-effect
 import 'rc-slider/assets/index.css';
 
 /** Function signature that is invoked on slider events. */
@@ -81,6 +82,7 @@ export class ChellSlider extends React.Component<ChellSliderProps, IChellSliderS
       style,
       ...remainingProps
     } = this.props;
+
     return (
       <div className={className} style={{ padding: 25, ...style }}>
         {!hideLabelValue && <p>{`${label}: ${this.state.value}`}</p>}

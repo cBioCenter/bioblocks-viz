@@ -39,11 +39,11 @@ export interface INGLComponentProps {
   height: number | string;
   isDataLoading: boolean;
   measuredProximity: CONTACT_DISTANCE_PROXIMITY;
-  onResize?: (event?: UIEvent) => void;
   residueContext: IResidueContext;
   secondaryStructureContext: ISecondaryStructureContext;
   style?: React.CSSProperties;
   width: number | string;
+  onResize?(event?: UIEvent): void;
 }
 
 export const initialNGLState = {

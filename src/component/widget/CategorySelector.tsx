@@ -5,7 +5,7 @@ export interface ICategorySelectorProps {
   /** Categories to select from. */
   categories: string[];
   /** Callback for when a new category is selected. */
-  onCategoryChange?: (event: React.SyntheticEvent<any>, data: object) => void;
+  onCategoryChange?(event: React.SyntheticEvent<any>, data: object): void;
 }
 
 /**

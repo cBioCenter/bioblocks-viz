@@ -53,5 +53,6 @@ export const createSecStructRepresentation = (
     sele: `${section.start}-${section.end}`,
   });
   rep.setParameters({ wireframe: true });
+
   return rep;
 };

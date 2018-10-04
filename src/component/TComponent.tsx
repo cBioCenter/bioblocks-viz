@@ -34,6 +34,7 @@ class TComponentClass extends React.Component<ITComponentProps, any> {
 
   public render() {
     const { cellContext, data, height, padding, pointColor, width } = this.props;
+
     return (
       <div id="TComponent" style={{ padding }}>
         <PlotlyChart

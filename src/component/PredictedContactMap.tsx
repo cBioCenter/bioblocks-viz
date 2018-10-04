@@ -78,6 +78,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
   public render() {
     const { data, style, ...passThroughProps } = this.props;
     const { pointsToPlot } = this.state;
+
     return (
       <div id="PredictedContactMapComponent" style={{ ...style }}>
         <ContactMap

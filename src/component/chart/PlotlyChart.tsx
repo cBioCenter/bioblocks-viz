@@ -138,7 +138,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
       this.plotlyCanvas = await plotly.react(this.canvasRef, this.plotlyFormattedData);
 
       this.attachListeners();
-      this.draw();
+      await this.draw();
     }
   }
 
@@ -153,6 +153,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
 
   public render() {
     const { showLoader } = this.props;
+
     return (
       <div>
         {showLoader && (

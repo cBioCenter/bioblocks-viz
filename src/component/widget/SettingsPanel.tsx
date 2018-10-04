@@ -77,10 +77,10 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
         {configurations.map((config, index) => {
           const id = config.id
             ? config.id
-            : config.name
+            : `${config.name
                 .toLowerCase()
                 .split(' ')
-                .join('-') + `-${index}`;
+                .join('-')}-${index}`;
           switch (config.type) {
             case CONFIGURATION_COMPONENT_TYPE.BUTTON:
               return <Grid.Row key={id}>{this.renderConfigurationButton(config, id)}</Grid.Row>;
@@ -88,6 +88,9 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
               return <Grid.Row key={id}>{this.renderConfigurationRadioButton(config, id)}</Grid.Row>;
             case CONFIGURATION_COMPONENT_TYPE.SLIDER:
               return <Grid.Row key={id}>{this.renderConfigurationSlider(config, id)}</Grid.Row>;
+            default: {
+              return <Grid.Row key={id}>{`configuration for ${id}`}</Grid.Row>;
+            }
           }
         })}
       </Grid>

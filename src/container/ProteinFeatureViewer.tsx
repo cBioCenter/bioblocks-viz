@@ -39,6 +39,7 @@ export class ProteinFeatureViewer extends React.Component<IProteinFeatureViewerP
 
   public render() {
     const { domainData, protein, proteinId, showGrouped } = this.state;
+
     return (
       <div className={'protein-feature-viewer'}>
         <GridRow centered={true} stretched={false}>
@@ -80,6 +81,7 @@ export class ProteinFeatureViewer extends React.Component<IProteinFeatureViewerP
           const { begin, description = '', end } = domain;
           // This matches domains that do and do not have other of the same domain in the protein.
           const domainName = description.split('-like')[0];
+
           return new TintedChell1DSection(
             domainName,
             begin ? Number.parseInt(begin, 10) : -1,
@@ -110,6 +112,7 @@ export class ProteinFeatureViewer extends React.Component<IProteinFeatureViewerP
       ? protein.dbReferences.filter(dbRef => dbRef.type === 'Pfam').filter(pFamRef => {
           const { properties } = pFamRef;
           const entryName = properties ? properties['entry name'] : null;
+
           return entryName && (entryName === proteinId || entryName.localeCompare(`${proteinId}-like ${index}`));
         })
       : [];

@@ -26,6 +26,7 @@ export interface ISpringNode {
   colorHex: number;
   fixed: boolean;
   name: string;
+  // tslint:disable-next-line:no-reserved-keywords
   number: number;
   vx: number;
   vy: number;

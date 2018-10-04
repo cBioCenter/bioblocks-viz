@@ -35,6 +35,7 @@ export class ColorMapper<T> {
     if (!this.colorMap.has(key)) {
       this.addColorToMapper(key);
     }
+
     return this.colorMap.get(key) as Color;
   }
 

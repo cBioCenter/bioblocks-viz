@@ -10,16 +10,20 @@ beforeEach(() => {
 });
 
 describe('PlotlyChart', () => {
-  const sampleData: Array<Partial<IPlotlyData>> = [
-    {
-      marker: {
-        color: 'blue',
+  let sampleData: Array<Partial<IPlotlyData>>;
+  beforeEach(() => {
+    sampleData = [
+      {
+        marker: {
+          color: 'blue',
+        },
+        mode: 'markers',
+        type: 'pointcloud',
+        xy: new Float32Array([1, 2, 3, 4]),
       },
-      mode: 'markers',
-      type: 'pointcloud',
-      xy: new Float32Array([1, 2, 3, 4]),
-    },
-  ];
+    ];
+  });
+
   /**
    * Helper function to create and wait for a PlotlyChart to be mounted.
    *

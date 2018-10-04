@@ -51,6 +51,7 @@ export class ChellTooltip extends React.Component<IChellTooltipProps, ChellToolt
   public render() {
     const { message, style = defaultStyle } = this.props;
     const { show } = this.state;
+
     return (
       show && (
         <div style={style} className="ChellTooltip">

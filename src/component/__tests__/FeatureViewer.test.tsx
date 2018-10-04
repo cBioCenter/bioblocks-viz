@@ -8,17 +8,19 @@ import { TintedChell1DSection } from '~chell-viz~/data';
 import { IMockPlotlyCanvas } from '~chell-viz~/test';
 
 describe('ProteinFeatureViewer', () => {
+  let sampleData: Array<TintedChell1DSection<string>>;
+
   beforeEach(() => {
     fetchMock.resetMocks();
+    sampleData = [
+      new TintedChell1DSection('N64', 1999, 2001),
+      new TintedChell1DSection('Melee', 2001, 2008),
+      new TintedChell1DSection('Brawl', 2008, 2014),
+      new TintedChell1DSection('3DS/WiiU', 2014, 2018),
+      new TintedChell1DSection('Ultimate', 2018, 2019),
+    ];
   });
 
-  const sampleData: Array<TintedChell1DSection<string>> = [
-    new TintedChell1DSection('N64', 1999, 2001),
-    new TintedChell1DSection('Melee', 2001, 2008),
-    new TintedChell1DSection('Brawl', 2008, 2014),
-    new TintedChell1DSection('3DS/WiiU', 2014, 2018),
-    new TintedChell1DSection('Ultimate', 2018, 2019),
-  ];
   /**
    * Helper function to dispatch an event through plotly.
    *

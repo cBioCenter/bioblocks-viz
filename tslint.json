@@ -12,6 +12,7 @@
   "jsRules": {},
   "rules": {
     "arrow-parens": false,
+    "function-name": false,
     "jsdoc-format": [true],
     "jsx-curly-spacing": false,
     "jsx-no-multiline-js": false,
@@ -19,17 +20,21 @@
     "missing-jsdoc": false,
     "no-console": false,
     "no-implicit-dependencies": [true, "dev", ["~root", "~chell-viz~", "__mocks__", "configs"]],
+    "no-increment-decrement": false,
     "no-namespace": [true, "allow-declarations"],
     "no-redundant-jsdoc": true,
     "no-reference": false,
+    // "no-relative-imports": true,
+    "no-single-line-block-comment": false,
     "no-submodule-imports": [true, "~root", "~chell-viz~", "__mocks__", "configs", "plotly.js/dist/plotly"],
     "no-suspicious-comment": false,
     "object-literal-key-quotes": [true, "as-needed"],
     "prefer-array-literal": false,
+    "prefer-type-cast": false,
     "quotemark": [true, "jsx-double", "single", "avoid-escape"],
     "semicolon": [true, "always", "ignore-bound-class-methods"],
+    "strict-boolean-expressions": false,
     "trailing-comma": [true, { "esSpecCompliant": true }]
-    // "no-relative-imports": true,
   },
   "rulesDirectory": []
 }

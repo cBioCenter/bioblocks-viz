@@ -6,10 +6,10 @@ import { ChellChartEvent, IPlotlyData, TintedChell1DSection } from '~chell-viz~/
 export interface IFeatureViewerProps {
   data: Array<TintedChell1DSection<string>>;
   height: number;
-  onHoverCallback?: (label: string, index: number) => string;
   showGrouped: boolean;
   title: string;
   width: number;
+  onHoverCallback?(label: string, index: number): string;
 }
 
 export interface IFeatureViewerState {
@@ -77,10 +77,12 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
           ? [0.5, null, 0, 1, 1, 0, 0]
           : [yIndex + 0.5, null, yIndex + 1, yIndex, yIndex, yIndex + 1, yIndex + 1],
       };
+
       return plotlyDatum;
     });
 
     const hoveredDatum = plotlyData[hoveredFeatureIndex];
+
     return {
       layout: {
         annotations:

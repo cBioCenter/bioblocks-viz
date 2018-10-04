@@ -5,9 +5,9 @@ export interface IChellRadioGroupProps {
   disabled: boolean;
   id: string;
   options: string[];
-  onChange?: (value: any) => void;
   style: React.CSSProperties;
   title: string;
+  onChange?(value: any): void;
 }
 
 export interface IChellRadioGroupState {

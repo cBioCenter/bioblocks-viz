@@ -43,6 +43,7 @@
       "tsx"
     ],
     "moduleNameMapper": {
+      "~chell-viz~$": "<rootDir>/src",
       "~chell-viz~/component": "<rootDir>/src/component",
       "~chell-viz~/container": "<rootDir>/src/container",
       "~chell-viz~/context": "<rootDir>/src/context",

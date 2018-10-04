@@ -1,4 +1,5 @@
 import * as React from 'react';
+// tslint:disable-next-line:import-name
 import IframeComm from 'react-iframe-comm';
 
 import {

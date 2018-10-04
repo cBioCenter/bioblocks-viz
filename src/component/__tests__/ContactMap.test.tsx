@@ -41,6 +41,7 @@ const getMountedContactMap = async (props?: Partial<IContactMapProps>) => {
   const wrapper = mount(<Component.ContactMapClass {...props} />);
   await wrapper.mount();
   await wrapper.update();
+
   return wrapper;
 };
 
@@ -52,6 +53,7 @@ const getMountedContactMap = async (props?: Partial<IContactMapProps>) => {
  */
 const getShallowContactMap = (props?: Partial<IContactMapProps>) => {
   const Component = getComponentWithContext();
+
   return shallow(<Component.ContactMapClass {...props} />);
 };
 
@@ -75,14 +77,61 @@ const dispatchPlotlyEvent = (
 };
 
 describe('ContactMap', () => {
+  let emptyData: IContactMapData;
+  let sampleCorrectPredictedContacts: ICouplingScore[];
+  let sampleIncorrectPredictedContacts: ICouplingScore[];
+  let sampleOutOfLinearDistContacts: ICouplingScore[];
+  let sampleData: IContactMapData;
+  let uniqueScores: Set<ICouplingScore>;
+  let sampleObservedContacts: ICouplingScore[];
+
   beforeEach(() => {
     jest.resetModuleRegistry();
-  });
 
-  const emptyData = {
-    couplingScores: new CouplingContainer(),
-    secondaryStructures: [],
-  };
+    emptyData = {
+      couplingScores: new CouplingContainer(),
+      secondaryStructures: [],
+    };
+
+    sampleCorrectPredictedContacts = [generateCouplingScore(56, 50, 2.4)];
+    sampleIncorrectPredictedContacts = [generateCouplingScore(42, 50, 20.4)];
+    sampleOutOfLinearDistContacts = [
+      generateCouplingScore(45, 46, 1.3),
+      generateCouplingScore(44, 45, 1.3),
+      generateCouplingScore(56, 57, 1.3),
+    ];
+
+    sampleObservedContacts = [...sampleCorrectPredictedContacts, generateCouplingScore(41, 52, 1.3)];
+
+    uniqueScores = new Set(
+      Array.from([
+        ...sampleCorrectPredictedContacts,
+        ...sampleIncorrectPredictedContacts,
+        ...sampleObservedContacts,
+        ...sampleOutOfLinearDistContacts,
+      ]),
+    );
+
+    sampleData = {
+      couplingScores: new CouplingContainer(
+        Array.from(uniqueScores).map((value, index) => ({
+          dist: value.dist,
+          i: value.i,
+          j: value.j,
+        })),
+      ),
+      secondaryStructures: [
+        [
+          {
+            end: 31,
+            label: 'C',
+            length: 2,
+            start: 30,
+          },
+        ],
+      ] as SECONDARY_STRUCTURE[],
+    };
+  });
 
   const generateCouplingScore = (
     i: number,
@@ -97,43 +146,6 @@ describe('ContactMap', () => {
   });
 
   // Translated from example1/coupling_scores.csv
-  const sampleCorrectPredictedContacts = [generateCouplingScore(56, 50, 2.4)];
-  const sampleIncorrectPredictedContacts = [generateCouplingScore(42, 50, 20.4)];
-  const sampleOutOfLinearDistContacts = [
-    generateCouplingScore(45, 46, 1.3),
-    generateCouplingScore(44, 45, 1.3),
-    generateCouplingScore(56, 57, 1.3),
-  ];
-  const sampleObservedContacts = [...sampleCorrectPredictedContacts, generateCouplingScore(41, 52, 1.3)];
-
-  const uniqueScores = new Set(
-    Array.from([
-      ...sampleCorrectPredictedContacts,
-      ...sampleIncorrectPredictedContacts,
-      ...sampleObservedContacts,
-      ...sampleOutOfLinearDistContacts,
-    ]),
-  );
-
-  const sampleData: IContactMapData = {
-    couplingScores: new CouplingContainer(
-      Array.from(uniqueScores).map((value, index) => ({
-        dist: value.dist,
-        i: value.i,
-        j: value.j,
-      })),
-    ),
-    secondaryStructures: [
-      [
-        {
-          end: 31,
-          label: 'C',
-          length: 2,
-          start: 30,
-        },
-      ],
-    ] as SECONDARY_STRUCTURE[],
-  };
 
   describe('Snapshots', () => {
     it('Should match existing snapshot when given no data.', () => {

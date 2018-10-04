@@ -33,6 +33,7 @@ describe('ProteinFeatureViewer', () => {
     }
   };
 
+  // tslint:disable-next-line:mocha-no-side-effect-code
   const sampleProtein: IProtein = require('./Q13485.json');
 
   it('Should match the default snapshot.', () => {
@@ -130,11 +131,7 @@ describe('ProteinFeatureViewer', () => {
         .find(FeatureViewer)
         .at(0)
         .instance().state as IFeatureViewerState;
-      const expected =
-        'MH1: MH1 domain (18 - 142)<br />\
-        <a href="http://pfam.xfam.org/family/PF03165">PFAM</a> \
-        <a href="http://mutationaligner.org/domains/PF03165">Mutagen Aligner</a>';
-      expect(featureViewerState.hoverAnnotationText).toEqual(expected);
+      expect(featureViewerState.hoverAnnotationText).toMatchSnapshot();
       done();
     });
   });
