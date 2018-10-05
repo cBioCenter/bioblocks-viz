@@ -32,6 +32,8 @@ export type SecondaryStructureContextState = Readonly<typeof initialSecondaryStr
 
 export const SecondaryStructureContext = React.createContext(initialSecondaryStructureContext);
 
+export const SecondaryStructureContextConsumer = SecondaryStructureContext.Consumer;
+
 export class SecondaryStructureContextProvider extends React.Component<any, SecondaryStructureContextState> {
   public constructor(props: any) {
     super(props);
@@ -87,13 +89,3 @@ export class SecondaryStructureContextProvider extends React.Component<any, Seco
     }
   };
 }
-
-export const withSecondaryStructureContext = (Component: () => React.Component<ISecondaryStructureContext>) => (
-  props: any,
-) => {
-  return (
-    <SecondaryStructureContext.Consumer>
-      {secondaryStructure => <Component {...props} secondaryStructureContext={secondaryStructure} />}
-    </SecondaryStructureContext.Consumer>
-  );
-};

@@ -1,6 +1,7 @@
 import { cloneDeep } from 'lodash';
 import * as NGL from 'ngl';
 import * as React from 'react';
+import { Composer } from 'react-composer';
 import { Dimmer, Loader } from 'semantic-ui-react';
 import { Vector2 } from 'three';
 
@@ -12,8 +13,9 @@ import {
   initialSecondaryStructureContext,
   IResidueContext,
   ISecondaryStructureContext,
+  ResidueContextConsumer,
   ResidueSelection,
-  withCouplingContext,
+  SecondaryStructureContextConsumer,
 } from '~chell-viz~/context';
 import {
   ChellPDB,
@@ -410,4 +412,31 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
 type requiredProps = Omit<INGLComponentProps, keyof typeof NGLComponentClass.defaultProps> &
   Partial<INGLComponentProps>;
 
-export const NGLComponent = (props: requiredProps) => withCouplingContext(NGLComponentClass)({ ...props });
+export const NGLComponent = (props: requiredProps) => (
+  <ResidueContextConsumer>
+    {residueContext => (
+      <SecondaryStructureContextConsumer>
+        {secondaryStructureContext => (
+          <NGLComponentClass
+            {...props}
+            residueContext={residueContext}
+            secondaryStructureContext={secondaryStructureContext}
+          />
+        )}
+      </SecondaryStructureContextConsumer>
+    )}
+  </ResidueContextConsumer>
+);
+
+export const NGLComponentBad = (props: requiredProps) => (
+  // @ts-ignore
+  // tslint:disable-next-line:jsx-key
+  <Composer components={[]}>
+    {(
+      // @ts-ignore
+      [],
+    ) => {
+      return <NGLComponentClass {...props} />;
+    }}
+  </Composer>
+);

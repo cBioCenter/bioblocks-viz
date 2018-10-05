@@ -1,11 +1,10 @@
-import { CommonWrapper, ReactWrapper, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import * as fetchMock from 'jest-fetch-mock';
-import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 
-import { FeatureViewer, IFeatureViewerState, PlotlyChart } from '~chell-viz~/component';
+import { FeatureViewer, IFeatureViewerState } from '~chell-viz~/component';
 import { TintedChell1DSection } from '~chell-viz~/data';
-import { getAsyncMountedComponent, IMockPlotlyCanvas } from '~chell-viz~/test';
+import { dispatchPlotlyEvent, getAsyncMountedComponent } from '~chell-viz~/test';
 
 describe('ProteinFeatureViewer', () => {
   let sampleData: Array<TintedChell1DSection<string>>;
@@ -20,26 +19,6 @@ describe('ProteinFeatureViewer', () => {
       new TintedChell1DSection('Ultimate', 2018, 2019),
     ];
   });
-
-  /**
-   * Helper function to dispatch an event through plotly.
-   *
-   * @param wrapper The PlotlyChart.
-   * @param eventName The name of the event to dispatch.
-   * @param [data={ x: 0, y: 0 }] Custom plotly data for the event.
-   */
-  const dispatchPlotlyEvent = async (
-    wrapper: ReactWrapper,
-    eventName: string,
-    data: Partial<plotly.PlotScatterDataPoint> | plotly.SelectionRange = { x: 0, y: 0 },
-  ) => {
-    const plotlyWrapper = wrapper.find('PlotlyChart') as CommonWrapper;
-    const canvas = (plotlyWrapper.instance() as PlotlyChart).plotlyCanvas;
-    if (canvas) {
-      (canvas as IMockPlotlyCanvas).dispatchEvent(new Event(eventName), data);
-    }
-    await Promise.resolve();
-  };
 
   it('Should match the default snapshot.', () => {
     const wrapper = shallow(<FeatureViewer />);

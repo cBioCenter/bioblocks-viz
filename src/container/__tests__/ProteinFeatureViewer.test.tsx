@@ -1,37 +1,17 @@
-import { CommonWrapper, mount, ReactWrapper, shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import * as fetchMock from 'jest-fetch-mock';
-import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 import { Form } from 'semantic-ui-react';
 
-import { FeatureViewer, IFeatureViewerState, PlotlyChart } from '~chell-viz~/component';
+import { FeatureViewer, IFeatureViewerState } from '~chell-viz~/component';
 import { ProteinFeatureViewer } from '~chell-viz~/container';
 import { IProtein } from '~chell-viz~/data';
-import { IMockPlotlyCanvas } from '~chell-viz~/test';
+import { dispatchPlotlyEvent } from '~chell-viz~/test';
 
 describe('ProteinFeatureViewer', () => {
   beforeEach(() => {
     fetchMock.resetMocks();
   });
-
-  /**
-   * Helper function to dispatch an event through plotly.
-   *
-   * @param wrapper The PlotlyChart.
-   * @param eventName The name of the event to dispatch.
-   * @param [data={ x: 0, y: 0 }] Custom plotly data for the event.
-   */
-  const dispatchPlotlyEvent = (
-    wrapper: ReactWrapper,
-    eventName: string,
-    data: Partial<plotly.PlotScatterDataPoint> | plotly.SelectionRange = { x: [0], y: [0] },
-  ) => {
-    const plotlyWrapper = wrapper.find('PlotlyChart') as CommonWrapper;
-    const canvas = (plotlyWrapper.instance() as PlotlyChart).plotlyCanvas;
-    if (canvas) {
-      (canvas as IMockPlotlyCanvas).dispatchEvent(new Event(eventName), data);
-    }
-  };
 
   // tslint:disable-next-line:mocha-no-side-effect-code no-require-imports
   const sampleProtein = require('./Q13485.json') as IProtein;
@@ -129,10 +109,10 @@ describe('ProteinFeatureViewer', () => {
     const wrapper = mount(<ProteinFeatureViewer />);
     wrapper.update();
 
-    setTimeout(() => {
+    setTimeout(async () => {
       wrapper.update();
       expect(wrapper.state('protein')).toEqual(sampleProtein);
-      dispatchPlotlyEvent(wrapper, 'plotly_hover', { x: [42], y: [1] });
+      await dispatchPlotlyEvent(wrapper, 'plotly_hover', { x: [42], y: [1] });
       const featureViewerState = wrapper
         .find(FeatureViewer)
         .at(0)
@@ -163,9 +143,9 @@ describe('ProteinFeatureViewer', () => {
     const wrapper = mount(<ProteinFeatureViewer />);
     wrapper.update();
 
-    setTimeout(() => {
+    setTimeout(async () => {
       wrapper.update();
-      dispatchPlotlyEvent(wrapper, 'plotly_hover', { x: [42], y: [0] });
+      await dispatchPlotlyEvent(wrapper, 'plotly_hover', { x: [42], y: [0] });
       const featureViewerState = wrapper
         .find(FeatureViewer)
         .at(0)
@@ -191,9 +171,9 @@ describe('ProteinFeatureViewer', () => {
     const wrapper = mount(<ProteinFeatureViewer />);
     wrapper.update();
 
-    setTimeout(() => {
+    setTimeout(async () => {
       wrapper.update();
-      dispatchPlotlyEvent(wrapper, 'plotly_hover', { x: [42], y: [0] });
+      await dispatchPlotlyEvent(wrapper, 'plotly_hover', { x: [42], y: [0] });
       const featureViewerState = wrapper
         .find(FeatureViewer)
         .at(0)
@@ -209,12 +189,12 @@ describe('ProteinFeatureViewer', () => {
     const wrapper = mount(<ProteinFeatureViewer />);
     wrapper.update();
 
-    setTimeout(() => {
+    setTimeout(async () => {
       wrapper.update();
       wrapper.setState({
         protein: undefined,
       });
-      dispatchPlotlyEvent(wrapper, 'plotly_hover', { x: [42], y: [0] });
+      await dispatchPlotlyEvent(wrapper, 'plotly_hover', { x: [42], y: [0] });
       const featureViewerState = wrapper
         .find(FeatureViewer)
         .at(0)

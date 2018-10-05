@@ -1,9 +1,9 @@
-import { CommonWrapper, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import * as React from 'react';
 
 import { IPlotlyChartProps, PlotlyChart } from '~chell-viz~/component';
 import { CHELL_CHART_EVENT_TYPE, CHELL_CHART_PIECE, ChellChartEvent, IPlotlyData } from '~chell-viz~/data';
-import { IMockDict, IMockPlotlyCanvas } from '~chell-viz~/test';
+import { dispatchPlotlyEvent, dispatchPlotlySecondaryAxisEvent, IMockDict } from '~chell-viz~/test';
 
 beforeEach(() => {
   jest.resetModules();
@@ -38,19 +38,6 @@ describe('PlotlyChart', () => {
     return wrapper;
   };
 
-  /**
-   * Helper function to dispatch an event through plotly.
-   *
-   * @param wrapper The PlotlyChart.
-   * @param event The name of the event to dispatch.
-   */
-  const dispatchPlotlyEvent = (wrapper: CommonWrapper, event: string, data: object = { data: {}, x: [0], y: [0] }) => {
-    const canvas = (wrapper.instance() as PlotlyChart).plotlyCanvas;
-    if (canvas) {
-      (canvas as IMockPlotlyCanvas).dispatchEvent(new Event(event), data);
-    }
-  };
-
   it('Should match existing snapshot when given empty data.', () => {
     const wrapper = mount(<PlotlyChart data={[]} />);
     expect(wrapper).toMatchSnapshot();
@@ -81,12 +68,14 @@ describe('PlotlyChart', () => {
       onUnHoverCallback: spies.onUnHoverSpy,
     });
 
-    dispatchPlotlyEvent(wrapper, 'plotly_click');
-    dispatchPlotlyEvent(wrapper, 'plotly_doubleclick');
-    dispatchPlotlyEvent(wrapper, 'plotly_hover');
-    dispatchPlotlyEvent(wrapper, 'plotly_relayout');
-    dispatchPlotlyEvent(wrapper, 'plotly_selected');
-    dispatchPlotlyEvent(wrapper, 'plotly_unhover');
+    await Promise.all([
+      dispatchPlotlyEvent(wrapper, 'plotly_click'),
+      dispatchPlotlyEvent(wrapper, 'plotly_doubleclick'),
+      dispatchPlotlyEvent(wrapper, 'plotly_hover'),
+      dispatchPlotlyEvent(wrapper, 'plotly_relayout'),
+      dispatchPlotlyEvent(wrapper, 'plotly_selected'),
+      dispatchPlotlyEvent(wrapper, 'plotly_unhover'),
+    ]);
 
     for (const key of Object.keys(spies)) {
       expect(spies[key]).toHaveBeenCalledTimes(1);
@@ -126,7 +115,7 @@ describe('PlotlyChart', () => {
       data: sampleData,
       onClickCallback: onClickSpy,
     });
-    dispatchPlotlyEvent(wrapper, 'plotly_click');
+    await dispatchPlotlyEvent(wrapper, 'plotly_click');
     expect(onClickSpy).toBeCalled();
   });
 
@@ -136,7 +125,7 @@ describe('PlotlyChart', () => {
       data: sampleData,
       onClickCallback: onClickSpy,
     });
-    dispatchPlotlyEvent(wrapper, 'plotly_click', { x: 1, y: 2 });
+    await dispatchPlotlyEvent(wrapper, 'plotly_click', { x: 1, y: 2 });
     const chellEvent = onClickSpy.mock.calls[0][0] as ChellChartEvent;
     expect(chellEvent.chartPiece).toBe(CHELL_CHART_PIECE.POINT);
     expect(chellEvent.type).toBe(CHELL_CHART_EVENT_TYPE.CLICK);
@@ -149,7 +138,7 @@ describe('PlotlyChart', () => {
       data: sampleData,
       onClickCallback: onClickSpy,
     });
-    dispatchPlotlyEvent(wrapper, 'plotly_click', { data: { xaxis: 'x2', yaxis: 'y' }, x: 1, y: 2 });
+    dispatchPlotlySecondaryAxisEvent(wrapper, 'plotly_click', { data: { xaxis: 'x2', yaxis: 'y' }, x: 1, y: 2 });
     const chellEvent = onClickSpy.mock.calls[0][0] as ChellChartEvent;
     expect(chellEvent.chartPiece).toBe(CHELL_CHART_PIECE.AXIS);
     expect(chellEvent.type).toBe(CHELL_CHART_EVENT_TYPE.CLICK);
@@ -162,7 +151,7 @@ describe('PlotlyChart', () => {
       data: sampleData,
       onClickCallback: onClickSpy,
     });
-    dispatchPlotlyEvent(wrapper, 'plotly_click', { data: { xaxis: 'x', yaxis: 'y2' }, x: 1, y: 2 });
+    dispatchPlotlySecondaryAxisEvent(wrapper, 'plotly_click', { data: { xaxis: 'x', yaxis: 'y2' }, x: 1, y: 2 });
     const chellEvent = onClickSpy.mock.calls[0][0] as ChellChartEvent;
     expect(chellEvent.chartPiece).toBe(CHELL_CHART_PIECE.AXIS);
     expect(chellEvent.type).toBe(CHELL_CHART_EVENT_TYPE.CLICK);
@@ -175,7 +164,7 @@ describe('PlotlyChart', () => {
       data: sampleData,
       onHoverCallback: onHoverSpy,
     });
-    dispatchPlotlyEvent(wrapper, 'plotly_hover');
+    await dispatchPlotlyEvent(wrapper, 'plotly_hover');
     expect(onHoverSpy).toBeCalled();
   });
 
@@ -185,7 +174,7 @@ describe('PlotlyChart', () => {
       data: sampleData,
       onSelectedCallback: onSelectedSpy,
     });
-    dispatchPlotlyEvent(wrapper, 'plotly_selected');
+    await dispatchPlotlyEvent(wrapper, 'plotly_selected');
     expect(onSelectedSpy).toBeCalled();
   });
 

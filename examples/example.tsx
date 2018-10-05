@@ -17,7 +17,7 @@ import {
   ChellPDB,
   CONTACT_DISTANCE_PROXIMITY,
   CONTACT_MAP_DATA_TYPE,
-  ContactMap,
+  // ContactMap,
   CouplingContainer,
   CouplingContextProvider,
   generateResidueMapping,
@@ -26,9 +26,9 @@ import {
   IResidueMapping,
   NGL_DATA_TYPE,
   NGLComponent,
-  PredictedContactMap,
+  // PredictedContactMap,
   readFileAsText,
-  ResidueContext,
+  ResidueContextConsumer,
   VIZ_TYPE,
 } from '~chell-viz~';
 
@@ -126,18 +126,22 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
         {errorMsg.length > 1 && this.renderErrorMessage()}
         <Segment attached={true} raised={true}>
           <CouplingContextProvider>
-            <ResidueContext.Consumer>
-              {residueContext => (
-                <Grid centered={true}>
-                  <GridRow verticalAlign={'middle'}>
-                    <GridColumn width={6}>
-                      <NGLComponent
-                        data={this.state[VIZ_TYPE.NGL].pdbData}
-                        isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
-                        measuredProximity={this.state.measuredProximity}
-                        style={{ ...style, width: 400 }}
-                      />
-                    </GridColumn>
+            <ResidueContextConsumer>
+              {residueContext => {
+                console.log(`example: ${residueContext}`);
+
+                return (
+                  <Grid centered={true}>
+                    <GridRow verticalAlign={'middle'}>
+                      <GridColumn width={6}>
+                        <NGLComponent
+                          data={this.state[VIZ_TYPE.NGL].pdbData}
+                          isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
+                          measuredProximity={this.state.measuredProximity}
+                          style={{ ...style, width: 400 }}
+                        />
+                      </GridColumn>
+                      {/*
                     <GridColumn width={6}>
                       {arePredictionsAvailable ? (
                         <PredictedContactMap
@@ -161,16 +165,18 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                         />
                       )}
                     </GridColumn>
-                  </GridRow>
-                  <GridRow columns={4} centered={true} textAlign={'center'} verticalAlign={'top'}>
-                    <GridColumn>{this.renderPDBUploadForm()}</GridColumn>
-                    <GridColumn>{this.renderCouplingScoresUploadForm()}</GridColumn>
-                    {isResidueMappingNeeded && <GridColumn>{this.renderResidueMappingUploadForm()}</GridColumn>}
-                    <GridColumn>{this.renderClearAllButton(residueContext)}</GridColumn>
-                  </GridRow>
-                </Grid>
-              )}
-            </ResidueContext.Consumer>
+                        */}
+                    </GridRow>
+                    <GridRow columns={4} centered={true} textAlign={'center'} verticalAlign={'top'}>
+                      <GridColumn>{this.renderPDBUploadForm()}</GridColumn>
+                      <GridColumn>{this.renderCouplingScoresUploadForm()}</GridColumn>
+                      {isResidueMappingNeeded && <GridColumn>{this.renderResidueMappingUploadForm()}</GridColumn>}
+                      <GridColumn>{this.renderClearAllButton(residueContext)}</GridColumn>
+                    </GridRow>
+                  </Grid>
+                );
+              }}
+            </ResidueContextConsumer>
           </CouplingContextProvider>
         </Segment>
       </div>
