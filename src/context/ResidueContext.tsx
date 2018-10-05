@@ -41,9 +41,7 @@ export const initialResidueContext = {
 };
 
 export type IResidueContext = typeof initialResidueContext;
-
 export const ResidueContext = React.createContext(initialResidueContext);
-
 export const ResidueContextConsumer = ResidueContext.Consumer;
 
 export class ResidueContextProvider extends React.Component<any, IResidueContext> {

@@ -1,7 +1,6 @@
 import { cloneDeep } from 'lodash';
 import * as NGL from 'ngl';
 import * as React from 'react';
-import { Composer } from 'react-composer';
 import { Dimmer, Loader } from 'semantic-ui-react';
 import { Vector2 } from 'three';
 
@@ -29,6 +28,7 @@ import {
   createDistanceRepresentation,
   createSecStructRepresentation,
 } from '~chell-viz~/helper';
+import { ContextConsumerComposer } from '~chell-viz~/hoc';
 
 export type NGL_HOVER_CB_RESULT_TYPE = number;
 
@@ -412,7 +412,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
 type requiredProps = Omit<INGLComponentProps, keyof typeof NGLComponentClass.defaultProps> &
   Partial<INGLComponentProps>;
 
-export const NGLComponent = (props: requiredProps) => (
+export const NGLComponentGood = (props: requiredProps) => (
   <ResidueContextConsumer>
     {residueContext => (
       <SecondaryStructureContextConsumer>
@@ -428,15 +428,16 @@ export const NGLComponent = (props: requiredProps) => (
   </ResidueContextConsumer>
 );
 
-export const NGLComponentBad = (props: requiredProps) => (
-  // @ts-ignore
-  // tslint:disable-next-line:jsx-key
-  <Composer components={[]}>
-    {(
-      // @ts-ignore
-      [],
-    ) => {
-      return <NGLComponentClass {...props} />;
+export const NGLComponent = (props: requiredProps) => (
+  <ContextConsumerComposer components={[ResidueContextConsumer, SecondaryStructureContextConsumer]}>
+    {([residueContext, secondaryStructureContext]) => {
+      return (
+        <NGLComponentClass
+          {...props}
+          residueContext={residueContext}
+          secondaryStructureContext={secondaryStructureContext}
+        />
+      );
     }}
-  </Composer>
+  </ContextConsumerComposer>
 );

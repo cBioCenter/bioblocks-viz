@@ -2,16 +2,7 @@ import * as React from 'react';
 
 import { SECONDARY_STRUCTURE_SECTION } from '~chell-viz~/data';
 
-export interface ISecondaryStructureContext {
-  selectedSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
-  temporarySecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
-  addSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
-  clearSecondaryStructure(): void;
-  removeSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
-  toggleSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
-}
-
-export const initialSecondaryStructureContext: ISecondaryStructureContext = {
+export const initialSecondaryStructureContext = {
   addSecondaryStructure: (section: SECONDARY_STRUCTURE_SECTION) => {
     return;
   },
@@ -28,13 +19,11 @@ export const initialSecondaryStructureContext: ISecondaryStructureContext = {
   },
 };
 
-export type SecondaryStructureContextState = Readonly<typeof initialSecondaryStructureContext>;
-
+export type ISecondaryStructureContext = typeof initialSecondaryStructureContext;
 export const SecondaryStructureContext = React.createContext(initialSecondaryStructureContext);
-
 export const SecondaryStructureContextConsumer = SecondaryStructureContext.Consumer;
 
-export class SecondaryStructureContextProvider extends React.Component<any, SecondaryStructureContextState> {
+export class SecondaryStructureContextProvider extends React.Component<any, ISecondaryStructureContext> {
   public constructor(props: any) {
     super(props);
     this.state = {

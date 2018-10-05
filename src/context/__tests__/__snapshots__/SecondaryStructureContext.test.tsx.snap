@@ -19,46 +19,6 @@ exports[`SecondaryStructureContext Consumer Should allow components to consume a
 </MockContextClass>
 `;
 
-exports[`SecondaryStructureContext Consumer Should allow components to consume a secondary structure context. 2`] = `
-<MockContextClass
-  secondaryStructureContext={
-    Object {
-      "addSecondaryStructure": [Function],
-      "clearSecondaryStructure": [Function],
-      "removeSecondaryStructure": [Function],
-      "selectedSecondaryStructures": Array [],
-      "temporarySecondaryStructures": Array [],
-      "toggleSecondaryStructure": [Function],
-    }
-  }
->
-  <div>
-    I am a class for a mock context!
-  </div>
-</MockContextClass>
-`;
-
-exports[`SecondaryStructureContext Provider Should allow components to be provided a secondary structure context 1`] = `
-<SecondaryStructureContextProvider>
-  <MockContextClass
-    secondaryStructureContext={
-      Object {
-        "addSecondaryStructure": [Function],
-        "clearSecondaryStructure": [Function],
-        "removeSecondaryStructure": [Function],
-        "selectedSecondaryStructures": Array [],
-        "temporarySecondaryStructures": Array [],
-        "toggleSecondaryStructure": [Function],
-      }
-    }
-  >
-    <div>
-      I am a class for a mock context!
-    </div>
-  </MockContextClass>
-</SecondaryStructureContextProvider>
-`;
-
 exports[`SecondaryStructureContext Provider Should allow components to be provided a secondary structure context. 1`] = `
 <SecondaryStructureContextProvider>
   <MockContextClass
