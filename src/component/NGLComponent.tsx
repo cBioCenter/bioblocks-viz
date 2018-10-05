@@ -412,23 +412,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
 type requiredProps = Omit<INGLComponentProps, keyof typeof NGLComponentClass.defaultProps> &
   Partial<INGLComponentProps>;
 
-export const NGLComponentGood = (props: requiredProps) => (
-  <ResidueContextConsumer>
-    {residueContext => (
-      <SecondaryStructureContextConsumer>
-        {secondaryStructureContext => (
-          <NGLComponentClass
-            {...props}
-            residueContext={residueContext}
-            secondaryStructureContext={secondaryStructureContext}
-          />
-        )}
-      </SecondaryStructureContextConsumer>
-    )}
-  </ResidueContextConsumer>
-);
-
-export const NGLComponent = (props: requiredProps) => (
+const NGLComponent = (props: requiredProps) => (
   <ContextConsumerComposer components={[ResidueContextConsumer, SecondaryStructureContextConsumer]}>
     {([residueContext, secondaryStructureContext]) => {
       return (
@@ -441,3 +425,5 @@ export const NGLComponent = (props: requiredProps) => (
     }}
   </ContextConsumerComposer>
 );
+
+export { NGLComponent };

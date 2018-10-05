@@ -8,20 +8,25 @@ import * as React from 'react';
  */
 export interface IComposerProps {
   components: Array<React.ComponentType<any>>;
-  children(args: any): JSX.Element;
+  children(args: any[]): JSX.Element;
 }
 
-export const ContextConsumerComposer: React.SFC<IComposerProps> = (props: IComposerProps) =>
-  renderRecursive(props.children, props.components);
+class ContextConsumerComposer extends React.Component<IComposerProps, any> {
+  public render() {
+    const { children, components } = this.props;
+
+    return renderRecursive(children, components);
+  }
+}
 
 /**
  * Recursively build up elements from props.components and accumulate `results` along the way.
  */
-function renderRecursive(
-  render: (args: any) => any,
+const renderRecursive = (
+  render: (args: any) => React.ReactElement<any>,
   remaining: Array<React.ComponentType<any>>,
-  results: JSX.Element[] = [],
-): React.ReactElement<any> {
+  results: Array<React.ReactElement<any>> = [],
+): React.ReactElement<any> => {
   // Once components is exhausted, we can render out the results array.
   if (!remaining[0]) {
     return render(results);
@@ -36,5 +41,7 @@ function renderRecursive(
   const Item = remaining[0];
 
   // When it is an element, enhance the element's props with the render prop.
-  return React.cloneElement(<Item>{nextRender}</Item>);
-}
+  return React.cloneElement(<Item>{nextRender}</Item>, { displayName: Item.displayName });
+};
+
+export { ContextConsumerComposer };

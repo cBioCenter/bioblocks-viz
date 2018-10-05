@@ -2,7 +2,7 @@ import { shallow } from 'enzyme';
 import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 
-import { ContactMap, ContactMapClass } from '~chell-viz~/component';
+import { ContactMapClass } from '~chell-viz~/component';
 import { initialResidueContext, initialSecondaryStructureContext } from '~chell-viz~/context';
 import {
   Chell1DSection,
@@ -89,11 +89,11 @@ describe('ContactMap', () => {
 
   describe('Snapshots', () => {
     it('Should match existing snapshot when given no data.', () => {
-      expect(shallow(<ContactMap />)).toMatchSnapshot();
+      expect(shallow(<ContactMapClass />)).toMatchSnapshot();
     });
 
     it('Should match existing snapshot when given empty data.', () => {
-      expect(shallow(<ContactMap data={emptyData} />)).toMatchSnapshot();
+      expect(shallow(<ContactMapClass data={emptyData} />)).toMatchSnapshot();
     });
 
     it('Should match snapshot when locked residues are added.', async () => {

@@ -143,15 +143,247 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
 `;
 
 exports[`ContactMap Snapshots Should match existing snapshot when given empty data. 1`] = `
-<ContextConsumer>
-  <Component />
-</ContextConsumer>
+<div
+  id="ContactMapComponent"
+  style={Object {}}
+>
+  <DimmerDimmable
+    dimmed={true}
+  >
+    <Dimmer
+      active={false}
+    >
+      <Loader />
+    </Dimmer>
+    <ContactMapChart
+      candidateResidues={Array []}
+      configurations={
+        Array [
+          Object {
+            "id": "node-size-slider-0",
+            "name": "Node size for Known Structure Contact",
+            "onChange": [Function],
+            "style": Object {
+              "width": 360,
+            },
+            "type": "SLIDER",
+            "values": Object {
+              "current": 4,
+              "max": 20,
+              "min": 1,
+            },
+          },
+        ]
+      }
+      contactData={
+        Array [
+          Object {
+            "hoverinfo": "x+y",
+            "marker": Object {
+              "colorscale": Array [
+                Array [
+                  0,
+                  "rgb(12,50,102)",
+                ],
+                Array [
+                  0.1,
+                  "rgb(17,83,150)",
+                ],
+                Array [
+                  0.2,
+                  "rgb(40,114,175)",
+                ],
+                Array [
+                  0.3,
+                  "rgb(71,147,193)",
+                ],
+                Array [
+                  0.4,
+                  "rgb(111,175,209)",
+                ],
+                Array [
+                  0.5,
+                  "rgb(160,202,222)",
+                ],
+                Array [
+                  0.6,
+                  "rgb(200,219,237)",
+                ],
+                Array [
+                  0.7,
+                  "rgb(224,235,246)",
+                ],
+                Array [
+                  0.8,
+                  "rgb(247,251,255)",
+                ],
+                Array [
+                  0.9,
+                  "rgb(249,253,255)",
+                ],
+                Array [
+                  1,
+                  "rgb(255,255,255)",
+                ],
+              ],
+            },
+            "mode": "lines+markers",
+            "name": "Known Structure Contact",
+            "nodeSize": 4,
+            "points": Array [],
+            "subtitle": "(from PDB structure)",
+          },
+        ]
+      }
+      dataTransformFn={[Function]}
+      heightModifier={0.3}
+      legendModifiers={
+        Object {
+          "y": -0.4,
+        }
+      }
+      marginModifiers={
+        Object {
+          "b": 75,
+          "l": 65,
+        }
+      }
+      onClickCallback={[Function]}
+      onHoverCallback={[Function]}
+      onSelectedCallback={[Function]}
+      onUnHoverCallback={[Function]}
+      range={70}
+      secondaryStructures={Array []}
+      selectedSecondaryStructures={
+        Array [
+          Array [],
+        ]
+      }
+    />
+  </DimmerDimmable>
+</div>
 `;
 
 exports[`ContactMap Snapshots Should match existing snapshot when given no data. 1`] = `
-<ContextConsumer>
-  <Component />
-</ContextConsumer>
+<div
+  id="ContactMapComponent"
+  style={Object {}}
+>
+  <DimmerDimmable
+    dimmed={true}
+  >
+    <Dimmer
+      active={false}
+    >
+      <Loader />
+    </Dimmer>
+    <ContactMapChart
+      candidateResidues={Array []}
+      configurations={
+        Array [
+          Object {
+            "id": "node-size-slider-0",
+            "name": "Node size for Known Structure Contact",
+            "onChange": [Function],
+            "style": Object {
+              "width": 360,
+            },
+            "type": "SLIDER",
+            "values": Object {
+              "current": 4,
+              "max": 20,
+              "min": 1,
+            },
+          },
+        ]
+      }
+      contactData={
+        Array [
+          Object {
+            "hoverinfo": "x+y",
+            "marker": Object {
+              "colorscale": Array [
+                Array [
+                  0,
+                  "rgb(12,50,102)",
+                ],
+                Array [
+                  0.1,
+                  "rgb(17,83,150)",
+                ],
+                Array [
+                  0.2,
+                  "rgb(40,114,175)",
+                ],
+                Array [
+                  0.3,
+                  "rgb(71,147,193)",
+                ],
+                Array [
+                  0.4,
+                  "rgb(111,175,209)",
+                ],
+                Array [
+                  0.5,
+                  "rgb(160,202,222)",
+                ],
+                Array [
+                  0.6,
+                  "rgb(200,219,237)",
+                ],
+                Array [
+                  0.7,
+                  "rgb(224,235,246)",
+                ],
+                Array [
+                  0.8,
+                  "rgb(247,251,255)",
+                ],
+                Array [
+                  0.9,
+                  "rgb(249,253,255)",
+                ],
+                Array [
+                  1,
+                  "rgb(255,255,255)",
+                ],
+              ],
+            },
+            "mode": "lines+markers",
+            "name": "Known Structure Contact",
+            "nodeSize": 4,
+            "points": Array [],
+            "subtitle": "(from PDB structure)",
+          },
+        ]
+      }
+      dataTransformFn={[Function]}
+      heightModifier={0.3}
+      legendModifiers={
+        Object {
+          "y": -0.4,
+        }
+      }
+      marginModifiers={
+        Object {
+          "b": 75,
+          "l": 65,
+        }
+      }
+      onClickCallback={[Function]}
+      onHoverCallback={[Function]}
+      onSelectedCallback={[Function]}
+      onUnHoverCallback={[Function]}
+      range={70}
+      secondaryStructures={Array []}
+      selectedSecondaryStructures={
+        Array [
+          Array [],
+        ]
+      }
+    />
+  </DimmerDimmable>
+</div>
 `;
 
 exports[`ContactMap Snapshots Should match snapshot when locked residues are added. 1`] = `

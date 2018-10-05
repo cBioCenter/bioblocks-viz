@@ -153,7 +153,6 @@
     "plotly.js-gl2d-dist": "^1.41.1",
     "rc-slider": "^8.6.3",
     "react": "^16.5.2",
-    "react-composer": "^5.0.1",
     "react-dom": "^16.5.2",
     "react-iframe-comm": "^1.2.2",
     "semantic-ui-react": "^0.82.1"
