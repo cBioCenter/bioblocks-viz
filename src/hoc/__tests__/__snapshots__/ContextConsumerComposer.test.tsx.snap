@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContextConsumerComposer Should allow consumers added directly. 1`] = `
+<Component
+  components={
+    Array [
+      Object {
+        "$$typeof": Symbol(react.context),
+        "Consumer": [Circular],
+        "Provider": Object {
+          "$$typeof": Symbol(react.provider),
+          "_context": [Circular],
+        },
+        "_calculateChangedBits": null,
+        "_currentRenderer": null,
+        "_currentRenderer2": null,
+        "_currentValue": "foo",
+        "_currentValue2": "foo",
+        "unstable_read": [Function],
+      },
+    ]
+  }
+>
+  <div />
+</Component>
+`;
+
+exports[`ContextConsumerComposer Should allow consumers added directly. 2`] = `
+<Component
+  components={
+    Array [
+      Object {
+        "$$typeof": Symbol(react.context),
+        "Consumer": [Circular],
+        "Provider": Object {
+          "$$typeof": Symbol(react.provider),
+          "_context": [Circular],
+        },
+        "_calculateChangedBits": null,
+        "_currentRenderer": null,
+        "_currentRenderer2": null,
+        "_currentValue": "foo",
+        "_currentValue2": "foo",
+        "unstable_read": [Function],
+      },
+    ]
+  }
+>
+  <div />
+</Component>
+`;
+
+exports[`ContextConsumerComposer Should allow consumers added via function calls. 1`] = `
+<Component
+  components={
+    Array [
+      [Function],
+    ]
+  }
+>
+  <div />
+</Component>
+`;
+
+exports[`ContextConsumerComposer Should allow contexts. 1`] = `
+<Component
+  components={Array []}
+>
+  <div />
+</Component>
+`;
+
+exports[`ContextConsumerComposer Should allow contexts. 2`] = `
+<Component
+  components={Array []}
+>
+  <div />
+</Component>
+`;

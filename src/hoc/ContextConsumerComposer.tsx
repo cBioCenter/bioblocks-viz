@@ -6,7 +6,6 @@ import * as React from 'react';
  *
  * However, this only accepts an array of context types instead.
  */
-
 export interface IComposerProps {
   components: Array<React.ComponentType<any>>;
   children(args: any): JSX.Element;
@@ -21,7 +20,7 @@ export const ContextConsumerComposer: React.SFC<IComposerProps> = (props: ICompo
 function renderRecursive(
   render: (args: any) => any,
   remaining: Array<React.ComponentType<any>>,
-  results: any = [],
+  results: JSX.Element[] = [],
 ): React.ReactElement<any> {
   // Once components is exhausted, we can render out the results array.
   if (!remaining[0]) {
