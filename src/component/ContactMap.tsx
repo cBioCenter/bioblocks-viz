@@ -130,28 +130,38 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     });
   };
 
-  protected setupPointsToPlot(points: CouplingContainer, lockedResiduePairs: ResidueSelection = new Map()) {
+  protected setupPointsToPlot(couplingContainer: CouplingContainer, lockedResiduePairs: ResidueSelection = new Map()) {
     const { formattedPoints, observedColor, highlightColor } = this.props;
     const { pointsToPlot } = this.state;
 
     const chartNames = {
       known: 'Known Structure Contact',
-      selected: 'Selected Res. Pairs',
+      selected: 'Selected Residue Pairs',
     };
 
-    const nodeSizes = {
-      known: pointsToPlot.findIndex(entry => entry.name === chartNames.known),
-      selected: pointsToPlot.findIndex(entry => entry.name === chartNames.selected),
-    };
+    const knownPointsIndex = pointsToPlot.findIndex(entry => entry.name === chartNames.known);
+    const selectedPointIndex = pointsToPlot.findIndex(entry => entry.name === chartNames.selected);
 
     const result = new Array<IContactMapChartData>(
       generateChartDataEntry(
-        'x+y',
+        'text',
         { start: observedColor, end: 'rgb(100,177,200)' },
         chartNames.known,
         '(from PDB structure)',
-        nodeSizes.known >= 0 ? pointsToPlot[nodeSizes.known].nodeSize : 4,
-        points.getObservedContacts(),
+        knownPointsIndex >= 0 ? pointsToPlot[knownPointsIndex].nodeSize : 4,
+        couplingContainer.getObservedContacts(),
+        {
+          text:
+            knownPointsIndex >= 0
+              ? pointsToPlot[knownPointsIndex].points.map(point => {
+                  const score = couplingContainer.getCouplingScore(point.i, point.j);
+
+                  return score && score.A_i && score.A_j
+                    ? `(${point.i} [${score.A_i}], ${point.j} [${score.A_j}])`
+                    : `(${point.i}, ${point.j})`;
+                })
+              : '',
+        },
       ),
       ...formattedPoints,
     );
@@ -172,7 +182,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
           highlightColor,
           chartNames.selected,
           '',
-          nodeSizes.selected >= 0 ? pointsToPlot[nodeSizes.selected].nodeSize : 6,
+          selectedPointIndex >= 0 ? pointsToPlot[selectedPointIndex].nodeSize : 6,
           chartPoints,
           {
             marker: {
@@ -298,12 +308,12 @@ type requiredProps = Omit<IContactMapProps, keyof typeof ContactMapClass.default
 
 const ContactMap = (props: requiredProps) => (
   <ContextConsumerComposer components={[ResidueContextConsumer, SecondaryStructureContextConsumer]}>
-    {([residueContext, secondaryStructureContext]) => (
+    {([resContext, secStructContext]) => (
       <ContactMapClass
         {...{
           ...props,
-          residueContext,
-          secondaryStructureContext,
+          residueContext: resContext as IResidueContext,
+          secondaryStructureContext: secStructContext as ISecondaryStructureContext,
         }}
       />
     )}

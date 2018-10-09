@@ -34,7 +34,7 @@ const renderRecursive = (
 
   // Continue recursion for remaining items.
   // results.concat([value]) ensures [...results, value] instead of [...results, ...value]
-  function nextRender(value: any) {
+  function nextRender(value: React.ReactElement<any>) {
     return renderRecursive(render, remaining.slice(1), results.concat([value]));
   }
 

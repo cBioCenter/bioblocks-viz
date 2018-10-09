@@ -19,7 +19,7 @@ import {
 } from '~chell-viz~/data';
 
 export interface IInfoPanelProps {
-  data: IContactMapData;
+  data: Partial<IContactMapData>;
   height: number;
   width: 400;
   residueContext: IResidueContext;
@@ -137,7 +137,9 @@ export class InfoPanelClass extends React.Component<IInfoPanelProps, any> {
   }
 }
 
-const InfoPanel = (props: any) => (
+type requiredProps = Omit<IInfoPanelProps, keyof typeof InfoPanelClass.defaultProps> & Partial<IInfoPanelProps>;
+
+const InfoPanel = (props: requiredProps) => (
   <SecondaryStructureContext.Consumer>
     {secStructContext => (
       <ResidueContext.Consumer>

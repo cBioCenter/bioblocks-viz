@@ -20,6 +20,7 @@ class MockStage {
   public events = new Map<string, (...args: any[]) => void>();
   public callbacks = new Array<(...args: any[]) => void>();
   public reprList: string[] = [];
+  public tooltip: Partial<HTMLElement> = { textContent: '' };
 
   public mouseControls = {
     add: (eventName: string, callback: (...args: any[]) => void) => this.events.set(eventName, callback),
@@ -86,6 +87,7 @@ class MockStage {
     stage: {
       mouseControls: this.mouseControls,
       mouseObserver: this.mouseObserver,
+      tooltip: this.tooltip,
       viewerControls: this.viewerControls,
     },
     structure: new ngl.Structure(),

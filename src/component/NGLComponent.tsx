@@ -17,6 +17,8 @@ import {
   SecondaryStructureContextConsumer,
 } from '~chell-viz~/context';
 import {
+  AMINO_ACID_THREE_LETTER_CODE,
+  AMINO_ACIDS_BY_THREE_LETTER_CODE,
   ChellPDB,
   CONFIGURATION_COMPONENT_TYPE,
   CONTACT_DISTANCE_PROXIMITY,
@@ -250,10 +252,13 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
 
   protected onHover(aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) {
     const { residueContext } = this.props;
-    const { structureComponent } = this.state;
-    if (structureComponent) {
+    const { structureComponent, stage } = this.state;
+    if (stage && structureComponent) {
       if (pickingProxy && (pickingProxy.atom || pickingProxy.closestBondAtom)) {
         const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
+        stage.tooltip.textContent = `${atom.resno} [${
+          AMINO_ACIDS_BY_THREE_LETTER_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE].singleLetterCode
+        }]`;
         residueContext.addHoveredResidues([atom.resno]);
       } else if (residueContext.candidateResidues.length === 0 && residueContext.hoveredResidues.length !== 0) {
         residueContext.removeHoveredResidues();
@@ -414,12 +419,12 @@ type requiredProps = Omit<INGLComponentProps, keyof typeof NGLComponentClass.def
 
 const NGLComponent = (props: requiredProps) => (
   <ContextConsumerComposer components={[ResidueContextConsumer, SecondaryStructureContextConsumer]}>
-    {([residueContext, secondaryStructureContext]) => {
+    {([resContext, secStructContext]) => {
       return (
         <NGLComponentClass
           {...props}
-          residueContext={residueContext}
-          secondaryStructureContext={secondaryStructureContext}
+          residueContext={resContext as IResidueContext}
+          secondaryStructureContext={secStructContext as ISecondaryStructureContext}
         />
       );
     }}

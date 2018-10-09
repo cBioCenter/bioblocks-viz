@@ -1,4 +1,4 @@
-// tslint:disable:max-classes-per-file
+// tslint:disable:max-classes-per-file no-reserved-keywords
 declare module 'ngl' {
   import { Signal } from 'signals';
   import { Box3, Color, Euler, Matrix4, Quaternion, Vector3 } from 'three';
@@ -279,6 +279,7 @@ declare module 'ngl' {
     visibilityChanged: Signal;
   }
 
+  // tslint:disable-next-line:no-unnecessary-class
   export class RepresentationCollection {}
 
   export interface IRepresentationElementParameters {

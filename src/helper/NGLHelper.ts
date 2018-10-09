@@ -7,18 +7,22 @@ import { RESIDUE_TYPE, SECONDARY_STRUCTURE_SECTION } from '~chell-viz~/data';
  *
  * @param structureComponent The NGL Structure for which these residues belong to.
  * @param selection The [NGL Selection](http://nglviewer.org/ngl/api/manual/selection-language.html) defining the residues.
- * @param [color='skyblue'] What color to make the line.
+ * @param [lineColor='skyblue'] What color to make the line.
  * @param [labelUnit='angstrom'] Unit for measurement.
  */
 export const createDistanceRepresentation = (
   structureComponent: NGL.StructureComponent,
   selection: string | number[],
-  color: string = 'skyblue',
+  lineColor: string = 'red',
+  labelColor: string = 'black',
   labelUnit: string = 'angstrom',
+  labelSize: number = 5,
 ) =>
   structureComponent.addRepresentation('distance', {
     atomPair: Array.isArray(selection) ? [selection] : [selection.split(',')],
-    color,
+    color: lineColor,
+    labelColor,
+    labelSize,
     labelUnit,
   });
 
