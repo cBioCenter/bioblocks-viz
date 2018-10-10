@@ -82,9 +82,10 @@ export class ChellSlider extends React.Component<ChellSliderProps, IChellSliderS
       });
     }
 
-    if (this.state.defaultValue === -1) {
+    const candidateDefaultValue = defaultValue ? defaultValue : value;
+    if (this.state.defaultValue === -1 && candidateDefaultValue !== this.state.defaultValue) {
       this.setState({
-        defaultValue: defaultValue ? defaultValue : value,
+        defaultValue: candidateDefaultValue,
       });
     }
   }

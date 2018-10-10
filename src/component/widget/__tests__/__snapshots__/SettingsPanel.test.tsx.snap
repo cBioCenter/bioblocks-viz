@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`SettingsPanel Should display a placeholder message if given an unhandled configuration type. 1`] = `
+<GridRow
+  key="player-hp-0"
+>
+  configuration for player-hp-0
+</GridRow>
+`;
+
 exports[`SettingsPanel Should match the existing snapshot when given no configurations. 1`] = `
 <div>
   <Grid
