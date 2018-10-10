@@ -39,6 +39,7 @@ module.exports = {
     ],
   },
   optimization: {
+    runtimeChunk: true,
     splitChunks: {
       automaticNameDelimiter: '~',
       cacheGroups: {

@@ -32,6 +32,7 @@ export class Chell1DSection<T> {
         return false;
       }
     }
+
     return true;
   }
 

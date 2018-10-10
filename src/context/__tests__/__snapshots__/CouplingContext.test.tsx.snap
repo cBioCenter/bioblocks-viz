@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CouplingContext Should match the default snapshot. 1`] = `
-<SecondaryStructureContext>
-  <ResidueContext>
+<SecondaryStructureContextProvider>
+  <ResidueContextProvider>
     <ContextProvider
       value={
         Object {
@@ -21,6 +21,6 @@ exports[`CouplingContext Should match the default snapshot. 1`] = `
         }
       }
     />
-  </ResidueContext>
-</SecondaryStructureContext>
+  </ResidueContextProvider>
+</SecondaryStructureContextProvider>
 `;

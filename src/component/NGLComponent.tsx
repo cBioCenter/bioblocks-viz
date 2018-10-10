@@ -12,10 +12,13 @@ import {
   initialSecondaryStructureContext,
   IResidueContext,
   ISecondaryStructureContext,
+  ResidueContextConsumer,
   ResidueSelection,
-  withCouplingContext,
+  SecondaryStructureContextConsumer,
 } from '~chell-viz~/context';
 import {
+  AMINO_ACID_THREE_LETTER_CODE,
+  AMINO_ACIDS_BY_THREE_LETTER_CODE,
   ChellPDB,
   CONFIGURATION_COMPONENT_TYPE,
   CONTACT_DISTANCE_PROXIMITY,
@@ -27,6 +30,7 @@ import {
   createDistanceRepresentation,
   createSecStructRepresentation,
 } from '~chell-viz~/helper';
+import { ContextConsumerComposer } from '~chell-viz~/hoc';
 
 export type NGL_HOVER_CB_RESULT_TYPE = number;
 
@@ -140,6 +144,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
    */
   public render() {
     const { height, isDataLoading, residueContext, style, width } = this.props;
+
     return (
       <div className="NGLComponent" style={{ ...style }}>
         {
@@ -167,10 +172,11 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
             >
               <div
                 className="NGLCanvas"
-                ref={el => (this.canvas = el)}
-                style={{ height, width }}
-                onMouseLeave={this.onCanvasLeave}
                 onKeyDown={this.onKeyDown}
+                onMouseLeave={this.onCanvasLeave}
+                ref={el => (this.canvas = el)}
+                role={'img'}
+                style={{ height, width }}
               />
             </SettingsPanel>
           </Dimmer.Dimmable>
@@ -200,7 +206,8 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
 
   protected deriveActiveRepresentations(structureComponent: NGL.StructureComponent) {
     const { residueContext, secondaryStructureContext } = this.props;
-    const result = [
+
+    return [
       ...this.highlightCandidateResidues(
         structureComponent,
         [...residueContext.candidateResidues, ...residueContext.hoveredResidues]
@@ -213,8 +220,6 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
         ...secondaryStructureContext.temporarySecondaryStructures,
       ]),
     ];
-
-    return result;
   }
 
   /**
@@ -228,7 +233,9 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
 
     structureComponent.stage.mouseControls.add(
       NGL.MouseActions.HOVER_PICK,
-      (aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) => this.onHover(aStage, pickingProxy),
+      (aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) => {
+        this.onHover(aStage, pickingProxy);
+      },
     );
 
     stage.defaultFileRepresentation(structureComponent);
@@ -245,10 +252,14 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
 
   protected onHover(aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) {
     const { residueContext } = this.props;
-    const { structureComponent } = this.state;
-    if (structureComponent) {
+    const { structureComponent, stage } = this.state;
+    if (stage && structureComponent) {
       if (pickingProxy && (pickingProxy.atom || pickingProxy.closestBondAtom)) {
         const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
+        const resname = AMINO_ACIDS_BY_THREE_LETTER_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE]
+          ? AMINO_ACIDS_BY_THREE_LETTER_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE].singleLetterCode
+          : atom.resname;
+        stage.tooltip.textContent = `${atom.resno} [${resname}]`;
         residueContext.addHoveredResidues([atom.resno]);
       } else if (residueContext.candidateResidues.length === 0 && residueContext.hoveredResidues.length !== 0) {
         residueContext.removeHoveredResidues();
@@ -289,6 +300,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
               );
               minDist = Math.min(minDist, target.distanceTo(atomPosition));
             }
+
             return minDist;
           };
 
@@ -326,9 +338,10 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     const { measuredProximity } = this.props;
 
     if (measuredProximity === CONTACT_DISTANCE_PROXIMITY.C_ALPHA) {
-      return createDistanceRepresentation(structureComponent, residues.join('.CA, ') + '.CA');
+      return createDistanceRepresentation(structureComponent, `${residues.join('.CA, ')}.CA`);
     } else {
       const { atomIndexI, atomIndexJ } = pdbData.getMinDistBetweenResidues(residues[0], residues[1]);
+
       return createDistanceRepresentation(structureComponent, [atomIndexI, atomIndexJ]);
     }
   }
@@ -372,6 +385,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     for (const structure of secondaryStructures) {
       reps.push(createSecStructRepresentation(structureComponent, structure));
     }
+
     return reps;
   }
 
@@ -404,4 +418,18 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
 type requiredProps = Omit<INGLComponentProps, keyof typeof NGLComponentClass.defaultProps> &
   Partial<INGLComponentProps>;
 
-export const NGLComponent = (props: requiredProps) => withCouplingContext(NGLComponentClass)({ ...props });
+const NGLComponent = (props: requiredProps) => (
+  <ContextConsumerComposer components={[ResidueContextConsumer, SecondaryStructureContextConsumer]}>
+    {([resContext, secStructContext]) => {
+      return (
+        <NGLComponentClass
+          {...props}
+          residueContext={resContext as IResidueContext}
+          secondaryStructureContext={secStructContext as ISecondaryStructureContext}
+        />
+      );
+    }}
+  </ContextConsumerComposer>
+);
+
+export { NGLComponent };

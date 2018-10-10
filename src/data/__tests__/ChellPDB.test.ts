@@ -1,9 +1,9 @@
 import { ChellPDB } from '~chell-viz~/data';
 
 describe('ChellPDB', () => {
-  it('Should handle loading an existing PDB file.', () => {
+  it('Should handle loading an existing PDB file.', async () => {
     const result = ChellPDB.createPDB('protein.pdb');
-    expect(result).toBeDefined();
+    await expect(result).toBeDefined();
   });
 
   it('Should handle loading a non-existent PDB file.', async () => {

@@ -35,7 +35,9 @@ export class ChellPDB {
    */
   public static async createPDB(file: File | string = '') {
     const result = new ChellPDB();
-    result.nglData = await NGL.autoLoad(file);
+    result.nglData = (await NGL.autoLoad(file)) as NGL.Structure;
+
+    result.fileName = typeof file === 'string' ? file : file.name;
 
     return result;
   }
@@ -47,7 +49,7 @@ export class ChellPDB {
     return result;
   }
 
-  protected contactInfo?: CouplingContainer = undefined;
+  protected contactInfo?: CouplingContainer;
 
   public get contactInformation(): CouplingContainer {
     if (!this.contactInfo) {
@@ -123,10 +125,18 @@ export class ChellPDB {
     return result;
   }
 
+  public get name(): string {
+    const splitName = this.fileName.split('/');
+    const lastPart = splitName[splitName.length - 1];
+
+    return lastPart.slice(0, lastPart.lastIndexOf('.'));
+  }
+
   public get sequence(): string {
     return this.nglData ? this.nglData.getSequence().join('') : '';
   }
 
+  protected fileName: string = '';
   protected nglData: NGL.Structure = new NGL.Structure();
 
   private constructor() {}

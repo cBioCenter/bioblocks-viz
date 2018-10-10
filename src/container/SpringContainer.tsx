@@ -1,14 +1,15 @@
 import * as React from 'react';
+
 // tslint:disable-next-line:import-name
 import IframeComm from 'react-iframe-comm';
 
 import {
-  CellContextWrapper,
+  CellContext,
   ICellContext,
   initialCellContext,
   initialSpringContext,
   ISpringContext,
-  SpringContextWrapper,
+  SpringContext,
 } from '~chell-viz~/context';
 import { ISpringLink, ISpringNode, SPRING_DATA_TYPE } from '~chell-viz~/data';
 
@@ -25,6 +26,14 @@ export interface ISpringContainerProps {
 
 export interface ISpringContainerState {
   postMessageData: object;
+}
+
+export interface ISpringMessage {
+  // tslint:disable-next-line:no-reserved-keywords
+  type: string;
+  payload: {
+    indices: number[];
+  };
 }
 
 export class SpringContainerClass extends React.Component<ISpringContainerProps, ISpringContainerState> {
@@ -69,13 +78,14 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
     };
 
     const targetOriginPieces = springUrl.split('/');
+
     return (
       <IframeComm
         attributes={attributes}
         postMessageData={this.state.postMessageData}
         handleReady={this.onReady}
         handleReceiveMessage={this.onReceiveMessage}
-        targetOrigin={targetOriginPieces[0] + '//' + targetOriginPieces[2]}
+        targetOrigin={`${targetOriginPieces[0]}//${targetOriginPieces[2]}`}
       />
     );
   }
@@ -85,9 +95,11 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
   };
 
   protected onReceiveMessage = (msg: MessageEvent) => {
-    switch (msg.data.type) {
+    const data = msg.data as ISpringMessage;
+
+    switch (data.type) {
       case 'selected-cells-update': {
-        this.props.cellContext.addCells(msg.data.payload.indices);
+        this.props.cellContext.addCells(data.payload.indices);
         break;
       }
       default: {
@@ -101,13 +113,13 @@ type requiredProps = Omit<ISpringContainerProps, keyof typeof SpringContainerCla
   Partial<ISpringContainerProps>;
 
 export const SpringContainer = (props: requiredProps) => (
-  <CellContextWrapper.Consumer>
+  <CellContext.Consumer>
     {cellContext => (
-      <SpringContextWrapper.Consumer>
+      <SpringContext.Consumer>
         {springContext => (
           <SpringContainerClass {...props} cellContext={{ ...cellContext }} springContext={{ ...springContext }} />
         )}
-      </SpringContextWrapper.Consumer>
+      </SpringContext.Consumer>
     )}
-  </CellContextWrapper.Consumer>
+  </CellContext.Consumer>
 );

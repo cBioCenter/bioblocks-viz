@@ -25,7 +25,7 @@ describe('FetchHelper', () => {
   describe('JSON Files', () => {
     it('Should correctly fetch them.', async () => {
       const expected = { nier: 'automata' };
-      (fetch as any).mockResponseOnce(JSON.stringify(expected));
+      fetchMock.mockResponseOnce(JSON.stringify(expected));
       const result = await fetchJSONFile('best-game.json');
       expect(result).toEqual(expected);
     });

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, Dropdown, DropdownItemProps } from 'semantic-ui-react';
+import { Card, Dropdown, DropdownItemProps, DropdownProps } from 'semantic-ui-react';
 
 import {
   InfoPanel,
@@ -149,15 +149,15 @@ export class VizSelectorPanel extends React.Component<IVizPanelProps, IVizPanelS
           )
         );
       case VIZ_TYPE.INFO_PANEL:
-        return <InfoPanel data={data['Contact Map'] as Partial<IContactMapData>} />;
+        return <InfoPanel data={data['Contact Map'] as Partial<IContactMapData>} height={400} width={400} />;
       default:
         throw new Error(`Unknown viz: ${viz}`);
     }
   }
 
-  protected onVizSelect = (event: React.SyntheticEvent<any>, data: any) => {
+  protected onVizSelect = (event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
     this.setState({
-      selectedViz: data.value,
+      selectedViz: data.value as VIZ_TYPE,
     });
   };
 

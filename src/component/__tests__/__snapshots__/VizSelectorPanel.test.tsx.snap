@@ -67,7 +67,10 @@ exports[`VizSelectorPanel Should match existing snapshot for initial visualizati
     fluid={true}
     raised={true}
   >
-    <InfoPanel />
+    <InfoPanel
+      height={400}
+      width={400}
+    />
   </Card>
 </div>
 `;

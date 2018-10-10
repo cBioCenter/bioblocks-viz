@@ -33,7 +33,7 @@ export const generateScatterData = (
   const zValues = points.map(data => data.dist);
 
   return {
-    hoverinfo: 'x+y+z',
+    hoverinfo: entry.hoverinfo ? entry.hoverinfo : 'x+y+z',
     marker: {
       color: derivePlotlyColor(mirrorPoints, zValues, entry),
       size: entry.nodeSize,

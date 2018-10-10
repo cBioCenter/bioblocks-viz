@@ -5,6 +5,7 @@ import * as React from 'react';
 // https://github.com/react-component/slider/ requires the css imported like this.
 // tslint:disable-next-line:no-submodule-imports no-import-side-effect
 import 'rc-slider/assets/index.css';
+import { Button, Grid } from 'semantic-ui-react';
 
 /** Function signature that is invoked on slider events. */
 export type ChellSliderCallback =
@@ -51,6 +52,9 @@ export type ChellSliderProps = {
  * @export
  */
 export interface IChellSliderState {
+  /** Initial value the slider should be reset to. */
+  defaultValue: number;
+
   /** Value the slider is currently set to. */
   value: number;
 }
@@ -65,8 +69,25 @@ export class ChellSlider extends React.Component<ChellSliderProps, IChellSliderS
   constructor(props: ChellSliderProps) {
     super(props);
     this.state = {
+      defaultValue: props.defaultValue ? props.defaultValue : props.value,
       value: props.value,
     };
+  }
+
+  public componentDidUpdate(prevProps: ChellSliderProps) {
+    const { defaultValue, value } = this.props;
+    if (value && value !== prevProps.value) {
+      this.setState({
+        value,
+      });
+    }
+
+    const candidateDefaultValue = defaultValue ? defaultValue : value;
+    if (this.state.defaultValue === -1 && candidateDefaultValue !== this.state.defaultValue) {
+      this.setState({
+        defaultValue: candidateDefaultValue,
+      });
+    }
   }
 
   public render() {
@@ -84,17 +105,22 @@ export class ChellSlider extends React.Component<ChellSliderProps, IChellSliderS
     } = this.props;
 
     return (
-      <div className={className} style={{ padding: 25, ...style }}>
-        {!hideLabelValue && <p>{`${label}: ${this.state.value}`}</p>}
-        <Slider
-          max={max}
-          min={min}
-          onAfterChange={this.onAfterChange(onAfterChange)}
-          onChange={this.onChange(onChange)}
-          value={value}
-          {...remainingProps}
-        />
-      </div>
+      <Grid columns={'equal'} style={style} textAlign={'left'}>
+        <Grid.Column className={className}>
+          {!hideLabelValue && <p>{`${label}: ${this.state.value}`}</p>}
+          <Slider
+            max={max}
+            min={min}
+            onAfterChange={this.onAfterChange(onAfterChange)}
+            onChange={this.onChange(onChange)}
+            value={value}
+            {...remainingProps}
+          />
+        </Grid.Column>
+        <Grid.Column verticalAlign={'middle'} width={2}>
+          <Button icon={'undo'} onClick={this.onReset} size={'small'} />
+        </Grid.Column>
+      </Grid>
     );
   }
 
@@ -121,5 +147,10 @@ export class ChellSlider extends React.Component<ChellSliderProps, IChellSliderS
     this.setState({
       value,
     });
+  };
+
+  protected onReset = () => {
+    this.onChange(this.props.onChange)(this.state.defaultValue);
+    // this.onAfterChange(this.props.onAfterChange)(this.state.defaultValue);
   };
 }

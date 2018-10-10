@@ -1,7 +1,9 @@
 import * as React from 'react';
+
+// tslint:disable-next-line: import-name
 import IframeComm from 'react-iframe-comm';
 
-import { CellContextWrapper, ICellContext, initialCellContext } from '~chell-viz~/context';
+import { CellContext, ICellContext, initialCellContext } from '~chell-viz~/context';
 import { T_SNE_DATA_TYPE } from '~chell-viz~/data';
 
 export interface ITFrameComponentProps {
@@ -13,7 +15,11 @@ export interface ITFrameComponentProps {
   width: number | string;
 }
 
-class TFrameComponentClass extends React.Component<ITFrameComponentProps, any> {
+export interface ITFrameComponentState {
+  postMessageData: object;
+}
+
+class TFrameComponentClass extends React.Component<ITFrameComponentProps, ITFrameComponentState> {
   public static defaultProps = {
     cellContext: {
       ...initialCellContext,
@@ -107,7 +113,7 @@ type requiredProps = Omit<ITFrameComponentProps, keyof typeof TFrameComponentCla
   Partial<ITFrameComponentProps>;
 
 export const TFrameComponent = (props: requiredProps) => (
-  <CellContextWrapper.Consumer>
+  <CellContext.Consumer>
     {cellContext => <TFrameComponentClass {...props} cellContext={{ ...cellContext }} />}
-  </CellContextWrapper.Consumer>
+  </CellContext.Consumer>
 );

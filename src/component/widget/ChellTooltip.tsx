@@ -34,7 +34,9 @@ export class ChellTooltip extends React.Component<IChellTooltipProps, ChellToolt
   public componentDidUpdate(nextProps: IChellTooltipProps) {
     const { timeout = 0 } = nextProps;
     if (!this.state.timer && timeout > 0) {
-      const timer = setTimeout(() => this.setState({ show: false }), timeout);
+      const timer = setTimeout(() => {
+        this.setState({ show: false });
+      }, timeout);
       this.setState({
         timer,
       });

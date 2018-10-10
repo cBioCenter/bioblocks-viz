@@ -3,7 +3,7 @@
 exports[`PredictedContactMap Should update points to plot when new data is provided. 1`] = `
 Array [
   Object {
-    "hoverinfo": "x+y",
+    "hoverinfo": "text",
     "marker": Object {
       "color": Array [
         "#000000",
@@ -35,9 +35,14 @@ Array [
       },
     ],
     "subtitle": "(N=28, L=57)",
+    "text": Array [
+      "(41, 52)",
+      "(42, 50)",
+      "(56, 50)",
+    ],
   },
   Object {
-    "hoverinfo": "x+y",
+    "hoverinfo": "text",
     "marker": Object {
       "color": Array [
         "#ff0000",
@@ -62,6 +67,10 @@ Array [
       },
     ],
     "subtitle": "(N=2, 66.67%)",
+    "text": Array [
+      "(41, 52)",
+      "(56, 50)",
+    ],
   },
 ]
 `;
@@ -118,7 +127,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
     formattedPoints={
       Array [
         Object {
-          "hoverinfo": "x+y",
+          "hoverinfo": "text",
           "marker": Object {
             "color": Array [],
           },
@@ -127,9 +136,10 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
           "nodeSize": 4,
           "points": Array [],
           "subtitle": "(N=25, L=50)",
+          "text": Array [],
         },
         Object {
-          "hoverinfo": "x+y",
+          "hoverinfo": "text",
           "marker": Object {
             "color": Array [],
           },
@@ -138,6 +148,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
           "nodeSize": 6,
           "points": Array [],
           "subtitle": "(N=0, NaN%)",
+          "text": Array [],
         },
       ]
     }
@@ -201,7 +212,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
     formattedPoints={
       Array [
         Object {
-          "hoverinfo": "x+y",
+          "hoverinfo": "text",
           "marker": Object {
             "color": Array [],
           },
@@ -210,9 +221,10 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
           "nodeSize": 4,
           "points": Array [],
           "subtitle": "(N=25, L=50)",
+          "text": Array [],
         },
         Object {
-          "hoverinfo": "x+y",
+          "hoverinfo": "text",
           "marker": Object {
             "color": Array [],
           },
@@ -221,6 +233,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
           "nodeSize": 6,
           "points": Array [],
           "subtitle": "(N=0, NaN%)",
+          "text": Array [],
         },
       ]
     }
@@ -284,7 +297,7 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
     formattedPoints={
       Array [
         Object {
-          "hoverinfo": "x+y",
+          "hoverinfo": "text",
           "marker": Object {
             "color": Array [],
           },
@@ -293,9 +306,10 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
           "nodeSize": 4,
           "points": Array [],
           "subtitle": "(N=25, L=50)",
+          "text": Array [],
         },
         Object {
-          "hoverinfo": "x+y",
+          "hoverinfo": "text",
           "marker": Object {
             "color": Array [],
           },
@@ -304,6 +318,7 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
           "nodeSize": 6,
           "points": Array [],
           "subtitle": "(N=0, NaN%)",
+          "text": Array [],
         },
       ]
     }

@@ -39,47 +39,40 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
     let minRange = 0;
     let maxRange = 100;
 
-    const plotlyData = data.map((datum, index) => {
-      minRange = Math.min(minRange, datum.start, datum.end);
-      maxRange = Math.max(maxRange, datum.start, datum.end);
-      const yIndex = showGrouped
-        ? index
-        : data.findIndex(candidateDatum => datum.label.localeCompare(candidateDatum.label) === 0);
-      const plotlyDatum: Partial<IPlotlyData> = {
-        fill: 'toself',
-        fillcolor: datum.color.toString(),
-        hoverinfo: 'none',
-        hoveron: 'fills',
-        line: selectedFeatureIndices.has(index)
-          ? {
-              color: 'orange',
-              width: 3,
-            }
-          : {
-              width: 0,
-            },
-        mode: 'text+lines',
-        name: `${datum.label}`,
-        text: [datum.label],
-        textfont: { color: ['#FFFFFF'] },
-        type: 'scatter',
-        // Creates a 'box' so we can fill it and hover over it and add a point to the middle for the label.
-        x: [
-          datum.end - (datum.end - datum.start) / 2,
-          null,
-          datum.start,
-          datum.start,
-          datum.end,
-          datum.end,
-          datum.start,
-        ],
-        y: showGrouped
-          ? [0.5, null, 0, 1, 1, 0, 0]
-          : [yIndex + 0.5, null, yIndex + 1, yIndex, yIndex, yIndex + 1, yIndex + 1],
-      };
+    const plotlyData = data.map(
+      (datum, index): Partial<IPlotlyData> => {
+        minRange = Math.min(minRange, datum.start, datum.end);
+        maxRange = Math.max(maxRange, datum.start, datum.end);
+        const yIndex = showGrouped
+          ? index
+          : data.findIndex(candidateDatum => datum.label.localeCompare(candidateDatum.label) === 0);
 
-      return plotlyDatum;
-    });
+        return {
+          fill: 'toself',
+          fillcolor: datum.color.toString(),
+          hoverinfo: 'none',
+          hoveron: 'fills',
+          line: selectedFeatureIndices.has(index)
+            ? {
+                color: 'orange',
+                width: 3,
+              }
+            : {
+                width: 0,
+              },
+          mode: 'text+lines',
+          name: `${datum.label}`,
+          text: [datum.label],
+          textfont: { color: ['#FFFFFF'] },
+          type: 'scatter',
+          // Creates a 'box' so we can fill it and hover over it and add a point to the middle for the label.
+          x: FeatureViewer.getBoxForChellSection(datum),
+          y: showGrouped
+            ? [0.5, null, 0, 1, 1, 0, 0]
+            : [yIndex + 0.5, null, yIndex + 1, yIndex, yIndex, yIndex + 1, yIndex + 1],
+        };
+      },
+    );
 
     const hoveredDatum = plotlyData[hoveredFeatureIndex];
 
@@ -135,6 +128,18 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
     };
   }
 
+  protected static getBoxForChellSection(datum: TintedChell1DSection<any>) {
+    return [
+      datum.end - (datum.end - datum.start) / 2,
+      null,
+      datum.start,
+      datum.start,
+      datum.end,
+      datum.end,
+      datum.start,
+    ];
+  }
+
   constructor(props: IFeatureViewerProps) {
     super(props);
     this.state = {
@@ -148,6 +153,7 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
 
   public render() {
     const { width, height } = this.props;
+
     return (
       <div style={{ height, width }}>
         <PlotlyChart

@@ -12,6 +12,7 @@
 
 // tslint:disable:no-backbone-get-set-outside-model
 import * as NGL from 'ngl';
+import { Vector2 } from 'three';
 
 const ngl = jest.genMockFromModule<typeof NGL>('ngl');
 
@@ -19,6 +20,7 @@ class MockStage {
   public events = new Map<string, (...args: any[]) => void>();
   public callbacks = new Array<(...args: any[]) => void>();
   public reprList: string[] = [];
+  public tooltip: Partial<HTMLElement> = { textContent: '' };
 
   public mouseControls = {
     add: (eventName: string, callback: (...args: any[]) => void) => this.events.set(eventName, callback),
@@ -32,19 +34,19 @@ class MockStage {
 
   public mouseObserver = {
     canvasPosition: {
-      distanceTo: jest.fn(pos => pos),
+      distanceTo: jest.fn((pos: Vector2) => pos),
     },
     down: {
-      distanceTo: jest.fn(pos => pos),
+      distanceTo: jest.fn((pos: Vector2) => pos),
     },
     position: {
-      distanceTo: jest.fn(pos => pos),
+      distanceTo: jest.fn((pos: Vector2) => pos),
     },
     prevClickCP: {
-      distanceTo: jest.fn(pos => pos),
+      distanceTo: jest.fn((pos: Vector2) => pos),
     },
     prevPosition: {
-      distanceTo: jest.fn(pos => pos),
+      distanceTo: jest.fn((pos: Vector2) => pos),
     },
   };
 
@@ -85,6 +87,7 @@ class MockStage {
     stage: {
       mouseControls: this.mouseControls,
       mouseObserver: this.mouseObserver,
+      tooltip: this.tooltip,
       viewerControls: this.viewerControls,
     },
     structure: new ngl.Structure(),
@@ -95,7 +98,7 @@ class MockStage {
   public removeAllComponents = () => jest.fn();
 }
 
-(ngl.Stage as any).mockImplementation((canvas: HTMLCanvasElement) => {
+(ngl.Stage as jest.Mock<NGL.Stage>).mockImplementation((canvas: HTMLCanvasElement) => {
   return new MockStage(canvas);
 });
 
@@ -124,7 +127,7 @@ const turnResidue = (resno: number) => ({
 
 const sampleResidues = [helixResidue(1), sheetResidue(2), turnResidue(3)];
 
-(ngl.Structure as any).mockImplementation((name: string) => {
+(ngl.Structure as jest.Mock<NGL.Structure>).mockImplementation((name: string) => {
   return {
     atomMap: { dict: { 'CA|C': 2 } },
     eachResidue: jest.fn(
@@ -134,7 +137,7 @@ const sampleResidues = [helixResidue(1), sheetResidue(2), turnResidue(3)];
       distanceTo: (pos: number) => pos + index,
       positionToVector3: () => index,
     })),
-    getResidueProxy: jest.fn(resno => ({
+    getResidueProxy: jest.fn((resno: number) => ({
       getAtomIndexByName: () => resno,
     })),
     getSequence: jest.fn(() => []),

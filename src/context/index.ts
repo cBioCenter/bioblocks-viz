@@ -1,5 +1,5 @@
 export * from './CellContext';
-export * from './ChellContext';
+export * from './ChellContextProvider';
 export * from './CouplingContext';
 export * from './ResidueContext';
 export * from './SecondaryStructureContext';

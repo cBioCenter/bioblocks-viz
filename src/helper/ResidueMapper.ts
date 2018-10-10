@@ -42,6 +42,7 @@ export const generateResidueMapping = (text: string): IResidueMapping[] => {
   const headerMap: {
     [key: string]: number;
   } = getResidueMappingHeaders(headers);
+
   return text
     .split('\n')
     .slice(1)
@@ -55,6 +56,7 @@ export const generateResidueMapping = (text: string): IResidueMapping[] => {
           uniProtResno: parseInt(splitLine[headerMap[UNI_PROT_RESNO_HEADER]], 10),
         });
       }
+
       return result;
     }, new Array<IResidueMapping>());
 };
@@ -71,5 +73,6 @@ const getResidueMappingHeaders = (headers: string[]) => {
       headerMap[header] = headers.indexOf(header);
     });
   }
+
   return headerMap;
 };

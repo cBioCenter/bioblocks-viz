@@ -33,6 +33,7 @@ export class AuxiliaryAxis<T extends string> {
     this.axes.forEach(value => {
       result.push(value.x);
     });
+
     return result;
   }
 
@@ -44,6 +45,7 @@ export class AuxiliaryAxis<T extends string> {
     this.axes.forEach(value => {
       result.push(value.y);
     });
+
     return result;
   }
 
@@ -70,6 +72,9 @@ export class AuxiliaryAxis<T extends string> {
     this.setupAuxiliaryAxis();
   }
 
+  public getAxisById(id: T) {
+    return this.axes.get(id);
+  }
   /**
    * Create the Auxiliary Axis.
    */
@@ -87,11 +92,14 @@ export class AuxiliaryAxis<T extends string> {
         });
       }
 
-      const points = this.derivePointsInAxis(section);
-      (this.axes.get(label)!.x.x! as Datum[]).push(...points.main);
-      (this.axes.get(label)!.x.y! as Datum[]).push(...points.opposite);
-      (this.axes.get(label)!.y.y! as Datum[]).push(...points.main);
-      (this.axes.get(label)!.y.x! as Datum[]).push(...points.opposite);
+      const labelAxis = this.axes.get(label);
+      if (labelAxis) {
+        const points = this.derivePointsInAxis(section);
+        (labelAxis.x.x as Datum[]).push(...points.main);
+        (labelAxis.x.y as Datum[]).push(...points.opposite);
+        (labelAxis.y.y as Datum[]).push(...points.main);
+        (labelAxis.y.x as Datum[]).push(...points.opposite);
+      }
     }
   }
 

@@ -13,8 +13,8 @@ declare type PartialExcept<T, K extends keyof T> = RecursivePartial<T> & Pick<T,
 declare namespace NodeJS {
   // tslint:disable-next-line:interface-name
   export interface Global {
-    dispatchEvent: any;
     window: any;
+    dispatchEvent(event: Event): void;
   }
 }
 

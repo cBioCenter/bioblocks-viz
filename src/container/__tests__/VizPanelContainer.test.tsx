@@ -13,8 +13,8 @@ describe('VizPanelContainer', () => {
     );
   });
 
-  it('Should match existing snapshot when given a single visualization panel to render.', async () => {
-    const wrapper = await shallow(
+  it('Should match existing snapshot when given a single visualization panel to render.', () => {
+    const wrapper = shallow(
       <VizPanelContainer dataDirs={[]} initialVisualizations={[]} numPanels={1} supportedVisualizations={[]} />,
     ).update();
     expect(wrapper).toMatchSnapshot();
@@ -35,7 +35,7 @@ describe('VizPanelContainer', () => {
     ).toMatchSnapshot();
   });
 
-  it('Should fetch new data when selected directory changes.', async () => {
+  it('Should fetch new data when selected directory changes.', () => {
     const visualizations = [VIZ_TYPE.CONTACT_MAP];
     const wrapper = shallow(
       <VizPanelContainer
@@ -51,14 +51,14 @@ describe('VizPanelContainer', () => {
     wrapper.setState({
       currentDataDir: 'second',
     });
-    await wrapper.update();
+    wrapper.update();
 
-    expect(instance.state.data).not.toBe(initialData);
+    expect(wrapper.state()).not.toBe(initialData);
   });
 
-  it('Should not fetch new data if selected directory is the same.', async () => {
+  it('Should not fetch new data if selected directory is the same.', () => {
     const visualizations = [VIZ_TYPE.CONTACT_MAP];
-    const wrapper = await shallow(
+    const wrapper = shallow(
       <VizPanelContainer
         dataDirs={['first', 'second']}
         initialVisualizations={visualizations}
@@ -72,13 +72,13 @@ describe('VizPanelContainer', () => {
     wrapper.setState({
       currentDataDir: 'first',
     });
-    await wrapper.update();
+    wrapper.update();
 
     expect(instance.state.data).toBe(initialData);
   });
 
-  it('Should update the state when the directory dropdown changes.', async () => {
-    const wrapper = await shallow(
+  it('Should update the state when the directory dropdown changes.', () => {
+    const wrapper = shallow(
       <VizPanelContainer
         dataDirs={['first', 'second']}
         initialVisualizations={[]}

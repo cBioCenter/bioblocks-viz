@@ -140,20 +140,38 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
 
     const newPoints: IContactMapChartData[] = [
       generateChartDataEntry(
-        'x+y',
+        'text',
         incorrectColor,
         'Predicted Contact',
         `(N=${numPredictionsToShow}, L=${chainLength})`,
         4,
         allPredictions.predicted,
+        {
+          text: allPredictions.predicted.map(point => {
+            const score = data.couplingScores.getCouplingScore(point.i, point.j);
+
+            return score && score.A_i && score.A_j
+              ? `(${point.i} [${score.A_i}], ${point.j} [${score.A_j}])`
+              : `(${point.i}, ${point.j})`;
+          }),
+        },
       ),
       generateChartDataEntry(
-        'x+y',
+        'text',
         correctColor,
         'Correct Prediction',
         `(N=${allPredictions.correct.length}, ${correctPredictionPercent}%)`,
         6,
         allPredictions.correct,
+        {
+          text: allPredictions.correct.map(point => {
+            const score = data.couplingScores.getCouplingScore(point.i, point.j);
+
+            return score && score.A_i && score.A_j
+              ? `(${point.i} [${score.A_i}], ${point.j} [${score.A_j}])`
+              : `(${point.i}, ${point.j})`;
+          }),
+        },
       ),
     ];
 

@@ -1,6 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ChellSlider Should match the existing snapshot when given no configurations. 1`] = `
+exports[`SettingsPanel Should display a placeholder message if given an unhandled configuration type. 1`] = `
+<GridRow
+  key="player-hp-0"
+>
+  configuration for player-hp-0
+</GridRow>
+`;
+
+exports[`SettingsPanel Should match the existing snapshot when given no configurations. 1`] = `
 <div>
   <Grid
     columns={1}
@@ -24,7 +32,7 @@ exports[`ChellSlider Should match the existing snapshot when given no configurat
         inverted={true}
         style={
           Object {
-            "opacity": 0.85,
+            "opacity": 0.75,
             "width": "100%",
           }
         }

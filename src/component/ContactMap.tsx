@@ -1,15 +1,20 @@
 import * as React from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react';
 
-import { ContactMapChart, generateChartDataEntry, IContactMapChartData } from '~chell-viz~/component';
+import {
+  ContactMapChart,
+  generateChartDataEntry,
+  IContactMapChartData,
+  IContactMapChartPoint,
+} from '~chell-viz~/component';
 import {
   initialResidueContext,
   initialSecondaryStructureContext,
   IResidueContext,
   ISecondaryStructureContext,
-  ResidueContextWrapper,
+  ResidueContextConsumer,
   ResidueSelection,
-  SecondaryStructureContextWrapper,
+  SecondaryStructureContextConsumer,
 } from '~chell-viz~/context';
 import {
   ChellChartEvent,
@@ -22,6 +27,7 @@ import {
   SECONDARY_STRUCTURE,
   SliderWidgetConfig,
 } from '~chell-viz~/data';
+import { ContextConsumerComposer } from '~chell-viz~/hoc';
 
 export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
 export type ContactMapCallback = (coupling: CONTACT_MAP_CB_RESULT_TYPE) => void;
@@ -88,10 +94,8 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
   }
 
   public render() {
-    const { configurations, isDataLoading, style, width } = this.props;
+    const { configurations, isDataLoading, style } = this.props;
     const { pointsToPlot } = this.state;
-
-    const sliderStyle = { width: width * 0.9 };
 
     return (
       <div id="ContactMapComponent" style={{ ...style }}>
@@ -102,7 +106,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 
           {this.renderContactMapChart(pointsToPlot, [
             ...configurations,
-            ...this.generateNodeSizeSliderConfigs(pointsToPlot, sliderStyle),
+            ...this.generateNodeSizeSliderConfigs(pointsToPlot),
           ])}
         </Dimmer.Dimmable>
       </div>
@@ -124,43 +128,60 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     });
   };
 
-  protected setupPointsToPlot(points: CouplingContainer, lockedResiduePairs: ResidueSelection = new Map()) {
+  protected setupPointsToPlot(couplingContainer: CouplingContainer, lockedResiduePairs: ResidueSelection = new Map()) {
     const { formattedPoints, observedColor, highlightColor } = this.props;
     const { pointsToPlot } = this.state;
 
     const chartNames = {
       known: 'Known Structure Contact',
-      selected: 'Selected Res. Pairs',
+      selected: 'Selected Residue Pairs',
     };
 
-    const nodeSizes = {
-      known: pointsToPlot.findIndex(entry => entry.name === chartNames.known),
-      selected: pointsToPlot.findIndex(entry => entry.name === chartNames.selected),
-    };
+    const knownPointsIndex = pointsToPlot.findIndex(entry => entry.name === chartNames.known);
+    const selectedPointIndex = pointsToPlot.findIndex(entry => entry.name === chartNames.selected);
 
     const result = new Array<IContactMapChartData>(
       generateChartDataEntry(
-        'x+y',
+        'text',
         { start: observedColor, end: 'rgb(100,177,200)' },
         chartNames.known,
         '(from PDB structure)',
-        nodeSizes.known >= 0 ? pointsToPlot[nodeSizes.known].nodeSize : 4,
-        points.getObservedContacts(),
+        knownPointsIndex >= 0 ? pointsToPlot[knownPointsIndex].nodeSize : 4,
+        couplingContainer.getObservedContacts(),
+        {
+          text:
+            knownPointsIndex >= 0
+              ? pointsToPlot[knownPointsIndex].points.map(point => {
+                  const score = couplingContainer.getCouplingScore(point.i, point.j);
+
+                  return score && score.A_i && score.A_j
+                    ? `(${point.i} [${score.A_i}], ${point.j} [${score.A_j}])`
+                    : `(${point.i}, ${point.j})`;
+                })
+              : '',
+        },
       ),
       ...formattedPoints,
     );
 
     if (lockedResiduePairs.size > 0) {
+      const chartPoints = Array.from(lockedResiduePairs.keys()).reduce((reduceResult, key) => {
+        const keyPair = lockedResiduePairs.get(key);
+        if (keyPair && keyPair.length === 2) {
+          reduceResult.push({ i: keyPair[0], j: keyPair[1], dist: 0 });
+        }
+
+        return reduceResult;
+      }, new Array<IContactMapChartPoint>());
+
       result.push(
         generateChartDataEntry(
           'none',
           highlightColor,
           chartNames.selected,
           '',
-          nodeSizes.selected >= 0 ? pointsToPlot[nodeSizes.selected].nodeSize : 6,
-          Array.from(lockedResiduePairs.keys())
-            .filter(key => lockedResiduePairs.get(key)!.length === 2)
-            .map(key => ({ i: lockedResiduePairs.get(key)![0], j: lockedResiduePairs.get(key)![1], dist: 0 })),
+          selectedPointIndex >= 0 ? pointsToPlot[selectedPointIndex].nodeSize : 6,
+          chartPoints,
           {
             marker: {
               color: new Array<string>(lockedResiduePairs.size * 2).fill(highlightColor),
@@ -183,6 +204,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 
   protected renderContactMapChart(pointsToPlot: IContactMapChartData[], configurations: ChellWidgetConfig[]) {
     const { data, onBoxSelection, residueContext, secondaryStructureContext } = this.props;
+
     return (
       <ContactMapChart
         candidateResidues={residueContext.candidateResidues}
@@ -199,25 +221,22 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     );
   }
 
-  protected generateNodeSizeSliderConfigs = (
-    entries: IContactMapChartData[],
-    style: React.CSSProperties,
-  ): SliderWidgetConfig[] =>
-    entries.map((entry, index) => {
-      const config: SliderWidgetConfig = {
-        id: `node-size-slider-${index}`,
-        name: `Node size for ${entry.name}`,
-        onChange: this.onNodeSizeChange(index),
-        style,
-        type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
-        values: {
-          current: entry.nodeSize,
-          max: 20,
-          min: 1,
-        },
-      };
-      return config;
-    });
+  protected generateNodeSizeSliderConfigs = (entries: IContactMapChartData[]) =>
+    entries.map(
+      (entry, index): SliderWidgetConfig => {
+        return {
+          id: `node-size-slider-${index}`,
+          name: `Node size for ${entry.name}`,
+          onChange: this.onNodeSizeChange(index),
+          type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
+          values: {
+            current: entry.nodeSize,
+            max: 20,
+            min: 1,
+          },
+        };
+      },
+    );
 
   protected onMouseEnter = (cb: (residue: RESIDUE_TYPE[]) => void) => (e: ChellChartEvent) => {
     if (e.isAxis()) {
@@ -285,19 +304,17 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 type requiredProps = Omit<IContactMapProps, keyof typeof ContactMapClass.defaultProps> & Partial<IContactMapProps>;
 
 const ContactMap = (props: requiredProps) => (
-  <SecondaryStructureContextWrapper.Consumer>
-    {secondaryStructureContext => (
-      <ResidueContextWrapper.Consumer>
-        {residueContext => (
-          <ContactMapClass
-            {...props}
-            residueContext={{ ...residueContext }}
-            secondaryStructureContext={{ ...secondaryStructureContext }}
-          />
-        )}
-      </ResidueContextWrapper.Consumer>
+  <ContextConsumerComposer components={[ResidueContextConsumer, SecondaryStructureContextConsumer]}>
+    {([resContext, secStructContext]) => (
+      <ContactMapClass
+        {...{
+          ...props,
+          residueContext: resContext as IResidueContext,
+          secondaryStructureContext: secStructContext as ISecondaryStructureContext,
+        }}
+      />
     )}
-  </SecondaryStructureContextWrapper.Consumer>
+  </ContextConsumerComposer>
 );
 
 export { ContactMap };

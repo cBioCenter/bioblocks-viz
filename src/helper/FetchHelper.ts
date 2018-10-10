@@ -20,17 +20,17 @@ const genErrorMsg = (fileType: string, response: Response) =>
   `Chell-viz error fetching ${fileType} File!\nStatus: ${response.status}\nMessage: ${response.statusText}\n`;
 
 // https://blog.shovonhasan.com/using-promises-with-filereader/
-export const readFileAsText = (inputFile: File): Promise<string> => {
+export const readFileAsText = async (inputFile: File) => {
   const temporaryFileReader = new FileReader();
 
-  return new Promise((resolve, reject) => {
+  return new Promise<string>((resolve, reject) => {
     temporaryFileReader.onerror = () => {
       temporaryFileReader.abort();
-      reject(new DOMException('Problem parsing input file.'));
+      reject('Problem parsing input file.');
     };
 
     temporaryFileReader.onload = () => {
-      resolve(temporaryFileReader.result as any);
+      resolve(temporaryFileReader.result as string);
     };
     temporaryFileReader.readAsText(inputFile);
   });

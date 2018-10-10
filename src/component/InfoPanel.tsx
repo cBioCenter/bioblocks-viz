@@ -6,9 +6,9 @@ import {
   initialSecondaryStructureContext,
   IResidueContext,
   ISecondaryStructureContext,
-  ResidueContextWrapper,
+  ResidueContext,
   ResidueSelection,
-  SecondaryStructureContextWrapper,
+  SecondaryStructureContext,
 } from '~chell-viz~/context';
 import {
   ChellPDB,
@@ -19,7 +19,7 @@ import {
 } from '~chell-viz~/data';
 
 export interface IInfoPanelProps {
-  data: IContactMapData;
+  data: Partial<IContactMapData>;
   height: number;
   width: 400;
   residueContext: IResidueContext;
@@ -47,6 +47,7 @@ export class InfoPanelClass extends React.Component<IInfoPanelProps, any> {
     const unassignedResidues = data.pdbData
       ? this.renderUnassignedResidues(data.pdbData)
       : [<Label key={'unassigned-residues-none'} />];
+
     return (
       <div className="InfoPanel" style={{ height, width }}>
         <Accordion
@@ -131,18 +132,21 @@ export class InfoPanelClass extends React.Component<IInfoPanelProps, any> {
         }
       }
     });
+
     return result;
   }
 }
 
-const InfoPanel = (props: any) => (
-  <SecondaryStructureContextWrapper.Consumer>
+type requiredProps = Omit<IInfoPanelProps, keyof typeof InfoPanelClass.defaultProps> & Partial<IInfoPanelProps>;
+
+const InfoPanel = (props: requiredProps) => (
+  <SecondaryStructureContext.Consumer>
     {secStructContext => (
-      <ResidueContextWrapper.Consumer>
+      <ResidueContext.Consumer>
         {residueContext => <InfoPanel {...props} {...residueContext} {...secStructContext} />}
-      </ResidueContextWrapper.Consumer>
+      </ResidueContext.Consumer>
     )}
-  </SecondaryStructureContextWrapper.Consumer>
+  </SecondaryStructureContext.Consumer>
 );
 
 export { InfoPanel };

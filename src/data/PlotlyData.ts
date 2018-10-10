@@ -14,17 +14,13 @@ export enum PLOTLY_CHART_TYPE {
 }
 
 export interface IPlotlyData extends plotly.ScatterData {
-  // TODO Open PR to add these missing Plotly types. - https://plot.ly/javascript/reference/#box
-  /** [Plotly Box Plots](https://plot.ly/javascript/box-plots/) */
-  // 'box' = 'box',
   boxpoints: 'all' | 'outliers' | 'suspectedoutliers' | false;
   name: string;
   notched: boolean;
   orientation: 'h' | 'v';
   showlegend: boolean;
-  // TODO Open PR to add these missing Plotly types. - https://plot.ly/javascript/reference/#box
-
   textfont: Partial<plotly.Font>;
+  // tslint:disable-next-line:no-reserved-keywords
   type: PLOTLY_CHART_TYPE | 'bar' | 'pointcloud' | 'scatter' | 'scattergl' | 'scatter3d';
 }
 

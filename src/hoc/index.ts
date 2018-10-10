@@ -1,1 +1,1 @@
-export * from './DimmedLoader';
+export * from './ContextConsumerComposer';

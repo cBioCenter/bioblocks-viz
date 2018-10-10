@@ -19,7 +19,7 @@ import {
   CONTACT_MAP_DATA_TYPE,
   ContactMap,
   CouplingContainer,
-  CouplingContextClass,
+  CouplingContextProvider,
   generateResidueMapping,
   getCouplingScoresData,
   IResidueContext,
@@ -28,7 +28,7 @@ import {
   NGLComponent,
   PredictedContactMap,
   readFileAsText,
-  ResidueContextWrapper,
+  ResidueContextConsumer,
   VIZ_TYPE,
 } from '~chell-viz~';
 
@@ -116,17 +116,18 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
 
   protected renderCouplingComponents = (
     { style } = this.props,
-    { arePredictionsAvailable, errorMsg, isResidueMappingNeeded, pdbData } = this.state,
+    { arePredictionsAvailable, couplingScores, errorMsg, isResidueMappingNeeded, pdbData } = this.state,
   ) => {
     return (
       <div>
         <Header as={'h1'} attached={'top'}>
-          Chell - ContactMap.IO
+          ContactMap.org: 2D and 3D Visualization
         </Header>
         {errorMsg.length > 1 && this.renderErrorMessage()}
+        {!pdbData && couplingScores.length === 0 && this.renderStartMessage()}
         <Segment attached={true} raised={true}>
-          <CouplingContextClass>
-            <ResidueContextWrapper.Consumer>
+          <CouplingContextProvider>
+            <ResidueContextConsumer>
               {residueContext => (
                 <Grid centered={true}>
                   <GridRow verticalAlign={'middle'}>
@@ -162,7 +163,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                       )}
                     </GridColumn>
                   </GridRow>
-                  <GridRow columns={4} centered={true} textAlign={'center'} verticalAlign={'top'}>
+                  <GridRow columns={4} centered={true} textAlign={'center'} verticalAlign={'bottom'}>
                     <GridColumn>{this.renderPDBUploadForm()}</GridColumn>
                     <GridColumn>{this.renderCouplingScoresUploadForm()}</GridColumn>
                     {isResidueMappingNeeded && <GridColumn>{this.renderResidueMappingUploadForm()}</GridColumn>}
@@ -170,21 +171,24 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                   </GridRow>
                 </Grid>
               )}
-            </ResidueContextWrapper.Consumer>
-          </CouplingContextClass>
+            </ResidueContextConsumer>
+          </CouplingContextProvider>
         </Segment>
+        <footer>Powered by {<a href="https://github.com/cBioCenter/chell-viz">Chell</a>}</footer>
       </div>
     );
   };
 
-  protected renderErrorMessage = ({ errorMsg, isResidueMappingNeeded } = this.state) => {
+  protected renderErrorMessage = ({ errorMsg, isResidueMappingNeeded, pdbData } = this.state) => {
     return (
       <Message warning={true}>
-        {isResidueMappingNeeded && this.state.pdbData ? (
+        {isResidueMappingNeeded && pdbData ? (
           <div>
             <Message.Header>
-              Residue numbering mismatch detected - Please upload a residue mapping file to correct the position
-              numbering differences!
+              {`Residue numbering mismatch detected - Please upload a file to correct the position numbering differences.`}
+              {<br />}
+              {`This file should have been part of the an EVCouplings job run and might look like
+              '${pdbData.name}.csv' or '${pdbData.name}.indextableplus'`}
             </Message.Header>
             <Message.List>{errorMsg}</Message.List>
             <Message.Content>
@@ -193,7 +197,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                 exclusive={false}
                 defaultActiveIndex={[]}
                 panels={[
-                  this.renderSequenceAccordionMessage('PDB', this.state.pdbData.sequence),
+                  this.renderSequenceAccordionMessage('PDB', pdbData.sequence),
                   this.renderSequenceAccordionMessage(
                     'Couplings Score',
                     this.state[VIZ_TYPE.CONTACT_MAP].couplingScores.sequence,
@@ -219,11 +223,20 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     },
   });
 
+  protected renderStartMessage = () => (
+    <Message>
+      {`To get started, please upload either a PDB (.pdb) or EVCouplings score (.csv) file!`} {<br />} Check out the
+      {<a href="evfold.org"> EVFold</a>}, {<a href="sanderlab.org/contact-maps/">Sander Lab</a>}, or
+      {<a href="https://evcouplings.org/"> EVCouplings </a>} website to get these files.
+    </Message>
+  );
+
   protected renderUploadForm = (
-    onChange: (e: React.ChangeEvent<Element>) => void,
+    onChange: (e: React.ChangeEvent) => void,
     id: string,
     content: string,
-    disabled = false,
+    disabled?: boolean,
+    accepts: string[] = [],
   ) => {
     return (
       <GridColumn>
@@ -238,6 +251,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
             labelPosition={'right'}
           />
           <input
+            accept={`.${accepts.join(',.')}`}
             disabled={disabled}
             id={id}
             onChange={onChange}
@@ -267,6 +281,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
           'coupling-score',
           'Coupling Scores',
           couplingScores.length > 0,
+          ['csv'],
         )}
       </GridRow>
     );
@@ -275,14 +290,18 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
   protected renderPDBUploadForm = ({ filenames, pdbData } = this.state) => (
     <GridRow>
       {this.renderUploadLabel(filenames.pdb)}
-      {this.renderUploadForm(this.onPDBUpload, 'pdb', 'PDB', pdbData !== undefined)}
+      {this.renderUploadForm(this.onPDBUpload, 'pdb', 'PDB', pdbData !== undefined, ['pdb'])}
     </GridRow>
   );
 
   protected renderResidueMappingUploadForm = ({ filenames } = this.state) => (
     <GridRow verticalAlign={'middle'} columns={1} centered={true}>
       {this.renderUploadLabel(filenames.residue_mapper)}
-      {this.renderUploadForm(this.onResidueMappingUpload, 'residue-mapping', 'Residue Mapping')}
+      {this.renderUploadForm(this.onResidueMappingUpload, 'residue-mapping', 'Residue Mapping', false, [
+        'csv',
+        'indextable',
+        'indextableplus',
+      ])}
     </GridRow>
   );
 
@@ -305,9 +324,9 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
   );
 
   protected onClearAll = (residueContext: IResidueContext) => async () => {
-    await this.setState(ExampleApp.initialState);
+    this.setState(ExampleApp.initialState);
     residueContext.clearAllResidues();
-    await this.forceUpdate();
+    this.forceUpdate();
   };
 
   protected onCouplingScoreUpload = async (e: React.ChangeEvent) => {
@@ -413,7 +432,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
 
   protected onMeasuredProximityChange = () => (value: number) => {
     this.setState({
-      measuredProximity: Object.values(CONTACT_DISTANCE_PROXIMITY)[value],
+      measuredProximity: Object.values(CONTACT_DISTANCE_PROXIMITY)[value] as CONTACT_DISTANCE_PROXIMITY,
     });
   };
 
