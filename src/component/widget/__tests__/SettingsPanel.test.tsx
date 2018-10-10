@@ -4,7 +4,7 @@ import { Button } from 'semantic-ui-react';
 
 import { ISettingsPanelState, SettingsPanel } from '~chell-viz~/component';
 
-describe('ChellSlider', () => {
+describe('SettingsPanel', () => {
   it('Should match the existing snapshot when given no configurations.', () => {
     const wrapper = shallow(<SettingsPanel configurations={[]} />);
     expect(wrapper).toMatchSnapshot();

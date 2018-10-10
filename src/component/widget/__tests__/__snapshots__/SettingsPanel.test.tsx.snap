@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ChellSlider Should match the existing snapshot when given no configurations. 1`] = `
+exports[`SettingsPanel Should match the existing snapshot when given no configurations. 1`] = `
 <div>
   <Grid
     columns={1}
@@ -24,7 +24,7 @@ exports[`ChellSlider Should match the existing snapshot when given no configurat
         inverted={true}
         style={
           Object {
-            "opacity": 0.85,
+            "opacity": 0.75,
             "width": "100%",
           }
         }

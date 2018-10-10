@@ -94,10 +94,8 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
   }
 
   public render() {
-    const { configurations, isDataLoading, style, width } = this.props;
+    const { configurations, isDataLoading, style } = this.props;
     const { pointsToPlot } = this.state;
-
-    const sliderStyle = { width: width * 0.9 };
 
     return (
       <div id="ContactMapComponent" style={{ ...style }}>
@@ -108,7 +106,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 
           {this.renderContactMapChart(pointsToPlot, [
             ...configurations,
-            ...this.generateNodeSizeSliderConfigs(pointsToPlot, sliderStyle),
+            ...this.generateNodeSizeSliderConfigs(pointsToPlot),
           ])}
         </Dimmer.Dimmable>
       </div>
@@ -223,14 +221,13 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     );
   }
 
-  protected generateNodeSizeSliderConfigs = (entries: IContactMapChartData[], style: React.CSSProperties) =>
+  protected generateNodeSizeSliderConfigs = (entries: IContactMapChartData[]) =>
     entries.map(
       (entry, index): SliderWidgetConfig => {
         return {
           id: `node-size-slider-${index}`,
           name: `Node size for ${entry.name}`,
           onChange: this.onNodeSizeChange(index),
-          style,
           type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
           values: {
             current: entry.nodeSize,
