@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ISecondaryStructureContext | chell-viz</title>
+	<title>IComposerProps | chell-viz</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,21 +54,30 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="isecondarystructurecontext.html">ISecondaryStructureContext</a>
+					<a href="icomposerprops.html">IComposerProps</a>
 				</li>
 			</ul>
-			<h1>Interface ISecondaryStructureContext</h1>
+			<h1>Interface IComposerProps</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>ContextConsumerComposer is meant to streamline connecting various context consumers.
+						Heavily based off of <a href="https://github.com/jamesplease/react-composer">react-composer</a>.</p>
+					</div>
+					<p>However, this only accepts an array of context types instead.</p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ISecondaryStructureContext</span>
+						<span class="target">IComposerProps</span>
 					</li>
 				</ul>
 			</section>
@@ -79,17 +88,13 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="isecondarystructurecontext.html#selectedsecondarystructures" class="tsd-kind-icon">selected<wbr>Secondary<wbr>Structures</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="isecondarystructurecontext.html#temporarysecondarystructures" class="tsd-kind-icon">temporary<wbr>Secondary<wbr>Structures</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icomposerprops.html#components" class="tsd-kind-icon">components</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="isecondarystructurecontext.html#addsecondarystructure" class="tsd-kind-icon">add<wbr>Secondary<wbr>Structure</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="isecondarystructurecontext.html#clearsecondarystructure" class="tsd-kind-icon">clear<wbr>Secondary<wbr>Structure</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="isecondarystructurecontext.html#removesecondarystructure" class="tsd-kind-icon">remove<wbr>Secondary<wbr>Structure</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="isecondarystructurecontext.html#togglesecondarystructure" class="tsd-kind-icon">toggle<wbr>Secondary<wbr>Structure</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="icomposerprops.html#children" class="tsd-kind-icon">children</a></li>
 							</ul>
 						</section>
 					</div>
@@ -98,22 +103,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="selectedsecondarystructures" class="tsd-anchor"></a>
-					<h3>selected<wbr>Secondary<wbr>Structures</h3>
-					<div class="tsd-signature tsd-kind-icon">selected<wbr>Secondary<wbr>Structures<span class="tsd-signature-symbol">:</span> <a href="../globals.html#secondary_structure_section" class="tsd-signature-type">SECONDARY_STRUCTURE_SECTION</a><span class="tsd-signature-symbol">[]</span></div>
+					<a name="components" class="tsd-anchor"></a>
+					<h3>components</h3>
+					<div class="tsd-signature tsd-kind-icon">components<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">React.ComponentType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/756e2e0e/src/context/SecondaryStructureContext.tsx#L6">src/context/SecondaryStructureContext.tsx:6</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="temporarysecondarystructures" class="tsd-anchor"></a>
-					<h3>temporary<wbr>Secondary<wbr>Structures</h3>
-					<div class="tsd-signature tsd-kind-icon">temporary<wbr>Secondary<wbr>Structures<span class="tsd-signature-symbol">:</span> <a href="../globals.html#secondary_structure_section" class="tsd-signature-type">SECONDARY_STRUCTURE_SECTION</a><span class="tsd-signature-symbol">[]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/756e2e0e/src/context/SecondaryStructureContext.tsx#L7">src/context/SecondaryStructureContext.tsx:7</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/4f388564/src/hoc/ContextConsumerComposer.tsx#L10">src/hoc/ContextConsumerComposer.tsx:10</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -121,88 +116,25 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="addsecondarystructure" class="tsd-anchor"></a>
-					<h3>add<wbr>Secondary<wbr>Structure</h3>
+					<a name="children" class="tsd-anchor"></a>
+					<h3>children</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Secondary<wbr>Structure<span class="tsd-signature-symbol">(</span>section<span class="tsd-signature-symbol">: </span><a href="../globals.html#secondary_structure_section" class="tsd-signature-type">SECONDARY_STRUCTURE_SECTION</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">children<span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/756e2e0e/src/context/SecondaryStructureContext.tsx#L8">src/context/SecondaryStructureContext.tsx:8</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/4f388564/src/hoc/ContextConsumerComposer.tsx#L11">src/hoc/ContextConsumerComposer.tsx:11</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>section: <a href="../globals.html#secondary_structure_section" class="tsd-signature-type">SECONDARY_STRUCTURE_SECTION</a></h5>
+									<h5>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="clearsecondarystructure" class="tsd-anchor"></a>
-					<h3>clear<wbr>Secondary<wbr>Structure</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">clear<wbr>Secondary<wbr>Structure<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/756e2e0e/src/context/SecondaryStructureContext.tsx#L9">src/context/SecondaryStructureContext.tsx:9</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="removesecondarystructure" class="tsd-anchor"></a>
-					<h3>remove<wbr>Secondary<wbr>Structure</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">remove<wbr>Secondary<wbr>Structure<span class="tsd-signature-symbol">(</span>section<span class="tsd-signature-symbol">: </span><a href="../globals.html#secondary_structure_section" class="tsd-signature-type">SECONDARY_STRUCTURE_SECTION</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/756e2e0e/src/context/SecondaryStructureContext.tsx#L10">src/context/SecondaryStructureContext.tsx:10</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>section: <a href="../globals.html#secondary_structure_section" class="tsd-signature-type">SECONDARY_STRUCTURE_SECTION</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="togglesecondarystructure" class="tsd-anchor"></a>
-					<h3>toggle<wbr>Secondary<wbr>Structure</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">toggle<wbr>Secondary<wbr>Structure<span class="tsd-signature-symbol">(</span>section<span class="tsd-signature-symbol">: </span><a href="../globals.html#secondary_structure_section" class="tsd-signature-type">SECONDARY_STRUCTURE_SECTION</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/756e2e0e/src/context/SecondaryStructureContext.tsx#L11">src/context/SecondaryStructureContext.tsx:11</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>section: <a href="../globals.html#secondary_structure_section" class="tsd-signature-type">SECONDARY_STRUCTURE_SECTION</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -221,25 +153,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="isecondarystructurecontext.html" class="tsd-kind-icon">ISecondary<wbr>Structure<wbr>Context</a>
+						<a href="icomposerprops.html" class="tsd-kind-icon">IComposer<wbr>Props</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="isecondarystructurecontext.html#selectedsecondarystructures" class="tsd-kind-icon">selected<wbr>Secondary<wbr>Structures</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="isecondarystructurecontext.html#temporarysecondarystructures" class="tsd-kind-icon">temporary<wbr>Secondary<wbr>Structures</a>
+								<a href="icomposerprops.html#components" class="tsd-kind-icon">components</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="isecondarystructurecontext.html#addsecondarystructure" class="tsd-kind-icon">add<wbr>Secondary<wbr>Structure</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="isecondarystructurecontext.html#clearsecondarystructure" class="tsd-kind-icon">clear<wbr>Secondary<wbr>Structure</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="isecondarystructurecontext.html#removesecondarystructure" class="tsd-kind-icon">remove<wbr>Secondary<wbr>Structure</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="isecondarystructurecontext.html#togglesecondarystructure" class="tsd-kind-icon">toggle<wbr>Secondary<wbr>Structure</a>
+								<a href="icomposerprops.html#children" class="tsd-kind-icon">children</a>
 							</li>
 						</ul>
 					</li>
