@@ -31,7 +31,7 @@
     "typeRoots": ["./types/", "./node_modules/@types"]
   },
   "exclude": ["node_modules"],
-  "include": ["examples/**/*", "src/**/*", "types", "configs/**/*", "test/**/*", "./chell-viz.ts"],
+  "include": ["examples/**/*", "src/**/*", "types", "configs/**/*", "test/**/*", "./chell-viz.ts", "./index.tsx"],
   "typeAcquisition": {
     "enable": false
   }

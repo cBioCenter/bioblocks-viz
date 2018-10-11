@@ -125,11 +125,18 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
         </Header>
         {errorMsg.length > 1 && this.renderErrorMessage()}
         {!pdbData && couplingScores.length === 0 && this.renderStartMessage()}
+
         <Segment attached={true} raised={true}>
           <CouplingContextProvider>
             <ResidueContextConsumer>
               {residueContext => (
                 <Grid centered={true}>
+                  <GridRow columns={4} centered={true} textAlign={'center'} verticalAlign={'bottom'}>
+                    <GridColumn>{this.renderPDBUploadForm()}</GridColumn>
+                    <GridColumn>{this.renderCouplingScoresUploadForm()}</GridColumn>
+                    {isResidueMappingNeeded && <GridColumn>{this.renderResidueMappingUploadForm()}</GridColumn>}
+                    <GridColumn>{this.renderClearAllButton(residueContext)}</GridColumn>
+                  </GridRow>
                   <GridRow verticalAlign={'middle'}>
                     <GridColumn width={6}>
                       <NGLComponent
@@ -162,12 +169,6 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                         />
                       )}
                     </GridColumn>
-                  </GridRow>
-                  <GridRow columns={4} centered={true} textAlign={'center'} verticalAlign={'bottom'}>
-                    <GridColumn>{this.renderPDBUploadForm()}</GridColumn>
-                    <GridColumn>{this.renderCouplingScoresUploadForm()}</GridColumn>
-                    {isResidueMappingNeeded && <GridColumn>{this.renderResidueMappingUploadForm()}</GridColumn>}
-                    <GridColumn>{this.renderClearAllButton(residueContext)}</GridColumn>
                   </GridRow>
                 </Grid>
               )}

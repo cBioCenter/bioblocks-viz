@@ -106,14 +106,14 @@ export class ChellPDB {
         while (!result[chainIndex]) {
           result.push(new Array<SECONDARY_STRUCTURE_SECTION>());
         }
+
         let structId = 'C' as SECONDARY_STRUCTURE_KEYS;
         if (residue.isSheet()) {
           structId = 'E';
         } else if (residue.isHelix()) {
           structId = 'H';
-        } else if (residue.isTurn()) {
-          return;
         }
+
         if (result[chainIndex].length >= 1 && result[chainIndex][result[chainIndex].length - 1].label === structId) {
           result[chainIndex][result[chainIndex].length - 1].updateEnd(residue.resno);
         } else {
