@@ -134,7 +134,7 @@ export class AuxiliaryAxis<T extends string> {
    */
   protected auxiliaryAxisDefaults = (key: T): Partial<IPlotlyData> => ({
     connectgaps: false,
-    hoverinfo: 'name',
+    hoverinfo: 'none',
     line: {
       color: this.colorMap && this.colorMap[key] ? this.colorMap[key] : this.defaultColor,
       shape: 'spline',

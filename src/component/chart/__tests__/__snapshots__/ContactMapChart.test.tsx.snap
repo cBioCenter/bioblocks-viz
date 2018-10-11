@@ -27,7 +27,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
         },
         Object {
           "connectgaps": false,
-          "hoverinfo": "name",
+          "hoverinfo": "none",
           "line": Object {
             "color": "blue",
             "shape": "spline",
@@ -61,7 +61,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
         },
         Object {
           "connectgaps": false,
-          "hoverinfo": "name",
+          "hoverinfo": "none",
           "line": Object {
             "color": "blue",
             "shape": "spline",
@@ -182,7 +182,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
         },
         Object {
           "connectgaps": false,
-          "hoverinfo": "name",
+          "hoverinfo": "none",
           "line": Object {
             "color": "blue",
             "shape": "spline",
@@ -216,7 +216,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
         },
         Object {
           "connectgaps": false,
-          "hoverinfo": "name",
+          "hoverinfo": "none",
           "line": Object {
             "color": "blue",
             "shape": "spline",
@@ -250,7 +250,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
         },
         Object {
           "connectgaps": false,
-          "hoverinfo": "name",
+          "hoverinfo": "none",
           "line": Object {
             "color": "red",
             "shape": "spline",
@@ -284,7 +284,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
         },
         Object {
           "connectgaps": false,
-          "hoverinfo": "name",
+          "hoverinfo": "none",
           "line": Object {
             "color": "blue",
             "shape": "spline",
@@ -320,7 +320,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
         },
         Object {
           "connectgaps": false,
-          "hoverinfo": "name",
+          "hoverinfo": "none",
           "line": Object {
             "color": "red",
             "shape": "spline",
@@ -354,7 +354,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
         },
         Object {
           "connectgaps": false,
-          "hoverinfo": "name",
+          "hoverinfo": "none",
           "line": Object {
             "color": "blue",
             "shape": "spline",
