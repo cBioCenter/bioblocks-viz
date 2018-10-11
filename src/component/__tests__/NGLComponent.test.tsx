@@ -215,8 +215,8 @@ describe('NGLComponent', () => {
           removeHoveredResidues: removeHoveredResiduesSpy,
         },
       });
-      simulateHoverEvent(wrapper, { atom: { resno: 3 } });
-      simulateHoverEvent(wrapper, { closestBondAtom: { resno: 3 } });
+      simulateHoverEvent(wrapper, { atom: { resno: 3, resname: 'ARG' } });
+      simulateHoverEvent(wrapper, { closestBondAtom: { resno: 3, resname: 'GLY' } });
       simulateHoverEvent(wrapper, {});
       expect(removeHoveredResiduesSpy).toHaveBeenCalledTimes(0);
     });
@@ -233,7 +233,7 @@ describe('NGLComponent', () => {
           removeHoveredResidues: removeHoveredResiduesSpy,
         },
       });
-      simulateHoverEvent(wrapper, { atom: { resno: 3 } });
+      simulateHoverEvent(wrapper, { atom: { resno: 3, resname: 'ALA' } });
       simulateHoverEvent(wrapper, {});
       expect(removeHoveredResiduesSpy).toHaveBeenCalledTimes(1);
     });
@@ -256,7 +256,7 @@ describe('NGLComponent', () => {
     });
 
     // tslint:disable-next-line:mocha-no-side-effect-code
-    it.each([{ atom: { resno: 4 } }, { closestBondAtom: { resno: 4 } }])(
+    it.each([{ atom: { resno: 4, resname: 'ARG' } }, { closestBondAtom: { resno: 4, resname: 'ARG' } }])(
       'Should handle click events by creating a locked residue pair if there is a candidate.',
       async (pickingResult: NGL.PickingProxy) => {
         const addLockedSpy = jest.fn();

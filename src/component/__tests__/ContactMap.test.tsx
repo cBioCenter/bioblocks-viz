@@ -305,22 +305,22 @@ describe('ContactMap', () => {
       await dispatchPlotlyEvent(wrapper, 'plotly_unhover', data);
       expect(toggleSecondaryStructureSpy).not.toHaveBeenCalled();
     });
-  });
 
-  it('Should _not_ clear residues when given new data.', async () => {
-    const onClearResidueSpy = jest.fn();
-    const wrapper = await getAsyncMountedComponent(
-      <ContactMapClass
-        data={sampleData}
-        residueContext={{ ...initialResidueContext, clearAllResidues: onClearResidueSpy }}
-      />,
-    );
-    wrapper.update();
-    wrapper.setProps({
-      data: emptyData,
+    it('Should _not_ clear residues when given new data.', async () => {
+      const onClearResidueSpy = jest.fn();
+      const wrapper = await getAsyncMountedComponent(
+        <ContactMapClass
+          data={sampleData}
+          residueContext={{ ...initialResidueContext, clearAllResidues: onClearResidueSpy }}
+        />,
+      );
+      wrapper.update();
+      wrapper.setProps({
+        data: emptyData,
+      });
+      wrapper.update();
+      expect(onClearResidueSpy).toHaveBeenCalledTimes(0);
     });
-    wrapper.update();
-    expect(onClearResidueSpy).toHaveBeenCalledTimes(0);
   });
 
   describe('Configuration', () => {

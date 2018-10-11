@@ -47,7 +47,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
             <Sidebar
               as={Menu}
               animation={'overlay'}
-              style={{ width, opacity: 0.85 }}
+              style={{ width, opacity: 0.75 }}
               vertical={true}
               visible={visible}
               {...remainingProps}
@@ -125,7 +125,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
         max={config.values.max}
         min={config.values.min}
         onChange={config.onChange}
-        style={{ color: 'white', ...config.style }}
+        style={{ color: 'white', padding: '25px', width: '95%', ...config.style }}
         value={config.values.current}
       />
     );

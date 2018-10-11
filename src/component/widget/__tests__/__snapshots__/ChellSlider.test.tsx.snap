@@ -1,45 +1,56 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ChellSlider Should match existing snapshot when given simple data. 1`] = `
-<div
-  style={
-    Object {
-      "padding": 25,
-    }
-  }
+<Grid
+  columns="equal"
+  textAlign="left"
 >
-  <p>
-    test: 1
-  </p>
-  <ComponentEnhancer(undefined)
-    activeDotStyle={Object {}}
-    className=""
-    disabled={false}
-    dotStyle={Object {}}
-    dots={false}
-    handle={[Function]}
-    handleStyle={
-      Array [
-        Object {},
-      ]
-    }
-    included={true}
-    marks={Object {}}
-    max={100}
-    min={1}
-    onAfterChange={[Function]}
-    onBeforeChange={[Function]}
-    onChange={[Function]}
-    prefixCls="rc-slider"
-    railStyle={Object {}}
-    step={1}
-    trackStyle={
-      Array [
-        Object {},
-      ]
-    }
-    value={1}
-    vertical={false}
-  />
-</div>
+  <GridColumn>
+    <p>
+      test: 1
+    </p>
+    <ComponentEnhancer(undefined)
+      activeDotStyle={Object {}}
+      className=""
+      disabled={false}
+      dotStyle={Object {}}
+      dots={false}
+      handle={[Function]}
+      handleStyle={
+        Array [
+          Object {},
+        ]
+      }
+      included={true}
+      marks={Object {}}
+      max={100}
+      min={1}
+      onAfterChange={[Function]}
+      onBeforeChange={[Function]}
+      onChange={[Function]}
+      prefixCls="rc-slider"
+      railStyle={Object {}}
+      step={1}
+      trackStyle={
+        Array [
+          Object {},
+        ]
+      }
+      value={1}
+      vertical={false}
+    />
+  </GridColumn>
+  <GridColumn
+    verticalAlign="middle"
+    width={2}
+  >
+    <Button
+      as="button"
+      icon="undo"
+      onClick={[Function]}
+      role="button"
+      size="small"
+    />
+  </GridColumn>
+</Grid>
 `;

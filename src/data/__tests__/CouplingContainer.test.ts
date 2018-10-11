@@ -28,9 +28,19 @@ describe('CouplingContainer', () => {
   it('Should allow updating of existing couplings.', () => {
     const result = new CouplingContainer(sampleContacts);
     const expected = 5;
-    expect(result.getCouplingScore(1, 2).dist).not.toBe(expected);
+    let score = result.getCouplingScore(1, 2);
+    if (!score) {
+      expect(score).not.toBeUndefined();
+    } else {
+      expect(score.dist).not.toBe(expected);
+    }
     result.addCouplingScore({ i: 1, j: 2, dist: expected });
-    expect(result.getCouplingScore(1, 2).dist).toBe(expected);
+    score = result.getCouplingScore(1, 2);
+    if (!score) {
+      expect(score).not.toBeUndefined();
+    } else {
+      expect(score.dist).toBe(expected);
+    }
   });
 
   it('Should determine if a contact exists in storage regardless of order of [i, j].', () => {

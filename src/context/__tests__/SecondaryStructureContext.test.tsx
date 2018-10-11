@@ -3,12 +3,17 @@ import * as React from 'react';
 
 import {
   initialSecondaryStructureContext,
+  ISecondaryStructureContext,
   SecondaryStructureContextConsumer,
   SecondaryStructureContextProvider,
 } from '~chell-viz~/context';
 import { MockContextClass } from '~chell-viz~/test';
 
 describe('SecondaryStructureContext', () => {
+  interface IMockContextConsumerProps {
+    secondaryStructureContext: ISecondaryStructureContext;
+  }
+
   let MockContextConsumer: JSX.Element;
   let MockContextProvider: JSX.Element;
   beforeEach(() => {
@@ -24,7 +29,8 @@ describe('SecondaryStructureContext', () => {
     it('Should allow components to consume a secondary structure context.', () => {
       const wrapper = mount(MockContextConsumer);
       expect(wrapper).toMatchSnapshot();
-      expect(wrapper.props().secondaryStructureContext).toEqual(initialSecondaryStructureContext);
+      const props = wrapper.props() as IMockContextConsumerProps;
+      expect(props.secondaryStructureContext).toEqual(initialSecondaryStructureContext);
     });
   });
 

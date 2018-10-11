@@ -41,9 +41,6 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
             "id": "node-size-slider-0",
             "name": "Node size for Known Structure Contact",
             "onChange": [Function],
-            "style": Object {
-              "width": 360,
-            },
             "type": "SLIDER",
             "values": Object {
               "current": 4,
@@ -56,7 +53,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
       contactData={
         Array [
           Object {
-            "hoverinfo": "x+y",
+            "hoverinfo": "text",
             "marker": Object {
               "colorscale": Array [
                 Array [
@@ -110,6 +107,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
             "nodeSize": 4,
             "points": Array [],
             "subtitle": "(from PDB structure)",
+            "text": "",
           },
         ]
       }
@@ -163,9 +161,6 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
             "id": "node-size-slider-0",
             "name": "Node size for Known Structure Contact",
             "onChange": [Function],
-            "style": Object {
-              "width": 360,
-            },
             "type": "SLIDER",
             "values": Object {
               "current": 4,
@@ -178,7 +173,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
       contactData={
         Array [
           Object {
-            "hoverinfo": "x+y",
+            "hoverinfo": "text",
             "marker": Object {
               "colorscale": Array [
                 Array [
@@ -232,6 +227,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
             "nodeSize": 4,
             "points": Array [],
             "subtitle": "(from PDB structure)",
+            "text": "",
           },
         ]
       }
@@ -285,9 +281,6 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
             "id": "node-size-slider-0",
             "name": "Node size for Known Structure Contact",
             "onChange": [Function],
-            "style": Object {
-              "width": 360,
-            },
             "type": "SLIDER",
             "values": Object {
               "current": 4,
@@ -300,7 +293,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
       contactData={
         Array [
           Object {
-            "hoverinfo": "x+y",
+            "hoverinfo": "text",
             "marker": Object {
               "colorscale": Array [
                 Array [
@@ -354,6 +347,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
             "nodeSize": 4,
             "points": Array [],
             "subtitle": "(from PDB structure)",
+            "text": "",
           },
         ]
       }
@@ -894,9 +888,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 "id": "node-size-slider-0",
                 "name": "Node size for Known Structure Contact",
                 "onChange": [Function],
-                "style": Object {
-                  "width": 360,
-                },
                 "type": "SLIDER",
                 "values": Object {
                   "current": 4,
@@ -909,7 +900,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           contactData={
             Array [
               Object {
-                "hoverinfo": "x+y",
+                "hoverinfo": "text",
                 "marker": Object {
                   "colorscale": Array [
                     Array [
@@ -974,6 +965,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   },
                 ],
                 "subtitle": "(from PDB structure)",
+                "text": "",
               },
             ]
           }
@@ -1009,9 +1001,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   "id": "node-size-slider-0",
                   "name": "Node size for Known Structure Contact",
                   "onChange": [Function],
-                  "style": Object {
-                    "width": 360,
-                  },
                   "type": "SLIDER",
                   "values": Object {
                     "current": 4,
@@ -1074,7 +1063,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         inverted={true}
                         style={
                           Object {
-                            "opacity": 0.85,
+                            "opacity": 0.75,
                             "width": "100%",
                           }
                         }
@@ -1089,7 +1078,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                             inverted={true}
                             style={
                               Object {
-                                "opacity": 0.85,
+                                "opacity": 0.75,
                                 "width": "100%",
                               }
                             }
@@ -1099,7 +1088,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                               className="ui inverted vertical ui overlay left sidebar menu"
                               style={
                                 Object {
-                                  "opacity": 0.85,
+                                  "opacity": 0.75,
                                   "width": "100%",
                                 }
                               }
@@ -1125,150 +1114,203 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                         style={
                                           Object {
                                             "color": "white",
-                                            "width": 360,
+                                            "padding": "25px",
+                                            "width": "95%",
                                           }
                                         }
                                         value={4}
                                       >
-                                        <div
-                                          className="node-size-slider-0"
+                                        <Grid
+                                          columns="equal"
                                           style={
                                             Object {
                                               "color": "white",
-                                              "padding": 25,
-                                              "width": 360,
+                                              "padding": "25px",
+                                              "width": "95%",
                                             }
                                           }
+                                          textAlign="left"
                                         >
-                                          <p>
-                                            Node size for Known Structure Contact: 4
-                                          </p>
-                                          <ComponentEnhancer(undefined)
-                                            activeDotStyle={Object {}}
-                                            className=""
-                                            disabled={false}
-                                            dotStyle={Object {}}
-                                            dots={false}
-                                            handle={[Function]}
-                                            handleStyle={
-                                              Array [
-                                                Object {},
-                                              ]
+                                          <div
+                                            className="ui left aligned equal width grid"
+                                            style={
+                                              Object {
+                                                "color": "white",
+                                                "padding": "25px",
+                                                "width": "95%",
+                                              }
                                             }
-                                            included={true}
-                                            marks={Object {}}
-                                            max={20}
-                                            min={1}
-                                            onAfterChange={[Function]}
-                                            onBeforeChange={[Function]}
-                                            onChange={[Function]}
-                                            prefixCls="rc-slider"
-                                            railStyle={Object {}}
-                                            step={1}
-                                            trackStyle={
-                                              Array [
-                                                Object {},
-                                              ]
-                                            }
-                                            value={4}
-                                            vertical={false}
                                           >
-                                            <div
-                                              className="rc-slider"
-                                              onBlur={[Function]}
-                                              onFocus={[Function]}
-                                              onKeyDown={[Function]}
-                                              onMouseDown={[Function]}
-                                              onMouseUp={[Function]}
-                                              onTouchStart={[Function]}
+                                            <GridColumn
+                                              className="node-size-slider-0"
                                             >
                                               <div
-                                                className="rc-slider-rail"
-                                                style={Object {}}
-                                              />
-                                              <Track
-                                                className="rc-slider-track"
-                                                included={true}
-                                                length={15.789473684210526}
-                                                offset={0}
-                                                style={Object {}}
-                                                vertical={false}
+                                                className="column node-size-slider-0"
                                               >
-                                                <div
-                                                  className="rc-slider-track"
-                                                  style={
-                                                    Object {
-                                                      "left": "0%",
-                                                      "width": "15.789473684210526%",
-                                                    }
+                                                <p>
+                                                  Node size for Known Structure Contact: 4
+                                                </p>
+                                                <ComponentEnhancer(undefined)
+                                                  activeDotStyle={Object {}}
+                                                  className=""
+                                                  disabled={false}
+                                                  dotStyle={Object {}}
+                                                  dots={false}
+                                                  handle={[Function]}
+                                                  handleStyle={
+                                                    Array [
+                                                      Object {},
+                                                    ]
                                                   }
-                                                />
-                                              </Track>
-                                              <Steps
-                                                activeDotStyle={Object {}}
-                                                dotStyle={Object {}}
-                                                dots={false}
-                                                included={true}
-                                                lowerBound={1}
-                                                marks={Object {}}
-                                                max={20}
-                                                min={1}
-                                                prefixCls="rc-slider"
-                                                step={1}
-                                                upperBound={4}
-                                                vertical={false}
-                                              >
-                                                <div
-                                                  className="rc-slider-step"
-                                                />
-                                              </Steps>
-                                              <Handle
-                                                className="rc-slider-handle"
-                                                disabled={false}
-                                                key="0"
-                                                max={20}
-                                                min={1}
-                                                offset={15.789473684210526}
-                                                prefixCls="rc-slider"
-                                                style={Object {}}
-                                                value={4}
-                                                vertical={false}
-                                              >
-                                                <div
-                                                  aria-disabled={false}
-                                                  aria-valuemax={20}
-                                                  aria-valuemin={1}
-                                                  aria-valuenow={4}
-                                                  className="rc-slider-handle"
-                                                  onBlur={[Function]}
-                                                  onKeyDown={[Function]}
-                                                  role="slider"
-                                                  style={
-                                                    Object {
-                                                      "left": "15.789473684210526%",
-                                                    }
+                                                  included={true}
+                                                  marks={Object {}}
+                                                  max={20}
+                                                  min={1}
+                                                  onAfterChange={[Function]}
+                                                  onBeforeChange={[Function]}
+                                                  onChange={[Function]}
+                                                  prefixCls="rc-slider"
+                                                  railStyle={Object {}}
+                                                  step={1}
+                                                  trackStyle={
+                                                    Array [
+                                                      Object {},
+                                                    ]
                                                   }
-                                                  tabIndex={0}
-                                                />
-                                              </Handle>
-                                              <Marks
-                                                className="rc-slider-mark"
-                                                included={true}
-                                                lowerBound={1}
-                                                marks={Object {}}
-                                                max={20}
-                                                min={1}
-                                                onClickLabel={[Function]}
-                                                upperBound={4}
-                                                vertical={false}
+                                                  value={4}
+                                                  vertical={false}
+                                                >
+                                                  <div
+                                                    className="rc-slider"
+                                                    onBlur={[Function]}
+                                                    onFocus={[Function]}
+                                                    onKeyDown={[Function]}
+                                                    onMouseDown={[Function]}
+                                                    onMouseUp={[Function]}
+                                                    onTouchStart={[Function]}
+                                                  >
+                                                    <div
+                                                      className="rc-slider-rail"
+                                                      style={Object {}}
+                                                    />
+                                                    <Track
+                                                      className="rc-slider-track"
+                                                      included={true}
+                                                      length={15.789473684210526}
+                                                      offset={0}
+                                                      style={Object {}}
+                                                      vertical={false}
+                                                    >
+                                                      <div
+                                                        className="rc-slider-track"
+                                                        style={
+                                                          Object {
+                                                            "left": "0%",
+                                                            "width": "15.789473684210526%",
+                                                          }
+                                                        }
+                                                      />
+                                                    </Track>
+                                                    <Steps
+                                                      activeDotStyle={Object {}}
+                                                      dotStyle={Object {}}
+                                                      dots={false}
+                                                      included={true}
+                                                      lowerBound={1}
+                                                      marks={Object {}}
+                                                      max={20}
+                                                      min={1}
+                                                      prefixCls="rc-slider"
+                                                      step={1}
+                                                      upperBound={4}
+                                                      vertical={false}
+                                                    >
+                                                      <div
+                                                        className="rc-slider-step"
+                                                      />
+                                                    </Steps>
+                                                    <Handle
+                                                      className="rc-slider-handle"
+                                                      disabled={false}
+                                                      key="0"
+                                                      max={20}
+                                                      min={1}
+                                                      offset={15.789473684210526}
+                                                      prefixCls="rc-slider"
+                                                      style={Object {}}
+                                                      value={4}
+                                                      vertical={false}
+                                                    >
+                                                      <div
+                                                        aria-disabled={false}
+                                                        aria-valuemax={20}
+                                                        aria-valuemin={1}
+                                                        aria-valuenow={4}
+                                                        className="rc-slider-handle"
+                                                        onBlur={[Function]}
+                                                        onKeyDown={[Function]}
+                                                        role="slider"
+                                                        style={
+                                                          Object {
+                                                            "left": "15.789473684210526%",
+                                                          }
+                                                        }
+                                                        tabIndex={0}
+                                                      />
+                                                    </Handle>
+                                                    <Marks
+                                                      className="rc-slider-mark"
+                                                      included={true}
+                                                      lowerBound={1}
+                                                      marks={Object {}}
+                                                      max={20}
+                                                      min={1}
+                                                      onClickLabel={[Function]}
+                                                      upperBound={4}
+                                                      vertical={false}
+                                                    >
+                                                      <div
+                                                        className="rc-slider-mark"
+                                                      />
+                                                    </Marks>
+                                                  </div>
+                                                </ComponentEnhancer(undefined)>
+                                              </div>
+                                            </GridColumn>
+                                            <GridColumn
+                                              verticalAlign="middle"
+                                              width={2}
+                                            >
+                                              <div
+                                                className="middle aligned two wide column"
                                               >
-                                                <div
-                                                  className="rc-slider-mark"
-                                                />
-                                              </Marks>
-                                            </div>
-                                          </ComponentEnhancer(undefined)>
-                                        </div>
+                                                <Button
+                                                  as="button"
+                                                  icon="undo"
+                                                  onClick={[Function]}
+                                                  role="button"
+                                                  size="small"
+                                                >
+                                                  <button
+                                                    className="ui small icon button"
+                                                    onClick={[Function]}
+                                                    role="button"
+                                                  >
+                                                    <Icon
+                                                      as="i"
+                                                      name="undo"
+                                                    >
+                                                      <i
+                                                        aria-hidden="true"
+                                                        className="undo icon"
+                                                      />
+                                                    </Icon>
+                                                  </button>
+                                                </Button>
+                                              </div>
+                                            </GridColumn>
+                                          </div>
+                                        </Grid>
                                       </ChellSlider>
                                     </div>
                                   </GridRow>
@@ -1288,7 +1330,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                             data={
                               Array [
                                 Object {
-                                  "hoverinfo": "x+y+z",
+                                  "hoverinfo": "text",
                                   "marker": Object {
                                     "color": Array [
                                       "1.3",
