@@ -36,7 +36,7 @@ export class SecondaryStructureAxis extends AuxiliaryAxis<SECONDARY_STRUCTURE_KE
       E: SecondaryStructureAxis.centerSectionPositionFn,
       H: (section: SECONDARY_STRUCTURE_SECTION, index: number) => ({
         main: index,
-        opposite: Math.sin(index - section.start),
+        opposite: Math.sin(index),
       }),
     },
     readonly filterFn = (section: SECONDARY_STRUCTURE_SECTION) => section.length <= minimumRequiredResidues,

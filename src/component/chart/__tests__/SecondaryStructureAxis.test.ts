@@ -80,8 +80,8 @@ describe('SecondaryStructureAxis', () => {
       expect(axis.y.x[0]).toBeNull();
 
       for (let i = 1; i < axis.x.y.length - 1; ++i) {
-        expect(axis.x.y[i]).toEqual(Math.sin(i - 1));
-        expect(axis.y.x[i]).toEqual(Math.sin(i - 1));
+        expect(axis.x.y[i]).toEqual(Math.sin(i));
+        expect(axis.y.x[i]).toEqual(Math.sin(i));
       }
 
       expect(axis.x.y[axis.x.y.length - 1]).toBeNull();
