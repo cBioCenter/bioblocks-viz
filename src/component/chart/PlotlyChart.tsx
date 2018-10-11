@@ -171,44 +171,10 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     );
   }
 
-  /**
-   * Create [0-n] plotly axes given some plotly data.
-   *
-   * @param allData The already formatted Plotly data - meaning each data should have the proper axis already assigned.
-   * @returns A object containing xaxis and yaxis fields, as well as xaxis# and yaxis# fields where # is derived from the given data.
-   */
-  protected deriveAxisParams(allData: Array<Partial<IPlotlyData>>) {
-    const uniqueXAxisIds = new Set<string>();
-    const uniqueYAxisIds = new Set<string>();
+  protected deriveChartPiece = (xDatum: Plotly.Datum, yDatum: Plotly.Datum, data?: plotly.ScatterData) => {
+    const x = xDatum as number;
+    const y = yDatum as number;
 
-    for (const data of allData) {
-      const { xaxis, yaxis } = data;
-      if (xaxis) {
-        uniqueXAxisIds.add(xaxis);
-      }
-      if (yaxis) {
-        uniqueYAxisIds.add(yaxis);
-      }
-    }
-
-    // TODO Have the spacing number - 0.05 - be configurable. Requires some design work to look good for various numbers of total axes.
-    return {
-      ...this.generateExtraPlotlyAxis(uniqueXAxisIds),
-      ...this.generateExtraPlotlyAxis(uniqueYAxisIds),
-      xaxis: {
-        domain: [0, 1 - uniqueXAxisIds.size * 0.05],
-        range: [30],
-        zeroline: false,
-      },
-      yaxis: {
-        domain: [0, 1 - uniqueXAxisIds.size * 0.05],
-        range: [30],
-        zeroline: false,
-      },
-    };
-  }
-
-  protected deriveChartPiece = (x: number, y: number, data?: plotly.ScatterData) => {
     if (data) {
       const isExtraXAxis = data.xaxis && data.xaxis !== 'x';
       const isExtraYAxis = data.yaxis && data.yaxis !== 'y';
@@ -234,28 +200,24 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   protected generateExtraPlotlyAxis = (ids: Set<string>): Partial<IPlotlyLayout> => {
     return Array.from(ids.values())
       .filter(id => id.length >= 2) // Ignores { xaxis: x } and { yaxis: y }.
-      .map(id => {
-        const axisId = id.substr(0, 1);
-        const axisNum = Number.parseInt(id.substr(1), 10);
-
-        return {
-          [`${axisId}axis${axisNum}`]: {
-            // TODO Have this number - 0.05 - be configurable. Requires some design work to look good for various numbers of total axes.
-            autosize: false,
-            domain: [1 - (axisNum - 1) * 0.05, 1 - (axisNum - 2) * 0.05],
-            dragmode: 'select',
-            fixedrange: true,
-            margin: {
-              autoexpand: false,
-            },
-            visible: false,
-          },
-        };
-      })
+      .map(id => this.generateExtraPlotlyAxisFromId(id))
       .reduce((prev, curr) => {
         return { ...prev, ...curr };
       }, {});
   };
+
+  protected generateExtraPlotlyAxisFromId(id: string): { [key: string]: Partial<Plotly.LayoutAxis> } {
+    const axisId = id.substr(0, 1) as 'x' | 'y';
+    const axisNum = Number.parseInt(id.substr(1), 10);
+
+    return {
+      [`${axisId}axis${axisNum}`]: {
+        // TODO Have this number - 0.05 - be configurable. Requires some design work to look good for various numbers of total axes.
+        domain: [1 - (axisNum - 1) * 0.05, 1 - (axisNum - 2) * 0.05],
+        visible: false,
+      },
+    };
+  }
 
   protected getMergedConfig = (config: Partial<Plotly.Config> = {}): Plotly.Config => {
     const copiedConfig = Immutable.fromJS({ ...defaultPlotlyConfig }) as Immutable.List<keyof Plotly.Config>;
@@ -287,6 +249,43 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
 
     return result;
   };
+
+  /**
+   * Create [0-n] plotly axes given some plotly data.
+   *
+   * @param allData The already formatted Plotly data - meaning each data should have the proper axis already assigned.
+   * @returns A object containing xaxis and yaxis fields, as well as xaxis# and yaxis# fields where # is derived from the given data.
+   */
+  protected deriveAxisParams(allData: Array<Partial<IPlotlyData>>): Partial<IPlotlyLayout> {
+    const uniqueXAxisIds = new Set<string>();
+    const uniqueYAxisIds = new Set<string>();
+
+    for (const data of allData) {
+      const { xaxis, yaxis } = data;
+      if (xaxis) {
+        uniqueXAxisIds.add(xaxis);
+      }
+      if (yaxis) {
+        uniqueYAxisIds.add(yaxis);
+      }
+    }
+
+    // TODO Have the spacing number - 0.05 - be configurable. Requires some design work to look good for various numbers of total axes.
+    return {
+      ...this.generateExtraPlotlyAxis(uniqueXAxisIds),
+      ...this.generateExtraPlotlyAxis(uniqueYAxisIds),
+      xaxis: {
+        domain: [0, 1 - uniqueXAxisIds.size * 0.05],
+        range: [30],
+        zeroline: false,
+      },
+      yaxis: {
+        domain: [0, 1 - uniqueXAxisIds.size * 0.05],
+        range: [30],
+        zeroline: false,
+      },
+    };
+  }
 
   protected onAfterPlot = () => {
     const { onAfterPlotCallback } = this.props;
@@ -321,7 +320,6 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
       const x = event.points[0].x ? event.points[0].x : (event.points[0].data.x[0] as number);
       const y = event.points[0].y ? event.points[0].y : (event.points[0].data.y[0] as number);
       const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, event.points[0].data);
-
       onHoverCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.HOVER, chartPiece, selectedPoints));
     }
   };
@@ -358,7 +356,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
       let allPoints = new Array<number>();
       if (event.points.length >= 1) {
         allPoints = event.points.reduce((prev, cur) => {
-          prev.push(...[cur.x, cur.y]);
+          prev.push(...[cur.x as number, cur.y as number]);
 
           return prev;
         }, allPoints);

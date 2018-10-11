@@ -140,6 +140,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     const knownPointsIndex = pointsToPlot.findIndex(entry => entry.name === chartNames.known);
     const selectedPointIndex = pointsToPlot.findIndex(entry => entry.name === chartNames.selected);
 
+    const observedContactPoints = couplingContainer.getObservedContacts();
     const result = new Array<IContactMapChartData>(
       generateChartDataEntry(
         'text',
@@ -147,18 +148,15 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
         chartNames.known,
         '(from PDB structure)',
         knownPointsIndex >= 0 ? pointsToPlot[knownPointsIndex].nodeSize : 4,
-        couplingContainer.getObservedContacts(),
+        observedContactPoints,
         {
-          text:
-            knownPointsIndex >= 0
-              ? pointsToPlot[knownPointsIndex].points.map(point => {
-                  const score = couplingContainer.getCouplingScore(point.i, point.j);
+          text: observedContactPoints.map(point => {
+            const score = couplingContainer.getCouplingScore(point.i, point.j);
 
-                  return score && score.A_i && score.A_j
-                    ? `(${point.i} [${score.A_i}], ${point.j} [${score.A_j}])`
-                    : `(${point.i}, ${point.j})`;
-                })
-              : '',
+            return score && score.A_i && score.A_j
+              ? `(${point.i} ${score.A_i}, ${point.j} ${score.A_j})`
+              : `(${point.i}, ${point.j})`;
+          }),
         },
       ),
       ...formattedPoints,

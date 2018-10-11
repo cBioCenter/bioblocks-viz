@@ -135,7 +135,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     const allPredictions = couplingScores.getPredictedContacts(numPredictionsToShow, linearDistFilter);
 
     const correctPredictionPercent = ((allPredictions.correct.length / allPredictions.predicted.length) * 100).toFixed(
-      2,
+      1,
     );
 
     const newPoints: IContactMapChartData[] = [
@@ -151,7 +151,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
             const score = data.couplingScores.getCouplingScore(point.i, point.j);
 
             return score && score.A_i && score.A_j
-              ? `(${point.i} [${score.A_i}], ${point.j} [${score.A_j}])`
+              ? `(${point.i} ${score.A_i}, ${point.j} ${score.A_j})`
               : `(${point.i}, ${point.j})`;
           }),
         },
@@ -168,7 +168,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
             const score = data.couplingScores.getCouplingScore(point.i, point.j);
 
             return score && score.A_i && score.A_j
-              ? `(${point.i} [${score.A_i}], ${point.j} [${score.A_j}])`
+              ? `(${point.i} ${score.A_i}, ${point.j} ${score.A_j})`
               : `(${point.i}, ${point.j})`;
           }),
         },

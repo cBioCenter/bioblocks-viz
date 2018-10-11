@@ -26,6 +26,7 @@ Object {
   },
   "mode": "markers",
   "name": "da-bo-dee undefined",
+  "text": Array [],
   "type": "scattergl",
   "x": Array [
     9,

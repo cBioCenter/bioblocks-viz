@@ -107,7 +107,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
             "nodeSize": 4,
             "points": Array [],
             "subtitle": "(from PDB structure)",
-            "text": "",
+            "text": Array [],
           },
         ]
       }
@@ -227,7 +227,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
             "nodeSize": 4,
             "points": Array [],
             "subtitle": "(from PDB structure)",
-            "text": "",
+            "text": Array [],
           },
         ]
       }
@@ -347,7 +347,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
             "nodeSize": 4,
             "points": Array [],
             "subtitle": "(from PDB structure)",
-            "text": "",
+            "text": Array [],
           },
         ]
       }
@@ -965,7 +965,10 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   },
                 ],
                 "subtitle": "(from PDB structure)",
-                "text": "",
+                "text": Array [
+                  "(41, 52)",
+                  "(56, 50)",
+                ],
               },
             ]
           }
@@ -1388,6 +1391,12 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                   },
                                   "mode": "markers",
                                   "name": "Known Structure Contact (from PDB structure)",
+                                  "text": Array [
+                                    "(41, 52)",
+                                    "(56, 50)",
+                                    "(41, 52)",
+                                    "(56, 50)",
+                                  ],
                                   "type": "scattergl",
                                   "x": Array [
                                     41,
