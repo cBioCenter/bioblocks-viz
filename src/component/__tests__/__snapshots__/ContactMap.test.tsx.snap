@@ -1394,8 +1394,8 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                   "text": Array [
                                     "(41, 52)",
                                     "(56, 50)",
-                                    "(41, 52)",
-                                    "(56, 50)",
+                                    "(52, 41)",
+                                    "(50, 56)",
                                   ],
                                   "type": "scattergl",
                                   "x": Array [
