@@ -24,11 +24,13 @@ import {
   getCouplingScoresData,
   IResidueContext,
   IResidueMapping,
+  ISecondaryStructureContext,
   NGL_DATA_TYPE,
   NGLComponent,
   PredictedContactMap,
   readFileAsText,
   ResidueContextConsumer,
+  SecondaryStructureContextConsumer,
   VIZ_TYPE,
 } from '~chell-viz~';
 
@@ -128,51 +130,18 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
 
         <Segment attached={true} raised={true}>
           <CouplingContextProvider>
-            <ResidueContextConsumer>
-              {residueContext => (
-                <Grid centered={true}>
-                  <GridRow columns={4} centered={true} textAlign={'center'} verticalAlign={'bottom'}>
-                    <GridColumn>{this.renderPDBUploadForm()}</GridColumn>
-                    <GridColumn>{this.renderCouplingScoresUploadForm()}</GridColumn>
-                    {isResidueMappingNeeded && <GridColumn>{this.renderResidueMappingUploadForm()}</GridColumn>}
-                    <GridColumn>{this.renderClearAllButton(residueContext)}</GridColumn>
-                  </GridRow>
-                  <GridRow verticalAlign={'middle'}>
-                    <GridColumn width={6}>
-                      <NGLComponent
-                        data={this.state[VIZ_TYPE.NGL].pdbData}
-                        isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
-                        measuredProximity={this.state.measuredProximity}
-                        style={{ ...style, width: 400 }}
-                      />
-                    </GridColumn>
-                    <GridColumn width={6}>
-                      {arePredictionsAvailable ? (
-                        <PredictedContactMap
-                          data={{
-                            couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
-                            pdbData,
-                            secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
-                          }}
-                          isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
-                          style={{ ...style, width: 400 }}
-                        />
-                      ) : (
-                        <ContactMap
-                          data={{
-                            couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
-                            pdbData,
-                            secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
-                          }}
-                          isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
-                          style={{ ...style, width: 400 }}
-                        />
-                      )}
-                    </GridColumn>
-                  </GridRow>
-                </Grid>
+            <SecondaryStructureContextConsumer>
+              {secondaryStructureContext => (
+                <ResidueContextConsumer>
+                  {residueContext => (
+                    <Grid centered={true}>
+                      {this.renderUploadButtonsRow(isResidueMappingNeeded, residueContext, secondaryStructureContext)}
+                      {this.renderChellComponents(style, arePredictionsAvailable, pdbData)}
+                    </Grid>
+                  )}
+                </ResidueContextConsumer>
               )}
-            </ResidueContextConsumer>
+            </SecondaryStructureContextConsumer>
           </CouplingContextProvider>
         </Segment>
         <footer>Powered by {<a href="https://github.com/cBioCenter/chell-viz">Chell</a>}</footer>
@@ -288,6 +257,59 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     );
   };
 
+  protected renderChellComponents = (
+    style: React.CSSProperties,
+    arePredictionsAvailable: boolean,
+    pdbData?: ChellPDB,
+  ) => (
+    <GridRow verticalAlign={'middle'}>
+      <GridColumn width={6}>
+        <NGLComponent
+          data={this.state[VIZ_TYPE.NGL].pdbData}
+          isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
+          measuredProximity={this.state.measuredProximity}
+          style={{ ...style, width: 400 }}
+        />
+      </GridColumn>
+      <GridColumn width={6}>
+        {arePredictionsAvailable ? (
+          <PredictedContactMap
+            data={{
+              couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
+              pdbData,
+              secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
+            }}
+            isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
+            style={{ ...style, width: 400 }}
+          />
+        ) : (
+          <ContactMap
+            data={{
+              couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
+              pdbData,
+              secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
+            }}
+            isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
+            style={{ ...style, width: 400 }}
+          />
+        )}
+      </GridColumn>
+    </GridRow>
+  );
+
+  protected renderUploadButtonsRow = (
+    isResidueMappingNeeded: boolean,
+    residueContext: IResidueContext,
+    secondaryStructureContext: ISecondaryStructureContext,
+  ) => (
+    <GridRow columns={4} centered={true} textAlign={'center'} verticalAlign={'bottom'}>
+      <GridColumn>{this.renderPDBUploadForm()}</GridColumn>
+      <GridColumn>{this.renderCouplingScoresUploadForm()}</GridColumn>
+      {isResidueMappingNeeded && <GridColumn>{this.renderResidueMappingUploadForm()}</GridColumn>}
+      <GridColumn>{this.renderClearAllButton(residueContext, secondaryStructureContext)}</GridColumn>
+    </GridRow>
+  );
+
   protected renderPDBUploadForm = ({ filenames, pdbData } = this.state) => (
     <GridRow>
       {this.renderUploadLabel(filenames.pdb)}
@@ -306,7 +328,10 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     </GridRow>
   );
 
-  protected renderClearAllButton = (residueContext: IResidueContext) => (
+  protected renderClearAllButton = (
+    residueContext: IResidueContext,
+    secondaryStructureContext: ISecondaryStructureContext,
+  ) => (
     <GridRow verticalAlign={'middle'} columns={1} centered={true}>
       <GridColumn>
         <Label as="label" basic={true} htmlFor={'clear-data'}>
@@ -314,19 +339,23 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
             icon={'trash'}
             label={{
               basic: true,
-              content: 'Clear Data',
+              content: 'Clean View',
             }}
             labelPosition={'right'}
-            onClick={this.onClearAll(residueContext)}
+            onClick={this.onClearAll(residueContext, secondaryStructureContext)}
           />
         </Label>
       </GridColumn>
     </GridRow>
   );
 
-  protected onClearAll = (residueContext: IResidueContext) => async () => {
+  protected onClearAll = (
+    residueContext: IResidueContext,
+    secondaryStructureContext: ISecondaryStructureContext,
+  ) => async () => {
     this.setState(ExampleApp.initialState);
     residueContext.clearAllResidues();
+    secondaryStructureContext.clearSecondaryStructure();
     this.forceUpdate();
   };
 
