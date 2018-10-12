@@ -43,13 +43,13 @@ export interface IContactMapProps {
   onBoxSelection?: ((residues: RESIDUE_TYPE[]) => void);
   residueContext: IResidueContext;
   secondaryStructureContext: ISecondaryStructureContext;
+  showConfigurations: boolean;
   style?: React.CSSProperties;
   width: number;
 }
 
 export const initialContactMapState = {
   pointsToPlot: new Array<IContactMapChartData>(),
-  showConfiguration: false,
 };
 
 export type ContactMapState = Readonly<typeof initialContactMapState>;
@@ -73,6 +73,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     secondaryStructureContext: {
       ...initialSecondaryStructureContext,
     },
+    showConfigurations: true,
     width: 400,
   };
 
@@ -201,7 +202,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
   }
 
   protected renderContactMapChart(pointsToPlot: IContactMapChartData[], configurations: ChellWidgetConfig[]) {
-    const { data, onBoxSelection, residueContext, secondaryStructureContext } = this.props;
+    const { data, onBoxSelection, residueContext, showConfigurations, secondaryStructureContext } = this.props;
 
     return (
       <ContactMapChart
@@ -214,6 +215,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
         onUnHoverCallback={this.onMouseLeave(residueContext.removeHoveredResidues)}
         range={data.couplingScores.residueIndexRange.max + 20}
         secondaryStructures={data.pdbData ? data.pdbData.secondaryStructureSections : []}
+        showConfigurations={showConfigurations}
         selectedSecondaryStructures={[secondaryStructureContext.selectedSecondaryStructures]}
       />
     );

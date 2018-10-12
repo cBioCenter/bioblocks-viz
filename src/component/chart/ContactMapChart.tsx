@@ -26,6 +26,7 @@ export interface IContactMapChartProps {
   range: number;
   secondaryStructures: SECONDARY_STRUCTURE[];
   selectedSecondaryStructures: SECONDARY_STRUCTURE[];
+  showConfigurations: boolean;
   dataTransformFn(entry: IContactMapChartData, mirrorPoints: boolean): Partial<IPlotlyData>;
   onClickCallback?(...args: any[]): void;
   onHoverCallback?(...args: any[]): void;
@@ -109,6 +110,7 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
     range: 100,
     secondaryStructures: [],
     selectedSecondaryStructures: [],
+    showConfigurations: true,
   };
 
   constructor(props: IContactMapChartProps) {
@@ -142,12 +144,13 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
       legendModifiers,
       marginModifiers,
       range,
+      showConfigurations,
       ...props
     } = this.props;
     const { plotlyData } = this.state;
 
     return (
-      <SettingsPanel configurations={configurations}>
+      <SettingsPanel configurations={configurations} showConfigurations={showConfigurations}>
         <PlotlyChart
           data={plotlyData}
           layout={{

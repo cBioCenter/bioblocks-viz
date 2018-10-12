@@ -35,6 +35,7 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
       }
       direction="left"
       inverted={true}
+      showConfigurations={true}
       width="100%"
     >
       <div

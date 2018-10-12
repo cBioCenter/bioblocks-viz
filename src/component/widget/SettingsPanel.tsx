@@ -17,6 +17,7 @@ export interface ISettingsPanelState {
 // We are omitting the 'width' prop from the Semantic Sidebar to instead use our own so an exact width may be specified.
 export type SettingsPanelProps = {
   configurations: ChellWidgetConfig[];
+  showConfigurations?: boolean;
   width?: number | string;
 } & Partial<Omit<SidebarProps, 'width'>>;
 
@@ -25,6 +26,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
     configurations: new Array<ChellWidgetConfig>(),
     direction: 'left',
     inverted: true,
+    showConfigurations: true,
     width: '100%',
   };
 
@@ -36,10 +38,10 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
   }
 
   public render() {
-    const { children, configurations, width, ...remainingProps } = this.props;
+    const { children, configurations, showConfigurations, width, ...remainingProps } = this.props;
     const { visible } = this.state;
 
-    return (
+    return showConfigurations ? (
       <div>
         <Grid columns={1}>
           <Grid.Column>{this.renderSettingsButton()}</Grid.Column>
@@ -59,6 +61,8 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
           </Sidebar.Pushable>
         </Grid>
       </div>
+    ) : (
+      children
     );
   }
 

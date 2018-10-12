@@ -130,7 +130,7 @@
     "lint": "yarn npm-run-all lint:*",
     "lint:src": "tslint --project tsconfig.json",
     "lint:markdown": "markdownlint ./ -c ./markdownlint.json -i node_modules",
-    "prepublish": "rm -rf lib && tsc -p configs/tsconfig.publish.json && tscpaths -p tsconfig.json -s ./ -o ./lib",
+    "prepublish": "rm -rf lib && tsc -p configs/tsconfig.publish.json && tscpaths -p tsconfig.json -s ./ -o ./lib && mkdir ./lib/assets && cp -r assets/semantic.flat.min.css assets/themes lib/assets",
     "start": "webpack-dev-server --open --mode development --config ./configs/webpack.dev.ts",
     "start:hot": "webpack-dev-server --hot-only --open --mode development --config ./configs/webpack.dev.ts",
     "start:prod": "webpack-dev-server --open --mode production ./configs/webpack.prod.ts",

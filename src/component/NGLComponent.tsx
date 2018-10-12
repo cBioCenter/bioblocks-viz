@@ -45,6 +45,7 @@ export interface INGLComponentProps {
   measuredProximity: CONTACT_DISTANCE_PROXIMITY;
   residueContext: IResidueContext;
   secondaryStructureContext: ISecondaryStructureContext;
+  showConfigurations: boolean;
   style?: React.CSSProperties;
   width: number | string;
   onResize?(event?: UIEvent): void;
@@ -71,6 +72,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     secondaryStructureContext: {
       ...initialSecondaryStructureContext,
     },
+    showConfigurations: true,
     width: 400,
   };
   public readonly state: NGLComponentState = initialNGLState;
@@ -143,7 +145,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
    * @returns The NGL Component
    */
   public render() {
-    const { height, isDataLoading, residueContext, style, width } = this.props;
+    const { height, isDataLoading, residueContext, showConfigurations, style, width } = this.props;
 
     return (
       <div className="NGLComponent" style={{ ...style }}>
@@ -169,6 +171,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
                   type: CONFIGURATION_COMPONENT_TYPE.RADIO,
                 },
               ]}
+              showConfigurations={showConfigurations}
             >
               <div
                 className="NGLCanvas"
