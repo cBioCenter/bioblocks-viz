@@ -49,7 +49,7 @@ export const createSecStructRepresentation = (
   structureComponent: NGL.StructureComponent,
   section: SECONDARY_STRUCTURE_SECTION,
   radiusScale: number = 2,
-  color: string = 'yellow',
+  color: string = '#feb83f',
 ) => {
   const rep = structureComponent.addRepresentation('cartoon', {
     color,

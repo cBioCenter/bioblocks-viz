@@ -152,6 +152,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
       ]
     }
     selectedSecondaryStructures={Array []}
+    selectedSecondaryStructuresColor="#feb83f"
     showLoader={true}
   />
 </SettingsPanel>
@@ -461,6 +462,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
       ]
     }
     selectedSecondaryStructures={Array []}
+    selectedSecondaryStructuresColor="#feb83f"
     showLoader={true}
   />
 </SettingsPanel>
@@ -535,6 +537,7 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
     }
     secondaryStructures={Array []}
     selectedSecondaryStructures={Array []}
+    selectedSecondaryStructuresColor="#feb83f"
     showLoader={true}
   />
 </SettingsPanel>

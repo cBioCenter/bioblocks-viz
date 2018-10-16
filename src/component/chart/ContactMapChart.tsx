@@ -26,6 +26,7 @@ export interface IContactMapChartProps {
   range: number;
   secondaryStructures: SECONDARY_STRUCTURE[];
   selectedSecondaryStructures: SECONDARY_STRUCTURE[];
+  selectedSecondaryStructuresColor: string;
   showConfigurations: boolean;
   dataTransformFn(entry: IContactMapChartData, mirrorPoints: boolean): Partial<IPlotlyData>;
   onClickCallback?(...args: any[]): void;
@@ -110,6 +111,7 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
     range: 100,
     secondaryStructures: [],
     selectedSecondaryStructures: [],
+    selectedSecondaryStructuresColor: '#feb83f',
     showConfigurations: true,
   };
 

@@ -135,6 +135,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
           Array [],
         ]
       }
+      selectedSecondaryStructuresColor="#feb83f"
       showConfigurations={true}
     />
   </DimmerDimmable>
@@ -256,6 +257,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
           Array [],
         ]
       }
+      selectedSecondaryStructuresColor="#feb83f"
       showConfigurations={true}
     />
   </DimmerDimmable>
@@ -377,6 +379,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
           Array [],
         ]
       }
+      selectedSecondaryStructuresColor="#feb83f"
       showConfigurations={true}
     />
   </DimmerDimmable>
@@ -1000,6 +1003,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               Array [],
             ]
           }
+          selectedSecondaryStructuresColor="#feb83f"
           showConfigurations={true}
         >
           <SettingsPanel
@@ -1473,6 +1477,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                 Array [],
                               ]
                             }
+                            selectedSecondaryStructuresColor="#feb83f"
                             showLoader={true}
                           >
                             <div>
