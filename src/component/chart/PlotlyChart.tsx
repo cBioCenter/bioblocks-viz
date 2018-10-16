@@ -295,9 +295,11 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   };
 
   protected onClick = (event: plotly.PlotMouseEvent) => {
-    if (!this.isDoubleClickInProgress) {
+    const shouldHandleClick =
+      this.isDoubleClickInProgress === false && event.points !== undefined && event.points.length > 0;
+    if (shouldHandleClick) {
       const { onClickCallback } = this.props;
-      if (event.points && event.points.length > 0 && onClickCallback) {
+      if (onClickCallback) {
         const x = event.points[0].x ? event.points[0].x : (event.points[0].data.x[0] as number);
         const y = event.points[0].y ? event.points[0].y : (event.points[0].data.y[0] as number);
         const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, event.points[0].data);

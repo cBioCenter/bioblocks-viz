@@ -205,16 +205,18 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
       plotlyData.push(...axis.xAxes, ...axis.yAxes);
     });
 
+    const highlightedAxes = new Array<Partial<IPlotlyData>>();
     selectedSecondaryStructures.forEach((selectedStructure, index) => {
       const axis = new AuxiliaryAxis(selectedStructure, index + 2, 'orange');
-      plotlyData.push(...axis.xAxes, ...axis.yAxes);
+      highlightedAxes.push(...axis.highlightedXAxes, ...axis.highlightedYAxes);
     });
 
     this.setState({
       numLegends: new Set(
         plotlyData.filter(datum => datum.showlegend !== false && datum.name !== undefined).map(legend => legend.name),
       ).size,
-      plotlyData,
+      // Makes sure that highlighted axis is behind the axis.
+      plotlyData: [...highlightedAxes, ...plotlyData],
     });
   }
 }

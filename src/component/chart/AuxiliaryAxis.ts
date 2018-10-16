@@ -17,6 +17,7 @@ export interface IAxisMapping {
  */
 export class AuxiliaryAxis<T extends string> {
   protected axes: Map<T, IAxisMapping> = new Map();
+  protected highlightedAxes: Map<T, IAxisMapping> = new Map();
 
   /**
    * Get all the axis objects belonging to this Auxiliary Axis.
@@ -38,11 +39,35 @@ export class AuxiliaryAxis<T extends string> {
   }
 
   /**
+   * Get all the highlighted x-axis objects belonging to this Auxiliary Axis.
+   */
+  public get highlightedXAxes() {
+    const result = new Array<Partial<IPlotlyData>>();
+    this.highlightedAxes.forEach(value => {
+      result.push(value.x);
+    });
+
+    return result;
+  }
+
+  /**
    * Get all the y-axis objects belonging to this Auxiliary Axis.
    */
   public get yAxes() {
     const result = new Array<Partial<IPlotlyData>>();
     this.axes.forEach(value => {
+      result.push(value.y);
+    });
+
+    return result;
+  }
+
+  /**
+   * Get all the highlighted y-axis objects belonging to this Auxiliary Axis.
+   */
+  public get highlightedYAxes() {
+    const result = new Array<Partial<IPlotlyData>>();
+    this.highlightedAxes.forEach(value => {
       result.push(value.y);
     });
 
@@ -75,6 +100,7 @@ export class AuxiliaryAxis<T extends string> {
   public getAxisById(id: T) {
     return this.axes.get(id);
   }
+
   /**
    * Create the Auxiliary Axis.
    */
@@ -92,13 +118,27 @@ export class AuxiliaryAxis<T extends string> {
         });
       }
 
+      if (!this.highlightedAxes.has(label)) {
+        this.highlightedAxes.set(label, {
+          x: this.generateHighlightedXAxisSegment(label),
+          y: this.generateHighlightedYAxisSegment(label),
+        });
+      }
+
       const labelAxis = this.axes.get(label);
-      if (labelAxis) {
+      const highlightAxis = this.highlightedAxes.get(label);
+      if (labelAxis && highlightAxis) {
         const points = this.derivePointsInAxis(section);
         (labelAxis.x.x as Datum[]).push(...points.main);
         (labelAxis.x.y as Datum[]).push(...points.opposite);
         (labelAxis.y.y as Datum[]).push(...points.main);
         (labelAxis.y.x as Datum[]).push(...points.opposite);
+
+        const highlightedPoints = this.deriveHighlightedPointsInAxis(section);
+        (highlightAxis.x.x as Datum[]).push(...highlightedPoints.main);
+        (highlightAxis.x.y as Datum[]).push(...highlightedPoints.opposite);
+        (highlightAxis.y.y as Datum[]).push(...highlightedPoints.main);
+        (highlightAxis.y.x as Datum[]).push(...highlightedPoints.opposite);
       }
     }
   }
@@ -116,12 +156,36 @@ export class AuxiliaryAxis<T extends string> {
   });
 
   /**
+   * Plotly data specific for the highlighted x axis.
+   *
+   * @param key The label for this piece of data.
+   */
+  protected generateHighlightedXAxisSegment = (key: T): Partial<IPlotlyData> => ({
+    ...this.highlightedAuxiliaryAxisDefaults(key),
+    orientation: 'h',
+    xaxis: 'x',
+    yaxis: `y${this.axisIndex}`,
+  });
+
+  /**
    * Plotly data specific for the y axis.
    *
    * @param key The label for this piece of data.
    */
   protected generateYAxisSegment = (key: T): Partial<IPlotlyData> => ({
     ...this.auxiliaryAxisDefaults(key),
+    orientation: 'v',
+    xaxis: `x${this.axisIndex}`,
+    yaxis: 'y',
+  });
+
+  /**
+   * Plotly data specific for the highlighted y axis.
+   *
+   * @param key The label for this piece of data.
+   */
+  protected generateHighlightedYAxisSegment = (key: T): Partial<IPlotlyData> => ({
+    ...this.highlightedAuxiliaryAxisDefaults(key),
     orientation: 'v',
     xaxis: `x${this.axisIndex}`,
     yaxis: 'y',
@@ -153,6 +217,20 @@ export class AuxiliaryAxis<T extends string> {
   });
 
   /**
+   * Default plotly data for a highlighted axis.
+   *
+   * @param key The label for this piece of data.
+   */
+  protected highlightedAuxiliaryAxisDefaults = (key: T): Partial<IPlotlyData> => ({
+    ...this.auxiliaryAxisDefaults(key),
+    fill: 'toself',
+    line: {
+      color: this.colorMap && this.colorMap[key] ? this.colorMap[key] : this.defaultColor,
+      width: 0,
+    },
+  });
+
+  /**
    * Determines the points that make up the axis for both the main and opposite axis side.
    * @param section The section of data to derive points for.
    */
@@ -170,6 +248,30 @@ export class AuxiliaryAxis<T extends string> {
       result.main.push(transformResult.main);
       result.opposite.push(transformResult.opposite);
     }
+
+    result.main.push(section.end);
+    result.opposite.push(null);
+
+    return result;
+  };
+
+  protected deriveHighlightedPointsInAxis = (section: Chell1DSection<T>) => {
+    const result = {
+      main: [section.start],
+      opposite: [null] as Array<number | null>,
+    };
+
+    result.main.push(section.start);
+    result.opposite.push(-1);
+
+    result.main.push(section.start);
+    result.opposite.push(1);
+
+    result.main.push(section.end);
+    result.opposite.push(1);
+
+    result.main.push(section.end);
+    result.opposite.push(-1);
 
     result.main.push(section.end);
     result.opposite.push(null);
