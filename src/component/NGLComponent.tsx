@@ -1,7 +1,7 @@
 import { cloneDeep } from 'lodash';
 import * as NGL from 'ngl';
 import * as React from 'react';
-import { Dimmer, Loader } from 'semantic-ui-react';
+import { Dimmer, Grid, Loader } from 'semantic-ui-react';
 import { Vector2 } from 'three';
 
 import { SettingsPanel } from '~chell-viz~/component';
@@ -148,43 +148,47 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     const { height, isDataLoading, residueContext, showConfigurations, style, width } = this.props;
 
     return (
-      <div className="NGLComponent" style={{ ...style }}>
-        {
-          <Dimmer.Dimmable dimmed={true}>
-            <Dimmer active={isDataLoading}>
-              <Loader />
-            </Dimmer>
-            <SettingsPanel
-              configurations={[
-                {
-                  name: 'Remove All Locked Distance Pairs',
-                  onClick: residueContext.removeAllLockedResiduePairs,
-                  type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
-                },
-                {
-                  current: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
-                  name: 'Measuring Proximity',
-                  onChange: () => {
-                    return;
-                  },
-                  options: Object.values(CONTACT_DISTANCE_PROXIMITY),
-                  type: CONFIGURATION_COMPONENT_TYPE.RADIO,
-                },
-              ]}
-              showConfigurations={showConfigurations}
-            >
-              <div
-                className="NGLCanvas"
-                onKeyDown={this.onKeyDown}
-                onMouseLeave={this.onCanvasLeave}
-                ref={el => (this.canvas = el)}
-                role={'img'}
-                style={{ height, width }}
-              />
-            </SettingsPanel>
-          </Dimmer.Dimmable>
-        }
-      </div>
+      <SettingsPanel
+        configurations={[
+          {
+            name: 'Remove All Locked Distance Pairs',
+            onClick: residueContext.removeAllLockedResiduePairs,
+            type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
+          },
+          {
+            current: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
+            name: 'Measuring Proximity',
+            onChange: () => {
+              return;
+            },
+            options: Object.values(CONTACT_DISTANCE_PROXIMITY),
+            type: CONFIGURATION_COMPONENT_TYPE.RADIO,
+          },
+        ]}
+        showConfigurations={showConfigurations}
+      >
+        <div className="NGLComponent" style={style}>
+          {
+            <Dimmer.Dimmable dimmed={true}>
+              <Dimmer active={isDataLoading}>
+                <Loader />
+              </Dimmer>
+              <Grid.Row centered={true} textAlign={'center'}>
+                <Grid.Column textAlign={'center'}>
+                  <div
+                    className="NGLCanvas"
+                    onKeyDown={this.onKeyDown}
+                    onMouseLeave={this.onCanvasLeave}
+                    ref={el => (this.canvas = el)}
+                    role={'img'}
+                    style={{ height, width }}
+                  />
+                </Grid.Column>
+              </Grid.Row>
+            </Dimmer.Dimmable>
+          }
+        </div>
+      </SettingsPanel>
     );
   }
 
@@ -409,6 +413,8 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
   };
 
   protected onKeyDown = (e: React.KeyboardEvent) => {
+    console.log(e);
+    e.preventDefault();
     const ESC_KEY_CODE = 27;
 
     if (e.which === ESC_KEY_CODE || e.keyCode === ESC_KEY_CODE) {

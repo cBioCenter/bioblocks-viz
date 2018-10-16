@@ -1,56 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NGLComponent Should match existing snapshot when unconnected to a context. 1`] = `
-<div
-  className="NGLComponent"
-  style={Object {}}
+<SettingsPanel
+  configurations={
+    Array [
+      Object {
+        "name": "Remove All Locked Distance Pairs",
+        "onClick": [Function],
+        "type": "BUTTON",
+      },
+      Object {
+        "current": "CLOSEST",
+        "name": "Measuring Proximity",
+        "onChange": [Function],
+        "options": Array [
+          "CLOSEST",
+          "C-α",
+        ],
+        "type": "RADIO",
+      },
+    ]
+  }
+  direction="left"
+  inverted={true}
+  showConfigurations={true}
+  width="100%"
 >
-  <DimmerDimmable
-    dimmed={true}
+  <div
+    className="NGLComponent"
   >
-    <Dimmer
-      active={false}
+    <DimmerDimmable
+      dimmed={true}
     >
-      <Loader />
-    </Dimmer>
-    <SettingsPanel
-      configurations={
-        Array [
-          Object {
-            "name": "Remove All Locked Distance Pairs",
-            "onClick": [Function],
-            "type": "BUTTON",
-          },
-          Object {
-            "current": "CLOSEST",
-            "name": "Measuring Proximity",
-            "onChange": [Function],
-            "options": Array [
-              "CLOSEST",
-              "C-α",
-            ],
-            "type": "RADIO",
-          },
-        ]
-      }
-      direction="left"
-      inverted={true}
-      showConfigurations={true}
-      width="100%"
-    >
-      <div
-        className="NGLCanvas"
-        onKeyDown={[Function]}
-        onMouseLeave={[Function]}
-        role="img"
-        style={
-          Object {
-            "height": 400,
-            "width": 400,
-          }
-        }
-      />
-    </SettingsPanel>
-  </DimmerDimmable>
-</div>
+      <Dimmer
+        active={false}
+      >
+        <Loader />
+      </Dimmer>
+      <GridRow
+        centered={true}
+        textAlign="center"
+      >
+        <GridColumn
+          textAlign="center"
+        >
+          <div
+            className="NGLCanvas"
+            onKeyDown={[Function]}
+            onMouseLeave={[Function]}
+            role="img"
+            style={
+              Object {
+                "height": 400,
+                "width": 400,
+              }
+            }
+          />
+        </GridColumn>
+      </GridRow>
+    </DimmerDimmable>
+  </div>
+</SettingsPanel>
 `;

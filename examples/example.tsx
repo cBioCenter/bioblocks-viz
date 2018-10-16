@@ -3,6 +3,7 @@ import * as ReactDOM from 'react-dom';
 import {
   Accordion,
   Button,
+  Card,
   Grid,
   GridColumn,
   GridRow,
@@ -264,35 +265,41 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
   ) => (
     <GridRow verticalAlign={'middle'}>
       <GridColumn width={6}>
-        <NGLComponent
-          data={this.state[VIZ_TYPE.NGL].pdbData}
-          isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
-          measuredProximity={this.state.measuredProximity}
-          style={{ ...style, width: 400 }}
-        />
+        <Card raised={true} style={{ padding: '20px 20px', width: '430px' }}>
+          <NGLComponent
+            data={this.state[VIZ_TYPE.NGL].pdbData}
+            height={'400px'}
+            isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
+            measuredProximity={this.state.measuredProximity}
+            style={{ ...style, height: '450px', width: '425px' }}
+            width={'400px'}
+          />
+        </Card>
       </GridColumn>
       <GridColumn width={6}>
-        {arePredictionsAvailable ? (
-          <PredictedContactMap
-            data={{
-              couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
-              pdbData,
-              secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
-            }}
-            isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
-            style={{ ...style, width: 400 }}
-          />
-        ) : (
-          <ContactMap
-            data={{
-              couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
-              pdbData,
-              secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
-            }}
-            isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
-            style={{ ...style, width: 400 }}
-          />
-        )}
+        <Card raised={true} style={{ padding: '20px 20px', width: '425px' }}>
+          {arePredictionsAvailable ? (
+            <PredictedContactMap
+              data={{
+                couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
+                pdbData,
+                secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
+              }}
+              isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
+              style={{ ...style, width: '400px' }}
+            />
+          ) : (
+            <ContactMap
+              data={{
+                couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
+                pdbData,
+                secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
+              }}
+              isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
+              style={{ ...style, width: '400px' }}
+            />
+          )}
+        </Card>
       </GridColumn>
     </GridRow>
   );

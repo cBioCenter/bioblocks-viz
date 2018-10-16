@@ -202,7 +202,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
   }
 
   protected renderContactMapChart(pointsToPlot: IContactMapChartData[], configurations: ChellWidgetConfig[]) {
-    const { data, onBoxSelection, residueContext, showConfigurations, secondaryStructureContext } = this.props;
+    const { data, onBoxSelection, residueContext, showConfigurations, secondaryStructureContext, width } = this.props;
 
     return (
       <ContactMapChart
@@ -217,6 +217,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
         secondaryStructures={data.pdbData ? data.pdbData.secondaryStructureSections : []}
         showConfigurations={showConfigurations}
         selectedSecondaryStructures={[secondaryStructureContext.selectedSecondaryStructures]}
+        width={width}
       />
     );
   }
