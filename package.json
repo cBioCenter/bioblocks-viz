@@ -1,6 +1,6 @@
 {
   "name": "chell-viz",
-  "version": "0.0.85",
+  "version": "0.0.86",
   "author": "Biostatistics and Computational Biology at Dana-Farber <bcb@jimmy.harvard.edu>",
   "license": "MIT",
   "engines": {
@@ -127,10 +127,12 @@
     "predoc": "rm -rf lib node_modules/typedoc/node_modules/typescript/lib",
     "doc": "typedoc --tsconfig ./configs/tsconfig.doc.json",
     "doc:precommit": "yarn doc && git add docs/api && git add -u docs/api",
+    "fix-alias": "tscpaths -p tsconfig.json -s ./ -o ./lib",
+    "fix-css": "mkdir ./lib/assets && cp -r assets/semantic.flat.min.css assets/themes lib/assets",
     "lint": "yarn npm-run-all lint:*",
     "lint:src": "tslint --project tsconfig.json",
     "lint:markdown": "markdownlint ./ -c ./markdownlint.json -i node_modules",
-    "prepublish": "rm -rf lib && tsc -p configs/tsconfig.publish.json && tscpaths -p tsconfig.json -s ./ -o ./lib && mkdir ./lib/assets && cp -r assets/semantic.flat.min.css assets/themes lib/assets",
+    "prepublish": "rm -rf lib && tsc -p configs/tsconfig.publish.json && yarn fix-alias >/dev/null 2>&1 && yarn fix-css",
     "start": "webpack-dev-server --open --mode development --config ./configs/webpack.dev.ts",
     "start:hot": "webpack-dev-server --hot-only --open --mode development --config ./configs/webpack.dev.ts",
     "start:prod": "webpack-dev-server --open --mode production ./configs/webpack.prod.ts",
