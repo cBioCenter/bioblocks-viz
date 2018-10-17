@@ -202,13 +202,22 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
   }
 
   protected renderContactMapChart(pointsToPlot: IContactMapChartData[], configurations: ChellWidgetConfig[]) {
-    const { data, onBoxSelection, residueContext, showConfigurations, secondaryStructureContext, width } = this.props;
+    const {
+      data,
+      height,
+      onBoxSelection,
+      residueContext,
+      showConfigurations,
+      secondaryStructureContext,
+      width,
+    } = this.props;
 
     return (
       <ContactMapChart
         candidateResidues={residueContext.candidateResidues}
         configurations={configurations}
         contactData={pointsToPlot}
+        height={height}
         onClickCallback={this.onMouseClick(residueContext.toggleLockedResiduePair)}
         onHoverCallback={this.onMouseEnter(residueContext.addHoveredResidues)}
         onSelectedCallback={this.onMouseSelect(onBoxSelection)}

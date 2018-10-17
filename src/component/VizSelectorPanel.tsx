@@ -131,9 +131,7 @@ export class VizSelectorPanel extends React.Component<IVizPanelProps, IVizPanelS
           data.NGL && (
             <NGLComponent
               data={data.NGL as NGL_DATA_TYPE}
-              height={paddedHeight}
-              style={{ padding }}
-              width={paddedWidth}
+              style={{ height: paddedHeight, padding, width: paddedWidth }}
             />
           )
         );

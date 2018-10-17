@@ -26,23 +26,23 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
   showConfigurations={true}
   width="100%"
 >
-  <div
-    className="NGLComponent"
+  <DimmerDimmable
+    dimmed={true}
   >
-    <DimmerDimmable
-      dimmed={true}
+    <Dimmer
+      active={false}
     >
-      <Dimmer
-        active={false}
-      >
-        <Loader />
-      </Dimmer>
-      <GridRow
-        centered={true}
+      <Loader />
+    </Dimmer>
+    <GridRow
+      centered={true}
+      textAlign="center"
+    >
+      <GridColumn
         textAlign="center"
       >
-        <GridColumn
-          textAlign="center"
+        <div
+          className="NGLComponent"
         >
           <div
             className="NGLCanvas"
@@ -51,14 +51,14 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
             role="img"
             style={
               Object {
-                "height": 400,
-                "width": 400,
+                "height": "95%",
+                "width": "95%",
               }
             }
           />
-        </GridColumn>
-      </GridRow>
-    </DimmerDimmable>
-  </div>
+        </div>
+      </GridColumn>
+    </GridRow>
+  </DimmerDimmable>
 </SettingsPanel>
 `;

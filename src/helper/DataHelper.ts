@@ -1,7 +1,6 @@
 import * as NGL from 'ngl';
 
 import {
-  AMINO_ACID_SINGLE_LETTER_CODE,
   ChellPDB,
   CouplingContainer,
   IContactMapData,
@@ -204,40 +203,50 @@ export const fetchContactMapData = async (dir: string): Promise<IContactMapData>
  */
 export const getCouplingScoresData = (line: string, residueMapping: IResidueMapping[] = []): CouplingContainer => {
   const headerRow = line.split('\n')[0].split(',');
-  const headerIndices = getCouplingHeaderIndices(headerRow);
-  const isHeaderPresent = headerRow.includes('dist');
+  const isHeaderPresent = isCouplingHeaderPresent(headerRow);
+  const headerIndices = getCouplingHeaderIndices(headerRow, isHeaderPresent);
   const couplingScores = new CouplingContainer();
   line
     .split('\n')
     .slice(isHeaderPresent ? 1 : 0)
-    .filter(row => row.split(',').length >= 12)
+    .filter(row => row.split(',').length >= 2)
     .map(row => {
       const items = row.split(',');
+      const score = getCouplingScoreFromCSVRow(items, headerIndices);
       if (residueMapping.length >= 1) {
         const uniProtIndexI = residueMapping.findIndex(mapping => mapping.uniProtResno === parseInt(items[0], 10));
         const uniProtIndexJ = residueMapping.findIndex(mapping => mapping.uniProtResno === parseInt(items[1], 10));
         couplingScores.addCouplingScore({
+          ...score,
           A_i: residueMapping[uniProtIndexI].pdbResCode,
           A_j: residueMapping[uniProtIndexJ].pdbResCode,
-          cn: parseFloat(items[headerIndices.cn]),
-          dist: parseFloat(items[headerIndices.dist]),
           i: residueMapping[uniProtIndexI].pdbResno,
           j: residueMapping[uniProtIndexJ].pdbResno,
         });
       } else {
-        couplingScores.addCouplingScore({
-          A_i: items[headerIndices.A_i] as AMINO_ACID_SINGLE_LETTER_CODE,
-          A_j: items[headerIndices.A_j] as AMINO_ACID_SINGLE_LETTER_CODE,
-          cn: parseFloat(items[headerIndices.cn]),
-          dist: parseFloat(items[headerIndices.dist]),
-          i: parseInt(items[headerIndices.i], 10),
-          j: parseInt(items[headerIndices.j], 10),
-        });
+        couplingScores.addCouplingScore(score);
       }
     });
 
   return couplingScores;
 };
+
+const isCouplingHeaderPresent = (headerRow: string[]) =>
+  ['cn', 'dist', 'i', 'j'].filter(row => headerRow.includes(row)).length >= 1;
+
+const getCouplingScoreFromCSVRow = (row: string[], headerIndices: { [key: string]: number }) =>
+  Object.entries(headerIndices).reduce(
+    (prev, headerName) => {
+      const couplingKey = headerName[0];
+      const couplingKeyIndex = headerName[1];
+
+      return {
+        ...prev,
+        [couplingKey]: isNaN(Number(row[couplingKeyIndex])) ? row[couplingKeyIndex] : Number(row[couplingKeyIndex]),
+      };
+    },
+    { i: -1, j: -1 },
+  );
 
 export const augmentCouplingScoresWithResidueMapping = (
   couplingScores: CouplingContainer,

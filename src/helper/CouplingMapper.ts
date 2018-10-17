@@ -8,11 +8,16 @@ const generateDefaultHeaderIndices = (items: string[]): { [key: string]: number 
 });
 
 // tslint:disable-next-line:export-name
-export const getCouplingHeaderIndices = (items: string[]) => {
-  const result = generateDefaultHeaderIndices(items);
-  Object.entries(result).map(pair => {
-    result[pair[0]] = items.includes(pair[0]) ? items.indexOf(pair[0]) : pair[1];
-  });
+export const getCouplingHeaderIndices = (items: string[], areHeadersPresent: boolean) => {
+  if (!areHeadersPresent) {
+    return generateDefaultHeaderIndices(items);
+  } else {
+    const result: { [key: string]: number } = {};
+    items.filter(item => item.length >= 1).map(header => {
+      // Trim to remove whitespace, newlines, carriage returns, etc.
+      result[header.trim()] = items.indexOf(header);
+    });
 
-  return result;
+    return result;
+  }
 };

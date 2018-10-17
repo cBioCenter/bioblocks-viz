@@ -1,13 +1,7 @@
 import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 
-import {
-  AuxiliaryAxis,
-  defaultPlotlyLayout,
-  PlotlyChart,
-  SecondaryStructureAxis,
-  SettingsPanel,
-} from '~chell-viz~/component';
+import { AuxiliaryAxis, PlotlyChart, SecondaryStructureAxis, SettingsPanel } from '~chell-viz~/component';
 import { ChellWidgetConfig, IPlotlyData, RESIDUE_TYPE, SECONDARY_STRUCTURE } from '~chell-viz~/data';
 import { generateScatterGLData } from '~chell-viz~/helper';
 
@@ -15,7 +9,7 @@ export interface IContactMapChartProps {
   candidateResidues: RESIDUE_TYPE[];
   configurations: ChellWidgetConfig[];
   contactData: IContactMapChartData[];
-  heightModifier: number;
+  height: number;
   legendModifiers: {
     y: number;
   };
@@ -85,7 +79,7 @@ export const generateChartDataEntry = (
 });
 
 export interface IContactMapChartPoint {
-  dist: number;
+  dist?: number;
   i: number;
   j: number;
 }
@@ -101,12 +95,12 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
     candidateResidues: new Array<RESIDUE_TYPE>(),
     configurations: new Array<ChellWidgetConfig>(),
     dataTransformFn: generateScatterGLData,
-    heightModifier: 0.3,
+    height: 400,
     legendModifiers: {
       y: -0.4,
     },
     marginModifiers: {
-      b: 75,
+      b: 65,
       l: 65,
     },
     range: 100,
@@ -144,7 +138,7 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
     const {
       configurations,
       contactData,
-      heightModifier,
+      height,
       legendModifiers,
       marginModifiers,
       range,
@@ -159,9 +153,7 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
         <PlotlyChart
           data={plotlyData}
           layout={{
-            height: defaultPlotlyLayout.height
-              ? defaultPlotlyLayout.height + defaultPlotlyLayout.height * heightModifier
-              : undefined,
+            height,
             legend: {
               orientation: 'h',
               y: legendModifiers.y,

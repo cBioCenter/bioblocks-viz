@@ -265,19 +265,17 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
   ) => (
     <GridRow verticalAlign={'middle'}>
       <GridColumn width={6}>
-        <Card raised={true} style={{ padding: '20px 20px', width: '430px' }}>
+        <Card raised={true} style={{ padding: '10px 14px', height: '660px', width: '600px' }}>
           <NGLComponent
             data={this.state[VIZ_TYPE.NGL].pdbData}
-            height={'400px'}
             isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
             measuredProximity={this.state.measuredProximity}
-            style={{ ...style, height: '450px', width: '425px' }}
-            width={'400px'}
+            style={{ ...style, height: '600px', width: '600px' }}
           />
         </Card>
       </GridColumn>
       <GridColumn width={6}>
-        <Card raised={true} style={{ padding: '20px 20px', width: '425px' }}>
+        <Card raised={true} style={{ padding: '10px 14px', height: '660px', width: '600px' }}>
           {arePredictionsAvailable ? (
             <PredictedContactMap
               data={{
@@ -285,8 +283,10 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                 pdbData,
                 secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
               }}
+              height={590}
               isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
-              style={{ ...style, width: '400px' }}
+              style={style}
+              width={580}
             />
           ) : (
             <ContactMap
@@ -295,8 +295,10 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                 pdbData,
                 secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
               }}
+              height={585}
               isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
-              style={{ ...style, width: '400px' }}
+              style={style}
+              width={585}
             />
           )}
         </Card>

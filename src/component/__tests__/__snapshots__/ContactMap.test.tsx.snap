@@ -112,7 +112,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
         ]
       }
       dataTransformFn={[Function]}
-      heightModifier={0.3}
+      height={400}
       legendModifiers={
         Object {
           "y": -0.4,
@@ -120,7 +120,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
       }
       marginModifiers={
         Object {
-          "b": 75,
+          "b": 65,
           "l": 65,
         }
       }
@@ -235,7 +235,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
         ]
       }
       dataTransformFn={[Function]}
-      heightModifier={0.3}
+      height={400}
       legendModifiers={
         Object {
           "y": -0.4,
@@ -243,7 +243,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
       }
       marginModifiers={
         Object {
-          "b": 75,
+          "b": 65,
           "l": 65,
         }
       }
@@ -358,7 +358,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
         ]
       }
       dataTransformFn={[Function]}
-      heightModifier={0.3}
+      height={400}
       legendModifiers={
         Object {
           "y": -0.4,
@@ -366,7 +366,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
       }
       marginModifiers={
         Object {
-          "b": 75,
+          "b": 65,
           "l": 65,
         }
       }
@@ -983,7 +983,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             ]
           }
           dataTransformFn={[Function]}
-          heightModifier={0.3}
+          height={400}
           legendModifiers={
             Object {
               "y": -0.4,
@@ -991,7 +991,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           }
           marginModifiers={
             Object {
-              "b": 75,
+              "b": 65,
               "l": 65,
             }
           }
@@ -1436,14 +1436,14 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                             dataTransformFn={[Function]}
                             layout={
                               Object {
-                                "height": 520,
+                                "height": 400,
                                 "legend": Object {
                                   "orientation": "h",
                                   "y": -0.4,
                                   "yanchor": "bottom",
                                 },
                                 "margin": Object {
-                                  "b": 75,
+                                  "b": 65,
                                   "l": 65,
                                 },
                                 "showlegend": true,

@@ -100,14 +100,14 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
     dataTransformFn={[Function]}
     layout={
       Object {
-        "height": 520,
+        "height": 400,
         "legend": Object {
           "orientation": "h",
           "y": -0.4,
           "yanchor": "bottom",
         },
         "margin": Object {
-          "b": 75,
+          "b": 65,
           "l": 65,
         },
         "showlegend": true,
@@ -399,14 +399,14 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
     dataTransformFn={[Function]}
     layout={
       Object {
-        "height": 520,
+        "height": 400,
         "legend": Object {
           "orientation": "h",
           "y": -0.4,
           "yanchor": "bottom",
         },
         "margin": Object {
-          "b": 75,
+          "b": 65,
           "l": 65,
         },
         "showlegend": true,
@@ -502,14 +502,14 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
     dataTransformFn={[Function]}
     layout={
       Object {
-        "height": 520,
+        "height": 400,
         "legend": Object {
           "orientation": "h",
           "y": -0.4,
           "yanchor": "bottom",
         },
         "margin": Object {
-          "b": 75,
+          "b": 65,
           "l": 65,
         },
         "showlegend": true,

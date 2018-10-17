@@ -40,14 +40,12 @@ export interface INGLComponentProps {
   backgroundColor: string | number;
   couplingContext: ICouplingContext;
   data: NGL.Structure | undefined;
-  height: number | string;
   isDataLoading: boolean;
   measuredProximity: CONTACT_DISTANCE_PROXIMITY;
   residueContext: IResidueContext;
   secondaryStructureContext: ISecondaryStructureContext;
   showConfigurations: boolean;
   style?: React.CSSProperties;
-  width: number | string;
   onResize?(event?: UIEvent): void;
 }
 
@@ -65,7 +63,6 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     backgroundColor: '#ffffff',
     couplingContext: { ...initialCouplingContext },
     data: undefined,
-    height: 400,
     isDataLoading: false,
     measuredProximity: CONTACT_DISTANCE_PROXIMITY.C_ALPHA,
     residueContext: { ...initialResidueContext },
@@ -73,7 +70,6 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
       ...initialSecondaryStructureContext,
     },
     showConfigurations: true,
-    width: 400,
   };
   public readonly state: NGLComponentState = initialNGLState;
 
@@ -145,7 +141,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
    * @returns The NGL Component
    */
   public render() {
-    const { height, isDataLoading, residueContext, showConfigurations, style, width } = this.props;
+    const { isDataLoading, residueContext, showConfigurations, style } = this.props;
 
     return (
       <SettingsPanel
@@ -167,27 +163,25 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
         ]}
         showConfigurations={showConfigurations}
       >
-        <div className="NGLComponent" style={style}>
-          {
-            <Dimmer.Dimmable dimmed={true}>
-              <Dimmer active={isDataLoading}>
-                <Loader />
-              </Dimmer>
-              <Grid.Row centered={true} textAlign={'center'}>
-                <Grid.Column textAlign={'center'}>
-                  <div
-                    className="NGLCanvas"
-                    onKeyDown={this.onKeyDown}
-                    onMouseLeave={this.onCanvasLeave}
-                    ref={el => (this.canvas = el)}
-                    role={'img'}
-                    style={{ height, width }}
-                  />
-                </Grid.Column>
-              </Grid.Row>
-            </Dimmer.Dimmable>
-          }
-        </div>
+        <Dimmer.Dimmable dimmed={true}>
+          <Dimmer active={isDataLoading}>
+            <Loader />
+          </Dimmer>
+          <Grid.Row centered={true} textAlign={'center'}>
+            <Grid.Column textAlign={'center'}>
+              <div className="NGLComponent" style={style}>
+                <div
+                  className="NGLCanvas"
+                  onKeyDown={this.onKeyDown}
+                  onMouseLeave={this.onCanvasLeave}
+                  ref={el => (this.canvas = el)}
+                  role={'img'}
+                  style={{ height: '95%', width: '95%' }}
+                />
+              </div>
+            </Grid.Column>
+          </Grid.Row>
+        </Dimmer.Dimmable>
       </SettingsPanel>
     );
   }
@@ -413,7 +407,6 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
   };
 
   protected onKeyDown = (e: React.KeyboardEvent) => {
-    console.log(e);
     e.preventDefault();
     const ESC_KEY_CODE = 27;
 

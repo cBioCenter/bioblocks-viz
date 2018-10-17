@@ -30,7 +30,7 @@ export const generateScatterData = (
   const { marker, points, hoverinfo, subtitle, name, text } = entry;
   const xValues = points.map(data => data.i);
   const yValues = points.map(data => data.j);
-  const zValues = points.map(data => data.dist);
+  const zValues = points.map(data => (data.dist ? data.dist : -1));
   const textValues = text ? (Array.isArray(text) ? text : [text]) : [];
 
   return {
