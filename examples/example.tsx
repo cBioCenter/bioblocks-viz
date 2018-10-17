@@ -93,19 +93,42 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
   }
 
   public componentDidUpdate(prevProps: IExampleAppProps, prevState: IExampleAppState) {
-    const { pdbData } = this.state;
+    const { measuredProximity, pdbData } = this.state;
     const { couplingScores } = this.state[VIZ_TYPE.CONTACT_MAP];
+
+    let errorMsg = '';
+    let isResidueMappingNeeded = this.state.isResidueMappingNeeded;
+
     if (
       pdbData &&
       (couplingScores !== prevState[VIZ_TYPE.CONTACT_MAP].couplingScores || pdbData !== prevState.pdbData)
     ) {
       const mismatches = pdbData.getResidueNumberingMismatches(couplingScores);
       if (mismatches.length >= 1) {
-        this.setState({
-          errorMsg: `${mismatches.length} mismatches detected between coupling scores and PDB!`,
-          isResidueMappingNeeded: true,
-        });
+        errorMsg = `${mismatches.length} mismatches detected between coupling scores and PDB!\
+        For example, residue number ${mismatches[0].resno} is '${
+          mismatches[0].pdbAminoAcid.threeLetterCode
+        }' in the PDB but '${mismatches[0].couplingAminoAcid.threeLetterCode}' in the coupling scores file.`;
+        isResidueMappingNeeded = true;
       }
+    }
+
+    if (pdbData && measuredProximity !== prevState.measuredProximity) {
+      this.setState({
+        [VIZ_TYPE.CONTACT_MAP]: {
+          couplingScores: pdbData.amendPDBWithCouplingScores(couplingScores.rankedContacts, measuredProximity),
+          isLoading: false,
+          pdbData: this.state.pdbData,
+          secondaryStructures: [],
+        },
+        errorMsg,
+        isResidueMappingNeeded,
+      });
+    } else if (errorMsg.length >= 1) {
+      this.setState({
+        errorMsg,
+        isResidueMappingNeeded,
+      });
     }
   }
 
@@ -119,8 +142,11 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
 
   protected renderCouplingComponents = (
     { style } = this.props,
-    { arePredictionsAvailable, couplingScores, errorMsg, isResidueMappingNeeded, pdbData } = this.state,
+    { arePredictionsAvailable, couplingScores, errorMsg, isResidueMappingNeeded, measuredProximity, pdbData } = this
+      .state,
   ) => {
+    console.log(measuredProximity);
+
     return (
       <div>
         <Header as={'h1'} attached={'top'}>
@@ -137,7 +163,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                   {residueContext => (
                     <Grid centered={true}>
                       {this.renderUploadButtonsRow(isResidueMappingNeeded, residueContext, secondaryStructureContext)}
-                      {this.renderChellComponents(style, arePredictionsAvailable, pdbData)}
+                      {this.renderChellComponents(style, arePredictionsAvailable, measuredProximity, pdbData)}
                     </Grid>
                   )}
                 </ResidueContextConsumer>
@@ -261,6 +287,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
   protected renderChellComponents = (
     style: React.CSSProperties,
     arePredictionsAvailable: boolean,
+    measuredProximity: CONTACT_DISTANCE_PROXIMITY,
     pdbData?: ChellPDB,
   ) => (
     <GridRow verticalAlign={'middle'}>
@@ -269,7 +296,8 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
           <NGLComponent
             data={this.state[VIZ_TYPE.NGL].pdbData}
             isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
-            measuredProximity={this.state.measuredProximity}
+            measuredProximity={measuredProximity}
+            onMeasuredProximityChange={this.onMeasuredProximityChange()}
             style={{ ...style, height: '600px', width: '600px' }}
           />
         </Card>
@@ -470,6 +498,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
   };
 
   protected onMeasuredProximityChange = () => (value: number) => {
+    console.log(`Changing measured prox to ${value}`);
     this.setState({
       measuredProximity: Object.values(CONTACT_DISTANCE_PROXIMITY)[value] as CONTACT_DISTANCE_PROXIMITY,
     });

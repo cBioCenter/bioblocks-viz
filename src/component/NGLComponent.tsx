@@ -46,6 +46,7 @@ export interface INGLComponentProps {
   secondaryStructureContext: ISecondaryStructureContext;
   showConfigurations: boolean;
   style?: React.CSSProperties;
+  onMeasuredProximityChange?(value: number): void;
   onResize?(event?: UIEvent): void;
 }
 
@@ -106,7 +107,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
   }
 
   public componentDidUpdate(prevProps: INGLComponentProps, prevState: NGLComponentState) {
-    const { data } = this.props;
+    const { data, measuredProximity } = this.props;
     const { stage, structureComponent } = this.state;
 
     if (stage && data !== prevProps.data) {
@@ -118,8 +119,8 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
 
       const isHighlightUpdateNeeded =
         residueContext !== prevProps.residueContext ||
-        secondaryStructureContext !== prevProps.secondaryStructureContext;
-
+        secondaryStructureContext !== prevProps.secondaryStructureContext ||
+        measuredProximity !== prevProps.measuredProximity;
       if (isHighlightUpdateNeeded) {
         for (const rep of this.state.activeRepresentations) {
           structureComponent.removeRepresentation(rep);
@@ -141,7 +142,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
    * @returns The NGL Component
    */
   public render() {
-    const { isDataLoading, residueContext, showConfigurations, style } = this.props;
+    const { isDataLoading, onMeasuredProximityChange, residueContext, showConfigurations, style } = this.props;
 
     return (
       <SettingsPanel
@@ -154,8 +155,10 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
           {
             current: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
             name: 'Measuring Proximity',
-            onChange: () => {
-              return;
+            onChange: (value: number) => {
+              if (onMeasuredProximityChange) {
+                onMeasuredProximityChange(value);
+              }
             },
             options: Object.values(CONTACT_DISTANCE_PROXIMITY),
             type: CONFIGURATION_COMPONENT_TYPE.RADIO,
@@ -251,23 +254,6 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     });
   }
 
-  protected onHover(aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) {
-    const { residueContext } = this.props;
-    const { structureComponent, stage } = this.state;
-    if (stage && structureComponent) {
-      if (pickingProxy && (pickingProxy.atom || pickingProxy.closestBondAtom)) {
-        const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
-        const resname = AMINO_ACIDS_BY_THREE_LETTER_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE]
-          ? AMINO_ACIDS_BY_THREE_LETTER_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE].singleLetterCode
-          : atom.resname;
-        stage.tooltip.textContent = `${atom.resno} [${resname}]`;
-        residueContext.addHoveredResidues([atom.resno]);
-      } else if (residueContext.candidateResidues.length === 0 && residueContext.hoveredResidues.length !== 0) {
-        residueContext.removeHoveredResidues();
-      }
-    }
-  }
-
   protected onClick = (pickingProxy: NGL.PickingProxy) => {
     const { residueContext } = this.props;
     const { structureComponent } = this.state;
@@ -330,6 +316,23 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
       }
     }
   };
+
+  protected onHover(aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) {
+    const { residueContext } = this.props;
+    const { structureComponent, stage } = this.state;
+    if (stage && structureComponent) {
+      if (pickingProxy && (pickingProxy.atom || pickingProxy.closestBondAtom)) {
+        const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
+        const resname = AMINO_ACIDS_BY_THREE_LETTER_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE]
+          ? AMINO_ACIDS_BY_THREE_LETTER_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE].singleLetterCode
+          : atom.resname;
+        stage.tooltip.textContent = `${atom.resno} [${resname}]`;
+        residueContext.addHoveredResidues([atom.resno]);
+      } else if (residueContext.candidateResidues.length === 0 && residueContext.hoveredResidues.length !== 0) {
+        residueContext.removeHoveredResidues();
+      }
+    }
+  }
 
   protected getDistanceRepForResidues(
     structureComponent: NGL.StructureComponent,
