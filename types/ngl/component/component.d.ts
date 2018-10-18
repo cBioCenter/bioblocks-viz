@@ -45,6 +45,25 @@ declare module 'ngl' {
     visible?: boolean;
   }
 
+  export interface IStructureRepresentationParams {
+    atomPair: Array<Array<number | string>>;
+    color: string;
+    labelBackground: boolean;
+    labelBackgroundColor: string;
+    labelBackgroundMargin: number;
+    labelBorder: boolean;
+    labelBorderColor: string;
+    labelBorderWidth: number;
+    labelColor: string;
+    labelSize: number;
+    labelUnit: 'angstrom' | 'nm';
+    labelXOffset: number;
+    labelYOffset: number;
+    labelZOffset: number;
+    radiusScale: number;
+    sele: string;
+  }
+
   export class Annotation {
     // Properties
     public component: Component;
@@ -263,7 +282,7 @@ declare module 'ngl' {
 
     // Methods
     public _remove(elm: Component): void;
-    public addRepresentation(name: string, params: any): this;
+    public addRepresentation(name: string, params: Partial<IStructureRepresentationParams>): this;
     public autoView(duration: number): this;
     public dispose(): this;
     public forEach(fn: (x: Component) => any): this;
@@ -366,7 +385,10 @@ declare module 'ngl' {
      * @param [params] Representation parameters.
      * @returns The created representation wrapped into a representation component object.
      */
-    public addRepresentation(type: ShapeRepresentationType, params?: object): RepresentationElement;
+    public addRepresentation(
+      type: ShapeRepresentationType,
+      params?: Partial<IStructureRepresentationParams>,
+    ): RepresentationElement;
   }
 
   export interface IStructureComponentSignals extends IComponentSignals {
@@ -419,7 +441,7 @@ declare module 'ngl' {
     public addMeasurement(atomList: number[]): void;
     public addRepresentation(
       type: StructureRepresentationType,
-      params?: object,
+      params?: Partial<IStructureRepresentationParams>,
       hidden?: boolean,
     ): RepresentationElement;
 

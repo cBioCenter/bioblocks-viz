@@ -356,6 +356,7 @@
 								<li class="tsd-kind-object-literal tsd-is-not-exported"><a href="globals.html#val" class="tsd-kind-icon">Val</a></li>
 								<li class="tsd-kind-object-literal"><a href="globals.html#defaultplotlyconfig" class="tsd-kind-icon">default<wbr>Plotly<wbr>Config</a></li>
 								<li class="tsd-kind-object-literal"><a href="globals.html#defaultplotlylayout" class="tsd-kind-icon">default<wbr>Plotly<wbr>Layout</a></li>
+								<li class="tsd-kind-object-literal"><a href="globals.html#defaultrepparams" class="tsd-kind-icon">default<wbr>Rep<wbr>Params</a></li>
 								<li class="tsd-kind-object-literal tsd-is-not-exported"><a href="globals.html#defaultstyle" class="tsd-kind-icon">default<wbr>Style</a></li>
 								<li class="tsd-kind-object-literal"><a href="globals.html#initialcellcontext" class="tsd-kind-icon">initial<wbr>Cell<wbr>Context</a></li>
 								<li class="tsd-kind-object-literal"><a href="globals.html#initialcontactmapstate" class="tsd-kind-icon">initial<wbr>Contact<wbr>Map<wbr>State</a></li>
@@ -1625,7 +1626,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/NGLHelper.ts:35</li>
+									<li>Defined in src/helper/NGLHelper.ts:41</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1660,13 +1661,13 @@
 					<a name="createdistancerepresentation" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> create<wbr>Distance<wbr>Representation</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Distance<wbr>Representation<span class="tsd-signature-symbol">(</span>structureComponent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NGL.StructureComponent</span>, selection<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span>, lineColor<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, labelColor<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, labelUnit<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, labelSize<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/_ngl_.representationelement.html" class="tsd-signature-type">RepresentationElement</a></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Distance<wbr>Representation<span class="tsd-signature-symbol">(</span>structureComponent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NGL.StructureComponent</span>, selection<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span>, params<span class="tsd-signature-symbol">?: </span><a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">NGL.IStructureRepresentationParams</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/_ngl_.representationelement.html" class="tsd-signature-type">RepresentationElement</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/NGLHelper.ts:13</li>
+									<li>Defined in src/helper/NGLHelper.ts:24</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1693,16 +1694,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> lineColor: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;red&quot;</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> labelColor: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;black&quot;</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> labelUnit: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;angstrom&quot;</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> labelSize: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;5</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> params: <a href="modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">NGL.IStructureRepresentationParams</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="classes/_ngl_.representationelement.html" class="tsd-signature-type">RepresentationElement</a></h4>
@@ -1719,7 +1711,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/helper/NGLHelper.ts:48</li>
+									<li>Defined in src/helper/NGLHelper.ts:54</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4070,6 +4062,126 @@
 						</section>
 					</section>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal">
+					<a name="defaultrepparams" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> default<wbr>Rep<wbr>Params</h3>
+					<div class="tsd-signature tsd-kind-icon">default<wbr>Rep<wbr>Params<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/helper/NGLHelper.ts:5</li>
+						</ul>
+					</aside>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="defaultrepparams.color" class="tsd-anchor"></a>
+						<h3>color</h3>
+						<div class="tsd-signature tsd-kind-icon">color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;red&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/helper/NGLHelper.ts:6</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="defaultrepparams.labelbackground" class="tsd-anchor"></a>
+						<h3>label<wbr>Background</h3>
+						<div class="tsd-signature tsd-kind-icon">label<wbr>Background<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/helper/NGLHelper.ts:7</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="defaultrepparams.labelbackgroundcolor" class="tsd-anchor"></a>
+						<h3>label<wbr>Background<wbr>Color</h3>
+						<div class="tsd-signature tsd-kind-icon">label<wbr>Background<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;lightgrey&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/helper/NGLHelper.ts:8</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="defaultrepparams.labelbackgroundmargin" class="tsd-anchor"></a>
+						<h3>label<wbr>Background<wbr>Margin</h3>
+						<div class="tsd-signature tsd-kind-icon">label<wbr>Background<wbr>Margin<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.75</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/helper/NGLHelper.ts:9</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="defaultrepparams.labelborder" class="tsd-anchor"></a>
+						<h3>label<wbr>Border</h3>
+						<div class="tsd-signature tsd-kind-icon">label<wbr>Border<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/helper/NGLHelper.ts:10</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="defaultrepparams.labelbordercolor" class="tsd-anchor"></a>
+						<h3>label<wbr>Border<wbr>Color</h3>
+						<div class="tsd-signature tsd-kind-icon">label<wbr>Border<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;white&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/helper/NGLHelper.ts:11</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="defaultrepparams.labelborderwidth" class="tsd-anchor"></a>
+						<h3>label<wbr>Border<wbr>Width</h3>
+						<div class="tsd-signature tsd-kind-icon">label<wbr>Border<wbr>Width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.3</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/helper/NGLHelper.ts:12</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="defaultrepparams.labelcolor" class="tsd-anchor"></a>
+						<h3>label<wbr>Color</h3>
+						<div class="tsd-signature tsd-kind-icon">label<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;black&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/helper/NGLHelper.ts:13</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="defaultrepparams.labelsize" class="tsd-anchor"></a>
+						<h3>label<wbr>Size</h3>
+						<div class="tsd-signature tsd-kind-icon">label<wbr>Size<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;5</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/helper/NGLHelper.ts:14</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="defaultrepparams.labelunit" class="tsd-anchor"></a>
+						<h3>label<wbr>Unit</h3>
+						<div class="tsd-signature tsd-kind-icon">label<wbr>Unit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"angstrom"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;angstrom&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/helper/NGLHelper.ts:15</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="defaultrepparams.labelzoffset" class="tsd-anchor"></a>
+						<h3>labelZOffset</h3>
+						<div class="tsd-signature tsd-kind-icon">labelZOffset<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;10</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/helper/NGLHelper.ts:16</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-is-not-exported">
 					<a name="defaultstyle" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> default<wbr>Style</h3>
@@ -5584,6 +5696,9 @@
 					</li>
 					<li class=" tsd-kind-object-literal">
 						<a href="globals.html#defaultplotlylayout" class="tsd-kind-icon">default<wbr>Plotly<wbr>Layout</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#defaultrepparams" class="tsd-kind-icon">default<wbr>Rep<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-object-literal tsd-is-not-exported">
 						<a href="globals.html#defaultstyle" class="tsd-kind-icon">default<wbr>Style</a>
