@@ -19,6 +19,7 @@ import {
 import {
   AMINO_ACID_THREE_LETTER_CODE,
   AMINO_ACIDS_BY_THREE_LETTER_CODE,
+  CHELL_CSS_STYLE,
   ChellPDB,
   CONFIGURATION_COMPONENT_TYPE,
   CONTACT_DISTANCE_PROXIMITY,
@@ -40,12 +41,14 @@ export interface INGLComponentProps {
   backgroundColor: string | number;
   couplingContext: ICouplingContext;
   data: NGL.Structure | undefined;
+  height: number | string;
   isDataLoading: boolean;
   measuredProximity: CONTACT_DISTANCE_PROXIMITY;
   residueContext: IResidueContext;
   secondaryStructureContext: ISecondaryStructureContext;
   showConfigurations: boolean;
-  style?: React.CSSProperties;
+  style?: CHELL_CSS_STYLE;
+  width: number | string;
   onMeasuredProximityChange?(value: number): void;
   onResize?(event?: UIEvent): void;
 }
@@ -64,6 +67,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     backgroundColor: '#ffffff',
     couplingContext: { ...initialCouplingContext },
     data: undefined,
+    height: 400,
     isDataLoading: false,
     measuredProximity: CONTACT_DISTANCE_PROXIMITY.C_ALPHA,
     residueContext: { ...initialResidueContext },
@@ -71,6 +75,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
       ...initialSecondaryStructureContext,
     },
     showConfigurations: true,
+    width: 400,
   };
   public readonly state: NGLComponentState = initialNGLState;
 
@@ -142,7 +147,15 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
    * @returns The NGL Component
    */
   public render() {
-    const { isDataLoading, onMeasuredProximityChange, residueContext, showConfigurations, style } = this.props;
+    const {
+      height,
+      isDataLoading,
+      onMeasuredProximityChange,
+      residueContext,
+      showConfigurations,
+      style,
+      width,
+    } = this.props;
 
     return (
       <SettingsPanel
@@ -172,7 +185,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
           </Dimmer>
           <Grid.Row centered={true} textAlign={'center'}>
             <Grid.Column textAlign={'center'}>
-              <div className="NGLComponent" style={style}>
+              <div className="NGLComponent" style={{ ...style, height, width }}>
                 <div
                   className="NGLCanvas"
                   onKeyDown={this.onKeyDown}

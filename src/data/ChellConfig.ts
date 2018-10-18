@@ -45,3 +45,6 @@ export type SliderWidgetConfig = IBaseChellWidgetConfig &
   });
 
 export type ChellWidgetConfig = ButtonWidgetConfig | RadioWidgetConfig | SliderWidgetConfig;
+
+// This is to allow components to use a direct height/width prop and not get the two mixed up.
+export type CHELL_CSS_STYLE = Omit<React.CSSProperties, 'height' | 'width'>;

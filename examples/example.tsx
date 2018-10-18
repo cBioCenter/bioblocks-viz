@@ -295,10 +295,12 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
         <Card raised={true} style={{ padding: '10px 14px', height: '660px', width: '600px' }}>
           <NGLComponent
             data={this.state[VIZ_TYPE.NGL].pdbData}
+            height={'600px'}
             isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
             measuredProximity={measuredProximity}
             onMeasuredProximityChange={this.onMeasuredProximityChange()}
-            style={{ ...style, height: '600px', width: '600px' }}
+            style={style}
+            width={'600px'}
           />
         </Card>
       </GridColumn>
