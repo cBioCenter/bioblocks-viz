@@ -27,6 +27,7 @@ import {
   SECONDARY_STRUCTURE,
 } from '~chell-viz~/data';
 import {
+  capitalizeFirstLetter,
   createBallStickRepresentation,
   createDistanceRepresentation,
   createSecStructRepresentation,
@@ -178,7 +179,26 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
                   onMeasuredProximityChange(value);
                 }
               },
-              options: Object.values(CONTACT_DISTANCE_PROXIMITY),
+              options: Object.values(CONTACT_DISTANCE_PROXIMITY).map(capitalizeFirstLetter),
+              type: CONFIGURATION_COMPONENT_TYPE.RADIO,
+            },
+            {
+              current: 'default',
+              name: 'Structure Representation Type',
+              onChange: (value: number) => {
+                const { stage, structureComponent } = this.state;
+                const reps = ['default', 'spacefill', 'backbone', 'cartoon', 'surface', 'tube'];
+                if (stage && structureComponent) {
+                  structureComponent.removeAllRepresentations();
+                  if (value === 0) {
+                    stage.defaultFileRepresentation(structureComponent);
+                  } else {
+                    structureComponent.addRepresentation(reps[value] as NGL.StructureRepresentationType);
+                  }
+                  stage.viewer.requestRender();
+                }
+              },
+              options: Object.values(['Default', 'Spacefill', 'Backbone', 'Cartoon', 'Surface', 'Tube']),
               type: CONFIGURATION_COMPONENT_TYPE.RADIO,
             },
           ]}

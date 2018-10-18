@@ -5,3 +5,4 @@ export * from './FetchHelper';
 export * from './NGLHelper';
 export * from './PlotlyHelper';
 export * from './ResidueMapper';
+export * from './StringHelper';

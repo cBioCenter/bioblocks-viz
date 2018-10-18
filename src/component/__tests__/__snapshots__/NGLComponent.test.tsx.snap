@@ -22,8 +22,22 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
           "name": "Measuring Proximity",
           "onChange": [Function],
           "options": Array [
-            "CLOSEST",
+            "Closest",
             "C-α",
+          ],
+          "type": "RADIO",
+        },
+        Object {
+          "current": "default",
+          "name": "Structure Representation Type",
+          "onChange": [Function],
+          "options": Array [
+            "Default",
+            "Spacefill",
+            "Backbone",
+            "Cartoon",
+            "Surface",
+            "Tube",
           ],
           "type": "RADIO",
         },

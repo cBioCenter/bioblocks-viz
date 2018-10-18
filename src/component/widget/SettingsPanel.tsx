@@ -140,6 +140,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
         options={config.options}
         onChange={config.onChange}
         style={{ color: 'white', ...config.style }}
+        title={config.name}
       />
     );
   }
