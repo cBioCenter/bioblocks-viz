@@ -160,7 +160,7 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
               b: marginModifiers.b,
               l: marginModifiers.l,
             },
-            showlegend: true,
+            showlegend: false,
             xaxis: {
               autorange: false,
               nticks: 10,

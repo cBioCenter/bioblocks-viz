@@ -1068,9 +1068,20 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       </Button>
                     </div>
                   </GridColumn>
-                  <SidebarPushable>
+                  <SidebarPushable
+                    style={
+                      Object {
+                        "width": "100%",
+                      }
+                    }
+                  >
                     <div
                       className="pushable"
+                      style={
+                        Object {
+                          "width": "100%",
+                        }
+                      }
                     >
                       <Sidebar
                         animation="overlay"
@@ -1446,7 +1457,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                   "b": 65,
                                   "l": 65,
                                 },
-                                "showlegend": true,
+                                "showlegend": false,
                                 "xaxis": Object {
                                   "autorange": false,
                                   "nticks": 10,

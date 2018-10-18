@@ -168,7 +168,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
           </SecondaryStructureContextConsumer>
         </CouplingContextProvider>
       </Segment>
-      <footer>Powered by {<a href="https://github.com/cBioCenter/chell-viz">Chell</a>}</footer>
+      {this.renderFooter()}
     </div>
   );
 
@@ -204,6 +204,25 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
         )}
       </Message>
     );
+  };
+
+  protected renderFooter = () => {
+    const chell = <a href="https://github.com/cBioCenter/chell-viz">Chell</a>;
+
+    // prettier-ignore
+    const sayings = [
+      <>Powered by {chell}!</>,
+      <>They love me at the {chell}sea.</>,
+      <>Today's visualization has been brought to you by {chell}.</>,
+      <>{chell}sea, {chell}sea, I believe...</>,
+      <>Now you're thinking with {chell}!</>,
+      <>And {chell}sea says she's got nowhere to go...</>,
+    ].map(saying => <React.Fragment key={'random-chell-saying'}>{saying}</React.Fragment>);
+
+    // tslint:disable-next-line:insecure-random
+    const randomSaying = sayings[Math.floor(Math.random() * sayings.length)];
+
+    return <footer style={{ padding: '25vh 0 25px 25px' }}>{randomSaying}</footer>;
   };
 
   protected renderSequenceAccordionMessage = (title: string, content: string) => ({
@@ -285,23 +304,24 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     arePredictionsAvailable: boolean,
     measuredProximity: CONTACT_DISTANCE_PROXIMITY,
     pdbData?: ChellPDB,
+    size: number | string = '550px',
   ) => (
     <GridRow verticalAlign={'middle'}>
       <GridColumn width={6}>
-        <Card raised={true} style={{ padding: '10px 14px', height: '660px', width: '600px' }}>
+        <Card raised={true} style={{ height: '615px', padding: '15px 15px 0 15px', width: '600px' }}>
           <NGLComponent
             data={this.state[VIZ_TYPE.NGL].pdbData}
-            height={'600px'}
+            height={size}
             isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
             measuredProximity={measuredProximity}
             onMeasuredProximityChange={this.onMeasuredProximityChange()}
             style={style}
-            width={'600px'}
+            width={size}
           />
         </Card>
       </GridColumn>
       <GridColumn width={6}>
-        <Card raised={true} style={{ padding: '10px 14px', height: '660px', width: '600px' }}>
+        <Card raised={true} style={{ height: '615px', padding: '15px 15px 0 15px', width: '600px' }}>
           {arePredictionsAvailable ? (
             <PredictedContactMap
               data={{
@@ -309,10 +329,10 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                 pdbData,
                 secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
               }}
-              height={590}
+              height={size}
               isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
               style={style}
-              width={580}
+              width={size}
             />
           ) : (
             <ContactMap
@@ -321,10 +341,10 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                 pdbData,
                 secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
               }}
-              height={585}
+              height={size}
               isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
               style={style}
-              width={585}
+              width={size}
             />
           )}
         </Card>

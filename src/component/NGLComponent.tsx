@@ -1,7 +1,7 @@
 import { cloneDeep } from 'lodash';
 import * as NGL from 'ngl';
 import * as React from 'react';
-import { Dimmer, Grid, Loader } from 'semantic-ui-react';
+import { Dimmer, Loader } from 'semantic-ui-react';
 import { Vector2 } from 'three';
 
 import { SettingsPanel } from '~chell-viz~/component';
@@ -158,47 +158,43 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     } = this.props;
 
     return (
-      <SettingsPanel
-        configurations={[
-          {
-            name: 'Remove All Locked Distance Pairs',
-            onClick: residueContext.removeAllLockedResiduePairs,
-            type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
-          },
-          {
-            current: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
-            name: 'Measuring Proximity',
-            onChange: (value: number) => {
-              if (onMeasuredProximityChange) {
-                onMeasuredProximityChange(value);
-              }
+      <Dimmer.Dimmable dimmed={true}>
+        <Dimmer active={isDataLoading}>
+          <Loader />
+        </Dimmer>
+        <SettingsPanel
+          configurations={[
+            {
+              name: 'Remove All Locked Distance Pairs',
+              onClick: residueContext.removeAllLockedResiduePairs,
+              type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
             },
-            options: Object.values(CONTACT_DISTANCE_PROXIMITY),
-            type: CONFIGURATION_COMPONENT_TYPE.RADIO,
-          },
-        ]}
-        showConfigurations={showConfigurations}
-      >
-        <Dimmer.Dimmable dimmed={true}>
-          <Dimmer active={isDataLoading}>
-            <Loader />
-          </Dimmer>
-          <Grid.Row centered={true} textAlign={'center'}>
-            <Grid.Column textAlign={'center'}>
-              <div className="NGLComponent" style={{ ...style, height, width }}>
-                <div
-                  className="NGLCanvas"
-                  onKeyDown={this.onKeyDown}
-                  onMouseLeave={this.onCanvasLeave}
-                  ref={el => (this.canvas = el)}
-                  role={'img'}
-                  style={{ height: '95%', width: '95%' }}
-                />
-              </div>
-            </Grid.Column>
-          </Grid.Row>
-        </Dimmer.Dimmable>
-      </SettingsPanel>
+            {
+              current: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
+              name: 'Measuring Proximity',
+              onChange: (value: number) => {
+                if (onMeasuredProximityChange) {
+                  onMeasuredProximityChange(value);
+                }
+              },
+              options: Object.values(CONTACT_DISTANCE_PROXIMITY),
+              type: CONFIGURATION_COMPONENT_TYPE.RADIO,
+            },
+          ]}
+          showConfigurations={showConfigurations}
+        >
+          <div className="NGLComponent" style={{ ...style, height, width }}>
+            <div
+              className="NGLCanvas"
+              onKeyDown={this.onKeyDown}
+              onMouseLeave={this.onCanvasLeave}
+              ref={el => (this.canvas = el)}
+              role={'img'}
+              style={{ height: '100%', width: '100%' }}
+            />
+          </div>
+        </SettingsPanel>
+      </Dimmer.Dimmable>
     );
   }
 

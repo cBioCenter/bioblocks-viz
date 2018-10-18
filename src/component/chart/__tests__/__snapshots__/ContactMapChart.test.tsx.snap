@@ -110,7 +110,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
           "b": 65,
           "l": 65,
         },
-        "showlegend": true,
+        "showlegend": false,
         "xaxis": Object {
           "autorange": false,
           "nticks": 10,
@@ -409,7 +409,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
           "b": 65,
           "l": 65,
         },
-        "showlegend": true,
+        "showlegend": false,
         "xaxis": Object {
           "autorange": false,
           "nticks": 10,
@@ -512,7 +512,7 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
           "b": 65,
           "l": 65,
         },
-        "showlegend": true,
+        "showlegend": false,
         "xaxis": Object {
           "autorange": false,
           "nticks": 10,

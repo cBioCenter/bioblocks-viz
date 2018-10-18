@@ -45,7 +45,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
       <div>
         <Grid columns={1}>
           <Grid.Column>{this.renderSettingsButton()}</Grid.Column>
-          <Sidebar.Pushable>
+          <Sidebar.Pushable style={{ width }}>
             <Sidebar
               as={Menu}
               animation={'overlay'}

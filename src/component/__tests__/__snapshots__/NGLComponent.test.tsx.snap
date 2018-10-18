@@ -1,70 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NGLComponent Should match existing snapshot when unconnected to a context. 1`] = `
-<SettingsPanel
-  configurations={
-    Array [
-      Object {
-        "name": "Remove All Locked Distance Pairs",
-        "onClick": [Function],
-        "type": "BUTTON",
-      },
-      Object {
-        "current": "CLOSEST",
-        "name": "Measuring Proximity",
-        "onChange": [Function],
-        "options": Array [
-          "CLOSEST",
-          "C-α",
-        ],
-        "type": "RADIO",
-      },
-    ]
-  }
-  direction="left"
-  inverted={true}
-  showConfigurations={true}
-  width="100%"
+<DimmerDimmable
+  dimmed={true}
 >
-  <DimmerDimmable
-    dimmed={true}
+  <Dimmer
+    active={false}
   >
-    <Dimmer
-      active={false}
+    <Loader />
+  </Dimmer>
+  <SettingsPanel
+    configurations={
+      Array [
+        Object {
+          "name": "Remove All Locked Distance Pairs",
+          "onClick": [Function],
+          "type": "BUTTON",
+        },
+        Object {
+          "current": "CLOSEST",
+          "name": "Measuring Proximity",
+          "onChange": [Function],
+          "options": Array [
+            "CLOSEST",
+            "C-α",
+          ],
+          "type": "RADIO",
+        },
+      ]
+    }
+    direction="left"
+    inverted={true}
+    showConfigurations={true}
+    width="100%"
+  >
+    <div
+      className="NGLComponent"
+      style={
+        Object {
+          "height": "100%",
+          "width": "100%",
+        }
+      }
     >
-      <Loader />
-    </Dimmer>
-    <GridRow
-      centered={true}
-      textAlign="center"
-    >
-      <GridColumn
-        textAlign="center"
-      >
-        <div
-          className="NGLComponent"
-          style={
-            Object {
-              "height": "100%",
-              "width": "100%",
-            }
+      <div
+        className="NGLCanvas"
+        onKeyDown={[Function]}
+        onMouseLeave={[Function]}
+        role="img"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
           }
-        >
-          <div
-            className="NGLCanvas"
-            onKeyDown={[Function]}
-            onMouseLeave={[Function]}
-            role="img"
-            style={
-              Object {
-                "height": "95%",
-                "width": "95%",
-              }
-            }
-          />
-        </div>
-      </GridColumn>
-    </GridRow>
-  </DimmerDimmable>
-</SettingsPanel>
+        }
+      />
+    </div>
+  </SettingsPanel>
+</DimmerDimmable>
 `;
