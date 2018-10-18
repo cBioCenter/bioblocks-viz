@@ -13,7 +13,7 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
     configurations={
       Array [
         Object {
-          "name": "Remove All Locked Distance Pairs",
+          "name": "Clear Data",
           "onClick": [Function],
           "type": "BUTTON",
         },

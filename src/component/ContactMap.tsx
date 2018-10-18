@@ -96,7 +96,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
   }
 
   public render() {
-    const { configurations, isDataLoading, style } = this.props;
+    const { configurations, isDataLoading, residueContext, style } = this.props;
     const { pointsToPlot } = this.state;
 
     return (
@@ -107,6 +107,11 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
           </Dimmer>
 
           {this.renderContactMapChart(pointsToPlot, [
+            {
+              name: 'Clear Data',
+              onClick: residueContext.removeAllLockedResiduePairs,
+              type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
+            },
             ...configurations,
             ...this.generateNodeSizeSliderConfigs(pointsToPlot),
           ])}
