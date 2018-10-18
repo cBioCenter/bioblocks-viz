@@ -30,6 +30,8 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
     width: '100%',
   };
 
+  protected panel: HTMLDivElement | null = null;
+
   constructor(props: SettingsPanelProps) {
     super(props);
     this.state = {
@@ -37,12 +39,34 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
     };
   }
 
+  public componentDidUpdate(prevProps: SettingsPanelProps, prevState: ISettingsPanelState) {
+    const { visible } = this.state;
+    if (visible && prevState.visible !== visible) {
+      window.addEventListener('click', e => {
+        if (this.panel) {
+          const panelRect = this.panel.getBoundingClientRect();
+
+          const { x, y } = e;
+          const isIntersected =
+            x >= panelRect.left && x <= panelRect.right && y >= panelRect.top && y <= panelRect.bottom;
+
+          if (!isIntersected) {
+            this.hideSettingsPanel();
+            window.removeEventListener('click', this.hideSettingsPanel);
+          }
+        }
+      });
+    } else {
+      window.removeEventListener('click', e => this.hideSettingsPanel);
+    }
+  }
+
   public render() {
     const { children, configurations, showConfigurations, width, ...remainingProps } = this.props;
     const { visible } = this.state;
 
     return showConfigurations ? (
-      <div>
+      <div ref={node => (this.panel = node ? node : null)}>
         <Grid columns={1}>
           <Grid.Column>{this.renderSettingsButton()}</Grid.Column>
           <Sidebar.Pushable style={{ width }}>
@@ -56,7 +80,6 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
             >
               {this.renderConfigurations(configurations)}
             </Sidebar>
-
             <Sidebar.Pusher>{children}</Sidebar.Pusher>
           </Sidebar.Pushable>
         </Grid>
@@ -73,7 +96,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
   };
 
   public renderSettingsButton = () => (
-    <Button icon={'settings'} basic={true} floated={'right'} onClick={this.onButtonClick} />
+    <Button basic={true} floated={'right'} icon={'settings'} onClick={this.onButtonClick} />
   );
 
   public renderConfigurations(configurations: ChellWidgetConfig[]) {
@@ -133,5 +156,11 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
         value={config.values.current}
       />
     );
+  }
+
+  protected hideSettingsPanel() {
+    this.setState({
+      visible: false,
+    });
   }
 }
