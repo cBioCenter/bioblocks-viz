@@ -87,7 +87,8 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
 
   public componentDidMount({ backgroundColor } = this.props) {
     if (this.canvas) {
-      const stage = new NGL.Stage(this.canvas, { backgroundColor });
+      const stage = this.generateStage(this.canvas, { backgroundColor });
+
       const { data } = this.props;
 
       this.initData(stage, data);
@@ -426,6 +427,18 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
       const { residueContext } = this.props;
       residueContext.removeNonLockedResidues();
     }
+  };
+
+  protected generateStage = (canvas: HTMLElement, params?: NGL.Partial<NGL.IStageParameters>) => {
+    const stage = new NGL.Stage(canvas, params);
+
+    // !IMPORTANT! This is needed to prevent the canvas shifting when the user clicks the canvas.
+    // It's unclear why the focus does this, but it's undesirable.
+    stage.keyBehavior.domElement.focus = () => {
+      return;
+    };
+
+    return stage;
   };
 }
 

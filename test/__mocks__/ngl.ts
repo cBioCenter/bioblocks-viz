@@ -22,6 +22,10 @@ class MockStage {
   public reprList: string[] = [];
   public tooltip: Partial<HTMLElement> = { textContent: '' };
 
+  public keyBehavior = {
+    domElement: jest.fn(),
+  };
+
   public mouseControls = {
     add: (eventName: string, callback: (...args: any[]) => void) => this.events.set(eventName, callback),
     run: (eventName: string, ...args: any[]) => {
@@ -85,6 +89,7 @@ class MockStage {
       this.reprList.splice(this.reprList.indexOf(name), 1);
     },
     stage: {
+      keyBehavior: this.keyBehavior,
       mouseControls: this.mouseControls,
       mouseObserver: this.mouseObserver,
       tooltip: this.tooltip,
