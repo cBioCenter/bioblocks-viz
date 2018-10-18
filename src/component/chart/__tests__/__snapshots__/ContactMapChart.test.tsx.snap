@@ -98,9 +98,9 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
       ]
     }
     dataTransformFn={[Function]}
+    height="100%"
     layout={
       Object {
-        "height": 400,
         "legend": Object {
           "orientation": "h",
           "y": -0.4,
@@ -111,7 +111,6 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
           "l": 65,
         },
         "showlegend": true,
-        "width": 400,
         "xaxis": Object {
           "autorange": false,
           "nticks": 10,
@@ -155,6 +154,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
     selectedSecondaryStructures={Array []}
     selectedSecondaryStructuresColor="#feb83f"
     showLoader={true}
+    width="100%"
   />
 </SettingsPanel>
 `;
@@ -397,9 +397,9 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
       ]
     }
     dataTransformFn={[Function]}
+    height="100%"
     layout={
       Object {
-        "height": 400,
         "legend": Object {
           "orientation": "h",
           "y": -0.4,
@@ -410,7 +410,6 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
           "l": 65,
         },
         "showlegend": true,
-        "width": 400,
         "xaxis": Object {
           "autorange": false,
           "nticks": 10,
@@ -466,6 +465,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
     selectedSecondaryStructures={Array []}
     selectedSecondaryStructuresColor="#feb83f"
     showLoader={true}
+    width="100%"
   />
 </SettingsPanel>
 `;
@@ -500,9 +500,9 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
       ]
     }
     dataTransformFn={[Function]}
+    height="100%"
     layout={
       Object {
-        "height": 400,
         "legend": Object {
           "orientation": "h",
           "y": -0.4,
@@ -513,7 +513,6 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
           "l": 65,
         },
         "showlegend": true,
-        "width": 400,
         "xaxis": Object {
           "autorange": false,
           "nticks": 10,
@@ -542,6 +541,7 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
     selectedSecondaryStructures={Array []}
     selectedSecondaryStructuresColor="#feb83f"
     showLoader={true}
+    width="100%"
   />
 </SettingsPanel>
 `;

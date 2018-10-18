@@ -12,6 +12,7 @@ exports[`ProteinFeatureViewer Should match the default snapshot 1`] = `
   <PlotlyChart
     config={Object {}}
     data={Array []}
+    height="100%"
     layout={
       Object {
         "annotations": Array [],
@@ -40,6 +41,7 @@ exports[`ProteinFeatureViewer Should match the default snapshot 1`] = `
     onHoverCallback={[Function]}
     onSelectedCallback={[Function]}
     showLoader={false}
+    width="100%"
   />
 </div>
 `;
@@ -56,6 +58,7 @@ exports[`ProteinFeatureViewer Should match the default snapshot. 1`] = `
   <PlotlyChart
     config={Object {}}
     data={Array []}
+    height="100%"
     layout={
       Object {
         "annotations": Array [],
@@ -84,6 +87,7 @@ exports[`ProteinFeatureViewer Should match the default snapshot. 1`] = `
     onHoverCallback={[Function]}
     onSelectedCallback={[Function]}
     showLoader={false}
+    width="100%"
   />
 </div>
 `;

@@ -144,37 +144,33 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     { style } = this.props,
     { arePredictionsAvailable, couplingScores, errorMsg, isResidueMappingNeeded, measuredProximity, pdbData } = this
       .state,
-  ) => {
-    console.log(measuredProximity);
+  ) => (
+    <div>
+      <Header as={'h1'} attached={'top'}>
+        ContactMap.org: 2D and 3D Visualization
+      </Header>
+      {errorMsg.length > 1 && this.renderErrorMessage()}
+      {!pdbData && couplingScores.length === 0 && this.renderStartMessage()}
 
-    return (
-      <div>
-        <Header as={'h1'} attached={'top'}>
-          ContactMap.org: 2D and 3D Visualization
-        </Header>
-        {errorMsg.length > 1 && this.renderErrorMessage()}
-        {!pdbData && couplingScores.length === 0 && this.renderStartMessage()}
-
-        <Segment attached={true} raised={true}>
-          <CouplingContextProvider>
-            <SecondaryStructureContextConsumer>
-              {secondaryStructureContext => (
-                <ResidueContextConsumer>
-                  {residueContext => (
-                    <Grid centered={true}>
-                      {this.renderUploadButtonsRow(isResidueMappingNeeded, residueContext, secondaryStructureContext)}
-                      {this.renderChellComponents(style, arePredictionsAvailable, measuredProximity, pdbData)}
-                    </Grid>
-                  )}
-                </ResidueContextConsumer>
-              )}
-            </SecondaryStructureContextConsumer>
-          </CouplingContextProvider>
-        </Segment>
-        <footer>Powered by {<a href="https://github.com/cBioCenter/chell-viz">Chell</a>}</footer>
-      </div>
-    );
-  };
+      <Segment attached={true} raised={true}>
+        <CouplingContextProvider>
+          <SecondaryStructureContextConsumer>
+            {secondaryStructureContext => (
+              <ResidueContextConsumer>
+                {residueContext => (
+                  <Grid centered={true}>
+                    {this.renderUploadButtonsRow(isResidueMappingNeeded, residueContext, secondaryStructureContext)}
+                    {this.renderChellComponents(style, arePredictionsAvailable, measuredProximity, pdbData)}
+                  </Grid>
+                )}
+              </ResidueContextConsumer>
+            )}
+          </SecondaryStructureContextConsumer>
+        </CouplingContextProvider>
+      </Segment>
+      <footer>Powered by {<a href="https://github.com/cBioCenter/chell-viz">Chell</a>}</footer>
+    </div>
+  );
 
   protected renderErrorMessage = ({ errorMsg, isResidueMappingNeeded, pdbData } = this.state) => {
     return (
@@ -500,7 +496,6 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
   };
 
   protected onMeasuredProximityChange = () => (value: number) => {
-    console.log(`Changing measured prox to ${value}`);
     this.setState({
       measuredProximity: Object.values(CONTACT_DISTANCE_PROXIMITY)[value] as CONTACT_DISTANCE_PROXIMITY,
     });

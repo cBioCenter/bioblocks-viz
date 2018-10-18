@@ -7,6 +7,7 @@ import { Dimmer, Loader } from 'semantic-ui-react';
 import {
   CHELL_CHART_EVENT_TYPE,
   CHELL_CHART_PIECE,
+  CHELL_CSS_STYLE,
   ChellChartEvent,
   IPlotlyData,
   IPlotlyLayout,
@@ -15,6 +16,7 @@ import {
 export interface IPlotlyChartProps {
   config?: Partial<Plotly.Config>;
   data: Array<Partial<IPlotlyData>>;
+  height?: number | string;
   layout?: Partial<IPlotlyLayout>;
   onAfterPlotCallback?: ((event: ChellChartEvent) => void);
   onClickCallback?: ((event: ChellChartEvent) => void);
@@ -24,6 +26,8 @@ export interface IPlotlyChartProps {
   onUnHoverCallback?: ((event: ChellChartEvent) => void);
   onRelayoutCallback?: ((event: ChellChartEvent) => void);
   showLoader?: boolean;
+  style?: CHELL_CSS_STYLE;
+  width?: number | string;
 }
 
 export const defaultPlotlyConfig: Partial<Plotly.Config> = {
@@ -38,7 +42,6 @@ export const defaultPlotlyConfig: Partial<Plotly.Config> = {
 export const defaultPlotlyLayout: Partial<IPlotlyLayout> = {
   autosize: true,
   dragmode: 'zoom',
-  height: 400,
   hovermode: 'closest',
   legend: {},
   margin: {
@@ -49,7 +52,6 @@ export const defaultPlotlyLayout: Partial<IPlotlyLayout> = {
   },
   showlegend: false,
   title: '',
-  width: 400,
 };
 
 /**
@@ -65,8 +67,10 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   public static defaultProps = {
     config: {},
     data: [],
+    height: '100%',
     layout: {},
     showLoader: true,
+    width: '100%',
   };
 
   public plotlyCanvas: plotly.PlotlyHTMLElement | null = null;
@@ -153,7 +157,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   }
 
   public render() {
-    const { showLoader } = this.props;
+    const { height, showLoader, style, width } = this.props;
 
     return (
       <div>
@@ -165,7 +169,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
         <div
           className={'plotly-chart'}
           ref={node => (this.canvasRef = node ? node : null)}
-          style={{ marginBottom: 5 }}
+          style={{ ...style, height, marginBottom: 5, width }}
         />
       </div>
     );

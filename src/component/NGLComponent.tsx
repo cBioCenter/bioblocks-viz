@@ -67,7 +67,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     backgroundColor: '#ffffff',
     couplingContext: { ...initialCouplingContext },
     data: undefined,
-    height: 400,
+    height: '100%',
     isDataLoading: false,
     measuredProximity: CONTACT_DISTANCE_PROXIMITY.C_ALPHA,
     residueContext: { ...initialResidueContext },
@@ -75,7 +75,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
       ...initialSecondaryStructureContext,
     },
     showConfigurations: true,
-    width: 400,
+    width: '100%',
   };
   public readonly state: NGLComponentState = initialNGLState;
 

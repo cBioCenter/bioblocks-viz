@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { ContactMap, generateChartDataEntry, IContactMapChartData } from '~chell-viz~/component';
 import {
+  CHELL_CSS_STYLE,
   ChellWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
   CouplingContainer,
@@ -12,11 +13,11 @@ import {
 export interface IPredictedContactMapProps {
   correctColor: string;
   data: IContactMapData;
-  height: number;
+  height: number | string;
   incorrectColor: string;
   isDataLoading: boolean;
-  style?: React.CSSProperties;
-  width: number;
+  style?: CHELL_CSS_STYLE;
+  width: number | string;
 }
 
 export const initialPredictedContactMapState = {
@@ -34,10 +35,10 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
       couplingScores: new CouplingContainer(),
       secondaryStructures: new Array<SECONDARY_STRUCTURE>(),
     },
-    height: 400,
+    height: '100%',
     incorrectColor: '#000000',
     isDataLoading: false,
-    width: 400,
+    width: '100%',
   };
 
   public readonly state: PredictedContactMapState = initialPredictedContactMapState;
@@ -80,7 +81,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     const { pointsToPlot } = this.state;
 
     return (
-      <div id="PredictedContactMapComponent" style={{ ...style }}>
+      <div className="PredictedContactMapComponent" style={style}>
         <ContactMap
           configurations={this.getContactMapConfigs()}
           data={{

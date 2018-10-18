@@ -2,7 +2,7 @@
 
 exports[`ContactMap Configuration Should match existing snapshot when given configurations. 1`] = `
 <div
-  id="ContactMapComponent"
+  className="ContactMapComponent"
   style={Object {}}
 >
   <DimmerDimmable
@@ -112,7 +112,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
         ]
       }
       dataTransformFn={[Function]}
-      height={400}
+      height="100%"
       legendModifiers={
         Object {
           "y": -0.4,
@@ -137,7 +137,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
       }
       selectedSecondaryStructuresColor="#feb83f"
       showConfigurations={true}
-      width={400}
+      width="100%"
     />
   </DimmerDimmable>
 </div>
@@ -145,7 +145,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
 
 exports[`ContactMap Snapshots Should match existing snapshot when given empty data. 1`] = `
 <div
-  id="ContactMapComponent"
+  className="ContactMapComponent"
   style={Object {}}
 >
   <DimmerDimmable
@@ -235,7 +235,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
         ]
       }
       dataTransformFn={[Function]}
-      height={400}
+      height="100%"
       legendModifiers={
         Object {
           "y": -0.4,
@@ -260,7 +260,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
       }
       selectedSecondaryStructuresColor="#feb83f"
       showConfigurations={true}
-      width={400}
+      width="100%"
     />
   </DimmerDimmable>
 </div>
@@ -268,7 +268,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
 
 exports[`ContactMap Snapshots Should match existing snapshot when given no data. 1`] = `
 <div
-  id="ContactMapComponent"
+  className="ContactMapComponent"
   style={Object {}}
 >
   <DimmerDimmable
@@ -358,7 +358,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
         ]
       }
       dataTransformFn={[Function]}
-      height={400}
+      height="100%"
       legendModifiers={
         Object {
           "y": -0.4,
@@ -383,7 +383,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
       }
       selectedSecondaryStructuresColor="#feb83f"
       showConfigurations={true}
-      width={400}
+      width="100%"
     />
   </DimmerDimmable>
 </div>
@@ -813,7 +813,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
   }
   enableSliders={true}
   formattedPoints={Array []}
-  height={400}
+  height="100%"
   highlightColor="#ff8800"
   isDataLoading={false}
   lockedResiduePairs={
@@ -856,10 +856,10 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
     }
   }
   showConfigurations={true}
-  width={400}
+  width="100%"
 >
   <div
-    id="ContactMapComponent"
+    className="ContactMapComponent"
     style={Object {}}
   >
     <DimmerDimmable
@@ -983,7 +983,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             ]
           }
           dataTransformFn={[Function]}
-          height={400}
+          height="100%"
           legendModifiers={
             Object {
               "y": -0.4,
@@ -1008,7 +1008,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           }
           selectedSecondaryStructuresColor="#feb83f"
           showConfigurations={true}
-          width={400}
+          width="100%"
         >
           <SettingsPanel
             configurations={
@@ -1434,9 +1434,9 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                               ]
                             }
                             dataTransformFn={[Function]}
+                            height="100%"
                             layout={
                               Object {
-                                "height": 400,
                                 "legend": Object {
                                   "orientation": "h",
                                   "y": -0.4,
@@ -1447,7 +1447,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                   "l": 65,
                                 },
                                 "showlegend": true,
-                                "width": 400,
                                 "xaxis": Object {
                                   "autorange": false,
                                   "nticks": 10,
@@ -1484,6 +1483,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                             }
                             selectedSecondaryStructuresColor="#feb83f"
                             showLoader={true}
+                            width="100%"
                           >
                             <div>
                               <Dimmer
@@ -1512,7 +1512,9 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                 className="plotly-chart"
                                 style={
                                   Object {
+                                    "height": "100%",
                                     "marginBottom": 5,
+                                    "width": "100%",
                                   }
                                 }
                               />

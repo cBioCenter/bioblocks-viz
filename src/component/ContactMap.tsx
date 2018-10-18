@@ -17,6 +17,7 @@ import {
   SecondaryStructureContextConsumer,
 } from '~chell-viz~/context';
 import {
+  CHELL_CSS_STYLE,
   ChellChartEvent,
   ChellWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
@@ -36,7 +37,7 @@ export interface IContactMapProps {
   configurations: ChellWidgetConfig[];
   data: IContactMapData;
   formattedPoints: IContactMapChartData[];
-  height: number;
+  height: number | string;
   highlightColor: string;
   isDataLoading: boolean;
   observedColor: string;
@@ -44,8 +45,8 @@ export interface IContactMapProps {
   residueContext: IResidueContext;
   secondaryStructureContext: ISecondaryStructureContext;
   showConfigurations: boolean;
-  style?: React.CSSProperties;
-  width: number;
+  style?: CHELL_CSS_STYLE;
+  width: number | string;
 }
 
 export const initialContactMapState = {
@@ -63,7 +64,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     },
     enableSliders: true,
     formattedPoints: new Array<IContactMapChartData>(),
-    height: 400,
+    height: '100%',
     highlightColor: '#ff8800',
     isDataLoading: false,
     observedColor: '#0000ff',
@@ -74,7 +75,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       ...initialSecondaryStructureContext,
     },
     showConfigurations: true,
-    width: 400,
+    width: '100%',
   };
 
   public readonly state: ContactMapState = initialContactMapState;
@@ -99,7 +100,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     const { pointsToPlot } = this.state;
 
     return (
-      <div id="ContactMapComponent" style={{ ...style }}>
+      <div className="ContactMapComponent" style={{ ...style }}>
         <Dimmer.Dimmable dimmed={true}>
           <Dimmer active={isDataLoading}>
             <Loader />

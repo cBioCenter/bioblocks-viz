@@ -45,8 +45,8 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
           className="NGLComponent"
           style={
             Object {
-              "height": 400,
-              "width": 400,
+              "height": "100%",
+              "width": "100%",
             }
           }
         >

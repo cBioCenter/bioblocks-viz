@@ -9,7 +9,7 @@ export interface IContactMapChartProps {
   candidateResidues: RESIDUE_TYPE[];
   configurations: ChellWidgetConfig[];
   contactData: IContactMapChartData[];
-  height: number;
+  height: number | string;
   legendModifiers: {
     y: number;
   };
@@ -22,7 +22,7 @@ export interface IContactMapChartProps {
   selectedSecondaryStructures: SECONDARY_STRUCTURE[];
   selectedSecondaryStructuresColor: string;
   showConfigurations: boolean;
-  width: number;
+  width: number | string;
   dataTransformFn(entry: IContactMapChartData, mirrorPoints: boolean): Partial<IPlotlyData>;
   onClickCallback?(...args: any[]): void;
   onHoverCallback?(...args: any[]): void;
@@ -95,7 +95,7 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
     candidateResidues: new Array<RESIDUE_TYPE>(),
     configurations: new Array<ChellWidgetConfig>(),
     dataTransformFn: generateScatterGLData,
-    height: 400,
+    height: '100%',
     legendModifiers: {
       y: -0.4,
     },
@@ -108,7 +108,7 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
     selectedSecondaryStructures: [],
     selectedSecondaryStructuresColor: '#feb83f',
     showConfigurations: true,
-    width: 400,
+    width: '100%',
   };
 
   constructor(props: IContactMapChartProps) {
@@ -138,13 +138,11 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
     const {
       configurations,
       contactData,
-      height,
       legendModifiers,
       marginModifiers,
       range,
       showConfigurations,
-      width,
-      ...props
+      ...passThroughProps
     } = this.props;
     const { plotlyData } = this.state;
 
@@ -153,7 +151,6 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
         <PlotlyChart
           data={plotlyData}
           layout={{
-            height,
             legend: {
               orientation: 'h',
               y: legendModifiers.y,
@@ -164,7 +161,6 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
               l: marginModifiers.l,
             },
             showlegend: true,
-            width,
             xaxis: {
               autorange: false,
               nticks: 10,
@@ -182,7 +178,7 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
               title: 'Residue #',
             },
           }}
-          {...props}
+          {...passThroughProps}
         />
       </SettingsPanel>
     );
