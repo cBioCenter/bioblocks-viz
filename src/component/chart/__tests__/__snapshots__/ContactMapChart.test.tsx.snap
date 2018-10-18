@@ -8,6 +8,23 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
   showConfigurations={true}
   width="100%"
 >
+  <Button
+    as="button"
+    basic={true}
+    floated="left"
+    icon="eye slash"
+    onClick={[Function]}
+    role="button"
+    style={
+      Object {
+        "float": "left",
+        "margin": "0 0 0 15px",
+        "position": "relative",
+        "top": "500px",
+        "zIndex": 999,
+      }
+    }
+  />
   <PlotlyChart
     candidateResidues={Array []}
     config={Object {}}
@@ -167,6 +184,23 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
   showConfigurations={true}
   width="100%"
 >
+  <Button
+    as="button"
+    basic={true}
+    floated="left"
+    icon="eye slash"
+    onClick={[Function]}
+    role="button"
+    style={
+      Object {
+        "float": "left",
+        "margin": "0 0 0 15px",
+        "position": "relative",
+        "top": "500px",
+        "zIndex": 999,
+      }
+    }
+  />
   <PlotlyChart
     candidateResidues={Array []}
     config={Object {}}
@@ -478,6 +512,23 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
   showConfigurations={true}
   width="100%"
 >
+  <Button
+    as="button"
+    basic={true}
+    floated="left"
+    icon="eye slash"
+    onClick={[Function]}
+    role="button"
+    style={
+      Object {
+        "float": "left",
+        "margin": "0 0 0 15px",
+        "position": "relative",
+        "top": "500px",
+        "zIndex": 999,
+      }
+    }
+  />
   <PlotlyChart
     candidateResidues={Array []}
     config={Object {}}

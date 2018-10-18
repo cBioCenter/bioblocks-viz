@@ -1352,6 +1352,48 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         <div
                           className="pusher"
                         >
+                          <Button
+                            as="button"
+                            basic={true}
+                            floated="left"
+                            icon="eye slash"
+                            onClick={[Function]}
+                            role="button"
+                            style={
+                              Object {
+                                "float": "left",
+                                "margin": "0 0 0 15px",
+                                "position": "relative",
+                                "top": "500px",
+                                "zIndex": 999,
+                              }
+                            }
+                          >
+                            <button
+                              className="ui basic icon left floated button"
+                              onClick={[Function]}
+                              role="button"
+                              style={
+                                Object {
+                                  "float": "left",
+                                  "margin": "0 0 0 15px",
+                                  "position": "relative",
+                                  "top": "500px",
+                                  "zIndex": 999,
+                                }
+                              }
+                            >
+                              <Icon
+                                as="i"
+                                name="eye slash"
+                              >
+                                <i
+                                  aria-hidden="true"
+                                  className="eye slash icon"
+                                />
+                              </Icon>
+                            </button>
+                          </Button>
                           <PlotlyChart
                             candidateResidues={Array []}
                             config={Object {}}
