@@ -270,6 +270,8 @@ describe('ContactMap', () => {
           secondaryStructureContext={{
             ...initialSecondaryStructureContext,
             removeSecondaryStructure: removeSecondaryStructureSpy,
+            selectedSecondaryStructures: [],
+            temporarySecondaryStructures: [testSecStruct],
           }}
         />,
       );

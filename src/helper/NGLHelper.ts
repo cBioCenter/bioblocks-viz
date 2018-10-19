@@ -15,6 +15,7 @@ export const defaultRepParams: Partial<NGL.IStructureRepresentationParams> = {
   labelUnit: 'angstrom',
   labelZOffset: 35,
 };
+
 /**
  * Draws a line between two residues in NGL.
  *

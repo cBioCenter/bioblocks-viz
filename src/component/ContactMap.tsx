@@ -13,7 +13,6 @@ import {
   IResidueContext,
   ISecondaryStructureContext,
   ResidueContextConsumer,
-  ResidueSelection,
   SecondaryStructureContextConsumer,
 } from '~chell-viz~/context';
 import {
@@ -91,7 +90,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
   public componentDidUpdate(prevProps: IContactMapProps) {
     const { data, residueContext } = this.props;
     if (data !== prevProps.data || residueContext.lockedResiduePairs !== prevProps.residueContext.lockedResiduePairs) {
-      this.setupPointsToPlot(data.couplingScores, residueContext.lockedResiduePairs);
+      this.setupPointsToPlot(data.couplingScores);
     }
   }
 
@@ -135,8 +134,8 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     });
   };
 
-  protected setupPointsToPlot(couplingContainer: CouplingContainer, lockedResiduePairs: ResidueSelection = new Map()) {
-    const { formattedPoints, observedColor, highlightColor } = this.props;
+  protected setupPointsToPlot(couplingContainer: CouplingContainer) {
+    const { formattedPoints, observedColor, highlightColor, residueContext } = this.props;
     const { pointsToPlot } = this.state;
 
     const chartNames = {
@@ -169,8 +168,33 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       ...formattedPoints,
     );
 
+    const { lockedResiduePairs, hoveredResidues } = residueContext;
+
+    if (hoveredResidues.length >= 1) {
+      result.push(
+        generateChartDataEntry(
+          'none',
+          highlightColor,
+          chartNames.selected,
+          '',
+          selectedPointIndex >= 0 ? pointsToPlot[selectedPointIndex].nodeSize : 6,
+          [{ i: hoveredResidues[0], j: hoveredResidues.length === 1 ? hoveredResidues[0] : hoveredResidues[1] }],
+          {
+            marker: {
+              color: new Array<string>(hoveredResidues.length * 2).fill(highlightColor),
+              line: {
+                color: highlightColor,
+                width: 3,
+              },
+              symbol: 'circle-open',
+            },
+          },
+        ),
+      );
+    }
+
     if (lockedResiduePairs.size > 0) {
-      const chartPoints = Array.from(lockedResiduePairs.keys()).reduce((reduceResult, key) => {
+      const chartPoints = Array.from(lockedResiduePairs.keys()).reduce((reduceResult: IContactMapChartPoint[], key) => {
         const keyPair = lockedResiduePairs.get(key);
         if (keyPair && keyPair.length === 2) {
           reduceResult.push({ i: keyPair[0], j: keyPair[1], dist: 0 });
@@ -277,7 +301,10 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       for (const secondaryStructure of data.secondaryStructures) {
         for (const section of secondaryStructure) {
           if (section.contains(...e.selectedPoints)) {
-            if (!secondaryStructureContext.selectedSecondaryStructures.includes(section)) {
+            if (
+              !secondaryStructureContext.selectedSecondaryStructures.includes(section) &&
+              secondaryStructureContext.temporarySecondaryStructures.includes(section)
+            ) {
               secondaryStructureContext.removeSecondaryStructure(section);
             }
           }
