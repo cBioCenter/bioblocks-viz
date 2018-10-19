@@ -13,7 +13,7 @@ export const defaultRepParams: Partial<NGL.IStructureRepresentationParams> = {
   labelColor: 'black',
   labelSize: 5,
   labelUnit: 'angstrom',
-  labelZOffset: 10,
+  labelZOffset: 35,
 };
 /**
  * Draws a line between two residues in NGL.

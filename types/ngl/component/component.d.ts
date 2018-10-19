@@ -324,6 +324,7 @@ declare module 'ngl' {
     public signals: IRepresentationElementSignals;
     public stage: Stage;
     public uuid: string;
+    public type: string;
 
     constructor(
       stage: Stage,
@@ -354,7 +355,6 @@ declare module 'ngl' {
     public toggleVisibility(): this;
     public update(what: any): this;
     public updateVisibility(): void;
-    public type(): string;
     public visible(): boolean;
   }
 
