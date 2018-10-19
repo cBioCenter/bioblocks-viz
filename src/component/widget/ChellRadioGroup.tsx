@@ -52,11 +52,10 @@ export class ChellRadioGroup extends React.Component<IChellRadioGroupProps, IChe
   protected renderOptions = (id: string, options: string[], disabled: boolean, style: React.CSSProperties) => (
     <Grid centered={true} columns={2} relaxed={true} padded={true}>
       {options.map((option, index) => (
-        <Grid.Column textAlign={'center'}>
+        <Grid.Column key={`${id}-${option}`} textAlign={'center'}>
           <Form.Radio
             checked={this.state.selectedIndex === index}
             disabled={disabled}
-            key={`${id}-${option}`}
             label={{ children: option, style }}
             name={option}
             onChange={this.handleChange(index)}

@@ -15,6 +15,7 @@ exports[`ChellRadioGroup Should match existing snapshot when given simple data. 
     relaxed={true}
   >
     <GridColumn
+      key="Sample-first"
       textAlign="center"
     >
       <FormRadio
@@ -22,7 +23,6 @@ exports[`ChellRadioGroup Should match existing snapshot when given simple data. 
         checked={true}
         control={[Function]}
         disabled={false}
-        key="Sample-first"
         label={
           Object {
             "children": "first",
