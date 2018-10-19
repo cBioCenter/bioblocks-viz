@@ -167,7 +167,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
         <SettingsPanel
           configurations={[
             {
-              name: 'Clear Data',
+              name: 'Clear Selections',
               onClick: residueContext.removeAllLockedResiduePairs,
               type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
             },

@@ -108,7 +108,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 
           {this.renderContactMapChart(pointsToPlot, [
             {
-              name: 'Clear Data',
+              name: 'Clear Selections',
               onClick: residueContext.removeAllLockedResiduePairs,
               type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
             },

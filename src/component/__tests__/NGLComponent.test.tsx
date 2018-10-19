@@ -170,7 +170,7 @@ describe('NGLComponent', () => {
       <NGLComponentClass residueContext={{ ...initialResidueContext, removeAllLockedResiduePairs: removeSpy }} />,
     );
     wrapper
-      .find('#clear-data-0')
+      .find('#clear-selections-0')
       .at(0)
       .simulate('click');
     expect(removeSpy).toHaveBeenCalledTimes(1);

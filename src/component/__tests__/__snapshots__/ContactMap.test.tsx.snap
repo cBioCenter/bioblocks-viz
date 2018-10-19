@@ -18,7 +18,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
       configurations={
         Array [
           Object {
-            "name": "Clear Data",
+            "name": "Clear Selections",
             "onClick": [Function],
             "type": "BUTTON",
           },
@@ -166,7 +166,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
       configurations={
         Array [
           Object {
-            "name": "Clear Data",
+            "name": "Clear Selections",
             "onClick": [Function],
             "type": "BUTTON",
           },
@@ -294,7 +294,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
       configurations={
         Array [
           Object {
-            "name": "Clear Data",
+            "name": "Clear Selections",
             "onClick": [Function],
             "type": "BUTTON",
           },
@@ -910,7 +910,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           configurations={
             Array [
               Object {
-                "name": "Clear Data",
+                "name": "Clear Selections",
                 "onClick": [Function],
                 "type": "BUTTON",
               },
@@ -1034,7 +1034,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             configurations={
               Array [
                 Object {
-                  "name": "Clear Data",
+                  "name": "Clear Selections",
                   "onClick": [Function],
                   "type": "BUTTON",
                 },
@@ -1153,7 +1153,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                   className="ui centered grid"
                                 >
                                   <GridRow
-                                    key="clear-data-0"
+                                    key="clear-selections-0"
                                   >
                                     <div
                                       className="row"
@@ -1161,19 +1161,19 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                       <Button
                                         as="button"
                                         compact={true}
-                                        id="clear-data-0"
+                                        id="clear-selections-0"
                                         onClick={[Function]}
                                         role="button"
                                         style={Object {}}
                                       >
                                         <button
                                           className="ui compact button"
-                                          id="clear-data-0"
+                                          id="clear-selections-0"
                                           onClick={[Function]}
                                           role="button"
                                           style={Object {}}
                                         >
-                                          Clear Data
+                                          Clear Selections
                                         </button>
                                       </Button>
                                     </div>
