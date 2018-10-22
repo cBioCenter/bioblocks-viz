@@ -1,11 +1,12 @@
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 
-import { ContactMapClass } from '~chell-viz~/component';
+import { ContactMap, ContactMapClass } from '~chell-viz~/component';
 import { initialResidueContext, initialSecondaryStructureContext } from '~chell-viz~/context';
 import {
   Chell1DSection,
+  ChellPDB,
   ChellWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
   CouplingContainer,
@@ -18,10 +19,12 @@ import { dispatchPlotlyEvent, dispatchPlotlySelectionEvent, getAsyncMountedCompo
 
 describe('ContactMap', () => {
   let emptyData: IContactMapData;
+  let sampleContactsWithAminoAcids: ICouplingScore[];
   let sampleCorrectPredictedContacts: ICouplingScore[];
   let sampleIncorrectPredictedContacts: ICouplingScore[];
   let sampleOutOfLinearDistContacts: ICouplingScore[];
   let sampleData: IContactMapData;
+  let sampleDataWithAminoAcid: IContactMapData;
   let uniqueScores: Set<ICouplingScore>;
   let sampleObservedContacts: ICouplingScore[];
 
@@ -33,6 +36,10 @@ describe('ContactMap', () => {
       secondaryStructures: [],
     };
 
+    sampleContactsWithAminoAcids = [
+      generateCouplingScore(1, 10, 1.3, { A_i: 'N', A_j: 'I' }),
+      generateCouplingScore(10, 1, 1.3, { A_i: 'I', A_j: 'N' }),
+    ];
     sampleCorrectPredictedContacts = [generateCouplingScore(56, 50, 2.4)];
     sampleIncorrectPredictedContacts = [generateCouplingScore(42, 50, 20.4)];
     sampleOutOfLinearDistContacts = [
@@ -71,6 +78,11 @@ describe('ContactMap', () => {
         ],
       ] as SECONDARY_STRUCTURE[],
     };
+
+    sampleDataWithAminoAcid = {
+      couplingScores: new CouplingContainer(sampleContactsWithAminoAcids),
+      secondaryStructures: [],
+    };
   });
 
   const generateCouplingScore = (
@@ -84,8 +96,12 @@ describe('ContactMap', () => {
     j,
     ...extra,
   });
-
   // Translated from example1/coupling_scores.csv
+
+  it('Should wrap a ContactMapClass safely.', () => {
+    const wrapper = mount(<ContactMap />);
+    expect(wrapper.find(ContactMapClass)).toEqual(shallow(<ContactMapClass />));
+  });
 
   describe('Snapshots', () => {
     it('Should match existing snapshot when given no data.', () => {
@@ -98,6 +114,7 @@ describe('ContactMap', () => {
 
     it('Should match snapshot when locked residues are added.', async () => {
       const wrapper = await getAsyncMountedComponent(<ContactMapClass data={sampleData} />);
+      expect(wrapper.props().residueContext).toEqual(initialResidueContext);
       const expectedSelectedPoints = new Map(
         Object.entries({
           '37,46': [37, 46],
@@ -108,6 +125,79 @@ describe('ContactMap', () => {
         lockedResiduePairs: expectedSelectedPoints,
       });
       wrapper.update();
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it('Should match existing snapshot when basic data.', () => {
+      expect(shallow(<ContactMapClass data={sampleData} />)).toMatchSnapshot();
+    });
+
+    it('Should match existing snapshot when given data with amino acids.', () => {
+      expect(shallow(<ContactMapClass data={sampleDataWithAminoAcid} />)).toMatchSnapshot();
+    });
+
+    it('Should match existing snapshot when given data with a PDB.', async () => {
+      const pdbData = await ChellPDB.createPDB();
+      expect(shallow(<ContactMapClass data={{ ...sampleDataWithAminoAcid, pdbData }} />)).toMatchSnapshot();
+    });
+
+    it('Should match existing snapshot when a single point are hovered.', () => {
+      expect(
+        shallow(
+          <ContactMapClass
+            data={sampleData}
+            residueContext={{
+              ...initialResidueContext,
+              hoveredResidues: [sampleData.couplingScores.getObservedContacts()[0].i],
+            }}
+          />,
+        ),
+      ).toMatchSnapshot();
+    });
+
+    it('Should match existing snapshot when multiple points are hovered.', () => {
+      const contact = sampleData.couplingScores.getObservedContacts()[0];
+      expect(
+        shallow(
+          <ContactMapClass
+            data={sampleData}
+            residueContext={{
+              ...initialResidueContext,
+              hoveredResidues: [contact.i, contact.j],
+            }}
+          />,
+        ),
+      ).toMatchSnapshot();
+    });
+
+    it('Should match existing snapshot when multiple points are selected.', () => {
+      const contacts = sampleData.couplingScores.getObservedContacts();
+      const wrapper = shallow(
+        <ContactMapClass
+          data={sampleData}
+          residueContext={{
+            ...initialResidueContext,
+            hoveredResidues: [contacts[0].i, contacts[0].j],
+            lockedResiduePairs: new Map(
+              Object.entries({
+                '41,52': [41, 52],
+              }),
+            ),
+          }}
+        />,
+      );
+      wrapper.setProps({
+        residueContext: {
+          ...initialResidueContext,
+          hoveredResidues: [contacts[0].i, contacts[0].j],
+          lockedResiduePairs: new Map(
+            Object.entries({
+              '41,52': [41, 52],
+              '50,56': [50, 56],
+            }),
+          ),
+        },
+      });
       expect(wrapper).toMatchSnapshot();
     });
   });
@@ -126,7 +216,7 @@ describe('ContactMap', () => {
       expect(onClickSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('Should invoke callback to add hovered residues when a click event is fired.', async () => {
+    it('Should invoke callback to add hovered residues when a hover event is fired.', async () => {
       const onHoverSpy = jest.fn();
       const wrapper = await getAsyncMountedComponent(
         <ContactMapClass
@@ -348,6 +438,16 @@ describe('ContactMap', () => {
       ];
       const wrapper = shallow(<ContactMapClass configurations={configurations} />);
       expect(wrapper).toMatchSnapshot();
+    });
+
+    it('Should handle the node size being changed.', () => {
+      const wrapper = mount(<ContactMapClass />);
+      const instance = wrapper.instance() as ContactMapClass;
+      const expected = 10;
+      expect(instance.state.pointsToPlot[0].nodeSize).not.toEqual(expected);
+
+      instance.onNodeSizeChange(0)(expected);
+      expect(instance.state.pointsToPlot[0].nodeSize).toEqual(expected);
     });
   });
 });
