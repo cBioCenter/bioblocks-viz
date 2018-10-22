@@ -14,7 +14,7 @@ import {
   SECONDARY_STRUCTURE,
   SECONDARY_STRUCTURE_KEYS,
 } from '~chell-viz~/data';
-import { dispatchPlotlyEvent, getAsyncMountedComponent } from '~chell-viz~/test';
+import { dispatchPlotlyEvent, dispatchPlotlySelectionEvent, getAsyncMountedComponent } from '~chell-viz~/test';
 
 describe('ContactMap', () => {
   let emptyData: IContactMapData;
@@ -157,8 +157,8 @@ describe('ContactMap', () => {
       const wrapper = await getAsyncMountedComponent(
         <ContactMapClass data={sampleData} onBoxSelection={onSelectedSpy} />,
       );
-      await dispatchPlotlyEvent(wrapper, 'plotly_selected');
-      expect(onSelectedSpy).toHaveBeenLastCalledWith([[0], [0]]);
+      await dispatchPlotlySelectionEvent(wrapper);
+      expect(onSelectedSpy).toHaveBeenLastCalledWith([0, 0]);
     });
 
     it('Should invoke callback for adding a secondary structure when a mouse clicks it the first time.', async () => {

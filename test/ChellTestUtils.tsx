@@ -57,6 +57,30 @@ export const dispatchPlotlyEvent = async (
  * Helper function to dispatch an event through plotly.
  *
  * @param wrapper The PlotlyChart.
+ * @param eventName The name of the event to dispatch.
+ * @param [data={ x: 0, y: 0 }] Custom plotly data for the event.
+ */
+export const dispatchPlotlySelectionEvent = async (
+  wrapper: ReactWrapper,
+  data: plotly.SelectionRange | RecursivePartial<plotly.PlotSelectionEvent> = {
+    points: [{ x: 0, y: 0 }],
+    range: { x: [0], y: [0] },
+  },
+) => {
+  const plotlyWrapper = wrapper.find('PlotlyChart') as CommonWrapper;
+  const canvas = (plotlyWrapper.instance() as PlotlyChart).plotlyCanvas;
+  if (canvas) {
+    (canvas as IMockPlotlyCanvas).dispatchEvent(new Event('plotly_selected'), data as Partial<
+      plotly.PlotSelectionEvent
+    >);
+  }
+  await Promise.resolve();
+};
+
+/**
+ * Helper function to dispatch an event through plotly.
+ *
+ * @param wrapper The PlotlyChart.
  * @param event The name of the event to dispatch.
  */
 export const dispatchPlotlySecondaryAxisEvent = (

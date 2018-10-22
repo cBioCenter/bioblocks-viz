@@ -1,15 +1,21 @@
 import * as React from 'react';
 
-import { ResidueContextProvider, SecondaryStructureContextProvider } from '~chell-viz~/context';
+import {
+  ResidueContextConsumer,
+  ResidueContextProvider,
+  SecondaryStructureContextConsumer,
+  SecondaryStructureContextProvider,
+} from '~chell-viz~/context';
 import { CouplingContainer } from '~chell-viz~/data';
+import { ContextConsumerComposer } from '~chell-viz~/hoc';
 
 export const initialCouplingContext = {
   couplingScores: new CouplingContainer(),
 };
 
 export type ICouplingContext = typeof initialCouplingContext;
-
 export const CouplingContext = React.createContext(initialCouplingContext);
+export const CouplingContextConsumer = CouplingContext.Consumer;
 
 /**
  * Shorthand for passing contexts relevant for Coupling Scores - Primarily interaction with residues and secondary structures.
@@ -20,9 +26,7 @@ export const CouplingContext = React.createContext(initialCouplingContext);
 export class CouplingContextProvider extends React.Component<any, ICouplingContext> {
   constructor(props: any) {
     super(props);
-    this.state = {
-      couplingScores: new CouplingContainer(),
-    };
+    this.state = initialCouplingContext;
   }
 
   public render() {
@@ -35,3 +39,11 @@ export class CouplingContextProvider extends React.Component<any, ICouplingConte
     );
   }
 }
+
+export const withCouplingContext = (Comp: React.ComponentClass<any>) => (props: any) => (
+  <ContextConsumerComposer components={[ResidueContextConsumer, SecondaryStructureContextConsumer]}>
+    {([resContext, secStructContext]) => {
+      return <Comp {...props} residueContext={resContext} secondaryStructureContext={secStructContext} />;
+    }}
+  </ContextConsumerComposer>
+);

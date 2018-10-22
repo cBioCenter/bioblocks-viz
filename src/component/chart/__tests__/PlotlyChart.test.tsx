@@ -3,7 +3,12 @@ import * as React from 'react';
 
 import { IPlotlyChartProps, PlotlyChart } from '~chell-viz~/component';
 import { CHELL_CHART_EVENT_TYPE, CHELL_CHART_PIECE, ChellChartEvent, IPlotlyData } from '~chell-viz~/data';
-import { dispatchPlotlyEvent, dispatchPlotlySecondaryAxisEvent, IMockDict } from '~chell-viz~/test';
+import {
+  dispatchPlotlyEvent,
+  dispatchPlotlySecondaryAxisEvent,
+  dispatchPlotlySelectionEvent,
+  IMockDict,
+} from '~chell-viz~/test';
 
 beforeEach(() => {
   jest.resetModules();
@@ -48,134 +53,146 @@ describe('PlotlyChart', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('Should handle callbacks.', async () => {
-    const spies: IMockDict = {
-      onClickSpy: jest.fn(),
-      onDoubleClickSpy: jest.fn(),
-      onHoverSpy: jest.fn(),
-      onRelayoutSpy: jest.fn(),
-      onSelectedSpy: jest.fn(),
-      onUnHoverSpy: jest.fn(),
-    };
+  describe('Event Callbacks', () => {
+    it('Should handle plotly events.', async () => {
+      const spies: IMockDict = {
+        onClickSpy: jest.fn(),
+        onDoubleClickSpy: jest.fn(),
+        onHoverSpy: jest.fn(),
+        onRelayoutSpy: jest.fn(),
+        onSelectedSpy: jest.fn(),
+        onUnHoverSpy: jest.fn(),
+      };
 
-    const wrapper = await getMountedPlotlyChart({
-      data: sampleData,
-      onClickCallback: spies.onClickSpy,
-      onDoubleClickCallback: spies.onDoubleClickSpy,
-      onHoverCallback: spies.onHoverSpy,
-      onRelayoutCallback: spies.onRelayoutSpy,
-      onSelectedCallback: spies.onSelectedSpy,
-      onUnHoverCallback: spies.onUnHoverSpy,
+      const wrapper = await getMountedPlotlyChart({
+        data: sampleData,
+        onClickCallback: spies.onClickSpy,
+        onDoubleClickCallback: spies.onDoubleClickSpy,
+        onHoverCallback: spies.onHoverSpy,
+        onRelayoutCallback: spies.onRelayoutSpy,
+        onSelectedCallback: spies.onSelectedSpy,
+        onUnHoverCallback: spies.onUnHoverSpy,
+      });
+
+      await Promise.all([
+        dispatchPlotlyEvent(wrapper, 'plotly_click'),
+        dispatchPlotlyEvent(wrapper, 'plotly_doubleclick'),
+        dispatchPlotlyEvent(wrapper, 'plotly_hover'),
+        dispatchPlotlyEvent(wrapper, 'plotly_relayout'),
+        dispatchPlotlySelectionEvent(wrapper),
+        dispatchPlotlyEvent(wrapper, 'plotly_unhover'),
+      ]);
+
+      for (const key of Object.keys(spies)) {
+        expect(spies[key]).toHaveBeenCalledTimes(1);
+      }
     });
 
-    await Promise.all([
-      dispatchPlotlyEvent(wrapper, 'plotly_click'),
-      dispatchPlotlyEvent(wrapper, 'plotly_doubleclick'),
-      dispatchPlotlyEvent(wrapper, 'plotly_hover'),
-      dispatchPlotlyEvent(wrapper, 'plotly_relayout'),
-      dispatchPlotlyEvent(wrapper, 'plotly_selected'),
-      dispatchPlotlyEvent(wrapper, 'plotly_unhover'),
-    ]);
+    it('Should attach events when the container is attached.', async () => {
+      const spies: IMockDict = {
+        onClickSpy: jest.fn(),
+        onSelectedSpy: jest.fn(),
+      };
 
-    for (const key of Object.keys(spies)) {
-      expect(spies[key]).toHaveBeenCalledTimes(1);
-    }
-  });
+      const wrapper = await getMountedPlotlyChart({
+        data: sampleData,
+        onClickCallback: spies.onClickSpy,
+        onSelectedCallback: spies.onSelectedSpy,
+      });
 
-  it('Should attach events when the container is attached.', async () => {
-    const spies: IMockDict = {
-      onClickSpy: jest.fn(),
-      onSelectedSpy: jest.fn(),
-    };
-
-    const wrapper = await getMountedPlotlyChart({
-      data: sampleData,
-      onClickCallback: spies.onClickSpy,
-      onSelectedCallback: spies.onSelectedSpy,
+      expect(wrapper).toMatchSnapshot();
     });
 
-    expect(wrapper).toMatchSnapshot();
-  });
+    it('Should call the appropriate callback when the window is resized.', async () => {
+      const onResizeSpy = jest.fn();
 
-  it('Should call the appropriate callback when the window is resized.', async () => {
-    const onResizeSpy = jest.fn();
+      const wrapper = await getMountedPlotlyChart({ data: sampleData });
+      const chartInstance = wrapper.instance() as PlotlyChart;
 
-    const wrapper = await getMountedPlotlyChart({ data: sampleData });
-    const chartInstance = wrapper.instance() as PlotlyChart;
-
-    chartInstance.resize = onResizeSpy;
-    chartInstance.attachListeners();
-    window.dispatchEvent(new Event('resize'));
-    expect(onResizeSpy).toHaveBeenCalledTimes(1);
-  });
-
-  it('Should call the appropriate callback when plotly emits a click event.', async () => {
-    const onClickSpy = jest.fn();
-    const wrapper = await getMountedPlotlyChart({
-      data: sampleData,
-      onClickCallback: onClickSpy,
+      chartInstance.resize = onResizeSpy;
+      chartInstance.attachListeners();
+      window.dispatchEvent(new Event('resize'));
+      expect(onResizeSpy).toHaveBeenCalledTimes(1);
     });
-    await dispatchPlotlyEvent(wrapper, 'plotly_click');
-    expect(onClickSpy).toBeCalled();
-  });
 
-  it('Should return the appropriate event when plotly emits a click event on a point.', async () => {
-    const onClickSpy = jest.fn();
-    const wrapper = await getMountedPlotlyChart({
-      data: sampleData,
-      onClickCallback: onClickSpy,
+    it('Should call the appropriate callback when plotly emits a click event.', async () => {
+      const onClickSpy = jest.fn();
+      const wrapper = await getMountedPlotlyChart({
+        data: sampleData,
+        onClickCallback: onClickSpy,
+      });
+      await dispatchPlotlyEvent(wrapper, 'plotly_click');
+      expect(onClickSpy).toBeCalled();
     });
-    await dispatchPlotlyEvent(wrapper, 'plotly_click', { x: 1, y: 2 });
-    const chellEvent = onClickSpy.mock.calls[0][0] as ChellChartEvent;
-    expect(chellEvent.chartPiece).toBe(CHELL_CHART_PIECE.POINT);
-    expect(chellEvent.type).toBe(CHELL_CHART_EVENT_TYPE.CLICK);
-    expect(chellEvent.selectedPoints).toEqual([1, 2]);
-  });
 
-  it('Should return the appropriate event when plotly emits a click event on a secondary x axis.', async () => {
-    const onClickSpy = jest.fn();
-    const wrapper = await getMountedPlotlyChart({
-      data: sampleData,
-      onClickCallback: onClickSpy,
+    it('Should return the appropriate event when plotly emits a click event on a point.', async () => {
+      const onClickSpy = jest.fn();
+      const wrapper = await getMountedPlotlyChart({
+        data: sampleData,
+        onClickCallback: onClickSpy,
+      });
+      await dispatchPlotlyEvent(wrapper, 'plotly_click', { x: 1, y: 2 });
+      const chellEvent = onClickSpy.mock.calls[0][0] as ChellChartEvent;
+      expect(chellEvent.chartPiece).toBe(CHELL_CHART_PIECE.POINT);
+      expect(chellEvent.type).toBe(CHELL_CHART_EVENT_TYPE.CLICK);
+      expect(chellEvent.selectedPoints).toEqual([1, 2]);
     });
-    dispatchPlotlySecondaryAxisEvent(wrapper, 'plotly_click', { data: { xaxis: 'x2', yaxis: 'y' }, x: 1, y: 2 });
-    const chellEvent = onClickSpy.mock.calls[0][0] as ChellChartEvent;
-    expect(chellEvent.chartPiece).toBe(CHELL_CHART_PIECE.AXIS);
-    expect(chellEvent.type).toBe(CHELL_CHART_EVENT_TYPE.CLICK);
-    expect(chellEvent.selectedPoints).toEqual([2]);
-  });
 
-  it('Should return the appropriate event when plotly emits a click event on a secondary y axis.', async () => {
-    const onClickSpy = jest.fn();
-    const wrapper = await getMountedPlotlyChart({
-      data: sampleData,
-      onClickCallback: onClickSpy,
+    it('Should return the appropriate event when plotly emits a click event on a secondary x axis.', async () => {
+      const onClickSpy = jest.fn();
+      const wrapper = await getMountedPlotlyChart({
+        data: sampleData,
+        onClickCallback: onClickSpy,
+      });
+      dispatchPlotlySecondaryAxisEvent(wrapper, 'plotly_click', { data: { xaxis: 'x2', yaxis: 'y' }, x: 1, y: 2 });
+      const chellEvent = onClickSpy.mock.calls[0][0] as ChellChartEvent;
+      expect(chellEvent.chartPiece).toBe(CHELL_CHART_PIECE.AXIS);
+      expect(chellEvent.type).toBe(CHELL_CHART_EVENT_TYPE.CLICK);
+      expect(chellEvent.selectedPoints).toEqual([2]);
     });
-    dispatchPlotlySecondaryAxisEvent(wrapper, 'plotly_click', { data: { xaxis: 'x', yaxis: 'y2' }, x: 1, y: 2 });
-    const chellEvent = onClickSpy.mock.calls[0][0] as ChellChartEvent;
-    expect(chellEvent.chartPiece).toBe(CHELL_CHART_PIECE.AXIS);
-    expect(chellEvent.type).toBe(CHELL_CHART_EVENT_TYPE.CLICK);
-    expect(chellEvent.selectedPoints).toEqual([1]);
-  });
 
-  it('Should call the appropriate callback when plotly emits a hover event.', async () => {
-    const onHoverSpy = jest.fn();
-    const wrapper = await getMountedPlotlyChart({
-      data: sampleData,
-      onHoverCallback: onHoverSpy,
+    it('Should return the appropriate event when plotly emits a click event on a secondary y axis.', async () => {
+      const onClickSpy = jest.fn();
+      const wrapper = await getMountedPlotlyChart({
+        data: sampleData,
+        onClickCallback: onClickSpy,
+      });
+      dispatchPlotlySecondaryAxisEvent(wrapper, 'plotly_click', { data: { xaxis: 'x', yaxis: 'y2' }, x: 1, y: 2 });
+      const chellEvent = onClickSpy.mock.calls[0][0] as ChellChartEvent;
+      expect(chellEvent.chartPiece).toBe(CHELL_CHART_PIECE.AXIS);
+      expect(chellEvent.type).toBe(CHELL_CHART_EVENT_TYPE.CLICK);
+      expect(chellEvent.selectedPoints).toEqual([1]);
     });
-    await dispatchPlotlyEvent(wrapper, 'plotly_hover');
-    expect(onHoverSpy).toBeCalled();
-  });
 
-  it('Should call the appropriate callback when plotly emits a selected event.', async () => {
-    const onSelectedSpy = jest.fn();
-    const wrapper = await getMountedPlotlyChart({
-      data: sampleData,
-      onSelectedCallback: onSelectedSpy,
+    it('Should call the appropriate callback when plotly emits a hover event.', async () => {
+      const onHoverSpy = jest.fn();
+      const wrapper = await getMountedPlotlyChart({
+        data: sampleData,
+        onHoverCallback: onHoverSpy,
+      });
+      await dispatchPlotlyEvent(wrapper, 'plotly_hover');
+      expect(onHoverSpy).toBeCalled();
     });
-    await dispatchPlotlyEvent(wrapper, 'plotly_selected');
-    expect(onSelectedSpy).toBeCalled();
+
+    it('Should call the appropriate callback when plotly emits a selected event.', async () => {
+      const onSelectedSpy = jest.fn();
+      const wrapper = await getMountedPlotlyChart({
+        data: sampleData,
+        onSelectedCallback: onSelectedSpy,
+      });
+      await dispatchPlotlySelectionEvent(wrapper);
+      expect(onSelectedSpy).toBeCalled();
+    });
+
+    it('Should call the appropriate callback when plotly emits a selected event for a range of points.', async () => {
+      const onSelectedSpy = jest.fn();
+      const wrapper = await getMountedPlotlyChart({
+        data: sampleData,
+        onSelectedCallback: onSelectedSpy,
+      });
+      await dispatchPlotlySelectionEvent(wrapper, { points: [], range: { x: [0, 1], y: [0, 1] } });
+      expect(onSelectedSpy).toBeCalled();
+    });
   });
 
   it('Should unmount correctly.', async () => {
