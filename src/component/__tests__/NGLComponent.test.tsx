@@ -3,7 +3,7 @@ import * as NGL from 'ngl';
 import * as React from 'react';
 
 import { Form } from 'semantic-ui-react';
-import { NGLComponent, NGLComponentClass } from '~chell-viz~/component';
+import { INGLComponentProps, NGLComponent, NGLComponentClass } from '~chell-viz~/component';
 import { initialResidueContext, initialSecondaryStructureContext } from '~chell-viz~/context';
 import { CONTACT_DISTANCE_PROXIMITY } from '~chell-viz~/data';
 
@@ -191,7 +191,7 @@ describe('NGLComponent', () => {
 
     wrapper.setProps({
       residueContext: {
-        ...wrapper.props().residueContext,
+        ...(wrapper.props() as INGLComponentProps).residueContext,
         candidateResidues: [1],
         hoveredResidues: [1],
       },
@@ -199,7 +199,7 @@ describe('NGLComponent', () => {
 
     wrapper.setProps({
       residueContext: {
-        ...wrapper.props().residueContext,
+        ...(wrapper.props() as INGLComponentProps).residueContext,
         candidateResidues: [2],
       },
     });

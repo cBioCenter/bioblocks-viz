@@ -43,7 +43,13 @@ export class CouplingContextProvider extends React.Component<any, ICouplingConte
 export const withCouplingContext = (Comp: React.ComponentClass<any>) => (props: any) => (
   <ContextConsumerComposer components={[ResidueContextConsumer, SecondaryStructureContextConsumer]}>
     {([resContext, secStructContext]) => {
-      return <Comp {...props} residueContext={resContext} secondaryStructureContext={secStructContext} />;
+      return (
+        <Comp
+          {...props as any}
+          residueContext={resContext as any}
+          secondaryStructureContext={secStructContext as any}
+        />
+      );
     }}
   </ContextConsumerComposer>
 );

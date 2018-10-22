@@ -2,7 +2,7 @@ import { mount, shallow } from 'enzyme';
 import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 
-import { ContactMap, ContactMapClass } from '~chell-viz~/component';
+import { ContactMap, ContactMapClass, IContactMapProps } from '~chell-viz~/component';
 import { initialResidueContext, initialSecondaryStructureContext } from '~chell-viz~/context';
 import {
   Chell1DSection,
@@ -114,7 +114,7 @@ describe('ContactMap', () => {
 
     it('Should match snapshot when locked residues are added.', async () => {
       const wrapper = await getAsyncMountedComponent(<ContactMapClass data={sampleData} />);
-      expect(wrapper.props().residueContext).toEqual(initialResidueContext);
+      expect((wrapper.props() as IContactMapProps).residueContext).toEqual(initialResidueContext);
       const expectedSelectedPoints = new Map(
         Object.entries({
           '37,46': [37, 46],
