@@ -13,10 +13,10 @@ import {
   IResidueContext,
   ISecondaryStructureContext,
   ResidueContextConsumer,
-  ResidueSelection,
   SecondaryStructureContextConsumer,
 } from '~chell-viz~/context';
 import {
+  CHELL_CSS_STYLE,
   ChellChartEvent,
   ChellWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
@@ -36,20 +36,20 @@ export interface IContactMapProps {
   configurations: ChellWidgetConfig[];
   data: IContactMapData;
   formattedPoints: IContactMapChartData[];
-  height: number;
+  height: number | string;
   highlightColor: string;
   isDataLoading: boolean;
   observedColor: string;
   onBoxSelection?: ((residues: RESIDUE_TYPE[]) => void);
   residueContext: IResidueContext;
   secondaryStructureContext: ISecondaryStructureContext;
-  style?: React.CSSProperties;
-  width: number;
+  showConfigurations: boolean;
+  style?: CHELL_CSS_STYLE;
+  width: number | string;
 }
 
 export const initialContactMapState = {
   pointsToPlot: new Array<IContactMapChartData>(),
-  showConfiguration: false,
 };
 
 export type ContactMapState = Readonly<typeof initialContactMapState>;
@@ -63,7 +63,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     },
     enableSliders: true,
     formattedPoints: new Array<IContactMapChartData>(),
-    height: 400,
+    height: '100%',
     highlightColor: '#ff8800',
     isDataLoading: false,
     observedColor: '#0000ff',
@@ -73,7 +73,8 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     secondaryStructureContext: {
       ...initialSecondaryStructureContext,
     },
-    width: 400,
+    showConfigurations: true,
+    width: '100%',
   };
 
   public readonly state: ContactMapState = initialContactMapState;
@@ -89,22 +90,27 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
   public componentDidUpdate(prevProps: IContactMapProps) {
     const { data, residueContext } = this.props;
     if (data !== prevProps.data || residueContext.lockedResiduePairs !== prevProps.residueContext.lockedResiduePairs) {
-      this.setupPointsToPlot(data.couplingScores, residueContext.lockedResiduePairs);
+      this.setupPointsToPlot(data.couplingScores);
     }
   }
 
   public render() {
-    const { configurations, isDataLoading, style } = this.props;
+    const { configurations, isDataLoading, residueContext, style } = this.props;
     const { pointsToPlot } = this.state;
 
     return (
-      <div id="ContactMapComponent" style={{ ...style }}>
+      <div className="ContactMapComponent" style={{ ...style }}>
         <Dimmer.Dimmable dimmed={true}>
           <Dimmer active={isDataLoading}>
             <Loader />
           </Dimmer>
 
           {this.renderContactMapChart(pointsToPlot, [
+            {
+              name: 'Clear Selections',
+              onClick: residueContext.removeAllLockedResiduePairs,
+              type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
+            },
             ...configurations,
             ...this.generateNodeSizeSliderConfigs(pointsToPlot),
           ])}
@@ -128,8 +134,8 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     });
   };
 
-  protected setupPointsToPlot(couplingContainer: CouplingContainer, lockedResiduePairs: ResidueSelection = new Map()) {
-    const { formattedPoints, observedColor, highlightColor } = this.props;
+  protected setupPointsToPlot(couplingContainer: CouplingContainer) {
+    const { formattedPoints, observedColor, highlightColor, residueContext } = this.props;
     const { pointsToPlot } = this.state;
 
     const chartNames = {
@@ -140,6 +146,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     const knownPointsIndex = pointsToPlot.findIndex(entry => entry.name === chartNames.known);
     const selectedPointIndex = pointsToPlot.findIndex(entry => entry.name === chartNames.selected);
 
+    const observedContactPoints = couplingContainer.getObservedContacts();
     const result = new Array<IContactMapChartData>(
       generateChartDataEntry(
         'text',
@@ -147,25 +154,47 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
         chartNames.known,
         '(from PDB structure)',
         knownPointsIndex >= 0 ? pointsToPlot[knownPointsIndex].nodeSize : 4,
-        couplingContainer.getObservedContacts(),
+        observedContactPoints,
         {
-          text:
-            knownPointsIndex >= 0
-              ? pointsToPlot[knownPointsIndex].points.map(point => {
-                  const score = couplingContainer.getCouplingScore(point.i, point.j);
+          text: observedContactPoints.map(point => {
+            const score = couplingContainer.getCouplingScore(point.i, point.j);
 
-                  return score && score.A_i && score.A_j
-                    ? `(${point.i} [${score.A_i}], ${point.j} [${score.A_j}])`
-                    : `(${point.i}, ${point.j})`;
-                })
-              : '',
+            return score && score.A_i && score.A_j
+              ? `(${point.i} ${score.A_i}, ${point.j} ${score.A_j})`
+              : `(${point.i}, ${point.j})`;
+          }),
         },
       ),
       ...formattedPoints,
     );
 
+    const { lockedResiduePairs, hoveredResidues } = residueContext;
+
+    if (hoveredResidues.length >= 1) {
+      result.push(
+        generateChartDataEntry(
+          'none',
+          highlightColor,
+          chartNames.selected,
+          '',
+          selectedPointIndex >= 0 ? pointsToPlot[selectedPointIndex].nodeSize : 6,
+          [{ i: hoveredResidues[0], j: hoveredResidues.length === 1 ? hoveredResidues[0] : hoveredResidues[1] }],
+          {
+            marker: {
+              color: new Array<string>(hoveredResidues.length * 2).fill(highlightColor),
+              line: {
+                color: highlightColor,
+                width: 3,
+              },
+              symbol: 'circle-open',
+            },
+          },
+        ),
+      );
+    }
+
     if (lockedResiduePairs.size > 0) {
-      const chartPoints = Array.from(lockedResiduePairs.keys()).reduce((reduceResult, key) => {
+      const chartPoints = Array.from(lockedResiduePairs.keys()).reduce((reduceResult: IContactMapChartPoint[], key) => {
         const keyPair = lockedResiduePairs.get(key);
         if (keyPair && keyPair.length === 2) {
           reduceResult.push({ i: keyPair[0], j: keyPair[1], dist: 0 });
@@ -203,20 +232,31 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
   }
 
   protected renderContactMapChart(pointsToPlot: IContactMapChartData[], configurations: ChellWidgetConfig[]) {
-    const { data, onBoxSelection, residueContext, secondaryStructureContext } = this.props;
+    const {
+      data,
+      height,
+      onBoxSelection,
+      residueContext,
+      showConfigurations,
+      secondaryStructureContext,
+      width,
+    } = this.props;
 
     return (
       <ContactMapChart
         candidateResidues={residueContext.candidateResidues}
         configurations={configurations}
         contactData={pointsToPlot}
+        height={height}
         onClickCallback={this.onMouseClick(residueContext.toggleLockedResiduePair)}
         onHoverCallback={this.onMouseEnter(residueContext.addHoveredResidues)}
         onSelectedCallback={this.onMouseSelect(onBoxSelection)}
         onUnHoverCallback={this.onMouseLeave(residueContext.removeHoveredResidues)}
         range={data.couplingScores.residueIndexRange.max + 20}
         secondaryStructures={data.pdbData ? data.pdbData.secondaryStructureSections : []}
+        showConfigurations={showConfigurations}
         selectedSecondaryStructures={[secondaryStructureContext.selectedSecondaryStructures]}
+        width={width}
       />
     );
   }
@@ -261,7 +301,10 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       for (const secondaryStructure of data.secondaryStructures) {
         for (const section of secondaryStructure) {
           if (section.contains(...e.selectedPoints)) {
-            if (!secondaryStructureContext.selectedSecondaryStructures.includes(section)) {
+            if (
+              !secondaryStructureContext.selectedSecondaryStructures.includes(section) &&
+              secondaryStructureContext.temporarySecondaryStructures.includes(section)
+            ) {
               secondaryStructureContext.removeSecondaryStructure(section);
             }
           }

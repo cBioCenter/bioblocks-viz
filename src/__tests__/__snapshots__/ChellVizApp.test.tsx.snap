@@ -9,6 +9,11 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
     divided="vertically"
   >
     <GridRow>
+      <ProteinFeatureViewer
+        initialProteinId="Q9NYJ7"
+      />
+    </GridRow>
+    <GridRow>
       <VizPanelContainer
         dataDirs={
           Array [

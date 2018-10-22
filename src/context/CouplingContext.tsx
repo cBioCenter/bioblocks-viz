@@ -8,8 +8,8 @@ export const initialCouplingContext = {
 };
 
 export type ICouplingContext = typeof initialCouplingContext;
-
 export const CouplingContext = React.createContext(initialCouplingContext);
+export const CouplingContextConsumer = CouplingContext.Consumer;
 
 /**
  * Shorthand for passing contexts relevant for Coupling Scores - Primarily interaction with residues and secondary structures.
@@ -20,9 +20,7 @@ export const CouplingContext = React.createContext(initialCouplingContext);
 export class CouplingContextProvider extends React.Component<any, ICouplingContext> {
   constructor(props: any) {
     super(props);
-    this.state = {
-      couplingScores: new CouplingContainer(),
-    };
+    this.state = initialCouplingContext;
   }
 
   public render() {

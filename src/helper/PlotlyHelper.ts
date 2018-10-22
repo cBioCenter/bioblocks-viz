@@ -27,13 +27,14 @@ export const generateScatterData = (
   entry: IContactMapChartData,
   mirrorPoints: boolean = false,
 ): Partial<IPlotlyData> => {
-  const { marker, points, subtitle, name } = entry;
+  const { marker, points, hoverinfo, subtitle, name, text } = entry;
   const xValues = points.map(data => data.i);
   const yValues = points.map(data => data.j);
-  const zValues = points.map(data => data.dist);
+  const zValues = points.map(data => (data.dist ? data.dist : -1));
+  const textValues = text ? (Array.isArray(text) ? text : [text]) : [];
 
   return {
-    hoverinfo: entry.hoverinfo ? entry.hoverinfo : 'x+y+z',
+    hoverinfo: hoverinfo ? hoverinfo : 'x+y+z',
     marker: {
       color: derivePlotlyColor(mirrorPoints, zValues, entry),
       size: entry.nodeSize,
@@ -41,6 +42,20 @@ export const generateScatterData = (
     },
     mode: 'markers',
     name: `${name} ${subtitle}`,
+    text: mirrorPoints
+      ? [
+          ...textValues,
+          ...textValues.map(
+            // Given a coordinate '(x, y)', create '(y, x)' - needed because we have custom hover labels.
+            coord =>
+              `(${coord
+                .substr(1, coord.length - 2)
+                .split(', ')
+                .reverse()
+                .join(', ')})`,
+          ),
+        ]
+      : textValues,
     type: PLOTLY_CHART_TYPE.scatter,
     x: mirrorPoints ? [...xValues, ...yValues] : xValues,
     y: mirrorPoints ? [...yValues, ...xValues] : yValues,

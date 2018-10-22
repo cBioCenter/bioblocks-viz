@@ -97,6 +97,7 @@ declare module 'ngl' {
     public render(picking?: boolean): void;
     public requestRender(): void;
     public setBackground(color?: Color | number | string): void;
+    // tslint:disable-next-line:no-reserved-keywords
     public setCamera(type: CameraType, fov?: undefined | number): void;
     public setClip(near: number, far: number, dist: number): void;
     public setFog(color?: Color | number | string, near?: undefined | number, far?: undefined | number): void;
@@ -115,14 +116,15 @@ declare module 'ngl' {
   }
 
   export class ViewerControls {
+    public signals: ViewerControlSignals;
     public stage: Stage;
     public viewer: Viewer;
 
-    constructor(stage: Stage);
-
     // Getters.
-    public position(): Vector3;
-    public rotation(): Quaternion;
+    public position: Vector3;
+    public rotation: Quaternion;
+
+    constructor(stage: Stage);
 
     // Methods
 
@@ -208,5 +210,11 @@ declare module 'ngl' {
     public zoom(delta: number): void;
   }
 
-  export class ViewerSignals {}
+  export class ViewerSignals {
+    public ticked: Signal;
+  }
+
+  export class ViewerControlSignals {
+    public changed: Signal;
+  }
 }

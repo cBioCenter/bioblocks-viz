@@ -47,7 +47,7 @@ export interface IContactMapData {
 export interface IMonomerContact {
   i: number;
   j: number;
-  dist: number;
+  dist?: number;
 }
 
 export interface ICouplingScore {
@@ -62,7 +62,7 @@ export interface ICouplingScore {
   probability?: number;
   dist_intra?: number;
   dist_multimer?: number;
-  dist: number;
+  dist?: number;
   precision?: number;
 }
 

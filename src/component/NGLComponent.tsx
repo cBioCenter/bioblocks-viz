@@ -19,6 +19,7 @@ import {
 import {
   AMINO_ACID_THREE_LETTER_CODE,
   AMINO_ACIDS_BY_THREE_LETTER_CODE,
+  CHELL_CSS_STYLE,
   ChellPDB,
   CONFIGURATION_COMPONENT_TYPE,
   CONTACT_DISTANCE_PROXIMITY,
@@ -26,6 +27,7 @@ import {
   SECONDARY_STRUCTURE,
 } from '~chell-viz~/data';
 import {
+  capitalizeFirstLetter,
   createBallStickRepresentation,
   createDistanceRepresentation,
   createSecStructRepresentation,
@@ -45,8 +47,10 @@ export interface INGLComponentProps {
   measuredProximity: CONTACT_DISTANCE_PROXIMITY;
   residueContext: IResidueContext;
   secondaryStructureContext: ISecondaryStructureContext;
-  style?: React.CSSProperties;
+  showConfigurations: boolean;
+  style?: CHELL_CSS_STYLE;
   width: number | string;
+  onMeasuredProximityChange?(value: number): void;
   onResize?(event?: UIEvent): void;
 }
 
@@ -64,14 +68,15 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     backgroundColor: '#ffffff',
     couplingContext: { ...initialCouplingContext },
     data: undefined,
-    height: 400,
+    height: '100%',
     isDataLoading: false,
     measuredProximity: CONTACT_DISTANCE_PROXIMITY.C_ALPHA,
     residueContext: { ...initialResidueContext },
     secondaryStructureContext: {
       ...initialSecondaryStructureContext,
     },
-    width: 400,
+    showConfigurations: true,
+    width: '100%',
   };
   public readonly state: NGLComponentState = initialNGLState;
 
@@ -83,7 +88,8 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
 
   public componentDidMount({ backgroundColor } = this.props) {
     if (this.canvas) {
-      const stage = new NGL.Stage(this.canvas, { backgroundColor });
+      const stage = this.generateStage(this.canvas, { backgroundColor });
+
       const { data } = this.props;
 
       this.initData(stage, data);
@@ -108,7 +114,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
   }
 
   public componentDidUpdate(prevProps: INGLComponentProps, prevState: NGLComponentState) {
-    const { data } = this.props;
+    const { data, measuredProximity } = this.props;
     const { stage, structureComponent } = this.state;
 
     if (stage && data !== prevProps.data) {
@@ -120,8 +126,8 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
 
       const isHighlightUpdateNeeded =
         residueContext !== prevProps.residueContext ||
-        secondaryStructureContext !== prevProps.secondaryStructureContext;
-
+        secondaryStructureContext !== prevProps.secondaryStructureContext ||
+        measuredProximity !== prevProps.measuredProximity;
       if (isHighlightUpdateNeeded) {
         for (const rep of this.state.activeRepresentations) {
           structureComponent.removeRepresentation(rep);
@@ -143,45 +149,76 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
    * @returns The NGL Component
    */
   public render() {
-    const { height, isDataLoading, residueContext, style, width } = this.props;
+    const {
+      height,
+      isDataLoading,
+      onMeasuredProximityChange,
+      residueContext,
+      showConfigurations,
+      style,
+      width,
+    } = this.props;
 
     return (
-      <div className="NGLComponent" style={{ ...style }}>
-        {
-          <Dimmer.Dimmable dimmed={true}>
-            <Dimmer active={isDataLoading}>
-              <Loader />
-            </Dimmer>
-            <SettingsPanel
-              configurations={[
-                {
-                  name: 'Remove All Locked Distance Pairs',
-                  onClick: residueContext.removeAllLockedResiduePairs,
-                  type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
-                },
-                {
-                  current: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
-                  name: 'Measuring Proximity',
-                  onChange: () => {
-                    return;
-                  },
-                  options: Object.values(CONTACT_DISTANCE_PROXIMITY),
-                  type: CONFIGURATION_COMPONENT_TYPE.RADIO,
-                },
-              ]}
-            >
-              <div
-                className="NGLCanvas"
-                onKeyDown={this.onKeyDown}
-                onMouseLeave={this.onCanvasLeave}
-                ref={el => (this.canvas = el)}
-                role={'img'}
-                style={{ height, width }}
-              />
-            </SettingsPanel>
-          </Dimmer.Dimmable>
-        }
-      </div>
+      <Dimmer.Dimmable dimmed={true}>
+        <Dimmer active={isDataLoading}>
+          <Loader />
+        </Dimmer>
+        <SettingsPanel
+          configurations={[
+            {
+              name: 'Clear Selections',
+              onClick: residueContext.removeAllLockedResiduePairs,
+              type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
+            },
+            {
+              current: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
+              name: 'Measuring Proximity',
+              onChange: (value: number) => {
+                if (onMeasuredProximityChange) {
+                  onMeasuredProximityChange(value);
+                }
+              },
+              options: Object.values(CONTACT_DISTANCE_PROXIMITY).map(capitalizeFirstLetter),
+              type: CONFIGURATION_COMPONENT_TYPE.RADIO,
+            },
+            {
+              current: 'default',
+              name: 'Structure Representation Type',
+              onChange: (value: number) => {
+                const { stage, structureComponent } = this.state;
+                const reps = ['default', 'spacefill', 'backbone', 'cartoon', 'surface', 'tube'];
+                if (stage && structureComponent) {
+                  structureComponent.removeAllRepresentations();
+                  if (value === 0) {
+                    stage.defaultFileRepresentation(structureComponent);
+                  } else {
+                    structureComponent.addRepresentation(reps[value] as NGL.StructureRepresentationType);
+                  }
+                  this.setState({
+                    structureComponent,
+                  });
+                  stage.viewer.requestRender();
+                }
+              },
+              options: Object.values(['Default', 'Spacefill', 'Backbone', 'Cartoon', 'Surface', 'Tube']),
+              type: CONFIGURATION_COMPONENT_TYPE.RADIO,
+            },
+          ]}
+          showConfigurations={showConfigurations}
+        >
+          <div className="NGLComponent" style={{ ...style, height, width }}>
+            <div
+              className="NGLCanvas"
+              onKeyDown={this.onKeyDown}
+              onMouseLeave={this.onCanvasLeave}
+              ref={el => (this.canvas = el)}
+              role={'img'}
+              style={{ height: '100%', width: '100%' }}
+            />
+          </div>
+        </SettingsPanel>
+      </Dimmer.Dimmable>
     );
   }
 
@@ -250,23 +287,6 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     });
   }
 
-  protected onHover(aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) {
-    const { residueContext } = this.props;
-    const { structureComponent, stage } = this.state;
-    if (stage && structureComponent) {
-      if (pickingProxy && (pickingProxy.atom || pickingProxy.closestBondAtom)) {
-        const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
-        const resname = AMINO_ACIDS_BY_THREE_LETTER_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE]
-          ? AMINO_ACIDS_BY_THREE_LETTER_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE].singleLetterCode
-          : atom.resname;
-        stage.tooltip.textContent = `${atom.resno} [${resname}]`;
-        residueContext.addHoveredResidues([atom.resno]);
-      } else if (residueContext.candidateResidues.length === 0 && residueContext.hoveredResidues.length !== 0) {
-        residueContext.removeHoveredResidues();
-      }
-    }
-  }
-
   protected onClick = (pickingProxy: NGL.PickingProxy) => {
     const { residueContext } = this.props;
     const { structureComponent } = this.state;
@@ -329,6 +349,23 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
       }
     }
   };
+
+  protected onHover(aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) {
+    const { residueContext } = this.props;
+    const { structureComponent, stage } = this.state;
+    if (stage && structureComponent) {
+      if (pickingProxy && (pickingProxy.atom || pickingProxy.closestBondAtom)) {
+        const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
+        const resname = AMINO_ACIDS_BY_THREE_LETTER_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE]
+          ? AMINO_ACIDS_BY_THREE_LETTER_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE].singleLetterCode
+          : atom.resname;
+        stage.tooltip.textContent = `${atom.resno} [${resname}]`;
+        residueContext.addHoveredResidues([atom.resno]);
+      } else if (residueContext.candidateResidues.length === 0 && residueContext.hoveredResidues.length !== 0) {
+        residueContext.removeHoveredResidues();
+      }
+    }
+  }
 
   protected getDistanceRepForResidues(
     structureComponent: NGL.StructureComponent,
@@ -406,12 +443,25 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
   };
 
   protected onKeyDown = (e: React.KeyboardEvent) => {
+    e.preventDefault();
     const ESC_KEY_CODE = 27;
 
     if (e.which === ESC_KEY_CODE || e.keyCode === ESC_KEY_CODE) {
       const { residueContext } = this.props;
       residueContext.removeNonLockedResidues();
     }
+  };
+
+  protected generateStage = (canvas: HTMLElement, params?: NGL.Partial<NGL.IStageParameters>) => {
+    const stage = new NGL.Stage(canvas, params);
+
+    // !IMPORTANT! This is needed to prevent the canvas shifting when the user clicks the canvas.
+    // It's unclear why the focus does this, but it's undesirable.
+    stage.keyBehavior.domElement.focus = () => {
+      return;
+    };
+
+    return stage;
   };
 }
 

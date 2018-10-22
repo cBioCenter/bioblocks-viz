@@ -11,7 +11,10 @@ module.exports = {
 };
 
 export interface IMockPlotlyCanvas {
-  dispatchEvent(event: Event, data: Partial<plotly.PlotScatterDataPoint> | plotly.SelectionRange): boolean;
+  dispatchEvent(
+    event: Event,
+    data: Partial<plotly.PlotScatterDataPoint> | Partial<plotly.PlotSelectionEvent> | plotly.SelectionRange,
+  ): boolean;
 }
 
 export class MockPlotlyHTMLElement implements IMockPlotlyCanvas {
@@ -21,15 +24,20 @@ export class MockPlotlyHTMLElement implements IMockPlotlyCanvas {
     this.callbacks.set(event, callback);
   };
 
-  public dispatchEvent(event: Event, data: Partial<plotly.PlotScatterDataPoint>): boolean {
+  public dispatchEvent(
+    event: Event,
+    data: Partial<plotly.PlotScatterDataPoint> | Partial<plotly.PlotSelectionEvent> | plotly.SelectionRange,
+  ): boolean {
     const cb = this.callbacks.get(event.type);
     if (cb) {
       switch (event.type) {
         case 'plotly_click':
         case 'plotly_hover':
         case 'plotly_unhover':
-        case 'plotly_selected':
           cb({ points: [{ ...data }] });
+          break;
+        case 'plotly_selected':
+          cb(data);
           break;
         default:
           cb();

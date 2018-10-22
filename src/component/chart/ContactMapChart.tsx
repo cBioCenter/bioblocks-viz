@@ -1,13 +1,8 @@
 import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 
-import {
-  AuxiliaryAxis,
-  defaultPlotlyLayout,
-  PlotlyChart,
-  SecondaryStructureAxis,
-  SettingsPanel,
-} from '~chell-viz~/component';
+import { Button } from 'semantic-ui-react';
+import { AuxiliaryAxis, PlotlyChart, SecondaryStructureAxis, SettingsPanel } from '~chell-viz~/component';
 import { ChellWidgetConfig, IPlotlyData, RESIDUE_TYPE, SECONDARY_STRUCTURE } from '~chell-viz~/data';
 import { generateScatterGLData } from '~chell-viz~/helper';
 
@@ -15,7 +10,7 @@ export interface IContactMapChartProps {
   candidateResidues: RESIDUE_TYPE[];
   configurations: ChellWidgetConfig[];
   contactData: IContactMapChartData[];
-  heightModifier: number;
+  height: number | string;
   legendModifiers: {
     y: number;
   };
@@ -26,6 +21,9 @@ export interface IContactMapChartProps {
   range: number;
   secondaryStructures: SECONDARY_STRUCTURE[];
   selectedSecondaryStructures: SECONDARY_STRUCTURE[];
+  selectedSecondaryStructuresColor: string;
+  showConfigurations: boolean;
+  width: number | string;
   dataTransformFn(entry: IContactMapChartData, mirrorPoints: boolean): Partial<IPlotlyData>;
   onClickCallback?(...args: any[]): void;
   onHoverCallback?(...args: any[]): void;
@@ -36,6 +34,7 @@ export interface IContactMapChartProps {
 export interface IContactMapChartState {
   numLegends: number;
   plotlyData: Array<Partial<IPlotlyData>>;
+  showlegend: boolean;
 }
 
 export interface IContactMapChartData extends Partial<IPlotlyData> {
@@ -82,7 +81,7 @@ export const generateChartDataEntry = (
 });
 
 export interface IContactMapChartPoint {
-  dist: number;
+  dist?: number;
   i: number;
   j: number;
 }
@@ -98,17 +97,20 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
     candidateResidues: new Array<RESIDUE_TYPE>(),
     configurations: new Array<ChellWidgetConfig>(),
     dataTransformFn: generateScatterGLData,
-    heightModifier: 0.3,
+    height: '100%',
     legendModifiers: {
       y: -0.4,
     },
     marginModifiers: {
-      b: 75,
+      b: 65,
       l: 65,
     },
     range: 100,
     secondaryStructures: [],
     selectedSecondaryStructures: [],
+    selectedSecondaryStructuresColor: '#feb83f',
+    showConfigurations: true,
+    width: '100%',
   };
 
   constructor(props: IContactMapChartProps) {
@@ -116,6 +118,7 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
     this.state = {
       numLegends: 0,
       plotlyData: [],
+      showlegend: false,
     };
   }
 
@@ -138,22 +141,26 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
     const {
       configurations,
       contactData,
-      heightModifier,
       legendModifiers,
       marginModifiers,
       range,
-      ...props
+      showConfigurations,
+      ...passThroughProps
     } = this.props;
-    const { plotlyData } = this.state;
+    const { plotlyData, showlegend } = this.state;
 
     return (
-      <SettingsPanel configurations={configurations}>
+      <SettingsPanel configurations={configurations} showConfigurations={showConfigurations}>
+        <Button
+          icon={showlegend ? 'eye' : 'eye slash'}
+          basic={true}
+          floated={'left'}
+          onClick={this.toggleLegendVisibility}
+          style={{ float: 'left', margin: '0 0 0 15px', position: 'relative', top: '500px', zIndex: 999 }}
+        />
         <PlotlyChart
           data={plotlyData}
           layout={{
-            height: defaultPlotlyLayout.height
-              ? defaultPlotlyLayout.height + defaultPlotlyLayout.height * heightModifier
-              : undefined,
             legend: {
               orientation: 'h',
               y: legendModifiers.y,
@@ -163,7 +170,7 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
               b: marginModifiers.b,
               l: marginModifiers.l,
             },
-            showlegend: true,
+            showlegend,
             xaxis: {
               autorange: false,
               nticks: 10,
@@ -181,7 +188,7 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
               title: 'Residue #',
             },
           }}
-          {...props}
+          {...passThroughProps}
         />
       </SettingsPanel>
     );
@@ -196,20 +203,28 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
     const { contactData, dataTransformFn, secondaryStructures, selectedSecondaryStructures } = this.props;
     const plotlyData = [...contactData.map(entry => dataTransformFn(entry, true))];
     secondaryStructures.forEach((secondaryStructure, index) => {
-      const axis = new SecondaryStructureAxis(secondaryStructure, 5, index + 2);
+      const axis = new SecondaryStructureAxis(secondaryStructure, 1, index + 2);
       plotlyData.push(...axis.xAxes, ...axis.yAxes);
     });
 
+    const highlightedAxes = new Array<Partial<IPlotlyData>>();
     selectedSecondaryStructures.forEach((selectedStructure, index) => {
       const axis = new AuxiliaryAxis(selectedStructure, index + 2, 'orange');
-      plotlyData.push(...axis.xAxes, ...axis.yAxes);
+      highlightedAxes.push(...axis.highlightedXAxes, ...axis.highlightedYAxes);
     });
 
     this.setState({
       numLegends: new Set(
         plotlyData.filter(datum => datum.showlegend !== false && datum.name !== undefined).map(legend => legend.name),
       ).size,
-      plotlyData,
+      // Makes sure that highlighted axis is behind the axis.
+      plotlyData: [...highlightedAxes, ...plotlyData],
     });
   }
+
+  protected toggleLegendVisibility = () => {
+    this.setState({
+      showlegend: !this.state.showlegend,
+    });
+  };
 }

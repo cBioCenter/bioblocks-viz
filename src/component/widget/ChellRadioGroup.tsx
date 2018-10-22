@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CheckboxProps, Form } from 'semantic-ui-react';
+import { CheckboxProps, Form, Grid } from 'semantic-ui-react';
 
 export interface IChellRadioGroupProps {
   disabled: boolean;
@@ -44,21 +44,25 @@ export class ChellRadioGroup extends React.Component<IChellRadioGroupProps, IChe
     return (
       <Form style={style}>
         <Form.Field>{title}</Form.Field>
-        <Form.Group widths={'equal'}>{this.renderOptions(id, options, disabled, style)}</Form.Group>
+        {this.renderOptions(id, options, disabled, style)}
       </Form>
     );
   }
 
-  protected renderOptions = (id: string, options: string[], disabled: boolean, style: React.CSSProperties) =>
-    options.map((option, index) => (
-      <Form.Radio
-        checked={this.state.selectedIndex === index}
-        disabled={disabled}
-        key={`${id}-${option}`}
-        label={{ children: option.toLocaleLowerCase(), style }}
-        name={option}
-        onChange={this.handleChange(index)}
-        value={index}
-      />
-    ));
+  protected renderOptions = (id: string, options: string[], disabled: boolean, style: React.CSSProperties) => (
+    <Grid centered={true} columns={2} relaxed={true} padded={true}>
+      {options.map((option, index) => (
+        <Grid.Column key={`${id}-${option}`} textAlign={'center'}>
+          <Form.Radio
+            checked={this.state.selectedIndex === index}
+            disabled={disabled}
+            label={{ children: option, style }}
+            name={option}
+            onChange={this.handleChange(index)}
+            value={index}
+          />
+        </Grid.Column>
+      ))}
+    </Grid>
+  );
 }

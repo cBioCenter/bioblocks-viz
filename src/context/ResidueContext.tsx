@@ -19,7 +19,7 @@ export const initialResidueContext = {
     return;
   },
   hoveredResidues: new Array<RESIDUE_TYPE>(),
-  lockedResiduePairs: new Map(),
+  lockedResiduePairs: new Map<string, RESIDUE_TYPE[]>(),
   removeAllLockedResiduePairs: () => {
     return;
   },

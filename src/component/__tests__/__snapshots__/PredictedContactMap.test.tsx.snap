@@ -66,7 +66,7 @@ Array [
         "j": 50,
       },
     ],
-    "subtitle": "(N=2, 66.67%)",
+    "subtitle": "(N=2, 66.7%)",
     "text": Array [
       "(41, 52)",
       "(56, 50)",
@@ -77,8 +77,7 @@ Array [
 
 exports[`PredictedContactMap Snapshots Should match existing snapshot when given empty data. 1`] = `
 <div
-  id="PredictedContactMapComponent"
-  style={Object {}}
+  className="PredictedContactMapComponent"
 >
   <ContactMap
     configurations={
@@ -152,18 +151,17 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
         },
       ]
     }
-    height={400}
+    height="100%"
     incorrectColor="#000000"
     isDataLoading={false}
-    width={400}
+    width="100%"
   />
 </div>
 `;
 
 exports[`PredictedContactMap Snapshots Should match existing snapshot when given no data. 1`] = `
 <div
-  id="PredictedContactMapComponent"
-  style={Object {}}
+  className="PredictedContactMapComponent"
 >
   <ContactMap
     configurations={
@@ -237,18 +235,17 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
         },
       ]
     }
-    height={400}
+    height="100%"
     incorrectColor="#000000"
     isDataLoading={false}
-    width={400}
+    width="100%"
   />
 </div>
 `;
 
 exports[`PredictedContactMap Snapshots Should match snapshot when locked residues are added. 1`] = `
 <div
-  id="PredictedContactMapComponent"
-  style={Object {}}
+  className="PredictedContactMapComponent"
 >
   <ContactMap
     configurations={
@@ -322,7 +319,7 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
         },
       ]
     }
-    height={400}
+    height="100%"
     incorrectColor="#000000"
     isDataLoading={false}
     lockedResiduePairs={
@@ -336,7 +333,7 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
         ],
       }
     }
-    width={400}
+    width="100%"
   />
 </div>
 `;

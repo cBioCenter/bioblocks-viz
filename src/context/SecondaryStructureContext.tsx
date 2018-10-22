@@ -58,10 +58,15 @@ export class SecondaryStructureContextProvider extends React.Component<any, ISec
   };
 
   protected onRemoveSecondaryStructure = () => (sectionToRemove: SECONDARY_STRUCTURE_SECTION) => {
-    const prev = this.state.selectedSecondaryStructures;
+    const prevSelectedIndex = this.state.selectedSecondaryStructures.indexOf(sectionToRemove);
+    const prevTempIndex = this.state.temporarySecondaryStructures.indexOf(sectionToRemove);
     this.setState({
-      selectedSecondaryStructures: prev.filter((section, index) => index !== prev.indexOf(sectionToRemove)),
-      temporarySecondaryStructures: prev.filter((section, index) => index !== prev.indexOf(sectionToRemove)),
+      selectedSecondaryStructures: this.state.selectedSecondaryStructures.filter(
+        (section, index) => index !== prevSelectedIndex,
+      ),
+      temporarySecondaryStructures: this.state.temporarySecondaryStructures.filter(
+        (section, index) => index !== prevTempIndex,
+      ),
     });
   };
 

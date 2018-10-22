@@ -146,6 +146,7 @@
 								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_ngl_.unitcell.html" class="tsd-kind-icon">Unitcell</a></li>
 								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_ngl_.validation.html" class="tsd-kind-icon">Validation</a></li>
 								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_ngl_.viewer.html" class="tsd-kind-icon">Viewer</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_ngl_.viewercontrolsignals.html" class="tsd-kind-icon">Viewer<wbr>Control<wbr>Signals</a></li>
 								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_ngl_.viewercontrols.html" class="tsd-kind-icon">Viewer<wbr>Controls</a></li>
 								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_ngl_.viewersignals.html" class="tsd-kind-icon">Viewer<wbr>Signals</a></li>
 								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_ngl_.volume.html" class="tsd-kind-icon">Volume</a></li>
@@ -199,6 +200,7 @@
 								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_ngl_.istructurecomponentsignals.html" class="tsd-kind-icon">IStructure<wbr>Component<wbr>Signals</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_ngl_.istructureextradata.html" class="tsd-kind-icon">IStructure<wbr>Extra<wbr>Data</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_ngl_.istructureheader.html" class="tsd-kind-icon">IStructure<wbr>Header</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_ngl_.istructurerepresentationparams.html" class="tsd-kind-icon">IStructure<wbr>Representation<wbr>Params</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_ngl_.itrackballcontrolsparams.html" class="tsd-kind-icon">ITrackball<wbr>Controls<wbr>Params</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_ngl_.ivalencemodel.html" class="tsd-kind-icon">IValence<wbr>Model</a></li>
 							</ul>
@@ -220,6 +222,7 @@
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_ngl_.html#numberarray" class="tsd-kind-icon">Number<wbr>Array</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="_ngl_.html#partial" class="tsd-kind-icon">Partial</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_ngl_.html#pickcallback" class="tsd-kind-icon">Pick<wbr>Callback</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_ngl_.html#representation_type" class="tsd-kind-icon">REPRESENTATION_<wbr>TYPE</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_ngl_.html#renderqualitytype" class="tsd-kind-icon">Render<wbr>Quality<wbr>Type</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_ngl_.html#scrollcallback" class="tsd-kind-icon">Scroll<wbr>Callback</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_ngl_.html#selectionoperator" class="tsd-kind-icon">Selection<wbr>Operator</a></li>
@@ -239,6 +242,7 @@
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_ngl_.html#autoload" class="tsd-kind-icon">auto<wbr>Load</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_ngl_.html#makerepresentation" class="tsd-kind-icon">make<wbr>Representation</a></li>
 							</ul>
 						</section>
 					</div>
@@ -485,6 +489,16 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="representation_type" class="tsd-anchor"></a>
+					<h3>REPRESENTATION_<wbr>TYPE</h3>
+					<div class="tsd-signature tsd-kind-icon">REPRESENTATION_<wbr>TYPE<span class="tsd-signature-symbol">:</span> <a href="_ngl_.html#shaperepresentationtype" class="tsd-signature-type">ShapeRepresentationType</a><span class="tsd-signature-symbol"> | </span><a href="_ngl_.html#structurerepresentationtype" class="tsd-signature-type">StructureRepresentationType</a><span class="tsd-signature-symbol"> | </span><a href="_ngl_.html#volumerepresentationtype" class="tsd-signature-type">VolumeRepresentationType</a><span class="tsd-signature-symbol"> | </span><a href="_ngl_.html#surfacerepresentationtype" class="tsd-signature-type">SurfaceRepresentationType</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in types/ngl/representation/representation.d.ts:13</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
 					<a name="renderqualitytype" class="tsd-anchor"></a>
 					<h3>Render<wbr>Quality<wbr>Type</h3>
 					<div class="tsd-signature tsd-kind-icon">Render<wbr>Quality<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"auto"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"low"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"medium"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"high"</span></div>
@@ -692,6 +706,38 @@
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>Promise resolves to the loaded data.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="makerepresentation" class="tsd-anchor"></a>
+					<h3>make<wbr>Representation</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">make<wbr>Representation<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><a href="_ngl_.html#representation_type" class="tsd-signature-type">REPRESENTATION_TYPE</a>, object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, viewer<span class="tsd-signature-symbol">: </span><a href="../classes/_ngl_.viewer.html" class="tsd-signature-type">Viewer</a>, params<span class="tsd-signature-symbol">: </span><a href="../interfaces/_ngl_.irepresentationparameters.html" class="tsd-signature-type">IRepresentationParameters</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_ngl_.representation.html" class="tsd-signature-type">Representation</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in types/ngl/representation/representation.d.ts:178</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>type: <a href="_ngl_.html#representation_type" class="tsd-signature-type">REPRESENTATION_TYPE</a></h5>
+								</li>
+								<li>
+									<h5>object: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>viewer: <a href="../classes/_ngl_.viewer.html" class="tsd-signature-type">Viewer</a></h5>
+								</li>
+								<li>
+									<h5>params: <a href="../interfaces/_ngl_.irepresentationparameters.html" class="tsd-signature-type">IRepresentationParameters</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../classes/_ngl_.representation.html" class="tsd-signature-type">Representation</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -927,6 +973,9 @@
 						<a href="../classes/_ngl_.viewer.html" class="tsd-kind-icon">Viewer</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_ngl_.viewercontrolsignals.html" class="tsd-kind-icon">Viewer<wbr>Control<wbr>Signals</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
 						<a href="../classes/_ngl_.viewercontrols.html" class="tsd-kind-icon">Viewer<wbr>Controls</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module">
@@ -1071,6 +1120,9 @@
 						<a href="../interfaces/_ngl_.istructureheader.html" class="tsd-kind-icon">IStructure<wbr>Header</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/_ngl_.istructurerepresentationparams.html" class="tsd-kind-icon">IStructure<wbr>Representation<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="../interfaces/_ngl_.itrackballcontrolsparams.html" class="tsd-kind-icon">ITrackball<wbr>Controls<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
@@ -1119,6 +1171,9 @@
 						<a href="_ngl_.html#pickcallback" class="tsd-kind-icon">Pick<wbr>Callback</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="_ngl_.html#representation_type" class="tsd-kind-icon">REPRESENTATION_<wbr>TYPE</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 						<a href="_ngl_.html#renderqualitytype" class="tsd-kind-icon">Render<wbr>Quality<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
@@ -1159,6 +1214,9 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="_ngl_.html#autoload" class="tsd-kind-icon">auto<wbr>Load</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="_ngl_.html#makerepresentation" class="tsd-kind-icon">make<wbr>Representation</a>
 					</li>
 				</ul>
 			</nav>

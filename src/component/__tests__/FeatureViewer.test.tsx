@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { FeatureViewer, IFeatureViewerState } from '~chell-viz~/component';
 import { TintedChell1DSection } from '~chell-viz~/data';
-import { dispatchPlotlyEvent, getAsyncMountedComponent } from '~chell-viz~/test';
+import { dispatchPlotlyEvent, dispatchPlotlySelectionEvent, getAsyncMountedComponent } from '~chell-viz~/test';
 
 describe('ProteinFeatureViewer', () => {
   let sampleData: Array<TintedChell1DSection<string>>;
@@ -33,28 +33,28 @@ describe('ProteinFeatureViewer', () => {
   describe('Event handlers', () => {
     it('Should handle selecting a single feature.', async () => {
       const wrapper = await getAsyncMountedComponent(<FeatureViewer data={sampleData} />);
-      await dispatchPlotlyEvent(wrapper, 'plotly_selected', { x: 2017 });
+      await dispatchPlotlySelectionEvent(wrapper, { points: [{ x: 2017 }] });
       const state = wrapper.instance().state as IFeatureViewerState;
       expect(Array.from(state.selectedFeatureIndices)).toEqual([3]);
     });
 
     it('Should handle selecting multiple features sharing an overlap.', async () => {
       const wrapper = await getAsyncMountedComponent(<FeatureViewer data={sampleData} />);
-      await dispatchPlotlyEvent(wrapper, 'plotly_selected', { x: 2018 });
+      await dispatchPlotlySelectionEvent(wrapper, { points: [{ x: 2018 }] });
       const state = wrapper.instance().state as IFeatureViewerState;
       expect(Array.from(state.selectedFeatureIndices)).toEqual([3, 4]);
     });
 
     it('Should handle selecting multiple features via selection box.', async () => {
       const wrapper = await getAsyncMountedComponent(<FeatureViewer data={sampleData} />);
-      await dispatchPlotlyEvent(wrapper, 'plotly_selected', { x: [1999, 2018], y: [0, 2] });
+      await dispatchPlotlySelectionEvent(wrapper, { points: [{ x: [1999, 2018], y: [0, 2] }] });
       const state = wrapper.instance().state as IFeatureViewerState;
       expect(Array.from(state.selectedFeatureIndices)).toEqual([0, 1, 2, 3, 4]);
     });
 
     it('Should handle clicking a single feature.', async () => {
       const wrapper = await getAsyncMountedComponent(<FeatureViewer data={sampleData} />);
-      await dispatchPlotlyEvent(wrapper, 'plotly_click', { x: 2002, y: 1 });
+      await dispatchPlotlySelectionEvent(wrapper, { points: [{ x: 2002, y: 1 }] });
       const state = wrapper.instance().state as IFeatureViewerState;
       expect(Array.from(state.selectedFeatureIndices)).toEqual([1]);
     });

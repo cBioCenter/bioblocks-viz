@@ -2,28 +2,35 @@ import * as NGL from 'ngl';
 
 import { RESIDUE_TYPE, SECONDARY_STRUCTURE_SECTION } from '~chell-viz~/data';
 
+export const defaultRepParams: Partial<NGL.IStructureRepresentationParams> = {
+  color: 'red',
+  labelBackground: true,
+  labelBackgroundColor: 'lightgrey',
+  labelBackgroundMargin: 0.75,
+  labelBorder: true,
+  labelBorderColor: 'white',
+  labelBorderWidth: 0.3,
+  labelColor: 'black',
+  labelSize: 5,
+  labelUnit: 'angstrom',
+  labelZOffset: 35,
+};
+
 /**
  * Draws a line between two residues in NGL.
  *
  * @param structureComponent The NGL Structure for which these residues belong to.
  * @param selection The [NGL Selection](http://nglviewer.org/ngl/api/manual/selection-language.html) defining the residues.
- * @param [lineColor='skyblue'] What color to make the line.
- * @param [labelUnit='angstrom'] Unit for measurement.
  */
 export const createDistanceRepresentation = (
   structureComponent: NGL.StructureComponent,
   selection: string | number[],
-  lineColor: string = 'red',
-  labelColor: string = 'black',
-  labelUnit: string = 'angstrom',
-  labelSize: number = 5,
+  params: Partial<NGL.IStructureRepresentationParams> = {},
 ) =>
   structureComponent.addRepresentation('distance', {
+    ...defaultRepParams,
+    ...params,
     atomPair: Array.isArray(selection) ? [selection] : [selection.split(',')],
-    color: lineColor,
-    labelColor,
-    labelSize,
-    labelUnit,
   });
 
 /**
@@ -49,7 +56,7 @@ export const createSecStructRepresentation = (
   structureComponent: NGL.StructureComponent,
   section: SECONDARY_STRUCTURE_SECTION,
   radiusScale: number = 2,
-  color: string = 'yellow',
+  color: string = '#feb83f',
 ) => {
   const rep = structureComponent.addRepresentation('cartoon', {
     color,

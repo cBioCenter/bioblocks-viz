@@ -133,7 +133,7 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
   public getObservedContacts(distFilter: number = 5, linearDistFilter = 5): ICouplingScore[] {
     const result = new Array<ICouplingScore>();
     for (const score of this) {
-      if (score.dist <= distFilter && Math.abs(score.i - score.j) >= linearDistFilter) {
+      if (score.dist && score.dist <= distFilter && Math.abs(score.i - score.j) >= linearDistFilter) {
         result.push(score);
       }
     }
@@ -158,7 +158,7 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
     for (const contact of this.rankedContacts
       .filter(score => Math.abs(score.i - score.j) >= linearDistFilter)
       .slice(0, totalPredictionsToShow)) {
-      if (contact.dist < measuredContactDistFilter) {
+      if (contact.dist && contact.dist < measuredContactDistFilter) {
         result.correct.push(contact);
       }
       result.predicted.push(contact);

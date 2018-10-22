@@ -51,9 +51,9 @@ describe('DataHelper', () => {
       await expect(fetchAppropriateData(VIZ_TYPE.CONTACT_MAP, '')).rejects.toBe(reason);
     });
 
-    const couplingScoresCsvWithHeaders = `i,j,cn,dist,A_i,A_j,segment_i,segment_j,probability,dist_intra,dist_multimer,dist,precision,\n
-      145,81,0.79312,7.5652,E,R,0,0,0,0,1.0,14,18\n\
-      179,66,0.78681,3.5872,T,M,0,0,0,1.0,24,51`;
+    const couplingScoresCsvWithHeaders = `i,j,cn,dist,A_i,A_j,\n
+      145,81,0.79312,7.5652,E,R,\n\
+      179,66,0.78681,3.5872,T,M,`;
 
     const residueMappingCsv =
       // tslint:disable-next-line:max-line-length

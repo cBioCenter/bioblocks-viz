@@ -23,7 +23,13 @@ exports[`SettingsPanel Should match the existing snapshot when given no configur
         role="button"
       />
     </GridColumn>
-    <SidebarPushable>
+    <SidebarPushable
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
       <Sidebar
         animation="overlay"
         as={[Function]}

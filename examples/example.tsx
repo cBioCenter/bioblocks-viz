@@ -3,6 +3,7 @@ import * as ReactDOM from 'react-dom';
 import {
   Accordion,
   Button,
+  Card,
   Grid,
   GridColumn,
   GridRow,
@@ -24,11 +25,13 @@ import {
   getCouplingScoresData,
   IResidueContext,
   IResidueMapping,
+  ISecondaryStructureContext,
   NGL_DATA_TYPE,
   NGLComponent,
   PredictedContactMap,
   readFileAsText,
   ResidueContextConsumer,
+  SecondaryStructureContextConsumer,
   VIZ_TYPE,
 } from '~chell-viz~';
 
@@ -90,19 +93,42 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
   }
 
   public componentDidUpdate(prevProps: IExampleAppProps, prevState: IExampleAppState) {
-    const { pdbData } = this.state;
+    const { measuredProximity, pdbData } = this.state;
     const { couplingScores } = this.state[VIZ_TYPE.CONTACT_MAP];
+
+    let errorMsg = '';
+    let isResidueMappingNeeded = this.state.isResidueMappingNeeded;
+
     if (
       pdbData &&
       (couplingScores !== prevState[VIZ_TYPE.CONTACT_MAP].couplingScores || pdbData !== prevState.pdbData)
     ) {
       const mismatches = pdbData.getResidueNumberingMismatches(couplingScores);
       if (mismatches.length >= 1) {
-        this.setState({
-          errorMsg: `${mismatches.length} mismatches detected between coupling scores and PDB!`,
-          isResidueMappingNeeded: true,
-        });
+        errorMsg = `${mismatches.length} mismatches detected between coupling scores and PDB!\
+        For example, residue number ${mismatches[0].resno} is '${
+          mismatches[0].pdbAminoAcid.threeLetterCode
+        }' in the PDB but '${mismatches[0].couplingAminoAcid.threeLetterCode}' in the coupling scores file.`;
+        isResidueMappingNeeded = true;
       }
+    }
+
+    if (pdbData && measuredProximity !== prevState.measuredProximity) {
+      this.setState({
+        [VIZ_TYPE.CONTACT_MAP]: {
+          couplingScores: pdbData.amendPDBWithCouplingScores(couplingScores.rankedContacts, measuredProximity),
+          isLoading: false,
+          pdbData: this.state.pdbData,
+          secondaryStructures: [],
+        },
+        errorMsg,
+        isResidueMappingNeeded,
+      });
+    } else if (errorMsg.length >= 1) {
+      this.setState({
+        errorMsg,
+        isResidueMappingNeeded,
+      });
     }
   }
 
@@ -116,68 +142,35 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
 
   protected renderCouplingComponents = (
     { style } = this.props,
-    { arePredictionsAvailable, couplingScores, errorMsg, isResidueMappingNeeded, pdbData } = this.state,
-  ) => {
-    return (
-      <div>
-        <Header as={'h1'} attached={'top'}>
-          ContactMap.org: 2D and 3D Visualization
-        </Header>
-        {errorMsg.length > 1 && this.renderErrorMessage()}
-        {!pdbData && couplingScores.length === 0 && this.renderStartMessage()}
-        <Segment attached={true} raised={true}>
-          <CouplingContextProvider>
-            <ResidueContextConsumer>
-              {residueContext => (
-                <Grid centered={true}>
-                  <GridRow verticalAlign={'middle'}>
-                    <GridColumn width={6}>
-                      <NGLComponent
-                        data={this.state[VIZ_TYPE.NGL].pdbData}
-                        isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
-                        measuredProximity={this.state.measuredProximity}
-                        style={{ ...style, width: 400 }}
-                      />
-                    </GridColumn>
-                    <GridColumn width={6}>
-                      {arePredictionsAvailable ? (
-                        <PredictedContactMap
-                          data={{
-                            couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
-                            pdbData,
-                            secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
-                          }}
-                          isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
-                          style={{ ...style, width: 400 }}
-                        />
-                      ) : (
-                        <ContactMap
-                          data={{
-                            couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
-                            pdbData,
-                            secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
-                          }}
-                          isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
-                          style={{ ...style, width: 400 }}
-                        />
-                      )}
-                    </GridColumn>
-                  </GridRow>
-                  <GridRow columns={4} centered={true} textAlign={'center'} verticalAlign={'bottom'}>
-                    <GridColumn>{this.renderPDBUploadForm()}</GridColumn>
-                    <GridColumn>{this.renderCouplingScoresUploadForm()}</GridColumn>
-                    {isResidueMappingNeeded && <GridColumn>{this.renderResidueMappingUploadForm()}</GridColumn>}
-                    <GridColumn>{this.renderClearAllButton(residueContext)}</GridColumn>
-                  </GridRow>
-                </Grid>
-              )}
-            </ResidueContextConsumer>
-          </CouplingContextProvider>
-        </Segment>
-        <footer>Powered by {<a href="https://github.com/cBioCenter/chell-viz">Chell</a>}</footer>
-      </div>
-    );
-  };
+    { arePredictionsAvailable, couplingScores, errorMsg, isResidueMappingNeeded, measuredProximity, pdbData } = this
+      .state,
+  ) => (
+    <div>
+      <Header as={'h1'} attached={'top'}>
+        ContactMap.org: 2D and 3D Visualization
+      </Header>
+      {errorMsg.length > 1 && this.renderErrorMessage()}
+      {!pdbData && couplingScores.length === 0 && this.renderStartMessage()}
+
+      <Segment attached={true} raised={true}>
+        <CouplingContextProvider>
+          <SecondaryStructureContextConsumer>
+            {secondaryStructureContext => (
+              <ResidueContextConsumer>
+                {residueContext => (
+                  <Grid centered={true}>
+                    {this.renderUploadButtonsRow(isResidueMappingNeeded, residueContext, secondaryStructureContext)}
+                    {this.renderChellComponents(style, arePredictionsAvailable, measuredProximity, pdbData)}
+                  </Grid>
+                )}
+              </ResidueContextConsumer>
+            )}
+          </SecondaryStructureContextConsumer>
+        </CouplingContextProvider>
+      </Segment>
+      {this.renderFooter()}
+    </div>
+  );
 
   protected renderErrorMessage = ({ errorMsg, isResidueMappingNeeded, pdbData } = this.state) => {
     return (
@@ -211,6 +204,25 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
         )}
       </Message>
     );
+  };
+
+  protected renderFooter = () => {
+    const chell = <a href="https://github.com/cBioCenter/chell-viz">Chell</a>;
+
+    // prettier-ignore
+    const sayings = [
+      <>Powered by {chell}!</>,
+      <>They love me at the {chell}sea.</>,
+      <>Today's visualization has been brought to you by {chell}.</>,
+      <>{chell}sea, {chell}sea, I believe...</>,
+      <>Now you're thinking with {chell}!</>,
+      <>And {chell}sea says she's got nowhere to go...</>,
+    ].map(saying => <React.Fragment key={'random-chell-saying'}>{saying}</React.Fragment>);
+
+    // tslint:disable-next-line:insecure-random
+    const randomSaying = sayings[Math.floor(Math.random() * sayings.length)];
+
+    return <footer style={{ padding: '25vh 0 25px 25px' }}>{randomSaying}</footer>;
   };
 
   protected renderSequenceAccordionMessage = (title: string, content: string) => ({
@@ -287,6 +299,72 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     );
   };
 
+  protected renderChellComponents = (
+    style: React.CSSProperties,
+    arePredictionsAvailable: boolean,
+    measuredProximity: CONTACT_DISTANCE_PROXIMITY,
+    pdbData?: ChellPDB,
+    size: number | string = '550px',
+  ) => (
+    <GridRow verticalAlign={'middle'}>
+      <GridColumn width={6}>
+        <Card raised={true} style={{ height: '615px', padding: '15px 15px 0 15px', width: '600px' }}>
+          <NGLComponent
+            data={this.state[VIZ_TYPE.NGL].pdbData}
+            height={size}
+            isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
+            measuredProximity={measuredProximity}
+            onMeasuredProximityChange={this.onMeasuredProximityChange()}
+            style={style}
+            width={size}
+          />
+        </Card>
+      </GridColumn>
+      <GridColumn width={6}>
+        <Card raised={true} style={{ height: '615px', padding: '15px 15px 0 15px', width: '600px' }}>
+          {arePredictionsAvailable ? (
+            <PredictedContactMap
+              data={{
+                couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
+                pdbData,
+                secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
+              }}
+              height={size}
+              isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
+              style={style}
+              width={size}
+            />
+          ) : (
+            <ContactMap
+              data={{
+                couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
+                pdbData,
+                secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
+              }}
+              height={size}
+              isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
+              style={style}
+              width={size}
+            />
+          )}
+        </Card>
+      </GridColumn>
+    </GridRow>
+  );
+
+  protected renderUploadButtonsRow = (
+    isResidueMappingNeeded: boolean,
+    residueContext: IResidueContext,
+    secondaryStructureContext: ISecondaryStructureContext,
+  ) => (
+    <GridRow columns={4} centered={true} textAlign={'center'} verticalAlign={'bottom'}>
+      <GridColumn>{this.renderPDBUploadForm()}</GridColumn>
+      <GridColumn>{this.renderCouplingScoresUploadForm()}</GridColumn>
+      {isResidueMappingNeeded && <GridColumn>{this.renderResidueMappingUploadForm()}</GridColumn>}
+      <GridColumn>{this.renderClearAllButton(residueContext, secondaryStructureContext)}</GridColumn>
+    </GridRow>
+  );
+
   protected renderPDBUploadForm = ({ filenames, pdbData } = this.state) => (
     <GridRow>
       {this.renderUploadLabel(filenames.pdb)}
@@ -305,7 +383,10 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     </GridRow>
   );
 
-  protected renderClearAllButton = (residueContext: IResidueContext) => (
+  protected renderClearAllButton = (
+    residueContext: IResidueContext,
+    secondaryStructureContext: ISecondaryStructureContext,
+  ) => (
     <GridRow verticalAlign={'middle'} columns={1} centered={true}>
       <GridColumn>
         <Label as="label" basic={true} htmlFor={'clear-data'}>
@@ -313,19 +394,23 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
             icon={'trash'}
             label={{
               basic: true,
-              content: 'Clear Data',
+              content: 'Clean View',
             }}
             labelPosition={'right'}
-            onClick={this.onClearAll(residueContext)}
+            onClick={this.onClearAll(residueContext, secondaryStructureContext)}
           />
         </Label>
       </GridColumn>
     </GridRow>
   );
 
-  protected onClearAll = (residueContext: IResidueContext) => async () => {
+  protected onClearAll = (
+    residueContext: IResidueContext,
+    secondaryStructureContext: ISecondaryStructureContext,
+  ) => async () => {
     this.setState(ExampleApp.initialState);
     residueContext.clearAllResidues();
+    secondaryStructureContext.clearSecondaryStructure();
     this.forceUpdate();
   };
 

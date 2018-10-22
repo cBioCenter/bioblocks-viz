@@ -17,6 +17,7 @@ export interface ISettingsPanelState {
 // We are omitting the 'width' prop from the Semantic Sidebar to instead use our own so an exact width may be specified.
 export type SettingsPanelProps = {
   configurations: ChellWidgetConfig[];
+  showConfigurations?: boolean;
   width?: number | string;
 } & Partial<Omit<SidebarProps, 'width'>>;
 
@@ -25,8 +26,11 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
     configurations: new Array<ChellWidgetConfig>(),
     direction: 'left',
     inverted: true,
+    showConfigurations: true,
     width: '100%',
   };
+
+  protected panel: HTMLDivElement | null = null;
 
   constructor(props: SettingsPanelProps) {
     super(props);
@@ -35,15 +39,37 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
     };
   }
 
+  public componentDidUpdate(prevProps: SettingsPanelProps, prevState: ISettingsPanelState) {
+    const { visible } = this.state;
+    if (visible && prevState.visible !== visible) {
+      window.addEventListener('click', e => {
+        if (this.panel) {
+          const panelRect = this.panel.getBoundingClientRect();
+
+          const { x, y } = e;
+          const isIntersected =
+            x >= panelRect.left && x <= panelRect.right && y >= panelRect.top && y <= panelRect.bottom;
+
+          if (!isIntersected) {
+            this.hideSettingsPanel();
+            window.removeEventListener('click', this.hideSettingsPanel);
+          }
+        }
+      });
+    } else {
+      window.removeEventListener('click', e => this.hideSettingsPanel);
+    }
+  }
+
   public render() {
-    const { children, configurations, width, ...remainingProps } = this.props;
+    const { children, configurations, showConfigurations, width, ...remainingProps } = this.props;
     const { visible } = this.state;
 
-    return (
-      <div>
+    return showConfigurations ? (
+      <div ref={node => (this.panel = node ? node : null)}>
         <Grid columns={1}>
           <Grid.Column>{this.renderSettingsButton()}</Grid.Column>
-          <Sidebar.Pushable>
+          <Sidebar.Pushable style={{ width }}>
             <Sidebar
               as={Menu}
               animation={'overlay'}
@@ -54,11 +80,12 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
             >
               {this.renderConfigurations(configurations)}
             </Sidebar>
-
             <Sidebar.Pusher>{children}</Sidebar.Pusher>
           </Sidebar.Pushable>
         </Grid>
       </div>
+    ) : (
+      children
     );
   }
 
@@ -69,7 +96,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
   };
 
   public renderSettingsButton = () => (
-    <Button icon={'settings'} basic={true} floated={'right'} onClick={this.onButtonClick} />
+    <Button basic={true} floated={'right'} icon={'settings'} onClick={this.onButtonClick} />
   );
 
   public renderConfigurations(configurations: ChellWidgetConfig[]) {
@@ -113,6 +140,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
         options={config.options}
         onChange={config.onChange}
         style={{ color: 'white', ...config.style }}
+        title={config.name}
       />
     );
   }
@@ -129,5 +157,11 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
         value={config.values.current}
       />
     );
+  }
+
+  protected hideSettingsPanel() {
+    this.setState({
+      visible: false,
+    });
   }
 }
