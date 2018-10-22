@@ -19,11 +19,10 @@ const ngl = jest.genMockFromModule<typeof NGL>('ngl');
 class MockStage {
   public events = new Map<string, (...args: any[]) => void>();
   public callbacks = new Array<(...args: any[]) => void>();
-  public reprList: string[] = [];
   public tooltip: Partial<HTMLElement> = { textContent: '' };
 
   public keyBehavior = {
-    domElement: jest.fn(),
+    domElement: this.canvas,
   };
 
   public mouseControls = {
@@ -74,29 +73,19 @@ class MockStage {
     getPositionOnCanvas: (pos: number) => pos,
   };
 
-  constructor(canvas: HTMLElement) {
+  constructor(readonly canvas: HTMLElement) {
     return;
   }
 
-  public addComponentFromObject = () => ({
-    addRepresentation: (name: string, ...args: any[]) => {
-      this.reprList.push(name);
-
-      return { name: () => name, setParameters: jest.fn() };
-    },
-    hasRepresentation: (name: string, ...args: any[]) => this.reprList.indexOf(name) !== -1,
-    removeRepresentation: (name: string, ...args: any[]) => {
-      this.reprList.splice(this.reprList.indexOf(name), 1);
-    },
-    stage: {
+  public addComponentFromObject = () => {
+    return new MockStructureComponent(name, {
       keyBehavior: this.keyBehavior,
       mouseControls: this.mouseControls,
       mouseObserver: this.mouseObserver,
       tooltip: this.tooltip,
       viewerControls: this.viewerControls,
-    },
-    structure: new ngl.Structure(),
-  });
+    });
+  };
   public defaultFileRepresentation = (...args: any[]) => jest.fn();
   public dispose = () => jest.fn();
   public handleResize = () => jest.fn();
@@ -132,32 +121,70 @@ const turnResidue = (resno: number) => ({
 
 const sampleResidues = [helixResidue(1), sheetResidue(2), turnResidue(3)];
 
-(ngl.Structure as jest.Mock<NGL.Structure>).mockImplementation((name: string) => {
-  return {
-    atomMap: { dict: { 'CA|C': 2 } },
-    eachResidue: jest.fn(
-      (cb: (...args: any[]) => void) => (name.localeCompare('sample.pdb') ? sampleResidues.map(cb) : {}),
-    ),
-    getAtomProxy: jest.fn((index: number) => ({
-      distanceTo: (pos: number) => pos + index,
-      positionToVector3: () => index,
-    })),
-    getResidueProxy: jest.fn((resno: number) => ({
-      getAtomIndexByName: () => resno,
-    })),
-    getSequence: jest.fn(() => []),
-    residueMap: {
-      list: [],
-    },
-    residueStore: {
-      atomCount: [2, 2],
-      atomOffset: [0, 2],
-      // We are the priests, of the Temples of Syrinx.
-      // Our great computers fill the hollowed halls.
-      residueTypeId: [2, 1, 1, 2],
-      resno: [1, 2],
-    },
+// tslint:disable-next-line:max-classes-per-file
+class MockStructureComponent {
+  public name = '';
+  public reprList = new Array<string>();
+
+  public structure: MockStructure;
+
+  constructor(name: string, readonly stage?: object) {
+    this.name = name;
+    this.structure = new MockStructure(name);
+  }
+
+  public addRepresentation(name: string, ...args: any[]) {
+    this.reprList.push(name);
+
+    return { name: () => name, setParameters: jest.fn() };
+  }
+
+  public hasRepresentation(name: string, ...args: any[]) {
+    return this.reprList.indexOf(name) !== -1;
+  }
+
+  public removeRepresentation(name: string, ...args: any[]) {
+    this.reprList.splice(this.reprList.indexOf(name), 1);
+  }
+
+  public removeAllRepresentations() {
+    this.reprList = [];
+  }
+}
+
+// tslint:disable-next-line:max-classes-per-file
+class MockStructure {
+  public atomMap = { dict: { 'CA|C': 2 } };
+
+  public eachResidue = jest.fn(
+    (cb: (...args: any[]) => void) => (this.name.localeCompare('sample.pdb') ? sampleResidues.map(cb) : {}),
+  );
+  public getAtomProxy = jest.fn((index: number) => ({
+    distanceTo: (pos: number) => pos + index,
+    positionToVector3: () => index,
+  }));
+  public getResidueProxy = jest.fn((resno: number) => ({
+    getAtomIndexByName: () => resno,
+  }));
+  public getSequence = jest.fn(() => []);
+  public residueMap = {
+    list: [],
   };
+  public residueStore = {
+    atomCount: [2, 2],
+    atomOffset: [0, 2],
+    // We are the priests, of the Temples of Syrinx.
+    // Our great computers fill the hollowed halls.
+    residueTypeId: [2, 1, 1, 2],
+    resno: [1, 2],
+  };
+  public constructor(readonly name: string) {
+    return;
+  }
+}
+
+(ngl.Structure as jest.Mock<NGL.Structure>).mockImplementation((name: string) => {
+  return new MockStructure(name);
 });
 
 (ngl.autoLoad as any) = jest.fn(

@@ -195,6 +195,9 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
                   } else {
                     structureComponent.addRepresentation(reps[value] as NGL.StructureRepresentationType);
                   }
+                  this.setState({
+                    structureComponent,
+                  });
                   stage.viewer.requestRender();
                 }
               },

@@ -2,22 +2,32 @@ import { mount, ReactWrapper, shallow } from 'enzyme';
 import * as NGL from 'ngl';
 import * as React from 'react';
 
+import { Form } from 'semantic-ui-react';
 import { NGLComponent, NGLComponentClass } from '~chell-viz~/component';
 import { initialResidueContext, initialSecondaryStructureContext } from '~chell-viz~/context';
+import { CONTACT_DISTANCE_PROXIMITY } from '~chell-viz~/data';
 
 describe('NGLComponent', () => {
   let sampleData: NGL.Structure;
 
   beforeEach(() => {
     sampleData = new NGL.Structure();
-    if (!sampleData.residueStore) {
-      sampleData.residueStore = new NGL.ResidueStore();
-    }
     sampleData.residueStore.resno = new Uint32Array([0, 1, 2, 3, 4]);
   });
 
   it('Should match existing snapshot when unconnected to a context.', () => {
     expect(shallow(<NGLComponentClass />)).toMatchSnapshot();
+  });
+
+  it('Should handle a data reset.', () => {
+    const wrapper = mount(<NGLComponent />);
+    const initialProps = wrapper.props();
+
+    wrapper.setProps({
+      data: sampleData,
+    });
+
+    expect(wrapper.props()).not.toEqual(initialProps);
   });
 
   it('Should handle prop updates.', () => {
@@ -64,9 +74,34 @@ describe('NGLComponent', () => {
     expect(instance.state.activeRepresentations[0].name()).toEqual(expectedRep);
   });
 
-  it('Should show the distance and ball+stick representation for locked residues.', () => {
+  it('Should show the distance and ball+stick representation for locked residues for C-Alpha proximity.', () => {
     const expectedRep = ['ball+stick', 'distance', 'ball+stick', 'distance'];
     const wrapper = mount(<NGLComponentClass data={sampleData} />);
+    const instance = wrapper.instance() as NGLComponentClass;
+
+    wrapper.setProps({
+      residueContext: {
+        ...initialResidueContext,
+        lockedResiduePairs: new Map(
+          Object.entries({
+            '1,2': [1, 2],
+            '3,4': [3, 4],
+          }),
+        ),
+      },
+    });
+
+    const { activeRepresentations } = instance.state;
+    for (let i = 0; i < activeRepresentations.length; i++) {
+      expect(activeRepresentations[i].name()).toEqual(expectedRep[i]);
+    }
+  });
+
+  it('Should show the distance and ball+stick representation for locked residues for Closest distance proximity.', () => {
+    const expectedRep = ['ball+stick', 'distance', 'ball+stick', 'distance'];
+    const wrapper = mount(
+      <NGLComponentClass data={sampleData} measuredProximity={CONTACT_DISTANCE_PROXIMITY.CLOSEST} />,
+    );
     const instance = wrapper.instance() as NGLComponentClass;
 
     wrapper.setProps({
@@ -152,16 +187,23 @@ describe('NGLComponent', () => {
 
   it('Should follow candidate residue selection flow.', () => {
     const wrapper = mount(<NGLComponentClass data={sampleData} />);
+    const activeReps = (wrapper.instance() as NGLComponentClass).state.activeRepresentations;
 
     wrapper.setProps({
-      candidateResidues: [1],
+      residueContext: {
+        ...wrapper.props().residueContext,
+        candidateResidues: [1],
+        hoveredResidues: [1],
+      },
     });
-    wrapper.update();
 
     wrapper.setProps({
-      candidateResidues: [2],
+      residueContext: {
+        ...wrapper.props().residueContext,
+        candidateResidues: [2],
+      },
     });
-    wrapper.update();
+    expect((wrapper.instance() as NGLComponentClass).state.activeRepresentations).not.toEqual(activeReps);
   });
 
   it('Should call appropriate residue clearing callback.', () => {
@@ -217,6 +259,23 @@ describe('NGLComponent', () => {
       });
       simulateHoverEvent(wrapper, { atom: { resno: 3, resname: 'ARG' } });
       simulateHoverEvent(wrapper, { closestBondAtom: { resno: 3, resname: 'GLY' } });
+      simulateHoverEvent(wrapper, {});
+      expect(removeHoveredResiduesSpy).toHaveBeenCalledTimes(0);
+    });
+
+    it('Should handle hover events when the residue name is not one of the 20 common Amino Acids.', async () => {
+      const wrapper = mount(<NGLComponentClass data={sampleData} />);
+
+      const removeHoveredResiduesSpy = jest.fn();
+      wrapper.setProps({
+        residueContext: {
+          ...initialResidueContext,
+          candidateResidues: [],
+          removeHoveredResidues: removeHoveredResiduesSpy,
+        },
+      });
+      simulateHoverEvent(wrapper, { atom: { resno: 3, resname: 'FOO' } });
+      simulateHoverEvent(wrapper, { closestBondAtom: { resno: 3, resname: 'BAR' } });
       simulateHoverEvent(wrapper, {});
       expect(removeHoveredResiduesSpy).toHaveBeenCalledTimes(0);
     });
@@ -395,6 +454,81 @@ describe('NGLComponent', () => {
       wrapper.unmount();
       global.dispatchEvent(new Event('resize'));
       expect(onResizeSpy).toHaveBeenCalledTimes(0);
+    });
+
+    it('Should ignore focus events.', () => {
+      const onFocusSpy = jest.fn();
+      HTMLDivElement.prototype.focus = onFocusSpy;
+
+      const wrapper = mount(<NGLComponentClass />);
+      const instance = wrapper.instance() as NGLComponentClass;
+      if (instance.canvas && instance.state.stage) {
+        instance.canvas.dispatchEvent(new Event('focus'));
+        instance.state.stage.keyBehavior.domElement.focus();
+        expect(onFocusSpy).not.toBeCalled();
+      } else {
+        expect(instance.canvas).not.toBeNull();
+        expect(instance.state.stage).not.toBeNull();
+      }
+    });
+  });
+
+  describe('Configurations', () => {
+    it('Should handle changing the measuring proximity.', () => {
+      const onMeasuredProximityChangeSpy = jest.fn();
+      const wrapper = mount(<NGLComponentClass onMeasuredProximityChange={onMeasuredProximityChangeSpy} />);
+      const expected = CONTACT_DISTANCE_PROXIMITY.CLOSEST;
+      expect((wrapper.instance() as NGLComponentClass).props.measuredProximity).not.toEqual(expected);
+      wrapper
+        .find('#measuring-proximity-1')
+        .find(Form.Radio)
+        .at(1)
+        .find('input')
+        .simulate('change', 1);
+      expect(onMeasuredProximityChangeSpy).toHaveBeenLastCalledWith(1);
+    });
+
+    it('Should handle changing the structure representation type to the non-default.', () => {
+      const wrapper = mount(<NGLComponentClass data={sampleData} />);
+      const instance = wrapper.instance() as NGLComponentClass;
+      const defaultFileRepresentationSpy = jest.fn();
+      if (instance.state.stage) {
+        instance.state.stage.defaultFileRepresentation = defaultFileRepresentationSpy;
+      } else {
+        expect(instance.state.stage).not.toBeNull();
+      }
+
+      wrapper
+        .find('#structure-representation-type-2')
+        .find(Form.Radio)
+        .at(1)
+        .find('input')
+        .simulate('change');
+      wrapper
+        .find('#structure-representation-type-2')
+        .find(Form.Radio)
+        .at(0)
+        .find('input')
+        .simulate('change');
+      wrapper.update();
+      wrapper.instance().forceUpdate();
+      expect(defaultFileRepresentationSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it('Should handle changing the structure representation type to a non-default.', () => {
+      const wrapper = mount(<NGLComponentClass data={sampleData} />);
+      const instance = wrapper.instance() as NGLComponentClass;
+      const expected = 'spacefill';
+      expect(instance.state.structureComponent && instance.state.structureComponent.reprList).toHaveLength(0);
+      wrapper
+        .find('#structure-representation-type-2')
+        .find(Form.Radio)
+        .at(1)
+        .find('input')
+        .simulate('change', 1);
+      wrapper.update();
+      wrapper.instance().forceUpdate();
+      expect(instance.state.structureComponent && instance.state.structureComponent.reprList[0]).toEqual(expected);
     });
   });
 });

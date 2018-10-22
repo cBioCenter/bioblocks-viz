@@ -100,7 +100,7 @@ describe('ContactMap', () => {
 
   it('Should wrap a ContactMapClass safely.', () => {
     const wrapper = mount(<ContactMap />);
-    expect(wrapper.find(ContactMapClass)).toEqual(shallow(<ContactMapClass />));
+    expect(wrapper.find(ContactMapClass)).toHaveLength(1);
   });
 
   describe('Snapshots', () => {
