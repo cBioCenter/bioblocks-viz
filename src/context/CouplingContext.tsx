@@ -1,13 +1,7 @@
 import * as React from 'react';
 
-import {
-  ResidueContextConsumer,
-  ResidueContextProvider,
-  SecondaryStructureContextConsumer,
-  SecondaryStructureContextProvider,
-} from '~chell-viz~/context';
+import { ResidueContextProvider, SecondaryStructureContextProvider } from '~chell-viz~/context';
 import { CouplingContainer } from '~chell-viz~/data';
-import { ContextConsumerComposer } from '~chell-viz~/hoc';
 
 export const initialCouplingContext = {
   couplingScores: new CouplingContainer(),
@@ -39,17 +33,3 @@ export class CouplingContextProvider extends React.Component<any, ICouplingConte
     );
   }
 }
-
-export const withCouplingContext = (Comp: React.ComponentClass<any>) => (props: any) => (
-  <ContextConsumerComposer components={[ResidueContextConsumer, SecondaryStructureContextConsumer]}>
-    {([resContext, secStructContext]) => {
-      return (
-        <Comp
-          {...props as any}
-          residueContext={resContext as any}
-          secondaryStructureContext={secStructContext as any}
-        />
-      );
-    }}
-  </ContextConsumerComposer>
-);
