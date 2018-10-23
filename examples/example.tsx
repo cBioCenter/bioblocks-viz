@@ -105,7 +105,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     ) {
       const mismatches = pdbData.getResidueNumberingMismatches(couplingScores);
       if (mismatches.length >= 1) {
-        errorMsg = `${mismatches.length} mismatches detected between coupling scores and PDB!\
+        errorMsg = `Error details: ${mismatches.length} mismatches detected between coupling scores and PDB!\
         For example, residue number ${mismatches[0].resno} is '${
           mismatches[0].pdbAminoAcid.threeLetterCode
         }' in the PDB but '${mismatches[0].couplingAminoAcid.threeLetterCode}' in the coupling scores file.`;
@@ -178,10 +178,11 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
         {isResidueMappingNeeded && pdbData ? (
           <div>
             <Message.Header>
-              {`Residue numbering mismatch detected - Please upload a file to correct the position numbering differences.`}
+              {`Residue numbering mismatch detected. Please upload a file to correct the position numbering differences.`}
               {<br />}
-              {`This file should have been part of the an EVCouplings job run and might look like
-              '${pdbData.name}.csv' or '${pdbData.name}.indextableplus'`}
+              {`EVCouplings and EVFold outputs this file in the <strong>OUTPUT</strong> directory.
+                This file will be named similar to
+                '${pdbData.name}.csv' or '${pdbData.name}.indextableplus'`}
             </Message.Header>
             <Message.List>{errorMsg}</Message.List>
             <Message.Content>
@@ -190,9 +191,9 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                 exclusive={false}
                 defaultActiveIndex={[]}
                 panels={[
-                  this.renderSequenceAccordionMessage('PDB', pdbData.sequence),
+                  this.renderSequenceAccordionMessage('PDB sequence', pdbData.sequence),
                   this.renderSequenceAccordionMessage(
-                    'Couplings Score',
+                    'Couplings Score sequence',
                     this.state[VIZ_TYPE.CONTACT_MAP].couplingScores.sequence,
                   ),
                 ]}

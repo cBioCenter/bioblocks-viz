@@ -152,7 +152,7 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
     return (
       <SettingsPanel configurations={configurations} showConfigurations={showConfigurations}>
         <Button
-          icon={showlegend ? 'eye' : 'eye slash'}
+          icon={'question circle outline'}
           basic={true}
           floated={'left'}
           onClick={this.toggleLegendVisibility}

@@ -12,7 +12,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
     as="button"
     basic={true}
     floated="left"
-    icon="eye slash"
+    icon="question circle outline"
     onClick={[Function]}
     role="button"
     style={
@@ -188,7 +188,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
     as="button"
     basic={true}
     floated="left"
-    icon="eye slash"
+    icon="question circle outline"
     onClick={[Function]}
     role="button"
     style={
@@ -516,7 +516,7 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
     as="button"
     basic={true}
     floated="left"
-    icon="eye slash"
+    icon="question circle outline"
     onClick={[Function]}
     role="button"
     style={

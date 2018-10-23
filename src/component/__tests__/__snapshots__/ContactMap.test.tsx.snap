@@ -2403,7 +2403,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                             as="button"
                             basic={true}
                             floated="left"
-                            icon="eye slash"
+                            icon="question circle outline"
                             onClick={[Function]}
                             role="button"
                             style={
@@ -2432,11 +2432,11 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                             >
                               <Icon
                                 as="i"
-                                name="eye slash"
+                                name="question circle outline"
                               >
                                 <i
                                   aria-hidden="true"
-                                  className="eye slash icon"
+                                  className="question circle outline icon"
                                 />
                               </Icon>
                             </button>
