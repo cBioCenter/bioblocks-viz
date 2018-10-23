@@ -568,7 +568,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
             ],
             "subtitle": "(from PDB structure)",
             "text": Array [
-              "(10 I, 1 N)",
+              "(10I, 1N)",
             ],
           },
         ]
@@ -706,7 +706,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
             ],
             "subtitle": "(from PDB structure)",
             "text": Array [
-              "(10 I, 1 N)",
+              "(10I, 1N)",
             ],
           },
         ]
@@ -1858,12 +1858,13 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
   }
   secondaryStructureContext={
     Object {
-      "addSecondaryStructure": [Function],
-      "clearSecondaryStructure": [Function],
+      "addHoveredSecondaryStructure": [Function],
+      "addSelectedSecondaryStructure": [Function],
+      "clearAllSecondaryStructures": [Function],
+      "hoveredSecondaryStructures": Array [],
+      "removeHoveredSecondaryStructure": [Function],
       "removeSecondaryStructure": [Function],
       "selectedSecondaryStructures": Array [],
-      "temporarySecondaryStructures": Array [],
-      "toggleSecondaryStructure": [Function],
     }
   }
   showConfigurations={true}
@@ -2112,7 +2113,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         inverted={true}
                         style={
                           Object {
-                            "opacity": 0.75,
+                            "opacity": 0.6,
                             "width": "100%",
                           }
                         }
@@ -2127,7 +2128,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                             inverted={true}
                             style={
                               Object {
-                                "opacity": 0.75,
+                                "opacity": 0.6,
                                 "width": "100%",
                               }
                             }
@@ -2137,7 +2138,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                               className="ui inverted vertical ui overlay left sidebar menu"
                               style={
                                 Object {
-                                  "opacity": 0.75,
+                                  "opacity": 0.6,
                                   "width": "100%",
                                 }
                               }
@@ -2189,7 +2190,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                         style={
                                           Object {
                                             "color": "white",
-                                            "padding": "25px",
+                                            "padding": "0 25px",
                                             "width": "95%",
                                           }
                                         }
@@ -2200,7 +2201,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                           style={
                                             Object {
                                               "color": "white",
-                                              "padding": "25px",
+                                              "padding": "0 25px",
                                               "width": "95%",
                                             }
                                           }
@@ -2211,7 +2212,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                             style={
                                               Object {
                                                 "color": "white",
-                                                "padding": "25px",
+                                                "padding": "0 25px",
                                                 "width": "95%",
                                               }
                                             }
@@ -2403,7 +2404,13 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                             as="button"
                             basic={true}
                             floated="left"
-                            icon="eye slash"
+                            icon={
+                              <Icon
+                                as="i"
+                                name="question circle outline"
+                                size="large"
+                              />
+                            }
                             onClick={[Function]}
                             role="button"
                             style={
@@ -2432,11 +2439,12 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                             >
                               <Icon
                                 as="i"
-                                name="eye slash"
+                                name="question circle outline"
+                                size="large"
                               >
                                 <i
                                   aria-hidden="true"
-                                  className="eye slash icon"
+                                  className="question circle outline large icon"
                                 />
                               </Icon>
                             </button>

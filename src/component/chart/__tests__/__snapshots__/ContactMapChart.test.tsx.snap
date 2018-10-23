@@ -12,7 +12,13 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
     as="button"
     basic={true}
     floated="left"
-    icon="eye slash"
+    icon={
+      <Icon
+        as="i"
+        name="question circle outline"
+        size="large"
+      />
+    }
     onClick={[Function]}
     role="button"
     style={
@@ -66,7 +72,8 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
             0,
             1,
             2,
-            2,
+            3,
+            3,
           ],
           "xaxis": "x",
           "y": Array [
@@ -74,6 +81,52 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
             0,
             0.8414709848078965,
             0.9092974268256817,
+            0.1411200080598672,
+            null,
+          ],
+          "yaxis": "y2",
+        },
+        Object {
+          "connectgaps": false,
+          "hoverinfo": "none",
+          "line": Object {
+            "color": "green",
+            "shape": "spline",
+            "smoothing": 1.3,
+            "width": 5,
+          },
+          "marker": Object {
+            "color": "green",
+            "size": 10,
+            "symbol": Array [
+              "line-ne",
+              "line-ne",
+              "line-ne",
+              "line-ne",
+              "triangle-right",
+              "line-ne",
+            ],
+          },
+          "mode": "lines+markers",
+          "name": "E",
+          "orientation": "h",
+          "showlegend": false,
+          "type": "scatter",
+          "x": Array [
+            3,
+            3,
+            4,
+            5,
+            6,
+            6,
+          ],
+          "xaxis": "x",
+          "y": Array [
+            null,
+            0,
+            0,
+            0,
+            0,
             null,
           ],
           "yaxis": "y2",
@@ -100,6 +153,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
             0,
             0.8414709848078965,
             0.9092974268256817,
+            0.1411200080598672,
             null,
           ],
           "xaxis": "x2",
@@ -108,7 +162,53 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
             0,
             1,
             2,
-            2,
+            3,
+            3,
+          ],
+          "yaxis": "y",
+        },
+        Object {
+          "connectgaps": false,
+          "hoverinfo": "none",
+          "line": Object {
+            "color": "green",
+            "shape": "spline",
+            "smoothing": 1.3,
+            "width": 5,
+          },
+          "marker": Object {
+            "color": "green",
+            "size": 10,
+            "symbol": Array [
+              "line-ne",
+              "line-ne",
+              "line-ne",
+              "line-ne",
+              "triangle-down",
+              "line-ne",
+            ],
+          },
+          "mode": "lines+markers",
+          "name": "E",
+          "orientation": "v",
+          "showlegend": false,
+          "type": "scatter",
+          "x": Array [
+            null,
+            0,
+            0,
+            0,
+            0,
+            null,
+          ],
+          "xaxis": "x2",
+          "y": Array [
+            3,
+            3,
+            4,
+            5,
+            6,
+            6,
           ],
           "yaxis": "y",
         },
@@ -157,12 +257,12 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
         Array [
           Chell1DSection {
             "label": "H",
-            "sectionEnd": 2,
+            "sectionEnd": 3,
             "sectionStart": 0,
           },
           Chell1DSection {
             "label": "E",
-            "sectionEnd": 3,
+            "sectionEnd": 6,
             "sectionStart": 3,
           },
         ],
@@ -188,7 +288,13 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
     as="button"
     basic={true}
     floated="left"
-    icon="eye slash"
+    icon={
+      <Icon
+        as="i"
+        name="question circle outline"
+        size="large"
+      />
+    }
     onClick={[Function]}
     role="button"
     style={
@@ -224,32 +330,43 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
           "connectgaps": false,
           "hoverinfo": "none",
           "line": Object {
-            "color": "blue",
+            "color": "green",
             "shape": "spline",
             "smoothing": 1.3,
-            "width": 1.5,
+            "width": 5,
           },
           "marker": Object {
-            "symbol": Array [],
+            "color": "green",
+            "size": 10,
+            "symbol": Array [
+              "line-ne",
+              "line-ne",
+              "line-ne",
+              "line-ne",
+              "triangle-right",
+              "line-ne",
+            ],
           },
-          "mode": "lines",
-          "name": "H",
+          "mode": "lines+markers",
+          "name": "E",
           "orientation": "h",
           "showlegend": false,
           "type": "scatter",
           "x": Array [
-            0,
-            0,
-            1,
-            2,
-            2,
+            3,
+            3,
+            4,
+            5,
+            6,
+            6,
           ],
           "xaxis": "x",
           "y": Array [
             null,
             0,
-            0.8414709848078965,
-            0.9092974268256817,
+            0,
+            0,
+            0,
             null,
           ],
           "yaxis": "y2",
@@ -258,69 +375,46 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
           "connectgaps": false,
           "hoverinfo": "none",
           "line": Object {
-            "color": "blue",
+            "color": "green",
             "shape": "spline",
             "smoothing": 1.3,
-            "width": 1.5,
+            "width": 5,
           },
           "marker": Object {
-            "symbol": Array [],
+            "color": "green",
+            "size": 10,
+            "symbol": Array [
+              "line-ne",
+              "line-ne",
+              "line-ne",
+              "line-ne",
+              "triangle-down",
+              "line-ne",
+            ],
           },
-          "mode": "lines",
-          "name": "H",
+          "mode": "lines+markers",
+          "name": "E",
           "orientation": "v",
           "showlegend": false,
           "type": "scatter",
           "x": Array [
             null,
             0,
-            0.8414709848078965,
-            0.9092974268256817,
+            0,
+            0,
+            0,
             null,
           ],
           "xaxis": "x2",
           "y": Array [
-            0,
-            0,
-            1,
-            2,
-            2,
+            3,
+            3,
+            4,
+            5,
+            6,
+            6,
           ],
           "yaxis": "y",
-        },
-        Object {
-          "connectgaps": false,
-          "hoverinfo": "none",
-          "line": Object {
-            "color": "red",
-            "shape": "spline",
-            "smoothing": 1.3,
-            "width": 1.5,
-          },
-          "marker": Object {
-            "symbol": Array [],
-          },
-          "mode": "lines",
-          "name": "C",
-          "orientation": "h",
-          "showlegend": false,
-          "type": "scatter",
-          "x": Array [
-            0,
-            0,
-            1,
-            2,
-            2,
-          ],
-          "xaxis": "x",
-          "y": Array [
-            null,
-            0,
-            0,
-            0,
-            null,
-          ],
-          "yaxis": "y3",
         },
         Object {
           "connectgaps": false,
@@ -357,40 +451,6 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
             null,
           ],
           "yaxis": "y3",
-        },
-        Object {
-          "connectgaps": false,
-          "hoverinfo": "none",
-          "line": Object {
-            "color": "red",
-            "shape": "spline",
-            "smoothing": 1.3,
-            "width": 1.5,
-          },
-          "marker": Object {
-            "symbol": Array [],
-          },
-          "mode": "lines",
-          "name": "C",
-          "orientation": "v",
-          "showlegend": false,
-          "type": "scatter",
-          "x": Array [
-            null,
-            0,
-            0,
-            0,
-            null,
-          ],
-          "xaxis": "x3",
-          "y": Array [
-            0,
-            0,
-            1,
-            2,
-            2,
-          ],
-          "yaxis": "y",
         },
         Object {
           "connectgaps": false,
@@ -478,7 +538,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
           },
           Chell1DSection {
             "label": "E",
-            "sectionEnd": 3,
+            "sectionEnd": 6,
             "sectionStart": 3,
           },
         ],
@@ -516,7 +576,13 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
     as="button"
     basic={true}
     floated="left"
-    icon="eye slash"
+    icon={
+      <Icon
+        as="i"
+        name="question circle outline"
+        size="large"
+      />
+    }
     onClick={[Function]}
     role="button"
     style={

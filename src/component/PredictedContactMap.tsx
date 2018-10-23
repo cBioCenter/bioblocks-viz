@@ -152,7 +152,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
             const score = data.couplingScores.getCouplingScore(point.i, point.j);
 
             return score && score.A_i && score.A_j
-              ? `(${point.i} ${score.A_i}, ${point.j} ${score.A_j})`
+              ? `(${point.i}${score.A_i}, ${point.j}${score.A_j})`
               : `(${point.i}, ${point.j})`;
           }),
         },
@@ -169,7 +169,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
             const score = data.couplingScores.getCouplingScore(point.i, point.j);
 
             return score && score.A_i && score.A_j
-              ? `(${point.i} ${score.A_i}, ${point.j} ${score.A_j})`
+              ? `(${point.i}${score.A_i}, ${point.j}${score.A_j})`
               : `(${point.i}, ${point.j})`;
           }),
         },

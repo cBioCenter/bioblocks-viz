@@ -38,7 +38,7 @@ exports[`SettingsPanel Should match the existing snapshot when given no configur
         inverted={true}
         style={
           Object {
-            "opacity": 0.75,
+            "opacity": 0.6,
             "width": "100%",
           }
         }

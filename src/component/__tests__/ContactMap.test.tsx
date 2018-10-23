@@ -262,7 +262,7 @@ describe('ContactMap', () => {
           }}
           secondaryStructureContext={{
             ...initialSecondaryStructureContext,
-            addSecondaryStructure: addSecondaryStructureSpy,
+            addSelectedSecondaryStructure: addSecondaryStructureSpy,
           }}
         />,
       );
@@ -311,7 +311,7 @@ describe('ContactMap', () => {
           }}
           secondaryStructureContext={{
             ...initialSecondaryStructureContext,
-            toggleSecondaryStructure: toggleSecondaryStructureSpy,
+            addHoveredSecondaryStructure: toggleSecondaryStructureSpy,
           }}
         />,
       );
@@ -335,7 +335,7 @@ describe('ContactMap', () => {
           }}
           secondaryStructureContext={{
             ...initialSecondaryStructureContext,
-            toggleSecondaryStructure: toggleSecondaryStructureSpy,
+            addHoveredSecondaryStructure: toggleSecondaryStructureSpy,
           }}
         />,
       );
@@ -359,9 +359,9 @@ describe('ContactMap', () => {
           }}
           secondaryStructureContext={{
             ...initialSecondaryStructureContext,
-            removeSecondaryStructure: removeSecondaryStructureSpy,
+            hoveredSecondaryStructures: [testSecStruct],
+            removeHoveredSecondaryStructure: removeSecondaryStructureSpy,
             selectedSecondaryStructures: [],
-            temporarySecondaryStructures: [testSecStruct],
           }}
         />,
       );
@@ -385,7 +385,7 @@ describe('ContactMap', () => {
           }}
           secondaryStructureContext={{
             ...initialSecondaryStructureContext,
-            toggleSecondaryStructure: toggleSecondaryStructureSpy,
+            addHoveredSecondaryStructure: toggleSecondaryStructureSpy,
           }}
         />,
       );

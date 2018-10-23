@@ -1,7 +1,7 @@
 import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 
-import { Button } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 import { AuxiliaryAxis, PlotlyChart, SecondaryStructureAxis, SettingsPanel } from '~chell-viz~/component';
 import { ChellWidgetConfig, IPlotlyData, RESIDUE_TYPE, SECONDARY_STRUCTURE } from '~chell-viz~/data';
 import { generateScatterGLData } from '~chell-viz~/helper';
@@ -152,9 +152,9 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
     return (
       <SettingsPanel configurations={configurations} showConfigurations={showConfigurations}>
         <Button
-          icon={showlegend ? 'eye' : 'eye slash'}
           basic={true}
           floated={'left'}
+          icon={<Icon name={'question circle outline'} size={'large'} />}
           onClick={this.toggleLegendVisibility}
           style={{ float: 'left', margin: '0 0 0 15px', position: 'relative', top: '500px', zIndex: 999 }}
         />
@@ -203,7 +203,7 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
     const { contactData, dataTransformFn, secondaryStructures, selectedSecondaryStructures } = this.props;
     const plotlyData = [...contactData.map(entry => dataTransformFn(entry, true))];
     secondaryStructures.forEach((secondaryStructure, index) => {
-      const axis = new SecondaryStructureAxis(secondaryStructure, 1, index + 2);
+      const axis = new SecondaryStructureAxis(secondaryStructure, 3, index + 2);
       plotlyData.push(...axis.xAxes, ...axis.yAxes);
     });
 

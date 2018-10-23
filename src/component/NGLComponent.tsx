@@ -196,7 +196,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
                     structureComponent.addRepresentation(reps[value] as NGL.StructureRepresentationType);
                   }
                   this.setState({
-                    structureComponent,
+                    activeRepresentations: this.deriveActiveRepresentations(structureComponent),
                   });
                   stage.viewer.requestRender();
                 }
@@ -253,8 +253,8 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
       ),
       ...this.highlightLockedDistancePairs(structureComponent, residueContext.lockedResiduePairs),
       ...this.highlightSecondaryStructures(structureComponent, [
+        ...secondaryStructureContext.hoveredSecondaryStructures,
         ...secondaryStructureContext.selectedSecondaryStructures,
-        ...secondaryStructureContext.temporarySecondaryStructures,
       ]),
     ];
   }
@@ -359,7 +359,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
         const resname = AMINO_ACIDS_BY_THREE_LETTER_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE]
           ? AMINO_ACIDS_BY_THREE_LETTER_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE].singleLetterCode
           : atom.resname;
-        stage.tooltip.textContent = `${atom.resno} [${resname}]`;
+        stage.tooltip.textContent = `${atom.resno}${resname}`;
         residueContext.addHoveredResidues([atom.resno]);
       } else if (residueContext.candidateResidues.length === 0 && residueContext.hoveredResidues.length !== 0) {
         residueContext.removeHoveredResidues();
