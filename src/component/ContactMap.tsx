@@ -160,7 +160,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
             const score = couplingContainer.getCouplingScore(point.i, point.j);
 
             return score && score.A_i && score.A_j
-              ? `(${point.i} ${score.A_i}, ${point.j} ${score.A_j})`
+              ? `(${point.i}${score.A_i}, ${point.j}${score.A_j})`
               : `(${point.i}, ${point.j})`;
           }),
         },

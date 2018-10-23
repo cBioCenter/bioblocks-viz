@@ -568,7 +568,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
             ],
             "subtitle": "(from PDB structure)",
             "text": Array [
-              "(10 I, 1 N)",
+              "(10I, 1N)",
             ],
           },
         ]
@@ -706,7 +706,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
             ],
             "subtitle": "(from PDB structure)",
             "text": Array [
-              "(10 I, 1 N)",
+              "(10I, 1N)",
             ],
           },
         ]
@@ -2403,7 +2403,13 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                             as="button"
                             basic={true}
                             floated="left"
-                            icon="question circle outline"
+                            icon={
+                              <Icon
+                                as="i"
+                                name="question circle outline"
+                                size="large"
+                              />
+                            }
                             onClick={[Function]}
                             role="button"
                             style={
@@ -2433,10 +2439,11 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                               <Icon
                                 as="i"
                                 name="question circle outline"
+                                size="large"
                               >
                                 <i
                                   aria-hidden="true"
-                                  className="question circle outline icon"
+                                  className="question circle outline large icon"
                                 />
                               </Icon>
                             </button>

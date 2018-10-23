@@ -1,7 +1,7 @@
 import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 
-import { Button } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 import { AuxiliaryAxis, PlotlyChart, SecondaryStructureAxis, SettingsPanel } from '~chell-viz~/component';
 import { ChellWidgetConfig, IPlotlyData, RESIDUE_TYPE, SECONDARY_STRUCTURE } from '~chell-viz~/data';
 import { generateScatterGLData } from '~chell-viz~/helper';
@@ -152,9 +152,9 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
     return (
       <SettingsPanel configurations={configurations} showConfigurations={showConfigurations}>
         <Button
-          icon={'question circle outline'}
           basic={true}
           floated={'left'}
+          icon={<Icon name={'question circle outline'} size={'large'} />}
           onClick={this.toggleLegendVisibility}
           style={{ float: 'left', margin: '0 0 0 15px', position: 'relative', top: '500px', zIndex: 999 }}
         />
