@@ -253,8 +253,8 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
       ),
       ...this.highlightLockedDistancePairs(structureComponent, residueContext.lockedResiduePairs),
       ...this.highlightSecondaryStructures(structureComponent, [
+        ...secondaryStructureContext.hoveredSecondaryStructures,
         ...secondaryStructureContext.selectedSecondaryStructures,
-        ...secondaryStructureContext.temporarySecondaryStructures,
       ]),
     ];
   }

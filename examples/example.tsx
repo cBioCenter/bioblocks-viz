@@ -411,7 +411,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
   ) => async () => {
     this.setState(ExampleApp.initialState);
     residueContext.clearAllResidues();
-    secondaryStructureContext.clearSecondaryStructure();
+    secondaryStructureContext.clearAllSecondaryStructures();
     this.forceUpdate();
   };
 

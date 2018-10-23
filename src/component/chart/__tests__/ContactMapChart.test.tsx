@@ -2,20 +2,9 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { ContactMapChart, IContactMapChartState } from '~chell-viz~/component';
-import {
-  Chell1DSection,
-  SECONDARY_STRUCTURE,
-  SECONDARY_STRUCTURE_CODES,
-  SECONDARY_STRUCTURE_KEYS,
-} from '~chell-viz~/data';
+import { genSecondaryStructureSection } from '~chell-viz~/test';
 
 describe('ContactMapChart', () => {
-  const genSeqEntry = (
-    structId: keyof typeof SECONDARY_STRUCTURE_CODES,
-    resno: number,
-    length: number = 1,
-  ): SECONDARY_STRUCTURE => [new Chell1DSection<SECONDARY_STRUCTURE_KEYS>(structId, resno, resno + length - 1)];
-
   const emptyData = [
     {
       color: '',
@@ -34,7 +23,7 @@ describe('ContactMapChart', () => {
     const wrapper = shallow(
       <ContactMapChart
         contactData={emptyData}
-        secondaryStructures={[[...genSeqEntry('H', 0, 3), ...genSeqEntry('E', 3, 1)]]}
+        secondaryStructures={[[...genSecondaryStructureSection('H', 0, 4), ...genSecondaryStructureSection('E', 3, 4)]]}
       />,
     );
     expect(wrapper).toMatchSnapshot();
@@ -45,8 +34,8 @@ describe('ContactMapChart', () => {
       <ContactMapChart
         contactData={emptyData}
         secondaryStructures={[
-          [...genSeqEntry('H', 0, 3), ...genSeqEntry('E', 3, 1)],
-          [...genSeqEntry('C', 0, 3), ...genSeqEntry('H', 11, 4)],
+          [...genSecondaryStructureSection('H', 0, 3), ...genSecondaryStructureSection('E', 3, 4)],
+          [...genSecondaryStructureSection('C', 0, 3), ...genSecondaryStructureSection('H', 11, 4)],
         ]}
       />,
     );

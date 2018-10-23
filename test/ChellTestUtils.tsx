@@ -2,7 +2,13 @@ import { CommonWrapper, mount, ReactWrapper, shallow } from 'enzyme';
 import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 
-import { PlotlyChart } from '~chell-viz~';
+import {
+  Chell1DSection,
+  PlotlyChart,
+  SECONDARY_STRUCTURE,
+  SECONDARY_STRUCTURE_CODES,
+  SECONDARY_STRUCTURE_KEYS,
+} from '~chell-viz~';
 import { IMockPlotlyCanvas } from '~chell-viz~/test';
 
 /**
@@ -103,3 +109,9 @@ export class MockContextClass extends React.Component<any, any> {
     return <div>{`I am a class for a mock context!`}</div>;
   }
 }
+
+export const genSecondaryStructureSection = (
+  structId: keyof typeof SECONDARY_STRUCTURE_CODES,
+  resno: number,
+  length: number = 1,
+): SECONDARY_STRUCTURE => [new Chell1DSection<SECONDARY_STRUCTURE_KEYS>(structId, resno, resno + length - 1)];

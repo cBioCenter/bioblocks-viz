@@ -3,20 +3,23 @@ import * as React from 'react';
 import { SECONDARY_STRUCTURE_SECTION } from '~chell-viz~/data';
 
 export const initialSecondaryStructureContext = {
-  addSecondaryStructure: (section: SECONDARY_STRUCTURE_SECTION) => {
+  addHoveredSecondaryStructure: (section: SECONDARY_STRUCTURE_SECTION) => {
     return;
   },
-  clearSecondaryStructure: () => {
+  addSelectedSecondaryStructure: (section: SECONDARY_STRUCTURE_SECTION) => {
+    return;
+  },
+  clearAllSecondaryStructures: () => {
+    return;
+  },
+  hoveredSecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
+  removeHoveredSecondaryStructure: (section: SECONDARY_STRUCTURE_SECTION) => {
     return;
   },
   removeSecondaryStructure: (section: SECONDARY_STRUCTURE_SECTION) => {
     return;
   },
   selectedSecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
-  temporarySecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
-  toggleSecondaryStructure: (section: SECONDARY_STRUCTURE_SECTION) => {
-    return;
-  },
 };
 
 export type ISecondaryStructureContext = typeof initialSecondaryStructureContext;
@@ -27,12 +30,13 @@ export class SecondaryStructureContextProvider extends React.Component<any, ISec
   public constructor(props: any) {
     super(props);
     this.state = {
-      addSecondaryStructure: this.onAddSecondaryStructure(),
-      clearSecondaryStructure: this.onClearSecondaryStructure(),
+      addHoveredSecondaryStructure: this.onAddHoveredSecondaryStructure(),
+      addSelectedSecondaryStructure: this.onAddSelectedSecondaryStructure(),
+      clearAllSecondaryStructures: this.onClearSecondaryStructure(),
+      hoveredSecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
+      removeHoveredSecondaryStructure: this.onRemoveHoveredSecondaryStructure(),
       removeSecondaryStructure: this.onRemoveSecondaryStructure(),
       selectedSecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
-      temporarySecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
-      toggleSecondaryStructure: this.onToggleSecondaryStructure(),
     };
   }
 
@@ -42,7 +46,15 @@ export class SecondaryStructureContextProvider extends React.Component<any, ISec
     );
   }
 
-  protected onAddSecondaryStructure = () => (section: SECONDARY_STRUCTURE_SECTION) => {
+  protected onAddHoveredSecondaryStructure = () => (section: SECONDARY_STRUCTURE_SECTION) => {
+    if (!this.state.hoveredSecondaryStructures.includes(section)) {
+      this.setState({
+        hoveredSecondaryStructures: [...this.state.hoveredSecondaryStructures, section],
+      });
+    }
+  };
+
+  protected onAddSelectedSecondaryStructure = () => (section: SECONDARY_STRUCTURE_SECTION) => {
     if (!this.state.selectedSecondaryStructures.includes(section)) {
       this.setState({
         selectedSecondaryStructures: [...this.state.selectedSecondaryStructures, section],
@@ -52,34 +64,48 @@ export class SecondaryStructureContextProvider extends React.Component<any, ISec
 
   protected onClearSecondaryStructure = () => () => {
     this.setState({
+      hoveredSecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
       selectedSecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
-      temporarySecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
+    });
+  };
+
+  protected onRemoveHoveredSecondaryStructure = () => (sectionToRemove: SECONDARY_STRUCTURE_SECTION) => {
+    const prevIndex = this.state.hoveredSecondaryStructures.findIndex(
+      section =>
+        section.label === sectionToRemove.label &&
+        section.start === sectionToRemove.start &&
+        section.end === sectionToRemove.end,
+    );
+    this.setState({
+      hoveredSecondaryStructures: [
+        ...this.state.hoveredSecondaryStructures.splice(0, prevIndex),
+        ...this.state.hoveredSecondaryStructures.splice(prevIndex + 1),
+      ],
     });
   };
 
   protected onRemoveSecondaryStructure = () => (sectionToRemove: SECONDARY_STRUCTURE_SECTION) => {
-    const prevSelectedIndex = this.state.selectedSecondaryStructures.indexOf(sectionToRemove);
-    const prevTempIndex = this.state.temporarySecondaryStructures.indexOf(sectionToRemove);
+    const prevSelectedIndex = this.state.selectedSecondaryStructures.findIndex(
+      section =>
+        section.label === sectionToRemove.label &&
+        section.start === sectionToRemove.start &&
+        section.end === sectionToRemove.end,
+    );
+    const prevHoveredIndex = this.state.hoveredSecondaryStructures.findIndex(
+      section =>
+        section.label === sectionToRemove.label &&
+        section.start === sectionToRemove.start &&
+        section.end === sectionToRemove.end,
+    );
     this.setState({
-      selectedSecondaryStructures: this.state.selectedSecondaryStructures.filter(
-        (section, index) => index !== prevSelectedIndex,
-      ),
-      temporarySecondaryStructures: this.state.temporarySecondaryStructures.filter(
-        (section, index) => index !== prevTempIndex,
-      ),
+      hoveredSecondaryStructures: [
+        ...this.state.hoveredSecondaryStructures.splice(0, prevHoveredIndex),
+        ...this.state.hoveredSecondaryStructures.splice(prevHoveredIndex + 1),
+      ],
+      selectedSecondaryStructures: [
+        ...this.state.selectedSecondaryStructures.splice(0, prevSelectedIndex),
+        ...this.state.selectedSecondaryStructures.splice(prevSelectedIndex + 1),
+      ],
     });
-  };
-
-  protected onToggleSecondaryStructure = () => (sectionToToggle: SECONDARY_STRUCTURE_SECTION) => {
-    const prev = this.state.temporarySecondaryStructures;
-    if (this.state.temporarySecondaryStructures.includes(sectionToToggle)) {
-      this.setState({
-        temporarySecondaryStructures: prev.filter((section, index) => index !== prev.indexOf(section)),
-      });
-    } else {
-      this.setState({
-        temporarySecondaryStructures: [...this.state.temporarySecondaryStructures, sectionToToggle],
-      });
-    }
   };
 }

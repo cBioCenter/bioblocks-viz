@@ -1858,12 +1858,13 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
   }
   secondaryStructureContext={
     Object {
-      "addSecondaryStructure": [Function],
-      "clearSecondaryStructure": [Function],
+      "addHoveredSecondaryStructure": [Function],
+      "addSelectedSecondaryStructure": [Function],
+      "clearAllSecondaryStructures": [Function],
+      "hoveredSecondaryStructures": Array [],
+      "removeHoveredSecondaryStructure": [Function],
       "removeSecondaryStructure": [Function],
       "selectedSecondaryStructures": Array [],
-      "temporarySecondaryStructures": Array [],
-      "toggleSecondaryStructure": [Function],
     }
   }
   showConfigurations={true}

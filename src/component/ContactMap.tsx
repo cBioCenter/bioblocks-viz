@@ -285,7 +285,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       for (const secondaryStructure of data.secondaryStructures) {
         for (const section of secondaryStructure) {
           if (section.contains(...e.selectedPoints)) {
-            secondaryStructureContext.toggleSecondaryStructure(section);
+            secondaryStructureContext.addHoveredSecondaryStructure(section);
           }
         }
       }
@@ -301,12 +301,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       for (const secondaryStructure of data.secondaryStructures) {
         for (const section of secondaryStructure) {
           if (section.contains(...e.selectedPoints)) {
-            if (
-              !secondaryStructureContext.selectedSecondaryStructures.includes(section) &&
-              secondaryStructureContext.temporarySecondaryStructures.includes(section)
-            ) {
-              secondaryStructureContext.removeSecondaryStructure(section);
-            }
+            secondaryStructureContext.removeHoveredSecondaryStructure(section);
           }
         }
       }
@@ -325,7 +320,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
             if (secondaryStructureContext.selectedSecondaryStructures.includes(section)) {
               secondaryStructureContext.removeSecondaryStructure(section);
             } else {
-              secondaryStructureContext.addSecondaryStructure(section);
+              secondaryStructureContext.addSelectedSecondaryStructure(section);
             }
           }
         }

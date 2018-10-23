@@ -4,12 +4,13 @@ exports[`SecondaryStructureContext Consumer Should allow components to consume a
 <MockContextClass
   secondaryStructureContext={
     Object {
-      "addSecondaryStructure": [Function],
-      "clearSecondaryStructure": [Function],
+      "addHoveredSecondaryStructure": [Function],
+      "addSelectedSecondaryStructure": [Function],
+      "clearAllSecondaryStructures": [Function],
+      "hoveredSecondaryStructures": Array [],
+      "removeHoveredSecondaryStructure": [Function],
       "removeSecondaryStructure": [Function],
       "selectedSecondaryStructures": Array [],
-      "temporarySecondaryStructures": Array [],
-      "toggleSecondaryStructure": [Function],
     }
   }
 >
@@ -24,12 +25,13 @@ exports[`SecondaryStructureContext Provider Should allow components to be provid
   <MockContextClass
     secondaryStructureContext={
       Object {
-        "addSecondaryStructure": [Function],
-        "clearSecondaryStructure": [Function],
+        "addHoveredSecondaryStructure": [Function],
+        "addSelectedSecondaryStructure": [Function],
+        "clearAllSecondaryStructures": [Function],
+        "hoveredSecondaryStructures": Array [],
+        "removeHoveredSecondaryStructure": [Function],
         "removeSecondaryStructure": [Function],
         "selectedSecondaryStructures": Array [],
-        "temporarySecondaryStructures": Array [],
-        "toggleSecondaryStructure": [Function],
       }
     }
   >
