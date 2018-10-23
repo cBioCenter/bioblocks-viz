@@ -2113,7 +2113,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         inverted={true}
                         style={
                           Object {
-                            "opacity": 0.75,
+                            "opacity": 0.6,
                             "width": "100%",
                           }
                         }
@@ -2128,7 +2128,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                             inverted={true}
                             style={
                               Object {
-                                "opacity": 0.75,
+                                "opacity": 0.6,
                                 "width": "100%",
                               }
                             }
@@ -2138,7 +2138,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                               className="ui inverted vertical ui overlay left sidebar menu"
                               style={
                                 Object {
-                                  "opacity": 0.75,
+                                  "opacity": 0.6,
                                   "width": "100%",
                                 }
                               }
@@ -2190,7 +2190,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                         style={
                                           Object {
                                             "color": "white",
-                                            "padding": "25px",
+                                            "padding": "0 25px",
                                             "width": "95%",
                                           }
                                         }
@@ -2201,7 +2201,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                           style={
                                             Object {
                                               "color": "white",
-                                              "padding": "25px",
+                                              "padding": "0 25px",
                                               "width": "95%",
                                             }
                                           }
@@ -2212,7 +2212,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                             style={
                                               Object {
                                                 "color": "white",
-                                                "padding": "25px",
+                                                "padding": "0 25px",
                                                 "width": "95%",
                                               }
                                             }
