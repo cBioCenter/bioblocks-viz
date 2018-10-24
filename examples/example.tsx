@@ -104,6 +104,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
       (couplingScores !== prevState[VIZ_TYPE.CONTACT_MAP].couplingScores || pdbData !== prevState.pdbData)
     ) {
       const mismatches = pdbData.getResidueNumberingMismatches(couplingScores);
+
       if (mismatches.length >= 1) {
         errorMsg = `Error details: ${mismatches.length} mismatches detected between coupling scores and PDB!\
         For example, residue number ${mismatches[0].resno} is '${
@@ -180,7 +181,9 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
             <Message.Header>
               {`Residue numbering mismatch detected. Please upload a file to correct the position numbering differences.`}
               {<br />}
-              {`EVCouplings and EVFold outputs this file in the <strong>OUTPUT</strong> directory.
+              {`EVCouplings and EVFold outputs this file in the `}
+              <strong>OUTPUT</strong>
+              {` directory.
                 This file will be named similar to
                 '${pdbData.name}.csv' or '${pdbData.name}.indextableplus'`}
             </Message.Header>
@@ -431,7 +434,6 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
           });
           const parsedFile = await readFileAsText(file);
           const couplingScores = getCouplingScoresData(parsedFile, this.state.residueMapping);
-
           const mismatches = pdbData ? pdbData.getResidueNumberingMismatches(couplingScores) : [];
           const isResidueMappingNeeded = mismatches.length > 0;
 
