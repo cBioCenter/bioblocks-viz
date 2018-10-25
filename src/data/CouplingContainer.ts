@@ -82,17 +82,31 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
    * @param score A Coupling Score to add to the collection.
    */
   public addCouplingScore(score: ICouplingScore): void {
-    const { i, j, ...rest } = score;
+    const { A_i, A_j, i, j } = score;
+
     const minResidueIndex = Math.min(i, j) - 1;
     const maxResidueIndex = Math.max(i, j) - 1;
+
+    const isFlipped = minResidueIndex + 1 === j;
+
     if (!this.contacts[minResidueIndex]) {
       this.contacts[minResidueIndex] = new Array<ICouplingScore>();
     }
     if (!this.contacts[minResidueIndex][maxResidueIndex]) {
       this.totalStoredContacts++;
-      this.contacts[minResidueIndex][maxResidueIndex] = score;
-    } else {
-      this.updateContact(i, j, rest);
+    }
+    this.contacts[minResidueIndex][maxResidueIndex] = {
+      ...this.contacts[minResidueIndex][maxResidueIndex],
+      ...score,
+    };
+
+    if (isFlipped) {
+      this.contacts[minResidueIndex][maxResidueIndex].i = j;
+      this.contacts[minResidueIndex][maxResidueIndex].j = i;
+      if (A_i && A_j) {
+        this.contacts[minResidueIndex][maxResidueIndex].A_i = A_j;
+        this.contacts[minResidueIndex][maxResidueIndex].A_j = A_i;
+      }
     }
 
     this.indexRange = {
@@ -206,14 +220,6 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
   }
 
   public updateContact(i: number, j: number, score: Partial<Omit<ICouplingScore, 'i' | 'j'>>) {
-    const minResidueIndex = Math.min(i, j) - 1;
-    const maxResidueIndex = Math.max(i, j) - 1;
-
-    if (this.includes(i, j)) {
-      this.contacts[minResidueIndex][maxResidueIndex] = {
-        ...this.contacts[minResidueIndex][maxResidueIndex],
-        ...score,
-      };
-    }
+    this.addCouplingScore({ i, j, ...score });
   }
 }

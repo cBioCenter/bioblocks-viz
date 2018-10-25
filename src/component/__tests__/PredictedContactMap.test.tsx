@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { PredictedContactMap } from '~chell-viz~/component';
+import { PredictedContactMap, PredictedContactMapState } from '~chell-viz~/component';
 import {
   Chell1DSection,
   CouplingContainer,
@@ -133,7 +133,8 @@ describe('PredictedContactMap', () => {
     wrapper.setProps({
       data: sampleData,
     });
-    expect(wrapper.state('pointsToPlot')).not.toEqual([]);
-    expect(wrapper.state('pointsToPlot')).toMatchSnapshot();
+    const state = wrapper.instance().state as PredictedContactMapState;
+    expect(state.pointsToPlot).not.toEqual([]);
+    expect(state.pointsToPlot).toMatchSnapshot();
   });
 });
