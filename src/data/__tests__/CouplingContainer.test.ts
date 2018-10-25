@@ -6,7 +6,7 @@ describe('CouplingContainer', () => {
     { cn: 0.5, i: 1, j: 2, dist: 1 },
     { cn: 0.5, i: 2, j: 1, dist: 1 },
     { cn: 0.7, i: 3, j: 4, dist: 5 },
-    { cn: 0.2, i: 9, j: 8, dist: 7 },
+    { cn: 0.2, i: 8, j: 9, dist: 7 },
   ];
 
   it('Should store a coupling [i=x, j=y] to the same place as [i=y, j=x].', () => {
@@ -58,15 +58,21 @@ describe('CouplingContainer', () => {
 
   it('Should allow retrieving the contacts sorted by rank.', () => {
     const result = new CouplingContainer(sampleContacts).rankedContacts;
-    const expected = [sampleContacts[2], sampleContacts[1], sampleContacts[3]];
+    const expected = [sampleContacts[2], sampleContacts[0], sampleContacts[3]];
     expect(result).toEqual(expected);
+  });
+
+  it('Should return undefined when getting a contact out of bounds.', () => {
+    const result = new CouplingContainer(sampleContacts);
+    expect(result.getAminoAcidOfContact(777)).toBeUndefined();
+    expect(result.getCouplingScore(777, 777)).toBeUndefined();
   });
 
   it('Should allow have contacts with undefined cn values at the bottom of the sorted list.', () => {
     const dummyScores = [{ i: 1, j: 1, dist: 0 }, { i: 2, j: 2, dist: 1 }, { i: 11, j: 11, dist: 11 }];
     for (const score of dummyScores) {
       const result = new CouplingContainer([score, ...sampleContacts]).rankedContacts;
-      const expected = [sampleContacts[2], sampleContacts[1], sampleContacts[3], score];
+      const expected = [sampleContacts[2], sampleContacts[0], sampleContacts[3], score];
       expect(result).toEqual(expected);
     }
   });
@@ -81,6 +87,57 @@ describe('CouplingContainer', () => {
       { A_i: 'T', A_j: 'Y', cn: 0.5, i: 3, j: 5, dist: 1 },
     ];
     const container = new CouplingContainer(contacts);
+    expect(container.sequence).toEqual('ARTSY');
+  });
+
+  it('Should return the correct amino acid sequence for a set of contacts when indices are flipped.', () => {
+    const contacts: ICouplingScore[] = [
+      { A_i: 'T', A_j: 'A', cn: 0.5, i: 3, j: 1, dist: 1 },
+      { A_i: 'A', A_j: 'R', cn: 0.5, i: 1, j: 2, dist: 1 },
+      { A_i: 'R', A_j: 'T', cn: 0.5, i: 2, j: 3, dist: 1 },
+      { A_i: 'T', A_j: 'R', cn: 0.5, i: 3, j: 2, dist: 1 },
+      { A_i: 'A', A_j: 'S', cn: 0.5, i: 1, j: 4, dist: 1 },
+      { A_i: 'Y', A_j: 'T', cn: 0.5, i: 5, j: 3, dist: 1 },
+    ];
+    const container = new CouplingContainer(contacts);
+    expect(container.sequence).toEqual('ARTSY');
+  });
+
+  it('Should return the correct amino acid sequence for a set of contacts when they are updated and flipped.', () => {
+    const contacts: ICouplingScore[] = [
+      { cn: 0.5, i: 3, j: 1, dist: 1 },
+      { cn: 0.5, i: 1, j: 2, dist: 1 },
+      { cn: 0.5, i: 2, j: 3, dist: 1 },
+      { cn: 0.5, i: 3, j: 2, dist: 1 },
+      { cn: 0.5, i: 1, j: 4, dist: 1 },
+      { cn: 0.5, i: 5, j: 3, dist: 1 },
+    ];
+    const container = new CouplingContainer(contacts);
+    container.updateContact(3, 1, { A_i: 'T', A_j: 'A' });
+    container.updateContact(1, 2, { A_i: 'A', A_j: 'R' });
+    container.updateContact(2, 3, { A_i: 'R', A_j: 'T' });
+    container.updateContact(3, 2, { A_i: 'T', A_j: 'R' });
+    container.updateContact(1, 4, { A_i: 'A', A_j: 'S' });
+    container.updateContact(5, 3, { A_i: 'Y', A_j: 'T' });
+    expect(container.sequence).toEqual('ARTSY');
+  });
+
+  it('Should return the correct amino acid sequence for a set of contacts when they are updated and not flipped.', () => {
+    const contacts: ICouplingScore[] = [
+      { cn: 0.5, i: 1, j: 3, dist: 1 },
+      { cn: 0.5, i: 2, j: 1, dist: 1 },
+      { cn: 0.5, i: 3, j: 2, dist: 1 },
+      { cn: 0.5, i: 2, j: 3, dist: 1 },
+      { cn: 0.5, i: 4, j: 1, dist: 1 },
+      { cn: 0.5, i: 3, j: 5, dist: 1 },
+    ];
+    const container = new CouplingContainer(contacts);
+    container.updateContact(1, 3, { A_i: 'A', A_j: 'T' });
+    container.updateContact(2, 1, { A_i: 'R', A_j: 'A' });
+    container.updateContact(3, 2, { A_i: 'T', A_j: 'R' });
+    container.updateContact(2, 3, { A_i: 'R', A_j: 'T' });
+    container.updateContact(4, 1, { A_i: 'S', A_j: 'A' });
+    container.updateContact(3, 5, { A_i: 'T', A_j: 'Y' });
     expect(container.sequence).toEqual('ARTSY');
   });
 

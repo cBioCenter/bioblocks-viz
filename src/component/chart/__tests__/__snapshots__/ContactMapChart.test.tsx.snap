@@ -229,23 +229,15 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
         },
         "showlegend": false,
         "xaxis": Object {
-          "autorange": false,
+          "autorange": true,
           "nticks": 10,
-          "range": Array [
-            1,
-            100,
-          ],
           "showline": true,
           "tickmode": "auto",
           "title": "Residue #",
         },
         "yaxis": Object {
-          "autorange": false,
+          "autorange": "reversed",
           "nticks": 10,
-          "range": Array [
-            100,
-            1,
-          ],
           "showline": true,
           "tickmode": "auto",
           "title": "Residue #",
@@ -505,23 +497,15 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
         },
         "showlegend": false,
         "xaxis": Object {
-          "autorange": false,
+          "autorange": true,
           "nticks": 10,
-          "range": Array [
-            1,
-            100,
-          ],
           "showline": true,
           "tickmode": "auto",
           "title": "Residue #",
         },
         "yaxis": Object {
-          "autorange": false,
+          "autorange": "reversed",
           "nticks": 10,
-          "range": Array [
-            100,
-            1,
-          ],
           "showline": true,
           "tickmode": "auto",
           "title": "Residue #",
@@ -631,23 +615,15 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
         },
         "showlegend": false,
         "xaxis": Object {
-          "autorange": false,
+          "autorange": true,
           "nticks": 10,
-          "range": Array [
-            1,
-            100,
-          ],
           "showline": true,
           "tickmode": "auto",
           "title": "Residue #",
         },
         "yaxis": Object {
-          "autorange": false,
+          "autorange": "reversed",
           "nticks": 10,
-          "range": Array [
-            100,
-            1,
-          ],
           "showline": true,
           "tickmode": "auto",
           "title": "Residue #",

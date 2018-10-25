@@ -82,20 +82,31 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
    * @param score A Coupling Score to add to the collection.
    */
   public addCouplingScore(score: ICouplingScore): void {
-    const { i, j } = score;
+    const { A_i, A_j, i, j } = score;
+
     const minResidueIndex = Math.min(i, j) - 1;
     const maxResidueIndex = Math.max(i, j) - 1;
+
+    const isFlipped = minResidueIndex + 1 === j;
+
     if (!this.contacts[minResidueIndex]) {
       this.contacts[minResidueIndex] = new Array<ICouplingScore>();
     }
     if (!this.contacts[minResidueIndex][maxResidueIndex]) {
       this.totalStoredContacts++;
-      this.contacts[minResidueIndex][maxResidueIndex] = score;
-    } else {
-      this.contacts[minResidueIndex][maxResidueIndex] = {
-        ...this.contacts[minResidueIndex][maxResidueIndex],
-        ...score,
-      };
+    }
+    this.contacts[minResidueIndex][maxResidueIndex] = {
+      ...this.contacts[minResidueIndex][maxResidueIndex],
+      ...score,
+    };
+
+    if (isFlipped) {
+      this.contacts[minResidueIndex][maxResidueIndex].i = j;
+      this.contacts[minResidueIndex][maxResidueIndex].j = i;
+      if (A_i && A_j) {
+        this.contacts[minResidueIndex][maxResidueIndex].A_i = A_j;
+        this.contacts[minResidueIndex][maxResidueIndex].A_j = A_i;
+      }
     }
 
     this.indexRange = {
@@ -177,6 +188,7 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
   };
 
   public includes = (firstRes: number, secondRes: number) =>
+    this.contacts[Math.min(firstRes, secondRes) - 1] &&
     this.contacts[Math.min(firstRes, secondRes) - 1][Math.max(firstRes, secondRes) - 1] !== undefined;
 
   public next(): IteratorResult<ICouplingScore> {
@@ -205,5 +217,9 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
       done: true,
       value: null as any,
     };
+  }
+
+  public updateContact(i: number, j: number, score: Partial<Omit<ICouplingScore, 'i' | 'j'>>) {
+    this.addCouplingScore({ i, j, ...score });
   }
 }
