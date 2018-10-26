@@ -323,8 +323,10 @@
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#getcouplingscorefromcsvrow" class="tsd-kind-icon">get<wbr>Coupling<wbr>Score<wbr>FromCSVRow</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#getcouplingscoresdata" class="tsd-kind-icon">get<wbr>Coupling<wbr>Scores<wbr>Data</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#getnodesfromgraph" class="tsd-kind-icon">get<wbr>Nodes<wbr>From<wbr>Graph</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#getpdbandcouplingmismatch" class="tsd-kind-icon">getPDBAnd<wbr>Coupling<wbr>Mismatch</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#getresiduemappingheaders" class="tsd-kind-icon">get<wbr>Residue<wbr>Mapping<wbr>Headers</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#getsecondarystructuredata" class="tsd-kind-icon">get<wbr>Secondary<wbr>Structure<wbr>Data</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#getsequencemismatch" class="tsd-kind-icon">get<wbr>Sequence<wbr>Mismatch</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#iscouplingheaderpresent" class="tsd-kind-icon">is<wbr>Coupling<wbr>Header<wbr>Present</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#readfileastext" class="tsd-kind-icon">read<wbr>File<wbr>AsText</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#renderrecursive" class="tsd-kind-icon">render<wbr>Recursive</a></li>
@@ -382,7 +384,7 @@
 					<div class="tsd-signature tsd-kind-icon">AMINO_<wbr>ACID_<wbr>SINGLE_<wbr>LETTER_<wbr>CODE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"A"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"R"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"N"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"D"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"C"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"Q"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"E"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"G"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"H"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"I"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"L"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"K"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"M"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"F"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"P"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"S"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"T"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"W"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"Y"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"V"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:1</li>
+							<li>Defined in src/data/AminoAcid.ts:3</li>
 						</ul>
 					</aside>
 				</section>
@@ -392,7 +394,7 @@
 					<div class="tsd-signature tsd-kind-icon">AMINO_<wbr>ACID_<wbr>THREE_<wbr>LETTER_<wbr>CODE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"ALA"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"ARG"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"ASN"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"ASP"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"CYS"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"GLN"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"GLU"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"GLY"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"HIS"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"ILE"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"LEU"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"LYS"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"MET"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"PHE"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"PRO"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"SER"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"THR"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"TRP"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"TYR"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"VAL"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:23</li>
+							<li>Defined in src/data/AminoAcid.ts:25</li>
 						</ul>
 					</aside>
 				</section>
@@ -1270,7 +1272,7 @@
 					<div class="tsd-signature tsd-kind-icon">AMINO_<wbr>ACIDS<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[Ala,Arg,Asn,Asp,Cys,Gln,Glu,Gly,His,Ile,Leu,Lys,Met,Phe,Pro,Ser,Thr,Trp,Tyr,Val,]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:120</li>
+							<li>Defined in src/data/AminoAcid.ts:122</li>
 						</ul>
 					</aside>
 				</section>
@@ -2521,6 +2523,32 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="getpdbandcouplingmismatch" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> getPDBAnd<wbr>Coupling<wbr>Mismatch</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">getPDBAnd<wbr>Coupling<wbr>Mismatch<span class="tsd-signature-symbol">(</span>pdbData<span class="tsd-signature-symbol">: </span><a href="classes/chellpdb.html" class="tsd-signature-type">ChellPDB</a>, couplingScores<span class="tsd-signature-symbol">: </span><a href="classes/couplingcontainer.html" class="tsd-signature-type">CouplingContainer</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/iresiduemismatchresult.html" class="tsd-signature-type">IResidueMismatchResult</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/data/AminoAcid.ts:151</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>pdbData: <a href="classes/chellpdb.html" class="tsd-signature-type">ChellPDB</a></h5>
+								</li>
+								<li>
+									<h5>couplingScores: <a href="classes/couplingcontainer.html" class="tsd-signature-type">CouplingContainer</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="interfaces/iresiduemismatchresult.html" class="tsd-signature-type">IResidueMismatchResult</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
 					<a name="getresiduemappingheaders" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Residue<wbr>Mapping<wbr>Headers</h3>
@@ -2585,6 +2613,32 @@
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a><span class="tsd-signature-symbol">[]</span></h4>
 							<p>Array of SecondaryStructure mappings suitable for chell-viz consumption.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="getsequencemismatch" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Sequence<wbr>Mismatch</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Sequence<wbr>Mismatch<span class="tsd-signature-symbol">(</span>firstSequence<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, secondSequence<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/iresiduemismatchresult.html" class="tsd-signature-type">IResidueMismatchResult</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/data/AminoAcid.ts:163</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>firstSequence: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>secondSequence: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="interfaces/iresiduemismatchresult.html" class="tsd-signature-type">IResidueMismatchResult</a><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -2695,7 +2749,7 @@
 					<div class="tsd-signature tsd-kind-icon">AMINO_<wbr>ACIDS_<wbr>BY_<wbr>SINGLE_<wbr>LETTER_<wbr>CODE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:73</li>
+							<li>Defined in src/data/AminoAcid.ts:75</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -2704,7 +2758,7 @@
 						<div class="tsd-signature tsd-kind-icon">A<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Ala</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:74</li>
+								<li>Defined in src/data/AminoAcid.ts:76</li>
 							</ul>
 						</aside>
 					</section>
@@ -2714,7 +2768,7 @@
 						<div class="tsd-signature tsd-kind-icon">C<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Cys</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:78</li>
+								<li>Defined in src/data/AminoAcid.ts:80</li>
 							</ul>
 						</aside>
 					</section>
@@ -2724,7 +2778,7 @@
 						<div class="tsd-signature tsd-kind-icon">D<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Asp</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:77</li>
+								<li>Defined in src/data/AminoAcid.ts:79</li>
 							</ul>
 						</aside>
 					</section>
@@ -2734,7 +2788,7 @@
 						<div class="tsd-signature tsd-kind-icon">E<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Glu</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:80</li>
+								<li>Defined in src/data/AminoAcid.ts:82</li>
 							</ul>
 						</aside>
 					</section>
@@ -2744,7 +2798,7 @@
 						<div class="tsd-signature tsd-kind-icon">F<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Phe</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:87</li>
+								<li>Defined in src/data/AminoAcid.ts:89</li>
 							</ul>
 						</aside>
 					</section>
@@ -2754,7 +2808,7 @@
 						<div class="tsd-signature tsd-kind-icon">G<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Gly</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:81</li>
+								<li>Defined in src/data/AminoAcid.ts:83</li>
 							</ul>
 						</aside>
 					</section>
@@ -2764,7 +2818,7 @@
 						<div class="tsd-signature tsd-kind-icon">H<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;His</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:82</li>
+								<li>Defined in src/data/AminoAcid.ts:84</li>
 							</ul>
 						</aside>
 					</section>
@@ -2774,7 +2828,7 @@
 						<div class="tsd-signature tsd-kind-icon">I<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Ile</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:83</li>
+								<li>Defined in src/data/AminoAcid.ts:85</li>
 							</ul>
 						</aside>
 					</section>
@@ -2784,7 +2838,7 @@
 						<div class="tsd-signature tsd-kind-icon">K<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Lys</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:85</li>
+								<li>Defined in src/data/AminoAcid.ts:87</li>
 							</ul>
 						</aside>
 					</section>
@@ -2794,7 +2848,7 @@
 						<div class="tsd-signature tsd-kind-icon">L<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Leu</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:84</li>
+								<li>Defined in src/data/AminoAcid.ts:86</li>
 							</ul>
 						</aside>
 					</section>
@@ -2804,7 +2858,7 @@
 						<div class="tsd-signature tsd-kind-icon">M<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Met</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:86</li>
+								<li>Defined in src/data/AminoAcid.ts:88</li>
 							</ul>
 						</aside>
 					</section>
@@ -2814,7 +2868,7 @@
 						<div class="tsd-signature tsd-kind-icon">N<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Asn</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:76</li>
+								<li>Defined in src/data/AminoAcid.ts:78</li>
 							</ul>
 						</aside>
 					</section>
@@ -2824,7 +2878,7 @@
 						<div class="tsd-signature tsd-kind-icon">P<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Pro</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:88</li>
+								<li>Defined in src/data/AminoAcid.ts:90</li>
 							</ul>
 						</aside>
 					</section>
@@ -2834,7 +2888,7 @@
 						<div class="tsd-signature tsd-kind-icon">Q<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Gln</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:79</li>
+								<li>Defined in src/data/AminoAcid.ts:81</li>
 							</ul>
 						</aside>
 					</section>
@@ -2844,7 +2898,7 @@
 						<div class="tsd-signature tsd-kind-icon">R<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Arg</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:75</li>
+								<li>Defined in src/data/AminoAcid.ts:77</li>
 							</ul>
 						</aside>
 					</section>
@@ -2854,7 +2908,7 @@
 						<div class="tsd-signature tsd-kind-icon">S<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Ser</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:89</li>
+								<li>Defined in src/data/AminoAcid.ts:91</li>
 							</ul>
 						</aside>
 					</section>
@@ -2864,7 +2918,7 @@
 						<div class="tsd-signature tsd-kind-icon">T<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Thr</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:90</li>
+								<li>Defined in src/data/AminoAcid.ts:92</li>
 							</ul>
 						</aside>
 					</section>
@@ -2874,7 +2928,7 @@
 						<div class="tsd-signature tsd-kind-icon">V<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Val</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:93</li>
+								<li>Defined in src/data/AminoAcid.ts:95</li>
 							</ul>
 						</aside>
 					</section>
@@ -2884,7 +2938,7 @@
 						<div class="tsd-signature tsd-kind-icon">W<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Trp</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:91</li>
+								<li>Defined in src/data/AminoAcid.ts:93</li>
 							</ul>
 						</aside>
 					</section>
@@ -2894,7 +2948,7 @@
 						<div class="tsd-signature tsd-kind-icon">Y<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Tyr</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:92</li>
+								<li>Defined in src/data/AminoAcid.ts:94</li>
 							</ul>
 						</aside>
 					</section>
@@ -2905,7 +2959,7 @@
 					<div class="tsd-signature tsd-kind-icon">AMINO_<wbr>ACIDS_<wbr>BY_<wbr>THREE_<wbr>LETTER_<wbr>CODE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:97</li>
+							<li>Defined in src/data/AminoAcid.ts:99</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -2914,7 +2968,7 @@
 						<div class="tsd-signature tsd-kind-icon">ALA<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Ala</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:98</li>
+								<li>Defined in src/data/AminoAcid.ts:100</li>
 							</ul>
 						</aside>
 					</section>
@@ -2924,7 +2978,7 @@
 						<div class="tsd-signature tsd-kind-icon">ARG<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Arg</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:99</li>
+								<li>Defined in src/data/AminoAcid.ts:101</li>
 							</ul>
 						</aside>
 					</section>
@@ -2934,7 +2988,7 @@
 						<div class="tsd-signature tsd-kind-icon">ASN<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Asn</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:100</li>
+								<li>Defined in src/data/AminoAcid.ts:102</li>
 							</ul>
 						</aside>
 					</section>
@@ -2944,7 +2998,7 @@
 						<div class="tsd-signature tsd-kind-icon">ASP<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Asp</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:101</li>
+								<li>Defined in src/data/AminoAcid.ts:103</li>
 							</ul>
 						</aside>
 					</section>
@@ -2954,7 +3008,7 @@
 						<div class="tsd-signature tsd-kind-icon">CYS<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Cys</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:102</li>
+								<li>Defined in src/data/AminoAcid.ts:104</li>
 							</ul>
 						</aside>
 					</section>
@@ -2964,7 +3018,7 @@
 						<div class="tsd-signature tsd-kind-icon">GLN<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Gln</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:103</li>
+								<li>Defined in src/data/AminoAcid.ts:105</li>
 							</ul>
 						</aside>
 					</section>
@@ -2974,7 +3028,7 @@
 						<div class="tsd-signature tsd-kind-icon">GLU<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Glu</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:104</li>
+								<li>Defined in src/data/AminoAcid.ts:106</li>
 							</ul>
 						</aside>
 					</section>
@@ -2984,7 +3038,7 @@
 						<div class="tsd-signature tsd-kind-icon">GLY<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Gly</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:105</li>
+								<li>Defined in src/data/AminoAcid.ts:107</li>
 							</ul>
 						</aside>
 					</section>
@@ -2994,7 +3048,7 @@
 						<div class="tsd-signature tsd-kind-icon">HIS<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;His</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:106</li>
+								<li>Defined in src/data/AminoAcid.ts:108</li>
 							</ul>
 						</aside>
 					</section>
@@ -3004,7 +3058,7 @@
 						<div class="tsd-signature tsd-kind-icon">ILE<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Ile</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:107</li>
+								<li>Defined in src/data/AminoAcid.ts:109</li>
 							</ul>
 						</aside>
 					</section>
@@ -3014,7 +3068,7 @@
 						<div class="tsd-signature tsd-kind-icon">LEU<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Leu</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:108</li>
+								<li>Defined in src/data/AminoAcid.ts:110</li>
 							</ul>
 						</aside>
 					</section>
@@ -3024,7 +3078,7 @@
 						<div class="tsd-signature tsd-kind-icon">LYS<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Lys</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:109</li>
+								<li>Defined in src/data/AminoAcid.ts:111</li>
 							</ul>
 						</aside>
 					</section>
@@ -3034,7 +3088,7 @@
 						<div class="tsd-signature tsd-kind-icon">MET<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Met</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:110</li>
+								<li>Defined in src/data/AminoAcid.ts:112</li>
 							</ul>
 						</aside>
 					</section>
@@ -3044,7 +3098,7 @@
 						<div class="tsd-signature tsd-kind-icon">PHE<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Phe</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:111</li>
+								<li>Defined in src/data/AminoAcid.ts:113</li>
 							</ul>
 						</aside>
 					</section>
@@ -3054,7 +3108,7 @@
 						<div class="tsd-signature tsd-kind-icon">PRO<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Pro</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:112</li>
+								<li>Defined in src/data/AminoAcid.ts:114</li>
 							</ul>
 						</aside>
 					</section>
@@ -3064,7 +3118,7 @@
 						<div class="tsd-signature tsd-kind-icon">SER<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Ser</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:113</li>
+								<li>Defined in src/data/AminoAcid.ts:115</li>
 							</ul>
 						</aside>
 					</section>
@@ -3074,7 +3128,7 @@
 						<div class="tsd-signature tsd-kind-icon">THR<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Thr</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:114</li>
+								<li>Defined in src/data/AminoAcid.ts:116</li>
 							</ul>
 						</aside>
 					</section>
@@ -3084,7 +3138,7 @@
 						<div class="tsd-signature tsd-kind-icon">TRP<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Trp</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:115</li>
+								<li>Defined in src/data/AminoAcid.ts:117</li>
 							</ul>
 						</aside>
 					</section>
@@ -3094,7 +3148,7 @@
 						<div class="tsd-signature tsd-kind-icon">TYR<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Tyr</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:116</li>
+								<li>Defined in src/data/AminoAcid.ts:118</li>
 							</ul>
 						</aside>
 					</section>
@@ -3104,7 +3158,7 @@
 						<div class="tsd-signature tsd-kind-icon">VAL<span class="tsd-signature-symbol">:</span> <a href="interfaces/iaminoacid.html" class="tsd-signature-type">IAminoAcid</a><span class="tsd-signature-symbol"> =&nbsp;Val</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:117</li>
+								<li>Defined in src/data/AminoAcid.ts:119</li>
 							</ul>
 						</aside>
 					</section>
@@ -3115,7 +3169,7 @@
 					<div class="tsd-signature tsd-kind-icon">Ala<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:51</li>
+							<li>Defined in src/data/AminoAcid.ts:53</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -3124,7 +3178,7 @@
 						<div class="tsd-signature tsd-kind-icon">full<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Alanine&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:51</li>
+								<li>Defined in src/data/AminoAcid.ts:53</li>
 							</ul>
 						</aside>
 					</section>
@@ -3134,7 +3188,7 @@
 						<div class="tsd-signature tsd-kind-icon">single<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"A"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;A&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:51</li>
+								<li>Defined in src/data/AminoAcid.ts:53</li>
 							</ul>
 						</aside>
 					</section>
@@ -3144,7 +3198,7 @@
 						<div class="tsd-signature tsd-kind-icon">three<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"ALA"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;ALA&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:51</li>
+								<li>Defined in src/data/AminoAcid.ts:53</li>
 							</ul>
 						</aside>
 					</section>
@@ -3155,7 +3209,7 @@
 					<div class="tsd-signature tsd-kind-icon">Arg<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:52</li>
+							<li>Defined in src/data/AminoAcid.ts:54</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -3164,7 +3218,7 @@
 						<div class="tsd-signature tsd-kind-icon">full<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Arginine&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:52</li>
+								<li>Defined in src/data/AminoAcid.ts:54</li>
 							</ul>
 						</aside>
 					</section>
@@ -3174,7 +3228,7 @@
 						<div class="tsd-signature tsd-kind-icon">single<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"R"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;R&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:52</li>
+								<li>Defined in src/data/AminoAcid.ts:54</li>
 							</ul>
 						</aside>
 					</section>
@@ -3184,7 +3238,7 @@
 						<div class="tsd-signature tsd-kind-icon">three<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"ARG"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;ARG&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:52</li>
+								<li>Defined in src/data/AminoAcid.ts:54</li>
 							</ul>
 						</aside>
 					</section>
@@ -3195,7 +3249,7 @@
 					<div class="tsd-signature tsd-kind-icon">Asn<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:53</li>
+							<li>Defined in src/data/AminoAcid.ts:55</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -3204,7 +3258,7 @@
 						<div class="tsd-signature tsd-kind-icon">full<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Asparagine&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:53</li>
+								<li>Defined in src/data/AminoAcid.ts:55</li>
 							</ul>
 						</aside>
 					</section>
@@ -3214,7 +3268,7 @@
 						<div class="tsd-signature tsd-kind-icon">single<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"N"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;N&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:53</li>
+								<li>Defined in src/data/AminoAcid.ts:55</li>
 							</ul>
 						</aside>
 					</section>
@@ -3224,7 +3278,7 @@
 						<div class="tsd-signature tsd-kind-icon">three<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"ASN"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;ASN&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:53</li>
+								<li>Defined in src/data/AminoAcid.ts:55</li>
 							</ul>
 						</aside>
 					</section>
@@ -3235,7 +3289,7 @@
 					<div class="tsd-signature tsd-kind-icon">Asp<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:54</li>
+							<li>Defined in src/data/AminoAcid.ts:56</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -3244,7 +3298,7 @@
 						<div class="tsd-signature tsd-kind-icon">full<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Aspartic Acid&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:54</li>
+								<li>Defined in src/data/AminoAcid.ts:56</li>
 							</ul>
 						</aside>
 					</section>
@@ -3254,7 +3308,7 @@
 						<div class="tsd-signature tsd-kind-icon">single<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"D"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;D&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:54</li>
+								<li>Defined in src/data/AminoAcid.ts:56</li>
 							</ul>
 						</aside>
 					</section>
@@ -3264,7 +3318,7 @@
 						<div class="tsd-signature tsd-kind-icon">three<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"ASP"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;ASP&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:54</li>
+								<li>Defined in src/data/AminoAcid.ts:56</li>
 							</ul>
 						</aside>
 					</section>
@@ -3275,7 +3329,7 @@
 					<div class="tsd-signature tsd-kind-icon">Cys<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:55</li>
+							<li>Defined in src/data/AminoAcid.ts:57</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -3284,7 +3338,7 @@
 						<div class="tsd-signature tsd-kind-icon">full<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Cysteine&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:55</li>
+								<li>Defined in src/data/AminoAcid.ts:57</li>
 							</ul>
 						</aside>
 					</section>
@@ -3294,7 +3348,7 @@
 						<div class="tsd-signature tsd-kind-icon">single<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"C"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;C&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:55</li>
+								<li>Defined in src/data/AminoAcid.ts:57</li>
 							</ul>
 						</aside>
 					</section>
@@ -3304,7 +3358,7 @@
 						<div class="tsd-signature tsd-kind-icon">three<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"CYS"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;CYS&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:55</li>
+								<li>Defined in src/data/AminoAcid.ts:57</li>
 							</ul>
 						</aside>
 					</section>
@@ -3315,7 +3369,7 @@
 					<div class="tsd-signature tsd-kind-icon">Gln<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:56</li>
+							<li>Defined in src/data/AminoAcid.ts:58</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -3324,7 +3378,7 @@
 						<div class="tsd-signature tsd-kind-icon">full<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Glutamine&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:56</li>
+								<li>Defined in src/data/AminoAcid.ts:58</li>
 							</ul>
 						</aside>
 					</section>
@@ -3334,7 +3388,7 @@
 						<div class="tsd-signature tsd-kind-icon">single<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"Q"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Q&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:56</li>
+								<li>Defined in src/data/AminoAcid.ts:58</li>
 							</ul>
 						</aside>
 					</section>
@@ -3344,7 +3398,7 @@
 						<div class="tsd-signature tsd-kind-icon">three<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"GLN"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;GLN&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:56</li>
+								<li>Defined in src/data/AminoAcid.ts:58</li>
 							</ul>
 						</aside>
 					</section>
@@ -3355,7 +3409,7 @@
 					<div class="tsd-signature tsd-kind-icon">Glu<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:57</li>
+							<li>Defined in src/data/AminoAcid.ts:59</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -3364,7 +3418,7 @@
 						<div class="tsd-signature tsd-kind-icon">full<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Glutamic Acid&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:57</li>
+								<li>Defined in src/data/AminoAcid.ts:59</li>
 							</ul>
 						</aside>
 					</section>
@@ -3374,7 +3428,7 @@
 						<div class="tsd-signature tsd-kind-icon">single<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"E"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;E&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:57</li>
+								<li>Defined in src/data/AminoAcid.ts:59</li>
 							</ul>
 						</aside>
 					</section>
@@ -3384,7 +3438,7 @@
 						<div class="tsd-signature tsd-kind-icon">three<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"GLU"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;GLU&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:57</li>
+								<li>Defined in src/data/AminoAcid.ts:59</li>
 							</ul>
 						</aside>
 					</section>
@@ -3395,7 +3449,7 @@
 					<div class="tsd-signature tsd-kind-icon">Gly<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:58</li>
+							<li>Defined in src/data/AminoAcid.ts:60</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -3404,7 +3458,7 @@
 						<div class="tsd-signature tsd-kind-icon">full<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Glycine&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:58</li>
+								<li>Defined in src/data/AminoAcid.ts:60</li>
 							</ul>
 						</aside>
 					</section>
@@ -3414,7 +3468,7 @@
 						<div class="tsd-signature tsd-kind-icon">single<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"G"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;G&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:58</li>
+								<li>Defined in src/data/AminoAcid.ts:60</li>
 							</ul>
 						</aside>
 					</section>
@@ -3424,7 +3478,7 @@
 						<div class="tsd-signature tsd-kind-icon">three<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"GLY"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;GLY&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:58</li>
+								<li>Defined in src/data/AminoAcid.ts:60</li>
 							</ul>
 						</aside>
 					</section>
@@ -3435,7 +3489,7 @@
 					<div class="tsd-signature tsd-kind-icon">His<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:59</li>
+							<li>Defined in src/data/AminoAcid.ts:61</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -3444,7 +3498,7 @@
 						<div class="tsd-signature tsd-kind-icon">full<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Histidine&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:59</li>
+								<li>Defined in src/data/AminoAcid.ts:61</li>
 							</ul>
 						</aside>
 					</section>
@@ -3454,7 +3508,7 @@
 						<div class="tsd-signature tsd-kind-icon">single<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"H"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;H&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:59</li>
+								<li>Defined in src/data/AminoAcid.ts:61</li>
 							</ul>
 						</aside>
 					</section>
@@ -3464,7 +3518,7 @@
 						<div class="tsd-signature tsd-kind-icon">three<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"HIS"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;HIS&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:59</li>
+								<li>Defined in src/data/AminoAcid.ts:61</li>
 							</ul>
 						</aside>
 					</section>
@@ -3475,7 +3529,7 @@
 					<div class="tsd-signature tsd-kind-icon">Ile<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:60</li>
+							<li>Defined in src/data/AminoAcid.ts:62</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -3484,7 +3538,7 @@
 						<div class="tsd-signature tsd-kind-icon">full<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Isoleucine&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:60</li>
+								<li>Defined in src/data/AminoAcid.ts:62</li>
 							</ul>
 						</aside>
 					</section>
@@ -3494,7 +3548,7 @@
 						<div class="tsd-signature tsd-kind-icon">single<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"I"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;I&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:60</li>
+								<li>Defined in src/data/AminoAcid.ts:62</li>
 							</ul>
 						</aside>
 					</section>
@@ -3504,7 +3558,7 @@
 						<div class="tsd-signature tsd-kind-icon">three<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"ILE"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;ILE&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:60</li>
+								<li>Defined in src/data/AminoAcid.ts:62</li>
 							</ul>
 						</aside>
 					</section>
@@ -3515,7 +3569,7 @@
 					<div class="tsd-signature tsd-kind-icon">Leu<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:61</li>
+							<li>Defined in src/data/AminoAcid.ts:63</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -3524,7 +3578,7 @@
 						<div class="tsd-signature tsd-kind-icon">full<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Leucine&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:61</li>
+								<li>Defined in src/data/AminoAcid.ts:63</li>
 							</ul>
 						</aside>
 					</section>
@@ -3534,7 +3588,7 @@
 						<div class="tsd-signature tsd-kind-icon">single<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"L"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;L&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:61</li>
+								<li>Defined in src/data/AminoAcid.ts:63</li>
 							</ul>
 						</aside>
 					</section>
@@ -3544,7 +3598,7 @@
 						<div class="tsd-signature tsd-kind-icon">three<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"LEU"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;LEU&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:61</li>
+								<li>Defined in src/data/AminoAcid.ts:63</li>
 							</ul>
 						</aside>
 					</section>
@@ -3555,7 +3609,7 @@
 					<div class="tsd-signature tsd-kind-icon">Lys<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:62</li>
+							<li>Defined in src/data/AminoAcid.ts:64</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -3564,7 +3618,7 @@
 						<div class="tsd-signature tsd-kind-icon">full<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Lysine&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:62</li>
+								<li>Defined in src/data/AminoAcid.ts:64</li>
 							</ul>
 						</aside>
 					</section>
@@ -3574,7 +3628,7 @@
 						<div class="tsd-signature tsd-kind-icon">single<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"K"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;K&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:62</li>
+								<li>Defined in src/data/AminoAcid.ts:64</li>
 							</ul>
 						</aside>
 					</section>
@@ -3584,7 +3638,7 @@
 						<div class="tsd-signature tsd-kind-icon">three<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"LYS"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;LYS&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:62</li>
+								<li>Defined in src/data/AminoAcid.ts:64</li>
 							</ul>
 						</aside>
 					</section>
@@ -3595,7 +3649,7 @@
 					<div class="tsd-signature tsd-kind-icon">Met<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:63</li>
+							<li>Defined in src/data/AminoAcid.ts:65</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -3604,7 +3658,7 @@
 						<div class="tsd-signature tsd-kind-icon">full<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Methionine&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:63</li>
+								<li>Defined in src/data/AminoAcid.ts:65</li>
 							</ul>
 						</aside>
 					</section>
@@ -3614,7 +3668,7 @@
 						<div class="tsd-signature tsd-kind-icon">single<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"M"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;M&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:63</li>
+								<li>Defined in src/data/AminoAcid.ts:65</li>
 							</ul>
 						</aside>
 					</section>
@@ -3624,7 +3678,7 @@
 						<div class="tsd-signature tsd-kind-icon">three<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"MET"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;MET&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:63</li>
+								<li>Defined in src/data/AminoAcid.ts:65</li>
 							</ul>
 						</aside>
 					</section>
@@ -3635,7 +3689,7 @@
 					<div class="tsd-signature tsd-kind-icon">Phe<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:64</li>
+							<li>Defined in src/data/AminoAcid.ts:66</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -3644,7 +3698,7 @@
 						<div class="tsd-signature tsd-kind-icon">full<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Phenylalanine&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:64</li>
+								<li>Defined in src/data/AminoAcid.ts:66</li>
 							</ul>
 						</aside>
 					</section>
@@ -3654,7 +3708,7 @@
 						<div class="tsd-signature tsd-kind-icon">single<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"F"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;F&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:64</li>
+								<li>Defined in src/data/AminoAcid.ts:66</li>
 							</ul>
 						</aside>
 					</section>
@@ -3664,7 +3718,7 @@
 						<div class="tsd-signature tsd-kind-icon">three<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"PHE"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;PHE&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:64</li>
+								<li>Defined in src/data/AminoAcid.ts:66</li>
 							</ul>
 						</aside>
 					</section>
@@ -3675,7 +3729,7 @@
 					<div class="tsd-signature tsd-kind-icon">Pro<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:65</li>
+							<li>Defined in src/data/AminoAcid.ts:67</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -3684,7 +3738,7 @@
 						<div class="tsd-signature tsd-kind-icon">full<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Proline&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:65</li>
+								<li>Defined in src/data/AminoAcid.ts:67</li>
 							</ul>
 						</aside>
 					</section>
@@ -3694,7 +3748,7 @@
 						<div class="tsd-signature tsd-kind-icon">single<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"P"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;P&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:65</li>
+								<li>Defined in src/data/AminoAcid.ts:67</li>
 							</ul>
 						</aside>
 					</section>
@@ -3704,7 +3758,7 @@
 						<div class="tsd-signature tsd-kind-icon">three<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"PRO"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;PRO&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:65</li>
+								<li>Defined in src/data/AminoAcid.ts:67</li>
 							</ul>
 						</aside>
 					</section>
@@ -3715,7 +3769,7 @@
 					<div class="tsd-signature tsd-kind-icon">Ser<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:66</li>
+							<li>Defined in src/data/AminoAcid.ts:68</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -3724,7 +3778,7 @@
 						<div class="tsd-signature tsd-kind-icon">full<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Serine&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:66</li>
+								<li>Defined in src/data/AminoAcid.ts:68</li>
 							</ul>
 						</aside>
 					</section>
@@ -3734,7 +3788,7 @@
 						<div class="tsd-signature tsd-kind-icon">single<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"S"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;S&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:66</li>
+								<li>Defined in src/data/AminoAcid.ts:68</li>
 							</ul>
 						</aside>
 					</section>
@@ -3744,7 +3798,7 @@
 						<div class="tsd-signature tsd-kind-icon">three<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"SER"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;SER&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:66</li>
+								<li>Defined in src/data/AminoAcid.ts:68</li>
 							</ul>
 						</aside>
 					</section>
@@ -3755,7 +3809,7 @@
 					<div class="tsd-signature tsd-kind-icon">Thr<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:67</li>
+							<li>Defined in src/data/AminoAcid.ts:69</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -3764,7 +3818,7 @@
 						<div class="tsd-signature tsd-kind-icon">full<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Threonine&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:67</li>
+								<li>Defined in src/data/AminoAcid.ts:69</li>
 							</ul>
 						</aside>
 					</section>
@@ -3774,7 +3828,7 @@
 						<div class="tsd-signature tsd-kind-icon">single<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"T"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;T&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:67</li>
+								<li>Defined in src/data/AminoAcid.ts:69</li>
 							</ul>
 						</aside>
 					</section>
@@ -3784,7 +3838,7 @@
 						<div class="tsd-signature tsd-kind-icon">three<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"THR"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;THR&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:67</li>
+								<li>Defined in src/data/AminoAcid.ts:69</li>
 							</ul>
 						</aside>
 					</section>
@@ -3795,7 +3849,7 @@
 					<div class="tsd-signature tsd-kind-icon">Trp<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:68</li>
+							<li>Defined in src/data/AminoAcid.ts:70</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -3804,7 +3858,7 @@
 						<div class="tsd-signature tsd-kind-icon">full<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Tryptophan&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:68</li>
+								<li>Defined in src/data/AminoAcid.ts:70</li>
 							</ul>
 						</aside>
 					</section>
@@ -3814,7 +3868,7 @@
 						<div class="tsd-signature tsd-kind-icon">single<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"W"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;W&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:68</li>
+								<li>Defined in src/data/AminoAcid.ts:70</li>
 							</ul>
 						</aside>
 					</section>
@@ -3824,7 +3878,7 @@
 						<div class="tsd-signature tsd-kind-icon">three<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"TRP"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;TRP&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:68</li>
+								<li>Defined in src/data/AminoAcid.ts:70</li>
 							</ul>
 						</aside>
 					</section>
@@ -3835,7 +3889,7 @@
 					<div class="tsd-signature tsd-kind-icon">Tyr<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:69</li>
+							<li>Defined in src/data/AminoAcid.ts:71</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -3844,7 +3898,7 @@
 						<div class="tsd-signature tsd-kind-icon">full<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Tyrosine&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:69</li>
+								<li>Defined in src/data/AminoAcid.ts:71</li>
 							</ul>
 						</aside>
 					</section>
@@ -3854,7 +3908,7 @@
 						<div class="tsd-signature tsd-kind-icon">single<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"Y"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Y&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:69</li>
+								<li>Defined in src/data/AminoAcid.ts:71</li>
 							</ul>
 						</aside>
 					</section>
@@ -3864,7 +3918,7 @@
 						<div class="tsd-signature tsd-kind-icon">three<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"TYR"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;TYR&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:69</li>
+								<li>Defined in src/data/AminoAcid.ts:71</li>
 							</ul>
 						</aside>
 					</section>
@@ -3875,7 +3929,7 @@
 					<div class="tsd-signature tsd-kind-icon">Val<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/data/AminoAcid.ts:70</li>
+							<li>Defined in src/data/AminoAcid.ts:72</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -3884,7 +3938,7 @@
 						<div class="tsd-signature tsd-kind-icon">full<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Valine&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:70</li>
+								<li>Defined in src/data/AminoAcid.ts:72</li>
 							</ul>
 						</aside>
 					</section>
@@ -3894,7 +3948,7 @@
 						<div class="tsd-signature tsd-kind-icon">single<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"V"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;V&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:70</li>
+								<li>Defined in src/data/AminoAcid.ts:72</li>
 							</ul>
 						</aside>
 					</section>
@@ -3904,7 +3958,7 @@
 						<div class="tsd-signature tsd-kind-icon">three<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"VAL"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;VAL&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/data/AminoAcid.ts:70</li>
+								<li>Defined in src/data/AminoAcid.ts:72</li>
 							</ul>
 						</aside>
 					</section>
@@ -5668,11 +5722,17 @@
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#getnodesfromgraph" class="tsd-kind-icon">get<wbr>Nodes<wbr>From<wbr>Graph</a>
 					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#getpdbandcouplingmismatch" class="tsd-kind-icon">getPDBAnd<wbr>Coupling<wbr>Mismatch</a>
+					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#getresiduemappingheaders" class="tsd-kind-icon">get<wbr>Residue<wbr>Mapping<wbr>Headers</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#getsecondarystructuredata" class="tsd-kind-icon">get<wbr>Secondary<wbr>Structure<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#getsequencemismatch" class="tsd-kind-icon">get<wbr>Sequence<wbr>Mismatch</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#iscouplingheaderpresent" class="tsd-kind-icon">is<wbr>Coupling<wbr>Header<wbr>Present</a>

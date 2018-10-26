@@ -1,18 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {
-  Accordion,
-  Button,
-  Card,
-  Grid,
-  GridColumn,
-  GridRow,
-  Header,
-  Label,
-  Message,
-  Segment,
-  TextArea,
-} from 'semantic-ui-react';
+import { Accordion, Button, Card, Grid, GridColumn, GridRow, Header, Label, Message, Segment } from 'semantic-ui-react';
 
 import {
   ChellPDB,
@@ -23,8 +11,10 @@ import {
   CouplingContextProvider,
   generateResidueMapping,
   getCouplingScoresData,
+  getPDBAndCouplingMismatch,
   IResidueContext,
   IResidueMapping,
+  IResidueMismatchResult,
   ISecondaryStructureContext,
   NGL_DATA_TYPE,
   NGLComponent,
@@ -54,6 +44,7 @@ export interface IExampleAppState {
     residue_mapper: string;
   }>;
   measuredProximity: CONTACT_DISTANCE_PROXIMITY;
+  mismatches: IResidueMismatchResult[];
   isResidueMappingNeeded: boolean;
   pdbData?: ChellPDB;
   residueMapping: IResidueMapping[];
@@ -83,6 +74,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     filenames: {},
     isResidueMappingNeeded: false,
     measuredProximity: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
+    mismatches: [],
     pdbData: undefined,
     residueMapping: [],
   };
@@ -97,19 +89,21 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     const { couplingScores } = this.state[VIZ_TYPE.CONTACT_MAP];
 
     let errorMsg = '';
+
+    let newMismatches = this.state.mismatches;
     let isResidueMappingNeeded = this.state.isResidueMappingNeeded;
 
     if (
       pdbData &&
       (couplingScores !== prevState[VIZ_TYPE.CONTACT_MAP].couplingScores || pdbData !== prevState.pdbData)
     ) {
-      const mismatches = pdbData.getResidueNumberingMismatches(couplingScores);
+      newMismatches = getPDBAndCouplingMismatch(pdbData, couplingScores);
 
-      if (mismatches.length >= 1) {
-        errorMsg = `Error details: ${mismatches.length} mismatches detected between coupling scores and PDB!\
-        For example, residue number ${mismatches[0].resno} is '${
-          mismatches[0].pdbAminoAcid.threeLetterCode
-        }' in the PDB but '${mismatches[0].couplingAminoAcid.threeLetterCode}' in the coupling scores file.`;
+      if (newMismatches.length >= 1) {
+        errorMsg = `Error details: ${newMismatches.length} mismatch(es) detected between coupling scores and PDB!\
+        For example, residue number ${newMismatches[0].resno} is '${
+          newMismatches[0].secondAminoAcid.threeLetterCode
+        }' in the PDB but '${newMismatches[0].firstAminoAcid.threeLetterCode}' in the coupling scores file.`;
         isResidueMappingNeeded = true;
       }
     }
@@ -124,11 +118,13 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
         },
         errorMsg,
         isResidueMappingNeeded,
+        mismatches: newMismatches,
       });
     } else if (errorMsg.length >= 1) {
       this.setState({
         errorMsg,
         isResidueMappingNeeded,
+        mismatches: newMismatches,
       });
     }
   }
@@ -173,7 +169,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     </div>
   );
 
-  protected renderErrorMessage = ({ errorMsg, isResidueMappingNeeded, pdbData } = this.state) => {
+  protected renderErrorMessage = ({ errorMsg, isResidueMappingNeeded, mismatches, pdbData } = this.state) => {
     return (
       <Message warning={true}>
         {isResidueMappingNeeded && pdbData ? (
@@ -184,7 +180,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
               {`EVCouplings and EVFold outputs this file in the `}
               <strong>OUTPUT</strong>
               {` directory.
-                This file will be named similar to
+                This file might be named similar to
                 '${pdbData.name}.csv' or '${pdbData.name}.indextableplus'`}
             </Message.Header>
             <Message.List>{errorMsg}</Message.List>
@@ -194,10 +190,11 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                 exclusive={false}
                 defaultActiveIndex={[]}
                 panels={[
-                  this.renderSequenceAccordionMessage('PDB sequence', pdbData.sequence),
+                  this.renderSequenceAccordionMessage('PDB sequence', pdbData.sequence, mismatches),
                   this.renderSequenceAccordionMessage(
                     'Couplings Score sequence',
                     this.state[VIZ_TYPE.CONTACT_MAP].couplingScores.sequence,
+                    mismatches,
                   ),
                 ]}
               />
@@ -229,15 +226,38 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     return <footer style={{ padding: '25vh 0 25px 25px' }}>{randomSaying}</footer>;
   };
 
-  protected renderSequenceAccordionMessage = (title: string, content: string) => ({
-    content: {
-      content: <TextArea style={{ width: '90%' }} value={content} />,
-    },
-    key: `panel-${title}`,
-    title: {
-      content: `${title} (${content.length} Amino Acids)`,
-    },
-  });
+  protected renderSequenceAccordionMessage = (
+    title: string,
+    sequence: string,
+    mismatches: IResidueMismatchResult[],
+  ) => {
+    let startIndex = 0;
+    const result = new Array<JSX.Element>();
+
+    for (const mismatch of mismatches) {
+      result.push(
+        <React.Fragment key={`mismatch-${mismatch.resno}`}>
+          <span style={{ color: 'black', fontSize: '12px' }}>{sequence.substr(startIndex, mismatch.resno)}</span>
+          <span style={{ color: 'red', fontSize: '16px', textDecoration: 'underline' }}>
+            {sequence.charAt(mismatch.resno)}
+          </span>
+        </React.Fragment>,
+      );
+
+      startIndex = mismatch.resno + 2;
+    }
+    result.push(<span style={{ color: 'black', fontSize: '12px' }}>{sequence.substr(startIndex)}</span>);
+
+    return {
+      content: {
+        content: <p style={{ width: '80%', wordBreak: 'break-word' }}>{result}</p>,
+      },
+      key: `panel-${title}`,
+      title: {
+        content: `${title} (${sequence.length} Amino Acids)`,
+      },
+    };
+  };
 
   protected renderStartMessage = () => (
     <Message>

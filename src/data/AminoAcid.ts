@@ -1,3 +1,5 @@
+import { ChellPDB, CouplingContainer } from '~chell-viz~/data';
+
 export type AMINO_ACID_SINGLE_LETTER_CODE =
   | 'A'
   | 'R'
@@ -139,3 +141,40 @@ export const AMINO_ACIDS: IAminoAcid[] = [
   Tyr,
   Val,
 ];
+
+export interface IResidueMismatchResult {
+  firstAminoAcid: IAminoAcid;
+  resno: number;
+  secondAminoAcid: IAminoAcid;
+}
+
+export const getPDBAndCouplingMismatch = (pdbData: ChellPDB, couplingScores: CouplingContainer) => {
+  const pdbSequence = pdbData.sequence;
+  const couplingSequence = couplingScores.sequence;
+  const mismatches = getSequenceMismatch(pdbSequence, couplingSequence);
+
+  if (mismatches.length === 0) {
+    return pdbData.getResidueNumberingMismatches(couplingScores);
+  }
+
+  return mismatches;
+};
+
+export const getSequenceMismatch = (firstSequence: string, secondSequence: string) => {
+  const mismatches = new Array<IResidueMismatchResult>();
+  if (firstSequence.length === secondSequence.length) {
+    for (let i = 0; i < firstSequence.length; ++i) {
+      const couplingAminoAcid = firstSequence[i] as AMINO_ACID_SINGLE_LETTER_CODE;
+      const pdbAminoAcid = secondSequence[i] as AMINO_ACID_SINGLE_LETTER_CODE;
+      if (couplingAminoAcid !== pdbAminoAcid) {
+        mismatches.push({
+          firstAminoAcid: AMINO_ACIDS_BY_SINGLE_LETTER_CODE[couplingAminoAcid],
+          resno: i,
+          secondAminoAcid: AMINO_ACIDS_BY_SINGLE_LETTER_CODE[pdbAminoAcid],
+        });
+      }
+    }
+  }
+
+  return mismatches;
+};
