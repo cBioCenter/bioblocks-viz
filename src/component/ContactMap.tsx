@@ -170,60 +170,48 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 
     const { lockedResiduePairs, hoveredResidues } = residueContext;
 
+    const chartPoints = new Array<IContactMapChartPoint>();
+
     if (hoveredResidues.length >= 1) {
-      result.push(
-        generateChartDataEntry(
-          'none',
-          highlightColor,
-          chartNames.selected,
-          '',
-          selectedPointIndex >= 0 ? pointsToPlot[selectedPointIndex].nodeSize : 6,
-          [{ i: hoveredResidues[0], j: hoveredResidues.length === 1 ? hoveredResidues[0] : hoveredResidues[1] }],
-          {
-            marker: {
-              color: new Array<string>(hoveredResidues.length * 2).fill(highlightColor),
-              line: {
-                color: highlightColor,
-                width: 3,
-              },
-              symbol: 'circle-open',
-            },
-          },
-        ),
+      chartPoints.push({
+        i: hoveredResidues[0],
+        j: hoveredResidues.length === 1 ? hoveredResidues[0] : hoveredResidues[1],
+      });
+    }
+
+    if (lockedResiduePairs.size >= 1) {
+      chartPoints.push(
+        ...Array.from(lockedResiduePairs.keys()).reduce((reduceResult: IContactMapChartPoint[], key) => {
+          const keyPair = lockedResiduePairs.get(key);
+          if (keyPair && keyPair.length === 2) {
+            reduceResult.push({ i: keyPair[0], j: keyPair[1], dist: 0 });
+          }
+
+          return reduceResult;
+        }, new Array<IContactMapChartPoint>()),
       );
     }
 
-    if (lockedResiduePairs.size > 0) {
-      const chartPoints = Array.from(lockedResiduePairs.keys()).reduce((reduceResult: IContactMapChartPoint[], key) => {
-        const keyPair = lockedResiduePairs.get(key);
-        if (keyPair && keyPair.length === 2) {
-          reduceResult.push({ i: keyPair[0], j: keyPair[1], dist: 0 });
-        }
-
-        return reduceResult;
-      }, new Array<IContactMapChartPoint>());
-
-      result.push(
-        generateChartDataEntry(
-          'none',
-          highlightColor,
-          chartNames.selected,
-          '',
-          selectedPointIndex >= 0 ? pointsToPlot[selectedPointIndex].nodeSize : 6,
-          chartPoints,
-          {
-            marker: {
-              color: new Array<string>(lockedResiduePairs.size * 2).fill(highlightColor),
-              line: {
-                color: highlightColor,
-                width: 3,
-              },
-              symbol: 'circle-open',
+    result.push(
+      generateChartDataEntry(
+        'none',
+        highlightColor,
+        chartNames.selected,
+        '',
+        selectedPointIndex >= 0 ? pointsToPlot[selectedPointIndex].nodeSize : 6,
+        chartPoints,
+        {
+          marker: {
+            color: new Array<string>(chartPoints.length * 2).fill(highlightColor),
+            line: {
+              color: highlightColor,
+              width: 3,
             },
+            symbol: 'circle-open',
           },
-        ),
-      );
-    }
+        },
+      ),
+    );
 
     this.setState({
       ...this.state,
