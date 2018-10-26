@@ -3,8 +3,6 @@ import * as ReactDOM from 'react-dom';
 import { Accordion, Button, Card, Grid, GridColumn, GridRow, Header, Label, Message, Segment } from 'semantic-ui-react';
 
 import {
-  AMINO_ACID_SINGLE_LETTER_CODE,
-  AMINO_ACIDS_BY_SINGLE_LETTER_CODE,
   ChellPDB,
   CONTACT_DISTANCE_PROXIMITY,
   CONTACT_MAP_DATA_TYPE,
@@ -13,6 +11,7 @@ import {
   CouplingContextProvider,
   generateResidueMapping,
   getCouplingScoresData,
+  getPDBAndCouplingMismatch,
   IResidueContext,
   IResidueMapping,
   IResidueMismatchResult,
@@ -98,30 +97,13 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
       pdbData &&
       (couplingScores !== prevState[VIZ_TYPE.CONTACT_MAP].couplingScores || pdbData !== prevState.pdbData)
     ) {
-      const couplingSequence = couplingScores.sequence;
-      const pdbSequence = pdbData.sequence;
-      newMismatches = new Array();
-      if (couplingSequence.length === pdbSequence.length) {
-        for (let i = 0; i < couplingSequence.length; ++i) {
-          const couplingAminoAcid = couplingSequence[i] as AMINO_ACID_SINGLE_LETTER_CODE;
-          const pdbAminoAcid = pdbSequence[i] as AMINO_ACID_SINGLE_LETTER_CODE;
-          if (couplingAminoAcid !== pdbAminoAcid) {
-            newMismatches.push({
-              couplingAminoAcid: AMINO_ACIDS_BY_SINGLE_LETTER_CODE[couplingAminoAcid],
-              pdbAminoAcid: AMINO_ACIDS_BY_SINGLE_LETTER_CODE[pdbAminoAcid],
-              resno: i,
-            });
-          }
-        }
-      } else {
-        newMismatches = pdbData.getResidueNumberingMismatches(couplingScores);
-      }
+      newMismatches = getPDBAndCouplingMismatch(pdbData, couplingScores);
 
       if (newMismatches.length >= 1) {
         errorMsg = `Error details: ${newMismatches.length} mismatch(es) detected between coupling scores and PDB!\
         For example, residue number ${newMismatches[0].resno} is '${
-          newMismatches[0].pdbAminoAcid.threeLetterCode
-        }' in the PDB but '${newMismatches[0].couplingAminoAcid.threeLetterCode}' in the coupling scores file.`;
+          newMismatches[0].secondAminoAcid.threeLetterCode
+        }' in the PDB but '${newMismatches[0].firstAminoAcid.threeLetterCode}' in the coupling scores file.`;
         isResidueMappingNeeded = true;
       }
     }

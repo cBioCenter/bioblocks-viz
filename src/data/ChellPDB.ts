@@ -7,18 +7,12 @@ import {
   Chell1DSection,
   CONTACT_DISTANCE_PROXIMITY,
   CouplingContainer,
-  IAminoAcid,
   ICouplingScore,
+  IResidueMismatchResult,
   ISecondaryStructureData,
   SECONDARY_STRUCTURE_KEYS,
   SECONDARY_STRUCTURE_SECTION,
 } from '~chell-viz~/data';
-
-export interface IResidueMismatchResult {
-  couplingAminoAcid: IAminoAcid;
-  pdbAminoAcid: IAminoAcid;
-  resno: number;
-}
 
 /**
  * A ChellPDB instance provides an API to interact with a loaded PDB file while hiding the implementation details of how it is loaded.
@@ -240,9 +234,10 @@ export class ChellPDB {
           AMINO_ACIDS_BY_SINGLE_LETTER_CODE[couplingAminoAcid.singleLetterCode]
       ) {
         result.push({
-          couplingAminoAcid,
-          pdbAminoAcid: AMINO_ACIDS_BY_THREE_LETTER_CODE[pdbResCode as AMINO_ACID_THREE_LETTER_CODE],
+          firstAminoAcid:
+            AMINO_ACIDS_BY_THREE_LETTER_CODE[couplingAminoAcid.singleLetterCode as AMINO_ACID_THREE_LETTER_CODE],
           resno: residue.resno,
+          secondAminoAcid: AMINO_ACIDS_BY_THREE_LETTER_CODE[pdbResCode as AMINO_ACID_THREE_LETTER_CODE],
         });
       }
     });
