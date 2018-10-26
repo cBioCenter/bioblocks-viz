@@ -175,6 +175,7 @@ export class ChellPDB {
             if (!minDist[key]) {
               minDist[key] = this.getMinDistBetweenResidueIndices(outerResidue.index, innerResidue.index).dist;
             }
+
             result.addCouplingScore({
               dist: minDist[key],
               i: outerResidue.resno,
