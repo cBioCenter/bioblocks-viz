@@ -238,7 +238,9 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
       result.push(
         <React.Fragment key={`mismatch-${mismatch.resno}`}>
           <span style={{ color: 'black', fontSize: '12px' }}>{sequence.substr(startIndex, mismatch.resno)}</span>
-          <span style={{ color: 'red', fontSize: '16px' }}>{sequence.charAt(mismatch.resno)}</span>
+          <span style={{ color: 'red', fontSize: '16px', textDecoration: 'underline' }}>
+            {sequence.charAt(mismatch.resno)}
+          </span>
         </React.Fragment>,
       );
 

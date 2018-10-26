@@ -23,6 +23,7 @@
       "jest": ["node_modules/@types/jest/index.d.ts"],
       "plotly.js-*": ["node_modules/@types/plotly.js"]
     },
+    "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
     "target": "es5",
