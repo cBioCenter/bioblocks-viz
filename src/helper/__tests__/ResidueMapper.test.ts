@@ -7,16 +7,16 @@ describe('ResidueMapper', () => {
     const result = generateResidueMapping(simpleFile);
     const expected: IResidueMapping[] = [
       {
+        couplingsResCode: 'H',
+        couplingsResno: 24,
         pdbResCode: 'H',
         pdbResno: 26,
-        uniProtResCode: 'H',
-        uniProtResno: 24,
       },
       {
+        couplingsResCode: 'P',
+        couplingsResno: 25,
         pdbResCode: 'P',
         pdbResno: 27,
-        uniProtResCode: 'P',
-        uniProtResno: 25,
       },
     ];
     expect(result).toEqual(expected);
@@ -35,16 +35,16 @@ describe('ResidueMapper', () => {
   it('Should skip empty lines.', () => {
     const expected: IResidueMapping[] = [
       {
+        couplingsResCode: 'H',
+        couplingsResno: 24,
         pdbResCode: 'H',
         pdbResno: 26,
-        uniProtResCode: 'H',
-        uniProtResno: 24,
       },
       {
+        couplingsResCode: 'P',
+        couplingsResno: 25,
         pdbResCode: 'P',
         pdbResno: 27,
-        uniProtResCode: 'P',
-        uniProtResno: 25,
       },
     ] as IResidueMapping[];
     const splitLines = simpleFile.split('\n');

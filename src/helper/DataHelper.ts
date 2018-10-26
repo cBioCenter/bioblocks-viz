@@ -213,15 +213,16 @@ export const getCouplingScoresData = (line: string, residueMapping: IResidueMapp
     .map(row => {
       const items = row.split(',');
       const score = getCouplingScoreFromCSVRow(items, headerIndices);
+
       if (residueMapping.length >= 1) {
-        const uniProtIndexI = residueMapping.findIndex(mapping => mapping.uniProtResno === parseInt(items[0], 10));
-        const uniProtIndexJ = residueMapping.findIndex(mapping => mapping.uniProtResno === parseInt(items[1], 10));
+        const mappingIndexI = residueMapping.findIndex(mapping => mapping.couplingsResno === score.i);
+        const mappingIndexJ = residueMapping.findIndex(mapping => mapping.couplingsResno === score.j);
         couplingScores.addCouplingScore({
           ...score,
-          A_i: residueMapping[uniProtIndexI].pdbResCode,
-          A_j: residueMapping[uniProtIndexJ].pdbResCode,
-          i: residueMapping[uniProtIndexI].pdbResno,
-          j: residueMapping[uniProtIndexJ].pdbResno,
+          A_i: residueMapping[mappingIndexI].pdbResCode,
+          A_j: residueMapping[mappingIndexJ].pdbResCode,
+          i: residueMapping[mappingIndexI].pdbResno,
+          j: residueMapping[mappingIndexJ].pdbResno,
         });
       } else {
         couplingScores.addCouplingScore(score);
@@ -254,8 +255,8 @@ export const augmentCouplingScoresWithResidueMapping = (
 ): CouplingContainer => {
   const result = new CouplingContainer();
   for (const score of couplingScores) {
-    const mappedIndexI = residueMapping.findIndex(mapping => mapping.uniProtResno === score.i);
-    const mappedIndexJ = residueMapping.findIndex(mapping => mapping.uniProtResno === score.j);
+    const mappedIndexI = residueMapping.findIndex(mapping => mapping.couplingsResno === score.i);
+    const mappedIndexJ = residueMapping.findIndex(mapping => mapping.couplingsResno === score.j);
 
     result.addCouplingScore({
       A_i: residueMapping[mappedIndexI].pdbResCode,

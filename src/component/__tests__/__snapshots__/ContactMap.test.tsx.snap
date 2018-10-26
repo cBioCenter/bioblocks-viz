@@ -53,6 +53,17 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
               "min": 1,
             },
           },
+          Object {
+            "id": "node-size-slider-1",
+            "name": "Node size for Selected Residue Pairs",
+            "onChange": [Function],
+            "type": "SLIDER",
+            "values": Object {
+              "current": 6,
+              "max": 20,
+              "min": 1,
+            },
+          },
         ]
       }
       contactData={
@@ -113,6 +124,22 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
             "points": Array [],
             "subtitle": "(from PDB structure)",
             "text": Array [],
+          },
+          Object {
+            "hoverinfo": "none",
+            "marker": Object {
+              "color": Array [],
+              "line": Object {
+                "color": "#ff8800",
+                "width": 3,
+              },
+              "symbol": "circle-open",
+            },
+            "mode": "lines+markers",
+            "name": "Selected Residue Pairs",
+            "nodeSize": 6,
+            "points": Array [],
+            "subtitle": "",
           },
         ]
       }
@@ -358,6 +385,17 @@ exports[`ContactMap Snapshots Should match existing snapshot when basic data. 1`
               "min": 1,
             },
           },
+          Object {
+            "id": "node-size-slider-1",
+            "name": "Node size for Selected Residue Pairs",
+            "onChange": [Function],
+            "type": "SLIDER",
+            "values": Object {
+              "current": 6,
+              "max": 20,
+              "min": 1,
+            },
+          },
         ]
       }
       contactData={
@@ -433,6 +471,22 @@ exports[`ContactMap Snapshots Should match existing snapshot when basic data. 1`
               "(50, 56)",
             ],
           },
+          Object {
+            "hoverinfo": "none",
+            "marker": Object {
+              "color": Array [],
+              "line": Object {
+                "color": "#ff8800",
+                "width": 3,
+              },
+              "symbol": "circle-open",
+            },
+            "mode": "lines+markers",
+            "name": "Selected Residue Pairs",
+            "nodeSize": 6,
+            "points": Array [],
+            "subtitle": "",
+          },
         ]
       }
       dataTransformFn={[Function]}
@@ -496,6 +550,17 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
             "type": "SLIDER",
             "values": Object {
               "current": 4,
+              "max": 20,
+              "min": 1,
+            },
+          },
+          Object {
+            "id": "node-size-slider-1",
+            "name": "Node size for Selected Residue Pairs",
+            "onChange": [Function],
+            "type": "SLIDER",
+            "values": Object {
+              "current": 6,
               "max": 20,
               "min": 1,
             },
@@ -570,6 +635,22 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
             "text": Array [
               "(1N, 10I)",
             ],
+          },
+          Object {
+            "hoverinfo": "none",
+            "marker": Object {
+              "color": Array [],
+              "line": Object {
+                "color": "#ff8800",
+                "width": 3,
+              },
+              "symbol": "circle-open",
+            },
+            "mode": "lines+markers",
+            "name": "Selected Residue Pairs",
+            "nodeSize": 6,
+            "points": Array [],
+            "subtitle": "",
           },
         ]
       }
@@ -638,6 +719,17 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
               "min": 1,
             },
           },
+          Object {
+            "id": "node-size-slider-1",
+            "name": "Node size for Selected Residue Pairs",
+            "onChange": [Function],
+            "type": "SLIDER",
+            "values": Object {
+              "current": 6,
+              "max": 20,
+              "min": 1,
+            },
+          },
         ]
       }
       contactData={
@@ -709,6 +801,22 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
               "(1N, 10I)",
             ],
           },
+          Object {
+            "hoverinfo": "none",
+            "marker": Object {
+              "color": Array [],
+              "line": Object {
+                "color": "#ff8800",
+                "width": 3,
+              },
+              "symbol": "circle-open",
+            },
+            "mode": "lines+markers",
+            "name": "Selected Residue Pairs",
+            "nodeSize": 6,
+            "points": Array [],
+            "subtitle": "",
+          },
         ]
       }
       dataTransformFn={[Function]}
@@ -776,6 +884,17 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
               "min": 1,
             },
           },
+          Object {
+            "id": "node-size-slider-1",
+            "name": "Node size for Selected Residue Pairs",
+            "onChange": [Function],
+            "type": "SLIDER",
+            "values": Object {
+              "current": 6,
+              "max": 20,
+              "min": 1,
+            },
+          },
         ]
       }
       contactData={
@@ -836,6 +955,22 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
             "points": Array [],
             "subtitle": "(from PDB structure)",
             "text": Array [],
+          },
+          Object {
+            "hoverinfo": "none",
+            "marker": Object {
+              "color": Array [],
+              "line": Object {
+                "color": "#ff8800",
+                "width": 3,
+              },
+              "symbol": "circle-open",
+            },
+            "mode": "lines+markers",
+            "name": "Selected Residue Pairs",
+            "nodeSize": 6,
+            "points": Array [],
+            "subtitle": "",
           },
         ]
       }
@@ -904,6 +1039,17 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
               "min": 1,
             },
           },
+          Object {
+            "id": "node-size-slider-1",
+            "name": "Node size for Selected Residue Pairs",
+            "onChange": [Function],
+            "type": "SLIDER",
+            "values": Object {
+              "current": 6,
+              "max": 20,
+              "min": 1,
+            },
+          },
         ]
       }
       contactData={
@@ -964,6 +1110,22 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
             "points": Array [],
             "subtitle": "(from PDB structure)",
             "text": Array [],
+          },
+          Object {
+            "hoverinfo": "none",
+            "marker": Object {
+              "color": Array [],
+              "line": Object {
+                "color": "#ff8800",
+                "width": 3,
+              },
+              "symbol": "circle-open",
+            },
+            "mode": "lines+markers",
+            "name": "Selected Residue Pairs",
+            "nodeSize": 6,
+            "points": Array [],
+            "subtitle": "",
           },
         ]
       }
@@ -1124,8 +1286,6 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
               "color": Array [
                 "#ff8800",
                 "#ff8800",
-                "#ff8800",
-                "#ff8800",
               ],
               "line": Object {
                 "color": "#ff8800",
@@ -1222,17 +1382,6 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
               "min": 1,
             },
           },
-          Object {
-            "id": "node-size-slider-2",
-            "name": "Node size for Selected Residue Pairs",
-            "onChange": [Function],
-            "type": "SLIDER",
-            "values": Object {
-              "current": 6,
-              "max": 20,
-              "min": 1,
-            },
-          },
         ]
       }
       contactData={
@@ -1316,6 +1465,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                 "#ff8800",
                 "#ff8800",
                 "#ff8800",
+                "#ff8800",
+                "#ff8800",
               ],
               "line": Object {
                 "color": "#ff8800",
@@ -1331,28 +1482,6 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                 "i": 41,
                 "j": 52,
               },
-            ],
-            "subtitle": "",
-          },
-          Object {
-            "hoverinfo": "none",
-            "marker": Object {
-              "color": Array [
-                "#ff8800",
-                "#ff8800",
-                "#ff8800",
-                "#ff8800",
-              ],
-              "line": Object {
-                "color": "#ff8800",
-                "width": 3,
-              },
-              "symbol": "circle-open",
-            },
-            "mode": "lines+markers",
-            "name": "Selected Residue Pairs",
-            "nodeSize": 6,
-            "points": Array [
               Object {
                 "dist": 0,
                 "i": 41,
@@ -1922,6 +2051,17 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   "min": 1,
                 },
               },
+              Object {
+                "id": "node-size-slider-1",
+                "name": "Node size for Selected Residue Pairs",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 6,
+                  "max": 20,
+                  "min": 1,
+                },
+              },
             ]
           }
           contactData={
@@ -1997,6 +2137,22 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   "(50, 56)",
                 ],
               },
+              Object {
+                "hoverinfo": "none",
+                "marker": Object {
+                  "color": Array [],
+                  "line": Object {
+                    "color": "#ff8800",
+                    "width": 3,
+                  },
+                  "symbol": "circle-open",
+                },
+                "mode": "lines+markers",
+                "name": "Selected Residue Pairs",
+                "nodeSize": 6,
+                "points": Array [],
+                "subtitle": "",
+              },
             ]
           }
           dataTransformFn={[Function]}
@@ -2042,6 +2198,17 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   "type": "SLIDER",
                   "values": Object {
                     "current": 4,
+                    "max": 20,
+                    "min": 1,
+                  },
+                },
+                Object {
+                  "id": "node-size-slider-1",
+                  "name": "Node size for Selected Residue Pairs",
+                  "onChange": [Function],
+                  "type": "SLIDER",
+                  "values": Object {
+                    "current": 6,
                     "max": 20,
                     "min": 1,
                   },
@@ -2390,6 +2557,221 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                       </ChellSlider>
                                     </div>
                                   </GridRow>
+                                  <GridRow
+                                    key="node-size-slider-1"
+                                  >
+                                    <div
+                                      className="row"
+                                    >
+                                      <ChellSlider
+                                        className="node-size-slider-1"
+                                        label="Node size for Selected Residue Pairs"
+                                        max={20}
+                                        min={1}
+                                        onChange={[Function]}
+                                        style={
+                                          Object {
+                                            "color": "white",
+                                            "padding": "0 25px",
+                                            "width": "95%",
+                                          }
+                                        }
+                                        value={6}
+                                      >
+                                        <Grid
+                                          columns="equal"
+                                          style={
+                                            Object {
+                                              "color": "white",
+                                              "padding": "0 25px",
+                                              "width": "95%",
+                                            }
+                                          }
+                                          textAlign="left"
+                                        >
+                                          <div
+                                            className="ui left aligned equal width grid"
+                                            style={
+                                              Object {
+                                                "color": "white",
+                                                "padding": "0 25px",
+                                                "width": "95%",
+                                              }
+                                            }
+                                          >
+                                            <GridColumn
+                                              className="node-size-slider-1"
+                                            >
+                                              <div
+                                                className="column node-size-slider-1"
+                                              >
+                                                <p>
+                                                  Node size for Selected Residue Pairs: 6
+                                                </p>
+                                                <ComponentEnhancer(undefined)
+                                                  activeDotStyle={Object {}}
+                                                  className=""
+                                                  disabled={false}
+                                                  dotStyle={Object {}}
+                                                  dots={false}
+                                                  handle={[Function]}
+                                                  handleStyle={
+                                                    Array [
+                                                      Object {},
+                                                    ]
+                                                  }
+                                                  included={true}
+                                                  marks={Object {}}
+                                                  max={20}
+                                                  min={1}
+                                                  onAfterChange={[Function]}
+                                                  onBeforeChange={[Function]}
+                                                  onChange={[Function]}
+                                                  prefixCls="rc-slider"
+                                                  railStyle={Object {}}
+                                                  step={1}
+                                                  trackStyle={
+                                                    Array [
+                                                      Object {},
+                                                    ]
+                                                  }
+                                                  value={6}
+                                                  vertical={false}
+                                                >
+                                                  <div
+                                                    className="rc-slider"
+                                                    onBlur={[Function]}
+                                                    onFocus={[Function]}
+                                                    onKeyDown={[Function]}
+                                                    onMouseDown={[Function]}
+                                                    onMouseUp={[Function]}
+                                                    onTouchStart={[Function]}
+                                                  >
+                                                    <div
+                                                      className="rc-slider-rail"
+                                                      style={Object {}}
+                                                    />
+                                                    <Track
+                                                      className="rc-slider-track"
+                                                      included={true}
+                                                      length={26.31578947368421}
+                                                      offset={0}
+                                                      style={Object {}}
+                                                      vertical={false}
+                                                    >
+                                                      <div
+                                                        className="rc-slider-track"
+                                                        style={
+                                                          Object {
+                                                            "left": "0%",
+                                                            "width": "26.31578947368421%",
+                                                          }
+                                                        }
+                                                      />
+                                                    </Track>
+                                                    <Steps
+                                                      activeDotStyle={Object {}}
+                                                      dotStyle={Object {}}
+                                                      dots={false}
+                                                      included={true}
+                                                      lowerBound={1}
+                                                      marks={Object {}}
+                                                      max={20}
+                                                      min={1}
+                                                      prefixCls="rc-slider"
+                                                      step={1}
+                                                      upperBound={6}
+                                                      vertical={false}
+                                                    >
+                                                      <div
+                                                        className="rc-slider-step"
+                                                      />
+                                                    </Steps>
+                                                    <Handle
+                                                      className="rc-slider-handle"
+                                                      disabled={false}
+                                                      key="0"
+                                                      max={20}
+                                                      min={1}
+                                                      offset={26.31578947368421}
+                                                      prefixCls="rc-slider"
+                                                      style={Object {}}
+                                                      value={6}
+                                                      vertical={false}
+                                                    >
+                                                      <div
+                                                        aria-disabled={false}
+                                                        aria-valuemax={20}
+                                                        aria-valuemin={1}
+                                                        aria-valuenow={6}
+                                                        className="rc-slider-handle"
+                                                        onBlur={[Function]}
+                                                        onKeyDown={[Function]}
+                                                        role="slider"
+                                                        style={
+                                                          Object {
+                                                            "left": "26.31578947368421%",
+                                                          }
+                                                        }
+                                                        tabIndex={0}
+                                                      />
+                                                    </Handle>
+                                                    <Marks
+                                                      className="rc-slider-mark"
+                                                      included={true}
+                                                      lowerBound={1}
+                                                      marks={Object {}}
+                                                      max={20}
+                                                      min={1}
+                                                      onClickLabel={[Function]}
+                                                      upperBound={6}
+                                                      vertical={false}
+                                                    >
+                                                      <div
+                                                        className="rc-slider-mark"
+                                                      />
+                                                    </Marks>
+                                                  </div>
+                                                </ComponentEnhancer(undefined)>
+                                              </div>
+                                            </GridColumn>
+                                            <GridColumn
+                                              verticalAlign="middle"
+                                              width={2}
+                                            >
+                                              <div
+                                                className="middle aligned two wide column"
+                                              >
+                                                <Button
+                                                  as="button"
+                                                  icon="undo"
+                                                  onClick={[Function]}
+                                                  role="button"
+                                                  size="small"
+                                                >
+                                                  <button
+                                                    className="ui small icon button"
+                                                    onClick={[Function]}
+                                                    role="button"
+                                                  >
+                                                    <Icon
+                                                      as="i"
+                                                      name="undo"
+                                                    >
+                                                      <i
+                                                        aria-hidden="true"
+                                                        className="undo icon"
+                                                      />
+                                                    </Icon>
+                                                  </button>
+                                                </Button>
+                                              </div>
+                                            </GridColumn>
+                                          </div>
+                                        </Grid>
+                                      </ChellSlider>
+                                    </div>
+                                  </GridRow>
                                 </div>
                               </Grid>
                             </div>
@@ -2538,6 +2920,25 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                     1.3,
                                     2.4,
                                   ],
+                                },
+                                Object {
+                                  "hoverinfo": "none",
+                                  "marker": Object {
+                                    "color": Array [],
+                                    "line": Object {
+                                      "color": "#ff8800",
+                                      "width": 3,
+                                    },
+                                    "size": 6,
+                                    "symbol": "circle-open",
+                                  },
+                                  "mode": "markers",
+                                  "name": "Selected Residue Pairs ",
+                                  "text": Array [],
+                                  "type": "scattergl",
+                                  "x": Array [],
+                                  "y": Array [],
+                                  "z": Array [],
                                 },
                               ]
                             }

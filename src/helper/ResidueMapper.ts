@@ -5,7 +5,16 @@ const UNI_PROT_RESNAME_HEADER = 'up_residue';
 const PDB_RESNO_HEADER = 'pdb_index';
 const PDB_RESNAME_HEADER = 'pdb_residue';
 
-const EXPECTED_HEADERS = [UNI_PROT_RESNO_HEADER, UNI_PROT_RESNAME_HEADER, PDB_RESNO_HEADER, PDB_RESNAME_HEADER];
+const EV_SERVER_COUPLING_HEADER = 'id';
+const EV_SERVER_STRUCTURE_HEADER = 'coord_id';
+const EV_SERVER_STRUCTURE_CODE_HEADER = 'one_letter_code';
+
+const EVFOLD_EXPECTED_HEADERS = [UNI_PROT_RESNO_HEADER, UNI_PROT_RESNAME_HEADER, PDB_RESNO_HEADER, PDB_RESNAME_HEADER];
+const EVSERVER_EXPECTED_HEADERS = [
+  EV_SERVER_COUPLING_HEADER,
+  EV_SERVER_STRUCTURE_HEADER,
+  EV_SERVER_STRUCTURE_CODE_HEADER,
+];
 
 export interface IResidueMapping {
   /** Name of the residue in the PDB file. */
@@ -14,11 +23,11 @@ export interface IResidueMapping {
   /** Number of the residue in the PDB file. */
   pdbResno: number;
 
-  /** Name of the residue from UniProt. */
-  uniProtResCode: AMINO_ACID_SINGLE_LETTER_CODE;
+  /** Number of the residue from CouplingScores file. */
+  couplingsResno: number;
 
-  /** Number of the residue from UniProt. */
-  uniProtResno: number;
+  /** Single letter code of the residue from CouplingScores file. */
+  couplingsResCode: AMINO_ACID_SINGLE_LETTER_CODE;
 }
 
 /**
@@ -38,22 +47,30 @@ export interface IResidueMapping {
  * @returns Array of all residue mappings.
  */
 export const generateResidueMapping = (text: string): IResidueMapping[] => {
-  const headers = text.split('\n')[0].split('\t');
+  const tabOrComma: RegExp = /\t|,/;
+  const headers = text.split('\n')[0].split(tabOrComma);
+  const isEvServer = isEvServerJob(headers);
   const headerMap: {
     [key: string]: number;
-  } = getResidueMappingHeaders(headers);
+  } = getResidueMappingHeaders(headers, isEvServer);
+
+  const couplingsResnoIndex = isEvServer ? headerMap[EV_SERVER_COUPLING_HEADER] : headerMap[UNI_PROT_RESNO_HEADER];
+  const structureResnoIndex = isEvServer ? headerMap[EV_SERVER_STRUCTURE_HEADER] : headerMap[PDB_RESNO_HEADER];
+  const structureResCodeIndex = isEvServer ? headerMap[EV_SERVER_STRUCTURE_CODE_HEADER] : headerMap[PDB_RESNAME_HEADER];
 
   return text
     .split('\n')
     .slice(1)
     .reduce((result: IResidueMapping[], line: string) => {
-      const splitLine = line.split('\t');
-      if (splitLine.length >= EXPECTED_HEADERS.length) {
+      const splitLine = line.split(tabOrComma);
+      if (splitLine.length >= EVFOLD_EXPECTED_HEADERS.length) {
         result.push({
-          pdbResCode: splitLine[headerMap[PDB_RESNAME_HEADER]] as AMINO_ACID_SINGLE_LETTER_CODE,
-          pdbResno: parseInt(splitLine[headerMap[PDB_RESNO_HEADER]], 10),
-          uniProtResCode: splitLine[headerMap[UNI_PROT_RESNAME_HEADER]] as AMINO_ACID_SINGLE_LETTER_CODE,
-          uniProtResno: parseInt(splitLine[headerMap[UNI_PROT_RESNO_HEADER]], 10),
+          couplingsResCode: isEvServer
+            ? (splitLine[structureResCodeIndex] as AMINO_ACID_SINGLE_LETTER_CODE)
+            : (splitLine[headerMap[UNI_PROT_RESNAME_HEADER]] as AMINO_ACID_SINGLE_LETTER_CODE),
+          couplingsResno: parseInt(splitLine[couplingsResnoIndex], 10),
+          pdbResCode: splitLine[structureResCodeIndex] as AMINO_ACID_SINGLE_LETTER_CODE,
+          pdbResno: parseInt(splitLine[structureResnoIndex], 10),
         });
       }
 
@@ -61,18 +78,30 @@ export const generateResidueMapping = (text: string): IResidueMapping[] => {
     }, new Array<IResidueMapping>());
 };
 
-const getResidueMappingHeaders = (headers: string[]) => {
+const getResidueMappingHeaders = (headers: string[], isEvServer: boolean) => {
   const headerMap: {
     [key: string]: number;
   } = {};
-  if (headers.length >= EXPECTED_HEADERS.length) {
-    EXPECTED_HEADERS.map(header => {
+
+  const expectedHeaders = isEvServer ? EVSERVER_EXPECTED_HEADERS : EVFOLD_EXPECTED_HEADERS;
+  if (headers.length >= EVFOLD_EXPECTED_HEADERS.length) {
+    expectedHeaders.map(header => {
       if (!headers.includes(header)) {
-        throw new Error(`Missing error ${header} in indextableplus file!`);
+        throw new Error(`Missing error ${header} in residue mapping file!`);
       }
       headerMap[header] = headers.indexOf(header);
     });
   }
 
   return headerMap;
+};
+
+const isEvServerJob = (headers: string[]) => {
+  for (const header of EVSERVER_EXPECTED_HEADERS) {
+    if (!headers.includes(header)) {
+      return false;
+    }
+  }
+
+  return true;
 };
