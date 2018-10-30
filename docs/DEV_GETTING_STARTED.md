@@ -3,6 +3,7 @@
 <!-- TOC -->
 
 - [Getting Started With Chell-Viz Development](#getting-started-with-chell-viz-development)
+  - [Testing Dependencies](#testing-dependencies)
   - [Developer Tools](#developer-tools)
     - [VS Code](#vs-code)
       - [Extensions](#extensions)
@@ -30,6 +31,12 @@ yarn
 ```
 
 This will create and populate a `node_modules` folder containing all of our external npm dependencies. [Please refrain from peeking inside](https://medium.com/@jdan/i-peeked-into-my-node-modules-directory-and-you-wont-believe-what-happened-next-b89f63d21558).
+
+## Testing Dependencies
+
+If you wish to locally run the unit tests, a few extra tools might need to be downloaded depending on your setup. This is because we mock the browser canvas (using [node-canvas](https://github.com/Automattic/node-canvas) which, in turn, requires various libraries.
+
+If you are using Mac, I recommend using [Homebrew](https://brew.sh/) for package management and running `brew install pkg-config cairo pango libpng jpeg giflib librsvg`.
 
 ## Developer Tools
 
