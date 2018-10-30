@@ -152,6 +152,7 @@ describe('DataHelper', () => {
         secondaryStructures: [],
       };
       fetchMock.mockResponse(stringifyCircularJSON(response));
+      fetchMock.mockResponse(residueMappingCsv);
 
       const result = (await fetchAppropriateData(VIZ_TYPE.CONTACT_MAP, 'sample')) as IContactMapData;
       expect(stringifyCircularJSON(result.pdbData)).toEqual(stringifyCircularJSON(expected));
