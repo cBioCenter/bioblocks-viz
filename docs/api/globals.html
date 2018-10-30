@@ -192,11 +192,13 @@
 								<li class="tsd-kind-interface"><a href="interfaces/ipublication.html" class="tsd-kind-icon">IPublication</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/ipublicationlocation.html" class="tsd-kind-icon">IPublication<wbr>Location</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/ireference.html" class="tsd-kind-icon">IReference</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/iresiduecontextprops.html" class="tsd-kind-icon">IResidue<wbr>Context<wbr>Props</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/iresiduemapping.html" class="tsd-kind-icon">IResidue<wbr>Mapping</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/iresiduemismatchresult.html" class="tsd-kind-icon">IResidue<wbr>Mismatch<wbr>Result</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/iresiduepair.html" class="tsd-kind-icon">IResidue<wbr>Pair</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/isecondarystructure.html" class="tsd-kind-icon">ISecondary<wbr>Structure</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/isecondarystructuredata.html" class="tsd-kind-icon">ISecondary<wbr>Structure<wbr>Data</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/isecondarystructureprops.html" class="tsd-kind-icon">ISecondary<wbr>Structure<wbr>Props</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/isequence.html" class="tsd-kind-icon">ISequence</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/isettingspanelstate.html" class="tsd-kind-icon">ISettings<wbr>Panel<wbr>State</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/isource.html" class="tsd-kind-icon">ISource</a></li>
@@ -338,6 +340,9 @@
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#isevserverjob" class="tsd-kind-icon">is<wbr>EvServer<wbr>Job</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#readfileastext" class="tsd-kind-icon">read<wbr>File<wbr>AsText</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#renderrecursive" class="tsd-kind-icon">render<wbr>Recursive</a></li>
+								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#withresiduecontext" class="tsd-kind-icon">with<wbr>Residue<wbr>Context</a></li>
+								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#withsecondarystructurecontext" class="tsd-kind-icon">with<wbr>Secondary<wbr>Structure<wbr>Context</a></li>
+								<li class="tsd-kind-function tsd-has-type-parameter tsd-is-not-exported"><a href="globals.html#withsettingspanel" class="tsd-kind-icon">with<wbr>Settings<wbr>Panel</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -693,7 +698,7 @@
 					<div class="tsd-signature tsd-kind-icon">IResidue<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/context/ResidueContext.tsx:43</li>
+							<li>Defined in src/context/ResidueContext.tsx:47</li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -897,7 +902,7 @@
 					<div class="tsd-signature tsd-kind-icon">ISecondary<wbr>Structure<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/context/SecondaryStructureContext.tsx:25</li>
+							<li>Defined in src/context/SecondaryStructureContext.tsx:29</li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -1390,7 +1395,7 @@
 					<div class="tsd-signature tsd-kind-icon">Residue<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Context</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;React.createContext(initialResidueContext)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/context/ResidueContext.tsx:44</li>
+							<li>Defined in src/context/ResidueContext.tsx:48</li>
 						</ul>
 					</aside>
 				</section>
@@ -1400,7 +1405,7 @@
 					<div class="tsd-signature tsd-kind-icon">Residue<wbr>Context<wbr>Consumer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ConsumerProps</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ConsumerProps</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;ResidueContext.Consumer</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/context/ResidueContext.tsx:45</li>
+							<li>Defined in src/context/ResidueContext.tsx:49</li>
 						</ul>
 					</aside>
 				</section>
@@ -1410,7 +1415,7 @@
 					<div class="tsd-signature tsd-kind-icon">Secondary<wbr>Structure<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Context</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;React.createContext(initialSecondaryStructureContext)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/context/SecondaryStructureContext.tsx:26</li>
+							<li>Defined in src/context/SecondaryStructureContext.tsx:30</li>
 						</ul>
 					</aside>
 				</section>
@@ -1420,7 +1425,7 @@
 					<div class="tsd-signature tsd-kind-icon">Secondary<wbr>Structure<wbr>Context<wbr>Consumer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ConsumerProps</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">StatelessComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ConsumerProps</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;SecondaryStructureContext.Consumer</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/context/SecondaryStructureContext.tsx:27</li>
+							<li>Defined in src/context/SecondaryStructureContext.tsx:31</li>
 						</ul>
 					</aside>
 				</section>
@@ -2811,6 +2816,99 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ReactElement</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+					<a name="withresiduecontext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> with<wbr>Residue<wbr>Context</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">with<wbr>Residue<wbr>Context&lt;P&gt;<span class="tsd-signature-symbol">(</span>WrappedComponent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">React.ComponentType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ResidueContextHOC</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/context/ResidueContext.tsx:159</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>P<span class="tsd-signature-symbol">: </span><a href="interfaces/iresiduecontextprops.html" class="tsd-signature-type">IResidueContextProps</a></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>WrappedComponent: <span class="tsd-signature-type">React.ComponentType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ResidueContextHOC</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+					<a name="withsecondarystructurecontext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> with<wbr>Secondary<wbr>Structure<wbr>Context</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">with<wbr>Secondary<wbr>Structure<wbr>Context&lt;P&gt;<span class="tsd-signature-symbol">(</span>WrappedComponent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">React.ComponentType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SecondaryStructureContextHOC</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/context/SecondaryStructureContext.tsx:117</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>P<span class="tsd-signature-symbol">: </span><a href="interfaces/isecondarystructureprops.html" class="tsd-signature-type">ISecondaryStructureProps</a></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>WrappedComponent: <span class="tsd-signature-type">React.ComponentType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">SecondaryStructureContextHOC</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+					<a name="withsettingspanel" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> with<wbr>Settings<wbr>Panel</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">with<wbr>Settings<wbr>Panel&lt;P, S&gt;<span class="tsd-signature-symbol">(</span>WrappedComponent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">React.ComponentType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span>, deriveConfigurations<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">WithSettingsPanelHOC</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/hoc/SettingsPanelComposer.tsx:7</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>P<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h4>
+								</li>
+								<li>
+									<h4>S<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>WrappedComponent: <span class="tsd-signature-type">React.ComponentType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> deriveConfigurations: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">WithSettingsPanelHOC</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -5449,6 +5547,9 @@
 						<a href="interfaces/ireference.html" class="tsd-kind-icon">IReference</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/iresiduecontextprops.html" class="tsd-kind-icon">IResidue<wbr>Context<wbr>Props</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/iresiduemapping.html" class="tsd-kind-icon">IResidue<wbr>Mapping</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -5462,6 +5563,9 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/isecondarystructuredata.html" class="tsd-kind-icon">ISecondary<wbr>Structure<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/isecondarystructureprops.html" class="tsd-kind-icon">ISecondary<wbr>Structure<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/isequence.html" class="tsd-kind-icon">ISequence</a>
@@ -5840,6 +5944,15 @@
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#renderrecursive" class="tsd-kind-icon">render<wbr>Recursive</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#withresiduecontext" class="tsd-kind-icon">with<wbr>Residue<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#withsecondarystructurecontext" class="tsd-kind-icon">with<wbr>Secondary<wbr>Structure<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+						<a href="globals.html#withsettingspanel" class="tsd-kind-icon">with<wbr>Settings<wbr>Panel</a>
 					</li>
 					<li class=" tsd-kind-object-literal">
 						<a href="globals.html#amino_acids_by_single_letter_code" class="tsd-kind-icon">AMINO_<wbr>ACIDS_<wbr>BY_<wbr>SINGLE_<wbr>LETTER_<wbr>CODE</a>

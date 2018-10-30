@@ -62,21 +62,21 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
   }
 
   public render() {
-    const { children, configurations, showConfigurations, width, ...remainingProps } = this.props;
+    const { children, configurations, inverted, showConfigurations, width } = this.props;
     const { visible } = this.state;
 
-    return showConfigurations ? (
+    return (
       <div ref={node => (this.panel = node ? node : null)}>
         <Grid columns={1}>
-          <Grid.Column>{this.renderSettingsButton()}</Grid.Column>
+          {showConfigurations && <Grid.Column>{this.renderSettingsButton()}</Grid.Column>}
           <Sidebar.Pushable style={{ width }}>
             <Sidebar
               as={Menu}
               animation={'overlay'}
+              inverted={inverted}
               style={{ width, opacity: 0.6 }}
               vertical={true}
               visible={visible}
-              {...remainingProps}
             >
               {this.renderConfigurations(configurations)}
             </Sidebar>
@@ -84,8 +84,6 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
           </Sidebar.Pushable>
         </Grid>
       </div>
-    ) : (
-      children
     );
   }
 

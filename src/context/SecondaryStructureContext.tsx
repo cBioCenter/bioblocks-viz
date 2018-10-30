@@ -22,6 +22,10 @@ export const initialSecondaryStructureContext = {
   selectedSecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
 };
 
+export interface ISecondaryStructureProps {
+  secondaryStructureContext: ISecondaryStructureContext;
+}
+
 export type ISecondaryStructureContext = typeof initialSecondaryStructureContext;
 export const SecondaryStructureContext = React.createContext(initialSecondaryStructureContext);
 export const SecondaryStructureContextConsumer = SecondaryStructureContext.Consumer;
@@ -109,3 +113,21 @@ export class SecondaryStructureContextProvider extends React.Component<any, ISec
     });
   };
 }
+
+export const withSecondaryStructureContext = <P extends ISecondaryStructureProps>(
+  WrappedComponent: React.ComponentType<P>,
+) =>
+  // tslint:disable-next-line:max-classes-per-file
+  class SecondaryStructureContextHOC extends React.Component<any> {
+    public static WrappedComponent = WrappedComponent;
+
+    public render() {
+      return (
+        <SecondaryStructureContextConsumer>
+          {secondaryStructureContext => (
+            <WrappedComponent secondaryStructureContext={secondaryStructureContext} {...this.props} />
+          )}
+        </SecondaryStructureContextConsumer>
+      );
+    }
+  };
