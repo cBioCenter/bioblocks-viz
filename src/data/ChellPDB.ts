@@ -22,6 +22,10 @@ import {
 export class ChellPDB {
   public static readonly NGL_C_ALPHA_INDEX = 'CA|C';
 
+  public static createEmptyPDB() {
+    return new ChellPDB();
+  }
+
   /**
    * Creates an instance of ChellPDB with PDB data.
    *

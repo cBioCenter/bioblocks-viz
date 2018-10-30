@@ -216,9 +216,6 @@ export const getCouplingScoresData = (line: string, residueMapping: IResidueMapp
       if (residueMapping.length >= 1) {
         const mappingIndexI = residueMapping.findIndex(mapping => mapping.couplingsResno === score.i);
         const mappingIndexJ = residueMapping.findIndex(mapping => mapping.couplingsResno === score.j);
-        console.log(residueMapping);
-        console.log(mappingIndexI);
-        console.log(mappingIndexJ);
         couplingScores.addCouplingScore({
           ...score,
           A_i: residueMapping[mappingIndexI].pdbResCode,

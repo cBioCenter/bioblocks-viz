@@ -63,7 +63,8 @@
       "jest-junit"
     ],
     "setupFiles": [
-      "<rootDir>/test/SetupJest.ts"
+      "<rootDir>/test/SetupJest.ts",
+      "jest-canvas-mock"
     ],
     "setupTestFrameworkScriptFile": "jest-enzyme",
     "snapshotSerializers": [
@@ -199,6 +200,7 @@
     "husky": "^1.0.1",
     "ify-loader": "^1.1.0",
     "jest": "^23.1.0",
+    "jest-canvas-mock": "^1.1.0",
     "jest-environment-enzyme": "^7.0.0",
     "jest-enzyme": "^7.0.0",
     "jest-fetch-mock": "^1.6.2",

@@ -1,4 +1,3 @@
-import * as igv from 'igv';
 import * as React from 'react';
 
 export interface IIGVContainerProps {
@@ -34,6 +33,7 @@ export class IGVContainer extends React.Component<IIGVContainerProps, any> {
       ],
     };
 
+    const igv = (await import('igv')).default;
     await igv.createBrowser(this.divRef, options);
     console.log('Created IGV browser');
   }
