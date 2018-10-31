@@ -1,8 +1,14 @@
+// tslint:disable:max-classes-per-file
 import * as React from 'react';
 
 import { SECONDARY_STRUCTURE_SECTION } from '~chell-viz~/data';
 
-export const initialSecondaryStructureContext = {
+export const initialSecondaryStructContextRead = {
+  hoveredSecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
+  selectedSecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
+};
+
+export const initialSecondaryStructContextWrite = {
   addHoveredSecondaryStructure: (section: SECONDARY_STRUCTURE_SECTION) => {
     return;
   },
@@ -12,22 +18,34 @@ export const initialSecondaryStructureContext = {
   clearAllSecondaryStructures: () => {
     return;
   },
-  hoveredSecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
   removeHoveredSecondaryStructure: (section: SECONDARY_STRUCTURE_SECTION) => {
     return;
   },
   removeSecondaryStructure: (section: SECONDARY_STRUCTURE_SECTION) => {
     return;
   },
-  selectedSecondaryStructures: new Array<SECONDARY_STRUCTURE_SECTION>(),
+};
+
+export const initialSecondaryStructureContext = {
+  ...initialSecondaryStructContextWrite,
+  ...initialSecondaryStructContextRead,
 };
 
 export interface ISecondaryStructureProps {
   secondaryStructureContext: ISecondaryStructureContext;
 }
 
-export type ISecondaryStructureContext = typeof initialSecondaryStructureContext;
+export type ISecondaryStructureContextRead = typeof initialSecondaryStructContextRead;
+export type ISecondaryStructureContextWrite = typeof initialSecondaryStructContextWrite;
+
+export type ISecondaryStructureContext = ISecondaryStructureContextRead & ISecondaryStructureContextWrite;
+
+export const SecondaryStructureContextRead = React.createContext(initialSecondaryStructContextRead);
+export const SecondaryStructureContextWrite = React.createContext(initialSecondaryStructContextWrite);
 export const SecondaryStructureContext = React.createContext(initialSecondaryStructureContext);
+
+export const SecondaryStructureContextReadConsumer = SecondaryStructureContextRead.Consumer;
+export const SecondaryStructureContextWriteConsumer = SecondaryStructureContextWrite.Consumer;
 export const SecondaryStructureContextConsumer = SecondaryStructureContext.Consumer;
 
 export class SecondaryStructureContextProvider extends React.Component<any, ISecondaryStructureContext> {
@@ -46,7 +64,13 @@ export class SecondaryStructureContextProvider extends React.Component<any, ISec
 
   public render() {
     return (
-      <SecondaryStructureContext.Provider value={this.state}>{this.props.children}</SecondaryStructureContext.Provider>
+      <SecondaryStructureContextRead.Provider value={this.state}>
+        <SecondaryStructureContextWrite.Provider value={this.state}>
+          <SecondaryStructureContext.Provider value={this.state}>
+            {this.props.children}
+          </SecondaryStructureContext.Provider>
+        </SecondaryStructureContextWrite.Provider>
+      </SecondaryStructureContextRead.Provider>
     );
   }
 

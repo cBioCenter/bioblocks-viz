@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Grid, GridRow } from 'semantic-ui-react';
 
-import { IGVContainer, ProteinFeatureViewer, VizPanelContainer } from '~chell-viz~/container';
+import { ProteinFeatureViewer, VizPanelContainer } from '~chell-viz~/container';
 import { VIZ_TYPE } from '~chell-viz~/data';
 
 export class ChellVizApp extends React.Component<any, any> {
@@ -9,9 +9,6 @@ export class ChellVizApp extends React.Component<any, any> {
     return (
       <div id="ChellVizApp">
         <Grid centered={true} divided={'vertically'}>
-          <GridRow>
-            <IGVContainer />
-          </GridRow>
           <GridRow>
             <ProteinFeatureViewer />
           </GridRow>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IComponentSignals | chell-viz</title>
+	<title>IChellContext | chell-viz</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,29 +54,35 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_ngl_.html">&quot;ngl&quot;</a>
-				</li>
-				<li>
-					<a href="_ngl_.icomponentsignals.html">IComponentSignals</a>
+					<a href="ichellcontext.html">IChellContext</a>
 				</li>
 			</ul>
-			<h1>Interface IComponentSignals</h1>
+			<h1>Interface IChellContext&lt;R, W, RW&gt;</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h4>
+					</li>
+					<li>
+						<h4>W<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h4>
+					</li>
+					<li>
+						<h4>RW</h4>
+					</li>
+				</ul>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IComponentSignals</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<a href="_ngl_.istructurecomponentsignals.html" class="tsd-signature-type">IStructureComponentSignals</a>
-							</li>
-						</ul>
+						<span class="target">IChellContext</span>
 					</li>
 				</ul>
 			</section>
@@ -87,13 +93,16 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.icomponentsignals.html#disposed" class="tsd-kind-icon">disposed</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.icomponentsignals.html#matrixchanged" class="tsd-kind-icon">matrix<wbr>Changed</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.icomponentsignals.html#namechanged" class="tsd-kind-icon">name<wbr>Changed</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.icomponentsignals.html#representationadded" class="tsd-kind-icon">representation<wbr>Added</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.icomponentsignals.html#representationremoved" class="tsd-kind-icon">representation<wbr>Removed</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.icomponentsignals.html#statuschanged" class="tsd-kind-icon">status<wbr>Changed</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.icomponentsignals.html#visibilitychanged" class="tsd-kind-icon">visibility<wbr>Changed</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ichellcontext.html#consumers" class="tsd-kind-icon">Consumers</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ichellcontext.html#providers" class="tsd-kind-icon">Providers</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ichellcontext.html#allconsumers" class="tsd-kind-icon">all<wbr>Consumers</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ichellcontext.html#allproviders" class="tsd-kind-icon">all<wbr>Providers</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="ichellcontext.html#allprovidersjsx" class="tsd-kind-icon">all<wbr>ProvidersJSX</a></li>
 							</ul>
 						</section>
 					</div>
@@ -102,74 +111,104 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="disposed" class="tsd-anchor"></a>
-					<h3>disposed</h3>
-					<div class="tsd-signature tsd-kind-icon">disposed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Signal</span></div>
+					<a name="consumers" class="tsd-anchor"></a>
+					<h3>Consumers</h3>
+					<div class="tsd-signature tsd-kind-icon">Consumers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in types/ngl/component/component.d.ts:292</li>
+							<li>Defined in src/context/GenericContextProvider.tsx:5</li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>Both<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">React.Consumer</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RW</span><span class="tsd-signature-symbol">&gt;</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>Read<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">React.Consumer</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>Write<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">React.Consumer</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">W</span><span class="tsd-signature-symbol">&gt;</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="providers" class="tsd-anchor"></a>
+					<h3>Providers</h3>
+					<div class="tsd-signature tsd-kind-icon">Providers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/context/GenericContextProvider.tsx:10</li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>Both<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">React.Provider</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RW</span><span class="tsd-signature-symbol">&gt;</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>Read<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">React.Provider</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>Write<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">React.Provider</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">W</span><span class="tsd-signature-symbol">&gt;</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="allconsumers" class="tsd-anchor"></a>
+					<h3>all<wbr>Consumers</h3>
+					<div class="tsd-signature tsd-kind-icon">all<wbr>Consumers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">React.Consumer</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">React.Consumer</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">W</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">React.Consumer</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RW</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/context/GenericContextProvider.tsx:15</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="matrixchanged" class="tsd-anchor"></a>
-					<h3>matrix<wbr>Changed</h3>
-					<div class="tsd-signature tsd-kind-icon">matrix<wbr>Changed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Signal</span></div>
+					<a name="allproviders" class="tsd-anchor"></a>
+					<h3>all<wbr>Providers</h3>
+					<div class="tsd-signature tsd-kind-icon">all<wbr>Providers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">React.Provider</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">React.Provider</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">W</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">React.Provider</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RW</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in types/ngl/component/component.d.ts:293</li>
+							<li>Defined in src/context/GenericContextProvider.tsx:16</li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="namechanged" class="tsd-anchor"></a>
-					<h3>name<wbr>Changed</h3>
-					<div class="tsd-signature tsd-kind-icon">name<wbr>Changed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Signal</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in types/ngl/component/component.d.ts:294</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="representationadded" class="tsd-anchor"></a>
-					<h3>representation<wbr>Added</h3>
-					<div class="tsd-signature tsd-kind-icon">representation<wbr>Added<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Signal</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in types/ngl/component/component.d.ts:295</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="representationremoved" class="tsd-anchor"></a>
-					<h3>representation<wbr>Removed</h3>
-					<div class="tsd-signature tsd-kind-icon">representation<wbr>Removed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Signal</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in types/ngl/component/component.d.ts:296</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="statuschanged" class="tsd-anchor"></a>
-					<h3>status<wbr>Changed</h3>
-					<div class="tsd-signature tsd-kind-icon">status<wbr>Changed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Signal</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in types/ngl/component/component.d.ts:297</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="visibilitychanged" class="tsd-anchor"></a>
-					<h3>visibility<wbr>Changed</h3>
-					<div class="tsd-signature tsd-kind-icon">visibility<wbr>Changed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Signal</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in types/ngl/component/component.d.ts:298</li>
-						</ul>
-					</aside>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="allprovidersjsx" class="tsd-anchor"></a>
+					<h3>all<wbr>ProvidersJSX</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">all<wbr>ProvidersJSX<span class="tsd-signature-symbol">(</span>state<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, children<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">React.ReactNode</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">React.ReactNode</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/context/GenericContextProvider.tsx:17</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>state: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>children: <span class="tsd-signature-type">React.ReactNode</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">React.ReactNode</span>
+							</h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -179,44 +218,29 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class="current tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_ngl_.html">"ngl"</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_react_iframe_comm_.html">"react-<wbr>iframe-<wbr>comm"</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/nodejs.html">NodeJS</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="_ngl_.icomponentsignals.html" class="tsd-kind-icon">IComponent<wbr>Signals</a>
+					<li class="current tsd-kind-interface tsd-has-type-parameter">
+						<a href="ichellcontext.html" class="tsd-kind-icon">IChell<wbr>Context</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.icomponentsignals.html#disposed" class="tsd-kind-icon">disposed</a>
+								<a href="ichellcontext.html#consumers" class="tsd-kind-icon">Consumers</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.icomponentsignals.html#matrixchanged" class="tsd-kind-icon">matrix<wbr>Changed</a>
+								<a href="ichellcontext.html#providers" class="tsd-kind-icon">Providers</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.icomponentsignals.html#namechanged" class="tsd-kind-icon">name<wbr>Changed</a>
+								<a href="ichellcontext.html#allconsumers" class="tsd-kind-icon">all<wbr>Consumers</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.icomponentsignals.html#representationadded" class="tsd-kind-icon">representation<wbr>Added</a>
+								<a href="ichellcontext.html#allproviders" class="tsd-kind-icon">all<wbr>Providers</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.icomponentsignals.html#representationremoved" class="tsd-kind-icon">representation<wbr>Removed</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.icomponentsignals.html#statuschanged" class="tsd-kind-icon">status<wbr>Changed</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.icomponentsignals.html#visibilitychanged" class="tsd-kind-icon">visibility<wbr>Changed</a>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="ichellcontext.html#allprovidersjsx" class="tsd-kind-icon">all<wbr>ProvidersJSX</a>
 							</li>
 						</ul>
 					</li>

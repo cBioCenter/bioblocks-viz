@@ -21,6 +21,7 @@ import {
   AMINO_ACIDS_BY_THREE_LETTER_CODE,
   CHELL_CSS_STYLE,
   ChellPDB,
+  ChellWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
   CONTACT_DISTANCE_PROXIMITY,
   RESIDUE_TYPE,
@@ -32,7 +33,6 @@ import {
   createDistanceRepresentation,
   createSecStructRepresentation,
 } from '~chell-viz~/helper';
-import { ContextConsumerComposer } from '~chell-viz~/hoc';
 
 export type NGL_HOVER_CB_RESULT_TYPE = number;
 
@@ -149,64 +149,14 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
    * @returns The NGL Component
    */
   public render() {
-    const {
-      height,
-      isDataLoading,
-      onMeasuredProximityChange,
-      residueContext,
-      showConfigurations,
-      style,
-      width,
-    } = this.props;
+    const { height, isDataLoading, showConfigurations, style, width } = this.props;
 
     return (
       <Dimmer.Dimmable dimmed={true}>
         <Dimmer active={isDataLoading}>
           <Loader />
         </Dimmer>
-        <SettingsPanel
-          configurations={[
-            {
-              name: 'Clear Selections',
-              onClick: residueContext.removeAllLockedResiduePairs,
-              type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
-            },
-            {
-              current: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
-              name: 'Measuring Proximity',
-              onChange: (value: number) => {
-                if (onMeasuredProximityChange) {
-                  onMeasuredProximityChange(value);
-                }
-              },
-              options: Object.values(CONTACT_DISTANCE_PROXIMITY).map(capitalizeFirstLetter),
-              type: CONFIGURATION_COMPONENT_TYPE.RADIO,
-            },
-            {
-              current: 'default',
-              name: 'Structure Representation Type',
-              onChange: (value: number) => {
-                const { stage, structureComponent } = this.state;
-                const reps = ['default', 'spacefill', 'backbone', 'cartoon', 'surface', 'tube'];
-                if (stage && structureComponent) {
-                  structureComponent.removeAllRepresentations();
-                  if (value === 0) {
-                    stage.defaultFileRepresentation(structureComponent);
-                  } else {
-                    structureComponent.addRepresentation(reps[value] as NGL.StructureRepresentationType);
-                  }
-                  this.setState({
-                    activeRepresentations: this.deriveActiveRepresentations(structureComponent),
-                  });
-                  stage.viewer.requestRender();
-                }
-              },
-              options: Object.values(['Default', 'Spacefill', 'Backbone', 'Cartoon', 'Surface', 'Tube']),
-              type: CONFIGURATION_COMPONENT_TYPE.RADIO,
-            },
-          ]}
-          showConfigurations={showConfigurations}
-        >
+        <SettingsPanel configurations={this.getConfigurations()} showConfigurations={showConfigurations}>
           <div className="NGLComponent" style={{ ...style, height, width }}>
             <div
               className="NGLCanvas"
@@ -287,6 +237,47 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     });
   }
 
+  protected getConfigurations = () => {
+    const { residueContext } = this.props;
+
+    return [
+      {
+        name: 'Clear Selections',
+        onClick: residueContext.removeAllLockedResiduePairs,
+        type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
+      },
+      {
+        current: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
+        name: 'Measuring Proximity',
+        onChange: (value: number) => this.measuredProximityHandler(value),
+        options: Object.values(CONTACT_DISTANCE_PROXIMITY).map(capitalizeFirstLetter),
+        type: CONFIGURATION_COMPONENT_TYPE.RADIO,
+      },
+      {
+        current: 'default',
+        name: 'Structure Representation Type',
+        onChange: (value: number) => {
+          const { stage, structureComponent } = this.state;
+          const reps = ['default', 'spacefill', 'backbone', 'cartoon', 'surface', 'tube'];
+          if (stage && structureComponent) {
+            structureComponent.removeAllRepresentations();
+            if (value === 0) {
+              stage.defaultFileRepresentation(structureComponent);
+            } else {
+              structureComponent.addRepresentation(reps[value] as NGL.StructureRepresentationType);
+            }
+            this.setState({
+              activeRepresentations: this.deriveActiveRepresentations(structureComponent),
+            });
+            stage.viewer.requestRender();
+          }
+        },
+        options: Object.values(['Default', 'Spacefill', 'Backbone', 'Cartoon', 'Surface', 'Tube']),
+        type: CONFIGURATION_COMPONENT_TYPE.RADIO,
+      },
+    ] as ChellWidgetConfig[];
+  };
+
   protected onClick = (pickingProxy: NGL.PickingProxy) => {
     const { residueContext } = this.props;
     const { structureComponent } = this.state;
@@ -366,6 +357,13 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
       }
     }
   }
+
+  protected measuredProximityHandler = (value: number) => {
+    const { onMeasuredProximityChange } = this.props;
+    if (onMeasuredProximityChange) {
+      onMeasuredProximityChange(value);
+    }
+  };
 
   protected getDistanceRepForResidues(
     structureComponent: NGL.StructureComponent,
@@ -469,17 +467,19 @@ type requiredProps = Omit<INGLComponentProps, keyof typeof NGLComponentClass.def
   Partial<INGLComponentProps>;
 
 const NGLComponent = (props: requiredProps) => (
-  <ContextConsumerComposer components={[ResidueContextConsumer, SecondaryStructureContextConsumer]}>
-    {([resContext, secStructContext]) => {
-      return (
-        <NGLComponentClass
-          {...props}
-          residueContext={resContext as IResidueContext}
-          secondaryStructureContext={secStructContext as ISecondaryStructureContext}
-        />
-      );
-    }}
-  </ContextConsumerComposer>
+  <ResidueContextConsumer>
+    {residueContext => (
+      <SecondaryStructureContextConsumer>
+        {secondaryStructureContext => (
+          <NGLComponentClass
+            residueContext={residueContext}
+            secondaryStructureContext={secondaryStructureContext}
+            {...props}
+          />
+        )}
+      </SecondaryStructureContextConsumer>
+    )}
+  </ResidueContextConsumer>
 );
 
 export { NGLComponent };

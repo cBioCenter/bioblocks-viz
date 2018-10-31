@@ -27,7 +27,6 @@ import {
   SECONDARY_STRUCTURE,
   SliderWidgetConfig,
 } from '~chell-viz~/data';
-import { ContextConsumerComposer } from '~chell-viz~/hoc';
 
 export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
 export type ContactMapCallback = (coupling: CONTACT_MAP_CB_RESULT_TYPE) => void;
@@ -330,17 +329,19 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 type requiredProps = Omit<IContactMapProps, keyof typeof ContactMapClass.defaultProps> & Partial<IContactMapProps>;
 
 const ContactMap = (props: requiredProps) => (
-  <ContextConsumerComposer components={[ResidueContextConsumer, SecondaryStructureContextConsumer]}>
-    {([resContext, secStructContext]) => (
-      <ContactMapClass
-        {...{
-          ...props,
-          residueContext: resContext as IResidueContext,
-          secondaryStructureContext: secStructContext as ISecondaryStructureContext,
-        }}
-      />
+  <ResidueContextConsumer>
+    {residueContext => (
+      <SecondaryStructureContextConsumer>
+        {secondaryStructureContext => (
+          <ContactMapClass
+            residueContext={residueContext}
+            secondaryStructureContext={secondaryStructureContext}
+            {...props}
+          />
+        )}
+      </SecondaryStructureContextConsumer>
     )}
-  </ContextConsumerComposer>
+  </ResidueContextConsumer>
 );
 
 export { ContactMap };

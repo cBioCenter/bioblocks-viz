@@ -4,6 +4,7 @@ import { Dimmer, Loader } from 'semantic-ui-react';
 import { SettingsPanel } from '~chell-viz~/component';
 import { ChellWidgetConfig } from '~chell-viz~/data';
 
+// @ts-ignore
 const withSettingsPanel = <P extends object, S extends object>(
   WrappedComponent: React.ComponentType<P>,
   deriveConfigurations?: (component: any) => ChellWidgetConfig[],

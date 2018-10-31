@@ -9,17 +9,6 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
     divided="vertically"
   >
     <GridRow>
-      <IGVContainer
-        dataUrl="https://data.broadinstitute.org/      igvdata/1KG/b37/data/HG02450/alignment/HG02450.mapped.ILLUMINA.bwa.ACB.low_coverage.20120522.bam"
-        style={
-          Object {
-            "height": "600px",
-            "width": "600px",
-          }
-        }
-      />
-    </GridRow>
-    <GridRow>
       <ProteinFeatureViewer
         initialProteinId="Q9NYJ7"
       />
