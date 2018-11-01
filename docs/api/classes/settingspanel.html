@@ -124,6 +124,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="settingspanel.html#onbuttonclick" class="tsd-kind-icon">on<wbr>Button<wbr>Click</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="settingspanel.html#render" class="tsd-kind-icon">render</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="settingspanel.html#renderconfigurationbutton" class="tsd-kind-icon">render<wbr>Configuration<wbr>Button</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="settingspanel.html#renderconfigurationlabel" class="tsd-kind-icon">render<wbr>Configuration<wbr>Label</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="settingspanel.html#renderconfigurationradiobutton" class="tsd-kind-icon">render<wbr>Configuration<wbr>Radio<wbr>Button</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="settingspanel.html#renderconfigurationslider" class="tsd-kind-icon">render<wbr>Configuration<wbr>Slider</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="settingspanel.html#renderconfigurations" class="tsd-kind-icon">render<wbr>Configurations</a></li>
@@ -154,7 +155,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.__constructor</p>
 								<ul>
-									<li>Defined in src/component/widget/SettingsPanel.tsx:33</li>
+									<li>Defined in src/component/widget/SettingsPanel.tsx:36</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -194,7 +195,7 @@
 					<div class="tsd-signature tsd-kind-icon">panel<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HTMLDivElement</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/widget/SettingsPanel.tsx:33</li>
+							<li>Defined in src/component/widget/SettingsPanel.tsx:36</li>
 						</ul>
 					</aside>
 				</section>
@@ -453,7 +454,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides NewLifecycle.componentDidUpdate</p>
 								<ul>
-									<li>Defined in src/component/widget/SettingsPanel.tsx:42</li>
+									<li>Defined in src/component/widget/SettingsPanel.tsx:45</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -700,7 +701,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/widget/SettingsPanel.tsx:160</li>
+									<li>Defined in src/component/widget/SettingsPanel.tsx:175</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -717,7 +718,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/widget/SettingsPanel.tsx:90</li>
+									<li>Defined in src/component/widget/SettingsPanel.tsx:93</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -741,7 +742,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.render</p>
 								<ul>
-									<li>Defined in src/component/widget/SettingsPanel.tsx:64</li>
+									<li>Defined in src/component/widget/SettingsPanel.tsx:67</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
@@ -758,13 +759,39 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/widget/SettingsPanel.tsx:126</li>
+									<li>Defined in src/component/widget/SettingsPanel.tsx:131</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>config: <a href="../globals.html#buttonwidgetconfig" class="tsd-signature-type">ButtonWidgetConfig</a></h5>
+								</li>
+								<li>
+									<h5>id: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="renderconfigurationlabel" class="tsd-anchor"></a>
+					<h3>render<wbr>Configuration<wbr>Label</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">render<wbr>Configuration<wbr>Label<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="../globals.html#labelwidgetconfig" class="tsd-signature-type">LabelWidgetConfig</a>, id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/component/widget/SettingsPanel.tsx:139</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>config: <a href="../globals.html#labelwidgetconfig" class="tsd-signature-type">LabelWidgetConfig</a></h5>
 								</li>
 								<li>
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
@@ -784,7 +811,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/widget/SettingsPanel.tsx:134</li>
+									<li>Defined in src/component/widget/SettingsPanel.tsx:148</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -810,7 +837,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/widget/SettingsPanel.tsx:146</li>
+									<li>Defined in src/component/widget/SettingsPanel.tsx:160</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -836,7 +863,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/widget/SettingsPanel.tsx:100</li>
+									<li>Defined in src/component/widget/SettingsPanel.tsx:103</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -859,7 +886,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/component/widget/SettingsPanel.tsx:96</li>
+									<li>Defined in src/component/widget/SettingsPanel.tsx:99</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
@@ -948,16 +975,16 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/component/widget/SettingsPanel.tsx:25</li>
+							<li>Defined in src/component/widget/SettingsPanel.tsx:27</li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 						<a name="defaultprops.configurations" class="tsd-anchor"></a>
 						<h3>configurations</h3>
-						<div class="tsd-signature tsd-kind-icon">configurations<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><a href="../interfaces/ibasechellwidgetconfig.html" class="tsd-signature-type">IBaseChellWidgetConfig</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/ibasechellwidgetconfig.html" class="tsd-signature-type">IBaseChellWidgetConfig</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/ibasechellwidgetconfig.html" class="tsd-signature-type">IBaseChellWidgetConfig</a><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/ichellwidgetvalueconfig.html" class="tsd-signature-type">IChellWidgetValueConfig</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;new Array&lt;ChellWidgetConfig&gt;()</span></div>
+						<div class="tsd-signature tsd-kind-icon">configurations<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><a href="../interfaces/ibasechellwidgetconfig.html" class="tsd-signature-type">IBaseChellWidgetConfig</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/ibasechellwidgetconfig.html" class="tsd-signature-type">IBaseChellWidgetConfig</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/ibasechellwidgetconfig.html" class="tsd-signature-type">IBaseChellWidgetConfig</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/ibasechellwidgetconfig.html" class="tsd-signature-type">IBaseChellWidgetConfig</a><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/ichellwidgetvalueconfig.html" class="tsd-signature-type">IChellWidgetValueConfig</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;new Array&lt;ChellWidgetConfig&gt;()</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/widget/SettingsPanel.tsx:26</li>
+								<li>Defined in src/component/widget/SettingsPanel.tsx:28</li>
 							</ul>
 						</aside>
 					</section>
@@ -967,7 +994,7 @@
 						<div class="tsd-signature tsd-kind-icon">direction<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;left&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/widget/SettingsPanel.tsx:27</li>
+								<li>Defined in src/component/widget/SettingsPanel.tsx:29</li>
 							</ul>
 						</aside>
 					</section>
@@ -977,7 +1004,17 @@
 						<div class="tsd-signature tsd-kind-icon">inverted<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/widget/SettingsPanel.tsx:28</li>
+								<li>Defined in src/component/widget/SettingsPanel.tsx:30</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="defaultprops.opacity" class="tsd-anchor"></a>
+						<h3>opacity</h3>
+						<div class="tsd-signature tsd-kind-icon">opacity<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.6</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/component/widget/SettingsPanel.tsx:31</li>
 							</ul>
 						</aside>
 					</section>
@@ -987,7 +1024,7 @@
 						<div class="tsd-signature tsd-kind-icon">show<wbr>Configurations<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/widget/SettingsPanel.tsx:29</li>
+								<li>Defined in src/component/widget/SettingsPanel.tsx:32</li>
 							</ul>
 						</aside>
 					</section>
@@ -997,7 +1034,7 @@
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;100%&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in src/component/widget/SettingsPanel.tsx:30</li>
+								<li>Defined in src/component/widget/SettingsPanel.tsx:33</li>
 							</ul>
 						</aside>
 					</section>
@@ -1084,6 +1121,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="settingspanel.html#renderconfigurationbutton" class="tsd-kind-icon">render<wbr>Configuration<wbr>Button</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="settingspanel.html#renderconfigurationlabel" class="tsd-kind-icon">render<wbr>Configuration<wbr>Label</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="settingspanel.html#renderconfigurationradiobutton" class="tsd-kind-icon">render<wbr>Configuration<wbr>Radio<wbr>Button</a>

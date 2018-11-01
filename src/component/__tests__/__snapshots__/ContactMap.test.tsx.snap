@@ -2217,6 +2217,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             }
             direction="left"
             inverted={true}
+            opacity={0.6}
             showConfigurations={true}
             width="100%"
           >

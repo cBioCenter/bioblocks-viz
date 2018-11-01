@@ -5,6 +5,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
   configurations={Array []}
   direction="left"
   inverted={true}
+  opacity={0.6}
   showConfigurations={true}
   width="100%"
 >
@@ -273,6 +274,7 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
   configurations={Array []}
   direction="left"
   inverted={true}
+  opacity={0.6}
   showConfigurations={true}
   width="100%"
 >
@@ -553,6 +555,7 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
   configurations={Array []}
   direction="left"
   inverted={true}
+  opacity={0.6}
   showConfigurations={true}
   width="100%"
 >
