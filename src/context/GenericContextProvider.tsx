@@ -46,7 +46,8 @@ export const createGenericContext = <R extends object, W extends object>(
     Providers,
     allConsumers,
     allProviders,
-    allProvidersJSX: (state, children) =>
+    allProvidersJSX: (state: any, children) =>
+      // tslint:disable-next-line
       allProviders.reduce((prev, Curr) => <Curr value={state}>{prev}</Curr>, children),
   };
 };

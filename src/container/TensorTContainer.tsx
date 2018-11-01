@@ -60,10 +60,10 @@ class TensorTContainerClass extends React.Component<ITensorContainerProps, ITens
     // Initialize the tsne optimizer
     const tsne = (await import('@tensorflow/tfjs-tsne')).tsne(tsneData);
 
-    await this.setState({
+    this.setState({
       tsne,
     });
-    this.computeTensorTsne(this.state.numIterations);
+    await this.computeTensorTsne(this.state.numIterations);
   }
 
   public render() {
@@ -123,11 +123,11 @@ class TensorTContainerClass extends React.Component<ITensorContainerProps, ITens
   };
 
   protected onReset = () => async () => {
-    this.computeTensorTsne(0);
+    await this.computeTensorTsne(0);
   };
 
   protected onNumIterationsChange = () => async (numIterations: number) => {
-    this.computeTensorTsne(numIterations);
+    await this.computeTensorTsne(numIterations);
   };
 
   protected async computeTensorTsne(numIterations: number) {

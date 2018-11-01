@@ -18,6 +18,8 @@ export interface ISettingsPanelState {
 // We are omitting the 'width' prop from the Semantic Sidebar to instead use our own so an exact width may be specified.
 export type SettingsPanelProps = {
   configurations: ChellWidgetConfig[];
+  direction?: 'top' | 'right' | 'bottom' | 'left';
+  inverted?: boolean;
   opacity?: number;
   showConfigurations?: boolean;
   width?: number | string;

@@ -167,7 +167,7 @@ export const fetchTensorTSneCoordinateDataFromFile = async (fileLocation: string
   return matrix;
 };
 
-export const fetchTensorTSneCoordinateData = (dataDir: string) => {
+export const fetchTensorTSneCoordinateData = async (dataDir: string) => {
   return fetchTensorTSneCoordinateDataFromFile(`${dataDir}/tsne_matrix.csv`);
 };
 

@@ -4,12 +4,18 @@ import { Dimmer, Loader } from 'semantic-ui-react';
 import { SettingsPanel } from '~chell-viz~/component';
 import { ChellWidgetConfig } from '~chell-viz~/data';
 
+interface IWrappedSettingsProps {
+  configurations: ChellWidgetConfig[];
+  isDataLoading: boolean;
+  showConfigurations: boolean;
+  width: number | string;
+}
 // @ts-ignore
 const withSettingsPanel = <P extends object, S extends object>(
   WrappedComponent: React.ComponentType<P>,
   deriveConfigurations?: (component: any) => ChellWidgetConfig[],
 ) => {
-  class WithSettingsPanelHOC extends React.Component<any> {
+  class WithSettingsPanelHOC extends React.Component<IWrappedSettingsProps> {
     public static WrappedComponent = WrappedComponent;
 
     public render() {
