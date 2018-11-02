@@ -84,7 +84,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#autobinx" class="tsd-kind-icon">autobinx</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#boxmean" class="tsd-kind-icon">boxmean</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iplotlydata.html#boxpoints" class="tsd-kind-icon">boxpoints</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#colorscale" class="tsd-kind-icon">colorscale</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#connectgaps" class="tsd-kind-icon">connectgaps</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#error_x" class="tsd-kind-icon">error_<wbr>x</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#error_y" class="tsd-kind-icon">error_<wbr>y</a></li>
@@ -122,14 +125,19 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#text" class="tsd-kind-icon">text</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iplotlydata.html#textfont" class="tsd-kind-icon">textfont</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#transforms" class="tsd-kind-icon">transforms</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#transpose" class="tsd-kind-icon">transpose</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="iplotlydata.html#type" class="tsd-kind-icon">type</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#visible" class="tsd-kind-icon">visible</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#x" class="tsd-kind-icon">x</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#xaxis" class="tsd-kind-icon">xaxis</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#xbins" class="tsd-kind-icon">xbins</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#xgap" class="tsd-kind-icon">xgap</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#xy" class="tsd-kind-icon">xy</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#y" class="tsd-kind-icon">y</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#yaxis" class="tsd-kind-icon">yaxis</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#ygap" class="tsd-kind-icon">ygap</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#z" class="tsd-kind-icon">z</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="iplotlydata.html#zsmooth" class="tsd-kind-icon">zsmooth</a></li>
 							</ul>
 						</section>
 					</div>
@@ -137,6 +145,28 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="autobinx" class="tsd-anchor"></a>
+					<h3>autobinx</h3>
+					<div class="tsd-signature tsd-kind-icon">autobinx<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from PlotData.autobinx</p>
+						<ul>
+							<li>Defined in node_modules/@types/plotly.js/index.d.ts:539</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="boxmean" class="tsd-anchor"></a>
+					<h3>boxmean</h3>
+					<div class="tsd-signature tsd-kind-icon">boxmean<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"sd"</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from PlotData.boxmean</p>
+						<ul>
+							<li>Defined in node_modules/@types/plotly.js/index.d.ts:533</li>
+						</ul>
+					</aside>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="boxpoints" class="tsd-anchor"></a>
 					<h3>boxpoints</h3>
@@ -144,6 +174,17 @@
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in src/data/PlotlyData.ts:17</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="colorscale" class="tsd-anchor"></a>
+					<h3>colorscale</h3>
+					<div class="tsd-signature tsd-kind-icon">colorscale<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from PlotData.colorscale</p>
+						<ul>
+							<li>Defined in node_modules/@types/plotly.js/index.d.ts:534</li>
 						</ul>
 					</aside>
 				</section>
@@ -551,6 +592,17 @@
 						</ul>
 					</aside>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="transpose" class="tsd-anchor"></a>
+					<h3>transpose</h3>
+					<div class="tsd-signature tsd-kind-icon">transpose<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from PlotData.transpose</p>
+						<ul>
+							<li>Defined in node_modules/@types/plotly.js/index.d.ts:538</li>
+						</ul>
+					</aside>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="type" class="tsd-anchor"></a>
 					<h3>type</h3>
@@ -596,6 +648,42 @@
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="xbins" class="tsd-anchor"></a>
+					<h3>xbins</h3>
+					<div class="tsd-signature tsd-kind-icon">xbins<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from PlotData.xbins</p>
+						<ul>
+							<li>Defined in node_modules/@types/plotly.js/index.d.ts:540</li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>end<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>size<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>start<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="xgap" class="tsd-anchor"></a>
+					<h3>xgap</h3>
+					<div class="tsd-signature tsd-kind-icon">xgap<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from PlotData.xgap</p>
+						<ul>
+							<li>Defined in node_modules/@types/plotly.js/index.d.ts:537</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="xy" class="tsd-anchor"></a>
 					<h3>xy</h3>
 					<div class="tsd-signature tsd-kind-icon">xy<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Float32Array</span></div>
@@ -629,6 +717,17 @@
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="ygap" class="tsd-anchor"></a>
+					<h3>ygap</h3>
+					<div class="tsd-signature tsd-kind-icon">ygap<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from PlotData.ygap</p>
+						<ul>
+							<li>Defined in node_modules/@types/plotly.js/index.d.ts:536</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="z" class="tsd-anchor"></a>
 					<h3>z</h3>
 					<div class="tsd-signature tsd-kind-icon">z<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Datum</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Datum</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Datum</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><a href="../modules/_ngl_.html#typedarray" class="tsd-signature-type">TypedArray</a></div>
@@ -636,6 +735,17 @@
 						<p>Inherited from PlotData.z</p>
 						<ul>
 							<li>Defined in node_modules/@types/plotly.js/index.d.ts:485</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="zsmooth" class="tsd-anchor"></a>
+					<h3>zsmooth</h3>
+					<div class="tsd-signature tsd-kind-icon">zsmooth<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"fast"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"best"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from PlotData.zsmooth</p>
+						<ul>
+							<li>Defined in node_modules/@types/plotly.js/index.d.ts:535</li>
 						</ul>
 					</aside>
 				</section>
@@ -656,8 +766,17 @@
 					<li class="current tsd-kind-interface">
 						<a href="iplotlydata.html" class="tsd-kind-icon">IPlotly<wbr>Data</a>
 						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="iplotlydata.html#autobinx" class="tsd-kind-icon">autobinx</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="iplotlydata.html#boxmean" class="tsd-kind-icon">boxmean</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="iplotlydata.html#boxpoints" class="tsd-kind-icon">boxpoints</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="iplotlydata.html#colorscale" class="tsd-kind-icon">colorscale</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="iplotlydata.html#connectgaps" class="tsd-kind-icon">connectgaps</a>
@@ -770,6 +889,9 @@
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="iplotlydata.html#transforms" class="tsd-kind-icon">transforms</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="iplotlydata.html#transpose" class="tsd-kind-icon">transpose</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 								<a href="iplotlydata.html#type" class="tsd-kind-icon">type</a>
 							</li>
@@ -783,6 +905,12 @@
 								<a href="iplotlydata.html#xaxis" class="tsd-kind-icon">xaxis</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="iplotlydata.html#xbins" class="tsd-kind-icon">xbins</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="iplotlydata.html#xgap" class="tsd-kind-icon">xgap</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="iplotlydata.html#xy" class="tsd-kind-icon">xy</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
@@ -792,7 +920,13 @@
 								<a href="iplotlydata.html#yaxis" class="tsd-kind-icon">yaxis</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="iplotlydata.html#ygap" class="tsd-kind-icon">ygap</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="iplotlydata.html#z" class="tsd-kind-icon">z</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="iplotlydata.html#zsmooth" class="tsd-kind-icon">zsmooth</a>
 							</li>
 						</ul>
 					</li>
