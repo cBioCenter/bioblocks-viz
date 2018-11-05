@@ -112,7 +112,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="springcontainerclass.html#unsafe_componentwillupdate" class="tsd-kind-icon">UNSAFE_<wbr>component<wbr>Will<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="springcontainerclass.html#componentdidcatch" class="tsd-kind-icon">component<wbr>Did<wbr>Catch</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="springcontainerclass.html#componentdidmount" class="tsd-kind-icon">component<wbr>Did<wbr>Mount</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="springcontainerclass.html#componentdidupdate" class="tsd-kind-icon">component<wbr>Did<wbr>Update</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="springcontainerclass.html#componentdidupdate" class="tsd-kind-icon">component<wbr>Did<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="springcontainerclass.html#componentwillmount" class="tsd-kind-icon">component<wbr>Will<wbr>Mount</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="springcontainerclass.html#componentwillreceiveprops" class="tsd-kind-icon">component<wbr>Will<wbr>Receive<wbr>Props</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="springcontainerclass.html#componentwillunmount" class="tsd-kind-icon">component<wbr>Will<wbr>Unmount</a></li>
@@ -148,7 +148,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8be3cf50/src/container/SpringContainer.tsx#L56">src/container/SpringContainer.tsx:56</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/061428e1/src/container/SpringContainer.tsx#L56">src/container/SpringContainer.tsx:56</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -426,36 +426,24 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 					<a name="componentdidupdate" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> component<wbr>Did<wbr>Update</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">component<wbr>Did<wbr>Update<span class="tsd-signature-symbol">(</span>prevProps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ispringcontainerprops.html" class="tsd-signature-type">ISpringContainerProps</a><span class="tsd-signature-symbol">&gt;</span>, prevState<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ispringcontainerstate.html" class="tsd-signature-type">ISpringContainerState</a><span class="tsd-signature-symbol">&gt;</span>, snapshot<span class="tsd-signature-symbol">?: </span><a href="" class="tsd-signature-type">SS</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					<h3>component<wbr>Did<wbr>Update</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">component<wbr>Did<wbr>Update<span class="tsd-signature-symbol">(</span>prevProps<span class="tsd-signature-symbol">: </span><a href="../interfaces/ispringcontainerprops.html" class="tsd-signature-type">ISpringContainerProps</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from NewLifecycle.componentDidUpdate</p>
+								<p>Overrides NewLifecycle.componentDidUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:446</li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/061428e1/src/container/SpringContainer.tsx#L70">src/container/SpringContainer.tsx:70</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Called immediately after updating occurs. Not called for the initial render.</p>
-								</div>
-								<p>The snapshot is only present if getSnapshotBeforeUpdate is present and returns non-null.</p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>prevProps: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ispringcontainerprops.html" class="tsd-signature-type">ISpringContainerProps</a><span class="tsd-signature-symbol">&gt;</span></h5>
-								</li>
-								<li>
-									<h5>prevState: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ispringcontainerstate.html" class="tsd-signature-type">ISpringContainerState</a><span class="tsd-signature-symbol">&gt;</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> snapshot: <a href="" class="tsd-signature-type">SS</a></h5>
+									<h5>prevProps: <a href="../interfaces/ispringcontainerprops.html" class="tsd-signature-type">ISpringContainerProps</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -693,7 +681,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8be3cf50/src/container/SpringContainer.tsx#L93">src/container/SpringContainer.tsx:93</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/061428e1/src/container/SpringContainer.tsx#L106">src/container/SpringContainer.tsx:106</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -710,7 +698,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8be3cf50/src/container/SpringContainer.tsx#L97">src/container/SpringContainer.tsx:97</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/061428e1/src/container/SpringContainer.tsx#L110">src/container/SpringContainer.tsx:110</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -734,7 +722,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.render</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8be3cf50/src/container/SpringContainer.tsx#L70">src/container/SpringContainer.tsx:70</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/061428e1/src/container/SpringContainer.tsx#L83">src/container/SpringContainer.tsx:83</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
@@ -823,7 +811,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8be3cf50/src/container/SpringContainer.tsx#L40">src/container/SpringContainer.tsx:40</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/061428e1/src/container/SpringContainer.tsx#L40">src/container/SpringContainer.tsx:40</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -832,7 +820,7 @@
 						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;100%&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8be3cf50/src/container/SpringContainer.tsx#L48">src/container/SpringContainer.tsx:48</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/061428e1/src/container/SpringContainer.tsx#L48">src/container/SpringContainer.tsx:48</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -842,7 +830,7 @@
 						<div class="tsd-signature tsd-kind-icon">padding<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8be3cf50/src/container/SpringContainer.tsx#L49">src/container/SpringContainer.tsx:49</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/061428e1/src/container/SpringContainer.tsx#L49">src/container/SpringContainer.tsx:49</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -852,7 +840,7 @@
 						<div class="tsd-signature tsd-kind-icon">selected<wbr>Category<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8be3cf50/src/container/SpringContainer.tsx#L50">src/container/SpringContainer.tsx:50</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/061428e1/src/container/SpringContainer.tsx#L50">src/container/SpringContainer.tsx:50</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -862,7 +850,7 @@
 						<div class="tsd-signature tsd-kind-icon">spring<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;http://localhost:11037/springViewer.html?datasets/hpc/full&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8be3cf50/src/container/SpringContainer.tsx#L54">src/container/SpringContainer.tsx:54</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/061428e1/src/container/SpringContainer.tsx#L54">src/container/SpringContainer.tsx:54</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -872,7 +860,7 @@
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1200</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8be3cf50/src/container/SpringContainer.tsx#L55">src/container/SpringContainer.tsx:55</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/061428e1/src/container/SpringContainer.tsx#L55">src/container/SpringContainer.tsx:55</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -882,7 +870,7 @@
 						<div class="tsd-signature tsd-kind-icon">cell<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8be3cf50/src/container/SpringContainer.tsx#L41">src/container/SpringContainer.tsx:41</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/061428e1/src/container/SpringContainer.tsx#L41">src/container/SpringContainer.tsx:41</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -892,7 +880,7 @@
 						<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8be3cf50/src/container/SpringContainer.tsx#L44">src/container/SpringContainer.tsx:44</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/061428e1/src/container/SpringContainer.tsx#L44">src/container/SpringContainer.tsx:44</a></li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -901,7 +889,7 @@
 							<div class="tsd-signature tsd-kind-icon">links<span class="tsd-signature-symbol">:</span> <a href="../interfaces/ispringlink.html" class="tsd-signature-type">ISpringLink</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;new Array&lt;ISpringLink&gt;()</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8be3cf50/src/container/SpringContainer.tsx#L45">src/container/SpringContainer.tsx:45</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/061428e1/src/container/SpringContainer.tsx#L45">src/container/SpringContainer.tsx:45</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -911,7 +899,7 @@
 							<div class="tsd-signature tsd-kind-icon">nodes<span class="tsd-signature-symbol">:</span> <a href="../interfaces/ispringnode.html" class="tsd-signature-type">ISpringNode</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;new Array&lt;ISpringNode&gt;()</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8be3cf50/src/container/SpringContainer.tsx#L46">src/container/SpringContainer.tsx:46</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/061428e1/src/container/SpringContainer.tsx#L46">src/container/SpringContainer.tsx:46</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -922,7 +910,7 @@
 						<div class="tsd-signature tsd-kind-icon">spring<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8be3cf50/src/container/SpringContainer.tsx#L51">src/container/SpringContainer.tsx:51</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/061428e1/src/container/SpringContainer.tsx#L51">src/container/SpringContainer.tsx:51</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -974,7 +962,7 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="springcontainerclass.html#componentdidmount" class="tsd-kind-icon">component<wbr>Did<wbr>Mount</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="springcontainerclass.html#componentdidupdate" class="tsd-kind-icon">component<wbr>Did<wbr>Update</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
