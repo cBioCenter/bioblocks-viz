@@ -1,4 +1,4 @@
-import { ButtonProps } from 'semantic-ui-react';
+import { ButtonProps, SemanticICONS } from 'semantic-ui-react';
 
 export enum CONFIGURATION_COMPONENT_TYPE {
   BUTTON = 'BUTTON',
@@ -8,6 +8,7 @@ export enum CONFIGURATION_COMPONENT_TYPE {
 }
 
 export interface IBaseChellWidgetConfig {
+  icon?: SemanticICONS;
   id?: string;
   name: string;
   style?: React.CSSProperties;

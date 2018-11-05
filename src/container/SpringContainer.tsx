@@ -67,6 +67,19 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
     };
   }
 
+  public componentDidUpdate(prevProps: ISpringContainerProps) {
+    if (prevProps.cellContext !== this.props.cellContext) {
+      this.setState({
+        postMessageData: {
+          payload: {
+            indices: this.props.cellContext.currentCells,
+          },
+          type: 'selected-cells-update',
+        },
+      });
+    }
+  }
+
   public render() {
     const { height, springUrl, width } = this.props;
 
@@ -116,9 +129,7 @@ export const SpringContainer = (props: requiredProps) => (
   <CellContext.Consumer>
     {cellContext => (
       <SpringContext.Consumer>
-        {springContext => (
-          <SpringContainerClass {...props} cellContext={{ ...cellContext }} springContext={{ ...springContext }} />
-        )}
+        {springContext => <SpringContainerClass {...props} cellContext={cellContext} springContext={springContext} />}
       </SpringContext.Consumer>
     )}
   </CellContext.Consumer>

@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-// tslint:disable-next-line:no-submodule-imports
 import { defaultPlotlyLayout, PlotlyChart } from '~chell-viz~/component';
-import { CHELL_CSS_STYLE, IPlotlyData } from '~chell-viz~/data';
+import { CHELL_CSS_STYLE, ChellChartEvent, IPlotlyData } from '~chell-viz~/data';
 
 export interface ITensorComponentProps {
   height: number;
+  onSelectedCallback?: ((event: ChellChartEvent) => void);
   pointsToPlot: Array<Partial<IPlotlyData>>;
   style: CHELL_CSS_STYLE;
   width: number;
@@ -36,6 +36,7 @@ class TensorTComponentClass extends React.Component<ITensorComponentProps> {
           data={pointsToPlot}
           layout={{
             ...defaultPlotlyLayout,
+            dragmode: 'select',
             height,
             margin: {
               b: 20,
@@ -44,6 +45,7 @@ class TensorTComponentClass extends React.Component<ITensorComponentProps> {
             xaxis: { autorange: true, showline: true },
             yaxis: { autorange: true, showline: true },
           }}
+          onSelectedCallback={this.props.onSelectedCallback}
         />
       </div>
     );

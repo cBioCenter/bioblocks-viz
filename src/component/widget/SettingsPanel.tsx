@@ -133,6 +133,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
   public renderConfigurationButton(config: ButtonWidgetConfig, id: string) {
     return (
       <Button compact={true} id={id} onClick={config.onClick} style={{ ...config.style }}>
+        {config.icon && <Icon name={config.icon} />}
         {config.name}
       </Button>
     );
@@ -141,7 +142,6 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
   public renderConfigurationLabel(config: LabelWidgetConfig, id: string) {
     return (
       <Label basic={true} id={id} style={{ ...config.style }} color={'orange'}>
-        <Icon name={'hashtag'} />
         {config.name}
       </Label>
     );

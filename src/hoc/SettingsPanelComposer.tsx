@@ -14,8 +14,8 @@ interface IWrappedSettingsProps {
 const withSettingsPanel = <P extends object, S extends object>(
   WrappedComponent: React.ComponentType<P>,
   deriveConfigurations?: (component: any) => ChellWidgetConfig[],
-) => {
-  class WithSettingsPanelHOC extends React.Component<IWrappedSettingsProps> {
+) =>
+  class extends React.Component<IWrappedSettingsProps> {
     public static WrappedComponent = WrappedComponent;
 
     public render() {
@@ -36,10 +36,7 @@ const withSettingsPanel = <P extends object, S extends object>(
         </Dimmer.Dimmable>
       );
     }
-  }
-
-  return WithSettingsPanelHOC;
-};
+  };
 
 // tslint:disable-next-line:export-name
 export { withSettingsPanel };

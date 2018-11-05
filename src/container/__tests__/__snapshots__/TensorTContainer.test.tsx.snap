@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TensorTContainer Should match existing snapshot when given no props. 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;
+
+exports[`TensorTContainer Should match existing snapshot when given sample data. 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;
