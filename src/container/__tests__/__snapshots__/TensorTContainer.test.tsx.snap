@@ -1,13 +1,1012 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TensorTContainer Should match existing snapshot when given no props. 1`] = `
-<ContextConsumer>
-  <Component />
-</ContextConsumer>
+<Component>
+  <TensorTContainerClass
+    cellContext={
+      Object {
+        "addCells": [Function],
+        "currentCells": Array [],
+        "removeAllCells": [Function],
+        "removeCells": [Function],
+      }
+    }
+    data={
+      Array [
+        Array [
+          0,
+        ],
+        Array [
+          0,
+        ],
+      ]
+    }
+    height={400}
+    pointColor="#aa0000"
+    style={
+      Object {
+        "padding": 0,
+      }
+    }
+    width={400}
+  >
+    <div
+      id="TensorTContainerDiv"
+      style={
+        Object {
+          "padding": 0,
+        }
+      }
+    >
+      <Button
+        as="button"
+        compact={true}
+        onClick={[Function]}
+        role="button"
+      >
+        <button
+          className="ui compact button"
+          onClick={[Function]}
+          role="button"
+        >
+          <Icon
+            as="i"
+            name="play"
+          >
+            <i
+              aria-hidden="true"
+              className="play icon"
+            />
+          </Icon>
+          Play
+        </button>
+      </Button>
+      <SettingsPanel
+        configurations={
+          Array [
+            Object {
+              "name": "Iterate Once",
+              "onClick": [Function],
+              "type": "BUTTON",
+            },
+            Object {
+              "name": "Iterate Ten Times",
+              "onClick": [Function],
+              "type": "BUTTON",
+            },
+            Object {
+              "name": "Iterate Fifty Times",
+              "onClick": [Function],
+              "type": "BUTTON",
+            },
+            Object {
+              "name": "Reset",
+              "onClick": [Function],
+              "type": "BUTTON",
+            },
+            Object {
+              "icon": "hashtag",
+              "name": "Total Iterations: 0",
+              "type": "LABEL",
+            },
+          ]
+        }
+        direction="left"
+        inverted={true}
+        opacity={0.8}
+        showConfigurations={true}
+        width="100%"
+      >
+        <div>
+          <Grid
+            columns={1}
+          >
+            <div
+              className="ui one column grid"
+            >
+              <GridColumn>
+                <div
+                  className="column"
+                >
+                  <Button
+                    as="button"
+                    basic={true}
+                    floated="right"
+                    icon="settings"
+                    onClick={[Function]}
+                    role="button"
+                  >
+                    <button
+                      className="ui basic icon right floated button"
+                      onClick={[Function]}
+                      role="button"
+                    >
+                      <Icon
+                        as="i"
+                        name="settings"
+                      >
+                        <i
+                          aria-hidden="true"
+                          className="settings icon"
+                        />
+                      </Icon>
+                    </button>
+                  </Button>
+                </div>
+              </GridColumn>
+              <SidebarPushable
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              >
+                <div
+                  className="pushable"
+                  style={
+                    Object {
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <Sidebar
+                    animation="overlay"
+                    as={[Function]}
+                    direction="left"
+                    duration={500}
+                    inverted={true}
+                    style={
+                      Object {
+                        "opacity": 0.8,
+                        "width": "100%",
+                      }
+                    }
+                    vertical={true}
+                    visible={false}
+                  >
+                    <Ref
+                      innerRef={[Function]}
+                    >
+                      <Menu
+                        className="ui overlay left sidebar"
+                        inverted={true}
+                        style={
+                          Object {
+                            "opacity": 0.8,
+                            "width": "100%",
+                          }
+                        }
+                        vertical={true}
+                      >
+                        <div
+                          className="ui inverted vertical ui overlay left sidebar menu"
+                          style={
+                            Object {
+                              "opacity": 0.8,
+                              "width": "100%",
+                            }
+                          }
+                        >
+                          <Grid
+                            centered={true}
+                          >
+                            <div
+                              className="ui centered grid"
+                            >
+                              <GridRow
+                                key="iterate-once-0"
+                              >
+                                <div
+                                  className="row"
+                                >
+                                  <Button
+                                    as="button"
+                                    compact={true}
+                                    id="iterate-once-0"
+                                    onClick={[Function]}
+                                    role="button"
+                                    style={Object {}}
+                                  >
+                                    <button
+                                      className="ui compact button"
+                                      id="iterate-once-0"
+                                      onClick={[Function]}
+                                      role="button"
+                                      style={Object {}}
+                                    >
+                                      Iterate Once
+                                    </button>
+                                  </Button>
+                                </div>
+                              </GridRow>
+                              <GridRow
+                                key="iterate-ten-times-1"
+                              >
+                                <div
+                                  className="row"
+                                >
+                                  <Button
+                                    as="button"
+                                    compact={true}
+                                    id="iterate-ten-times-1"
+                                    onClick={[Function]}
+                                    role="button"
+                                    style={Object {}}
+                                  >
+                                    <button
+                                      className="ui compact button"
+                                      id="iterate-ten-times-1"
+                                      onClick={[Function]}
+                                      role="button"
+                                      style={Object {}}
+                                    >
+                                      Iterate Ten Times
+                                    </button>
+                                  </Button>
+                                </div>
+                              </GridRow>
+                              <GridRow
+                                key="iterate-fifty-times-2"
+                              >
+                                <div
+                                  className="row"
+                                >
+                                  <Button
+                                    as="button"
+                                    compact={true}
+                                    id="iterate-fifty-times-2"
+                                    onClick={[Function]}
+                                    role="button"
+                                    style={Object {}}
+                                  >
+                                    <button
+                                      className="ui compact button"
+                                      id="iterate-fifty-times-2"
+                                      onClick={[Function]}
+                                      role="button"
+                                      style={Object {}}
+                                    >
+                                      Iterate Fifty Times
+                                    </button>
+                                  </Button>
+                                </div>
+                              </GridRow>
+                              <GridRow
+                                key="reset-3"
+                              >
+                                <div
+                                  className="row"
+                                >
+                                  <Button
+                                    as="button"
+                                    compact={true}
+                                    id="reset-3"
+                                    onClick={[Function]}
+                                    role="button"
+                                    style={Object {}}
+                                  >
+                                    <button
+                                      className="ui compact button"
+                                      id="reset-3"
+                                      onClick={[Function]}
+                                      role="button"
+                                      style={Object {}}
+                                    >
+                                      Reset
+                                    </button>
+                                  </Button>
+                                </div>
+                              </GridRow>
+                              <GridRow
+                                key="total-iterations:-0-4"
+                              >
+                                <div
+                                  className="row"
+                                >
+                                  <Label
+                                    basic={true}
+                                    color="orange"
+                                    id="total-iterations:-0-4"
+                                    style={Object {}}
+                                  >
+                                    <div
+                                      className="ui orange basic label"
+                                      id="total-iterations:-0-4"
+                                      onClick={[Function]}
+                                      style={Object {}}
+                                    >
+                                      Total Iterations: 0
+                                    </div>
+                                  </Label>
+                                </div>
+                              </GridRow>
+                            </div>
+                          </Grid>
+                        </div>
+                      </Menu>
+                    </Ref>
+                  </Sidebar>
+                  <SidebarPusher>
+                    <div
+                      className="pusher"
+                    >
+                      <Component
+                        height={400}
+                        onSelectedCallback={[Function]}
+                        pointsToPlot={Array []}
+                        style={
+                          Object {
+                            "padding": 0,
+                          }
+                        }
+                        width={400}
+                      >
+                        <TensorTComponentClass
+                          height={400}
+                          onSelectedCallback={[Function]}
+                          pointsToPlot={Array []}
+                          style={
+                            Object {
+                              "padding": 0,
+                            }
+                          }
+                          width={400}
+                        >
+                          <div
+                            id="TensorTComponentDiv"
+                            style={
+                              Object {
+                                "padding": 0,
+                              }
+                            }
+                          >
+                            <PlotlyChart
+                              config={Object {}}
+                              data={Array []}
+                              height="100%"
+                              layout={
+                                Object {
+                                  "autosize": true,
+                                  "dragmode": "select",
+                                  "height": 400,
+                                  "hovermode": "closest",
+                                  "legend": Object {},
+                                  "margin": Object {
+                                    "b": 20,
+                                  },
+                                  "showlegend": false,
+                                  "title": "",
+                                  "width": 400,
+                                  "xaxis": Object {
+                                    "autorange": true,
+                                    "showline": true,
+                                  },
+                                  "yaxis": Object {
+                                    "autorange": true,
+                                    "showline": true,
+                                  },
+                                }
+                              }
+                              onSelectedCallback={[Function]}
+                              showLoader={true}
+                              width="100%"
+                            >
+                              <div>
+                                <Dimmer
+                                  active={true}
+                                >
+                                  <DimmerInner
+                                    active={true}
+                                  >
+                                    <div
+                                      className="ui active transition visible dimmer"
+                                      onClick={[Function]}
+                                    >
+                                      <div
+                                        className="content"
+                                      >
+                                        <Loader>
+                                          <div
+                                            className="ui loader"
+                                          />
+                                        </Loader>
+                                      </div>
+                                    </div>
+                                  </DimmerInner>
+                                </Dimmer>
+                                <div
+                                  className="plotly-chart"
+                                  style={
+                                    Object {
+                                      "height": "100%",
+                                      "marginBottom": 5,
+                                      "width": "100%",
+                                    }
+                                  }
+                                />
+                              </div>
+                            </PlotlyChart>
+                          </div>
+                        </TensorTComponentClass>
+                      </Component>
+                    </div>
+                  </SidebarPusher>
+                </div>
+              </SidebarPushable>
+            </div>
+          </Grid>
+        </div>
+      </SettingsPanel>
+    </div>
+  </TensorTContainerClass>
+</Component>
 `;
 
 exports[`TensorTContainer Should match existing snapshot when given sample data. 1`] = `
-<ContextConsumer>
-  <Component />
-</ContextConsumer>
+<Component
+  data={
+    Array [
+      Array [
+        -6.07794,
+        0.66089,
+        3.42628,
+        1.85904,
+        -2.41684,
+        -0.43664,
+        -2.30753,
+        2.35615,
+        -1.12598,
+        -0.60199,
+        -1.1218,
+        0.11698,
+        -0.04982,
+        0.36092,
+        -0.0508,
+        -0.08095,
+        0.80147,
+        -0.4348,
+        0.1589,
+        -0.37422,
+        -0.29722,
+        0.25252,
+        0.23296,
+        -0.29226,
+        -0.3324,
+        -1.13309,
+        0.37442,
+        -0.0253,
+        -0.02493,
+        0.36059,
+      ],
+      Array [
+        -5.00513,
+        1.26166,
+        4.98725,
+        1.97746,
+        -2.81049,
+        -0.48861,
+        0.39672,
+        -0.04346,
+        -1.18266,
+        -0.22673,
+        0.64698,
+        -0.32172,
+        -0.46212,
+        -0.94495,
+        -0.28995,
+        -0.28883,
+        -0.89687,
+        -0.15866,
+        -0.11644,
+        1.05208,
+        -0.51977,
+        -0.30863,
+        1.09945,
+        0.41791,
+        -0.56852,
+        -0.2366,
+        -0.1608,
+        0.89874,
+        -0.19515,
+        0.05163,
+      ],
+    ]
+  }
+>
+  <TensorTContainerClass
+    cellContext={
+      Object {
+        "addCells": [Function],
+        "currentCells": Array [],
+        "removeAllCells": [Function],
+        "removeCells": [Function],
+      }
+    }
+    data={
+      Array [
+        Array [
+          -6.07794,
+          0.66089,
+          3.42628,
+          1.85904,
+          -2.41684,
+          -0.43664,
+          -2.30753,
+          2.35615,
+          -1.12598,
+          -0.60199,
+          -1.1218,
+          0.11698,
+          -0.04982,
+          0.36092,
+          -0.0508,
+          -0.08095,
+          0.80147,
+          -0.4348,
+          0.1589,
+          -0.37422,
+          -0.29722,
+          0.25252,
+          0.23296,
+          -0.29226,
+          -0.3324,
+          -1.13309,
+          0.37442,
+          -0.0253,
+          -0.02493,
+          0.36059,
+        ],
+        Array [
+          -5.00513,
+          1.26166,
+          4.98725,
+          1.97746,
+          -2.81049,
+          -0.48861,
+          0.39672,
+          -0.04346,
+          -1.18266,
+          -0.22673,
+          0.64698,
+          -0.32172,
+          -0.46212,
+          -0.94495,
+          -0.28995,
+          -0.28883,
+          -0.89687,
+          -0.15866,
+          -0.11644,
+          1.05208,
+          -0.51977,
+          -0.30863,
+          1.09945,
+          0.41791,
+          -0.56852,
+          -0.2366,
+          -0.1608,
+          0.89874,
+          -0.19515,
+          0.05163,
+        ],
+      ]
+    }
+    height={400}
+    pointColor="#aa0000"
+    style={
+      Object {
+        "padding": 0,
+      }
+    }
+    width={400}
+  >
+    <div
+      id="TensorTContainerDiv"
+      style={
+        Object {
+          "padding": 0,
+        }
+      }
+    >
+      <Button
+        as="button"
+        compact={true}
+        onClick={[Function]}
+        role="button"
+      >
+        <button
+          className="ui compact button"
+          onClick={[Function]}
+          role="button"
+        >
+          <Icon
+            as="i"
+            name="play"
+          >
+            <i
+              aria-hidden="true"
+              className="play icon"
+            />
+          </Icon>
+          Play
+        </button>
+      </Button>
+      <SettingsPanel
+        configurations={
+          Array [
+            Object {
+              "name": "Iterate Once",
+              "onClick": [Function],
+              "type": "BUTTON",
+            },
+            Object {
+              "name": "Iterate Ten Times",
+              "onClick": [Function],
+              "type": "BUTTON",
+            },
+            Object {
+              "name": "Iterate Fifty Times",
+              "onClick": [Function],
+              "type": "BUTTON",
+            },
+            Object {
+              "name": "Reset",
+              "onClick": [Function],
+              "type": "BUTTON",
+            },
+            Object {
+              "icon": "hashtag",
+              "name": "Total Iterations: 0",
+              "type": "LABEL",
+            },
+          ]
+        }
+        direction="left"
+        inverted={true}
+        opacity={0.8}
+        showConfigurations={true}
+        width="100%"
+      >
+        <div>
+          <Grid
+            columns={1}
+          >
+            <div
+              className="ui one column grid"
+            >
+              <GridColumn>
+                <div
+                  className="column"
+                >
+                  <Button
+                    as="button"
+                    basic={true}
+                    floated="right"
+                    icon="settings"
+                    onClick={[Function]}
+                    role="button"
+                  >
+                    <button
+                      className="ui basic icon right floated button"
+                      onClick={[Function]}
+                      role="button"
+                    >
+                      <Icon
+                        as="i"
+                        name="settings"
+                      >
+                        <i
+                          aria-hidden="true"
+                          className="settings icon"
+                        />
+                      </Icon>
+                    </button>
+                  </Button>
+                </div>
+              </GridColumn>
+              <SidebarPushable
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              >
+                <div
+                  className="pushable"
+                  style={
+                    Object {
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <Sidebar
+                    animation="overlay"
+                    as={[Function]}
+                    direction="left"
+                    duration={500}
+                    inverted={true}
+                    style={
+                      Object {
+                        "opacity": 0.8,
+                        "width": "100%",
+                      }
+                    }
+                    vertical={true}
+                    visible={false}
+                  >
+                    <Ref
+                      innerRef={[Function]}
+                    >
+                      <Menu
+                        className="ui overlay left sidebar"
+                        inverted={true}
+                        style={
+                          Object {
+                            "opacity": 0.8,
+                            "width": "100%",
+                          }
+                        }
+                        vertical={true}
+                      >
+                        <div
+                          className="ui inverted vertical ui overlay left sidebar menu"
+                          style={
+                            Object {
+                              "opacity": 0.8,
+                              "width": "100%",
+                            }
+                          }
+                        >
+                          <Grid
+                            centered={true}
+                          >
+                            <div
+                              className="ui centered grid"
+                            >
+                              <GridRow
+                                key="iterate-once-0"
+                              >
+                                <div
+                                  className="row"
+                                >
+                                  <Button
+                                    as="button"
+                                    compact={true}
+                                    id="iterate-once-0"
+                                    onClick={[Function]}
+                                    role="button"
+                                    style={Object {}}
+                                  >
+                                    <button
+                                      className="ui compact button"
+                                      id="iterate-once-0"
+                                      onClick={[Function]}
+                                      role="button"
+                                      style={Object {}}
+                                    >
+                                      Iterate Once
+                                    </button>
+                                  </Button>
+                                </div>
+                              </GridRow>
+                              <GridRow
+                                key="iterate-ten-times-1"
+                              >
+                                <div
+                                  className="row"
+                                >
+                                  <Button
+                                    as="button"
+                                    compact={true}
+                                    id="iterate-ten-times-1"
+                                    onClick={[Function]}
+                                    role="button"
+                                    style={Object {}}
+                                  >
+                                    <button
+                                      className="ui compact button"
+                                      id="iterate-ten-times-1"
+                                      onClick={[Function]}
+                                      role="button"
+                                      style={Object {}}
+                                    >
+                                      Iterate Ten Times
+                                    </button>
+                                  </Button>
+                                </div>
+                              </GridRow>
+                              <GridRow
+                                key="iterate-fifty-times-2"
+                              >
+                                <div
+                                  className="row"
+                                >
+                                  <Button
+                                    as="button"
+                                    compact={true}
+                                    id="iterate-fifty-times-2"
+                                    onClick={[Function]}
+                                    role="button"
+                                    style={Object {}}
+                                  >
+                                    <button
+                                      className="ui compact button"
+                                      id="iterate-fifty-times-2"
+                                      onClick={[Function]}
+                                      role="button"
+                                      style={Object {}}
+                                    >
+                                      Iterate Fifty Times
+                                    </button>
+                                  </Button>
+                                </div>
+                              </GridRow>
+                              <GridRow
+                                key="reset-3"
+                              >
+                                <div
+                                  className="row"
+                                >
+                                  <Button
+                                    as="button"
+                                    compact={true}
+                                    id="reset-3"
+                                    onClick={[Function]}
+                                    role="button"
+                                    style={Object {}}
+                                  >
+                                    <button
+                                      className="ui compact button"
+                                      id="reset-3"
+                                      onClick={[Function]}
+                                      role="button"
+                                      style={Object {}}
+                                    >
+                                      Reset
+                                    </button>
+                                  </Button>
+                                </div>
+                              </GridRow>
+                              <GridRow
+                                key="total-iterations:-0-4"
+                              >
+                                <div
+                                  className="row"
+                                >
+                                  <Label
+                                    basic={true}
+                                    color="orange"
+                                    id="total-iterations:-0-4"
+                                    style={Object {}}
+                                  >
+                                    <div
+                                      className="ui orange basic label"
+                                      id="total-iterations:-0-4"
+                                      onClick={[Function]}
+                                      style={Object {}}
+                                    >
+                                      Total Iterations: 0
+                                    </div>
+                                  </Label>
+                                </div>
+                              </GridRow>
+                            </div>
+                          </Grid>
+                        </div>
+                      </Menu>
+                    </Ref>
+                  </Sidebar>
+                  <SidebarPusher>
+                    <div
+                      className="pusher"
+                    >
+                      <Component
+                        height={400}
+                        onSelectedCallback={[Function]}
+                        pointsToPlot={Array []}
+                        style={
+                          Object {
+                            "padding": 0,
+                          }
+                        }
+                        width={400}
+                      >
+                        <TensorTComponentClass
+                          height={400}
+                          onSelectedCallback={[Function]}
+                          pointsToPlot={Array []}
+                          style={
+                            Object {
+                              "padding": 0,
+                            }
+                          }
+                          width={400}
+                        >
+                          <div
+                            id="TensorTComponentDiv"
+                            style={
+                              Object {
+                                "padding": 0,
+                              }
+                            }
+                          >
+                            <PlotlyChart
+                              config={Object {}}
+                              data={Array []}
+                              height="100%"
+                              layout={
+                                Object {
+                                  "autosize": true,
+                                  "dragmode": "select",
+                                  "height": 400,
+                                  "hovermode": "closest",
+                                  "legend": Object {},
+                                  "margin": Object {
+                                    "b": 20,
+                                  },
+                                  "showlegend": false,
+                                  "title": "",
+                                  "width": 400,
+                                  "xaxis": Object {
+                                    "autorange": true,
+                                    "showline": true,
+                                  },
+                                  "yaxis": Object {
+                                    "autorange": true,
+                                    "showline": true,
+                                  },
+                                }
+                              }
+                              onSelectedCallback={[Function]}
+                              showLoader={true}
+                              width="100%"
+                            >
+                              <div>
+                                <Dimmer
+                                  active={true}
+                                >
+                                  <DimmerInner
+                                    active={true}
+                                  >
+                                    <div
+                                      className="ui active transition visible dimmer"
+                                      onClick={[Function]}
+                                    >
+                                      <div
+                                        className="content"
+                                      >
+                                        <Loader>
+                                          <div
+                                            className="ui loader"
+                                          />
+                                        </Loader>
+                                      </div>
+                                    </div>
+                                  </DimmerInner>
+                                </Dimmer>
+                                <div
+                                  className="plotly-chart"
+                                  style={
+                                    Object {
+                                      "height": "100%",
+                                      "marginBottom": 5,
+                                      "width": "100%",
+                                    }
+                                  }
+                                />
+                              </div>
+                            </PlotlyChart>
+                          </div>
+                        </TensorTComponentClass>
+                      </Component>
+                    </div>
+                  </SidebarPusher>
+                </div>
+              </SidebarPushable>
+            </div>
+          </Grid>
+        </div>
+      </SettingsPanel>
+    </div>
+  </TensorTContainerClass>
+</Component>
 `;

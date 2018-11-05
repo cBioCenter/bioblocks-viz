@@ -32,7 +32,7 @@ export interface ITensorContainerState {
   plotlyCoords: Array<Partial<IPlotlyData>>;
 }
 
-class TensorTContainerClass extends React.Component<ITensorContainerProps, ITensorContainerState> {
+export class TensorTContainerClass extends React.Component<ITensorContainerProps, ITensorContainerState> {
   public static defaultProps = {
     cellContext: {
       ...initialCellContext,
@@ -62,10 +62,8 @@ class TensorTContainerClass extends React.Component<ITensorContainerProps, ITens
   public async componentDidMount() {
     const tensorFlow = await import('@tensorflow/tfjs-core');
     const tsneData = tensorFlow.tensor(this.props.data);
-
     // Initialize the tsne optimizer
     const tsne = (await import('@tensorflow/tfjs-tsne')).tsne(tsneData);
-
     this.setState({
       tsne,
     });
@@ -216,10 +214,6 @@ class TensorTContainerClass extends React.Component<ITensorContainerProps, ITens
         plotlyCoords,
       });
     }
-  };
-
-  protected onNumIterationsChange = () => async (numIterations: number) => {
-    await this.computeTensorTsne(numIterations);
   };
 
   protected onPauseAnimation = () => () => {

@@ -52,7 +52,9 @@
       "~chell-viz~/hoc": "<rootDir>/src/hoc",
       "~chell-viz~/test": "<rootDir>/test",
       "\\.(css|less)$": "<rootDir>/test/__mocks__/styleMock.ts",
-      "plotly.js-gl2d-dist": "<rootDir>/test/__mocks__/plotly.ts"
+      "plotly.js-gl2d-dist": "<rootDir>/test/__mocks__/plotly.ts",
+      "@tensorflow/tfjs-core": "<rootDir>/test/__mocks__/@tensorflow/tfjs-core-mock.ts",
+      "@tensorflow/tfjs-tsne": "<rootDir>/test/__mocks__/@tensorflow/tfjs-tsne-mock.ts"
     },
     "modulePathIgnorePatterns": [
       "dist"

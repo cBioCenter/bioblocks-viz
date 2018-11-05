@@ -7,14 +7,11 @@ import { ChellWidgetConfig } from '~chell-viz~/data';
 interface IWrappedSettingsProps {
   configurations: ChellWidgetConfig[];
   isDataLoading: boolean;
-  showConfigurations: boolean;
-  width: number | string;
+  showConfigurations?: boolean;
+  width?: number | string;
 }
-// @ts-ignore
-const withSettingsPanel = <P extends object, S extends object>(
-  WrappedComponent: React.ComponentType<P>,
-  deriveConfigurations?: (component: any) => ChellWidgetConfig[],
-) =>
+
+const withSettingsPanel = <P extends object, S extends object>(WrappedComponent: React.ComponentType<P>) =>
   class extends React.Component<IWrappedSettingsProps> {
     public static WrappedComponent = WrappedComponent;
 
@@ -27,7 +24,7 @@ const withSettingsPanel = <P extends object, S extends object>(
             <Loader />
           </Dimmer>
           <SettingsPanel
-            configurations={deriveConfigurations !== undefined ? deriveConfigurations(this) : configurations}
+            configurations={configurations}
             showConfigurations={showConfigurations}
             width={remainingProps.width}
           >
