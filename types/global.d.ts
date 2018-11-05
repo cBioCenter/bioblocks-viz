@@ -23,3 +23,5 @@ declare namespace NodeJS {
 interface WebGLRenderingContext {
   getExtension(extensionName: any): any;
 }
+
+declare type FieldTypes = 'boolean' | 'object' | 'function' | 'number' | 'string' | 'symbol' | 'undefined';

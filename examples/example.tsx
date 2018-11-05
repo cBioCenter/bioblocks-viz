@@ -22,6 +22,7 @@ import {
   readFileAsText,
   ResidueContextConsumer,
   SecondaryStructureContextConsumer,
+  SecondaryStructureContextReadConsumer,
   VIZ_TYPE,
 } from '~chell-viz~';
 
@@ -151,6 +152,13 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
 
       <Segment attached={true} raised={true}>
         <CouplingContextProvider>
+          <SecondaryStructureContextReadConsumer>
+            {secStructReader => (
+              <Message>{`Selected sec structures are: ${JSON.stringify(
+                secStructReader.selectedSecondaryStructures,
+              )}`}</Message>
+            )}
+          </SecondaryStructureContextReadConsumer>
           <SecondaryStructureContextConsumer>
             {secondaryStructureContext => (
               <ResidueContextConsumer>
@@ -566,10 +574,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
           });
           const parsedFile = await readFileAsText(file);
           const residueMapping = generateResidueMapping(parsedFile);
-          console.log(residueMapping);
           const couplingScores = getCouplingScoresData(this.state.couplingScores, residueMapping);
-          console.log(this.state.couplingScores);
-          console.log(couplingScores);
           this.setState({
             [VIZ_TYPE.CONTACT_MAP]: {
               couplingScores: pdbData

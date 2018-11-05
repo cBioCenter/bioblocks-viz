@@ -26,8 +26,9 @@ export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
   switch (viz) {
     case VIZ_TYPE['T-SNE']:
     case VIZ_TYPE['T-SNE-FRAME']:
-    case VIZ_TYPE['TENSOR-T-SNE']:
       return fetchTSneCoordinateData(dataDir);
+    case VIZ_TYPE['TENSOR-T-SNE']:
+      return fetchTensorTSneCoordinateData(dataDir);
     case VIZ_TYPE.SPRING:
       return deriveSpringData(dataDir);
     case VIZ_TYPE.NGL:
@@ -141,9 +142,9 @@ export const fetchSpringCoordinateData = async (file: string) => {
 };
 
 export const fetchTSneCoordinateData = async (dataDir: string) => {
-  const colorText: string = await fetchCSVFile(`${dataDir}/tsne_output.csv`);
+  const coordText: string = await fetchCSVFile(`${dataDir}/tsne_output.csv`);
   const result: number[][] = [];
-  colorText.split('\n').forEach(entry => {
+  coordText.split('\n').forEach(entry => {
     if (entry.length > 0) {
       const items = entry.split(',');
       const coordinates = [parseFloat(items[0]), parseFloat(items[1])];
@@ -152,6 +153,22 @@ export const fetchTSneCoordinateData = async (dataDir: string) => {
   });
 
   return result;
+};
+
+export const fetchTensorTSneCoordinateDataFromFile = async (fileLocation: string) => {
+  const coordText: string = await fetchCSVFile(fileLocation);
+  const matrix = new Array<number[]>();
+  for (const row of coordText.split('\n')) {
+    if (row.length >= 1) {
+      matrix.push(row.split(',').map(parseFloat));
+    }
+  }
+
+  return matrix;
+};
+
+export const fetchTensorTSneCoordinateData = async (dataDir: string) => {
+  return fetchTensorTSneCoordinateDataFromFile(`${dataDir}/tsne_matrix.csv`);
 };
 
 const fetchGraphData = async (file: string) => {
@@ -213,7 +230,6 @@ export const getCouplingScoresData = (line: string, residueMapping: IResidueMapp
     .map(row => {
       const items = row.split(',');
       const score = getCouplingScoreFromCSVRow(items, headerIndices);
-
       if (residueMapping.length >= 1) {
         const mappingIndexI = residueMapping.findIndex(mapping => mapping.couplingsResno === score.i);
         const mappingIndexJ = residueMapping.findIndex(mapping => mapping.couplingsResno === score.j);

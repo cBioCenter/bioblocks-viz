@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TensorTComponent Should match existing snapshot when given no props. 1`] = `
+<TensorTComponentClass
+  height={400}
+  pointsToPlot={Array []}
+  style={
+    Object {
+      "padding": 0,
+    }
+  }
+  width={400}
+/>
+`;

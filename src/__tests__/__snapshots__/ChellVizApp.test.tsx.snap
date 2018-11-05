@@ -9,11 +9,6 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
     divided="vertically"
   >
     <GridRow>
-      <ProteinFeatureViewer
-        initialProteinId="Q9NYJ7"
-      />
-    </GridRow>
-    <GridRow>
       <VizPanelContainer
         dataDirs={
           Array [
@@ -22,41 +17,15 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
         }
         initialVisualizations={
           Array [
-            "T-SNE",
             "Spring",
-            "T-SNE-FRAME",
-          ]
-        }
-        numPanels={3}
-        supportedVisualizations={
-          Array [
-            "T-SNE",
-            "Spring",
-            "T-SNE-FRAME",
-          ]
-        }
-      />
-    </GridRow>
-    <GridRow>
-      <VizPanelContainer
-        dataDirs={
-          Array [
-            "assets/beta_lactamase",
-            "assets/5P21",
-            "assets/P01112",
-          ]
-        }
-        initialVisualizations={
-          Array [
-            "Contact Map",
-            "NGL",
+            "TENSOR-T-SNE",
           ]
         }
         numPanels={2}
         supportedVisualizations={
           Array [
-            "Contact Map",
-            "NGL",
+            "Spring",
+            "TENSOR-T-SNE",
           ]
         }
       />

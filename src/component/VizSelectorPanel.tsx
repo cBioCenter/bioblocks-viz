@@ -1,15 +1,8 @@
 import * as React from 'react';
 import { Card, Dropdown, DropdownItemProps, DropdownProps } from 'semantic-ui-react';
 
-import {
-  InfoPanel,
-  NGLComponent,
-  PredictedContactMap,
-  TComponent,
-  TensorTComponent,
-  TFrameComponent,
-} from '~chell-viz~/component';
-import { SpringContainer } from '~chell-viz~/container';
+import { InfoPanel, NGLComponent, PredictedContactMap, TComponent, TFrameComponent } from '~chell-viz~/component';
+import { SpringContainer, TensorTContainer } from '~chell-viz~/container';
 import {
   CHELL_DATA_TYPE,
   IContactMapData,
@@ -95,11 +88,13 @@ export class VizSelectorPanel extends React.Component<IVizPanelProps, IVizPanelS
         );
       case VIZ_TYPE['TENSOR-T-SNE']:
         return (
-          data['T-SNE'] && (
-            <TensorTComponent
-              data={data['T-SNE'] as T_SNE_DATA_TYPE}
+          data['TENSOR-T-SNE'] && (
+            <TensorTContainer
+              data={data['TENSOR-T-SNE'] as T_SNE_DATA_TYPE}
               height={paddedHeight}
-              padding={padding}
+              style={{
+                padding,
+              }}
               width={paddedWidth}
             />
           )

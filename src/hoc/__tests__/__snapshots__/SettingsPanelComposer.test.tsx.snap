@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SettingsPanelComposer Should wrap components with a Settings Panel. 1`] = `
+<DimmerDimmable
+  dimmed={true}
+>
+  <Dimmer
+    active={false}
+  >
+    <Loader />
+  </Dimmer>
+  <SettingsPanel
+    configurations={Array []}
+    direction="left"
+    inverted={true}
+    opacity={0.6}
+    showConfigurations={true}
+    width="100%"
+  >
+    <MockReactComponent />
+  </SettingsPanel>
+</DimmerDimmable>
+`;

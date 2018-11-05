@@ -75,6 +75,7 @@ describe('ProteinFeatureViewer', () => {
     const wrapper = shallow(<ProteinFeatureViewer initialProteinId={''} />);
     expect(wrapper.state('proteinId')).toEqual('');
     const expectedId = 'Q13485';
+    fetchMock.mockResponseOnce(JSON.stringify(sampleProtein));
     wrapper
       .find(Form.Input)
       .at(0)

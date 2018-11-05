@@ -47,8 +47,8 @@ export interface IResidueMapping {
  * @returns Array of all residue mappings.
  */
 export const generateResidueMapping = (text: string): IResidueMapping[] => {
-  const tabOrComma: RegExp = /\t|,/;
-  const headers = text.split('\n')[0].split(tabOrComma);
+  const tabOrCommaRegex: RegExp = /\t|,/;
+  const headers = text.split('\n')[0].split(tabOrCommaRegex);
   const isEvServer = isEvServerJob(headers);
   const headerMap: {
     [key: string]: number;
@@ -62,7 +62,7 @@ export const generateResidueMapping = (text: string): IResidueMapping[] => {
     .split('\n')
     .slice(1)
     .reduce((result: IResidueMapping[], line: string) => {
-      const splitLine = line.split(tabOrComma);
+      const splitLine = line.split(tabOrCommaRegex);
       if (splitLine.length >= EVFOLD_EXPECTED_HEADERS.length) {
         result.push({
           couplingsResCode: isEvServer

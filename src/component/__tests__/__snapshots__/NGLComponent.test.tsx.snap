@@ -45,6 +45,7 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
     }
     direction="left"
     inverted={true}
+    opacity={0.6}
     showConfigurations={true}
     width="100%"
   >
