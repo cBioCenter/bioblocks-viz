@@ -12,6 +12,7 @@ import {
 } from '~chell-viz~/helper';
 
 export interface IVizPanelContainerProps {
+  allowUploads: boolean;
   dataDirs: string[];
   initialVisualizations: VIZ_TYPE[];
   /** Number of panels to be controlled by this container. Currently limited to 4. */
@@ -28,6 +29,7 @@ export type VizPanelContainerState = Readonly<typeof initialVizPanelState>;
 
 export class VizPanelContainer extends React.Component<IVizPanelContainerProps, VizPanelContainerState> {
   public static defaultProps = {
+    allowUploads: true,
     initialVisualizations: [] as VIZ_TYPE[],
     /** Number of panels to be controlled by this container. Currently limited to 4. */
     numPanels: 1,
@@ -70,6 +72,8 @@ export class VizPanelContainer extends React.Component<IVizPanelContainerProps, 
   }
 
   public render() {
+    const { allowUploads } = this.props;
+
     return (
       <Grid className={'VizPanelContainer'} columns={this.props.numPanels} centered={true} relaxed={true}>
         <GridRow columns={1} centered={true}>
@@ -93,7 +97,7 @@ export class VizPanelContainer extends React.Component<IVizPanelContainerProps, 
           )}
         </ChellContextProvider>
 
-        {this.renderFileUploadForm()}
+        {allowUploads && this.renderFileUploadForm()}
       </Grid>
     );
   }

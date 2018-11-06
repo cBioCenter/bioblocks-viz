@@ -13,6 +13,7 @@ export class ChellVizApp extends React.Component<any, any> {
         <Grid centered={true} divided={'vertically'}>
           <GridRow>
             <VizPanelContainer
+              allowUploads={false}
               dataDirs={['hpc/full'].map(dir => `assets/datasets/${dir}`)}
               initialVisualizations={[VIZ_TYPE.SPRING, VIZ_TYPE['TENSOR-T-SNE']]}
               supportedVisualizations={[VIZ_TYPE.SPRING, VIZ_TYPE['TENSOR-T-SNE']]}
