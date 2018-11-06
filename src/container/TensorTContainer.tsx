@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import * as tensorFlow from '@tensorflow/tfjs-core';
 // tslint:disable-next-line:no-submodule-imports
 import { TSNE } from '@tensorflow/tfjs-tsne/dist/tsne';
 import { Button, Icon } from 'semantic-ui-react';
@@ -60,7 +61,6 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
   }
 
   public async componentDidMount() {
-    const tensorFlow = await import('@tensorflow/tfjs-core');
     const tsneData = tensorFlow.tensor(this.props.data);
     // Initialize the tsne optimizer
     const tsne = (await import('@tensorflow/tfjs-tsne')).tsne(tsneData);

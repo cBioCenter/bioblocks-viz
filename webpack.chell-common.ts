@@ -13,6 +13,7 @@ module.exports = {
   entry: {
     app: './index.tsx',
     example: './examples/example.tsx',
+    morpheus: './MorpheusContainer.tsx',
     tcontainer: './TContainer.tsx',
   },
   module: {
@@ -35,6 +36,18 @@ module.exports = {
         // Needed for Plotly.js: https://github.com/plotly/plotly.js#building-plotlyjs-with-webpack
         loader: 'ify-loader',
         test: /\.js$/,
+      },
+      {
+        test: /\.(woff(2)?|ttf|png|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/',
+            },
+          },
+        ],
       },
     ],
   },
@@ -91,6 +104,14 @@ module.exports = {
       inject: true,
       template: './TContainer.html',
       title: 'TContainer',
+    }),
+    new HtmlWebpackPlugin({
+      chunks: ['morpheus'],
+      favicon: 'assets/favicons/favicon.ico',
+      filename: 'morpheus.html',
+      inject: true,
+      template: './morpheus.html',
+      title: 'Morpheus Container',
     }),
     new CopyWebpackPlugin([
       {

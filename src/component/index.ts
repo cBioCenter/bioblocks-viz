@@ -4,6 +4,7 @@ export * from './widget';
 export * from './ContactMap';
 export * from './FeatureViewer';
 export * from './InfoPanel';
+export * from './MorpheusComponent';
 export * from './NGLComponent';
 export * from './PredictedContactMap';
 export * from './TComponent';
