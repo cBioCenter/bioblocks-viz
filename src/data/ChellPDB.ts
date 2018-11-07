@@ -34,7 +34,6 @@ export class ChellPDB {
   public static async createPDB(file: File | string = '') {
     const result = new ChellPDB();
     result.nglData = (await NGL.autoLoad(file)) as NGL.Structure;
-
     result.fileName = typeof file === 'string' ? file : file.name;
 
     return result;
@@ -231,18 +230,17 @@ export class ChellPDB {
   public getResidueNumberingMismatches(contacts: CouplingContainer) {
     const result = new Array<IResidueMismatchResult>();
     this.eachResidue(residue => {
-      const pdbResCode = residue.resname.toUpperCase();
+      const pdbResCode = residue.resname.toUpperCase() as AMINO_ACID_THREE_LETTER_CODE;
       const couplingAminoAcid = contacts.getAminoAcidOfContact(residue.resno);
       if (
         couplingAminoAcid &&
-        AMINO_ACIDS_BY_THREE_LETTER_CODE[pdbResCode as AMINO_ACID_THREE_LETTER_CODE] !==
+        AMINO_ACIDS_BY_THREE_LETTER_CODE[pdbResCode] !==
           AMINO_ACIDS_BY_SINGLE_LETTER_CODE[couplingAminoAcid.singleLetterCode]
       ) {
         result.push({
-          firstAminoAcid:
-            AMINO_ACIDS_BY_THREE_LETTER_CODE[couplingAminoAcid.singleLetterCode as AMINO_ACID_THREE_LETTER_CODE],
+          firstAminoAcid: AMINO_ACIDS_BY_SINGLE_LETTER_CODE[couplingAminoAcid.singleLetterCode],
           resno: residue.resno,
-          secondAminoAcid: AMINO_ACIDS_BY_THREE_LETTER_CODE[pdbResCode as AMINO_ACID_THREE_LETTER_CODE],
+          secondAminoAcid: AMINO_ACIDS_BY_THREE_LETTER_CODE[pdbResCode],
         });
       }
     });

@@ -1,5 +1,4 @@
 import { shallow } from 'enzyme';
-import * as fetchMock from 'jest-fetch-mock';
 import * as React from 'react';
 
 import { FeatureViewer, IFeatureViewerState } from '~chell-viz~/component';
@@ -10,7 +9,6 @@ describe('ProteinFeatureViewer', () => {
   let sampleData: Array<TintedChell1DSection<string>>;
 
   beforeEach(() => {
-    fetchMock.resetMocks();
     sampleData = [
       new TintedChell1DSection('N64', 1999, 2001),
       new TintedChell1DSection('Melee', 2001, 2008),
