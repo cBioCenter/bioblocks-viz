@@ -50,6 +50,7 @@ describe('ProteinFeatureViewer', () => {
   });
 
   it('Should toggle the grouping flag when the appropriate control is clicked.', () => {
+    fetchMock.mockResponseOnce(JSON.stringify(sampleProtein));
     const wrapper = shallow(<ProteinFeatureViewer initialProteinId={''} />);
     expect(wrapper.state('showGrouped')).toEqual(true);
     wrapper
@@ -158,10 +159,12 @@ describe('ProteinFeatureViewer', () => {
   });
 
   it('Should generate empty annotation text when a hover event is fired but the PFam information is not available.', done => {
-    const dbRefs = sampleProtein.dbReferences.filter(dbRef => dbRef.type === 'Pfam').map(pFamRef => ({
-      ...pFamRef,
-      properties: null,
-    }));
+    const dbRefs = sampleProtein.dbReferences
+      .filter(dbRef => dbRef.type === 'Pfam')
+      .map(pFamRef => ({
+        ...pFamRef,
+        properties: null,
+      }));
 
     fetchMock.mockResponseOnce(
       JSON.stringify({
