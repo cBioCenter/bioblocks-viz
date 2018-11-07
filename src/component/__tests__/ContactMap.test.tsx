@@ -128,7 +128,7 @@ describe('ContactMap', () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    it('Should match existing snapshot when basic data.', () => {
+    it('Should match existing snapshot when given basic data.', () => {
       expect(shallow(<ContactMapClass data={sampleData} />)).toMatchSnapshot();
     });
 

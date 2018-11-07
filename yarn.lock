@@ -6983,9 +6983,9 @@ please-upgrade-node@^3.0.2, please-upgrade-node@^3.1.1:
     semver-compare "^1.0.0"
 
 plotly.js-gl2d-dist@^1.41.1:
-  version "1.42.3"
-  resolved "https://registry.yarnpkg.com/plotly.js-gl2d-dist/-/plotly.js-gl2d-dist-1.42.3.tgz#38e25a2aa5a8daf15f56234b6f3d26255a9c1a97"
-  integrity sha512-3JXvQDajNenM87VN5o6pjZfYKtd90lDMHRtuZ2koeQFYwYqs7aJW+mfmheb2ti0Vez2u8Y2TXWCHmYTdO5gvJQ==
+  version "1.42.4"
+  resolved "https://registry.yarnpkg.com/plotly.js-gl2d-dist/-/plotly.js-gl2d-dist-1.42.4.tgz#25c33d7d11890833b143fb32e04a28e30a9f157c"
+  integrity sha512-eYL4npPyQFj+harkJmhOKDbQjS+5mbj2nBz2b42+YhGYU9mYZ5wTJbEVYQuRT+7lrp2Mheac4QXNJ0PZTtnA8w==
 
 pn@^1.1.0:
   version "1.1.0"

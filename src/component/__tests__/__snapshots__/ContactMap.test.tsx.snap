@@ -352,7 +352,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
 </div>
 `;
 
-exports[`ContactMap Snapshots Should match existing snapshot when basic data. 1`] = `
+exports[`ContactMap Snapshots Should match existing snapshot when given basic data. 1`] = `
 <div
   className="ContactMapComponent"
   style={Object {}}
@@ -2959,14 +2959,26 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                 "showlegend": false,
                                 "xaxis": Object {
                                   "autorange": true,
+                                  "fixedrange": true,
                                   "nticks": 10,
+                                  "range": Array [
+                                    0,
+                                    33000,
+                                  ],
+                                  "rangemode": "nonnegative",
                                   "showline": true,
                                   "tickmode": "auto",
                                   "title": "Residue #",
                                 },
                                 "yaxis": Object {
                                   "autorange": "reversed",
+                                  "fixedrange": true,
                                   "nticks": 10,
+                                  "range": Array [
+                                    0,
+                                    33000,
+                                  ],
+                                  "rangemode": "nonnegative",
                                   "showline": true,
                                   "tickmode": "auto",
                                   "title": "Residue #",

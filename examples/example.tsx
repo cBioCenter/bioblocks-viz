@@ -335,49 +335,62 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     size: number | string = '550px',
   ) => (
     <GridRow verticalAlign={'middle'}>
-      <GridColumn width={6}>
-        <Card raised={true} style={{ height: '615px', padding: '15px 15px 0 15px', width: '600px' }}>
-          <NGLComponent
-            data={this.state[VIZ_TYPE.NGL].pdbData}
-            height={size}
-            isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
-            measuredProximity={measuredProximity}
-            onMeasuredProximityChange={this.onMeasuredProximityChange()}
-            style={style}
-            width={size}
-          />
-        </Card>
-      </GridColumn>
-      <GridColumn width={6}>
-        <Card raised={true} style={{ height: '615px', padding: '15px 15px 0 15px', width: '600px' }}>
-          {arePredictionsAvailable ? (
-            <PredictedContactMap
-              data={{
-                couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
-                pdbData,
-                secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
-              }}
-              height={size}
-              isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
-              style={style}
-              width={size}
-            />
-          ) : (
-            <ContactMap
-              data={{
-                couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
-                pdbData,
-                secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
-              }}
-              height={size}
-              isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
-              style={style}
-              width={size}
-            />
-          )}
-        </Card>
-      </GridColumn>
+      <GridColumn width={6}>{this.renderContactMapCard(arePredictionsAvailable, size, style, pdbData)}</GridColumn>
+      <GridColumn width={6}>{this.renderNGLCard(measuredProximity, size, style)}</GridColumn>
     </GridRow>
+  );
+
+  protected renderNGLCard = (
+    measuredProximity: CONTACT_DISTANCE_PROXIMITY,
+    size: number | string,
+    style: React.CSSProperties,
+  ) => (
+    <Card raised={true} style={{ height: '615px', padding: '15px 15px 0 15px', width: '600px' }}>
+      <NGLComponent
+        data={this.state[VIZ_TYPE.NGL].pdbData}
+        height={size}
+        isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
+        measuredProximity={measuredProximity}
+        onMeasuredProximityChange={this.onMeasuredProximityChange()}
+        style={style}
+        width={size}
+      />
+    </Card>
+  );
+
+  protected renderContactMapCard = (
+    arePredictionsAvailable: boolean,
+    size: number | string,
+    style: React.CSSProperties,
+    pdbData?: ChellPDB,
+  ) => (
+    <Card raised={true} style={{ height: '615px', padding: '15px 15px 0 15px', width: '600px' }}>
+      {arePredictionsAvailable ? (
+        <PredictedContactMap
+          data={{
+            couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
+            pdbData,
+            secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
+          }}
+          height={size}
+          isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
+          style={style}
+          width={size}
+        />
+      ) : (
+        <ContactMap
+          data={{
+            couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
+            pdbData,
+            secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
+          }}
+          height={size}
+          isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
+          style={style}
+          width={size}
+        />
+      )}
+    </Card>
   );
 
   protected renderUploadButtonsRow = (
@@ -386,8 +399,8 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     secondaryStructureContext: ISecondaryStructureContext,
   ) => (
     <GridRow columns={4} centered={true} textAlign={'center'} verticalAlign={'bottom'}>
-      <GridColumn>{this.renderPDBUploadForm()}</GridColumn>
       <GridColumn>{this.renderCouplingScoresUploadForm()}</GridColumn>
+      <GridColumn>{this.renderPDBUploadForm()}</GridColumn>
       {isResidueMappingNeeded && <GridColumn>{this.renderResidueMappingUploadForm()}</GridColumn>}
       <GridColumn>{this.renderClearAllButton(residueContext, secondaryStructureContext)}</GridColumn>
     </GridRow>
