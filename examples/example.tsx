@@ -22,7 +22,6 @@ import {
   readFileAsText,
   ResidueContextConsumer,
   SecondaryStructureContextConsumer,
-  SecondaryStructureContextReadConsumer,
   VIZ_TYPE,
 } from '~chell-viz~';
 
@@ -152,13 +151,6 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
 
       <Segment attached={true} raised={true}>
         <CouplingContextProvider>
-          <SecondaryStructureContextReadConsumer>
-            {secStructReader => (
-              <Message>{`Selected sec structures are: ${JSON.stringify(
-                secStructReader.selectedSecondaryStructures,
-              )}`}</Message>
-            )}
-          </SecondaryStructureContextReadConsumer>
           <SecondaryStructureContextConsumer>
             {secondaryStructureContext => (
               <ResidueContextConsumer>
