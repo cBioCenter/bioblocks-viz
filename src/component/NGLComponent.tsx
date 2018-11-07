@@ -134,7 +134,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
         }
 
         this.setState({
-          activeRepresentations: this.deriveActiveRepresentations(structureComponent),
+          activeRepresentations: this.deriveActiveRepresentations(structureComponent, this.state.pdbData),
         });
       }
       stage.viewer.requestRender();
@@ -179,10 +179,8 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
       // !IMPORTANT! We need to deeply clone the NGL data!
       // If we have multiple NGL components displaying the same data, removing the component will affect
       // the others because they (internally) delete keys/references.
+
       this.addStructureToStage(cloneDeep(structure), stage);
-      this.setState({
-        pdbData: ChellPDB.createPDBFromNGLData(structure),
-      });
     } else {
       this.setState({
         pdbData: undefined,
@@ -191,7 +189,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     }
   }
 
-  protected deriveActiveRepresentations(structureComponent: NGL.StructureComponent) {
+  protected deriveActiveRepresentations(structureComponent: NGL.StructureComponent, pdbData?: ChellPDB) {
     const { residueContext, secondaryStructureContext } = this.props;
 
     return [
@@ -200,8 +198,9 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
         [...residueContext.candidateResidues, ...residueContext.hoveredResidues]
           .filter((value, index, array) => array.indexOf(value) === index)
           .sort(),
+        pdbData,
       ),
-      ...this.highlightLockedDistancePairs(structureComponent, residueContext.lockedResiduePairs),
+      ...this.highlightLockedDistancePairs(structureComponent, residueContext.lockedResiduePairs, pdbData),
       ...this.highlightSecondaryStructures(structureComponent, [
         ...secondaryStructureContext.hoveredSecondaryStructures,
         ...secondaryStructureContext.selectedSecondaryStructures,
@@ -212,11 +211,11 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
   /**
    * Adds a NGL structure to the stage.
    *
-   * @param data A NGL Structure.
+   * @param structure A NGL Structure.
    * @param stage A NGL Stage.
    */
-  protected addStructureToStage(data: NGL.Structure, stage: NGL.Stage) {
-    const structureComponent = stage.addComponentFromObject(data);
+  protected addStructureToStage(structure: NGL.Structure, stage: NGL.Stage) {
+    const structureComponent = stage.addComponentFromObject(structure);
 
     structureComponent.stage.mouseControls.add(
       NGL.MouseActions.HOVER_PICK,
@@ -227,14 +226,14 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
 
     stage.defaultFileRepresentation(structureComponent);
     stage.signals.clicked.add(this.onClick);
-
-    stage.viewer.requestRender();
-
+    const pdbData = ChellPDB.createPDBFromNGLData(structure);
+    const activeRepresentations = this.deriveActiveRepresentations(structureComponent, pdbData);
     this.setState({
-      activeRepresentations: this.deriveActiveRepresentations(structureComponent),
-      stage,
+      activeRepresentations,
+      pdbData,
       structureComponent,
     });
+    stage.viewer.requestRender();
   }
 
   protected getConfigurations = () => {
@@ -267,7 +266,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
               structureComponent.addRepresentation(reps[value] as NGL.StructureRepresentationType);
             }
             this.setState({
-              activeRepresentations: this.deriveActiveRepresentations(structureComponent),
+              activeRepresentations: this.deriveActiveRepresentations(structureComponent, this.state.pdbData),
             });
             stage.viewer.requestRender();
           }
@@ -381,9 +380,12 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     }
   }
 
-  protected highlightCandidateResidues(structureComponent: NGL.StructureComponent, residues: RESIDUE_TYPE[]) {
+  protected highlightCandidateResidues(
+    structureComponent: NGL.StructureComponent,
+    residues: RESIDUE_TYPE[],
+    pdbData?: ChellPDB,
+  ) {
     const reps = new Array<NGL.RepresentationElement>();
-    const { pdbData } = this.state;
 
     if (residues.length >= 1) {
       reps.push(createBallStickRepresentation(structureComponent, residues));
@@ -395,9 +397,11 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
     return reps;
   }
 
-  protected highlightLockedDistancePairs(structureComponent: NGL.StructureComponent, lockedResidues: ResidueSelection) {
-    const { pdbData } = this.state;
-
+  protected highlightLockedDistancePairs(
+    structureComponent: NGL.StructureComponent,
+    lockedResidues: ResidueSelection,
+    pdbData?: ChellPDB,
+  ) {
     const reps = new Array<NGL.RepresentationElement>();
 
     lockedResidues.forEach(residues => {
