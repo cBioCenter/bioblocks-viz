@@ -1,5 +1,6 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { Button } from 'semantic-ui-react';
 
 import { VizPanelContainer } from '~chell-viz~/container';
 import { VIZ_TYPE } from '~chell-viz~/data';
@@ -14,9 +15,7 @@ describe('VizPanelContainer', () => {
   });
 
   it('Should match existing snapshot when given a single visualization panel to render.', () => {
-    const wrapper = shallow(
-      <VizPanelContainer dataDirs={[]} initialVisualizations={[]} numPanels={1} supportedVisualizations={[]} />,
-    ).update();
+    const wrapper = shallow(<VizPanelContainer dataDirs={[]} numPanels={1} supportedVisualizations={[]} />);
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -90,5 +89,12 @@ describe('VizPanelContainer', () => {
     wrapper.find('.viz-panel-container-dropdown').simulate('change', {}, { value: expected });
     const instance = wrapper.instance() as VizPanelContainer;
     expect(instance.state.currentDataDir).toBe(expected);
+  });
+
+  it('Should hide the upload button if requested.', () => {
+    const wrapper = shallow(
+      <VizPanelContainer allowUploads={false} dataDirs={[]} supportedVisualizations={[]} />,
+    ).update();
+    expect(wrapper.find(Button)).toHaveLength(0);
   });
 });
