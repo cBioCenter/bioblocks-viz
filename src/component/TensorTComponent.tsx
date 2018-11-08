@@ -42,8 +42,8 @@ class TensorTComponentClass extends React.Component<ITensorComponentProps> {
               b: 20,
             },
             width,
-            xaxis: { autorange: true, showline: true },
-            yaxis: { autorange: true, showline: true },
+            xaxis: { autorange: false, range: [0, 1], showline: true },
+            yaxis: { autorange: false, range: [0, 1], showline: true },
           }}
           onSelectedCallback={this.props.onSelectedCallback}
         />
