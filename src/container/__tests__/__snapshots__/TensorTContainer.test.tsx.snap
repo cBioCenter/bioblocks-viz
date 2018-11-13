@@ -378,11 +378,19 @@ exports[`TensorTContainer Should match existing snapshot when given no props. 1`
                                   "title": "",
                                   "width": 400,
                                   "xaxis": Object {
-                                    "autorange": true,
+                                    "autorange": false,
+                                    "range": Array [
+                                      0,
+                                      1,
+                                    ],
                                     "showline": true,
                                   },
                                   "yaxis": Object {
-                                    "autorange": true,
+                                    "autorange": false,
+                                    "range": Array [
+                                      0,
+                                      1,
+                                    ],
                                     "showline": true,
                                   },
                                 }
@@ -947,11 +955,19 @@ exports[`TensorTContainer Should match existing snapshot when given sample data.
                                   "title": "",
                                   "width": 400,
                                   "xaxis": Object {
-                                    "autorange": true,
+                                    "autorange": false,
+                                    "range": Array [
+                                      0,
+                                      1,
+                                    ],
                                     "showline": true,
                                   },
                                   "yaxis": Object {
-                                    "autorange": true,
+                                    "autorange": false,
+                                    "range": Array [
+                                      0,
+                                      1,
+                                    ],
                                     "showline": true,
                                   },
                                 }

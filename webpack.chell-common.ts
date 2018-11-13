@@ -38,13 +38,35 @@ module.exports = {
         test: /\.js$/,
       },
       {
+        include: [path.resolve(__dirname, 'node_modules/anatomogram')],
+        test: /\.(jpe?g|png|gif)$/i,
+        use: [
+          {
+            loader: `image-webpack-loader`,
+            options: {
+              query: {
+                bypassOnDebug: true,
+                gifsicle: {
+                  interlaced: true,
+                },
+                mozjpeg: {
+                  progressive: true,
+                },
+                optipng: {
+                  optimizationLevel: 7,
+                },
+              },
+            },
+          },
+        ],
+      },
+      {
         test: /\.(woff(2)?|ttf|png|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: 'fonts/',
             },
           },
         ],

@@ -31,20 +31,18 @@ exports[`VizPanelContainer Should match existing snapshot when given a single vi
       wrapSelection={true}
     />
   </GridRow>
-  <ChellContextProvider>
-    <GridColumn
-      key="0"
-    >
-      <VizSelectorPanel
-        data={Object {}}
-        height={450}
-        initialViz="T-SNE"
-        padding={15}
-        supportedVisualizations={Array []}
-        width={450}
-      />
-    </GridColumn>
-  </ChellContextProvider>
+  <GridColumn
+    key="0"
+  >
+    <VizSelectorPanel
+      data={Object {}}
+      height={450}
+      initialViz="T-SNE"
+      padding={15}
+      supportedVisualizations={Array []}
+      width={450}
+    />
+  </GridColumn>
   <Label
     as="label"
     basic={true}
@@ -119,42 +117,40 @@ exports[`VizPanelContainer Should match existing snapshot when given multiple vi
       wrapSelection={true}
     />
   </GridRow>
-  <ChellContextProvider>
-    <GridColumn
-      key="0"
-    >
-      <VizSelectorPanel
-        data={Object {}}
-        height={450}
-        initialViz="Contact Map"
-        padding={15}
-        supportedVisualizations={
-          Array [
-            "Contact Map",
-            "NGL",
-          ]
-        }
-        width={450}
-      />
-    </GridColumn>
-    <GridColumn
-      key="1"
-    >
-      <VizSelectorPanel
-        data={Object {}}
-        height={450}
-        initialViz="NGL"
-        padding={15}
-        supportedVisualizations={
-          Array [
-            "Contact Map",
-            "NGL",
-          ]
-        }
-        width={450}
-      />
-    </GridColumn>
-  </ChellContextProvider>
+  <GridColumn
+    key="0"
+  >
+    <VizSelectorPanel
+      data={Object {}}
+      height={450}
+      initialViz="Contact Map"
+      padding={15}
+      supportedVisualizations={
+        Array [
+          "Contact Map",
+          "NGL",
+        ]
+      }
+      width={450}
+    />
+  </GridColumn>
+  <GridColumn
+    key="1"
+  >
+    <VizSelectorPanel
+      data={Object {}}
+      height={450}
+      initialViz="NGL"
+      padding={15}
+      supportedVisualizations={
+        Array [
+          "Contact Map",
+          "NGL",
+        ]
+      }
+      width={450}
+    />
+  </GridColumn>
   <Label
     as="label"
     basic={true}

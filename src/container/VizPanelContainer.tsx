@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Button, Dropdown, DropdownProps, Grid, GridColumn, GridRow, Label } from 'semantic-ui-react';
 
 import { VizSelectorPanel } from '~chell-viz~/component';
-import { ChellContextProvider } from '~chell-viz~/context';
 import { CHELL_DATA_TYPE, ChellPDB, IContactMapData, VIZ_TYPE } from '~chell-viz~/data';
 import {
   fetchAppropriateData,
@@ -89,13 +88,11 @@ export class VizPanelContainer extends React.Component<IVizPanelContainerProps, 
             search={true}
           />
         </GridRow>
-        <ChellContextProvider>
-          {this.renderPanels(this.props.numPanels, this.state.data, this.props.initialVisualizations).map(
-            (panel, index) => (
-              <GridColumn key={index}>{panel}</GridColumn>
-            ),
-          )}
-        </ChellContextProvider>
+        {this.renderPanels(this.props.numPanels, this.state.data, this.props.initialVisualizations).map(
+          (panel, index) => (
+            <GridColumn key={index}>{panel}</GridColumn>
+          ),
+        )}
 
         {allowUploads && this.renderFileUploadForm()}
       </Grid>
