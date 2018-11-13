@@ -32,6 +32,7 @@ export interface ISpringMessage {
   // tslint:disable-next-line:no-reserved-keywords
   type: string;
   payload: {
+    category: string;
     indices: number[];
   };
 }
@@ -68,7 +69,16 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
   }
 
   public componentDidUpdate(prevProps: ISpringContainerProps) {
-    if (prevProps.cellContext !== this.props.cellContext) {
+    if (prevProps.springContext !== this.props.springContext) {
+      this.setState({
+        postMessageData: {
+          payload: {
+            categories: this.props.springContext.selectedCategories,
+          },
+          type: 'selected-category-update',
+        },
+      });
+    } else if (prevProps.cellContext !== this.props.cellContext) {
       this.setState({
         postMessageData: {
           payload: {
@@ -111,6 +121,11 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
     const data = msg.data as ISpringMessage;
 
     switch (data.type) {
+      case 'selected-category-update': {
+        this.props.cellContext.addCells(data.payload.indices);
+        this.props.springContext.toggleCategory(data.payload.category);
+        break;
+      }
       case 'selected-cells-update': {
         this.props.cellContext.addCells(data.payload.indices);
         break;
