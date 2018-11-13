@@ -1,3 +1,4 @@
+import { isEqual } from 'lodash';
 import * as React from 'react';
 
 // tslint:disable-next-line:import-name
@@ -11,11 +12,10 @@ import {
   ISpringContext,
   SpringContext,
 } from '~chell-viz~/context';
-import { ISpringLink, ISpringNode, SPRING_DATA_TYPE } from '~chell-viz~/data';
+import { ISpringLink, ISpringNode } from '~chell-viz~/data';
 
 export interface ISpringContainerProps {
   cellContext: ICellContext;
-  data: SPRING_DATA_TYPE;
   height: number | string;
   padding: number | string;
   selectedCategory: string;
@@ -60,29 +60,30 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
     super(props);
     this.state = {
       postMessageData: {
-        payload: {
-          coordinates: props.springContext.coordinates,
-        },
+        payload: {},
         type: 'init',
       },
     };
   }
 
   public componentDidUpdate(prevProps: ISpringContainerProps) {
-    if (prevProps.springContext !== this.props.springContext) {
+    const { cellContext, springContext } = this.props;
+    if (!isEqual(prevProps.springContext.selectedCategories, springContext.selectedCategories)) {
+      // Spring context updated.
       this.setState({
         postMessageData: {
           payload: {
-            categories: this.props.springContext.selectedCategories,
+            categories: springContext.selectedCategories,
           },
           type: 'selected-category-update',
         },
       });
-    } else if (prevProps.cellContext !== this.props.cellContext) {
+    } else if (!isEqual(prevProps.cellContext.currentCells, cellContext.currentCells)) {
+      // Cell context updated.
       this.setState({
         postMessageData: {
           payload: {
-            indices: this.props.cellContext.currentCells,
+            indices: cellContext.currentCells,
           },
           type: 'selected-cells-update',
         },

@@ -14,9 +14,7 @@ exports[`SpringContainer Should match existing snapshot. 1`] = `
   handleReceiveMessage={[Function]}
   postMessageData={
     Object {
-      "payload": Object {
-        "coordinates": Array [],
-      },
+      "payload": Object {},
       "type": "init",
     }
   }

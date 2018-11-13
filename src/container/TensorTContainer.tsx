@@ -1,3 +1,4 @@
+import { isEqual } from 'lodash';
 import * as React from 'react';
 
 import * as tensorFlow from '@tensorflow/tfjs-core';
@@ -5,7 +6,14 @@ import * as tensorFlow from '@tensorflow/tfjs-core';
 import { TSNE } from '@tensorflow/tfjs-tsne/dist/tsne';
 import { Button, Icon } from 'semantic-ui-react';
 import { SettingsPanel, TensorTComponent } from '~chell-viz~/component';
-import { CellContext, ICellContext, initialCellContext } from '~chell-viz~/context';
+import {
+  CellContext,
+  ICellContext,
+  initialCellContext,
+  initialSpringContext,
+  ISpringContext,
+  SpringContext,
+} from '~chell-viz~/context';
 import {
   CHELL_CSS_STYLE,
   ChellChartEvent,
@@ -20,6 +28,7 @@ export interface ITensorContainerProps {
   data: T_SNE_DATA_TYPE;
   height: number;
   pointColor: string;
+  springContext: ISpringContext;
   style: CHELL_CSS_STYLE;
   width: number;
 }
@@ -41,6 +50,9 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
     data: [[0], [0]],
     height: 400,
     pointColor: '#aa0000',
+    springContext: {
+      ...initialSpringContext,
+    },
     style: {
       padding: 0,
     },
@@ -71,10 +83,22 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
   }
 
   public async componentDidUpdate(prevProps: ITensorContainerProps) {
+    const { cellContext, springContext } = this.props;
     const { tsne } = this.state;
-    if (this.props.cellContext.currentCells !== prevProps.cellContext.currentCells && tsne) {
+    if (tsne && cellContext.currentCells !== prevProps.cellContext.currentCells) {
       this.setState({
         plotlyCoords: this.getPlotlyCoordsFromTsne(await tsne.coordsArray()),
+      });
+    } else if (tsne && !isEqual(springContext.selectedCategories, prevProps.springContext.selectedCategories)) {
+      const indices = new Array<number>();
+      for (let i = 0; i < springContext.graphData.nodes.length; ++i) {
+        if (springContext.selectedCategories.includes(springContext.graphData.nodes[i].category)) {
+          indices.push(i);
+        }
+      }
+
+      this.setState({
+        plotlyCoords: this.getPlotlyCoordsFromSpring(await tsne.coordsArray(), indices),
       });
     }
   }
@@ -138,6 +162,29 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
         type: 'scattergl',
         x: cellContext.currentCells.map(cellIndex => coords[cellIndex][0]),
         y: cellContext.currentCells.map(cellIndex => coords[cellIndex][1]),
+      },
+    ];
+  };
+
+  protected getPlotlyCoordsFromSpring = (coords: number[][], currentCells: number[]): Array<Partial<IPlotlyData>> => {
+    return [
+      {
+        marker: {
+          color: this.props.pointColor,
+        },
+        mode: 'markers',
+        type: 'scattergl',
+        x: coords.map(coord => coord[0]),
+        y: coords.map(coord => coord[1]),
+      },
+      {
+        marker: {
+          color: '#ffaa00',
+        },
+        mode: 'markers',
+        type: 'scattergl',
+        x: currentCells.map(cellIndex => coords[cellIndex][0]),
+        y: currentCells.map(cellIndex => coords[cellIndex][1]),
       },
     ];
   };
@@ -245,6 +292,10 @@ type requiredProps = Omit<ITensorContainerProps, keyof typeof TensorTContainerCl
 
 export const TensorTContainer = (props: requiredProps) => (
   <CellContext.Consumer>
-    {cellContext => <TensorTContainerClass {...props} cellContext={cellContext} />}
+    {cellContext => (
+      <SpringContext.Consumer>
+        {springContext => <TensorTContainerClass {...props} cellContext={cellContext} springContext={springContext} />}
+      </SpringContext.Consumer>
+    )}
   </CellContext.Consumer>
 );

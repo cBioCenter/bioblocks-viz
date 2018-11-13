@@ -79,15 +79,17 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ispringcontext.html#coordinates" class="tsd-kind-icon">coordinates</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ispringcontext.html#graphdata" class="tsd-kind-icon">graph<wbr>Data</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ispringcontext.html#selectedcategories" class="tsd-kind-icon">selected<wbr>Categories</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="ispringcontext.html#addcategories" class="tsd-kind-icon">add<wbr>Categories</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="ispringcontext.html#addcategory" class="tsd-kind-icon">add<wbr>Category</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="ispringcontext.html#removecategory" class="tsd-kind-icon">remove<wbr>Category</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="ispringcontext.html#setcategories" class="tsd-kind-icon">set<wbr>Categories</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="ispringcontext.html#togglecategory" class="tsd-kind-icon">toggle<wbr>Category</a></li>
 							</ul>
 						</section>
@@ -97,12 +99,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="coordinates" class="tsd-anchor"></a>
-					<h3>coordinates</h3>
-					<div class="tsd-signature tsd-kind-icon">coordinates<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></div>
+					<a name="graphdata" class="tsd-anchor"></a>
+					<h3>graph<wbr>Data</h3>
+					<div class="tsd-signature tsd-kind-icon">graph<wbr>Data<span class="tsd-signature-symbol">:</span> <a href="ispringgraphdata.html" class="tsd-signature-type">ISpringGraphData</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/context/SpringContext.tsx#L6">src/context/SpringContext.tsx:6</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/d750a214/src/context/SpringContext.tsx#L7">src/context/SpringContext.tsx:7</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -112,13 +114,36 @@
 					<div class="tsd-signature tsd-kind-icon">selected<wbr>Categories<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/context/SpringContext.tsx#L7">src/context/SpringContext.tsx:7</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/d750a214/src/context/SpringContext.tsx#L8">src/context/SpringContext.tsx:8</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="addcategories" class="tsd-anchor"></a>
+					<h3>add<wbr>Categories</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Categories<span class="tsd-signature-symbol">(</span>categories<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/d750a214/src/context/SpringContext.tsx#L9">src/context/SpringContext.tsx:9</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>categories: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="addcategory" class="tsd-anchor"></a>
 					<h3>add<wbr>Category</h3>
@@ -129,7 +154,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/context/SpringContext.tsx#L8">src/context/SpringContext.tsx:8</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/d750a214/src/context/SpringContext.tsx#L10">src/context/SpringContext.tsx:10</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -152,13 +177,36 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/context/SpringContext.tsx#L9">src/context/SpringContext.tsx:9</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/d750a214/src/context/SpringContext.tsx#L11">src/context/SpringContext.tsx:11</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>category: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="setcategories" class="tsd-anchor"></a>
+					<h3>set<wbr>Categories</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Categories<span class="tsd-signature-symbol">(</span>categories<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/d750a214/src/context/SpringContext.tsx#L12">src/context/SpringContext.tsx:12</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>categories: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -175,7 +223,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/context/SpringContext.tsx#L10">src/context/SpringContext.tsx:10</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/d750a214/src/context/SpringContext.tsx#L13">src/context/SpringContext.tsx:13</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -206,16 +254,22 @@
 						<a href="ispringcontext.html" class="tsd-kind-icon">ISpring<wbr>Context</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="ispringcontext.html#coordinates" class="tsd-kind-icon">coordinates</a>
+								<a href="ispringcontext.html#graphdata" class="tsd-kind-icon">graph<wbr>Data</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="ispringcontext.html#selectedcategories" class="tsd-kind-icon">selected<wbr>Categories</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="ispringcontext.html#addcategories" class="tsd-kind-icon">add<wbr>Categories</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="ispringcontext.html#addcategory" class="tsd-kind-icon">add<wbr>Category</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="ispringcontext.html#removecategory" class="tsd-kind-icon">remove<wbr>Category</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="ispringcontext.html#setcategories" class="tsd-kind-icon">set<wbr>Categories</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="ispringcontext.html#togglecategory" class="tsd-kind-icon">toggle<wbr>Category</a>

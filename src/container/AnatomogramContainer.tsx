@@ -1,10 +1,20 @@
 // tslint:disable-next-line:import-name
 import Anatomogram from 'anatomogram';
+import { isEqual } from 'lodash';
 import * as React from 'react';
-import { initialSpringContext, ISpringContext, SpringContext } from '~chell-viz~/context';
+
+import {
+  CellContext,
+  ICellContext,
+  initialCellContext,
+  initialSpringContext,
+  ISpringContext,
+  SpringContext,
+} from '~chell-viz~/context';
 import { CHELL_CSS_STYLE } from '~chell-viz~/data';
 
 export interface IAnatomogramContainerProps {
+  cellContext: ICellContext;
   height: number | string;
   springContext: ISpringContext;
   style: CHELL_CSS_STYLE;
@@ -31,6 +41,9 @@ export const anatomogramToSpringMapping: { [key: string]: string } = {
 
 export class AnatomogramContainerClass extends React.Component<IAnatomogramContainerProps, IAnatomogramContainerState> {
   public static defaultProps = {
+    cellContext: {
+      ...initialCellContext,
+    },
     height: '300px',
     springContext: {
       ...initialSpringContext,
@@ -47,10 +60,18 @@ export class AnatomogramContainerClass extends React.Component<IAnatomogramConta
   }
 
   public componentDidUpdate(prevProps: IAnatomogramContainerProps) {
-    const { springContext } = this.props;
-    if (springContext.selectedCategories !== prevProps.springContext.selectedCategories) {
+    const { cellContext, springContext } = this.props;
+    if (!isEqual(springContext.selectedCategories, prevProps.springContext.selectedCategories)) {
       this.setState({
         selectIds: springContext.selectedCategories.map(category => springToAnatomogramMapping[category]),
+      });
+    } else if (!isEqual(cellContext.currentCells, prevProps.cellContext.currentCells)) {
+      const categories = new Set<string>();
+      for (const cellIndex of cellContext.currentCells) {
+        categories.add(springContext.graphData.nodes[cellIndex].category);
+      }
+      this.setState({
+        selectIds: Array.from(categories).map(category => springToAnatomogramMapping[category]),
       });
     }
   }
@@ -92,7 +113,13 @@ type requiredProps = Omit<IAnatomogramContainerProps, keyof typeof AnatomogramCo
   Partial<IAnatomogramContainerProps>;
 
 export const AnatomogramContainer = (props: requiredProps) => (
-  <SpringContext.Consumer>
-    {springContext => <AnatomogramContainerClass {...props} springContext={springContext} />}
-  </SpringContext.Consumer>
+  <CellContext.Consumer>
+    {cellContext => (
+      <SpringContext.Consumer>
+        {springContext => (
+          <AnatomogramContainerClass {...props} cellContext={cellContext} springContext={springContext} />
+        )}
+      </SpringContext.Consumer>
+    )}
+  </CellContext.Consumer>
 );

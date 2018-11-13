@@ -3,14 +3,7 @@ import { Card, Dropdown, DropdownItemProps, DropdownProps } from 'semantic-ui-re
 
 import { InfoPanel, NGLComponent, PredictedContactMap, TComponent, TFrameComponent } from '~chell-viz~/component';
 import { SpringContainer, TensorTContainer } from '~chell-viz~/container';
-import {
-  CHELL_DATA_TYPE,
-  IContactMapData,
-  ISpringGraphData,
-  NGL_DATA_TYPE,
-  T_SNE_DATA_TYPE,
-  VIZ_TYPE,
-} from '~chell-viz~/data';
+import { CHELL_DATA_TYPE, IContactMapData, NGL_DATA_TYPE, T_SNE_DATA_TYPE, VIZ_TYPE } from '~chell-viz~/data';
 
 export interface IVizPanelProps {
   data: Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>;
@@ -111,16 +104,7 @@ export class VizSelectorPanel extends React.Component<IVizPanelProps, IVizPanelS
           )
         );
       case VIZ_TYPE.SPRING:
-        return (
-          data.Spring && (
-            <SpringContainer
-              data={data.Spring as ISpringGraphData}
-              height={this.props.height}
-              padding={padding}
-              width={this.props.width}
-            />
-          )
-        );
+        return <SpringContainer height={this.props.height} padding={padding} width={this.props.width} />;
       case VIZ_TYPE.NGL:
         return (
           data.NGL && (

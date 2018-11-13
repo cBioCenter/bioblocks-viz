@@ -33,6 +33,29 @@ describe('SpringContext', () => {
     expect(instance.state.selectedCategories).toHaveLength(1);
   });
 
+  it('Should allow multiple categories to be added as unique entries.', () => {
+    const instance = shallow(<SpringContextProvider />).instance() as SpringContextProvider;
+    const initialState = instance.state;
+    const expectedState = {
+      ...initialState,
+      selectedCategories: ['LttP', 'OoT', 'MM'],
+    };
+    instance.state.addCategories(['LttP', 'OoT', 'MM']);
+    expect(instance.state).toEqual(expectedState);
+  });
+
+  it('Should allow categories to be completely initialized.', () => {
+    const instance = shallow(<SpringContextProvider />).instance() as SpringContextProvider;
+    const initialState = instance.state;
+    const expectedState = {
+      ...initialState,
+      selectedCategories: ['LttP', 'OoT', 'MM'],
+    };
+    instance.state.addCategories(['OoA', 'OoS']);
+    instance.state.setCategories(['LttP', 'OoT', 'MM']);
+    expect(instance.state).toEqual(expectedState);
+  });
+
   it('Should allow categories to be removed.', () => {
     const instance = shallow(<SpringContextProvider />).instance() as SpringContextProvider;
     const initialState = instance.state;
