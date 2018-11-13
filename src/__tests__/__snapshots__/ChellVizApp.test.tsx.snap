@@ -5,7 +5,6 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
   id="ChellVizApp"
 >
   <Grid
-    centered={true}
     divided="vertically"
   >
     <GridRow>
@@ -31,6 +30,11 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
         }
       />
     </GridRow>
+    <AnatomogramContainer
+      height="300px"
+      style={Object {}}
+      width="400px"
+    />
     <GridRow
       centered={true}
       style={
