@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SpringContext Should match the default snapshot. 1`] = `
+<div
+  addCategory={[Function]}
+  coordinates={Array []}
+  removeCategory={[Function]}
+  selectedCategories={Array []}
+  toggleCategory={[Function]}
+/>
+`;

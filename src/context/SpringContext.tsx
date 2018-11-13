@@ -6,6 +6,7 @@ export interface ISpringContext {
   coordinates: number[][];
   selectedCategories: string[];
   addCategory(category: string): void;
+  removeCategory(category: string): void;
   toggleCategory(category: string): void;
 }
 
@@ -14,6 +15,9 @@ export const initialSpringContext: ISpringContext = {
     return;
   },
   coordinates: [],
+  removeCategory: category => {
+    return;
+  },
   selectedCategories: [],
   toggleCategory: category => {
     return;
@@ -30,6 +34,7 @@ export class SpringContextProvider extends React.Component<any, SpringContextSta
     this.state = {
       ...initialSpringContext,
       addCategory: this.onAddCategory(),
+      removeCategory: this.onRemoveCategory(),
       toggleCategory: this.onToggleCategory(),
     };
   }
@@ -61,8 +66,8 @@ export class SpringContextProvider extends React.Component<any, SpringContextSta
     if (categoryIndex >= 0) {
       this.setState({
         selectedCategories: [
-          ...selectedCategories.splice(0, categoryIndex),
-          ...selectedCategories.splice(categoryIndex + 1),
+          ...selectedCategories.slice(0, categoryIndex),
+          ...selectedCategories.slice(categoryIndex + 1),
         ],
       });
     }
@@ -75,8 +80,8 @@ export class SpringContextProvider extends React.Component<any, SpringContextSta
     if (categoryIndex >= 0) {
       this.setState({
         selectedCategories: [
-          ...selectedCategories.splice(0, categoryIndex),
-          ...selectedCategories.splice(categoryIndex + 1),
+          ...selectedCategories.slice(0, categoryIndex),
+          ...selectedCategories.slice(categoryIndex + 1),
         ],
       });
     } else {
