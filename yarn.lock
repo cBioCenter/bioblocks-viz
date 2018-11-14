@@ -4493,6 +4493,11 @@ fs.realpath@^1.0.0:
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
   integrity sha1-FQStJSMVjKpA20onh8sBQRmU6k8=
 
+fscreen@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/fscreen/-/fscreen-1.0.2.tgz#c4c51d96d819d75a19d728e0df445f9be9bb984f"
+  integrity sha1-xMUdltgZ11oZ1yjg30Rfm+m7mE8=
+
 fsevents@^1.2.2, fsevents@^1.2.3:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-1.2.4.tgz#f41dcb1af2582af3692da36fc55cbd8e1041c426"
@@ -9033,6 +9038,16 @@ react-dom@^16.5.2:
     prop-types "^15.6.2"
     scheduler "^0.11.2"
 
+react-full-screen@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/react-full-screen/-/react-full-screen-0.2.3.tgz#f0734ed3dfffea8c548f1b8ad28eeadb1ec9787c"
+  integrity sha512-V/XJX5yZTWqnaKGosyfXNAjN9tGBawmhFxl+N0rDGLEhI1nRsYq3UMI1uinPr2e/FV7dCldZ+xDk8/OqOsIYzw==
+  dependencies:
+    "@types/react" "*"
+    fscreen "^1.0.1"
+    prop-types "^15.5.10"
+    react "^15.6.1"
+
 react-iframe-comm@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/react-iframe-comm/-/react-iframe-comm-1.2.2.tgz#5041fc692a91c03228cdee5cc99c02036e0ba805"
@@ -9085,7 +9100,7 @@ react-test-renderer@^16.5.2:
     react-is "^16.6.3"
     scheduler "^0.11.2"
 
-react@^15.4.2:
+react@^15.4.2, react@^15.6.1:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/react/-/react-15.6.2.tgz#dba0434ab439cfe82f108f0f511663908179aa72"
   integrity sha1-26BDSrQ5z+gvEI8PURZjkIF5qnI=

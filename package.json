@@ -166,6 +166,7 @@
     "rc-slider": "^8.6.3",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "react-full-screen": "^0.2.3",
     "react-iframe-comm": "^1.2.2",
     "semantic-ui-react": "^0.83.0",
     "xml2js": "^0.4.19"
