@@ -2,10 +2,10 @@ import { isEqual } from 'lodash';
 import * as React from 'react';
 import { Button } from 'semantic-ui-react';
 
-// tslint:disable:import-name
+// tslint:disable:import-name match-default-export-name
 import Fullscreen from 'react-full-screen';
 import IframeComm, { IframeCommAttributes } from 'react-iframe-comm';
-// tslint:enable:import-name
+// tslint:enable:import-name match-default-export-name
 
 import {
   CellContext,
@@ -97,7 +97,6 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
   }
 
   public render() {
-    console.log('spring render');
     const { height, springUrl, width } = this.props;
     const { isFullscreen, postMessageData } = this.state;
 

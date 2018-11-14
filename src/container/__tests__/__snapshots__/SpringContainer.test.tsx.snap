@@ -1,24 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SpringContainer Should match existing snapshot. 1`] = `
-<IframeComm
-  attributes={
-    Object {
-      "frameBorder": 1,
-      "height": "100%",
-      "src": "http://localhost:11037/springViewer.html?datasets/hpc/full",
-      "width": 1200,
-    }
-  }
-  handleReady={[Function]}
-  handleReceiveMessage={[Function]}
-  postMessageData={
-    Object {
-      "payload": Object {},
-      "type": "init",
-    }
-  }
-  serializeMessage={true}
-  targetOrigin="http://localhost:11037"
-/>
+<div
+  className="spring-container"
+>
+  <FullScreen
+    enabled={false}
+    onChange={[Function]}
+  >
+    <IframeComm
+      attributes={
+        Object {
+          "allowFullScreen": true,
+          "frameBorder": 1,
+          "height": "100%",
+          "src": "http://localhost:11037/springViewer.html?datasets/hpc/full",
+          "width": 1200,
+        }
+      }
+      handleReady={[Function]}
+      handleReceiveMessage={[Function]}
+      key="not-fullscreen-spring-iframe"
+      postMessageData={
+        Object {
+          "payload": Object {},
+          "type": "init",
+        }
+      }
+      serializeMessage={true}
+      targetOrigin="http://localhost:11037"
+    />
+  </FullScreen>
+  <Button
+    as="button"
+    label="Go Fullscreen!"
+    onClick={[Function]}
+    role="button"
+  />
+</div>
 `;
