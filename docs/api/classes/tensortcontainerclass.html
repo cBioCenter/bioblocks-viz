@@ -103,6 +103,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="tensortcontainerclass.html#props" class="tsd-kind-icon">props</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="tensortcontainerclass.html#refs" class="tsd-kind-icon">refs</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="tensortcontainerclass.html#state" class="tsd-kind-icon">state</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="tensortcontainerclass.html#contexttype" class="tsd-kind-icon">context<wbr>Type</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -120,6 +121,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="tensortcontainerclass.html#componentwillupdate" class="tsd-kind-icon">component<wbr>Will<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="tensortcontainerclass.html#computetensortsne" class="tsd-kind-icon">compute<wbr>Tensor<wbr>Tsne</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="tensortcontainerclass.html#forceupdate" class="tsd-kind-icon">force<wbr>Update</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="tensortcontainerclass.html#getplotlycoordsfromspring" class="tsd-kind-icon">get<wbr>Plotly<wbr>Coords<wbr>From<wbr>Spring</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="tensortcontainerclass.html#getplotlycoordsfromtsne" class="tsd-kind-icon">get<wbr>Plotly<wbr>Coords<wbr>From<wbr>Tsne</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="tensortcontainerclass.html#getsnapshotbeforeupdate" class="tsd-kind-icon">get<wbr>Snapshot<wbr>Before<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="tensortcontainerclass.html#gettensorconfigs" class="tsd-kind-icon">get<wbr>Tensor<wbr>Configs</a></li>
@@ -156,7 +158,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/container/TensorTContainer.tsx#L50">src/container/TensorTContainer.tsx:50</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/TensorTContainer.tsx#L62">src/container/TensorTContainer.tsx:62</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -178,7 +180,7 @@
 					<div class="tsd-signature tsd-kind-icon">canvas<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CanvasRenderingContext2D</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/container/TensorTContainer.tsx#L50">src/container/TensorTContainer.tsx:50</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/TensorTContainer.tsx#L62">src/container/TensorTContainer.tsx:62</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -189,12 +191,21 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Component.context</p>
 						<ul>
-							<li>Defined in node_modules/@types/react/index.d.ts:315</li>
+							<li>Defined in node_modules/@types/react/index.d.ts:387</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>If using the new style context, re-declare this in your class to be the
+							<code>React.ContextType</code> of your <code>static contextType</code>.</p>
+						</div>
+						<pre><code class="language-ts"><span class="hljs-keyword">static</span> contextType = MyContext
+context!: React.ContextType&lt;<span class="hljs-keyword">typeof</span> MyContext&gt;</code></pre>
 						<dl class="tsd-comment-tags">
 							<dt>deprecated</dt>
+							<dd><p>if used without a type annotation, or without static contextType</p>
+							</dd>
+							<dt>see</dt>
 							<dd><p><a href="https://reactjs.org/docs/legacy-context.html">https://reactjs.org/docs/legacy-context.html</a></p>
 							</dd>
 						</dl>
@@ -207,7 +218,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Component.props</p>
 						<ul>
-							<li>Defined in node_modules/@types/react/index.d.ts:309</li>
+							<li>Defined in node_modules/@types/react/index.d.ts:412</li>
 						</ul>
 					</aside>
 				</section>
@@ -218,7 +229,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Component.refs</p>
 						<ul>
-							<li>Defined in node_modules/@types/react/index.d.ts:320</li>
+							<li>Defined in node_modules/@types/react/index.d.ts:418</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -244,9 +255,41 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Component.state</p>
 						<ul>
-							<li>Defined in node_modules/@types/react/index.d.ts:310</li>
+							<li>Defined in node_modules/@types/react/index.d.ts:413</li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+					<a name="contexttype" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagOptional">Optional</span> context<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">context<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Context</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from Component.contextType</p>
+						<ul>
+							<li>Defined in node_modules/@types/react/index.d.ts:372</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>If set, <code>this.context</code> will be set at runtime to the current value of the given Context.</p>
+						</div>
+						<p>Usage:</p>
+						<pre><code class="language-ts">type MyContext = number
+const Ctx = React.createContext&lt;MyContext&gt;(0)
+
+class Foo extends React.Component {
+  static contextType = Ctx
+  context!: React.ContextType&lt;typeof Ctx&gt;
+  render () {
+    return &lt;&gt;My context's value: {this.context}&lt;/&gt;;
+  }
+}</code></pre>
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p><a href="https://reactjs.org/docs/context.html#classcontexttype">https://reactjs.org/docs/context.html#classcontexttype</a></p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -262,7 +305,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.UNSAFE_componentWillMount</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:475</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:601</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -300,7 +343,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.UNSAFE_componentWillReceiveProps</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:507</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:633</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -349,7 +392,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.UNSAFE_componentWillUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:535</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:661</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -399,7 +442,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from ComponentLifecycle.componentDidCatch</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:414</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:530</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -432,7 +475,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides ComponentLifecycle.componentDidMount</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/container/TensorTContainer.tsx#L63">src/container/TensorTContainer.tsx:63</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/TensorTContainer.tsx#L75">src/container/TensorTContainer.tsx:75</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -450,7 +493,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides NewLifecycle.componentDidUpdate</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/container/TensorTContainer.tsx#L73">src/container/TensorTContainer.tsx:73</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/TensorTContainer.tsx#L85">src/container/TensorTContainer.tsx:85</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -474,7 +517,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.componentWillMount</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:461</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:587</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -511,7 +554,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.componentWillReceiveProps</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:490</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:616</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -559,7 +602,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from ComponentLifecycle.componentWillUnmount</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:409</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:525</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -583,7 +626,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.componentWillUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:520</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:646</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -631,7 +674,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/container/TensorTContainer.tsx#L102">src/container/TensorTContainer.tsx:102</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/TensorTContainer.tsx#L126">src/container/TensorTContainer.tsx:126</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -655,7 +698,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Component.forceUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:301</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:404</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -669,6 +712,32 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="getplotlycoordsfromspring" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Plotly<wbr>Coords<wbr>From<wbr>Spring</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Plotly<wbr>Coords<wbr>From<wbr>Spring<span class="tsd-signature-symbol">(</span>coords<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span>, currentCells<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/TensorTContainer.tsx#L169">src/container/TensorTContainer.tsx:169</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>coords: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+								<li>
+									<h5>currentCells: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 					<a name="getplotlycoordsfromtsne" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Plotly<wbr>Coords<wbr>From<wbr>Tsne</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
@@ -678,7 +747,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/container/TensorTContainer.tsx#L120">src/container/TensorTContainer.tsx:120</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/TensorTContainer.tsx#L144">src/container/TensorTContainer.tsx:144</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -702,7 +771,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from NewLifecycle.getSnapshotBeforeUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:440</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:566</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -740,7 +809,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/container/TensorTContainer.tsx#L145">src/container/TensorTContainer.tsx:145</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/TensorTContainer.tsx#L192">src/container/TensorTContainer.tsx:192</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../globals.html#chellwidgetconfig" class="tsd-signature-type">ChellWidgetConfig</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -757,7 +826,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/container/TensorTContainer.tsx#L173">src/container/TensorTContainer.tsx:173</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/TensorTContainer.tsx#L220">src/container/TensorTContainer.tsx:220</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -780,7 +849,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/container/TensorTContainer.tsx#L201">src/container/TensorTContainer.tsx:201</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/TensorTContainer.tsx#L248">src/container/TensorTContainer.tsx:248</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -803,7 +872,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/container/TensorTContainer.tsx#L219">src/container/TensorTContainer.tsx:219</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/TensorTContainer.tsx#L266">src/container/TensorTContainer.tsx:266</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">(Anonymous function)</span></h4>
@@ -820,7 +889,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/container/TensorTContainer.tsx#L223">src/container/TensorTContainer.tsx:223</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/TensorTContainer.tsx#L270">src/container/TensorTContainer.tsx:270</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">(Anonymous function)</span></h4>
@@ -837,7 +906,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/container/TensorTContainer.tsx#L238">src/container/TensorTContainer.tsx:238</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/TensorTContainer.tsx#L285">src/container/TensorTContainer.tsx:285</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">(Anonymous function)</span></h4>
@@ -855,7 +924,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.render</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/container/TensorTContainer.tsx#L82">src/container/TensorTContainer.tsx:82</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/TensorTContainer.tsx#L106">src/container/TensorTContainer.tsx:106</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
@@ -872,7 +941,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/container/TensorTContainer.tsx#L188">src/container/TensorTContainer.tsx:188</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/TensorTContainer.tsx#L235">src/container/TensorTContainer.tsx:235</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
@@ -890,7 +959,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Component.setState</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:296</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:399</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -923,7 +992,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from ComponentLifecycle.shouldComponentUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:404</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:520</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -961,7 +1030,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/container/TensorTContainer.tsx#L37">src/container/TensorTContainer.tsx:37</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/TensorTContainer.tsx#L46">src/container/TensorTContainer.tsx:46</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -970,7 +1039,7 @@
 						<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[[0], [0]]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/container/TensorTContainer.tsx#L41">src/container/TensorTContainer.tsx:41</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/TensorTContainer.tsx#L50">src/container/TensorTContainer.tsx:50</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -980,7 +1049,7 @@
 						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/container/TensorTContainer.tsx#L42">src/container/TensorTContainer.tsx:42</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/TensorTContainer.tsx#L51">src/container/TensorTContainer.tsx:51</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -990,7 +1059,7 @@
 						<div class="tsd-signature tsd-kind-icon">point<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;#aa0000&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/container/TensorTContainer.tsx#L43">src/container/TensorTContainer.tsx:43</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/TensorTContainer.tsx#L52">src/container/TensorTContainer.tsx:52</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1000,7 +1069,7 @@
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/container/TensorTContainer.tsx#L47">src/container/TensorTContainer.tsx:47</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/TensorTContainer.tsx#L59">src/container/TensorTContainer.tsx:59</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1010,7 +1079,17 @@
 						<div class="tsd-signature tsd-kind-icon">cell<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/container/TensorTContainer.tsx#L38">src/container/TensorTContainer.tsx:38</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/TensorTContainer.tsx#L47">src/container/TensorTContainer.tsx:47</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal">
+						<a name="defaultprops.springcontext" class="tsd-anchor"></a>
+						<h3>spring<wbr>Context</h3>
+						<div class="tsd-signature tsd-kind-icon">spring<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/TensorTContainer.tsx#L53">src/container/TensorTContainer.tsx:53</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1020,7 +1099,7 @@
 						<div class="tsd-signature tsd-kind-icon">style<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/container/TensorTContainer.tsx#L44">src/container/TensorTContainer.tsx:44</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/TensorTContainer.tsx#L56">src/container/TensorTContainer.tsx:56</a></li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1029,7 +1108,7 @@
 							<div class="tsd-signature tsd-kind-icon">padding<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/container/TensorTContainer.tsx#L45">src/container/TensorTContainer.tsx:45</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/TensorTContainer.tsx#L57">src/container/TensorTContainer.tsx:57</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -1070,6 +1149,9 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="tensortcontainerclass.html#state" class="tsd-kind-icon">state</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+								<a href="tensortcontainerclass.html#contexttype" class="tsd-kind-icon">context<wbr>Type</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="tensortcontainerclass.html#unsafe_componentwillmount" class="tsd-kind-icon">UNSAFE_<wbr>component<wbr>Will<wbr>Mount</a>
 							</li>
@@ -1105,6 +1187,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="tensortcontainerclass.html#forceupdate" class="tsd-kind-icon">force<wbr>Update</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="tensortcontainerclass.html#getplotlycoordsfromspring" class="tsd-kind-icon">get<wbr>Plotly<wbr>Coords<wbr>From<wbr>Spring</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 								<a href="tensortcontainerclass.html#getplotlycoordsfromtsne" class="tsd-kind-icon">get<wbr>Plotly<wbr>Coords<wbr>From<wbr>Tsne</a>

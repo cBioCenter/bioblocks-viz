@@ -102,6 +102,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="infopanelclass.html#props" class="tsd-kind-icon">props</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="infopanelclass.html#refs" class="tsd-kind-icon">refs</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="infopanelclass.html#state" class="tsd-kind-icon">state</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="infopanelclass.html#contexttype" class="tsd-kind-icon">context<wbr>Type</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -149,7 +150,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/component/InfoPanel.tsx#L39">src/component/InfoPanel.tsx:39</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/component/InfoPanel.tsx#L39">src/component/InfoPanel.tsx:39</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -172,12 +173,21 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Component.context</p>
 						<ul>
-							<li>Defined in node_modules/@types/react/index.d.ts:315</li>
+							<li>Defined in node_modules/@types/react/index.d.ts:387</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>If using the new style context, re-declare this in your class to be the
+							<code>React.ContextType</code> of your <code>static contextType</code>.</p>
+						</div>
+						<pre><code class="language-ts"><span class="hljs-keyword">static</span> contextType = MyContext
+context!: React.ContextType&lt;<span class="hljs-keyword">typeof</span> MyContext&gt;</code></pre>
 						<dl class="tsd-comment-tags">
 							<dt>deprecated</dt>
+							<dd><p>if used without a type annotation, or without static contextType</p>
+							</dd>
+							<dt>see</dt>
 							<dd><p><a href="https://reactjs.org/docs/legacy-context.html">https://reactjs.org/docs/legacy-context.html</a></p>
 							</dd>
 						</dl>
@@ -190,7 +200,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Component.props</p>
 						<ul>
-							<li>Defined in node_modules/@types/react/index.d.ts:309</li>
+							<li>Defined in node_modules/@types/react/index.d.ts:412</li>
 						</ul>
 					</aside>
 				</section>
@@ -201,7 +211,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Component.refs</p>
 						<ul>
-							<li>Defined in node_modules/@types/react/index.d.ts:320</li>
+							<li>Defined in node_modules/@types/react/index.d.ts:418</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -227,9 +237,41 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Component.state</p>
 						<ul>
-							<li>Defined in node_modules/@types/react/index.d.ts:310</li>
+							<li>Defined in node_modules/@types/react/index.d.ts:413</li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+					<a name="contexttype" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagOptional">Optional</span> context<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">context<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Context</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from Component.contextType</p>
+						<ul>
+							<li>Defined in node_modules/@types/react/index.d.ts:372</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>If set, <code>this.context</code> will be set at runtime to the current value of the given Context.</p>
+						</div>
+						<p>Usage:</p>
+						<pre><code class="language-ts">type MyContext = number
+const Ctx = React.createContext&lt;MyContext&gt;(0)
+
+class Foo extends React.Component {
+  static contextType = Ctx
+  context!: React.ContextType&lt;typeof Ctx&gt;
+  render () {
+    return &lt;&gt;My context's value: {this.context}&lt;/&gt;;
+  }
+}</code></pre>
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p><a href="https://reactjs.org/docs/context.html#classcontexttype">https://reactjs.org/docs/context.html#classcontexttype</a></p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -245,7 +287,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.UNSAFE_componentWillMount</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:475</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:601</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -283,7 +325,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.UNSAFE_componentWillReceiveProps</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:507</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:633</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -332,7 +374,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.UNSAFE_componentWillUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:535</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:661</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -382,7 +424,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from ComponentLifecycle.componentDidCatch</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:414</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:530</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -415,7 +457,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from ComponentLifecycle.componentDidMount</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:393</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:509</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -438,7 +480,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from NewLifecycle.componentDidUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:446</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:572</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -474,7 +516,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.componentWillMount</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:461</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:587</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -511,7 +553,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.componentWillReceiveProps</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:490</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:616</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -559,7 +601,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from ComponentLifecycle.componentWillUnmount</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:409</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:525</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -583,7 +625,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.componentWillUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:520</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:646</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -632,7 +674,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Component.forceUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:301</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:404</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -656,7 +698,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from NewLifecycle.getSnapshotBeforeUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:440</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:566</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -695,7 +737,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.render</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/component/InfoPanel.tsx#L45">src/component/InfoPanel.tsx:45</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/component/InfoPanel.tsx#L45">src/component/InfoPanel.tsx:45</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
@@ -712,7 +754,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/component/InfoPanel.tsx#L85">src/component/InfoPanel.tsx:85</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/component/InfoPanel.tsx#L85">src/component/InfoPanel.tsx:85</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -735,7 +777,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/component/InfoPanel.tsx#L93">src/component/InfoPanel.tsx:93</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/component/InfoPanel.tsx#L93">src/component/InfoPanel.tsx:93</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -758,7 +800,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/component/InfoPanel.tsx#L103">src/component/InfoPanel.tsx:103</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/component/InfoPanel.tsx#L103">src/component/InfoPanel.tsx:103</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -782,7 +824,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Component.setState</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:296</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:399</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -815,7 +857,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from ComponentLifecycle.shouldComponentUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:404</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:520</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -853,7 +895,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/component/InfoPanel.tsx#L30">src/component/InfoPanel.tsx:30</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/component/InfoPanel.tsx#L30">src/component/InfoPanel.tsx:30</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -862,7 +904,7 @@
 						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/component/InfoPanel.tsx#L35">src/component/InfoPanel.tsx:35</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/component/InfoPanel.tsx#L35">src/component/InfoPanel.tsx:35</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -872,7 +914,7 @@
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;400</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/component/InfoPanel.tsx#L38">src/component/InfoPanel.tsx:38</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/component/InfoPanel.tsx#L38">src/component/InfoPanel.tsx:38</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -882,7 +924,7 @@
 						<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/component/InfoPanel.tsx#L31">src/component/InfoPanel.tsx:31</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/component/InfoPanel.tsx#L31">src/component/InfoPanel.tsx:31</a></li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -891,7 +933,7 @@
 							<div class="tsd-signature tsd-kind-icon">coupling<wbr>Scores<span class="tsd-signature-symbol">:</span> <a href="couplingcontainer.html" class="tsd-signature-type">CouplingContainer</a><span class="tsd-signature-symbol"> =&nbsp;new CouplingContainer()</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/component/InfoPanel.tsx#L32">src/component/InfoPanel.tsx:32</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/component/InfoPanel.tsx#L32">src/component/InfoPanel.tsx:32</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -901,7 +943,7 @@
 							<div class="tsd-signature tsd-kind-icon">secondary<wbr>Structures<span class="tsd-signature-symbol">:</span> <a href="chell1dsection.html" class="tsd-signature-type">Chell1DSection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"C"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"E"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"G"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"H"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"I"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"S"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"T"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"B"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;new Array&lt;SECONDARY_STRUCTURE&gt;()</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/component/InfoPanel.tsx#L33">src/component/InfoPanel.tsx:33</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/component/InfoPanel.tsx#L33">src/component/InfoPanel.tsx:33</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -912,7 +954,7 @@
 						<div class="tsd-signature tsd-kind-icon">residue<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/component/InfoPanel.tsx#L36">src/component/InfoPanel.tsx:36</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/component/InfoPanel.tsx#L36">src/component/InfoPanel.tsx:36</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -922,7 +964,7 @@
 						<div class="tsd-signature tsd-kind-icon">secondary<wbr>Structure<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a1c9e6d3/src/component/InfoPanel.tsx#L37">src/component/InfoPanel.tsx:37</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/component/InfoPanel.tsx#L37">src/component/InfoPanel.tsx:37</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -958,6 +1000,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="infopanelclass.html#state" class="tsd-kind-icon">state</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+								<a href="infopanelclass.html#contexttype" class="tsd-kind-icon">context<wbr>Type</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="infopanelclass.html#unsafe_componentwillmount" class="tsd-kind-icon">UNSAFE_<wbr>component<wbr>Will<wbr>Mount</a>
