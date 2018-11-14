@@ -16,6 +16,7 @@ import { CHELL_CSS_STYLE } from '~chell-viz~/data';
 export interface IAnatomogramContainerProps {
   cellContext: ICellContext;
   height: number | string;
+  ids: string[];
   springContext: ISpringContext;
   style: CHELL_CSS_STYLE;
   width: number | string;
@@ -45,6 +46,7 @@ export class AnatomogramContainerClass extends React.Component<IAnatomogramConta
       ...initialCellContext,
     },
     height: '300px',
+    ids: ['UBERON_0000178', 'UBERON_0000473', 'UBERON_0000955', 'UBERON_0000977'],
     springContext: {
       ...initialSpringContext,
     },
@@ -89,7 +91,7 @@ export class AnatomogramContainerClass extends React.Component<IAnatomogramConta
           onMouseOver={this.onMouseOver}
           selectColour={'ffaa00'}
           selectIds={selectIds}
-          showIds={['UBERON_0000178', 'UBERON_0000473', 'UBERON_0000955', 'UBERON_0000977']}
+          showIds={this.props.ids}
           species={'homo_sapiens'}
         />
       </div>
