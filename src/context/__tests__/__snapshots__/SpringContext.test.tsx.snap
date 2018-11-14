@@ -2,10 +2,17 @@
 
 exports[`SpringContext Should match the default snapshot. 1`] = `
 <div
+  addCategories={[Function]}
   addCategory={[Function]}
-  coordinates={Array []}
+  graphData={
+    Object {
+      "links": Array [],
+      "nodes": Array [],
+    }
+  }
   removeCategory={[Function]}
   selectedCategories={Array []}
+  setCategories={[Function]}
   toggleCategory={[Function]}
 />
 `;

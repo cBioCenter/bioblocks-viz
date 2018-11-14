@@ -1,24 +1,33 @@
 import * as React from 'react';
 
-import { fetchSpringCoordinateData } from '~chell-viz~/helper';
+import { ISpringGraphData } from '~chell-viz~/data';
+import { fetchSpringData } from '~chell-viz~/helper';
 
 export interface ISpringContext {
-  coordinates: number[][];
+  graphData: ISpringGraphData;
   selectedCategories: string[];
+  addCategories(categories: string[]): void;
   addCategory(category: string): void;
   removeCategory(category: string): void;
+  setCategories(categories: string[]): void;
   toggleCategory(category: string): void;
 }
 
 export const initialSpringContext: ISpringContext = {
+  addCategories: categories => {
+    return;
+  },
   addCategory: category => {
     return;
   },
-  coordinates: [],
+  graphData: { links: [], nodes: [] },
   removeCategory: category => {
     return;
   },
   selectedCategories: [],
+  setCategories: categories => {
+    return;
+  },
   toggleCategory: category => {
     return;
   },
@@ -33,22 +42,35 @@ export class SpringContextProvider extends React.Component<any, SpringContextSta
     super(props);
     this.state = {
       ...initialSpringContext,
+      addCategories: this.onAddCategories(),
       addCategory: this.onAddCategory(),
       removeCategory: this.onRemoveCategory(),
+      setCategories: this.onSetCategories(),
       toggleCategory: this.onToggleCategory(),
     };
   }
 
   public async componentDidMount() {
-    const coords = await fetchSpringCoordinateData('assets/datasets/hpc/full/coordinates.txt');
+    const graphData = await fetchSpringData('assets/datasets/hpc/full');
     this.setState({
-      coordinates: coords,
+      graphData,
+      selectedCategories: [],
     });
   }
 
   public render() {
     return <SpringContext.Provider value={this.state}>{this.props.children}</SpringContext.Provider>;
   }
+
+  protected onAddCategories = () => (categories: string[]) => {
+    const { selectedCategories } = this.state;
+    this.setState({
+      selectedCategories: [
+        ...selectedCategories,
+        ...categories.filter(category => !selectedCategories.includes(category)),
+      ],
+    });
+  };
 
   protected onAddCategory = () => (category: string) => {
     const { selectedCategories } = this.state;
@@ -71,6 +93,12 @@ export class SpringContextProvider extends React.Component<any, SpringContextSta
         ],
       });
     }
+  };
+
+  protected onSetCategories = () => (selectedCategories: string[]) => {
+    this.setState({
+      selectedCategories,
+    });
   };
 
   protected onToggleCategory = () => (category: string) => {

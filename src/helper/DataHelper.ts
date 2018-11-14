@@ -30,7 +30,7 @@ export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
     case VIZ_TYPE['TENSOR-T-SNE']:
       return fetchTensorTSneCoordinateData(dataDir);
     case VIZ_TYPE.SPRING:
-      return deriveSpringData(dataDir);
+      return fetchSpringData(dataDir);
     case VIZ_TYPE.NGL:
       return fetchNGLDataFromDirectory(dataDir);
     case VIZ_TYPE.CONTACT_MAP:
@@ -52,7 +52,7 @@ export const fetchAppropriateDataFromFile = async (viz: VIZ_TYPE, file: File) =>
   }
 };
 
-const deriveSpringData = async (dataDir: string) => {
+export const fetchSpringData = async (dataDir: string) => {
   const coordinates = await fetchSpringCoordinateData(`${dataDir}/coordinates.txt`);
   const graphData = await fetchGraphData(`${dataDir}/graph_data.json`);
   const catColorData = await fetchCategoricalColorData(`${dataDir}/categorical_coloring_data.json`);

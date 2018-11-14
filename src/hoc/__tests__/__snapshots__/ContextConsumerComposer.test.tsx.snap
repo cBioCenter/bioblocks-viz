@@ -19,6 +19,7 @@ exports[`ContextConsumerComposer Should allow consumers added directly. 1`] = `
           "_currentRenderer2": null,
           "_currentValue": "foo",
           "_currentValue2": "foo",
+          "_threadCount": 0,
         },
       },
     ]

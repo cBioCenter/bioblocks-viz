@@ -23,6 +23,20 @@ exports[`TensorTContainer Should match existing snapshot when given no props. 1`
     }
     height={400}
     pointColor="#aa0000"
+    springContext={
+      Object {
+        "addCategories": [Function],
+        "addCategory": [Function],
+        "graphData": Object {
+          "links": Array [],
+          "nodes": Array [],
+        },
+        "removeCategory": [Function],
+        "selectedCategories": Array [],
+        "setCategories": [Function],
+        "toggleCategory": [Function],
+      }
+    }
     style={
       Object {
         "padding": 0,
@@ -600,6 +614,20 @@ exports[`TensorTContainer Should match existing snapshot when given sample data.
     }
     height={400}
     pointColor="#aa0000"
+    springContext={
+      Object {
+        "addCategories": [Function],
+        "addCategory": [Function],
+        "graphData": Object {
+          "links": Array [],
+          "nodes": Array [],
+        },
+        "removeCategory": [Function],
+        "selectedCategories": Array [],
+        "setCategories": [Function],
+        "toggleCategory": [Function],
+      }
+    }
     style={
       Object {
         "padding": 0,
