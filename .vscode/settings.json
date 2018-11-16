@@ -44,6 +44,7 @@
     "autosize",
     "bgcolor",
     "bordercolor",
+    "borderless",
     "borderpad",
     "boxpoints",
     "colorscale",

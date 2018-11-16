@@ -6,53 +6,14 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
 >
   <ChellContextProvider>
     <Grid
+      centered={true}
       divided="vertically"
     >
-      <GridRow>
-        <VizPanelContainer
-          allowUploads={false}
-          dataDirs={
-            Array [
-              "assets/datasets/hpc/full",
-            ]
-          }
-          initialVisualizations={
-            Array [
-              "Spring",
-              "TENSOR-T-SNE",
-            ]
-          }
-          numPanels={2}
-          supportedVisualizations={
-            Array [
-              "Spring",
-              "TENSOR-T-SNE",
-            ]
-          }
-        />
-      </GridRow>
-      <Component />
-      <GridRow
-        centered={true}
-        style={
-          Object {
-            "padding": "0 50px",
-          }
-        }
-      >
-        <IframeComm
-          attributes={
-            Object {
-              "height": "500px",
-              "src": "undefined/morpheus.html",
-              "width": "100%",
-            }
-          }
-          postMessageData={Object {}}
-          serializeMessage={true}
-          targetOrigin="*"
-        />
-      </GridRow>
+      <GridRow />
+      <Component
+        height="450px"
+        width="450px"
+      />
     </Grid>
   </ChellContextProvider>
 </div>

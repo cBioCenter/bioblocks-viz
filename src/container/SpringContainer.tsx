@@ -1,10 +1,10 @@
 import { isEqual } from 'lodash';
 import * as React from 'react';
-import { Button } from 'semantic-ui-react';
+import { Card, Icon, Menu } from 'semantic-ui-react';
 
 // tslint:disable:import-name match-default-export-name
-import Fullscreen from 'react-full-screen';
 import IframeComm, { IframeCommAttributes } from 'react-iframe-comm';
+import ReactSVG from 'react-svg';
 // tslint:enable:import-name match-default-export-name
 
 import {
@@ -28,7 +28,7 @@ export interface ISpringContainerProps {
 }
 
 export interface ISpringContainerState {
-  isFullscreen: boolean;
+  isFullPage: boolean;
   postMessageData: object;
 }
 
@@ -60,10 +60,12 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
     width: 1200,
   };
 
+  public static displayName = 'SPRING';
+
   constructor(props: ISpringContainerProps) {
     super(props);
     this.state = {
-      isFullscreen: false,
+      isFullPage: false,
       postMessageData: {
         payload: {},
         type: 'init',
@@ -98,34 +100,74 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
 
   public render() {
     const { height, springUrl, width } = this.props;
-    const { isFullscreen, postMessageData } = this.state;
+    const { isFullPage, postMessageData } = this.state;
 
     const attributes: IframeCommAttributes = {
       allowFullScreen: true,
-      frameBorder: 1,
-      height: isFullscreen ? '100%' : height,
+      height: typeof height === 'number' ? height * 1.5 : parseInt(height, 10) * 1.5,
       src: springUrl,
-      width: isFullscreen ? '100%' : width,
+      width: typeof width === 'number' ? width * 1.5 : parseInt(width, 10) * 1.5,
     };
 
     const targetOriginPieces = springUrl.split('/');
 
+    const fillAvailableStyle = {
+      height: '-webkit-fill-available',
+      transformOrigin: 'top left',
+      width: '-webkit-fill-available',
+    };
+
+    const style: React.CSSProperties = isFullPage
+      ? {
+          ...fillAvailableStyle,
+          transformOrigin: 'top left',
+        }
+      : {
+          ...fillAvailableStyle,
+          transform: `scale(${2 / 3},${2 / 3})`,
+        };
+
+    const expandPercentage = isFullPage ? '165%' : '110%';
+
     return (
-      <div className={'spring-container'}>
-        <Fullscreen enabled={isFullscreen} onChange={this.onFullscreenChange}>
-          <IframeComm
-            key={isFullscreen ? 'fullscreen-spring-iframe' : 'not-fullscreen-spring-iframe'}
-            attributes={attributes}
-            postMessageData={postMessageData}
-            handleReady={this.onReady}
-            handleReceiveMessage={this.onReceiveMessage}
-            targetOrigin={`${targetOriginPieces[0]}//${targetOriginPieces[2]}`}
-          />
-        </Fullscreen>
-        <Button onClick={this.onFullscreenEnable} label={'Go Fullscreen!'} />
+      <div style={{ height, width }}>
+        <Card
+          className={'spring-container'}
+          style={{
+            height: expandPercentage,
+            maxHeight: 'unset',
+            maxWidth: 'unset',
+            padding: isFullPage ? 0 : '0 0 0 6px',
+            width: expandPercentage,
+          }}
+        >
+          {this.renderTopMenu()}
+          <div style={style}>
+            <IframeComm
+              attributes={attributes}
+              postMessageData={postMessageData}
+              handleReady={this.onReady}
+              handleReceiveMessage={this.onReceiveMessage}
+              targetOrigin={`${targetOriginPieces[0]}//${targetOriginPieces[2]}`}
+            />
+          </div>
+        </Card>
       </div>
     );
   }
+
+  protected renderTopMenu = () => (
+    <Menu secondary={true} style={{ margin: 0 }}>
+      <Menu.Item position={'left'} fitted={'horizontally'}>
+        <ReactSVG src={'assets/spring-icon.svg'} svgStyle={{ height: '32px', width: '32px' }} />
+        {SpringContainerClass.displayName}
+      </Menu.Item>
+      <Menu.Item position={'right'} fitted={'horizontally'}>
+        <Icon name={'expand arrows alternate'} onClick={this.onFullscreenEnable} />
+        <Icon name={'settings'} />
+      </Menu.Item>
+    </Menu>
+  );
 
   protected onReady = () => {
     return;
@@ -133,13 +175,16 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
 
   protected onFullscreenEnable = () => {
     this.setState({
-      isFullscreen: true,
+      isFullPage: !this.state.isFullPage,
+      postMessageData: {
+        // type: 'resize',
+      },
     });
   };
 
-  protected onFullscreenChange = (isFullscreen: boolean) => {
+  protected onFullscreenChange = (isFullPage: boolean) => {
     this.setState({
-      isFullscreen,
+      isFullPage,
       postMessageData: {
         type: 'relayout',
       },

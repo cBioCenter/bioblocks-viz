@@ -2,7 +2,7 @@
 
 exports[`TensorTContainer Should match existing snapshot when given no props. 1`] = `
 <Component>
-  <TensorTContainerClass
+  <tSNE - TensorFlow
     cellContext={
       Object {
         "addCells": [Function],
@@ -460,7 +460,7 @@ exports[`TensorTContainer Should match existing snapshot when given no props. 1`
         </div>
       </SettingsPanel>
     </div>
-  </TensorTContainerClass>
+  </tSNE - TensorFlow>
 </Component>
 `;
 
@@ -535,7 +535,7 @@ exports[`TensorTContainer Should match existing snapshot when given sample data.
     ]
   }
 >
-  <TensorTContainerClass
+  <tSNE - TensorFlow
     cellContext={
       Object {
         "addCells": [Function],
@@ -1051,6 +1051,6 @@ exports[`TensorTContainer Should match existing snapshot when given sample data.
         </div>
       </SettingsPanel>
     </div>
-  </TensorTContainerClass>
+  </tSNE - TensorFlow>
 </Component>
 `;

@@ -95,7 +95,7 @@
 								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="springcontainerclass.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-inherited">
+						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="springcontainerclass.html#context" class="tsd-kind-icon">context</a></li>
@@ -103,6 +103,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="springcontainerclass.html#refs" class="tsd-kind-icon">refs</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="springcontainerclass.html#state" class="tsd-kind-icon">state</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="springcontainerclass.html#contexttype" class="tsd-kind-icon">context<wbr>Type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="springcontainerclass.html#displayname" class="tsd-kind-icon">display<wbr>Name</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -125,6 +126,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="springcontainerclass.html#onready" class="tsd-kind-icon">on<wbr>Ready</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="springcontainerclass.html#onreceivemessage" class="tsd-kind-icon">on<wbr>Receive<wbr>Message</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="springcontainerclass.html#render" class="tsd-kind-icon">render</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="springcontainerclass.html#rendertopmenu" class="tsd-kind-icon">render<wbr>Top<wbr>Menu</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="springcontainerclass.html#setstate" class="tsd-kind-icon">set<wbr>State</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="springcontainerclass.html#shouldcomponentupdate" class="tsd-kind-icon">should<wbr>Component<wbr>Update</a></li>
 							</ul>
@@ -151,7 +153,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8692e585/src/container/SpringContainer.tsx#L61">src/container/SpringContainer.tsx:61</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/SpringContainer.tsx#L63">src/container/SpringContainer.tsx:63</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -165,7 +167,7 @@
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="context" class="tsd-anchor"></a>
@@ -273,6 +275,16 @@ class Foo extends React.Component {
 							</dd>
 						</dl>
 					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
+					<a name="displayname" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> display<wbr>Name</h3>
+					<div class="tsd-signature tsd-kind-icon">display<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;SPRING&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/SpringContainer.tsx#L63">src/container/SpringContainer.tsx:63</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -481,7 +493,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Overrides NewLifecycle.componentDidUpdate</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8692e585/src/container/SpringContainer.tsx#L74">src/container/SpringContainer.tsx:74</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/SpringContainer.tsx#L76">src/container/SpringContainer.tsx:76</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -719,19 +731,19 @@ class Foo extends React.Component {
 					<a name="onfullscreenchange" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> on<wbr>Fullscreen<wbr>Change</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">on<wbr>Fullscreen<wbr>Change<span class="tsd-signature-symbol">(</span>isFullscreen<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Fullscreen<wbr>Change<span class="tsd-signature-symbol">(</span>isFullPage<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8692e585/src/container/SpringContainer.tsx#L140">src/container/SpringContainer.tsx:140</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/SpringContainer.tsx#L185">src/container/SpringContainer.tsx:185</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>isFullscreen: <span class="tsd-signature-type">boolean</span></h5>
+									<h5>isFullPage: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -748,7 +760,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8692e585/src/container/SpringContainer.tsx#L134">src/container/SpringContainer.tsx:134</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/SpringContainer.tsx#L176">src/container/SpringContainer.tsx:176</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -765,7 +777,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8692e585/src/container/SpringContainer.tsx#L130">src/container/SpringContainer.tsx:130</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/SpringContainer.tsx#L172">src/container/SpringContainer.tsx:172</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -782,7 +794,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8692e585/src/container/SpringContainer.tsx#L150">src/container/SpringContainer.tsx:150</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/SpringContainer.tsx#L195">src/container/SpringContainer.tsx:195</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -806,7 +818,24 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Overrides Component.render</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8692e585/src/container/SpringContainer.tsx#L99">src/container/SpringContainer.tsx:99</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/SpringContainer.tsx#L101">src/container/SpringContainer.tsx:101</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="rendertopmenu" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> render<wbr>Top<wbr>Menu</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">render<wbr>Top<wbr>Menu<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/SpringContainer.tsx#L159">src/container/SpringContainer.tsx:159</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
@@ -895,7 +924,7 @@ class Foo extends React.Component {
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8692e585/src/container/SpringContainer.tsx#L45">src/container/SpringContainer.tsx:45</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/SpringContainer.tsx#L45">src/container/SpringContainer.tsx:45</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -904,7 +933,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;100%&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8692e585/src/container/SpringContainer.tsx#L53">src/container/SpringContainer.tsx:53</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/SpringContainer.tsx#L53">src/container/SpringContainer.tsx:53</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -914,7 +943,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">padding<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8692e585/src/container/SpringContainer.tsx#L54">src/container/SpringContainer.tsx:54</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/SpringContainer.tsx#L54">src/container/SpringContainer.tsx:54</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -924,7 +953,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">selected<wbr>Category<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8692e585/src/container/SpringContainer.tsx#L55">src/container/SpringContainer.tsx:55</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/SpringContainer.tsx#L55">src/container/SpringContainer.tsx:55</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -934,7 +963,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">spring<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;http://localhost:11037/springViewer.html?datasets/hpc/full&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8692e585/src/container/SpringContainer.tsx#L59">src/container/SpringContainer.tsx:59</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/SpringContainer.tsx#L59">src/container/SpringContainer.tsx:59</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -944,7 +973,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1200</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8692e585/src/container/SpringContainer.tsx#L60">src/container/SpringContainer.tsx:60</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/SpringContainer.tsx#L60">src/container/SpringContainer.tsx:60</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -954,7 +983,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">cell<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8692e585/src/container/SpringContainer.tsx#L46">src/container/SpringContainer.tsx:46</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/SpringContainer.tsx#L46">src/container/SpringContainer.tsx:46</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -964,7 +993,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8692e585/src/container/SpringContainer.tsx#L49">src/container/SpringContainer.tsx:49</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/SpringContainer.tsx#L49">src/container/SpringContainer.tsx:49</a></li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -973,7 +1002,7 @@ class Foo extends React.Component {
 							<div class="tsd-signature tsd-kind-icon">links<span class="tsd-signature-symbol">:</span> <a href="../interfaces/ispringlink.html" class="tsd-signature-type">ISpringLink</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;new Array&lt;ISpringLink&gt;()</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8692e585/src/container/SpringContainer.tsx#L50">src/container/SpringContainer.tsx:50</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/SpringContainer.tsx#L50">src/container/SpringContainer.tsx:50</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -983,7 +1012,7 @@ class Foo extends React.Component {
 							<div class="tsd-signature tsd-kind-icon">nodes<span class="tsd-signature-symbol">:</span> <a href="../interfaces/ispringnode.html" class="tsd-signature-type">ISpringNode</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;new Array&lt;ISpringNode&gt;()</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8692e585/src/container/SpringContainer.tsx#L51">src/container/SpringContainer.tsx:51</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/SpringContainer.tsx#L51">src/container/SpringContainer.tsx:51</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -994,7 +1023,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">spring<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/8692e585/src/container/SpringContainer.tsx#L56">src/container/SpringContainer.tsx:56</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/b66f6885/src/container/SpringContainer.tsx#L56">src/container/SpringContainer.tsx:56</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1033,6 +1062,9 @@ class Foo extends React.Component {
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
 								<a href="springcontainerclass.html#contexttype" class="tsd-kind-icon">context<wbr>Type</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
+								<a href="springcontainerclass.html#displayname" class="tsd-kind-icon">display<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="springcontainerclass.html#unsafe_componentwillmount" class="tsd-kind-icon">UNSAFE_<wbr>component<wbr>Will<wbr>Mount</a>
@@ -1084,6 +1116,9 @@ class Foo extends React.Component {
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="springcontainerclass.html#render" class="tsd-kind-icon">render</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="springcontainerclass.html#rendertopmenu" class="tsd-kind-icon">render<wbr>Top<wbr>Menu</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
 								<a href="springcontainerclass.html#setstate" class="tsd-kind-icon">set<wbr>State</a>

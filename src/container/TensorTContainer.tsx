@@ -59,6 +59,8 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
     width: 400,
   };
 
+  public static displayName = 'tSNE - TensorFlow';
+
   protected canvasContext: CanvasRenderingContext2D | null = null;
 
   constructor(props: ITensorContainerProps) {

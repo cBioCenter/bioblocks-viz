@@ -2,40 +2,94 @@
 
 exports[`SpringContainer Should match existing snapshot. 1`] = `
 <div
-  className="spring-container"
+  style={
+    Object {
+      "height": "100%",
+      "width": 1200,
+    }
+  }
 >
-  <FullScreen
-    enabled={false}
-    onChange={[Function]}
+  <Card
+    className="spring-container"
+    style={
+      Object {
+        "height": "110%",
+        "maxHeight": "unset",
+        "maxWidth": "unset",
+        "padding": "0 0 0 6px",
+        "width": "110%",
+      }
+    }
   >
-    <IframeComm
-      attributes={
+    <Menu
+      secondary={true}
+      style={
         Object {
-          "allowFullScreen": true,
-          "frameBorder": 1,
-          "height": "100%",
-          "src": "http://localhost:11037/springViewer.html?datasets/hpc/full",
-          "width": 1200,
+          "margin": 0,
         }
       }
-      handleReady={[Function]}
-      handleReceiveMessage={[Function]}
-      key="not-fullscreen-spring-iframe"
-      postMessageData={
+    >
+      <MenuItem
+        fitted="horizontally"
+        position="left"
+      >
+        <Component
+          src="assets/spring-icon.svg"
+          svgStyle={
+            Object {
+              "height": "32px",
+              "width": "32px",
+            }
+          }
+        />
+        SPRING
+      </MenuItem>
+      <MenuItem
+        fitted="horizontally"
+        position="right"
+      >
+        <Icon
+          as="i"
+          name="expand arrows alternate"
+          onClick={[Function]}
+        />
+        <Icon
+          as="i"
+          name="settings"
+        />
+      </MenuItem>
+    </Menu>
+    <div
+      style={
         Object {
-          "payload": Object {},
-          "type": "init",
+          "height": "-webkit-fill-available",
+          "transform": "scale(0.6666666666666666,0.6666666666666666)",
+          "transformOrigin": "top left",
+          "width": "-webkit-fill-available",
         }
       }
-      serializeMessage={true}
-      targetOrigin="http://localhost:11037"
-    />
-  </FullScreen>
-  <Button
-    as="button"
-    label="Go Fullscreen!"
-    onClick={[Function]}
-    role="button"
-  />
+    >
+      <IframeComm
+        attributes={
+          Object {
+            "allowFullScreen": true,
+            "height": 150,
+            "src": "http://localhost:11037/springViewer.html?datasets/hpc/full",
+            "width": 1800,
+          }
+        }
+        handleReady={[Function]}
+        handleReceiveMessage={[Function]}
+        postMessageData={
+          Object {
+            "payload": Object {},
+            "type": "init",
+          }
+        }
+        serializeMessage={true}
+        targetOrigin="http://localhost:11037"
+      />
+    </div>
+  </Card>
 </div>
 `;

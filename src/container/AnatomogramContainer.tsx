@@ -54,6 +54,8 @@ export class AnatomogramContainerClass extends React.Component<IAnatomogramConta
     width: '400px',
   };
 
+  public static displayName = 'Anatomogram';
+
   constructor(props: IAnatomogramContainerProps) {
     super(props);
     this.state = {
