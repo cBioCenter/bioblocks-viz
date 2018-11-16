@@ -158,11 +158,11 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
 
   protected renderTopMenu = () => (
     <Menu secondary={true} style={{ margin: 0 }}>
-      <Menu.Item position={'left'} fitted={'horizontally'}>
+      <Menu.Item position={'left'} fitted={'horizontally'} style={{ margin: 0 }}>
         <ReactSVG src={'assets/spring-icon.svg'} svgStyle={{ height: '32px', width: '32px' }} />
         {SpringContainerClass.displayName}
       </Menu.Item>
-      <Menu.Item position={'right'} fitted={'horizontally'}>
+      <Menu.Item position={'right'} fitted={'horizontally'} style={{ margin: 0 }}>
         <Icon name={'expand arrows alternate'} onClick={this.onFullscreenEnable} />
         <Icon name={'settings'} />
       </Menu.Item>
