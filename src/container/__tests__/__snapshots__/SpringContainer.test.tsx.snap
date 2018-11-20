@@ -1,23 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SpringContainer Should match existing snapshot. 1`] = `
-<div
-  style={
-    Object {
-      "height": "100%",
-      "width": 1200,
-    }
-  }
+<GridColumn
+  width={8}
 >
   <Card
     className="spring-container"
     style={
       Object {
-        "height": "110%",
-        "maxHeight": "unset",
         "maxWidth": "unset",
-        "padding": "0 0 0 6px",
-        "width": "110%",
+        "padding": "5px",
+        "width": "100%",
       }
     }
   >
@@ -25,6 +18,7 @@ exports[`SpringContainer Should match existing snapshot. 1`] = `
       secondary={true}
       style={
         Object {
+          "height": 32,
           "margin": 0,
         }
       }
@@ -69,37 +63,6 @@ exports[`SpringContainer Should match existing snapshot. 1`] = `
         />
       </MenuItem>
     </Menu>
-    <div
-      style={
-        Object {
-          "height": "-webkit-fill-available",
-          "transform": "scale(0.6666666666666666,0.6666666666666666)",
-          "transformOrigin": "top left",
-          "width": "-webkit-fill-available",
-        }
-      }
-    >
-      <IframeComm
-        attributes={
-          Object {
-            "allowFullScreen": true,
-            "height": 150,
-            "src": "http://localhost:11037/springViewer.html?datasets/hpc/full",
-            "width": 1800,
-          }
-        }
-        handleReady={[Function]}
-        handleReceiveMessage={[Function]}
-        postMessageData={
-          Object {
-            "payload": Object {},
-            "type": "init",
-          }
-        }
-        serializeMessage={true}
-        targetOrigin="http://localhost:11037"
-      />
-    </div>
   </Card>
-</div>
+</GridColumn>
 `;

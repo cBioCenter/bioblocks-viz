@@ -5,16 +5,22 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
   id="ChellVizApp"
 >
   <ChellContextProvider>
-    <Grid
-      centered={true}
-      divided="vertically"
+    <div
+      style={
+        Object {
+          "float": "right",
+          "width": "70vw",
+        }
+      }
     >
-      <GridRow />
-      <Component
-        height="450px"
-        width="450px"
-      />
-    </Grid>
+      <Grid
+        centered={true}
+        columns={2}
+      >
+        <Component />
+        <Component />
+      </Grid>
+    </div>
   </ChellContextProvider>
 </div>
 `;
