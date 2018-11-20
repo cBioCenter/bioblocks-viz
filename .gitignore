@@ -2,6 +2,9 @@ node_modules
 dist
 lib
 
+datasets/**/*.npz
+*.hdf5
+
 yarn-error.log
 webpack-stats.json
 .DS_STORE
