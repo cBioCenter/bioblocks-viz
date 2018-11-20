@@ -20,7 +20,7 @@ export interface IComponentCardState {
   isFullPage: boolean;
 }
 
-export class SpringContainerClass extends React.Component<IComponentCardProps, IComponentCardState> {
+export class ComponentCard extends React.Component<IComponentCardProps, IComponentCardState> {
   public static defaultProps = {
     frameHeight: 0,
     frameWidth: 0,
@@ -42,16 +42,29 @@ export class SpringContainerClass extends React.Component<IComponentCardProps, I
   }
 
   public componentDidMount() {
-    window.onresize = () => {
-      if (this.props.isFramedComponent) {
-        this.resizeFramedComponent();
-      }
-    };
+    if (this.props.isFramedComponent) {
+      window.onresize = () => {
+        if (this.props.isFramedComponent) {
+          this.resizeFramedComponent();
+        }
+      };
+      this.resizeFramedComponent();
+    }
+  }
+
+  public componentDidUpdate(prevProps: IComponentCardProps, prevState: IComponentCardState) {
+    const { isFullPage } = this.state;
+    if (isFullPage !== prevState.isFullPage) {
+      this.resizeFramedComponent();
+    }
   }
 
   public render() {
-    const { headerHeight } = this.props;
-    const { isFullPage } = this.state;
+    const { headerHeight, isFramedComponent } = this.props;
+    const { isFullPage, framedStyle } = this.state;
+
+    console.log(isFullPage);
+    console.log(framedStyle);
 
     return (
       <Grid.Column width={isFullPage ? 16 : 8}>
@@ -65,7 +78,7 @@ export class SpringContainerClass extends React.Component<IComponentCardProps, I
           }}
         >
           {this.renderTopMenu(headerHeight)}
-          {this.props.children}
+          {isFramedComponent ? <div style={framedStyle}>{this.props.children}</div> : this.props.children}
         </Card>
       </Grid.Column>
     );
@@ -85,6 +98,7 @@ export class SpringContainerClass extends React.Component<IComponentCardProps, I
   );
 
   protected onFullPageToggle = () => {
+    console.log(this.state.isFullPage);
     this.setState({
       isFullPage: !this.state.isFullPage,
     });
@@ -94,6 +108,7 @@ export class SpringContainerClass extends React.Component<IComponentCardProps, I
     const { frameHeight, frameWidth, headerHeight } = this.props;
     const { framedStyle } = this.state;
 
+    console.log('resizing');
     if (this.cardRef) {
       const iFrameNodeRef = ReactDOM.findDOMNode(this.cardRef) as Element;
       const iFrameNodeStyle = iFrameNodeRef ? window.getComputedStyle(iFrameNodeRef) : null;

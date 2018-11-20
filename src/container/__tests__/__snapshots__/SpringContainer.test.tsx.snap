@@ -1,68 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SpringContainer Should match existing snapshot. 1`] = `
-<GridColumn
-  width={8}
+<ComponentCard
+  componentName="SPRING"
+  frameHeight={800}
+  frameWidth={1200}
+  headerHeight={32}
+  isFramedComponent={true}
+  padding={0}
 >
-  <Card
-    className="spring-container"
-    style={
+  <IframeComm
+    attributes={
       Object {
-        "maxWidth": "unset",
-        "padding": "5px",
-        "width": "100%",
+        "allowFullScreen": true,
+        "height": 800,
+        "src": "http://localhost//springViewer.html?datasets/hpc/full",
+        "width": 1200,
       }
     }
-  >
-    <Menu
-      secondary={true}
-      style={
-        Object {
-          "height": 32,
-          "margin": 0,
-        }
+    handleReady={[Function]}
+    handleReceiveMessage={[Function]}
+    postMessageData={
+      Object {
+        "payload": Object {},
+        "type": "init",
       }
-    >
-      <MenuItem
-        fitted="horizontally"
-        position="left"
-        style={
-          Object {
-            "margin": 0,
-          }
-        }
-      >
-        <Component
-          src="assets/spring-icon.svg"
-          svgStyle={
-            Object {
-              "height": "32px",
-              "width": "32px",
-            }
-          }
-        />
-        SPRING
-      </MenuItem>
-      <MenuItem
-        fitted="horizontally"
-        position="right"
-        style={
-          Object {
-            "margin": 0,
-          }
-        }
-      >
-        <Icon
-          as="i"
-          name="expand arrows alternate"
-          onClick={[Function]}
-        />
-        <Icon
-          as="i"
-          name="settings"
-        />
-      </MenuItem>
-    </Menu>
-  </Card>
-</GridColumn>
+    }
+    serializeMessage={true}
+    targetOrigin="http://localhost"
+  />
+</ComponentCard>
 `;

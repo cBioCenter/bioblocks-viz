@@ -143,9 +143,7 @@ exports[`VizSelectorPanel Should match existing snapshot for initial visualizati
     raised={true}
   >
     <Component
-      height={450}
       padding={15}
-      width={450}
     />
   </Card>
 </div>

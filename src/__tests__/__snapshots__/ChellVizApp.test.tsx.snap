@@ -8,17 +8,38 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
     <div
       style={
         Object {
-          "float": "right",
-          "width": "70vw",
+          "padding": "20px",
         }
       }
     >
       <Grid
         centered={true}
         columns={2}
+        style={
+          Object {
+            "width": "90vw",
+          }
+        }
       >
         <Component />
-        <Component />
+        <ComponentCard
+          componentName="tSNE - TensorFlow"
+          frameHeight={0}
+          frameWidth={0}
+          headerHeight={32}
+          isFramedComponent={false}
+          padding={0}
+        />
+        <ComponentCard
+          componentName="Anatomogram"
+          frameHeight={0}
+          frameWidth={0}
+          headerHeight={32}
+          isFramedComponent={false}
+          padding={0}
+        >
+          <Component />
+        </ComponentCard>
       </Grid>
     </div>
   </ChellContextProvider>

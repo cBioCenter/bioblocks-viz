@@ -104,7 +104,7 @@ export class VizSelectorPanel extends React.Component<IVizPanelProps, IVizPanelS
           )
         );
       case VIZ_TYPE.SPRING:
-        return <SpringContainer height={this.props.height} padding={padding} width={this.props.width} />;
+        return <SpringContainer padding={padding} />;
       case VIZ_TYPE.NGL:
         return (
           data.NGL && (
