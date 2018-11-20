@@ -87,6 +87,7 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
   }
 
   public componentDidMount() {
+    console.log(window.location);
     window.onresize = () => {
       this.resizeSpringIFrame();
     };
