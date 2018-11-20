@@ -63,7 +63,7 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
       ...initialSpringContext,
     },
     springHeight: 800,
-    springUrl: `${window.location}/springViewer.html?datasets/hpc/full`,
+    springUrl: `${window.origin}/chell-viz/springViewer.html?datasets/hpc/full`,
     springWidth: 1200,
     width: 1200,
   };

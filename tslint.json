@@ -1,5 +1,8 @@
 {
   "defaultSeverity": "error",
+  "linterOptions": {
+    "exclude": ["SPRING_dev"]
+  },
   "extends": [
     "tslint-config-prettier",
     "tslint-eslint-rules",
