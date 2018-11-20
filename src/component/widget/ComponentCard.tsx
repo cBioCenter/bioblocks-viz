@@ -12,6 +12,7 @@ export interface IComponentCardProps {
   frameWidth: number;
   headerHeight: number;
   isFramedComponent: boolean;
+  isFullPage: boolean;
   padding: number | string;
 }
 
@@ -26,6 +27,7 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     frameWidth: 0,
     headerHeight: 32,
     isFramedComponent: false,
+    isFullPage: false,
     padding: 0,
   };
 
@@ -37,7 +39,7 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
       framedStyle: {
         transformOrigin: 'top left',
       },
-      isFullPage: false,
+      isFullPage: props.isFullPage,
     };
   }
 

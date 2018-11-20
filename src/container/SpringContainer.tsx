@@ -18,6 +18,7 @@ import { ISpringLink, ISpringNode } from '~chell-viz~/data';
 
 export interface ISpringContainerProps {
   cellContext: ICellContext;
+  isFullPage: boolean;
   padding: number | string;
   selectedCategory: string;
   springContext: ISpringContext;
@@ -49,17 +50,18 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
       nodes: new Array<ISpringNode>(),
     },
     headerHeight: 32,
+    isFullPage: false,
     padding: 0,
     selectedCategory: '',
     springContext: {
       ...initialSpringContext,
     },
-    springHeight: 800,
+    springHeight: 550,
     springUrl: `${window.location.origin}/${window.location.pathname.substr(
       0,
       window.location.pathname.lastIndexOf('/'),
     )}/springViewer.html?datasets/hpc/full`,
-    springWidth: 1200,
+    springWidth: 700,
   };
 
   public static displayName = 'SPRING';
@@ -103,7 +105,7 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
   }
 
   public render() {
-    const { springHeight, springUrl, springWidth } = this.props;
+    const { isFullPage, springHeight, springUrl, springWidth } = this.props;
     const { postMessageData } = this.state;
 
     const attributes: IframeCommAttributes = {
@@ -119,6 +121,7 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
       <ComponentCard
         componentName={SpringContainerClass.displayName}
         isFramedComponent={true}
+        isFullPage={isFullPage}
         frameHeight={springHeight}
         frameWidth={springWidth}
       >

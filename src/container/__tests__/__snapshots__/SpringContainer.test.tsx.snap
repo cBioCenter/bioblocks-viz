@@ -3,19 +3,20 @@
 exports[`SpringContainer Should match existing snapshot. 1`] = `
 <ComponentCard
   componentName="SPRING"
-  frameHeight={800}
-  frameWidth={1200}
+  frameHeight={550}
+  frameWidth={700}
   headerHeight={32}
   isFramedComponent={true}
+  isFullPage={false}
   padding={0}
 >
   <IframeComm
     attributes={
       Object {
         "allowFullScreen": true,
-        "height": 800,
+        "height": 550,
         "src": "http://localhost//springViewer.html?datasets/hpc/full",
-        "width": 1200,
+        "width": 700,
       }
     }
     handleReady={[Function]}

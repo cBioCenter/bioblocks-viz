@@ -38,7 +38,7 @@ export class ChellVizApp extends React.Component<any, IChellVizAppState> {
           <div style={{ padding: '20px' }}>
             <Grid centered={true} columns={2} style={{ width: '90vw' }}>
               <SpringContainer />
-              <ComponentCard componentName={TensorTContainerClass.displayName}>
+              <ComponentCard componentName={TensorTContainerClass.displayName} isFramedComponent={true}>
                 {this.state.tensorData && <TensorTContainer height={450} width={450} data={this.state.tensorData} />}
               </ComponentCard>
               <ComponentCard componentName={AnatomogramContainerClass.displayName}>
