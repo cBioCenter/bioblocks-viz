@@ -1,6 +1,7 @@
 import { isEqual } from 'lodash';
 import * as React from 'react';
-import { Card, Icon, Menu } from 'semantic-ui-react';
+import * as ReactDOM from 'react-dom';
+import { Card, Grid, Icon, Menu } from 'semantic-ui-react';
 
 // tslint:disable:import-name match-default-export-name
 import IframeComm, { IframeCommAttributes } from 'react-iframe-comm';
@@ -19,17 +20,21 @@ import { ISpringLink, ISpringNode } from '~chell-viz~/data';
 
 export interface ISpringContainerProps {
   cellContext: ICellContext;
+  headerHeight: number;
   height: number | string;
   padding: number | string;
   selectedCategory: string;
   springContext: ISpringContext;
+  springHeight: number;
   springUrl: string;
+  springWidth: number;
   width: number | string;
 }
 
 export interface ISpringContainerState {
   isFullPage: boolean;
   postMessageData: object;
+  springIFrameStyle: React.CSSProperties;
 }
 
 export interface ISpringMessage {
@@ -50,17 +55,22 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
       links: new Array<ISpringLink>(),
       nodes: new Array<ISpringNode>(),
     },
+    headerHeight: 32,
     height: '100%',
     padding: 0,
     selectedCategory: '',
     springContext: {
       ...initialSpringContext,
     },
+    springHeight: 800,
     springUrl: 'http://localhost:11037/springViewer.html?datasets/hpc/full',
+    springWidth: 1200,
     width: 1200,
   };
 
   public static displayName = 'SPRING';
+
+  protected springIFrameRef: React.Component<any> | null = null;
 
   constructor(props: ISpringContainerProps) {
     super(props);
@@ -70,6 +80,15 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
         payload: {},
         type: 'init',
       },
+      springIFrameStyle: {
+        transformOrigin: 'top left',
+      },
+    };
+  }
+
+  public componentDidMount() {
+    window.onresize = () => {
+      this.resizeSpringIFrame();
     };
   }
 
@@ -99,65 +118,70 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
   }
 
   public render() {
-    const { height, springUrl, width } = this.props;
-    const { isFullPage, postMessageData } = this.state;
+    const { headerHeight, springHeight, springUrl, springWidth } = this.props;
+    const { isFullPage, postMessageData, springIFrameStyle } = this.state;
 
     const attributes: IframeCommAttributes = {
       allowFullScreen: true,
-      height: typeof height === 'number' ? height * 1.5 : parseInt(height, 10) * 1.5,
+      height: springHeight,
       src: springUrl,
-      width: typeof width === 'number' ? width * 1.5 : parseInt(width, 10) * 1.5,
+      width: springWidth,
     };
 
     const targetOriginPieces = springUrl.split('/');
 
-    const fillAvailableStyle = {
-      height: '-webkit-fill-available',
-      transformOrigin: 'top left',
-      width: '-webkit-fill-available',
-    };
-
-    const style: React.CSSProperties = isFullPage
-      ? {
-          ...fillAvailableStyle,
-          transformOrigin: 'top left',
-        }
-      : {
-          ...fillAvailableStyle,
-          transform: `scale(${2 / 3},${2 / 3})`,
-        };
-
-    const expandPercentage = isFullPage ? '165%' : '110%';
-
     return (
-      <div style={{ height, width }}>
+      <Grid.Column width={isFullPage ? 16 : 8}>
         <Card
           className={'spring-container'}
+          ref={ref => (this.springIFrameRef = ref)}
           style={{
-            height: expandPercentage,
-            maxHeight: 'unset',
             maxWidth: 'unset',
-            padding: isFullPage ? 0 : '0 0 0 6px',
-            width: expandPercentage,
+            padding: '5px',
+            width: '100%',
           }}
         >
-          {this.renderTopMenu()}
-          <div style={style}>
-            <IframeComm
-              attributes={attributes}
-              postMessageData={postMessageData}
-              handleReady={this.onReady}
-              handleReceiveMessage={this.onReceiveMessage}
-              targetOrigin={`${targetOriginPieces[0]}//${targetOriginPieces[2]}`}
-            />
-          </div>
+          {this.renderTopMenu(headerHeight)}
+          {this.springIFrameRef && (
+            <div style={springIFrameStyle}>
+              <IframeComm
+                attributes={attributes}
+                postMessageData={postMessageData}
+                handleReady={this.onReady}
+                handleReceiveMessage={this.onReceiveMessage}
+                targetOrigin={`${targetOriginPieces[0]}//${targetOriginPieces[2]}`}
+              />
+            </div>
+          )}
         </Card>
-      </div>
+      </Grid.Column>
     );
   }
 
-  protected renderTopMenu = () => (
-    <Menu secondary={true} style={{ margin: 0 }}>
+  protected resizeSpringIFrame = () => {
+    const { headerHeight, springHeight, springWidth } = this.props;
+    const { springIFrameStyle } = this.state;
+
+    if (this.springIFrameRef) {
+      const iFrameNodeRef = ReactDOM.findDOMNode(this.springIFrameRef) as Element;
+      const iFrameNodeStyle = iFrameNodeRef ? window.getComputedStyle(iFrameNodeRef) : null;
+
+      if (iFrameNodeStyle && iFrameNodeStyle.width && iFrameNodeStyle.height) {
+        const refHeight = parseInt(iFrameNodeStyle.height, 10) - 18;
+        const refWidth = parseInt(iFrameNodeStyle.width, 10) - 10;
+
+        this.setState({
+          springIFrameStyle: {
+            ...springIFrameStyle,
+            transform: `scale(calc(${refWidth}/${springWidth}),calc((${refHeight} - ${headerHeight})/${springHeight}))`,
+          },
+        });
+      }
+    }
+  };
+
+  protected renderTopMenu = (height: number | string) => (
+    <Menu secondary={true} style={{ margin: 0, height }}>
       <Menu.Item position={'left'} fitted={'horizontally'} style={{ margin: 0 }}>
         <ReactSVG src={'assets/spring-icon.svg'} svgStyle={{ height: '32px', width: '32px' }} />
         {SpringContainerClass.displayName}
@@ -170,7 +194,7 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
   );
 
   protected onReady = () => {
-    return;
+    this.resizeSpringIFrame();
   };
 
   protected onFullscreenEnable = () => {
@@ -180,16 +204,6 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
         // type: 'resize',
       },
     });
-  };
-
-  protected onFullscreenChange = (isFullPage: boolean) => {
-    this.setState({
-      isFullPage,
-      postMessageData: {
-        type: 'relayout',
-      },
-    });
-    this.forceUpdate();
   };
 
   protected onReceiveMessage = (msg: MessageEvent) => {

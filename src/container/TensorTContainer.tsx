@@ -87,21 +87,23 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
   public async componentDidUpdate(prevProps: ITensorContainerProps) {
     const { cellContext, springContext } = this.props;
     const { tsne } = this.state;
-    if (tsne && cellContext.currentCells !== prevProps.cellContext.currentCells) {
-      this.setState({
-        plotlyCoords: this.getPlotlyCoordsFromTsne(await tsne.coordsArray()),
-      });
-    } else if (tsne && !isEqual(springContext.selectedCategories, prevProps.springContext.selectedCategories)) {
-      const indices = new Array<number>();
-      for (let i = 0; i < springContext.graphData.nodes.length; ++i) {
-        if (springContext.selectedCategories.includes(springContext.graphData.nodes[i].category)) {
-          indices.push(i);
+    if (tsne) {
+      if (cellContext.currentCells !== prevProps.cellContext.currentCells) {
+        this.setState({
+          plotlyCoords: this.getPlotlyCoordsFromTsne(await tsne.coordsArray()),
+        });
+      } else if (!isEqual(springContext.selectedCategories, prevProps.springContext.selectedCategories)) {
+        const indices = new Array<number>();
+        for (let i = 0; i < springContext.graphData.nodes.length; ++i) {
+          if (springContext.selectedCategories.includes(springContext.graphData.nodes[i].category)) {
+            indices.push(i);
+          }
         }
-      }
 
-      this.setState({
-        plotlyCoords: this.getPlotlyCoordsFromSpring(await tsne.coordsArray(), indices),
-      });
+        this.setState({
+          plotlyCoords: this.getPlotlyCoordsFromSpring(await tsne.coordsArray(), indices),
+        });
+      }
     }
   }
 

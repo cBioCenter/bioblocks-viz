@@ -32,6 +32,11 @@ exports[`SpringContainer Should match existing snapshot. 1`] = `
       <MenuItem
         fitted="horizontally"
         position="left"
+        style={
+          Object {
+            "margin": 0,
+          }
+        }
       >
         <Component
           src="assets/spring-icon.svg"
@@ -47,6 +52,11 @@ exports[`SpringContainer Should match existing snapshot. 1`] = `
       <MenuItem
         fitted="horizontally"
         position="right"
+        style={
+          Object {
+            "margin": 0,
+          }
+        }
       >
         <Icon
           as="i"
