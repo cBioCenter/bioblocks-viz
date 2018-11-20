@@ -56,14 +56,14 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
       nodes: new Array<ISpringNode>(),
     },
     headerHeight: 32,
-    height: '100%',
+    height: '50%',
     padding: 0,
     selectedCategory: '',
     springContext: {
       ...initialSpringContext,
     },
     springHeight: 800,
-    springUrl: 'http://localhost:11037/springViewer.html?datasets/hpc/full',
+    springUrl: `${window.location}/springViewer.html?datasets/hpc/full`,
     springWidth: 1200,
     width: 1200,
   };
@@ -92,8 +92,12 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
     };
   }
 
-  public componentDidUpdate(prevProps: ISpringContainerProps) {
+  public componentDidUpdate(prevProps: ISpringContainerProps, prevState: ISpringContainerState) {
     const { cellContext, springContext } = this.props;
+    const { isFullPage } = this.state;
+    if (isFullPage !== prevState.isFullPage) {
+      this.resizeSpringIFrame();
+    }
     if (!isEqual(prevProps.springContext.selectedCategories, springContext.selectedCategories)) {
       // Spring context updated.
       this.setState({

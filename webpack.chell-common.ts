@@ -12,6 +12,7 @@ import * as path from 'path';
 module.exports = {
   entry: {
     app: './index.tsx',
+    beta: './beta.tsx',
     example: './examples/example.tsx',
     morpheus: './MorpheusContainer.tsx',
     tcontainer: './TContainer.tsx',
@@ -112,20 +113,20 @@ module.exports = {
       title: 'Development',
     }),
     new HtmlWebpackPlugin({
+      chunks: ['beta'],
+      favicon: 'assets/favicons/favicon.ico',
+      filename: 'beta.html',
+      inject: true,
+      template: './beta.html',
+      title: 'Beta',
+    }),
+    new HtmlWebpackPlugin({
       chunks: ['example'],
       favicon: 'assets/favicons/favicon.ico',
       filename: 'example.html',
       inject: true,
       template: './examples/example.html',
       title: 'Chell - Contact Map / NGL Example',
-    }),
-    new HtmlWebpackPlugin({
-      chunks: ['tcontainer'],
-      favicon: 'assets/favicons/favicon.ico',
-      filename: 'TContainer.html',
-      inject: true,
-      template: './TContainer.html',
-      title: 'TContainer',
     }),
     new HtmlWebpackPlugin({
       chunks: ['morpheus'],
@@ -135,11 +136,33 @@ module.exports = {
       template: './morpheus.html',
       title: 'Morpheus Container',
     }),
+    new HtmlWebpackPlugin({
+      chunks: ['tcontainer'],
+      favicon: 'assets/favicons/favicon.ico',
+      filename: 'TContainer.html',
+      inject: true,
+      template: './TContainer.html',
+      title: 'TContainer',
+    }),
     new CopyWebpackPlugin([
       {
         from: './assets',
         ignore: ['*.pdf'],
         to: './assets',
+        toType: 'dir',
+      },
+    ]),
+    new CopyWebpackPlugin([
+      {
+        from: './SPRING_dev',
+        to: './',
+        toType: 'dir',
+      },
+    ]),
+    new CopyWebpackPlugin([
+      {
+        from: './SPRING_dev',
+        to: './',
         toType: 'dir',
       },
     ]),
