@@ -1,49 +1,90 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
-<div
-  id="ChellVizApp"
->
-  <ChellContextProvider>
-    <div
-      style={
-        Object {
-          "padding": "20px",
-        }
-      }
+<Fragment>
+  <Menu
+    header={true}
+    secondary={true}
+  >
+    <MenuItem
+      fitted="vertically"
+      position="left"
     >
-      <Grid
-        centered={true}
-        columns={2}
+      <Component
+        src="assets/bio-blocks-icon.svg"
+        svgStyle={
+          Object {
+            "height": "32px",
+            "width": "32px",
+          }
+        }
+      />
+      <span
         style={
           Object {
-            "width": "90vw",
+            "fontSize": "32px",
+            "fontWeight": "bold",
           }
         }
       >
-        <Component />
-        <ComponentCard
-          componentName="tSNE - TensorFlow"
-          frameHeight={0}
-          frameWidth={0}
-          headerHeight={32}
-          isFramedComponent={false}
-          isFullPage={false}
-          padding={0}
-        />
-        <ComponentCard
-          componentName="Anatomogram"
-          frameHeight={0}
-          frameWidth={0}
-          headerHeight={32}
-          isFramedComponent={false}
-          isFullPage={false}
-          padding={0}
+        HCA Dynamics
+      </span>
+    </MenuItem>
+    <MenuItem
+      position="right"
+    >
+      <Input
+        icon="search"
+        size="massive"
+        transparent={true}
+        type="text"
+      />
+    </MenuItem>
+  </Menu>
+  <div
+    id="ChellVizApp"
+  >
+    <ChellContextProvider>
+      <div
+        style={
+          Object {
+            "padding": "20px",
+          }
+        }
+      >
+        <Grid
+          centered={true}
+          columns={2}
+          style={
+            Object {
+              "width": "90vw",
+            }
+          }
         >
           <Component />
-        </ComponentCard>
-      </Grid>
-    </div>
-  </ChellContextProvider>
-</div>
+          <ComponentCard
+            componentName="tSNE - TensorFlow"
+            frameHeight={0}
+            frameWidth={0}
+            headerHeight={32}
+            isFramedComponent={false}
+            isFullPage={false}
+            padding={0}
+          />
+          <ComponentCard
+            componentName="Anatomogram"
+            frameHeight={0}
+            frameWidth={0}
+            headerHeight={32}
+            isFramedComponent={false}
+            isFullPage={false}
+            padding={0}
+          >
+            <Component />
+          </ComponentCard>
+        </Grid>
+      </div>
+    </ChellContextProvider>
+  </div>
+</Fragment>
 `;

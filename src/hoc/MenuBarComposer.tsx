@@ -12,8 +12,6 @@ const withMenuBar = ({ showMenu = true }: IMenuBarProps = {}) => <OriginalProps 
 ): React.ComponentClass<OriginalProps> => {
   return class HOC extends React.Component<OriginalProps & {}> {
     public render() {
-      console.log(WrappedComponent);
-
       return (
         <div>
           {showMenu && <Menu>{WrappedComponent.displayName}</Menu>}

@@ -80,9 +80,7 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
 
   public componentDidUpdate(prevProps: ISpringContainerProps, prevState: ISpringContainerState) {
     const { cellContext, springContext } = this.props;
-    console.log('spring update');
     if (!isEqual(prevProps.springContext.selectedCategories, springContext.selectedCategories)) {
-      console.log('selectedCategories update');
       // Spring context updated.
       this.setState({
         postMessageData: {
@@ -106,10 +104,8 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
   }
 
   public render() {
-    console.log('spring render');
     const { isFullPage, springHeight, springUrl, springWidth } = this.props;
     const { postMessageData } = this.state;
-    console.log(postMessageData);
     const attributes: IframeCommAttributes = {
       allowFullScreen: true,
       height: springHeight,

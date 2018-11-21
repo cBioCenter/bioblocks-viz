@@ -47,8 +47,6 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     if (this.props.isFramedComponent) {
       window.onresize = () => {
         if (this.props.isFramedComponent) {
-          console.log('window resize');
-          console.log(this.props);
           this.resizeFramedComponent();
         }
       };
