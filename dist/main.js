@@ -125,7 +125,7 @@ define(["require", "exports", "d3", "./clone_viewer.js", "./cluster_script.js", 
             }
         };
         window.addEventListener('message', event => {
-            if (event.origin === window.location.origin) {
+            if (!event.isTrusted && event.origin === window.location.origin) {
                 return;
             }
             try {

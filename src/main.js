@@ -193,7 +193,7 @@ const setupUserInterface = async () => {
   };
 
   window.addEventListener('message', event => {
-    if (event.origin === window.location.origin) {
+    if (!event.isTrusted && event.origin === window.location.origin) {
       return;
     }
     try {
