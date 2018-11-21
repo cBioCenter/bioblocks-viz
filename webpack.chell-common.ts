@@ -159,13 +159,6 @@ module.exports = {
         toType: 'dir',
       },
     ]),
-    new CopyWebpackPlugin([
-      {
-        from: './SPRING_dev',
-        to: './',
-        toType: 'dir',
-      },
-    ]),
     new webpack.NamedModulesPlugin(),
   ],
   resolve: {
