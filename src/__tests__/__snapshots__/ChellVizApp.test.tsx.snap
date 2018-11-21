@@ -27,7 +27,7 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
           frameHeight={0}
           frameWidth={0}
           headerHeight={32}
-          isFramedComponent={true}
+          isFramedComponent={false}
           isFullPage={false}
           padding={0}
         />

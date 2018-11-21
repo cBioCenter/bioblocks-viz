@@ -3,8 +3,8 @@
 exports[`SpringContainer Should match existing snapshot. 1`] = `
 <ComponentCard
   componentName="SPRING"
-  frameHeight={550}
-  frameWidth={700}
+  frameHeight={720}
+  frameWidth={1280}
   headerHeight={32}
   isFramedComponent={true}
   isFullPage={false}
@@ -14,9 +14,9 @@ exports[`SpringContainer Should match existing snapshot. 1`] = `
     attributes={
       Object {
         "allowFullScreen": true,
-        "height": 550,
+        "height": 720,
         "src": "http://localhost//springViewer.html?datasets/hpc/full",
-        "width": 700,
+        "width": 1280,
       }
     }
     handleReady={[Function]}

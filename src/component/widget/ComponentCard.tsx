@@ -47,6 +47,8 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     if (this.props.isFramedComponent) {
       window.onresize = () => {
         if (this.props.isFramedComponent) {
+          console.log('window resize');
+          console.log(this.props);
           this.resizeFramedComponent();
         }
       };
@@ -65,20 +67,27 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     const { headerHeight, isFramedComponent } = this.props;
     const { isFullPage, framedStyle } = this.state;
 
-    console.log(isFullPage);
-    console.log(framedStyle);
+    const expandedStyle: React.CSSProperties = {
+      bottom: 0,
+      height: '100vh',
+      left: 0,
+      padding: '5px',
+      position: 'fixed',
+      right: 0,
+      top: 0,
+      width: '100vw',
+      zIndex: 1000000,
+    };
+
+    const cardStyle: React.CSSProperties = {
+      maxWidth: 'unset',
+      padding: '0 0 5px 5px',
+      ...(isFullPage ? { ...expandedStyle } : { height: '600px', width: '600px' }),
+    };
 
     return (
-      <Grid.Column width={isFullPage ? 16 : 8}>
-        <Card
-          className={'chell-component-card'}
-          ref={ref => (this.cardRef = ref)}
-          style={{
-            maxWidth: 'unset',
-            padding: '5px',
-            width: '100%',
-          }}
-        >
+      <Grid.Column>
+        <Card className={'chell-component-card'} ref={ref => (this.cardRef = ref)} style={cardStyle}>
           {this.renderTopMenu(headerHeight)}
           {isFramedComponent ? <div style={framedStyle}>{this.props.children}</div> : this.props.children}
         </Card>
@@ -100,25 +109,23 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
   );
 
   protected onFullPageToggle = () => {
-    console.log(this.state.isFullPage);
     this.setState({
       isFullPage: !this.state.isFullPage,
     });
   };
 
-  protected resizeFramedComponent = () => {
+  protected resizeFramedComponent() {
     const { frameHeight, frameWidth, headerHeight } = this.props;
-    const { framedStyle } = this.state;
+    const { framedStyle, isFullPage } = this.state;
 
-    console.log('resizing');
     if (this.cardRef) {
       const iFrameNodeRef = ReactDOM.findDOMNode(this.cardRef) as Element;
       const iFrameNodeStyle = iFrameNodeRef ? window.getComputedStyle(iFrameNodeRef) : null;
 
       if (iFrameNodeStyle && iFrameNodeStyle.width && iFrameNodeStyle.height) {
+        document.body.style.overflowY = isFullPage ? 'hidden' : 'auto';
         const refHeight = parseInt(iFrameNodeStyle.height, 10) - 18;
         const refWidth = parseInt(iFrameNodeStyle.width, 10) - 10;
-
         this.setState({
           framedStyle: {
             ...framedStyle,
@@ -127,5 +134,5 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
         });
       }
     }
-  };
+  }
 }
