@@ -1,13 +1,13 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { TComponent } from './src/component/TComponent';
+import { TComponent } from '~chell-viz~/component';
 
 let props = {};
 
-window.addEventListener('message', msg => {
+window.addEventListener('message', (msg: { data: string }) => {
   try {
-    const parsedData = JSON.parse(msg.data);
+    const parsedData = JSON.parse(msg.data) as { [key: string]: any };
     if (document.getElementById('tcontainer-root') && parsedData.type === 'loaded') {
       props = {
         ...props,
