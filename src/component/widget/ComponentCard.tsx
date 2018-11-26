@@ -1,19 +1,18 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Card, Grid, Icon, Menu } from 'semantic-ui-react';
-
-// tslint:disable:import-name match-default-export-name
-import ReactSVG from 'react-svg';
-// tslint:enable:import-name match-default-export-name
+import { Card, Icon, Menu } from 'semantic-ui-react';
 
 export interface IComponentCardProps {
   componentName: string;
   frameHeight: number;
   frameWidth: number;
   headerHeight: number;
+  height: number | string;
   isFramedComponent: boolean;
   isFullPage: boolean;
   padding: number | string;
+  showSettings: boolean;
+  width: number | string;
 }
 
 export interface IComponentCardState {
@@ -26,9 +25,12 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     frameHeight: 0,
     frameWidth: 0,
     headerHeight: 32,
+    height: '100%',
     isFramedComponent: false,
     isFullPage: false,
     padding: 0,
+    showSettings: false,
+    width: '100%',
   };
 
   protected cardRef: React.Component<any> | null = null;
@@ -62,7 +64,7 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
   }
 
   public render() {
-    const { headerHeight, isFramedComponent } = this.props;
+    const { headerHeight, height, isFramedComponent, width } = this.props;
     const { isFullPage, framedStyle } = this.state;
 
     const expandedStyle: React.CSSProperties = {
@@ -73,35 +75,33 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
       position: 'fixed',
       right: 0,
       top: 0,
-      width: '100vw',
+      width: '100%',
       zIndex: 1000000,
     };
 
     const cardStyle: React.CSSProperties = {
       maxWidth: 'unset',
       padding: '0 0 5px 5px',
-      ...(isFullPage ? { ...expandedStyle } : { height: '600px', width: '600px' }),
+      ...(isFullPage ? { ...expandedStyle } : { height, width }),
     };
 
     return (
-      <Grid.Column>
-        <Card className={'chell-component-card'} ref={ref => (this.cardRef = ref)} style={cardStyle}>
-          {this.renderTopMenu(headerHeight)}
-          {isFramedComponent ? <div style={framedStyle}>{this.props.children}</div> : this.props.children}
-        </Card>
-      </Grid.Column>
+      <Card className={'chell-component-card'} ref={ref => (this.cardRef = ref)} style={cardStyle}>
+        {this.renderTopMenu(headerHeight)}
+        {isFramedComponent ? <div style={framedStyle}>{this.props.children}</div> : this.props.children}
+      </Card>
     );
   }
 
   protected renderTopMenu = (height: number | string) => (
     <Menu secondary={true} style={{ margin: 0, height }}>
       <Menu.Item position={'left'} fitted={'horizontally'} style={{ margin: 0 }}>
-        <ReactSVG src={'assets/spring-icon.svg'} svgStyle={{ height: '32px', width: '32px' }} />
+        <img alt={'component icon'} src={'assets/spring-icon-2x.png'} style={{ height: '32px', width: '32px' }} />
         {this.props.componentName}
       </Menu.Item>
       <Menu.Item position={'right'} fitted={'horizontally'} style={{ margin: 0 }}>
-        <Icon name={'expand arrows alternate'} onClick={this.onFullPageToggle} />
-        <Icon name={'settings'} />
+        <Icon name={this.state.isFullPage ? 'compress' : 'expand arrows alternate'} onClick={this.onFullPageToggle} />
+        {this.props.showSettings && <Icon name={'settings'} />}
       </Menu.Item>
     </Menu>
   );

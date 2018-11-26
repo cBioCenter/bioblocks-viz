@@ -1,19 +1,19 @@
 import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 
-import { Button } from 'semantic-ui-react';
+import { Radio } from 'semantic-ui-react';
 import { TensorTContainer, TensorTContainerClass } from '~chell-viz~/container';
 import { initialCellContext } from '~chell-viz~/context';
 import { dispatchPlotlySelectionEvent, genTensorTsneData } from '~chell-viz~/test';
 
 describe('TensorTContainer', () => {
   it('Should match existing snapshot when given no props.', () => {
-    const wrapper = mount(<TensorTContainer />);
+    const wrapper = shallow(<TensorTContainer />);
     expect(wrapper).toMatchSnapshot();
   });
 
   it('Should match existing snapshot when given sample data.', () => {
-    const wrapper = mount(<TensorTContainer data={genTensorTsneData()} />);
+    const wrapper = shallow(<TensorTContainer data={genTensorTsneData()} />);
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -57,7 +57,7 @@ describe('TensorTContainer', () => {
     const instance = wrapper.instance() as TensorTContainerClass;
     expect(instance.state.isAnimating).toBe(false);
     wrapper
-      .find(Button)
+      .find(Radio)
       .at(0)
       .simulate('click');
     expect(instance.state.isAnimating).toBe(true);
@@ -68,12 +68,12 @@ describe('TensorTContainer', () => {
     const instance = wrapper.instance() as TensorTContainerClass;
     expect(instance.state.isAnimating).toBe(false);
     wrapper
-      .find(Button)
+      .find(Radio)
       .at(0)
       .simulate('click');
     setInterval(() => {
       wrapper
-        .find(Button)
+        .find(Radio)
         .at(0)
         .simulate('click');
       expect(instance.state.isAnimating).toBe(false);

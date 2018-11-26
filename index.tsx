@@ -7,7 +7,7 @@ ReactDOM.render(
   <div id="ChellVizApp">
     <ChellContextProvider>
       <div style={{ padding: '20px' }}>
-        <Grid centered={true} padded={true} columns={1}>
+        <Grid centered={true} padded={true} style={{ width: '100vmin', height: '100%' }}>
           <SpringContainer isFullPage={true} />
         </Grid>
       </div>

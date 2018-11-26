@@ -1,7 +1,6 @@
 import * as React from 'react';
 // tslint:disable-next-line:import-name
-import ReactSVG from 'react-svg';
-import { Grid, Input, Menu } from 'semantic-ui-react';
+import { Container, Grid, Input, Menu } from 'semantic-ui-react';
 
 import { ComponentCard } from '~chell-viz~/component';
 import {
@@ -9,7 +8,6 @@ import {
   AnatomogramContainerClass,
   SpringContainer,
   TensorTContainer,
-  TensorTContainerClass,
 } from '~chell-viz~/container';
 import { ChellContextProvider } from '~chell-viz~/context';
 import { fetchTensorTSneCoordinateData } from '~chell-viz~/helper';
@@ -35,32 +33,36 @@ export class ChellVizApp extends React.Component<any, IChellVizAppState> {
 
   public render() {
     return (
-      <>
+      <Container id="ChellVizApp">
         {this.renderSiteHeader()}
-        <div id="ChellVizApp">
-          <ChellContextProvider>
-            <div style={{ padding: '20px' }}>
-              <Grid centered={true} columns={2} style={{ width: '90vw' }}>
+        <ChellContextProvider>
+          <div style={{ padding: '20px' }}>
+            <Grid centered={true} stackable={true} stretched={false} padded={true} columns={2}>
+              <Grid.Column>
                 <SpringContainer />
-                <ComponentCard componentName={TensorTContainerClass.displayName}>
-                  {this.state.tensorData && <TensorTContainer height={450} width={450} data={this.state.tensorData} />}
-                </ComponentCard>
+              </Grid.Column>
+              <Grid.Column>{this.state.tensorData && <TensorTContainer data={this.state.tensorData} />}</Grid.Column>
+              <Grid.Column>
                 <ComponentCard componentName={AnatomogramContainerClass.displayName}>
                   <AnatomogramContainer />
                 </ComponentCard>
-              </Grid>
-            </div>
-          </ChellContextProvider>
-        </div>
-      </>
+              </Grid.Column>
+            </Grid>
+          </div>
+        </ChellContextProvider>
+      </Container>
     );
   }
 
   protected renderSiteHeader() {
     return (
-      <Menu secondary={true} header={true}>
+      <Menu secondary={true} fluid={true}>
         <Menu.Item fitted={'vertically'} position={'left'}>
-          <ReactSVG src={'assets/bio-blocks-icon.svg'} svgStyle={{ height: '32px', width: '32px' }} />
+          <img
+            alt={'hca-dynamics-icon'}
+            src={'assets/bio-blocks-icon-2x.png'}
+            style={{ height: '32px', width: '32px' }}
+          />
           <span style={{ fontSize: '32px', fontWeight: 'bold' }}>HCA Dynamics</span>
         </Menu.Item>
         <Menu.Item position={'right'}>

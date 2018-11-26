@@ -6,9 +6,12 @@ exports[`SpringContainer Should match existing snapshot. 1`] = `
   frameHeight={720}
   frameWidth={1280}
   headerHeight={32}
+  height="500px"
   isFramedComponent={true}
   isFullPage={false}
   padding={0}
+  showSettings={false}
+  width="100%"
 >
   <IframeComm
     attributes={

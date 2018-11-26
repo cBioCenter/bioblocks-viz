@@ -84,7 +84,7 @@ export class AnatomogramContainerClass extends React.Component<IAnatomogramConta
     const { selectIds } = this.state;
 
     return (
-      <div className={'anatomogram-container'}>
+      <div className={'anatomogram-container'} style={{ height: '100%' }}>
         <Anatomogram
           atlasUrl={``}
           highlightColour={'yellow'}

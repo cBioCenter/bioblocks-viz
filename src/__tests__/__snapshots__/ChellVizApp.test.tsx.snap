@@ -1,18 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
-<Fragment>
+<Container
+  id="ChellVizApp"
+>
   <Menu
-    header={true}
+    fluid={true}
     secondary={true}
   >
     <MenuItem
       fitted="vertically"
       position="left"
     >
-      <Component
-        src="assets/bio-blocks-icon.svg"
-        svgStyle={
+      <img
+        alt="hca-dynamics-icon"
+        src="assets/bio-blocks-icon-2x.png"
+        style={
           Object {
             "height": "32px",
             "width": "32px",
@@ -41,50 +44,43 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
       />
     </MenuItem>
   </Menu>
-  <div
-    id="ChellVizApp"
-  >
-    <ChellContextProvider>
-      <div
-        style={
-          Object {
-            "padding": "20px",
-          }
+  <ChellContextProvider>
+    <div
+      style={
+        Object {
+          "padding": "20px",
         }
+      }
+    >
+      <Grid
+        centered={true}
+        columns={2}
+        padded={true}
+        stackable={true}
+        stretched={false}
       >
-        <Grid
-          centered={true}
-          columns={2}
-          style={
-            Object {
-              "width": "90vw",
-            }
-          }
-        >
+        <GridColumn>
           <Component />
-          <ComponentCard
-            componentName="tSNE - TensorFlow"
-            frameHeight={0}
-            frameWidth={0}
-            headerHeight={32}
-            isFramedComponent={false}
-            isFullPage={false}
-            padding={0}
-          />
+        </GridColumn>
+        <GridColumn />
+        <GridColumn>
           <ComponentCard
             componentName="Anatomogram"
             frameHeight={0}
             frameWidth={0}
             headerHeight={32}
+            height="100%"
             isFramedComponent={false}
             isFullPage={false}
             padding={0}
+            showSettings={false}
+            width="100%"
           >
             <Component />
           </ComponentCard>
-        </Grid>
-      </div>
-    </ChellContextProvider>
-  </div>
-</Fragment>
+        </GridColumn>
+      </Grid>
+    </div>
+  </ChellContextProvider>
+</Container>
 `;

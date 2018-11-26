@@ -3,6 +3,11 @@
 exports[`AnatomogramContainer Should match existing snapshot. 1`] = `
 <div
   className="anatomogram-container"
+  style={
+    Object {
+      "height": "100%",
+    }
+  }
 >
   <defaultProps(withPropsOnChange(onlyUpdateForPropTypes(defaultProps(defaultProps(mapProps(Anatomogram))))))
     atlasUrl=""
@@ -33,6 +38,11 @@ exports[`AnatomogramContainer Should match existing snapshot. 1`] = `
 exports[`AnatomogramContainer Should update when the context changes. 1`] = `
 <div
   className="anatomogram-container"
+  style={
+    Object {
+      "height": "100%",
+    }
+  }
 >
   <defaultProps(withPropsOnChange(onlyUpdateForPropTypes(defaultProps(defaultProps(mapProps(Anatomogram))))))
     atlasUrl=""

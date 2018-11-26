@@ -84,11 +84,9 @@ export class VizSelectorPanel extends React.Component<IVizPanelProps, IVizPanelS
           data['TENSOR-T-SNE'] && (
             <TensorTContainer
               data={data['TENSOR-T-SNE'] as T_SNE_DATA_TYPE}
-              height={paddedHeight}
               style={{
                 padding,
               }}
-              width={paddedWidth}
             />
           )
         );

@@ -122,6 +122,7 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
         isFullPage={isFullPage}
         frameHeight={springHeight}
         frameWidth={springWidth}
+        height={'500px'}
       >
         <IframeComm
           attributes={attributes}

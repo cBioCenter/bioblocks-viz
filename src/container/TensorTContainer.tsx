@@ -4,8 +4,8 @@ import * as React from 'react';
 import * as tensorFlow from '@tensorflow/tfjs-core';
 // tslint:disable-next-line:no-submodule-imports
 import { TSNE } from '@tensorflow/tfjs-tsne/dist/tsne';
-import { Button, Icon } from 'semantic-ui-react';
-import { SettingsPanel, TensorTComponent } from '~chell-viz~/component';
+import { Grid, Radio } from 'semantic-ui-react';
+import { ComponentCard, TensorTComponent } from '~chell-viz~/component';
 import {
   CellContext,
   ICellContext,
@@ -26,11 +26,10 @@ import {
 export interface ITensorContainerProps {
   cellContext: ICellContext;
   data: T_SNE_DATA_TYPE;
-  height: number;
+  isFullPage: boolean;
   pointColor: string;
   springContext: ISpringContext;
   style: CHELL_CSS_STYLE;
-  width: number;
 }
 
 export interface ITensorContainerState {
@@ -49,6 +48,7 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
     },
     data: [[0], [0]],
     height: 400,
+    isFullPage: false,
     pointColor: '#aa0000',
     springContext: {
       ...initialSpringContext,
@@ -108,22 +108,22 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
   }
 
   public render() {
-    const { height, style, width } = this.props;
+    const { isFullPage, style } = this.props;
     const { plotlyCoords } = this.state;
 
     return (
-      <div id="TensorTContainerDiv" style={style}>
-        {this.renderPlaybackButtons()}
-        <SettingsPanel configurations={this.getTensorConfigs()} opacity={0.8}>
-          <TensorTComponent
-            height={height}
-            onSelectedCallback={this.handlePointSelection}
-            pointsToPlot={plotlyCoords}
-            style={style}
-            width={width}
-          />
-        </SettingsPanel>
-      </div>
+      <ComponentCard componentName={TensorTContainerClass.displayName} isFullPage={isFullPage}>
+        <Grid centered={true} columns={2}>
+          <Grid.Column width={4}>{this.renderIterateButton()}</Grid.Column>
+          <Grid.Column width={12}>
+            <TensorTComponent
+              onSelectedCallback={this.handlePointSelection}
+              pointsToPlot={plotlyCoords}
+              style={style}
+            />
+          </Grid.Column>
+        </Grid>
+      </ComponentCard>
     );
   }
 
@@ -236,18 +236,16 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
     cellContext.addCells(selectedCells);
   };
 
-  protected renderPlaybackButtons = () =>
-    this.state.isAnimating ? (
-      <Button compact={true} onClick={this.onPauseAnimation()}>
-        <Icon name={'pause'} />
-        Pause
-      </Button>
-    ) : (
-      <Button compact={true} onClick={this.onPlayIteration()}>
-        <Icon name={'play'} />
-        Play
-      </Button>
-    );
+  /**
+   * Renders the radio button responsible for toggling the animation on/off.
+   */
+  protected renderIterateButton = () => (
+    <Radio
+      label={<label style={{ fontSize: '14px', fontWeight: 'bold' }}>iterate</label>}
+      onClick={this.onIterationToggle()}
+      toggle={true}
+    />
+  );
 
   protected onIterateForward = (amount: number = 1) => async () => {
     const { isComputing, tsne } = this.state;
@@ -267,23 +265,21 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
     }
   };
 
-  protected onPauseAnimation = () => () => {
-    this.setState({ isAnimating: false });
-  };
+  protected onIterationToggle = () => () => {
+    const isAnimating = !this.state.isAnimating;
 
-  protected onPlayIteration = () => async () => {
-    const animationFrame = async () => {
-      const { isAnimating, numIterations } = this.state;
-      await this.onIterateForward(1)();
-      if (isAnimating && numIterations < 500) {
-        requestAnimationFrame(animationFrame);
-      } else {
-        this.setState({ isAnimating: false });
-      }
-    };
-
-    this.setState({ isAnimating: true });
-    requestAnimationFrame(animationFrame);
+    if (isAnimating) {
+      const animationFrame = async () => {
+        await this.onIterateForward(1)();
+        if (this.state.isAnimating && this.state.numIterations < 500) {
+          requestAnimationFrame(animationFrame);
+        } else {
+          this.setState({ isAnimating: false });
+        }
+      };
+      requestAnimationFrame(animationFrame);
+    }
+    this.setState({ isAnimating });
   };
 
   protected onReset = () => async () => {
