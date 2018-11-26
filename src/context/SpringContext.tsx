@@ -51,7 +51,8 @@ export class SpringContextProvider extends React.Component<any, SpringContextSta
   }
 
   public async componentDidMount() {
-    const graphData = await fetchSpringData('assets/datasets/hpc/full');
+    // const graphData = await fetchSpringData('assets/datasets/hpc/full');
+    const graphData = await fetchSpringData('assets/datasets/tabula_muris/full');
     this.setState({
       graphData,
       selectedCategories: [],

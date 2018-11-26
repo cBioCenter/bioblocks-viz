@@ -114,8 +114,8 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
     return (
       <ComponentCard componentName={TensorTContainerClass.displayName} isFullPage={isFullPage}>
         <Grid centered={true} columns={2}>
-          <Grid.Column width={4}>{this.renderIterateButton()}</Grid.Column>
-          <Grid.Column width={12}>
+          <Grid.Column width={3}>{this.renderIterateButton()}</Grid.Column>
+          <Grid.Column width={13}>
             <TensorTComponent
               onSelectedCallback={this.handlePointSelection}
               pointsToPlot={plotlyCoords}

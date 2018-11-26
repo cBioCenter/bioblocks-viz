@@ -57,16 +57,18 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
       ...initialSpringContext,
     },
     springHeight: 720,
+    /*springUrl: `${window.location.origin}/${window.location.pathname.substr(
+      0,
+      window.location.pathname.lastIndexOf('/'),
+    )}/springViewer.html?datasets/hpc/full`, */
     springUrl: `${window.location.origin}/${window.location.pathname.substr(
       0,
       window.location.pathname.lastIndexOf('/'),
-    )}/springViewer.html?datasets/hpc/full`,
+    )}/springViewer.html?datasets/tabula_muris/full`,
     springWidth: 1280,
   };
 
   public static displayName = 'SPRING';
-
-  protected springIFrameRef: React.Component<any> | null = null;
 
   constructor(props: ISpringContainerProps) {
     super(props);

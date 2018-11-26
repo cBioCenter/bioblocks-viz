@@ -2,6 +2,7 @@
 
 exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
 <Container
+  fluid={true}
   id="ChellVizApp"
 >
   <Menu
@@ -33,6 +34,12 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
         HCA Dynamics
       </span>
     </MenuItem>
+    <MenuItem>
+      dataset
+    </MenuItem>
+    <MenuItem>
+      apps (1)
+    </MenuItem>
     <MenuItem
       position="right"
     >
@@ -63,22 +70,7 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
           <Component />
         </GridColumn>
         <GridColumn />
-        <GridColumn>
-          <ComponentCard
-            componentName="Anatomogram"
-            frameHeight={0}
-            frameWidth={0}
-            headerHeight={32}
-            height="100%"
-            isFramedComponent={false}
-            isFullPage={false}
-            padding={0}
-            showSettings={false}
-            width="100%"
-          >
-            <Component />
-          </ComponentCard>
-        </GridColumn>
+        <GridColumn />
       </Grid>
     </div>
   </ChellContextProvider>
