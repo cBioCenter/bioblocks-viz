@@ -5,52 +5,10 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
   fluid={true}
   id="ChellVizApp"
 >
-  <Menu
-    fluid={true}
-    secondary={true}
-  >
-    <MenuItem
-      fitted="vertically"
-      position="left"
-    >
-      <img
-        alt="hca-dynamics-icon"
-        src="assets/bio-blocks-icon-2x.png"
-        style={
-          Object {
-            "height": "32px",
-            "width": "32px",
-          }
-        }
-      />
-      <span
-        style={
-          Object {
-            "fontSize": "32px",
-            "fontWeight": "bold",
-          }
-        }
-      >
-        HCA Dynamics
-      </span>
-    </MenuItem>
-    <MenuItem>
-      dataset
-    </MenuItem>
-    <MenuItem>
-      apps (1)
-    </MenuItem>
-    <MenuItem
-      position="right"
-    >
-      <Input
-        icon="search"
-        size="massive"
-        transparent={true}
-        type="text"
-      />
-    </MenuItem>
-  </Menu>
+  <SiteHeader
+    numDatasets={0}
+    numVisualizations={2}
+  />
   <ChellContextProvider>
     <div
       style={
@@ -69,7 +27,6 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
         <GridColumn>
           <Component />
         </GridColumn>
-        <GridColumn />
         <GridColumn />
       </Grid>
     </div>

@@ -8,6 +8,7 @@ export interface IComponentCardProps {
   frameWidth: number;
   headerHeight: number;
   height: number | string;
+  iconSrc: string;
   isFramedComponent: boolean;
   isFullPage: boolean;
   padding: number | string;
@@ -26,6 +27,7 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     frameWidth: 0,
     headerHeight: 32,
     height: '100%',
+    iconSrc: 'assets/spring-icon-2x.png',
     isFramedComponent: false,
     isFullPage: false,
     padding: 0,
@@ -96,7 +98,11 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
   protected renderTopMenu = (height: number | string) => (
     <Menu secondary={true} style={{ margin: 0, height }}>
       <Menu.Item position={'left'} fitted={'horizontally'} style={{ margin: 0 }}>
-        <img alt={'component icon'} src={'assets/spring-icon-2x.png'} style={{ height: '32px', width: '32px' }} />
+        <img
+          alt={'component icon'}
+          src={this.props.iconSrc}
+          style={{ height: '32px', padding: '2px', width: '32px' }}
+        />
         {this.props.componentName}
       </Menu.Item>
       <Menu.Item position={'right'} fitted={'horizontally'} style={{ margin: 0 }}>

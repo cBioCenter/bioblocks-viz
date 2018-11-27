@@ -1,12 +1,13 @@
 import * as React from 'react';
 // tslint:disable-next-line:import-name
-import { Container, Grid, Input, Menu } from 'semantic-ui-react';
+import { Container, Grid } from 'semantic-ui-react';
 
-import { SpringContainer, TensorTContainer } from '~chell-viz~/container';
+import { SiteHeader, SpringContainer, TensorTContainer } from '~chell-viz~/container';
 import { ChellContextProvider } from '~chell-viz~/context';
 import { fetchTensorTSneCoordinateData } from '~chell-viz~/helper';
 
 export interface IChellVizAppState {
+  activeVisualizations: number;
   tensorData: null | number[][];
 }
 
@@ -14,14 +15,16 @@ export class ChellVizApp extends React.Component<any, IChellVizAppState> {
   constructor(props: any) {
     super(props);
     this.state = {
+      activeVisualizations: 0,
       tensorData: null,
     };
   }
 
   public async componentDidMount() {
-    // const tensorData = await fetchTensorTSneCoordinateData('assets/datasets/hpc/full');
-    const tensorData = await fetchTensorTSneCoordinateData('assets/datasets/tabula_muris/full');
+    const tensorData = await fetchTensorTSneCoordinateData('assets/datasets/hpc/full');
+    // const tensorData = await fetchTensorTSneCoordinateData('assets/datasets/tabula_muris/full');
     this.setState({
+      activeVisualizations: 2,
       tensorData,
     });
   }
@@ -29,7 +32,7 @@ export class ChellVizApp extends React.Component<any, IChellVizAppState> {
   public render() {
     return (
       <Container id="ChellVizApp" fluid={true}>
-        {this.renderSiteHeader()}
+        <SiteHeader numVisualizations={2} />
         <ChellContextProvider>{this.renderComponents()}</ChellContextProvider>
       </Container>
     );
@@ -42,30 +45,12 @@ export class ChellVizApp extends React.Component<any, IChellVizAppState> {
           <SpringContainer />
         </Grid.Column>
         <Grid.Column>{this.state.tensorData && <TensorTContainer data={this.state.tensorData} />}</Grid.Column>
-        <Grid.Column>
-          {/*<ComponentCard componentName={AnatomogramContainerClass.displayName}>
+        {/*<Grid.Column>
+          <ComponentCard componentName={AnatomogramContainerClass.displayName}>
             <AnatomogramContainer />
-  </ComponentCard>*/}
-        </Grid.Column>
+  </ComponentCard>
+        </Grid.Column>*/}
       </Grid>
     </div>
-  );
-
-  protected renderSiteHeader = () => (
-    <Menu secondary={true} fluid={true}>
-      <Menu.Item fitted={'vertically'} position={'left'}>
-        <img
-          alt={'hca-dynamics-icon'}
-          src={'assets/bio-blocks-icon-2x.png'}
-          style={{ height: '32px', width: '32px' }}
-        />
-        <span style={{ fontSize: '32px', fontWeight: 'bold' }}>HCA Dynamics</span>
-      </Menu.Item>
-      <Menu.Item>dataset</Menu.Item>
-      <Menu.Item>apps (1)</Menu.Item>
-      <Menu.Item position={'right'}>
-        <Input icon={'search'} size={'massive'} transparent={true} />
-      </Menu.Item>
-    </Menu>
   );
 }

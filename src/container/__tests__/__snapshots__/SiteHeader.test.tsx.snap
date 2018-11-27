@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SiteHeader Should match existing snapshot for no visualizations. 1`] = `
+<Menu
+  borderless={true}
+  fluid={true}
+  secondary={false}
+>
+  <MenuItem
+    fitted="vertically"
+    position="left"
+  >
+    <img
+      alt="hca-dynamics-icon"
+      src="assets/bio-blocks-icon-2x.png"
+      style={
+        Object {
+          "height": "32px",
+          "width": "32px",
+        }
+      }
+    />
+    <span
+      style={
+        Object {
+          "fontSize": "32px",
+          "fontWeight": "bold",
+        }
+      }
+    >
+      HCA Dynamics
+    </span>
+  </MenuItem>
+  <Tab
+    activeIndex={-1}
+    defaultActiveIndex={-1}
+    grid={
+      Object {
+        "paneWidth": 12,
+        "tabWidth": 4,
+      }
+    }
+    menu={
+      Object {
+        "attached": true,
+        "tabular": true,
+      }
+    }
+    onTabChange={[Function]}
+    panes={
+      Array [
+        Object {
+          "menuItem": "dataset ",
+          "render": [Function],
+        },
+        Object {
+          "menuItem": "apps (0)",
+          "render": [Function],
+        },
+      ]
+    }
+    renderActiveOnly={true}
+  />
+  <MenuItem
+    position="right"
+  >
+    <Input
+      icon="search"
+      size="massive"
+      transparent={true}
+      type="text"
+    />
+  </MenuItem>
+</Menu>
+`;
+
+exports[`SiteHeader Should match existing snapshot for some visualizations. 1`] = `
+<Menu
+  borderless={true}
+  fluid={true}
+  secondary={false}
+>
+  <MenuItem
+    fitted="vertically"
+    position="left"
+  >
+    <img
+      alt="hca-dynamics-icon"
+      src="assets/bio-blocks-icon-2x.png"
+      style={
+        Object {
+          "height": "32px",
+          "width": "32px",
+        }
+      }
+    />
+    <span
+      style={
+        Object {
+          "fontSize": "32px",
+          "fontWeight": "bold",
+        }
+      }
+    >
+      HCA Dynamics
+    </span>
+  </MenuItem>
+  <Tab
+    activeIndex={-1}
+    defaultActiveIndex={-1}
+    grid={
+      Object {
+        "paneWidth": 12,
+        "tabWidth": 4,
+      }
+    }
+    menu={
+      Object {
+        "attached": true,
+        "tabular": true,
+      }
+    }
+    onTabChange={[Function]}
+    panes={
+      Array [
+        Object {
+          "menuItem": "dataset ",
+          "render": [Function],
+        },
+        Object {
+          "menuItem": "apps (2)",
+          "render": [Function],
+        },
+      ]
+    }
+    renderActiveOnly={true}
+  />
+  <MenuItem
+    position="right"
+  >
+    <Input
+      icon="search"
+      size="massive"
+      transparent={true}
+      type="text"
+    />
+  </MenuItem>
+</Menu>
+`;

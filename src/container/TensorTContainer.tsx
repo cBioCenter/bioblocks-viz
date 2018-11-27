@@ -112,7 +112,11 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
     const { plotlyCoords } = this.state;
 
     return (
-      <ComponentCard componentName={TensorTContainerClass.displayName} isFullPage={isFullPage}>
+      <ComponentCard
+        componentName={TensorTContainerClass.displayName}
+        iconSrc={'assets/tsne-icon.png'}
+        isFullPage={isFullPage}
+      >
         <Grid centered={true} columns={2}>
           <Grid.Column width={3}>{this.renderIterateButton()}</Grid.Column>
           <Grid.Column width={13}>
