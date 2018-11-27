@@ -12,7 +12,7 @@ exports[`SpringContainer Should match existing snapshot. 1`] = `
   isFullPage={false}
   padding={0}
   showSettings={false}
-  width="100%"
+  width="525px"
 >
   <IframeComm
     attributes={

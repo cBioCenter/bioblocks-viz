@@ -24,10 +24,22 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
         stackable={true}
         stretched={false}
       >
-        <GridColumn>
+        <GridColumn
+          style={
+            Object {
+              "width": "auto",
+            }
+          }
+        >
           <Component />
         </GridColumn>
-        <GridColumn />
+        <GridColumn
+          style={
+            Object {
+              "width": "auto",
+            }
+          }
+        />
       </Grid>
     </div>
   </ChellContextProvider>

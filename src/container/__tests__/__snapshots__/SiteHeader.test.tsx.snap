@@ -4,7 +4,12 @@ exports[`SiteHeader Should match existing snapshot for no visualizations. 1`] = 
 <Menu
   borderless={true}
   fluid={true}
-  secondary={false}
+  secondary={true}
+  style={
+    Object {
+      "maxHeight": "40px",
+    }
+  }
 >
   <MenuItem
     fitted="vertically"
@@ -31,36 +36,228 @@ exports[`SiteHeader Should match existing snapshot for no visualizations. 1`] = 
       HCA Dynamics
     </span>
   </MenuItem>
-  <Tab
-    activeIndex={-1}
-    defaultActiveIndex={-1}
-    grid={
-      Object {
-        "paneWidth": 12,
-        "tabWidth": 4,
+  <MenuItem>
+    <Modal
+      centered={true}
+      closeOnDimmerClick={true}
+      closeOnDocumentClick={false}
+      dimmer={true}
+      eventPool="Modal"
+      trigger={
+        <MenuItem
+          basic={true}
+        >
+          dataset 
+        </MenuItem>
       }
-    }
-    menu={
-      Object {
-        "attached": true,
-        "tabular": true,
+    >
+      <ModalContent>
+         
+        <Container
+          fluid={true}
+        >
+          <Header>
+            SPRING datasets
+          </Header>
+          <Divider />
+          <Tab
+            defaultActiveIndex={0}
+            grid={
+              Object {
+                "paneWidth": 12,
+                "tabWidth": 4,
+              }
+            }
+            menu={
+              Object {
+                "pointing": true,
+                "secondary": true,
+              }
+            }
+            panes={
+              Array [
+                Object {
+                  "menuItem": "human cell atlas",
+                  "render": [Function],
+                },
+                Object {
+                  "menuItem": "HCA Dynamics public",
+                  "render": [Function],
+                },
+                Object {
+                  "menuItem": "upload from computer",
+                  "render": [Function],
+                },
+              ]
+            }
+            renderActiveOnly={true}
+          />
+        </Container>
+      </ModalContent>
+    </Modal>
+  </MenuItem>
+  <MenuItem>
+    <Modal
+      centered={true}
+      closeOnDimmerClick={true}
+      closeOnDocumentClick={false}
+      dimmer={true}
+      eventPool="Modal"
+      trigger={
+        <MenuItem
+          basic={true}
+        >
+          apps (0)
+        </MenuItem>
       }
-    }
-    onTabChange={[Function]}
-    panes={
-      Array [
-        Object {
-          "menuItem": "dataset ",
-          "render": [Function],
-        },
-        Object {
-          "menuItem": "apps (0)",
-          "render": [Function],
-        },
-      ]
-    }
-    renderActiveOnly={true}
-  />
+    >
+      <ModalContent>
+        <Container
+          fluid={true}
+        >
+          <Header>
+            Visualization applications
+          </Header>
+          <Divider />
+          dataset
+          <Divider />
+          <Search
+            defaultValue="search"
+            icon={false}
+            input="text"
+            minCharacters={1}
+            noResultsMessage="No results found."
+            showNoResults={true}
+          />
+          <Table
+            as="table"
+            basic="very"
+          >
+            <TableHeader
+              as="thead"
+            >
+              <TableRow
+                as="tr"
+                cellAs="td"
+              >
+                <TableHeaderCell
+                  as="th"
+                >
+                  Select
+                </TableHeaderCell>
+                <TableHeaderCell
+                  as="th"
+                >
+                  Name
+                </TableHeaderCell>
+                <TableHeaderCell
+                  as="th"
+                >
+                  Author(s)
+                </TableHeaderCell>
+                <TableHeaderCell
+                  as="th"
+                >
+                  Last updated
+                </TableHeaderCell>
+              </TableRow>
+              <TableRow
+                as="tr"
+                cellAs="td"
+                cells={
+                  Array [
+                    Object {
+                      "content": <Checkbox
+                        checked={true}
+                        type="checkbox"
+                      />,
+                      "key": "Select",
+                    },
+                    Object {
+                      "content": "SPRING",
+                      "key": "Name",
+                    },
+                    Object {
+                      "content": "Weinreb, Wollock, Klein",
+                      "key": "Author",
+                    },
+                    Object {
+                      "content": "Nov 13, 2018",
+                      "key": "Last Updated",
+                    },
+                  ]
+                }
+              />
+              <TableRow
+                as="tr"
+                cellAs="td"
+                cells={
+                  Array [
+                    Object {
+                      "content": <Checkbox
+                        checked={false}
+                        type="checkbox"
+                      />,
+                      "key": "Select",
+                    },
+                    Object {
+                      "content": "tSNE-Tensor",
+                      "key": "Name",
+                    },
+                    Object {
+                      "content": "??",
+                      "key": "Author",
+                    },
+                    Object {
+                      "content": "Nov 13, 2018",
+                      "key": "Last Updated",
+                    },
+                  ]
+                }
+                style={
+                  Object {
+                    "border": "none",
+                  }
+                }
+              />
+              <TableRow
+                as="tr"
+                cellAs="td"
+                cells={
+                  Array [
+                    Object {
+                      "content": <Checkbox
+                        checked={false}
+                        type="checkbox"
+                      />,
+                      "key": "Select",
+                    },
+                    Object {
+                      "content": "Anatomogram",
+                      "key": "Name",
+                    },
+                    Object {
+                      "content": "??",
+                      "key": "Author",
+                    },
+                    Object {
+                      "content": "Nov 13, 2018",
+                      "key": "Last Updated",
+                    },
+                  ]
+                }
+                style={
+                  Object {
+                    "border": "none",
+                  }
+                }
+              />
+            </TableHeader>
+          </Table>
+        </Container>
+      </ModalContent>
+    </Modal>
+  </MenuItem>
   <MenuItem
     position="right"
   >
@@ -78,7 +275,12 @@ exports[`SiteHeader Should match existing snapshot for some visualizations. 1`] 
 <Menu
   borderless={true}
   fluid={true}
-  secondary={false}
+  secondary={true}
+  style={
+    Object {
+      "maxHeight": "40px",
+    }
+  }
 >
   <MenuItem
     fitted="vertically"
@@ -105,36 +307,228 @@ exports[`SiteHeader Should match existing snapshot for some visualizations. 1`] 
       HCA Dynamics
     </span>
   </MenuItem>
-  <Tab
-    activeIndex={-1}
-    defaultActiveIndex={-1}
-    grid={
-      Object {
-        "paneWidth": 12,
-        "tabWidth": 4,
+  <MenuItem>
+    <Modal
+      centered={true}
+      closeOnDimmerClick={true}
+      closeOnDocumentClick={false}
+      dimmer={true}
+      eventPool="Modal"
+      trigger={
+        <MenuItem
+          basic={true}
+        >
+          dataset 
+        </MenuItem>
       }
-    }
-    menu={
-      Object {
-        "attached": true,
-        "tabular": true,
+    >
+      <ModalContent>
+         
+        <Container
+          fluid={true}
+        >
+          <Header>
+            SPRING datasets
+          </Header>
+          <Divider />
+          <Tab
+            defaultActiveIndex={0}
+            grid={
+              Object {
+                "paneWidth": 12,
+                "tabWidth": 4,
+              }
+            }
+            menu={
+              Object {
+                "pointing": true,
+                "secondary": true,
+              }
+            }
+            panes={
+              Array [
+                Object {
+                  "menuItem": "human cell atlas",
+                  "render": [Function],
+                },
+                Object {
+                  "menuItem": "HCA Dynamics public",
+                  "render": [Function],
+                },
+                Object {
+                  "menuItem": "upload from computer",
+                  "render": [Function],
+                },
+              ]
+            }
+            renderActiveOnly={true}
+          />
+        </Container>
+      </ModalContent>
+    </Modal>
+  </MenuItem>
+  <MenuItem>
+    <Modal
+      centered={true}
+      closeOnDimmerClick={true}
+      closeOnDocumentClick={false}
+      dimmer={true}
+      eventPool="Modal"
+      trigger={
+        <MenuItem
+          basic={true}
+        >
+          apps (2)
+        </MenuItem>
       }
-    }
-    onTabChange={[Function]}
-    panes={
-      Array [
-        Object {
-          "menuItem": "dataset ",
-          "render": [Function],
-        },
-        Object {
-          "menuItem": "apps (2)",
-          "render": [Function],
-        },
-      ]
-    }
-    renderActiveOnly={true}
-  />
+    >
+      <ModalContent>
+        <Container
+          fluid={true}
+        >
+          <Header>
+            Visualization applications
+          </Header>
+          <Divider />
+          dataset
+          <Divider />
+          <Search
+            defaultValue="search"
+            icon={false}
+            input="text"
+            minCharacters={1}
+            noResultsMessage="No results found."
+            showNoResults={true}
+          />
+          <Table
+            as="table"
+            basic="very"
+          >
+            <TableHeader
+              as="thead"
+            >
+              <TableRow
+                as="tr"
+                cellAs="td"
+              >
+                <TableHeaderCell
+                  as="th"
+                >
+                  Select
+                </TableHeaderCell>
+                <TableHeaderCell
+                  as="th"
+                >
+                  Name
+                </TableHeaderCell>
+                <TableHeaderCell
+                  as="th"
+                >
+                  Author(s)
+                </TableHeaderCell>
+                <TableHeaderCell
+                  as="th"
+                >
+                  Last updated
+                </TableHeaderCell>
+              </TableRow>
+              <TableRow
+                as="tr"
+                cellAs="td"
+                cells={
+                  Array [
+                    Object {
+                      "content": <Checkbox
+                        checked={true}
+                        type="checkbox"
+                      />,
+                      "key": "Select",
+                    },
+                    Object {
+                      "content": "SPRING",
+                      "key": "Name",
+                    },
+                    Object {
+                      "content": "Weinreb, Wollock, Klein",
+                      "key": "Author",
+                    },
+                    Object {
+                      "content": "Nov 13, 2018",
+                      "key": "Last Updated",
+                    },
+                  ]
+                }
+              />
+              <TableRow
+                as="tr"
+                cellAs="td"
+                cells={
+                  Array [
+                    Object {
+                      "content": <Checkbox
+                        checked={false}
+                        type="checkbox"
+                      />,
+                      "key": "Select",
+                    },
+                    Object {
+                      "content": "tSNE-Tensor",
+                      "key": "Name",
+                    },
+                    Object {
+                      "content": "??",
+                      "key": "Author",
+                    },
+                    Object {
+                      "content": "Nov 13, 2018",
+                      "key": "Last Updated",
+                    },
+                  ]
+                }
+                style={
+                  Object {
+                    "border": "none",
+                  }
+                }
+              />
+              <TableRow
+                as="tr"
+                cellAs="td"
+                cells={
+                  Array [
+                    Object {
+                      "content": <Checkbox
+                        checked={false}
+                        type="checkbox"
+                      />,
+                      "key": "Select",
+                    },
+                    Object {
+                      "content": "Anatomogram",
+                      "key": "Name",
+                    },
+                    Object {
+                      "content": "??",
+                      "key": "Author",
+                    },
+                    Object {
+                      "content": "Nov 13, 2018",
+                      "key": "Last Updated",
+                    },
+                  ]
+                }
+                style={
+                  Object {
+                    "border": "none",
+                  }
+                }
+              />
+            </TableHeader>
+          </Table>
+        </Container>
+      </ModalContent>
+    </Modal>
+  </MenuItem>
   <MenuItem
     position="right"
   >

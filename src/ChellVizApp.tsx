@@ -41,10 +41,12 @@ export class ChellVizApp extends React.Component<any, IChellVizAppState> {
   protected renderComponents = () => (
     <div style={{ padding: '20px' }}>
       <Grid centered={true} stackable={true} stretched={false} padded={true} columns={2}>
-        <Grid.Column>
+        <Grid.Column style={{ width: 'auto' }}>
           <SpringContainer />
         </Grid.Column>
-        <Grid.Column>{this.state.tensorData && <TensorTContainer data={this.state.tensorData} />}</Grid.Column>
+        <Grid.Column style={{ width: 'auto' }}>
+          {this.state.tensorData && <TensorTContainer data={this.state.tensorData} />}
+        </Grid.Column>
         {/*<Grid.Column>
           <ComponentCard componentName={AnatomogramContainerClass.displayName}>
             <AnatomogramContainer />

@@ -4,7 +4,7 @@ import * as React from 'react';
 import * as tensorFlow from '@tensorflow/tfjs-core';
 // tslint:disable-next-line:no-submodule-imports
 import { TSNE } from '@tensorflow/tfjs-tsne/dist/tsne';
-import { Grid, Radio } from 'semantic-ui-react';
+import { Grid, Icon, Radio } from 'semantic-ui-react';
 import { ComponentCard, TensorTComponent } from '~chell-viz~/component';
 import {
   CellContext,
@@ -117,15 +117,21 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
         iconSrc={'assets/tsne-icon.png'}
         isFullPage={isFullPage}
       >
-        <Grid centered={true} columns={2}>
-          <Grid.Column width={3}>{this.renderIterateButton()}</Grid.Column>
-          <Grid.Column width={13}>
-            <TensorTComponent
-              onSelectedCallback={this.handlePointSelection}
-              pointsToPlot={plotlyCoords}
-              style={style}
-            />
-          </Grid.Column>
+        <Grid centered={true} style={{ marginLeft: 0, width: '100%' }}>
+          <Grid.Row columns={'equal'} style={{ maxHeight: '23px' }}>
+            <Grid.Column floated={'left'}>{this.renderIterateButton()}</Grid.Column>
+            <Grid.Column>{this.renderIterateLabel()}</Grid.Column>
+            <Grid.Column floated={'right'}>{this.renderResetButton()}</Grid.Column>
+          </Grid.Row>
+          <Grid.Row style={{ height: '5%' }}>
+            <Grid.Column>
+              <TensorTComponent
+                onSelectedCallback={this.handlePointSelection}
+                pointsToPlot={plotlyCoords}
+                style={style}
+              />
+            </Grid.Column>
+          </Grid.Row>
         </Grid>
       </ComponentCard>
     );
@@ -240,6 +246,8 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
     cellContext.addCells(selectedCells);
   };
 
+  protected renderIterateLabel = () => <label>{`# Finished: ${this.state.numIterations}`}</label>;
+
   /**
    * Renders the radio button responsible for toggling the animation on/off.
    */
@@ -250,6 +258,8 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
       toggle={true}
     />
   );
+
+  protected renderResetButton = () => <Icon name={'undo'} onClick={this.onReset()} />;
 
   protected onIterateForward = (amount: number = 1) => async () => {
     const { isComputing, tsne } = this.state;

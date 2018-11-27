@@ -26,13 +26,13 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     frameHeight: 0,
     frameWidth: 0,
     headerHeight: 32,
-    height: '100%',
+    height: '525px',
     iconSrc: 'assets/spring-icon-2x.png',
     isFramedComponent: false,
     isFullPage: false,
     padding: 0,
     showSettings: false,
-    width: '100%',
+    width: '525px',
   };
 
   protected cardRef: React.Component<any> | null = null;
@@ -88,7 +88,7 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     };
 
     return (
-      <Card className={'chell-component-card'} ref={ref => (this.cardRef = ref)} style={cardStyle}>
+      <Card centered={true} className={'chell-component-card'} ref={ref => (this.cardRef = ref)} style={cardStyle}>
         {this.renderTopMenu(headerHeight)}
         {isFramedComponent ? <div style={framedStyle}>{this.props.children}</div> : this.props.children}
       </Card>

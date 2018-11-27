@@ -7,10 +7,11 @@ import {
   Header,
   Input,
   Menu,
+  MenuItemProps,
+  Modal,
   Search,
   Tab,
   Table,
-  TabProps,
 } from 'semantic-ui-react';
 
 export interface ISiteHeaderProps {
@@ -44,7 +45,7 @@ export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderSta
 
   public render() {
     return (
-      <Menu secondary={false} borderless={true} fluid={true}>
+      <Menu secondary={true} borderless={true} fluid={true} style={{ maxHeight: '40px' }}>
         <Menu.Item fitted={'vertically'} position={'left'}>
           <img
             alt={'hca-dynamics-icon'}
@@ -62,24 +63,25 @@ export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderSta
   }
 
   protected renderTabMenu() {
-    const panes = [
-      {
-        menuItem: `dataset ${this.props.numDatasets >= 1 ? `(${this.props.numDatasets})` : ''}`,
-        render: () => <Tab.Pane>{this.renderDatasetMenu()}</Tab.Pane>,
-      },
-      {
-        menuItem: `apps (${this.props.numVisualizations})`,
-        render: () => <Tab.Pane>{this.renderAppsMenu()}</Tab.Pane>,
-      },
-    ];
-
     return (
-      <Tab
-        activeIndex={this.state.activeTabIndex}
-        defaultActiveIndex={-1}
-        onTabChange={this.onTabChange}
-        panes={panes}
-      />
+      <>
+        <Menu.Item>
+          <Modal
+            trigger={
+              <Menu.Item basic={true}>{`dataset ${
+                this.props.numDatasets >= 1 ? `(${this.props.numDatasets})` : ''
+              }`}</Menu.Item>
+            }
+          >
+            <Modal.Content> {this.renderDatasetMenu()}</Modal.Content>
+          </Modal>
+        </Menu.Item>
+        <Menu.Item>
+          <Modal trigger={<Menu.Item basic={true}>{`apps (${this.props.numVisualizations})`}</Menu.Item>}>
+            <Modal.Content>{this.renderAppsMenu()}</Modal.Content>
+          </Modal>
+        </Menu.Item>
+      </>
     );
   }
 
@@ -87,11 +89,9 @@ export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderSta
     console.log(e.target);
   };
 
-  protected onTabChange = (event: React.MouseEvent<HTMLDivElement>, data: TabProps) => {
-    console.log('tab change');
+  protected onTabChange = (event: React.MouseEvent<HTMLAnchorElement>, data: MenuItemProps) => {
     this.setState({
-      activeTabIndex:
-        data.activeIndex !== undefined && this.state.activeTabIndex !== data.activeIndex ? data.activeIndex : -1,
+      activeTabIndex: data.index !== undefined && this.state.activeTabIndex !== data.index ? data.index : -1,
     });
   };
 
