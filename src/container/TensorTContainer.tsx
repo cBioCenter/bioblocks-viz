@@ -20,12 +20,12 @@ import {
   ChellWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
   IPlotlyData,
-  T_SNE_DATA_TYPE,
 } from '~chell-viz~/data';
+import { fetchTensorTSneCoordinateData } from '~chell-viz~/helper';
 
 export interface ITensorContainerProps {
   cellContext: ICellContext;
-  data: T_SNE_DATA_TYPE;
+  datasetLocation: string;
   isFullPage: boolean;
   pointColor: string;
   springContext: ISpringContext;
@@ -46,7 +46,7 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
     cellContext: {
       ...initialCellContext,
     },
-    data: [[0], [0]],
+    datasetLocation: 'hpc/full',
     height: 400,
     isFullPage: false,
     pointColor: '#aa0000',
@@ -75,7 +75,8 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
   }
 
   public async componentDidMount() {
-    const tsneData = tensorFlow.tensor(this.props.data);
+    const tensorData = await fetchTensorTSneCoordinateData(`assets/datasets/${this.props.datasetLocation}`);
+    const tsneData = tensorFlow.tensor(tensorData);
     // Initialize the tsne optimizer
     const tsne = (await import('@tensorflow/tfjs-tsne')).tsne(tsneData);
     this.setState({
@@ -103,6 +104,13 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
         this.setState({
           plotlyCoords: this.getPlotlyCoordsFromSpring(await tsne.coordsArray(), indices),
         });
+      } else if (this.props.datasetLocation !== prevProps.datasetLocation) {
+        const tensorData = await fetchTensorTSneCoordinateData(`assets/datasets/${this.props.datasetLocation}`);
+        const tsneData = tensorFlow.tensor(tensorData);
+        this.setState({
+          tsne: new TSNE(tsneData),
+        });
+        await this.computeTensorTsne(this.state.numIterations);
       }
     }
   }
@@ -246,7 +254,7 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
     cellContext.addCells(selectedCells);
   };
 
-  protected renderIterateLabel = () => <label>{`# Finished: ${this.state.numIterations}`}</label>;
+  protected renderIterateLabel = () => <label>{`iterations: ${this.state.numIterations}`}</label>;
 
   /**
    * Renders the radio button responsible for toggling the animation on/off.

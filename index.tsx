@@ -8,13 +8,7 @@ ReactDOM.render(
     <ChellContextProvider>
       <div style={{ padding: '20px' }}>
         <Grid centered={true} padded={true} style={{ width: '100vmin', height: '100%' }}>
-          <SpringContainer
-            isFullPage={true}
-            springUrl={`${window.location.origin}/${window.location.pathname.substr(
-              0,
-              window.location.pathname.lastIndexOf('/'),
-            )}/springViewer.html?datasets/hpc/full`}
-          />
+          <SpringContainer isFullPage={true} datasetLocation={'hpc/full'} />
         </Grid>
       </div>
     </ChellContextProvider>

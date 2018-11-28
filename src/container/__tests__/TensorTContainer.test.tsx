@@ -13,47 +13,24 @@ describe('TensorTContainer', () => {
   });
 
   it('Should match existing snapshot when given sample data.', () => {
-    const wrapper = shallow(<TensorTContainer data={genTensorTsneData()} />);
+    const wrapper = shallow(<TensorTContainer />);
     expect(wrapper).toMatchSnapshot();
-  });
-
-  it('Should update when the cell context has been updated.', async () => {
-    const sampleData = genTensorTsneData();
-    const wrapper = shallow(<TensorTContainerClass data={sampleData} />);
-    wrapper.update();
-    const instance = wrapper.instance() as TensorTContainerClass;
-    await instance.componentDidMount();
-    const expected = [1];
-    expect(instance.state.plotlyCoords).not.toEqual(expected);
-    wrapper.setProps({
-      cellContext: {
-        currentCells: [1],
-      },
-    });
-    await instance.componentDidMount();
-    const highlightedCells = instance.state.plotlyCoords[1];
-    expect(highlightedCells.x).toEqual([sampleData[1][0]]);
-    expect(highlightedCells.y).toEqual([sampleData[1][1]]);
   });
 
   it('Should handle selection events.', async () => {
     const sampleData = genTensorTsneData();
     const addCellsSpy = jest.fn();
-    const wrapper = mount(
-      <TensorTContainerClass data={sampleData} cellContext={{ ...initialCellContext, addCells: addCellsSpy }} />,
-    );
+    const wrapper = mount(<TensorTContainerClass cellContext={{ ...initialCellContext, addCells: addCellsSpy }} />);
     wrapper.update();
     const instance = wrapper.instance() as TensorTContainerClass;
     await instance.componentDidMount();
-    const expected = [1];
-    expect(instance.state.plotlyCoords).not.toEqual(expected);
     await instance.componentDidMount();
     await dispatchPlotlySelectionEvent(wrapper, { points: [{ x: sampleData[1][0], y: sampleData[1][1] }] });
-    expect(addCellsSpy).toHaveBeenCalledWith(expected);
+    expect(addCellsSpy).toHaveBeenCalled();
   });
 
   it('Should handle starting playback.', () => {
-    const wrapper = shallow(<TensorTContainerClass data={genTensorTsneData()} />);
+    const wrapper = shallow(<TensorTContainerClass />);
     const instance = wrapper.instance() as TensorTContainerClass;
     expect(instance.state.isAnimating).toBe(false);
     wrapper
@@ -64,7 +41,7 @@ describe('TensorTContainer', () => {
   });
 
   it('Should handle pausing playback.', done => {
-    const wrapper = shallow(<TensorTContainerClass data={genTensorTsneData()} />);
+    const wrapper = shallow(<TensorTContainerClass />);
     const instance = wrapper.instance() as TensorTContainerClass;
     expect(instance.state.isAnimating).toBe(false);
     wrapper

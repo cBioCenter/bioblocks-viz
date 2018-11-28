@@ -18,17 +18,18 @@ import { ISpringLink, ISpringNode } from '~chell-viz~/data';
 
 export interface ISpringContainerProps {
   cellContext: ICellContext;
+  datasetLocation: string;
   isFullPage: boolean;
   padding: number | string;
   selectedCategory: string;
   springContext: ISpringContext;
   springHeight: number;
-  springUrl: string;
   springWidth: number;
 }
 
 export interface ISpringContainerState {
   postMessageData: object;
+  springUrl: string;
 }
 
 export interface ISpringMessage {
@@ -49,6 +50,7 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
       links: new Array<ISpringLink>(),
       nodes: new Array<ISpringNode>(),
     },
+    datasetLocation: 'hpc/full',
     headerHeight: 32,
     isFullPage: false,
     padding: 0,
@@ -57,10 +59,7 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
       ...initialSpringContext,
     },
     springHeight: 720,
-    springUrl: `${window.location.origin}/${window.location.pathname.substr(
-      0,
-      window.location.pathname.lastIndexOf('/'),
-    )}/springViewer.html?datasets/hpc/full`,
+
     /*springUrl: `${window.location.origin}/${window.location.pathname.substr(
       0,
       window.location.pathname.lastIndexOf('/'),
@@ -78,6 +77,7 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
         payload: {},
         type: 'init',
       },
+      springUrl: this.generateSpringURL(this.props.datasetLocation),
     };
   }
 
@@ -103,12 +103,16 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
           type: 'selected-cells-update',
         },
       });
+    } else if (prevProps.datasetLocation !== this.props.datasetLocation) {
+      this.setState({
+        springUrl: this.generateSpringURL(this.props.datasetLocation),
+      });
     }
   }
 
   public render() {
-    const { isFullPage, springHeight, springUrl, springWidth } = this.props;
-    const { postMessageData } = this.state;
+    const { isFullPage, springHeight, springWidth } = this.props;
+    const { postMessageData, springUrl } = this.state;
     const attributes: IframeCommAttributes = {
       allowFullScreen: true,
       height: springHeight,
@@ -179,6 +183,12 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
       }
     }
   };
+
+  protected generateSpringURL = (dataset: string) =>
+    `${window.location.origin}/${window.location.pathname.substr(
+      0,
+      window.location.pathname.lastIndexOf('/'),
+    )}/springViewer.html?datasets/${dataset}`;
 }
 
 type requiredProps = Omit<ISpringContainerProps, keyof typeof SpringContainerClass.defaultProps> &

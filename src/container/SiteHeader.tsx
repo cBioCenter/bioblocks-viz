@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { RouteComponentProps, withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 import {
   Checkbox,
   Container,
@@ -6,6 +8,7 @@ import {
   Dropdown,
   Header,
   Input,
+  List,
   Menu,
   MenuItemProps,
   Modal,
@@ -21,9 +24,10 @@ export interface ISiteHeaderProps {
 
 export interface ISiteHeaderState {
   activeTabIndex: number | string;
+  isModalOpen: boolean;
 }
 
-export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderState> {
+export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHeaderState> {
   public static defaultProps = {
     numDatasets: 0,
   };
@@ -32,6 +36,7 @@ export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderSta
     super(props);
     this.state = {
       activeTabIndex: -1,
+      isModalOpen: false,
     };
   }
 
@@ -62,31 +67,35 @@ export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderSta
     );
   }
 
-  protected renderTabMenu() {
-    return (
-      <>
-        <Menu.Item>
-          <Modal
-            trigger={
-              <Menu.Item basic={true}>{`dataset ${
-                this.props.numDatasets >= 1 ? `(${this.props.numDatasets})` : ''
-              }`}</Menu.Item>
-            }
-          >
+  protected renderTabMenu = () => {
+    const panes = [
+      {
+        menuItem: (
+          <Menu.Item onClick={this.openModal}>{`dataset ${
+            this.props.numDatasets >= 1 ? `(${this.props.numDatasets})` : ''
+          }`}</Menu.Item>
+        ),
+        render: () => (
+          <Modal open={this.state.isModalOpen} onClose={this.closeModal}>
             <Modal.Content> {this.renderDatasetMenu()}</Modal.Content>
           </Modal>
-        </Menu.Item>
-        <Menu.Item>
-          <Modal trigger={<Menu.Item basic={true}>{`apps (${this.props.numVisualizations})`}</Menu.Item>}>
+        ),
+      },
+      {
+        menuItem: <Menu.Item onClick={this.openModal}>{`apps (${this.props.numVisualizations})`}</Menu.Item>,
+        render: () => (
+          <Modal open={this.state.isModalOpen} onClose={this.closeModal}>
             <Modal.Content>{this.renderAppsMenu()}</Modal.Content>
           </Modal>
-        </Menu.Item>
-      </>
-    );
-  }
+        ),
+      },
+    ];
+
+    return <Tab defaultActiveIndex={-1} menu={{ secondary: true }} renderActiveOnly={true} panes={panes} />;
+  };
 
   protected onMouseClick = (e: MouseEvent) => {
-    console.log(e.target);
+    return;
   };
 
   protected onTabChange = (event: React.MouseEvent<HTMLAnchorElement>, data: MenuItemProps) => {
@@ -178,7 +187,20 @@ export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderSta
       },
       {
         menuItem: 'HCA Dynamics public',
-        render: () => <Tab.Pane>Coming soon!</Tab.Pane>,
+        render: () => (
+          <List>
+            <List.Item>
+              <Link onClick={this.closeModal} to={{ pathname: '/dataset', search: '?name=hpc/full' }}>
+                HPC (full)
+              </Link>
+            </List.Item>
+            <List.Item>
+              <Link onClick={this.closeModal} to={{ pathname: '/dataset', search: '?name=tabula_muris/full' }}>
+                Tabula Muris (full)
+              </Link>
+            </List.Item>
+          </List>
+        ),
       },
       {
         menuItem: 'upload from computer',
@@ -190,8 +212,22 @@ export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderSta
       <Container fluid={true}>
         <Header>SPRING datasets</Header>
         <Divider />
-        <Tab defaultActiveIndex={0} menu={{ secondary: true, pointing: true }} panes={panes} />
+        <Tab defaultActiveIndex={1} menu={{ secondary: true, pointing: true }} panes={panes} />
       </Container>
     );
   };
+
+  protected closeModal = () => {
+    this.setState({ isModalOpen: false });
+  };
+
+  protected openModal = () => {
+    this.setState({ isModalOpen: true });
+  };
 }
+
+type requiredProps = Omit<ISiteHeaderProps, keyof typeof SiteHeaderClass.defaultProps> & Partial<ISiteHeaderProps>;
+
+const SiteHeader = withRouter<requiredProps & RouteComponentProps>(SiteHeaderClass as any);
+
+export { SiteHeader };

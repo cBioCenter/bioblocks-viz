@@ -1,47 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
-<Container
-  fluid={true}
-  id="ChellVizApp"
->
-  <SiteHeader
-    numDatasets={0}
-    numVisualizations={2}
-  />
-  <ChellContextProvider>
-    <div
-      style={
-        Object {
-          "padding": "20px",
-        }
-      }
-    >
-      <Grid
-        centered={true}
-        columns={2}
-        padded={true}
-        stackable={true}
-        stretched={false}
-      >
-        <GridColumn
-          style={
-            Object {
-              "width": "auto",
-            }
-          }
-        >
-          <Component />
-        </GridColumn>
-        <GridColumn
-          style={
-            Object {
-              "width": "auto",
-            }
-          }
-        />
-      </Grid>
-    </div>
-  </ChellContextProvider>
-</Container>
+<HashRouter>
+  <Container
+    fluid={true}
+    id="ChellVizApp"
+  >
+    <withRouter(SiteHeaderClass)
+      numVisualizations={2}
+    />
+    <ChellContextProvider>
+      <Route
+        path="/beta"
+        render={[Function]}
+      />
+      <Route
+        path="/"
+        render={[Function]}
+      />
+    </ChellContextProvider>
+  </Container>
+</HashRouter>
 `;
