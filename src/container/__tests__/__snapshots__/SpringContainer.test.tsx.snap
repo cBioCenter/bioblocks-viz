@@ -7,7 +7,7 @@ exports[`SpringContainer Should match existing snapshot. 1`] = `
   frameWidth={1280}
   headerHeight={32}
   height="500px"
-  iconSrc="assets/spring-icon-2x.png"
+  iconSrc="assets/spring-icon.png"
   isFramedComponent={true}
   isFullPage={false}
   padding={0}
@@ -19,7 +19,7 @@ exports[`SpringContainer Should match existing snapshot. 1`] = `
       Object {
         "allowFullScreen": true,
         "height": 720,
-        "src": "http://localhost//springViewer.html?datasets/hpc/full",
+        "src": "http://localhost/springViewer.html?assets/datasets/hpc/full",
         "width": 1280,
       }
     }

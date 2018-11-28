@@ -2,6 +2,7 @@ import * as React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import {
+  Breadcrumb,
   Checkbox,
   Container,
   Divider,
@@ -50,28 +51,46 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
 
   public render() {
     return (
-      <Menu secondary={true} borderless={true} fluid={true} style={{ maxHeight: '40px' }}>
-        <Menu.Item fitted={'vertically'} position={'left'}>
-          <img
-            alt={'hca-dynamics-icon'}
-            src={'assets/bio-blocks-icon-2x.png'}
-            style={{ height: '32px', width: '32px' }}
-          />
-          <span style={{ fontSize: '32px', fontWeight: 'bold' }}>HCA Dynamics</span>
-        </Menu.Item>
-        {this.renderTabMenu()}
-        <Menu.Item position={'right'}>
-          <Input icon={'search'} size={'massive'} transparent={true} />
-        </Menu.Item>
-      </Menu>
+      <Header>
+        <Menu secondary={true} borderless={true} fluid={true} style={{ maxHeight: '40px', padding: '20px 0 0 0' }}>
+          <Menu.Item fitted={'vertically'} position={'left'}>
+            <img
+              alt={'hca-dynamics-icon'}
+              src={'assets/bio-blocks-icon-2x.png'}
+              style={{ height: '32px', width: '32px' }}
+            />
+            <span style={{ fontSize: '32px', fontWeight: 'bold' }}>HCA Dynamics</span>
+          </Menu.Item>
+          {this.renderTabMenu()}
+          <Menu.Item position={'right'}>
+            <Input icon={'search'} size={'massive'} transparent={true} />
+          </Menu.Item>
+        </Menu>
+        {this.renderNavBreadcrumb()}
+      </Header>
     );
   }
 
+  protected renderNavBreadcrumb() {
+    console.log(this.props);
+
+    return (
+      <Breadcrumb style={{ padding: '0 0 0 40px' }}>
+        <Breadcrumb.Section>
+          <Link to={'/'}>home</Link>
+        </Breadcrumb.Section>
+        <Breadcrumb.Divider icon={'right angle'} />
+        <Breadcrumb.Section>
+          <Link to={'/apps'}>apps</Link>
+        </Breadcrumb.Section>
+      </Breadcrumb>
+    );
+  }
   protected renderTabMenu = () => {
     const panes = [
       {
         menuItem: (
-          <Menu.Item onClick={this.openModal}>{`dataset ${
+          <Menu.Item key={'dataset'} onClick={this.openModal}>{`dataset ${
             this.props.numDatasets >= 1 ? `(${this.props.numDatasets})` : ''
           }`}</Menu.Item>
         ),
@@ -82,7 +101,9 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
         ),
       },
       {
-        menuItem: <Menu.Item onClick={this.openModal}>{`apps (${this.props.numVisualizations})`}</Menu.Item>,
+        menuItem: (
+          <Menu.Item key={'apps'} onClick={this.openModal}>{`apps (${this.props.numVisualizations})`}</Menu.Item>
+        ),
         render: () => (
           <Modal open={this.state.isModalOpen} onClose={this.closeModal}>
             <Modal.Content>{this.renderAppsMenu()}</Modal.Content>

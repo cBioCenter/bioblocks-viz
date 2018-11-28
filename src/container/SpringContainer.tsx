@@ -59,12 +59,6 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
       ...initialSpringContext,
     },
     springHeight: 720,
-
-    /*springUrl: `${window.location.origin}/${window.location.pathname.substr(
-      0,
-      window.location.pathname.lastIndexOf('/'),
-    )}/springViewer.html?datasets/tabula_muris/full`,
-    */
     springWidth: 1280,
   };
 
@@ -188,7 +182,7 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
     `${window.location.origin}/${window.location.pathname.substr(
       0,
       window.location.pathname.lastIndexOf('/'),
-    )}/springViewer.html?datasets/${dataset}`;
+    )}springViewer.html?assets/datasets/${dataset}`;
 }
 
 type requiredProps = Omit<ISpringContainerProps, keyof typeof SpringContainerClass.defaultProps> &

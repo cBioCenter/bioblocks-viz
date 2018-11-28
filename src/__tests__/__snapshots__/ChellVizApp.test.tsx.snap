@@ -9,16 +9,14 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
     <withRouter(SiteHeaderClass)
       numVisualizations={2}
     />
-    <ChellContextProvider>
-      <Route
-        path="/beta"
-        render={[Function]}
-      />
-      <Route
-        path="/"
-        render={[Function]}
-      />
-    </ChellContextProvider>
+    <Route
+      path="/summary"
+      render={[Function]}
+    />
+    <Route
+      path="/dataset"
+      render={[Function]}
+    />
   </Container>
 </HashRouter>
 `;
