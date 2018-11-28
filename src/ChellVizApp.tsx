@@ -6,6 +6,7 @@ import { Container, Grid } from 'semantic-ui-react';
 
 import { SiteHeader, SpringContainer, TensorTContainer, VizOverviewContainer } from '~chell-viz~/container';
 import { ChellContextProvider } from '~chell-viz~/context';
+import { AppsPage } from '~chell-viz~/page';
 
 export interface IChellVizAppState {
   activeVisualizations: number;
@@ -31,6 +32,7 @@ export class ChellVizApp extends React.Component<Partial<RouteComponentProps>, I
         <Container id="ChellVizApp" fluid={true}>
           <SiteHeader numVisualizations={2} />
 
+          <Route path="/apps" render={this.renderAppsPage} />
           <Route path="/summary" render={this.renderVizOverview} />
           <Route path="/dataset" render={this.renderComponents} />
         </Container>
@@ -66,5 +68,9 @@ export class ChellVizApp extends React.Component<Partial<RouteComponentProps>, I
 
   protected renderVizOverview = (props: RouteComponentProps) => {
     return <VizOverviewContainer {...props} />;
+  };
+
+  protected renderAppsPage = (props: RouteComponentProps) => {
+    return <AppsPage {...props} />;
   };
 }

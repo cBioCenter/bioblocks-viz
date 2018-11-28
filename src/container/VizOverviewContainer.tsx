@@ -28,7 +28,7 @@ export class VizOverviewContainer extends React.Component<IVizOverviewContainerP
         <Grid.Column width={2}>
           <img
             alt={'component icon'}
-            src={'assets/spring-icon.png'}
+            src={'assets/icons/spring-icon.png'}
             style={{ height: '200px', padding: '20px', width: '128px' }}
           />
         </Grid.Column>

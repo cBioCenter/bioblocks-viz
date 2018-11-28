@@ -27,7 +27,7 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     frameWidth: 0,
     headerHeight: 32,
     height: '525px',
-    iconSrc: 'assets/spring-icon.png',
+    iconSrc: 'assets/icons/spring-icon.png',
     isFramedComponent: false,
     isFullPage: false,
     padding: 0,

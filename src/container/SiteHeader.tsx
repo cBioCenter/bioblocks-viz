@@ -56,7 +56,7 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
           <Menu.Item fitted={'vertically'} position={'left'}>
             <img
               alt={'hca-dynamics-icon'}
-              src={'assets/bio-blocks-icon-2x.png'}
+              src={'assets/icons/bio-blocks-icon-2x.png'}
               style={{ height: '32px', width: '32px' }}
             />
             <span style={{ fontSize: '32px', fontWeight: 'bold' }}>HCA Dynamics</span>

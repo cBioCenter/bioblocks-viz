@@ -8,5 +8,6 @@ export * from './PlotlyData';
 export * from './Protein';
 export * from './Spring';
 export * from './TintedChell1DSection';
+export * from './VizData';
 
 export * from './event';

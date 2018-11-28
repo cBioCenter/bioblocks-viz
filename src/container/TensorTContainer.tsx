@@ -122,7 +122,7 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
     return (
       <ComponentCard
         componentName={TensorTContainerClass.displayName}
-        iconSrc={'assets/tsne-icon.png'}
+        iconSrc={'assets/icons/tsne-icon.png'}
         isFullPage={isFullPage}
       >
         <Grid centered={true} style={{ marginLeft: 0, width: '100%' }}>

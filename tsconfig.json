@@ -19,6 +19,7 @@
       "~chell-viz~/data": ["./src/data"],
       "~chell-viz~/helper": ["./src/helper"],
       "~chell-viz~/hoc": ["./src/hoc"],
+      "~chell-viz~/page": ["./src/page"],
       "~chell-viz~/test": ["./test"],
       "jest": ["node_modules/@types/jest/index.d.ts"],
       "plotly.js-*": ["node_modules/@types/plotly.js"]
