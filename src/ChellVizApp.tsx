@@ -4,9 +4,9 @@ import { HashRouter as Router, Route, RouteComponentProps } from 'react-router-d
 // tslint:disable-next-line:import-name
 import { Container, Grid } from 'semantic-ui-react';
 
-import { SiteHeader, SpringContainer, TensorTContainer, VizOverviewContainer } from '~chell-viz~/container';
+import { SiteHeader, SpringContainer, TensorTContainer } from '~chell-viz~/container';
 import { ChellContextProvider } from '~chell-viz~/context';
-import { AppsPage } from '~chell-viz~/page';
+import { AppsPage, VizOverviewContainer } from '~chell-viz~/page';
 
 export interface IChellVizAppState {
   activeVisualizations: number;
@@ -33,7 +33,7 @@ export class ChellVizApp extends React.Component<Partial<RouteComponentProps>, I
           <SiteHeader numVisualizations={2} />
 
           <Route path="/apps" render={this.renderAppsPage} />
-          <Route path="/summary" render={this.renderVizOverview} />
+          <Route path="/overview" render={this.renderVizOverview} />
           <Route path="/dataset" render={this.renderComponents} />
         </Container>
       </Router>

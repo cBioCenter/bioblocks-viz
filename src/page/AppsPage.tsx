@@ -3,7 +3,7 @@ import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Button, Grid, Header, List } from 'semantic-ui-react';
 
-import { IVizData, VizData } from '~chell-viz~/data';
+import { IVizSummaryData, VizData } from '~chell-viz~/data';
 
 export interface IAppsPageProps extends Partial<RouteComponentProps> {}
 
@@ -22,7 +22,7 @@ export class AppsPage extends React.Component<IAppsPageProps, any> {
     );
   }
 
-  protected renderAppItem(viz: IVizData) {
+  protected renderAppItem(viz: IVizSummaryData) {
     return (
       <Grid centered={true} columns={3} padded={true} relaxed={true}>
         <Grid.Column>
@@ -43,7 +43,7 @@ export class AppsPage extends React.Component<IAppsPageProps, any> {
         <Grid.Column stretched={true}>
           <Grid.Row>
             <Button basic={true}>
-              <Link to={'/summary'}>details</Link>
+              <Link to={{ pathname: '/overview', search: `?name=${viz.name.toLocaleLowerCase()}` }}>details</Link>
             </Button>
           </Grid.Row>
           <Grid.Row>

@@ -72,8 +72,6 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
   }
 
   protected renderNavBreadcrumb() {
-    console.log(this.props);
-
     return (
       <Breadcrumb style={{ padding: '0 0 0 40px' }}>
         <Breadcrumb.Section>

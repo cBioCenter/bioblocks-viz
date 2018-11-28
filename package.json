@@ -50,6 +50,7 @@
       "~chell-viz~/data": "<rootDir>/src/data",
       "~chell-viz~/helper": "<rootDir>/src/helper",
       "~chell-viz~/hoc": "<rootDir>/src/hoc",
+      "~chell-viz~/page": "<rootDir>/src/page",
       "~chell-viz~/test": "<rootDir>/test",
       "\\.(css|less)$": "<rootDir>/test/__mocks__/styleMock.ts",
       "plotly.js-gl2d-dist": "<rootDir>/test/__mocks__/plotly.ts",
