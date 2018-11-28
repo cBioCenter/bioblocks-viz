@@ -18,9 +18,8 @@ import {
   Table,
 } from 'semantic-ui-react';
 
-export interface ISiteHeaderProps {
+export interface ISiteHeaderProps extends Partial<RouteComponentProps> {
   numDatasets: number;
-  numVisualizations: number;
 }
 
 export interface ISiteHeaderState {
@@ -43,6 +42,15 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
 
   public componentDidMount() {
     window.addEventListener('click', this.onMouseClick);
+    if (this.props.location) {
+      this.handleQueryParams(this.props.location.search);
+    }
+  }
+
+  public componentDidUpdate(prevProps: ISiteHeaderProps) {
+    if (this.props.location && this.props.location !== prevProps.location) {
+      this.handleQueryParams(this.props.location.search);
+    }
   }
 
   public componentWillUnmount() {
@@ -84,6 +92,7 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
       </Breadcrumb>
     );
   }
+
   protected renderTabMenu = () => {
     const panes = [
       {
@@ -100,7 +109,9 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
       },
       {
         menuItem: (
-          <Menu.Item key={'apps'} onClick={this.openModal}>{`apps (${this.props.numVisualizations})`}</Menu.Item>
+          <Menu.Item key={'apps'} onClick={this.openModal}>
+            {'apps'}
+          </Menu.Item>
         ),
         render: () => (
           <Modal open={this.state.isModalOpen} onClose={this.closeModal}>
@@ -110,17 +121,33 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
       },
     ];
 
-    return <Tab defaultActiveIndex={-1} menu={{ secondary: true }} renderActiveOnly={true} panes={panes} />;
+    return (
+      <Tab
+        activeIndex={this.state.activeTabIndex}
+        defaultActiveIndex={-1}
+        menu={{ secondary: true }}
+        renderActiveOnly={true}
+        panes={panes}
+      />
+    );
   };
+
+  protected handleQueryParams(search: string) {
+    const params = new URLSearchParams(search);
+    const apps = params.getAll('app');
+    // tslint:disable-next-line:no-backbone-get-set-outside-model
+    const name = params.get('name');
+
+    if (apps.length >= 1 && !name) {
+      this.setState({
+        activeTabIndex: 0,
+        isModalOpen: true,
+      });
+    }
+  }
 
   protected onMouseClick = (e: MouseEvent) => {
     return;
-  };
-
-  protected onTabChange = (event: React.MouseEvent<HTMLAnchorElement>, data: MenuItemProps) => {
-    this.setState({
-      activeTabIndex: data.index !== undefined && this.state.activeTabIndex !== data.index ? data.index : -1,
-    });
   };
 
   protected renderAppsMenu = () => {
@@ -173,6 +200,12 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
   };
 
   protected renderDatasetMenu = () => {
+    let apps: string[] = [];
+    if (this.props.location) {
+      const params = new URLSearchParams(this.props.location.search);
+      apps = params.getAll('app').map(app => `app=${app}`);
+    }
+
     const panes = [
       {
         menuItem: 'human cell atlas',
@@ -209,12 +242,15 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
         render: () => (
           <List>
             <List.Item>
-              <Link onClick={this.closeModal} to={{ pathname: '/dataset', search: '?name=hpc/full' }}>
+              <Link onClick={this.closeModal} to={{ pathname: '/dataset', search: `?name=hpc/full&${apps.join('&')}` }}>
                 HPC (full)
               </Link>
             </List.Item>
             <List.Item>
-              <Link onClick={this.closeModal} to={{ pathname: '/dataset', search: '?name=tabula_muris/full' }}>
+              <Link
+                onClick={this.closeModal}
+                to={{ pathname: '/dataset', search: `?name=tabula_muris/full&${apps.join('&')}` }}
+              >
                 Tabula Muris (full)
               </Link>
             </List.Item>
@@ -229,7 +265,7 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
 
     return (
       <Container fluid={true}>
-        <Header>SPRING datasets</Header>
+        <Header>datasets</Header>
         <Divider />
         <Tab defaultActiveIndex={1} menu={{ secondary: true, pointing: true }} panes={panes} />
       </Container>
@@ -237,11 +273,11 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
   };
 
   protected closeModal = () => {
-    this.setState({ isModalOpen: false });
+    this.setState({ activeTabIndex: -1, isModalOpen: false });
   };
 
-  protected openModal = () => {
-    this.setState({ isModalOpen: true });
+  protected openModal = (event: React.MouseEvent<HTMLAnchorElement>, data: MenuItemProps) => {
+    this.setState({ activeTabIndex: data.index !== undefined ? data.index : -1, isModalOpen: true });
   };
 }
 

@@ -19,7 +19,7 @@ exports[`SpringContainer Should match existing snapshot. 1`] = `
       Object {
         "allowFullScreen": true,
         "height": 720,
-        "src": "http://localhost/springViewer.html?assets/datasets/hpc/full",
+        "src": "http://localhost//springViewer.html?assets/datasets/hpc/full",
         "width": 1280,
       }
     }

@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DatasetPage Should match existing snapshot. 1`] = `
+<div
+  style={
+    Object {
+      "padding": "20px",
+    }
+  }
+>
+  <Grid
+    centered={true}
+    columns={2}
+    padded={true}
+    stackable={true}
+    stretched={false}
+  />
+</div>
+`;

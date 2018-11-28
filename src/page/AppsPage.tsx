@@ -48,7 +48,7 @@ export class AppsPage extends React.Component<IAppsPageProps, any> {
           </Grid.Row>
           <Grid.Row>
             <Button basic={true}>
-              <Link to={'/beta'}>launch</Link>
+              <Link to={{ pathname: '/dataset', search: `?app=${viz.name.toLocaleLowerCase()}` }}>launch</Link>
             </Button>
           </Grid.Row>
         </Grid.Column>

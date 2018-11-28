@@ -2,6 +2,7 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Accordion, Button, Container, Divider, Grid, Header, Icon, List, Message } from 'semantic-ui-react';
 
+import { Link } from 'react-router-dom';
 import { IVizOverviewData, VizData } from '~chell-viz~/data';
 
 export interface IVizOverviewPageProps extends Partial<RouteComponentProps> {}
@@ -10,7 +11,7 @@ export interface IVizOverviewPageState {
   currentViz: IVizOverviewData | null;
 }
 
-export class VizOverviewContainer extends React.Component<IVizOverviewPageProps, IVizOverviewPageState> {
+export class VizOverviewPage extends React.Component<IVizOverviewPageProps, IVizOverviewPageState> {
   constructor(props: IVizOverviewPageProps) {
     super(props);
     this.state = {
@@ -39,37 +40,46 @@ export class VizOverviewContainer extends React.Component<IVizOverviewPageProps,
     );
   }
 
-  protected renderOverview(vizData: IVizOverviewData) {
+  protected renderOverview(viz: IVizOverviewData) {
     return (
       <Grid centered={true} columns={2}>
         <Grid.Column width={2}>
           <img
-            alt={`icon for ${vizData.name}`}
-            src={`assets/icons/${vizData.name.toLocaleLowerCase()}-icon.png`}
+            alt={`icon for ${viz.name}`}
+            src={`assets/icons/${viz.name.toLocaleLowerCase()}-icon.png`}
             style={{ height: '200px', padding: '20px', width: '128px' }}
           />
         </Grid.Column>
         <Grid.Column textAlign={'left'}>
           <Header as={'h1'}>
-            {vizData.name}
-            <Header.Subheader>{vizData.authors.join(', ')}</Header.Subheader>
+            {viz.name}
+            <Header.Subheader>{viz.authors.join(', ')}</Header.Subheader>
           </Header>
           <>
-            <p>{vizData.detailedSummary}</p>
+            <p>{viz.detailedSummary}</p>
             <List>
-              <List.Item>applicable data: {vizData.relevantData}</List.Item>
-              <List.Item>compatible with: {vizData.compatibility.join(', ')}</List.Item>
+              <List.Item>applicable data: {viz.relevantData}</List.Item>
+              <List.Item>compatible with: {viz.compatibility.join(', ')}</List.Item>
               <List.Item>
                 citation(s):{' '}
-                {vizData.citations.map((citation, index) => (
-                  <React.Fragment key={`${vizData.name.toLocaleLowerCase()}-citation-${index}`}>
+                {viz.citations.map((citation, index) => (
+                  <React.Fragment key={`${viz.name.toLocaleLowerCase()}-citation-${index}`}>
                     {citation.fullCitation} ({<a href={citation.link}>link</a>})
                   </React.Fragment>
                 ))}
               </List.Item>
               <List.Item>
-                version: {vizData.repo.version} (last updated {vizData.repo.lastUpdate}),
-                {<a href={vizData.repo.link}> github link</a>}
+                version: {viz.repo.version} (last updated {viz.repo.lastUpdate}),
+                {<a href={viz.repo.link}> github link</a>}
+              </List.Item>
+              <List.Item>
+                <Button basic={true} icon={true} labelPosition={'right'}>
+                  <Link to={{ pathname: '/dataset', search: `?name=hpc/full&app=${viz.name.toLocaleLowerCase()}` }}>
+                    {`launch ${viz.name}`}
+                  </Link>
+                  {/* Power Gap */}
+                  <Icon name={'external alternate'} />
+                </Button>
               </List.Item>
             </List>
           </>

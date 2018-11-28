@@ -1,0 +1,254 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppsPage Should match existing snapshot. 1`] = `
+<List
+  divided={true}
+>
+  <ListItem>
+    <Grid
+      centered={true}
+      columns={3}
+      padded={true}
+      relaxed={true}
+    >
+      <GridColumn>
+        <img
+          alt="icon for SPRING"
+          src="assets/icons/spring-thumbnail.png"
+          style={
+            Object {
+              "height": "100px",
+            }
+          }
+        />
+      </GridColumn>
+      <GridColumn
+        textAlign="left"
+      >
+        <Header
+          as="h2"
+        >
+          SPRING
+        </Header>
+        <List>
+          <ListItem>
+            caleb weinreb, samuel wolock, allon klein
+          </ListItem>
+          <ListItem>
+            SPRING is a tool for uncovering high-dimensional structure in single-cell expression data.
+          </ListItem>
+          <ListItem>
+            relevant data: scRNA-seq
+          </ListItem>
+        </List>
+      </GridColumn>
+      <GridColumn
+        stretched={true}
+      >
+        <GridRow>
+          <Button
+            as="button"
+            basic={true}
+            role="button"
+          >
+            <Link
+              replace={false}
+              to={
+                Object {
+                  "pathname": "/overview",
+                  "search": "?name=spring",
+                }
+              }
+            >
+              details
+            </Link>
+          </Button>
+        </GridRow>
+        <GridRow>
+          <Button
+            as="button"
+            basic={true}
+            role="button"
+          >
+            <Link
+              replace={false}
+              to={
+                Object {
+                  "pathname": "/dataset",
+                  "search": "?app=spring",
+                }
+              }
+            >
+              launch
+            </Link>
+          </Button>
+        </GridRow>
+      </GridColumn>
+    </Grid>
+  </ListItem>
+  <ListItem>
+    <Grid
+      centered={true}
+      columns={3}
+      padded={true}
+      relaxed={true}
+    >
+      <GridColumn>
+        <img
+          alt="icon for tfjs-tsne"
+          src="assets/icons/tfjs-tsne-thumbnail.png"
+          style={
+            Object {
+              "height": "100px",
+            }
+          }
+        />
+      </GridColumn>
+      <GridColumn
+        textAlign="left"
+      >
+        <Header
+          as="h2"
+        >
+          tfjs-tsne
+        </Header>
+        <List>
+          <ListItem>
+            original: Yannick Assogba
+          </ListItem>
+          <ListItem>
+            Improved tSNE implementation that runs in the browser.
+          </ListItem>
+          <ListItem>
+            relevant data: scRNA-seq
+          </ListItem>
+        </List>
+      </GridColumn>
+      <GridColumn
+        stretched={true}
+      >
+        <GridRow>
+          <Button
+            as="button"
+            basic={true}
+            role="button"
+          >
+            <Link
+              replace={false}
+              to={
+                Object {
+                  "pathname": "/overview",
+                  "search": "?name=tfjs-tsne",
+                }
+              }
+            >
+              details
+            </Link>
+          </Button>
+        </GridRow>
+        <GridRow>
+          <Button
+            as="button"
+            basic={true}
+            role="button"
+          >
+            <Link
+              replace={false}
+              to={
+                Object {
+                  "pathname": "/dataset",
+                  "search": "?app=tfjs-tsne",
+                }
+              }
+            >
+              launch
+            </Link>
+          </Button>
+        </GridRow>
+      </GridColumn>
+    </Grid>
+  </ListItem>
+  <ListItem>
+    <Grid
+      centered={true}
+      columns={3}
+      padded={true}
+      relaxed={true}
+    >
+      <GridColumn>
+        <img
+          alt="icon for Anatomogram"
+          src="assets/icons/anatomogram-thumbnail.png"
+          style={
+            Object {
+              "height": "100px",
+            }
+          }
+        />
+      </GridColumn>
+      <GridColumn
+        textAlign="left"
+      >
+        <Header
+          as="h2"
+        >
+          Anatomogram
+        </Header>
+        <List>
+          <ListItem>
+            original: Alfonso Muñoz-Pomer Fuentes
+          </ListItem>
+          <ListItem>
+            Interactive anatomical diagram.
+          </ListItem>
+          <ListItem>
+            relevant data: scRNA-seq
+          </ListItem>
+        </List>
+      </GridColumn>
+      <GridColumn
+        stretched={true}
+      >
+        <GridRow>
+          <Button
+            as="button"
+            basic={true}
+            role="button"
+          >
+            <Link
+              replace={false}
+              to={
+                Object {
+                  "pathname": "/overview",
+                  "search": "?name=anatomogram",
+                }
+              }
+            >
+              details
+            </Link>
+          </Button>
+        </GridRow>
+        <GridRow>
+          <Button
+            as="button"
+            basic={true}
+            role="button"
+          >
+            <Link
+              replace={false}
+              to={
+                Object {
+                  "pathname": "/dataset",
+                  "search": "?app=anatomogram",
+                }
+              }
+            >
+              launch
+            </Link>
+          </Button>
+        </GridRow>
+      </GridColumn>
+    </Grid>
+  </ListItem>
+</List>
+`;

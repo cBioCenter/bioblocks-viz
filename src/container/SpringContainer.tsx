@@ -182,7 +182,7 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
     `${window.location.origin}/${window.location.pathname.substr(
       0,
       window.location.pathname.lastIndexOf('/'),
-    )}springViewer.html?assets/datasets/${dataset}`;
+    )}/springViewer.html?assets/datasets/${dataset}`;
 }
 
 type requiredProps = Omit<ISpringContainerProps, keyof typeof SpringContainerClass.defaultProps> &

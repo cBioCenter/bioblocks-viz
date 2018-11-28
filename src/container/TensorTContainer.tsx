@@ -75,7 +75,12 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
   }
 
   public async componentDidMount() {
-    const tensorData = await fetchTensorTSneCoordinateData(`assets/datasets/${this.props.datasetLocation}`);
+    let tensorData: number[][] = [[0]];
+    try {
+      tensorData = await fetchTensorTSneCoordinateData(`assets/datasets/${this.props.datasetLocation}`);
+    } catch (e) {
+      console.log(e);
+    }
     const tsneData = tensorFlow.tensor(tensorData);
     // Initialize the tsne optimizer
     const tsne = (await import('@tensorflow/tfjs-tsne')).tsne(tsneData);
@@ -89,7 +94,9 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
     const { cellContext, springContext } = this.props;
     const { tsne } = this.state;
     if (tsne) {
-      if (cellContext.currentCells !== prevProps.cellContext.currentCells) {
+      if (this.props.datasetLocation !== prevProps.datasetLocation) {
+        await this.setupTensorData();
+      } else if (cellContext.currentCells !== prevProps.cellContext.currentCells) {
         this.setState({
           plotlyCoords: this.getPlotlyCoordsFromTsne(await tsne.coordsArray()),
         });
@@ -104,13 +111,6 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
         this.setState({
           plotlyCoords: this.getPlotlyCoordsFromSpring(await tsne.coordsArray(), indices),
         });
-      } else if (this.props.datasetLocation !== prevProps.datasetLocation) {
-        const tensorData = await fetchTensorTSneCoordinateData(`assets/datasets/${this.props.datasetLocation}`);
-        const tsneData = tensorFlow.tensor(tensorData);
-        this.setState({
-          tsne: new TSNE(tsneData),
-        });
-        await this.computeTensorTsne(this.state.numIterations);
       }
     }
   }
@@ -122,7 +122,7 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
     return (
       <ComponentCard
         componentName={TensorTContainerClass.displayName}
-        iconSrc={'assets/icons/tsne-icon.png'}
+        iconSrc={'assets/icons/tfjs-tsne-icon.png'}
         isFullPage={isFullPage}
       >
         <Grid centered={true} style={{ marginLeft: 0, width: '100%' }}>
@@ -307,6 +307,19 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
   protected onReset = () => async () => {
     await this.computeTensorTsne(0);
   };
+
+  protected async setupTensorData() {
+    try {
+      const tensorData = await fetchTensorTSneCoordinateData(`assets/datasets/${this.props.datasetLocation}`);
+      const tsneData = tensorFlow.tensor(tensorData);
+      this.setState({
+        tsne: new TSNE(tsneData),
+      });
+      await this.computeTensorTsne(this.state.numIterations);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
 
 type requiredProps = Omit<ITensorContainerProps, keyof typeof TensorTContainerClass.defaultProps> &
