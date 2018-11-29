@@ -122,13 +122,7 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
     ];
 
     return (
-      <Tab
-        activeIndex={this.state.activeTabIndex}
-        defaultActiveIndex={-1}
-        menu={{ secondary: true }}
-        renderActiveOnly={true}
-        panes={panes}
-      />
+      <Tab activeIndex={this.state.activeTabIndex} menu={{ secondary: true }} renderActiveOnly={true} panes={panes} />
     );
   };
 

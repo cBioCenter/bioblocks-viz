@@ -32,7 +32,7 @@ exports[`AppsPage Should match existing snapshot. 1`] = `
         </Header>
         <List>
           <ListItem>
-            caleb weinreb, samuel wolock, allon klein
+            Caleb Weinreb, Samuel Wolock, Allon Klein
           </ListItem>
           <ListItem>
             SPRING is a tool for uncovering high-dimensional structure in single-cell expression data.

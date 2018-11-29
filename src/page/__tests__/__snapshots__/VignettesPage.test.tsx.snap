@@ -1,0 +1,132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VignettesPage Should match existing snapshot. 1`] = `
+<Grid
+  centered={true}
+  padded={true}
+  relaxed={false}
+>
+  <GridRow
+    columns={3}
+  >
+    <GridColumn>
+      <img
+        alt="vignette Trajectory analysis of differentiating HPCs icon"
+        src="assets/icons/example_spring-hpc.png"
+        style={
+          Object {
+            "height": "90px",
+            "width": "90px",
+          }
+        }
+      />
+    </GridColumn>
+    <GridColumn
+      textAlign="left"
+    >
+      <Header>
+        Trajectory analysis of differentiating HPCs
+      </Header>
+      <p>
+        <span
+          style={
+            Object {
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Description: 
+        </span>
+        We analyze scRNA seq of ~5000 differentiating    hematopoietic cells using SPRING - a tool for uncovering    high-dimensional structure in single-cell gene expression data.
+      </p>
+      <p>
+        <span
+          style={
+            Object {
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Analysis authors: 
+        </span>
+        Caleb Weinreb, Samuel Wolock, Allon Klein
+      </p>
+    </GridColumn>
+    <GridColumn>
+      <Button
+        as="button"
+        basic={true}
+        role="button"
+      >
+        <Link
+          replace={false}
+          to="/dataset?name=hpc/full&app=spring"
+        >
+          launch
+        </Link>
+      </Button>
+    </GridColumn>
+  </GridRow>
+  <GridRow
+    columns={3}
+  >
+    <GridColumn>
+      <img
+        alt="vignette Dimensionality-reduction analysis of tabula muris icon"
+        src="assets/icons/example_spring-tsne-anatomogram.png"
+        style={
+          Object {
+            "height": "90px",
+            "width": "90px",
+          }
+        }
+      />
+    </GridColumn>
+    <GridColumn
+      textAlign="left"
+    >
+      <Header>
+        Dimensionality-reduction analysis of tabula muris
+      </Header>
+      <p>
+        <span
+          style={
+            Object {
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Description: 
+        </span>
+        Analysis of single cell transcriptomics of 20 mouse organs    from the tabula muris project.
+      </p>
+      <p>
+        <span
+          style={
+            Object {
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Analysis authors: 
+        </span>
+        Drew Diamantoukos and Nicholas Gauthier
+      </p>
+    </GridColumn>
+    <GridColumn>
+      <Button
+        as="button"
+        basic={true}
+        role="button"
+      >
+        <Link
+          replace={false}
+          to="/dataset?name=tabula_muris/full&app=spring&app=tfjs-tsne&app=anatomogram"
+        >
+          launch
+        </Link>
+      </Button>
+    </GridColumn>
+  </GridRow>
+</Grid>
+`;

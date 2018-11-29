@@ -32,14 +32,15 @@ const anatomogram: IVizOverviewData = {
   summary: 'Interactive anatomical diagram.',
 };
 
+const newLocal =
+  'Weinreb, Caleb, Samuel Wolock, and Allon M. Klein.\
+         "SPRING: A kinetic interface for visualizing high dimensional single-cell expression data."\
+         Bioinformatics 34.7 (2017): 1246-1248.';
 const spring: IVizOverviewData = {
-  authors: ['caleb weinreb', 'samuel wolock', 'allon klein'],
+  authors: ['Caleb Weinreb', 'Samuel Wolock', 'Allon Klein'],
   citations: [
     {
-      fullCitation:
-        'Weinreb, Caleb, Samuel Wolock, and Allon M. Klein.\
-         "SPRING: A kinetic interface for visualizing high dimensional single-cell expression data."\
-         Bioinformatics 34.7 (2017): 1246-1248.',
+      fullCitation: newLocal,
       link: 'https://www.ncbi.nlm.nih.gov/pubmed/29228172',
     },
   ],
@@ -78,3 +79,69 @@ export const VizData = {
   spring,
   tfjsTsne,
 };
+
+export interface IVignette {
+  authors: string[];
+  description: string;
+  icon: string;
+  link: string;
+  title: string;
+}
+
+export const Vignettes: IVignette[] = [
+  {
+    authors: ['Caleb Weinreb', 'Samuel Wolock', 'Allon Klein'],
+    description:
+      'We analyze scRNA seq of ~5000 differentiating\
+    hematopoietic cells using SPRING - a tool for uncovering\
+    high-dimensional structure in single-cell gene expression data.',
+    icon: 'assets/icons/example_spring-hpc.png',
+    link: '/dataset?name=hpc/full&app=spring',
+    title: 'Trajectory analysis of differentiating HPCs',
+  },
+  {
+    authors: ['Drew Diamantoukos', 'Nicholas Gauthier'],
+    description: 'Analysis of single cell transcriptomics of 20 mouse organs\
+    from the tabula muris project.',
+    icon: 'assets/icons/example_spring-tsne-anatomogram.png',
+    link: '/dataset?name=tabula_muris/full&app=spring&app=tfjs-tsne&app=anatomogram',
+    title: 'Dimensionality-reduction analysis of tabula muris',
+  },
+];
+
+export interface IDatasetInfo {
+  authors: string[];
+  links: {
+    detail: string;
+    analysis: string;
+  };
+  name: string;
+  summary: string;
+}
+
+export const userDatasets: IDatasetInfo[] = [
+  {
+    authors: ['Caleb Weinreb', 'Samuel Wolock', 'Allon klein'],
+    links: {
+      analysis: '',
+      detail: '',
+    },
+    name: 'Differentiating hematopoietic cells',
+    summary:
+      'Hematopoietic cells were subjected to barcoding and\
+aliquots were subjected to scRNAseq as they underwent\
+differentiation.',
+  },
+  {
+    authors: ['The Tabula Muris Consortium'],
+    links: {
+      analysis: '',
+      detail: '',
+    },
+    name: 'Tabula muris - scRNAseq of 20 mouse organs',
+    summary:
+      'A compendium of single-cell transcriptomic data from the\
+  model organism Mus musculus that comprises more than\
+  100,000 cells from 20 organs and tissues',
+  },
+];
