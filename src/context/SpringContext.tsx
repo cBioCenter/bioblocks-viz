@@ -8,6 +8,7 @@ export interface ISpringContext {
   selectedCategories: string[];
   addCategories(categories: string[]): void;
   addCategory(category: string): void;
+  handleCategory(category: string, nodes: number[]): void;
   removeCategory(category: string): void;
   setCategories(categories: string[]): void;
   toggleCategory(category: string): void;
@@ -21,6 +22,9 @@ export const initialSpringContext: ISpringContext = {
     return;
   },
   graphData: { links: [], nodes: [] },
+  handleCategory: (category: string, cells: number[]) => {
+    return;
+  },
   removeCategory: category => {
     return;
   },
@@ -44,6 +48,7 @@ export class SpringContextProvider extends React.Component<any, SpringContextSta
       ...initialSpringContext,
       addCategories: this.onAddCategories(),
       addCategory: this.onAddCategory(),
+      handleCategory: this.onHandleCategory(),
       removeCategory: this.onRemoveCategory(),
       setCategories: this.onSetCategories(),
       toggleCategory: this.onToggleCategory(),
@@ -52,7 +57,6 @@ export class SpringContextProvider extends React.Component<any, SpringContextSta
 
   public async componentDidMount() {
     const graphData = await fetchSpringData('datasets/hpc/full');
-    // const graphData = await fetchSpringData('assets/datasets/tabula_muris/full');
     this.setState({
       graphData,
       selectedCategories: [],
@@ -79,6 +83,14 @@ export class SpringContextProvider extends React.Component<any, SpringContextSta
       this.setState({
         selectedCategories: [...selectedCategories, category],
       });
+    }
+  };
+
+  protected onHandleCategory = () => (category: string, nodes: number[]) => {
+    if (nodes.length === 0) {
+      this.onRemoveCategory()(category);
+    } else {
+      this.onAddCategory()(category);
     }
   };
 

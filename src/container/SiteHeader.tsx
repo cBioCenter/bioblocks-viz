@@ -112,12 +112,7 @@ export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderSta
   protected renderNavMenu = () => {
     return (
       <Menu defaultActiveIndex={-1} secondary={true}>
-        <Menu.Item
-          key={'dataset'}
-          onClick={this.openModal}
-          disabled={this.state.isModalOpen}
-          style={{ color: 'black', fontSize: '18px' }}
-        >
+        <Menu.Item key={'dataset'} onClick={this.openModal} style={{ color: 'black', fontSize: '18px' }}>
           {`dataset ${this.props.numDatasets >= 1 ? `(${this.props.numDatasets})` : ''}`}
           <Modal open={this.state.isModalOpen} onClose={this.closeModal}>
             <Modal.Content> {this.renderDatasetMenu()}</Modal.Content>

@@ -146,6 +146,13 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       {
+        from: './assets/datasets',
+        to: './datasets',
+        toType: 'dir',
+      },
+    ]),
+    new CopyWebpackPlugin([
+      {
         from: './assets',
         ignore: ['*.pdf'],
         to: './assets',

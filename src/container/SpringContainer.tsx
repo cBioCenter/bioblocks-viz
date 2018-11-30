@@ -154,7 +154,7 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
     switch (data.type) {
       case 'selected-category-update': {
         this.props.cellContext.addCells(data.payload.indices);
-        this.props.springContext.toggleCategory(data.payload.category);
+        this.props.springContext.handleCategory(data.payload.category, data.payload.indices);
         break;
       }
       case 'selected-cells-update': {
@@ -182,7 +182,7 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
     `${window.location.origin}/${window.location.pathname.substr(
       0,
       window.location.pathname.lastIndexOf('/'),
-    )}/springViewer.html?assets/datasets/${dataset}`;
+    )}/springViewer.html?datasets/${dataset}`;
 }
 
 type requiredProps = Omit<ISpringContainerProps, keyof typeof SpringContainerClass.defaultProps> &

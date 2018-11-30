@@ -76,7 +76,7 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
 
   public async componentDidMount() {
     try {
-      const tensorData = await fetchTensorTSneCoordinateData(`assets/datasets/${this.props.datasetLocation}`);
+      const tensorData = await fetchTensorTSneCoordinateData(`datasets/${this.props.datasetLocation}`);
       const tsneData = tensorFlow.tensor(tensorData);
       // Initialize the tsne optimizer
       const tsne = (await import('@tensorflow/tfjs-tsne')).tsne(tsneData);
@@ -309,7 +309,7 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
 
   protected async setupTensorData() {
     try {
-      const tensorData = await fetchTensorTSneCoordinateData(`assets/datasets/${this.props.datasetLocation}`);
+      const tensorData = await fetchTensorTSneCoordinateData(`datasets/${this.props.datasetLocation}`);
       const tsneData = tensorFlow.tensor(tensorData);
       this.setState({
         tsne: new TSNE(tsneData),

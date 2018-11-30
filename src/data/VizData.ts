@@ -42,13 +42,19 @@ const springExamples = [
     summary: 'Analysis of ~100K mouse cells from 20 organs and tissues.',
   },
   {
-    icon: 'assets/icons/example_spring-tsne-anatomogram.png',
+    icon: 'assets/icons/example_tabularmuris_spring-tsne-anatomogram.png',
     link: '/dataset?name=tabula_muris/full&viz=spring&viz=tfjs-tsne&viz=anatomogram',
-    name: 'SPRING vs tSNE with Anatomogram',
+    name: 'Tabula Muris - SPRING vs tSNE with Anatomogram',
     summary:
       'Example comparison of data reduction techniques SPRING and tSNE\
     (of top 30 PCA components), on RNAseq profiles from 56778 cells\
     from the CZI Tabula muris dataset. Also includes anatomogram visualization for selection of tissue types.',
+  },
+  {
+    icon: 'assets/icons/example_HPC_spring-tsne-anatomogram.png',
+    link: '/dataset?name=hpc/full&viz=spring&viz=tfjs-tsne&viz=anatomogram',
+    name: 'HPC - SPRING vs tSNE with Anatomogram',
+    summary: 'Example interaction between SPRING, tSNE and Anatomogram visualization on a small dataset.',
   },
 ];
 
@@ -137,7 +143,7 @@ export const Stories: IStory[] = [
     authors: ['Drew Diamantoukos', 'Nicholas Gauthier'],
     description: 'Analysis of single cell transcriptomics of 20 mouse organs\
     from the tabula muris project.',
-    icon: 'assets/icons/example_spring-tsne-anatomogram.png',
+    icon: 'assets/icons/example_tabularmuris_spring-tsne-anatomogram.png',
     link: '/dataset?name=tabula_muris/full&viz=spring&viz=tfjs-tsne&viz=anatomogram',
     title: 'Dimensionality-reduction analysis of tabula muris',
   },
