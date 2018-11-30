@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
-import { Accordion, Button, Container, Divider, Grid, Header, Icon, List, Message } from 'semantic-ui-react';
+import { Accordion, Button, Container, Divider, Grid, Header, Icon, List } from 'semantic-ui-react';
 
 import { Link } from 'react-router-dom';
-import { IVizOverviewData, VizData } from '~chell-viz~/data';
+import { IVizExample, IVizOverviewData, VizData } from '~chell-viz~/data';
 
 export interface IVizOverviewPageProps extends Partial<RouteComponentProps> {}
 
@@ -34,7 +34,7 @@ export class VizOverviewPage extends React.Component<IVizOverviewPageProps, IViz
       this.state.currentViz && (
         <Container>
           {this.renderOverview(this.state.currentViz)}
-          {this.renderExamples()}
+          {this.renderExamples(this.state.currentViz.examples)}
         </Container>
       )
     );
@@ -47,7 +47,7 @@ export class VizOverviewPage extends React.Component<IVizOverviewPageProps, IViz
           <img
             alt={`icon for ${viz.name}`}
             src={`assets/icons/${viz.name.toLocaleLowerCase()}-icon.png`}
-            style={{ height: '200px', padding: '20px', width: '128px' }}
+            style={{ height: '150px', padding: '20px' }}
           />
         </Grid.Column>
         <Grid.Column textAlign={'left'}>
@@ -73,13 +73,15 @@ export class VizOverviewPage extends React.Component<IVizOverviewPageProps, IViz
                 {<a href={viz.repo.link}> github link</a>}
               </List.Item>
               <List.Item>
-                <Button basic={true} icon={true} labelPosition={'right'}>
-                  <Link to={{ pathname: '/dataset', search: `?name=hpc/full&app=${viz.name.toLocaleLowerCase()}` }}>
-                    {`launch ${viz.name}`}
-                  </Link>
-                  {/* Power Gap */}
-                  <Icon name={'external alternate'} />
-                </Button>
+                <Grid.Column floated={'right'}>
+                  <Button basic={true} icon={true} labelPosition={'right'}>
+                    <Link to={{ pathname: '/dataset', search: `?name=hpc/full&viz=${viz.name.toLocaleLowerCase()}` }}>
+                      {`launch ${viz.name}`}
+                    </Link>
+                    {/* Power Gap */}
+                    <Icon name={'external alternate'} />
+                  </Button>
+                </Grid.Column>
               </List.Item>
             </List>
           </>
@@ -88,18 +90,21 @@ export class VizOverviewPage extends React.Component<IVizOverviewPageProps, IViz
     );
   }
 
-  protected renderExamples() {
+  protected renderExamples(examples: IVizExample[]) {
     const panels = [
       {
         content: {
           content: (
-            <List>
+            <>
               <Divider />
-              <List.Item>{this.renderExampleBlock('Example 1')}</List.Item>
-              <List.Item>{this.renderExampleBlock('Example Dos')}</List.Item>
-              <List.Item>{this.renderExampleBlock('Example San')}</List.Item>
-              <List.Item>Example 2</List.Item>
-            </List>
+              <Grid centered={true} container={true} divided={'vertically'} columns={1}>
+                {examples.map((example, index) => (
+                  <Grid.Row columns={2} key={`viz-example-${index}`}>
+                    {this.renderExampleEntry(example)}
+                  </Grid.Row>
+                ))}
+              </Grid>
+            </>
           ),
         },
         key: 'examples',
@@ -112,28 +117,27 @@ export class VizOverviewPage extends React.Component<IVizOverviewPageProps, IViz
       },
     ];
 
-    return <Accordion panels={panels} />;
+    return <Accordion panels={panels} defaultActiveIndex={0} />;
   }
 
-  protected renderExampleBlock(title: string) {
+  protected renderExampleEntry(example: IVizExample) {
     return (
-      <Grid centered={true} columns={2}>
+      <>
         <Grid.Column width={2}>
-          <Icon name={'user secret'} size={'huge'} />
+          <img src={example.icon} alt={`${example.name} icon`} style={{ height: '75px', width: '75px' }} />
         </Grid.Column>
-        <Grid.Column>
-          <Message>
-            <Message.Header>{title}</Message.Header>
-            <Message.Content>
-              <p>This is placeholder text - hooray!</p>
-              <Button floated={'right'} icon={true}>
-                <Icon name={'external alternate'} />
-                launch example
-              </Button>
-            </Message.Content>
-          </Message>
+        <Grid.Column textAlign={'left'} width={8}>
+          <Header>{example.name}</Header>
+          <p>{example.summary}</p>
         </Grid.Column>
-      </Grid>
+        <Grid.Column floated={'right'}>
+          <Button basic={true} icon={true} labelPosition={'right'}>
+            <Link to={example.link}>{'launch example'}</Link>
+            {/* Power Gap */}
+            <Icon name={'external alternate'} />
+          </Button>
+        </Grid.Column>
+      </>
     );
   }
 

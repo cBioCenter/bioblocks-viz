@@ -22,7 +22,7 @@ exports[`LandingPage Should match existing snapshot. 1`] = `
           <Header
             floated="left"
           >
-            Featured Vignettes
+            Featured Stories
           </Header>
           <Divider
             section={true}
@@ -36,7 +36,7 @@ exports[`LandingPage Should match existing snapshot. 1`] = `
           width={2}
         >
           <img
-            alt="vignette Trajectory analysis of differentiating HPCs icon"
+            alt="story Trajectory analysis of differentiating HPCs icon"
             src="assets/icons/example_spring-hpc.png"
             style={
               Object {
@@ -88,7 +88,7 @@ exports[`LandingPage Should match existing snapshot. 1`] = `
           >
             <Link
               replace={false}
-              to="/dataset?name=hpc/full&app=spring"
+              to="/dataset?name=hpc/full&viz=spring"
             >
               launch
             </Link>
@@ -102,7 +102,7 @@ exports[`LandingPage Should match existing snapshot. 1`] = `
           width={2}
         >
           <img
-            alt="vignette Dimensionality-reduction analysis of tabula muris icon"
+            alt="story Dimensionality-reduction analysis of tabula muris icon"
             src="assets/icons/example_spring-tsne-anatomogram.png"
             style={
               Object {
@@ -154,7 +154,7 @@ exports[`LandingPage Should match existing snapshot. 1`] = `
           >
             <Link
               replace={false}
-              to="/dataset?name=tabula_muris/full&app=spring&app=tfjs-tsne&app=anatomogram"
+              to="/dataset?name=tabula_muris/full&viz=spring&viz=tfjs-tsne&viz=anatomogram"
             >
               launch
             </Link>
@@ -175,9 +175,9 @@ exports[`LandingPage Should match existing snapshot. 1`] = `
                 "float": "right",
               }
             }
-            to="vignettes"
+            to="stories"
           >
-            more vignettes...
+            more stories...
           </Link>
         </GridColumn>
       </GridRow>
@@ -249,7 +249,7 @@ exports[`LandingPage Should match existing snapshot. 1`] = `
                 replace={false}
                 to={
                   Object {
-                    "pathname": "/overview",
+                    "pathname": "/visualizations/",
                     "search": "?name=spring",
                   }
                 }
@@ -269,7 +269,7 @@ exports[`LandingPage Should match existing snapshot. 1`] = `
                 to={
                   Object {
                     "pathname": "/dataset",
-                    "search": "?app=spring",
+                    "search": "?viz=spring",
                   }
                 }
               >
@@ -331,7 +331,7 @@ exports[`LandingPage Should match existing snapshot. 1`] = `
                 replace={false}
                 to={
                   Object {
-                    "pathname": "/overview",
+                    "pathname": "/visualizations/",
                     "search": "?name=tfjs-tsne",
                   }
                 }
@@ -351,7 +351,7 @@ exports[`LandingPage Should match existing snapshot. 1`] = `
                 to={
                   Object {
                     "pathname": "/dataset",
-                    "search": "?app=tfjs-tsne",
+                    "search": "?viz=tfjs-tsne",
                   }
                 }
               >
@@ -375,7 +375,7 @@ exports[`LandingPage Should match existing snapshot. 1`] = `
                 "color": "blue",
               }
             }
-            to="apps"
+            to="visualizations"
           >
             more visualizations...
           </Link>

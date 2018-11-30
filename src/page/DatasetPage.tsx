@@ -9,7 +9,7 @@ import { VizData } from '~chell-viz~/data';
 export interface IDatasetPageProps extends Partial<RouteComponentProps> {}
 
 export interface IDatasetPageState {
-  apps: List<string>;
+  visualizations: List<string>;
   datasetLocation: string;
 }
 
@@ -17,8 +17,8 @@ export class DatasetPage extends React.Component<IDatasetPageProps, IDatasetPage
   constructor(props: IDatasetPageProps) {
     super(props);
     this.state = {
-      apps: List<string>(),
       datasetLocation: '',
+      visualizations: List<string>(),
     };
   }
 
@@ -36,15 +36,15 @@ export class DatasetPage extends React.Component<IDatasetPageProps, IDatasetPage
   }
 
   public render() {
-    const { apps, datasetLocation } = this.state;
+    const { visualizations, datasetLocation } = this.state;
 
     return (
       <div style={{ padding: '20px' }}>
         <Grid centered={true} stackable={true} stretched={false} padded={true} columns={2}>
           {datasetLocation.length >= 1 &&
-            apps.map((app, index) => (
-              <Grid.Column key={`dataset-app-${index}`} style={{ width: 'auto' }}>
-                {this.renderApp(app, datasetLocation)}
+            visualizations.map((visualization, index) => (
+              <Grid.Column key={`dataset-visualization-${index}`} style={{ width: 'auto' }}>
+                {this.renderVisualization(visualization, datasetLocation)}
               </Grid.Column>
             ))}
         </Grid>
@@ -56,16 +56,16 @@ export class DatasetPage extends React.Component<IDatasetPageProps, IDatasetPage
     const params = new URLSearchParams(query);
     // tslint:disable-next-line:no-backbone-get-set-outside-model
     const datasetLocation = params.get('name');
-    const apps = fromJS(params.getAll('app')) as List<string>;
+    const visualizations = fromJS(params.getAll('viz')) as List<string>;
 
     this.setState({
-      apps,
       datasetLocation: datasetLocation ? datasetLocation : '',
+      visualizations,
     });
   }
 
-  protected renderApp(app: string | undefined, datasetLocation: string) {
-    switch (app) {
+  protected renderVisualization(viz: string | undefined, datasetLocation: string) {
+    switch (viz) {
       case VizData.spring.name.toLocaleLowerCase():
         return <SpringContainer datasetLocation={datasetLocation} />;
       case VizData.tfjsTsne.name.toLocaleLowerCase():
@@ -73,7 +73,7 @@ export class DatasetPage extends React.Component<IDatasetPageProps, IDatasetPage
       case VizData.anatomogram.name.toLocaleLowerCase():
         return <AnatomogramContainer />;
       default:
-        return <Message error={true}>{`Currently unsupported app '${app}'`}</Message>;
+        return <Message error={true}>{`Currently unsupported visualization '${viz}'`}</Message>;
     }
   }
 }

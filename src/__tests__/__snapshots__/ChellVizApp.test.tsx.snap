@@ -8,19 +8,23 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
   >
     <withRouter(SiteHeaderClass) />
     <Route
-      path="/apps"
+      exact={true}
+      path="/visualizations"
       render={[Function]}
+      strict={true}
     />
     <Route
-      path="/overview"
+      exact={true}
+      path="/visualizations/"
       render={[Function]}
+      strict={true}
     />
     <Route
       path="/dataset"
       render={[Function]}
     />
     <Route
-      path="/vignettes"
+      path="/stories"
       render={[Function]}
     />
     <Route

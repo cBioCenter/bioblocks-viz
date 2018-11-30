@@ -3,7 +3,7 @@ import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Button, Container, Divider, Grid, Header, Segment } from 'semantic-ui-react';
 
-import { IDatasetInfo, IVignette, IVizSummaryData, userDatasets, Vignettes, VizData } from '~chell-viz~/data';
+import { IDatasetInfo, IStory, IVizSummaryData, Stories, userDatasets, VizData } from '~chell-viz~/data';
 
 export interface ILandingPageProps extends Partial<RouteComponentProps> {}
 
@@ -17,7 +17,7 @@ export class LandingPage extends React.Component<ILandingPageProps, any> {
       <Container fluid={false}>
         <Segment basic={true} padded={'very'}>
           <Grid centered={true} padded={true} relaxed={true}>
-            {this.renderFeaturedVignettes()}
+            {this.renderFeaturedStories()}
             {this.renderFeaturedVisualizations()}
             {this.renderFeaturedDatasets()}
           </Grid>
@@ -47,12 +47,14 @@ export class LandingPage extends React.Component<ILandingPageProps, any> {
         <Grid.Column width={2}>
           <Grid.Row>
             <Button basic={true}>
-              <Link to={{ pathname: '/overview', search: `?name=${viz.name.toLocaleLowerCase()}` }}>details</Link>
+              <Link to={{ pathname: '/visualizations/', search: `?name=${viz.name.toLocaleLowerCase()}` }}>
+                details
+              </Link>
             </Button>
           </Grid.Row>
           <Grid.Row>
             <Button basic={true}>
-              <Link to={{ pathname: '/dataset', search: `?app=${viz.name.toLocaleLowerCase()}` }}>launch</Link>
+              <Link to={{ pathname: '/dataset', search: `?viz=${viz.name.toLocaleLowerCase()}` }}>launch</Link>
             </Button>
           </Grid.Row>
         </Grid.Column>
@@ -84,21 +86,21 @@ export class LandingPage extends React.Component<ILandingPageProps, any> {
     );
   }
 
-  protected renderFeaturedVignettes() {
+  protected renderFeaturedStories() {
     return (
       <>
         <Grid.Row centered={false}>
           <Grid.Column width={12}>
-            <Header floated={'left'}>Featured Vignettes</Header>
+            <Header floated={'left'}>Featured Stories</Header>
             <Divider section={true} />
           </Grid.Column>
         </Grid.Row>
-        {this.renderSingleFeaturedVignette(Vignettes[0])}
-        {this.renderSingleFeaturedVignette(Vignettes[1])}
+        {this.renderSingleFeaturedStory(Stories[0])}
+        {this.renderSingleFeaturedStory(Stories[1])}
         <Grid.Row centered={false}>
           <Grid.Column width={12}>
-            <Link style={{ color: 'blue', float: 'right' }} to={'vignettes'}>
-              more vignettes...
+            <Link style={{ color: 'blue', float: 'right' }} to={'stories'}>
+              more stories...
             </Link>
           </Grid.Column>
         </Grid.Row>
@@ -119,7 +121,7 @@ export class LandingPage extends React.Component<ILandingPageProps, any> {
         {this.renderSingleVisualization(VizData.tfjsTsne)}
         <Grid.Row columns={3}>
           <Grid.Column width={12} floated={'right'}>
-            <Link style={{ color: 'blue' }} to={'apps'}>
+            <Link style={{ color: 'blue' }} to={'visualizations'}>
               more visualizations...
             </Link>
           </Grid.Column>
@@ -128,28 +130,26 @@ export class LandingPage extends React.Component<ILandingPageProps, any> {
     );
   }
 
-  protected renderSingleFeaturedVignette(vignette: IVignette) {
+  protected renderSingleFeaturedStory(story: IStory) {
     return (
       <Grid.Row columns={3}>
         <Grid.Column width={2}>
-          <img src={vignette.icon} style={{ height: '90px', width: '90px' }} alt={`vignette ${vignette.title} icon`} />
+          <img src={story.icon} style={{ height: '90px', width: '90px' }} alt={`story ${story.title} icon`} />
         </Grid.Column>
         <Grid.Column textAlign={'left'} width={8}>
-          <Header>{vignette.title}</Header>
+          <Header>{story.title}</Header>
           <p>
             <span style={{ fontWeight: 'bold' }}>Description: </span>
-            {vignette.description}
+            {story.description}
           </p>
           <p>
             <span style={{ fontWeight: 'bold' }}>Analysis authors: </span>
-            {vignette.authors.length === 2
-              ? `${vignette.authors[0]} and ${vignette.authors[1]}`
-              : vignette.authors.join(', ')}
+            {story.authors.length === 2 ? `${story.authors[0]} and ${story.authors[1]}` : story.authors.join(', ')}
           </p>
         </Grid.Column>
         <Grid.Column width={2}>
           <Button basic={true}>
-            <Link to={vignette.link}>launch</Link>
+            <Link to={story.link}>launch</Link>
           </Button>
         </Grid.Column>
       </Grid.Row>

@@ -55,7 +55,7 @@ exports[`AppsPage Should match existing snapshot. 1`] = `
               replace={false}
               to={
                 Object {
-                  "pathname": "/overview",
+                  "pathname": "/visualizations/",
                   "search": "?name=spring",
                 }
               }
@@ -75,7 +75,7 @@ exports[`AppsPage Should match existing snapshot. 1`] = `
               to={
                 Object {
                   "pathname": "/dataset",
-                  "search": "?app=spring",
+                  "search": "?viz=spring",
                 }
               }
             >
@@ -137,7 +137,7 @@ exports[`AppsPage Should match existing snapshot. 1`] = `
               replace={false}
               to={
                 Object {
-                  "pathname": "/overview",
+                  "pathname": "/visualizations/",
                   "search": "?name=tfjs-tsne",
                 }
               }
@@ -157,7 +157,7 @@ exports[`AppsPage Should match existing snapshot. 1`] = `
               to={
                 Object {
                   "pathname": "/dataset",
-                  "search": "?app=tfjs-tsne",
+                  "search": "?viz=tfjs-tsne",
                 }
               }
             >
@@ -219,7 +219,7 @@ exports[`AppsPage Should match existing snapshot. 1`] = `
               replace={false}
               to={
                 Object {
-                  "pathname": "/overview",
+                  "pathname": "/visualizations/",
                   "search": "?name=anatomogram",
                 }
               }
@@ -239,7 +239,7 @@ exports[`AppsPage Should match existing snapshot. 1`] = `
               to={
                 Object {
                   "pathname": "/dataset",
-                  "search": "?app=anatomogram",
+                  "search": "?viz=anatomogram",
                 }
               }
             >

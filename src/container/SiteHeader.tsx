@@ -24,6 +24,7 @@ export interface ISiteHeaderProps extends Partial<RouteComponentProps> {
 
 export interface ISiteHeaderState {
   activeTabIndex: number | string;
+  currentPageName: null | string;
   isModalOpen: boolean;
 }
 
@@ -36,6 +37,7 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
     super(props);
     this.state = {
       activeTabIndex: -1,
+      currentPageName: null,
       isModalOpen: false,
     };
   }
@@ -62,12 +64,16 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
       <Header>
         <Menu secondary={true} borderless={true} fluid={true} style={{ maxHeight: '40px', padding: '20px 0 0 0' }}>
           <Menu.Item fitted={'vertically'} position={'left'}>
-            <img
-              alt={'hca-dynamics-icon'}
-              src={'assets/icons/bio-blocks-icon-2x.png'}
-              style={{ height: '32px', width: '32px' }}
-            />
-            <span style={{ fontSize: '32px', fontWeight: 'bold' }}>HCA Dynamics</span>
+            <>
+              <Link to={'/'}>
+                <img
+                  alt={'hca-dynamics-icon'}
+                  src={'assets/icons/bio-blocks-icon-2x.png'}
+                  style={{ height: '32px', width: '32px' }}
+                />
+                <span style={{ color: 'black', fontSize: '32px', fontWeight: 'bold' }}>HCA Dynamics</span>
+              </Link>
+            </>
           </Menu.Item>
           {this.renderTabMenu()}
           <Menu.Item position={'right'}>
@@ -85,10 +91,24 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
         <Breadcrumb.Section>
           <Link to={'/'}>home</Link>
         </Breadcrumb.Section>
-        <Breadcrumb.Divider icon={'right angle'} />
-        <Breadcrumb.Section>
-          <Link to={'/apps'}>apps</Link>
-        </Breadcrumb.Section>
+        {this.props.location &&
+          this.props.location.pathname
+            .split('/')
+            .filter(candidatePath => candidatePath.length >= 1)
+            .map((path, index) => (
+              <React.Fragment key={`breadcrumb-${index}`}>
+                <Breadcrumb.Divider icon={'right angle'} />
+                <Breadcrumb.Section>
+                  <Link to={`/${path}`}>{path}</Link>
+                </Breadcrumb.Section>
+              </React.Fragment>
+            ))}
+        {this.state.currentPageName && (
+          <>
+            <Breadcrumb.Divider icon={'right angle'} />
+            <Breadcrumb.Section>{this.state.currentPageName}</Breadcrumb.Section>
+          </>
+        )}
       </Breadcrumb>
     );
   }
@@ -97,7 +117,7 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
     const panes = [
       {
         menuItem: (
-          <Menu.Item key={'dataset'} onClick={this.openModal}>{`dataset ${
+          <Menu.Item key={'dataset'} onClick={this.openModal} style={{ color: 'black', fontSize: '18px' }}>{`dataset ${
             this.props.numDatasets >= 1 ? `(${this.props.numDatasets})` : ''
           }`}</Menu.Item>
         ),
@@ -109,14 +129,23 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
       },
       {
         menuItem: (
-          <Menu.Item key={'apps'} onClick={this.openModal}>
-            {'apps'}
+          <Menu.Item key={'visualizations'} onClick={this.openModal} style={{ color: 'black', fontSize: '18px' }}>
+            {'visualizations'}
           </Menu.Item>
         ),
         render: () => (
           <Modal open={this.state.isModalOpen} onClose={this.closeModal}>
-            <Modal.Content>{this.renderAppsMenu()}</Modal.Content>
+            <Modal.Content>{this.renderVisualizationsMenu()}</Modal.Content>
           </Modal>
+        ),
+      },
+      {
+        menuItem: (
+          <Menu.Item key={'stories'}>
+            <Link to={'stories'} style={{ color: 'black', fontSize: '18px' }}>
+              stories
+            </Link>
+          </Menu.Item>
         ),
       },
     ];
@@ -128,14 +157,19 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
 
   protected handleQueryParams(search: string) {
     const params = new URLSearchParams(search);
-    const apps = params.getAll('app');
+    const visualizations = params.getAll('viz');
     // tslint:disable-next-line:no-backbone-get-set-outside-model
     const name = params.get('name');
 
-    if (apps.length >= 1 && !name) {
+    if (visualizations.length >= 1 && !name) {
       this.setState({
         activeTabIndex: 0,
+        currentPageName: name,
         isModalOpen: true,
+      });
+    } else {
+      this.setState({
+        currentPageName: name,
       });
     }
   }
@@ -144,7 +178,7 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
     return;
   };
 
-  protected renderAppsMenu = () => {
+  protected renderVisualizationsMenu = () => {
     return (
       <Container fluid={true}>
         <Header>Visualization applications</Header>
@@ -165,7 +199,7 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
               cells={[
                 { key: 'Select', content: <Checkbox checked={true} /> },
                 { key: 'Name', content: 'SPRING' },
-                { key: 'Author', content: 'Weinreb, Wollock, Klein' },
+                { key: 'Author', content: 'Weinreb, Wolock, Klein' },
                 { key: 'Last Updated', content: 'Nov 13, 2018' },
               ]}
             />
@@ -194,10 +228,10 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
   };
 
   protected renderDatasetMenu = () => {
-    let apps: string[] = [];
+    let visualizations: string[] = [];
     if (this.props.location) {
       const params = new URLSearchParams(this.props.location.search);
-      apps = params.getAll('app').map(app => `app=${app}`);
+      visualizations = params.getAll('viz').map(viz => `viz=${viz}`);
     }
 
     const panes = [
@@ -236,14 +270,17 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
         render: () => (
           <List>
             <List.Item>
-              <Link onClick={this.closeModal} to={{ pathname: '/dataset', search: `?name=hpc/full&${apps.join('&')}` }}>
+              <Link
+                onClick={this.closeModal}
+                to={{ pathname: '/dataset', search: `?name=hpc/full&${visualizations.join('&')}` }}
+              >
                 HPC (full)
               </Link>
             </List.Item>
             <List.Item>
               <Link
                 onClick={this.closeModal}
-                to={{ pathname: '/dataset', search: `?name=tabula_muris/full&${apps.join('&')}` }}
+                to={{ pathname: '/dataset', search: `?name=tabula_muris/full&${visualizations.join('&')}` }}
               >
                 Tabula Muris (full)
               </Link>

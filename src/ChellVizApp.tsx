@@ -5,7 +5,7 @@ import { Container } from 'semantic-ui-react';
 
 import { SiteHeader } from '~chell-viz~/container';
 import { ChellContextProvider } from '~chell-viz~/context';
-import { AppsPage, DatasetPage, LandingPage, VignettesPage, VizOverviewPage } from '~chell-viz~/page';
+import { DatasetPage, LandingPage, StoriesPage, VisualizationsPage, VizOverviewPage } from '~chell-viz~/page';
 
 export interface IChellVizAppState {
   activeVisualizations: number;
@@ -30,18 +30,18 @@ export class ChellVizApp extends React.Component<Partial<RouteComponentProps>, I
       <Router>
         <Container id={'ChellVizApp'} fluid={true}>
           <SiteHeader {...this.props} />
-          <Route path={'/apps'} render={this.renderAppsPage} />
-          <Route path={'/overview'} render={this.renderOverviewPage} />
+          <Route exact={true} strict={true} path={'/visualizations'} render={this.renderVisualizationsPage} />
+          <Route exact={true} strict={true} path={'/visualizations/'} render={this.renderOverviewPage} />
           <Route path={'/dataset'} render={this.renderDatasetPage} />
-          <Route path={'/vignettes'} render={this.renderVignettesPage} />
+          <Route path={'/stories'} render={this.renderStoriesPage} />
           <Route exact={true} path={'/'} render={this.renderLandingPage} />
         </Container>
       </Router>
     );
   }
 
-  protected renderAppsPage = (props: RouteComponentProps) => {
-    return <AppsPage {...props} />;
+  protected renderVisualizationsPage = (props: RouteComponentProps) => {
+    return <VisualizationsPage {...props} />;
   };
 
   protected renderDatasetPage = (props: RouteComponentProps) => {
@@ -60,7 +60,7 @@ export class ChellVizApp extends React.Component<Partial<RouteComponentProps>, I
     return <VizOverviewPage {...props} />;
   };
 
-  protected renderVignettesPage = (props: RouteComponentProps) => {
-    return <VignettesPage {...props} />;
+  protected renderStoriesPage = (props: RouteComponentProps) => {
+    return <StoriesPage {...props} />;
   };
 }

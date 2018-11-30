@@ -1,5 +1,5 @@
-export * from './AppsPage';
+export * from './VisualizationsPage';
 export * from './DatasetPage';
 export * from './LandingPage';
-export * from './VignettesPage';
+export * from './StoriesPage';
 export * from './VizOverviewPage';

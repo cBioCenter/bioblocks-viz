@@ -5,24 +5,24 @@ import { Button, Grid, Header, List } from 'semantic-ui-react';
 
 import { IVizSummaryData, VizData } from '~chell-viz~/data';
 
-export interface IAppsPageProps extends Partial<RouteComponentProps> {}
+export interface IVisualizationsPageProps extends Partial<RouteComponentProps> {}
 
-export class AppsPage extends React.Component<IAppsPageProps, any> {
-  constructor(props: IAppsPageProps) {
+export class VisualizationsPage extends React.Component<IVisualizationsPageProps, any> {
+  constructor(props: IVisualizationsPageProps) {
     super(props);
   }
 
   public render() {
     return (
       <List divided={true}>
-        <List.Item>{this.renderAppItem(VizData.spring)}</List.Item>
-        <List.Item>{this.renderAppItem(VizData.tfjsTsne)}</List.Item>
-        <List.Item>{this.renderAppItem(VizData.anatomogram)}</List.Item>
+        <List.Item>{this.renderVisualizationItem(VizData.spring)}</List.Item>
+        <List.Item>{this.renderVisualizationItem(VizData.tfjsTsne)}</List.Item>
+        <List.Item>{this.renderVisualizationItem(VizData.anatomogram)}</List.Item>
       </List>
     );
   }
 
-  protected renderAppItem(viz: IVizSummaryData) {
+  protected renderVisualizationItem(viz: IVizSummaryData) {
     return (
       <Grid centered={true} columns={3} padded={true} relaxed={true}>
         <Grid.Column>
@@ -43,12 +43,14 @@ export class AppsPage extends React.Component<IAppsPageProps, any> {
         <Grid.Column stretched={true}>
           <Grid.Row>
             <Button basic={true}>
-              <Link to={{ pathname: '/overview', search: `?name=${viz.name.toLocaleLowerCase()}` }}>details</Link>
+              <Link to={{ pathname: '/visualizations/', search: `?name=${viz.name.toLocaleLowerCase()}` }}>
+                details
+              </Link>
             </Button>
           </Grid.Row>
           <Grid.Row>
             <Button basic={true}>
-              <Link to={{ pathname: '/dataset', search: `?app=${viz.name.toLocaleLowerCase()}` }}>launch</Link>
+              <Link to={{ pathname: '/dataset', search: `?viz=${viz.name.toLocaleLowerCase()}` }}>launch</Link>
             </Button>
           </Grid.Row>
         </Grid.Column>
