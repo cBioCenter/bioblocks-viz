@@ -1,13 +1,140 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SiteHeader Should match existing snapshot for no visualizations. 1`] = `
-<Route>
-  <Component />
-</Route>
-`;
-
-exports[`SiteHeader Should match existing snapshot for some visualizations. 1`] = `
-<Route>
-  <Component />
-</Route>
+exports[`SiteHeader Should match existing snapshot. 1`] = `
+<Header>
+  <Menu
+    borderless={true}
+    fluid={true}
+    secondary={true}
+    style={
+      Object {
+        "maxHeight": "40px",
+        "padding": "20px 0 0 0",
+      }
+    }
+  >
+    <MenuItem
+      fitted="vertically"
+      position="left"
+    >
+      <Link
+        replace={false}
+        to="/"
+      >
+        <img
+          alt="hca-dynamics-icon"
+          src="assets/icons/bio-blocks-icon-2x.png"
+          style={
+            Object {
+              "height": "32px",
+              "width": "32px",
+            }
+          }
+        />
+        <span
+          style={
+            Object {
+              "color": "black",
+              "fontSize": "32px",
+              "fontWeight": "bold",
+            }
+          }
+        >
+          HCA Dynamics
+        </span>
+      </Link>
+    </MenuItem>
+    <Tab
+      activeIndex={-1}
+      grid={
+        Object {
+          "paneWidth": 12,
+          "tabWidth": 4,
+        }
+      }
+      menu={
+        Object {
+          "secondary": true,
+        }
+      }
+      panes={
+        Array [
+          Object {
+            "menuItem": <MenuItem
+              onClick={[Function]}
+              style={
+                Object {
+                  "color": "black",
+                  "fontSize": "18px",
+                }
+              }
+            >
+              dataset 
+            </MenuItem>,
+            "render": [Function],
+          },
+          Object {
+            "menuItem": <MenuItem>
+              <Link
+                replace={false}
+                style={
+                  Object {
+                    "color": "black",
+                    "fontSize": "18px",
+                  }
+                }
+                to="visualizations"
+              >
+                visualizations
+              </Link>
+            </MenuItem>,
+          },
+          Object {
+            "menuItem": <MenuItem>
+              <Link
+                replace={false}
+                style={
+                  Object {
+                    "color": "black",
+                    "fontSize": "18px",
+                  }
+                }
+                to="stories"
+              >
+                stories
+              </Link>
+            </MenuItem>,
+          },
+        ]
+      }
+      renderActiveOnly={true}
+    />
+    <MenuItem
+      position="right"
+    >
+      <Input
+        icon="search"
+        size="massive"
+        transparent={true}
+        type="text"
+      />
+    </MenuItem>
+  </Menu>
+  <Breadcrumb
+    style={
+      Object {
+        "padding": "0 0 0 40px",
+      }
+    }
+  >
+    <BreadcrumbSection>
+      <Link
+        replace={false}
+        to="/"
+      >
+        home
+      </Link>
+    </BreadcrumbSection>
+  </Breadcrumb>
+</Header>
 `;

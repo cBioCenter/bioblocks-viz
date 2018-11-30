@@ -6,7 +6,9 @@ exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
     fluid={true}
     id="ChellVizApp"
   >
-    <withRouter(SiteHeaderClass) />
+    <SiteHeader
+      numDatasets={0}
+    />
     <Route
       exact={true}
       path="/visualizations"

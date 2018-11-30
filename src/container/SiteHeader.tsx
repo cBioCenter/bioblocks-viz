@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { RouteComponentProps, withRouter } from 'react-router';
+import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 import {
   Breadcrumb,
@@ -28,7 +28,7 @@ export interface ISiteHeaderState {
   isModalOpen: boolean;
 }
 
-export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHeaderState> {
+export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderState> {
   public static defaultProps = {
     numDatasets: 0,
   };
@@ -129,14 +129,11 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
       },
       {
         menuItem: (
-          <Menu.Item key={'visualizations'} onClick={this.openModal} style={{ color: 'black', fontSize: '18px' }}>
-            {'visualizations'}
+          <Menu.Item key={'visualizations'}>
+            <Link to={'visualizations'} style={{ color: 'black', fontSize: '18px' }}>
+              visualizations
+            </Link>
           </Menu.Item>
-        ),
-        render: () => (
-          <Modal open={this.state.isModalOpen} onClose={this.closeModal}>
-            <Modal.Content>{this.renderVisualizationsMenu()}</Modal.Content>
-          </Modal>
         ),
       },
       {
@@ -311,9 +308,3 @@ export class SiteHeaderClass extends React.Component<ISiteHeaderProps, ISiteHead
     this.setState({ activeTabIndex: data.index !== undefined ? data.index : -1, isModalOpen: true });
   };
 }
-
-type requiredProps = Omit<ISiteHeaderProps, keyof typeof SiteHeaderClass.defaultProps> & Partial<ISiteHeaderProps>;
-
-const SiteHeader = withRouter<requiredProps & RouteComponentProps>(SiteHeaderClass as any);
-
-export { SiteHeader };

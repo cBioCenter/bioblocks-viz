@@ -4,12 +4,7 @@ import * as React from 'react';
 import { SiteHeader } from '~chell-viz~/container';
 
 describe('SiteHeader', () => {
-  it('Should match existing snapshot for no visualizations.', () => {
-    const wrapper = shallow(<SiteHeader />);
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('Should match existing snapshot for some visualizations.', () => {
+  it('Should match existing snapshot.', () => {
     const wrapper = shallow(<SiteHeader />);
     expect(wrapper).toMatchSnapshot();
   });
