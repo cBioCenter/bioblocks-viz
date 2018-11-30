@@ -23,7 +23,6 @@ export interface ISiteHeaderProps extends Partial<RouteComponentProps> {
 }
 
 export interface ISiteHeaderState {
-  activeTabIndex: number | string;
   currentPageName: null | string;
   isModalOpen: boolean;
 }
@@ -36,7 +35,6 @@ export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderSta
   constructor(props: ISiteHeaderProps) {
     super(props);
     this.state = {
-      activeTabIndex: -1,
       currentPageName: null,
       isModalOpen: false,
     };
@@ -64,18 +62,16 @@ export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderSta
       <Header>
         <Menu secondary={true} borderless={true} fluid={true} style={{ maxHeight: '40px', padding: '20px 0 0 0' }}>
           <Menu.Item fitted={'vertically'} position={'left'}>
-            <>
-              <Link to={'/'}>
-                <img
-                  alt={'hca-dynamics-icon'}
-                  src={'assets/icons/bio-blocks-icon-2x.png'}
-                  style={{ height: '32px', width: '32px' }}
-                />
-                <span style={{ color: 'black', fontSize: '32px', fontWeight: 'bold' }}>HCA Dynamics</span>
-              </Link>
-            </>
+            <Link to={'/'}>
+              <img
+                alt={'hca-dynamics-icon'}
+                src={'assets/icons/bio-blocks-icon-2x.png'}
+                style={{ height: '32px', width: '32px' }}
+              />
+              <span style={{ color: 'black', fontSize: '32px', fontWeight: 'bold' }}>HCA Dynamics</span>
+            </Link>
           </Menu.Item>
-          {this.renderTabMenu()}
+          {this.renderNavMenu()}
           <Menu.Item position={'right'}>
             <Input icon={'search'} size={'massive'} transparent={true} />
           </Menu.Item>
@@ -113,42 +109,31 @@ export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderSta
     );
   }
 
-  protected renderTabMenu = () => {
-    const panes = [
-      {
-        menuItem: (
-          <Menu.Item key={'dataset'} onClick={this.openModal} style={{ color: 'black', fontSize: '18px' }}>{`dataset ${
-            this.props.numDatasets >= 1 ? `(${this.props.numDatasets})` : ''
-          }`}</Menu.Item>
-        ),
-        render: () => (
+  protected renderNavMenu = () => {
+    return (
+      <Menu defaultActiveIndex={-1} secondary={true}>
+        <Menu.Item
+          key={'dataset'}
+          onClick={this.openModal}
+          disabled={this.state.isModalOpen}
+          style={{ color: 'black', fontSize: '18px' }}
+        >
+          {`dataset ${this.props.numDatasets >= 1 ? `(${this.props.numDatasets})` : ''}`}
           <Modal open={this.state.isModalOpen} onClose={this.closeModal}>
             <Modal.Content> {this.renderDatasetMenu()}</Modal.Content>
           </Modal>
-        ),
-      },
-      {
-        menuItem: (
-          <Menu.Item key={'visualizations'}>
-            <Link to={'visualizations'} style={{ color: 'black', fontSize: '18px' }}>
-              visualizations
-            </Link>
-          </Menu.Item>
-        ),
-      },
-      {
-        menuItem: (
-          <Menu.Item key={'stories'}>
-            <Link to={'stories'} style={{ color: 'black', fontSize: '18px' }}>
-              stories
-            </Link>
-          </Menu.Item>
-        ),
-      },
-    ];
-
-    return (
-      <Tab activeIndex={this.state.activeTabIndex} menu={{ secondary: true }} renderActiveOnly={true} panes={panes} />
+        </Menu.Item>
+        <Menu.Item key={'visualizations'}>
+          <Link to={'/visualizations'} style={{ color: 'black', fontSize: '18px' }}>
+            visualizations
+          </Link>
+        </Menu.Item>
+        <Menu.Item key={'stories'}>
+          <Link to={'/stories'} style={{ color: 'black', fontSize: '18px' }}>
+            stories
+          </Link>
+        </Menu.Item>
+      </Menu>
     );
   };
 
@@ -160,7 +145,6 @@ export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderSta
 
     if (visualizations.length >= 1 && !name) {
       this.setState({
-        activeTabIndex: 0,
         currentPageName: name,
         isModalOpen: true,
       });
@@ -301,10 +285,10 @@ export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderSta
   };
 
   protected closeModal = () => {
-    this.setState({ activeTabIndex: -1, isModalOpen: false });
+    this.setState({ isModalOpen: false });
   };
 
   protected openModal = (event: React.MouseEvent<HTMLAnchorElement>, data: MenuItemProps) => {
-    this.setState({ activeTabIndex: data.index !== undefined ? data.index : -1, isModalOpen: true });
+    this.setState({ isModalOpen: true });
   };
 }

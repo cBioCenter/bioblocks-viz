@@ -29,7 +29,7 @@ export class ChellVizApp extends React.Component<Partial<RouteComponentProps>, I
     return (
       <Router>
         <Container id={'ChellVizApp'} fluid={true}>
-          <SiteHeader {...this.props} />
+          <Route render={this.renderSiteHeader} />
           <Route exact={true} strict={true} path={'/visualizations'} render={this.renderVisualizationsPage} />
           <Route exact={true} strict={true} path={'/visualizations/'} render={this.renderOverviewPage} />
           <Route path={'/dataset'} render={this.renderDatasetPage} />
@@ -39,6 +39,10 @@ export class ChellVizApp extends React.Component<Partial<RouteComponentProps>, I
       </Router>
     );
   }
+
+  protected renderSiteHeader = (props: RouteComponentProps) => {
+    return <SiteHeader {...props} />;
+  };
 
   protected renderVisualizationsPage = (props: RouteComponentProps) => {
     return <VisualizationsPage {...props} />;

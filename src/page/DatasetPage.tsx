@@ -23,7 +23,6 @@ export class DatasetPage extends React.Component<IDatasetPageProps, IDatasetPage
   }
 
   public componentDidMount() {
-    console.log(this.props);
     if (this.props.location) {
       this.setupSearchParameters(this.props.location.search);
     }

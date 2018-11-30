@@ -75,19 +75,18 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
   }
 
   public async componentDidMount() {
-    let tensorData: number[][] = [[0]];
     try {
-      tensorData = await fetchTensorTSneCoordinateData(`assets/datasets/${this.props.datasetLocation}`);
+      const tensorData = await fetchTensorTSneCoordinateData(`assets/datasets/${this.props.datasetLocation}`);
+      const tsneData = tensorFlow.tensor(tensorData);
+      // Initialize the tsne optimizer
+      const tsne = (await import('@tensorflow/tfjs-tsne')).tsne(tsneData);
+      this.setState({
+        tsne,
+      });
+      await this.computeTensorTsne(this.state.numIterations);
     } catch (e) {
       console.log(e);
     }
-    const tsneData = tensorFlow.tensor(tensorData);
-    // Initialize the tsne optimizer
-    const tsne = (await import('@tensorflow/tfjs-tsne')).tsne(tsneData);
-    this.setState({
-      tsne,
-    });
-    await this.computeTensorTsne(this.state.numIterations);
   }
 
   public async componentDidUpdate(prevProps: ITensorContainerProps) {

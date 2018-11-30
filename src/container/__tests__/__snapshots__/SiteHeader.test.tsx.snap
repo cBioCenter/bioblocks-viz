@@ -44,71 +44,109 @@ exports[`SiteHeader Should match existing snapshot. 1`] = `
         </span>
       </Link>
     </MenuItem>
-    <Tab
-      activeIndex={-1}
-      grid={
-        Object {
-          "paneWidth": 12,
-          "tabWidth": 4,
-        }
-      }
-      menu={
-        Object {
-          "secondary": true,
-        }
-      }
-      panes={
-        Array [
+    <Menu
+      defaultActiveIndex={-1}
+      secondary={true}
+    >
+      <MenuItem
+        disabled={false}
+        key="dataset"
+        onClick={[Function]}
+        style={
           Object {
-            "menuItem": <MenuItem
-              onClick={[Function]}
-              style={
-                Object {
-                  "color": "black",
-                  "fontSize": "18px",
-                }
-              }
+            "color": "black",
+            "fontSize": "18px",
+          }
+        }
+      >
+        dataset 
+        <Modal
+          centered={true}
+          closeOnDimmerClick={true}
+          closeOnDocumentClick={false}
+          dimmer={true}
+          eventPool="Modal"
+          onClose={[Function]}
+          open={false}
+        >
+          <ModalContent>
+             
+            <Container
+              fluid={true}
             >
-              dataset 
-            </MenuItem>,
-            "render": [Function],
-          },
-          Object {
-            "menuItem": <MenuItem>
-              <Link
-                replace={false}
-                style={
+              <Header>
+                datasets
+              </Header>
+              <Divider />
+              <Tab
+                defaultActiveIndex={1}
+                grid={
                   Object {
-                    "color": "black",
-                    "fontSize": "18px",
+                    "paneWidth": 12,
+                    "tabWidth": 4,
                   }
                 }
-                to="visualizations"
-              >
-                visualizations
-              </Link>
-            </MenuItem>,
-          },
-          Object {
-            "menuItem": <MenuItem>
-              <Link
-                replace={false}
-                style={
+                menu={
                   Object {
-                    "color": "black",
-                    "fontSize": "18px",
+                    "pointing": true,
+                    "secondary": true,
                   }
                 }
-                to="stories"
-              >
-                stories
-              </Link>
-            </MenuItem>,
-          },
-        ]
-      }
-      renderActiveOnly={true}
-    />
+                panes={
+                  Array [
+                    Object {
+                      "menuItem": "human cell atlas",
+                      "render": [Function],
+                    },
+                    Object {
+                      "menuItem": "HCA Dynamics public",
+                      "render": [Function],
+                    },
+                    Object {
+                      "menuItem": "upload from computer",
+                      "render": [Function],
+                    },
+                  ]
+                }
+                renderActiveOnly={true}
+              />
+            </Container>
+          </ModalContent>
+        </Modal>
+      </MenuItem>
+      <MenuItem
+        key="visualizations"
+      >
+        <Link
+          replace={false}
+          style={
+            Object {
+              "color": "black",
+              "fontSize": "18px",
+            }
+          }
+          to="/visualizations"
+        >
+          visualizations
+        </Link>
+      </MenuItem>
+      <MenuItem
+        key="stories"
+      >
+        <Link
+          replace={false}
+          style={
+            Object {
+              "color": "black",
+              "fontSize": "18px",
+            }
+          }
+          to="/stories"
+        >
+          stories
+        </Link>
+      </MenuItem>
+    </Menu>
     <MenuItem
       position="right"
     >
