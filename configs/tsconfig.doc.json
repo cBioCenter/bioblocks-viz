@@ -6,7 +6,7 @@
     "sourceMap": false
   },
   "include": ["../src/**/*", "../types/**/*"],
-  "exclude": ["../node_modules", "../**/__tests__/**", "../**/__mocks__/**", "../**/configs/**"],
+  "exclude": ["../SPRING_dev", "../node_modules", "../**/__tests__/**", "../**/__mocks__/**", "../**/configs/**"],
   "typedocOptions": {
     "excludeExternals": true,
     "includeDeclarations": true,
