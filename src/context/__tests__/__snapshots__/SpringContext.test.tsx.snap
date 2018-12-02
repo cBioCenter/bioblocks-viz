@@ -10,6 +10,7 @@ exports[`SpringContext Should match the default snapshot. 1`] = `
       "nodes": Array [],
     }
   }
+  handleCategory={[Function]}
   removeCategory={[Function]}
   selectedCategories={Array []}
   setCategories={[Function]}

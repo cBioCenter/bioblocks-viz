@@ -4,7 +4,7 @@ exports[`SpringContainer Should match existing snapshot. 1`] = `
 <ComponentCard
   componentName="SPRING"
   frameHeight={720}
-  frameWidth={1280}
+  frameWidth={720}
   headerHeight={32}
   height="500px"
   iconSrc="assets/icons/spring-icon.png"
@@ -19,8 +19,8 @@ exports[`SpringContainer Should match existing snapshot. 1`] = `
       Object {
         "allowFullScreen": true,
         "height": 720,
-        "src": "http://localhost//springViewer.html?assets/datasets/hpc/full",
-        "width": 1280,
+        "src": "http://localhost//springViewer.html?datasets/hpc/full",
+        "width": 720,
       }
     }
     handleReady={[Function]}

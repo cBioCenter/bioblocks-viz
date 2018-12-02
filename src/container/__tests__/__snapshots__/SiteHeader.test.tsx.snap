@@ -49,7 +49,6 @@ exports[`SiteHeader Should match existing snapshot. 1`] = `
       secondary={true}
     >
       <MenuItem
-        disabled={false}
         key="dataset"
         onClick={[Function]}
         style={

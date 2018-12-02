@@ -73,7 +73,7 @@ exports[`VignettesPage Should match existing snapshot. 1`] = `
     <GridColumn>
       <img
         alt="story Dimensionality-reduction analysis of tabula muris icon"
-        src="assets/icons/example_spring-tsne-anatomogram.png"
+        src="assets/icons/example_tabularmuris_spring-tsne-anatomogram.png"
         style={
           Object {
             "height": "90px",
