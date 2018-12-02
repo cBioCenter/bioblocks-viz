@@ -159,7 +159,6 @@ define(["require", "exports", "d3", "./LineSprite", "./main", "./util", "./setti
             };
             this.toggleForce = () => {
                 if (this.force_on === 1) {
-                    console.log('turning force off');
                     d3.select('#toggleforce')
                         .select('button')
                         .text('Resume');
@@ -167,7 +166,6 @@ define(["require", "exports", "d3", "./LineSprite", "./main", "./util", "./setti
                     this.force.stop();
                 }
                 else {
-                    console.log('turning force on');
                     d3.select('#toggleforce')
                         .select('button')
                         .text('Pause');
@@ -193,7 +191,6 @@ define(["require", "exports", "d3", "./LineSprite", "./main", "./util", "./setti
             this.downloadSelection = () => {
                 let name = window.location.search;
                 let cell_filter_filename = window.location.search.slice(1, name.length) + '/cell_filter.txt';
-                console.log(`Variable 'cell_filter_filename':\n${cell_filter_filename}\n${JSON.stringify(cell_filter_filename, null, 2)}`);
                 d3.text(cell_filter_filename).then(cellText => {
                     let cell_nums = cellText.split('\n');
                     let text = '';
@@ -335,7 +332,7 @@ define(["require", "exports", "d3", "./LineSprite", "./main", "./util", "./setti
             this.mutable = null;
             this.sprites = new PIXI.Container();
             this.stashed_coordinates = new Array();
-            this.svg_graph = {};
+            this.svg_graph = d3.select(null);
             this.xScale = d3.scaleLinear();
             this.yScale = d3.scaleLinear();
             this.zoomer = d3.zoom();
@@ -839,7 +836,7 @@ define(["require", "exports", "d3", "./LineSprite", "./main", "./util", "./setti
                         ' scale(' +
                         this.sprites.scale.x +
                         ')');
-                    // zoomer.scale(sprites.scale.x);
+                    this.zoomer.scaleTo(d3.select('svg').select('g'), this.sprites.scale.x);
                     step += 1;
                     setTimeout(move, 10);
                 }

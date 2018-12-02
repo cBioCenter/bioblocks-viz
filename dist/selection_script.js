@@ -175,6 +175,14 @@ define(["require", "exports", "d3", "./rotation_script", "./main", "./util"], fu
                 .on('keyup', () => this.keyup());
             this.base_radius = parseInt(d3.select('#settings_range_node_size').attr('value'), 10) / 100;
             this.large_radius = this.base_radius * 3;
+            this.setup_brusher();
+            // "(De)select All" button
+            d3.select('#deselect')
+                .select('button')
+                .on('click', () => this.deselect_all());
+        }
+        // <-- SelectionScript Constructor End -->
+        setup_brusher() {
             this.brusher = d3
                 .brush()
                 .on('brush', () => {
@@ -252,12 +260,7 @@ define(["require", "exports", "d3", "./rotation_script", "./main", "./util"], fu
                 .on('touchmove.brush', null)
                 .on('touchend.brush', null);
             this.brush.select('.background').style('cursor', 'auto');
-            // "(De)select All" button
-            d3.select('#deselect')
-                .select('button')
-                .on('click', () => this.deselect_all());
         }
-        // <-- SelectionScript Constructor End -->
         switch_pos_neg() {
             let pos_cells = [];
             let neg_cells = [];
@@ -292,7 +295,7 @@ define(["require", "exports", "d3", "./rotation_script", "./main", "./util"], fu
                 .attr('fill-opacity', this.selection_mode === 'negative_select' ? 0.5 : 0.15);
             this.deselect_rect.transition('5').attr('fill-opacity', this.selection_mode === 'deselect' ? 0.5 : 0.15);
             if (this.selection_mode !== 'drag_pan_zoom') {
-                d3.select('#svg_graph')
+                d3.select('#svg_graph').select('g')
                     .call(main_1.forceLayout.zoomer)
                     .on('mousedown.zoom', null)
                     .on('touchstart.zoom', null)
@@ -309,7 +312,7 @@ define(["require", "exports", "d3", "./rotation_script", "./main", "./util"], fu
                     .on('touchmove.brush', null)
                     .on('touchend.brush', null);
                 this.brush.select('.background').style('cursor', 'auto');
-                d3.select('#svg_graph').call(main_1.forceLayout.zoomer);
+                d3.select('#svg_graph').select('g').call(main_1.forceLayout.zoomer);
             }
         }
         keydown() {
