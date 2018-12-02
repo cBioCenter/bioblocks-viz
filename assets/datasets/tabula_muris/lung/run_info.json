@@ -1,0 +1,13 @@
+{
+    "Date": "2018-06-01 14:30:35.846111", 
+    "Description": null, 
+    "Email": "", 
+    "Filtered_Genes": 2190, 
+    "Gene_Var_Pctl": 85.0, 
+    "Min_Cells": 3, 
+    "Min_Counts": 3.0, 
+    "Nodes": 5480, 
+    "Num_Force_Iter": 1000, 
+    "Num_Neighbors": 5, 
+    "Num_PCs": 30
+}
