@@ -115,7 +115,7 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
   }
 
   public render() {
-    const { isFullPage, style } = this.props;
+    const { isFullPage } = this.props;
     const { plotlyCoords } = this.state;
 
     return (
@@ -124,20 +124,14 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
         iconSrc={'assets/icons/tfjs-tsne-icon.png'}
         isFullPage={isFullPage}
       >
-        <Grid centered={true} style={{ marginLeft: 0, width: '100%' }}>
-          <Grid.Row columns={'equal'} style={{ maxHeight: '23px' }}>
+        <Grid centered={true} style={{ height: '100%', marginLeft: 0, width: '100%' }}>
+          <Grid.Row columns={'equal'} style={{ maxHeight: '23px', padding: '7px 0 0 0' }}>
             <Grid.Column floated={'left'}>{this.renderIterateButton()}</Grid.Column>
             <Grid.Column>{this.renderIterateLabel()}</Grid.Column>
             <Grid.Column floated={'right'}>{this.renderResetButton()}</Grid.Column>
           </Grid.Row>
-          <Grid.Row style={{ height: '5%' }}>
-            <Grid.Column>
-              <TensorTComponent
-                onSelectedCallback={this.handlePointSelection}
-                pointsToPlot={plotlyCoords}
-                style={style}
-              />
-            </Grid.Column>
+          <Grid.Row stretched={true} style={{ height: '90%', margin: 0 }}>
+            <TensorTComponent onSelectedCallback={this.handlePointSelection} pointsToPlot={plotlyCoords} />
           </Grid.Row>
         </Grid>
       </ComponentCard>

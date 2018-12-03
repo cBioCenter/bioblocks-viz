@@ -43,6 +43,7 @@ export class LandingPage extends React.Component<ILandingPageProps, any> {
             <span style={{ fontWeight: 'bold' }}>{viz.listAsOriginal ? 'Original authors' : 'Authors'}: </span>
             {viz.authors.length === 2 ? `${viz.authors[0]} and ${viz.authors[1]}` : viz.authors.join(', ')}
           </p>
+          <br />
         </Grid.Column>
         <Grid.Column width={2}>
           <Grid.Row>
@@ -146,6 +147,7 @@ export class LandingPage extends React.Component<ILandingPageProps, any> {
             <span style={{ fontWeight: 'bold' }}>Analysis authors: </span>
             {story.authors.length === 2 ? `${story.authors[0]} and ${story.authors[1]}` : story.authors.join(', ')}
           </p>
+          <br />
         </Grid.Column>
         <Grid.Column width={2}>
           <Button basic={true}>

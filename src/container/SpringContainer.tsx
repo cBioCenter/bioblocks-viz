@@ -58,8 +58,8 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
     springContext: {
       ...initialSpringContext,
     },
-    springHeight: 720,
-    springWidth: 720,
+    springHeight: 1150,
+    springWidth: 1150,
   };
 
   public static displayName = 'SPRING';

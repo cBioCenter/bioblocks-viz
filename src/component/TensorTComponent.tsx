@@ -1,12 +1,11 @@
 import * as React from 'react';
 
 import { defaultPlotlyLayout, PlotlyChart } from '~chell-viz~/component';
-import { CHELL_CSS_STYLE, ChellChartEvent, IPlotlyData } from '~chell-viz~/data';
+import { ChellChartEvent, IPlotlyData } from '~chell-viz~/data';
 
 export interface ITensorComponentProps {
   onSelectedCallback?: ((event: ChellChartEvent) => void);
   pointsToPlot: Array<Partial<IPlotlyData>>;
-  style: CHELL_CSS_STYLE;
 }
 
 class TensorTComponentClass extends React.Component<ITensorComponentProps> {

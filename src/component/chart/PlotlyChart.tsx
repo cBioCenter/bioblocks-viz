@@ -78,8 +78,8 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   protected isDoubleClickInProgress = false;
   protected canvasRef: HTMLDivElement | null = null;
   protected plotlyFormattedData: Array<Partial<IPlotlyData>> = [];
+  protected renderTimeout: undefined | NodeJS.Timer | number;
   protected savedAxisZoom?: { xaxis: plotly.PlotAxis; yaxis: plotly.PlotAxis };
-
   /**
    * Setup all the event listeners for the plotly canvas.
    */
@@ -134,6 +134,14 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   }
 
   public async componentDidMount() {
+    const renderTimeout = async () => {
+      if (this.canvasRef && this.plotlyCanvas) {
+        await this.draw();
+        this.renderTimeout = setTimeout(renderTimeout, 50);
+      }
+    };
+    this.renderTimeout = setTimeout(renderTimeout, 50);
+
     if (this.canvasRef && !this.plotlyCanvas) {
       const { data } = this.props;
       // !Important! This is to make a DEEP COPY of the data because Plotly will modify it, thus causing false positive data updates.
@@ -148,6 +156,10 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   }
 
   public componentWillUnmount() {
+    if (this.renderTimeout) {
+      clearTimeout(this.renderTimeout as number);
+    }
+
     if (this.plotlyCanvas) {
       plotly.purge(this.plotlyCanvas);
       this.plotlyCanvas = null;
@@ -160,7 +172,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     const { height, showLoader, style, width } = this.props;
 
     return (
-      <div>
+      <>
         {showLoader && (
           <Dimmer active={!this.isDataLoaded()}>
             <Loader />
@@ -169,9 +181,9 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
         <div
           className={'plotly-chart'}
           ref={node => (this.canvasRef = node ? node : null)}
-          style={{ ...style, height, marginBottom: 5, width }}
+          style={{ marginBottom: 5, ...style, height, width }}
         />
-      </div>
+      </>
     );
   }
 

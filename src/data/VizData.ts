@@ -30,10 +30,13 @@ export interface IVizOverviewData extends IVizSummaryData {
 
 const springExamples = [
   {
-    icon: 'assets/icons/example_spring-hpc.png',
-    link: '/dataset?name=hpc/full&viz=spring',
+    icon: 'assets/icons/example_hpc_sf2-spring.png',
+    link: '/dataset?name=hpc_sf2/full&viz=spring',
     name: 'HPC (hematopoietic progenitor cells)',
-    summary: 'Analysis of the RNAseq profiles from 4790 hematopoietic progenitor cells.',
+    summary:
+      'Analysis of 33,473 hematopoietic progenitor cells as they differentiate over 6 days.\
+       Barcodes were introduced at day 0 and cell lineage relationships were traced by\
+       identifying progeny from their barcodes in scRNAseq of aliquots of the same population taken at several timepoints.',
   },
   {
     icon: 'assets/icons/tabula-muris-thumbnail.png',
@@ -132,11 +135,11 @@ export const Stories: IStory[] = [
   {
     authors: ['Caleb Weinreb', 'Samuel Wolock', 'Allon Klein'],
     description:
-      'We analyze scRNA seq of ~5000 differentiating\
-    hematopoietic cells using SPRING - a tool for uncovering\
-    high-dimensional structure in single-cell gene expression data.',
-    icon: 'assets/icons/example_spring-hpc.png',
-    link: '/dataset?name=hpc/full&viz=spring',
+      'Analysis of 33,473 hematopoietic progenitor cells as they differentiate over 6 days.\
+       Barcodes were introduced at day 0 and cell lineage relationships were traced by\
+       identifying progeny from their barcodes in scRNAseq of aliquots of the same population taken at several timepoints.',
+    icon: 'assets/icons/example_hpc_sf2-spring.png',
+    link: '/dataset?name=hpc_sf2/full&viz=spring',
     title: 'Trajectory analysis of differentiating HPCs',
   },
   {

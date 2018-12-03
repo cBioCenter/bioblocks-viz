@@ -64,11 +64,12 @@ export class DatasetPage extends React.Component<IDatasetPageProps, IDatasetPage
   }
 
   protected renderVisualization(viz: string | undefined, datasetLocation: string) {
+    const isFullPage = this.state.visualizations.size === 1;
     switch (viz) {
       case VizData.spring.name.toLocaleLowerCase():
-        return <SpringContainer datasetLocation={datasetLocation} />;
+        return <SpringContainer datasetLocation={datasetLocation} isFullPage={isFullPage} />;
       case VizData.tfjsTsne.name.toLocaleLowerCase():
-        return <TensorTContainer datasetLocation={datasetLocation} />;
+        return <TensorTContainer datasetLocation={datasetLocation} isFullPage={isFullPage} />;
       case VizData.anatomogram.name.toLocaleLowerCase():
         return <AnatomogramContainer species={datasetLocation.includes('hpc') ? 'homo_sapiens' : 'mus_musculus'} />;
       default:

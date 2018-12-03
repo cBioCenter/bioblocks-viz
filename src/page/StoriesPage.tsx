@@ -38,6 +38,7 @@ export class StoriesPage extends React.Component<IStoriesPageProps, any> {
             <span style={{ fontWeight: 'bold' }}>Analysis authors: </span>
             {story.authors.length === 2 ? `${story.authors[0]} and ${story.authors[1]}` : story.authors.join(', ')}
           </p>
+          <br />
         </Grid.Column>
         <Grid.Column>
           <Button basic={true}>

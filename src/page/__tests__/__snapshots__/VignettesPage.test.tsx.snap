@@ -12,7 +12,7 @@ exports[`VignettesPage Should match existing snapshot. 1`] = `
     <GridColumn>
       <img
         alt="story Trajectory analysis of differentiating HPCs icon"
-        src="assets/icons/example_spring-hpc.png"
+        src="assets/icons/example_hpc_sf2-spring.png"
         style={
           Object {
             "height": "90px",
@@ -37,7 +37,7 @@ exports[`VignettesPage Should match existing snapshot. 1`] = `
         >
           Description: 
         </span>
-        We analyze scRNA seq of ~5000 differentiating    hematopoietic cells using SPRING - a tool for uncovering    high-dimensional structure in single-cell gene expression data.
+        Analysis of 33,473 hematopoietic progenitor cells as they differentiate over 6 days.       Barcodes were introduced at day 0 and cell lineage relationships were traced by       identifying progeny from their barcodes in scRNAseq of aliquots of the same population taken at several timepoints.
       </p>
       <p>
         <span
@@ -51,6 +51,7 @@ exports[`VignettesPage Should match existing snapshot. 1`] = `
         </span>
         Caleb Weinreb, Samuel Wolock, Allon Klein
       </p>
+      <br />
     </GridColumn>
     <GridColumn>
       <Button
@@ -60,7 +61,7 @@ exports[`VignettesPage Should match existing snapshot. 1`] = `
       >
         <Link
           replace={false}
-          to="/dataset?name=hpc/full&viz=spring"
+          to="/dataset?name=hpc_sf2/full&viz=spring"
         >
           launch
         </Link>
@@ -112,6 +113,7 @@ exports[`VignettesPage Should match existing snapshot. 1`] = `
         </span>
         Drew Diamantoukos and Nicholas Gauthier
       </p>
+      <br />
     </GridColumn>
     <GridColumn>
       <Button

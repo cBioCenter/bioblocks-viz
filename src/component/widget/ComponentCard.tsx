@@ -66,19 +66,17 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
   }
 
   public render() {
-    const { headerHeight, height, isFramedComponent, width } = this.props;
+    const { children, headerHeight, height, isFramedComponent, width } = this.props;
     const { isFullPage, framedStyle } = this.state;
 
     const expandedStyle: React.CSSProperties = {
       bottom: 0,
-      height: '100vh',
+      height: 'calc(100vmin)',
       left: 0,
       padding: '5px',
       position: 'fixed',
       right: 0,
-      top: 0,
-      width: '100%',
-      zIndex: 1000000,
+      width: 'calc(100vmin)',
     };
 
     const cardStyle: React.CSSProperties = {
@@ -90,7 +88,7 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     return (
       <Card centered={true} className={'chell-component-card'} ref={ref => (this.cardRef = ref)} style={cardStyle}>
         {this.renderTopMenu(headerHeight)}
-        {isFramedComponent ? <div style={framedStyle}>{this.props.children}</div> : this.props.children}
+        {isFramedComponent ? <div style={framedStyle}>{children}</div> : children}
       </Card>
     );
   }
