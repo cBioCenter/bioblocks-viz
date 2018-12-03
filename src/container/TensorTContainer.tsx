@@ -92,10 +92,10 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
   public async componentDidUpdate(prevProps: ITensorContainerProps) {
     const { cellContext, springContext } = this.props;
     const { tsne } = this.state;
-    if (tsne) {
-      if (this.props.datasetLocation !== prevProps.datasetLocation) {
-        await this.setupTensorData();
-      } else if (cellContext.currentCells !== prevProps.cellContext.currentCells) {
+    if (this.props.datasetLocation !== prevProps.datasetLocation) {
+      await this.setupTensorData();
+    } else if (tsne) {
+      if (cellContext.currentCells !== prevProps.cellContext.currentCells) {
         this.setState({
           plotlyCoords: this.getPlotlyCoordsFromTsne(await tsne.coordsArray()),
         });

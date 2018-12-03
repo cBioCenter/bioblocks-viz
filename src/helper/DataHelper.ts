@@ -94,8 +94,8 @@ const getNodesFromGraph = (graphData: ISpringGraphData, coords: number[][], colo
 
 const fetchCategoricalColorData = async (file: string): Promise<ISpringCategoricalColorData> => {
   const input = (await fetchJSONFile(file)) as ISpringCategoricalColorDataInput;
-  const firstKey = Object.keys(input)[0];
-  const firstColorData = input[firstKey];
+  const labelKey = getSpringLabelKey(Object.keys(input));
+  const firstColorData = input[labelKey];
   if (!firstColorData.label_colors || !firstColorData.label_list) {
     throw new Error("Unable to parse color data - does it have keys named 'label_colors' and 'label_list'");
   }
@@ -119,6 +119,16 @@ const fetchCategoricalColorData = async (file: string): Promise<ISpringCategoric
   }
 
   return output;
+};
+
+const getSpringLabelKey = (keys: string[]) => {
+  if (keys.includes('sample')) {
+    return 'sample';
+  } else if (keys.includes('Sample')) {
+    return 'Sample';
+  } else {
+    return keys[0];
+  }
 };
 
 export const fetchSpringCoordinateData = async (file: string) => {

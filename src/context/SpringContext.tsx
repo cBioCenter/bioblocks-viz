@@ -11,6 +11,7 @@ export interface ISpringContext {
   handleCategory(category: string, nodes: number[]): void;
   removeCategory(category: string): void;
   setCategories(categories: string[]): void;
+  toggleCategories(categories: string[]): void;
   toggleCategory(category: string): void;
 }
 
@@ -32,6 +33,9 @@ export const initialSpringContext: ISpringContext = {
   setCategories: categories => {
     return;
   },
+  toggleCategories: categories => {
+    return;
+  },
   toggleCategory: category => {
     return;
   },
@@ -41,8 +45,12 @@ export type SpringContextState = Readonly<typeof initialSpringContext>;
 
 export const SpringContext = React.createContext(initialSpringContext);
 
-export class SpringContextProvider extends React.Component<any, SpringContextState> {
-  public constructor(props: any) {
+export interface ISpringContextProps {
+  datasetLocation: string;
+}
+
+export class SpringContextProvider extends React.Component<ISpringContextProps, SpringContextState> {
+  public constructor(props: ISpringContextProps) {
     super(props);
     this.state = {
       ...initialSpringContext,
@@ -51,20 +59,35 @@ export class SpringContextProvider extends React.Component<any, SpringContextSta
       handleCategory: this.onHandleCategory(),
       removeCategory: this.onRemoveCategory(),
       setCategories: this.onSetCategories(),
+      toggleCategories: this.onToggleCategories(),
       toggleCategory: this.onToggleCategory(),
     };
   }
 
   public async componentDidMount() {
-    const graphData = await fetchSpringData('datasets/hpc/full');
-    this.setState({
-      graphData,
-      selectedCategories: [],
-    });
+    await this.setupData();
+  }
+
+  public async componentDidUpdate(prevProps: ISpringContextProps) {
+    if (this.props.datasetLocation !== prevProps.datasetLocation) {
+      await this.setupData();
+    }
   }
 
   public render() {
     return <SpringContext.Provider value={this.state}>{this.props.children}</SpringContext.Provider>;
+  }
+
+  protected async setupData() {
+    try {
+      const graphData = await fetchSpringData(`assets/datasets/${this.props.datasetLocation}`);
+      this.setState({
+        graphData,
+        selectedCategories: [],
+      });
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   protected onAddCategories = () => (categories: string[]) => {
@@ -130,5 +153,22 @@ export class SpringContextProvider extends React.Component<any, SpringContextSta
         selectedCategories: [...selectedCategories, category],
       });
     }
+  };
+
+  protected onToggleCategories = () => (categories: string[]) => {
+    let { selectedCategories } = this.state;
+    for (const category of categories) {
+      const categoryIndex = selectedCategories.indexOf(category);
+
+      if (categoryIndex >= 0) {
+        selectedCategories = [
+          ...selectedCategories.slice(0, categoryIndex),
+          ...selectedCategories.slice(categoryIndex + 1),
+        ];
+      } else {
+        selectedCategories = [...selectedCategories, category];
+      }
+    }
+    this.setState({ selectedCategories });
   };
 }

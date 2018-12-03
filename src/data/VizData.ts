@@ -147,7 +147,7 @@ export const Stories: IStory[] = [
     description: 'Analysis of single cell transcriptomics of 20 mouse organs\
     from the tabula muris project.',
     icon: 'assets/icons/example_tabularmuris_spring-tsne-anatomogram.png',
-    link: '/dataset?name=tabula_muris/full&viz=spring&viz=tfjs-tsne&viz=anatomogram',
+    link: '/dataset?name=tabula_muris/10k&viz=spring&viz=tfjs-tsne&viz=anatomogram',
     title: 'Dimensionality-reduction analysis of tabula muris',
   },
 ];
