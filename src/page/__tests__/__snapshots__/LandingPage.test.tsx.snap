@@ -362,10 +362,9 @@ exports[`LandingPage Should match existing snapshot. 1`] = `
         </GridColumn>
       </GridRow>
       <GridRow
-        columns={3}
+        centered={false}
       >
         <GridColumn
-          floated="right"
           width={12}
         >
           <Link
@@ -373,6 +372,7 @@ exports[`LandingPage Should match existing snapshot. 1`] = `
             style={
               Object {
                 "color": "blue",
+                "float": "right",
               }
             }
             to="visualizations"

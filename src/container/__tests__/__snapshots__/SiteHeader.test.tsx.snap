@@ -49,7 +49,7 @@ exports[`SiteHeader Should match existing snapshot. 1`] = `
       secondary={true}
     >
       <MenuItem
-        key="dataset"
+        key="datasets"
         onClick={[Function]}
         style={
           Object {
@@ -58,7 +58,7 @@ exports[`SiteHeader Should match existing snapshot. 1`] = `
           }
         }
       >
-        dataset 
+        datasets
         <Modal
           centered={true}
           closeOnDimmerClick={true}

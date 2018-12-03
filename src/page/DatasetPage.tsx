@@ -70,7 +70,7 @@ export class DatasetPage extends React.Component<IDatasetPageProps, IDatasetPage
       case VizData.tfjsTsne.name.toLocaleLowerCase():
         return <TensorTContainer datasetLocation={datasetLocation} />;
       case VizData.anatomogram.name.toLocaleLowerCase():
-        return <AnatomogramContainer />;
+        return <AnatomogramContainer species={datasetLocation.includes('hpc') ? 'homo_sapiens' : 'mus_musculus'} />;
       default:
         return <Message error={true}>{`Currently unsupported visualization '${viz}'`}</Message>;
     }

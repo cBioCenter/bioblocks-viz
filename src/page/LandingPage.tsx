@@ -119,9 +119,9 @@ export class LandingPage extends React.Component<ILandingPageProps, any> {
         </Grid.Row>
         {this.renderSingleVisualization(VizData.spring)}
         {this.renderSingleVisualization(VizData.tfjsTsne)}
-        <Grid.Row columns={3}>
-          <Grid.Column width={12} floated={'right'}>
-            <Link style={{ color: 'blue' }} to={'visualizations'}>
+        <Grid.Row centered={false}>
+          <Grid.Column width={12}>
+            <Link style={{ color: 'blue', float: 'right' }} to={'visualizations'}>
               more visualizations...
             </Link>
           </Grid.Column>

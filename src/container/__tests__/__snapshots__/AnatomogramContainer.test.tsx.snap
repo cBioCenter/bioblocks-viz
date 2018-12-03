@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AnatomogramContainer Should match existing snapshot. 1`] = `
+exports[`AnatomogramContainer Should match existing snapshot when the species is a human. 1`] = `
 <div
   className="anatomogram-container"
   style={
@@ -20,6 +20,7 @@ exports[`AnatomogramContainer Should match existing snapshot. 1`] = `
     selectColour="ffaa00"
     selectIds={Array []}
     selectOpacity={0.4}
+    selectedView="male"
     showColour="grey"
     showIds={
       Array [
@@ -35,7 +36,7 @@ exports[`AnatomogramContainer Should match existing snapshot. 1`] = `
 </div>
 `;
 
-exports[`AnatomogramContainer Should update when the context changes. 1`] = `
+exports[`AnatomogramContainer Should match existing snapshot when the species is a mouse. 1`] = `
 <div
   className="anatomogram-container"
   style={
@@ -53,23 +54,28 @@ exports[`AnatomogramContainer Should update when the context changes. 1`] = `
     onMouseOut={[Function]}
     onMouseOver={[Function]}
     selectColour="ffaa00"
-    selectIds={
-      Array [
-        "UBERON_0000977",
-      ]
-    }
+    selectIds={Array []}
     selectOpacity={0.4}
+    selectedView="female"
     showColour="grey"
     showIds={
       Array [
-        "UBERON_0000178",
-        "UBERON_0000473",
-        "UBERON_0000955",
-        "UBERON_0000977",
+        "UBERON_0000948",
+        "UBERON_0001255",
+        "UBERON_0001723",
+        "UBERON_0001911",
+        "UBERON_0002048",
+        "UBERON_0002106",
+        "UBERON_0002107",
+        "UBERON_0002113",
+        "UBERON_0002370",
+        "UBERON_0002371",
+        "UBERON_0003126",
+        "sUBERON_0014892",
       ]
     }
     showOpacity={0.4}
-    species="homo_sapiens"
+    species="mus_musculus"
   />
 </div>
 `;

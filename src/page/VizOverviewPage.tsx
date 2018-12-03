@@ -75,7 +75,7 @@ export class VizOverviewPage extends React.Component<IVizOverviewPageProps, IViz
               <List.Item>
                 <Grid.Column floated={'right'}>
                   <Button basic={true} icon={true} labelPosition={'right'}>
-                    <Link to={{ pathname: '/dataset', search: `?name=hpc/full&viz=${viz.name.toLocaleLowerCase()}` }}>
+                    <Link to={{ pathname: '/dataset', search: `?viz=${viz.name.toLocaleLowerCase()}` }}>
                       {`launch ${viz.name}`}
                     </Link>
                     {/* Power Gap */}

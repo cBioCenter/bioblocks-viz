@@ -112,8 +112,8 @@ export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderSta
   protected renderNavMenu = () => {
     return (
       <Menu defaultActiveIndex={-1} secondary={true}>
-        <Menu.Item key={'dataset'} onClick={this.openModal} style={{ color: 'black', fontSize: '18px' }}>
-          {`dataset ${this.props.numDatasets >= 1 ? `(${this.props.numDatasets})` : ''}`}
+        <Menu.Item key={'datasets'} onClick={this.openModal} style={{ color: 'black', fontSize: '18px' }}>
+          datasets
           <Modal open={this.state.isModalOpen} onClose={this.closeModal}>
             <Modal.Content> {this.renderDatasetMenu()}</Modal.Content>
           </Modal>
@@ -146,6 +146,7 @@ export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderSta
     } else {
       this.setState({
         currentPageName: name,
+        isModalOpen: false,
       });
     }
   }
@@ -210,6 +211,16 @@ export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderSta
       visualizations = params.getAll('viz').map(viz => `viz=${viz}`);
     }
 
+    const datasets = [
+      'hpc/full',
+      'hpc_sf2/full',
+      'tabula_muris/10k',
+      'tabula_muris/lung',
+      'tabula_muris/marrow',
+      'tabula_muris/tongue',
+      'tabula_muris/trachea',
+    ];
+
     const panes = [
       {
         menuItem: 'human cell atlas',
@@ -244,24 +255,7 @@ export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderSta
       {
         menuItem: 'HCA Dynamics public',
         render: () => (
-          <List>
-            <List.Item>
-              <Link
-                onClick={this.closeModal}
-                to={{ pathname: '/dataset', search: `?name=hpc/full&${visualizations.join('&')}` }}
-              >
-                HPC (full)
-              </Link>
-            </List.Item>
-            <List.Item>
-              <Link
-                onClick={this.closeModal}
-                to={{ pathname: '/dataset', search: `?name=tabula_muris/full&${visualizations.join('&')}` }}
-              >
-                Tabula Muris (full)
-              </Link>
-            </List.Item>
-          </List>
+          <List>{datasets.map((dataset, index) => this.renderDatasetLinkItem(dataset, index, visualizations))}</List>
         ),
       },
       {
@@ -278,6 +272,17 @@ export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderSta
       </Container>
     );
   };
+
+  protected renderDatasetLinkItem = (datasetName: string, index: number, visualizations: string[]) => (
+    <List.Item key={`dataset-link-${index}`}>
+      <Link
+        onClick={this.closeModal}
+        to={{ pathname: '/dataset', search: `?name=${datasetName}&${visualizations.join('&')}` }}
+      >
+        {datasetName}
+      </Link>
+    </List.Item>
+  );
 
   protected closeModal = () => {
     this.setState({ isModalOpen: false });
