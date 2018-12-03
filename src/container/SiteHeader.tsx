@@ -215,9 +215,8 @@ export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderSta
       'hpc/full',
       'hpc_sf2/full',
       'tabula_muris/10k',
+      'tabula_muris/full',
       'tabula_muris/lung',
-      'tabula_muris/marrow',
-      'tabula_muris/tongue',
       'tabula_muris/trachea',
     ];
 
