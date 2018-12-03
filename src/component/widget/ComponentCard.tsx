@@ -77,6 +77,7 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
       position: 'fixed',
       right: 0,
       width: 'calc(100vmin)',
+      zIndex: 1000,
     };
 
     const cardStyle: React.CSSProperties = {

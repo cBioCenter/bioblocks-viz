@@ -53,9 +53,9 @@ export const springToAnatomogramMapping: { [key: string]: { [key: string]: strin
 export const anatomogramToSpringMapping: { [key: string]: { [key: string]: string } } = {
   homo_sapiens: {
     UBERON_0000178: 'P11A',
-    UBERON_0000473: 'P11B',
     UBERON_0000955: 'P12A',
     UBERON_0000977: 'P9A',
+    UBERON_0001155: 'P11B',
   },
   mus_musculus: {
     UBERON_0000948: 'heart',
