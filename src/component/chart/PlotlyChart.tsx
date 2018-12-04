@@ -134,7 +134,6 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   }
 
   public async componentDidMount() {
-    /*
     const renderTimeout = async () => {
       if (this.canvasRef && this.plotlyCanvas) {
         await this.draw();
@@ -142,7 +141,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
       }
     };
     this.renderTimeout = setTimeout(renderTimeout, 50);
-*/
+
     if (this.canvasRef && !this.plotlyCanvas) {
       const { data } = this.props;
       // !Important! This is to make a DEEP COPY of the data because Plotly will modify it, thus causing false positive data updates.

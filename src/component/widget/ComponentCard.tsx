@@ -77,7 +77,7 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
       position: 'fixed',
       right: 0,
       width: 'calc(100vmin)',
-      zIndex: 1000,
+      zIndex: 10000,
     };
 
     const cardStyle: React.CSSProperties = {
@@ -85,6 +85,13 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
       padding: '0 0 5px 5px',
       ...(isFullPage ? { ...expandedStyle } : { height, width }),
     };
+
+    const dimmedBackground = document.getElementById('chell-dimmed-background');
+    if (isFullPage && dimmedBackground) {
+      dimmedBackground.style.display = 'block';
+    } else if (dimmedBackground) {
+      dimmedBackground.style.display = 'none';
+    }
 
     return (
       <Card centered={true} className={'chell-component-card'} ref={ref => (this.cardRef = ref)} style={cardStyle}>
