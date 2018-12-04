@@ -1519,6 +1519,8 @@ export default class ColorBar {
   }
 
   categorical_click(d, cat_label_list) {
+    console.log(d);
+    console.log(cat_label_list);
     this.all_selected = true;
     for (let i = 0; i < forceLayout.all_nodes.length; i++) {
       if (cat_label_list[i] === d) {

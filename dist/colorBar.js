@@ -1427,6 +1427,8 @@ define(["require", "exports", "d3", "./colorpicker_layout", "./main", "./util"],
             this.count_clusters();
         }
         categorical_click(d, cat_label_list) {
+            console.log(d);
+            console.log(cat_label_list);
             this.all_selected = true;
             for (let i = 0; i < main_1.forceLayout.all_nodes.length; i++) {
                 if (cat_label_list[i] === d) {

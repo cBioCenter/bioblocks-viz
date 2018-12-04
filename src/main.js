@@ -238,7 +238,7 @@ const setupUserInterface = async () => {
 const setCategorySelection = categories => {
   if (categories) {
     const labelsKey = document.getElementById('labels_menu').value;
-    const { label_list} = colorBar.getSampleCategoricalColoringData(labelsKey);
+    const { label_list } = colorBar.getSampleCategoricalColoringData(labelsKey);
     for (let i = 0; i < forceLayout.all_nodes.length; i++) {
       if (categories.includes(label_list[i])) {
         forceLayout.all_outlines[i].selected = true;
