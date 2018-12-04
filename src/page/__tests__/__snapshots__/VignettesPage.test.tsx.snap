@@ -3,6 +3,7 @@
 exports[`VignettesPage Should match existing snapshot. 1`] = `
 <Grid
   centered={true}
+  divided="vertically"
   padded={true}
   relaxed={false}
 >
@@ -123,7 +124,7 @@ exports[`VignettesPage Should match existing snapshot. 1`] = `
       >
         <Link
           replace={false}
-          to="/dataset?name=tabula_muris/full&viz=spring&viz=tfjs-tsne&viz=anatomogram"
+          to="/dataset?name=tabula_muris/10k&viz=spring&viz=tfjs-tsne&viz=anatomogram"
         >
           launch
         </Link>

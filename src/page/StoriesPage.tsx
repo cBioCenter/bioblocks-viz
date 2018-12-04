@@ -14,7 +14,7 @@ export class StoriesPage extends React.Component<IStoriesPageProps, any> {
 
   public render() {
     return (
-      <Grid centered={true} padded={true} relaxed={false}>
+      <Grid centered={true} divided={'vertically'} padded={true} relaxed={false}>
         {Stories.map((story, index) => (
           <React.Fragment key={`story-${index}`}>{this.renderSingleFeaturedStory(story)}</React.Fragment>
         ))}

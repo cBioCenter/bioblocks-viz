@@ -22,7 +22,7 @@ export const initialSpringContext: ISpringContext = {
   addCategory: category => {
     return;
   },
-  graphData: { links: [], nodes: [] },
+  graphData: { nodes: [] },
   handleCategory: (category: string, cells: number[]) => {
     return;
   },
@@ -46,7 +46,7 @@ export type SpringContextState = Readonly<typeof initialSpringContext>;
 export const SpringContext = React.createContext(initialSpringContext);
 
 export interface ISpringContextProps {
-  datasetLocation: string;
+  datasetLocation?: string;
 }
 
 export class SpringContextProvider extends React.Component<ISpringContextProps, SpringContextState> {

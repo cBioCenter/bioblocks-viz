@@ -40,17 +40,17 @@ const springExamples = [
   },
   {
     icon: 'assets/icons/tabula-muris-thumbnail.png',
-    link: '/dataset?name=tabula_muris/full&viz=spring',
+    link: '/dataset?name=tabula_muris/10k&viz=spring',
     name: 'CZI Tabula muris',
-    summary: 'Analysis of ~100K mouse cells from 20 organs and tissues.',
+    summary: 'Analysis of 10K mouse cells from 20 organs and tissues.',
   },
   {
     icon: 'assets/icons/example_tabularmuris_spring-tsne-anatomogram.png',
-    link: '/dataset?name=tabula_muris/full&viz=spring&viz=tfjs-tsne&viz=anatomogram',
+    link: '/dataset?name=tabula_muris/10k&viz=spring&viz=tfjs-tsne&viz=anatomogram',
     name: 'Tabula Muris - SPRING vs tSNE with Anatomogram',
     summary:
       'Example comparison of data reduction techniques SPRING and tSNE\
-    (of top 30 PCA components), on RNAseq profiles from 56778 cells\
+    (of top 30 PCA components), on RNAseq profiles from 10000 cells\
     from the CZI Tabula muris dataset. Also includes anatomogram visualization for selection of tissue types.',
   },
   {
@@ -109,7 +109,7 @@ const tfjsTsne: IVizOverviewData = {
   citations: [],
   compatibility: [],
   detailedSummary: '',
-  examples: [springExamples[2]],
+  examples: [springExamples[2], springExamples[3]],
   listAsOriginal: true,
   name: 'tfjs-tsne',
   relevantData: 'scRNA-seq',
@@ -117,9 +117,10 @@ const tfjsTsne: IVizOverviewData = {
   summary: 'Improved tSNE implementation that runs in the browser.',
 };
 
-export const VizData = {
+export const VizData: { [key: string]: IVizOverviewData } = {
   anatomogram,
   spring,
+  'tfjs-tsne': tfjsTsne,
   tfjsTsne,
 };
 
@@ -188,3 +189,51 @@ differentiation.',
   100,000 cells from 20 organs and tissues',
   },
 ];
+
+export interface IDatasetModalItem {
+  description: string;
+  enabled: boolean;
+  fullName: string;
+  serverNeeded: boolean;
+}
+
+export const DatasetData: { [key: string]: IDatasetModalItem } = {
+  'hpc/full': {
+    description: 'Analysis of the RNAseq proles from 4790 hematopoietic progenitor cells',
+    enabled: true,
+    fullName: 'Hematopoietic progenitor cells',
+    serverNeeded: false,
+  },
+  'hpc_sf2/full': {
+    description:
+      'Analysis of 33,473 the transcriptional prole of hematopoietic\
+    progenitor cells as they dierentiate over 6 days',
+    enabled: true,
+    fullName: 'Hematopoietic progenitor cells',
+    serverNeeded: false,
+  },
+  'tabula_muris/10k': {
+    description:
+      'A subset pf 10,000 randomly sampled cells taken from the full\
+  tabula_muris dataset (20 organs and tissues from Mus musculus)',
+    enabled: true,
+    fullName: 'Tabula muris',
+    serverNeeded: false,
+  },
+  'tabula_muris/full': {
+    description:
+      'A compendium of single-cell transcriptomic data from the\
+  model organism Mus musculus that comprises more than\
+  100,000 cells from 20 organs and tissues',
+    enabled: false,
+    fullName: 'Tabula muris',
+    serverNeeded: true,
+  },
+  'tabula_muris/lung': {
+    description: 'Analysis of the RNAseq proles from 4790 hematopoietic\
+  progenitor cells',
+    enabled: false,
+    fullName: 'Tabula muris',
+    serverNeeded: true,
+  },
+};

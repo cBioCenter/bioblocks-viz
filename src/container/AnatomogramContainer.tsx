@@ -35,18 +35,19 @@ export const springToAnatomogramMapping: { [key: string]: { [key: string]: strin
     P9A: 'UBERON_0000977',
   },
   mus_musculus: {
-    Heart: 'UBERON_0001255',
-    Kidney: 'sUBERON_0014892',
-    Limb: 'UBERON_0003126',
-    Liver: 'UBERON_0002371',
-    Lung: 'UBERON_0002048 ',
-    Mammary: 'UBERON_0002107',
-    Marrow: 'UBERON_0002370',
-    Muscle: 'UBERON_0003126',
-    Spleen: 'UBERON_0001911',
-    Thymus: 'UBERON_0002106',
-    Tongue: 'UBERON_0002113',
-    Trachea: 'UBERON_0001723',
+    Bladder: 'UBERON_0001255',
+    Heart: 'UBERON_0000948',
+    Kidney: 'UBERON_0002113',
+    Limb: 'UBERON_0014892',
+    Liver: 'UBERON_0002107',
+    Lung: 'UBERON_0002048',
+    Mammary: 'UBERON_0001911',
+    Marrow: 'UBERON_0002371',
+    Muscle: 'UBERON_0014892',
+    Spleen: 'UBERON_0002106',
+    Thymus: 'UBERON_0002370',
+    Tongue: 'UBERON_0001723',
+    Trachea: 'UBERON_0003126',
   },
 };
 
@@ -58,18 +59,18 @@ export const anatomogramToSpringMapping: { [key: string]: { [key: string]: strin
     UBERON_0001155: ['P11B'],
   },
   mus_musculus: {
-    UBERON_0000948: ['Heart_and_Aorta-10X_P7_4'],
-    UBERON_0001255: ['Bladder-10X_P4_3', 'Bladder-10X_P4_4', 'Bladder-10X_P7_7'],
-    UBERON_0001723: ['Tongue-10X_P4_0', 'Tongue-10X_P4_1', 'Tongue-10X_P7_10'],
-    UBERON_0001911: ['Mammary_Gland-10X_P7_12', 'Mammary_Gland-10X_P7_13'],
-    UBERON_0002048: ['Lung-10X_P7_8', 'Lung-10X_P7_9', 'Lung-10X_P8_12', 'Lung-10X_P8_13'],
-    UBERON_0002106: ['Spleen-10X_P4_7', 'Spleen-10X_P7_6'],
-    UBERON_0002107: ['Liver-10X_P4_2', 'Liver-10X_P7_0', 'Liver-10X_P7_1'],
-    UBERON_0002113: ['Kidney-10X_P4_5', 'Kidney-10X_P4_6', 'Kidney-10X_P7_5'],
-    UBERON_0002370: ['Thymus-10X_P7_11'],
-    UBERON_0002371: ['Marrow-10X_P7_2', 'Marrow-10X_P7_3'],
-    UBERON_0003126: ['Trachea-10X_P8_14', 'Trachea-10X_P8_15'],
-    UBERON_0014892: ['Limb_Muscle-10X_P7_14', 'Limb_Muscle-10X_P7_15'],
+    UBERON_0000948: ['Heart_and_Aorta', 'Heart_and_Aorta-10X_P7_4'],
+    UBERON_0001255: ['Bladder', 'Bladder-10X_P4_3', 'Bladder-10X_P4_4', 'Bladder-10X_P7_7'],
+    UBERON_0001723: ['Tongue', 'Tongue-10X_P4_0', 'Tongue-10X_P4_1', 'Tongue-10X_P7_10'],
+    UBERON_0001911: ['Mammary_Gland', 'Mammary_Gland-10X_P7_12', 'Mammary_Gland-10X_P7_13'],
+    UBERON_0002048: ['Lung', 'Lung-10X_P7_8', 'Lung-10X_P7_9', 'Lung-10X_P8_12', 'Lung-10X_P8_13'],
+    UBERON_0002106: ['Spleen', 'Spleen-10X_P4_7', 'Spleen-10X_P7_6'],
+    UBERON_0002107: ['Liver', 'Liver-10X_P4_2', 'Liver-10X_P7_0', 'Liver-10X_P7_1'],
+    UBERON_0002113: ['Kidney', 'Kidney-10X_P4_5', 'Kidney-10X_P4_6', 'Kidney-10X_P7_5'],
+    UBERON_0002370: ['Thymus', 'Thymus-10X_P7_11'],
+    UBERON_0002371: ['Marrow', 'Marrow-10X_P7_2', 'Marrow-10X_P7_3'],
+    UBERON_0003126: ['Trachea', 'Trachea-10X_P8_14', 'Trachea-10X_P8_15'],
+    UBERON_0014892: ['Limb_Muscle', 'Limb_Muscle-10X_P7_14', 'Limb_Muscle-10X_P7_15'],
   },
 };
 
@@ -101,24 +102,25 @@ export class AnatomogramContainerClass extends React.Component<IAnatomogramConta
   public componentDidUpdate(prevProps: IAnatomogramContainerProps) {
     const { cellContext, springContext } = this.props;
     if (!isEqual(springContext.selectedCategories, prevProps.springContext.selectedCategories)) {
+      const selectIds = springContext.selectedCategories
+        .filter(category => springToAnatomogramMapping[this.props.species][this.parseCategory(category)] !== undefined)
+        .map(category => springToAnatomogramMapping[this.props.species][this.parseCategory(category)]);
       this.setState({
-        selectIds: springContext.selectedCategories.map(
-          category => springToAnatomogramMapping[this.props.species][this.parseCategory(category)],
-        ),
+        selectIds: Array.from(new Set(selectIds)),
       });
     } else if (!isEqual(cellContext.currentCells, prevProps.cellContext.currentCells)) {
       const categories = new Set<string>();
       for (const cellIndex of cellContext.currentCells) {
         if (springContext.graphData.nodes[cellIndex]) {
-          categories.add(springContext.graphData.nodes[cellIndex].category);
-        } else {
-          console.log(`No cell found for index ${cellIndex}`);
+          springContext.graphData.nodes[cellIndex].labels.forEach(label => categories.add(label));
         }
       }
+      const selectIds = Array.from(categories)
+        .filter(category => springToAnatomogramMapping[this.props.species][this.parseCategory(category)] !== undefined)
+        .map(category => springToAnatomogramMapping[this.props.species][this.parseCategory(category)]);
+
       this.setState({
-        selectIds: Array.from(categories).map(
-          category => springToAnatomogramMapping[this.props.species][this.parseCategory(category)],
-        ),
+        selectIds: Array.from(new Set(selectIds)),
       });
     }
   }
@@ -145,7 +147,21 @@ export class AnatomogramContainerClass extends React.Component<IAnatomogramConta
   }
 
   protected onClick = (id: string) => {
-    this.props.springContext.toggleCategories(anatomogramToSpringMapping[this.props.species][id]);
+    const { cellContext, species, springContext } = this.props;
+    const categories = anatomogramToSpringMapping[species][id];
+    const cellsInCategory = springContext.graphData.nodes
+      .filter(node => node.labels.filter(label => categories.includes(label)).length >= 1)
+      .map(node => node.number);
+
+    if (
+      springContext.selectedCategories.filter(selectedCategory => categories.includes(selectedCategory)).length >= 1
+    ) {
+      cellContext.removeCells(cellsInCategory);
+    } else {
+      cellContext.addCells(Array.from(new Set<number>([...cellsInCategory, ...cellContext.currentCells])));
+    }
+
+    springContext.toggleCategories(categories);
   };
 
   protected onMouseOut = (id: string) => {

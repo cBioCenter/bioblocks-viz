@@ -50,68 +50,19 @@ exports[`SiteHeader Should match existing snapshot. 1`] = `
     >
       <MenuItem
         key="datasets"
-        onClick={[Function]}
-        style={
-          Object {
-            "color": "black",
-            "fontSize": "18px",
-          }
-        }
       >
-        datasets
-        <Modal
-          centered={true}
-          closeOnDimmerClick={true}
-          closeOnDocumentClick={false}
-          dimmer={true}
-          eventPool="Modal"
-          onClose={[Function]}
-          open={false}
+        <Link
+          replace={false}
+          style={
+            Object {
+              "color": "black",
+              "fontSize": "18px",
+            }
+          }
+          to="/dataset"
         >
-          <ModalContent>
-             
-            <Container
-              fluid={true}
-            >
-              <Header>
-                datasets
-              </Header>
-              <Divider />
-              <Tab
-                defaultActiveIndex={1}
-                grid={
-                  Object {
-                    "paneWidth": 12,
-                    "tabWidth": 4,
-                  }
-                }
-                menu={
-                  Object {
-                    "pointing": true,
-                    "secondary": true,
-                  }
-                }
-                panes={
-                  Array [
-                    Object {
-                      "menuItem": "human cell atlas",
-                      "render": [Function],
-                    },
-                    Object {
-                      "menuItem": "HCA Dynamics public",
-                      "render": [Function],
-                    },
-                    Object {
-                      "menuItem": "upload from computer",
-                      "render": [Function],
-                    },
-                  ]
-                }
-                renderActiveOnly={true}
-              />
-            </Container>
-          </ModalContent>
-        </Modal>
+          datasets
+        </Link>
       </MenuItem>
       <MenuItem
         key="visualizations"

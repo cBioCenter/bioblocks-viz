@@ -97,7 +97,7 @@ export class VizOverviewPage extends React.Component<IVizOverviewPageProps, IViz
           content: (
             <>
               <Divider />
-              <Grid centered={true} container={true} divided={'vertically'} columns={1}>
+              <Grid centered={true} columns={1} container={true} divided={'vertically'} style={{ padding: '10px 0' }}>
                 {examples.map((example, index) => (
                   <Grid.Row columns={2} key={`viz-example-${index}`}>
                     {this.renderExampleEntry(example)}
@@ -108,7 +108,7 @@ export class VizOverviewPage extends React.Component<IVizOverviewPageProps, IViz
           ),
         },
         key: 'examples',
-        title: 'examples',
+        title: 'example stories',
       },
       {
         content: 'coming soon!',

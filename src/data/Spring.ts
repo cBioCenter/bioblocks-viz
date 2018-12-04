@@ -12,7 +12,7 @@ export interface ISpringCategoricalColorData {
 
 export interface ISpringGraphData {
   nodes: ISpringNode[];
-  links: ISpringLink[];
+  links?: ISpringLink[];
 }
 
 export interface ISpringLink {
@@ -22,14 +22,7 @@ export interface ISpringLink {
 }
 
 export interface ISpringNode {
-  category: string;
-  colorHex: number;
-  fixed: boolean;
-  name: string;
+  labels: string[];
   // tslint:disable-next-line:no-reserved-keywords
   number: number;
-  vx: number;
-  vy: number;
-  x: number;
-  y: number;
 }

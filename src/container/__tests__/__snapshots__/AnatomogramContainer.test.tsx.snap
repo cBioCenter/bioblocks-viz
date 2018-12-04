@@ -25,9 +25,9 @@ exports[`AnatomogramContainer Should match existing snapshot when the species is
     showIds={
       Array [
         "UBERON_0000178",
-        "UBERON_0000473",
         "UBERON_0000955",
         "UBERON_0000977",
+        "UBERON_0001155",
       ]
     }
     showOpacity={0.4}
@@ -71,7 +71,7 @@ exports[`AnatomogramContainer Should match existing snapshot when the species is
         "UBERON_0002370",
         "UBERON_0002371",
         "UBERON_0003126",
-        "sUBERON_0014892",
+        "UBERON_0014892",
       ]
     }
     showOpacity={0.4}

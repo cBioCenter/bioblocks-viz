@@ -102,7 +102,10 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
       } else if (!isEqual(springContext.selectedCategories, prevProps.springContext.selectedCategories)) {
         const indices = new Array<number>();
         for (let i = 0; i < springContext.graphData.nodes.length; ++i) {
-          if (springContext.selectedCategories.includes(springContext.graphData.nodes[i].category)) {
+          if (
+            springContext.graphData.nodes[i].labels.filter(label => springContext.selectedCategories.includes(label))
+              .length >= 1
+          ) {
             indices.push(i);
           }
         }
@@ -303,12 +306,27 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
 
   protected async setupTensorData() {
     try {
+      this.setState({
+        isAnimating: false,
+        isComputing: true,
+        plotlyCoords: [],
+        tsne: undefined,
+      });
+
       const tensorData = await fetchTensorTSneCoordinateData(`datasets/${this.props.datasetLocation}`);
       const tsneData = tensorFlow.tensor(tensorData);
+      const tsne = new TSNE(tsneData);
+      const numIterations = 0;
+      await tsne.compute(numIterations);
+      const coordsArray = await tsne.coordsArray();
+      const plotlyCoords = this.getPlotlyCoordsFromTsne(coordsArray);
+
       this.setState({
-        tsne: new TSNE(tsneData),
+        coordsArray,
+        isComputing: false,
+        numIterations,
+        plotlyCoords,
       });
-      await this.computeTensorTsne(this.state.numIterations);
     } catch (e) {
       console.log(e);
     }

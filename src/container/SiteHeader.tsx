@@ -7,20 +7,20 @@ import {
   Container,
   Divider,
   Dropdown,
+  Grid,
   Header,
   Input,
   List,
   Menu,
   MenuItemProps,
-  Modal,
   Search,
   Tab,
   Table,
 } from 'semantic-ui-react';
 
-export interface ISiteHeaderProps extends Partial<RouteComponentProps> {
-  numDatasets: number;
-}
+import { DatasetData, VizData } from '~chell-viz~/data';
+
+export interface ISiteHeaderProps extends Partial<RouteComponentProps> {}
 
 export interface ISiteHeaderState {
   currentPageName: null | string;
@@ -28,10 +28,6 @@ export interface ISiteHeaderState {
 }
 
 export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderState> {
-  public static defaultProps = {
-    numDatasets: 0,
-  };
-
   constructor(props: ISiteHeaderProps) {
     super(props);
     this.state = {
@@ -77,8 +73,42 @@ export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderSta
           </Menu.Item>
         </Menu>
         {this.renderNavBreadcrumb()}
+        {this.renderCurrentData()}
       </Header>
     );
+  }
+
+  protected renderCurrentData() {
+    const { location } = this.props;
+    if (location) {
+      const params = new URLSearchParams(location.search);
+      const visualizations = params.getAll('viz');
+      // tslint:disable-next-line:no-backbone-get-set-outside-model
+      const name = params.get('name');
+
+      return (
+        name &&
+        DatasetData[name] && (
+          <Grid centered={true} padded={true} textAlign={'center'}>
+            <Grid.Row textAlign={'left'}>
+              <p>
+                {`Selected visualization(s): `}
+                {
+                  <span style={{ fontWeight: 'normal' }}>
+                    {visualizations.map(viz => VizData[viz].name).join(', ')}
+                  </span>
+                }
+                <br />
+                {name && `Selected dataset: `}
+                <span style={{ fontWeight: 'normal' }}>{`${DatasetData[name].fullName} (${name})`}</span>
+              </p>
+            </Grid.Row>
+          </Grid>
+        )
+      );
+    } else {
+      return null;
+    }
   }
 
   protected renderNavBreadcrumb() {
@@ -112,11 +142,10 @@ export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderSta
   protected renderNavMenu = () => {
     return (
       <Menu defaultActiveIndex={-1} secondary={true}>
-        <Menu.Item key={'datasets'} onClick={this.openModal} style={{ color: 'black', fontSize: '18px' }}>
-          datasets
-          <Modal open={this.state.isModalOpen} onClose={this.closeModal}>
-            <Modal.Content> {this.renderDatasetMenu()}</Modal.Content>
-          </Modal>
+        <Menu.Item key={'datasets'}>
+          <Link to={'/dataset'} style={{ color: 'black', fontSize: '18px' }}>
+            datasets
+          </Link>
         </Menu.Item>
         <Menu.Item key={'visualizations'}>
           <Link to={'/visualizations'} style={{ color: 'black', fontSize: '18px' }}>
@@ -211,14 +240,7 @@ export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderSta
       visualizations = params.getAll('viz').map(viz => `viz=${viz}`);
     }
 
-    const datasets = [
-      'hpc/full',
-      'hpc_sf2/full',
-      'tabula_muris/10k',
-      'tabula_muris/full',
-      'tabula_muris/lung',
-      'tabula_muris/trachea',
-    ];
+    const datasets = ['hpc/full', 'hpc_sf2/full', 'tabula_muris/10k', 'tabula_muris/full', 'tabula_muris/lung'];
 
     const panes = [
       {
@@ -237,12 +259,6 @@ export class SiteHeader extends React.Component<ISiteHeaderProps, ISiteHeaderSta
                     </Table.HeaderCell>
                     <Table.HeaderCell>
                       <Dropdown placeholder={'method'} selection={true} />
-                    </Table.HeaderCell>
-                    <Table.HeaderCell>
-                      <Dropdown placeholder={'donor'} selection={true} />
-                    </Table.HeaderCell>
-                    <Table.HeaderCell>
-                      <Dropdown placeholder={'specimen'} selection={true} />
                     </Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>

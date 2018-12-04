@@ -6,7 +6,6 @@ exports[`SpringContext Should match the default snapshot. 1`] = `
   addCategory={[Function]}
   graphData={
     Object {
-      "links": Array [],
       "nodes": Array [],
     }
   }
@@ -14,6 +13,7 @@ exports[`SpringContext Should match the default snapshot. 1`] = `
   removeCategory={[Function]}
   selectedCategories={Array []}
   setCategories={[Function]}
+  toggleCategories={[Function]}
   toggleCategory={[Function]}
 />
 `;
