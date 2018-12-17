@@ -1,26 +1,6 @@
 # Getting Started With Chell-Viz Development
 
-<!-- TOC -->
-
-- [Getting Started With Chell-Viz Development](#getting-started-with-chell-viz-development)
-  - [Testing Dependencies](#testing-dependencies)
-  - [Developer Tools](#developer-tools)
-    - [VS Code](#vs-code)
-      - [Extensions](#extensions)
-      - [Debugging](#debugging)
-      - [Formatting](#formatting)
-    - [iTerm2](#iterm2)
-    - [Oh My Zsh](#oh-my-zsh)
-    - [Ack](#ack)
-  - [Project Structure](#project-structure)
-    - [Frontend Stack](#frontend-stack)
-    - [Build System](#build-system)
-    - [The DevServer](#the-devserver)
-    - [Being The CI/CD You Want To See In The World](#being-the-cicd-you-want-to-see-in-the-world)
-      - [Pre-commit](#pre-commit)
-      - [Circle CI](#circle-ci)
-
-<!-- /TOC -->
+<!-- TOC -->autoauto- [Getting Started With Chell-Viz Development](#getting-started-with-chell-viz-development)auto  - [Testing Dependencies](#testing-dependencies)auto  - [Developer Tools](#developer-tools)auto    - [VS Code](#vs-code)auto      - [Extensions](#extensions)auto      - [Debugging](#debugging)auto      - [Formatting](#formatting)auto    - [iTerm2](#iterm2)auto    - [Oh My Zsh](#oh-my-zsh)auto    - [Ack](#ack)auto  - [Project Structure](#project-structure)auto    - [Frontend Stack](#frontend-stack)auto    - [Build System](#build-system)auto    - [The DevServer](#the-devserver)auto    - [Being The CI/CD You Want To See In The World](#being-the-cicd-you-want-to-see-in-the-world)auto      - [Pre-commit](#pre-commit)auto      - [Circle CI](#circle-ci)autoauto<!-- /TOC -->
 
 In order to build and run the chell-viz repo, all you will need to manually download is a package manager - This project is using [yarn](https://yarnpkg.com/), but `npm` _should_ _mostly_ suffice.
 
@@ -86,7 +66,7 @@ I like using [https://beyondgrep.com/](ack) in place of grep. That's about it.
 
 ### Frontend Stack
 
-We are using [TypeScript](https://www.typescriptlang.org/) and [React](https://reactjs.org/) to build the interface for our visualizations that will be consumed by other developers. Digging deeper, we are wrapping libraries such as [ThreeJS](https://threejs.org/), [PixiJS](http://www.pixijs.com/) and [D3](https://d3js.org/).
+We are using [TypeScript](https://www.typescriptlang.org/) and [React](https://reactjs.org/) to build the interface for our visualizations that will be consumed by other developers. Digging deeper, we are wrapping libraries such as [ThreeJS](https://threejs.org/) and [D3](https://d3js.org/).
 
 TypeScript lets us have our cake and eat it too with regards to static and dynamic typing, allowing explicit contracts to be enforced at compile time when it comes to parameter types and the like. Also, it just feels _magical_.
 
