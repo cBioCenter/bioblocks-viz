@@ -1,15 +1,15 @@
 import { Datum } from 'plotly.js-gl2d-dist';
 
-import { Chell1DSection, IPlotlyData } from '~chell-viz~/data';
+import { Chell1DSection, CHELL_PLOTLY_DATA, REQUIRED_CHELL_PLOTLY_DATA } from '~chell-viz~/data';
 
 /**
  * Shorthand to refer to something with both an x and y axis.
  */
 export interface IAxisMapping {
   /** The x axis. */
-  x: Partial<IPlotlyData>;
+  x: CHELL_PLOTLY_DATA;
   /** The y axis. */
-  y: Partial<IPlotlyData>;
+  y: CHELL_PLOTLY_DATA;
 }
 
 /**
@@ -30,7 +30,7 @@ export class AuxiliaryAxis<T extends string> {
    * Get all the x-axis objects belonging to this Auxiliary Axis.
    */
   public get xAxes() {
-    const result = new Array<Partial<IPlotlyData>>();
+    const result = new Array<Partial<CHELL_PLOTLY_DATA>>();
     this.axes.forEach(value => {
       result.push(value.x);
     });
@@ -42,7 +42,7 @@ export class AuxiliaryAxis<T extends string> {
    * Get all the highlighted x-axis objects belonging to this Auxiliary Axis.
    */
   public get highlightedXAxes() {
-    const result = new Array<Partial<IPlotlyData>>();
+    const result = new Array<Partial<CHELL_PLOTLY_DATA>>();
     this.highlightedAxes.forEach(value => {
       result.push(value.x);
     });
@@ -54,7 +54,7 @@ export class AuxiliaryAxis<T extends string> {
    * Get all the y-axis objects belonging to this Auxiliary Axis.
    */
   public get yAxes() {
-    const result = new Array<Partial<IPlotlyData>>();
+    const result = new Array<Partial<CHELL_PLOTLY_DATA>>();
     this.axes.forEach(value => {
       result.push(value.y);
     });
@@ -66,7 +66,7 @@ export class AuxiliaryAxis<T extends string> {
    * Get all the highlighted y-axis objects belonging to this Auxiliary Axis.
    */
   public get highlightedYAxes() {
-    const result = new Array<Partial<IPlotlyData>>();
+    const result = new Array<Partial<CHELL_PLOTLY_DATA>>();
     this.highlightedAxes.forEach(value => {
       result.push(value.y);
     });
@@ -148,7 +148,7 @@ export class AuxiliaryAxis<T extends string> {
    *
    * @param key The label for this piece of data.
    */
-  protected generateXAxisSegment = (key: T): Partial<IPlotlyData> => ({
+  protected generateXAxisSegment = (key: T): CHELL_PLOTLY_DATA => ({
     ...this.auxiliaryAxisDefaults(key),
     orientation: 'h',
     xaxis: 'x',
@@ -160,7 +160,7 @@ export class AuxiliaryAxis<T extends string> {
    *
    * @param key The label for this piece of data.
    */
-  protected generateHighlightedXAxisSegment = (key: T): Partial<IPlotlyData> => ({
+  protected generateHighlightedXAxisSegment = (key: T): CHELL_PLOTLY_DATA => ({
     ...this.highlightedAuxiliaryAxisDefaults(key),
     orientation: 'h',
     xaxis: 'x',
@@ -172,7 +172,7 @@ export class AuxiliaryAxis<T extends string> {
    *
    * @param key The label for this piece of data.
    */
-  protected generateYAxisSegment = (key: T): Partial<IPlotlyData> => ({
+  protected generateYAxisSegment = (key: T): CHELL_PLOTLY_DATA => ({
     ...this.auxiliaryAxisDefaults(key),
     orientation: 'v',
     xaxis: `x${this.axisIndex}`,
@@ -184,7 +184,7 @@ export class AuxiliaryAxis<T extends string> {
    *
    * @param key The label for this piece of data.
    */
-  protected generateHighlightedYAxisSegment = (key: T): Partial<IPlotlyData> => ({
+  protected generateHighlightedYAxisSegment = (key: T): CHELL_PLOTLY_DATA => ({
     ...this.highlightedAuxiliaryAxisDefaults(key),
     orientation: 'v',
     xaxis: `x${this.axisIndex}`,
@@ -196,7 +196,7 @@ export class AuxiliaryAxis<T extends string> {
    *
    * @param key The label for this piece of data.
    */
-  protected auxiliaryAxisDefaults = (key: T): Partial<IPlotlyData> => ({
+  protected auxiliaryAxisDefaults = (key: T): REQUIRED_CHELL_PLOTLY_DATA => ({
     connectgaps: false,
     hoverinfo: 'none',
     line: {
@@ -221,7 +221,7 @@ export class AuxiliaryAxis<T extends string> {
    *
    * @param key The label for this piece of data.
    */
-  protected highlightedAuxiliaryAxisDefaults = (key: T): Partial<IPlotlyData> => ({
+  protected highlightedAuxiliaryAxisDefaults = (key: T): CHELL_PLOTLY_DATA => ({
     ...this.auxiliaryAxisDefaults(key),
     fill: 'toself',
     line: {

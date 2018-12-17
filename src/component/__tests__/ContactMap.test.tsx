@@ -266,7 +266,7 @@ describe('ContactMap', () => {
           }}
         />,
       );
-      const data: Partial<plotly.PlotScatterDataPoint> | plotly.SelectionRange = {
+      const data = {
         data: { type: 'scattergl', xaxis: 'x2' } as any,
         x: [0],
         y: [0],
@@ -291,7 +291,7 @@ describe('ContactMap', () => {
           }}
         />,
       );
-      const data: Partial<plotly.PlotScatterDataPoint> | plotly.SelectionRange = {
+      const data = {
         data: { type: 'scattergl', xaxis: 'x2' } as any,
         x: [0],
         y: [0],
@@ -315,7 +315,7 @@ describe('ContactMap', () => {
           }}
         />,
       );
-      const data: Partial<plotly.PlotScatterDataPoint> | plotly.SelectionRange = {
+      const data = {
         data: { type: 'scattergl', xaxis: 'x2' } as any,
         x: [0],
         y: [0],
@@ -339,7 +339,7 @@ describe('ContactMap', () => {
           }}
         />,
       );
-      const data: Partial<plotly.PlotScatterDataPoint> | plotly.SelectionRange = {
+      const data = {
         data: { type: 'scattergl', xaxis: 'x2' } as any,
         x: [0],
         y: [0],
