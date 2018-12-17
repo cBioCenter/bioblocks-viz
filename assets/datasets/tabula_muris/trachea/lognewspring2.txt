@@ -1,0 +1,11 @@
+Started processing<br>
+Loading counts data...<br>
+Calculating stats...<br>
+Saving stats...<br>
+Saving cell labels...<br>
+Filtering genes...<br>
+Running PCA...<br>
+Building kNN graph...<br>
+Saving graph...<br>
+Getting force layout...<br>
+Run complete! Done in 161 seconds.<br><a target="_blank" href="https://kleintools.hms.harvard.edu/tools/springViewer_1_6_dev.html?datasets/tabula_muris/trachea"> Click here to view.</a><br>

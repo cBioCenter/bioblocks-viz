@@ -27,40 +27,38 @@ exports[`PlotlyChart Event Callbacks Should attach events when the container is 
   showLoader={true}
   width="100%"
 >
-  <div>
-    <Dimmer
+  <Dimmer
+    active={false}
+  >
+    <DimmerInner
       active={false}
     >
-      <DimmerInner
-        active={false}
+      <div
+        className="ui dimmer"
+        onClick={[Function]}
       >
         <div
-          className="ui dimmer"
-          onClick={[Function]}
+          className="content"
         >
-          <div
-            className="content"
-          >
-            <Loader>
-              <div
-                className="ui loader"
-              />
-            </Loader>
-          </div>
+          <Loader>
+            <div
+              className="ui loader"
+            />
+          </Loader>
         </div>
-      </DimmerInner>
-    </Dimmer>
-    <div
-      className="plotly-chart"
-      style={
-        Object {
-          "height": "100%",
-          "marginBottom": 5,
-          "width": "100%",
-        }
+      </div>
+    </DimmerInner>
+  </Dimmer>
+  <div
+    className="plotly-chart"
+    style={
+      Object {
+        "height": "100%",
+        "marginBottom": 5,
+        "width": "100%",
       }
-    />
-  </div>
+    }
+  />
 </PlotlyChart>
 `;
 
@@ -95,40 +93,38 @@ exports[`PlotlyChart Should handle extra axes correctly. 1`] = `
   showLoader={true}
   width="100%"
 >
-  <div>
-    <Dimmer
+  <Dimmer
+    active={false}
+  >
+    <DimmerInner
       active={false}
     >
-      <DimmerInner
-        active={false}
+      <div
+        className="ui dimmer"
+        onClick={[Function]}
       >
         <div
-          className="ui dimmer"
-          onClick={[Function]}
+          className="content"
         >
-          <div
-            className="content"
-          >
-            <Loader>
-              <div
-                className="ui loader"
-              />
-            </Loader>
-          </div>
+          <Loader>
+            <div
+              className="ui loader"
+            />
+          </Loader>
         </div>
-      </DimmerInner>
-    </Dimmer>
-    <div
-      className="plotly-chart"
-      style={
-        Object {
-          "height": "100%",
-          "marginBottom": 5,
-          "width": "100%",
-        }
+      </div>
+    </DimmerInner>
+  </Dimmer>
+  <div
+    className="plotly-chart"
+    style={
+      Object {
+        "height": "100%",
+        "marginBottom": 5,
+        "width": "100%",
       }
-    />
-  </div>
+    }
+  />
 </PlotlyChart>
 `;
 
@@ -141,40 +137,38 @@ exports[`PlotlyChart Should match existing snapshot when given empty data. 1`] =
   showLoader={true}
   width="100%"
 >
-  <div>
-    <Dimmer
+  <Dimmer
+    active={true}
+  >
+    <DimmerInner
       active={true}
     >
-      <DimmerInner
-        active={true}
+      <div
+        className="ui active transition visible dimmer"
+        onClick={[Function]}
       >
         <div
-          className="ui active transition visible dimmer"
-          onClick={[Function]}
+          className="content"
         >
-          <div
-            className="content"
-          >
-            <Loader>
-              <div
-                className="ui loader"
-              />
-            </Loader>
-          </div>
+          <Loader>
+            <div
+              className="ui loader"
+            />
+          </Loader>
         </div>
-      </DimmerInner>
-    </Dimmer>
-    <div
-      className="plotly-chart"
-      style={
-        Object {
-          "height": "100%",
-          "marginBottom": 5,
-          "width": "100%",
-        }
+      </div>
+    </DimmerInner>
+  </Dimmer>
+  <div
+    className="plotly-chart"
+    style={
+      Object {
+        "height": "100%",
+        "marginBottom": 5,
+        "width": "100%",
       }
-    />
-  </div>
+    }
+  />
 </PlotlyChart>
 `;
 
@@ -203,39 +197,37 @@ exports[`PlotlyChart Should match existing snapshot when given sample data. 1`] 
   showLoader={true}
   width="100%"
 >
-  <div>
-    <Dimmer
+  <Dimmer
+    active={false}
+  >
+    <DimmerInner
       active={false}
     >
-      <DimmerInner
-        active={false}
+      <div
+        className="ui dimmer"
+        onClick={[Function]}
       >
         <div
-          className="ui dimmer"
-          onClick={[Function]}
+          className="content"
         >
-          <div
-            className="content"
-          >
-            <Loader>
-              <div
-                className="ui loader"
-              />
-            </Loader>
-          </div>
+          <Loader>
+            <div
+              className="ui loader"
+            />
+          </Loader>
         </div>
-      </DimmerInner>
-    </Dimmer>
-    <div
-      className="plotly-chart"
-      style={
-        Object {
-          "height": "100%",
-          "marginBottom": 5,
-          "width": "100%",
-        }
+      </div>
+    </DimmerInner>
+  </Dimmer>
+  <div
+    className="plotly-chart"
+    style={
+      Object {
+        "height": "100%",
+        "marginBottom": 5,
+        "width": "100%",
       }
-    />
-  </div>
+    }
+  />
 </PlotlyChart>
 `;

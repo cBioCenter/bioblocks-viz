@@ -4,33 +4,24 @@ import * as React from 'react';
 import * as tensorFlow from '@tensorflow/tfjs-core';
 // tslint:disable-next-line:no-submodule-imports
 import { TSNE } from '@tensorflow/tfjs-tsne/dist/tsne';
-import { Button, Icon } from 'semantic-ui-react';
-import { SettingsPanel, TensorTComponent } from '~chell-viz~/component';
-import {
-  CellContext,
-  ICellContext,
-  initialCellContext,
-  initialSpringContext,
-  ISpringContext,
-  SpringContext,
-} from '~chell-viz~/context';
+import { Grid, Icon, Radio } from 'semantic-ui-react';
+import { ComponentCard, TensorTComponent } from '~chell-viz~/component';
+import { initialSpringContext, ISpringContext, SpringContext } from '~chell-viz~/context';
 import {
   CHELL_CSS_STYLE,
   ChellChartEvent,
   ChellWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
   IPlotlyData,
-  T_SNE_DATA_TYPE,
 } from '~chell-viz~/data';
+import { fetchTensorTSneCoordinateData } from '~chell-viz~/helper';
 
 export interface ITensorContainerProps {
-  cellContext: ICellContext;
-  data: T_SNE_DATA_TYPE;
-  height: number;
+  datasetLocation: string;
+  isFullPage: boolean;
   pointColor: string;
   springContext: ISpringContext;
   style: CHELL_CSS_STYLE;
-  width: number;
 }
 
 export interface ITensorContainerState {
@@ -44,11 +35,9 @@ export interface ITensorContainerState {
 
 export class TensorTContainerClass extends React.Component<ITensorContainerProps, ITensorContainerState> {
   public static defaultProps = {
-    cellContext: {
-      ...initialCellContext,
-    },
-    data: [[0], [0]],
+    datasetLocation: 'hpc/full',
     height: 400,
+    isFullPage: false,
     pointColor: '#aa0000',
     springContext: {
       ...initialSpringContext,
@@ -58,6 +47,8 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
     },
     width: 400,
   };
+
+  public static displayName = 'tSNE - TensorFlow';
 
   protected canvasContext: CanvasRenderingContext2D | null = null;
 
@@ -73,53 +64,66 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
   }
 
   public async componentDidMount() {
-    const tsneData = tensorFlow.tensor(this.props.data);
-    // Initialize the tsne optimizer
-    const tsne = (await import('@tensorflow/tfjs-tsne')).tsne(tsneData);
-    this.setState({
-      tsne,
-    });
-    await this.computeTensorTsne(this.state.numIterations);
+    try {
+      const tensorData = await fetchTensorTSneCoordinateData(`datasets/${this.props.datasetLocation}`);
+      const tsneData = tensorFlow.tensor(tensorData);
+      // Initialize the tsne optimizer
+      const tsne = (await import('@tensorflow/tfjs-tsne')).tsne(tsneData);
+      this.setState({
+        tsne,
+      });
+      await this.computeTensorTsne(this.state.numIterations);
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   public async componentDidUpdate(prevProps: ITensorContainerProps) {
-    const { cellContext, springContext } = this.props;
+    const { springContext } = this.props;
     const { tsne } = this.state;
-    if (tsne && cellContext.currentCells !== prevProps.cellContext.currentCells) {
-      this.setState({
-        plotlyCoords: this.getPlotlyCoordsFromTsne(await tsne.coordsArray()),
-      });
-    } else if (tsne && !isEqual(springContext.selectedCategories, prevProps.springContext.selectedCategories)) {
-      const indices = new Array<number>();
-      for (let i = 0; i < springContext.graphData.nodes.length; ++i) {
-        if (springContext.selectedCategories.includes(springContext.graphData.nodes[i].category)) {
-          indices.push(i);
+    if (this.props.datasetLocation !== prevProps.datasetLocation) {
+      await this.setupTensorData();
+    } else if (tsne) {
+      if (springContext.currentCells !== prevProps.springContext.currentCells) {
+        this.setState({
+          plotlyCoords: this.getPlotlyCoordsFromTsne(await tsne.coordsArray()),
+        });
+      } else if (!isEqual(springContext.selectedLabels, prevProps.springContext.selectedLabels)) {
+        const indices = new Array<number>();
+        for (const node of springContext.graphData.nodes) {
+          if (springContext.selectedLabels.includes(node.labelForCategory[springContext.selectedCategory])) {
+            indices.push(node.number);
+          }
         }
-      }
 
-      this.setState({
-        plotlyCoords: this.getPlotlyCoordsFromSpring(await tsne.coordsArray(), indices),
-      });
+        this.setState({
+          plotlyCoords: this.getPlotlyCoordsFromSpring(await tsne.coordsArray(), indices),
+        });
+      }
     }
   }
 
   public render() {
-    const { height, style, width } = this.props;
+    const { isFullPage } = this.props;
     const { plotlyCoords } = this.state;
 
     return (
-      <div id="TensorTContainerDiv" style={style}>
-        {this.renderPlaybackButtons()}
-        <SettingsPanel configurations={this.getTensorConfigs()} opacity={0.8}>
-          <TensorTComponent
-            height={height}
-            onSelectedCallback={this.handlePointSelection}
-            pointsToPlot={plotlyCoords}
-            style={style}
-            width={width}
-          />
-        </SettingsPanel>
-      </div>
+      <ComponentCard
+        componentName={TensorTContainerClass.displayName}
+        iconSrc={'assets/icons/tfjs-tsne-icon.png'}
+        isFullPage={isFullPage}
+      >
+        <Grid centered={true} style={{ height: '100%', marginLeft: 0, width: '100%' }}>
+          <Grid.Row columns={'equal'} style={{ maxHeight: '23px', padding: '7px 0 0 0' }}>
+            <Grid.Column floated={'left'}>{this.renderIterateButton()}</Grid.Column>
+            <Grid.Column>{this.renderIterateLabel()}</Grid.Column>
+            <Grid.Column floated={'right'}>{this.renderResetButton()}</Grid.Column>
+          </Grid.Row>
+          <Grid.Row stretched={true} style={{ height: '90%', margin: 0 }}>
+            <TensorTComponent onSelectedCallback={this.handlePointSelection} pointsToPlot={plotlyCoords} />
+          </Grid.Row>
+        </Grid>
+      </ComponentCard>
     );
   }
 
@@ -142,7 +146,7 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
   }
 
   protected getPlotlyCoordsFromTsne = (coords: number[][]): Array<Partial<IPlotlyData>> => {
-    const { cellContext } = this.props;
+    const { springContext } = this.props;
 
     return [
       {
@@ -160,8 +164,8 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
         },
         mode: 'markers',
         type: 'scattergl',
-        x: cellContext.currentCells.map(cellIndex => coords[cellIndex][0]),
-        y: cellContext.currentCells.map(cellIndex => coords[cellIndex][1]),
+        x: springContext.currentCells.toArray().map(cellIndex => coords[cellIndex][0]),
+        y: springContext.currentCells.toArray().map(cellIndex => coords[cellIndex][1]),
       },
     ];
   };
@@ -218,7 +222,7 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
   ];
 
   protected handlePointSelection = (event: ChellChartEvent) => {
-    const { cellContext } = this.props;
+    const { springContext } = this.props;
     const { coordsArray } = this.state;
     const selectedCells = new Array<number>();
     for (let i = 0; i < event.selectedPoints.length - 1; i += 2) {
@@ -229,21 +233,23 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
         selectedCells.push(cellIndex);
       }
     }
-    cellContext.addCells(selectedCells);
+    springContext.setCells(selectedCells);
   };
 
-  protected renderPlaybackButtons = () =>
-    this.state.isAnimating ? (
-      <Button compact={true} onClick={this.onPauseAnimation()}>
-        <Icon name={'pause'} />
-        Pause
-      </Button>
-    ) : (
-      <Button compact={true} onClick={this.onPlayIteration()}>
-        <Icon name={'play'} />
-        Play
-      </Button>
-    );
+  protected renderIterateLabel = () => <label>{`iterations: ${this.state.numIterations}`}</label>;
+
+  /**
+   * Renders the radio button responsible for toggling the animation on/off.
+   */
+  protected renderIterateButton = () => (
+    <Radio
+      label={<label style={{ fontSize: '14px', fontWeight: 'bold' }}>iterate</label>}
+      onClick={this.onIterationToggle()}
+      toggle={true}
+    />
+  );
+
+  protected renderResetButton = () => <Icon name={'undo'} onClick={this.onReset()} />;
 
   protected onIterateForward = (amount: number = 1) => async () => {
     const { isComputing, tsne } = this.state;
@@ -263,39 +269,61 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
     }
   };
 
-  protected onPauseAnimation = () => () => {
-    this.setState({ isAnimating: false });
-  };
+  protected onIterationToggle = () => () => {
+    const isAnimating = !this.state.isAnimating;
 
-  protected onPlayIteration = () => async () => {
-    const animationFrame = async () => {
-      const { isAnimating, numIterations } = this.state;
-      await this.onIterateForward(1)();
-      if (isAnimating && numIterations < 500) {
-        requestAnimationFrame(animationFrame);
-      } else {
-        this.setState({ isAnimating: false });
-      }
-    };
-
-    this.setState({ isAnimating: true });
-    requestAnimationFrame(animationFrame);
+    if (isAnimating) {
+      const animationFrame = async () => {
+        await this.onIterateForward(1)();
+        if (this.state.isAnimating && this.state.numIterations < 500) {
+          requestAnimationFrame(animationFrame);
+        } else {
+          this.setState({ isAnimating: false });
+        }
+      };
+      requestAnimationFrame(animationFrame);
+    }
+    this.setState({ isAnimating });
   };
 
   protected onReset = () => async () => {
     await this.computeTensorTsne(0);
   };
+
+  protected async setupTensorData() {
+    try {
+      this.setState({
+        isAnimating: false,
+        isComputing: true,
+        plotlyCoords: [],
+        tsne: undefined,
+      });
+
+      const tensorData = await fetchTensorTSneCoordinateData(`datasets/${this.props.datasetLocation}`);
+      const tsneData = tensorFlow.tensor(tensorData);
+      const tsne = new TSNE(tsneData);
+      const numIterations = 0;
+      await tsne.compute(numIterations);
+      const coordsArray = await tsne.coordsArray();
+      const plotlyCoords = this.getPlotlyCoordsFromTsne(coordsArray);
+
+      this.setState({
+        coordsArray,
+        isComputing: false,
+        numIterations,
+        plotlyCoords,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
 
 type requiredProps = Omit<ITensorContainerProps, keyof typeof TensorTContainerClass.defaultProps> &
   Partial<ITensorContainerProps>;
 
 export const TensorTContainer = (props: requiredProps) => (
-  <CellContext.Consumer>
-    {cellContext => (
-      <SpringContext.Consumer>
-        {springContext => <TensorTContainerClass {...props} cellContext={cellContext} springContext={springContext} />}
-      </SpringContext.Consumer>
-    )}
-  </CellContext.Consumer>
+  <SpringContext.Consumer>
+    {springContext => <TensorTContainerClass {...props} springContext={springContext} />}
+  </SpringContext.Consumer>
 );

@@ -70,7 +70,7 @@ describe('SecondaryStructureAxis', () => {
     it('Should use points for a sine wave for alpha helix secondary structures.', () => {
       const result = new SecondaryStructureAxis(genSeqEntry('H', 1, 5));
       const expectedMainAxis = [1, 1, 2, 3, 4, 5, 5];
-      const axis = result.getAxisById('H') as RecursiveRequired<IAxisMapping>;
+      const axis = result.getAxisById('H') as IAxisMapping;
 
       expect(axis.x.x).toEqual(expectedMainAxis);
       expect(axis.y.y).toEqual(expectedMainAxis);
@@ -97,18 +97,22 @@ describe('SecondaryStructureAxis', () => {
       const rightArrow = 'triangle-right';
       const downArrow = 'triangle-down';
 
-      const axis = result.getAxisById('E') as RecursiveRequired<IAxisMapping>;
+      const axis = result.getAxisById('E') as IAxisMapping;
 
-      expect(axis.x.marker.symbol).toHaveLength(7);
-      expect(axis.x.marker.symbol.length).toEqual(axis.y.marker.symbol.length);
+      if (!axis.x.marker.symbol || !axis.y.marker.symbol) {
+        fail(`Axis symbols must be undefined. X: ${axis.x.marker.symbol} , y: ${axis.y.marker.symbol}`);
+      } else {
+        expect(axis.x.marker.symbol).toHaveLength(7);
+        expect(axis.x.marker.symbol.length).toEqual(axis.y.marker.symbol.length);
 
-      for (let i = 1; i < axis.x.marker.symbol.length - 2; ++i) {
-        expect(axis.x.marker.symbol[i]).toEqual(lineSymbol);
-        expect(axis.x.marker.symbol[i]).toEqual(lineSymbol);
+        for (let i = 1; i < axis.x.marker.symbol.length - 2; ++i) {
+          expect(axis.x.marker.symbol[i]).toEqual(lineSymbol);
+          expect(axis.x.marker.symbol[i]).toEqual(lineSymbol);
+        }
+
+        expect(axis.x.marker.symbol[5]).toEqual(rightArrow);
+        expect(axis.y.marker.symbol[5]).toEqual(downArrow);
       }
-
-      expect(axis.x.marker.symbol[5]).toEqual(rightArrow);
-      expect(axis.y.marker.symbol[5]).toEqual(downArrow);
     });
   });
 });

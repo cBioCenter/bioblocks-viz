@@ -1,59 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ChellVizApp Should match existing snapshot when given no props. 1`] = `
-<div
-  id="ChellVizApp"
->
-  <ChellContextProvider>
-    <Grid
-      divided="vertically"
-    >
-      <GridRow>
-        <VizPanelContainer
-          allowUploads={false}
-          dataDirs={
-            Array [
-              "assets/datasets/hpc/full",
-            ]
-          }
-          initialVisualizations={
-            Array [
-              "Spring",
-              "TENSOR-T-SNE",
-            ]
-          }
-          numPanels={2}
-          supportedVisualizations={
-            Array [
-              "Spring",
-              "TENSOR-T-SNE",
-            ]
-          }
-        />
-      </GridRow>
-      <Component />
-      <GridRow
-        centered={true}
-        style={
-          Object {
-            "padding": "0 50px",
-          }
-        }
-      >
-        <IframeComm
-          attributes={
-            Object {
-              "height": "500px",
-              "src": "undefined/morpheus.html",
-              "width": "100%",
-            }
-          }
-          postMessageData={Object {}}
-          serializeMessage={true}
-          targetOrigin="*"
-        />
-      </GridRow>
-    </Grid>
-  </ChellContextProvider>
-</div>
+<HashRouter>
+  <Route
+    render={[Function]}
+  />
+</HashRouter>
 `;

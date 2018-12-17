@@ -137,21 +137,3 @@ export class SecondaryStructureContextProvider extends React.Component<any, ISec
     });
   };
 }
-
-export const withSecondaryStructureContext = <P extends ISecondaryStructureProps>(
-  WrappedComponent: React.ComponentType<P>,
-) =>
-  // tslint:disable-next-line:max-classes-per-file
-  class SecondaryStructureContextHOC extends React.Component<any> {
-    public static WrappedComponent = WrappedComponent;
-
-    public render() {
-      return (
-        <SecondaryStructureContextConsumer>
-          {secondaryStructureContext => (
-            <WrappedComponent secondaryStructureContext={secondaryStructureContext} {...this.props} />
-          )}
-        </SecondaryStructureContextConsumer>
-      );
-    }
-  };

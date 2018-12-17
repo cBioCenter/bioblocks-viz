@@ -16,7 +16,7 @@ declare module 'react-iframe-comm' {
     sandbox?: string;
     srcDoc?: string;
     src: string;
-    width: string | number;
+    width?: string | number;
   }
 
   interface IframeCommProps {

@@ -8,7 +8,6 @@ import {
   ISpringCategoricalColorData,
   ISpringCategoricalColorDataInput,
   ISpringGraphData,
-  ISpringLink,
   ISpringNode,
   SECONDARY_STRUCTURE_CODES,
   VIZ_TYPE,
@@ -52,73 +51,56 @@ export const fetchAppropriateDataFromFile = async (viz: VIZ_TYPE, file: File) =>
   }
 };
 
-export const fetchSpringData = async (dataDir: string) => {
-  const coordinates = await fetchSpringCoordinateData(`${dataDir}/coordinates.txt`);
-  const graphData = await fetchGraphData(`${dataDir}/graph_data.json`);
+export const fetchSpringData = async (dataDir: string): Promise<ISpringGraphData> => {
   const catColorData = await fetchCategoricalColorData(`${dataDir}/categorical_coloring_data.json`);
-  const nodeDict = getNodesFromGraph(graphData, coordinates, catColorData);
-  graphData.links = assignSpringLinks(graphData.links, nodeDict);
 
-  return graphData;
-};
+  const nodes = new Array<ISpringNode>();
+  const categories = Object.keys(catColorData);
 
-const assignSpringLinks = (links: ISpringLink[], nodeDict: { [index: number]: ISpringNode }) =>
-  links.map(link => {
-    const source = nodeDict[link.source as number];
-    const target = nodeDict[link.target as number];
-    if (source && target) {
-      link.source = source;
-      link.target = target;
-    }
-
-    return link;
+  catColorData[categories[0]].label_list.forEach((label, index) => {
+    nodes.push({
+      labelForCategory: categories.reduce(
+        (prev, category) => ({ ...prev, [category]: catColorData[category].label_list[index] }),
+        {},
+      ),
+      number: index,
+    });
   });
 
-const getNodesFromGraph = (graphData: ISpringGraphData, coords: number[][], colorData: ISpringCategoricalColorData) => {
-  const nodeDict: { [index: number]: ISpringNode } = {};
-  for (let i = 0; i < graphData.nodes.length; ++i) {
-    const node = graphData.nodes[i];
-    nodeDict[node.number] = node;
-    if (node.number in coords) {
-      node.fixed = true;
-      node.x = coords[node.number][0];
-      node.y = coords[node.number][1];
-    }
-    const label = colorData.label_list[i];
-    node.category = label;
-    node.colorHex = colorData.label_colors[label];
-  }
-
-  return nodeDict;
+  return { nodes };
 };
 
-const fetchCategoricalColorData = async (file: string): Promise<ISpringCategoricalColorData> => {
+const fetchCategoricalColorData = async (file: string): Promise<{ [key: string]: ISpringCategoricalColorData }> => {
   const input = (await fetchJSONFile(file)) as ISpringCategoricalColorDataInput;
-  const firstKey = Object.keys(input)[0];
-  const firstColorData = input[firstKey];
-  if (!firstColorData.label_colors || !firstColorData.label_list) {
-    throw new Error("Unable to parse color data - does it have keys named 'label_colors' and 'label_list'");
-  }
-  const output: ISpringCategoricalColorData = {
-    label_colors: {},
-    label_list: firstColorData.label_list,
-  };
-
-  const { label_colors } = input[Object.keys(input)[0]];
-
-  // The input file might specify hex values as either 0xrrggbb or #rrggbb, so we need to convert the input to a consistent output format.
-  for (const key of Object.keys(label_colors)) {
-    const hex = label_colors[key];
-    if (typeof hex === 'number') {
-      output.label_colors[key] = hex;
-    } else if (hex.charAt(0) === '#') {
-      output.label_colors[key] = Number.parseInt(`0x${hex.slice(1)}`, 16);
-    } else {
-      output.label_colors[key] = Number.parseInt(hex, 16);
+  const result: { [key: string]: ISpringCategoricalColorData } = {};
+  for (const key of Object.keys(input)) {
+    const colorData = input[key];
+    if (!colorData.label_colors || !colorData.label_list) {
+      throw new Error("Unable to parse color data - does it have keys named 'label_colors' and 'label_list'");
     }
+    const output: ISpringCategoricalColorData = {
+      label_colors: {},
+      label_list: colorData.label_list,
+    };
+
+    const { label_colors } = input[Object.keys(input)[0]];
+
+    // The input file might specify hex values as either 0xrrggbb or #rrggbb, so we need to convert the input to a consistent output format.
+    for (const labelColorKey of Object.keys(label_colors)) {
+      const hex = label_colors[labelColorKey];
+      if (typeof hex === 'number') {
+        output.label_colors[labelColorKey] = hex;
+      } else if (hex.charAt(0) === '#') {
+        output.label_colors[labelColorKey] = Number.parseInt(`0x${hex.slice(1)}`, 16);
+      } else {
+        output.label_colors[labelColorKey] = Number.parseInt(hex, 16);
+      }
+    }
+
+    result[key] = output;
   }
 
-  return output;
+  return result;
 };
 
 export const fetchSpringCoordinateData = async (file: string) => {
@@ -171,7 +153,7 @@ export const fetchTensorTSneCoordinateData = async (dataDir: string) => {
   return fetchTensorTSneCoordinateDataFromFile(`${dataDir}/tsne_matrix.csv`);
 };
 
-const fetchGraphData = async (file: string) => {
+export const fetchGraphData = async (file: string) => {
   const data = (await fetchJSONFile(file)) as ISpringGraphData;
   if (!data.nodes || !data.links) {
     throw new Error("Unable to parse graph data - does it have keys named 'nodes' and 'links'");

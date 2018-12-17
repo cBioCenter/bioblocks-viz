@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Card, Dropdown, DropdownItemProps, DropdownProps } from 'semantic-ui-react';
 
-import { InfoPanel, NGLComponent, PredictedContactMap, TComponent, TFrameComponent } from '~chell-viz~/component';
+import { InfoPanel, NGLComponent, PredictedContactMap, TFrameComponent } from '~chell-viz~/component';
 import { SpringContainer, TensorTContainer } from '~chell-viz~/container';
 import { CHELL_DATA_TYPE, IContactMapData, NGL_DATA_TYPE, T_SNE_DATA_TYPE, VIZ_TYPE } from '~chell-viz~/data';
 
@@ -69,26 +69,13 @@ export class VizSelectorPanel extends React.Component<IVizPanelProps, IVizPanelS
     const paddedWidth = this.props.width - padding * 2;
     switch (viz) {
       case VIZ_TYPE['T-SNE']:
-        return (
-          data['T-SNE'] && (
-            <TComponent
-              data={data['T-SNE'] as T_SNE_DATA_TYPE}
-              height={paddedHeight}
-              padding={padding}
-              width={paddedWidth}
-            />
-          )
-        );
       case VIZ_TYPE['TENSOR-T-SNE']:
         return (
           data['TENSOR-T-SNE'] && (
             <TensorTContainer
-              data={data['TENSOR-T-SNE'] as T_SNE_DATA_TYPE}
-              height={paddedHeight}
               style={{
                 padding,
               }}
-              width={paddedWidth}
             />
           )
         );
@@ -104,7 +91,7 @@ export class VizSelectorPanel extends React.Component<IVizPanelProps, IVizPanelS
           )
         );
       case VIZ_TYPE.SPRING:
-        return <SpringContainer height={this.props.height} padding={padding} width={this.props.width} />;
+        return <SpringContainer padding={padding} />;
       case VIZ_TYPE.NGL:
         return (
           data.NGL && (

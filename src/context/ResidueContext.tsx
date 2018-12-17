@@ -155,17 +155,3 @@ export class ResidueContextProvider extends React.Component<any, IResidueContext
     });
   };
 }
-
-export const withResidueContext = <P extends IResidueContextProps>(WrappedComponent: React.ComponentType<P>) =>
-  // tslint:disable-next-line:max-classes-per-file
-  class ResidueContextHOC extends React.Component<any> {
-    public static WrappedComponent = WrappedComponent;
-
-    public render() {
-      return (
-        <ResidueContextConsumer>
-          {residueContext => <WrappedComponent residueContext={residueContext} {...this.props} />}
-        </ResidueContextConsumer>
-      );
-    }
-  };

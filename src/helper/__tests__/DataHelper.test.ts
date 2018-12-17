@@ -1,14 +1,7 @@
 import * as fetchMock from 'jest-fetch-mock';
 import { inspect as stringifyCircularJSON } from 'util';
 
-import {
-  ChellPDB,
-  CouplingContainer,
-  IContactMapData,
-  ICouplingScore,
-  SPRING_DATA_TYPE,
-  VIZ_TYPE,
-} from '~chell-viz~/data';
+import { ChellPDB, CouplingContainer, IContactMapData, ICouplingScore, VIZ_TYPE } from '~chell-viz~/data';
 import {
   augmentCouplingScoresWithResidueMapping,
   fetchAppropriateData,
@@ -173,121 +166,9 @@ describe('DataHelper', () => {
   });
 
   describe('Spring', () => {
-    const emptySpringInput = {
-      colorData: { Sample: { label_colors: [], label_list: [] } },
-      coordinateData: ',,,',
-      graphData: {
-        links: [],
-        nodes: [],
-      },
-    };
-
-    const sampleSpringInput = {
-      colorData: { Sample: { label_colors: [], label_list: [] } },
-      coordinateData: '0,267.93120,-346.14858\n\
-        1,597.35064,520.63422',
-      graphData: {
-        links: [{ source: 0, target: 1, distance: 0 }],
-        nodes: [{ name: 0, number: 0 }, { name: 1, number: 1 }],
-      },
-    };
-
     it('Should throw on incorrect location.', async () => {
       expect.assertions(1);
       await expect(fetchAppropriateData(VIZ_TYPE.SPRING, '')).rejects.toThrowError();
-    });
-
-    it('Should parse graph data.', async () => {
-      fetchMock.mockResponseOnce(emptySpringInput.coordinateData);
-      fetchMock.mockResponseOnce(JSON.stringify(emptySpringInput.graphData));
-      fetchMock.mockResponseOnce(JSON.stringify(emptySpringInput.colorData));
-      await expect(fetchAppropriateData(VIZ_TYPE.SPRING, 'kanto')).resolves.toEqual(emptySpringInput.graphData);
-    });
-
-    it('Should parse coordinate data.', async () => {
-      fetchMock.mockResponseOnce(sampleSpringInput.coordinateData);
-      fetchMock.mockResponseOnce(JSON.stringify(sampleSpringInput.graphData));
-      fetchMock.mockResponseOnce(JSON.stringify(sampleSpringInput.colorData));
-      const springData = (await fetchAppropriateData(VIZ_TYPE.SPRING, 'hoenn')) as SPRING_DATA_TYPE;
-      const nodes = springData.nodes;
-      expect(nodes[0].x).toBe(267.9312);
-      expect(nodes[0].y).toBe(-346.14858);
-      expect(nodes[1].x).toBe(597.35064);
-      expect(nodes[1].y).toBe(520.63422);
-    });
-
-    it('Should parse coordinate data that ends on a newline.', async () => {
-      fetchMock.mockResponseOnce(`${sampleSpringInput.coordinateData}\n`);
-      fetchMock.mockResponseOnce(JSON.stringify(sampleSpringInput.graphData));
-      fetchMock.mockResponseOnce(JSON.stringify(sampleSpringInput.colorData));
-      const springData = (await fetchAppropriateData(VIZ_TYPE.SPRING, 'hoenn')) as SPRING_DATA_TYPE;
-      const nodes = springData.nodes;
-      expect(nodes[0].x).toBe(267.9312);
-      expect(nodes[0].y).toBe(-346.14858);
-      expect(nodes[1].x).toBe(597.35064);
-      expect(nodes[1].y).toBe(520.63422);
-    });
-
-    it('Should parse color data using actual numbers.', async () => {
-      const sampleColorData = { Sample: { label_colors: { P11B: 424242 }, label_list: ['P11B', 'P11B'] } };
-      fetchMock.mockResponseOnce(sampleSpringInput.coordinateData);
-      fetchMock.mockResponseOnce(JSON.stringify(sampleSpringInput.graphData));
-      fetchMock.mockResponseOnce(JSON.stringify(sampleColorData));
-      const springData = (await fetchAppropriateData(VIZ_TYPE.SPRING, 'hoenn')) as SPRING_DATA_TYPE;
-      const nodes = springData.nodes;
-      // #00007f === 127
-      expect(nodes[0].colorHex).toBe(424242);
-      expect(nodes[1].colorHex).toBe(424242);
-    });
-
-    it("Should parse color data starting with '#'", async () => {
-      const sampleColorData = { Sample: { label_colors: { P11B: '#00007f' }, label_list: ['P11B', 'P11B'] } };
-      fetchMock.mockResponseOnce(sampleSpringInput.coordinateData);
-      fetchMock.mockResponseOnce(JSON.stringify(sampleSpringInput.graphData));
-      fetchMock.mockResponseOnce(JSON.stringify(sampleColorData));
-      const springData = (await fetchAppropriateData(VIZ_TYPE.SPRING, 'hoenn')) as SPRING_DATA_TYPE;
-      const nodes = springData.nodes;
-      // #00007f === 127
-      expect(nodes[0].colorHex).toBe(127);
-      expect(nodes[1].colorHex).toBe(127);
-    });
-
-    it("Should parse color data starting with '0x'", async () => {
-      const sampleColorData = { Sample: { label_colors: { P11B: '0x0080ff' }, label_list: ['P11B', 'P11B'] } };
-      fetchMock.mockResponseOnce(sampleSpringInput.coordinateData);
-      fetchMock.mockResponseOnce(JSON.stringify(sampleSpringInput.graphData));
-      fetchMock.mockResponseOnce(JSON.stringify(sampleColorData));
-      const springData = (await fetchAppropriateData(VIZ_TYPE.SPRING, 'hoenn')) as SPRING_DATA_TYPE;
-      const nodes = springData.nodes;
-      // #00007f === 127
-      expect(nodes[0].colorHex).toBe(0x0080ff);
-      expect(nodes[1].colorHex).toBe(0x0080ff);
-    });
-
-    it('Should throw an error on invalid color data.', async () => {
-      const expected = "Unable to parse color data - does it have keys named 'label_colors' and 'label_list'";
-      const sampleColorData = { rival: 'silver' };
-      fetchMock.mockResponseOnce(emptySpringInput.coordinateData);
-      fetchMock.mockResponseOnce(JSON.stringify(emptySpringInput.graphData));
-      fetchMock.mockResponseOnce(JSON.stringify(sampleColorData));
-      await expect(fetchAppropriateData(VIZ_TYPE.SPRING, 'johto')).rejects.toThrowError(expected);
-    });
-
-    it('Should throw an error on invalid coordinate data.', async () => {
-      const expected = 'Unable to parse coordinate data - Row 0 does not have at least 3 columns!';
-      fetchMock.mockResponseOnce('ThisIsNotACsv');
-      fetchMock.mockResponseOnce(JSON.stringify(emptySpringInput.graphData));
-      fetchMock.mockResponseOnce(JSON.stringify(emptySpringInput.colorData));
-      await expect(fetchAppropriateData(VIZ_TYPE.SPRING, 'johto')).rejects.toThrowError(expected);
-    });
-
-    it('Should throw an error on invalid graph data.', async () => {
-      const expected = "Unable to parse graph data - does it have keys named 'nodes' and 'links'";
-      const graphData = { starter: 'cyndaquil' };
-      fetchMock.mockResponseOnce(emptySpringInput.coordinateData);
-      fetchMock.mockResponseOnce(JSON.stringify(graphData));
-      fetchMock.mockResponseOnce(JSON.stringify(emptySpringInput.colorData));
-      await expect(fetchAppropriateData(VIZ_TYPE.SPRING, 'johto')).rejects.toThrowError(expected);
     });
   });
 

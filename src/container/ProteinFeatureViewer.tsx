@@ -72,25 +72,27 @@ export class ProteinFeatureViewer extends React.Component<IProteinFeatureViewerP
   protected async deriveProteinData() {
     try {
       const result = await fetch(`https://www.ebi.ac.uk/proteins/api/proteins/${this.state.proteinId}`);
-      const protein = (await result.json()) as IProtein;
-      const domains = protein.features.filter(feature => feature.type === 'DOMAIN');
-      const colorMapper = new ColorMapper<string>();
+      if (result && result.ok) {
+        const protein = (await result.json()) as IProtein;
+        const domains = protein.features.filter(feature => feature.type === 'DOMAIN');
+        const colorMapper = new ColorMapper<string>();
 
-      this.setState({
-        domainData: domains.map((domain, index) => {
-          const { begin, description = '', end } = domain;
-          // This matches domains that do and do not have other of the same domain in the protein.
-          const domainName = description.split('-like')[0];
+        this.setState({
+          domainData: domains.map((domain, index) => {
+            const { begin, description = '', end } = domain;
+            // This matches domains that do and do not have other of the same domain in the protein.
+            const domainName = description.split('-like')[0];
 
-          return new TintedChell1DSection(
-            domainName,
-            begin ? Number.parseInt(begin, 10) : -1,
-            end ? Number.parseInt(end, 10) : -1,
-            colorMapper.getColorFor(domainName),
-          );
-        }),
-        protein,
-      });
+            return new TintedChell1DSection(
+              domainName,
+              begin ? Number.parseInt(begin, 10) : -1,
+              end ? Number.parseInt(end, 10) : -1,
+              colorMapper.getColorFor(domainName),
+            );
+          }),
+          protein,
+        });
+      }
     } catch (e) {
       console.log(e);
     }
@@ -109,12 +111,14 @@ export class ProteinFeatureViewer extends React.Component<IProteinFeatureViewerP
   protected renderAnnotationText = (proteinId: string, index: number) => {
     const { domainData, protein } = this.state;
     const pFamIds = protein
-      ? protein.dbReferences.filter(dbRef => dbRef.type === 'Pfam').filter(pFamRef => {
-          const { properties } = pFamRef;
-          const entryName = properties ? properties['entry name'] : null;
+      ? protein.dbReferences
+          .filter(dbRef => dbRef.type === 'Pfam')
+          .filter(pFamRef => {
+            const { properties } = pFamRef;
+            const entryName = properties ? properties['entry name'] : null;
 
-          return entryName && (entryName === proteinId || entryName.localeCompare(`${proteinId}-like ${index}`));
-        })
+            return entryName && (entryName === proteinId || entryName.localeCompare(`${proteinId}-like ${index}`));
+          })
       : [];
 
     return pFamIds.length >= 1

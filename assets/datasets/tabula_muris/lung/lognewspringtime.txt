@@ -1,0 +1,9 @@
+Counts loaded from npz -- 4.72
+Stats computed -- 1.82
+Saved color stats -- 0.39
+Saved cell labels -- 0.09
+Using 2190 genes -- 1.45
+PCA done -- 2.70
+KNN built -- 1.22
+Graph data saved -- 0.33
+Ran ForceAtlas2 -- 45.77

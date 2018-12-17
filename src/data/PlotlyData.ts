@@ -29,3 +29,12 @@ export interface IPlotlyLayout extends Plotly.Layout {
   xaxis2: Partial<Plotly.LayoutAxis>;
   // TODO Open PR to add these missing Plotly types. - https://plot.ly/javascript/reference/#box
 }
+
+export type REQUIRED_CHELL_PLOTLY_DATA = Required<
+  Pick<
+    IPlotlyData,
+    'connectgaps' | 'hoverinfo' | 'line' | 'marker' | 'mode' | 'name' | 'showlegend' | 'type' | 'x' | 'y'
+  >
+>;
+
+export type CHELL_PLOTLY_DATA = REQUIRED_CHELL_PLOTLY_DATA & Partial<IPlotlyData>;

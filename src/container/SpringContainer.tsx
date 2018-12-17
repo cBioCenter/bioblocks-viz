@@ -1,129 +1,117 @@
-import { isEqual } from 'lodash';
 import * as React from 'react';
-import { Button } from 'semantic-ui-react';
 
 // tslint:disable:import-name match-default-export-name
-import Fullscreen from 'react-full-screen';
 import IframeComm, { IframeCommAttributes } from 'react-iframe-comm';
 // tslint:enable:import-name match-default-export-name
 
-import {
-  CellContext,
-  ICellContext,
-  initialCellContext,
-  initialSpringContext,
-  ISpringContext,
-  SpringContext,
-} from '~chell-viz~/context';
+import { ComponentCard } from '~chell-viz~/component';
+import { initialSpringContext, ISpringContext, SpringContext } from '~chell-viz~/context';
 import { ISpringLink, ISpringNode } from '~chell-viz~/data';
 
 export interface ISpringContainerProps {
-  cellContext: ICellContext;
-  height: number | string;
+  datasetLocation: string;
+  isFullPage: boolean;
   padding: number | string;
   selectedCategory: string;
   springContext: ISpringContext;
-  springUrl: string;
-  width: number | string;
+  springHeight: number;
+  springWidth: number;
 }
 
 export interface ISpringContainerState {
-  isFullscreen: boolean;
   postMessageData: object;
+  springUrl: string;
 }
 
 export interface ISpringMessage {
   // tslint:disable-next-line:no-reserved-keywords
   type: string;
   payload: {
-    category: string;
+    currentCategory: string;
     indices: number[];
+    selectedLabel: string;
   };
 }
 
 export class SpringContainerClass extends React.Component<ISpringContainerProps, ISpringContainerState> {
   public static defaultProps = {
-    cellContext: {
-      ...initialCellContext,
-    },
     data: {
       links: new Array<ISpringLink>(),
       nodes: new Array<ISpringNode>(),
     },
-    height: '100%',
+    datasetLocation: 'hpc/full',
+    headerHeight: 32,
+    isFullPage: false,
     padding: 0,
     selectedCategory: '',
     springContext: {
       ...initialSpringContext,
     },
-    springUrl: 'http://localhost:11037/springViewer.html?datasets/hpc/full',
-    width: 1200,
+    springHeight: 1150,
+    springWidth: 1150,
   };
+
+  public static displayName = 'SPRING';
 
   constructor(props: ISpringContainerProps) {
     super(props);
     this.state = {
-      isFullscreen: false,
       postMessageData: {
         payload: {},
         type: 'init',
       },
+      springUrl: this.generateSpringURL(this.props.datasetLocation),
     };
   }
 
-  public componentDidUpdate(prevProps: ISpringContainerProps) {
-    const { cellContext, springContext } = this.props;
-    if (!isEqual(prevProps.springContext.selectedCategories, springContext.selectedCategories)) {
-      // Spring context updated.
+  public componentDidUpdate(prevProps: ISpringContainerProps, prevState: ISpringContainerState) {
+    const { springContext } = this.props;
+    if (!prevProps.springContext.currentCells.equals(springContext.currentCells)) {
+      console.log(`sending new cells to spring, totalling ${springContext.currentCells.size}`);
       this.setState({
         postMessageData: {
           payload: {
-            categories: springContext.selectedCategories,
-          },
-          type: 'selected-category-update',
-        },
-      });
-    } else if (!isEqual(prevProps.cellContext.currentCells, cellContext.currentCells)) {
-      // Cell context updated.
-      this.setState({
-        postMessageData: {
-          payload: {
-            indices: cellContext.currentCells,
+            indices: springContext.currentCells.toArray(),
           },
           type: 'selected-cells-update',
         },
+      });
+    } else if (prevProps.datasetLocation !== this.props.datasetLocation) {
+      this.setState({
+        springUrl: this.generateSpringURL(this.props.datasetLocation),
       });
     }
   }
 
   public render() {
-    const { height, springUrl, width } = this.props;
-    const { isFullscreen, postMessageData } = this.state;
-
+    const { isFullPage, springHeight, springWidth } = this.props;
+    const { postMessageData, springUrl } = this.state;
     const attributes: IframeCommAttributes = {
       allowFullScreen: true,
-      frameBorder: 1,
-      height: isFullscreen ? '100%' : height,
+      height: springHeight,
       src: springUrl,
-      width: isFullscreen ? '100%' : width,
+      width: springWidth,
     };
 
     const targetOriginPieces = springUrl.split('/');
 
     return (
-      <div className={'spring-container'}>
-        <Fullscreen enabled={isFullscreen} onChange={this.onFullscreenChange}>
-          <IframeComm
-            key={isFullscreen ? 'fullscreen-spring-iframe' : 'not-fullscreen-spring-iframe'}
-            attributes={attributes}
-            postMessageData={postMessageData}
-            handleReady={this.onReady}
-            handleReceiveMessage={this.onReceiveMessage}
-            targetOrigin={`${targetOriginPieces[0]}//${targetOriginPieces[2]}`}
-          />
-        </Fullscreen>
-        <Button onClick={this.onFullscreenEnable} label={'Go Fullscreen!'} />
-      </div>
+      <ComponentCard
+        componentName={SpringContainerClass.displayName}
+        isFramedComponent={true}
+        isFullPage={isFullPage}
+        frameHeight={springHeight}
+        frameWidth={springWidth}
+        height={'500px'}
+      >
+        <IframeComm
+          attributes={attributes}
+          postMessageData={postMessageData}
+          handleReady={this.onReady}
+          handleReceiveMessage={this.onReceiveMessage}
+          targetOrigin={`${targetOriginPieces[0]}//${targetOriginPieces[2]}`}
+        />
+      </ComponentCard>
     );
   }
 
@@ -131,41 +119,20 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
     return;
   };
 
-  protected onFullscreenEnable = () => {
-    this.setState({
-      isFullscreen: true,
-    });
-  };
-
-  protected onFullscreenChange = (isFullscreen: boolean) => {
-    this.setState({
-      isFullscreen,
-      postMessageData: {
-        type: 'relayout',
-      },
-    });
-    this.forceUpdate();
-  };
-
   protected onReceiveMessage = (msg: MessageEvent) => {
     const data = msg.data as ISpringMessage;
-
+    const { springContext } = this.props;
     switch (data.type) {
-      case 'selected-category-update': {
-        this.props.cellContext.addCells(data.payload.indices);
-        this.props.springContext.toggleCategory(data.payload.category);
-        break;
-      }
+      case 'selected-category-update':
       case 'selected-cells-update': {
-        this.props.cellContext.addCells(data.payload.indices);
+        springContext.update(data.payload.indices, data.payload.currentCategory);
         break;
       }
       case 'loaded': {
         this.setState({
           postMessageData: {
             payload: {
-              categories: this.props.springContext.selectedCategories,
-              indices: this.props.cellContext.currentCells,
+              indices: springContext.currentCells.toArray(),
             },
             type: 'init',
           },
@@ -176,17 +143,19 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
       }
     }
   };
+
+  protected generateSpringURL = (dataset: string) =>
+    `${window.location.origin}/${window.location.pathname.substr(
+      0,
+      window.location.pathname.lastIndexOf('/'),
+    )}/springViewer.html?datasets/${dataset}`;
 }
 
 type requiredProps = Omit<ISpringContainerProps, keyof typeof SpringContainerClass.defaultProps> &
   Partial<ISpringContainerProps>;
 
 export const SpringContainer = (props: requiredProps) => (
-  <CellContext.Consumer>
-    {cellContext => (
-      <SpringContext.Consumer>
-        {springContext => <SpringContainerClass {...props} cellContext={cellContext} springContext={springContext} />}
-      </SpringContext.Consumer>
-    )}
-  </CellContext.Consumer>
+  <SpringContext.Consumer>
+    {springContext => <SpringContainerClass {...props} springContext={springContext} />}
+  </SpringContext.Consumer>
 );

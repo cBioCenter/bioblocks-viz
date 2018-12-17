@@ -1,37 +1,68 @@
 import * as React from 'react';
-// tslint:disable-next-line:import-name
-import IframeComm from 'react-iframe-comm';
-import { Grid, GridRow } from 'semantic-ui-react';
+import { HashRouter as Router, Route, RouteComponentProps } from 'react-router-dom';
 
-import { AnatomogramContainer, VizPanelContainer } from '~chell-viz~/container';
+import { Container } from 'semantic-ui-react';
+
+import { SiteHeader } from '~chell-viz~/container';
 import { ChellContextProvider } from '~chell-viz~/context';
-import { VIZ_TYPE } from '~chell-viz~/data';
+import { DatasetPage, LandingPage, StoriesPage, VisualizationsPage, VizOverviewPage } from '~chell-viz~/page';
 
-export class ChellVizApp extends React.Component<any, any> {
+export interface IChellVizAppState {
+  activeVisualizations: number;
+}
+
+export class ChellVizApp extends React.Component<Partial<RouteComponentProps>, IChellVizAppState> {
+  constructor(props: Partial<RouteComponentProps>) {
+    super(props);
+    this.state = {
+      activeVisualizations: 0,
+    };
+  }
+
+  public async componentDidMount() {
+    this.setState({
+      activeVisualizations: 2,
+    });
+  }
+
   public render() {
     return (
-      <div id="ChellVizApp">
-        <ChellContextProvider>
-          <Grid divided={'vertically'}>
-            <GridRow>
-              <VizPanelContainer
-                allowUploads={false}
-                dataDirs={['hpc/full'].map(dir => `assets/datasets/${dir}`)}
-                initialVisualizations={[VIZ_TYPE.SPRING, VIZ_TYPE['TENSOR-T-SNE']]}
-                supportedVisualizations={[VIZ_TYPE.SPRING, VIZ_TYPE['TENSOR-T-SNE']]}
-                numPanels={2}
-              />
-            </GridRow>
-            <AnatomogramContainer />
-            <GridRow centered={true} style={{ padding: '0 50px' }}>
-              <IframeComm
-                attributes={{ src: `${window.origin}/morpheus.html`, height: '500px', width: '100%' }}
-                postMessageData={{}}
-              />
-            </GridRow>
-          </Grid>
-        </ChellContextProvider>
-      </div>
+      <Router>
+        <Route render={this.renderComponents} />
+      </Router>
     );
   }
+
+  protected renderComponents = (props: RouteComponentProps) => (
+    <ChellContextProvider {...props}>
+      <Container id={'ChellVizApp'} fluid={true}>
+        <SiteHeader {...props} />
+        <Route exact={true} strict={true} path={'/visualizations'} render={this.renderVisualizationsPage} />
+        <Route exact={true} strict={true} path={'/visualizations/'} render={this.renderOverviewPage} />
+        <Route path={'/dataset'} render={this.renderDatasetPage} />
+        <Route path={'/stories'} render={this.renderStoriesPage} />
+        <Route exact={true} path={'/'} render={this.renderLandingPage} />
+      </Container>
+    </ChellContextProvider>
+  );
+
+  protected renderVisualizationsPage = (props: RouteComponentProps) => {
+    return <VisualizationsPage {...props} />;
+  };
+
+  protected renderDatasetPage = (props: RouteComponentProps) => {
+    return <DatasetPage {...props} />;
+  };
+
+  protected renderLandingPage = (props: RouteComponentProps) => {
+    return <LandingPage {...props} />;
+  };
+
+  protected renderOverviewPage = (props: RouteComponentProps) => {
+    return <VizOverviewPage {...props} />;
+  };
+
+  protected renderStoriesPage = (props: RouteComponentProps) => {
+    return <StoriesPage {...props} />;
+  };
 }

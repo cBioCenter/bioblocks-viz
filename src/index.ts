@@ -4,5 +4,6 @@ export * from './context';
 export * from './data';
 export * from './helper';
 export * from './hoc';
+export * from './page';
 
 export * from './ChellVizApp';

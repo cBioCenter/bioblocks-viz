@@ -2,17 +2,25 @@
 
 exports[`SpringContext Should match the default snapshot. 1`] = `
 <div
-  addCategories={[Function]}
-  addCategory={[Function]}
+  addLabel={[Function]}
+  addLabels={[Function]}
+  categories={Immutable.Set []}
+  changeCategory={[Function]}
+  currentCells={Immutable.Set []}
   graphData={
     Object {
-      "links": Array [],
       "nodes": Array [],
     }
   }
-  removeCategory={[Function]}
-  selectedCategories={Array []}
-  setCategories={[Function]}
-  toggleCategory={[Function]}
+  labelsByCategory={Map {}}
+  removeAllCells={[Function]}
+  removeCells={[Function]}
+  removeLabel={[Function]}
+  removeLabels={[Function]}
+  selectedCategory=""
+  selectedLabels={Immutable.Set []}
+  setCells={[Function]}
+  toggleLabels={[Function]}
+  update={[Function]}
 />
 `;

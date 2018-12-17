@@ -1,11 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ChellContext Should match the default snapshot. 1`] = `
+exports[`ChellContext Should match the default snapshot when a dataset location is provided. 1`] = `
 <SecondaryStructureContextProvider>
-  <SpringContextProvider>
-    <CellContextProvider>
-      <ResidueContextProvider />
-    </CellContextProvider>
+  <SpringContextProvider
+    datasetLocation="over-there"
+  >
+    <ResidueContextProvider />
+  </SpringContextProvider>
+</SecondaryStructureContextProvider>
+`;
+
+exports[`ChellContext Should match the default snapshot when no props are provided. 1`] = `
+<SecondaryStructureContextProvider>
+  <SpringContextProvider
+    datasetLocation=""
+  >
+    <ResidueContextProvider />
   </SpringContextProvider>
 </SecondaryStructureContextProvider>
 `;

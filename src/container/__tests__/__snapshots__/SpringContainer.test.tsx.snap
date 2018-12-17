@@ -1,41 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SpringContainer Should match existing snapshot. 1`] = `
-<div
-  className="spring-container"
+<ComponentCard
+  componentName="SPRING"
+  frameHeight={1150}
+  frameWidth={1150}
+  headerHeight={32}
+  height="500px"
+  iconSrc="assets/icons/spring-icon.png"
+  isFramedComponent={true}
+  isFullPage={false}
+  padding={0}
+  showSettings={false}
+  width="525px"
 >
-  <FullScreen
-    enabled={false}
-    onChange={[Function]}
-  >
-    <IframeComm
-      attributes={
-        Object {
-          "allowFullScreen": true,
-          "frameBorder": 1,
-          "height": "100%",
-          "src": "http://localhost:11037/springViewer.html?datasets/hpc/full",
-          "width": 1200,
-        }
+  <IframeComm
+    attributes={
+      Object {
+        "allowFullScreen": true,
+        "height": 1150,
+        "src": "http://localhost//springViewer.html?datasets/hpc/full",
+        "width": 1150,
       }
-      handleReady={[Function]}
-      handleReceiveMessage={[Function]}
-      key="not-fullscreen-spring-iframe"
-      postMessageData={
-        Object {
-          "payload": Object {},
-          "type": "init",
-        }
+    }
+    handleReady={[Function]}
+    handleReceiveMessage={[Function]}
+    postMessageData={
+      Object {
+        "payload": Object {},
+        "type": "init",
       }
-      serializeMessage={true}
-      targetOrigin="http://localhost:11037"
-    />
-  </FullScreen>
-  <Button
-    as="button"
-    label="Go Fullscreen!"
-    onClick={[Function]}
-    role="button"
+    }
+    serializeMessage={true}
+    targetOrigin="http://localhost"
   />
-</div>
+</ComponentCard>
 `;
