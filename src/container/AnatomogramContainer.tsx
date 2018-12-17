@@ -1,20 +1,12 @@
 // tslint:disable-next-line:import-name
 import Anatomogram from 'anatomogram';
-import { isEqual } from 'lodash';
 import * as React from 'react';
 
-import {
-  CellContext,
-  ICellContext,
-  initialCellContext,
-  initialSpringContext,
-  ISpringContext,
-  SpringContext,
-} from '~chell-viz~/context';
+import { Set } from 'immutable';
+import { initialSpringContext, ISpringContext, SpringContext } from '~chell-viz~/context';
 import { CHELL_CSS_STYLE } from '~chell-viz~/data';
 
 export interface IAnatomogramContainerProps {
-  cellContext: ICellContext;
   height: number | string;
   species: 'homo_sapiens' | 'mus_musculus';
   springContext: ISpringContext;
@@ -24,7 +16,7 @@ export interface IAnatomogramContainerProps {
 
 export interface IAnatomogramContainerState {
   ids: string[];
-  selectIds: string[];
+  selectIds: Set<string>;
 }
 
 export const springToAnatomogramMapping: { [key: string]: { [key: string]: string } } = {
@@ -76,9 +68,6 @@ export const anatomogramToSpringMapping: { [key: string]: { [key: string]: strin
 
 export class AnatomogramContainerClass extends React.Component<IAnatomogramContainerProps, IAnatomogramContainerState> {
   public static defaultProps = {
-    cellContext: {
-      ...initialCellContext,
-    },
     height: '300px',
     springContext: {
       ...initialSpringContext,
@@ -95,32 +84,19 @@ export class AnatomogramContainerClass extends React.Component<IAnatomogramConta
     super(props);
     this.state = {
       ids: Object.keys(anatomogramToSpringMapping[props.species]),
-      selectIds: [],
+      selectIds: Set<string>(),
     };
   }
 
   public componentDidUpdate(prevProps: IAnatomogramContainerProps) {
-    const { cellContext, springContext } = this.props;
-    if (!isEqual(springContext.selectedCategories, prevProps.springContext.selectedCategories)) {
-      const selectIds = springContext.selectedCategories
-        .filter(category => springToAnatomogramMapping[this.props.species][this.parseCategory(category)] !== undefined)
-        .map(category => springToAnatomogramMapping[this.props.species][this.parseCategory(category)]);
+    const { springContext } = this.props;
+    if (!springContext.selectedLabels.equals(prevProps.springContext.selectedLabels)) {
+      const selectIds = springContext.selectedLabels
+        .toArray()
+        .filter(label => springToAnatomogramMapping[this.props.species][this.parseCategory(label)] !== undefined)
+        .map(label => springToAnatomogramMapping[this.props.species][this.parseCategory(label)]);
       this.setState({
-        selectIds: Array.from(new Set(selectIds)),
-      });
-    } else if (!isEqual(cellContext.currentCells, prevProps.cellContext.currentCells)) {
-      const categories = new Set<string>();
-      for (const cellIndex of cellContext.currentCells) {
-        if (springContext.graphData.nodes[cellIndex]) {
-          springContext.graphData.nodes[cellIndex].labels.forEach(label => categories.add(label));
-        }
-      }
-      const selectIds = Array.from(categories)
-        .filter(category => springToAnatomogramMapping[this.props.species][this.parseCategory(category)] !== undefined)
-        .map(category => springToAnatomogramMapping[this.props.species][this.parseCategory(category)]);
-
-      this.setState({
-        selectIds: Array.from(new Set(selectIds)),
+        selectIds: Set(selectIds),
       });
     }
   }
@@ -137,7 +113,7 @@ export class AnatomogramContainerClass extends React.Component<IAnatomogramConta
           onMouseOut={this.onMouseOut}
           onMouseOver={this.onMouseOver}
           selectColour={'ffaa00'}
-          selectIds={selectIds}
+          selectIds={selectIds.toArray()}
           showIds={ids}
           species={this.props.species}
           selectedView={this.props.species === 'mus_musculus' ? 'female' : 'male'}
@@ -147,21 +123,11 @@ export class AnatomogramContainerClass extends React.Component<IAnatomogramConta
   }
 
   protected onClick = (id: string) => {
-    const { cellContext, species, springContext } = this.props;
-    const categories = anatomogramToSpringMapping[species][id];
-    const cellsInCategory = springContext.graphData.nodes
-      .filter(node => node.labels.filter(label => categories.includes(label)).length >= 1)
-      .map(node => node.number);
+    console.log(`anat clicked ${id}`);
+    const { species, springContext } = this.props;
+    const labels = anatomogramToSpringMapping[species][id];
 
-    if (
-      springContext.selectedCategories.filter(selectedCategory => categories.includes(selectedCategory)).length >= 1
-    ) {
-      cellContext.removeCells(cellsInCategory);
-    } else {
-      cellContext.addCells(Array.from(new Set<number>([...cellsInCategory, ...cellContext.currentCells])));
-    }
-
-    springContext.toggleCategories(categories);
+    springContext.toggleLabels(labels);
   };
 
   protected onMouseOut = (id: string) => {
@@ -183,13 +149,7 @@ type requiredProps = Omit<IAnatomogramContainerProps, keyof typeof AnatomogramCo
   Partial<IAnatomogramContainerProps>;
 
 export const AnatomogramContainer = (props: requiredProps) => (
-  <CellContext.Consumer>
-    {cellContext => (
-      <SpringContext.Consumer>
-        {springContext => (
-          <AnatomogramContainerClass {...props} cellContext={cellContext} springContext={springContext} />
-        )}
-      </SpringContext.Consumer>
-    )}
-  </CellContext.Consumer>
+  <SpringContext.Consumer>
+    {springContext => <AnatomogramContainerClass {...props} springContext={springContext} />}
+  </SpringContext.Consumer>
 );

@@ -1,4 +1,3 @@
-import { isEqual } from 'lodash';
 import * as React from 'react';
 
 // tslint:disable:import-name match-default-export-name
@@ -6,18 +5,10 @@ import IframeComm, { IframeCommAttributes } from 'react-iframe-comm';
 // tslint:enable:import-name match-default-export-name
 
 import { ComponentCard } from '~chell-viz~/component';
-import {
-  CellContext,
-  ICellContext,
-  initialCellContext,
-  initialSpringContext,
-  ISpringContext,
-  SpringContext,
-} from '~chell-viz~/context';
+import { initialSpringContext, ISpringContext, SpringContext } from '~chell-viz~/context';
 import { ISpringLink, ISpringNode } from '~chell-viz~/data';
 
 export interface ISpringContainerProps {
-  cellContext: ICellContext;
   datasetLocation: string;
   isFullPage: boolean;
   padding: number | string;
@@ -36,16 +27,14 @@ export interface ISpringMessage {
   // tslint:disable-next-line:no-reserved-keywords
   type: string;
   payload: {
-    category: string;
+    currentCategory: string;
     indices: number[];
+    selectedLabel: string;
   };
 }
 
 export class SpringContainerClass extends React.Component<ISpringContainerProps, ISpringContainerState> {
   public static defaultProps = {
-    cellContext: {
-      ...initialCellContext,
-    },
     data: {
       links: new Array<ISpringLink>(),
       nodes: new Array<ISpringNode>(),
@@ -76,23 +65,13 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
   }
 
   public componentDidUpdate(prevProps: ISpringContainerProps, prevState: ISpringContainerState) {
-    const { cellContext, springContext } = this.props;
-    if (!isEqual(prevProps.springContext.selectedCategories, springContext.selectedCategories)) {
-      // Spring context updated.
+    const { springContext } = this.props;
+    if (!prevProps.springContext.currentCells.equals(springContext.currentCells)) {
+      console.log(`sending new cells to spring, totalling ${springContext.currentCells.size}`);
       this.setState({
         postMessageData: {
           payload: {
-            categories: springContext.selectedCategories,
-          },
-          type: 'selected-category-update',
-        },
-      });
-    } else if (!isEqual(prevProps.cellContext.currentCells, cellContext.currentCells)) {
-      // Cell context updated.
-      this.setState({
-        postMessageData: {
-          payload: {
-            indices: cellContext.currentCells,
+            indices: springContext.currentCells.toArray(),
           },
           type: 'selected-cells-update',
         },
@@ -140,32 +119,20 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
     return;
   };
 
-  protected onFullscreenEnable = () => {
-    this.setState({
-      postMessageData: {
-        // type: 'resize',
-      },
-    });
-  };
-
   protected onReceiveMessage = (msg: MessageEvent) => {
     const data = msg.data as ISpringMessage;
+    const { springContext } = this.props;
     switch (data.type) {
-      case 'selected-category-update': {
-        this.props.cellContext.addCells(data.payload.indices);
-        this.props.springContext.handleCategory(data.payload.category, data.payload.indices);
-        break;
-      }
+      case 'selected-category-update':
       case 'selected-cells-update': {
-        this.props.cellContext.addCells(data.payload.indices);
+        springContext.update(data.payload.indices, data.payload.currentCategory);
         break;
       }
       case 'loaded': {
         this.setState({
           postMessageData: {
             payload: {
-              categories: this.props.springContext.selectedCategories,
-              indices: this.props.cellContext.currentCells,
+              indices: springContext.currentCells.toArray(),
             },
             type: 'init',
           },
@@ -188,11 +155,7 @@ type requiredProps = Omit<ISpringContainerProps, keyof typeof SpringContainerCla
   Partial<ISpringContainerProps>;
 
 export const SpringContainer = (props: requiredProps) => (
-  <CellContext.Consumer>
-    {cellContext => (
-      <SpringContext.Consumer>
-        {springContext => <SpringContainerClass {...props} cellContext={cellContext} springContext={springContext} />}
-      </SpringContext.Consumer>
-    )}
-  </CellContext.Consumer>
+  <SpringContext.Consumer>
+    {springContext => <SpringContainerClass {...props} springContext={springContext} />}
+  </SpringContext.Consumer>
 );

@@ -2,27 +2,27 @@ import memoizeOne from 'memoize-one';
 import * as React from 'react';
 
 import { defaultPlotlyConfig, defaultPlotlyLayout, PlotlyChart } from '~chell-viz~/component';
-import { CellContext, ICellContext, initialCellContext } from '~chell-viz~/context';
+import { initialSpringContext, ISpringContext, SpringContext } from '~chell-viz~/context';
 import { ChellChartEvent, T_SNE_DATA_TYPE } from '~chell-viz~/data';
 
 export interface ITComponentProps {
-  cellContext: ICellContext;
   data: T_SNE_DATA_TYPE;
   height: number;
   padding: number | string;
   pointColor: string;
+  springContext: ISpringContext;
   width: number;
 }
 
 class TComponentClass extends React.Component<ITComponentProps, any> {
   public static defaultProps = {
-    cellContext: {
-      ...initialCellContext,
-    },
     data: [[0], [0]],
     height: 400,
     padding: 0,
     pointColor: '#000000',
+    springContext: {
+      ...initialSpringContext,
+    },
     width: 400,
   };
 
@@ -33,7 +33,7 @@ class TComponentClass extends React.Component<ITComponentProps, any> {
   }
 
   public render() {
-    const { cellContext, data, height, padding, pointColor, width } = this.props;
+    const { springContext, data, height, padding, pointColor, width } = this.props;
 
     return (
       <div id="TComponent" style={{ padding }}>
@@ -63,9 +63,9 @@ class TComponentClass extends React.Component<ITComponentProps, any> {
               },
               mode: 'markers',
               type: 'scatter',
-              x: cellContext.currentCells.map(val => data[val][0]),
+              x: springContext.currentCells.toArray().map(cell => data[cell][0]),
               xaxis: 'x',
-              y: cellContext.currentCells.map(val => data[val][1]),
+              y: springContext.currentCells.toArray().map(cell => data[cell][1]),
               yaxis: 'y',
             },
           ]}
@@ -80,7 +80,7 @@ class TComponentClass extends React.Component<ITComponentProps, any> {
               autorange: true,
             },
           }}
-          onSelectedCallback={this.onMouseSelect(cellContext.addCells)}
+          onSelectedCallback={this.onMouseSelect(springContext.setCells)}
         />
       </div>
     );
@@ -96,7 +96,7 @@ class TComponentClass extends React.Component<ITComponentProps, any> {
 type requiredProps = Omit<ITComponentProps, keyof typeof TComponentClass.defaultProps> & Partial<ITComponentProps>;
 
 export const TComponent = (props: requiredProps) => (
-  <CellContext.Consumer>
-    {cellContext => <TComponentClass {...props} cellContext={{ ...cellContext, ...props.cellContext }} />}
-  </CellContext.Consumer>
+  <SpringContext.Consumer>
+    {springContext => <TComponentClass {...props} springContext={springContext} />}
+  </SpringContext.Consumer>
 );

@@ -22,7 +22,7 @@ export interface ISpringLink {
 }
 
 export interface ISpringNode {
-  labels: string[];
+  labelForCategory: { [key: string]: string };
   // tslint:disable-next-line:no-reserved-keywords
   number: number;
 }

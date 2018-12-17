@@ -2,6 +2,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import * as Renderer from 'react-test-renderer';
 
+import { Set } from 'immutable';
 import { initialSpringContext, SpringContext, SpringContextProvider } from '~chell-viz~/context';
 
 describe('SpringContext', () => {
@@ -25,12 +26,12 @@ describe('SpringContext', () => {
     const initialState = instance.state;
     const expectedState = {
       ...initialState,
-      selectedCategories: ['muse'],
+      selectedLabels: Set(['muse']),
     };
-    instance.state.addCategory('muse');
-    instance.state.addCategory('muse');
+    instance.state.addLabel('muse');
+    instance.state.addLabel('muse');
     expect(instance.state).toEqual(expectedState);
-    expect(instance.state.selectedCategories).toHaveLength(1);
+    expect(instance.state.selectedLabels.size).toBe(1);
   });
 
   it('Should allow multiple categories to be added as unique entries.', () => {
@@ -38,21 +39,21 @@ describe('SpringContext', () => {
     const initialState = instance.state;
     const expectedState = {
       ...initialState,
-      selectedCategories: ['LttP', 'OoT', 'MM'],
+      selectedLabels: Set(['LttP', 'OoT', 'MM']),
     };
-    instance.state.addCategories(['LttP', 'OoT', 'MM']);
+    instance.state.addLabels(['LttP', 'OoT', 'MM']);
     expect(instance.state).toEqual(expectedState);
   });
 
-  it('Should allow categories to be completely initialized.', () => {
+  it('Should allow labels to be toggled.', () => {
     const instance = shallow(<SpringContextProvider />).instance() as SpringContextProvider;
     const initialState = instance.state;
     const expectedState = {
       ...initialState,
-      selectedCategories: ['LttP', 'OoT', 'MM'],
+      selectedLabels: Set(['OoA', 'OoS', 'OoT', 'MM']),
     };
-    instance.state.addCategories(['OoA', 'OoS']);
-    instance.state.setCategories(['LttP', 'OoT', 'MM']);
+    instance.state.toggleLabels(['OoA', 'OoS', 'LttP']);
+    instance.state.toggleLabels(['LttP', 'OoT', 'MM']);
     expect(instance.state).toEqual(expectedState);
   });
 
@@ -61,14 +62,14 @@ describe('SpringContext', () => {
     const initialState = instance.state;
     const expectedState = {
       ...initialState,
-      selectedCategories: ['skull', 'ocarina'],
+      selectedCategory: 'link',
     };
-    instance.state.addCategory('skull');
-    instance.state.addCategory('link');
-    instance.state.addCategory('ocarina');
+    instance.state.changeCategory('skull');
+    instance.state.changeCategory('link');
+    instance.state.changeCategory('ocarina');
     expect(instance.state).not.toEqual(expectedState);
 
-    instance.state.removeCategory('link');
+    instance.state.changeCategory('link');
     expect(instance.state).toEqual(expectedState);
   });
 
@@ -77,11 +78,11 @@ describe('SpringContext', () => {
     const initialState = instance.state;
     const expectedState = {
       ...initialState,
-      selectedCategories: ['aqua'],
+      selectedCategory: 'aqua',
     };
-    instance.state.toggleCategory('aqua');
+    instance.state.changeCategory('aqua');
     expect(instance.state).toEqual(expectedState);
-    instance.state.toggleCategory('aqua');
-    expect(instance.state.selectedCategories).toEqual([]);
+    instance.state.changeCategory('aqua');
+    expect(instance.state.categories).toEqual(Set());
   });
 });

@@ -1,45 +1,49 @@
+import { Set } from 'immutable';
 import * as React from 'react';
 
-import { ISpringGraphData } from '~chell-viz~/data';
+import { CELL_TYPE, ISpringNode } from '~chell-viz~/data';
 import { fetchSpringData } from '~chell-viz~/helper';
 
-export interface ISpringContext {
-  graphData: ISpringGraphData;
-  selectedCategories: string[];
-  addCategories(categories: string[]): void;
-  addCategory(category: string): void;
-  handleCategory(category: string, nodes: number[]): void;
-  removeCategory(category: string): void;
-  setCategories(categories: string[]): void;
-  toggleCategories(categories: string[]): void;
-  toggleCategory(category: string): void;
-}
-
-export const initialSpringContext: ISpringContext = {
-  addCategories: categories => {
+export const initialSpringContext = {
+  addLabel: (label: string) => {
     return;
   },
-  addCategory: category => {
+  addLabels: (labels: string[]) => {
     return;
   },
-  graphData: { nodes: [] },
-  handleCategory: (category: string, cells: number[]) => {
+  categories: Set<string>(),
+  changeCategory: (selectedCategory: string) => {
     return;
   },
-  removeCategory: category => {
+  currentCells: Set<CELL_TYPE>(),
+  graphData: { nodes: new Array<ISpringNode>() },
+  labelsByCategory: new Map<string, Set<string>>(),
+  removeAllCells: () => {
     return;
   },
-  selectedCategories: [],
-  setCategories: categories => {
+  removeCells: (cells: CELL_TYPE[]) => {
     return;
   },
-  toggleCategories: categories => {
+  removeLabel: (label: string) => {
     return;
   },
-  toggleCategory: category => {
+  removeLabels: (labels: string[]) => {
+    return;
+  },
+  selectedCategory: '',
+  selectedLabels: Set<string>(),
+  setCells: (cells: CELL_TYPE[]) => {
+    return;
+  },
+  toggleLabels: (labels: string[]) => {
+    return;
+  },
+  update: (cells: CELL_TYPE[], selectedCategory?: string, label?: string) => {
     return;
   },
 };
+
+export type ISpringContext = typeof initialSpringContext;
 
 export type SpringContextState = Readonly<typeof initialSpringContext>;
 
@@ -54,13 +58,16 @@ export class SpringContextProvider extends React.Component<ISpringContextProps, 
     super(props);
     this.state = {
       ...initialSpringContext,
-      addCategories: this.onAddCategories(),
-      addCategory: this.onAddCategory(),
-      handleCategory: this.onHandleCategory(),
-      removeCategory: this.onRemoveCategory(),
-      setCategories: this.onSetCategories(),
-      toggleCategories: this.onToggleCategories(),
-      toggleCategory: this.onToggleCategory(),
+      addLabel: this.onAddLabel,
+      addLabels: this.onAddLabels,
+      changeCategory: this.onChangeCategory,
+      removeAllCells: this.onRemoveAllCells,
+      removeCells: this.onRemoveCells,
+      removeLabel: this.onRemoveLabel,
+      removeLabels: this.onRemoveLabels,
+      setCells: this.onSetCells,
+      toggleLabels: this.onToggleLabels,
+      update: this.onUpdate,
     };
   }
 
@@ -81,94 +88,149 @@ export class SpringContextProvider extends React.Component<ISpringContextProps, 
   protected async setupData() {
     try {
       const graphData = await fetchSpringData(`assets/datasets/${this.props.datasetLocation}`);
+      const categories = Set<string>(
+        graphData.nodes.length >= 1 ? Object.keys(graphData.nodes[0].labelForCategory) : [],
+      );
+      const labelsByCategory = new Map<string, Set<string>>();
+
+      categories.forEach(category => {
+        if (category) {
+          const labels = Set<string>(Array.from(graphData.nodes.map(node => node.labelForCategory[category])));
+          labelsByCategory.set(category, labels);
+        }
+      });
+
       this.setState({
+        categories,
         graphData,
-        selectedCategories: [],
+        labelsByCategory,
       });
     } catch (e) {
       console.log(e);
     }
   }
 
-  protected onAddCategories = () => (categories: string[]) => {
-    const { selectedCategories } = this.state;
-    this.setState({
-      selectedCategories: [
-        ...selectedCategories,
-        ...categories.filter(category => !selectedCategories.includes(category)),
-      ],
+  protected deriveCurrentCellsFromLabels = (selectedLabels: Set<string>) => {
+    const { categories, graphData, labelsByCategory } = this.state;
+    let validCategories = Set<string>();
+    selectedLabels.forEach(label => {
+      if (label) {
+        categories.forEach(category => {
+          if (category) {
+            const labels = labelsByCategory.get(category);
+            if (labels && labels.includes(label)) {
+              validCategories = validCategories.add(category);
+            }
+          }
+        });
+      }
     });
-  };
 
-  protected onAddCategory = () => (category: string) => {
-    const { selectedCategories } = this.state;
-    if (!selectedCategories.includes(category)) {
-      this.setState({
-        selectedCategories: [...selectedCategories, category],
+    let cellIndices = Set<number>();
+    for (const node of graphData.nodes) {
+      validCategories.forEach(category => {
+        if (category && selectedLabels.includes(node.labelForCategory[category])) {
+          cellIndices = cellIndices.add(node.number);
+
+          return;
+        }
       });
     }
+
+    return cellIndices;
   };
 
-  protected onHandleCategory = () => (category: string, nodes: number[]) => {
-    if (nodes.length === 0) {
-      this.onRemoveCategory()(category);
-    } else {
-      this.onAddCategory()(category);
-    }
-  };
+  protected deriveValidLabelsFromCells = (currentCells: CELL_TYPE[]) => {
+    const { categories, graphData } = this.state;
+    let result = Set<string>();
 
-  protected onRemoveCategory = () => (category: string) => {
-    const { selectedCategories } = this.state;
-    const categoryIndex = selectedCategories.indexOf(category);
-
-    if (categoryIndex >= 0) {
-      this.setState({
-        selectedCategories: [
-          ...selectedCategories.slice(0, categoryIndex),
-          ...selectedCategories.slice(categoryIndex + 1),
-        ],
-      });
-    }
-  };
-
-  protected onSetCategories = () => (selectedCategories: string[]) => {
-    this.setState({
-      selectedCategories,
-    });
-  };
-
-  protected onToggleCategory = () => (category: string) => {
-    const { selectedCategories } = this.state;
-    const categoryIndex = selectedCategories.indexOf(category);
-
-    if (categoryIndex >= 0) {
-      this.setState({
-        selectedCategories: [
-          ...selectedCategories.slice(0, categoryIndex),
-          ...selectedCategories.slice(categoryIndex + 1),
-        ],
-      });
-    } else {
-      this.setState({
-        selectedCategories: [...selectedCategories, category],
-      });
-    }
-  };
-
-  protected onToggleCategories = () => (categories: string[]) => {
-    let { selectedCategories } = this.state;
-    for (const category of categories) {
-      const categoryIndex = selectedCategories.indexOf(category);
-
-      if (categoryIndex >= 0) {
-        selectedCategories = [
-          ...selectedCategories.slice(0, categoryIndex),
-          ...selectedCategories.slice(categoryIndex + 1),
-        ];
-      } else {
-        selectedCategories = [...selectedCategories, category];
+    for (const cellIndex of currentCells) {
+      for (const category of categories.toArray()) {
+        result = result.add(graphData.nodes[cellIndex].labelForCategory[category]);
       }
     }
-    this.setState({ selectedCategories });
+
+    return result;
+  };
+
+  protected onAddLabel = (label: string) => {
+    const { selectedLabels } = this.state;
+    if (!selectedLabels.includes(label)) {
+      this.setState({
+        selectedLabels: selectedLabels.add(label),
+      });
+    }
+  };
+
+  protected onAddLabels = (labels: string[]) => {
+    let { selectedLabels } = this.state;
+    for (const label of labels) {
+      if (!selectedLabels.includes(label)) {
+        selectedLabels = selectedLabels.add(label);
+      }
+    }
+    this.setState({ selectedLabels });
+  };
+
+  protected onChangeCategory = (selectedCategory: string) => {
+    this.setState({
+      selectedCategory,
+    });
+  };
+
+  protected onRemoveAllCells = () => {
+    this.setState({
+      currentCells: Set(),
+    });
+  };
+
+  protected onRemoveCells = (cellsToRemove: CELL_TYPE[]) => {
+    const { currentCells } = this.state;
+    this.setState({
+      currentCells: Set(currentCells.filter(cell => cell !== undefined && !cellsToRemove.includes(cell))),
+    });
+  };
+
+  protected onRemoveLabel = (label: string) => {
+    const { selectedLabels } = this.state;
+    this.setState({
+      selectedLabels: selectedLabels.remove(label),
+    });
+  };
+
+  protected onRemoveLabels = (labels: string[]) => {
+    let { selectedLabels } = this.state;
+    for (const label of labels) {
+      selectedLabels = selectedLabels.remove(label);
+    }
+    this.setState({
+      selectedLabels,
+    });
+  };
+
+  protected onSetCells = (cells: CELL_TYPE[]) => {
+    this.setState({
+      currentCells: Set(cells),
+    });
+  };
+
+  protected onToggleLabels = (labels: string[]) => {
+    let { selectedLabels } = this.state;
+    for (const label of labels) {
+      selectedLabels = selectedLabels.includes(label) ? selectedLabels.remove(label) : selectedLabels.add(label);
+    }
+
+    this.setState({
+      currentCells: this.deriveCurrentCellsFromLabels(selectedLabels),
+      selectedLabels,
+    });
+  };
+
+  protected onUpdate = (currentCells: CELL_TYPE[], selectedCategory?: string) => {
+    this.setState({
+      currentCells: Set(currentCells),
+      selectedCategory: selectedCategory ? selectedCategory : this.state.selectedCategory,
+      selectedLabels: this.deriveValidLabelsFromCells(currentCells),
+    });
   };
 }

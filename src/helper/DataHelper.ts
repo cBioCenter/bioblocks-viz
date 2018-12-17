@@ -56,8 +56,15 @@ export const fetchSpringData = async (dataDir: string): Promise<ISpringGraphData
 
   const nodes = new Array<ISpringNode>();
   const categories = Object.keys(catColorData);
+
   catColorData[categories[0]].label_list.forEach((label, index) => {
-    nodes.push({ labels: categories.map(category => catColorData[category].label_list[index]), number: index });
+    nodes.push({
+      labelForCategory: categories.reduce(
+        (prev, category) => ({ ...prev, [category]: catColorData[category].label_list[index] }),
+        {},
+      ),
+      number: index,
+    });
   });
 
   return { nodes };

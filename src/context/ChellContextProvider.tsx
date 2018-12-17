@@ -1,12 +1,7 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 
-import {
-  CellContextProvider,
-  ResidueContextProvider,
-  SecondaryStructureContextProvider,
-  SpringContextProvider,
-} from '~chell-viz~/context';
+import { ResidueContextProvider, SecondaryStructureContextProvider, SpringContextProvider } from '~chell-viz~/context';
 
 export interface IChellContextProps extends Partial<RouteComponentProps> {}
 
@@ -29,9 +24,7 @@ export class ChellContextProvider extends React.Component<IChellContextProps, an
     return (
       <SecondaryStructureContextProvider>
         <SpringContextProvider datasetLocation={datasetLocation ? datasetLocation : ''}>
-          <CellContextProvider>
-            <ResidueContextProvider>{this.props.children}</ResidueContextProvider>
-          </CellContextProvider>
+          <ResidueContextProvider>{this.props.children}</ResidueContextProvider>
         </SpringContextProvider>
       </SecondaryStructureContextProvider>
     );

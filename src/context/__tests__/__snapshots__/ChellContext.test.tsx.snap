@@ -5,9 +5,7 @@ exports[`ChellContext Should match the default snapshot. 1`] = `
   <SpringContextProvider
     datasetLocation=""
   >
-    <CellContextProvider>
-      <ResidueContextProvider />
-    </CellContextProvider>
+    <ResidueContextProvider />
   </SpringContextProvider>
 </SecondaryStructureContextProvider>
 `;
