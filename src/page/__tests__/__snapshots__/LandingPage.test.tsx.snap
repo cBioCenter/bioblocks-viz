@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LandingPage Should match existing snapshot. 1`] = `
+exports[`LandingPage Should match existing snapshot when no props are provided. 1`] = `
 <Container
   fluid={false}
 >

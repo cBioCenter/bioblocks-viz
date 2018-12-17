@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TFrameComponent Should match the default snapshot when no props are provided. 1`] = `
+<Component>
+  <TFrameComponentClass
+    data={
+      Array [
+        Array [
+          0,
+        ],
+        Array [
+          0,
+        ],
+      ]
+    }
+    height={400}
+    padding={0}
+    pointColor="#000000"
+    springContext={
+      Object {
+        "addLabel": [Function],
+        "addLabels": [Function],
+        "categories": Immutable.Set [],
+        "changeCategory": [Function],
+        "currentCells": Immutable.Set [],
+        "graphData": Object {
+          "nodes": Array [],
+        },
+        "labelsByCategory": Map {},
+        "removeAllCells": [Function],
+        "removeCells": [Function],
+        "removeLabel": [Function],
+        "removeLabels": [Function],
+        "selectedCategory": "",
+        "selectedLabels": Immutable.Set [],
+        "setCells": [Function],
+        "toggleLabels": [Function],
+        "update": [Function],
+      }
+    }
+    width={400}
+  >
+    <IframeComm
+      attributes={
+        Object {
+          "height": 400,
+          "src": "http://localhost:8080/TContainer.html",
+          "width": 400,
+        }
+      }
+      postMessageData={
+        Object {
+          "payload": Object {
+            "data": Array [
+              Array [
+                0,
+              ],
+              Array [
+                0,
+              ],
+            ],
+            "padding": 0,
+            "pointColor": "#000000",
+            "springContext": Object {
+              "addLabel": [Function],
+              "addLabels": [Function],
+              "categories": Immutable.Set [],
+              "changeCategory": [Function],
+              "currentCells": Immutable.Set [],
+              "graphData": Object {
+                "nodes": Array [],
+              },
+              "labelsByCategory": Map {},
+              "removeAllCells": [Function],
+              "removeCells": [Function],
+              "removeLabel": [Function],
+              "removeLabels": [Function],
+              "selectedCategory": "",
+              "selectedLabels": Immutable.Set [],
+              "setCells": [Function],
+              "toggleLabels": [Function],
+              "update": [Function],
+            },
+          },
+          "type": "loaded",
+        }
+      }
+      serializeMessage={true}
+      targetOrigin="*"
+    >
+      <iframe
+        allowFullScreen={false}
+        frameBorder={0}
+        height={400}
+        src="http://localhost:8080/TContainer.html"
+        width={400}
+      />
+    </IframeComm>
+  </TFrameComponentClass>
+</Component>
+`;

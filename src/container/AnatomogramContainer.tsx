@@ -123,7 +123,6 @@ export class AnatomogramContainerClass extends React.Component<IAnatomogramConta
   }
 
   protected onClick = (id: string) => {
-    console.log(`anat clicked ${id}`);
     const { species, springContext } = this.props;
     const labels = anatomogramToSpringMapping[species][id];
 

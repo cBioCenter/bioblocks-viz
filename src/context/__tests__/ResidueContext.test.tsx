@@ -17,7 +17,16 @@ describe('ResidueContext', () => {
     const wrapper = Renderer.create(
       <ResidueContext.Consumer>{context => React.createElement('div', context)}</ResidueContext.Consumer>,
     );
+    expect(wrapper.toJSON()).toMatchSnapshot();
     expect(wrapper.root.props).toEqual(initialResidueContext);
+
+    for (const propKey of Object.keys(wrapper.root.props)) {
+      const prop = wrapper.root.props[propKey];
+      if (typeof prop === 'function') {
+        expect((prop as () => any)()).toBe(undefined);
+        expect(wrapper.root.props).toEqual(initialResidueContext);
+      }
+    }
   });
 
   it('Should add the candidate residue correctly.', () => {

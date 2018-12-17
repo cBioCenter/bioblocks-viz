@@ -1,3 +1,928 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`VizOverviewPage Should match existing snapshot. 1`] = `""`;
+exports[`VizOverviewPage Should match existing snapshot for initial visualizations. 1`] = `
+<Container>
+  <Grid
+    centered={true}
+    columns={2}
+  >
+    <GridColumn
+      width={2}
+    >
+      <img
+        alt="icon for Anatomogram"
+        src="assets/icons/anatomogram-icon.png"
+        style={
+          Object {
+            "height": "150px",
+            "padding": "20px",
+          }
+        }
+      />
+    </GridColumn>
+    <GridColumn
+      textAlign="left"
+    >
+      <Header
+        as="h1"
+      >
+        Anatomogram
+        <HeaderSubheader>
+          Alfonso Muñoz-Pomer Fuentes
+        </HeaderSubheader>
+      </Header>
+      <p />
+      <List>
+        <ListItem>
+          applicable data: 
+          scRNA-seq
+        </ListItem>
+        <ListItem>
+          compatible with: 
+        </ListItem>
+        <ListItem>
+          citation(s):
+           
+        </ListItem>
+        <ListItem>
+          version: 
+           (last updated 
+          ),
+          <a
+            href="https://github.com/ebi-gene-expression-group/anatomogram"
+          >
+             github link
+          </a>
+        </ListItem>
+        <ListItem>
+          <GridColumn
+            floated="right"
+          >
+            <Button
+              as="button"
+              basic={true}
+              icon={true}
+              labelPosition="right"
+              role="button"
+            >
+              <Link
+                replace={false}
+                to={
+                  Object {
+                    "pathname": "/dataset",
+                    "search": "?viz=anatomogram",
+                  }
+                }
+              >
+                launch Anatomogram
+              </Link>
+              <Icon
+                as="i"
+                name="external alternate"
+              />
+            </Button>
+          </GridColumn>
+        </ListItem>
+      </List>
+    </GridColumn>
+  </Grid>
+  <Accordion
+    defaultActiveIndex={0}
+    panels={
+      Array [
+        Object {
+          "content": Object {
+            "content": <React.Fragment>
+              <Divider />
+              <Grid
+                centered={true}
+                columns={1}
+                container={true}
+                divided="vertically"
+                style={
+                  Object {
+                    "padding": "10px 0",
+                  }
+                }
+              >
+                <GridRow
+                  columns={2}
+                >
+                  <React.Fragment>
+                    <GridColumn
+                      width={2}
+                    >
+                      <img
+                        alt="Tabula Muris - SPRING vs tSNE with Anatomogram icon"
+                        src="assets/icons/example_tabularmuris_spring-tsne-anatomogram.png"
+                        style={
+                          Object {
+                            "height": "75px",
+                            "width": "75px",
+                          }
+                        }
+                      />
+                    </GridColumn>
+                    <GridColumn
+                      textAlign="left"
+                      width={8}
+                    >
+                      <Header>
+                        Tabula Muris - SPRING vs tSNE with Anatomogram
+                      </Header>
+                      <p>
+                        Example comparison of data reduction techniques SPRING and tSNE    (of top 30 PCA components), on RNAseq profiles from 10000 cells    from the CZI Tabula muris dataset. Also includes anatomogram visualization for selection of tissue types.
+                      </p>
+                    </GridColumn>
+                    <GridColumn
+                      floated="right"
+                    >
+                      <Button
+                        as="button"
+                        basic={true}
+                        icon={true}
+                        labelPosition="right"
+                        role="button"
+                      >
+                        <Link
+                          replace={false}
+                          to="/dataset?name=tabula_muris/10k&viz=spring&viz=tfjs-tsne&viz=anatomogram"
+                        >
+                          launch example
+                        </Link>
+                        <Icon
+                          as="i"
+                          name="external alternate"
+                        />
+                      </Button>
+                    </GridColumn>
+                  </React.Fragment>
+                </GridRow>
+              </Grid>
+            </React.Fragment>,
+          },
+          "key": "examples",
+          "title": "example stories",
+        },
+        Object {
+          "content": "coming soon!",
+          "key": "learn",
+          "title": "learn",
+        },
+      ]
+    }
+  />
+</Container>
+`;
+
+exports[`VizOverviewPage Should match existing snapshot for initial visualizations. 2`] = `
+<Container>
+  <Grid
+    centered={true}
+    columns={2}
+  >
+    <GridColumn
+      width={2}
+    >
+      <img
+        alt="icon for SPRING"
+        src="assets/icons/spring-icon.png"
+        style={
+          Object {
+            "height": "150px",
+            "padding": "20px",
+          }
+        }
+      />
+    </GridColumn>
+    <GridColumn
+      textAlign="left"
+    >
+      <Header
+        as="h1"
+      >
+        SPRING
+        <HeaderSubheader>
+          Caleb Weinreb, Samuel Wolock, Allon Klein
+        </HeaderSubheader>
+      </Header>
+      <p>
+        SPRING is a tool for uncovering high-dimensional structure in single-cell gene expression data.   SPRING takes a (gene X cell) table of expression measurements and outputs a k-nearest-neighbor graph   rendered using a force directed layout.   Users can overlay prior information, including gene expression values, gene-set scores, cell cluster labels and sample IDs.   Users can also upload custom coordinates that have been generated using an outside program such as tSNE.
+      </p>
+      <List>
+        <ListItem>
+          applicable data: 
+          scRNA-seq
+        </ListItem>
+        <ListItem>
+          compatible with: 
+          live tSNE, UMAP, PCA
+        </ListItem>
+        <ListItem>
+          citation(s):
+           
+          Weinreb, Caleb, Samuel Wolock, and Allon M. Klein.      "SPRING: A kinetic interface for visualizing high dimensional single-cell expression data."      Bioinformatics 34.7 (2017): 1246-1248.
+           (
+          <a
+            href="https://www.ncbi.nlm.nih.gov/pubmed/29228172"
+          >
+            link
+          </a>
+          )
+        </ListItem>
+        <ListItem>
+          version: 
+          2.0
+           (last updated 
+          2018.03.12
+          ),
+          <a
+            href="https://github.com/AllonKleinLab/SPRING_dev"
+          >
+             github link
+          </a>
+        </ListItem>
+        <ListItem>
+          <GridColumn
+            floated="right"
+          >
+            <Button
+              as="button"
+              basic={true}
+              icon={true}
+              labelPosition="right"
+              role="button"
+            >
+              <Link
+                replace={false}
+                to={
+                  Object {
+                    "pathname": "/dataset",
+                    "search": "?viz=spring",
+                  }
+                }
+              >
+                launch SPRING
+              </Link>
+              <Icon
+                as="i"
+                name="external alternate"
+              />
+            </Button>
+          </GridColumn>
+        </ListItem>
+      </List>
+    </GridColumn>
+  </Grid>
+  <Accordion
+    defaultActiveIndex={0}
+    panels={
+      Array [
+        Object {
+          "content": Object {
+            "content": <React.Fragment>
+              <Divider />
+              <Grid
+                centered={true}
+                columns={1}
+                container={true}
+                divided="vertically"
+                style={
+                  Object {
+                    "padding": "10px 0",
+                  }
+                }
+              >
+                <GridRow
+                  columns={2}
+                >
+                  <React.Fragment>
+                    <GridColumn
+                      width={2}
+                    >
+                      <img
+                        alt="HPC (hematopoietic progenitor cells) icon"
+                        src="assets/icons/example_hpc_sf2-spring.png"
+                        style={
+                          Object {
+                            "height": "75px",
+                            "width": "75px",
+                          }
+                        }
+                      />
+                    </GridColumn>
+                    <GridColumn
+                      textAlign="left"
+                      width={8}
+                    >
+                      <Header>
+                        HPC (hematopoietic progenitor cells)
+                      </Header>
+                      <p>
+                        Analysis of 33,473 hematopoietic progenitor cells as they differentiate over 6 days.       Barcodes were introduced at day 0 and cell lineage relationships were traced by       identifying progeny from their barcodes in scRNAseq of aliquots of the same population taken at several timepoints.
+                      </p>
+                    </GridColumn>
+                    <GridColumn
+                      floated="right"
+                    >
+                      <Button
+                        as="button"
+                        basic={true}
+                        icon={true}
+                        labelPosition="right"
+                        role="button"
+                      >
+                        <Link
+                          replace={false}
+                          to="/dataset?name=hpc_sf2/full&viz=spring"
+                        >
+                          launch example
+                        </Link>
+                        <Icon
+                          as="i"
+                          name="external alternate"
+                        />
+                      </Button>
+                    </GridColumn>
+                  </React.Fragment>
+                </GridRow>
+                <GridRow
+                  columns={2}
+                >
+                  <React.Fragment>
+                    <GridColumn
+                      width={2}
+                    >
+                      <img
+                        alt="CZI Tabula muris icon"
+                        src="assets/icons/tabula-muris-thumbnail.png"
+                        style={
+                          Object {
+                            "height": "75px",
+                            "width": "75px",
+                          }
+                        }
+                      />
+                    </GridColumn>
+                    <GridColumn
+                      textAlign="left"
+                      width={8}
+                    >
+                      <Header>
+                        CZI Tabula muris
+                      </Header>
+                      <p>
+                        Analysis of 10K mouse cells from 20 organs and tissues.
+                      </p>
+                    </GridColumn>
+                    <GridColumn
+                      floated="right"
+                    >
+                      <Button
+                        as="button"
+                        basic={true}
+                        icon={true}
+                        labelPosition="right"
+                        role="button"
+                      >
+                        <Link
+                          replace={false}
+                          to="/dataset?name=tabula_muris/10k&viz=spring"
+                        >
+                          launch example
+                        </Link>
+                        <Icon
+                          as="i"
+                          name="external alternate"
+                        />
+                      </Button>
+                    </GridColumn>
+                  </React.Fragment>
+                </GridRow>
+                <GridRow
+                  columns={2}
+                >
+                  <React.Fragment>
+                    <GridColumn
+                      width={2}
+                    >
+                      <img
+                        alt="Tabula Muris - SPRING vs tSNE with Anatomogram icon"
+                        src="assets/icons/example_tabularmuris_spring-tsne-anatomogram.png"
+                        style={
+                          Object {
+                            "height": "75px",
+                            "width": "75px",
+                          }
+                        }
+                      />
+                    </GridColumn>
+                    <GridColumn
+                      textAlign="left"
+                      width={8}
+                    >
+                      <Header>
+                        Tabula Muris - SPRING vs tSNE with Anatomogram
+                      </Header>
+                      <p>
+                        Example comparison of data reduction techniques SPRING and tSNE    (of top 30 PCA components), on RNAseq profiles from 10000 cells    from the CZI Tabula muris dataset. Also includes anatomogram visualization for selection of tissue types.
+                      </p>
+                    </GridColumn>
+                    <GridColumn
+                      floated="right"
+                    >
+                      <Button
+                        as="button"
+                        basic={true}
+                        icon={true}
+                        labelPosition="right"
+                        role="button"
+                      >
+                        <Link
+                          replace={false}
+                          to="/dataset?name=tabula_muris/10k&viz=spring&viz=tfjs-tsne&viz=anatomogram"
+                        >
+                          launch example
+                        </Link>
+                        <Icon
+                          as="i"
+                          name="external alternate"
+                        />
+                      </Button>
+                    </GridColumn>
+                  </React.Fragment>
+                </GridRow>
+                <GridRow
+                  columns={2}
+                >
+                  <React.Fragment>
+                    <GridColumn
+                      width={2}
+                    >
+                      <img
+                        alt="HPC - SPRING vs tSNE with Anatomogram icon"
+                        src="assets/icons/example_HPC_spring-tsne-anatomogram.png"
+                        style={
+                          Object {
+                            "height": "75px",
+                            "width": "75px",
+                          }
+                        }
+                      />
+                    </GridColumn>
+                    <GridColumn
+                      textAlign="left"
+                      width={8}
+                    >
+                      <Header>
+                        HPC - SPRING vs tSNE with Anatomogram
+                      </Header>
+                      <p>
+                        Example interaction between SPRING, tSNE and Anatomogram visualization on a small dataset.
+                      </p>
+                    </GridColumn>
+                    <GridColumn
+                      floated="right"
+                    >
+                      <Button
+                        as="button"
+                        basic={true}
+                        icon={true}
+                        labelPosition="right"
+                        role="button"
+                      >
+                        <Link
+                          replace={false}
+                          to="/dataset?name=hpc/full&viz=spring&viz=tfjs-tsne&viz=anatomogram"
+                        >
+                          launch example
+                        </Link>
+                        <Icon
+                          as="i"
+                          name="external alternate"
+                        />
+                      </Button>
+                    </GridColumn>
+                  </React.Fragment>
+                </GridRow>
+              </Grid>
+            </React.Fragment>,
+          },
+          "key": "examples",
+          "title": "example stories",
+        },
+        Object {
+          "content": "coming soon!",
+          "key": "learn",
+          "title": "learn",
+        },
+      ]
+    }
+  />
+</Container>
+`;
+
+exports[`VizOverviewPage Should match existing snapshot for initial visualizations. 3`] = `
+<Container>
+  <Grid
+    centered={true}
+    columns={2}
+  >
+    <GridColumn
+      width={2}
+    >
+      <img
+        alt="icon for tfjs-tsne"
+        src="assets/icons/tfjs-tsne-icon.png"
+        style={
+          Object {
+            "height": "150px",
+            "padding": "20px",
+          }
+        }
+      />
+    </GridColumn>
+    <GridColumn
+      textAlign="left"
+    >
+      <Header
+        as="h1"
+      >
+        tfjs-tsne
+        <HeaderSubheader>
+          Yannick Assogba
+        </HeaderSubheader>
+      </Header>
+      <p />
+      <List>
+        <ListItem>
+          applicable data: 
+          scRNA-seq
+        </ListItem>
+        <ListItem>
+          compatible with: 
+        </ListItem>
+        <ListItem>
+          citation(s):
+           
+        </ListItem>
+        <ListItem>
+          version: 
+           (last updated 
+          ),
+          <a
+            href="https://github.com/tensorflow/tfjs-tsne"
+          >
+             github link
+          </a>
+        </ListItem>
+        <ListItem>
+          <GridColumn
+            floated="right"
+          >
+            <Button
+              as="button"
+              basic={true}
+              icon={true}
+              labelPosition="right"
+              role="button"
+            >
+              <Link
+                replace={false}
+                to={
+                  Object {
+                    "pathname": "/dataset",
+                    "search": "?viz=tfjs-tsne",
+                  }
+                }
+              >
+                launch tfjs-tsne
+              </Link>
+              <Icon
+                as="i"
+                name="external alternate"
+              />
+            </Button>
+          </GridColumn>
+        </ListItem>
+      </List>
+    </GridColumn>
+  </Grid>
+  <Accordion
+    defaultActiveIndex={0}
+    panels={
+      Array [
+        Object {
+          "content": Object {
+            "content": <React.Fragment>
+              <Divider />
+              <Grid
+                centered={true}
+                columns={1}
+                container={true}
+                divided="vertically"
+                style={
+                  Object {
+                    "padding": "10px 0",
+                  }
+                }
+              >
+                <GridRow
+                  columns={2}
+                >
+                  <React.Fragment>
+                    <GridColumn
+                      width={2}
+                    >
+                      <img
+                        alt="Tabula Muris - SPRING vs tSNE with Anatomogram icon"
+                        src="assets/icons/example_tabularmuris_spring-tsne-anatomogram.png"
+                        style={
+                          Object {
+                            "height": "75px",
+                            "width": "75px",
+                          }
+                        }
+                      />
+                    </GridColumn>
+                    <GridColumn
+                      textAlign="left"
+                      width={8}
+                    >
+                      <Header>
+                        Tabula Muris - SPRING vs tSNE with Anatomogram
+                      </Header>
+                      <p>
+                        Example comparison of data reduction techniques SPRING and tSNE    (of top 30 PCA components), on RNAseq profiles from 10000 cells    from the CZI Tabula muris dataset. Also includes anatomogram visualization for selection of tissue types.
+                      </p>
+                    </GridColumn>
+                    <GridColumn
+                      floated="right"
+                    >
+                      <Button
+                        as="button"
+                        basic={true}
+                        icon={true}
+                        labelPosition="right"
+                        role="button"
+                      >
+                        <Link
+                          replace={false}
+                          to="/dataset?name=tabula_muris/10k&viz=spring&viz=tfjs-tsne&viz=anatomogram"
+                        >
+                          launch example
+                        </Link>
+                        <Icon
+                          as="i"
+                          name="external alternate"
+                        />
+                      </Button>
+                    </GridColumn>
+                  </React.Fragment>
+                </GridRow>
+                <GridRow
+                  columns={2}
+                >
+                  <React.Fragment>
+                    <GridColumn
+                      width={2}
+                    >
+                      <img
+                        alt="HPC - SPRING vs tSNE with Anatomogram icon"
+                        src="assets/icons/example_HPC_spring-tsne-anatomogram.png"
+                        style={
+                          Object {
+                            "height": "75px",
+                            "width": "75px",
+                          }
+                        }
+                      />
+                    </GridColumn>
+                    <GridColumn
+                      textAlign="left"
+                      width={8}
+                    >
+                      <Header>
+                        HPC - SPRING vs tSNE with Anatomogram
+                      </Header>
+                      <p>
+                        Example interaction between SPRING, tSNE and Anatomogram visualization on a small dataset.
+                      </p>
+                    </GridColumn>
+                    <GridColumn
+                      floated="right"
+                    >
+                      <Button
+                        as="button"
+                        basic={true}
+                        icon={true}
+                        labelPosition="right"
+                        role="button"
+                      >
+                        <Link
+                          replace={false}
+                          to="/dataset?name=hpc/full&viz=spring&viz=tfjs-tsne&viz=anatomogram"
+                        >
+                          launch example
+                        </Link>
+                        <Icon
+                          as="i"
+                          name="external alternate"
+                        />
+                      </Button>
+                    </GridColumn>
+                  </React.Fragment>
+                </GridRow>
+              </Grid>
+            </React.Fragment>,
+          },
+          "key": "examples",
+          "title": "example stories",
+        },
+        Object {
+          "content": "coming soon!",
+          "key": "learn",
+          "title": "learn",
+        },
+      ]
+    }
+  />
+</Container>
+`;
+
+exports[`VizOverviewPage Should match existing snapshot when changing the visualization. 1`] = `
+<Container>
+  <Grid
+    centered={true}
+    columns={2}
+  >
+    <GridColumn
+      width={2}
+    >
+      <img
+        alt="icon for Anatomogram"
+        src="assets/icons/anatomogram-icon.png"
+        style={
+          Object {
+            "height": "150px",
+            "padding": "20px",
+          }
+        }
+      />
+    </GridColumn>
+    <GridColumn
+      textAlign="left"
+    >
+      <Header
+        as="h1"
+      >
+        Anatomogram
+        <HeaderSubheader>
+          Alfonso Muñoz-Pomer Fuentes
+        </HeaderSubheader>
+      </Header>
+      <p />
+      <List>
+        <ListItem>
+          applicable data: 
+          scRNA-seq
+        </ListItem>
+        <ListItem>
+          compatible with: 
+        </ListItem>
+        <ListItem>
+          citation(s):
+           
+        </ListItem>
+        <ListItem>
+          version: 
+           (last updated 
+          ),
+          <a
+            href="https://github.com/ebi-gene-expression-group/anatomogram"
+          >
+             github link
+          </a>
+        </ListItem>
+        <ListItem>
+          <GridColumn
+            floated="right"
+          >
+            <Button
+              as="button"
+              basic={true}
+              icon={true}
+              labelPosition="right"
+              role="button"
+            >
+              <Link
+                replace={false}
+                to={
+                  Object {
+                    "pathname": "/dataset",
+                    "search": "?viz=anatomogram",
+                  }
+                }
+              >
+                launch Anatomogram
+              </Link>
+              <Icon
+                as="i"
+                name="external alternate"
+              />
+            </Button>
+          </GridColumn>
+        </ListItem>
+      </List>
+    </GridColumn>
+  </Grid>
+  <Accordion
+    defaultActiveIndex={0}
+    panels={
+      Array [
+        Object {
+          "content": Object {
+            "content": <React.Fragment>
+              <Divider />
+              <Grid
+                centered={true}
+                columns={1}
+                container={true}
+                divided="vertically"
+                style={
+                  Object {
+                    "padding": "10px 0",
+                  }
+                }
+              >
+                <GridRow
+                  columns={2}
+                >
+                  <React.Fragment>
+                    <GridColumn
+                      width={2}
+                    >
+                      <img
+                        alt="Tabula Muris - SPRING vs tSNE with Anatomogram icon"
+                        src="assets/icons/example_tabularmuris_spring-tsne-anatomogram.png"
+                        style={
+                          Object {
+                            "height": "75px",
+                            "width": "75px",
+                          }
+                        }
+                      />
+                    </GridColumn>
+                    <GridColumn
+                      textAlign="left"
+                      width={8}
+                    >
+                      <Header>
+                        Tabula Muris - SPRING vs tSNE with Anatomogram
+                      </Header>
+                      <p>
+                        Example comparison of data reduction techniques SPRING and tSNE    (of top 30 PCA components), on RNAseq profiles from 10000 cells    from the CZI Tabula muris dataset. Also includes anatomogram visualization for selection of tissue types.
+                      </p>
+                    </GridColumn>
+                    <GridColumn
+                      floated="right"
+                    >
+                      <Button
+                        as="button"
+                        basic={true}
+                        icon={true}
+                        labelPosition="right"
+                        role="button"
+                      >
+                        <Link
+                          replace={false}
+                          to="/dataset?name=tabula_muris/10k&viz=spring&viz=tfjs-tsne&viz=anatomogram"
+                        >
+                          launch example
+                        </Link>
+                        <Icon
+                          as="i"
+                          name="external alternate"
+                        />
+                      </Button>
+                    </GridColumn>
+                  </React.Fragment>
+                </GridRow>
+              </Grid>
+            </React.Fragment>,
+          },
+          "key": "examples",
+          "title": "example stories",
+        },
+        Object {
+          "content": "coming soon!",
+          "key": "learn",
+          "title": "learn",
+        },
+      ]
+    }
+  />
+</Container>
+`;
+
+exports[`VizOverviewPage Should match existing snapshot when no props are provided. 1`] = `""`;

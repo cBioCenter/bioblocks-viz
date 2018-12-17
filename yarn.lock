@@ -6979,11 +6979,6 @@ moo@^0.4.3:
   resolved "https://registry.yarnpkg.com/moo/-/moo-0.4.3.tgz#3f847a26f31cf625a956a87f2b10fbc013bfd10e"
   integrity sha512-gFD2xGCl8YFgGHsqJ9NKRVdwlioeW3mI1iqfLNYQOv0+6JRwG58Zk9DIGQgyIaffSYaO1xsKnMaYzzNr1KyIAw==
 
-morpheus-app@^1.0.17:
-  version "1.0.17"
-  resolved "https://registry.yarnpkg.com/morpheus-app/-/morpheus-app-1.0.17.tgz#2fb91b8dfb9b2028c70272148bab8722f5b3024f"
-  integrity sha512-Z/Sflyn68RQwByeHrvB7YBwZLPCDiFdzAefFJoBz8dSUyXCYcDkcfpy2bIAzerXdfTlaqqVTV7wDVHH1+cF77w==
-
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"

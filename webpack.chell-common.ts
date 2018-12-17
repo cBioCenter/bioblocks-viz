@@ -14,8 +14,6 @@ module.exports = {
     app: './index.tsx',
     beta: './beta.tsx',
     example: './examples/example.tsx',
-    morpheus: './MorpheusContainer.tsx',
-    tcontainer: './TContainer.tsx',
   },
   module: {
     rules: [
@@ -127,22 +125,6 @@ module.exports = {
       inject: true,
       template: './examples/example.html',
       title: 'Chell - Contact Map / NGL Example',
-    }),
-    new HtmlWebpackPlugin({
-      chunks: ['morpheus'],
-      favicon: 'assets/favicons/favicon.ico',
-      filename: 'morpheus.html',
-      inject: true,
-      template: './morpheus.html',
-      title: 'Morpheus Container',
-    }),
-    new HtmlWebpackPlugin({
-      chunks: ['tcontainer'],
-      favicon: 'assets/favicons/favicon.ico',
-      filename: 'TContainer.html',
-      inject: true,
-      template: './TContainer.html',
-      title: 'TContainer',
     }),
     new CopyWebpackPlugin([
       {

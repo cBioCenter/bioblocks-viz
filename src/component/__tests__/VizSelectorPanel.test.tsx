@@ -12,7 +12,7 @@ describe('VizSelectorPanel', () => {
     expect(shallow(<VizSelectorPanel data={emptyData} />)).toMatchSnapshot();
   });
 
-  it(`Should match existing snapshot for initial visualizations.`, () => {
+  it('Should match existing snapshot for initial visualizations.', () => {
     Object.keys(VIZ_TYPE).forEach(vizKey => {
       describe(vizKey, () => {
         const viz = VIZ_TYPE[vizKey as keyof typeof VIZ_TYPE];

@@ -19,7 +19,7 @@ export interface ITFrameComponentState {
   postMessageData: object;
 }
 
-class TFrameComponentClass extends React.Component<ITFrameComponentProps, ITFrameComponentState> {
+export class TFrameComponentClass extends React.Component<ITFrameComponentProps, ITFrameComponentState> {
   public static defaultProps = {
     data: [[0], [0]],
     height: 400,
