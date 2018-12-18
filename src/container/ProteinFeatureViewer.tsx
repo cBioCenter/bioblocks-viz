@@ -46,7 +46,7 @@ export class ProteinFeatureViewer extends React.Component<IProteinFeatureViewerP
           <GridColumn>
             <FeatureViewer
               data={domainData}
-              onHoverCallback={this.renderAnnotationText}
+              getTextForHover={this.renderAnnotationText}
               title={protein ? protein.id : ''}
               showGrouped={showGrouped}
             />

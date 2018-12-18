@@ -80,6 +80,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   protected plotlyFormattedData: Array<Partial<IPlotlyData>> = [];
   protected renderTimeout: undefined | NodeJS.Timer | number;
   protected savedAxisZoom?: { xaxis: plotly.PlotAxis; yaxis: plotly.PlotAxis };
+
   /**
    * Setup all the event listeners for the plotly canvas.
    */
@@ -114,6 +115,8 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     if (this.plotlyCanvas && this.canvasRef) {
       const mergedLayout = this.getMergedLayout(layout, this.plotlyFormattedData);
       const mergedConfig = this.getMergedConfig(config);
+      // console.log(mergedLayout);
+      // console.log(mergedConfig);
       this.plotlyCanvas = await plotly.react(this.canvasRef, this.plotlyFormattedData, mergedLayout, mergedConfig);
     }
   };
@@ -134,6 +137,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   }
 
   public async componentDidMount() {
+    /*
     const renderTimeout = async () => {
       if (this.canvasRef && this.plotlyCanvas) {
         await this.draw();
@@ -141,6 +145,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
       }
     };
     this.renderTimeout = setTimeout(renderTimeout, 50);
+    */
 
     if (this.canvasRef && !this.plotlyCanvas) {
       const { data } = this.props;
@@ -386,7 +391,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
         allPoints.length > 0
           ? this.deriveChartPiece(allPoints[0], allPoints[1])
           : { chartPiece: CHELL_CHART_PIECE.POINT };
-      onSelectedCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.SELECTION, chartPiece, allPoints));
+      onSelectedCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.SELECTION, chartPiece, allPoints, event));
     }
     await this.draw();
   };

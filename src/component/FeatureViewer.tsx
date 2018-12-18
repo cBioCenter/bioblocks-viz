@@ -1,23 +1,36 @@
 import * as React from 'react';
 
+import { Set } from 'immutable';
 import { PlotlyChart } from '~chell-viz~/component';
-import { ChellChartEvent, IPlotlyData, TintedChell1DSection } from '~chell-viz~/data';
+import { Chell1DSection, ChellChartEvent, IPlotlyData, TintedChell1DSection } from '~chell-viz~/data';
+
+export interface IFeatureRangeSelection {
+  end: number;
+  length: number;
+  start: number;
+  featuresSelected: Array<Chell1DSection<string>>;
+}
 
 export interface IFeatureViewerProps {
   data: Array<TintedChell1DSection<string>>;
   height: number;
+  maxLength?: number;
   showGrouped: boolean;
   title: string;
   width: number;
-  onHoverCallback?(label: string, index: number): string;
+  getTextForHover?(label: string, index: number): string;
+  onClickCallback?(section: Array<Chell1DSection<string>>): void;
+  onSelectCallback?(selection: IFeatureRangeSelection): void;
 }
 
 export interface IFeatureViewerState {
   hoveredFeatureIndex: number;
   hoverAnnotationText: string;
-  layout: Partial<Plotly.Layout>;
+  plotlyLayout: Partial<Plotly.Layout>;
+  plotlyConfig: Partial<Plotly.Config>;
   plotlyData: Array<Partial<IPlotlyData>>;
   selectedFeatureIndices: Set<number>;
+  selectedRange: Chell1DSection<string>;
 }
 
 export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeatureViewerState> {
@@ -33,51 +46,35 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
     nextProps: IFeatureViewerProps,
     nextState: IFeatureViewerState,
   ): Partial<IFeatureViewerState> {
-    const { data, height, showGrouped, title, width } = nextProps;
-    const { hoverAnnotationText, hoveredFeatureIndex, selectedFeatureIndices } = nextState;
-
-    let minRange = 0;
-    let maxRange = 100;
+    const { data, height, maxLength, showGrouped, title, width } = nextProps;
+    const { hoverAnnotationText, hoveredFeatureIndex, selectedRange } = nextState;
 
     const plotlyData = data.map(
       (datum, index): Partial<IPlotlyData> => {
-        minRange = Math.min(minRange, datum.start, datum.end);
-        maxRange = Math.max(maxRange, datum.start, datum.end);
         const yIndex = showGrouped
           ? index
           : data.findIndex(candidateDatum => datum.label.localeCompare(candidateDatum.label) === 0);
 
-        return {
-          fill: 'toself',
-          fillcolor: datum.color.toString(),
-          hoverinfo: 'none',
-          hoveron: 'fills',
-          line: selectedFeatureIndices.has(index)
-            ? {
-                color: 'orange',
-                width: 3,
-              }
-            : {
-                width: 0,
-              },
-          mode: 'text+lines',
-          name: `${datum.label}`,
-          text: [datum.label],
-          textfont: { color: ['#FFFFFF'] },
-          type: 'scatter',
-          // Creates a 'box' so we can fill it and hover over it and add a point to the middle for the label.
-          x: FeatureViewer.getBoxForChellSection(datum),
-          y: showGrouped
-            ? [0.5, null, 0, 1, 1, 0, 0]
-            : [yIndex + 0.5, null, yIndex + 1, yIndex, yIndex, yIndex + 1, yIndex + 1],
-        };
+        return FeatureViewer.getPlotlyDataObject(datum, showGrouped, yIndex);
       },
     );
 
+    plotlyData.push({
+      hoverinfo: 'none',
+      line: {
+        color: 'orange',
+        width: 10,
+      },
+      mode: 'lines',
+      showlegend: false,
+      x: [selectedRange.start, selectedRange.end],
+      y: [-0.25, -0.25],
+    });
     const hoveredDatum = plotlyData[hoveredFeatureIndex];
 
     return {
-      layout: {
+      plotlyData,
+      plotlyLayout: {
         annotations:
           hoveredFeatureIndex >= 0 && hoveredDatum.x && hoveredDatum.y
             ? [
@@ -102,6 +99,7 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
             : [],
         dragmode: 'select',
         height,
+        hovermode: 'closest',
         margin: {
           b: 30,
           t: 60,
@@ -112,7 +110,9 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
         xaxis:
           data.length > 0
             ? {
-                range: [minRange, maxRange + 200],
+                autorange: false,
+                fixedrange: true,
+                range: [0, maxLength ? maxLength : data.reduce((prev, cur) => Math.max(prev, cur.end), -1) + 200],
                 showgrid: false,
                 tick0: 0,
                 tickmode: 'auto',
@@ -120,11 +120,12 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
               }
             : { visible: false },
         yaxis: {
-          range: [0, showGrouped ? 2 : data.length],
+          autorange: false,
+          fixedrange: true,
+          range: [-0.25, showGrouped ? 2 : data.length],
           visible: false,
         },
       },
-      plotlyData,
     };
   }
 
@@ -140,25 +141,56 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
     ];
   }
 
+  protected static getPlotlyDataObject = (
+    datum: TintedChell1DSection<string>,
+    showGrouped: boolean,
+    yIndex: number,
+  ): Partial<IPlotlyData> => ({
+    fill: 'toself',
+    fillcolor: datum.color.toString(),
+    hoverinfo: 'none',
+    hoveron: 'fills',
+    line: {
+      width: 0,
+    },
+    mode: 'text+lines',
+    name: `${datum.label}`,
+    text: [datum.label],
+    textfont: { color: ['#FFFFFF'] },
+    type: 'scatter',
+    // Creates a 'box' so we can fill it and hover over it and add a point to the middle for the label.
+    x: FeatureViewer.getBoxForChellSection(datum),
+    y: showGrouped
+      ? [0.5, null, 0, 1, 1, 0, 0]
+      : [yIndex + 0.5, null, yIndex + 1, yIndex, yIndex, yIndex + 1, yIndex + 1],
+  });
+
   constructor(props: IFeatureViewerProps) {
     super(props);
     this.state = {
       hoverAnnotationText: '',
       hoveredFeatureIndex: -1,
-      layout: {},
+      plotlyConfig: {
+        showAxisDragHandles: false,
+        showAxisRangeEntryBoxes: false,
+      },
       plotlyData: [],
-      selectedFeatureIndices: new Set<number>(),
+      plotlyLayout: {},
+      selectedFeatureIndices: Set<number>(),
+      selectedRange: new Chell1DSection('selection', -1, -1),
     };
   }
 
   public render() {
     const { width, height } = this.props;
+    const { plotlyConfig, plotlyData, plotlyLayout } = this.state;
 
     return (
       <div style={{ height, width }}>
         <PlotlyChart
-          data={this.state.plotlyData}
-          layout={this.state.layout}
+          config={plotlyConfig}
+          data={plotlyData}
+          layout={plotlyLayout}
           onClickCallback={this.onFeatureClick}
           onHoverCallback={this.onFeatureHover}
           onSelectedCallback={this.onFeatureSelect}
@@ -169,7 +201,7 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
   }
 
   protected onFeatureHover = (event: ChellChartEvent) => {
-    const { data, onHoverCallback } = this.props;
+    const { data, getTextForHover } = this.props;
     let hoveredFeatureIndex = -1;
     // TODO Handle vertical viewer, better selection logic.
     const xCoords = [event.selectedPoints[0], event.selectedPoints[2]];
@@ -183,44 +215,83 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
 
     this.setState({
       hoverAnnotationText:
-        onHoverCallback && hoveredFeatureIndex >= 0
-          ? onHoverCallback(data[hoveredFeatureIndex].label, hoveredFeatureIndex)
+        getTextForHover && hoveredFeatureIndex >= 0
+          ? getTextForHover(data[hoveredFeatureIndex].label, hoveredFeatureIndex)
           : '',
       hoveredFeatureIndex,
     });
   };
 
-  protected onFeatureSelect = (event: ChellChartEvent) => {
-    const { data } = this.props;
-    const selectedFeatureIndices = new Set<number>();
-    // TODO Handle vertical viewer, better selection logic.
-    const xCoords = [event.selectedPoints[0], event.selectedPoints[2]];
-    for (let i = 0; i < data.length; ++i) {
-      for (const xCoord of xCoords) {
-        if (data[i].contains(xCoord)) {
-          selectedFeatureIndices.add(i);
-        }
-      }
+  protected onFeatureClick = (event: ChellChartEvent) => {
+    const { data, onClickCallback } = this.props;
+    const selectedFeatureIndices = this.deriveFeatureIndices(data, event.selectedPoints);
+
+    if (onClickCallback) {
+      onClickCallback(this.deriveSelectedFeatures(data, selectedFeatureIndices.toArray()));
     }
 
     this.setState({
       selectedFeatureIndices,
+      selectedRange: new Chell1DSection('selection', -1, -1),
     });
   };
 
-  protected onFeatureClick = (event: ChellChartEvent) => {
-    const { data } = this.props;
-    const selectedFeatureIndices = new Set<number>();
-    // TODO Handle vertical viewer, better selection logic.
-    const xCoord = event.selectedPoints[0];
-    for (let i = 0; i < data.length; ++i) {
-      if (data[i].contains(xCoord)) {
-        selectedFeatureIndices.add(i);
+  protected onFeatureSelect = (event: ChellChartEvent) => {
+    const { data, onSelectCallback } = this.props;
+    const selectedFeatureIndices = this.deriveFeatureIndices(data, event.selectedPoints);
+
+    const plotlyEvent = event.plotlyEvent as Plotly.PlotSelectionEvent;
+    let { selectedRange } = this.state;
+    if (plotlyEvent.range) {
+      selectedRange = new Chell1DSection(
+        'selection',
+        Math.floor(plotlyEvent.range.x[0]),
+        Math.ceil(plotlyEvent.range.x[1]),
+      );
+
+      const selection: IFeatureRangeSelection = {
+        end: selectedRange.end,
+        featuresSelected: this.deriveSelectedFeatures(data, selectedFeatureIndices.toArray()),
+        length: selectedRange.length,
+        start: selectedRange.start,
+      };
+
+      if (onSelectCallback) {
+        onSelectCallback(selection);
       }
     }
 
     this.setState({
       selectedFeatureIndices,
+      selectedRange,
     });
+  };
+
+  /**
+   * Derive the indices of the Features from the points the user selected.
+   */
+  protected deriveFeatureIndices = (data: Array<TintedChell1DSection<string>>, userSelectedPoints: number[]) => {
+    let featureIndices = Set<number>();
+
+    // Points come to us as [x0, y0, x1, y1, ..., xn, yn], so we skip every other point.
+    for (let i = 0; i < userSelectedPoints.length; i += 2) {
+      const xCoord = userSelectedPoints[i];
+      data
+        .reduce((result, datum, index) => (datum.contains(xCoord) ? [...result, index] : result), new Array<number>())
+        .forEach(indexToAdd => {
+          featureIndices = featureIndices.add(indexToAdd);
+        });
+    }
+
+    return featureIndices;
+  };
+
+  /**
+   * Shorthand to get the raw section data for a set of Features given some indices.
+   */
+  protected deriveSelectedFeatures = (data: Array<TintedChell1DSection<string>>, selectedFeatureIndices: number[]) => {
+    return selectedFeatureIndices.map(
+      index => new Chell1DSection(data[index].label, data[index].start, data[index].end),
+    );
   };
 }

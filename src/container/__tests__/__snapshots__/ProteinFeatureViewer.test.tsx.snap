@@ -11,8 +11,8 @@ exports[`ProteinFeatureViewer Should default to an invalid range if there is a p
     <GridColumn>
       <FeatureViewer
         data={Array []}
+        getTextForHover={[Function]}
         height={200}
-        onHoverCallback={[Function]}
         showGrouped={true}
         title=""
         width={600}
@@ -63,8 +63,8 @@ exports[`ProteinFeatureViewer Should match the default snapshot. 1`] = `
     <GridColumn>
       <FeatureViewer
         data={Array []}
+        getTextForHover={[Function]}
         height={200}
-        onHoverCallback={[Function]}
         showGrouped={true}
         title=""
         width={600}
@@ -113,8 +113,8 @@ exports[`ProteinFeatureViewer Should show protein information when successfully 
     <GridColumn>
       <FeatureViewer
         data={Array []}
+        getTextForHover={[Function]}
         height={200}
-        onHoverCallback={[Function]}
         showGrouped={true}
         title=""
         width={600}

@@ -10,14 +10,40 @@ exports[`ProteinFeatureViewer Should match the default snapshot 1`] = `
   }
 >
   <PlotlyChart
-    config={Object {}}
-    data={Array []}
+    config={
+      Object {
+        "showAxisDragHandles": false,
+        "showAxisRangeEntryBoxes": false,
+      }
+    }
+    data={
+      Array [
+        Object {
+          "hoverinfo": "none",
+          "line": Object {
+            "color": "orange",
+            "width": 10,
+          },
+          "mode": "lines",
+          "showlegend": false,
+          "x": Array [
+            -1,
+            -1,
+          ],
+          "y": Array [
+            -0.25,
+            -0.25,
+          ],
+        },
+      ]
+    }
     height="100%"
     layout={
       Object {
         "annotations": Array [],
         "dragmode": "select",
         "height": 200,
+        "hovermode": "closest",
         "margin": Object {
           "b": 30,
           "t": 60,
@@ -29,8 +55,10 @@ exports[`ProteinFeatureViewer Should match the default snapshot 1`] = `
           "visible": false,
         },
         "yaxis": Object {
+          "autorange": false,
+          "fixedrange": true,
           "range": Array [
-            0,
+            -0.25,
             0,
           ],
           "visible": false,
@@ -56,14 +84,40 @@ exports[`ProteinFeatureViewer Should match the default snapshot. 1`] = `
   }
 >
   <PlotlyChart
-    config={Object {}}
-    data={Array []}
+    config={
+      Object {
+        "showAxisDragHandles": false,
+        "showAxisRangeEntryBoxes": false,
+      }
+    }
+    data={
+      Array [
+        Object {
+          "hoverinfo": "none",
+          "line": Object {
+            "color": "orange",
+            "width": 10,
+          },
+          "mode": "lines",
+          "showlegend": false,
+          "x": Array [
+            -1,
+            -1,
+          ],
+          "y": Array [
+            -0.25,
+            -0.25,
+          ],
+        },
+      ]
+    }
     height="100%"
     layout={
       Object {
         "annotations": Array [],
         "dragmode": "select",
         "height": 200,
+        "hovermode": "closest",
         "margin": Object {
           "b": 30,
           "t": 60,
@@ -75,8 +129,10 @@ exports[`ProteinFeatureViewer Should match the default snapshot. 1`] = `
           "visible": false,
         },
         "yaxis": Object {
+          "autorange": false,
+          "fixedrange": true,
           "range": Array [
-            0,
+            -0.25,
             0,
           ],
           "visible": false,

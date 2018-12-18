@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IRepresentationElementSignals | chell-viz</title>
+	<title>IFeatureRangeSelection | chell-viz</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_ngl_.html">&quot;ngl&quot;</a>
-				</li>
-				<li>
-					<a href="_ngl_.irepresentationelementsignals.html">IRepresentationElementSignals</a>
+					<a href="ifeaturerangeselection.html">IFeatureRangeSelection</a>
 				</li>
 			</ul>
-			<h1>Interface IRepresentationElementSignals</h1>
+			<h1>Interface IFeatureRangeSelection</h1>
 		</div>
 	</div>
 </header>
@@ -71,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IRepresentationElementSignals</span>
+						<span class="target">IFeatureRangeSelection</span>
 					</li>
 				</ul>
 			</section>
@@ -82,11 +79,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.irepresentationelementsignals.html#disposed" class="tsd-kind-icon">disposed</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.irepresentationelementsignals.html#namechanged" class="tsd-kind-icon">name<wbr>Changed</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.irepresentationelementsignals.html#parameterschanged" class="tsd-kind-icon">parameters<wbr>Changed</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.irepresentationelementsignals.html#statuschanged" class="tsd-kind-icon">status<wbr>Changed</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.irepresentationelementsignals.html#visibilitychanged" class="tsd-kind-icon">visibility<wbr>Changed</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ifeaturerangeselection.html#end" class="tsd-kind-icon">end</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ifeaturerangeselection.html#featuresselected" class="tsd-kind-icon">features<wbr>Selected</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ifeaturerangeselection.html#length" class="tsd-kind-icon">length</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ifeaturerangeselection.html#start" class="tsd-kind-icon">start</a></li>
 							</ul>
 						</section>
 					</div>
@@ -95,52 +91,42 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="disposed" class="tsd-anchor"></a>
-					<h3>disposed</h3>
-					<div class="tsd-signature tsd-kind-icon">disposed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Signal</span></div>
+					<a name="end" class="tsd-anchor"></a>
+					<h3>end</h3>
+					<div class="tsd-signature tsd-kind-icon">end<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a5fc9266/types/ngl/component/component.d.ts#L312">types/ngl/component/component.d.ts:312</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a5fc9266/src/component/FeatureViewer.tsx#L8">src/component/FeatureViewer.tsx:8</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="namechanged" class="tsd-anchor"></a>
-					<h3>name<wbr>Changed</h3>
-					<div class="tsd-signature tsd-kind-icon">name<wbr>Changed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Signal</span></div>
+					<a name="featuresselected" class="tsd-anchor"></a>
+					<h3>features<wbr>Selected</h3>
+					<div class="tsd-signature tsd-kind-icon">features<wbr>Selected<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/chell1dsection.html" class="tsd-signature-type">Chell1DSection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a5fc9266/types/ngl/component/component.d.ts#L313">types/ngl/component/component.d.ts:313</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a5fc9266/src/component/FeatureViewer.tsx#L11">src/component/FeatureViewer.tsx:11</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="parameterschanged" class="tsd-anchor"></a>
-					<h3>parameters<wbr>Changed</h3>
-					<div class="tsd-signature tsd-kind-icon">parameters<wbr>Changed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Signal</span></div>
+					<a name="length" class="tsd-anchor"></a>
+					<h3>length</h3>
+					<div class="tsd-signature tsd-kind-icon">length<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a5fc9266/types/ngl/component/component.d.ts#L314">types/ngl/component/component.d.ts:314</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a5fc9266/src/component/FeatureViewer.tsx#L9">src/component/FeatureViewer.tsx:9</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="statuschanged" class="tsd-anchor"></a>
-					<h3>status<wbr>Changed</h3>
-					<div class="tsd-signature tsd-kind-icon">status<wbr>Changed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Signal</span></div>
+					<a name="start" class="tsd-anchor"></a>
+					<h3>start</h3>
+					<div class="tsd-signature tsd-kind-icon">start<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a5fc9266/types/ngl/component/component.d.ts#L315">types/ngl/component/component.d.ts:315</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="visibilitychanged" class="tsd-anchor"></a>
-					<h3>visibility<wbr>Changed</h3>
-					<div class="tsd-signature tsd-kind-icon">visibility<wbr>Changed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Signal</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a5fc9266/types/ngl/component/component.d.ts#L316">types/ngl/component/component.d.ts:316</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/a5fc9266/src/component/FeatureViewer.tsx#L10">src/component/FeatureViewer.tsx:10</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -152,50 +138,26 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_anatomogram_.html">"anatomogram"</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_morpheus_app_.html">"morpheus-<wbr>app"</a>
-					</li>
-					<li class=" tsd-kind-module tsd-parent-kind-module">
-						<a href="../modules/_morpheus_app_.dataset.html">"morpheus-<wbr>app".<wbr>Dataset</a>
-					</li>
-					<li class="current tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_ngl_.html">"ngl"</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_react_full_screen_.html">"react-<wbr>full-<wbr>screen"</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_react_iframe_comm_.html">"react-<wbr>iframe-<wbr>comm"</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/nodejs.html">NodeJS</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="_ngl_.irepresentationelementsignals.html" class="tsd-kind-icon">IRepresentation<wbr>Element<wbr>Signals</a>
+					<li class="current tsd-kind-interface">
+						<a href="ifeaturerangeselection.html" class="tsd-kind-icon">IFeature<wbr>Range<wbr>Selection</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.irepresentationelementsignals.html#disposed" class="tsd-kind-icon">disposed</a>
+								<a href="ifeaturerangeselection.html#end" class="tsd-kind-icon">end</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.irepresentationelementsignals.html#namechanged" class="tsd-kind-icon">name<wbr>Changed</a>
+								<a href="ifeaturerangeselection.html#featuresselected" class="tsd-kind-icon">features<wbr>Selected</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.irepresentationelementsignals.html#parameterschanged" class="tsd-kind-icon">parameters<wbr>Changed</a>
+								<a href="ifeaturerangeselection.html#length" class="tsd-kind-icon">length</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.irepresentationelementsignals.html#statuschanged" class="tsd-kind-icon">status<wbr>Changed</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.irepresentationelementsignals.html#visibilitychanged" class="tsd-kind-icon">visibility<wbr>Changed</a>
+								<a href="ifeaturerangeselection.html#start" class="tsd-kind-icon">start</a>
 							</li>
 						</ul>
 					</li>

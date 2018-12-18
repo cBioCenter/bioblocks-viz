@@ -19,6 +19,7 @@ import {
   NGL_DATA_TYPE,
   NGLComponent,
   PredictedContactMap,
+  ProteinFeatureViewer,
   readFileAsText,
   ResidueContextConsumer,
   SecondaryStructureContextConsumer,
@@ -133,6 +134,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     return (
       <div id="ChellVizApp" style={{ ...style, height: '1000px' }}>
         {this.renderCouplingComponents()}
+        <ProteinFeatureViewer />
       </div>
     );
   }
