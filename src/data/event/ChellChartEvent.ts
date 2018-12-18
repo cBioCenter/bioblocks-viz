@@ -6,6 +6,7 @@ export class ChellChartEvent {
     readonly type: CHELL_CHART_EVENT_TYPE,
     readonly chartPiece?: CHELL_CHART_PIECE,
     readonly selectedPoints: number[] = [],
+    readonly plotlyEvent: Partial<Plotly.PlotMouseEvent> | Partial<Plotly.PlotSelectionEvent> = {},
   ) {}
 
   public isAxis() {

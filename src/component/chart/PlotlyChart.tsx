@@ -348,7 +348,6 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   };
 
   protected onRelayout = (event: plotly.PlotRelayoutEvent & { [key: string]: number }) => {
-    console.log('onRelayout');
     this.isDoubleClickInProgress = false;
     // !IMPORTANT! Yes, these numbers have to be accessed like this, see:
     // https://plot.ly/javascript/plotlyjs-function-reference/#plotlyrestyle
@@ -392,7 +391,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
         allPoints.length > 0
           ? this.deriveChartPiece(allPoints[0], allPoints[1])
           : { chartPiece: CHELL_CHART_PIECE.POINT };
-      onSelectedCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.SELECTION, chartPiece, allPoints));
+      onSelectedCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.SELECTION, chartPiece, allPoints, event));
     }
     await this.draw();
   };

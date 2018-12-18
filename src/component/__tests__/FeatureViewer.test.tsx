@@ -33,28 +33,28 @@ describe('ProteinFeatureViewer', () => {
       const wrapper = await getAsyncMountedComponent(<FeatureViewer data={sampleData} />);
       await dispatchPlotlySelectionEvent(wrapper, { points: [{ x: 2017 }] });
       const state = wrapper.instance().state as IFeatureViewerState;
-      expect(Array.from(state.selectedFeatureIndices)).toEqual([3]);
+      expect(state.selectedFeatureIndices.toArray()).toEqual([3]);
     });
 
     it('Should handle selecting multiple features sharing an overlap.', async () => {
       const wrapper = await getAsyncMountedComponent(<FeatureViewer data={sampleData} />);
       await dispatchPlotlySelectionEvent(wrapper, { points: [{ x: 2018 }] });
       const state = wrapper.instance().state as IFeatureViewerState;
-      expect(Array.from(state.selectedFeatureIndices)).toEqual([3, 4]);
+      expect(state.selectedFeatureIndices.toArray()).toEqual([3, 4]);
     });
 
     it('Should handle selecting multiple features via selection box.', async () => {
       const wrapper = await getAsyncMountedComponent(<FeatureViewer data={sampleData} />);
       await dispatchPlotlySelectionEvent(wrapper, { points: [{ x: [1999, 2018], y: [0, 2] }] });
       const state = wrapper.instance().state as IFeatureViewerState;
-      expect(Array.from(state.selectedFeatureIndices)).toEqual([0, 1, 2, 3, 4]);
+      expect(state.selectedFeatureIndices.toArray()).toEqual([0, 1, 2, 3, 4]);
     });
 
     it('Should handle clicking a single feature.', async () => {
       const wrapper = await getAsyncMountedComponent(<FeatureViewer data={sampleData} />);
       await dispatchPlotlySelectionEvent(wrapper, { points: [{ x: 2002, y: 1 }] });
       const state = wrapper.instance().state as IFeatureViewerState;
-      expect(Array.from(state.selectedFeatureIndices)).toEqual([1]);
+      expect(state.selectedFeatureIndices.toArray()).toEqual([1]);
     });
 
     it('Should handle hovering over a single feature.', async () => {
