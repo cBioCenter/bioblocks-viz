@@ -66,6 +66,9 @@ class MockStage {
   };
 
   public viewer = {
+    renderer: {
+      forceContextLoss: () => jest.fn(),
+    },
     requestRender: () => jest.fn(),
   };
 
@@ -156,8 +159,8 @@ class MockStructureComponent {
 class MockStructure {
   public atomMap = { dict: { 'CA|C': 2 } };
 
-  public eachResidue = jest.fn(
-    (cb: (...args: any[]) => void) => (this.name.localeCompare('sample.pdb') ? sampleResidues.map(cb) : {}),
+  public eachResidue = jest.fn((cb: (...args: any[]) => void) =>
+    this.name.localeCompare('sample.pdb') ? sampleResidues.map(cb) : {},
   );
   public getAtomProxy = jest.fn((index: number) => ({
     distanceTo: (pos: number) => pos + index,
@@ -187,9 +190,8 @@ class MockStructure {
   return new MockStructure(name);
 });
 
-(ngl.autoLoad as any) = jest.fn(
-  (path: string) =>
-    path.localeCompare('error/protein.pdb') === 0 ? Promise.reject('Invalid NGL path.') : new NGL.Structure(path),
+(ngl.autoLoad as any) = jest.fn((path: string) =>
+  path.localeCompare('error/protein.pdb') === 0 ? Promise.reject('Invalid NGL path.') : new NGL.Structure(path),
 );
 
 module.exports = ngl;

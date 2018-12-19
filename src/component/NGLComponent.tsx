@@ -104,6 +104,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
   public componentWillUnmount() {
     const { stage } = this.state;
     if (stage) {
+      stage.viewer.renderer.forceContextLoss();
       stage.dispose();
       this.setState({
         activeRepresentations: [],
