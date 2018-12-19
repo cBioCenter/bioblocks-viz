@@ -268,7 +268,8 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
   protected renderStartMessage = () => (
     <Message>
       {`To get started, please upload either a PDB (.pdb) or EVCouplings score (.csv) file!`} {<br />} Check out the
-      {<a href="evfold.org"> EVFold</a>}, {<a href="sanderlab.org/contact-maps/">Sander Lab</a>}, or
+      {/* tslint:disable-next-line:no-http-string */}
+      {<a href="http://evfold.org"> EVFold</a>}, {<a href="http://sanderlab.org/contact-maps/">Sander Lab</a>}, or
       {<a href="https://evcouplings.org/"> EVCouplings </a>} website to get these files.
     </Message>
   );
