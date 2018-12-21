@@ -159,6 +159,7 @@ module.exports = {
       '~chell-viz~/data': path.resolve(__dirname, './src/data'),
       '~chell-viz~/helper': path.resolve(__dirname, './src/helper'),
       '~chell-viz~/hoc': path.resolve(__dirname, './src/hoc'),
+      '~chell-viz~/reducer': path.resolve(__dirname, './src/reducer'),
     },
     extensions: ['.js', '.json', '.ts', '.tsx'],
     modules: [path.join(__dirname, 'src'), path.join(__dirname, 'types'), 'node_modules'],
