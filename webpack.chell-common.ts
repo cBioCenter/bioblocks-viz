@@ -153,6 +153,7 @@ module.exports = {
   resolve: {
     alias: {
       '~chell-viz~': path.resolve(__dirname, './src'),
+      '~chell-viz~/action': path.resolve(__dirname, './src/action'),
       '~chell-viz~/component': path.resolve(__dirname, './src/component'),
       '~chell-viz~/container': path.resolve(__dirname, './src/container'),
       '~chell-viz~/context': path.resolve(__dirname, './src/context'),

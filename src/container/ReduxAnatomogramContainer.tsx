@@ -1,24 +1,27 @@
 // tslint:disable-next-line:import-name
 import Anatomogram from 'anatomogram';
-import * as React from 'react';
-
 import { Set } from 'immutable';
+import * as React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
+
+import { LabelAction } from '~chell-viz~/action';
 import { initialSpringContext, ISpringContext, SpringContext } from '~chell-viz~/context';
 import { CHELL_CSS_STYLE } from '~chell-viz~/data';
-import { addLabel } from '~chell-viz~/reducer';
+import { RootState } from '~chell-viz~/reducer';
 
 export interface IReduxAnatomogramContainerProps {
   height: number | string;
+  selectIds: Set<string>;
   species: 'homo_sapiens' | 'mus_musculus';
   springContext: ISpringContext;
   style: CHELL_CSS_STYLE;
   width: number | string;
+  addLabel(label: string): void;
 }
 
 export interface IReduxAnatomogramContainerState {
   ids: string[];
-  selectIds: Set<string>;
 }
 
 export const springToAnatomogramMappingRedux: { [key: string]: { [key: string]: string } } = {
@@ -89,25 +92,12 @@ export class ReduxAnatomogramContainerClass extends React.Component<
     super(props);
     this.state = {
       ids: Object.keys(anatomogramToSpringMappingRedux[props.species]),
-      selectIds: Set<string>(),
     };
   }
 
-  public componentDidUpdate(prevProps: IReduxAnatomogramContainerProps) {
-    const { springContext } = this.props;
-    if (!springContext.selectedLabels.equals(prevProps.springContext.selectedLabels)) {
-      const selectIds = springContext.selectedLabels
-        .toArray()
-        .filter(label => springToAnatomogramMappingRedux[this.props.species][this.parseCategory(label)] !== undefined)
-        .map(label => springToAnatomogramMappingRedux[this.props.species][this.parseCategory(label)]);
-      this.setState({
-        selectIds: Set(selectIds),
-      });
-    }
-  }
-
   public render() {
-    const { ids, selectIds } = this.state;
+    const { species, selectIds } = this.props;
+    const { ids } = this.state;
 
     return (
       <div className={'anatomogram-container'} style={{ height: '100%' }}>
@@ -120,20 +110,18 @@ export class ReduxAnatomogramContainerClass extends React.Component<
           selectColour={'ffaa00'}
           selectIds={selectIds.toArray()}
           showIds={ids}
-          species={this.props.species}
-          selectedView={this.props.species === 'mus_musculus' ? 'female' : 'male'}
+          species={species}
+          selectedView={species === 'mus_musculus' ? 'female' : 'male'}
         />
       </div>
     );
   }
 
-  protected onClick = (id: string) => {
-    const { species, springContext } = this.props;
-    const labels = anatomogramToSpringMappingRedux[species][id];
+  protected onClick = (ids: string[]) => {
+    const { addLabel, species, springContext } = this.props;
+    const labels = anatomogramToSpringMappingRedux[species][ids[0]];
 
-    console.log(`labels[0] = ${labels[0]}`);
-    // @ts-ignore
-    this.props.addLabel(labels[0]);
+    addLabel(ids[0]);
     springContext.toggleLabels(labels);
   };
 
@@ -152,22 +140,28 @@ export class ReduxAnatomogramContainerClass extends React.Component<
   };
 }
 
+const mapStateToProps = (state: RootState) => ({
+  selectIds: Set<string>([state.label.selectedLabel]),
+});
+
 type requiredProps = Omit<IReduxAnatomogramContainerProps, keyof typeof ReduxAnatomogramContainerClass.defaultProps> &
   Partial<IReduxAnatomogramContainerProps>;
 
-const mapStateToProps = (state: IReduxAnatomogramContainerState /*, ownProps*/) => {
-  return {
-    selectIds: [state.selectIds],
-  };
-};
+const UnconnectedReduxAnatomogramContainer = (props: requiredProps) => (
+  <SpringContext.Consumer>
+    {springContext => <ReduxAnatomogramContainerClass {...props} springContext={springContext} />}
+  </SpringContext.Consumer>
+);
 
-const mapDispatchToProps = { addLabel };
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators(
+    {
+      addLabel: LabelAction.addLabel,
+    },
+    dispatch,
+  );
 
 export const ReduxAnatomogramContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)((props: requiredProps) => (
-  <SpringContext.Consumer>
-    {springContext => <ReduxAnatomogramContainerClass {...props} springContext={springContext} />}
-  </SpringContext.Consumer>
-));
+)(UnconnectedReduxAnatomogramContainer);

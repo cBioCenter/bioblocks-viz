@@ -1,6 +1,7 @@
-import { applyMiddleware, createStore } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import reduxThunk from 'redux-thunk';
-import { Reducer } from '~chell-viz~/reducer';
+import { createStore } from 'redux';
 
-export const Store = createStore(Reducer, composeWithDevTools(applyMiddleware(reduxThunk)));
+import { rootReducer } from '~chell-viz~/reducer';
+
+const configureStore = (initialState = {}) => createStore(rootReducer, initialState);
+
+export const Store = configureStore();

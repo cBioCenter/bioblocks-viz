@@ -115,7 +115,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="reduxanatomogramcontainerclass.html#unsafe_componentwillupdate" class="tsd-kind-icon">UNSAFE_<wbr>component<wbr>Will<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="reduxanatomogramcontainerclass.html#componentdidcatch" class="tsd-kind-icon">component<wbr>Did<wbr>Catch</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="reduxanatomogramcontainerclass.html#componentdidmount" class="tsd-kind-icon">component<wbr>Did<wbr>Mount</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="reduxanatomogramcontainerclass.html#componentdidupdate" class="tsd-kind-icon">component<wbr>Did<wbr>Update</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="reduxanatomogramcontainerclass.html#componentdidupdate" class="tsd-kind-icon">component<wbr>Did<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="reduxanatomogramcontainerclass.html#componentwillmount" class="tsd-kind-icon">component<wbr>Will<wbr>Mount</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="reduxanatomogramcontainerclass.html#componentwillreceiveprops" class="tsd-kind-icon">component<wbr>Will<wbr>Receive<wbr>Props</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="reduxanatomogramcontainerclass.html#componentwillunmount" class="tsd-kind-icon">component<wbr>Will<wbr>Unmount</a></li>
@@ -153,7 +153,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/224feb67/src/container/ReduxAnatomogramContainer.tsx#L86">src/container/ReduxAnatomogramContainer.tsx:86</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/20a6250f/src/container/ReduxAnatomogramContainer.tsx#L89">src/container/ReduxAnatomogramContainer.tsx:89</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -175,7 +175,7 @@
 					<div class="tsd-signature tsd-kind-icon">anatomogram<wbr>Ref<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/224feb67/src/container/ReduxAnatomogramContainer.tsx#L86">src/container/ReduxAnatomogramContainer.tsx:86</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/20a6250f/src/container/ReduxAnatomogramContainer.tsx#L89">src/container/ReduxAnatomogramContainer.tsx:89</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -292,7 +292,7 @@ class Foo extends React.Component {
 					<div class="tsd-signature tsd-kind-icon">display<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Anatomogram&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/224feb67/src/container/ReduxAnatomogramContainer.tsx#L84">src/container/ReduxAnatomogramContainer.tsx:84</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/20a6250f/src/container/ReduxAnatomogramContainer.tsx#L87">src/container/ReduxAnatomogramContainer.tsx:87</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -492,24 +492,36 @@ class Foo extends React.Component {
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="componentdidupdate" class="tsd-anchor"></a>
-					<h3>component<wbr>Did<wbr>Update</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">component<wbr>Did<wbr>Update<span class="tsd-signature-symbol">(</span>prevProps<span class="tsd-signature-symbol">: </span><a href="../interfaces/ireduxanatomogramcontainerprops.html" class="tsd-signature-type">IReduxAnatomogramContainerProps</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> component<wbr>Did<wbr>Update</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">component<wbr>Did<wbr>Update<span class="tsd-signature-symbol">(</span>prevProps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ireduxanatomogramcontainerprops.html" class="tsd-signature-type">IReduxAnatomogramContainerProps</a><span class="tsd-signature-symbol">&gt;</span>, prevState<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ireduxanatomogramcontainerstate.html" class="tsd-signature-type">IReduxAnatomogramContainerState</a><span class="tsd-signature-symbol">&gt;</span>, snapshot<span class="tsd-signature-symbol">?: </span><a href="" class="tsd-signature-type">SS</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides NewLifecycle.componentDidUpdate</p>
+								<p>Inherited from NewLifecycle.componentDidUpdate</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/224feb67/src/container/ReduxAnatomogramContainer.tsx#L96">src/container/ReduxAnatomogramContainer.tsx:96</a></li>
+									<li>Defined in node_modules/@types/react/index.d.ts:576</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Called immediately after updating occurs. Not called for the initial render.</p>
+								</div>
+								<p>The snapshot is only present if getSnapshotBeforeUpdate is present and returns non-null.</p>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>prevProps: <a href="../interfaces/ireduxanatomogramcontainerprops.html" class="tsd-signature-type">IReduxAnatomogramContainerProps</a></h5>
+									<h5>prevProps: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ireduxanatomogramcontainerprops.html" class="tsd-signature-type">IReduxAnatomogramContainerProps</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>prevState: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ireduxanatomogramcontainerstate.html" class="tsd-signature-type">IReduxAnatomogramContainerState</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> snapshot: <a href="" class="tsd-signature-type">SS</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -741,19 +753,19 @@ class Foo extends React.Component {
 					<a name="onclick" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> on<wbr>Click</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">on<wbr>Click<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Click<span class="tsd-signature-symbol">(</span>ids<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/224feb67/src/container/ReduxAnatomogramContainer.tsx#L130">src/container/ReduxAnatomogramContainer.tsx:130</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/20a6250f/src/container/ReduxAnatomogramContainer.tsx#L120">src/container/ReduxAnatomogramContainer.tsx:120</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<h5>ids: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -770,7 +782,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/224feb67/src/container/ReduxAnatomogramContainer.tsx#L140">src/container/ReduxAnatomogramContainer.tsx:140</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/20a6250f/src/container/ReduxAnatomogramContainer.tsx#L128">src/container/ReduxAnatomogramContainer.tsx:128</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -793,7 +805,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/224feb67/src/container/ReduxAnatomogramContainer.tsx#L144">src/container/ReduxAnatomogramContainer.tsx:144</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/20a6250f/src/container/ReduxAnatomogramContainer.tsx#L132">src/container/ReduxAnatomogramContainer.tsx:132</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -816,7 +828,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/224feb67/src/container/ReduxAnatomogramContainer.tsx#L148">src/container/ReduxAnatomogramContainer.tsx:148</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/20a6250f/src/container/ReduxAnatomogramContainer.tsx#L136">src/container/ReduxAnatomogramContainer.tsx:136</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -840,7 +852,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Overrides Component.render</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/224feb67/src/container/ReduxAnatomogramContainer.tsx#L109">src/container/ReduxAnatomogramContainer.tsx:109</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/20a6250f/src/container/ReduxAnatomogramContainer.tsx#L98">src/container/ReduxAnatomogramContainer.tsx:98</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
@@ -929,7 +941,7 @@ class Foo extends React.Component {
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/224feb67/src/container/ReduxAnatomogramContainer.tsx#L75">src/container/ReduxAnatomogramContainer.tsx:75</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/20a6250f/src/container/ReduxAnatomogramContainer.tsx#L78">src/container/ReduxAnatomogramContainer.tsx:78</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -938,7 +950,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;300px&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/224feb67/src/container/ReduxAnatomogramContainer.tsx#L76">src/container/ReduxAnatomogramContainer.tsx:76</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/20a6250f/src/container/ReduxAnatomogramContainer.tsx#L79">src/container/ReduxAnatomogramContainer.tsx:79</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -948,7 +960,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">style<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/224feb67/src/container/ReduxAnatomogramContainer.tsx#L80">src/container/ReduxAnatomogramContainer.tsx:80</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/20a6250f/src/container/ReduxAnatomogramContainer.tsx#L83">src/container/ReduxAnatomogramContainer.tsx:83</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-type-declaration">
@@ -963,7 +975,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;400px&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/224feb67/src/container/ReduxAnatomogramContainer.tsx#L81">src/container/ReduxAnatomogramContainer.tsx:81</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/20a6250f/src/container/ReduxAnatomogramContainer.tsx#L84">src/container/ReduxAnatomogramContainer.tsx:84</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -973,7 +985,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">spring<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/224feb67/src/container/ReduxAnatomogramContainer.tsx#L77">src/container/ReduxAnatomogramContainer.tsx:77</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/20a6250f/src/container/ReduxAnatomogramContainer.tsx#L80">src/container/ReduxAnatomogramContainer.tsx:80</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1034,7 +1046,7 @@ class Foo extends React.Component {
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="reduxanatomogramcontainerclass.html#componentdidmount" class="tsd-kind-icon">component<wbr>Did<wbr>Mount</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="reduxanatomogramcontainerclass.html#componentdidupdate" class="tsd-kind-icon">component<wbr>Did<wbr>Update</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
