@@ -8,9 +8,9 @@ const removeLabel = createAction('REMOVE_LABEL', resolve => {
   return (label: string) => resolve({ label });
 });
 
-export const LabelAction = {
+export const LabelActions = {
   addLabel,
   removeLabel,
 };
 
-export type LabelAction = ActionType<typeof addLabel | typeof removeLabel>;
+export type LabelActionType = ActionType<typeof LabelActions>;

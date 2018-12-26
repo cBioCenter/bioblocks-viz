@@ -5,7 +5,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
-import { LabelAction } from '~chell-viz~/action';
+import { LabelActions } from '~chell-viz~/action';
 import { initialSpringContext, ISpringContext, SpringContext } from '~chell-viz~/context';
 import { CHELL_CSS_STYLE } from '~chell-viz~/data';
 import { RootState } from '~chell-viz~/reducer';
@@ -156,7 +156,7 @@ const UnconnectedReduxAnatomogramContainer = (props: requiredProps) => (
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
-      addLabel: LabelAction.addLabel,
+      addLabel: LabelActions.addLabel,
     },
     dispatch,
   );

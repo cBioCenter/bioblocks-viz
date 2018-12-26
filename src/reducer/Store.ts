@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 
-import { rootReducer } from '~chell-viz~/reducer';
+import { RootReducer } from '~chell-viz~/reducer';
 
-const configureStore = (initialState = {}) => createStore(rootReducer, initialState);
+const configureStore = (initialState = {}) => createStore(RootReducer, initialState);
 
 export const Store = configureStore();
