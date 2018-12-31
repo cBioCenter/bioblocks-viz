@@ -10,7 +10,7 @@ import { initialSpringContext, ISpringContext, SpringContext } from '~chell-viz~
 import { CHELL_CSS_STYLE } from '~chell-viz~/data';
 import { RootState } from '~chell-viz~/reducer';
 
-export interface IReduxAnatomogramContainerProps {
+interface IReduxAnatomogramContainerProps {
   height: number | string;
   selectIds: Set<string>;
   species: 'homo_sapiens' | 'mus_musculus';
@@ -20,7 +20,7 @@ export interface IReduxAnatomogramContainerProps {
   addLabel(label: string): void;
 }
 
-export interface IReduxAnatomogramContainerState {
+interface IReduxAnatomogramContainerState {
   ids: string[];
 }
 
@@ -48,7 +48,7 @@ export const springToAnatomogramMappingRedux: { [key: string]: { [key: string]: 
   },
 };
 
-export const anatomogramToSpringMappingRedux: { [key: string]: { [key: string]: string[] } } = {
+const anatomogramToSpringMappingRedux: { [key: string]: { [key: string]: string[] } } = {
   homo_sapiens: {
     UBERON_0000178: ['P11A'],
     UBERON_0000955: ['P12A'],
@@ -71,7 +71,7 @@ export const anatomogramToSpringMappingRedux: { [key: string]: { [key: string]: 
   },
 };
 
-export class ReduxAnatomogramContainerClass extends React.Component<
+class ReduxAnatomogramContainerClass extends React.Component<
   IReduxAnatomogramContainerProps,
   IReduxAnatomogramContainerState
 > {
@@ -161,7 +161,8 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     dispatch,
   );
 
-export const ReduxAnatomogramContainer = connect(
+// tslint:disable-next-line:max-classes-per-file
+export class ReduxAnatomogramContainer extends connect(
   mapStateToProps,
   mapDispatchToProps,
-)(UnconnectedReduxAnatomogramContainer);
+)(UnconnectedReduxAnatomogramContainer) {}

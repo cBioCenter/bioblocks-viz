@@ -16,7 +16,7 @@ import {
 } from '~chell-viz~/data';
 import { fetchTensorTSneCoordinateData } from '~chell-viz~/helper';
 
-export interface IReduxTensorContainerProps {
+interface IReduxTensorContainerProps {
   datasetLocation: string;
   isFullPage: boolean;
   pointColor: string;
@@ -24,7 +24,7 @@ export interface IReduxTensorContainerProps {
   style: CHELL_CSS_STYLE;
 }
 
-export interface IReduxTensorContainerState {
+interface IReduxTensorContainerState {
   coordsArray: number[][];
   isAnimating: boolean;
   isComputing: boolean;
@@ -33,10 +33,7 @@ export interface IReduxTensorContainerState {
   plotlyCoords: Array<Partial<IPlotlyData>>;
 }
 
-export class ReduxTensorTContainerClass extends React.Component<
-  IReduxTensorContainerProps,
-  IReduxTensorContainerState
-> {
+class ReduxTensorTContainerClass extends React.Component<IReduxTensorContainerProps, IReduxTensorContainerState> {
   public static defaultProps = {
     datasetLocation: 'hpc/full',
     height: 400,
