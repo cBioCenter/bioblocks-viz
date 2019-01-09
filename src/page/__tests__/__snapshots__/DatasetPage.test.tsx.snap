@@ -23,7 +23,7 @@ exports[`DatasetPage Should match existing snapshot for initial visualizations. 
         }
       }
     >
-      <Component
+      <Connect(UnconnectedAnatomogramContainer)
         species="homo_sapiens"
       />
     </GridColumn>
@@ -54,7 +54,7 @@ exports[`DatasetPage Should match existing snapshot for initial visualizations. 
         }
       }
     >
-      <Component
+      <Connect(UnconnectedAnatomogramContainer)
         species="mus_musculus"
       />
     </GridColumn>
@@ -177,7 +177,7 @@ exports[`DatasetPage Should match existing snapshot for initial visualizations. 
         }
       }
     >
-      <Component
+      <Connect(UnconnectedTensorTContainer)
         datasetLocation="{hpc/sample}"
         isFullPage={true}
       />
@@ -209,7 +209,7 @@ exports[`DatasetPage Should match existing snapshot for initial visualizations. 
         }
       }
     >
-      <Component
+      <Connect(UnconnectedTensorTContainer)
         datasetLocation="{mouse/sample}"
         isFullPage={false}
       />

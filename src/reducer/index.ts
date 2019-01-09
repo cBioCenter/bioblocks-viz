@@ -1,3 +1,3 @@
-export * from './LabelReducer';
+export * from './LabeledCellsReducer';
 export * from './RootReducer';
 export * from './Store';

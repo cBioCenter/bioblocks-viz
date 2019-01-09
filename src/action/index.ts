@@ -1,1 +1,1 @@
-export * from './LabelAction';
+export * from './LabeledCellsAction';

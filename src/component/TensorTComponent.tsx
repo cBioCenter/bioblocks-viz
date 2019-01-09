@@ -16,8 +16,6 @@ class TensorTComponentClass extends React.Component<ITensorComponentProps> {
     },
   };
 
-  protected canvasContext: CanvasRenderingContext2D | null = null;
-
   constructor(props: ITensorComponentProps) {
     super(props);
   }
