@@ -1,4 +1,5 @@
 export * from './AminoAcid';
+export * from './AnatomogramMapping';
 export * from './Chell1DSection';
 export * from './ChellConfig';
 export * from './ChellData';

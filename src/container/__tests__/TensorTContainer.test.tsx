@@ -3,7 +3,6 @@ import * as React from 'react';
 
 import { Radio } from 'semantic-ui-react';
 import { TensorTContainer, TensorTContainerClass } from '~chell-viz~/container';
-import { initialSpringContext } from '~chell-viz~/context';
 import { dispatchPlotlySelectionEvent, genTensorTsneData } from '~chell-viz~/test';
 
 describe('TensorTContainer', () => {
@@ -17,21 +16,20 @@ describe('TensorTContainer', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('Should handle selection events.', async () => {
+  it('Should handle selection events.', done => {
     const sampleData = genTensorTsneData();
     const setCellsSpy = jest.fn();
-    const wrapper = mount(<TensorTContainerClass springContext={{ ...initialSpringContext, setCells: setCellsSpy }} />);
-    wrapper.update();
-    const instance = wrapper.instance() as TensorTContainerClass;
-    await instance.componentDidMount();
-    await instance.componentDidMount();
-    await dispatchPlotlySelectionEvent(wrapper, { points: [{ x: sampleData[1][0], y: sampleData[1][1] }] });
-    expect(setCellsSpy).toHaveBeenCalled();
+    const wrapper = mount(<TensorTContainerClass setCurrentCells={setCellsSpy} />);
+    setInterval(async () => {
+      await dispatchPlotlySelectionEvent(wrapper, { points: [{ x: sampleData[1][0], y: sampleData[1][1] }] });
+      expect(setCellsSpy).toHaveBeenCalled();
+      done();
+    }, 4000);
   });
 
   it('Should handle starting playback.', () => {
-    const wrapper = shallow(<TensorTContainerClass />);
-    const instance = wrapper.instance() as TensorTContainerClass;
+    const wrapper = shallow(<TensorTContainerClass setCurrentCells={jest.fn()} />);
+    const instance = wrapper.instance() as TensorTContainer;
     expect(instance.state.isAnimating).toBe(false);
     wrapper
       .find(Radio)
@@ -41,7 +39,7 @@ describe('TensorTContainer', () => {
   });
 
   it('Should handle pausing playback.', done => {
-    const wrapper = shallow(<TensorTContainerClass />);
+    const wrapper = shallow(<TensorTContainerClass setCurrentCells={jest.fn()} />);
     const instance = wrapper.instance() as TensorTContainerClass;
     expect(instance.state.isAnimating).toBe(false);
     wrapper

@@ -153,12 +153,14 @@ module.exports = {
   resolve: {
     alias: {
       '~chell-viz~': path.resolve(__dirname, './src'),
+      '~chell-viz~/action': path.resolve(__dirname, './src/action'),
       '~chell-viz~/component': path.resolve(__dirname, './src/component'),
       '~chell-viz~/container': path.resolve(__dirname, './src/container'),
       '~chell-viz~/context': path.resolve(__dirname, './src/context'),
       '~chell-viz~/data': path.resolve(__dirname, './src/data'),
       '~chell-viz~/helper': path.resolve(__dirname, './src/helper'),
       '~chell-viz~/hoc': path.resolve(__dirname, './src/hoc'),
+      '~chell-viz~/reducer': path.resolve(__dirname, './src/reducer'),
     },
     extensions: ['.js', '.json', '.ts', '.tsx'],
     modules: [path.join(__dirname, 'src'), path.join(__dirname, 'types'), 'node_modules'],

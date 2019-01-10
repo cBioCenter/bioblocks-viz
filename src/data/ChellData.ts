@@ -117,3 +117,5 @@ export enum CHELL_CHART_PIECE {
   AXIS,
   POINT,
 }
+
+export type SPECIES_TYPE = 'homo_sapiens' | 'mus_musculus';

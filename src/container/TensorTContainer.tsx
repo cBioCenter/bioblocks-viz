@@ -1,12 +1,14 @@
-import { isEqual } from 'lodash';
-import * as React from 'react';
-
 import * as tensorFlow from '@tensorflow/tfjs-core';
 // tslint:disable-next-line:no-submodule-imports
 import { TSNE } from '@tensorflow/tfjs-tsne/dist/tsne';
+import { Set } from 'immutable';
+import * as React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
 import { Grid, Icon, Radio } from 'semantic-ui-react';
+
+import { LabeledCellsActions } from '~chell-viz~/action';
 import { ComponentCard, TensorTComponent } from '~chell-viz~/component';
-import { initialSpringContext, ISpringContext, SpringContext } from '~chell-viz~/context';
 import {
   CHELL_CSS_STYLE,
   ChellChartEvent,
@@ -15,16 +17,18 @@ import {
   IPlotlyData,
 } from '~chell-viz~/data';
 import { fetchTensorTSneCoordinateData } from '~chell-viz~/helper';
+import { RootState } from '~chell-viz~/reducer';
 
-export interface ITensorContainerProps {
+interface ITensorContainerProps {
+  currentCells: Set<number>;
   datasetLocation: string;
   isFullPage: boolean;
   pointColor: string;
-  springContext: ISpringContext;
   style: CHELL_CSS_STYLE;
+  setCurrentCells(cells: number[]): void;
 }
 
-export interface ITensorContainerState {
+interface ITensorContainerState {
   coordsArray: number[][];
   isAnimating: boolean;
   isComputing: boolean;
@@ -35,13 +39,11 @@ export interface ITensorContainerState {
 
 export class TensorTContainerClass extends React.Component<ITensorContainerProps, ITensorContainerState> {
   public static defaultProps = {
+    currentCells: Set<number>(),
     datasetLocation: 'hpc/full',
     height: 400,
     isFullPage: false,
     pointColor: '#aa0000',
-    springContext: {
-      ...initialSpringContext,
-    },
     style: {
       padding: 0,
     },
@@ -79,25 +81,15 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
   }
 
   public async componentDidUpdate(prevProps: ITensorContainerProps) {
-    const { springContext } = this.props;
+    const { currentCells } = this.props;
+
     const { tsne } = this.state;
     if (this.props.datasetLocation !== prevProps.datasetLocation) {
       await this.setupTensorData();
     } else if (tsne) {
-      if (springContext.currentCells !== prevProps.springContext.currentCells) {
+      if (currentCells !== prevProps.currentCells) {
         this.setState({
           plotlyCoords: this.getPlotlyCoordsFromTsne(await tsne.coordsArray()),
-        });
-      } else if (!isEqual(springContext.selectedLabels, prevProps.springContext.selectedLabels)) {
-        const indices = new Array<number>();
-        for (const node of springContext.graphData.nodes) {
-          if (springContext.selectedLabels.includes(node.labelForCategory[springContext.selectedCategory])) {
-            indices.push(node.number);
-          }
-        }
-
-        this.setState({
-          plotlyCoords: this.getPlotlyCoordsFromSpring(await tsne.coordsArray(), indices),
         });
       }
     }
@@ -146,12 +138,12 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
   }
 
   protected getPlotlyCoordsFromTsne = (coords: number[][]): Array<Partial<IPlotlyData>> => {
-    const { springContext } = this.props;
+    const { currentCells, pointColor } = this.props;
 
     return [
       {
         marker: {
-          color: this.props.pointColor,
+          color: pointColor,
         },
         mode: 'markers',
         type: 'scattergl',
@@ -164,8 +156,8 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
         },
         mode: 'markers',
         type: 'scattergl',
-        x: springContext.currentCells.toArray().map(cellIndex => coords[cellIndex][0]),
-        y: springContext.currentCells.toArray().map(cellIndex => coords[cellIndex][1]),
+        x: currentCells.toArray().map(cellIndex => coords[cellIndex][0]),
+        y: currentCells.toArray().map(cellIndex => coords[cellIndex][1]),
       },
     ];
   };
@@ -222,7 +214,7 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
   ];
 
   protected handlePointSelection = (event: ChellChartEvent) => {
-    const { springContext } = this.props;
+    const { setCurrentCells } = this.props;
     const { coordsArray } = this.state;
     const selectedCells = new Array<number>();
     for (let i = 0; i < event.selectedPoints.length - 1; i += 2) {
@@ -233,7 +225,8 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
         selectedCells.push(cellIndex);
       }
     }
-    springContext.setCells(selectedCells);
+
+    setCurrentCells(selectedCells);
   };
 
   protected renderIterateLabel = () => <label>{`iterations: ${this.state.numIterations}`}</label>;
@@ -319,11 +312,25 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
   }
 }
 
+const mapStateToProps = (state: RootState) => ({
+  currentCells: state.labeledCells.currentCells,
+});
+
 type requiredProps = Omit<ITensorContainerProps, keyof typeof TensorTContainerClass.defaultProps> &
   Partial<ITensorContainerProps>;
 
-export const TensorTContainer = (props: requiredProps) => (
-  <SpringContext.Consumer>
-    {springContext => <TensorTContainerClass {...props} springContext={springContext} />}
-  </SpringContext.Consumer>
-);
+const UnconnectedTensorTContainer = (props: requiredProps) => <TensorTContainerClass {...props} />;
+
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators(
+    {
+      setCurrentCells: LabeledCellsActions.setCurrentCells,
+    },
+    dispatch,
+  );
+
+// tslint:disable-next-line:max-classes-per-file
+export class TensorTContainer extends connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(UnconnectedTensorTContainer) {}
