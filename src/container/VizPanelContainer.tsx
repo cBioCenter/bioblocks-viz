@@ -150,7 +150,9 @@ export class VizPanelContainer extends React.Component<IVizPanelContainerProps, 
 
         const data: IContactMapData = {
           couplingScores: getCouplingScoresData(couplingResult, generateResidueMapping(mappingResult)),
-          pdbData,
+          pdbData: {
+            known: pdbData,
+          },
           secondaryStructures: [],
         };
 

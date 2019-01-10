@@ -40,7 +40,10 @@ export enum VIZ_TYPE {
 
 export interface IContactMapData {
   couplingScores: CouplingContainer;
-  pdbData?: ChellPDB;
+  pdbData?: {
+    known?: ChellPDB;
+    predicted?: ChellPDB;
+  };
   secondaryStructures: SECONDARY_STRUCTURE[];
 }
 
