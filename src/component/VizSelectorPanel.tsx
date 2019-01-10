@@ -115,7 +115,7 @@ export class VizSelectorPanel extends React.Component<IVizPanelProps, IVizPanelS
           )
         );
       case VIZ_TYPE.INFO_PANEL:
-        return <InfoPanel data={data['Contact Map'] as Partial<IContactMapData>} height={400} width={400} />;
+        return <InfoPanel data={data['Contact Map'] as IContactMapData} height={400} width={400} />;
       default:
         throw new Error(`Unknown viz: ${viz}`);
     }

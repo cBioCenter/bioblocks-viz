@@ -141,14 +141,14 @@ describe('DataHelper', () => {
       const expected = await ChellPDB.createPDB('sample/protein.pdb');
       const response = {
         couplingScores: new CouplingContainer(),
-        pdbData: expected,
+        pdbData: { known: expected },
         secondaryStructures: [],
       };
       fetchMock.mockResponse(stringifyCircularJSON(response));
       fetchMock.mockResponse(residueMappingCsv);
 
       const result = (await fetchAppropriateData(VIZ_TYPE.CONTACT_MAP, 'sample')) as IContactMapData;
-      expect(stringifyCircularJSON(result.pdbData)).toEqual(stringifyCircularJSON(expected));
+      expect(stringifyCircularJSON(result.pdbData)).toEqual(stringifyCircularJSON({ known: expected }));
     });
   });
 

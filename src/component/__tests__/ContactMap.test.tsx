@@ -137,7 +137,7 @@ describe('ContactMap', () => {
     });
 
     it('Should match existing snapshot when given data with a PDB.', async () => {
-      const pdbData = await ChellPDB.createPDB();
+      const pdbData = { known: await ChellPDB.createPDB() };
       expect(shallow(<ContactMapClass data={{ ...sampleDataWithAminoAcid, pdbData }} />)).toMatchSnapshot();
     });
 

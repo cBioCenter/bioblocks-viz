@@ -114,7 +114,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
         [VIZ_TYPE.CONTACT_MAP]: {
           couplingScores: pdbData.amendPDBWithCouplingScores(couplingScores.rankedContacts, measuredProximity),
           isLoading: false,
-          pdbData: this.state.pdbData,
+          pdbData: { known: this.state.pdbData },
           secondaryStructures: [],
         },
         errorMsg,
@@ -372,7 +372,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
         <PredictedContactMap
           data={{
             couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
-            pdbData,
+            pdbData: { known: pdbData },
             secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
           }}
           height={size}
@@ -384,7 +384,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
         <ContactMap
           data={{
             couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
-            pdbData,
+            pdbData: { known: pdbData },
             secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
           }}
           height={size}
@@ -483,7 +483,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
                 ? pdbData.amendPDBWithCouplingScores(couplingScores.rankedContacts, measuredProximity)
                 : couplingScores,
               isLoading: false,
-              pdbData: this.state.pdbData,
+              pdbData: { known: this.state.pdbData },
               secondaryStructures: [],
             },
             arePredictionsAvailable: true,
@@ -534,7 +534,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
           [VIZ_TYPE.CONTACT_MAP]: {
             couplingScores,
             isLoading: false,
-            pdbData,
+            pdbData: { known: pdbData },
             secondaryStructures: pdbData.secondaryStructureSections,
           },
           [VIZ_TYPE.NGL]: {

@@ -174,13 +174,18 @@ export const fetchNGLDataFromDirectory = async (dir: string) => {
 export const fetchNGLDataFromFile = async (file: string | File | Blob, params: Partial<NGL.ILoaderParameters> = {}) =>
   (await NGL.autoLoad(file, params)) as NGL.Structure;
 
-export const fetchContactMapData = async (dir: string): Promise<IContactMapData> => {
+export const fetchContactMapData = async (
+  dir: string,
+  knownOrPredicted: 'known' | 'predicted' = 'known',
+): Promise<IContactMapData> => {
   if (dir.length === 0) {
     return Promise.reject('Empty path.');
   }
   const contactMapFiles = ['coupling_scores.csv', 'residue_mapping.csv'];
   const promiseResults = await Promise.all(contactMapFiles.map(async file => fetchCSVFile(`${dir}/${file}`)));
-  const pdbData = await ChellPDB.createPDB(`${dir}/protein.pdb`);
+  const pdbData = {
+    [knownOrPredicted]: await ChellPDB.createPDB(`${dir}/protein.pdb`),
+  };
 
   return {
     couplingScores: getCouplingScoresData(promiseResults[0], generateResidueMapping(promiseResults[1])),

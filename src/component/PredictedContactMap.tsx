@@ -87,7 +87,8 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
           data={{
             couplingScores: data.couplingScores,
             pdbData: data.pdbData,
-            secondaryStructures: data.pdbData ? data.pdbData.secondaryStructureSections : [],
+            secondaryStructures:
+              data.pdbData && data.pdbData.known ? data.pdbData.known.secondaryStructureSections : [],
           }}
           formattedPoints={pointsToPlot}
           {...passThroughProps}
@@ -127,9 +128,18 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
   protected setupData(isNewData: boolean) {
     const { correctColor, data, incorrectColor } = this.props;
     const { linearDistFilter, numPredictionsToShow } = this.state;
-    const couplingScores = data.pdbData
-      ? data.pdbData.contactInformation
-      : new CouplingContainer(data.couplingScores.rankedContacts);
+
+    let couplingScores = new CouplingContainer();
+    const { pdbData } = data;
+    if (pdbData) {
+      if (pdbData.known) {
+        couplingScores = pdbData.known.contactInformation;
+      } else if (pdbData.predicted) {
+        couplingScores = pdbData.predicted.contactInformation;
+      }
+    } else {
+      couplingScores = new CouplingContainer(data.couplingScores.rankedContacts);
+    }
 
     const { chainLength } = couplingScores;
 

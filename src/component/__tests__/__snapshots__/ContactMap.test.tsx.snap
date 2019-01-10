@@ -44,7 +44,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
           },
           Object {
             "id": "node-size-slider-0",
-            "name": "Node size for Known Structure Contact",
+            "name": "Node size for Unknown Structure Contact",
             "onChange": [Function],
             "type": "SLIDER",
             "values": Object {
@@ -119,7 +119,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
               ],
             },
             "mode": "lines+markers",
-            "name": "Known Structure Contact",
+            "name": "Unknown Structure Contact",
             "nodeSize": 4,
             "points": Array [],
             "subtitle": "(from PDB structure)",
@@ -199,7 +199,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
           },
           Object {
             "id": "node-size-slider-0",
-            "name": "Node size for Known Structure Contact",
+            "name": "Node size for Unknown Structure Contact",
             "onChange": [Function],
             "type": "SLIDER",
             "values": Object {
@@ -274,7 +274,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
               ],
             },
             "mode": "lines+markers",
-            "name": "Known Structure Contact",
+            "name": "Unknown Structure Contact",
             "nodeSize": 4,
             "points": Array [
               Object {
@@ -338,7 +338,18 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
       onSelectedCallback={[Function]}
       onUnHoverCallback={[Function]}
       range={77}
-      secondaryStructures={Array []}
+      secondaryStructures={
+        Array [
+          Array [
+            Object {
+              "end": 31,
+              "label": "C",
+              "length": 2,
+              "start": 30,
+            },
+          ],
+        ]
+      }
       selectedSecondaryStructures={
         Array [
           Array [],
@@ -376,7 +387,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
           },
           Object {
             "id": "node-size-slider-0",
-            "name": "Node size for Known Structure Contact",
+            "name": "Node size for Unknown Structure Contact",
             "onChange": [Function],
             "type": "SLIDER",
             "values": Object {
@@ -451,7 +462,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
               ],
             },
             "mode": "lines+markers",
-            "name": "Known Structure Contact",
+            "name": "Unknown Structure Contact",
             "nodeSize": 4,
             "points": Array [
               Object {
@@ -507,7 +518,18 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
       onSelectedCallback={[Function]}
       onUnHoverCallback={[Function]}
       range={77}
-      secondaryStructures={Array []}
+      secondaryStructures={
+        Array [
+          Array [
+            Object {
+              "end": 31,
+              "label": "C",
+              "length": 2,
+              "start": 30,
+            },
+          ],
+        ]
+      }
       selectedSecondaryStructures={
         Array [
           Array [],
@@ -710,7 +732,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
           },
           Object {
             "id": "node-size-slider-0",
-            "name": "Node size for Known Structure Contact",
+            "name": "Node size for Unknown Structure Contact",
             "onChange": [Function],
             "type": "SLIDER",
             "values": Object {
@@ -785,7 +807,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
               ],
             },
             "mode": "lines+markers",
-            "name": "Known Structure Contact",
+            "name": "Unknown Structure Contact",
             "nodeSize": 4,
             "points": Array [
               Object {
@@ -875,7 +897,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
           },
           Object {
             "id": "node-size-slider-0",
-            "name": "Node size for Known Structure Contact",
+            "name": "Node size for Unknown Structure Contact",
             "onChange": [Function],
             "type": "SLIDER",
             "values": Object {
@@ -950,7 +972,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
               ],
             },
             "mode": "lines+markers",
-            "name": "Known Structure Contact",
+            "name": "Unknown Structure Contact",
             "nodeSize": 4,
             "points": Array [],
             "subtitle": "(from PDB structure)",
@@ -1030,7 +1052,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
           },
           Object {
             "id": "node-size-slider-0",
-            "name": "Node size for Known Structure Contact",
+            "name": "Node size for Unknown Structure Contact",
             "onChange": [Function],
             "type": "SLIDER",
             "values": Object {
@@ -1105,7 +1127,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
               ],
             },
             "mode": "lines+markers",
-            "name": "Known Structure Contact",
+            "name": "Unknown Structure Contact",
             "nodeSize": 4,
             "points": Array [],
             "subtitle": "(from PDB structure)",
@@ -1185,7 +1207,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
           },
           Object {
             "id": "node-size-slider-0",
-            "name": "Node size for Known Structure Contact",
+            "name": "Node size for Unknown Structure Contact",
             "onChange": [Function],
             "type": "SLIDER",
             "values": Object {
@@ -1260,7 +1282,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
               ],
             },
             "mode": "lines+markers",
-            "name": "Known Structure Contact",
+            "name": "Unknown Structure Contact",
             "nodeSize": 4,
             "points": Array [
               Object {
@@ -1324,7 +1346,18 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
       onSelectedCallback={[Function]}
       onUnHoverCallback={[Function]}
       range={77}
-      secondaryStructures={Array []}
+      secondaryStructures={
+        Array [
+          Array [
+            Object {
+              "end": 31,
+              "label": "C",
+              "length": 2,
+              "start": 30,
+            },
+          ],
+        ]
+      }
       selectedSecondaryStructures={
         Array [
           Array [],
@@ -1362,7 +1395,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
           },
           Object {
             "id": "node-size-slider-0",
-            "name": "Node size for Known Structure Contact",
+            "name": "Node size for Unknown Structure Contact",
             "onChange": [Function],
             "type": "SLIDER",
             "values": Object {
@@ -1437,7 +1470,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
               ],
             },
             "mode": "lines+markers",
-            "name": "Known Structure Contact",
+            "name": "Unknown Structure Contact",
             "nodeSize": 4,
             "points": Array [
               Object {
@@ -1515,7 +1548,18 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
       onSelectedCallback={[Function]}
       onUnHoverCallback={[Function]}
       range={77}
-      secondaryStructures={Array []}
+      secondaryStructures={
+        Array [
+          Array [
+            Object {
+              "end": 31,
+              "label": "C",
+              "length": 2,
+              "start": 30,
+            },
+          ],
+        ]
+      }
       selectedSecondaryStructures={
         Array [
           Array [],
@@ -2042,7 +2086,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               },
               Object {
                 "id": "node-size-slider-0",
-                "name": "Node size for Known Structure Contact",
+                "name": "Node size for Unknown Structure Contact",
                 "onChange": [Function],
                 "type": "SLIDER",
                 "values": Object {
@@ -2117,7 +2161,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   ],
                 },
                 "mode": "lines+markers",
-                "name": "Known Structure Contact",
+                "name": "Unknown Structure Contact",
                 "nodeSize": 4,
                 "points": Array [
                   Object {
@@ -2173,7 +2217,18 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           onSelectedCallback={[Function]}
           onUnHoverCallback={[Function]}
           range={77}
-          secondaryStructures={Array []}
+          secondaryStructures={
+            Array [
+              Array [
+                Object {
+                  "end": 31,
+                  "label": "C",
+                  "length": 2,
+                  "start": 30,
+                },
+              ],
+            ]
+          }
           selectedSecondaryStructures={
             Array [
               Array [],
@@ -2193,7 +2248,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 },
                 Object {
                   "id": "node-size-slider-0",
-                  "name": "Node size for Known Structure Contact",
+                  "name": "Node size for Unknown Structure Contact",
                   "onChange": [Function],
                   "type": "SLIDER",
                   "values": Object {
@@ -2351,7 +2406,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                     >
                                       <ChellSlider
                                         className="node-size-slider-0"
-                                        label="Node size for Known Structure Contact"
+                                        label="Node size for Unknown Structure Contact"
                                         max={20}
                                         min={1}
                                         onChange={[Function]}
@@ -2392,7 +2447,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                                 className="column node-size-slider-0"
                                               >
                                                 <p>
-                                                  Node size for Known Structure Contact: 4
+                                                  Node size for Unknown Structure Contact: 4
                                                 </p>
                                                 <ComponentEnhancer(undefined)
                                                   activeDotStyle={Object {}}
@@ -2895,7 +2950,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                     "size": 4,
                                   },
                                   "mode": "markers",
-                                  "name": "Known Structure Contact (from PDB structure)",
+                                  "name": "Unknown Structure Contact (from PDB structure)",
                                   "text": Array [
                                     "(41, 52)",
                                     "(50, 56)",
@@ -2989,7 +3044,18 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                             onHoverCallback={[Function]}
                             onSelectedCallback={[Function]}
                             onUnHoverCallback={[Function]}
-                            secondaryStructures={Array []}
+                            secondaryStructures={
+                              Array [
+                                Array [
+                                  Object {
+                                    "end": 31,
+                                    "label": "C",
+                                    "length": 2,
+                                    "start": 30,
+                                  },
+                                ],
+                              ]
+                            }
                             selectedSecondaryStructures={
                               Array [
                                 Array [],

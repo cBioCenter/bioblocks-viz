@@ -19,7 +19,7 @@ import {
 } from '~chell-viz~/data';
 
 export interface IInfoPanelProps {
-  data: Partial<IContactMapData>;
+  data: IContactMapData;
   height: number;
   width: 400;
   residueContext: IResidueContext;
@@ -30,6 +30,7 @@ export class InfoPanelClass extends React.Component<IInfoPanelProps, any> {
   public static defaultProps = {
     data: {
       couplingScores: new CouplingContainer(),
+      pdbData: {},
       secondaryStructures: new Array<SECONDARY_STRUCTURE>(),
     },
     height: 400,
@@ -44,21 +45,24 @@ export class InfoPanelClass extends React.Component<IInfoPanelProps, any> {
 
   public render() {
     const { data, height, residueContext, width, secondaryStructureContext } = this.props;
-    const unassignedResidues = data.pdbData
-      ? this.renderUnassignedResidues(data.pdbData)
-      : [<Label key={'unassigned-residues-none'} />];
+    const { pdbData } = data;
+    const unassignedResidues =
+      pdbData && pdbData.known
+        ? this.renderUnassignedResidues(pdbData.known)
+        : [<Label key={'unassigned-residues-none'} />];
 
     return (
       <div className="InfoPanel" style={{ height, width }}>
         <Accordion
           exclusive={false}
           panels={[
-            data.pdbData &&
-              data.pdbData.secondaryStructureSections.map(secondaryStructure => ({
+            pdbData &&
+              pdbData.known &&
+              pdbData.known.secondaryStructureSections.map(secondaryStructure => ({
                 content: this.renderSecondaryStructures(secondaryStructure),
                 key: 'all-secondary-structures',
                 title: `All Secondary Structures (${
-                  data.pdbData ? data.pdbData.secondaryStructureSections.length : 0
+                  pdbData.known ? pdbData.known.secondaryStructureSections.length : 0
                 }):`,
               })),
             {

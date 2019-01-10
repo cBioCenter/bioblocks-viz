@@ -134,15 +134,15 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
   };
 
   protected setupPointsToPlot(couplingContainer: CouplingContainer) {
-    const { formattedPoints, observedColor, highlightColor, residueContext } = this.props;
+    const { data, formattedPoints, observedColor, highlightColor, residueContext } = this.props;
     const { pointsToPlot } = this.state;
 
     const chartNames = {
-      known: 'Known Structure Contact',
       selected: 'Selected Residue Pairs',
+      structure: `${data.pdbData ? (data.pdbData.known ? 'Known' : 'Predicted') : 'Unknown'} Structure Contact`,
     };
 
-    const knownPointsIndex = pointsToPlot.findIndex(entry => entry.name === chartNames.known);
+    const knownPointsIndex = pointsToPlot.findIndex(entry => entry.name === chartNames.structure);
     const selectedPointIndex = pointsToPlot.findIndex(entry => entry.name === chartNames.selected);
 
     const observedContactPoints = couplingContainer.getObservedContacts();
@@ -150,7 +150,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       generateChartDataEntry(
         'text',
         { start: observedColor, end: 'rgb(100,177,200)' },
-        chartNames.known,
+        chartNames.structure,
         '(from PDB structure)',
         knownPointsIndex >= 0 ? pointsToPlot[knownPointsIndex].nodeSize : 4,
         observedContactPoints,
@@ -240,7 +240,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
         onSelectedCallback={this.onMouseSelect(onBoxSelection)}
         onUnHoverCallback={this.onMouseLeave(residueContext.removeHoveredResidues)}
         range={data.couplingScores.residueIndexRange.max + 20}
-        secondaryStructures={data.pdbData ? data.pdbData.secondaryStructureSections : []}
+        secondaryStructures={data.secondaryStructures ? data.secondaryStructures : []}
         showConfigurations={showConfigurations}
         selectedSecondaryStructures={[secondaryStructureContext.selectedSecondaryStructures]}
         width={width}
