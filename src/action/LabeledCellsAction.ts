@@ -1,4 +1,4 @@
-import { ActionType, createAction, createAsyncAction } from 'typesafe-actions';
+import { ActionType, createAsyncAction, createStandardAction } from 'typesafe-actions';
 
 import { Dispatch } from 'redux';
 import { ISpringGraphData } from '~chell-viz~/data';
@@ -11,8 +11,8 @@ const springFetchActions = createAsyncAction(
 )<void, ISpringGraphData, Error>();
 
 export const LabeledCellsActions = {
-  addLabel: createAction('ADD_LABEL', resolve => (label: string) => resolve({ label })),
-  setCurrentCells: createAction('SET_SELECTED_CELLS', resolve => (cells: number[]) => resolve({ cells })),
+  addLabel: createStandardAction('ADD_LABEL')<string>(),
+  setCurrentCells: createStandardAction('SET_SELECTED_CELLS')<number[]>(),
   springData: { ...springFetchActions },
 };
 
@@ -26,7 +26,6 @@ export const fetchLabeledSpringData = (datasetLocation: string) => async (dispat
 
   // In this case, we return a promise to wait for.
   // This is not required by thunk middleware, but it is convenient for us.
-
   try {
     const springData = await fetchSpringData(`assets/datasets/${datasetLocation}`);
     dispatch(springFetchActions.success(springData));

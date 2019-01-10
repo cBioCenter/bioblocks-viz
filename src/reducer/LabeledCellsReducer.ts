@@ -20,15 +20,18 @@ export type LabeledCellsState = typeof initialState;
 export const LabeledCellsReducer = (state = initialState, action: LabeledCellsActionType): LabeledCellsState => {
   switch (action.type) {
     case getType(LabeledCellsActions.addLabel):
-      const { label } = action.payload;
+      const label = action.payload;
 
       return {
         ...state,
-        currentCells: deriveCellsFromLabels(AnatomogramMapping[state.species][label], state),
+        currentCells: deriveCellsFromLabels(
+          AnatomogramMapping[state.species][label] ? AnatomogramMapping[state.species][label] : [],
+          state,
+        ),
         selectedLabels: Set<string>([label]),
       };
     case getType(LabeledCellsActions.setCurrentCells):
-      const { cells } = action.payload;
+      const cells = action.payload;
 
       return {
         ...state,
