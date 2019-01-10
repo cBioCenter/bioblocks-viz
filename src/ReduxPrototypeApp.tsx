@@ -4,7 +4,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { Grid } from 'semantic-ui-react';
 
 import { fetchLabeledSpringData } from '~chell-viz~/action';
-import { AnatomogramContainer, TensorTContainer } from '~chell-viz~/container';
+import { AnatomogramContainer, SpringContainer, TensorTContainer } from '~chell-viz~/container';
 import { RootState } from '~chell-viz~/reducer';
 
 interface IReduxPrototypeAppProps {
@@ -19,14 +19,18 @@ class UnconnectedReduxPrototypeApp extends React.Component<IReduxPrototypeAppPro
 
   public render() {
     return (
-      <div id={'ReduxPrototypeApp'}>
+      <div id={'BetaApp'}>
         <Grid>
           <Grid.Column style={{ width: 'auto' }}>
-            <AnatomogramContainer species={'homo_sapiens'} />
+            <SpringContainer />
           </Grid.Column>
 
           <Grid.Column style={{ width: 'auto' }}>
             <TensorTContainer />
+          </Grid.Column>
+
+          <Grid.Column style={{ width: 'auto' }}>
+            <AnatomogramContainer species={'homo_sapiens'} />
           </Grid.Column>
         </Grid>
       </div>
