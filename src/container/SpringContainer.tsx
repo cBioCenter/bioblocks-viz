@@ -10,6 +10,7 @@ import { ISpringLink, ISpringNode } from '~chell-viz~/data';
 
 export interface ISpringContainerProps {
   datasetLocation: string;
+  headerHeight: number;
   isFullPage: boolean;
   padding: number | string;
   selectedCategory: string;
@@ -40,7 +41,7 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
       nodes: new Array<ISpringNode>(),
     },
     datasetLocation: 'hpc/full',
-    headerHeight: 32,
+    headerHeight: 18,
     isFullPage: false,
     padding: 0,
     selectedCategory: '',
@@ -84,11 +85,11 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
   }
 
   public render() {
-    const { isFullPage, springHeight, springWidth } = this.props;
+    const { headerHeight, isFullPage, springHeight, springWidth } = this.props;
     const { postMessageData, springUrl } = this.state;
     const attributes: IframeCommAttributes = {
       allowFullScreen: true,
-      height: springHeight,
+      height: springHeight + headerHeight,
       src: springUrl,
       width: springWidth,
     };
@@ -102,7 +103,6 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
         isFullPage={isFullPage}
         frameHeight={springHeight}
         frameWidth={springWidth}
-        height={'500px'}
       >
         <IframeComm
           attributes={attributes}
