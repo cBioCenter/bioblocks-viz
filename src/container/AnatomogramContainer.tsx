@@ -37,7 +37,7 @@ class AnatomogramContainerClass extends React.Component<IAnatomogramContainerPro
   constructor(props: IAnatomogramContainerProps) {
     super(props);
     this.state = {
-      ids: Object.keys(AnatomogramMapping[props.species]),
+      ids: this.deriveIdsFromSpecies(props.species),
     };
   }
 
@@ -53,6 +53,15 @@ class AnatomogramContainerClass extends React.Component<IAnatomogramContainerPro
       }
     };
     timeoutHandler();
+  }
+
+  public componentDidUpdate(prevProps: IAnatomogramContainerProps) {
+    const { species } = this.props;
+    if (species !== prevProps.species) {
+      this.setState({
+        ids: this.deriveIdsFromSpecies(species),
+      });
+    }
   }
 
   public render() {
@@ -92,6 +101,8 @@ class AnatomogramContainerClass extends React.Component<IAnatomogramContainerPro
     addLabel(ids[0]);
   };
 
+  protected deriveIdsFromSpecies = (species: SPECIES_TYPE) => Object.keys(AnatomogramMapping[species]);
+
   protected onMouseOut = (id: string) => {
     return;
   };
@@ -116,6 +127,7 @@ class AnatomogramContainerClass extends React.Component<IAnatomogramContainerPro
 
 const mapStateToProps = (state: RootState) => ({
   selectIds: state.labeledCells.selectedLabels,
+  species: state.labeledCells.species,
 });
 
 type requiredProps = Omit<IAnatomogramContainerProps, keyof typeof AnatomogramContainerClass.defaultProps> &

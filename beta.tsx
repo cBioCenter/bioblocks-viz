@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { Provider } from 'react-redux';
-import { ReduxPrototypeApp as App } from '~chell-viz~';
+import { ChellVizApp as App } from '~chell-viz~';
 import { Store } from '~chell-viz~/reducer';
 
 ReactDOM.render(
