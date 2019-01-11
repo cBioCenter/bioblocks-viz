@@ -1,269 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DatasetPage Should match existing snapshot for initial visualizations. 1`] = `
-<div
-  style={
-    Object {
-      "padding": "20px",
-    }
-  }
->
-  <Grid
-    centered={true}
-    columns={2}
-    padded={true}
-    stackable={true}
-    stretched={false}
-  >
-    <GridColumn
-      key="dataset-visualization-0"
-      style={
-        Object {
-          "width": "auto",
-        }
-      }
-    >
-      <Connect(UnconnectedAnatomogramContainer)
-        species="homo_sapiens"
-      />
-    </GridColumn>
-  </Grid>
-</div>
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
 `;
 
 exports[`DatasetPage Should match existing snapshot for initial visualizations. 2`] = `
-<div
-  style={
-    Object {
-      "padding": "20px",
-    }
-  }
->
-  <Grid
-    centered={true}
-    columns={2}
-    padded={true}
-    stackable={true}
-    stretched={false}
-  >
-    <GridColumn
-      key="dataset-visualization-0"
-      style={
-        Object {
-          "width": "auto",
-        }
-      }
-    >
-      <Connect(UnconnectedAnatomogramContainer)
-        species="mus_musculus"
-      />
-    </GridColumn>
-    <GridColumn
-      key="dataset-visualization-1"
-      style={
-        Object {
-          "width": "auto",
-        }
-      }
-    >
-      <Message
-        error={true}
-      >
-        Currently unsupported visualization 'empty'
-      </Message>
-    </GridColumn>
-  </Grid>
-</div>
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
 `;
 
 exports[`DatasetPage Should match existing snapshot for initial visualizations. 3`] = `
-<div
-  style={
-    Object {
-      "padding": "20px",
-    }
-  }
->
-  <Grid
-    centered={true}
-    columns={2}
-    padded={true}
-    stackable={true}
-    stretched={false}
-  >
-    <GridColumn
-      key="dataset-visualization-0"
-      style={
-        Object {
-          "width": "auto",
-        }
-      }
-    >
-      <Component
-        datasetLocation="{hpc/sample}"
-        isFullPage={true}
-      />
-    </GridColumn>
-  </Grid>
-</div>
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
 `;
 
 exports[`DatasetPage Should match existing snapshot for initial visualizations. 4`] = `
-<div
-  style={
-    Object {
-      "padding": "20px",
-    }
-  }
->
-  <Grid
-    centered={true}
-    columns={2}
-    padded={true}
-    stackable={true}
-    stretched={false}
-  >
-    <GridColumn
-      key="dataset-visualization-0"
-      style={
-        Object {
-          "width": "auto",
-        }
-      }
-    >
-      <Component
-        datasetLocation="{mouse/sample}"
-        isFullPage={false}
-      />
-    </GridColumn>
-    <GridColumn
-      key="dataset-visualization-1"
-      style={
-        Object {
-          "width": "auto",
-        }
-      }
-    >
-      <Message
-        error={true}
-      >
-        Currently unsupported visualization 'empty'
-      </Message>
-    </GridColumn>
-  </Grid>
-</div>
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
 `;
 
 exports[`DatasetPage Should match existing snapshot for initial visualizations. 5`] = `
-<div
-  style={
-    Object {
-      "padding": "20px",
-    }
-  }
->
-  <Grid
-    centered={true}
-    columns={2}
-    padded={true}
-    stackable={true}
-    stretched={false}
-  >
-    <GridColumn
-      key="dataset-visualization-0"
-      style={
-        Object {
-          "width": "auto",
-        }
-      }
-    >
-      <Connect(UnconnectedTensorTContainer)
-        datasetLocation="{hpc/sample}"
-        isFullPage={true}
-      />
-    </GridColumn>
-  </Grid>
-</div>
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
 `;
 
 exports[`DatasetPage Should match existing snapshot for initial visualizations. 6`] = `
-<div
-  style={
-    Object {
-      "padding": "20px",
-    }
-  }
->
-  <Grid
-    centered={true}
-    columns={2}
-    padded={true}
-    stackable={true}
-    stretched={false}
-  >
-    <GridColumn
-      key="dataset-visualization-0"
-      style={
-        Object {
-          "width": "auto",
-        }
-      }
-    >
-      <Connect(UnconnectedTensorTContainer)
-        datasetLocation="{mouse/sample}"
-        isFullPage={false}
-      />
-    </GridColumn>
-    <GridColumn
-      key="dataset-visualization-1"
-      style={
-        Object {
-          "width": "auto",
-        }
-      }
-    >
-      <Message
-        error={true}
-      >
-        Currently unsupported visualization 'empty'
-      </Message>
-    </GridColumn>
-  </Grid>
-</div>
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
 `;
 
 exports[`DatasetPage Should match existing snapshot when changing the visualization. 1`] = `
-<div
-  style={
-    Object {
-      "padding": "20px",
-    }
-  }
->
-  <Grid
-    centered={true}
-    columns={2}
-    padded={true}
-    stackable={true}
-    stretched={false}
-  />
-</div>
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
 `;
 
 exports[`DatasetPage Should match existing snapshot when no props are provided. 1`] = `
-<div
-  style={
-    Object {
-      "padding": "20px",
-    }
-  }
->
-  <Grid
-    centered={true}
-    columns={2}
-    padded={true}
-    stackable={true}
-    stretched={false}
-  />
-</div>
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
 `;

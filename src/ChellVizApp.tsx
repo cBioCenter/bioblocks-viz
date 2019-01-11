@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { HashRouter as Router, Route, RouteComponentProps } from 'react-router-dom';
-
 import { Container } from 'semantic-ui-react';
 
 import { SiteHeader } from '~chell-viz~/container';

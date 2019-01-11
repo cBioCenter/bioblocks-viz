@@ -1,7 +1,7 @@
 import { ActionType, createAsyncAction, createStandardAction } from 'typesafe-actions';
 
 import { Dispatch } from 'redux';
-import { ISpringGraphData } from '~chell-viz~/data';
+import { ISpringGraphData, SPECIES_TYPE } from '~chell-viz~/data';
 import { fetchSpringData } from '~chell-viz~/helper';
 
 const springFetchActions = createAsyncAction(
@@ -13,6 +13,11 @@ const springFetchActions = createAsyncAction(
 export const LabeledCellsActions = {
   addLabel: createStandardAction('ADD_LABEL')<string>(),
   setCurrentCells: createStandardAction('SET_SELECTED_CELLS')<number[]>(),
+  setCurrentCellsAndCategory: createStandardAction('SET_SELECTED_CELLS_AND_CATEGORY')<{
+    cells: number[];
+    category: string;
+  }>(),
+  setSpecies: createStandardAction('SET_SPECIES')<SPECIES_TYPE>(),
   springData: { ...springFetchActions },
 };
 

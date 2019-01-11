@@ -36,7 +36,15 @@ export const LabeledCellsReducer = (state = initialState, action: LabeledCellsAc
       return {
         ...state,
         currentCells: Set<number>(cells),
-        selectedLabels: deriveLabelsFromCells(cells, state),
+        selectedLabels: deriveLabelsFromCells(cells, state.categories, state),
+      };
+    case getType(LabeledCellsActions.setCurrentCellsAndCategory):
+      const { payload } = action;
+
+      return {
+        ...state,
+        currentCells: Set<number>(payload.cells),
+        selectedLabels: deriveLabelsFromCells(payload.cells, Set(payload.category), state),
       };
     case getType(LabeledCellsActions.springData.success):
       const { nodes } = action.payload;
@@ -55,6 +63,11 @@ export const LabeledCellsReducer = (state = initialState, action: LabeledCellsAc
         categories,
         graphData: action.payload,
         labelsByCategory,
+      };
+    case getType(LabeledCellsActions.setSpecies):
+      return {
+        ...state,
+        species: action.payload,
       };
     default:
       return state;
@@ -88,15 +101,16 @@ const deriveCellsFromLabels = (candidateLabels: string[], state: LabeledCellsSta
   return cellIndices;
 };
 
-const deriveLabelsFromCells = (currentCells: number[], state: LabeledCellsState) => {
-  const { categories, graphData } = state;
+const deriveLabelsFromCells = (currentCells: number[], categories: Set<string>, state: LabeledCellsState) => {
+  const { graphData } = state;
   let result = Set<string>();
 
   for (const cellIndex of currentCells) {
     for (const category of categories.toArray()) {
-      AnatomogramMapping[state.species][graphData.nodes[cellIndex].labelForCategory[category]].forEach(
-        label => (result = result.add(label)),
-      );
+      const labels = AnatomogramMapping[state.species][graphData.nodes[cellIndex].labelForCategory[category]];
+      if (labels) {
+        labels.forEach(label => (result = result.add(label)));
+      }
     }
   }
 

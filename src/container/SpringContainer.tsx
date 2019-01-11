@@ -1,22 +1,27 @@
+import { Set } from 'immutable';
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
 
 // tslint:disable:import-name match-default-export-name
 import IframeComm, { IframeCommAttributes } from 'react-iframe-comm';
 // tslint:enable:import-name match-default-export-name
 
+import { LabeledCellsActions } from '~chell-viz~/action';
 import { ComponentCard } from '~chell-viz~/component';
-import { initialSpringContext, ISpringContext, SpringContext } from '~chell-viz~/context';
 import { ISpringLink, ISpringNode } from '~chell-viz~/data';
+import { RootState } from '~chell-viz~/reducer';
 
 export interface ISpringContainerProps {
+  currentCells: Set<number>;
   datasetLocation: string;
   headerHeight: number;
   isFullPage: boolean;
   padding: number | string;
   selectedCategory: string;
-  springContext: ISpringContext;
   springHeight: number;
   springWidth: number;
+  setCurrentCellsAndCategory(payload: { cells: number[]; category: string }): void;
 }
 
 export interface ISpringContainerState {
@@ -45,9 +50,6 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
     isFullPage: false,
     padding: 0,
     selectedCategory: '',
-    springContext: {
-      ...initialSpringContext,
-    },
     springHeight: 1150,
     springWidth: 1150,
   };
@@ -66,13 +68,13 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
   }
 
   public componentDidUpdate(prevProps: ISpringContainerProps, prevState: ISpringContainerState) {
-    const { springContext } = this.props;
-    if (!prevProps.springContext.currentCells.equals(springContext.currentCells)) {
-      console.log(`sending new cells to spring, totalling ${springContext.currentCells.size}`);
+    const { currentCells } = this.props;
+    if (currentCells !== prevProps.currentCells) {
+      console.log(`sending new cells to spring, totalling ${currentCells.size}`);
       this.setState({
         postMessageData: {
           payload: {
-            indices: springContext.currentCells.toArray(),
+            indices: currentCells.toArray(),
           },
           type: 'selected-cells-update',
         },
@@ -120,19 +122,19 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
   };
 
   protected onReceiveMessage = (msg: MessageEvent) => {
+    const { currentCells, setCurrentCellsAndCategory } = this.props;
     const data = msg.data as ISpringMessage;
-    const { springContext } = this.props;
     switch (data.type) {
       case 'selected-category-update':
       case 'selected-cells-update': {
-        springContext.update(data.payload.indices, data.payload.currentCategory);
+        setCurrentCellsAndCategory({ cells: data.payload.indices, category: data.payload.currentCategory });
         break;
       }
       case 'loaded': {
         this.setState({
           postMessageData: {
             payload: {
-              indices: springContext.currentCells.toArray(),
+              indices: currentCells.toArray(),
             },
             type: 'init',
           },
@@ -151,11 +153,25 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
     )}/springViewer.html?datasets/${dataset}`;
 }
 
+const mapStateToProps = (state: RootState) => ({
+  currentCells: state.labeledCells.currentCells,
+});
+
 type requiredProps = Omit<ISpringContainerProps, keyof typeof SpringContainerClass.defaultProps> &
   Partial<ISpringContainerProps>;
 
-export const SpringContainer = (props: requiredProps) => (
-  <SpringContext.Consumer>
-    {springContext => <SpringContainerClass {...props} springContext={springContext} />}
-  </SpringContext.Consumer>
-);
+const UnconnectedSpringContainer = (props: requiredProps) => <SpringContainerClass {...props} />;
+
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators(
+    {
+      setCurrentCellsAndCategory: LabeledCellsActions.setCurrentCellsAndCategory,
+    },
+    dispatch,
+  );
+
+// tslint:disable-next-line:max-classes-per-file
+export class SpringContainer extends connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(UnconnectedSpringContainer) {}

@@ -1,12 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AnatomogramContainer Should match existing snapshot when the species is a human. 1`] = `
-<ContextConsumer>
-  <Component />
-</ContextConsumer>
-`;
-
-exports[`AnatomogramContainer Should match existing snapshot when the species is a mouse. 1`] = `
+exports[`AnatomogramContainer Should match existing snapshot. 1`] = `
 <ContextConsumer>
   <Component />
 </ContextConsumer>
