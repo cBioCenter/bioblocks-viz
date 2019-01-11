@@ -19,7 +19,7 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
         },
         Object {
           "current": "CLOSEST",
-          "name": "Measuring Proximity",
+          "name": "Proximity Metric",
           "onChange": [Function],
           "options": Array [
             "Closest",

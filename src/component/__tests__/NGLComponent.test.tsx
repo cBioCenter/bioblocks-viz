@@ -480,7 +480,7 @@ describe('NGLComponent', () => {
       const expected = CONTACT_DISTANCE_PROXIMITY.CLOSEST;
       expect((wrapper.instance() as NGLComponentClass).props.measuredProximity).not.toEqual(expected);
       wrapper
-        .find('#measuring-proximity-1')
+        .find('#proximity-metric-1')
         .find(Form.Radio)
         .at(1)
         .find('input')

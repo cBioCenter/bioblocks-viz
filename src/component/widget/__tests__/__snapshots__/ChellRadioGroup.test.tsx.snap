@@ -1,22 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ChellRadioGroup Should match existing snapshot when given simple data. 1`] = `
-<Form
-  as="form"
+<div
   style={Object {}}
 >
-  <FormField>
+  <div
+    style={
+      Object {
+        "fontStyle": "italic",
+        "fontWeight": "bold",
+        "textDecoration": "underline",
+      }
+    }
+  >
     How to calculate distance between two residues:
-  </FormField>
+  </div>
   <Grid
     centered={true}
     columns={2}
     padded={true}
-    relaxed={true}
   >
     <GridColumn
       key="Sample-first"
-      textAlign="center"
     >
       <FormRadio
         as={[Function]}
@@ -35,5 +40,5 @@ exports[`ChellRadioGroup Should match existing snapshot when given simple data. 
       />
     </GridColumn>
   </Grid>
-</Form>
+</div>
 `;
