@@ -33,6 +33,7 @@ class AnatomogramContainerClass extends React.Component<IAnatomogramContainerPro
   public static displayName = 'Anatomogram';
 
   protected divRef: HTMLDivElement | null = null;
+  protected svgIntervalTimer: number | null = null;
 
   constructor(props: IAnatomogramContainerProps) {
     super(props);
@@ -42,17 +43,16 @@ class AnatomogramContainerClass extends React.Component<IAnatomogramContainerPro
   }
 
   public componentDidMount() {
-    const timeoutHandler = () => {
-      if (this.divRef) {
-        const svgElements = this.divRef.getElementsByTagName('svg');
-        if (svgElements.length >= 1) {
-          this.resizeSVGElement(svgElements[0]);
-        } else {
-          setTimeout(timeoutHandler, 100);
-        }
-      }
-    };
-    timeoutHandler();
+    // We are __currently__ unable to known when Anatomogram finishes loading the svg.
+    // So, we have to wait.
+    this.svgIntervalTimer = window.setInterval(this.resizeSVGElement, 1000 / 60);
+  }
+
+  public componentWillUnmount() {
+    if (this.svgIntervalTimer) {
+      clearInterval(this.svgIntervalTimer);
+      this.svgIntervalTimer = null;
+    }
   }
 
   public componentDidUpdate(prevProps: IAnatomogramContainerProps) {
@@ -62,6 +62,7 @@ class AnatomogramContainerClass extends React.Component<IAnatomogramContainerPro
         ids: this.deriveIdsFromSpecies(species),
       });
     }
+    this.resizeSVGElement();
   }
 
   public render() {
@@ -96,6 +97,7 @@ class AnatomogramContainerClass extends React.Component<IAnatomogramContainerPro
   }
 
   protected onClick = (ids: string[]) => {
+    console.log(ids);
     const { addLabel } = this.props;
 
     addLabel(ids[0]);
@@ -117,12 +119,21 @@ class AnatomogramContainerClass extends React.Component<IAnatomogramContainerPro
     return splitCategories[0];
   };
 
-  protected resizeSVGElement(svgElement: SVGElement) {
-    // The Anatomogram Component internally sets the svg height to 'auto'.
-    // So, to allow more flexibility in sizing it, we have to manually override it here. Sorry.
-    svgElement.style.height = this.divRef ? `calc(${this.divRef.style.height} - 50px)` : '100%';
-    svgElement.style.width = this.divRef ? this.divRef.style.width : '100%';
-  }
+  protected resizeSVGElement = () => {
+    if (this.divRef) {
+      const svgElements = this.divRef.getElementsByTagName('svg');
+      if (svgElements.length >= 1) {
+        const svgElement = svgElements[0];
+        const isSvgHeightBigger = svgElement.height.baseVal.value > svgElement.width.baseVal.value;
+
+        // The Anatomogram Component internally sets the svg height to 'auto'.
+        // So, to allow more flexibility in sizing it, we have to manually override it here. Sorry.
+        svgElement.style.height = isSvgHeightBigger ? `calc(${this.divRef.style.height} - 50px)` : 'auto';
+        svgElement.style.padding = '0';
+        svgElement.style.width = isSvgHeightBigger ? 'auto' : `calc(${this.divRef.style.width} - 75px)`;
+      }
+    }
+  };
 }
 
 const mapStateToProps = (state: RootState) => ({
