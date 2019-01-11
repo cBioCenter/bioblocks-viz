@@ -104,7 +104,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
 
   public renderConfigurations(configurations: ChellWidgetConfig[]) {
     return (
-      <Grid centered={true}>
+      <Grid relaxed={true} centered={true} columns={1} padded={true} stretched={true} style={{ height: '100%' }}>
         {configurations.map((config, index) => {
           const id = config.id
             ? config.id
@@ -112,22 +112,31 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
                 .toLowerCase()
                 .split(' ')
                 .join('-')}-${index}`;
-          switch (config.type) {
-            case CONFIGURATION_COMPONENT_TYPE.BUTTON:
-              return <Grid.Row key={id}>{this.renderConfigurationButton(config, id)}</Grid.Row>;
-            case CONFIGURATION_COMPONENT_TYPE.LABEL:
-              return <Grid.Row key={id}>{this.renderConfigurationLabel(config, id)}</Grid.Row>;
-            case CONFIGURATION_COMPONENT_TYPE.RADIO:
-              return <Grid.Row key={id}>{this.renderConfigurationRadioButton(config, id)}</Grid.Row>;
-            case CONFIGURATION_COMPONENT_TYPE.SLIDER:
-              return <Grid.Row key={id}>{this.renderConfigurationSlider(config, id)}</Grid.Row>;
-            default: {
-              return <Grid.Row key={id}>{`configuration for ${id}`}</Grid.Row>;
-            }
-          }
+
+          return (
+            <Grid.Row key={id} style={{ padding: '10px' }}>
+              {this.renderConfig(config, id)}
+            </Grid.Row>
+          );
         })}
       </Grid>
     );
+  }
+
+  public renderConfig(config: ChellWidgetConfig, id: string) {
+    switch (config.type) {
+      case CONFIGURATION_COMPONENT_TYPE.BUTTON:
+        return this.renderConfigurationButton(config, id);
+      case CONFIGURATION_COMPONENT_TYPE.LABEL:
+        return this.renderConfigurationLabel(config, id);
+      case CONFIGURATION_COMPONENT_TYPE.RADIO:
+        return this.renderConfigurationRadioButton(config, id);
+      case CONFIGURATION_COMPONENT_TYPE.SLIDER:
+        return this.renderConfigurationSlider(config, id);
+      default: {
+        return `configuration for ${id}`;
+      }
+    }
   }
 
   public renderConfigurationButton(config: ButtonWidgetConfig, id: string) {

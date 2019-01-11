@@ -248,7 +248,7 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
       },
       {
         current: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
-        name: 'Measuring Proximity',
+        name: 'Proximity Metric',
         onChange: this.measuredProximityHandler,
         options: Object.values(CONTACT_DISTANCE_PROXIMITY).map(capitalizeFirstLetter),
         type: CONFIGURATION_COMPONENT_TYPE.RADIO,
