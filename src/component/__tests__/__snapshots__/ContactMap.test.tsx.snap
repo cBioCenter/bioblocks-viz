@@ -2368,15 +2368,39 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                             >
                               <Grid
                                 centered={true}
+                                columns={1}
+                                padded={true}
+                                relaxed={true}
+                                stretched={true}
+                                style={
+                                  Object {
+                                    "height": "100%",
+                                  }
+                                }
                               >
                                 <div
-                                  className="ui centered grid"
+                                  className="ui centered stretched padded relaxed one column grid"
+                                  style={
+                                    Object {
+                                      "height": "100%",
+                                    }
+                                  }
                                 >
                                   <GridRow
                                     key="clear-selections-0"
+                                    style={
+                                      Object {
+                                        "padding": "10px",
+                                      }
+                                    }
                                   >
                                     <div
                                       className="row"
+                                      style={
+                                        Object {
+                                          "padding": "10px",
+                                        }
+                                      }
                                     >
                                       <Button
                                         as="button"
@@ -2384,14 +2408,22 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                         id="clear-selections-0"
                                         onClick={[Function]}
                                         role="button"
-                                        style={Object {}}
+                                        style={
+                                          Object {
+                                            "color": "black",
+                                          }
+                                        }
                                       >
                                         <button
                                           className="ui compact button"
                                           id="clear-selections-0"
                                           onClick={[Function]}
                                           role="button"
-                                          style={Object {}}
+                                          style={
+                                            Object {
+                                              "color": "black",
+                                            }
+                                          }
                                         >
                                           Clear Selections
                                         </button>
@@ -2400,9 +2432,19 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                   </GridRow>
                                   <GridRow
                                     key="node-size-slider-0"
+                                    style={
+                                      Object {
+                                        "padding": "10px",
+                                      }
+                                    }
                                   >
                                     <div
                                       className="row"
+                                      style={
+                                        Object {
+                                          "padding": "10px",
+                                        }
+                                      }
                                     >
                                       <ChellSlider
                                         className="node-size-slider-0"
@@ -2615,9 +2657,19 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                   </GridRow>
                                   <GridRow
                                     key="node-size-slider-1"
+                                    style={
+                                      Object {
+                                        "padding": "10px",
+                                      }
+                                    }
                                   >
                                     <div
                                       className="row"
+                                      style={
+                                        Object {
+                                          "padding": "10px",
+                                        }
+                                      }
                                     >
                                       <ChellSlider
                                         className="node-size-slider-1"

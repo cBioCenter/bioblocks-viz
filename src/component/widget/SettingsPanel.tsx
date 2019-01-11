@@ -79,7 +79,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
               as={Menu}
               animation={'overlay'}
               inverted={inverted}
-              style={{ width, opacity }}
+              style={{ opacity, width }}
               vertical={true}
               visible={visible}
             >
@@ -141,7 +141,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
 
   public renderConfigurationButton(config: ButtonWidgetConfig, id: string) {
     return (
-      <Button compact={true} id={id} onClick={config.onClick} style={{ ...config.style }}>
+      <Button compact={true} id={id} onClick={config.onClick} style={{ ...config.style, color: 'black' }}>
         {config.icon && <Icon name={config.icon} />}
         {config.name}
       </Button>
