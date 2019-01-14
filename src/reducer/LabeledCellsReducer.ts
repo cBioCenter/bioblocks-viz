@@ -3,6 +3,7 @@ import { getType } from 'typesafe-actions';
 
 import { LabeledCellsActions, LabeledCellsActionType } from '~chell-viz~/action';
 import { AnatomogramMapping, ISpringGraphData, SPECIES_TYPE } from '~chell-viz~/data';
+import { ReducerRegistry, RootState } from '~chell-viz~/reducer';
 
 const initialGraphData: ISpringGraphData = { nodes: [] };
 
@@ -36,7 +37,7 @@ export const LabeledCellsReducer = (state = initialState, action: LabeledCellsAc
       return {
         ...state,
         currentCells: Set<number>(cells),
-        selectedLabels: deriveLabelsFromCells(cells, state.categories, state),
+        selectedLabels: deriveLabelsFromCells(cells, state.categories.toArray(), state),
       };
     case getType(LabeledCellsActions.setCurrentCellsAndCategory):
       const { payload } = action;
@@ -44,7 +45,7 @@ export const LabeledCellsReducer = (state = initialState, action: LabeledCellsAc
       return {
         ...state,
         currentCells: Set<number>(payload.cells),
-        selectedLabels: deriveLabelsFromCells(payload.cells, Set(payload.category), state),
+        selectedLabels: deriveLabelsFromCells(payload.cells, [payload.category], state),
       };
     case getType(LabeledCellsActions.springData.success):
       const { nodes } = action.payload;
@@ -101,18 +102,33 @@ const deriveCellsFromLabels = (candidateLabels: string[], state: LabeledCellsSta
   return cellIndices;
 };
 
-const deriveLabelsFromCells = (currentCells: number[], categories: Set<string>, state: LabeledCellsState) => {
+const deriveLabelsFromCells = (currentCells: number[], categories: string[], state: LabeledCellsState) => {
   const { graphData } = state;
   let result = Set<string>();
 
   for (const cellIndex of currentCells) {
-    for (const category of categories.toArray()) {
-      const labels = AnatomogramMapping[state.species][graphData.nodes[cellIndex].labelForCategory[category]];
+    const labelForCategory = graphData.nodes[cellIndex] ? graphData.nodes[cellIndex].labelForCategory : {};
+    for (const category of categories) {
+      const labels = AnatomogramMapping[state.species][labelForCategory[category]];
       if (labels) {
         labels.forEach(label => (result = result.add(label)));
+      }
+    }
+
+    for (const id of Object.keys(AnatomogramMapping[state.species])) {
+      for (const label of Object.values(labelForCategory)) {
+        if (AnatomogramMapping[state.species][id].includes(label)) {
+          result = result.add(id);
+        }
       }
     }
   }
 
   return result;
 };
+
+const reducerName = 'labeledCells';
+
+ReducerRegistry.register(reducerName, LabeledCellsReducer);
+
+export const selectCurrentCells = (state: RootState) => (state[reducerName] as LabeledCellsState).currentCells;

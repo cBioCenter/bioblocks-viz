@@ -2,6 +2,7 @@ import { Set } from 'immutable';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
+import { createStructuredSelector } from 'reselect';
 
 // tslint:disable:import-name match-default-export-name
 import IframeComm, { IframeCommAttributes } from 'react-iframe-comm';
@@ -10,7 +11,7 @@ import IframeComm, { IframeCommAttributes } from 'react-iframe-comm';
 import { LabeledCellsActions } from '~chell-viz~/action';
 import { ComponentCard } from '~chell-viz~/component';
 import { ISpringLink, ISpringNode } from '~chell-viz~/data';
-import { RootState } from '~chell-viz~/reducer';
+import { selectCurrentCells } from '~chell-viz~/reducer';
 
 export interface ISpringContainerProps {
   currentCells: Set<number>;
@@ -153,14 +154,9 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
     )}/springViewer.html?datasets/${dataset}`;
 }
 
-const mapStateToProps = (state: RootState) => ({
-  currentCells: state.labeledCells.currentCells,
+const mapStateToProps = createStructuredSelector({
+  currentCells: selectCurrentCells,
 });
-
-type requiredProps = Omit<ISpringContainerProps, keyof typeof SpringContainerClass.defaultProps> &
-  Partial<ISpringContainerProps>;
-
-const UnconnectedSpringContainer = (props: requiredProps) => <SpringContainerClass {...props} />;
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
@@ -170,8 +166,7 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     dispatch,
   );
 
-// tslint:disable-next-line:max-classes-per-file
-export class SpringContainer extends connect(
+export const SpringContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(UnconnectedSpringContainer) {}
+)(SpringContainerClass);

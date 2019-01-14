@@ -142,7 +142,7 @@ exports[`VizSelectorPanel Should match existing snapshot for initial visualizati
     fluid={true}
     raised={true}
   >
-    <Connect(UnconnectedSpringContainer)
+    <Connect(SPRING)
       padding={15}
     />
   </Card>

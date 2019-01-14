@@ -17,7 +17,7 @@ import {
   IPlotlyData,
 } from '~chell-viz~/data';
 import { fetchTensorTSneCoordinateData } from '~chell-viz~/helper';
-import { RootState } from '~chell-viz~/reducer';
+import { LabeledCellsState } from '~chell-viz~/reducer';
 
 interface ITensorContainerProps {
   currentCells: Set<number>;
@@ -312,14 +312,9 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
   }
 }
 
-const mapStateToProps = (state: RootState) => ({
+const mapStateToProps = (state: { labeledCells: LabeledCellsState }) => ({
   currentCells: state.labeledCells.currentCells,
 });
-
-type requiredProps = Omit<ITensorContainerProps, keyof typeof TensorTContainerClass.defaultProps> &
-  Partial<ITensorContainerProps>;
-
-const UnconnectedTensorTContainer = (props: requiredProps) => <TensorTContainerClass {...props} />;
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
@@ -330,7 +325,7 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
   );
 
 // tslint:disable-next-line:max-classes-per-file
-export class TensorTContainer extends connect(
+export const TensorTContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(UnconnectedTensorTContainer) {}
+)(TensorTContainerClass);

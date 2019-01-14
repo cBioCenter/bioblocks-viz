@@ -8,7 +8,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { LabeledCellsActions } from '~chell-viz~/action';
 import { ComponentCard } from '~chell-viz~/component';
 import { AnatomogramMapping, CHELL_CSS_STYLE, SPECIES_TYPE } from '~chell-viz~/data';
-import { RootState } from '~chell-viz~/reducer';
+import { LabeledCellsState } from '~chell-viz~/reducer';
 
 interface IAnatomogramContainerProps {
   height: number | string;
@@ -97,9 +97,7 @@ class AnatomogramContainerClass extends React.Component<IAnatomogramContainerPro
   }
 
   protected onClick = (ids: string[]) => {
-    console.log(ids);
     const { addLabel } = this.props;
-
     addLabel(ids[0]);
   };
 
@@ -136,15 +134,10 @@ class AnatomogramContainerClass extends React.Component<IAnatomogramContainerPro
   };
 }
 
-const mapStateToProps = (state: RootState) => ({
+const mapStateToProps = (state: { labeledCells: LabeledCellsState }) => ({
   selectIds: state.labeledCells.selectedLabels,
   species: state.labeledCells.species,
 });
-
-type requiredProps = Omit<IAnatomogramContainerProps, keyof typeof AnatomogramContainerClass.defaultProps> &
-  Partial<IAnatomogramContainerProps>;
-
-const UnconnectedAnatomogramContainer = (props: requiredProps) => <AnatomogramContainerClass {...props} />;
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
@@ -154,8 +147,7 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     dispatch,
   );
 
-// tslint:disable-next-line:max-classes-per-file
-export class AnatomogramContainer extends connect(
+export const AnatomogramContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(UnconnectedAnatomogramContainer) {}
+)(AnatomogramContainerClass);
