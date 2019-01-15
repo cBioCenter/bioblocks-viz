@@ -11,7 +11,7 @@ import IframeComm, { IframeCommAttributes } from 'react-iframe-comm';
 import { LabeledCellsActions } from '~chell-viz~/action';
 import { ComponentCard } from '~chell-viz~/component';
 import { ISpringLink, ISpringNode } from '~chell-viz~/data';
-import { selectCurrentCells } from '~chell-viz~/reducer';
+import { selectCurrentCells } from '~chell-viz~/selector';
 
 export interface ISpringContainerProps {
   currentCells: Set<number>;

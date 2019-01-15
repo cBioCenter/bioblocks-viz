@@ -7,6 +7,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 
 import { LabeledCellsActions } from '~chell-viz~/action';
 import { ComponentCard } from '~chell-viz~/component';
+import { ChellVisualization } from '~chell-viz~/container';
 import { AnatomogramMapping, CHELL_CSS_STYLE, SPECIES_TYPE } from '~chell-viz~/data';
 import { LabeledCellsState } from '~chell-viz~/reducer';
 
@@ -23,7 +24,7 @@ interface IAnatomogramContainerState {
   ids: string[];
 }
 
-class AnatomogramContainerClass extends React.Component<IAnatomogramContainerProps, IAnatomogramContainerState> {
+class AnatomogramContainerClass extends ChellVisualization<IAnatomogramContainerProps, IAnatomogramContainerState> {
   public static defaultProps = {
     height: '300px',
     style: {},

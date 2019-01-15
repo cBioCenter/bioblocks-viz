@@ -6,5 +6,6 @@ export * from './helper';
 export * from './hoc';
 export * from './page';
 export * from './reducer';
+export * from './selector';
 
 export * from './ChellVizApp';

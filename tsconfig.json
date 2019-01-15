@@ -13,16 +13,8 @@
     "outDir": "./dist/",
     "paths": {
       "~chell-viz~": ["./src"],
-      "~chell-viz~/action": ["./src/action"],
-      "~chell-viz~/component": ["./src/component"],
-      "~chell-viz~/container": ["./src/container"],
-      "~chell-viz~/context": ["./src/context"],
-      "~chell-viz~/data": ["./src/data"],
-      "~chell-viz~/helper": ["./src/helper"],
-      "~chell-viz~/hoc": ["./src/hoc"],
-      "~chell-viz~/page": ["./src/page"],
-      "~chell-viz~/reducer": ["./src/reducer"],
       "~chell-viz~/test": ["./test"],
+      "~chell-viz~/*": ["./src/*"],
       "jest": ["node_modules/@types/jest/index.d.ts"],
       "plotly.js-*": ["node_modules/@types/plotly.js"]
     },

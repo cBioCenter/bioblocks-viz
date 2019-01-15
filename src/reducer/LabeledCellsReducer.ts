@@ -3,7 +3,7 @@ import { getType } from 'typesafe-actions';
 
 import { LabeledCellsActions, LabeledCellsActionType } from '~chell-viz~/action';
 import { AnatomogramMapping, ISpringGraphData, SPECIES_TYPE } from '~chell-viz~/data';
-import { ReducerRegistry, RootState } from '~chell-viz~/reducer';
+import { ReducerRegistry } from '~chell-viz~/reducer';
 
 const initialGraphData: ISpringGraphData = { nodes: [] };
 
@@ -127,8 +127,6 @@ const deriveLabelsFromCells = (currentCells: number[], categories: string[], sta
   return result;
 };
 
-const reducerName = 'labeledCells';
+export const LABELED_CELL_REDUCER_NAME = 'labeledCells';
 
-ReducerRegistry.register(reducerName, LabeledCellsReducer);
-
-export const selectCurrentCells = (state: RootState) => (state[reducerName] as LabeledCellsState).currentCells;
+ReducerRegistry.register(LABELED_CELL_REDUCER_NAME, LabeledCellsReducer);

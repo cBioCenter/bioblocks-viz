@@ -324,7 +324,6 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     dispatch,
   );
 
-// tslint:disable-next-line:max-classes-per-file
 export const TensorTContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
