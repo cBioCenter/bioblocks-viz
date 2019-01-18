@@ -5,11 +5,12 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
-import { createToggleableActions } from '~chell-viz~/action';
+import { createContainerActions } from '~chell-viz~/action';
 import { ComponentCard } from '~chell-viz~/component';
 import { ChellVisualization } from '~chell-viz~/container';
 import { AnatomogramMapping, CHELL_CSS_STYLE, SPECIES_TYPE } from '~chell-viz~/data';
-import { LabeledCellsState, ToggleableReducer } from '~chell-viz~/reducer';
+import { LabeledCellsState } from '~chell-viz~/reducer';
+import { selectCurrentItems } from '~chell-viz~/selector/ContainerSelector';
 
 interface IAnatomogramContainerProps {
   height: number | string;
@@ -43,11 +44,14 @@ class AnatomogramContainerClass extends ChellVisualization<IAnatomogramContainer
     };
   }
 
+  public setupDataServices() {
+    this.addDataSubscriptions(['cells', 'labels']);
+  }
+
   public componentDidMount() {
     // We are __currently__ unable to known when Anatomogram finishes loading the svg.
     // So, we have to wait.
     this.svgIntervalTimer = window.setInterval(this.resizeSVGElement, 1000 / 60);
-    ToggleableReducer('anat');
   }
 
   public componentWillUnmount() {
@@ -70,7 +74,6 @@ class AnatomogramContainerClass extends ChellVisualization<IAnatomogramContainer
   public render() {
     const { species, selectIds } = this.props;
     const { ids } = this.state;
-    console.log(ids);
 
     return (
       <div
@@ -137,15 +140,15 @@ class AnatomogramContainerClass extends ChellVisualization<IAnatomogramContainer
   };
 }
 
-const mapStateToProps = (state: { labeledCells: LabeledCellsState; anat?: { items: Set<string> } }) => ({
-  selectIds: state.anat ? state.anat.items : Set<string>('foo'),
+const mapStateToProps = (state: { labeledCells: LabeledCellsState; [key: string]: any }) => ({
+  selectIds: selectCurrentItems<string>(state, 'labels'),
   species: state.labeledCells.species,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
-      addLabel: createToggleableActions<string>().add,
+      addLabel: createContainerActions<string>('labels').add,
     },
     dispatch,
   );

@@ -2,16 +2,16 @@ import { Set } from 'immutable';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-import { createStructuredSelector } from 'reselect';
 
 // tslint:disable:import-name match-default-export-name
 import IframeComm, { IframeCommAttributes } from 'react-iframe-comm';
 // tslint:enable:import-name match-default-export-name
 
-import { LabeledCellsActions } from '~chell-viz~/action';
+import { createContainerActions, LabeledCellsActions } from '~chell-viz~/action';
 import { ComponentCard } from '~chell-viz~/component';
+import { ChellVisualization } from '~chell-viz~/container';
 import { ISpringLink, ISpringNode } from '~chell-viz~/data';
-import { selectCurrentCells } from '~chell-viz~/selector';
+import { selectCurrentItems } from '~chell-viz~/selector/ContainerSelector';
 
 export interface ISpringContainerProps {
   currentCells: Set<number>;
@@ -22,6 +22,7 @@ export interface ISpringContainerProps {
   selectedCategory: string;
   springHeight: number;
   springWidth: number;
+  setCurrentCells(cells: number[]): void;
   setCurrentCellsAndCategory(payload: { cells: number[]; category: string }): void;
 }
 
@@ -40,7 +41,7 @@ export interface ISpringMessage {
   };
 }
 
-export class SpringContainerClass extends React.Component<ISpringContainerProps, ISpringContainerState> {
+export class SpringContainerClass extends ChellVisualization<ISpringContainerProps, ISpringContainerState> {
   public static defaultProps = {
     data: {
       links: new Array<ISpringLink>(),
@@ -68,10 +69,13 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
     };
   }
 
+  public setupDataServices() {
+    return;
+  }
+
   public componentDidUpdate(prevProps: ISpringContainerProps, prevState: ISpringContainerState) {
     const { currentCells } = this.props;
     if (currentCells !== prevProps.currentCells) {
-      console.log(`sending new cells to spring, totalling ${currentCells.size}`);
       this.setState({
         postMessageData: {
           payload: {
@@ -123,11 +127,12 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
   };
 
   protected onReceiveMessage = (msg: MessageEvent) => {
-    const { currentCells, setCurrentCellsAndCategory } = this.props;
+    const { currentCells, setCurrentCellsAndCategory, setCurrentCells } = this.props;
     const data = msg.data as ISpringMessage;
     switch (data.type) {
       case 'selected-category-update':
       case 'selected-cells-update': {
+        setCurrentCells(data.payload.indices);
         setCurrentCellsAndCategory({ cells: data.payload.indices, category: data.payload.currentCategory });
         break;
       }
@@ -154,13 +159,20 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
     )}/springViewer.html?datasets/${dataset}`;
 }
 
+/*
 const mapStateToProps = createStructuredSelector({
   currentCells: selectCurrentCells,
+});
+*/
+
+const mapStateToProps = (state: { [key: string]: any }) => ({
+  currentCells: selectCurrentItems<number>(state, 'cells'),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
+      setCurrentCells: createContainerActions<number>('cells').set,
       setCurrentCellsAndCategory: LabeledCellsActions.setCurrentCellsAndCategory,
     },
     dispatch,

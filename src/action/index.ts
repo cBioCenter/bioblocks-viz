@@ -1,2 +1,2 @@
 export * from './LabeledCellsAction';
-export * from './ToggleableAction';
+export * from './ContainerAction';

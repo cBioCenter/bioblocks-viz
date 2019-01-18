@@ -6,7 +6,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { Grid, Message } from 'semantic-ui-react';
 
 import { fetchLabeledSpringData, LabeledCellsActions } from '~chell-viz~/action';
-import { AnatomogramContainer, SpringContainer, TensorTContainer } from '~chell-viz~/container';
+import { AnatomogramContainer, ChellMastermind, SpringContainer, TensorTContainer } from '~chell-viz~/container';
 import { SPECIES_TYPE, VizData } from '~chell-viz~/data';
 
 export interface IDatasetPageProps extends Partial<RouteComponentProps> {
@@ -50,12 +50,14 @@ class DatasetPageClass extends React.Component<IDatasetPageProps, IDatasetPageSt
     return (
       <div style={{ padding: '20px' }}>
         <Grid centered={true} stackable={true} stretched={false} padded={true} columns={2}>
-          {datasetLocation.length >= 1 &&
-            visualizations.map((visualization, index) => (
-              <Grid.Column key={`dataset-visualization-${index}`} style={{ width: 'auto' }}>
-                {this.renderVisualization(visualization, datasetLocation)}
-              </Grid.Column>
-            ))}
+          <ChellMastermind>
+            {datasetLocation.length >= 1 &&
+              visualizations.map((visualization, index) => (
+                <Grid.Column key={`dataset-visualization-${index}`} style={{ width: 'auto' }}>
+                  {this.renderVisualization(visualization, datasetLocation)}
+                </Grid.Column>
+              ))}
+          </ChellMastermind>
         </Grid>
       </div>
     );

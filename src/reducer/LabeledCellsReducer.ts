@@ -102,7 +102,7 @@ const deriveCellsFromLabels = (candidateLabels: string[], state: LabeledCellsSta
   return cellIndices;
 };
 
-const deriveLabelsFromCells = (currentCells: number[], categories: string[], state: LabeledCellsState) => {
+export const deriveLabelsFromCells = (currentCells: number[], categories: string[], state: LabeledCellsState) => {
   const { graphData } = state;
   let result = Set<string>();
 
