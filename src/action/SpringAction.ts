@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 
-import { createDataActions } from '~chell-viz~/action';
-import { ISpringGraphData } from '~chell-viz~/data';
+import { createDataActions, createValueActions } from '~chell-viz~/action';
+import { ISpringGraphData, SPECIES_TYPE } from '~chell-viz~/data';
 
 // tslint:disable-next-line:export-name
 export const fetchSpringGraphData = (
@@ -21,3 +21,8 @@ export const fetchSpringGraphData = (
     console.log(`An error occurred: ${e}`);
   }
 };
+
+export const createSpringActions = (namespace = 'chell') => ({
+  graphData: { ...createDataActions<ISpringGraphData>('spring/graphData', namespace) },
+  species: { ...createValueActions<SPECIES_TYPE>('spring/species', namespace) },
+});

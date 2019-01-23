@@ -1,12 +1,17 @@
 import { combineReducers } from 'redux';
 
-import { ISpringGraphData } from '~chell-viz~/data';
-import { ContainerReducer, DataReducer, ReducerRegistry } from '~chell-viz~/reducer';
+import { ISpringGraphData, SPECIES_TYPE } from '~chell-viz~/data';
+import { DataReducer, ReducerRegistry, ValueReducer } from '~chell-viz~/reducer';
+
+export interface ISpringReducerState {
+  graphData: ISpringGraphData;
+  species: SPECIES_TYPE;
+}
 
 export const SpringReducer = (namespace = 'chell') => {
   return combineReducers({
     graphData: DataReducer<ISpringGraphData>('spring/graphData', namespace),
-    species: ContainerReducer<string>('spring/species', namespace),
+    species: ValueReducer<SPECIES_TYPE>('spring/species', namespace),
   });
 };
 

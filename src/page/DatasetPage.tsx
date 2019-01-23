@@ -5,7 +5,7 @@ import { RouteComponentProps } from 'react-router';
 import { bindActionCreators, Dispatch } from 'redux';
 import { Grid, Message } from 'semantic-ui-react';
 
-import { fetchSpringGraphData, LabeledCellsActions } from '~chell-viz~/action';
+import { createSpringActions, fetchSpringGraphData } from '~chell-viz~/action';
 import { AnatomogramContainer, SpringContainer, TensorTContainer } from '~chell-viz~/container';
 import { ISpringGraphData, SPECIES_TYPE, VizData } from '~chell-viz~/data';
 import { fetchSpringData } from '~chell-viz~/helper';
@@ -100,7 +100,7 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
       dispatchSpringFetch: fetchSpringGraphData,
-      setSpecies: LabeledCellsActions.setSpecies,
+      setSpecies: createSpringActions().species.set,
     },
     dispatch,
   );

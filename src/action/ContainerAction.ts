@@ -5,15 +5,18 @@ export const createContainerActions = <T>(datasetName: string, namespace = 'chel
   const reducerName = `${namespace}/${datasetName}`.toUpperCase();
 
   return {
-    add: createStandardAction(`${reducerName}/ADD`).map((payload: T) => ({
+    add: createStandardAction(`${reducerName}_ADD`).map((payload: T) => ({
       meta: datasetName,
       payload,
     })),
-    clear: createStandardAction(`${reducerName}/CLEAR`)(),
-    remove: createStandardAction(`${reducerName}/REMOVE`).map((payload: T) => ({
+    clear: createStandardAction(`${reducerName}_CLEAR`)(),
+    remove: createStandardAction(`${reducerName}_REMOVE`).map((payload: T) => ({
       meta: datasetName,
       payload,
     })),
-    set: createStandardAction(`${reducerName}/SET`)<T[]>(),
+    set: createStandardAction(`${reducerName}_SET`).map((payload: T[]) => ({
+      meta: datasetName,
+      payload,
+    })),
   };
 };
