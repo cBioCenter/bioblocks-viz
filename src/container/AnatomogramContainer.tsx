@@ -10,7 +10,7 @@ import { ComponentCard } from '~chell-viz~/component';
 import { ChellVisualization } from '~chell-viz~/container';
 import { AnatomogramMapping, CHELL_CSS_STYLE, SPECIES_TYPE } from '~chell-viz~/data';
 import { LabeledCellsState } from '~chell-viz~/reducer';
-import { selectCurrentItems } from '~chell-viz~/selector/ContainerSelector';
+import { selectCurrentItems } from '~chell-viz~/selector/ContainerSelectors';
 
 interface IAnatomogramContainerProps {
   height: number | string;
@@ -19,6 +19,7 @@ interface IAnatomogramContainerProps {
   style: CHELL_CSS_STYLE;
   width: number | string;
   addLabel(label: string): void;
+  removeLabel(label: string): void;
 }
 
 interface IAnatomogramContainerState {
@@ -45,7 +46,7 @@ class AnatomogramContainerClass extends ChellVisualization<IAnatomogramContainer
   }
 
   public setupDataServices() {
-    this.addDataSubscriptions(['cells', 'labels']);
+    this.addDatasets(['cells', 'labels']);
   }
 
   public componentDidMount() {
@@ -103,8 +104,15 @@ class AnatomogramContainerClass extends ChellVisualization<IAnatomogramContainer
   }
 
   protected onClick = (ids: string[]) => {
-    const { addLabel } = this.props;
-    addLabel(ids[0]);
+    // Anatomogram returns an array of strings for click events, but we only ever work with a single id.
+    const id = ids[0];
+    const { addLabel, removeLabel, selectIds } = this.props;
+
+    if (selectIds.includes(id)) {
+      removeLabel(id);
+    } else {
+      addLabel(id);
+    }
   };
 
   protected deriveIdsFromSpecies = (species: SPECIES_TYPE) => Object.keys(AnatomogramMapping[species]);
@@ -149,6 +157,7 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
       addLabel: createContainerActions<string>('labels').add,
+      removeLabel: createContainerActions<string>('labels').remove,
     },
     dispatch,
   );

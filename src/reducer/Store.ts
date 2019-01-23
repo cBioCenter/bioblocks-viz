@@ -2,25 +2,13 @@ import { applyMiddleware, combineReducers, createStore, Middleware } from 'redux
 import { logger } from 'redux-logger';
 import * as thunk from 'redux-thunk';
 
-import { deriveLabelsFromCells, IReducerMap, ReducerRegistry, RootState } from '~chell-viz~/reducer';
+import { ChellMiddleware, IReducerMap, ReducerRegistry, RootState } from '~chell-viz~/reducer';
 
 const middleWares: Middleware[] = [thunk.default];
 if (process.env.NODE_ENV === `development`) {
   middleWares.push(logger);
 }
-
-const chellMiddleware: Middleware = store => next => action => {
-  if (action.type === 'chell/tensor-tsne/SET') {
-    store.dispatch({
-      payload: deriveLabelsFromCells(action.payload, [], store.getState().labeledCells),
-      type: 'chell/anatomogram/SET',
-    });
-  }
-
-  return next(action);
-};
-
-middleWares.push(chellMiddleware);
+middleWares.push(ChellMiddleware);
 
 const initialState = {};
 

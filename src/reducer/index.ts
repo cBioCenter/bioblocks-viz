@@ -1,5 +1,8 @@
 export * from './registry';
 
-export * from './LabeledCellsReducer';
-export * from './Store';
+export * from './ChellMiddleware';
 export * from './ContainerReducer';
+export * from './DataReducer';
+export * from './LabeledCellsReducer';
+export * from './SpringReducer';
+export * from './Store';

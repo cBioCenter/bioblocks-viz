@@ -11,7 +11,8 @@ import { createContainerActions, LabeledCellsActions } from '~chell-viz~/action'
 import { ComponentCard } from '~chell-viz~/component';
 import { ChellVisualization } from '~chell-viz~/container';
 import { ISpringLink, ISpringNode } from '~chell-viz~/data';
-import { selectCurrentItems } from '~chell-viz~/selector/ContainerSelector';
+import { createSpringReducer } from '~chell-viz~/reducer';
+import { selectCurrentItems } from '~chell-viz~/selector';
 
 export interface ISpringContainerProps {
   currentCells: Set<number>;
@@ -70,7 +71,7 @@ export class SpringContainerClass extends ChellVisualization<ISpringContainerPro
   }
 
   public setupDataServices() {
-    return;
+    createSpringReducer();
   }
 
   public componentDidUpdate(prevProps: ISpringContainerProps, prevState: ISpringContainerState) {

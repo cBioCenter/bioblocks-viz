@@ -168,9 +168,6 @@ yarn</code></pre>
 						<a href="enums/secondary_structure_codes.html" class="tsd-kind-icon">SECONDARY_<wbr>STRUCTURE_<wbr>CODES</a>
 					</li>
 					<li class=" tsd-kind-enum">
-						<a href="enums/selection_action.html" class="tsd-kind-icon">SELECTION_<wbr>ACTION</a>
-					</li>
-					<li class=" tsd-kind-enum">
 						<a href="enums/viz_type.html" class="tsd-kind-icon">VIZ_<wbr>TYPE</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter tsd-is-not-exported">
@@ -191,8 +188,8 @@ yarn</code></pre>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/chellcontextprovider.html" class="tsd-kind-icon">Chell<wbr>Context<wbr>Provider</a>
 					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter tsd-is-not-exported">
-						<a href="classes/chellmastermindclass.html" class="tsd-kind-icon">Chell<wbr>Mastermind<wbr>Class</a>
+					<li class=" tsd-kind-class">
+						<a href="classes/chellmiddlewaretransformer.html" class="tsd-kind-icon">Chell<wbr>Middleware<wbr>Transformer</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/chellpdb.html" class="tsd-kind-icon">ChellPDB</a>
@@ -336,9 +333,6 @@ yarn</code></pre>
 						<a href="interfaces/ichellcontextprops.html" class="tsd-kind-icon">IChell<wbr>Context<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/ichellmastermindprops.html" class="tsd-kind-icon">IChell<wbr>Mastermind<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-interface">
 						<a href="interfaces/ichellradiogroupprops.html" class="tsd-kind-icon">IChell<wbr>Radio<wbr>Group<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -391,9 +385,6 @@ yarn</code></pre>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/icontactmapprops.html" class="tsd-kind-icon">IContact<wbr>Map<wbr>Props</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="interfaces/icontainerreducerstate.html" class="tsd-kind-icon">IContainer<wbr>Reducer<wbr>State</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/icouplingscore.html" class="tsd-kind-icon">ICoupling<wbr>Score</a>
@@ -680,8 +671,14 @@ yarn</code></pre>
 					<li class=" tsd-kind-type-alias tsd-is-not-exported">
 						<a href="globals.html#fieldtypes" class="tsd-kind-icon">Field<wbr>Types</a>
 					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="globals.html#icontainerreducerstate" class="tsd-kind-icon">IContainer<wbr>Reducer<wbr>State</a>
+					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#icouplingcontext" class="tsd-kind-icon">ICoupling<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="globals.html#idatareducerstate" class="tsd-kind-icon">IData<wbr>Reducer<wbr>State</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#iresiduecontext" class="tsd-kind-icon">IResidue<wbr>Context</a>
@@ -792,9 +789,6 @@ yarn</code></pre>
 						<a href="globals.html#anatomogramcontainer" class="tsd-kind-icon">Anatomogram<wbr>Container</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="globals.html#chellmastermind" class="tsd-kind-icon">Chell<wbr>Mastermind</a>
-					</li>
-					<li class=" tsd-kind-variable">
 						<a href="globals.html#couplingcontext" class="tsd-kind-icon">Coupling<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-variable">
@@ -872,9 +866,6 @@ yarn</code></pre>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="globals.html#uni_prot_resno_header" class="tsd-kind-icon">UNI_<wbr>PROT_<wbr>RESNO_<wbr>HEADER</a>
 					</li>
-					<li class=" tsd-kind-variable">
-						<a href="globals.html#createcontainerreducer" class="tsd-kind-icon">create<wbr>Container<wbr>Reducer</a>
-					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="globals.html#middlewares" class="tsd-kind-icon">middle<wbr>Wares</a>
 					</li>
@@ -890,11 +881,17 @@ yarn</code></pre>
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#userdatasets" class="tsd-kind-icon">user<wbr>Datasets</a>
 					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#chellmiddleware" class="tsd-kind-icon">Chell<wbr>Middleware</a>
+					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#contactmap" class="tsd-kind-icon">Contact<wbr>Map</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#containerreducer" class="tsd-kind-icon">Container<wbr>Reducer</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#datareducer" class="tsd-kind-icon">Data<wbr>Reducer</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#infopanel" class="tsd-kind-icon">Info<wbr>Panel</a>
@@ -904,6 +901,9 @@ yarn</code></pre>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#nglcomponent" class="tsd-kind-icon">NGLComponent</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#springreducer" class="tsd-kind-icon">Spring<wbr>Reducer</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#tframecomponent" class="tsd-kind-icon">TFrame<wbr>Component</a>
@@ -921,9 +921,6 @@ yarn</code></pre>
 						<a href="globals.html#capitalizefirstletter" class="tsd-kind-icon">capitalize<wbr>First<wbr>Letter</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="globals.html#chellmiddleware" class="tsd-kind-icon">chell<wbr>Middleware</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#combine" class="tsd-kind-icon">combine</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
@@ -938,6 +935,15 @@ yarn</code></pre>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#createcontaineractions" class="tsd-kind-icon">create<wbr>Container<wbr>Actions</a>
 					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#createcontainerreducer" class="tsd-kind-icon">create<wbr>Container<wbr>Reducer</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#createdataactions" class="tsd-kind-icon">create<wbr>Data<wbr>Actions</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#createdatareducer" class="tsd-kind-icon">create<wbr>Data<wbr>Reducer</a>
+					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#createdistancerepresentation" class="tsd-kind-icon">create<wbr>Distance<wbr>Representation</a>
 					</li>
@@ -946,6 +952,9 @@ yarn</code></pre>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#createsecstructrepresentation" class="tsd-kind-icon">create<wbr>Sec<wbr>Struct<wbr>Representation</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#createspringreducer" class="tsd-kind-icon">create<wbr>Spring<wbr>Reducer</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#derivecellsfromlabels" class="tsd-kind-icon">derive<wbr>Cells<wbr>From<wbr>Labels</a>
@@ -971,6 +980,9 @@ yarn</code></pre>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#fetchcontactmapdata" class="tsd-kind-icon">fetch<wbr>Contact<wbr>Map<wbr>Data</a>
 					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#fetchdataset" class="tsd-kind-icon">fetch<wbr>Dataset</a>
+					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#fetchgraphdata" class="tsd-kind-icon">fetch<wbr>Graph<wbr>Data</a>
 					</li>
@@ -991,6 +1003,9 @@ yarn</code></pre>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#fetchspringdata" class="tsd-kind-icon">fetch<wbr>Spring<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#fetchspringgraphdata" class="tsd-kind-icon">fetch<wbr>Spring<wbr>Graph<wbr>Data</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#fetchtsnecoordinatedata" class="tsd-kind-icon">fetchTSne<wbr>Coordinate<wbr>Data</a>

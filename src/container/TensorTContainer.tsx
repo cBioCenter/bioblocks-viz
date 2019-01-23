@@ -18,7 +18,7 @@ import {
   IPlotlyData,
 } from '~chell-viz~/data';
 import { fetchTensorTSneCoordinateData } from '~chell-viz~/helper';
-import { selectCurrentItems } from '~chell-viz~/selector/ContainerSelector';
+import { selectCurrentItems } from '~chell-viz~/selector/ContainerSelectors';
 
 interface ITensorContainerProps {
   currentCells: Set<number>;
@@ -67,7 +67,7 @@ export class TensorTContainerClass extends ChellVisualization<ITensorContainerPr
   }
 
   public setupDataServices() {
-    this.addDataSubscriptions(['cells', 'labels']);
+    this.addDatasets(['cells']);
   }
 
   public async componentDidMount() {

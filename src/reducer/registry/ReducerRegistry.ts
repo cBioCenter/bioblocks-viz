@@ -4,7 +4,7 @@ import { StateType } from 'typesafe-actions';
 export interface IReducerMap {
   [key: string]: Reducer;
 }
-export type ReducerRegistryListener = (...args: any[]) => void;
+export type ReducerRegistryListener = (reducers: IReducerMap) => void;
 export type RootState = StateType<{ [key: string]: Reducer }>;
 
 /**
@@ -25,7 +25,12 @@ class ReducerRegistryClass {
   }
 
   public register(name: string, reducer: Reducer) {
-    this.reducers = { ...this.reducers, [name]: reducer };
+    if (Object.keys(this.reducers).includes(name)) {
+      console.log(`Reducer '${name} already exists, not replacing`);
+    } else {
+      this.reducers = { ...this.reducers, [name]: reducer };
+    }
+
     if (this.emitChange) {
       this.emitChange(this.getReducers());
     }

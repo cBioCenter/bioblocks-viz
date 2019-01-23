@@ -5,12 +5,13 @@ import { RouteComponentProps } from 'react-router';
 import { bindActionCreators, Dispatch } from 'redux';
 import { Grid, Message } from 'semantic-ui-react';
 
-import { fetchLabeledSpringData, LabeledCellsActions } from '~chell-viz~/action';
-import { AnatomogramContainer, ChellMastermind, SpringContainer, TensorTContainer } from '~chell-viz~/container';
-import { SPECIES_TYPE, VizData } from '~chell-viz~/data';
+import { fetchSpringGraphData, LabeledCellsActions } from '~chell-viz~/action';
+import { AnatomogramContainer, SpringContainer, TensorTContainer } from '~chell-viz~/container';
+import { ISpringGraphData, SPECIES_TYPE, VizData } from '~chell-viz~/data';
+import { fetchSpringData } from '~chell-viz~/helper';
 
 export interface IDatasetPageProps extends Partial<RouteComponentProps> {
-  fetchSpringData(datasetLocation: string): void;
+  dispatchSpringFetch(datasetName: string, fetchFn: () => Promise<ISpringGraphData>, namespace?: string): void;
   setSpecies(species: SPECIES_TYPE): void;
 }
 
@@ -50,27 +51,28 @@ class DatasetPageClass extends React.Component<IDatasetPageProps, IDatasetPageSt
     return (
       <div style={{ padding: '20px' }}>
         <Grid centered={true} stackable={true} stretched={false} padded={true} columns={2}>
-          <ChellMastermind>
-            {datasetLocation.length >= 1 &&
-              visualizations.map((visualization, index) => (
-                <Grid.Column key={`dataset-visualization-${index}`} style={{ width: 'auto' }}>
-                  {this.renderVisualization(visualization, datasetLocation)}
-                </Grid.Column>
-              ))}
-          </ChellMastermind>
+          {datasetLocation.length >= 1 &&
+            visualizations.map((visualization, index) => (
+              <Grid.Column key={`dataset-visualization-${index}`} style={{ width: 'auto' }}>
+                {this.renderVisualization(visualization, datasetLocation)}
+              </Grid.Column>
+            ))}
         </Grid>
       </div>
     );
   }
 
   protected setupSearchParameters(query: string) {
-    const { fetchSpringData } = this.props;
+    const { dispatchSpringFetch } = this.props;
     const params = new URLSearchParams(query);
     // tslint:disable-next-line:no-backbone-get-set-outside-model
     const datasetLocation = params.get('name');
     const visualizations = fromJS(params.getAll('viz')) as List<string>;
 
-    fetchSpringData(datasetLocation ? datasetLocation : '');
+    dispatchSpringFetch('spring', async () =>
+      fetchSpringData(`assets/datasets/${datasetLocation ? datasetLocation : ''}`),
+    );
+
     this.setState({
       datasetLocation: datasetLocation ? datasetLocation : '',
       visualizations,
@@ -97,7 +99,7 @@ const UnconnectedDatasetPage = (props: IDatasetPageProps) => <DatasetPageClass {
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
-      fetchSpringData: fetchLabeledSpringData,
+      dispatchSpringFetch: fetchSpringGraphData,
       setSpecies: LabeledCellsActions.setSpecies,
     },
     dispatch,

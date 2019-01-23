@@ -1,4 +1,5 @@
 import { Set } from 'immutable';
+import { Reducer } from 'redux';
 import { ActionType, getType } from 'typesafe-actions';
 // tslint:disable-next-line:no-submodule-imports
 import { PayloadAction } from 'typesafe-actions/dist/types';
@@ -6,58 +7,43 @@ import { PayloadAction } from 'typesafe-actions/dist/types';
 import { createContainerActions } from '~chell-viz~/action';
 import { ReducerRegistry } from '~chell-viz~/reducer';
 
-export interface IContainerReducerState<T> {
-  items: Set<T>;
-}
+export type IContainerReducerState<T> = Set<T>;
 
-export const ContainerReducer = <T>(dataSubscription: string, namespace = 'chell'): IContainerReducerState<T> => {
-  console.log(dataSubscription);
-  console.log(namespace);
-  const actions = createContainerActions<T>(dataSubscription, namespace);
+export const ContainerReducer = <T>(dataset: string, namespace = 'chell'): Reducer => {
+  const actions = createContainerActions<T>(dataset, namespace);
 
-  const initialState: IContainerReducerState<T> = {
-    items: Set<T>(),
-  };
+  const initialState = Set<T>();
 
-  const reducer = (state = initialState, action: ActionType<typeof actions>): IContainerReducerState<T> => {
+  return (
+    state: IContainerReducerState<T> = initialState,
+    action: ActionType<typeof actions>,
+  ): IContainerReducerState<T> => {
     switch (action.type) {
       case getType(actions.add): {
         const payload = (action as PayloadAction<string, T>).payload;
 
-        return {
-          ...state,
-          items: state.items.contains(payload) ? state.items.remove(payload) : state.items.add(payload),
-        };
+        return state.add(payload);
       }
       case getType(actions.clear):
-        return {
-          ...state,
-          items: Set<T>(),
-        };
+        return Set<T>();
       case getType(actions.remove): {
         const payload = (action as PayloadAction<string, T>).payload;
 
-        return {
-          ...state,
-          items: state.items.remove(payload),
-        };
+        return state.remove(payload);
       }
       case getType(actions.set): {
         const payload = (action as PayloadAction<string, T[]>).payload;
 
-        return {
-          ...state,
-          items: Set<T>(payload),
-        };
+        return Set<T>(payload);
       }
       default:
         return state;
     }
   };
-  const reducerName = `${namespace}/${dataSubscription}`;
-  ReducerRegistry.register(reducerName, reducer);
-
-  return initialState;
 };
 
-export const createContainerReducer = ContainerReducer;
+export const createContainerReducer = <T>(dataset: string, namespace = 'chell') => {
+  const reducer = ContainerReducer<T>(dataset, namespace);
+  const reducerName = `${namespace}/${dataset}`;
+  ReducerRegistry.register(reducerName, reducer);
+};

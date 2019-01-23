@@ -4,7 +4,7 @@ import { createContainerReducer } from '~chell-viz~/reducer';
 export type CHELL_LOADING_STATUS = 'ERROR' | 'LOADING' | 'NOT_STARTED' | 'READY';
 
 export abstract class ChellVisualization<P = {}, S = {}, SS = any> extends React.Component<P, S, SS> {
-  protected dataSubscriptions: string[] = [];
+  protected datasets: string[] = [];
 
   private loadingStatus: CHELL_LOADING_STATUS = 'NOT_STARTED';
 
@@ -15,15 +15,15 @@ export abstract class ChellVisualization<P = {}, S = {}, SS = any> extends React
 
   public abstract setupDataServices(): void;
 
-  public addDataSubscriptions(dataSubscriptions: string[], namespace = 'chell') {
-    this.dataSubscriptions = dataSubscriptions;
-    for (const dataSubscription of dataSubscriptions) {
-      createContainerReducer(dataSubscription, namespace);
+  public addDatasets(datasets: string[], namespace = 'chell') {
+    this.datasets = datasets;
+    for (const dataset of datasets) {
+      createContainerReducer(dataset, namespace);
     }
   }
 
-  public getDataSubscriptions() {
-    return this.dataSubscriptions;
+  public getDatasets() {
+    return this.datasets;
   }
 
   public finishLoading() {
