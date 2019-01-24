@@ -9,8 +9,9 @@ import { createContainerActions } from '~chell-viz~/action';
 import { ComponentCard } from '~chell-viz~/component';
 import { ChellVisualization } from '~chell-viz~/container';
 import { AnatomogramMapping, CHELL_CSS_STYLE, SPECIES_TYPE } from '~chell-viz~/data';
-import { LabeledCellsState } from '~chell-viz~/reducer';
+import { ChellMiddlewareTransformer, LabeledCellsState } from '~chell-viz~/reducer';
 import { selectCurrentItems } from '~chell-viz~/selector/ContainerSelectors';
+import { selectSpecies, selectSpring } from '~chell-viz~/selector/SpringSelectors';
 
 interface IAnatomogramContainerProps {
   height: number | string;
@@ -47,6 +48,51 @@ class AnatomogramContainerClass extends ChellVisualization<IAnatomogramContainer
 
   public setupDataServices() {
     this.addDatasets(['cells', 'labels']);
+    ChellMiddlewareTransformer.addTransform('labels', 'cells', state => {
+      const anatomogramMap = AnatomogramMapping[this.props.species];
+      let candidateLabels = Set<string>();
+      this.props.selectIds.forEach(id => {
+        candidateLabels = id && anatomogramMap[id] ? candidateLabels.merge(anatomogramMap[id]) : candidateLabels;
+      });
+
+      let cellIndices = Set<number>();
+      selectSpring(state).graphData.nodes.forEach(node => {
+        candidateLabels.forEach(label => {
+          if (label && Object.values(node.labelForCategory).includes(label)) {
+            cellIndices = cellIndices.add(node.number);
+
+            return;
+          }
+        });
+      });
+
+      return cellIndices;
+    });
+    ChellMiddlewareTransformer.addTransform('cells', 'labels', state => {
+      const { species } = this.props;
+      const currentCells = selectCurrentItems<number>(state, 'cells').toArray();
+      const { category, graphData } = selectSpring(state);
+      let result = Set<string>();
+
+      for (const cellIndex of currentCells) {
+        const labelForCategory = graphData.nodes[cellIndex] ? graphData.nodes[cellIndex].labelForCategory : {};
+
+        const labels = AnatomogramMapping[species][labelForCategory[category]];
+        if (labels) {
+          labels.forEach(label => (result = result.add(label)));
+        }
+
+        for (const id of Object.keys(AnatomogramMapping[species])) {
+          for (const label of Object.values(labelForCategory)) {
+            if (AnatomogramMapping[species][id].includes(label)) {
+              result = result.add(id);
+            }
+          }
+        }
+      }
+
+      return result;
+    });
   }
 
   public componentDidMount() {
@@ -150,7 +196,7 @@ class AnatomogramContainerClass extends ChellVisualization<IAnatomogramContainer
 
 const mapStateToProps = (state: { labeledCells: LabeledCellsState; [key: string]: any }) => ({
   selectIds: selectCurrentItems<string>(state, 'labels'),
-  species: state.labeledCells.species,
+  species: selectSpecies(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) =>

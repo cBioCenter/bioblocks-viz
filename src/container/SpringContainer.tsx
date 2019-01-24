@@ -7,7 +7,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 import IframeComm, { IframeCommAttributes } from 'react-iframe-comm';
 // tslint:enable:import-name match-default-export-name
 
-import { createContainerActions, LabeledCellsActions } from '~chell-viz~/action';
+import { createContainerActions, createValueActions } from '~chell-viz~/action';
 import { ComponentCard } from '~chell-viz~/component';
 import { ChellVisualization } from '~chell-viz~/container';
 import { ISpringLink, ISpringNode } from '~chell-viz~/data';
@@ -23,8 +23,8 @@ export interface ISpringContainerProps {
   selectedCategory: string;
   springHeight: number;
   springWidth: number;
+  setCurrentCategory(category: string): void;
   setCurrentCells(cells: number[]): void;
-  setCurrentCellsAndCategory(payload: { cells: number[]; category: string }): void;
 }
 
 export interface ISpringContainerState {
@@ -128,13 +128,13 @@ export class SpringContainerClass extends ChellVisualization<ISpringContainerPro
   };
 
   protected onReceiveMessage = (msg: MessageEvent) => {
-    const { currentCells, setCurrentCellsAndCategory, setCurrentCells } = this.props;
+    const { currentCells, setCurrentCategory, setCurrentCells } = this.props;
     const data = msg.data as ISpringMessage;
     switch (data.type) {
       case 'selected-category-update':
       case 'selected-cells-update': {
+        setCurrentCategory(data.payload.currentCategory);
         setCurrentCells(data.payload.indices);
-        setCurrentCellsAndCategory({ cells: data.payload.indices, category: data.payload.currentCategory });
         break;
       }
       case 'loaded': {
@@ -173,8 +173,8 @@ const mapStateToProps = (state: { [key: string]: any }) => ({
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
+      setCurrentCategory: createValueActions<string>('spring/category').set,
       setCurrentCells: createContainerActions<number>('cells').set,
-      setCurrentCellsAndCategory: LabeledCellsActions.setCurrentCellsAndCategory,
     },
     dispatch,
   );
