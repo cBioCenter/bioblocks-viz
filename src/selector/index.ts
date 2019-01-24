@@ -1,2 +1,2 @@
 export * from './ContainerSelectors';
-export * from './LabeledCellsSelectors';
+export * from './SpringSelectors';

@@ -4,12 +4,10 @@ import { createDataActions, createValueActions } from '~chell-viz~/action';
 import { ISpringGraphData, SPECIES_TYPE } from '~chell-viz~/data';
 
 // tslint:disable-next-line:export-name
-export const fetchSpringGraphData = (
-  datasetName: string,
-  fetchFn: () => Promise<ISpringGraphData>,
-  namespace = 'chell',
-) => async (dispatch: Dispatch) => {
-  const actions = createDataActions<ISpringGraphData>(`${datasetName}/graphData`, namespace);
+export const fetchSpringGraphData = (fetchFn: () => Promise<ISpringGraphData>, namespace = 'chell') => async (
+  dispatch: Dispatch,
+) => {
+  const actions = createDataActions<ISpringGraphData>('spring/graphData', namespace);
 
   dispatch(actions.request());
 

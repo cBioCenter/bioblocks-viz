@@ -11,7 +11,7 @@ import { ISpringGraphData, SPECIES_TYPE, VizData } from '~chell-viz~/data';
 import { fetchSpringData } from '~chell-viz~/helper';
 
 export interface IDatasetPageProps extends Partial<RouteComponentProps> {
-  dispatchSpringFetch(datasetName: string, fetchFn: () => Promise<ISpringGraphData>, namespace?: string): void;
+  dispatchSpringFetch(fetchFn: () => Promise<ISpringGraphData>, namespace?: string): void;
   setSpecies(species: SPECIES_TYPE): void;
 }
 
@@ -69,9 +69,7 @@ class DatasetPageClass extends React.Component<IDatasetPageProps, IDatasetPageSt
     const datasetLocation = params.get('name');
     const visualizations = fromJS(params.getAll('viz')) as List<string>;
 
-    dispatchSpringFetch('spring', async () =>
-      fetchSpringData(`assets/datasets/${datasetLocation ? datasetLocation : ''}`),
-    );
+    dispatchSpringFetch(async () => fetchSpringData(`assets/datasets/${datasetLocation ? datasetLocation : ''}`));
 
     this.setState({
       datasetLocation: datasetLocation ? datasetLocation : '',

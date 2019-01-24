@@ -24,6 +24,11 @@ export const ContainerReducer = <T>(dataset: string, namespace = 'chell'): Reduc
 
         return state.add(payload);
       }
+      case getType(actions.addMultiple): {
+        const payload = (action as PayloadAction<string, T[]>).payload;
+
+        return payload.reduce((prev, cur) => prev.add(cur), state);
+      }
       case getType(actions.clear):
         return Set<T>();
       case getType(actions.remove): {

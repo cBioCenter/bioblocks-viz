@@ -9,7 +9,7 @@ import { createContainerActions } from '~chell-viz~/action';
 import { ComponentCard } from '~chell-viz~/component';
 import { ChellVisualization } from '~chell-viz~/container';
 import { AnatomogramMapping, CHELL_CSS_STYLE, SPECIES_TYPE } from '~chell-viz~/data';
-import { ChellMiddlewareTransformer, LabeledCellsState } from '~chell-viz~/reducer';
+import { ChellMiddlewareTransformer, RootState } from '~chell-viz~/reducer';
 import { selectCurrentItems } from '~chell-viz~/selector/ContainerSelectors';
 import { selectSpecies, selectSpring } from '~chell-viz~/selector/SpringSelectors';
 
@@ -194,7 +194,7 @@ class AnatomogramContainerClass extends ChellVisualization<IAnatomogramContainer
   };
 }
 
-const mapStateToProps = (state: { labeledCells: LabeledCellsState; [key: string]: any }) => ({
+const mapStateToProps = (state: RootState) => ({
   selectIds: selectCurrentItems<string>(state, 'labels'),
   species: selectSpecies(state),
 });

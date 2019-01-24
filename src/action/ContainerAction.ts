@@ -9,6 +9,10 @@ export const createContainerActions = <T>(datasetName: string, namespace = 'chel
       meta: datasetName,
       payload,
     })),
+    addMultiple: createStandardAction(`${reducerName}_ADD_MULTIPLE`).map((payload: T[]) => ({
+      meta: datasetName,
+      payload,
+    })),
     clear: createStandardAction(`${reducerName}_CLEAR`)(),
     remove: createStandardAction(`${reducerName}_REMOVE`).map((payload: T) => ({
       meta: datasetName,
