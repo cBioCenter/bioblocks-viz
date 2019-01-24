@@ -75,7 +75,7 @@ describe('SpringAction', () => {
 
     it('Should dispatch the right actions for successfully fetching data.', async () => {
       const store = mockStore({});
-      await fetchSpringGraphData(() => Promise.resolve({ nodes: [] }))(store.dispatch);
+      await fetchSpringGraphData(async () => Promise.resolve({ nodes: [] }))(store.dispatch);
 
       const expectedActions = [
         {
@@ -92,7 +92,7 @@ describe('SpringAction', () => {
 
     it('Should dispatch the right actions for failing to fetch data.', async () => {
       const store = mockStore({});
-      await fetchSpringGraphData(() => Promise.reject('No!'))(store.dispatch);
+      await fetchSpringGraphData(async () => Promise.reject('No!'))(store.dispatch);
 
       const expectedActions = [
         {
@@ -109,8 +109,8 @@ describe('SpringAction', () => {
 
     it('Should use a namespace if provided.', async () => {
       const store = mockStore({});
-      await fetchSpringGraphData(() => Promise.resolve({ nodes: [] }), 'eminem')(store.dispatch);
-      await fetchSpringGraphData(() => Promise.reject('No!'), 'eminem')(store.dispatch);
+      await fetchSpringGraphData(async () => Promise.resolve({ nodes: [] }), 'eminem')(store.dispatch);
+      await fetchSpringGraphData(async () => Promise.reject('No!'), 'eminem')(store.dispatch);
 
       const expectedActions = [
         {

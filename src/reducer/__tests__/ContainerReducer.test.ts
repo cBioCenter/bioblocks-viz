@@ -1,4 +1,5 @@
 import { Set } from 'immutable';
+
 import { ContainerReducer } from '~chell-viz~/reducer';
 
 describe('ContainerReducer', () => {

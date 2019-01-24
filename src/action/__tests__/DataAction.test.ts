@@ -50,7 +50,7 @@ describe('DataAction', () => {
 
     it('Should dispatch the right actions for successfully fetching data.', async () => {
       const store = mockStore({});
-      await fetchDataset('example', () => Promise.resolve('A Sentence of Sorts'))(store.dispatch);
+      await fetchDataset('example', async () => Promise.resolve('A Sentence of Sorts'))(store.dispatch);
 
       const expectedActions = [
         {
@@ -67,7 +67,7 @@ describe('DataAction', () => {
 
     it('Should dispatch the right actions for failing to fetch data.', async () => {
       const store = mockStore({ labels: [] });
-      await fetchDataset('example', () => Promise.reject('No!'))(store.dispatch);
+      await fetchDataset('example', async () => Promise.reject('No!'))(store.dispatch);
 
       const expectedActions = [
         {
