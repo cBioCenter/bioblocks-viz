@@ -20,7 +20,15 @@ export interface IDatasetPageState {
   datasetLocation: string;
 }
 
-class DatasetPageClass extends React.Component<IDatasetPageProps, IDatasetPageState> {
+export class DatasetPageClass extends React.Component<IDatasetPageProps, IDatasetPageState> {
+  public static defaultProps = {
+    dispatchSpringFetch: () => {
+      return;
+    },
+    setSpecies: () => {
+      return;
+    },
+  };
   constructor(props: IDatasetPageProps) {
     super(props);
     this.state = {
@@ -92,7 +100,7 @@ class DatasetPageClass extends React.Component<IDatasetPageProps, IDatasetPageSt
   }
 }
 
-const UnconnectedDatasetPage = (props: IDatasetPageProps) => <DatasetPageClass {...props} />;
+export const UnconnectedDatasetPage = (props: IDatasetPageProps) => <DatasetPageClass {...props} />;
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(

@@ -4,5 +4,5 @@ export * from './ChellMiddleware';
 export * from './ContainerReducer';
 export * from './DataReducer';
 export * from './SpringReducer';
-export * from './ValueReducer';
 export * from './Store';
+export * from './ValueReducer';

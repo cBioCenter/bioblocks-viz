@@ -2,6 +2,7 @@ import { applyMiddleware, combineReducers, createStore, Middleware } from 'redux
 import { logger } from 'redux-logger';
 import * as thunk from 'redux-thunk';
 
+import { ChellVisualization } from '~chell-viz~/container';
 import { ChellMiddleware, IReducerMap, ReducerRegistry, RootState } from '~chell-viz~/reducer';
 
 const middleWares: Middleware[] = [thunk.default];
@@ -10,7 +11,10 @@ if (process.env.NODE_ENV === `development`) {
 }
 middleWares.push(ChellMiddleware);
 
-const initialState = {};
+// TODO define initial non-dynamic state for Chell.
+const initialState: RootState = {
+  visualizations: new Array<ChellVisualization>(),
+};
 
 // Preserve initial state for not-yet-loaded reducers
 const combine = (reducers: IReducerMap) => {
@@ -30,6 +34,8 @@ ReducerRegistry.setChangeListener((reducers: IReducerMap) => {
   Store.replaceReducer(combine(reducers));
 });
 
-const configureStore = () => createStore(reducer, initialState, applyMiddleware(...middleWares));
+const configureStore = () => {
+  return createStore(reducer, initialState, applyMiddleware(...middleWares));
+};
 
 export const Store = configureStore();

@@ -11,7 +11,7 @@ import { ChellVisualization } from '~chell-viz~/container';
 import { AnatomogramMapping, CHELL_CSS_STYLE, SPECIES_TYPE } from '~chell-viz~/data';
 import { ChellMiddlewareTransformer, RootState } from '~chell-viz~/reducer';
 import { selectCurrentItems } from '~chell-viz~/selector/ContainerSelectors';
-import { selectSpecies, selectSpring } from '~chell-viz~/selector/SpringSelectors';
+import { getSpecies, getSpring } from '~chell-viz~/selector/SpringSelectors';
 
 interface IAnatomogramContainerProps {
   height: number | string;
@@ -56,7 +56,7 @@ class AnatomogramContainerClass extends ChellVisualization<IAnatomogramContainer
       });
 
       let cellIndices = Set<number>();
-      selectSpring(state).graphData.nodes.forEach(node => {
+      getSpring(state).graphData.nodes.forEach(node => {
         candidateLabels.forEach(label => {
           if (label && Object.values(node.labelForCategory).includes(label)) {
             cellIndices = cellIndices.add(node.number);
@@ -71,7 +71,7 @@ class AnatomogramContainerClass extends ChellVisualization<IAnatomogramContainer
     ChellMiddlewareTransformer.addTransform('cells', 'labels', state => {
       const { species } = this.props;
       const currentCells = selectCurrentItems<number>(state, 'cells').toArray();
-      const { category, graphData } = selectSpring(state);
+      const { category, graphData } = getSpring(state);
       let result = Set<string>();
 
       for (const cellIndex of currentCells) {
@@ -196,7 +196,7 @@ class AnatomogramContainerClass extends ChellVisualization<IAnatomogramContainer
 
 const mapStateToProps = (state: RootState) => ({
   selectIds: selectCurrentItems<string>(state, 'labels'),
-  species: selectSpecies(state),
+  species: getSpecies(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
