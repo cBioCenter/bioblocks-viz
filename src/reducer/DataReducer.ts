@@ -20,7 +20,7 @@ export const DataReducer = <T>(dataset: string, namespace = 'chell'): Reducer =>
       }
       case getType(actions.failure): {
         const payload = (action as PayloadAction<string, Error>).payload;
-        console.log(payload);
+        console.error(payload);
 
         return null;
       }

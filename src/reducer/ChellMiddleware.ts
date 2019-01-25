@@ -4,19 +4,14 @@ import { PayloadMetaAction } from 'typesafe-actions/dist/types';
 
 import { RootState } from '~chell-viz~/reducer';
 
+export interface IChellStateTransformState {
+  namespace?: string;
+  stateName: string;
+}
+
 export interface IChellStateTransform {
-  fromState:
-    | string
-    | {
-        namespace?: string;
-        stateName: string;
-      };
-  toState:
-    | string
-    | {
-        namespace?: string;
-        stateName: string;
-      };
+  fromState: string | IChellStateTransformState;
+  toState: string | IChellStateTransformState;
   fn(state: RootState): any;
 }
 

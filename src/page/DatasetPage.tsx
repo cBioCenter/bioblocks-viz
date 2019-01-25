@@ -6,7 +6,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { Grid, Message } from 'semantic-ui-react';
 
 import { createSpringActions, fetchSpringGraphData } from '~chell-viz~/action';
-import { AnatomogramContainer, SpringContainer, TensorTContainer } from '~chell-viz~/container';
+import { AnatomogramContainer, NGLContainer, SpringContainer, TensorTContainer } from '~chell-viz~/container';
 import { ISpringGraphData, SPECIES_TYPE, VizData } from '~chell-viz~/data';
 import { fetchSpringData } from '~chell-viz~/helper';
 
@@ -65,6 +65,9 @@ export class DatasetPageClass extends React.Component<IDatasetPageProps, IDatase
                 {this.renderVisualization(visualization, datasetLocation)}
               </Grid.Column>
             ))}
+          <Grid.Column style={{ width: 'auto' }}>
+            <NGLContainer />
+          </Grid.Column>
         </Grid>
       </div>
     );
