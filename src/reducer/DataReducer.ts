@@ -16,8 +16,6 @@ export const DataReducer = <T>(dataset: string, namespace = 'chell'): Reducer =>
   return (state: IDataReducerState<T> = initialState, action: ActionType<typeof actions>): IDataReducerState<T> => {
     switch (action.type) {
       case getType(actions.success): {
-        console.log(action);
-
         return (action as PayloadAction<string, T>).payload;
       }
       case getType(actions.failure): {

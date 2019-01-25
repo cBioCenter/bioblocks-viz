@@ -36,6 +36,11 @@ export const ContainerReducer = <T>(dataset: string, namespace = 'chell'): Reduc
 
         return state.remove(payload);
       }
+      case getType(actions.removeMultiple): {
+        const payload = (action as PayloadAction<string, T[]>).payload;
+
+        return payload.reduce((prev, cur) => prev.remove(cur), state);
+      }
       case getType(actions.set): {
         const payload = (action as PayloadAction<string, T[]>).payload;
 

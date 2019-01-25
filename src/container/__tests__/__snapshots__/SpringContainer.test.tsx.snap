@@ -1,7 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SpringContainer Should match existing snapshot. 1`] = `
-<ContextConsumer>
-  <Component />
-</ContextConsumer>
+<ComponentCard
+  componentName="SPRING"
+  frameHeight={1150}
+  frameWidth={1150}
+  headerHeight={32}
+  height="525px"
+  iconSrc="assets/icons/spring-icon.png"
+  isFramedComponent={true}
+  isFullPage={false}
+  padding={0}
+  showSettings={false}
+  width="525px"
+>
+  <IframeComm
+    attributes={
+      Object {
+        "allowFullScreen": true,
+        "height": 1168,
+        "src": "http://localhost//springViewer.html?datasets/hpc/full",
+        "width": 1150,
+      }
+    }
+    handleReady={[Function]}
+    handleReceiveMessage={[Function]}
+    postMessageData={
+      Object {
+        "payload": Object {},
+        "type": "init",
+      }
+    }
+    serializeMessage={true}
+    targetOrigin="http://localhost"
+  />
+</ComponentCard>
 `;

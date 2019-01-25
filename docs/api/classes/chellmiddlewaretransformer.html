@@ -110,7 +110,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/ae3f55b84/src/reducer/ChellMiddleware.ts#L35">src/reducer/ChellMiddleware.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/56c88230e/src/reducer/ChellMiddleware.ts#L61">src/reducer/ChellMiddleware.ts:61</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -132,7 +132,7 @@
 					<div class="tsd-signature tsd-kind-icon">required<wbr>Data<wbr>Subs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/ae3f55b84/src/reducer/ChellMiddleware.ts#L37">src/reducer/ChellMiddleware.ts:37</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/56c88230e/src/reducer/ChellMiddleware.ts#L63">src/reducer/ChellMiddleware.ts:63</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -142,7 +142,7 @@
 					<div class="tsd-signature tsd-kind-icon">transforms<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new Map&lt;string, &lt;T&gt;(state: RootState) &#x3D;&gt; T&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/ae3f55b84/src/reducer/ChellMiddleware.ts#L30">src/reducer/ChellMiddleware.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/56c88230e/src/reducer/ChellMiddleware.ts#L46">src/reducer/ChellMiddleware.ts:46</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -153,43 +153,19 @@
 					<a name="addtransform" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> add<wbr>Transform</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Transform<span class="tsd-signature-symbol">(</span>fromState<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, toState<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Transform<span class="tsd-signature-symbol">(</span>transform<span class="tsd-signature-symbol">: </span><a href="../interfaces/ichellstatetransform.html" class="tsd-signature-type">IChellStateTransform</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/ae3f55b84/src/reducer/ChellMiddleware.ts#L32">src/reducer/ChellMiddleware.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/56c88230e/src/reducer/ChellMiddleware.ts#L48">src/reducer/ChellMiddleware.ts:48</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>fromState: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>toState: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>fn: <span class="tsd-signature-type">function</span></h5>
-									<ul class="tsd-parameters">
-										<li class="tsd-parameter-siganture">
-											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>state<span class="tsd-signature-symbol">: </span><a href="../globals.html#rootstate" class="tsd-signature-type">RootState</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-											</ul>
-											<ul class="tsd-descriptions">
-												<li class="tsd-description">
-													<h4 class="tsd-parameters-title">Parameters</h4>
-													<ul class="tsd-parameters">
-														<li>
-															<h5>state: <a href="../globals.html#rootstate" class="tsd-signature-type">RootState</a></h5>
-														</li>
-													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-												</li>
-											</ul>
-										</li>
-									</ul>
+									<h5>transform: <a href="../interfaces/ichellstatetransform.html" class="tsd-signature-type">IChellStateTransform</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>

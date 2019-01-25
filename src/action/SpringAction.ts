@@ -21,6 +21,7 @@ export const fetchSpringGraphData = (fetchFn: () => Promise<ISpringGraphData>, n
 };
 
 export const createSpringActions = (namespace = 'chell') => ({
+  category: { ...createValueActions<string>('spring/category', namespace) },
   graphData: { ...createDataActions<ISpringGraphData>('spring/graphData', namespace) },
   species: { ...createValueActions<SPECIES_TYPE>('spring/species', namespace) },
 });

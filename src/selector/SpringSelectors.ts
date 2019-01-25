@@ -19,7 +19,7 @@ export const getGraphData = (state: RootState, namespace = 'chell') => getSpring
 export const getCategories = createSelector(
   [getGraphData],
   graphData => {
-    const nodes = graphData.nodes ? graphData.nodes : [];
+    const nodes = graphData && graphData.nodes ? graphData.nodes : [];
     const categories = Set<string>(nodes.length >= 1 ? Object.keys(nodes[0].labelForCategory) : []);
     const labelsByCategory = new Map<string, Set<string>>();
 
@@ -37,7 +37,7 @@ export const getCategories = createSelector(
 export const getLabels = createSelector(
   [getGraphData],
   graphData => {
-    const nodes = graphData.nodes ? graphData.nodes : [];
+    const nodes = graphData && graphData.nodes ? graphData.nodes : [];
     const categories = Set<string>(nodes.length >= 1 ? Object.keys(nodes[0].labelForCategory) : []);
     let labels = Set<string>();
 

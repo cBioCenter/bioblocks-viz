@@ -7,14 +7,15 @@ import { bindActionCreators, Dispatch } from 'redux';
 import IframeComm, { IframeCommAttributes } from 'react-iframe-comm';
 // tslint:enable:import-name match-default-export-name
 
-import { createContainerActions, createValueActions } from '~chell-viz~/action';
+import { createContainerActions, createSpringActions } from '~chell-viz~/action';
 import { ComponentCard } from '~chell-viz~/component';
 import { ChellVisualization } from '~chell-viz~/container';
 import { ISpringLink, ISpringNode } from '~chell-viz~/data';
 import { createSpringReducer } from '~chell-viz~/reducer';
-import { selectCurrentItems } from '~chell-viz~/selector';
+import { getCategories, selectCurrentItems } from '~chell-viz~/selector';
 
 export interface ISpringContainerProps {
+  categories: Set<string>;
   currentCells: Set<number>;
   datasetLocation: string;
   headerHeight: number;
@@ -44,6 +45,8 @@ export interface ISpringMessage {
 
 export class SpringContainerClass extends ChellVisualization<ISpringContainerProps, ISpringContainerState> {
   public static defaultProps = {
+    categories: Set<string>(),
+    currentCells: Set<number>(),
     data: {
       links: new Array<ISpringLink>(),
       nodes: new Array<ISpringNode>(),
@@ -53,6 +56,12 @@ export class SpringContainerClass extends ChellVisualization<ISpringContainerPro
     isFullPage: false,
     padding: 0,
     selectedCategory: '',
+    setCurrentCategory: () => {
+      return;
+    },
+    setCurrentCells: () => {
+      return;
+    },
     springHeight: 1150,
     springWidth: 1150,
   };
@@ -128,7 +137,7 @@ export class SpringContainerClass extends ChellVisualization<ISpringContainerPro
   };
 
   protected onReceiveMessage = (msg: MessageEvent) => {
-    const { currentCells, setCurrentCategory, setCurrentCells } = this.props;
+    const { categories, currentCells, setCurrentCategory, setCurrentCells } = this.props;
     const data = msg.data as ISpringMessage;
     switch (data.type) {
       case 'selected-category-update':
@@ -138,6 +147,7 @@ export class SpringContainerClass extends ChellVisualization<ISpringContainerPro
         break;
       }
       case 'loaded': {
+        setCurrentCategory(categories.first());
         this.setState({
           postMessageData: {
             payload: {
@@ -160,20 +170,15 @@ export class SpringContainerClass extends ChellVisualization<ISpringContainerPro
     )}/springViewer.html?datasets/${dataset}`;
 }
 
-/*
-const mapStateToProps = createStructuredSelector({
-  currentCells: selectCurrentCells,
-});
-*/
-
 const mapStateToProps = (state: { [key: string]: any }) => ({
+  categories: getCategories(state, undefined),
   currentCells: selectCurrentItems<number>(state, 'cells'),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
-      setCurrentCategory: createValueActions<string>('spring/category').set,
+      setCurrentCategory: createSpringActions().category.set,
       setCurrentCells: createContainerActions<number>('cells').set,
     },
     dispatch,

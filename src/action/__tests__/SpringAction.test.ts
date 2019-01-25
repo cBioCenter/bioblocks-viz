@@ -1,6 +1,5 @@
 import { default as reduxMockStore, MockStoreCreator } from 'redux-mock-store';
 import * as thunk from 'redux-thunk';
-import { getType } from 'typesafe-actions';
 
 import { createSpringActions, fetchSpringGraphData } from '~chell-viz~/action';
 
