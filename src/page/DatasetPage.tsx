@@ -5,12 +5,13 @@ import { RouteComponentProps } from 'react-router';
 import { bindActionCreators, Dispatch } from 'redux';
 import { Grid, Message } from 'semantic-ui-react';
 
-import { fetchLabeledSpringData, LabeledCellsActions } from '~chell-viz~/action';
+import { createSpringActions, fetchSpringGraphData } from '~chell-viz~/action';
 import { AnatomogramContainer, SpringContainer, TensorTContainer } from '~chell-viz~/container';
-import { SPECIES_TYPE, VizData } from '~chell-viz~/data';
+import { ISpringGraphData, SPECIES_TYPE, VizData } from '~chell-viz~/data';
+import { fetchSpringData } from '~chell-viz~/helper';
 
 export interface IDatasetPageProps extends Partial<RouteComponentProps> {
-  fetchSpringData(datasetLocation: string): void;
+  dispatchSpringFetch(fetchFn: () => Promise<ISpringGraphData>, namespace?: string): void;
   setSpecies(species: SPECIES_TYPE): void;
 }
 
@@ -19,7 +20,15 @@ export interface IDatasetPageState {
   datasetLocation: string;
 }
 
-class DatasetPageClass extends React.Component<IDatasetPageProps, IDatasetPageState> {
+export class DatasetPageClass extends React.Component<IDatasetPageProps, IDatasetPageState> {
+  public static defaultProps = {
+    dispatchSpringFetch: () => {
+      return;
+    },
+    setSpecies: () => {
+      return;
+    },
+  };
   constructor(props: IDatasetPageProps) {
     super(props);
     this.state = {
@@ -62,13 +71,14 @@ class DatasetPageClass extends React.Component<IDatasetPageProps, IDatasetPageSt
   }
 
   protected setupSearchParameters(query: string) {
-    const { fetchSpringData } = this.props;
+    const { dispatchSpringFetch } = this.props;
     const params = new URLSearchParams(query);
     // tslint:disable-next-line:no-backbone-get-set-outside-model
     const datasetLocation = params.get('name');
     const visualizations = fromJS(params.getAll('viz')) as List<string>;
 
-    fetchSpringData(datasetLocation ? datasetLocation : '');
+    dispatchSpringFetch(async () => fetchSpringData(`assets/datasets/${datasetLocation ? datasetLocation : ''}`));
+
     this.setState({
       datasetLocation: datasetLocation ? datasetLocation : '',
       visualizations,
@@ -90,13 +100,13 @@ class DatasetPageClass extends React.Component<IDatasetPageProps, IDatasetPageSt
   }
 }
 
-const UnconnectedDatasetPage = (props: IDatasetPageProps) => <DatasetPageClass {...props} />;
+export const UnconnectedDatasetPage = (props: IDatasetPageProps) => <DatasetPageClass {...props} />;
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
-      fetchSpringData: fetchLabeledSpringData,
-      setSpecies: LabeledCellsActions.setSpecies,
+      dispatchSpringFetch: fetchSpringGraphData,
+      setSpecies: createSpringActions().species.set,
     },
     dispatch,
   );

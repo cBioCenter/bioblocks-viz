@@ -7,8 +7,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { Grid, Icon, Radio } from 'semantic-ui-react';
 
-import { LabeledCellsActions } from '~chell-viz~/action';
+import { createContainerActions } from '~chell-viz~/action';
 import { ComponentCard, TensorTComponent } from '~chell-viz~/component';
+import { ChellVisualization } from '~chell-viz~/container';
 import {
   CHELL_CSS_STYLE,
   ChellChartEvent,
@@ -17,7 +18,7 @@ import {
   IPlotlyData,
 } from '~chell-viz~/data';
 import { fetchTensorTSneCoordinateData } from '~chell-viz~/helper';
-import { RootState } from '~chell-viz~/reducer';
+import { selectCurrentItems } from '~chell-viz~/selector/ContainerSelectors';
 
 interface ITensorContainerProps {
   currentCells: Set<number>;
@@ -37,7 +38,7 @@ interface ITensorContainerState {
   plotlyCoords: Array<Partial<IPlotlyData>>;
 }
 
-export class TensorTContainerClass extends React.Component<ITensorContainerProps, ITensorContainerState> {
+export class TensorTContainerClass extends ChellVisualization<ITensorContainerProps, ITensorContainerState> {
   public static defaultProps = {
     currentCells: Set<number>(),
     datasetLocation: 'hpc/full',
@@ -65,6 +66,10 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
     };
   }
 
+  public setupDataServices() {
+    this.addDatasets(['cells']);
+  }
+
   public async componentDidMount() {
     try {
       const tensorData = await fetchTensorTSneCoordinateData(`datasets/${this.props.datasetLocation}`);
@@ -82,7 +87,6 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
 
   public async componentDidUpdate(prevProps: ITensorContainerProps) {
     const { currentCells } = this.props;
-
     const { tsne } = this.state;
     if (this.props.datasetLocation !== prevProps.datasetLocation) {
       await this.setupTensorData();
@@ -312,25 +316,19 @@ export class TensorTContainerClass extends React.Component<ITensorContainerProps
   }
 }
 
-const mapStateToProps = (state: RootState) => ({
-  currentCells: state.labeledCells.currentCells,
+const mapStateToProps = (state: { [key: string]: any }) => ({
+  currentCells: selectCurrentItems<number>(state, 'cells'),
 });
-
-type requiredProps = Omit<ITensorContainerProps, keyof typeof TensorTContainerClass.defaultProps> &
-  Partial<ITensorContainerProps>;
-
-const UnconnectedTensorTContainer = (props: requiredProps) => <TensorTContainerClass {...props} />;
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
-      setCurrentCells: LabeledCellsActions.setCurrentCells,
+      setCurrentCells: createContainerActions<number>('cells').set,
     },
     dispatch,
   );
 
-// tslint:disable-next-line:max-classes-per-file
-export class TensorTContainer extends connect(
+export const TensorTContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(UnconnectedTensorTContainer) {}
+)(TensorTContainerClass);

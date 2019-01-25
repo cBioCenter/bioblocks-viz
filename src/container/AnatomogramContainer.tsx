@@ -5,10 +5,12 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
-import { LabeledCellsActions } from '~chell-viz~/action';
+import { createContainerActions } from '~chell-viz~/action';
 import { ComponentCard } from '~chell-viz~/component';
+import { ChellVisualization } from '~chell-viz~/container';
 import { AnatomogramMapping, CHELL_CSS_STYLE, SPECIES_TYPE } from '~chell-viz~/data';
-import { RootState } from '~chell-viz~/reducer';
+import { ChellMiddlewareTransformer, RootState } from '~chell-viz~/reducer';
+import { getSpecies, getSpring, selectCurrentItems } from '~chell-viz~/selector';
 
 interface IAnatomogramContainerProps {
   height: number | string;
@@ -17,15 +19,26 @@ interface IAnatomogramContainerProps {
   style: CHELL_CSS_STYLE;
   width: number | string;
   addLabel(label: string): void;
+  removeLabel(label: string): void;
 }
 
 interface IAnatomogramContainerState {
   ids: string[];
 }
 
-class AnatomogramContainerClass extends React.Component<IAnatomogramContainerProps, IAnatomogramContainerState> {
+export class AnatomogramContainerClass extends ChellVisualization<
+  IAnatomogramContainerProps,
+  IAnatomogramContainerState
+> {
   public static defaultProps = {
+    addLabel: () => {
+      return;
+    },
     height: '300px',
+    removeLabel: () => {
+      return;
+    },
+    selectIds: Set<string>(),
     style: {},
     width: '400px',
   };
@@ -40,6 +53,63 @@ class AnatomogramContainerClass extends React.Component<IAnatomogramContainerPro
     this.state = {
       ids: this.deriveIdsFromSpecies(props.species),
     };
+  }
+
+  public setupDataServices() {
+    this.addDatasets(['cells', 'labels']);
+    ChellMiddlewareTransformer.addTransform({
+      fn: state => {
+        const anatomogramMap = AnatomogramMapping[this.props.species];
+        let candidateLabels = Set<string>();
+        this.props.selectIds.forEach(id => {
+          candidateLabels = id && anatomogramMap[id] ? candidateLabels.merge(anatomogramMap[id]) : candidateLabels;
+        });
+
+        let cellIndices = Set<number>();
+        getSpring(state).graphData.nodes.forEach(node => {
+          candidateLabels.forEach(label => {
+            if (label && Object.values(node.labelForCategory).includes(label)) {
+              cellIndices = cellIndices.add(node.number);
+
+              return;
+            }
+          });
+        });
+
+        return cellIndices;
+      },
+      fromState: 'chell/labels',
+      toState: { stateName: 'cells' },
+    });
+    ChellMiddlewareTransformer.addTransform({
+      fn: state => {
+        const currentCells = selectCurrentItems<number>(state, 'cells').toArray();
+        const { category, graphData } = getSpring(state);
+        const species = getSpecies(state);
+        let result = Set<string>();
+
+        for (const cellIndex of currentCells) {
+          const labelForCategory = graphData.nodes[cellIndex] ? graphData.nodes[cellIndex].labelForCategory : {};
+
+          const labels = AnatomogramMapping[species][labelForCategory[category]];
+          if (labels) {
+            labels.forEach(label => (result = result.add(label)));
+          }
+
+          for (const id of Object.keys(AnatomogramMapping[species])) {
+            for (const label of Object.values(labelForCategory)) {
+              if (AnatomogramMapping[species][id].includes(label)) {
+                result = result.add(id);
+              }
+            }
+          }
+        }
+
+        return result;
+      },
+      fromState: { stateName: 'cells' },
+      toState: { stateName: 'labels' },
+    });
   }
 
   public componentDidMount() {
@@ -97,10 +167,15 @@ class AnatomogramContainerClass extends React.Component<IAnatomogramContainerPro
   }
 
   protected onClick = (ids: string[]) => {
-    console.log(ids);
-    const { addLabel } = this.props;
+    // Anatomogram returns an array of strings for click events, but we only ever work with a single id.
+    const id = ids[0];
+    const { addLabel, removeLabel, selectIds } = this.props;
 
-    addLabel(ids[0]);
+    if (selectIds.includes(id)) {
+      removeLabel(id);
+    } else {
+      addLabel(id);
+    }
   };
 
   protected deriveIdsFromSpecies = (species: SPECIES_TYPE) => Object.keys(AnatomogramMapping[species]);
@@ -137,25 +212,20 @@ class AnatomogramContainerClass extends React.Component<IAnatomogramContainerPro
 }
 
 const mapStateToProps = (state: RootState) => ({
-  selectIds: state.labeledCells.selectedLabels,
-  species: state.labeledCells.species,
+  selectIds: selectCurrentItems<string>(state, 'labels'),
+  species: getSpecies(state),
 });
-
-type requiredProps = Omit<IAnatomogramContainerProps, keyof typeof AnatomogramContainerClass.defaultProps> &
-  Partial<IAnatomogramContainerProps>;
-
-const UnconnectedAnatomogramContainer = (props: requiredProps) => <AnatomogramContainerClass {...props} />;
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
-      addLabel: LabeledCellsActions.addLabel,
+      addLabel: createContainerActions<string>('labels').add,
+      removeLabel: createContainerActions<string>('labels').remove,
     },
     dispatch,
   );
 
-// tslint:disable-next-line:max-classes-per-file
-export class AnatomogramContainer extends connect(
+export const AnatomogramContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(UnconnectedAnatomogramContainer) {}
+)(AnatomogramContainerClass);

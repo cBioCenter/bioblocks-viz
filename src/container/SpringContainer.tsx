@@ -7,12 +7,15 @@ import { bindActionCreators, Dispatch } from 'redux';
 import IframeComm, { IframeCommAttributes } from 'react-iframe-comm';
 // tslint:enable:import-name match-default-export-name
 
-import { LabeledCellsActions } from '~chell-viz~/action';
+import { createContainerActions, createSpringActions } from '~chell-viz~/action';
 import { ComponentCard } from '~chell-viz~/component';
+import { ChellVisualization } from '~chell-viz~/container';
 import { ISpringLink, ISpringNode } from '~chell-viz~/data';
-import { RootState } from '~chell-viz~/reducer';
+import { createSpringReducer } from '~chell-viz~/reducer';
+import { getCategories, selectCurrentItems } from '~chell-viz~/selector';
 
 export interface ISpringContainerProps {
+  categories: Set<string>;
   currentCells: Set<number>;
   datasetLocation: string;
   headerHeight: number;
@@ -21,7 +24,8 @@ export interface ISpringContainerProps {
   selectedCategory: string;
   springHeight: number;
   springWidth: number;
-  setCurrentCellsAndCategory(payload: { cells: number[]; category: string }): void;
+  setCurrentCategory(category: string): void;
+  setCurrentCells(cells: number[]): void;
 }
 
 export interface ISpringContainerState {
@@ -39,8 +43,10 @@ export interface ISpringMessage {
   };
 }
 
-export class SpringContainerClass extends React.Component<ISpringContainerProps, ISpringContainerState> {
+export class SpringContainerClass extends ChellVisualization<ISpringContainerProps, ISpringContainerState> {
   public static defaultProps = {
+    categories: Set<string>(),
+    currentCells: Set<number>(),
     data: {
       links: new Array<ISpringLink>(),
       nodes: new Array<ISpringNode>(),
@@ -50,6 +56,12 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
     isFullPage: false,
     padding: 0,
     selectedCategory: '',
+    setCurrentCategory: () => {
+      return;
+    },
+    setCurrentCells: () => {
+      return;
+    },
     springHeight: 1150,
     springWidth: 1150,
   };
@@ -67,10 +79,13 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
     };
   }
 
+  public setupDataServices() {
+    createSpringReducer();
+  }
+
   public componentDidUpdate(prevProps: ISpringContainerProps, prevState: ISpringContainerState) {
     const { currentCells } = this.props;
     if (currentCells !== prevProps.currentCells) {
-      console.log(`sending new cells to spring, totalling ${currentCells.size}`);
       this.setState({
         postMessageData: {
           payload: {
@@ -122,15 +137,17 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
   };
 
   protected onReceiveMessage = (msg: MessageEvent) => {
-    const { currentCells, setCurrentCellsAndCategory } = this.props;
+    const { categories, currentCells, setCurrentCategory, setCurrentCells } = this.props;
     const data = msg.data as ISpringMessage;
     switch (data.type) {
       case 'selected-category-update':
       case 'selected-cells-update': {
-        setCurrentCellsAndCategory({ cells: data.payload.indices, category: data.payload.currentCategory });
+        setCurrentCategory(data.payload.currentCategory);
+        setCurrentCells(data.payload.indices);
         break;
       }
       case 'loaded': {
+        setCurrentCategory(categories.first());
         this.setState({
           postMessageData: {
             payload: {
@@ -153,25 +170,21 @@ export class SpringContainerClass extends React.Component<ISpringContainerProps,
     )}/springViewer.html?datasets/${dataset}`;
 }
 
-const mapStateToProps = (state: RootState) => ({
-  currentCells: state.labeledCells.currentCells,
+const mapStateToProps = (state: { [key: string]: any }) => ({
+  categories: getCategories(state, undefined),
+  currentCells: selectCurrentItems<number>(state, 'cells'),
 });
-
-type requiredProps = Omit<ISpringContainerProps, keyof typeof SpringContainerClass.defaultProps> &
-  Partial<ISpringContainerProps>;
-
-const UnconnectedSpringContainer = (props: requiredProps) => <SpringContainerClass {...props} />;
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
-      setCurrentCellsAndCategory: LabeledCellsActions.setCurrentCellsAndCategory,
+      setCurrentCategory: createSpringActions().category.set,
+      setCurrentCells: createContainerActions<number>('cells').set,
     },
     dispatch,
   );
 
-// tslint:disable-next-line:max-classes-per-file
-export class SpringContainer extends connect(
+export const SpringContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(UnconnectedSpringContainer) {}
+)(SpringContainerClass);

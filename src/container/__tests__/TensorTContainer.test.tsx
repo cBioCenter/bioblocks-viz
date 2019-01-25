@@ -29,7 +29,7 @@ describe('TensorTContainer', () => {
 
   it('Should handle starting playback.', () => {
     const wrapper = shallow(<TensorTContainerClass setCurrentCells={jest.fn()} />);
-    const instance = wrapper.instance() as TensorTContainer;
+    const instance = wrapper.instance() as TensorTContainerClass;
     expect(instance.state.isAnimating).toBe(false);
     wrapper
       .find(Radio)

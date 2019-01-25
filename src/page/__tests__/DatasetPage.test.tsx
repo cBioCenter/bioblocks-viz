@@ -1,13 +1,13 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { DatasetPage } from '~chell-viz~/page';
+import { DatasetPageClass } from '~chell-viz~/page';
 
 describe('DatasetPage', () => {
   const visualizations = ['anatomogram', 'spring', 'tfjs-tsne'];
 
   it('Should match existing snapshot when no props are provided.', () => {
-    const wrapper = shallow(<DatasetPage />);
+    const wrapper = shallow(<DatasetPageClass />);
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -15,14 +15,16 @@ describe('DatasetPage', () => {
     visualizations.forEach(viz => {
       describe(`${viz} when it is fullscreen`, () => {
         const wrapper = shallow(
-          <DatasetPage location={{ hash: '', pathname: '', search: `?viz=${viz}&name={hpc/sample}`, state: '' }} />,
+          <DatasetPageClass
+            location={{ hash: '', pathname: '', search: `?viz=${viz}&name={hpc/sample}`, state: '' }}
+          />,
         );
         expect(wrapper).toMatchSnapshot();
       });
 
       describe(`${viz} when it is not fullscreen`, () => {
         const wrapper = shallow(
-          <DatasetPage
+          <DatasetPageClass
             location={{ hash: '', pathname: '', search: `?viz=${viz}&viz=empty&name={mouse/sample}`, state: '' }}
           />,
         );
@@ -32,7 +34,9 @@ describe('DatasetPage', () => {
   });
 
   it('Should match existing snapshot when changing the visualization.', () => {
-    const wrapper = shallow(<DatasetPage location={{ hash: '', pathname: '', search: '?viz=spring', state: '' }} />);
+    const wrapper = shallow(
+      <DatasetPageClass location={{ hash: '', pathname: '', search: '?viz=spring', state: '' }} />,
+    );
     wrapper.setProps({
       location: { hash: '', pathname: '', search: '?viz=anatomogram', state: '' },
     });
