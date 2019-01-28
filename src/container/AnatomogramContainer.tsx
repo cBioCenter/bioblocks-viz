@@ -8,16 +8,14 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { createContainerActions } from '~chell-viz~/action';
 import { ComponentCard } from '~chell-viz~/component';
 import { ChellVisualization } from '~chell-viz~/container';
-import { AnatomogramMapping, CHELL_CSS_STYLE, SPECIES_TYPE } from '~chell-viz~/data';
+import { AnatomogramMapping, SPECIES_TYPE } from '~chell-viz~/data';
+import { EMPTY_FUNCTION } from '~chell-viz~/helper';
 import { ChellMiddlewareTransformer, RootState } from '~chell-viz~/reducer';
 import { getSpecies, getSpring, selectCurrentItems } from '~chell-viz~/selector';
 
 interface IAnatomogramContainerProps {
-  height: number | string;
   selectIds: Set<string>;
   species: SPECIES_TYPE;
-  style: CHELL_CSS_STYLE;
-  width: number | string;
   addLabel(label: string): void;
   removeLabel(label: string): void;
 }
@@ -31,16 +29,9 @@ export class AnatomogramContainerClass extends ChellVisualization<
   IAnatomogramContainerState
 > {
   public static defaultProps = {
-    addLabel: () => {
-      return;
-    },
-    height: '300px',
-    removeLabel: () => {
-      return;
-    },
+    addLabel: EMPTY_FUNCTION,
+    removeLabel: EMPTY_FUNCTION,
     selectIds: Set<string>(),
-    style: {},
-    width: '400px',
   };
 
   public static displayName = 'Anatomogram';

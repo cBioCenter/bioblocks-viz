@@ -158,7 +158,11 @@ export class SpringContainerClass extends ChellVisualization<ISpringContainerPro
         });
       }
       default: {
-        console.log(`Got this msg for ya: ${JSON.stringify(msg)}`);
+        if (msg.isTrusted && Object.keys(msg).length === 1) {
+          return;
+        } else {
+          console.log(`Got this msg for ya: ${JSON.stringify(msg)}`);
+        }
       }
     }
   };

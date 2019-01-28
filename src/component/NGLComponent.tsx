@@ -1,10 +1,8 @@
 import { cloneDeep } from 'lodash';
 import * as NGL from 'ngl';
 import * as React from 'react';
-import { Dimmer, Loader } from 'semantic-ui-react';
 import { Vector2 } from 'three';
 
-import { SettingsPanel } from '~chell-viz~/component';
 import {
   ICouplingContext,
   initialCouplingContext,
@@ -150,26 +148,20 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
    * @returns The NGL Component
    */
   public render() {
-    const { height, isDataLoading, showConfigurations, style, width } = this.props;
+    const { height, style, width } = this.props;
+    const computedStyle = { ...style, height, width };
 
     return (
-      <Dimmer.Dimmable dimmed={true}>
-        <Dimmer active={isDataLoading}>
-          <Loader />
-        </Dimmer>
-        <SettingsPanel configurations={this.getConfigurations()} showConfigurations={showConfigurations}>
-          <div className="NGLComponent" style={{ ...style, height, width }}>
-            <div
-              className="NGLCanvas"
-              onKeyDown={this.onKeyDown}
-              onMouseLeave={this.onCanvasLeave}
-              ref={el => (this.canvas = el)}
-              role={'img'}
-              style={{ height: '100%', width: '100%' }}
-            />
-          </div>
-        </SettingsPanel>
-      </Dimmer.Dimmable>
+      <div className="NGLComponent" style={computedStyle}>
+        <div
+          className="NGLCanvas"
+          onKeyDown={this.onKeyDown}
+          onMouseLeave={this.onCanvasLeave}
+          ref={el => (this.canvas = el)}
+          role={'img'}
+          style={{ height: '100%', width: '100%' }}
+        />
+      </div>
     );
   }
 
@@ -188,6 +180,8 @@ export class NGLComponentClass extends React.Component<INGLComponentProps, NGLCo
         structureComponent: undefined,
       });
     }
+
+    stage.viewer.requestRender();
   }
 
   protected deriveActiveRepresentations(structureComponent: NGL.StructureComponent, pdbData?: ChellPDB) {
