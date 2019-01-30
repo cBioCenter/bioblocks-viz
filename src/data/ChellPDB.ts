@@ -42,6 +42,7 @@ export class ChellPDB {
   public static createPDBFromNGLData(nglData: NGL.Structure) {
     const result = new ChellPDB();
     result.nglData = nglData;
+    result.fileName = nglData.path;
 
     return result;
   }

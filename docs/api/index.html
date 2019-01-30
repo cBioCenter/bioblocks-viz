@@ -246,7 +246,7 @@ yarn</code></pre>
 						<a href="classes/landingpage.html" class="tsd-kind-icon">Landing<wbr>Page</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="classes/nglcomponentclass.html" class="tsd-kind-icon">NGLComponent<wbr>Class</a>
+						<a href="classes/nglcomponent.html" class="tsd-kind-icon">NGLComponent</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/nglcontainerclass.html" class="tsd-kind-icon">NGLContainer<wbr>Class</a>
@@ -444,6 +444,9 @@ yarn</code></pre>
 						<a href="interfaces/ilocationdescription.html" class="tsd-kind-icon">ILocation<wbr>Description</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/ilockedresiduepair.html" class="tsd-kind-icon">ILocked<wbr>Residue<wbr>Pair</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/imonomercontact.html" class="tsd-kind-icon">IMonomer<wbr>Contact</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -523,6 +526,9 @@ yarn</code></pre>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/iresiduepair.html" class="tsd-kind-icon">IResidue<wbr>Pair</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/iresiduepairreducerstate.html" class="tsd-kind-icon">IResidue<wbr>Pair<wbr>Reducer<wbr>State</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/isecondarystructure.html" class="tsd-kind-icon">ISecondary<wbr>Structure</a>
@@ -695,6 +701,9 @@ yarn</code></pre>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="globals.html#idatareducerstate" class="tsd-kind-icon">IData<wbr>Reducer<wbr>State</a>
 					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="globals.html#iobjectreducerstate" class="tsd-kind-icon">IObject<wbr>Reducer<wbr>State</a>
+					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#iresiduecontext" class="tsd-kind-icon">IResidue<wbr>Context</a>
 					</li>
@@ -821,7 +830,7 @@ yarn</code></pre>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="globals.html#ev_server_structure_header" class="tsd-kind-icon">EV_<wbr>SERVER_<wbr>STRUCTURE_<wbr>HEADER</a>
 					</li>
-					<li class=" tsd-kind-variable">
+					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="globals.html#nglcontainer" class="tsd-kind-icon">NGLContainer</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
@@ -829,6 +838,9 @@ yarn</code></pre>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="globals.html#pdb_resno_header" class="tsd-kind-icon">PDB_<wbr>RESNO_<wbr>HEADER</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#residue_pair_dataset_name" class="tsd-kind-icon">RESIDUE_<wbr>PAIR_<wbr>DATASET_<wbr>NAME</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="globals.html#reducerregistry" class="tsd-kind-icon">Reducer<wbr>Registry</a>
@@ -914,8 +926,11 @@ yarn</code></pre>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#infopanel" class="tsd-kind-icon">Info<wbr>Panel</a>
 					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="globals.html#nglcomponent" class="tsd-kind-icon">NGLComponent</a>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#objectreducer" class="tsd-kind-icon">Object<wbr>Reducer</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#residuepairreducer" class="tsd-kind-icon">Residue<wbr>Pair<wbr>Reducer</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#springreducer" class="tsd-kind-icon">Spring<wbr>Reducer</a>
@@ -967,6 +982,18 @@ yarn</code></pre>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#creategenericcontext" class="tsd-kind-icon">create<wbr>Generic<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#createobjectactions" class="tsd-kind-icon">create<wbr>Object<wbr>Actions</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#createobjectreducer" class="tsd-kind-icon">create<wbr>Object<wbr>Reducer</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#createresiduepairactions" class="tsd-kind-icon">create<wbr>Residue<wbr>Pair<wbr>Actions</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#createresiduepairreducer" class="tsd-kind-icon">create<wbr>Residue<wbr>Pair<wbr>Reducer</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#createsecstructrepresentation" class="tsd-kind-icon">create<wbr>Sec<wbr>Struct<wbr>Representation</a>
@@ -1059,6 +1086,9 @@ yarn</code></pre>
 						<a href="globals.html#generatescattergldata" class="tsd-kind-icon">generate<wbr>ScatterGLData</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="globals.html#getcandidates" class="tsd-kind-icon">get<wbr>Candidates</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="globals.html#getcouplingheaderindices" class="tsd-kind-icon">get<wbr>Coupling<wbr>Header<wbr>Indices</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
@@ -1071,10 +1101,19 @@ yarn</code></pre>
 						<a href="globals.html#getgraphdata" class="tsd-kind-icon">get<wbr>Graph<wbr>Data</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="globals.html#gethovered" class="tsd-kind-icon">get<wbr>Hovered</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#getlocked" class="tsd-kind-icon">get<wbr>Locked</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="globals.html#getpdbandcouplingmismatch" class="tsd-kind-icon">getPDBAnd<wbr>Coupling<wbr>Mismatch</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#getresiduemappingheaders" class="tsd-kind-icon">get<wbr>Residue<wbr>Mapping<wbr>Headers</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#getresiduepairs" class="tsd-kind-icon">get<wbr>Residue<wbr>Pairs</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#getsecondarystructuredata" class="tsd-kind-icon">get<wbr>Secondary<wbr>Structure<wbr>Data</a>
@@ -1111,6 +1150,9 @@ yarn</code></pre>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#selectcurrentitems" class="tsd-kind-icon">select<wbr>Current<wbr>Items</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#selectobject" class="tsd-kind-icon">select<wbr>Object</a>
 					</li>
 					<li class=" tsd-kind-object-literal">
 						<a href="globals.html#amino_acids_by_single_letter_code" class="tsd-kind-icon">AMINO_<wbr>ACIDS_<wbr>BY_<wbr>SINGLE_<wbr>LETTER_<wbr>CODE</a>

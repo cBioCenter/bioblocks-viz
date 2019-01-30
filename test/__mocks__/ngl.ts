@@ -17,6 +17,7 @@ import { Vector2 } from 'three';
 const ngl = jest.genMockFromModule<typeof NGL>('ngl');
 
 class MockStage {
+  public compList = new Array<MockStructureComponent>();
   public events = new Map<string, (...args: any[]) => void>();
   public callbacks = new Array<(...args: any[]) => void>();
   public tooltip: Partial<HTMLElement> = { textContent: '' };
@@ -81,13 +82,16 @@ class MockStage {
   }
 
   public addComponentFromObject = () => {
-    return new MockStructureComponent(name, {
+    const structure = new MockStructureComponent(name, {
       keyBehavior: this.keyBehavior,
       mouseControls: this.mouseControls,
       mouseObserver: this.mouseObserver,
       tooltip: this.tooltip,
       viewerControls: this.viewerControls,
     });
+    this.compList.push(structure);
+
+    return structure;
   };
   public defaultFileRepresentation = (...args: any[]) => jest.fn();
   public dispose = () => jest.fn();

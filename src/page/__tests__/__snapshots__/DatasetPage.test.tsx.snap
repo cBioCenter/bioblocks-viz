@@ -32,7 +32,7 @@ exports[`DatasetPage Should match existing snapshot for initial visualizations. 
         }
       }
     >
-      <Connect(NGLContainerClass) />
+      <Connect(Component) />
     </GridColumn>
   </Grid>
 </div>
@@ -84,7 +84,7 @@ exports[`DatasetPage Should match existing snapshot for initial visualizations. 
         }
       }
     >
-      <Connect(NGLContainerClass) />
+      <Connect(Component) />
     </GridColumn>
   </Grid>
 </div>
@@ -125,7 +125,7 @@ exports[`DatasetPage Should match existing snapshot for initial visualizations. 
         }
       }
     >
-      <Connect(NGLContainerClass) />
+      <Connect(Component) />
     </GridColumn>
   </Grid>
 </div>
@@ -180,7 +180,7 @@ exports[`DatasetPage Should match existing snapshot for initial visualizations. 
         }
       }
     >
-      <Connect(NGLContainerClass) />
+      <Connect(Component) />
     </GridColumn>
   </Grid>
 </div>
@@ -221,7 +221,7 @@ exports[`DatasetPage Should match existing snapshot for initial visualizations. 
         }
       }
     >
-      <Connect(NGLContainerClass) />
+      <Connect(Component) />
     </GridColumn>
   </Grid>
 </div>
@@ -276,7 +276,7 @@ exports[`DatasetPage Should match existing snapshot for initial visualizations. 
         }
       }
     >
-      <Connect(NGLContainerClass) />
+      <Connect(Component) />
     </GridColumn>
   </Grid>
 </div>
@@ -304,7 +304,7 @@ exports[`DatasetPage Should match existing snapshot when changing the visualizat
         }
       }
     >
-      <Connect(NGLContainerClass) />
+      <Connect(Component) />
     </GridColumn>
   </Grid>
 </div>
@@ -332,7 +332,7 @@ exports[`DatasetPage Should match existing snapshot when no props are provided. 
         }
       }
     >
-      <Connect(NGLContainerClass) />
+      <Connect(Component) />
     </GridColumn>
   </Grid>
 </div>

@@ -2316,6 +2316,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   <SidebarPushable
                     style={
                       Object {
+                        "height": "100%",
                         "width": "100%",
                       }
                     }
@@ -2324,6 +2325,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       className="pushable"
                       style={
                         Object {
+                          "height": "100%",
                           "width": "100%",
                         }
                       }
