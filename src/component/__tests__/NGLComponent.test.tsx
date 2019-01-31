@@ -3,7 +3,7 @@ import * as NGL from 'ngl';
 import * as React from 'react';
 
 import { Form } from 'semantic-ui-react';
-import { INGLComponentProps, NGLComponent } from '~chell-viz~/component';
+import { NGLComponent } from '~chell-viz~/component';
 import { initialSecondaryStructureContext } from '~chell-viz~/context';
 import { ChellPDB, CONTACT_DISTANCE_PROXIMITY } from '~chell-viz~/data';
 
