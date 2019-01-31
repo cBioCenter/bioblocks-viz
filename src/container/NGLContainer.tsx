@@ -14,7 +14,7 @@ import {
 import { ChellPDB, CONTACT_DISTANCE_PROXIMITY, RESIDUE_TYPE } from '~chell-viz~/data';
 import { EMPTY_FUNCTION, fetchNGLDataFromFile } from '~chell-viz~/helper';
 import { createDataReducer, createResiduePairReducer, ILockedResiduePair } from '~chell-viz~/reducer';
-import { getCandidates, getHovered, getLocked, selectCurrentItem } from '~chell-viz~/selector';
+import { getCandidates, getHovered, getLocked, selectCurrentValue } from '~chell-viz~/selector';
 
 export interface INGLContainerProps {
   candidateResidues: RESIDUE_TYPE[];
@@ -73,7 +73,7 @@ type requiredProps = Omit<INGLContainerProps, keyof typeof NGLContainerClass.def
 
 const mapStateToProps = (state: { [key: string]: any }) => ({
   candidateResidues: getCandidates(state).toArray(),
-  data: selectCurrentItem<ChellPDB>(state, 'pdb', ChellPDB.createEmptyPDB()) as ChellPDB,
+  data: selectCurrentValue<ChellPDB>(state, 'pdb', ChellPDB.createEmptyPDB()) as ChellPDB,
   hoveredResidues: getHovered(state).toArray(),
   lockedResiduePairs: getLocked(state).toJS(),
   removeNonLockedResidues: () => {

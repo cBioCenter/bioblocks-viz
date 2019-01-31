@@ -2,7 +2,7 @@ import { Set } from 'immutable';
 import { selectCurrentItems } from '~chell-viz~/selector';
 
 describe('ContainerSelector', () => {
-  it('Should return an empty set if the state does not exist.', () => {
+  it('Should return an empty Set if the state does not exist.', () => {
     const expectedState = Set();
     expect(selectCurrentItems(undefined as any, 'back')).toMatchObject(expectedState);
   });

@@ -14,12 +14,10 @@ export const createObjectActions = <T>(datasetName: string, namespace = 'chell')
       meta: datasetName,
       payload,
     })),
-    removeMultiple: createStandardAction(`${reducerName}_REMOVE_MULTIPLE`).map(
-      (payload: Array<{ [key: string]: T }>) => ({
-        meta: datasetName,
-        payload,
-      }),
-    ),
+    removeMultiple: createStandardAction(`${reducerName}_REMOVE_MULTIPLE`).map((payload: string[]) => ({
+      meta: datasetName,
+      payload,
+    })),
     set: createStandardAction(`${reducerName}_SET`).map((payload: { [key: string]: T }) => ({
       meta: datasetName,
       payload,

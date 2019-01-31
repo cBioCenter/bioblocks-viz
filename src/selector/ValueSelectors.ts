@@ -1,7 +1,7 @@
 import { RootState } from '~chell-viz~/reducer';
 
 // tslint:disable-next-line:export-name
-export const selectCurrentItem = <T>(
+export const selectCurrentValue = <T>(
   state: RootState,
   dataset: string,
   defaultValue: T | null = null,
