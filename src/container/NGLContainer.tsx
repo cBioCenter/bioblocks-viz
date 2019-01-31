@@ -6,24 +6,25 @@ import { fetchDataset } from '~chell-viz~/action';
 import { createResiduePairActions } from '~chell-viz~/action/ResiduePairAction';
 import { NGLComponent } from '~chell-viz~/component';
 import { ChellVisualization } from '~chell-viz~/container';
-import {
-  initialSecondaryStructureContext,
-  ISecondaryStructureContext,
-  SecondaryStructureContextConsumer,
-} from '~chell-viz~/context';
-import { ChellPDB, CONTACT_DISTANCE_PROXIMITY, RESIDUE_TYPE } from '~chell-viz~/data';
+import { ChellPDB, CONTACT_DISTANCE_PROXIMITY, RESIDUE_TYPE, SECONDARY_STRUCTURE_SECTION } from '~chell-viz~/data';
 import { EMPTY_FUNCTION, fetchNGLDataFromFile } from '~chell-viz~/helper';
-import { createDataReducer, createResiduePairReducer, ILockedResiduePair } from '~chell-viz~/reducer';
-import { getCandidates, getHovered, getLocked, selectCurrentValue } from '~chell-viz~/selector';
+import {
+  createContainerReducer,
+  createDataReducer,
+  createResiduePairReducer,
+  ILockedResiduePair,
+} from '~chell-viz~/reducer';
+import { getCandidates, getHovered, getLocked, selectCurrentItems, selectCurrentValue } from '~chell-viz~/selector';
 
 export interface INGLContainerProps {
   candidateResidues: RESIDUE_TYPE[];
   data: ChellPDB;
   hoveredResidues: RESIDUE_TYPE[];
+  hoveredSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
   isDataLoading: boolean;
   lockedResiduePairs: ILockedResiduePair;
   measuredProximity: CONTACT_DISTANCE_PROXIMITY;
-  secondaryStructureContext: ISecondaryStructureContext;
+  selectedSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
   showConfigurations: boolean;
   addCandidateResidues(residues: RESIDUE_TYPE[]): void;
   addHoveredResidues(residues: RESIDUE_TYPE[]): void;
@@ -44,9 +45,6 @@ export class NGLContainerClass extends ChellVisualization<INGLContainerProps> {
     dispatchNglFetch: EMPTY_FUNCTION,
     isDataLoading: false,
     measuredProximity: CONTACT_DISTANCE_PROXIMITY.C_ALPHA,
-    secondaryStructureContext: {
-      ...initialSecondaryStructureContext,
-    },
     showConfigurations: true,
   };
 
@@ -56,10 +54,12 @@ export class NGLContainerClass extends ChellVisualization<INGLContainerProps> {
 
   public setupDataServices() {
     const { dispatchPdbFetch } = this.props;
+    createContainerReducer<SECONDARY_STRUCTURE_SECTION>('secondaryStructure/hovered');
+    createContainerReducer<SECONDARY_STRUCTURE_SECTION>('secondaryStructure/selected');
     createDataReducer<ChellPDB>('pdb');
     createResiduePairReducer();
     dispatchPdbFetch('pdb', async () =>
-      ChellPDB.createPDBFromNGLData(await fetchNGLDataFromFile('assets/1g68/1g68.pdb')),
+      ChellPDB.createPDBFromNGLData(await fetchNGLDataFromFile('assets/1g68/protein.pdb')),
     );
   }
 
@@ -68,19 +68,24 @@ export class NGLContainerClass extends ChellVisualization<INGLContainerProps> {
   }
 }
 
-type requiredProps = Omit<INGLContainerProps, keyof typeof NGLContainerClass.defaultProps> &
-  Partial<INGLContainerProps>;
-
 const mapStateToProps = (state: { [key: string]: any }) => ({
   candidateResidues: getCandidates(state).toArray(),
   data: selectCurrentValue<ChellPDB>(state, 'pdb', ChellPDB.createEmptyPDB()) as ChellPDB,
   hoveredResidues: getHovered(state).toArray(),
+  hoveredSecondaryStructures: selectCurrentItems<SECONDARY_STRUCTURE_SECTION>(
+    state,
+    'secondaryStructure/hovered',
+  ).toArray(),
   lockedResiduePairs: getLocked(state).toJS(),
   removeNonLockedResidues: () => {
     const { candidates, hovered } = createResiduePairActions();
     candidates.clear();
     hovered.clear();
   },
+  selectedSecondaryStructures: selectCurrentItems<SECONDARY_STRUCTURE_SECTION>(
+    state,
+    'secondaryStructure/selected',
+  ).toArray(),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
@@ -98,15 +103,7 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     dispatch,
   );
 
-const NGLContainer = connect(
+export const NGLContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)((props: requiredProps) => (
-  <SecondaryStructureContextConsumer>
-    {secondaryStructureContext => (
-      <NGLContainerClass secondaryStructureContext={secondaryStructureContext} {...props} />
-    )}
-  </SecondaryStructureContextConsumer>
-));
-
-export { NGLContainer };
+)(NGLContainerClass);

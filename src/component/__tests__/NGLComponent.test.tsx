@@ -4,7 +4,6 @@ import * as React from 'react';
 
 import { Form } from 'semantic-ui-react';
 import { NGLComponent } from '~chell-viz~/component';
-import { initialSecondaryStructureContext } from '~chell-viz~/context';
 import { ChellPDB, CONTACT_DISTANCE_PROXIMITY } from '~chell-viz~/data';
 
 describe('NGLComponent', () => {
@@ -136,10 +135,7 @@ describe('NGLComponent', () => {
     const instance = wrapper.instance() as NGLComponent;
 
     wrapper.setProps({
-      secondaryStructureContext: {
-        ...initialSecondaryStructureContext,
-        selectedSecondaryStructures: [{ start: 1, end: 2 }],
-      },
+      selectedSecondaryStructures: [{ start: 1, end: 2 }],
     });
 
     const { activeRepresentations } = instance.state;

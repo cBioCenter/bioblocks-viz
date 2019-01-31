@@ -5,7 +5,6 @@ import * as React from 'react';
 import { Vector2 } from 'three';
 
 import { ComponentCard } from '~chell-viz~/component';
-import { initialSecondaryStructureContext, ISecondaryStructureContext } from '~chell-viz~/context';
 import {
   AMINO_ACID_THREE_LETTER_CODE,
   AMINO_ACIDS_BY_THREE_LETTER_CODE,
@@ -16,6 +15,7 @@ import {
   CONTACT_DISTANCE_PROXIMITY,
   RESIDUE_TYPE,
   SECONDARY_STRUCTURE,
+  SECONDARY_STRUCTURE_SECTION,
 } from '~chell-viz~/data';
 import {
   capitalizeFirstLetter,
@@ -36,10 +36,11 @@ export interface INGLComponentProps {
   data: ChellPDB;
   height: number | string;
   hoveredResidues: RESIDUE_TYPE[];
+  hoveredSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
   isDataLoading: boolean;
   lockedResiduePairs: ILockedResiduePair;
   measuredProximity: CONTACT_DISTANCE_PROXIMITY;
-  secondaryStructureContext: ISecondaryStructureContext;
+  selectedSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
   showConfigurations: boolean;
   style?: CHELL_CSS_STYLE;
   width: number | string;
@@ -75,6 +76,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     dispatchPdbFetch: EMPTY_FUNCTION,
     height: '90%',
     hoveredResidues: [],
+    hoveredSecondaryStructures: [],
     isDataLoading: false,
     lockedResiduePairs: {},
     measuredProximity: CONTACT_DISTANCE_PROXIMITY.C_ALPHA,
@@ -85,9 +87,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     removeHoveredResidues: EMPTY_FUNCTION,
     removeLockedResiduePair: EMPTY_FUNCTION,
     removeNonLockedResidues: EMPTY_FUNCTION,
-    secondaryStructureContext: {
-      ...initialSecondaryStructureContext,
-    },
+    selectedSecondaryStructures: [],
     showConfigurations: true,
     width: '100%',
   };
@@ -127,7 +127,15 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   }
 
   public componentDidUpdate(prevProps: INGLComponentProps, prevState: NGLComponentState) {
-    const { candidateResidues, hoveredResidues, lockedResiduePairs, data, measuredProximity } = this.props;
+    const {
+      candidateResidues,
+      hoveredResidues,
+      hoveredSecondaryStructures,
+      lockedResiduePairs,
+      data,
+      measuredProximity,
+      selectedSecondaryStructures,
+    } = this.props;
     const { stage } = this.state;
 
     if (stage && data.nglStructure !== prevProps.data.nglStructure) {
@@ -136,14 +144,14 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
 
     if (stage && stage.compList.length >= 1) {
       const structureComponent = stage.compList[0] as NGL.StructureComponent;
-      const { secondaryStructureContext } = this.props;
 
       const isHighlightUpdateNeeded =
         candidateResidues !== prevProps.candidateResidues ||
         hoveredResidues !== prevProps.hoveredResidues ||
+        hoveredSecondaryStructures !== prevProps.hoveredSecondaryStructures ||
         lockedResiduePairs !== prevProps.lockedResiduePairs ||
-        secondaryStructureContext !== prevProps.secondaryStructureContext ||
-        measuredProximity !== prevProps.measuredProximity;
+        measuredProximity !== prevProps.measuredProximity ||
+        selectedSecondaryStructures !== prevProps.selectedSecondaryStructures;
       if (isHighlightUpdateNeeded) {
         for (const rep of this.state.activeRepresentations) {
           structureComponent.removeRepresentation(rep);
@@ -199,7 +207,13 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   }
 
   protected deriveActiveRepresentations(structureComponent: NGL.StructureComponent) {
-    const { candidateResidues, hoveredResidues, lockedResiduePairs, secondaryStructureContext } = this.props;
+    const {
+      candidateResidues,
+      hoveredResidues,
+      hoveredSecondaryStructures,
+      lockedResiduePairs,
+      selectedSecondaryStructures,
+    } = this.props;
 
     return [
       ...this.highlightCandidateResidues(
@@ -210,8 +224,8 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       ),
       ...this.highlightLockedDistancePairs(structureComponent, lockedResiduePairs),
       ...this.highlightSecondaryStructures(structureComponent, [
-        ...secondaryStructureContext.hoveredSecondaryStructures,
-        ...secondaryStructureContext.selectedSecondaryStructures,
+        ...hoveredSecondaryStructures,
+        ...selectedSecondaryStructures,
       ]),
     ];
   }

@@ -32,7 +32,16 @@ exports[`DatasetPage Should match existing snapshot for initial visualizations. 
         }
       }
     >
-      <Connect(Component) />
+      <Connect(NGLContainerClass) />
+    </GridColumn>
+    <GridColumn
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+    >
+      <Connect(PredictedContactMapContainerClass) />
     </GridColumn>
   </Grid>
 </div>
@@ -84,7 +93,16 @@ exports[`DatasetPage Should match existing snapshot for initial visualizations. 
         }
       }
     >
-      <Connect(Component) />
+      <Connect(NGLContainerClass) />
+    </GridColumn>
+    <GridColumn
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+    >
+      <Connect(PredictedContactMapContainerClass) />
     </GridColumn>
   </Grid>
 </div>
@@ -125,7 +143,16 @@ exports[`DatasetPage Should match existing snapshot for initial visualizations. 
         }
       }
     >
-      <Connect(Component) />
+      <Connect(NGLContainerClass) />
+    </GridColumn>
+    <GridColumn
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+    >
+      <Connect(PredictedContactMapContainerClass) />
     </GridColumn>
   </Grid>
 </div>
@@ -180,7 +207,16 @@ exports[`DatasetPage Should match existing snapshot for initial visualizations. 
         }
       }
     >
-      <Connect(Component) />
+      <Connect(NGLContainerClass) />
+    </GridColumn>
+    <GridColumn
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+    >
+      <Connect(PredictedContactMapContainerClass) />
     </GridColumn>
   </Grid>
 </div>
@@ -221,7 +257,16 @@ exports[`DatasetPage Should match existing snapshot for initial visualizations. 
         }
       }
     >
-      <Connect(Component) />
+      <Connect(NGLContainerClass) />
+    </GridColumn>
+    <GridColumn
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+    >
+      <Connect(PredictedContactMapContainerClass) />
     </GridColumn>
   </Grid>
 </div>
@@ -276,7 +321,16 @@ exports[`DatasetPage Should match existing snapshot for initial visualizations. 
         }
       }
     >
-      <Connect(Component) />
+      <Connect(NGLContainerClass) />
+    </GridColumn>
+    <GridColumn
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+    >
+      <Connect(PredictedContactMapContainerClass) />
     </GridColumn>
   </Grid>
 </div>
@@ -304,7 +358,16 @@ exports[`DatasetPage Should match existing snapshot when changing the visualizat
         }
       }
     >
-      <Connect(Component) />
+      <Connect(NGLContainerClass) />
+    </GridColumn>
+    <GridColumn
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+    >
+      <Connect(PredictedContactMapContainerClass) />
     </GridColumn>
   </Grid>
 </div>
@@ -332,7 +395,16 @@ exports[`DatasetPage Should match existing snapshot when no props are provided. 
         }
       }
     >
-      <Connect(Component) />
+      <Connect(NGLContainerClass) />
+    </GridColumn>
+    <GridColumn
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+    >
+      <Connect(PredictedContactMapContainerClass) />
     </GridColumn>
   </Grid>
 </div>

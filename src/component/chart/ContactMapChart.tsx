@@ -149,7 +149,9 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
     } = this.props;
     const { plotlyData, showlegend } = this.state;
 
-    return (
+    const isTest = false;
+
+    return isTest ? (
       <SettingsPanel configurations={configurations} showConfigurations={showConfigurations}>
         <Button
           basic={true}
@@ -195,6 +197,43 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
           {...passThroughProps}
         />
       </SettingsPanel>
+    ) : (
+      <PlotlyChart
+        data={plotlyData}
+        layout={{
+          legend: {
+            orientation: 'h',
+            y: legendModifiers.y,
+            yanchor: 'bottom',
+          },
+          margin: {
+            b: marginModifiers.b,
+            l: marginModifiers.l,
+          },
+          showlegend,
+          xaxis: {
+            autorange: true,
+            fixedrange: true,
+            nticks: 10,
+            range: [0, 33000],
+            rangemode: 'nonnegative',
+            showline: true,
+            tickmode: 'auto',
+            title: 'Residue #',
+          },
+          yaxis: {
+            autorange: 'reversed',
+            fixedrange: true,
+            nticks: 10,
+            range: [0, 33000],
+            rangemode: 'nonnegative',
+            showline: true,
+            tickmode: 'auto',
+            title: 'Residue #',
+          },
+        }}
+        {...passThroughProps}
+      />
     );
   }
 

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IRingData | chell-viz</title>
+	<title>IPredictedContactMapContainerProps | chell-viz</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_ngl_.html">&quot;ngl&quot;</a>
-				</li>
-				<li>
-					<a href="_ngl_.iringdata.html">IRingData</a>
+					<a href="ipredictedcontactmapcontainerprops.html">IPredictedContactMapContainerProps</a>
 				</li>
 			</ul>
-			<h1>Interface IRingData</h1>
+			<h1>Interface IPredictedContactMapContainerProps</h1>
 		</div>
 	</div>
 </header>
@@ -71,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IRingData</span>
+						<span class="target">IPredictedContactMapContainerProps</span>
 					</li>
 				</ul>
 			</section>
@@ -82,8 +79,15 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.iringdata.html#flags" class="tsd-kind-icon">flags</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.iringdata.html#rings" class="tsd-kind-icon">rings</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ipredictedcontactmapcontainerprops.html#data" class="tsd-kind-icon">data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ipredictedcontactmapcontainerprops.html#hoveredsecondarystructures" class="tsd-kind-icon">hovered<wbr>Secondary<wbr>Structures</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ipredictedcontactmapcontainerprops.html#selectedsecondarystructures" class="tsd-kind-icon">selected<wbr>Secondary<wbr>Structures</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="ipredictedcontactmapcontainerprops.html#dispatchcontactmapfetch" class="tsd-kind-icon">dispatch<wbr>Contact<wbr>Map<wbr>Fetch</a></li>
 							</ul>
 						</section>
 					</div>
@@ -92,24 +96,75 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="flags" class="tsd-anchor"></a>
-					<h3>flags</h3>
-					<div class="tsd-signature tsd-kind-icon">flags<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Int8Array</span></div>
+					<a name="data" class="tsd-anchor"></a>
+					<h3>data</h3>
+					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <a href="icontactmapdata.html" class="tsd-signature-type">IContactMapData</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/c4a3ac606/types/ngl/store/store.d.ts#L239">types/ngl/store/store.d.ts:239</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/c4a3ac606/src/container/PredictedContactMapContainer.tsx#L14">src/container/PredictedContactMapContainer.tsx:14</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="rings" class="tsd-anchor"></a>
-					<h3>rings</h3>
-					<div class="tsd-signature tsd-kind-icon">rings<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></div>
+					<a name="hoveredsecondarystructures" class="tsd-anchor"></a>
+					<h3>hovered<wbr>Secondary<wbr>Structures</h3>
+					<div class="tsd-signature tsd-kind-icon">hovered<wbr>Secondary<wbr>Structures<span class="tsd-signature-symbol">:</span> <a href="../globals.html#secondary_structure_section" class="tsd-signature-type">SECONDARY_STRUCTURE_SECTION</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/c4a3ac606/types/ngl/store/store.d.ts#L240">types/ngl/store/store.d.ts:240</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/c4a3ac606/src/container/PredictedContactMapContainer.tsx#L15">src/container/PredictedContactMapContainer.tsx:15</a></li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="selectedsecondarystructures" class="tsd-anchor"></a>
+					<h3>selected<wbr>Secondary<wbr>Structures</h3>
+					<div class="tsd-signature tsd-kind-icon">selected<wbr>Secondary<wbr>Structures<span class="tsd-signature-symbol">:</span> <a href="../globals.html#secondary_structure_section" class="tsd-signature-type">SECONDARY_STRUCTURE_SECTION</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/c4a3ac606/src/container/PredictedContactMapContainer.tsx#L16">src/container/PredictedContactMapContainer.tsx:16</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="dispatchcontactmapfetch" class="tsd-anchor"></a>
+					<h3>dispatch<wbr>Contact<wbr>Map<wbr>Fetch</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">dispatch<wbr>Contact<wbr>Map<wbr>Fetch<span class="tsd-signature-symbol">(</span>dataset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, fetchFn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/c4a3ac606/src/container/PredictedContactMapContainer.tsx#L17">src/container/PredictedContactMapContainer.tsx:17</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>dataset: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>fetchFn: <span class="tsd-signature-type">function</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="icontactmapdata.html" class="tsd-signature-type">IContactMapData</a><span class="tsd-signature-symbol">&gt;</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="icontactmapdata.html" class="tsd-signature-type">IContactMapData</a><span class="tsd-signature-symbol">&gt;</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -119,41 +174,26 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_anatomogram_.html">"anatomogram"</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_morpheus_app_.html">"morpheus-<wbr>app"</a>
-					</li>
-					<li class=" tsd-kind-module tsd-parent-kind-module">
-						<a href="../modules/_morpheus_app_.dataset.html">"morpheus-<wbr>app".<wbr>Dataset</a>
-					</li>
-					<li class="current tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_ngl_.html">"ngl"</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_react_full_screen_.html">"react-<wbr>full-<wbr>screen"</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_react_iframe_comm_.html">"react-<wbr>iframe-<wbr>comm"</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/nodejs.html">NodeJS</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="_ngl_.iringdata.html" class="tsd-kind-icon">IRing<wbr>Data</a>
+					<li class="current tsd-kind-interface">
+						<a href="ipredictedcontactmapcontainerprops.html" class="tsd-kind-icon">IPredicted<wbr>Contact<wbr>Map<wbr>Container<wbr>Props</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.iringdata.html#flags" class="tsd-kind-icon">flags</a>
+								<a href="ipredictedcontactmapcontainerprops.html#data" class="tsd-kind-icon">data</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.iringdata.html#rings" class="tsd-kind-icon">rings</a>
+								<a href="ipredictedcontactmapcontainerprops.html#hoveredsecondarystructures" class="tsd-kind-icon">hovered<wbr>Secondary<wbr>Structures</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="ipredictedcontactmapcontainerprops.html#selectedsecondarystructures" class="tsd-kind-icon">selected<wbr>Secondary<wbr>Structures</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="ipredictedcontactmapcontainerprops.html#dispatchcontactmapfetch" class="tsd-kind-icon">dispatch<wbr>Contact<wbr>Map<wbr>Fetch</a>
 							</li>
 						</ul>
 					</li>

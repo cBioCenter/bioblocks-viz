@@ -2238,928 +2238,217 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           showConfigurations={true}
           width="100%"
         >
-          <SettingsPanel
-            configurations={
+          <PlotlyChart
+            candidateResidues={Array []}
+            config={Object {}}
+            data={
               Array [
                 Object {
-                  "name": "Clear Selections",
-                  "onClick": [Function],
-                  "type": "BUTTON",
+                  "hoverinfo": "text",
+                  "marker": Object {
+                    "color": Array [
+                      "1.3",
+                      "2.4",
+                      "1.3",
+                      "2.4",
+                    ],
+                    "colorscale": Array [
+                      Array [
+                        0,
+                        "rgb(12,50,102)",
+                      ],
+                      Array [
+                        0.1,
+                        "rgb(17,83,150)",
+                      ],
+                      Array [
+                        0.2,
+                        "rgb(40,114,175)",
+                      ],
+                      Array [
+                        0.3,
+                        "rgb(71,147,193)",
+                      ],
+                      Array [
+                        0.4,
+                        "rgb(111,175,209)",
+                      ],
+                      Array [
+                        0.5,
+                        "rgb(160,202,222)",
+                      ],
+                      Array [
+                        0.6,
+                        "rgb(200,219,237)",
+                      ],
+                      Array [
+                        0.7,
+                        "rgb(224,235,246)",
+                      ],
+                      Array [
+                        0.8,
+                        "rgb(247,251,255)",
+                      ],
+                      Array [
+                        0.9,
+                        "rgb(249,253,255)",
+                      ],
+                      Array [
+                        1,
+                        "rgb(255,255,255)",
+                      ],
+                    ],
+                    "size": 4,
+                  },
+                  "mode": "markers",
+                  "name": "Unknown Structure Contact (from PDB structure)",
+                  "text": Array [
+                    "(41, 52)",
+                    "(50, 56)",
+                    "(52, 41)",
+                    "(56, 50)",
+                  ],
+                  "type": "scattergl",
+                  "x": Array [
+                    41,
+                    50,
+                    52,
+                    56,
+                  ],
+                  "y": Array [
+                    52,
+                    56,
+                    41,
+                    50,
+                  ],
+                  "z": Array [
+                    1.3,
+                    2.4,
+                    1.3,
+                    2.4,
+                  ],
                 },
                 Object {
-                  "id": "node-size-slider-0",
-                  "name": "Node size for Unknown Structure Contact",
-                  "onChange": [Function],
-                  "type": "SLIDER",
-                  "values": Object {
-                    "current": 4,
-                    "max": 20,
-                    "min": 1,
+                  "hoverinfo": "none",
+                  "marker": Object {
+                    "color": Array [],
+                    "line": Object {
+                      "color": "#ff8800",
+                      "width": 3,
+                    },
+                    "size": 6,
+                    "symbol": "circle-open",
                   },
-                },
-                Object {
-                  "id": "node-size-slider-1",
-                  "name": "Node size for Selected Residue Pairs",
-                  "onChange": [Function],
-                  "type": "SLIDER",
-                  "values": Object {
-                    "current": 6,
-                    "max": 20,
-                    "min": 1,
-                  },
+                  "mode": "markers",
+                  "name": "Selected Residue Pairs ",
+                  "text": Array [],
+                  "type": "scattergl",
+                  "x": Array [],
+                  "y": Array [],
+                  "z": Array [],
                 },
               ]
             }
-            direction="left"
-            inverted={true}
-            opacity={0.6}
-            showConfigurations={true}
+            dataTransformFn={[Function]}
+            height="100%"
+            layout={
+              Object {
+                "legend": Object {
+                  "orientation": "h",
+                  "y": -0.4,
+                  "yanchor": "bottom",
+                },
+                "margin": Object {
+                  "b": 65,
+                  "l": 65,
+                },
+                "showlegend": false,
+                "xaxis": Object {
+                  "autorange": true,
+                  "fixedrange": true,
+                  "nticks": 10,
+                  "range": Array [
+                    0,
+                    33000,
+                  ],
+                  "rangemode": "nonnegative",
+                  "showline": true,
+                  "tickmode": "auto",
+                  "title": "Residue #",
+                },
+                "yaxis": Object {
+                  "autorange": "reversed",
+                  "fixedrange": true,
+                  "nticks": 10,
+                  "range": Array [
+                    0,
+                    33000,
+                  ],
+                  "rangemode": "nonnegative",
+                  "showline": true,
+                  "tickmode": "auto",
+                  "title": "Residue #",
+                },
+              }
+            }
+            onClickCallback={[Function]}
+            onHoverCallback={[Function]}
+            onSelectedCallback={[Function]}
+            onUnHoverCallback={[Function]}
+            secondaryStructures={
+              Array [
+                Array [
+                  Object {
+                    "end": 31,
+                    "label": "C",
+                    "length": 2,
+                    "start": 30,
+                  },
+                ],
+              ]
+            }
+            selectedSecondaryStructures={
+              Array [
+                Array [],
+              ]
+            }
+            selectedSecondaryStructuresColor="#feb83f"
+            showLoader={true}
             width="100%"
           >
-            <div>
-              <Grid
-                columns={1}
+            <Dimmer
+              active={false}
+            >
+              <DimmerInner
+                active={false}
               >
                 <div
-                  className="ui one column grid"
+                  className="ui dimmer"
+                  onClick={[Function]}
                 >
-                  <GridColumn>
-                    <div
-                      className="column"
-                    >
-                      <Button
-                        as="button"
-                        basic={true}
-                        floated="right"
-                        icon="settings"
-                        onClick={[Function]}
-                        role="button"
-                      >
-                        <button
-                          className="ui basic icon right floated button"
-                          onClick={[Function]}
-                          role="button"
-                        >
-                          <Icon
-                            as="i"
-                            name="settings"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="settings icon"
-                            />
-                          </Icon>
-                        </button>
-                      </Button>
-                    </div>
-                  </GridColumn>
-                  <SidebarPushable
-                    style={
-                      Object {
-                        "height": "100%",
-                        "width": "100%",
-                      }
-                    }
+                  <div
+                    className="content"
                   >
-                    <div
-                      className="pushable"
-                      style={
-                        Object {
-                          "height": "100%",
-                          "width": "100%",
-                        }
-                      }
-                    >
-                      <Sidebar
-                        animation="overlay"
-                        as={[Function]}
-                        direction="left"
-                        duration={500}
-                        inverted={true}
-                        style={
-                          Object {
-                            "opacity": 0.6,
-                            "width": "100%",
-                          }
-                        }
-                        vertical={true}
-                        visible={false}
-                      >
-                        <Ref
-                          innerRef={[Function]}
-                        >
-                          <Menu
-                            className="ui overlay left sidebar"
-                            inverted={true}
-                            style={
-                              Object {
-                                "opacity": 0.6,
-                                "width": "100%",
-                              }
-                            }
-                            vertical={true}
-                          >
-                            <div
-                              className="ui inverted vertical ui overlay left sidebar menu"
-                              style={
-                                Object {
-                                  "opacity": 0.6,
-                                  "width": "100%",
-                                }
-                              }
-                            >
-                              <Grid
-                                centered={true}
-                                columns={1}
-                                padded={true}
-                                relaxed={true}
-                                stretched={true}
-                                style={
-                                  Object {
-                                    "height": "100%",
-                                  }
-                                }
-                              >
-                                <div
-                                  className="ui centered stretched padded relaxed one column grid"
-                                  style={
-                                    Object {
-                                      "height": "100%",
-                                    }
-                                  }
-                                >
-                                  <GridRow
-                                    key="clear-selections-0"
-                                    style={
-                                      Object {
-                                        "padding": "10px",
-                                      }
-                                    }
-                                  >
-                                    <div
-                                      className="row"
-                                      style={
-                                        Object {
-                                          "padding": "10px",
-                                        }
-                                      }
-                                    >
-                                      <Button
-                                        as="button"
-                                        compact={true}
-                                        id="clear-selections-0"
-                                        onClick={[Function]}
-                                        role="button"
-                                        style={
-                                          Object {
-                                            "color": "black",
-                                          }
-                                        }
-                                      >
-                                        <button
-                                          className="ui compact button"
-                                          id="clear-selections-0"
-                                          onClick={[Function]}
-                                          role="button"
-                                          style={
-                                            Object {
-                                              "color": "black",
-                                            }
-                                          }
-                                        >
-                                          Clear Selections
-                                        </button>
-                                      </Button>
-                                    </div>
-                                  </GridRow>
-                                  <GridRow
-                                    key="node-size-slider-0"
-                                    style={
-                                      Object {
-                                        "padding": "10px",
-                                      }
-                                    }
-                                  >
-                                    <div
-                                      className="row"
-                                      style={
-                                        Object {
-                                          "padding": "10px",
-                                        }
-                                      }
-                                    >
-                                      <ChellSlider
-                                        className="node-size-slider-0"
-                                        label="Node size for Unknown Structure Contact"
-                                        max={20}
-                                        min={1}
-                                        onChange={[Function]}
-                                        style={
-                                          Object {
-                                            "color": "white",
-                                            "padding": "0 25px",
-                                            "width": "95%",
-                                          }
-                                        }
-                                        value={4}
-                                      >
-                                        <Grid
-                                          columns="equal"
-                                          style={
-                                            Object {
-                                              "color": "white",
-                                              "padding": "0 25px",
-                                              "width": "95%",
-                                            }
-                                          }
-                                          textAlign="left"
-                                        >
-                                          <div
-                                            className="ui left aligned equal width grid"
-                                            style={
-                                              Object {
-                                                "color": "white",
-                                                "padding": "0 25px",
-                                                "width": "95%",
-                                              }
-                                            }
-                                          >
-                                            <GridColumn
-                                              className="node-size-slider-0"
-                                            >
-                                              <div
-                                                className="column node-size-slider-0"
-                                              >
-                                                <p>
-                                                  Node size for Unknown Structure Contact: 4
-                                                </p>
-                                                <ComponentEnhancer(undefined)
-                                                  activeDotStyle={Object {}}
-                                                  className=""
-                                                  disabled={false}
-                                                  dotStyle={Object {}}
-                                                  dots={false}
-                                                  handle={[Function]}
-                                                  handleStyle={
-                                                    Array [
-                                                      Object {},
-                                                    ]
-                                                  }
-                                                  included={true}
-                                                  marks={Object {}}
-                                                  max={20}
-                                                  min={1}
-                                                  onAfterChange={[Function]}
-                                                  onBeforeChange={[Function]}
-                                                  onChange={[Function]}
-                                                  prefixCls="rc-slider"
-                                                  railStyle={Object {}}
-                                                  step={1}
-                                                  trackStyle={
-                                                    Array [
-                                                      Object {},
-                                                    ]
-                                                  }
-                                                  value={4}
-                                                  vertical={false}
-                                                >
-                                                  <div
-                                                    className="rc-slider"
-                                                    onBlur={[Function]}
-                                                    onFocus={[Function]}
-                                                    onKeyDown={[Function]}
-                                                    onMouseDown={[Function]}
-                                                    onMouseUp={[Function]}
-                                                    onTouchStart={[Function]}
-                                                  >
-                                                    <div
-                                                      className="rc-slider-rail"
-                                                      style={Object {}}
-                                                    />
-                                                    <Track
-                                                      className="rc-slider-track"
-                                                      included={true}
-                                                      length={15.789473684210526}
-                                                      offset={0}
-                                                      style={Object {}}
-                                                      vertical={false}
-                                                    >
-                                                      <div
-                                                        className="rc-slider-track"
-                                                        style={
-                                                          Object {
-                                                            "left": "0%",
-                                                            "width": "15.789473684210526%",
-                                                          }
-                                                        }
-                                                      />
-                                                    </Track>
-                                                    <Steps
-                                                      activeDotStyle={Object {}}
-                                                      dotStyle={Object {}}
-                                                      dots={false}
-                                                      included={true}
-                                                      lowerBound={1}
-                                                      marks={Object {}}
-                                                      max={20}
-                                                      min={1}
-                                                      prefixCls="rc-slider"
-                                                      step={1}
-                                                      upperBound={4}
-                                                      vertical={false}
-                                                    >
-                                                      <div
-                                                        className="rc-slider-step"
-                                                      />
-                                                    </Steps>
-                                                    <Handle
-                                                      className="rc-slider-handle"
-                                                      disabled={false}
-                                                      key="0"
-                                                      max={20}
-                                                      min={1}
-                                                      offset={15.789473684210526}
-                                                      prefixCls="rc-slider"
-                                                      style={Object {}}
-                                                      value={4}
-                                                      vertical={false}
-                                                    >
-                                                      <div
-                                                        aria-disabled={false}
-                                                        aria-valuemax={20}
-                                                        aria-valuemin={1}
-                                                        aria-valuenow={4}
-                                                        className="rc-slider-handle"
-                                                        onBlur={[Function]}
-                                                        onKeyDown={[Function]}
-                                                        role="slider"
-                                                        style={
-                                                          Object {
-                                                            "left": "15.789473684210526%",
-                                                          }
-                                                        }
-                                                        tabIndex={0}
-                                                      />
-                                                    </Handle>
-                                                    <Marks
-                                                      className="rc-slider-mark"
-                                                      included={true}
-                                                      lowerBound={1}
-                                                      marks={Object {}}
-                                                      max={20}
-                                                      min={1}
-                                                      onClickLabel={[Function]}
-                                                      upperBound={4}
-                                                      vertical={false}
-                                                    >
-                                                      <div
-                                                        className="rc-slider-mark"
-                                                      />
-                                                    </Marks>
-                                                  </div>
-                                                </ComponentEnhancer(undefined)>
-                                              </div>
-                                            </GridColumn>
-                                            <GridColumn
-                                              verticalAlign="middle"
-                                              width={2}
-                                            >
-                                              <div
-                                                className="middle aligned two wide column"
-                                              >
-                                                <Button
-                                                  as="button"
-                                                  icon="undo"
-                                                  onClick={[Function]}
-                                                  role="button"
-                                                  size="small"
-                                                >
-                                                  <button
-                                                    className="ui small icon button"
-                                                    onClick={[Function]}
-                                                    role="button"
-                                                  >
-                                                    <Icon
-                                                      as="i"
-                                                      name="undo"
-                                                    >
-                                                      <i
-                                                        aria-hidden="true"
-                                                        className="undo icon"
-                                                      />
-                                                    </Icon>
-                                                  </button>
-                                                </Button>
-                                              </div>
-                                            </GridColumn>
-                                          </div>
-                                        </Grid>
-                                      </ChellSlider>
-                                    </div>
-                                  </GridRow>
-                                  <GridRow
-                                    key="node-size-slider-1"
-                                    style={
-                                      Object {
-                                        "padding": "10px",
-                                      }
-                                    }
-                                  >
-                                    <div
-                                      className="row"
-                                      style={
-                                        Object {
-                                          "padding": "10px",
-                                        }
-                                      }
-                                    >
-                                      <ChellSlider
-                                        className="node-size-slider-1"
-                                        label="Node size for Selected Residue Pairs"
-                                        max={20}
-                                        min={1}
-                                        onChange={[Function]}
-                                        style={
-                                          Object {
-                                            "color": "white",
-                                            "padding": "0 25px",
-                                            "width": "95%",
-                                          }
-                                        }
-                                        value={6}
-                                      >
-                                        <Grid
-                                          columns="equal"
-                                          style={
-                                            Object {
-                                              "color": "white",
-                                              "padding": "0 25px",
-                                              "width": "95%",
-                                            }
-                                          }
-                                          textAlign="left"
-                                        >
-                                          <div
-                                            className="ui left aligned equal width grid"
-                                            style={
-                                              Object {
-                                                "color": "white",
-                                                "padding": "0 25px",
-                                                "width": "95%",
-                                              }
-                                            }
-                                          >
-                                            <GridColumn
-                                              className="node-size-slider-1"
-                                            >
-                                              <div
-                                                className="column node-size-slider-1"
-                                              >
-                                                <p>
-                                                  Node size for Selected Residue Pairs: 6
-                                                </p>
-                                                <ComponentEnhancer(undefined)
-                                                  activeDotStyle={Object {}}
-                                                  className=""
-                                                  disabled={false}
-                                                  dotStyle={Object {}}
-                                                  dots={false}
-                                                  handle={[Function]}
-                                                  handleStyle={
-                                                    Array [
-                                                      Object {},
-                                                    ]
-                                                  }
-                                                  included={true}
-                                                  marks={Object {}}
-                                                  max={20}
-                                                  min={1}
-                                                  onAfterChange={[Function]}
-                                                  onBeforeChange={[Function]}
-                                                  onChange={[Function]}
-                                                  prefixCls="rc-slider"
-                                                  railStyle={Object {}}
-                                                  step={1}
-                                                  trackStyle={
-                                                    Array [
-                                                      Object {},
-                                                    ]
-                                                  }
-                                                  value={6}
-                                                  vertical={false}
-                                                >
-                                                  <div
-                                                    className="rc-slider"
-                                                    onBlur={[Function]}
-                                                    onFocus={[Function]}
-                                                    onKeyDown={[Function]}
-                                                    onMouseDown={[Function]}
-                                                    onMouseUp={[Function]}
-                                                    onTouchStart={[Function]}
-                                                  >
-                                                    <div
-                                                      className="rc-slider-rail"
-                                                      style={Object {}}
-                                                    />
-                                                    <Track
-                                                      className="rc-slider-track"
-                                                      included={true}
-                                                      length={26.31578947368421}
-                                                      offset={0}
-                                                      style={Object {}}
-                                                      vertical={false}
-                                                    >
-                                                      <div
-                                                        className="rc-slider-track"
-                                                        style={
-                                                          Object {
-                                                            "left": "0%",
-                                                            "width": "26.31578947368421%",
-                                                          }
-                                                        }
-                                                      />
-                                                    </Track>
-                                                    <Steps
-                                                      activeDotStyle={Object {}}
-                                                      dotStyle={Object {}}
-                                                      dots={false}
-                                                      included={true}
-                                                      lowerBound={1}
-                                                      marks={Object {}}
-                                                      max={20}
-                                                      min={1}
-                                                      prefixCls="rc-slider"
-                                                      step={1}
-                                                      upperBound={6}
-                                                      vertical={false}
-                                                    >
-                                                      <div
-                                                        className="rc-slider-step"
-                                                      />
-                                                    </Steps>
-                                                    <Handle
-                                                      className="rc-slider-handle"
-                                                      disabled={false}
-                                                      key="0"
-                                                      max={20}
-                                                      min={1}
-                                                      offset={26.31578947368421}
-                                                      prefixCls="rc-slider"
-                                                      style={Object {}}
-                                                      value={6}
-                                                      vertical={false}
-                                                    >
-                                                      <div
-                                                        aria-disabled={false}
-                                                        aria-valuemax={20}
-                                                        aria-valuemin={1}
-                                                        aria-valuenow={6}
-                                                        className="rc-slider-handle"
-                                                        onBlur={[Function]}
-                                                        onKeyDown={[Function]}
-                                                        role="slider"
-                                                        style={
-                                                          Object {
-                                                            "left": "26.31578947368421%",
-                                                          }
-                                                        }
-                                                        tabIndex={0}
-                                                      />
-                                                    </Handle>
-                                                    <Marks
-                                                      className="rc-slider-mark"
-                                                      included={true}
-                                                      lowerBound={1}
-                                                      marks={Object {}}
-                                                      max={20}
-                                                      min={1}
-                                                      onClickLabel={[Function]}
-                                                      upperBound={6}
-                                                      vertical={false}
-                                                    >
-                                                      <div
-                                                        className="rc-slider-mark"
-                                                      />
-                                                    </Marks>
-                                                  </div>
-                                                </ComponentEnhancer(undefined)>
-                                              </div>
-                                            </GridColumn>
-                                            <GridColumn
-                                              verticalAlign="middle"
-                                              width={2}
-                                            >
-                                              <div
-                                                className="middle aligned two wide column"
-                                              >
-                                                <Button
-                                                  as="button"
-                                                  icon="undo"
-                                                  onClick={[Function]}
-                                                  role="button"
-                                                  size="small"
-                                                >
-                                                  <button
-                                                    className="ui small icon button"
-                                                    onClick={[Function]}
-                                                    role="button"
-                                                  >
-                                                    <Icon
-                                                      as="i"
-                                                      name="undo"
-                                                    >
-                                                      <i
-                                                        aria-hidden="true"
-                                                        className="undo icon"
-                                                      />
-                                                    </Icon>
-                                                  </button>
-                                                </Button>
-                                              </div>
-                                            </GridColumn>
-                                          </div>
-                                        </Grid>
-                                      </ChellSlider>
-                                    </div>
-                                  </GridRow>
-                                </div>
-                              </Grid>
-                            </div>
-                          </Menu>
-                        </Ref>
-                      </Sidebar>
-                      <SidebarPusher>
-                        <div
-                          className="pusher"
-                        >
-                          <Button
-                            as="button"
-                            basic={true}
-                            floated="left"
-                            icon={
-                              <Icon
-                                as="i"
-                                name="question circle outline"
-                                size="large"
-                              />
-                            }
-                            onClick={[Function]}
-                            role="button"
-                            style={
-                              Object {
-                                "float": "left",
-                                "margin": "0 0 0 15px",
-                                "position": "relative",
-                                "top": "500px",
-                                "zIndex": 999,
-                              }
-                            }
-                          >
-                            <button
-                              className="ui basic icon left floated button"
-                              onClick={[Function]}
-                              role="button"
-                              style={
-                                Object {
-                                  "float": "left",
-                                  "margin": "0 0 0 15px",
-                                  "position": "relative",
-                                  "top": "500px",
-                                  "zIndex": 999,
-                                }
-                              }
-                            >
-                              <Icon
-                                as="i"
-                                name="question circle outline"
-                                size="large"
-                              >
-                                <i
-                                  aria-hidden="true"
-                                  className="question circle outline large icon"
-                                />
-                              </Icon>
-                            </button>
-                          </Button>
-                          <PlotlyChart
-                            candidateResidues={Array []}
-                            config={Object {}}
-                            data={
-                              Array [
-                                Object {
-                                  "hoverinfo": "text",
-                                  "marker": Object {
-                                    "color": Array [
-                                      "1.3",
-                                      "2.4",
-                                      "1.3",
-                                      "2.4",
-                                    ],
-                                    "colorscale": Array [
-                                      Array [
-                                        0,
-                                        "rgb(12,50,102)",
-                                      ],
-                                      Array [
-                                        0.1,
-                                        "rgb(17,83,150)",
-                                      ],
-                                      Array [
-                                        0.2,
-                                        "rgb(40,114,175)",
-                                      ],
-                                      Array [
-                                        0.3,
-                                        "rgb(71,147,193)",
-                                      ],
-                                      Array [
-                                        0.4,
-                                        "rgb(111,175,209)",
-                                      ],
-                                      Array [
-                                        0.5,
-                                        "rgb(160,202,222)",
-                                      ],
-                                      Array [
-                                        0.6,
-                                        "rgb(200,219,237)",
-                                      ],
-                                      Array [
-                                        0.7,
-                                        "rgb(224,235,246)",
-                                      ],
-                                      Array [
-                                        0.8,
-                                        "rgb(247,251,255)",
-                                      ],
-                                      Array [
-                                        0.9,
-                                        "rgb(249,253,255)",
-                                      ],
-                                      Array [
-                                        1,
-                                        "rgb(255,255,255)",
-                                      ],
-                                    ],
-                                    "size": 4,
-                                  },
-                                  "mode": "markers",
-                                  "name": "Unknown Structure Contact (from PDB structure)",
-                                  "text": Array [
-                                    "(41, 52)",
-                                    "(50, 56)",
-                                    "(52, 41)",
-                                    "(56, 50)",
-                                  ],
-                                  "type": "scattergl",
-                                  "x": Array [
-                                    41,
-                                    50,
-                                    52,
-                                    56,
-                                  ],
-                                  "y": Array [
-                                    52,
-                                    56,
-                                    41,
-                                    50,
-                                  ],
-                                  "z": Array [
-                                    1.3,
-                                    2.4,
-                                    1.3,
-                                    2.4,
-                                  ],
-                                },
-                                Object {
-                                  "hoverinfo": "none",
-                                  "marker": Object {
-                                    "color": Array [],
-                                    "line": Object {
-                                      "color": "#ff8800",
-                                      "width": 3,
-                                    },
-                                    "size": 6,
-                                    "symbol": "circle-open",
-                                  },
-                                  "mode": "markers",
-                                  "name": "Selected Residue Pairs ",
-                                  "text": Array [],
-                                  "type": "scattergl",
-                                  "x": Array [],
-                                  "y": Array [],
-                                  "z": Array [],
-                                },
-                              ]
-                            }
-                            dataTransformFn={[Function]}
-                            height="100%"
-                            layout={
-                              Object {
-                                "legend": Object {
-                                  "orientation": "h",
-                                  "y": -0.4,
-                                  "yanchor": "bottom",
-                                },
-                                "margin": Object {
-                                  "b": 65,
-                                  "l": 65,
-                                },
-                                "showlegend": false,
-                                "xaxis": Object {
-                                  "autorange": true,
-                                  "fixedrange": true,
-                                  "nticks": 10,
-                                  "range": Array [
-                                    0,
-                                    33000,
-                                  ],
-                                  "rangemode": "nonnegative",
-                                  "showline": true,
-                                  "tickmode": "auto",
-                                  "title": "Residue #",
-                                },
-                                "yaxis": Object {
-                                  "autorange": "reversed",
-                                  "fixedrange": true,
-                                  "nticks": 10,
-                                  "range": Array [
-                                    0,
-                                    33000,
-                                  ],
-                                  "rangemode": "nonnegative",
-                                  "showline": true,
-                                  "tickmode": "auto",
-                                  "title": "Residue #",
-                                },
-                              }
-                            }
-                            onClickCallback={[Function]}
-                            onHoverCallback={[Function]}
-                            onSelectedCallback={[Function]}
-                            onUnHoverCallback={[Function]}
-                            secondaryStructures={
-                              Array [
-                                Array [
-                                  Object {
-                                    "end": 31,
-                                    "label": "C",
-                                    "length": 2,
-                                    "start": 30,
-                                  },
-                                ],
-                              ]
-                            }
-                            selectedSecondaryStructures={
-                              Array [
-                                Array [],
-                              ]
-                            }
-                            selectedSecondaryStructuresColor="#feb83f"
-                            showLoader={true}
-                            width="100%"
-                          >
-                            <Dimmer
-                              active={false}
-                            >
-                              <DimmerInner
-                                active={false}
-                              >
-                                <div
-                                  className="ui dimmer"
-                                  onClick={[Function]}
-                                >
-                                  <div
-                                    className="content"
-                                  >
-                                    <Loader>
-                                      <div
-                                        className="ui loader"
-                                      />
-                                    </Loader>
-                                  </div>
-                                </div>
-                              </DimmerInner>
-                            </Dimmer>
-                            <div
-                              className="plotly-chart"
-                              style={
-                                Object {
-                                  "height": "100%",
-                                  "marginBottom": 5,
-                                  "width": "100%",
-                                }
-                              }
-                            />
-                          </PlotlyChart>
-                        </div>
-                      </SidebarPusher>
-                    </div>
-                  </SidebarPushable>
+                    <Loader>
+                      <div
+                        className="ui loader"
+                      />
+                    </Loader>
+                  </div>
                 </div>
-              </Grid>
-            </div>
-          </SettingsPanel>
+              </DimmerInner>
+            </Dimmer>
+            <div
+              className="plotly-chart"
+              style={
+                Object {
+                  "height": "100%",
+                  "marginBottom": 5,
+                  "width": "100%",
+                }
+              }
+            />
+          </PlotlyChart>
         </ContactMapChart>
       </div>
     </DimmerDimmable>

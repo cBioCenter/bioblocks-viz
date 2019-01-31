@@ -7,6 +7,7 @@ import { Grid, Message } from 'semantic-ui-react';
 
 import { createSpringActions, fetchSpringGraphData } from '~chell-viz~/action';
 import { AnatomogramContainer, NGLContainer, SpringContainer, TensorTContainer } from '~chell-viz~/container';
+import { PredictedContactMapContainer } from '~chell-viz~/container/PredictedContactMapContainer';
 import { ISpringGraphData, SPECIES_TYPE, VizData } from '~chell-viz~/data';
 import { fetchSpringData } from '~chell-viz~/helper';
 
@@ -67,6 +68,9 @@ export class DatasetPageClass extends React.Component<IDatasetPageProps, IDatase
             ))}
           <Grid.Column style={{ width: 'auto' }}>
             <NGLContainer />
+          </Grid.Column>
+          <Grid.Column style={{ width: 'auto' }}>
+            <PredictedContactMapContainer />
           </Grid.Column>
         </Grid>
       </div>

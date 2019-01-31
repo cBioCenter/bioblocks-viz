@@ -1,7 +1,14 @@
 import * as fetchMock from 'jest-fetch-mock';
 import { inspect as stringifyCircularJSON } from 'util';
 
-import { ChellPDB, CouplingContainer, IContactMapData, ICouplingScore, VIZ_TYPE } from '~chell-viz~/data';
+import {
+  ChellPDB,
+  CONTACT_DISTANCE_PROXIMITY,
+  CouplingContainer,
+  IContactMapData,
+  ICouplingScore,
+  VIZ_TYPE,
+} from '~chell-viz~/data';
 import {
   augmentCouplingScoresWithResidueMapping,
   fetchAppropriateData,
@@ -141,7 +148,7 @@ describe('DataHelper', () => {
       const expected = await ChellPDB.createPDB('sample/protein.pdb');
       const response = {
         couplingScores: new CouplingContainer(),
-        pdbData: { known: expected },
+        pdbData: { known: expected.amendPDBWithCouplingScores([], CONTACT_DISTANCE_PROXIMITY.CLOSEST) },
         secondaryStructures: [],
       };
       fetchMock.mockResponse(stringifyCircularJSON(response));
