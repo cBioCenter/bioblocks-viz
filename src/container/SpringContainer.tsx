@@ -10,9 +10,8 @@ import IframeComm, { IframeCommAttributes } from 'react-iframe-comm';
 import { createContainerActions, createSpringActions } from '~chell-viz~/action';
 import { ComponentCard } from '~chell-viz~/component';
 import { ChellVisualization } from '~chell-viz~/container';
-import { ISpringLink, ISpringNode } from '~chell-viz~/data';
-import { createSpringReducer } from '~chell-viz~/reducer';
-import { getCategories, selectCurrentItems } from '~chell-viz~/selector';
+import { ISpringGraphData, ISpringLink, ISpringNode } from '~chell-viz~/data';
+import { getCategories, getGraphData, selectCurrentItems } from '~chell-viz~/selector';
 
 export interface ISpringContainerProps {
   categories: Set<string>;
@@ -22,6 +21,7 @@ export interface ISpringContainerProps {
   isFullPage: boolean;
   padding: number | string;
   selectedCategory: string;
+  springGraphData: ISpringGraphData;
   springHeight: number;
   springWidth: number;
   setCurrentCategory(category: string): void;
@@ -47,10 +47,6 @@ export class SpringContainerClass extends ChellVisualization<ISpringContainerPro
   public static defaultProps = {
     categories: Set<string>(),
     currentCells: Set<number>(),
-    data: {
-      links: new Array<ISpringLink>(),
-      nodes: new Array<ISpringNode>(),
-    },
     datasetLocation: 'hpc/full',
     headerHeight: 18,
     isFullPage: false,
@@ -61,6 +57,10 @@ export class SpringContainerClass extends ChellVisualization<ISpringContainerPro
     },
     setCurrentCells: () => {
       return;
+    },
+    springGraphData: {
+      links: new Array<ISpringLink>(),
+      nodes: new Array<ISpringNode>(),
     },
     springHeight: 1150,
     springWidth: 1150,
@@ -80,7 +80,11 @@ export class SpringContainerClass extends ChellVisualization<ISpringContainerPro
   }
 
   public setupDataServices() {
-    createSpringReducer();
+    this.registerDataset('spring/category', '');
+    this.registerDataset('spring/graphData');
+    this.registerDataset('spring/species', 'homo_sapiens');
+
+    this.addChellHook('springGraphData', () => this.props.springGraphData);
   }
 
   public componentDidUpdate(prevProps: ISpringContainerProps, prevState: ISpringContainerState) {
@@ -177,6 +181,7 @@ export class SpringContainerClass extends ChellVisualization<ISpringContainerPro
 const mapStateToProps = (state: { [key: string]: any }) => ({
   categories: getCategories(state, undefined),
   currentCells: selectCurrentItems<number>(state, 'cells'),
+  springGraphData: getGraphData(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) =>

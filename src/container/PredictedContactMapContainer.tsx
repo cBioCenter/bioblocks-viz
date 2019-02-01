@@ -17,7 +17,7 @@ export interface IPredictedContactMapContainerProps {
   dispatchContactMapFetch(dataset: string, fetchFn: () => Promise<IContactMapData>): void;
 }
 
-export class PredictedContactMapContainerClass extends ChellVisualization<IPredictedContactMapContainerProps, any> {
+export class PredictedContactMapContainerClass extends ChellVisualization<IPredictedContactMapContainerProps> {
   constructor(props: IPredictedContactMapContainerProps) {
     super(props);
   }
@@ -26,7 +26,7 @@ export class PredictedContactMapContainerClass extends ChellVisualization<IPredi
     const { dispatchContactMapFetch } = this.props;
     createDataReducer<IContactMapData>('contactMap');
 
-    dispatchContactMapFetch('contactMap', async () => fetchContactMapData('assets/1g68', 'predicted'));
+    dispatchContactMapFetch('contactMap', async () => fetchContactMapData('assets/1g68', 'known'));
   }
 
   public render() {

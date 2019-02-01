@@ -8,7 +8,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { createContainerActions } from '~chell-viz~/action';
 import { ComponentCard } from '~chell-viz~/component';
 import { ChellVisualization } from '~chell-viz~/container';
-import { AnatomogramMapping, SPECIES_TYPE } from '~chell-viz~/data';
+import { AnatomogramMapping, ISpringGraphData, SPECIES_TYPE } from '~chell-viz~/data';
 import { EMPTY_FUNCTION } from '~chell-viz~/helper';
 import { ChellMiddlewareTransformer, RootState } from '~chell-viz~/reducer';
 import { getSpecies, getSpring, selectCurrentItems } from '~chell-viz~/selector';
@@ -47,7 +47,8 @@ export class AnatomogramContainerClass extends ChellVisualization<
   }
 
   public setupDataServices() {
-    this.addDatasets(['cells', 'labels']);
+    this.registerDataset('cells', []);
+    this.registerDataset('labels', []);
     ChellMiddlewareTransformer.addTransform({
       fn: state => {
         const anatomogramMap = AnatomogramMapping[this.props.species];
@@ -57,20 +58,24 @@ export class AnatomogramContainerClass extends ChellVisualization<
         });
 
         let cellIndices = Set<number>();
-        getSpring(state).graphData.nodes.forEach(node => {
-          candidateLabels.forEach(label => {
-            if (label && Object.values(node.labelForCategory).includes(label)) {
-              cellIndices = cellIndices.add(node.number);
+        const springDataHook = ChellVisualization.getActiveChellHooks().springGraphData;
+        if (springDataHook) {
+          const springData = springDataHook() as ISpringGraphData;
+          springData.nodes.forEach(node => {
+            candidateLabels.forEach(label => {
+              if (label && Object.values(node.labelForCategory).includes(label)) {
+                cellIndices = cellIndices.add(node.number);
 
-              return;
-            }
+                return;
+              }
+            });
           });
-        });
+        }
 
         return cellIndices;
       },
       fromState: 'chell/labels',
-      toState: { stateName: 'cells' },
+      toState: 'chell/cells',
     });
     ChellMiddlewareTransformer.addTransform({
       fn: state => {
