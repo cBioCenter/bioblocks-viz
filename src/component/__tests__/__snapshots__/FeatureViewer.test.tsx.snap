@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProteinFeatureViewer Should match the default snapshot 1`] = `
+exports[`ProteinFeatureViewer Should match the default snapshot. 1`] = `
 <div
   style={
     Object {
@@ -19,20 +19,61 @@ exports[`ProteinFeatureViewer Should match the default snapshot 1`] = `
     data={
       Array [
         Object {
+          "fill": "toself",
+          "fillcolor": "#b9bcb6",
           "hoverinfo": "none",
+          "hoveron": "fills",
           "line": Object {
-            "color": "orange",
-            "width": 10,
+            "width": 0,
           },
-          "mode": "lines",
-          "showlegend": false,
+          "mode": "text+lines",
+          "name": "",
+          "text": Array [
+            "",
+          ],
+          "textfont": Object {
+            "color": Array [
+              "#FFFFFF",
+            ],
+          },
+          "type": "scatter",
           "x": Array [
+            -0.5,
+            null,
             -1,
+            -1,
+            0,
+            0,
             -1,
           ],
           "y": Array [
-            -0.25,
-            -0.25,
+            0,
+            null,
+            0.5,
+            -0.5,
+            -0.5,
+            0.5,
+            0.5,
+          ],
+        },
+        Object {
+          "fill": "toself",
+          "hoverinfo": "none",
+          "line": Object {
+            "width": 0,
+          },
+          "marker": Object {
+            "color": "#f9f69f",
+            "opacity": 0.5,
+          },
+          "mode": "lines+markers",
+          "showlegend": false,
+          "x": Array [],
+          "y": Array [
+            0,
+            0,
+            0,
+            0,
           ],
         },
       ]
@@ -74,7 +115,7 @@ exports[`ProteinFeatureViewer Should match the default snapshot 1`] = `
 </div>
 `;
 
-exports[`ProteinFeatureViewer Should match the default snapshot. 1`] = `
+exports[`ProteinFeatureViewer Should match the snapshot for sample data when showing features grouped. 1`] = `
 <div
   style={
     Object {
@@ -93,20 +134,1003 @@ exports[`ProteinFeatureViewer Should match the default snapshot. 1`] = `
     data={
       Array [
         Object {
+          "fill": "toself",
+          "fillcolor": "#b9bcb6",
           "hoverinfo": "none",
+          "hoveron": "fills",
           "line": Object {
-            "color": "orange",
-            "width": 10,
+            "width": 0,
           },
-          "mode": "lines",
-          "showlegend": false,
+          "mode": "text+lines",
+          "name": "",
+          "text": Array [
+            "",
+          ],
+          "textfont": Object {
+            "color": Array [
+              "#FFFFFF",
+            ],
+          },
+          "type": "scatter",
           "x": Array [
-            -1,
-            -1,
+            1009.5,
+            null,
+            0,
+            0,
+            2019,
+            2019,
+            0,
           ],
           "y": Array [
+            0.25,
+            null,
+            0.25,
+            0.75,
+            0.75,
+            0.25,
+            0.25,
+          ],
+        },
+        Object {
+          "fill": "toself",
+          "hoverinfo": "none",
+          "line": Object {
+            "width": 0,
+          },
+          "marker": Object {
+            "color": "#f9f69f",
+            "opacity": 0.5,
+          },
+          "mode": "lines+markers",
+          "showlegend": false,
+          "x": Array [],
+          "y": Array [
+            0,
+            0,
+            5,
+            5,
+          ],
+        },
+        Object {
+          "fill": "toself",
+          "fillcolor": "orange",
+          "hoverinfo": "none",
+          "hoveron": "fills",
+          "line": Object {
+            "width": 0,
+          },
+          "mode": "text+lines",
+          "name": "N64",
+          "text": Array [
+            "N64",
+          ],
+          "textfont": Object {
+            "color": Array [
+              "#FFFFFF",
+            ],
+          },
+          "type": "scatter",
+          "x": Array [
+            2000,
+            null,
+            1999,
+            1999,
+            2001,
+            2001,
+            1999,
+          ],
+          "y": Array [
+            0.5,
+            null,
+            0,
+            1,
+            1,
+            0,
+            0,
+          ],
+        },
+        Object {
+          "fill": "toself",
+          "fillcolor": "orange",
+          "hoverinfo": "none",
+          "hoveron": "fills",
+          "line": Object {
+            "width": 0,
+          },
+          "mode": "text+lines",
+          "name": "Melee",
+          "text": Array [
+            "Melee",
+          ],
+          "textfont": Object {
+            "color": Array [
+              "#FFFFFF",
+            ],
+          },
+          "type": "scatter",
+          "x": Array [
+            2004.5,
+            null,
+            2001,
+            2001,
+            2008,
+            2008,
+            2001,
+          ],
+          "y": Array [
+            0.5,
+            null,
+            0,
+            1,
+            1,
+            0,
+            0,
+          ],
+        },
+        Object {
+          "fill": "toself",
+          "fillcolor": "orange",
+          "hoverinfo": "none",
+          "hoveron": "fills",
+          "line": Object {
+            "width": 0,
+          },
+          "mode": "text+lines",
+          "name": "Brawl",
+          "text": Array [
+            "Brawl",
+          ],
+          "textfont": Object {
+            "color": Array [
+              "#FFFFFF",
+            ],
+          },
+          "type": "scatter",
+          "x": Array [
+            2011,
+            null,
+            2008,
+            2008,
+            2014,
+            2014,
+            2008,
+          ],
+          "y": Array [
+            0.5,
+            null,
+            0,
+            1,
+            1,
+            0,
+            0,
+          ],
+        },
+        Object {
+          "fill": "toself",
+          "fillcolor": "orange",
+          "hoverinfo": "none",
+          "hoveron": "fills",
+          "line": Object {
+            "width": 0,
+          },
+          "mode": "text+lines",
+          "name": "3DS/WiiU",
+          "text": Array [
+            "3DS/WiiU",
+          ],
+          "textfont": Object {
+            "color": Array [
+              "#FFFFFF",
+            ],
+          },
+          "type": "scatter",
+          "x": Array [
+            2016,
+            null,
+            2014,
+            2014,
+            2018,
+            2018,
+            2014,
+          ],
+          "y": Array [
+            0.5,
+            null,
+            0,
+            1,
+            1,
+            0,
+            0,
+          ],
+        },
+        Object {
+          "fill": "toself",
+          "fillcolor": "orange",
+          "hoverinfo": "none",
+          "hoveron": "fills",
+          "line": Object {
+            "width": 0,
+          },
+          "mode": "text+lines",
+          "name": "Ultimate",
+          "text": Array [
+            "Ultimate",
+          ],
+          "textfont": Object {
+            "color": Array [
+              "#FFFFFF",
+            ],
+          },
+          "type": "scatter",
+          "x": Array [
+            2018.5,
+            null,
+            2018,
+            2018,
+            2019,
+            2019,
+            2018,
+          ],
+          "y": Array [
+            0.5,
+            null,
+            0,
+            1,
+            1,
+            0,
+            0,
+          ],
+        },
+      ]
+    }
+    height="100%"
+    layout={
+      Object {
+        "annotations": Array [],
+        "dragmode": "select",
+        "height": 200,
+        "hovermode": "closest",
+        "margin": Object {
+          "b": 30,
+          "t": 60,
+        },
+        "showlegend": false,
+        "title": "",
+        "width": 600,
+        "xaxis": Object {
+          "autorange": false,
+          "fixedrange": true,
+          "range": Array [
+            0,
+            2219,
+          ],
+          "showgrid": false,
+          "tick0": 0,
+          "tickmode": "auto",
+          "ticks": "outside",
+        },
+        "yaxis": Object {
+          "autorange": false,
+          "fixedrange": true,
+          "range": Array [
             -0.25,
+            2,
+          ],
+          "visible": false,
+        },
+      }
+    }
+    onClickCallback={[Function]}
+    onHoverCallback={[Function]}
+    onSelectedCallback={[Function]}
+    showLoader={false}
+    width="100%"
+  />
+</div>
+`;
+
+exports[`ProteinFeatureViewer Should match the snapshot for sample data when specifying a max length. 1`] = `
+<div
+  style={
+    Object {
+      "height": 200,
+      "width": 600,
+    }
+  }
+>
+  <PlotlyChart
+    config={
+      Object {
+        "showAxisDragHandles": false,
+        "showAxisRangeEntryBoxes": false,
+      }
+    }
+    data={
+      Array [
+        Object {
+          "fill": "toself",
+          "fillcolor": "#b9bcb6",
+          "hoverinfo": "none",
+          "hoveron": "fills",
+          "line": Object {
+            "width": 0,
+          },
+          "mode": "text+lines",
+          "name": "",
+          "text": Array [
+            "",
+          ],
+          "textfont": Object {
+            "color": Array [
+              "#FFFFFF",
+            ],
+          },
+          "type": "scatter",
+          "x": Array [
+            1009.5,
+            null,
+            0,
+            0,
+            2019,
+            2019,
+            0,
+          ],
+          "y": Array [
+            2.5,
+            null,
+            3,
+            2,
+            2,
+            3,
+            3,
+          ],
+        },
+        Object {
+          "fill": "toself",
+          "hoverinfo": "none",
+          "line": Object {
+            "width": 0,
+          },
+          "marker": Object {
+            "color": "#f9f69f",
+            "opacity": 0.5,
+          },
+          "mode": "lines+markers",
+          "showlegend": false,
+          "x": Array [],
+          "y": Array [
+            0,
+            0,
+            5,
+            5,
+          ],
+        },
+        Object {
+          "fill": "toself",
+          "fillcolor": "orange",
+          "hoverinfo": "none",
+          "hoveron": "fills",
+          "line": Object {
+            "width": 0,
+          },
+          "mode": "text+lines",
+          "name": "N64",
+          "text": Array [
+            "N64",
+          ],
+          "textfont": Object {
+            "color": Array [
+              "#FFFFFF",
+            ],
+          },
+          "type": "scatter",
+          "x": Array [
+            2000,
+            null,
+            1999,
+            1999,
+            2001,
+            2001,
+            1999,
+          ],
+          "y": Array [
+            0.5,
+            null,
+            1,
+            0,
+            0,
+            1,
+            1,
+          ],
+        },
+        Object {
+          "fill": "toself",
+          "fillcolor": "orange",
+          "hoverinfo": "none",
+          "hoveron": "fills",
+          "line": Object {
+            "width": 0,
+          },
+          "mode": "text+lines",
+          "name": "Melee",
+          "text": Array [
+            "Melee",
+          ],
+          "textfont": Object {
+            "color": Array [
+              "#FFFFFF",
+            ],
+          },
+          "type": "scatter",
+          "x": Array [
+            2004.5,
+            null,
+            2001,
+            2001,
+            2008,
+            2008,
+            2001,
+          ],
+          "y": Array [
+            1.5,
+            null,
+            2,
+            1,
+            1,
+            2,
+            2,
+          ],
+        },
+        Object {
+          "fill": "toself",
+          "fillcolor": "orange",
+          "hoverinfo": "none",
+          "hoveron": "fills",
+          "line": Object {
+            "width": 0,
+          },
+          "mode": "text+lines",
+          "name": "Brawl",
+          "text": Array [
+            "Brawl",
+          ],
+          "textfont": Object {
+            "color": Array [
+              "#FFFFFF",
+            ],
+          },
+          "type": "scatter",
+          "x": Array [
+            2011,
+            null,
+            2008,
+            2008,
+            2014,
+            2014,
+            2008,
+          ],
+          "y": Array [
+            2.5,
+            null,
+            3,
+            2,
+            2,
+            3,
+            3,
+          ],
+        },
+        Object {
+          "fill": "toself",
+          "fillcolor": "orange",
+          "hoverinfo": "none",
+          "hoveron": "fills",
+          "line": Object {
+            "width": 0,
+          },
+          "mode": "text+lines",
+          "name": "3DS/WiiU",
+          "text": Array [
+            "3DS/WiiU",
+          ],
+          "textfont": Object {
+            "color": Array [
+              "#FFFFFF",
+            ],
+          },
+          "type": "scatter",
+          "x": Array [
+            2016,
+            null,
+            2014,
+            2014,
+            2018,
+            2018,
+            2014,
+          ],
+          "y": Array [
+            3.5,
+            null,
+            4,
+            3,
+            3,
+            4,
+            4,
+          ],
+        },
+        Object {
+          "fill": "toself",
+          "fillcolor": "orange",
+          "hoverinfo": "none",
+          "hoveron": "fills",
+          "line": Object {
+            "width": 0,
+          },
+          "mode": "text+lines",
+          "name": "Ultimate",
+          "text": Array [
+            "Ultimate",
+          ],
+          "textfont": Object {
+            "color": Array [
+              "#FFFFFF",
+            ],
+          },
+          "type": "scatter",
+          "x": Array [
+            2018.5,
+            null,
+            2018,
+            2018,
+            2019,
+            2019,
+            2018,
+          ],
+          "y": Array [
+            4.5,
+            null,
+            5,
+            4,
+            4,
+            5,
+            5,
+          ],
+        },
+      ]
+    }
+    height="100%"
+    layout={
+      Object {
+        "annotations": Array [],
+        "dragmode": "select",
+        "height": 200,
+        "hovermode": "closest",
+        "margin": Object {
+          "b": 30,
+          "t": 60,
+        },
+        "showlegend": false,
+        "title": "",
+        "width": 600,
+        "xaxis": Object {
+          "autorange": false,
+          "fixedrange": true,
+          "range": Array [
+            0,
+            2013,
+          ],
+          "showgrid": false,
+          "tick0": 0,
+          "tickmode": "auto",
+          "ticks": "outside",
+        },
+        "yaxis": Object {
+          "autorange": false,
+          "fixedrange": true,
+          "range": Array [
             -0.25,
+            5,
+          ],
+          "visible": false,
+        },
+      }
+    }
+    onClickCallback={[Function]}
+    onHoverCallback={[Function]}
+    onSelectedCallback={[Function]}
+    showLoader={false}
+    width="100%"
+  />
+</div>
+`;
+
+exports[`ProteinFeatureViewer Should match the snapshot for sample data. 1`] = `
+<div
+  style={
+    Object {
+      "height": 200,
+      "width": 600,
+    }
+  }
+>
+  <PlotlyChart
+    config={
+      Object {
+        "showAxisDragHandles": false,
+        "showAxisRangeEntryBoxes": false,
+      }
+    }
+    data={
+      Array [
+        Object {
+          "fill": "toself",
+          "fillcolor": "#b9bcb6",
+          "hoverinfo": "none",
+          "hoveron": "fills",
+          "line": Object {
+            "width": 0,
+          },
+          "mode": "text+lines",
+          "name": "",
+          "text": Array [
+            "",
+          ],
+          "textfont": Object {
+            "color": Array [
+              "#FFFFFF",
+            ],
+          },
+          "type": "scatter",
+          "x": Array [
+            1009.5,
+            null,
+            0,
+            0,
+            2019,
+            2019,
+            0,
+          ],
+          "y": Array [
+            2.5,
+            null,
+            3,
+            2,
+            2,
+            3,
+            3,
+          ],
+        },
+        Object {
+          "fill": "toself",
+          "hoverinfo": "none",
+          "line": Object {
+            "width": 0,
+          },
+          "marker": Object {
+            "color": "#f9f69f",
+            "opacity": 0.5,
+          },
+          "mode": "lines+markers",
+          "showlegend": false,
+          "x": Array [],
+          "y": Array [
+            0,
+            0,
+            5,
+            5,
+          ],
+        },
+        Object {
+          "fill": "toself",
+          "fillcolor": "orange",
+          "hoverinfo": "none",
+          "hoveron": "fills",
+          "line": Object {
+            "width": 0,
+          },
+          "mode": "text+lines",
+          "name": "N64",
+          "text": Array [
+            "N64",
+          ],
+          "textfont": Object {
+            "color": Array [
+              "#FFFFFF",
+            ],
+          },
+          "type": "scatter",
+          "x": Array [
+            2000,
+            null,
+            1999,
+            1999,
+            2001,
+            2001,
+            1999,
+          ],
+          "y": Array [
+            0.5,
+            null,
+            1,
+            0,
+            0,
+            1,
+            1,
+          ],
+        },
+        Object {
+          "fill": "toself",
+          "fillcolor": "orange",
+          "hoverinfo": "none",
+          "hoveron": "fills",
+          "line": Object {
+            "width": 0,
+          },
+          "mode": "text+lines",
+          "name": "Melee",
+          "text": Array [
+            "Melee",
+          ],
+          "textfont": Object {
+            "color": Array [
+              "#FFFFFF",
+            ],
+          },
+          "type": "scatter",
+          "x": Array [
+            2004.5,
+            null,
+            2001,
+            2001,
+            2008,
+            2008,
+            2001,
+          ],
+          "y": Array [
+            1.5,
+            null,
+            2,
+            1,
+            1,
+            2,
+            2,
+          ],
+        },
+        Object {
+          "fill": "toself",
+          "fillcolor": "orange",
+          "hoverinfo": "none",
+          "hoveron": "fills",
+          "line": Object {
+            "width": 0,
+          },
+          "mode": "text+lines",
+          "name": "Brawl",
+          "text": Array [
+            "Brawl",
+          ],
+          "textfont": Object {
+            "color": Array [
+              "#FFFFFF",
+            ],
+          },
+          "type": "scatter",
+          "x": Array [
+            2011,
+            null,
+            2008,
+            2008,
+            2014,
+            2014,
+            2008,
+          ],
+          "y": Array [
+            2.5,
+            null,
+            3,
+            2,
+            2,
+            3,
+            3,
+          ],
+        },
+        Object {
+          "fill": "toself",
+          "fillcolor": "orange",
+          "hoverinfo": "none",
+          "hoveron": "fills",
+          "line": Object {
+            "width": 0,
+          },
+          "mode": "text+lines",
+          "name": "3DS/WiiU",
+          "text": Array [
+            "3DS/WiiU",
+          ],
+          "textfont": Object {
+            "color": Array [
+              "#FFFFFF",
+            ],
+          },
+          "type": "scatter",
+          "x": Array [
+            2016,
+            null,
+            2014,
+            2014,
+            2018,
+            2018,
+            2014,
+          ],
+          "y": Array [
+            3.5,
+            null,
+            4,
+            3,
+            3,
+            4,
+            4,
+          ],
+        },
+        Object {
+          "fill": "toself",
+          "fillcolor": "orange",
+          "hoverinfo": "none",
+          "hoveron": "fills",
+          "line": Object {
+            "width": 0,
+          },
+          "mode": "text+lines",
+          "name": "Ultimate",
+          "text": Array [
+            "Ultimate",
+          ],
+          "textfont": Object {
+            "color": Array [
+              "#FFFFFF",
+            ],
+          },
+          "type": "scatter",
+          "x": Array [
+            2018.5,
+            null,
+            2018,
+            2018,
+            2019,
+            2019,
+            2018,
+          ],
+          "y": Array [
+            4.5,
+            null,
+            5,
+            4,
+            4,
+            5,
+            5,
+          ],
+        },
+      ]
+    }
+    height="100%"
+    layout={
+      Object {
+        "annotations": Array [],
+        "dragmode": "select",
+        "height": 200,
+        "hovermode": "closest",
+        "margin": Object {
+          "b": 30,
+          "t": 60,
+        },
+        "showlegend": false,
+        "title": "",
+        "width": 600,
+        "xaxis": Object {
+          "autorange": false,
+          "fixedrange": true,
+          "range": Array [
+            0,
+            2219,
+          ],
+          "showgrid": false,
+          "tick0": 0,
+          "tickmode": "auto",
+          "ticks": "outside",
+        },
+        "yaxis": Object {
+          "autorange": false,
+          "fixedrange": true,
+          "range": Array [
+            -0.25,
+            5,
+          ],
+          "visible": false,
+        },
+      }
+    }
+    onClickCallback={[Function]}
+    onHoverCallback={[Function]}
+    onSelectedCallback={[Function]}
+    showLoader={false}
+    width="100%"
+  />
+</div>
+`;
+
+exports[`ProteinFeatureViewer Should match the snapshot when a background bar is provided 1`] = `
+<div
+  style={
+    Object {
+      "height": 200,
+      "width": 600,
+    }
+  }
+>
+  <PlotlyChart
+    config={
+      Object {
+        "showAxisDragHandles": false,
+        "showAxisRangeEntryBoxes": false,
+      }
+    }
+    data={
+      Array [
+        Object {
+          "fill": "toself",
+          "fillcolor": "purple",
+          "hoverinfo": "none",
+          "hoveron": "fills",
+          "line": Object {
+            "width": 0,
+          },
+          "mode": "text+lines",
+          "name": "",
+          "text": Array [
+            "",
+          ],
+          "textfont": Object {
+            "color": Array [
+              "#FFFFFF",
+            ],
+          },
+          "type": "scatter",
+          "x": Array [
+            2008.5,
+            null,
+            1999,
+            1999,
+            2018,
+            2018,
+            1999,
+          ],
+          "y": Array [
+            0,
+            null,
+            0.5,
+            -0.5,
+            -0.5,
+            0.5,
+            0.5,
+          ],
+        },
+        Object {
+          "fill": "toself",
+          "hoverinfo": "none",
+          "line": Object {
+            "width": 0,
+          },
+          "marker": Object {
+            "color": "#f9f69f",
+            "opacity": 0.5,
+          },
+          "mode": "lines+markers",
+          "showlegend": false,
+          "x": Array [],
+          "y": Array [
+            0,
+            0,
+            0,
+            0,
           ],
         },
       ]

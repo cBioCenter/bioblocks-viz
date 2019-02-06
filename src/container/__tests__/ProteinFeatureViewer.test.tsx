@@ -44,7 +44,7 @@ describe('ProteinFeatureViewer', () => {
         ],
       }),
     );
-    const wrapper = shallow(<ProteinFeatureViewer />);
+    const wrapper = shallow(<ProteinFeatureViewer initialProteinId={sampleProtein.accession} />);
     wrapper.update();
     expect(wrapper).toMatchSnapshot();
   });
@@ -205,6 +205,28 @@ describe('ProteinFeatureViewer', () => {
         .instance().state as IFeatureViewerState;
       const expected = '';
       expect(featureViewerState.hoverAnnotationText).toEqual(expected);
+      done();
+    });
+  });
+
+  it('Should handle when there is an error fetching.', done => {
+    fetchMock.mockReject();
+    const wrapper = mount(<ProteinFeatureViewer initialProteinId={''} />);
+    expect(wrapper.state('proteinId')).toEqual('');
+    expect(wrapper.state('protein')).toBeUndefined();
+    wrapper.setState({
+      proteinId: 'Q13485',
+    });
+
+    wrapper
+      .find(Form)
+      .at(0)
+      .simulate('submit', {});
+
+    // To test asynchronous render code - https://www.leighhalliday.com/testing-asynchronous-components-mocks-jest
+    setTimeout(() => {
+      wrapper.update();
+      expect(wrapper.state('protein')).toBeUndefined();
       done();
     });
   });
