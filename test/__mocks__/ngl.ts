@@ -99,7 +99,7 @@ class MockStage {
   public removeAllComponents = () => jest.fn();
 }
 
-(ngl.Stage as jest.Mock<NGL.Stage>).mockImplementation((canvas: HTMLCanvasElement) => {
+(ngl.Stage as jest.Mock<NGL.Stage>) = jest.fn().mockImplementation((canvas: HTMLCanvasElement) => {
   return new MockStage(canvas);
 });
 
@@ -190,7 +190,7 @@ class MockStructure {
   }
 }
 
-(ngl.Structure as jest.Mock<NGL.Structure>).mockImplementation((name: string) => {
+(ngl.Structure as jest.Mock<NGL.Structure>) = jest.fn().mockImplementation((name: string) => {
   return new MockStructure(name);
 });
 

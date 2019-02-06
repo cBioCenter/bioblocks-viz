@@ -1,4 +1,5 @@
-import * as fetchMock from 'jest-fetch-mock';
+// tslint:disable-next-line:no-import-side-effect
+import 'jest-fetch-mock';
 import { inspect as stringifyCircularJSON } from 'util';
 
 import {
@@ -19,7 +20,7 @@ import {
 
 describe('DataHelper', () => {
   beforeEach(() => {
-    fetchMock.resetMocks();
+    global.fetch.resetMocks();
   });
 
   it('Should throw an error when attempting to fetch data for an unsupported visualization type.', async () => {
