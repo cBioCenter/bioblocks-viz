@@ -49,7 +49,11 @@ export const getAsyncShallowComponent = async (Component: React.ReactElement<any
 export const dispatchPlotlyEvent = async (
   wrapper: ReactWrapper,
   eventName: string,
-  data: Partial<plotly.PlotScatterDataPoint> | plotly.SelectionRange = { x: [0], y: [0] },
+  data:
+    | Partial<plotly.PlotScatterDataPoint>
+    | Partial<plotly.PlotSelectionEvent>
+    | Partial<plotly.SelectionRange>
+    | RecursivePartial<plotly.PlotMouseEvent> = { x: [0], y: [0] },
 ) => {
   const plotlyWrapper = wrapper.find('PlotlyChart') as CommonWrapper;
   const canvas = (plotlyWrapper.instance() as PlotlyChart).plotlyCanvas;

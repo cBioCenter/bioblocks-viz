@@ -12,6 +12,7 @@ export interface IFeatureRangeSelection {
 }
 
 export interface IFeatureViewerProps {
+  backgroundBar?: TintedChell1DSection<string>;
   data: Array<TintedChell1DSection<string>>;
   height: number;
   maxLength?: number;
@@ -46,57 +47,58 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
     nextProps: IFeatureViewerProps,
     nextState: IFeatureViewerState,
   ): Partial<IFeatureViewerState> {
-    const { data, height, maxLength, showGrouped, title, width } = nextProps;
+    const { backgroundBar, data, height, maxLength, showGrouped, title, width } = nextProps;
     const { hoverAnnotationText, hoveredFeatureIndex, selectedRange } = nextState;
 
-    const plotlyData = data.map(
+    let maxGroups = -1;
+    const groupData = data.map(
       (datum, index): Partial<IPlotlyData> => {
         const yIndex = showGrouped
           ? index
           : data.findIndex(candidateDatum => datum.label.localeCompare(candidateDatum.label) === 0);
+        maxGroups = Math.max(maxGroups, yIndex);
 
         return FeatureViewer.getPlotlyDataObject(datum, showGrouped, yIndex);
       },
     );
 
-    plotlyData.push({
+    const backgroundBarData = FeatureViewer.getPlotlyBackgroundBarObject(
+      backgroundBar
+        ? backgroundBar
+        : new TintedChell1DSection('', 0, data.reduce((prev, cur) => Math.max(prev, cur.end), -1), '#b9bcb6'),
+      showGrouped,
+      maxGroups / 2,
+    );
+
+    const selectionData: Partial<IPlotlyData> = {
+      fill: 'toself',
       hoverinfo: 'none',
       line: {
-        color: 'orange',
-        width: 10,
+        width: 0,
       },
-      mode: 'lines',
+      marker: {
+        color: '#f9f69f',
+        opacity: 0.5,
+      },
+      mode: 'lines+markers',
       showlegend: false,
-      x: [selectedRange.start, selectedRange.end],
-      y: [-0.25, -0.25],
-    });
-    const hoveredDatum = plotlyData[hoveredFeatureIndex];
+      x:
+        selectedRange.start !== -1 && selectedRange.end !== -1
+          ? [selectedRange.start, selectedRange.end, selectedRange.end, selectedRange.start]
+          : [],
+      y: [0, 0, maxGroups + 1, maxGroups + 1],
+    };
+
+    const plotlyData = [backgroundBarData, selectionData, ...groupData];
 
     return {
       plotlyData,
       plotlyLayout: {
-        annotations:
-          hoveredFeatureIndex >= 0 && hoveredDatum.x && hoveredDatum.y
-            ? [
-                {
-                  align: 'left',
-                  arrowhead: 0,
-                  arrowsize: 1,
-                  arrowwidth: 1,
-                  ax: 0,
-                  ay: -25,
-                  bgcolor: '#ffffff',
-                  bordercolor: '#000000',
-                  borderpad: 5,
-                  showarrow: true,
-                  text: hoverAnnotationText,
-                  x: hoveredDatum.x[0] as number,
-                  xref: 'x',
-                  y: hoveredDatum.y[hoveredDatum.y.length - 3] as number,
-                  yref: 'y',
-                },
-              ]
-            : [],
+        annotations: FeatureViewer.getAnnotationPlotlyData(
+          hoveredFeatureIndex,
+          hoverAnnotationText,
+          plotlyData[hoveredFeatureIndex],
+        ),
         dragmode: 'select',
         height,
         hovermode: 'closest',
@@ -140,6 +142,44 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
       datum.start,
     ];
   }
+
+  protected static getAnnotationPlotlyData = (
+    hoveredFeatureIndex: number,
+    text: string,
+    hoveredDatum: Partial<IPlotlyData>,
+  ): Array<Partial<Plotly.Annotations>> =>
+    hoveredFeatureIndex >= 0 && hoveredDatum.x && hoveredDatum.y
+      ? [
+          {
+            align: 'left',
+            arrowhead: 0,
+            arrowsize: 1,
+            arrowwidth: 1,
+            ax: 0,
+            ay: -25,
+            bgcolor: '#ffffff',
+            bordercolor: '#000000',
+            borderpad: 5,
+            showarrow: true,
+            text,
+            x: hoveredDatum.x[0] as number,
+            xref: 'x',
+            y: hoveredDatum.y[hoveredDatum.y.length - 3] as number,
+            yref: 'y',
+          },
+        ]
+      : [];
+
+  protected static getPlotlyBackgroundBarObject = (
+    datum: TintedChell1DSection<string>,
+    showGrouped: boolean,
+    yIndex: number,
+  ): Partial<IPlotlyData> => ({
+    ...FeatureViewer.getPlotlyDataObject(datum, showGrouped, yIndex),
+    y: showGrouped
+      ? [0.25, null, 0.25, 0.75, 0.75, 0.25, 0.25]
+      : [yIndex + 0.5, null, yIndex + 1, yIndex, yIndex, yIndex + 1, yIndex + 1],
+  });
 
   protected static getPlotlyDataObject = (
     datum: TintedChell1DSection<string>,

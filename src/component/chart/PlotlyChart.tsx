@@ -18,16 +18,16 @@ export interface IPlotlyChartProps {
   data: Array<Partial<IPlotlyData>>;
   height?: number | string;
   layout?: Partial<IPlotlyLayout>;
-  onAfterPlotCallback?: ((event: ChellChartEvent) => void);
-  onClickCallback?: ((event: ChellChartEvent) => void);
-  onDoubleClickCallback?: ((event: ChellChartEvent) => void);
-  onHoverCallback?: ((event: ChellChartEvent) => void);
-  onSelectedCallback?: ((event: ChellChartEvent) => void);
-  onUnHoverCallback?: ((event: ChellChartEvent) => void);
-  onRelayoutCallback?: ((event: ChellChartEvent) => void);
   showLoader?: boolean;
   style?: CHELL_CSS_STYLE;
   width?: number | string;
+  onAfterPlotCallback?(event: ChellChartEvent): void;
+  onClickCallback?(event: ChellChartEvent): void;
+  onDoubleClickCallback?(event: ChellChartEvent): void;
+  onHoverCallback?(event: ChellChartEvent): void;
+  onSelectedCallback?(event: ChellChartEvent): void;
+  onUnHoverCallback?(event: ChellChartEvent): void;
+  onRelayoutCallback?(event: ChellChartEvent): void;
 }
 
 export const defaultPlotlyConfig: Partial<Plotly.Config> = {
