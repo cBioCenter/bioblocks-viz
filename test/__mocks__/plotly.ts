@@ -13,7 +13,11 @@ module.exports = {
 export interface IMockPlotlyCanvas {
   dispatchEvent(
     event: Event,
-    data: Partial<plotly.PlotScatterDataPoint> | Partial<plotly.PlotSelectionEvent> | plotly.SelectionRange,
+    data:
+      | Partial<plotly.PlotScatterDataPoint>
+      | Partial<plotly.PlotSelectionEvent>
+      | Partial<plotly.SelectionRange>
+      | RecursivePartial<plotly.PlotMouseEvent>,
   ): boolean;
 }
 
