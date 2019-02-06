@@ -19,20 +19,61 @@ exports[`ProteinFeatureViewer Should match the default snapshot 1`] = `
     data={
       Array [
         Object {
+          "fill": "toself",
+          "fillcolor": "#b9bcb6",
           "hoverinfo": "none",
+          "hoveron": "fills",
           "line": Object {
-            "color": "orange",
-            "width": 10,
+            "width": 0,
           },
-          "mode": "lines",
-          "showlegend": false,
+          "mode": "text+lines",
+          "name": "",
+          "text": Array [
+            "",
+          ],
+          "textfont": Object {
+            "color": Array [
+              "#FFFFFF",
+            ],
+          },
+          "type": "scatter",
           "x": Array [
+            -0.5,
+            null,
             -1,
+            -1,
+            0,
+            0,
             -1,
           ],
           "y": Array [
-            -0.25,
-            -0.25,
+            0,
+            null,
+            0.5,
+            -0.5,
+            -0.5,
+            0.5,
+            0.5,
+          ],
+        },
+        Object {
+          "fill": "toself",
+          "hoverinfo": "none",
+          "line": Object {
+            "width": 0,
+          },
+          "marker": Object {
+            "color": "#f9f69f",
+            "opacity": 0.5,
+          },
+          "mode": "lines+markers",
+          "showlegend": false,
+          "x": Array [],
+          "y": Array [
+            0,
+            0,
+            0,
+            0,
           ],
         },
       ]
@@ -93,20 +134,61 @@ exports[`ProteinFeatureViewer Should match the default snapshot. 1`] = `
     data={
       Array [
         Object {
+          "fill": "toself",
+          "fillcolor": "#b9bcb6",
           "hoverinfo": "none",
+          "hoveron": "fills",
           "line": Object {
-            "color": "orange",
-            "width": 10,
+            "width": 0,
           },
-          "mode": "lines",
-          "showlegend": false,
+          "mode": "text+lines",
+          "name": "",
+          "text": Array [
+            "",
+          ],
+          "textfont": Object {
+            "color": Array [
+              "#FFFFFF",
+            ],
+          },
+          "type": "scatter",
           "x": Array [
+            -0.5,
+            null,
             -1,
+            -1,
+            0,
+            0,
             -1,
           ],
           "y": Array [
-            -0.25,
-            -0.25,
+            0,
+            null,
+            0.5,
+            -0.5,
+            -0.5,
+            0.5,
+            0.5,
+          ],
+        },
+        Object {
+          "fill": "toself",
+          "hoverinfo": "none",
+          "line": Object {
+            "width": 0,
+          },
+          "marker": Object {
+            "color": "#f9f69f",
+            "opacity": 0.5,
+          },
+          "mode": "lines+markers",
+          "showlegend": false,
+          "x": Array [],
+          "y": Array [
+            0,
+            0,
+            0,
+            0,
           ],
         },
       ]

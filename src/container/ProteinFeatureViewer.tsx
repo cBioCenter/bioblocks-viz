@@ -17,10 +17,16 @@ export interface IProteinFeatureViewerState {
   showGrouped: boolean;
 }
 
+export const SAMPLE_PROTEIN_IDS = {
+  '3Domains': 'Q8TDF5',
+  '5Domains': 'Q96L73',
+  DLL3_HUMAN: 'Q9NYJ7',
+  SMAD4_HUMAN: 'Q13485',
+};
+
 export class ProteinFeatureViewer extends React.Component<IProteinFeatureViewerProps, IProteinFeatureViewerState> {
   public static defaultProps = {
-    // initialProteinId: 'Q13485',
-    initialProteinId: 'Q9NYJ7',
+    initialProteinId: SAMPLE_PROTEIN_IDS.DLL3_HUMAN,
   };
 
   constructor(props: IProteinFeatureViewerProps) {
@@ -77,24 +83,26 @@ export class ProteinFeatureViewer extends React.Component<IProteinFeatureViewerP
         const domains = protein.features.filter(feature => feature.type === 'DOMAIN');
         const colorMapper = new ColorMapper<string>();
 
-        this.setState({
-          domainData: domains.map((domain, index) => {
-            const { begin, description = '', end } = domain;
-            // This matches domains that do and do not have other of the same domain in the protein.
-            const domainName = description.split('-like')[0];
+        const domainData = domains.map((domain, index) => {
+          const { begin, description = '', end } = domain;
+          // This matches domains that do and do not have other of the same domain in the protein.
+          const domainName = description.split('-like')[0];
 
-            return new TintedChell1DSection(
-              domainName,
-              begin ? Number.parseInt(begin, 10) : -1,
-              end ? Number.parseInt(end, 10) : -1,
-              colorMapper.getColorFor(domainName),
-            );
-          }),
+          return new TintedChell1DSection(
+            domainName,
+            begin ? Number.parseInt(begin, 10) : -1,
+            end ? Number.parseInt(end, 10) : -1,
+            colorMapper.getColorFor(domainName),
+          );
+        });
+
+        this.setState({
+          domainData,
           protein,
         });
       }
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
 

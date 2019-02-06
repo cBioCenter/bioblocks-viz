@@ -28,7 +28,7 @@ exports[`ProteinFeatureViewer Should default to an invalid range if there is a p
           control={[Function]}
           fluid={false}
           onChange={[Function]}
-          value="Q9NYJ7"
+          value="Q13485"
           width="three"
         />
         <FormButton
