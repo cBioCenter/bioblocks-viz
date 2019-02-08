@@ -14,7 +14,7 @@ describe('ResiduePairAction', () => {
 
     expect(allReducerActions.candidates).toHaveLength(6);
     expect(allReducerActions.hovered).toHaveLength(6);
-    expect(allReducerActions.locked).toHaveLength(5);
+    expect(allReducerActions.locked).toHaveLength(6);
 
     for (const reducerActions of Object.values(allReducerActions)) {
       for (const action of reducerActions) {
@@ -34,7 +34,7 @@ describe('ResiduePairAction', () => {
 
     expect(allReducerActions.candidates).toHaveLength(6);
     expect(allReducerActions.hovered).toHaveLength(6);
-    expect(allReducerActions.locked).toHaveLength(5);
+    expect(allReducerActions.locked).toHaveLength(6);
 
     for (const reducerActions of Object.values(allReducerActions)) {
       for (const action of reducerActions) {

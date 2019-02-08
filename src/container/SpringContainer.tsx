@@ -37,7 +37,7 @@ export interface ISpringMessage {
   // tslint:disable-next-line:no-reserved-keywords
   type: string;
   payload: {
-    currentCategory: string;
+    currentCategory?: string;
     indices: number[];
     selectedLabel: string;
   };
@@ -141,17 +141,17 @@ export class SpringContainerClass extends ChellVisualization<ISpringContainerPro
   };
 
   protected onReceiveMessage = (msg: MessageEvent) => {
-    const { categories, currentCells, setCurrentCategory, setCurrentCells } = this.props;
+    const { currentCells, setCurrentCategory, setCurrentCells } = this.props;
     const data = msg.data as ISpringMessage;
     switch (data.type) {
       case 'selected-category-update':
       case 'selected-cells-update': {
-        setCurrentCategory(data.payload.currentCategory);
-        setCurrentCells(data.payload.indices);
+        const { currentCategory, indices } = data.payload;
+        setCurrentCategory(currentCategory ? currentCategory : '');
+        setCurrentCells(indices);
         break;
       }
       case 'loaded': {
-        setCurrentCategory(categories.first());
         this.setState({
           postMessageData: {
             payload: {
@@ -160,6 +160,7 @@ export class SpringContainerClass extends ChellVisualization<ISpringContainerPro
             type: 'init',
           },
         });
+        break;
       }
       default: {
         if (msg.isTrusted && Object.keys(msg).length === 1) {

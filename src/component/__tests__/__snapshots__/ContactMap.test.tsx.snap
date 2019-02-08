@@ -1575,6 +1575,10 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
 
 exports[`ContactMap Snapshots Should match snapshot when locked residues are added. 1`] = `
 <ContactMapClass
+  addHoveredResidues={[Function]}
+  addHoveredSecondaryStructure={[Function]}
+  addSelectedSecondaryStructure={[Function]}
+  candidateResidues={Array []}
   configurations={Array []}
   data={
     Object {
@@ -1999,6 +2003,8 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
   formattedPoints={Array []}
   height="100%"
   highlightColor="#ff8800"
+  hoveredResidues={Array []}
+  hoveredSecondaryStructures={Array []}
   isDataLoading={false}
   lockedResiduePairs={
     Map {
@@ -2012,35 +2018,13 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
     }
   }
   observedColor="#0000ff"
-  residueContext={
-    Object {
-      "addCandidateResidues": [Function],
-      "addHoveredResidues": [Function],
-      "addLockedResiduePair": [Function],
-      "candidateResidues": Array [],
-      "clearAllResidues": [Function],
-      "hoveredResidues": Array [],
-      "lockedResiduePairs": Map {},
-      "removeAllLockedResiduePairs": [Function],
-      "removeCandidateResidues": [Function],
-      "removeHoveredResidues": [Function],
-      "removeLockedResiduePair": [Function],
-      "removeNonLockedResidues": [Function],
-      "toggleLockedResiduePair": [Function],
-    }
-  }
-  secondaryStructureContext={
-    Object {
-      "addHoveredSecondaryStructure": [Function],
-      "addSelectedSecondaryStructure": [Function],
-      "clearAllSecondaryStructures": [Function],
-      "hoveredSecondaryStructures": Array [],
-      "removeHoveredSecondaryStructure": [Function],
-      "removeSecondaryStructure": [Function],
-      "selectedSecondaryStructures": Array [],
-    }
-  }
+  removeAllLockedResiduePairs={[Function]}
+  removeHoveredResidues={[Function]}
+  removeHoveredSecondaryStructure={[Function]}
+  removeSecondaryStructure={[Function]}
+  selectedSecondaryStructures={Array []}
   showConfigurations={true}
+  toggleLockedResiduePair={[Function]}
   width="100%"
 >
   <div

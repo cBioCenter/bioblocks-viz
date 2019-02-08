@@ -38,6 +38,16 @@ export const ObjectReducer = <T>(dataset: string, namespace = 'chell'): Reducer 
 
         return Map<string, T>(payload);
       }
+      case getType(actions.toggle): {
+        const payload = (action as PayloadAction<string, { [key: string]: T }>).payload;
+
+        let result = state;
+        Object.keys(payload).forEach(key => {
+          result = state.has(key) ? state.remove(key) : state.set(key, payload[key]);
+        });
+
+        return result;
+      }
       default:
         return state;
     }

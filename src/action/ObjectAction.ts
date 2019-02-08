@@ -22,5 +22,9 @@ export const createObjectActions = <T>(datasetName: string, namespace = 'chell')
       meta: datasetName,
       payload,
     })),
+    toggle: createStandardAction(`${reducerName}_TOGGLE`).map((payload: { [key: string]: T }) => ({
+      meta: datasetName,
+      payload,
+    })),
   };
 };

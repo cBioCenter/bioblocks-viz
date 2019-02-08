@@ -105,18 +105,13 @@ export abstract class ChellVisualization<P = any, S = any, SS = any> extends Rea
   }
 
   protected createReducer<T>(datasetName: string, defaultValue?: T, namespace = 'chell') {
-    console.log(datasetName);
     if (isArray(defaultValue)) {
-      console.log('container');
       createContainerReducer<T>(datasetName, namespace);
     } else if (typeof defaultValue === 'object') {
-      console.log('object');
       createObjectReducer<T>(datasetName, namespace);
     } else if (defaultValue === undefined) {
-      console.log('data');
       createDataReducer<T>(datasetName, namespace);
     } else {
-      console.log('value');
       createValueReducer<T>(datasetName, namespace);
     }
   }
