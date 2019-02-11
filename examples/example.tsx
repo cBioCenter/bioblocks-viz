@@ -148,8 +148,11 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
       {!pdbData && couplingScores.length === 0 && this.renderStartMessage()}
 
       <Segment attached={true} raised={true}>
-        <Grid centered={true}>
+        <Grid centered={true} padded={true} relaxed={true}>
           {this.renderUploadButtonsRow(isResidueMappingNeeded)}
+          <Grid.Row>
+            <br />
+          </Grid.Row>
           {this.renderChellComponents(style, arePredictionsAvailable, measuredProximity, pdbData)}
         </Grid>
       </Segment>
@@ -323,19 +326,10 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     pdbData?: ChellPDB,
     size: number | string = '550px',
   ) => (
-    <GridRow verticalAlign={'middle'}>
-      <GridColumn width={6}>{this.renderContactMapCard(arePredictionsAvailable, size, style, pdbData)}</GridColumn>
-      <GridColumn width={6}>{this.renderNGLCard(measuredProximity, pdbData)}</GridColumn>
+    <GridRow columns={2}>
+      <GridColumn width={7}>{this.renderContactMapCard(arePredictionsAvailable, size, style, pdbData)}</GridColumn>
+      <GridColumn width={7}>{this.renderNGLCard(measuredProximity, pdbData)}</GridColumn>
     </GridRow>
-  );
-
-  protected renderNGLCard = (measuredProximity: CONTACT_DISTANCE_PROXIMITY, pdbData?: ChellPDB) => (
-    <NGLContainer
-      data={pdbData}
-      isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
-      measuredProximity={measuredProximity}
-      onMeasuredProximityChange={this.onMeasuredProximityChange()}
-    />
   );
 
   protected renderContactMapCard = (
@@ -370,8 +364,17 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
       />
     );
 
+  protected renderNGLCard = (measuredProximity: CONTACT_DISTANCE_PROXIMITY, pdbData?: ChellPDB) => (
+    <NGLContainer
+      data={pdbData}
+      isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
+      measuredProximity={measuredProximity}
+      onMeasuredProximityChange={this.onMeasuredProximityChange()}
+    />
+  );
+
   protected renderUploadButtonsRow = (isResidueMappingNeeded: boolean) => (
-    <GridRow columns={4} centered={true} textAlign={'center'} verticalAlign={'bottom'}>
+    <GridRow columns={4}>
       <GridColumn>{this.renderCouplingScoresUploadForm()}</GridColumn>
       <GridColumn>{this.renderPDBUploadForm()}</GridColumn>
       {isResidueMappingNeeded && <GridColumn>{this.renderResidueMappingUploadForm()}</GridColumn>}
