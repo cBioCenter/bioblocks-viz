@@ -84,7 +84,7 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="idatasetpageprops.html#fetchspringdata" class="tsd-kind-icon">fetch<wbr>Spring<wbr>Data</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="idatasetpageprops.html#dispatchspringfetch" class="tsd-kind-icon">dispatch<wbr>Spring<wbr>Fetch</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="idatasetpageprops.html#setspecies" class="tsd-kind-icon">set<wbr>Species</a></li>
 							</ul>
 						</section>
@@ -94,22 +94,37 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="fetchspringdata" class="tsd-anchor"></a>
-					<h3>fetch<wbr>Spring<wbr>Data</h3>
+					<a name="dispatchspringfetch" class="tsd-anchor"></a>
+					<h3>dispatch<wbr>Spring<wbr>Fetch</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">fetch<wbr>Spring<wbr>Data<span class="tsd-signature-symbol">(</span>datasetLocation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">dispatch<wbr>Spring<wbr>Fetch<span class="tsd-signature-symbol">(</span>fetchFn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, namespace<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/aa926c91b/src/page/DatasetPage.tsx#L13">src/page/DatasetPage.tsx:13</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/94847c26d/src/page/DatasetPage.tsx#L15">src/page/DatasetPage.tsx:15</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>datasetLocation: <span class="tsd-signature-type">string</span></h5>
+									<h5>fetchFn: <span class="tsd-signature-type">function</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="ispringgraphdata.html" class="tsd-signature-type">ISpringGraphData</a><span class="tsd-signature-symbol">&gt;</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="ispringgraphdata.html" class="tsd-signature-type">ISpringGraphData</a><span class="tsd-signature-symbol">&gt;</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> namespace: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -126,7 +141,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/aa926c91b/src/page/DatasetPage.tsx#L14">src/page/DatasetPage.tsx:14</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/94847c26d/src/page/DatasetPage.tsx#L16">src/page/DatasetPage.tsx:16</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -157,7 +172,7 @@
 						<a href="idatasetpageprops.html" class="tsd-kind-icon">IDataset<wbr>Page<wbr>Props</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="idatasetpageprops.html#fetchspringdata" class="tsd-kind-icon">fetch<wbr>Spring<wbr>Data</a>
+								<a href="idatasetpageprops.html#dispatchspringfetch" class="tsd-kind-icon">dispatch<wbr>Spring<wbr>Fetch</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="idatasetpageprops.html#setspecies" class="tsd-kind-icon">set<wbr>Species</a>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ITFrameComponentState | chell-viz</title>
+	<title>IResiduePairReducerState | chell-viz</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="itframecomponentstate.html">ITFrameComponentState</a>
+					<a href="iresiduepairreducerstate.html">IResiduePairReducerState</a>
 				</li>
 			</ul>
-			<h1>Interface ITFrameComponentState</h1>
+			<h1>Interface IResiduePairReducerState</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ITFrameComponentState</span>
+						<span class="target">IResiduePairReducerState</span>
 					</li>
 				</ul>
 			</section>
@@ -79,7 +79,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="itframecomponentstate.html#postmessagedata" class="tsd-kind-icon">post<wbr>Message<wbr>Data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iresiduepairreducerstate.html#candidates" class="tsd-kind-icon">candidates</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iresiduepairreducerstate.html#hovered" class="tsd-kind-icon">hovered</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iresiduepairreducerstate.html#locked" class="tsd-kind-icon">locked</a></li>
 							</ul>
 						</section>
 					</div>
@@ -88,12 +90,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="postmessagedata" class="tsd-anchor"></a>
-					<h3>post<wbr>Message<wbr>Data</h3>
-					<div class="tsd-signature tsd-kind-icon">post<wbr>Message<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<a name="candidates" class="tsd-anchor"></a>
+					<h3>candidates</h3>
+					<div class="tsd-signature tsd-kind-icon">candidates<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#residue_type" class="tsd-signature-type">RESIDUE_TYPE</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/aa926c91b/src/component/TFrameComponent.tsx#L19">src/component/TFrameComponent.tsx:19</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/94847c26d/src/reducer/ResiduePairReducer.ts#L12">src/reducer/ResiduePairReducer.ts:12</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="hovered" class="tsd-anchor"></a>
+					<h3>hovered</h3>
+					<div class="tsd-signature tsd-kind-icon">hovered<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#residue_type" class="tsd-signature-type">RESIDUE_TYPE</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/94847c26d/src/reducer/ResiduePairReducer.ts#L13">src/reducer/ResiduePairReducer.ts:13</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="locked" class="tsd-anchor"></a>
+					<h3>locked</h3>
+					<div class="tsd-signature tsd-kind-icon">locked<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#residue_type" class="tsd-signature-type">RESIDUE_TYPE</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cBioCenter/chell-viz/blob/94847c26d/src/reducer/ResiduePairReducer.ts#L14">src/reducer/ResiduePairReducer.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -112,10 +134,16 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="itframecomponentstate.html" class="tsd-kind-icon">ITFrame<wbr>Component<wbr>State</a>
+						<a href="iresiduepairreducerstate.html" class="tsd-kind-icon">IResidue<wbr>Pair<wbr>Reducer<wbr>State</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="itframecomponentstate.html#postmessagedata" class="tsd-kind-icon">post<wbr>Message<wbr>Data</a>
+								<a href="iresiduepairreducerstate.html#candidates" class="tsd-kind-icon">candidates</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="iresiduepairreducerstate.html#hovered" class="tsd-kind-icon">hovered</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="iresiduepairreducerstate.html#locked" class="tsd-kind-icon">locked</a>
 							</li>
 						</ul>
 					</li>
