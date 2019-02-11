@@ -67,7 +67,7 @@ exports[`VizSelectorPanel Should match existing snapshot for initial visualizati
     fluid={true}
     raised={true}
   >
-    <InfoPanel
+    <Connect(InfoPanelContainerClass)
       height={400}
       width={400}
     />
@@ -199,41 +199,6 @@ exports[`VizSelectorPanel Should match existing snapshot for initial visualizati
     closeOnBlur={true}
     deburr={false}
     defaultValue="T-SNE"
-    fluid={true}
-    icon="dropdown"
-    minCharacters={1}
-    noResultsMessage="No results found."
-    onChange={[Function]}
-    openOnFocus={true}
-    options={Array []}
-    renderLabel={[Function]}
-    searchInput="text"
-    selectOnBlur={true}
-    selectOnNavigation={true}
-    wrapSelection={true}
-  />
-  <Card
-    fluid={true}
-    raised={true}
-  />
-</div>
-`;
-
-exports[`VizSelectorPanel Should match existing snapshot for initial visualizations. 7`] = `
-<div
-  className="VizSelectorPanel"
-  style={
-    Object {
-      "width": 450,
-    }
-  }
->
-  <Dropdown
-    additionLabel="Add "
-    additionPosition="top"
-    closeOnBlur={true}
-    deburr={false}
-    defaultValue="T-SNE-FRAME"
     fluid={true}
     icon="dropdown"
     minCharacters={1}

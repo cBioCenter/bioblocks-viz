@@ -1,32 +1,27 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import { Accordion, Label } from 'semantic-ui-react';
 
-import {
-  initialResidueContext,
-  initialSecondaryStructureContext,
-  IResidueContext,
-  ISecondaryStructureContext,
-  ResidueContext,
-  ResidueSelection,
-  SecondaryStructureContext,
-} from '~chell-viz~/context';
 import {
   ChellPDB,
   CouplingContainer,
   IContactMapData,
   SECONDARY_STRUCTURE,
   SECONDARY_STRUCTURE_CODES,
+  SECONDARY_STRUCTURE_SECTION,
 } from '~chell-viz~/data';
+import { ILockedResiduePair } from '~chell-viz~/reducer';
+import { getLocked, selectCurrentItems } from '~chell-viz~/selector';
 
 export interface IInfoPanelProps {
   data: IContactMapData;
   height: number;
-  width: 400;
-  residueContext: IResidueContext;
-  secondaryStructureContext: ISecondaryStructureContext;
+  lockedResiduePairs: ILockedResiduePair;
+  selectedSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
+  width: number;
 }
 
-export class InfoPanelClass extends React.Component<IInfoPanelProps, any> {
+export class InfoPanelContainerClass extends React.Component<IInfoPanelProps, any> {
   public static defaultProps = {
     data: {
       couplingScores: new CouplingContainer(),
@@ -34,8 +29,8 @@ export class InfoPanelClass extends React.Component<IInfoPanelProps, any> {
       secondaryStructures: new Array<SECONDARY_STRUCTURE>(),
     },
     height: 400,
-    residueContext: { ...initialResidueContext },
-    secondaryStructureContext: { ...initialSecondaryStructureContext },
+    lockedResiduePairs: {},
+    selectedSecondaryStructures: [],
     width: 400,
   };
 
@@ -44,7 +39,7 @@ export class InfoPanelClass extends React.Component<IInfoPanelProps, any> {
   }
 
   public render() {
-    const { data, height, residueContext, width, secondaryStructureContext } = this.props;
+    const { data, height, lockedResiduePairs, selectedSecondaryStructures, width } = this.props;
     const { pdbData } = data;
     const unassignedResidues =
       pdbData && pdbData.known
@@ -71,14 +66,14 @@ export class InfoPanelClass extends React.Component<IInfoPanelProps, any> {
               title: `Unassigned Residues (${unassignedResidues.length}):`,
             },
             {
-              content: this.renderSecondaryStructures(secondaryStructureContext.selectedSecondaryStructures),
+              content: this.renderSecondaryStructures(selectedSecondaryStructures),
               key: 'selected-secondary-structures',
-              title: `Selected Secondary Structures (${secondaryStructureContext.selectedSecondaryStructures.length}):`,
+              title: `Selected Secondary Structures (${selectedSecondaryStructures.length}):`,
             },
             {
-              content: this.renderLockedResiduePairs(residueContext.lockedResiduePairs),
+              content: this.renderLockedResiduePairs(lockedResiduePairs),
               key: 'selected-residue-pairs',
-              title: `Selected Residue Pairs (${residueContext.lockedResiduePairs.size}):`,
+              title: `Selected Residue Pairs (${lockedResiduePairs.size}):`,
             },
           ]}
         />
@@ -86,10 +81,10 @@ export class InfoPanelClass extends React.Component<IInfoPanelProps, any> {
     );
   }
 
-  protected renderLockedResiduePairs(lockedResiduePairs: ResidueSelection) {
-    return lockedResiduePairs.size === 0
+  protected renderLockedResiduePairs(lockedResiduePairs: ILockedResiduePair) {
+    return Object.keys(lockedResiduePairs).length === 0
       ? [<Label key={'locked-residue-pair-none'}>None</Label>]
-      : Array.from(lockedResiduePairs.values()).map((pair, index) => (
+      : Array.from(Object.values(lockedResiduePairs)).map((pair, index) => (
           <Label key={`locked-residue-pair-${index}`}>{pair.join(', ')}</Label>
         ));
   }
@@ -141,16 +136,12 @@ export class InfoPanelClass extends React.Component<IInfoPanelProps, any> {
   }
 }
 
-type requiredProps = Omit<IInfoPanelProps, keyof typeof InfoPanelClass.defaultProps> & Partial<IInfoPanelProps>;
+const mapStateToProps = (state: { [key: string]: any }) => ({
+  lockedResiduePairs: getLocked(state).toJS(),
+  selectedSecondaryStructures: selectCurrentItems<SECONDARY_STRUCTURE_SECTION>(
+    state,
+    'secondaryStructure/selected',
+  ).toArray(),
+});
 
-const InfoPanel = (props: requiredProps) => (
-  <SecondaryStructureContext.Consumer>
-    {secStructContext => (
-      <ResidueContext.Consumer>
-        {residueContext => <InfoPanel {...props} {...residueContext} {...secStructContext} />}
-      </ResidueContext.Consumer>
-    )}
-  </SecondaryStructureContext.Consumer>
-);
-
-export { InfoPanel };
+export const InfoPanelContainer = connect(mapStateToProps)(InfoPanelContainerClass);

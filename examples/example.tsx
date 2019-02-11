@@ -1,33 +1,29 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Accordion, Button, Card, Grid, GridColumn, GridRow, Header, Label, Message, Segment } from 'semantic-ui-react';
+import { connect, Provider } from 'react-redux';
+import { Accordion, Button, Grid, GridColumn, GridRow, Header, Label, Message, Segment } from 'semantic-ui-react';
 
+import { createContainerActions, createResiduePairActions } from '~chell-viz~/action';
+import { ContactMap, PredictedContactMap } from '~chell-viz~/component';
+import { NGLContainer, ProteinFeatureViewer } from '~chell-viz~/container';
 import {
+  CHELL_CSS_STYLE,
   ChellPDB,
   CONTACT_DISTANCE_PROXIMITY,
   CONTACT_MAP_DATA_TYPE,
-  ContactMap,
   CouplingContainer,
-  CouplingContextProvider,
-  generateResidueMapping,
-  getCouplingScoresData,
   getPDBAndCouplingMismatch,
-  IResidueContext,
-  IResidueMapping,
   IResidueMismatchResult,
-  ISecondaryStructureContext,
   NGL_DATA_TYPE,
-  NGLComponent,
-  PredictedContactMap,
-  ProteinFeatureViewer,
-  readFileAsText,
-  ResidueContextConsumer,
-  SecondaryStructureContextConsumer,
   VIZ_TYPE,
-} from '~chell-viz~';
+} from '~chell-viz~/data';
+import { generateResidueMapping, getCouplingScoresData, IResidueMapping, readFileAsText } from '~chell-viz~/helper';
+import { Store } from '~chell-viz~/reducer';
 
 export interface IExampleAppProps {
-  style: React.CSSProperties;
+  style: CHELL_CSS_STYLE;
+  clearAllResidues(): void;
+  clearAllSecondaryStructures(): void;
 }
 
 export interface IExampleAppState {
@@ -51,8 +47,8 @@ export interface IExampleAppState {
   residueMapping: IResidueMapping[];
 }
 
-class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
-  public static defaultProps: IExampleAppProps = {
+class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState> {
+  public static defaultProps = {
     style: {
       backgroundColor: '#ffffff',
     },
@@ -82,7 +78,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
 
   public constructor(props: IExampleAppProps) {
     super(props);
-    this.state = ExampleApp.initialState;
+    this.state = ExampleAppClass.initialState;
   }
 
   public componentDidUpdate(prevProps: IExampleAppProps, prevState: IExampleAppState) {
@@ -152,20 +148,10 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
       {!pdbData && couplingScores.length === 0 && this.renderStartMessage()}
 
       <Segment attached={true} raised={true}>
-        <CouplingContextProvider>
-          <SecondaryStructureContextConsumer>
-            {secondaryStructureContext => (
-              <ResidueContextConsumer>
-                {residueContext => (
-                  <Grid centered={true}>
-                    {this.renderUploadButtonsRow(isResidueMappingNeeded, residueContext, secondaryStructureContext)}
-                    {this.renderChellComponents(style, arePredictionsAvailable, measuredProximity, pdbData)}
-                  </Grid>
-                )}
-              </ResidueContextConsumer>
-            )}
-          </SecondaryStructureContextConsumer>
-        </CouplingContextProvider>
+        <Grid centered={true}>
+          {this.renderUploadButtonsRow(isResidueMappingNeeded)}
+          {this.renderChellComponents(style, arePredictionsAvailable, measuredProximity, pdbData)}
+        </Grid>
       </Segment>
       {this.renderFooter()}
     </div>
@@ -339,25 +325,17 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
   ) => (
     <GridRow verticalAlign={'middle'}>
       <GridColumn width={6}>{this.renderContactMapCard(arePredictionsAvailable, size, style, pdbData)}</GridColumn>
-      <GridColumn width={6}>{this.renderNGLCard(measuredProximity, size, style)}</GridColumn>
+      <GridColumn width={6}>{this.renderNGLCard(measuredProximity, pdbData)}</GridColumn>
     </GridRow>
   );
 
-  protected renderNGLCard = (
-    measuredProximity: CONTACT_DISTANCE_PROXIMITY,
-    size: number | string,
-    style: React.CSSProperties,
-  ) => (
-    <Card raised={true} style={{ height: '615px', padding: '15px 15px 0 15px', width: '600px' }}>
-      <NGLComponent
-        height={size}
-        isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
-        measuredProximity={measuredProximity}
-        onMeasuredProximityChange={this.onMeasuredProximityChange()}
-        style={style}
-        width={size}
-      />
-    </Card>
+  protected renderNGLCard = (measuredProximity: CONTACT_DISTANCE_PROXIMITY, pdbData?: ChellPDB) => (
+    <NGLContainer
+      data={pdbData}
+      isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
+      measuredProximity={measuredProximity}
+      onMeasuredProximityChange={this.onMeasuredProximityChange()}
+    />
   );
 
   protected renderContactMapCard = (
@@ -365,46 +343,39 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     size: number | string,
     style: React.CSSProperties,
     pdbData?: ChellPDB,
-  ) => (
-    <Card raised={true} style={{ height: '615px', padding: '15px 15px 0 15px', width: '600px' }}>
-      {arePredictionsAvailable ? (
-        <PredictedContactMap
-          data={{
-            couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
-            pdbData: { known: pdbData },
-            secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
-          }}
-          height={size}
-          isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
-          style={style}
-          width={size}
-        />
-      ) : (
-        <ContactMap
-          data={{
-            couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
-            pdbData: { known: pdbData },
-            secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
-          }}
-          height={size}
-          isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
-          style={style}
-          width={size}
-        />
-      )}
-    </Card>
-  );
+  ) =>
+    arePredictionsAvailable ? (
+      <PredictedContactMap
+        data={{
+          couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
+          pdbData: { known: pdbData },
+          secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
+        }}
+        height={size}
+        isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
+        style={style}
+        width={size}
+      />
+    ) : (
+      <ContactMap
+        data={{
+          couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
+          pdbData: { known: pdbData },
+          secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
+        }}
+        height={size}
+        isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
+        style={style}
+        width={size}
+      />
+    );
 
-  protected renderUploadButtonsRow = (
-    isResidueMappingNeeded: boolean,
-    residueContext: IResidueContext,
-    secondaryStructureContext: ISecondaryStructureContext,
-  ) => (
+  protected renderUploadButtonsRow = (isResidueMappingNeeded: boolean) => (
     <GridRow columns={4} centered={true} textAlign={'center'} verticalAlign={'bottom'}>
       <GridColumn>{this.renderCouplingScoresUploadForm()}</GridColumn>
       <GridColumn>{this.renderPDBUploadForm()}</GridColumn>
       {isResidueMappingNeeded && <GridColumn>{this.renderResidueMappingUploadForm()}</GridColumn>}
-      <GridColumn>{this.renderClearAllButton(residueContext, secondaryStructureContext)}</GridColumn>
+      <GridColumn>{this.renderClearAllButton()}</GridColumn>
     </GridRow>
   );
 
@@ -426,10 +397,7 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
     </GridRow>
   );
 
-  protected renderClearAllButton = (
-    residueContext: IResidueContext,
-    secondaryStructureContext: ISecondaryStructureContext,
-  ) => (
+  protected renderClearAllButton = () => (
     <GridRow verticalAlign={'middle'} columns={1} centered={true}>
       <GridColumn>
         <Label as="label" basic={true} htmlFor={'clear-data'}>
@@ -440,20 +408,18 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
               content: 'Clean View',
             }}
             labelPosition={'right'}
-            onClick={this.onClearAll(residueContext, secondaryStructureContext)}
+            onClick={this.onClearAll()}
           />
         </Label>
       </GridColumn>
     </GridRow>
   );
 
-  protected onClearAll = (
-    residueContext: IResidueContext,
-    secondaryStructureContext: ISecondaryStructureContext,
-  ) => async () => {
-    this.setState(ExampleApp.initialState);
-    residueContext.clearAllResidues();
-    secondaryStructureContext.clearAllSecondaryStructures();
+  protected onClearAll = () => async () => {
+    const { clearAllResidues, clearAllSecondaryStructures } = this.props;
+    this.setState(ExampleAppClass.initialState);
+    clearAllResidues();
+    clearAllSecondaryStructures();
     this.forceUpdate();
   };
 
@@ -613,7 +579,26 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
   };
 }
 
-ReactDOM.render(<ExampleApp />, document.getElementById('example-root'));
+const mapStateToProps = (state: { [key: string]: any }) => ({
+  clearAllResidues: () => {
+    createResiduePairActions().candidates.clear();
+    createResiduePairActions().hovered.clear();
+    createResiduePairActions().locked.clear();
+  },
+  clearAllSecondaryStructures: () => {
+    createContainerActions('secondaryStructure/hovered').clear();
+    createContainerActions('secondaryStructure/selected').clear();
+  },
+});
+
+const ExampleApp = connect(mapStateToProps)(ExampleAppClass);
+
+ReactDOM.render(
+  <Provider store={Store}>
+    <ExampleApp />
+  </Provider>,
+  document.getElementById('example-root'),
+);
 
 if (module.hot) {
   module.hot.accept();

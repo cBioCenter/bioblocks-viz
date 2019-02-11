@@ -3,7 +3,6 @@ import { HashRouter as Router, Route, RouteComponentProps } from 'react-router-d
 import { Container } from 'semantic-ui-react';
 
 import { SiteHeader } from '~chell-viz~/container';
-import { ChellContextProvider } from '~chell-viz~/context';
 import { DatasetPage, LandingPage, StoriesPage, VisualizationsPage, VizOverviewPage } from '~chell-viz~/page';
 
 export interface IChellVizAppState {
@@ -33,16 +32,14 @@ export class ChellVizApp extends React.Component<Partial<RouteComponentProps>, I
   }
 
   protected renderComponents = (props: RouteComponentProps) => (
-    <ChellContextProvider {...props}>
-      <Container id={'ChellVizApp'} fluid={true}>
-        <SiteHeader {...props} />
-        <Route exact={true} strict={true} path={'/visualizations'} render={this.renderVisualizationsPage} />
-        <Route exact={true} strict={true} path={'/visualizations/'} render={this.renderOverviewPage} />
-        <Route path={'/dataset'} render={this.renderDatasetPage} />
-        <Route path={'/stories'} render={this.renderStoriesPage} />
-        <Route exact={true} path={'/'} render={this.renderLandingPage} />
-      </Container>
-    </ChellContextProvider>
+    <Container id={'ChellVizApp'} fluid={true}>
+      <SiteHeader {...props} />
+      <Route exact={true} strict={true} path={'/visualizations'} render={this.renderVisualizationsPage} />
+      <Route exact={true} strict={true} path={'/visualizations/'} render={this.renderOverviewPage} />
+      <Route path={'/dataset'} render={this.renderDatasetPage} />
+      <Route path={'/stories'} render={this.renderStoriesPage} />
+      <Route exact={true} path={'/'} render={this.renderLandingPage} />
+    </Container>
   );
 
   protected renderVisualizationsPage = (props: RouteComponentProps) => {
