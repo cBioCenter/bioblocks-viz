@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Card, Dropdown, DropdownItemProps, DropdownProps } from 'semantic-ui-react';
 
-import { InfoPanel, NGLComponent, PredictedContactMap, TFrameComponent } from '~chell-viz~/component';
-import { SpringContainer, TensorTContainer } from '~chell-viz~/container';
-import { CHELL_DATA_TYPE, IContactMapData, T_SNE_DATA_TYPE, VIZ_TYPE } from '~chell-viz~/data';
+import { NGLComponent, PredictedContactMap } from '~chell-viz~/component';
+import { InfoPanelContainer, SpringContainer, TensorTContainer } from '~chell-viz~/container';
+import { CHELL_DATA_TYPE, IContactMapData, VIZ_TYPE } from '~chell-viz~/data';
 
 export interface IVizPanelProps {
   data: Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>;
@@ -79,17 +79,6 @@ export class VizSelectorPanel extends React.Component<IVizPanelProps, IVizPanelS
             />
           )
         );
-      case VIZ_TYPE['T-SNE-FRAME']:
-        return (
-          data['T-SNE'] && (
-            <TFrameComponent
-              data={data['T-SNE'] as T_SNE_DATA_TYPE}
-              height={paddedHeight}
-              padding={padding}
-              width={paddedWidth}
-            />
-          )
-        );
       case VIZ_TYPE.SPRING:
         return <SpringContainer padding={padding} />;
       case VIZ_TYPE.NGL:
@@ -106,7 +95,7 @@ export class VizSelectorPanel extends React.Component<IVizPanelProps, IVizPanelS
           )
         );
       case VIZ_TYPE.INFO_PANEL:
-        return <InfoPanel data={data['Contact Map'] as IContactMapData} height={400} width={400} />;
+        return <InfoPanelContainer data={data['Contact Map'] as IContactMapData} height={400} width={400} />;
       default:
         throw new Error(`Unknown viz: ${viz}`);
     }

@@ -35,7 +35,6 @@ export enum VIZ_TYPE {
   SPRING = 'Spring',
   'TENSOR-T-SNE' = 'TENSOR-T-SNE',
   'T-SNE' = 'T-SNE',
-  'T-SNE-FRAME' = 'T-SNE-FRAME',
 }
 
 export interface IContactMapData {

@@ -1,0 +1,183 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InfoPanelContainer Should match existing snapshot when given no props. 1`] = `
+<div
+  className="InfoPanel"
+  style={
+    Object {
+      "height": 400,
+      "width": 400,
+    }
+  }
+>
+  <Accordion
+    exclusive={false}
+    panels={
+      Array [
+        undefined,
+        Object {
+          "content": Array [
+            <Label />,
+          ],
+          "key": "unassigned-residues",
+          "title": "Unassigned Residues (1):",
+        },
+        Object {
+          "content": Array [
+            <Label>
+              None
+            </Label>,
+          ],
+          "key": "selected-secondary-structures",
+          "title": "Selected Secondary Structures (0):",
+        },
+        Object {
+          "content": Array [
+            <Label>
+              None
+            </Label>,
+          ],
+          "key": "selected-residue-pairs",
+          "title": "Selected Residue Pairs (undefined):",
+        },
+      ]
+    }
+  />
+</div>
+`;
+
+exports[`InfoPanelContainer Should match existing snapshot when given sample data and a known PDB. 1`] = `
+<div
+  className="InfoPanel"
+  style={
+    Object {
+      "height": 400,
+      "width": 400,
+    }
+  }
+>
+  <Accordion
+    exclusive={false}
+    panels={
+      Array [
+        Array [],
+        Object {
+          "content": Array [],
+          "key": "unassigned-residues",
+          "title": "Unassigned Residues (0):",
+        },
+        Object {
+          "content": Array [
+            <Label>
+              None
+            </Label>,
+          ],
+          "key": "selected-secondary-structures",
+          "title": "Selected Secondary Structures (0):",
+        },
+        Object {
+          "content": Array [
+            <Label>
+              None
+            </Label>,
+          ],
+          "key": "selected-residue-pairs",
+          "title": "Selected Residue Pairs (undefined):",
+        },
+      ]
+    }
+  />
+</div>
+`;
+
+exports[`InfoPanelContainer Should match existing snapshot when given sample data and a predicted PDB. 1`] = `
+<div
+  className="InfoPanel"
+  style={
+    Object {
+      "height": 400,
+      "width": 400,
+    }
+  }
+>
+  <Accordion
+    exclusive={false}
+    panels={
+      Array [
+        undefined,
+        Object {
+          "content": Array [
+            <Label />,
+          ],
+          "key": "unassigned-residues",
+          "title": "Unassigned Residues (1):",
+        },
+        Object {
+          "content": Array [
+            <Label>
+              None
+            </Label>,
+          ],
+          "key": "selected-secondary-structures",
+          "title": "Selected Secondary Structures (0):",
+        },
+        Object {
+          "content": Array [
+            <Label>
+              None
+            </Label>,
+          ],
+          "key": "selected-residue-pairs",
+          "title": "Selected Residue Pairs (undefined):",
+        },
+      ]
+    }
+  />
+</div>
+`;
+
+exports[`InfoPanelContainer Should match existing snapshot when given sample data. 1`] = `
+<div
+  className="InfoPanel"
+  style={
+    Object {
+      "height": 400,
+      "width": 400,
+    }
+  }
+>
+  <Accordion
+    exclusive={false}
+    panels={
+      Array [
+        undefined,
+        Object {
+          "content": Array [
+            <Label />,
+          ],
+          "key": "unassigned-residues",
+          "title": "Unassigned Residues (1):",
+        },
+        Object {
+          "content": Array [
+            <Label>
+              None
+            </Label>,
+          ],
+          "key": "selected-secondary-structures",
+          "title": "Selected Secondary Structures (0):",
+        },
+        Object {
+          "content": Array [
+            <Label>
+              None
+            </Label>,
+          ],
+          "key": "selected-residue-pairs",
+          "title": "Selected Residue Pairs (undefined):",
+        },
+      ]
+    }
+  />
+</div>
+`;
