@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-import { Dimmer, Loader } from 'semantic-ui-react';
 
 import { createContainerActions, createResiduePairActions } from '~chell-viz~/action';
 import {
+  ComponentCard,
   ContactMapChart,
   generateChartDataEntry,
   IContactMapChartData,
@@ -111,28 +111,18 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
   }
 
   public render() {
-    const { configurations, isDataLoading, removeAllLockedResiduePairs, style } = this.props;
+    const { configurations, removeAllLockedResiduePairs } = this.props;
     const { pointsToPlot } = this.state;
 
-    return (
-      <div className="ContactMapComponent" style={{ ...style }}>
-        <Dimmer.Dimmable dimmed={true}>
-          <Dimmer active={isDataLoading}>
-            <Loader />
-          </Dimmer>
-
-          {this.renderContactMapChart(pointsToPlot, [
-            {
-              name: 'Clear Selections',
-              onClick: removeAllLockedResiduePairs,
-              type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
-            },
-            ...configurations,
-            ...this.generateNodeSizeSliderConfigs(pointsToPlot),
-          ])}
-        </Dimmer.Dimmable>
-      </div>
-    );
+    return this.renderContactMapChart(pointsToPlot, [
+      {
+        name: 'Clear Selections',
+        onClick: removeAllLockedResiduePairs,
+        type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
+      },
+      ...configurations,
+      ...this.generateNodeSizeSliderConfigs(pointsToPlot),
+    ]);
   }
 
   public onNodeSizeChange = (index: number) => (value: number) => {
@@ -237,32 +227,32 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     const {
       candidateResidues,
       data,
-      height,
       onBoxSelection,
       selectedSecondaryStructures,
       showConfigurations,
       addHoveredResidues,
       removeHoveredResidues,
       toggleLockedResiduePair,
-      width,
     } = this.props;
 
     return (
-      <ContactMapChart
-        candidateResidues={candidateResidues}
-        configurations={configurations}
-        contactData={pointsToPlot}
-        height={height}
-        onClickCallback={this.onMouseClick(toggleLockedResiduePair)}
-        onHoverCallback={this.onMouseEnter(addHoveredResidues)}
-        onSelectedCallback={this.onMouseSelect(onBoxSelection)}
-        onUnHoverCallback={this.onMouseLeave(removeHoveredResidues)}
-        range={data.couplingScores.residueIndexRange.max + 20}
-        secondaryStructures={data.secondaryStructures ? data.secondaryStructures : []}
-        showConfigurations={showConfigurations}
-        selectedSecondaryStructures={[selectedSecondaryStructures]}
-        width={width}
-      />
+      <ComponentCard componentName={'Contact Map'}>
+        <div style={{ height: '90%', width: '100%' }}>
+          <ContactMapChart
+            candidateResidues={candidateResidues}
+            configurations={configurations}
+            contactData={pointsToPlot}
+            onClickCallback={this.onMouseClick(toggleLockedResiduePair)}
+            onHoverCallback={this.onMouseEnter(addHoveredResidues)}
+            onSelectedCallback={this.onMouseSelect(onBoxSelection)}
+            onUnHoverCallback={this.onMouseLeave(removeHoveredResidues)}
+            range={data.couplingScores.residueIndexRange.max + 20}
+            secondaryStructures={data.secondaryStructures ? data.secondaryStructures : []}
+            selectedSecondaryStructures={[selectedSecondaryStructures]}
+            showConfigurations={showConfigurations}
+          />
+        </div>
+      </ComponentCard>
     );
   }
 
