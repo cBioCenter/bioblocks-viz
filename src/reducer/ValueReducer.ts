@@ -18,6 +18,8 @@ export const ValueReducer = <T>(dataset: string, namespace = 'chell'): Reducer =
       case getType(actions.clear):
         return null;
       case getType(actions.set): {
+        console.log(action);
+
         return (action as PayloadAction<string, T>).payload;
       }
       default:

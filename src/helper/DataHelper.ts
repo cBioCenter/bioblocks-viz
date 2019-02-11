@@ -2,6 +2,7 @@ import * as NGL from 'ngl';
 
 import {
   ChellPDB,
+  CONTACT_DISTANCE_PROXIMITY,
   CouplingContainer,
   IContactMapData,
   ISecondaryStructureData,
@@ -183,12 +184,16 @@ export const fetchContactMapData = async (
   }
   const contactMapFiles = ['coupling_scores.csv', 'residue_mapping.csv'];
   const promiseResults = await Promise.all(contactMapFiles.map(async file => fetchCSVFile(`${dir}/${file}`)));
+  const pdbFile = await ChellPDB.createPDB(`${dir}/protein.pdb`);
   const pdbData = {
-    [knownOrPredicted]: await ChellPDB.createPDB(`${dir}/protein.pdb`),
+    [knownOrPredicted]: pdbFile,
   };
 
   return {
-    couplingScores: getCouplingScoresData(promiseResults[0], generateResidueMapping(promiseResults[1])),
+    couplingScores: pdbFile.amendPDBWithCouplingScores(
+      getCouplingScoresData(promiseResults[0], generateResidueMapping(promiseResults[1])).rankedContacts,
+      CONTACT_DISTANCE_PROXIMITY.CLOSEST,
+    ),
     pdbData,
     secondaryStructures: [],
   };

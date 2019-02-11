@@ -79,7 +79,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
 <div
   className="PredictedContactMapComponent"
 >
-  <ContactMap
+  <Connect(ContactMapClass)
     configurations={
       Array [
         Object {
@@ -163,7 +163,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
 <div
   className="PredictedContactMapComponent"
 >
-  <ContactMap
+  <Connect(ContactMapClass)
     configurations={
       Array [
         Object {
@@ -247,7 +247,7 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
 <div
   className="PredictedContactMapComponent"
 >
-  <ContactMap
+  <Connect(ContactMapClass)
     configurations={
       Array [
         Object {

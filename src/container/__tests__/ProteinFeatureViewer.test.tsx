@@ -1,5 +1,4 @@
 import { mount, shallow } from 'enzyme';
-import * as fetchMock from 'jest-fetch-mock';
 import * as React from 'react';
 import { Form } from 'semantic-ui-react';
 

@@ -350,7 +350,6 @@ class ExampleApp extends React.Component<IExampleAppProps, IExampleAppState> {
   ) => (
     <Card raised={true} style={{ height: '615px', padding: '15px 15px 0 15px', width: '600px' }}>
       <NGLComponent
-        data={this.state[VIZ_TYPE.NGL].pdbData}
         height={size}
         isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
         measuredProximity={measuredProximity}

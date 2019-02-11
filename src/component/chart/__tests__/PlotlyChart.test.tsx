@@ -132,7 +132,7 @@ describe('PlotlyChart', () => {
         onClickCallback: onClickSpy,
       });
       await dispatchPlotlyEvent(wrapper, 'plotly_click', { x: 1, y: 2 });
-      const chellEvent = onClickSpy.mock.calls[0][0] as ChellChartEvent;
+      const chellEvent = (onClickSpy.mock.calls[0] as ChellChartEvent[])[0];
       expect(chellEvent.chartPiece).toBe(CHELL_CHART_PIECE.POINT);
       expect(chellEvent.type).toBe(CHELL_CHART_EVENT_TYPE.CLICK);
       expect(chellEvent.selectedPoints).toEqual([1, 2]);
@@ -145,7 +145,8 @@ describe('PlotlyChart', () => {
         onClickCallback: onClickSpy,
       });
       dispatchPlotlySecondaryAxisEvent(wrapper, 'plotly_click', { data: { xaxis: 'x2', yaxis: 'y' }, x: 1, y: 2 });
-      const chellEvent = onClickSpy.mock.calls[0][0] as ChellChartEvent;
+
+      const chellEvent = (onClickSpy.mock.calls[0] as ChellChartEvent[])[0];
       expect(chellEvent.chartPiece).toBe(CHELL_CHART_PIECE.AXIS);
       expect(chellEvent.type).toBe(CHELL_CHART_EVENT_TYPE.CLICK);
       expect(chellEvent.selectedPoints).toEqual([2]);
@@ -158,7 +159,7 @@ describe('PlotlyChart', () => {
         onClickCallback: onClickSpy,
       });
       dispatchPlotlySecondaryAxisEvent(wrapper, 'plotly_click', { data: { xaxis: 'x', yaxis: 'y2' }, x: 1, y: 2 });
-      const chellEvent = onClickSpy.mock.calls[0][0] as ChellChartEvent;
+      const chellEvent = (onClickSpy.mock.calls[0] as ChellChartEvent[])[0];
       expect(chellEvent.chartPiece).toBe(CHELL_CHART_PIECE.AXIS);
       expect(chellEvent.type).toBe(CHELL_CHART_EVENT_TYPE.CLICK);
       expect(chellEvent.selectedPoints).toEqual([1]);

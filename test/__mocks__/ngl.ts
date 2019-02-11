@@ -17,6 +17,7 @@ import { Vector2 } from 'three';
 const ngl = jest.genMockFromModule<typeof NGL>('ngl');
 
 class MockStage {
+  public compList = new Array<MockStructureComponent>();
   public events = new Map<string, (...args: any[]) => void>();
   public callbacks = new Array<(...args: any[]) => void>();
   public tooltip: Partial<HTMLElement> = { textContent: '' };
@@ -81,13 +82,16 @@ class MockStage {
   }
 
   public addComponentFromObject = () => {
-    return new MockStructureComponent(name, {
+    const structure = new MockStructureComponent(name, {
       keyBehavior: this.keyBehavior,
       mouseControls: this.mouseControls,
       mouseObserver: this.mouseObserver,
       tooltip: this.tooltip,
       viewerControls: this.viewerControls,
     });
+    this.compList.push(structure);
+
+    return structure;
   };
   public defaultFileRepresentation = (...args: any[]) => jest.fn();
   public dispose = () => jest.fn();
@@ -95,7 +99,7 @@ class MockStage {
   public removeAllComponents = () => jest.fn();
 }
 
-(ngl.Stage as jest.Mock<NGL.Stage>).mockImplementation((canvas: HTMLCanvasElement) => {
+(ngl.Stage as jest.Mock<NGL.Stage>) = jest.fn().mockImplementation((canvas: HTMLCanvasElement) => {
   return new MockStage(canvas);
 });
 
@@ -186,7 +190,7 @@ class MockStructure {
   }
 }
 
-(ngl.Structure as jest.Mock<NGL.Structure>).mockImplementation((name: string) => {
+(ngl.Structure as jest.Mock<NGL.Structure>) = jest.fn().mockImplementation((name: string) => {
   return new MockStructure(name);
 });
 

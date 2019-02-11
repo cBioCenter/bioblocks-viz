@@ -8,16 +8,14 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { createContainerActions } from '~chell-viz~/action';
 import { ComponentCard } from '~chell-viz~/component';
 import { ChellVisualization } from '~chell-viz~/container';
-import { AnatomogramMapping, CHELL_CSS_STYLE, SPECIES_TYPE } from '~chell-viz~/data';
+import { AnatomogramMapping, ISpringGraphData, SPECIES_TYPE } from '~chell-viz~/data';
+import { EMPTY_FUNCTION } from '~chell-viz~/helper';
 import { ChellMiddlewareTransformer, RootState } from '~chell-viz~/reducer';
 import { getSpecies, getSpring, selectCurrentItems } from '~chell-viz~/selector';
 
 interface IAnatomogramContainerProps {
-  height: number | string;
   selectIds: Set<string>;
   species: SPECIES_TYPE;
-  style: CHELL_CSS_STYLE;
-  width: number | string;
   addLabel(label: string): void;
   removeLabel(label: string): void;
 }
@@ -31,16 +29,9 @@ export class AnatomogramContainerClass extends ChellVisualization<
   IAnatomogramContainerState
 > {
   public static defaultProps = {
-    addLabel: () => {
-      return;
-    },
-    height: '300px',
-    removeLabel: () => {
-      return;
-    },
+    addLabel: EMPTY_FUNCTION,
+    removeLabel: EMPTY_FUNCTION,
     selectIds: Set<string>(),
-    style: {},
-    width: '400px',
   };
 
   public static displayName = 'Anatomogram';
@@ -56,7 +47,8 @@ export class AnatomogramContainerClass extends ChellVisualization<
   }
 
   public setupDataServices() {
-    this.addDatasets(['cells', 'labels']);
+    this.registerDataset('cells', []);
+    this.registerDataset('labels', []);
     ChellMiddlewareTransformer.addTransform({
       fn: state => {
         const anatomogramMap = AnatomogramMapping[this.props.species];
@@ -66,20 +58,24 @@ export class AnatomogramContainerClass extends ChellVisualization<
         });
 
         let cellIndices = Set<number>();
-        getSpring(state).graphData.nodes.forEach(node => {
-          candidateLabels.forEach(label => {
-            if (label && Object.values(node.labelForCategory).includes(label)) {
-              cellIndices = cellIndices.add(node.number);
+        const springDataHook = ChellVisualization.getActiveChellHooks().springGraphData;
+        if (springDataHook) {
+          const springData = springDataHook() as ISpringGraphData;
+          springData.nodes.forEach(node => {
+            candidateLabels.forEach(label => {
+              if (label && Object.values(node.labelForCategory).includes(label)) {
+                cellIndices = cellIndices.add(node.number);
 
-              return;
-            }
+                return;
+              }
+            });
           });
-        });
+        }
 
         return cellIndices;
       },
       fromState: 'chell/labels',
-      toState: { stateName: 'cells' },
+      toState: 'chell/cells',
     });
     ChellMiddlewareTransformer.addTransform({
       fn: state => {

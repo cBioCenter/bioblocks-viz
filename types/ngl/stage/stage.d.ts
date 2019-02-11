@@ -227,11 +227,13 @@ declare module 'ngl' {
     /**
      * Iterator over each component and executing the callback.
      */
+    // tslint:disable-next-line:no-reserved-keywords
     public eachComponent(callback: () => void, type?: undefined | string): void;
 
     /**
      * Iterator over each representation and executing the callback.
      */
+    // tslint:disable-next-line:no-reserved-keywords
     public eachRepresentation(callback: () => void, type?: undefined | string): void;
     public getBox(): Box3;
     public getCenter(optionalTarget?: Vector3): Vector3;
@@ -302,11 +304,13 @@ declare module 'ngl' {
      * stage.loadFile( file );
      *
      * // load from URL and add a 'ball+stick' representation with double/triple bonds
-     * stage.loadFile( "http://files.rcsb.org/download/1crn.cif" ).then( function( comp ){ comp.addRepresentation( "ball+stick", { multipleBond: true } ); } );
+     * stage.loadFile( "http://files.rcsb.org/download/1crn.cif" )\
+     *   .then( function( comp ){ comp.addRepresentation( "ball+stick", { multipleBond: true } ); } );
      *
      * @param path Either a URL or an object containing the file data.
      * @param [params] Loading parameters.
-     * @returns A Promise object that resolves to a StructureComponent, a SurfaceComponent or a ScriptComponent object, depending on the type of the loaded file.
+     * @returns A Promise object that resolves to a\
+     *  StructureComponent, a SurfaceComponent or a ScriptComponent object, depending on the type of the loaded file.
      */
     public loadFile(
       path: string | File | Blob,

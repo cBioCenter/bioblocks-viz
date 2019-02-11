@@ -5,6 +5,7 @@ export * from './ChellConfig';
 export * from './ChellData';
 export * from './ChellPDB';
 export * from './CouplingContainer';
+export * from './Dataset';
 export * from './PlotlyData';
 export * from './Protein';
 export * from './Spring';

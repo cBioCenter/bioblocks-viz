@@ -35,6 +35,15 @@ describe('ContainerAction', () => {
     expect(createContainerActions('example').remove('Heart')).toEqual(expectedAction);
   });
 
+  it('Should create remove multiple actions.', () => {
+    const expectedAction = {
+      meta: 'example',
+      payload: ['Heart', 'Air'],
+      type: 'CHELL/EXAMPLE_REMOVE_MULTIPLE',
+    };
+    expect(createContainerActions('example').removeMultiple(['Heart', 'Air'])).toEqual(expectedAction);
+  });
+
   it('Should create set actions.', () => {
     const expectedAction = {
       meta: 'example',

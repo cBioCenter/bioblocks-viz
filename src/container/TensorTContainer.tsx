@@ -67,7 +67,7 @@ export class TensorTContainerClass extends ChellVisualization<ITensorContainerPr
   }
 
   public setupDataServices() {
-    this.addDatasets(['cells']);
+    this.registerDataset('cells', []);
   }
 
   public async componentDidMount() {

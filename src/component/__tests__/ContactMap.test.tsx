@@ -2,8 +2,7 @@ import { mount, shallow } from 'enzyme';
 import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 
-import { ContactMap, ContactMapClass, IContactMapProps } from '~chell-viz~/component';
-import { initialResidueContext, initialSecondaryStructureContext } from '~chell-viz~/context';
+import { ContactMapClass } from '~chell-viz~/component';
 import {
   Chell1DSection,
   ChellPDB,
@@ -98,11 +97,6 @@ describe('ContactMap', () => {
   });
   // Translated from example1/coupling_scores.csv
 
-  it('Should wrap a ContactMapClass safely.', () => {
-    const wrapper = mount(<ContactMap />);
-    expect(wrapper.find(ContactMapClass)).toHaveLength(1);
-  });
-
   describe('Snapshots', () => {
     it('Should match existing snapshot when given no data.', () => {
       expect(shallow(<ContactMapClass />)).toMatchSnapshot();
@@ -114,7 +108,6 @@ describe('ContactMap', () => {
 
     it('Should match snapshot when locked residues are added.', async () => {
       const wrapper = await getAsyncMountedComponent(<ContactMapClass data={sampleData} />);
-      expect((wrapper.props() as IContactMapProps).residueContext).toEqual(initialResidueContext);
       const expectedSelectedPoints = new Map(
         Object.entries({
           '37,46': [37, 46],
@@ -146,10 +139,7 @@ describe('ContactMap', () => {
         shallow(
           <ContactMapClass
             data={sampleData}
-            residueContext={{
-              ...initialResidueContext,
-              hoveredResidues: [sampleData.couplingScores.getObservedContacts()[0].i],
-            }}
+            hoveredResidues={[sampleData.couplingScores.getObservedContacts()[0].i]}
           />,
         ),
       ).toMatchSnapshot();
@@ -157,17 +147,7 @@ describe('ContactMap', () => {
 
     it('Should match existing snapshot when multiple points are hovered.', () => {
       const contact = sampleData.couplingScores.getObservedContacts()[0];
-      expect(
-        shallow(
-          <ContactMapClass
-            data={sampleData}
-            residueContext={{
-              ...initialResidueContext,
-              hoveredResidues: [contact.i, contact.j],
-            }}
-          />,
-        ),
-      ).toMatchSnapshot();
+      expect(shallow(<ContactMapClass data={sampleData} hoveredResidues={[contact.i, contact.j]} />)).toMatchSnapshot();
     });
 
     it('Should match existing snapshot when multiple points are selected.', () => {
@@ -175,27 +155,17 @@ describe('ContactMap', () => {
       const wrapper = shallow(
         <ContactMapClass
           data={sampleData}
-          residueContext={{
-            ...initialResidueContext,
-            hoveredResidues: [contacts[0].i, contacts[0].j],
-            lockedResiduePairs: new Map(
-              Object.entries({
-                '41,52': [41, 52],
-              }),
-            ),
+          hoveredResidues={[contacts[0].i, contacts[0].j]}
+          lockedResiduePairs={{
+            '41,52': [41, 52],
           }}
         />,
       );
       wrapper.setProps({
-        residueContext: {
-          ...initialResidueContext,
-          hoveredResidues: [contacts[0].i, contacts[0].j],
-          lockedResiduePairs: new Map(
-            Object.entries({
-              '41,52': [41, 52],
-              '50,56': [50, 56],
-            }),
-          ),
+        hoveredResidues: [contacts[0].i, contacts[0].j],
+        lockedResiduePairs: {
+          '41,52': [41, 52],
+          '50,56': [50, 56],
         },
       });
       expect(wrapper).toMatchSnapshot();
@@ -206,10 +176,7 @@ describe('ContactMap', () => {
     it('Should invoke callback to add locked residues when a click event is fired.', async () => {
       const onClickSpy = jest.fn();
       const wrapper = await getAsyncMountedComponent(
-        <ContactMapClass
-          data={sampleData}
-          residueContext={{ ...initialResidueContext, toggleLockedResiduePair: onClickSpy }}
-        />,
+        <ContactMapClass data={sampleData} toggleLockedResiduePair={onClickSpy} />,
       );
       await dispatchPlotlyEvent(wrapper, 'plotly_click');
 
@@ -219,10 +186,7 @@ describe('ContactMap', () => {
     it('Should invoke callback to add hovered residues when a hover event is fired.', async () => {
       const onHoverSpy = jest.fn();
       const wrapper = await getAsyncMountedComponent(
-        <ContactMapClass
-          data={sampleData}
-          residueContext={{ ...initialResidueContext, addHoveredResidues: onHoverSpy }}
-        />,
+        <ContactMapClass data={sampleData} addHoveredResidues={onHoverSpy} />,
       );
       await dispatchPlotlyEvent(wrapper, 'plotly_hover');
 
@@ -232,10 +196,7 @@ describe('ContactMap', () => {
     it('Should invoke callback to remove hovered residues when the mouse leaves.', async () => {
       const onHoverSpy = jest.fn();
       const wrapper = await getAsyncMountedComponent(
-        <ContactMapClass
-          data={sampleData}
-          residueContext={{ ...initialResidueContext, removeHoveredResidues: onHoverSpy }}
-        />,
+        <ContactMapClass data={sampleData} removeHoveredResidues={onHoverSpy} />,
       );
       await dispatchPlotlyEvent(wrapper, 'plotly_unhover');
 
@@ -260,10 +221,7 @@ describe('ContactMap', () => {
             ...sampleData,
             secondaryStructures: [[testSecStruct]],
           }}
-          secondaryStructureContext={{
-            ...initialSecondaryStructureContext,
-            addSelectedSecondaryStructure: addSecondaryStructureSpy,
-          }}
+          addSelectedSecondaryStructure={addSecondaryStructureSpy}
         />,
       );
       const data = {
@@ -284,11 +242,8 @@ describe('ContactMap', () => {
             ...sampleData,
             secondaryStructures: [[testSecStruct]],
           }}
-          secondaryStructureContext={{
-            ...initialSecondaryStructureContext,
-            removeSecondaryStructure: removeSecondaryStructureSpy,
-            selectedSecondaryStructures: [testSecStruct],
-          }}
+          removeSecondaryStructure={removeSecondaryStructureSpy}
+          selectedSecondaryStructures={[testSecStruct]}
         />,
       );
       const data = {
@@ -309,10 +264,7 @@ describe('ContactMap', () => {
             ...sampleData,
             secondaryStructures: [[testSecStruct]],
           }}
-          secondaryStructureContext={{
-            ...initialSecondaryStructureContext,
-            addHoveredSecondaryStructure: toggleSecondaryStructureSpy,
-          }}
+          addHoveredSecondaryStructure={toggleSecondaryStructureSpy}
         />,
       );
       const data = {
@@ -333,10 +285,7 @@ describe('ContactMap', () => {
             ...sampleData,
             secondaryStructures: [[testSecStruct]],
           }}
-          secondaryStructureContext={{
-            ...initialSecondaryStructureContext,
-            addHoveredSecondaryStructure: toggleSecondaryStructureSpy,
-          }}
+          addHoveredSecondaryStructure={toggleSecondaryStructureSpy}
         />,
       );
       const data = {
@@ -357,12 +306,9 @@ describe('ContactMap', () => {
             ...sampleData,
             secondaryStructures: [[testSecStruct]],
           }}
-          secondaryStructureContext={{
-            ...initialSecondaryStructureContext,
-            hoveredSecondaryStructures: [testSecStruct],
-            removeHoveredSecondaryStructure: removeSecondaryStructureSpy,
-            selectedSecondaryStructures: [],
-          }}
+          hoveredSecondaryStructures={[testSecStruct]}
+          removeHoveredSecondaryStructure={removeSecondaryStructureSpy}
+          selectedSecondaryStructures={[]}
         />,
       );
       const data: Partial<plotly.PlotScatterDataPoint> = {
@@ -383,10 +329,7 @@ describe('ContactMap', () => {
             ...sampleData,
             secondaryStructures: [[testSecStruct]],
           }}
-          secondaryStructureContext={{
-            ...initialSecondaryStructureContext,
-            addHoveredSecondaryStructure: toggleSecondaryStructureSpy,
-          }}
+          addHoveredSecondaryStructure={toggleSecondaryStructureSpy}
         />,
       );
       const data: Partial<plotly.PlotScatterDataPoint> = {
@@ -400,12 +343,7 @@ describe('ContactMap', () => {
 
     it('Should _not_ clear residues when given new data.', async () => {
       const onClearResidueSpy = jest.fn();
-      const wrapper = await getAsyncMountedComponent(
-        <ContactMapClass
-          data={sampleData}
-          residueContext={{ ...initialResidueContext, clearAllResidues: onClearResidueSpy }}
-        />,
-      );
+      const wrapper = await getAsyncMountedComponent(<ContactMapClass data={sampleData} />);
       wrapper.update();
       wrapper.setProps({
         data: emptyData,

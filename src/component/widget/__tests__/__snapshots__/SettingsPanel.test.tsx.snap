@@ -31,6 +31,7 @@ exports[`SettingsPanel Should match the existing snapshot when given no configur
     <SidebarPushable
       style={
         Object {
+          "height": "100%",
           "width": "100%",
         }
       }

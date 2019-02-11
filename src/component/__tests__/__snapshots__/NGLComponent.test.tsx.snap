@@ -1,76 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NGLComponent Should match existing snapshot when unconnected to a context. 1`] = `
-<DimmerDimmable
-  dimmed={true}
+<ComponentCard
+  componentName="NGL Viewer"
+  frameHeight={0}
+  frameWidth={0}
+  headerHeight={32}
+  height="525px"
+  iconSrc="assets/icons/spring-icon.png"
+  isFramedComponent={false}
+  isFullPage={false}
+  padding={0}
+  showSettings={false}
+  width="525px"
 >
-  <Dimmer
-    active={false}
-  >
-    <Loader />
-  </Dimmer>
-  <SettingsPanel
-    configurations={
-      Array [
-        Object {
-          "name": "Clear Selections",
-          "onClick": [Function],
-          "type": "BUTTON",
-        },
-        Object {
-          "current": "CLOSEST",
-          "name": "Proximity Metric",
-          "onChange": [Function],
-          "options": Array [
-            "Closest",
-            "C-α",
-          ],
-          "type": "RADIO",
-        },
-        Object {
-          "current": "default",
-          "name": "Structure Representation Type",
-          "onChange": [Function],
-          "options": Array [
-            "Default",
-            "Spacefill",
-            "Backbone",
-            "Cartoon",
-            "Surface",
-            "Tube",
-          ],
-          "type": "RADIO",
-        },
-      ]
+  <div
+    className="NGLComponent"
+    style={
+      Object {
+        "height": "90%",
+        "width": "100%",
+      }
     }
-    direction="left"
-    inverted={true}
-    opacity={0.6}
-    showConfigurations={true}
-    width="100%"
   >
     <div
-      className="NGLComponent"
+      className="NGLCanvas"
+      onKeyDown={[Function]}
+      onMouseLeave={[Function]}
+      role="img"
       style={
         Object {
           "height": "100%",
           "width": "100%",
         }
       }
-    >
-      <div
-        className="NGLCanvas"
-        onKeyDown={[Function]}
-        onMouseLeave={[Function]}
-        role="img"
-        style={
-          Object {
-            "height": "100%",
-            "width": "100%",
-          }
-        }
-      />
-    </div>
-  </SettingsPanel>
-</DimmerDimmable>
+    />
+  </div>
+</ComponentCard>
 `;

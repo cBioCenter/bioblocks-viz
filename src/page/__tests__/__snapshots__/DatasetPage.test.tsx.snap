@@ -25,6 +25,24 @@ exports[`DatasetPage Should match existing snapshot for initial visualizations. 
     >
       <Connect(Anatomogram) />
     </GridColumn>
+    <GridColumn
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+    >
+      <Connect(NGLContainerClass) />
+    </GridColumn>
+    <GridColumn
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+    >
+      <Connect(PredictedContactMapContainerClass) />
+    </GridColumn>
   </Grid>
 </div>
 `;
@@ -68,6 +86,24 @@ exports[`DatasetPage Should match existing snapshot for initial visualizations. 
         Currently unsupported visualization 'empty'
       </Message>
     </GridColumn>
+    <GridColumn
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+    >
+      <Connect(NGLContainerClass) />
+    </GridColumn>
+    <GridColumn
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+    >
+      <Connect(PredictedContactMapContainerClass) />
+    </GridColumn>
   </Grid>
 </div>
 `;
@@ -99,6 +135,24 @@ exports[`DatasetPage Should match existing snapshot for initial visualizations. 
         datasetLocation="{hpc/sample}"
         isFullPage={true}
       />
+    </GridColumn>
+    <GridColumn
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+    >
+      <Connect(NGLContainerClass) />
+    </GridColumn>
+    <GridColumn
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+    >
+      <Connect(PredictedContactMapContainerClass) />
     </GridColumn>
   </Grid>
 </div>
@@ -146,6 +200,24 @@ exports[`DatasetPage Should match existing snapshot for initial visualizations. 
         Currently unsupported visualization 'empty'
       </Message>
     </GridColumn>
+    <GridColumn
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+    >
+      <Connect(NGLContainerClass) />
+    </GridColumn>
+    <GridColumn
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+    >
+      <Connect(PredictedContactMapContainerClass) />
+    </GridColumn>
   </Grid>
 </div>
 `;
@@ -177,6 +249,24 @@ exports[`DatasetPage Should match existing snapshot for initial visualizations. 
         datasetLocation="{hpc/sample}"
         isFullPage={true}
       />
+    </GridColumn>
+    <GridColumn
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+    >
+      <Connect(NGLContainerClass) />
+    </GridColumn>
+    <GridColumn
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+    >
+      <Connect(PredictedContactMapContainerClass) />
     </GridColumn>
   </Grid>
 </div>
@@ -224,6 +314,24 @@ exports[`DatasetPage Should match existing snapshot for initial visualizations. 
         Currently unsupported visualization 'empty'
       </Message>
     </GridColumn>
+    <GridColumn
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+    >
+      <Connect(NGLContainerClass) />
+    </GridColumn>
+    <GridColumn
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+    >
+      <Connect(PredictedContactMapContainerClass) />
+    </GridColumn>
   </Grid>
 </div>
 `;
@@ -242,7 +350,26 @@ exports[`DatasetPage Should match existing snapshot when changing the visualizat
     padded={true}
     stackable={true}
     stretched={false}
-  />
+  >
+    <GridColumn
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+    >
+      <Connect(NGLContainerClass) />
+    </GridColumn>
+    <GridColumn
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+    >
+      <Connect(PredictedContactMapContainerClass) />
+    </GridColumn>
+  </Grid>
 </div>
 `;
 
@@ -260,6 +387,25 @@ exports[`DatasetPage Should match existing snapshot when no props are provided. 
     padded={true}
     stackable={true}
     stretched={false}
-  />
+  >
+    <GridColumn
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+    >
+      <Connect(NGLContainerClass) />
+    </GridColumn>
+    <GridColumn
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+    >
+      <Connect(PredictedContactMapContainerClass) />
+    </GridColumn>
+  </Grid>
 </div>
 `;

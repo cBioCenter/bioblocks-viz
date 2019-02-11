@@ -1,20 +1,15 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
 import { Dimmer, Loader } from 'semantic-ui-react';
 
+import { createContainerActions, createResiduePairActions } from '~chell-viz~/action';
 import {
   ContactMapChart,
   generateChartDataEntry,
   IContactMapChartData,
   IContactMapChartPoint,
 } from '~chell-viz~/component';
-import {
-  initialResidueContext,
-  initialSecondaryStructureContext,
-  IResidueContext,
-  ISecondaryStructureContext,
-  ResidueContextConsumer,
-  SecondaryStructureContextConsumer,
-} from '~chell-viz~/context';
 import {
   CHELL_CSS_STYLE,
   ChellChartEvent,
@@ -25,26 +20,41 @@ import {
   ICouplingScore,
   RESIDUE_TYPE,
   SECONDARY_STRUCTURE,
+  SECONDARY_STRUCTURE_SECTION,
   SliderWidgetConfig,
 } from '~chell-viz~/data';
+import { EMPTY_FUNCTION } from '~chell-viz~/helper';
+import { ILockedResiduePair } from '~chell-viz~/reducer';
+import { getCandidates, getHovered, getLocked, selectCurrentItems } from '~chell-viz~/selector';
 
 export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
 export type ContactMapCallback = (coupling: CONTACT_MAP_CB_RESULT_TYPE) => void;
 
 export interface IContactMapProps {
+  candidateResidues: RESIDUE_TYPE[];
   configurations: ChellWidgetConfig[];
   data: IContactMapData;
   formattedPoints: IContactMapChartData[];
   height: number | string;
   highlightColor: string;
+  hoveredResidues: RESIDUE_TYPE[];
+  hoveredSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
   isDataLoading: boolean;
+  lockedResiduePairs: ILockedResiduePair;
   observedColor: string;
-  onBoxSelection?: ((residues: RESIDUE_TYPE[]) => void);
-  residueContext: IResidueContext;
-  secondaryStructureContext: ISecondaryStructureContext;
+  selectedSecondaryStructures: SECONDARY_STRUCTURE;
   showConfigurations: boolean;
   style?: CHELL_CSS_STYLE;
   width: number | string;
+  addHoveredResidues(residues: RESIDUE_TYPE[]): void;
+  addHoveredSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
+  addSelectedSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
+  removeAllLockedResiduePairs(): void;
+  removeSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
+  removeHoveredResidues(): void;
+  removeHoveredSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
+  onBoxSelection?(residues: RESIDUE_TYPE[]): void;
+  toggleLockedResiduePair(residuePair: ILockedResiduePair): void;
 }
 
 export const initialContactMapState = {
@@ -55,6 +65,10 @@ export type ContactMapState = Readonly<typeof initialContactMapState>;
 
 export class ContactMapClass extends React.Component<IContactMapProps, ContactMapState> {
   public static defaultProps = {
+    addHoveredResidues: EMPTY_FUNCTION,
+    addHoveredSecondaryStructure: EMPTY_FUNCTION,
+    addSelectedSecondaryStructure: EMPTY_FUNCTION,
+    candidateResidues: [],
     configurations: new Array<ChellWidgetConfig>(),
     data: {
       couplingScores: new CouplingContainer(),
@@ -64,15 +78,18 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     formattedPoints: new Array<IContactMapChartData>(),
     height: '100%',
     highlightColor: '#ff8800',
+    hoveredResidues: [],
+    hoveredSecondaryStructures: [],
     isDataLoading: false,
+    lockedResiduePairs: {},
     observedColor: '#0000ff',
-    residueContext: {
-      ...initialResidueContext,
-    },
-    secondaryStructureContext: {
-      ...initialSecondaryStructureContext,
-    },
+    removeAllLockedResiduePairs: EMPTY_FUNCTION,
+    removeHoveredResidues: EMPTY_FUNCTION,
+    removeHoveredSecondaryStructure: EMPTY_FUNCTION,
+    removeSecondaryStructure: EMPTY_FUNCTION,
+    selectedSecondaryStructures: [],
     showConfigurations: true,
+    toggleLockedResiduePair: EMPTY_FUNCTION,
     width: '100%',
   };
 
@@ -87,14 +104,14 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
   }
 
   public componentDidUpdate(prevProps: IContactMapProps) {
-    const { data, residueContext } = this.props;
-    if (data !== prevProps.data || residueContext.lockedResiduePairs !== prevProps.residueContext.lockedResiduePairs) {
+    const { data, lockedResiduePairs } = this.props;
+    if (data !== prevProps.data || lockedResiduePairs !== prevProps.lockedResiduePairs) {
       this.setupPointsToPlot(data.couplingScores);
     }
   }
 
   public render() {
-    const { configurations, isDataLoading, residueContext, style } = this.props;
+    const { configurations, isDataLoading, removeAllLockedResiduePairs, style } = this.props;
     const { pointsToPlot } = this.state;
 
     return (
@@ -107,7 +124,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
           {this.renderContactMapChart(pointsToPlot, [
             {
               name: 'Clear Selections',
-              onClick: residueContext.removeAllLockedResiduePairs,
+              onClick: removeAllLockedResiduePairs,
               type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
             },
             ...configurations,
@@ -134,7 +151,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
   };
 
   protected setupPointsToPlot(couplingContainer: CouplingContainer) {
-    const { data, formattedPoints, observedColor, highlightColor, residueContext } = this.props;
+    const { data, lockedResiduePairs, hoveredResidues, formattedPoints, observedColor, highlightColor } = this.props;
     const { pointsToPlot } = this.state;
 
     const chartNames = {
@@ -167,8 +184,6 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       ...formattedPoints,
     );
 
-    const { lockedResiduePairs, hoveredResidues } = residueContext;
-
     const chartPoints = new Array<IContactMapChartPoint>();
 
     if (hoveredResidues.length >= 1) {
@@ -178,10 +193,10 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       });
     }
 
-    if (lockedResiduePairs.size >= 1) {
+    if (Object.keys(lockedResiduePairs).length >= 1) {
       chartPoints.push(
-        ...Array.from(lockedResiduePairs.keys()).reduce((reduceResult: IContactMapChartPoint[], key) => {
-          const keyPair = lockedResiduePairs.get(key);
+        ...Array.from(Object.keys(lockedResiduePairs)).reduce((reduceResult: IContactMapChartPoint[], key) => {
+          const keyPair = lockedResiduePairs[key];
           if (keyPair && keyPair.length === 2) {
             reduceResult.push({ i: keyPair[0], j: keyPair[1], dist: 0 });
           }
@@ -220,29 +235,32 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 
   protected renderContactMapChart(pointsToPlot: IContactMapChartData[], configurations: ChellWidgetConfig[]) {
     const {
+      candidateResidues,
       data,
       height,
       onBoxSelection,
-      residueContext,
+      selectedSecondaryStructures,
       showConfigurations,
-      secondaryStructureContext,
+      addHoveredResidues,
+      removeHoveredResidues,
+      toggleLockedResiduePair,
       width,
     } = this.props;
 
     return (
       <ContactMapChart
-        candidateResidues={residueContext.candidateResidues}
+        candidateResidues={candidateResidues}
         configurations={configurations}
         contactData={pointsToPlot}
         height={height}
-        onClickCallback={this.onMouseClick(residueContext.toggleLockedResiduePair)}
-        onHoverCallback={this.onMouseEnter(residueContext.addHoveredResidues)}
+        onClickCallback={this.onMouseClick(toggleLockedResiduePair)}
+        onHoverCallback={this.onMouseEnter(addHoveredResidues)}
         onSelectedCallback={this.onMouseSelect(onBoxSelection)}
-        onUnHoverCallback={this.onMouseLeave(residueContext.removeHoveredResidues)}
+        onUnHoverCallback={this.onMouseLeave(removeHoveredResidues)}
         range={data.couplingScores.residueIndexRange.max + 20}
         secondaryStructures={data.secondaryStructures ? data.secondaryStructures : []}
         showConfigurations={showConfigurations}
-        selectedSecondaryStructures={[secondaryStructureContext.selectedSecondaryStructures]}
+        selectedSecondaryStructures={[selectedSecondaryStructures]}
         width={width}
       />
     );
@@ -267,12 +285,18 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 
   protected onMouseEnter = (cb: (residue: RESIDUE_TYPE[]) => void) => (e: ChellChartEvent) => {
     if (e.isAxis()) {
-      const { secondaryStructureContext, data } = this.props;
+      const { addHoveredSecondaryStructure, hoveredSecondaryStructures, data } = this.props;
 
       for (const secondaryStructure of data.secondaryStructures) {
         for (const section of secondaryStructure) {
-          if (section.contains(...e.selectedPoints)) {
-            secondaryStructureContext.addHoveredSecondaryStructure(section);
+          if (
+            section.contains(...e.selectedPoints) &&
+            !hoveredSecondaryStructures.find(
+              secStruct =>
+                secStruct.end === section.end && secStruct.label === section.label && secStruct.start === section.start,
+            )
+          ) {
+            addHoveredSecondaryStructure(section);
           }
         }
       }
@@ -283,12 +307,16 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 
   protected onMouseLeave = (cb?: (residue: RESIDUE_TYPE[]) => void) => (e: ChellChartEvent) => {
     if (e.isAxis()) {
-      const { data, secondaryStructureContext } = this.props;
+      const { data, hoveredSecondaryStructures, removeHoveredSecondaryStructure } = this.props;
 
       for (const secondaryStructure of data.secondaryStructures) {
         for (const section of secondaryStructure) {
-          if (section.contains(...e.selectedPoints)) {
-            secondaryStructureContext.removeHoveredSecondaryStructure(section);
+          const searchResult = hoveredSecondaryStructures.find(
+            secStruct =>
+              secStruct.end === section.end && secStruct.label === section.label && secStruct.start === section.start,
+          );
+          if (section.contains(...e.selectedPoints) && searchResult) {
+            removeHoveredSecondaryStructure(searchResult);
           }
         }
       }
@@ -297,23 +325,23 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     }
   };
 
-  protected onMouseClick = (cb: (residues: RESIDUE_TYPE[]) => void) => (e: ChellChartEvent) => {
+  protected onMouseClick = (cb: (residues: ILockedResiduePair) => void) => (e: ChellChartEvent) => {
     if (e.isAxis()) {
-      const { data, secondaryStructureContext } = this.props;
+      const { addSelectedSecondaryStructure, data, removeSecondaryStructure, selectedSecondaryStructures } = this.props;
 
       for (const secondaryStructure of data.secondaryStructures) {
         for (const section of secondaryStructure) {
           if (section.contains(...e.selectedPoints)) {
-            if (secondaryStructureContext.selectedSecondaryStructures.includes(section)) {
-              secondaryStructureContext.removeSecondaryStructure(section);
+            if (selectedSecondaryStructures.includes(section)) {
+              removeSecondaryStructure(section);
             } else {
-              secondaryStructureContext.addSelectedSecondaryStructure(section);
+              addSelectedSecondaryStructure(section);
             }
           }
         }
       }
     } else {
-      cb(e.selectedPoints);
+      cb({ [e.selectedPoints.sort().toString()]: e.selectedPoints });
     }
   };
 
@@ -326,22 +354,36 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
   };
 }
 
-type requiredProps = Omit<IContactMapProps, keyof typeof ContactMapClass.defaultProps> & Partial<IContactMapProps>;
+const mapStateToProps = (state: { [key: string]: any }) => ({
+  candidateResidues: getCandidates(state).toArray(),
+  hoveredResidues: getHovered(state).toArray(),
+  hoveredSecondaryStructures: selectCurrentItems<SECONDARY_STRUCTURE_SECTION>(
+    state,
+    'secondaryStructure/hovered',
+  ).toArray(),
+  lockedResiduePairs: getLocked(state).toJS(),
+  selectedSecondaryStructures: selectCurrentItems<SECONDARY_STRUCTURE_SECTION>(
+    state,
+    'secondaryStructure/selected',
+  ).toArray(),
+});
 
-const ContactMap = (props: requiredProps) => (
-  <ResidueContextConsumer>
-    {residueContext => (
-      <SecondaryStructureContextConsumer>
-        {secondaryStructureContext => (
-          <ContactMapClass
-            residueContext={residueContext}
-            secondaryStructureContext={secondaryStructureContext}
-            {...props}
-          />
-        )}
-      </SecondaryStructureContextConsumer>
-    )}
-  </ResidueContextConsumer>
-);
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators(
+    {
+      addHoveredResidues: createResiduePairActions().hovered.set,
+      addHoveredSecondaryStructure: createContainerActions('secondaryStructure/hovered').add,
+      addSelectedSecondaryStructure: createContainerActions('secondaryStructure/selected').add,
+      removeAllLockedResiduePairs: createResiduePairActions().locked.clear,
+      removeHoveredResidues: createResiduePairActions().hovered.clear,
+      removeHoveredSecondaryStructure: createContainerActions('secondaryStructure/hovered').remove,
+      removeSecondaryStructure: createContainerActions('secondaryStructure/selected').remove,
+      toggleLockedResiduePair: createResiduePairActions().locked.toggle,
+    },
+    dispatch,
+  );
 
-export { ContactMap };
+export const ContactMap = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ContactMapClass);
