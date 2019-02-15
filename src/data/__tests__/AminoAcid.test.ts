@@ -15,9 +15,9 @@ describe('Sequence Mismatch', () => {
   it('Should correctly report sequence mismatches.', () => {
     const expected: IResidueMismatchResult[] = [
       {
-        firstAminoAcid: AMINO_ACIDS_BY_SINGLE_LETTER_CODE.E,
+        couplingAminoAcid: AMINO_ACIDS_BY_SINGLE_LETTER_CODE.E,
+        pdbAminoAcid: AMINO_ACIDS_BY_SINGLE_LETTER_CODE.A,
         resno: 8,
-        secondAminoAcid: AMINO_ACIDS_BY_SINGLE_LETTER_CODE.A,
       },
     ];
     expect(getSequenceMismatch(firstSequence, secondSequence)).toEqual(expected);

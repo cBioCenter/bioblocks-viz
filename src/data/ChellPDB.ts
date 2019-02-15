@@ -239,9 +239,9 @@ export class ChellPDB {
           AMINO_ACIDS_BY_SINGLE_LETTER_CODE[couplingAminoAcid.singleLetterCode]
       ) {
         result.push({
-          firstAminoAcid: AMINO_ACIDS_BY_SINGLE_LETTER_CODE[couplingAminoAcid.singleLetterCode],
+          couplingAminoAcid: AMINO_ACIDS_BY_SINGLE_LETTER_CODE[couplingAminoAcid.singleLetterCode],
+          pdbAminoAcid: AMINO_ACIDS_BY_THREE_LETTER_CODE[pdbResCode],
           resno: residue.resno,
-          secondAminoAcid: AMINO_ACIDS_BY_THREE_LETTER_CODE[pdbResCode],
         });
       }
     });

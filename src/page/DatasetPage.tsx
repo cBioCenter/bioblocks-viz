@@ -6,8 +6,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { Grid, Message } from 'semantic-ui-react';
 
 import { createSpringActions, fetchSpringGraphData } from '~chell-viz~/action';
-import { AnatomogramContainer, NGLContainer, SpringContainer, TensorTContainer } from '~chell-viz~/container';
-import { PredictedContactMapContainer } from '~chell-viz~/container/PredictedContactMapContainer';
+import { AnatomogramContainer, SpringContainer, TensorTContainer } from '~chell-viz~/container';
 import { ISpringGraphData, SPECIES_TYPE, VizData } from '~chell-viz~/data';
 import { fetchSpringData } from '~chell-viz~/helper';
 
@@ -39,9 +38,12 @@ export class DatasetPageClass extends React.Component<IDatasetPageProps, IDatase
   }
 
   public componentDidMount() {
-    if (this.props.location) {
-      this.setupSearchParameters(this.props.location.search);
+    const { location, setSpecies } = this.props;
+    const { datasetLocation } = this.state;
+    if (location) {
+      this.setupSearchParameters(location.search);
     }
+    setSpecies(datasetLocation.includes('hpc') ? 'homo_sapiens' : 'mus_musculus');
   }
 
   public componentDidUpdate(prevProps: IDatasetPageProps, prevState: IDatasetPageState) {
@@ -49,9 +51,8 @@ export class DatasetPageClass extends React.Component<IDatasetPageProps, IDatase
     const { datasetLocation } = this.state;
     if (location && location !== prevProps.location) {
       this.setupSearchParameters(location.search);
-    } else if (datasetLocation !== prevState.datasetLocation) {
-      setSpecies(datasetLocation.includes('hpc') ? 'homo_sapiens' : 'mus_musculus');
     }
+    setSpecies(datasetLocation.includes('hpc') ? 'homo_sapiens' : 'mus_musculus');
   }
 
   public render() {
@@ -66,12 +67,6 @@ export class DatasetPageClass extends React.Component<IDatasetPageProps, IDatase
                 {this.renderVisualization(visualization, datasetLocation)}
               </Grid.Column>
             ))}
-          <Grid.Column style={{ width: 'auto' }}>
-            <NGLContainer />
-          </Grid.Column>
-          <Grid.Column style={{ width: 'auto' }}>
-            <PredictedContactMapContainer />
-          </Grid.Column>
         </Grid>
       </div>
     );

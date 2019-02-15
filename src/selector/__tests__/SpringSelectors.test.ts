@@ -7,7 +7,7 @@ describe('SpringSelector', () => {
     const expectedState = {
       category: '',
       graphData: { nodes: [] },
-      species: 'homo_sapiens',
+      species: 'mus_musculus',
     };
     expect(getSpring(undefined as any)).toMatchObject(expectedState);
     expect(getSpring({})).toMatchObject(expectedState);

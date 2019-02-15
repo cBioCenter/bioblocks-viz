@@ -8,7 +8,7 @@ export const getSpring = (state: RootState, namespace = 'chell') => {
     ? {
         category: '',
         graphData: { nodes: [] },
-        species: 'homo_sapiens',
+        species: 'mus_musculus',
       }
     : state[`${namespace}/spring`]) as ISpringReducerState;
 };
