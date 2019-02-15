@@ -143,9 +143,9 @@ export const AMINO_ACIDS: IAminoAcid[] = [
 ];
 
 export interface IResidueMismatchResult {
-  firstAminoAcid: IAminoAcid;
+  couplingAminoAcid: IAminoAcid;
   resno: number;
-  secondAminoAcid: IAminoAcid;
+  pdbAminoAcid: IAminoAcid;
 }
 
 export const getPDBAndCouplingMismatch = (pdbData: ChellPDB, couplingScores: CouplingContainer) => {
@@ -168,9 +168,9 @@ export const getSequenceMismatch = (firstSequence: string, secondSequence: strin
       const pdbAminoAcid = secondSequence[i] as AMINO_ACID_SINGLE_LETTER_CODE;
       if (couplingAminoAcid !== pdbAminoAcid) {
         mismatches.push({
-          firstAminoAcid: AMINO_ACIDS_BY_SINGLE_LETTER_CODE[couplingAminoAcid],
+          couplingAminoAcid: AMINO_ACIDS_BY_SINGLE_LETTER_CODE[couplingAminoAcid],
+          pdbAminoAcid: AMINO_ACIDS_BY_SINGLE_LETTER_CODE[pdbAminoAcid],
           resno: i,
-          secondAminoAcid: AMINO_ACIDS_BY_SINGLE_LETTER_CODE[pdbAminoAcid],
         });
       }
     }

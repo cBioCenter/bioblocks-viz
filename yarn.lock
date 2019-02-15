@@ -585,9 +585,9 @@
   integrity sha512-eajkMXG812/w3w4a1OcBlaTwsFPO5F7fJ/amy+tieQxEMWBlbV1JGSjkFM+zkHNf81Cad+dfIRA+IBkvmvdAeA==
 
 "@types/node@^10.5.5":
-  version "10.12.24"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.24.tgz#b13564af612a22a20b5d95ca40f1bffb3af315cf"
-  integrity sha512-GWWbvt+z9G5otRBW8rssOFgRY87J9N/qbhqfjMZ+gUuL6zoL+Hm6gP/8qQBG4jjimqdaNLCehcVapZ/Fs2WjCQ==
+  version "10.12.26"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.26.tgz#2dec19f1f7981c95cb54bab8f618ecb5dc983d0e"
+  integrity sha512-nMRqS+mL1TOnIJrL6LKJcNZPB8V3eTfRo9FQA2b5gDvrHurC8XbSA86KNe0dShlEL7ReWJv/OU9NL7Z0dnqWTg==
 
 "@types/plotly.js@^1.38.8":
   version "1.43.0"
@@ -730,9 +730,9 @@
   integrity sha512-78AdXtlhpCHT0K3EytMpn4JNxaf5tbqbLcbIRoQIHzpTIyjpxLQKRoxU55ujBXAtg3Nl2h/XWvfDa9dsMOd0pQ==
 
 "@types/three@^0.93.5":
-  version "0.93.19"
-  resolved "https://registry.yarnpkg.com/@types/three/-/three-0.93.19.tgz#6ab16dd9b047e3c4ba9421b590863a86445a0dc2"
-  integrity sha512-CnIJ5o+d6VoJbKE8cwFdjYlBqSRnT+Ea+dvXJYNlEtmUxrwmYimxgF8PqMV/Mk0VwAXdJI8+hm//voWd9tmn+Q==
+  version "0.93.20"
+  resolved "https://registry.yarnpkg.com/@types/three/-/three-0.93.20.tgz#f298e339d52078ea4b2bf96ae814ee476a3a564e"
+  integrity sha512-k+YNaO8Ux6b2UQBIwM/fa4fdnBJpsMSxrHVGHXFsoflFUkvy/TPnvMXj396l1VjzzjqFX/vJFEsrYwpUhztD2g==
 
 "@types/uglify-js@*":
   version "3.0.4"
@@ -8167,9 +8167,9 @@ please-upgrade-node@^3.0.2, please-upgrade-node@^3.1.1:
     semver-compare "^1.0.0"
 
 plotly.js-gl2d-dist@^1.41.1:
-  version "1.44.3"
-  resolved "https://registry.yarnpkg.com/plotly.js-gl2d-dist/-/plotly.js-gl2d-dist-1.44.3.tgz#89408c6e81492f241309986c75737287faa27f9e"
-  integrity sha512-H99Olxs9nM5TFAtrX8yO0d1VmNlMzFJuhsPOWfeCz33COVHfoUaRcFowXQbTPYa+GTcL3nyVWg+l5fXpJdfyeA==
+  version "1.44.4"
+  resolved "https://registry.yarnpkg.com/plotly.js-gl2d-dist/-/plotly.js-gl2d-dist-1.44.4.tgz#87fd64de1485cefe16d327fd4e3731479f1f814e"
+  integrity sha512-S7Q0TpHwC/nKPHECdhxPOCYJ0S2eulEnqnxEN+GAoN/cARsamf6J1f8W43vskGR5jHBbE9gw7CrGRSQrk4l3zw==
 
 pn@^1.1.0:
   version "1.1.0"
@@ -10811,9 +10811,9 @@ webidl-conversions@^4.0.2:
   integrity sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==
 
 webpack-bundle-analyzer@^3.0.2:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/webpack-bundle-analyzer/-/webpack-bundle-analyzer-3.0.3.tgz#dbc7fff8f52058b6714a20fddf309d0790e3e0a0"
-  integrity sha512-naLWiRfmtH4UJgtUktRTLw6FdoZJ2RvCR9ePbwM9aRMsS/KjFerkPZG9epEvXRAw5d5oPdrs9+3p+afNjxW8Xw==
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/webpack-bundle-analyzer/-/webpack-bundle-analyzer-3.0.4.tgz#095638487a664162f19e3b2fb7e621b7002af4b8"
+  integrity sha512-ggDUgtKuQki4vmc93Ej65GlYxeCUR/0THa7gA+iqAGC2FFAxO+r+RM9sAUa8HWdw4gJ3/NZHX/QUcVgRjdIsDg==
   dependencies:
     acorn "^5.7.3"
     bfj "^6.1.1"
@@ -11075,14 +11075,7 @@ ws@^5.2.0:
   dependencies:
     async-limiter "~1.0.0"
 
-ws@^6.0.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-6.1.0.tgz#119a9dbf92c54e190ec18d10e871d55c95cf9373"
-  integrity sha512-H3dGVdGvW2H8bnYpIDc3u3LH8Wue3Qh+Zto6aXXFzvESkTVT6rAfKR6tR/+coaUvxs8yHtmNV0uioBF62ZGSTg==
-  dependencies:
-    async-limiter "~1.0.0"
-
-ws@^6.1.2:
+ws@^6.0.0, ws@^6.1.2:
   version "6.1.3"
   resolved "https://registry.yarnpkg.com/ws/-/ws-6.1.3.tgz#d2d2e5f0e3c700ef2de89080ebc0ac6e1bf3a72d"
   integrity sha512-tbSxiT+qJI223AP4iLfQbkbxkwdFcneYinM2+x46Gx2wgvbaOMO36czfdfVUBRTHvzAMRhDd98sA5d/BuWbQdg==

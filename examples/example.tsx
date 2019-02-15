@@ -99,8 +99,8 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
       if (newMismatches.length >= 1) {
         errorMsg = `Error details: ${newMismatches.length} mismatch(es) detected between coupling scores and PDB!\
         For example, residue number ${newMismatches[0].resno} is '${
-          newMismatches[0].secondAminoAcid.threeLetterCode
-        }' in the PDB but '${newMismatches[0].firstAminoAcid.threeLetterCode}' in the coupling scores file.`;
+          newMismatches[0].pdbAminoAcid.threeLetterCode
+        }' in the PDB but '${newMismatches[0].couplingAminoAcid.threeLetterCode}' in the coupling scores file.`;
         isResidueMappingNeeded = true;
       }
     }
@@ -181,11 +181,12 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
                 exclusive={false}
                 defaultActiveIndex={[]}
                 panels={[
-                  this.renderSequenceAccordionMessage('PDB sequence', pdbData.sequence, mismatches),
+                  this.renderSequenceAccordionMessage('PDB sequence', pdbData.sequence, mismatches, 'pdb'),
                   this.renderSequenceAccordionMessage(
                     'Couplings Score sequence',
                     this.state[VIZ_TYPE.CONTACT_MAP].couplingScores.sequence,
                     mismatches,
+                    'coupling',
                   ),
                 ]}
               />
@@ -221,25 +222,34 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     title: string,
     sequence: string,
     mismatches: IResidueMismatchResult[],
+    pdbOrCoupling: 'pdb' | 'coupling',
   ) => {
     let startIndex = 0;
+    let prevResno = mismatches[0].resno;
     const result = new Array<JSX.Element>();
 
     for (const mismatch of mismatches) {
-      result.push(
-        <React.Fragment key={`mismatch-${mismatch.resno}`}>
-          <span style={{ color: 'black', fontSize: '12px' }}>{sequence.substr(startIndex, mismatch.resno)}</span>
-          <span style={{ color: 'red', fontSize: '16px', textDecoration: 'underline' }}>
-            {sequence.charAt(mismatch.resno)}
-          </span>
-        </React.Fragment>,
-      );
+      const aminoAcid = pdbOrCoupling === 'pdb' ? mismatch.pdbAminoAcid : mismatch.couplingAminoAcid;
+      const resIndex = sequence.indexOf(aminoAcid.singleLetterCode, startIndex + (mismatch.resno - prevResno));
 
-      startIndex = mismatch.resno + 2;
+      if (resIndex >= 0) {
+        result.push(
+          <React.Fragment key={`mismatch-${mismatch.resno}`}>
+            <span style={{ color: 'black', fontSize: '12px' }}>{sequence.substring(startIndex, resIndex)}</span>
+            <span style={{ color: 'red', fontSize: '16px', textDecoration: 'underline' }}>
+              {sequence.charAt(resIndex)}
+            </span>
+          </React.Fragment>,
+        );
+
+        prevResno = mismatch.resno + 1;
+        startIndex = resIndex + 1;
+      }
     }
+
     result.push(
       <span key={'mismatch-final'} style={{ color: 'black', fontSize: '12px' }}>
-        {sequence.substr(startIndex)}
+        {sequence.substring(startIndex)}
       </span>,
     );
 
@@ -374,7 +384,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
   );
 
   protected renderUploadButtonsRow = (isResidueMappingNeeded: boolean) => (
-    <GridRow columns={4}>
+    <GridRow columns={4} textAlign={'center'} verticalAlign={'bottom'}>
       <GridColumn>{this.renderCouplingScoresUploadForm()}</GridColumn>
       <GridColumn>{this.renderPDBUploadForm()}</GridColumn>
       {isResidueMappingNeeded && <GridColumn>{this.renderResidueMappingUploadForm()}</GridColumn>}

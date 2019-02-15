@@ -82,7 +82,7 @@ export class SpringContainerClass extends ChellVisualization<ISpringContainerPro
   public setupDataServices() {
     this.registerDataset('spring/category', '');
     this.registerDataset('spring/graphData');
-    this.registerDataset('spring/species', 'homo_sapiens');
+    this.registerDataset('spring/species', 'mus_musculus');
 
     this.addChellHook('springGraphData', () => this.props.springGraphData);
   }
