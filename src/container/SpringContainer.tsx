@@ -11,6 +11,7 @@ import { createContainerActions, createSpringActions } from '~chell-viz~/action'
 import { ComponentCard } from '~chell-viz~/component';
 import { ChellVisualization } from '~chell-viz~/container';
 import { ISpringGraphData, ISpringLink, ISpringNode } from '~chell-viz~/data';
+import { createSpringReducer } from '~chell-viz~/reducer';
 import { getCategories, getGraphData, selectCurrentItems } from '~chell-viz~/selector';
 
 export interface ISpringContainerProps {
@@ -80,9 +81,7 @@ export class SpringContainerClass extends ChellVisualization<ISpringContainerPro
   }
 
   public setupDataServices() {
-    this.registerDataset('spring/category', '');
-    this.registerDataset('spring/graphData');
-    this.registerDataset('spring/species', 'mus_musculus');
+    createSpringReducer();
 
     this.addChellHook('springGraphData', () => this.props.springGraphData);
   }

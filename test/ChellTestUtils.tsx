@@ -17,7 +17,7 @@ import { IMockPlotlyCanvas } from '~chell-viz~/test';
  * @param Component The component to mount.
  * @returns A wrapper for the component.
  */
-export const getAsyncMountedComponent = async (Component: React.ReactElement<any>) => {
+export const getAsyncMountedComponent = async (Component: React.ReactElement) => {
   const wrapper = mount(Component);
   wrapper.update();
   await Promise.resolve();
@@ -31,7 +31,7 @@ export const getAsyncMountedComponent = async (Component: React.ReactElement<any
  * @param Component The component to mount.
  * @returns A wrapper for the component.
  */
-export const getAsyncShallowComponent = async (Component: React.ReactElement<any>) => {
+export const getAsyncShallowComponent = async (Component: React.ReactElement) => {
   const wrapper = shallow(Component);
   wrapper.update();
   await Promise.resolve();
