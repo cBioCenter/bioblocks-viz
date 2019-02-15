@@ -2123,7 +2123,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
   >
     <Card
       centered={true}
-      className="chell-component-card"
+      className="bioblocks-component-card"
       style={
         Object {
           "height": "525px",
@@ -2134,7 +2134,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       }
     >
       <div
-        className="ui centered card chell-component-card"
+        className="ui centered card bioblocks-component-card"
         onClick={[Function]}
         style={
           Object {

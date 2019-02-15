@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { DatasetPageClass } from '~chell-viz~/page';
+import { DatasetPageClass } from '~bioblocks-viz~/page';
 
 describe('DatasetPage', () => {
   const visualizations = ['anatomogram', 'spring', 'tfjs-tsne'];

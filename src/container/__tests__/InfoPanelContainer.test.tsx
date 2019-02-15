@@ -1,15 +1,15 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { InfoPanelContainerClass } from '~chell-viz~/container';
-import { ChellPDB, CouplingContainer, IContactMapData, SECONDARY_STRUCTURE } from '~chell-viz~/data';
+import { InfoPanelContainerClass } from '~bioblocks-viz~/container';
+import { BioblocksPDB, CouplingContainer, IContactMapData, SECONDARY_STRUCTURE } from '~bioblocks-viz~/data';
 
 describe('InfoPanelContainer', () => {
-  let pdbData: ChellPDB;
+  let pdbData: BioblocksPDB;
   let sampleData: IContactMapData;
 
   beforeEach(async () => {
-    pdbData = await ChellPDB.createPDB('../../../test/data/protein.pdb');
+    pdbData = await BioblocksPDB.createPDB('../../../test/data/protein.pdb');
 
     sampleData = {
       couplingScores: new CouplingContainer([{ i: 1, j: 2 }, { i: 3, j: 4 }]),

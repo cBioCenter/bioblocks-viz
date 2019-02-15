@@ -1,7 +1,7 @@
 import { default as reduxMockStore, MockStoreCreator } from 'redux-mock-store';
 import * as thunk from 'redux-thunk';
 
-import { createSpringActions, fetchSpringGraphData } from '~chell-viz~/action';
+import { createSpringActions, fetchSpringGraphData } from '~bioblocks-viz~/action';
 
 const middleWares = [thunk.default];
 let mockStore: MockStoreCreator;
@@ -11,14 +11,14 @@ describe('SpringAction', () => {
     it('Should create error actions.', () => {
       const expectedAction = {
         payload: Error('Party crashed'),
-        type: 'CHELL/SPRING/GRAPHDATA_FETCH_DATA_FAILURE',
+        type: 'BIOBLOCKS/SPRING/GRAPHDATA_FETCH_DATA_FAILURE',
       };
       expect(createSpringActions().graphData.failure(Error('Party crashed'))).toEqual(expectedAction);
     });
 
     it('Should create request actions.', () => {
       const expectedAction = {
-        type: 'CHELL/SPRING/GRAPHDATA_FETCH_DATA_REQUEST',
+        type: 'BIOBLOCKS/SPRING/GRAPHDATA_FETCH_DATA_REQUEST',
       };
       expect(createSpringActions().graphData.request()).toEqual(expectedAction);
     });
@@ -26,7 +26,7 @@ describe('SpringAction', () => {
     it('Should create success actions.', () => {
       const expectedAction = {
         payload: { nodes: [] },
-        type: 'CHELL/SPRING/GRAPHDATA_FETCH_DATA_SUCCESS',
+        type: 'BIOBLOCKS/SPRING/GRAPHDATA_FETCH_DATA_SUCCESS',
       };
       expect(createSpringActions().graphData.success({ nodes: [] })).toEqual(expectedAction);
     });
@@ -47,7 +47,7 @@ describe('SpringAction', () => {
   describe('Species Actions', () => {
     it('Should create clear actions.', () => {
       const expectedAction = {
-        type: 'CHELL/SPRING/SPECIES_CLEAR',
+        type: 'BIOBLOCKS/SPRING/SPECIES_CLEAR',
       };
       expect(createSpringActions().species.clear()).toEqual(expectedAction);
     });
@@ -56,7 +56,7 @@ describe('SpringAction', () => {
       const expectedAction = {
         meta: 'spring/species',
         payload: 'mus_musculus',
-        type: 'CHELL/SPRING/SPECIES_SET',
+        type: 'BIOBLOCKS/SPRING/SPECIES_SET',
       };
       expect(createSpringActions().species.set('mus_musculus')).toEqual(expectedAction);
     });
@@ -78,11 +78,11 @@ describe('SpringAction', () => {
 
       const expectedActions = [
         {
-          type: 'CHELL/SPRING/GRAPHDATA_FETCH_DATA_REQUEST',
+          type: 'BIOBLOCKS/SPRING/GRAPHDATA_FETCH_DATA_REQUEST',
         },
         {
           payload: { nodes: [] },
-          type: 'CHELL/SPRING/GRAPHDATA_FETCH_DATA_SUCCESS',
+          type: 'BIOBLOCKS/SPRING/GRAPHDATA_FETCH_DATA_SUCCESS',
         },
       ];
 
@@ -95,11 +95,11 @@ describe('SpringAction', () => {
 
       const expectedActions = [
         {
-          type: 'CHELL/SPRING/GRAPHDATA_FETCH_DATA_REQUEST',
+          type: 'BIOBLOCKS/SPRING/GRAPHDATA_FETCH_DATA_REQUEST',
         },
         {
           payload: 'No!',
-          type: 'CHELL/SPRING/GRAPHDATA_FETCH_DATA_FAILURE',
+          type: 'BIOBLOCKS/SPRING/GRAPHDATA_FETCH_DATA_FAILURE',
         },
       ];
 

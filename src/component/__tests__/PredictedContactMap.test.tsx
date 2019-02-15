@@ -1,15 +1,15 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { PredictedContactMap, PredictedContactMapState } from '~chell-viz~/component';
+import { PredictedContactMap, PredictedContactMapState } from '~bioblocks-viz~/component';
 import {
-  Chell1DSection,
+  Bioblocks1DSection,
   CouplingContainer,
   IContactMapData,
   ICouplingScore,
   SECONDARY_STRUCTURE_KEYS,
-} from '~chell-viz~/data';
-import { getAsyncShallowComponent } from '~chell-viz~/test';
+} from '~bioblocks-viz~/data';
+import { getAsyncShallowComponent } from '~bioblocks-viz~/test';
 
 describe('PredictedContactMap', () => {
   let emptyData: IContactMapData;
@@ -47,7 +47,7 @@ describe('PredictedContactMap', () => {
 
     sampleData = {
       couplingScores: new CouplingContainer(Array.from(uniqueScores)),
-      secondaryStructures: [[new Chell1DSection<SECONDARY_STRUCTURE_KEYS>('C', 30, 31)]],
+      secondaryStructures: [[new Bioblocks1DSection<SECONDARY_STRUCTURE_KEYS>('C', 30, 31)]],
     };
   });
 

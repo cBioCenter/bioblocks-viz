@@ -12,9 +12,9 @@
     "noUnusedParameters": false,
     "outDir": "./dist/",
     "paths": {
-      "~chell-viz~": ["./src"],
-      "~chell-viz~/test": ["./test"],
-      "~chell-viz~/*": ["./src/*"],
+      "~bioblocks-viz~": ["./src"],
+      "~bioblocks-viz~/test": ["./test"],
+      "~bioblocks-viz~/*": ["./src/*"],
       "jest": ["node_modules/@types/jest/index.d.ts"],
       "plotly.js-*": ["node_modules/@types/plotly.js"]
     },
@@ -25,7 +25,7 @@
     "typeRoots": ["./types/", "./node_modules/@types"]
   },
   "exclude": ["node_modules"],
-  "include": ["examples/**/*", "src/**/*", "types", "configs/**/*", "test/**/*", "./chell-viz.ts", "./*.tsx"],
+  "include": ["examples/**/*", "src/**/*", "types", "configs/**/*", "test/**/*", "./bioblocks-viz.ts", "./*.tsx"],
   "typeAcquisition": {
     "enable": false
   }

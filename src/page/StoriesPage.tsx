@@ -3,7 +3,7 @@ import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Button, Grid, Header } from 'semantic-ui-react';
 
-import { IStory, Stories } from '~chell-viz~/data';
+import { IStory, Stories } from '~bioblocks-viz~/data';
 
 export interface IStoriesPageProps extends Partial<RouteComponentProps> {}
 

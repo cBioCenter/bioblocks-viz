@@ -1,20 +1,20 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { FeatureViewer, IFeatureViewerState } from '~chell-viz~/component';
-import { Chell1DSection, TintedChell1DSection } from '~chell-viz~/data';
-import { dispatchPlotlyEvent, dispatchPlotlySelectionEvent, getAsyncMountedComponent } from '~chell-viz~/test';
+import { FeatureViewer, IFeatureViewerState } from '~bioblocks-viz~/component';
+import { Bioblocks1DSection, TintedBioblocks1DSection } from '~bioblocks-viz~/data';
+import { dispatchPlotlyEvent, dispatchPlotlySelectionEvent, getAsyncMountedComponent } from '~bioblocks-viz~/test';
 
 describe('ProteinFeatureViewer', () => {
-  let sampleData: Array<TintedChell1DSection<string>>;
+  let sampleData: Array<TintedBioblocks1DSection<string>>;
 
   beforeEach(() => {
     sampleData = [
-      new TintedChell1DSection('N64', 1999, 2001),
-      new TintedChell1DSection('Melee', 2001, 2008),
-      new TintedChell1DSection('Brawl', 2008, 2014),
-      new TintedChell1DSection('3DS/WiiU', 2014, 2018),
-      new TintedChell1DSection('Ultimate', 2018, 2019),
+      new TintedBioblocks1DSection('N64', 1999, 2001),
+      new TintedBioblocks1DSection('Melee', 2001, 2008),
+      new TintedBioblocks1DSection('Brawl', 2008, 2014),
+      new TintedBioblocks1DSection('3DS/WiiU', 2014, 2018),
+      new TintedBioblocks1DSection('Ultimate', 2018, 2019),
     ];
   });
 
@@ -39,7 +39,7 @@ describe('ProteinFeatureViewer', () => {
   });
 
   it('Should match the snapshot when a background bar is provided', () => {
-    const wrapper = shallow(<FeatureViewer backgroundBar={new TintedChell1DSection('', 1999, 2018, 'purple')} />);
+    const wrapper = shallow(<FeatureViewer backgroundBar={new TintedBioblocks1DSection('', 1999, 2018, 'purple')} />);
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -80,7 +80,7 @@ describe('ProteinFeatureViewer', () => {
       expect(onSelectionSpy).toHaveBeenCalledTimes(1);
       const onSelectedArgs = onSelectionSpy.mock.calls[0] as Array<{
         end: number;
-        featuresSelected: Array<Chell1DSection<string>>;
+        featuresSelected: Array<Bioblocks1DSection<string>>;
         length: number;
         start: number;
       }>;

@@ -1,4 +1,4 @@
-import { fetchCSVFile, fetchJSONFile } from '~chell-viz~/helper';
+import { fetchCSVFile, fetchJSONFile } from '~bioblocks-viz~/helper';
 
 describe('FetchHelper', () => {
   beforeEach(() => {
@@ -14,7 +14,7 @@ describe('FetchHelper', () => {
     });
 
     it('Should throw errors.', async () => {
-      const expected = 'Chell-viz error fetching CSV File!';
+      const expected = 'Bioblocks-viz error fetching CSV File!';
       fetchMock.mockResponseOnce('error', { status: 400 });
       await expect(fetchCSVFile('foo.csv')).rejects.toThrowError(expected);
     });
@@ -29,7 +29,7 @@ describe('FetchHelper', () => {
     });
 
     it('Should throw errors.', async () => {
-      const expected = 'Chell-viz error fetching JSON File!';
+      const expected = 'Bioblocks-viz error fetching JSON File!';
       fetchMock.mockResponseOnce('error', { status: 400 });
       await expect(fetchJSONFile('foo.json')).rejects.toThrowError(expected);
     });

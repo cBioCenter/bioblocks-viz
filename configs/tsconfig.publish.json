@@ -7,7 +7,7 @@
     "sourceMap": false,
     "target": "es5"
   },
-  "files": ["../chell-viz.ts"],
+  "files": ["../bioblocks-viz.ts"],
   "include": ["../src/**/*", "../types"],
   "exclude": ["../node_modules", "../**/__tests__/**", "../**/__mocks__/**", "../configs"]
 }

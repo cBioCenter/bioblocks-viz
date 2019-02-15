@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import { createAsyncAction } from 'typesafe-actions';
 
 // tslint:disable-next-line:export-name
-export const createDataActions = <T>(datasetName: string, namespace = 'chell') => {
+export const createDataActions = <T>(datasetName: string, namespace = 'bioblocks') => {
   const reducerName = `${namespace}/${datasetName}`.toUpperCase();
 
   return createAsyncAction(
@@ -12,7 +12,7 @@ export const createDataActions = <T>(datasetName: string, namespace = 'chell') =
   )<void, T, Error>();
 };
 
-export const fetchDataset = <T>(datasetName: string, fetchFn: () => Promise<T>, namespace = 'chell') => async (
+export const fetchDataset = <T>(datasetName: string, fetchFn: () => Promise<T>, namespace = 'bioblocks') => async (
   dispatch: Dispatch,
 ) => {
   const actions = createDataActions<T>(datasetName, namespace);

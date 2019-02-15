@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Card, Dropdown, DropdownItemProps, DropdownProps } from 'semantic-ui-react';
 
-import { NGLComponent, PredictedContactMap } from '~chell-viz~/component';
-import { InfoPanelContainer, SpringContainer, TensorTContainer } from '~chell-viz~/container';
-import { CHELL_DATA_TYPE, IContactMapData, VIZ_TYPE } from '~chell-viz~/data';
+import { NGLComponent, PredictedContactMap } from '~bioblocks-viz~/component';
+import { InfoPanelContainer, SpringContainer, TensorTContainer } from '~bioblocks-viz~/container';
+import { BIOBLOCKS_DATA_TYPE, IContactMapData, VIZ_TYPE } from '~bioblocks-viz~/data';
 
 export interface IVizPanelProps {
-  data: Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>;
+  data: Partial<{ [K in VIZ_TYPE]: BIOBLOCKS_DATA_TYPE }>;
   height: number;
   initialViz: VIZ_TYPE;
   padding: number;
@@ -63,7 +63,7 @@ export class VizSelectorPanel extends React.Component<IVizPanelProps, IVizPanelS
     );
   }
 
-  protected renderVizContainer(viz: VIZ_TYPE, data: Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>) {
+  protected renderVizContainer(viz: VIZ_TYPE, data: Partial<{ [K in VIZ_TYPE]: BIOBLOCKS_DATA_TYPE }>) {
     const { padding } = this.props;
     const paddedHeight = this.props.height - padding * 2;
     const paddedWidth = this.props.width - padding * 2;

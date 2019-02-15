@@ -1,4 +1,4 @@
-import { generatePointCloudData, generateScatterGLData } from '~chell-viz~/helper';
+import { generatePointCloudData, generateScatterGLData } from '~bioblocks-viz~/helper';
 
 describe('generateScatterGLData', () => {
   const sampleInput = {

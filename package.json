@@ -1,5 +1,5 @@
 {
-  "name": "chell-viz",
+  "name": "bioblocks-viz",
   "version": "0.0.94",
   "author": "Biostatistics and Computational Biology at Dana-Farber <bcb@jimmy.harvard.edu>",
   "license": "MIT",
@@ -11,9 +11,9 @@
   "files": [
     "lib"
   ],
-  "main": "lib/chell-viz.js",
-  "types": "lib/chell-viz.d.ts",
-  "homepage": "https://cbiocenter.github.io/chell-viz/",
+  "main": "lib/bioblocks-viz.js",
+  "types": "lib/bioblocks-viz.d.ts",
+  "homepage": "https://cbiocenter.github.io/bioblocks-viz/",
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{ts,tsx}"
@@ -43,9 +43,9 @@
       "tsx"
     ],
     "moduleNameMapper": {
-      "~chell-viz~$": "<rootDir>/src",
-      "~chell-viz~/test": "<rootDir>/test",
-      "~chell-viz~/(.*)": "<rootDir>/src/$1",
+      "~bioblocks-viz~$": "<rootDir>/src",
+      "~bioblocks-viz~/test": "<rootDir>/test",
+      "~bioblocks-viz~/(.*)": "<rootDir>/src/$1",
       "\\.(css|less)$": "<rootDir>/test/__mocks__/styleMock.ts",
       "plotly.js-gl2d-dist": "<rootDir>/test/__mocks__/plotly.ts",
       "@tensorflow/tfjs-core": "<rootDir>/test/__mocks__/@tensorflow/tfjs-core-mock.ts",
@@ -88,7 +88,7 @@
     "ancestorSeparator": " › ",
     "classNameTemplate": "{classname}",
     "output": "dist/test-results/jest/results.xml",
-    "suiteName": "Chell-Viz Jest Tests",
+    "suiteName": "Bioblocks-Viz Jest Tests",
     "titleTemplate": "{title}"
   },
   "lint-staged": {
@@ -254,7 +254,7 @@
     "canvas": "^2.0.1"
   },
   "bugs": {
-    "url": "https://github.com/cBioCenter/chell-viz/issues"
+    "url": "https://github.com/cBioCenter/bioblocks-viz/issues"
   },
   "husky": {
     "hooks": {
@@ -264,7 +264,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://github.com/cBioCenter/chell-viz.git"
+    "url": "git+ssh://github.com/cBioCenter/bioblocks-viz.git"
   },
   "readme": "README.md"
 }

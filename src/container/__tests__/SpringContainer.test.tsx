@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { SpringContainerClass } from '~chell-viz~/container';
+import { SpringContainerClass } from '~bioblocks-viz~/container';
 
 describe('SpringContainer', () => {
   it('Should match existing snapshot.', () => {

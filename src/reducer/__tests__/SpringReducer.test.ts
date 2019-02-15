@@ -1,4 +1,4 @@
-import { createSpringReducer, ReducerRegistry, SpringReducer } from '~chell-viz~/reducer';
+import { createSpringReducer, ReducerRegistry, SpringReducer } from '~bioblocks-viz~/reducer';
 
 describe('SpringReducer', () => {
   it('Should handle undefined state.', () => {

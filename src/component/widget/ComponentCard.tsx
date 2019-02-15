@@ -62,7 +62,7 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     const { isFullPage } = this.state;
     if (isFullPage !== prevState.isFullPage) {
       this.resizeFramedComponent();
-      const dimmedBackground = document.getElementById('chell-dimmed-background');
+      const dimmedBackground = document.getElementById('bioblocks-dimmed-background');
       if (isFullPage && dimmedBackground) {
         dimmedBackground.style.display = 'block';
       } else if (dimmedBackground) {
@@ -93,7 +93,7 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     };
 
     return (
-      <Card centered={true} className={'chell-component-card'} ref={ref => (this.cardRef = ref)} style={cardStyle}>
+      <Card centered={true} className={'bioblocks-component-card'} ref={ref => (this.cardRef = ref)} style={cardStyle}>
         {this.renderTopMenu(headerHeight)}
         {isFramedComponent ? <div style={framedStyle}>{children}</div> : children}
       </Card>

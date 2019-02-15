@@ -23,10 +23,10 @@ class ContextConsumerComposer extends React.Component<IComposerProps, any> {
  * Recursively build up elements from props.components and accumulate `results` along the way.
  */
 const renderRecursive = (
-  render: (args: any) => React.ReactElement<any>,
+  render: (args: any) => React.ReactElement,
   remaining: Array<React.ComponentType<any>>,
-  results: Array<React.ReactElement<any>> = [],
-): React.ReactElement<any> => {
+  results: React.ReactElement[] = [],
+): React.ReactElement => {
   // Once components is exhausted, we can render out the results array.
   if (!remaining[0]) {
     return render(results);
@@ -34,7 +34,7 @@ const renderRecursive = (
 
   // Continue recursion for remaining items.
   // results.concat([value]) ensures [...results, value] instead of [...results, ...value]
-  function nextRender(value: React.ReactElement<any>) {
+  function nextRender(value: React.ReactElement) {
     return renderRecursive(render, remaining.slice(1), results.concat([value]));
   }
 

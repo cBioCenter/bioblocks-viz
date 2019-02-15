@@ -1,9 +1,9 @@
 import { Set } from 'immutable';
 import { createSelector } from 'reselect';
 
-import { ISpringReducerState, RootState } from '~chell-viz~/reducer';
+import { ISpringReducerState, RootState } from '~bioblocks-viz~/reducer';
 
-export const getSpring = (state: RootState, namespace = 'chell') => {
+export const getSpring = (state: RootState, namespace = 'bioblocks') => {
   return (state === undefined || !state[`${namespace}/spring`]
     ? {
         category: '',
@@ -13,8 +13,8 @@ export const getSpring = (state: RootState, namespace = 'chell') => {
     : state[`${namespace}/spring`]) as ISpringReducerState;
 };
 
-export const getSpecies = (state: RootState, namespace = 'chell') => getSpring(state, namespace).species;
-export const getGraphData = (state: RootState, namespace = 'chell') => getSpring(state, namespace).graphData;
+export const getSpecies = (state: RootState, namespace = 'bioblocks') => getSpring(state, namespace).species;
+export const getGraphData = (state: RootState, namespace = 'bioblocks') => getSpring(state, namespace).graphData;
 
 export const getCategories = createSelector(
   [getGraphData],

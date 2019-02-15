@@ -1,7 +1,7 @@
 import { mount } from 'enzyme';
 import * as React from 'react';
 
-import { ContextConsumerComposer } from '~chell-viz~/hoc';
+import { ContextConsumerComposer } from '~bioblocks-viz~/hoc';
 
 describe('ContextConsumerComposer', () => {
   it('Should allow contexts.', () => {

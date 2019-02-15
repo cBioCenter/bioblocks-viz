@@ -1,8 +1,8 @@
 import { Map, Set } from 'immutable';
 
-import { RESIDUE_TYPE } from '~chell-viz~/data';
-import { RootState } from '~chell-viz~/reducer';
-import { getCandidates, getHovered, getLocked, getResiduePairs } from '~chell-viz~/selector';
+import { RESIDUE_TYPE } from '~bioblocks-viz~/data';
+import { RootState } from '~bioblocks-viz~/reducer';
+import { getCandidates, getHovered, getLocked, getResiduePairs } from '~bioblocks-viz~/selector';
 
 describe('ResiduePairSelectors', () => {
   it('Should create a new residuePair state if one does not exist.', () => {
@@ -27,7 +27,7 @@ describe('ResiduePairSelectors', () => {
     };
 
     const state = {
-      ['chell/residuePair']: {
+      ['bioblocks/residuePair']: {
         candidates: Set<RESIDUE_TYPE>([4, 2, 42]),
         hovered: Set<RESIDUE_TYPE>([7, 13]),
         locked: Map<string, RESIDUE_TYPE[]>([{ '1,3': [1, 3] }]),

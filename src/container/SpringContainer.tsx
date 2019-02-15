@@ -7,11 +7,12 @@ import { bindActionCreators, Dispatch } from 'redux';
 import IframeComm, { IframeCommAttributes } from 'react-iframe-comm';
 // tslint:enable:import-name match-default-export-name
 
-import { createContainerActions, createSpringActions } from '~chell-viz~/action';
-import { ComponentCard } from '~chell-viz~/component';
-import { ChellVisualization } from '~chell-viz~/container';
-import { ISpringGraphData, ISpringLink, ISpringNode } from '~chell-viz~/data';
-import { getCategories, getGraphData, selectCurrentItems } from '~chell-viz~/selector';
+import { createContainerActions, createSpringActions } from '~bioblocks-viz~/action';
+import { ComponentCard } from '~bioblocks-viz~/component';
+import { BioblocksVisualization } from '~bioblocks-viz~/container';
+import { ISpringGraphData, ISpringLink, ISpringNode } from '~bioblocks-viz~/data';
+import { createSpringReducer } from '~bioblocks-viz~/reducer';
+import { getCategories, getGraphData, selectCurrentItems } from '~bioblocks-viz~/selector';
 
 export interface ISpringContainerProps {
   categories: Set<string>;
@@ -43,7 +44,7 @@ export interface ISpringMessage {
   };
 }
 
-export class SpringContainerClass extends ChellVisualization<ISpringContainerProps, ISpringContainerState> {
+export class SpringContainerClass extends BioblocksVisualization<ISpringContainerProps, ISpringContainerState> {
   public static defaultProps = {
     categories: Set<string>(),
     currentCells: Set<number>(),
@@ -80,11 +81,9 @@ export class SpringContainerClass extends ChellVisualization<ISpringContainerPro
   }
 
   public setupDataServices() {
-    this.registerDataset('spring/category', '');
-    this.registerDataset('spring/graphData');
-    this.registerDataset('spring/species', 'mus_musculus');
+    createSpringReducer();
 
-    this.addChellHook('springGraphData', () => this.props.springGraphData);
+    this.addBioblocksHook('springGraphData', () => this.props.springGraphData);
   }
 
   public componentDidUpdate(prevProps: ISpringContainerProps, prevState: ISpringContainerState) {

@@ -1,4 +1,4 @@
-import { AMINO_ACIDS_BY_SINGLE_LETTER_CODE, IAminoAcid, ICouplingScore } from '~chell-viz~/data';
+import { AMINO_ACIDS_BY_SINGLE_LETTER_CODE, IAminoAcid, ICouplingScore } from '~bioblocks-viz~/data';
 
 /**
  * A CouplingContainer provides access to the coupling information of residue pairs.

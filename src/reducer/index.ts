@@ -1,6 +1,6 @@
 export * from './registry';
 
-export * from './ChellMiddleware';
+export * from './BioblocksMiddleware';
 export * from './ContainerReducer';
 export * from './ObjectReducer';
 export * from './DataReducer';

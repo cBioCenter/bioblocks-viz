@@ -1,11 +1,11 @@
 import {
   AMINO_ACIDS_BY_SINGLE_LETTER_CODE,
-  ChellPDB,
+  BioblocksPDB,
   CouplingContainer,
   getPDBAndCouplingMismatch,
   getSequenceMismatch,
   IResidueMismatchResult,
-} from '~chell-viz~/data';
+} from '~bioblocks-viz~/data';
 
 describe('Sequence Mismatch', () => {
   // Taken from 1g68 dataset.
@@ -24,7 +24,7 @@ describe('Sequence Mismatch', () => {
   });
 
   it('Should correctly report no sequence mismatch from empty PDB and CouplingContainer.', async () => {
-    const pdb = await ChellPDB.createPDB();
+    const pdb = await BioblocksPDB.createPDB();
     const couplings = new CouplingContainer();
 
     const expected: IResidueMismatchResult[] = [];

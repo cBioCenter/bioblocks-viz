@@ -1,4 +1,4 @@
-import { selectCurrentValue } from '~chell-viz~/selector';
+import { selectCurrentValue } from '~bioblocks-viz~/selector';
 
 describe('ValueSelector', () => {
   it('Should return an empty value if the state does not exist.', () => {
@@ -8,11 +8,11 @@ describe('ValueSelector', () => {
   it('Should select the state correctly if it exists.', () => {
     const spyFn = jest.fn();
     const state = {
-      ['chell/bool']: true,
-      ['chell/function']: spyFn,
-      ['chell/number']: 42,
-      ['chell/object']: { key: 'value' },
-      ['chell/string']: 'true',
+      ['bioblocks/bool']: true,
+      ['bioblocks/function']: spyFn,
+      ['bioblocks/number']: 42,
+      ['bioblocks/object']: { key: 'value' },
+      ['bioblocks/string']: 'true',
     };
 
     expect(selectCurrentValue(state, 'bool')).toEqual(true);

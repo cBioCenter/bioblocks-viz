@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { CheckboxProps, Form, FormProps, GridColumn, GridRow, InputOnChangeData } from 'semantic-ui-react';
 
-import { FeatureViewer } from '~chell-viz~/component';
-import { IPlotlyData, IProtein, TintedChell1DSection } from '~chell-viz~/data';
-import { ColorMapper } from '~chell-viz~/helper';
+import { FeatureViewer } from '~bioblocks-viz~/component';
+import { IPlotlyData, IProtein, TintedBioblocks1DSection } from '~bioblocks-viz~/data';
+import { ColorMapper } from '~bioblocks-viz~/helper';
 
 export interface IProteinFeatureViewerProps {
   initialProteinId: string;
@@ -11,7 +11,7 @@ export interface IProteinFeatureViewerProps {
 
 export interface IProteinFeatureViewerState {
   data: Array<Partial<IPlotlyData>>;
-  domainData: Array<TintedChell1DSection<string>>;
+  domainData: Array<TintedBioblocks1DSection<string>>;
   protein?: IProtein;
   proteinId: string;
   showGrouped: boolean;
@@ -88,7 +88,7 @@ export class ProteinFeatureViewer extends React.Component<IProteinFeatureViewerP
           // This matches domains that do and do not have other of the same domain in the protein.
           const domainName = description.split('-like')[0];
 
-          return new TintedChell1DSection(
+          return new TintedBioblocks1DSection(
             domainName,
             begin ? Number.parseInt(begin, 10) : -1,
             end ? Number.parseInt(end, 10) : -1,

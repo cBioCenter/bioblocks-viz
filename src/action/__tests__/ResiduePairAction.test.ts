@@ -1,10 +1,10 @@
 import { getType } from 'typesafe-actions';
 
-import { createResiduePairActions } from '~chell-viz~/action';
+import { createResiduePairActions } from '~bioblocks-viz~/action';
 
 describe('ResiduePairAction', () => {
   it('Should use a default namespace if none is given.', () => {
-    const namespace = 'CHELL';
+    const namespace = 'BIOBLOCKS';
 
     const allReducerActions = {
       candidates: Object.values(createResiduePairActions().candidates),

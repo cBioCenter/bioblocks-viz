@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { Button, Dropdown, DropdownProps, Grid, GridColumn, GridRow, Label } from 'semantic-ui-react';
 
-import { VizSelectorPanel } from '~chell-viz~/component';
-import { CHELL_DATA_TYPE, ChellPDB, IContactMapData, VIZ_TYPE } from '~chell-viz~/data';
+import { VizSelectorPanel } from '~bioblocks-viz~/component';
+import { BIOBLOCKS_DATA_TYPE, BioblocksPDB, IContactMapData, VIZ_TYPE } from '~bioblocks-viz~/data';
 import {
   fetchAppropriateData,
   generateResidueMapping,
   getCouplingScoresData,
   readFileAsText,
-} from '~chell-viz~/helper';
+} from '~bioblocks-viz~/helper';
 
 export interface IVizPanelContainerProps {
   allowUploads: boolean;
@@ -21,7 +21,7 @@ export interface IVizPanelContainerProps {
 
 export const initialVizPanelState = {
   currentDataDir: '',
-  data: new Object() as Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>,
+  data: new Object() as Partial<{ [K in VIZ_TYPE]: BIOBLOCKS_DATA_TYPE }>,
 };
 
 export type VizPanelContainerState = Readonly<typeof initialVizPanelState>;
@@ -57,7 +57,7 @@ export class VizPanelContainer extends React.Component<IVizPanelContainerProps, 
 
   public async componentDidUpdate(prevProps: IVizPanelContainerProps, prevState: VizPanelContainerState) {
     if (prevState.currentDataDir !== this.state.currentDataDir) {
-      const results: Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }> = {};
+      const results: Partial<{ [K in VIZ_TYPE]: BIOBLOCKS_DATA_TYPE }> = {};
       for (const viz of this.props.supportedVisualizations) {
         results[viz] = await fetchAppropriateData(viz, this.state.currentDataDir);
       }
@@ -101,7 +101,7 @@ export class VizPanelContainer extends React.Component<IVizPanelContainerProps, 
 
   protected renderPanels(
     numPanels: number,
-    data: Partial<{ [K in VIZ_TYPE]: CHELL_DATA_TYPE }>,
+    data: Partial<{ [K in VIZ_TYPE]: BIOBLOCKS_DATA_TYPE }>,
     initialVisualizations: VIZ_TYPE[],
   ) {
     const result: JSX.Element[] = [];
@@ -144,7 +144,7 @@ export class VizPanelContainer extends React.Component<IVizPanelContainerProps, 
           'Incorrect files uploaded! Please upload a file named residue_mapping.csv as well as a .pdb and .csv file!',
         );
       } else {
-        const pdbData = await ChellPDB.createPDB(files[pdbIndex]);
+        const pdbData = await BioblocksPDB.createPDB(files[pdbIndex]);
         const couplingResult = await readFileAsText(files[couplingIndex]);
         const mappingResult = await readFileAsText(files[mappingIndex]);
 

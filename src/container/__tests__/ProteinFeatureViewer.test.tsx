@@ -2,10 +2,10 @@ import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import { Form } from 'semantic-ui-react';
 
-import { FeatureViewer, IFeatureViewerState } from '~chell-viz~/component';
-import { ProteinFeatureViewer } from '~chell-viz~/container';
-import { IProtein } from '~chell-viz~/data';
-import { dispatchPlotlyEvent } from '~chell-viz~/test';
+import { FeatureViewer, IFeatureViewerState } from '~bioblocks-viz~/component';
+import { ProteinFeatureViewer } from '~bioblocks-viz~/container';
+import { IProtein } from '~bioblocks-viz~/data';
+import { dispatchPlotlyEvent } from '~bioblocks-viz~/test';
 
 describe('ProteinFeatureViewer', () => {
   beforeEach(() => {

@@ -4,12 +4,12 @@ import { ActionType, getType } from 'typesafe-actions';
 // tslint:disable-next-line:no-submodule-imports
 import { PayloadAction } from 'typesafe-actions/dist/types';
 
-import { createObjectActions } from '~chell-viz~/action';
-import { ReducerRegistry } from '~chell-viz~/reducer';
+import { createObjectActions } from '~bioblocks-viz~/action';
+import { ReducerRegistry } from '~bioblocks-viz~/reducer';
 
 export type IObjectReducerState<T> = Map<string, T>;
 
-export const ObjectReducer = <T>(dataset: string, namespace = 'chell'): Reducer => {
+export const ObjectReducer = <T>(dataset: string, namespace = 'bioblocks'): Reducer => {
   const actions = createObjectActions<T>(dataset, namespace);
 
   const initialState = Map<string, T>();
@@ -54,7 +54,7 @@ export const ObjectReducer = <T>(dataset: string, namespace = 'chell'): Reducer 
   };
 };
 
-export const createObjectReducer = <T>(dataset: string, namespace = 'chell') => {
+export const createObjectReducer = <T>(dataset: string, namespace = 'bioblocks') => {
   const reducer = ObjectReducer<T>(dataset, namespace);
   const reducerName = `${namespace}/${dataset}`;
   ReducerRegistry.register(reducerName, reducer);

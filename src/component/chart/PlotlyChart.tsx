@@ -5,13 +5,13 @@ import * as React from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react';
 
 import {
-  CHELL_CHART_EVENT_TYPE,
-  CHELL_CHART_PIECE,
-  CHELL_CSS_STYLE,
-  ChellChartEvent,
+  BIOBLOCKS_CHART_EVENT_TYPE,
+  BIOBLOCKS_CHART_PIECE,
+  BIOBLOCKS_CSS_STYLE,
+  BioblocksChartEvent,
   IPlotlyData,
   IPlotlyLayout,
-} from '~chell-viz~/data';
+} from '~bioblocks-viz~/data';
 
 export interface IPlotlyChartProps {
   config?: Partial<Plotly.Config>;
@@ -19,15 +19,15 @@ export interface IPlotlyChartProps {
   height?: number | string;
   layout?: Partial<IPlotlyLayout>;
   showLoader?: boolean;
-  style?: CHELL_CSS_STYLE;
+  style?: BIOBLOCKS_CSS_STYLE;
   width?: number | string;
-  onAfterPlotCallback?(event: ChellChartEvent): void;
-  onClickCallback?(event: ChellChartEvent): void;
-  onDoubleClickCallback?(event: ChellChartEvent): void;
-  onHoverCallback?(event: ChellChartEvent): void;
-  onSelectedCallback?(event: ChellChartEvent): void;
-  onUnHoverCallback?(event: ChellChartEvent): void;
-  onRelayoutCallback?(event: ChellChartEvent): void;
+  onAfterPlotCallback?(event: BioblocksChartEvent): void;
+  onClickCallback?(event: BioblocksChartEvent): void;
+  onDoubleClickCallback?(event: BioblocksChartEvent): void;
+  onHoverCallback?(event: BioblocksChartEvent): void;
+  onSelectedCallback?(event: BioblocksChartEvent): void;
+  onUnHoverCallback?(event: BioblocksChartEvent): void;
+  onRelayoutCallback?(event: BioblocksChartEvent): void;
 }
 
 export const defaultPlotlyConfig: Partial<Plotly.Config> = {
@@ -199,14 +199,14 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
       const isExtraYAxis = data.yaxis && data.yaxis !== 'y';
       if (isExtraXAxis || isExtraYAxis) {
         return {
-          chartPiece: CHELL_CHART_PIECE.AXIS,
+          chartPiece: BIOBLOCKS_CHART_PIECE.AXIS,
           selectedPoints: isExtraXAxis ? [y] : [x],
         };
       }
     }
 
     return {
-      chartPiece: CHELL_CHART_PIECE.POINT,
+      chartPiece: BIOBLOCKS_CHART_PIECE.POINT,
       selectedPoints: [x, y],
     };
   };
@@ -309,7 +309,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   protected onAfterPlot = () => {
     const { onAfterPlotCallback } = this.props;
     if (onAfterPlotCallback) {
-      onAfterPlotCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.AFTER_PLOT));
+      onAfterPlotCallback(new BioblocksChartEvent(BIOBLOCKS_CHART_EVENT_TYPE.AFTER_PLOT));
     }
   };
 
@@ -322,7 +322,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
         const x = event.points[0].x ? event.points[0].x : (event.points[0].data.x[0] as number);
         const y = event.points[0].y ? event.points[0].y : (event.points[0].data.y[0] as number);
         const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, event.points[0].data);
-        onClickCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.CLICK, chartPiece, selectedPoints));
+        onClickCallback(new BioblocksChartEvent(BIOBLOCKS_CHART_EVENT_TYPE.CLICK, chartPiece, selectedPoints));
       }
     }
   };
@@ -331,7 +331,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     this.isDoubleClickInProgress = true;
     const { onDoubleClickCallback } = this.props;
     if (onDoubleClickCallback) {
-      onDoubleClickCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.DOUBLE_CLICK));
+      onDoubleClickCallback(new BioblocksChartEvent(BIOBLOCKS_CHART_EVENT_TYPE.DOUBLE_CLICK));
     }
   };
 
@@ -341,7 +341,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
       const x = event.points[0].x ? event.points[0].x : (event.points[0].data.x[0] as number);
       const y = event.points[0].y ? event.points[0].y : (event.points[0].data.y[0] as number);
       const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, event.points[0].data);
-      onHoverCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.HOVER, chartPiece, selectedPoints));
+      onHoverCallback(new BioblocksChartEvent(BIOBLOCKS_CHART_EVENT_TYPE.HOVER, chartPiece, selectedPoints));
     }
   };
 
@@ -367,7 +367,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
       : undefined;
     const { onRelayoutCallback } = this.props;
     if (onRelayoutCallback) {
-      onRelayoutCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.RELAYOUT));
+      onRelayoutCallback(new BioblocksChartEvent(BIOBLOCKS_CHART_EVENT_TYPE.RELAYOUT));
     }
   };
 
@@ -388,8 +388,8 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
       const { chartPiece } =
         allPoints.length > 0
           ? this.deriveChartPiece(allPoints[0], allPoints[1])
-          : { chartPiece: CHELL_CHART_PIECE.POINT };
-      onSelectedCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.SELECTION, chartPiece, allPoints, event));
+          : { chartPiece: BIOBLOCKS_CHART_PIECE.POINT };
+      onSelectedCallback(new BioblocksChartEvent(BIOBLOCKS_CHART_EVENT_TYPE.SELECTION, chartPiece, allPoints, event));
     }
     await this.draw();
   };
@@ -399,7 +399,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     if (event && onUnHoverCallback) {
       const { data, x, y } = event.points[0];
       const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, data);
-      onUnHoverCallback(new ChellChartEvent(CHELL_CHART_EVENT_TYPE.UNHOVER, chartPiece, selectedPoints));
+      onUnHoverCallback(new BioblocksChartEvent(BIOBLOCKS_CHART_EVENT_TYPE.UNHOVER, chartPiece, selectedPoints));
     }
   };
 

@@ -2,21 +2,21 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Form } from 'semantic-ui-react';
 
-import { ChellRadioGroup, IChellRadioGroupProps } from '~chell-viz~/component';
+import { BioblocksRadioGroup, IBioblocksRadioGroupProps } from '~bioblocks-viz~/component';
 
-describe('ChellRadioGroup', () => {
-  const sampleChellSlider = (props: Partial<IChellRadioGroupProps> = {}) => (
-    <ChellRadioGroup id="Sample" options={['first']} {...props} />
+describe('BioblocksRadioGroup', () => {
+  const sampleBioblocksSlider = (props: Partial<IBioblocksRadioGroupProps> = {}) => (
+    <BioblocksRadioGroup id="Sample" options={['first']} {...props} />
   );
 
   it('Should match existing snapshot when given simple data.', () => {
-    const wrapper = shallow(sampleChellSlider());
+    const wrapper = shallow(sampleBioblocksSlider());
     expect(wrapper).toMatchSnapshot();
   });
 
   it('Should handle change events.', () => {
     const onChangeSpy = jest.fn();
-    const wrapper = shallow(sampleChellSlider({ options: ['sandor', 'gregor'], onChange: onChangeSpy }));
+    const wrapper = shallow(sampleBioblocksSlider({ options: ['sandor', 'gregor'], onChange: onChangeSpy }));
     const expected = 1;
     expect(wrapper.state('selectedIndex')).not.toBe(expected);
     wrapper

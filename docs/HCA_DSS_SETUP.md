@@ -45,7 +45,7 @@ If successful, the message `Serving on :5000` will display. You can go to `http:
 On the right, let's upload some example data! **Be sure to provide your own bucket name**, I'll be using the values I personally setup for demonstration.
 
 ```sh
-hca dss upload --replica aws --src-dir data-bundle-examples/smartseq2/paired_ends --staging-bucket chell-data-store-checkout
+hca dss upload --replica aws --src-dir data-bundle-examples/smartseq2/paired_ends --staging-bucket bioblocks-data-store-checkout
 ```
 
 On the left you should see activity confirming data was uploaded! You can then use the returned UUID information to perform further GET requests.
@@ -82,18 +82,18 @@ DSS_SECRETS_STORE="dcp/dss"
 DSS_DEPLOYMENT_STAGE=dev
 API_DOMAIN_NAME=localhost:5000
 AWS_DEFAULT_REGION=us-east-1
-DSS_S3_BUCKET=chell-data-store-dev
-DSS_S3_CHECKOUT_BUCKET=chell-data-store-checkout
-DSS_S3_CHECKOUT_BUCKET_TEST=chell-data-store-checkout-test
-DSS_S3_BUCKET_TEST=chell-data-store-test
-DSS_S3_BUCKET_TEST_FIXTURES=chell-data-store-test-fixture
+DSS_S3_BUCKET=bioblocks-data-store-dev
+DSS_S3_CHECKOUT_BUCKET=bioblocks-data-store-checkout
+DSS_S3_CHECKOUT_BUCKET_TEST=bioblocks-data-store-checkout-test
+DSS_S3_BUCKET_TEST=bioblocks-data-store-test
+DSS_S3_BUCKET_TEST_FIXTURES=bioblocks-data-store-test-fixture
 SWAGGER_URL=http://${API_DOMAIN_NAME}/v1/swagger.json
 GCP_DEFAULT_REGION=us-east4
-DSS_GS_BUCKET=chell-data-store-dev
-DSS_GS_BUCKET_TEST=chell-hca-data-store-test
-DSS_GS_BUCKET_TEST_FIXTURES=chell-hca-data-store-test-fixture
-DSS_GS_CHECKOUT_BUCKET=chell-hca-data-store-checkout
-DSS_GS_CHECKOUT_BUCKET_TEST=chell-hca-data-store-checkout-test
+DSS_GS_BUCKET=bioblocks-data-store-dev
+DSS_GS_BUCKET_TEST=bioblocks-hca-data-store-test
+DSS_GS_BUCKET_TEST_FIXTURES=bioblocks-hca-data-store-test-fixture
+DSS_GS_CHECKOUT_BUCKET=bioblocks-hca-data-store-checkout
+DSS_GS_CHECKOUT_BUCKET_TEST=bioblocks-hca-data-store-checkout-test
 GOOGLE_APPLICATION_CREDENTIALS_SECRETS_NAME="gcp-credentials.json"
 GOOGLE_APPLICATION_SECRETS_SECRETS_NAME="application_secrets.json"
 set +a

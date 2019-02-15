@@ -1,10 +1,10 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { ChellVizApp } from '~chell-viz~';
+import { BioblocksVizApp } from '~bioblocks-viz~';
 
-describe('ChellVizApp', () => {
+describe('BioblocksVizApp', () => {
   it('Should match existing snapshot when given no props.', () => {
-    expect(shallow(<ChellVizApp />)).toMatchSnapshot();
+    expect(shallow(<BioblocksVizApp />)).toMatchSnapshot();
   });
 });

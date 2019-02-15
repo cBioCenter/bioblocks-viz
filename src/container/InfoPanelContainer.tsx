@@ -3,15 +3,15 @@ import { connect } from 'react-redux';
 import { Accordion, Label } from 'semantic-ui-react';
 
 import {
-  ChellPDB,
+  BioblocksPDB,
   CouplingContainer,
   IContactMapData,
   SECONDARY_STRUCTURE,
   SECONDARY_STRUCTURE_CODES,
   SECONDARY_STRUCTURE_SECTION,
-} from '~chell-viz~/data';
-import { ILockedResiduePair } from '~chell-viz~/reducer';
-import { getLocked, selectCurrentItems } from '~chell-viz~/selector';
+} from '~bioblocks-viz~/data';
+import { ILockedResiduePair } from '~bioblocks-viz~/reducer';
+import { getLocked, selectCurrentItems } from '~bioblocks-viz~/selector';
 
 export interface IInfoPanelProps {
   data: IContactMapData;
@@ -99,7 +99,7 @@ export class InfoPanelContainerClass extends React.Component<IInfoPanelProps, an
         ));
   }
 
-  protected renderUnassignedResidues(pdbData: ChellPDB) {
+  protected renderUnassignedResidues(pdbData: BioblocksPDB) {
     const result = new Array<JSX.Element>();
     pdbData.eachResidue(residue => {
       if (residue.isProtein()) {

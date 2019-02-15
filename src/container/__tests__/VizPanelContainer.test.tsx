@@ -2,9 +2,9 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Button } from 'semantic-ui-react';
 
-import { VizPanelContainer } from '~chell-viz~/container';
-import { VIZ_TYPE } from '~chell-viz~/data';
-import { fetchAppropriateData } from '~chell-viz~/helper';
+import { VizPanelContainer } from '~bioblocks-viz~/container';
+import { VIZ_TYPE } from '~bioblocks-viz~/data';
+import { fetchAppropriateData } from '~bioblocks-viz~/helper';
 
 describe('VizPanelContainer', () => {
   beforeEach(() => {
