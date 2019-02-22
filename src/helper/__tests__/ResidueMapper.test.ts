@@ -1,4 +1,4 @@
-import { generateResidueMapping, IResidueMapping } from '~chell-viz~/helper';
+import { generateResidueMapping, IResidueMapping } from '~bioblocks-viz~/helper';
 
 describe('ResidueMapper', () => {
   const simpleFile = 'up_index\tup_residue\tpdb_index\tpdb_residue\n24\tH\t26\tH\n25\tP\t27\tP';

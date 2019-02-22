@@ -1,5 +1,5 @@
 import { Map } from 'immutable';
-import { selectObject } from '~chell-viz~/selector';
+import { selectObject } from '~bioblocks-viz~/selector';
 
 describe('ObjectSelector', () => {
   it('Should return an empty Map if the state does not exist.', () => {
@@ -9,6 +9,6 @@ describe('ObjectSelector', () => {
 
   it('Should select the state correctly if it exists.', () => {
     const expectedState = Map({ need: 'medicine' });
-    expect(selectObject({ ['chell/what']: Map({ need: 'medicine' }) }, 'what')).toMatchObject(expectedState);
+    expect(selectObject({ ['bioblocks/what']: Map({ need: 'medicine' }) }, 'what')).toMatchObject(expectedState);
   });
 });

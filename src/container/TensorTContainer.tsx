@@ -7,25 +7,25 @@ import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { Grid, Icon, Radio } from 'semantic-ui-react';
 
-import { createContainerActions } from '~chell-viz~/action';
-import { ComponentCard, TensorTComponent } from '~chell-viz~/component';
-import { ChellVisualization } from '~chell-viz~/container';
+import { createContainerActions } from '~bioblocks-viz~/action';
+import { ComponentCard, TensorTComponent } from '~bioblocks-viz~/component';
+import { BioblocksVisualization } from '~bioblocks-viz~/container';
 import {
-  CHELL_CSS_STYLE,
-  ChellChartEvent,
-  ChellWidgetConfig,
+  BIOBLOCKS_CSS_STYLE,
+  BioblocksChartEvent,
+  BioblocksWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
   IPlotlyData,
-} from '~chell-viz~/data';
-import { fetchTensorTSneCoordinateData } from '~chell-viz~/helper';
-import { selectCurrentItems } from '~chell-viz~/selector/ContainerSelectors';
+} from '~bioblocks-viz~/data';
+import { fetchTensorTSneCoordinateData } from '~bioblocks-viz~/helper';
+import { selectCurrentItems } from '~bioblocks-viz~/selector/ContainerSelectors';
 
 interface ITensorContainerProps {
   currentCells: Set<number>;
   datasetLocation: string;
   isFullPage: boolean;
   pointColor: string;
-  style: CHELL_CSS_STYLE;
+  style: BIOBLOCKS_CSS_STYLE;
   setCurrentCells(cells: number[]): void;
 }
 
@@ -38,7 +38,7 @@ interface ITensorContainerState {
   plotlyCoords: Array<Partial<IPlotlyData>>;
 }
 
-export class TensorTContainerClass extends ChellVisualization<ITensorContainerProps, ITensorContainerState> {
+export class TensorTContainerClass extends BioblocksVisualization<ITensorContainerProps, ITensorContainerState> {
   public static defaultProps = {
     currentCells: Set<number>(),
     datasetLocation: 'hpc/full',
@@ -189,7 +189,7 @@ export class TensorTContainerClass extends ChellVisualization<ITensorContainerPr
     ];
   };
 
-  protected getTensorConfigs = (): ChellWidgetConfig[] => [
+  protected getTensorConfigs = (): BioblocksWidgetConfig[] => [
     {
       name: 'Iterate Once',
       onClick: this.onIterateForward(),
@@ -217,7 +217,7 @@ export class TensorTContainerClass extends ChellVisualization<ITensorContainerPr
     },
   ];
 
-  protected handlePointSelection = (event: ChellChartEvent) => {
+  protected handlePointSelection = (event: BioblocksChartEvent) => {
     const { setCurrentCells } = this.props;
     const { coordsArray } = this.state;
     const selectedCells = new Array<number>();

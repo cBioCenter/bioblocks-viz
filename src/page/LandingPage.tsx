@@ -3,7 +3,7 @@ import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Button, Container, Divider, Grid, Header, Segment } from 'semantic-ui-react';
 
-import { IDatasetInfo, IStory, IVizSummaryData, Stories, userDatasets, VizData } from '~chell-viz~/data';
+import { IDatasetInfo, IStory, IVizSummaryData, Stories, userDatasets, VizData } from '~bioblocks-viz~/data';
 
 export interface ILandingPageProps extends Partial<RouteComponentProps> {}
 

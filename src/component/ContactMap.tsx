@@ -2,18 +2,18 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
-import { createContainerActions, createResiduePairActions } from '~chell-viz~/action';
+import { createContainerActions, createResiduePairActions } from '~bioblocks-viz~/action';
 import {
   ComponentCard,
   ContactMapChart,
   generateChartDataEntry,
   IContactMapChartData,
   IContactMapChartPoint,
-} from '~chell-viz~/component';
+} from '~bioblocks-viz~/component';
 import {
-  CHELL_CSS_STYLE,
-  ChellChartEvent,
-  ChellWidgetConfig,
+  BIOBLOCKS_CSS_STYLE,
+  BioblocksChartEvent,
+  BioblocksWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
   CouplingContainer,
   IContactMapData,
@@ -22,17 +22,17 @@ import {
   SECONDARY_STRUCTURE,
   SECONDARY_STRUCTURE_SECTION,
   SliderWidgetConfig,
-} from '~chell-viz~/data';
-import { EMPTY_FUNCTION } from '~chell-viz~/helper';
-import { ILockedResiduePair } from '~chell-viz~/reducer';
-import { getCandidates, getHovered, getLocked, selectCurrentItems } from '~chell-viz~/selector';
+} from '~bioblocks-viz~/data';
+import { EMPTY_FUNCTION } from '~bioblocks-viz~/helper';
+import { ILockedResiduePair } from '~bioblocks-viz~/reducer';
+import { getCandidates, getHovered, getLocked, selectCurrentItems } from '~bioblocks-viz~/selector';
 
 export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
 export type ContactMapCallback = (coupling: CONTACT_MAP_CB_RESULT_TYPE) => void;
 
 export interface IContactMapProps {
   candidateResidues: RESIDUE_TYPE[];
-  configurations: ChellWidgetConfig[];
+  configurations: BioblocksWidgetConfig[];
   data: IContactMapData;
   formattedPoints: IContactMapChartData[];
   height: number | string;
@@ -44,7 +44,7 @@ export interface IContactMapProps {
   observedColor: string;
   selectedSecondaryStructures: SECONDARY_STRUCTURE;
   showConfigurations: boolean;
-  style?: CHELL_CSS_STYLE;
+  style?: BIOBLOCKS_CSS_STYLE;
   width: number | string;
   addHoveredResidues(residues: RESIDUE_TYPE[]): void;
   addHoveredSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
@@ -69,7 +69,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     addHoveredSecondaryStructure: EMPTY_FUNCTION,
     addSelectedSecondaryStructure: EMPTY_FUNCTION,
     candidateResidues: [],
-    configurations: new Array<ChellWidgetConfig>(),
+    configurations: new Array<BioblocksWidgetConfig>(),
     data: {
       couplingScores: new CouplingContainer(),
       secondaryStructures: new Array<SECONDARY_STRUCTURE>(),
@@ -223,7 +223,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     });
   }
 
-  protected renderContactMapChart(pointsToPlot: IContactMapChartData[], configurations: ChellWidgetConfig[]) {
+  protected renderContactMapChart(pointsToPlot: IContactMapChartData[], configurations: BioblocksWidgetConfig[]) {
     const {
       candidateResidues,
       data,
@@ -273,7 +273,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       },
     );
 
-  protected onMouseEnter = (cb: (residue: RESIDUE_TYPE[]) => void) => (e: ChellChartEvent) => {
+  protected onMouseEnter = (cb: (residue: RESIDUE_TYPE[]) => void) => (e: BioblocksChartEvent) => {
     if (e.isAxis()) {
       const { addHoveredSecondaryStructure, hoveredSecondaryStructures, data } = this.props;
 
@@ -295,7 +295,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     }
   };
 
-  protected onMouseLeave = (cb?: (residue: RESIDUE_TYPE[]) => void) => (e: ChellChartEvent) => {
+  protected onMouseLeave = (cb?: (residue: RESIDUE_TYPE[]) => void) => (e: BioblocksChartEvent) => {
     if (e.isAxis()) {
       const { data, hoveredSecondaryStructures, removeHoveredSecondaryStructure } = this.props;
 
@@ -315,7 +315,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     }
   };
 
-  protected onMouseClick = (cb: (residues: ILockedResiduePair) => void) => (e: ChellChartEvent) => {
+  protected onMouseClick = (cb: (residues: ILockedResiduePair) => void) => (e: BioblocksChartEvent) => {
     if (e.isAxis()) {
       const { addSelectedSecondaryStructure, data, removeSecondaryStructure, selectedSecondaryStructures } = this.props;
 
@@ -335,7 +335,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     }
   };
 
-  protected onMouseSelect = (cb?: (residues: RESIDUE_TYPE[]) => void) => (e: ChellChartEvent) => {
+  protected onMouseSelect = (cb?: (residues: RESIDUE_TYPE[]) => void) => (e: BioblocksChartEvent) => {
     if (cb) {
       // For the contact map, all the x/y values are mirrored and correspond directly with i/j values.
       // Thus, all the residue numbers can be obtained by getting either all x or values from ths selected points.

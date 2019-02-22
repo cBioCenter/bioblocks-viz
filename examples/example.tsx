@@ -3,12 +3,12 @@ import * as ReactDOM from 'react-dom';
 import { connect, Provider } from 'react-redux';
 import { Accordion, Button, Grid, GridColumn, GridRow, Header, Label, Message, Segment } from 'semantic-ui-react';
 
-import { createContainerActions, createResiduePairActions } from '~chell-viz~/action';
-import { ContactMap, PredictedContactMap } from '~chell-viz~/component';
-import { NGLContainer, ProteinFeatureViewer } from '~chell-viz~/container';
+import { createContainerActions, createResiduePairActions } from '~bioblocks-viz~/action';
+import { ContactMap, PredictedContactMap } from '~bioblocks-viz~/component';
+import { NGLContainer, ProteinFeatureViewer } from '~bioblocks-viz~/container';
 import {
-  CHELL_CSS_STYLE,
-  ChellPDB,
+  BIOBLOCKS_CSS_STYLE,
+  BioblocksPDB,
   CONTACT_DISTANCE_PROXIMITY,
   CONTACT_MAP_DATA_TYPE,
   CouplingContainer,
@@ -16,12 +16,12 @@ import {
   IResidueMismatchResult,
   NGL_DATA_TYPE,
   VIZ_TYPE,
-} from '~chell-viz~/data';
-import { generateResidueMapping, getCouplingScoresData, IResidueMapping, readFileAsText } from '~chell-viz~/helper';
-import { Store } from '~chell-viz~/reducer';
+} from '~bioblocks-viz~/data';
+import { generateResidueMapping, getCouplingScoresData, IResidueMapping, readFileAsText } from '~bioblocks-viz~/helper';
+import { Store } from '~bioblocks-viz~/reducer';
 
 export interface IExampleAppProps {
-  style: CHELL_CSS_STYLE;
+  style: BIOBLOCKS_CSS_STYLE;
   clearAllResidues(): void;
   clearAllSecondaryStructures(): void;
 }
@@ -43,7 +43,7 @@ export interface IExampleAppState {
   measuredProximity: CONTACT_DISTANCE_PROXIMITY;
   mismatches: IResidueMismatchResult[];
   isResidueMappingNeeded: boolean;
-  pdbData?: ChellPDB;
+  pdbData?: BioblocksPDB;
   residueMapping: IResidueMapping[];
 }
 
@@ -128,7 +128,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
 
   public render({ style } = this.props) {
     return (
-      <div id="ChellVizApp" style={{ ...style, height: '1000px' }}>
+      <div id="BioblocksVizApp" style={{ ...style, height: '1000px' }}>
         {this.renderCouplingComponents()}
         <ProteinFeatureViewer />
       </div>
@@ -153,7 +153,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
           <Grid.Row>
             <br />
           </Grid.Row>
-          {this.renderChellComponents(style, arePredictionsAvailable, measuredProximity, pdbData)}
+          {this.renderBioblocksComponents(style, arePredictionsAvailable, measuredProximity, pdbData)}
         </Grid>
       </Segment>
       {this.renderFooter()}
@@ -200,17 +200,17 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
   };
 
   protected renderFooter = () => {
-    const chell = <a href="https://github.com/cBioCenter/chell-viz">Chell</a>;
+    const bioblocks = <a href="https://github.com/cBioCenter/bioblocks-viz">Bioblocks</a>;
 
     // prettier-ignore
     const sayings = [
-      <>Powered by {chell}!</>,
-      <>They love me at the {chell}sea.</>,
-      <>Today's visualization has been brought to you by {chell}.</>,
-      <>{chell}sea, {chell}sea, I believe...</>,
-      <>Now you're thinking with {chell}!</>,
-      <>And {chell}sea says she's got nowhere to go...</>,
-    ].map(saying => <React.Fragment key={'random-chell-saying'}>{saying}</React.Fragment>);
+      <>Powered by {bioblocks}!</>,
+      <>They love me at the {bioblocks}sea.</>,
+      <>Today's visualization has been brought to you by {bioblocks}.</>,
+      <>{bioblocks}sea, {bioblocks}sea, I believe...</>,
+      <>Now you're thinking with {bioblocks}!</>,
+      <>And {bioblocks}sea says she's got nowhere to go...</>,
+    ].map(saying => <React.Fragment key={'random-bioblocks-saying'}>{saying}</React.Fragment>);
 
     // tslint:disable-next-line:insecure-random
     const randomSaying = sayings[Math.floor(Math.random() * sayings.length)];
@@ -329,11 +329,11 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     );
   };
 
-  protected renderChellComponents = (
+  protected renderBioblocksComponents = (
     style: React.CSSProperties,
     arePredictionsAvailable: boolean,
     measuredProximity: CONTACT_DISTANCE_PROXIMITY,
-    pdbData?: ChellPDB,
+    pdbData?: BioblocksPDB,
     size: number | string = '550px',
   ) => (
     <GridRow columns={2}>
@@ -346,7 +346,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     arePredictionsAvailable: boolean,
     size: number | string,
     style: React.CSSProperties,
-    pdbData?: ChellPDB,
+    pdbData?: BioblocksPDB,
   ) =>
     arePredictionsAvailable ? (
       <PredictedContactMap
@@ -374,7 +374,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
       />
     );
 
-  protected renderNGLCard = (measuredProximity: CONTACT_DISTANCE_PROXIMITY, pdbData?: ChellPDB) => (
+  protected renderNGLCard = (measuredProximity: CONTACT_DISTANCE_PROXIMITY, pdbData?: BioblocksPDB) => (
     <NGLContainer
       data={pdbData}
       isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
@@ -503,7 +503,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
             isLoading: true,
           },
         });
-        const pdbData = await ChellPDB.createPDB(file);
+        const pdbData = await BioblocksPDB.createPDB(file);
         const couplingScores = pdbData.amendPDBWithCouplingScores(
           this.state[VIZ_TYPE.CONTACT_MAP].couplingScores.rankedContacts,
           measuredProximity,

@@ -18,7 +18,7 @@ import {
   Table,
 } from 'semantic-ui-react';
 
-import { DatasetData, VizData } from '~chell-viz~/data';
+import { DatasetData, VizData } from '~bioblocks-viz~/data';
 
 export interface ISiteHeaderProps extends Partial<RouteComponentProps> {}
 

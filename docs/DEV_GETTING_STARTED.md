@@ -1,8 +1,8 @@
-# Getting Started With Chell-Viz Development
+# Getting Started With Bioblocks-Viz Development
 
-<!-- TOC -->autoauto- [Getting Started With Chell-Viz Development](#getting-started-with-chell-viz-development)auto  - [Testing Dependencies](#testing-dependencies)auto  - [Developer Tools](#developer-tools)auto    - [VS Code](#vs-code)auto      - [Extensions](#extensions)auto      - [Debugging](#debugging)auto      - [Formatting](#formatting)auto    - [iTerm2](#iterm2)auto    - [Oh My Zsh](#oh-my-zsh)auto    - [Ack](#ack)auto  - [Project Structure](#project-structure)auto    - [Frontend Stack](#frontend-stack)auto    - [Build System](#build-system)auto    - [The DevServer](#the-devserver)auto    - [Being The CI/CD You Want To See In The World](#being-the-cicd-you-want-to-see-in-the-world)auto      - [Pre-commit](#pre-commit)auto      - [Circle CI](#circle-ci)autoauto<!-- /TOC -->
+<!-- TOC -->autoauto- [Getting Started With Bioblocks-Viz Development](#getting-started-with-bioblocks-viz-development)auto  - [Testing Dependencies](#testing-dependencies)auto  - [Developer Tools](#developer-tools)auto    - [VS Code](#vs-code)auto      - [Extensions](#extensions)auto      - [Debugging](#debugging)auto      - [Formatting](#formatting)auto    - [iTerm2](#iterm2)auto    - [Oh My Zsh](#oh-my-zsh)auto    - [Ack](#ack)auto  - [Project Structure](#project-structure)auto    - [Frontend Stack](#frontend-stack)auto    - [Build System](#build-system)auto    - [The DevServer](#the-devserver)auto    - [Being The CI/CD You Want To See In The World](#being-the-cicd-you-want-to-see-in-the-world)auto      - [Pre-commit](#pre-commit)auto      - [Circle CI](#circle-ci)autoauto<!-- /TOC -->
 
-In order to build and run the chell-viz repo, all you will need to manually download is a package manager - This project is using [yarn](https://yarnpkg.com/), but `npm` _should_ _mostly_ suffice.
+In order to build and run the bioblocks-viz repo, all you will need to manually download is a package manager - This project is using [yarn](https://yarnpkg.com/), but `npm` _should_ _mostly_ suffice.
 
 Once that is installed, open a shell/terminal/command-line to the repo and install all the dependencies with the following command:
 
@@ -20,11 +20,11 @@ If you are using Mac, I recommend using [Homebrew](https://brew.sh/) for package
 
 ## Developer Tools
 
-This section is to briefly go over some tools to hopefully make your development experience as cozy as possible, but should not in any way be required to run chell visualizations.
+This section is to briefly go over some tools to hopefully make your development experience as cozy as possible, but should not in any way be required to run bioblocks visualizations.
 
 ### VS Code
 
-Quick detour for tools! It is highly recommended to use [Visual Studio Code](https://code.visualstudio.com/) as your IDE for this project, to take advantage of quite a few developer perks. Simply open the chell-viz folder in VSCode to get started!
+Quick detour for tools! It is highly recommended to use [Visual Studio Code](https://code.visualstudio.com/) as your IDE for this project, to take advantage of quite a few developer perks. Simply open the bioblocks-viz folder in VSCode to get started!
 
 #### Extensions
 
@@ -32,7 +32,7 @@ First things first, assuming you're a ~fresh convert~ new user, open the extensi
 
 ![Show Recommended Extensions](./assets/recommended_extensions.png)
 
-This will populate a list of about 20 various extensions recommended by the Chell team.
+This will populate a list of about 20 various extensions recommended by the Bioblocks team.
 
 Some of them aren't really specific to this project, like the IDE themes, while some _do_ have settings set up in the `.vscode` directory. Two such extensions are the Code Spell Checker and Debugger for Chrome.
 
@@ -84,7 +84,7 @@ yarn start:prod
 yarn build:prod
 ```
 
-You can find environment-specific webpack config files inside the `configs` directory, as well as `webpack.chell-common.ts` in the project root for the base config.
+You can find environment-specific webpack config files inside the `configs` directory, as well as `webpack.bioblocks-common.ts` in the project root for the base config.
 
 Right now the differences are minimal, however the framework is now in place to (more easily) allow finer-grained configuration.
 
@@ -113,4 +113,4 @@ When formatting and adding documentation the resulting file changes will automag
 
 #### Circle CI
 
-Our [Circle CI Server](circleci.com/gh/cBioCenter/chell-viz) will run on a PR made against master. It will checkout, build, lint and test the code on a fresh machine. The test results and coverage report are also saved as artifacts for each job.
+Our [Circle CI Server](circleci.com/gh/cBioCenter/bioblocks-viz) will run on a PR made against master. It will checkout, build, lint and test the code on a fresh machine. The test results and coverage report are also saved as artifacts for each job.

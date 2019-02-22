@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { VisualizationsPage } from '~chell-viz~/page';
+import { VisualizationsPage } from '~bioblocks-viz~/page';
 
 describe('AppsPage', () => {
   it('Should match existing snapshot.', () => {

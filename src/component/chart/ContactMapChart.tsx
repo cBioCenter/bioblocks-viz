@@ -2,13 +2,13 @@ import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 
 import { Button, Icon } from 'semantic-ui-react';
-import { AuxiliaryAxis, PlotlyChart, SecondaryStructureAxis, SettingsPanel } from '~chell-viz~/component';
-import { ChellWidgetConfig, IPlotlyData, RESIDUE_TYPE, SECONDARY_STRUCTURE } from '~chell-viz~/data';
-import { generateScatterGLData } from '~chell-viz~/helper';
+import { AuxiliaryAxis, PlotlyChart, SecondaryStructureAxis, SettingsPanel } from '~bioblocks-viz~/component';
+import { BioblocksWidgetConfig, IPlotlyData, RESIDUE_TYPE, SECONDARY_STRUCTURE } from '~bioblocks-viz~/data';
+import { generateScatterGLData } from '~bioblocks-viz~/helper';
 
 export interface IContactMapChartProps {
   candidateResidues: RESIDUE_TYPE[];
-  configurations: ChellWidgetConfig[];
+  configurations: BioblocksWidgetConfig[];
   contactData: IContactMapChartData[];
   height: number | string;
   legendModifiers: {
@@ -89,13 +89,13 @@ export interface IContactMapChartPoint {
 /**
  * Intermediary between a ContactMap and a PlotlyChart.
  *
- * Will transform data and setup layout from science/chell data type into the Plotly type.
+ * Will transform data and setup layout from science/bioblocks data type into the Plotly type.
  * @extends {React.Component<IContactMapChartProps, any>}
  */
 export class ContactMapChart extends React.Component<IContactMapChartProps, IContactMapChartState> {
   public static defaultProps = {
     candidateResidues: new Array<RESIDUE_TYPE>(),
-    configurations: new Array<ChellWidgetConfig>(),
+    configurations: new Array<BioblocksWidgetConfig>(),
     dataTransformFn: generateScatterGLData,
     height: '100%',
     legendModifiers: {
@@ -240,7 +240,7 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
   /**
    * Sets up the chart and axis data for the ContactMap.
    *
-   * Transforms all data from chell terminology to data properly formatted for Plotly consumption.
+   * Transforms all data from bioblocks terminology to data properly formatted for Plotly consumption.
    */
   protected setupData() {
     const { contactData, dataTransformFn, secondaryStructures, selectedSecondaryStructures } = this.props;

@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { SiteHeader } from '~chell-viz~/container';
+import { SiteHeader } from '~bioblocks-viz~/container';
 
 describe('SiteHeader', () => {
   it('Should match existing snapshot.', () => {

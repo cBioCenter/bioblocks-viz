@@ -3,7 +3,7 @@ import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Button, Grid, Header, List } from 'semantic-ui-react';
 
-import { IVizSummaryData, VizData } from '~chell-viz~/data';
+import { IVizSummaryData, VizData } from '~bioblocks-viz~/data';
 
 export interface IVisualizationsPageProps extends Partial<RouteComponentProps> {}
 

@@ -2,8 +2,8 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { Provider } from 'react-redux';
-import { ChellVizApp as App } from '~chell-viz~';
-import { Store } from '~chell-viz~/reducer';
+import { BioblocksVizApp as App } from '~bioblocks-viz~';
+import { Store } from '~bioblocks-viz~/reducer';
 
 ReactDOM.render(
   <Provider store={Store}>

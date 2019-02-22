@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { AnatomogramContainerClass } from '~chell-viz~/container';
+import { AnatomogramContainerClass } from '~bioblocks-viz~/container';
 
 describe('AnatomogramContainer', () => {
   it('Should match existing snapshot for homo sapiens.', () => {

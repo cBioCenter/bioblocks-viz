@@ -1,4 +1,4 @@
-import { ChellPDB, CouplingContainer } from '~chell-viz~/data';
+import { BioblocksPDB, CouplingContainer } from '~bioblocks-viz~/data';
 
 export type AMINO_ACID_SINGLE_LETTER_CODE =
   | 'A'
@@ -148,7 +148,7 @@ export interface IResidueMismatchResult {
   pdbAminoAcid: IAminoAcid;
 }
 
-export const getPDBAndCouplingMismatch = (pdbData: ChellPDB, couplingScores: CouplingContainer) => {
+export const getPDBAndCouplingMismatch = (pdbData: BioblocksPDB, couplingScores: CouplingContainer) => {
   const pdbSequence = pdbData.sequence;
   const couplingSequence = couplingScores.sequence;
   const mismatches = getSequenceMismatch(pdbSequence, couplingSequence);

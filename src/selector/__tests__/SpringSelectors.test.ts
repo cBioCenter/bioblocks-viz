@@ -1,6 +1,6 @@
 import { Set } from 'immutable';
-import { ISpringGraphData } from '~chell-viz~/data';
-import { getCategories, getGraphData, getLabels, getSpecies, getSpring } from '~chell-viz~/selector';
+import { ISpringGraphData } from '~bioblocks-viz~/data';
+import { getCategories, getGraphData, getLabels, getSpecies, getSpring } from '~bioblocks-viz~/selector';
 
 describe('SpringSelector', () => {
   it('Should create a new spring state if one does not exist.', () => {
@@ -21,7 +21,7 @@ describe('SpringSelector', () => {
     };
     expect(
       getSpring({
-        ['chell/spring']: {
+        ['bioblocks/spring']: {
           category: 'tissue',
           graphData: { nodes: [] },
           species: 'mus_musculus',

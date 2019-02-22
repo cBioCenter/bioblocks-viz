@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-import { defaultPlotlyLayout, PlotlyChart } from '~chell-viz~/component';
-import { ChellChartEvent, IPlotlyData } from '~chell-viz~/data';
+import { defaultPlotlyLayout, PlotlyChart } from '~bioblocks-viz~/component';
+import { BioblocksChartEvent, IPlotlyData } from '~bioblocks-viz~/data';
 
 export interface ITensorComponentProps {
-  onSelectedCallback?: ((event: ChellChartEvent) => void);
   pointsToPlot: Array<Partial<IPlotlyData>>;
+  onSelectedCallback?(event: BioblocksChartEvent): void;
 }
 
 class TensorTComponentClass extends React.Component<ITensorComponentProps> {

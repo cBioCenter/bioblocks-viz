@@ -1,10 +1,10 @@
 import { Dispatch } from 'redux';
 
-import { createDataActions, createValueActions } from '~chell-viz~/action';
-import { ISpringGraphData, SPECIES_TYPE } from '~chell-viz~/data';
+import { createDataActions, createValueActions } from '~bioblocks-viz~/action';
+import { ISpringGraphData, SPECIES_TYPE } from '~bioblocks-viz~/data';
 
 // tslint:disable-next-line:export-name
-export const fetchSpringGraphData = (fetchFn: () => Promise<ISpringGraphData>, namespace = 'chell') => async (
+export const fetchSpringGraphData = (fetchFn: () => Promise<ISpringGraphData>, namespace = 'bioblocks') => async (
   dispatch: Dispatch,
 ) => {
   const actions = createDataActions<ISpringGraphData>('spring/graphData', namespace);
@@ -20,7 +20,7 @@ export const fetchSpringGraphData = (fetchFn: () => Promise<ISpringGraphData>, n
   }
 };
 
-export const createSpringActions = (namespace = 'chell') => ({
+export const createSpringActions = (namespace = 'bioblocks') => ({
   category: { ...createValueActions<string>('spring/category', namespace) },
   graphData: { ...createDataActions<ISpringGraphData>('spring/graphData', namespace) },
   species: { ...createValueActions<SPECIES_TYPE>('spring/species', namespace) },

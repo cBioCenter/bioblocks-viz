@@ -1,14 +1,14 @@
 import * as React from 'react';
 
-import { ContactMap, generateChartDataEntry, IContactMapChartData } from '~chell-viz~/component';
+import { ContactMap, generateChartDataEntry, IContactMapChartData } from '~bioblocks-viz~/component';
 import {
-  CHELL_CSS_STYLE,
-  ChellWidgetConfig,
+  BIOBLOCKS_CSS_STYLE,
+  BioblocksWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
   CouplingContainer,
   IContactMapData,
   SECONDARY_STRUCTURE,
-} from '~chell-viz~/data';
+} from '~bioblocks-viz~/data';
 
 export interface IPredictedContactMapProps {
   correctColor: string;
@@ -16,7 +16,7 @@ export interface IPredictedContactMapProps {
   height: number | string;
   incorrectColor: string;
   isDataLoading: boolean;
-  style?: CHELL_CSS_STYLE;
+  style?: BIOBLOCKS_CSS_STYLE;
   width: number | string;
 }
 
@@ -97,7 +97,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     );
   }
 
-  protected getContactMapConfigs = (): ChellWidgetConfig[] => [
+  protected getContactMapConfigs = (): BioblocksWidgetConfig[] => [
     {
       name: 'Linear Distance Filter (|i - j|)',
       onChange: this.onLinearDistFilterChange(),

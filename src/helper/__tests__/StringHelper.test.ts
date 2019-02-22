@@ -1,4 +1,4 @@
-import { capitalizeFirstLetter } from '~chell-viz~/helper';
+import { capitalizeFirstLetter } from '~bioblocks-viz~/helper';
 
 describe('String Helper', () => {
   it('Should transform a string such that only the first letter is capitalized.', () => {

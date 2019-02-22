@@ -1,14 +1,19 @@
 import { mount } from 'enzyme';
 import * as React from 'react';
 
-import { IPlotlyChartProps, PlotlyChart } from '~chell-viz~/component';
-import { CHELL_CHART_EVENT_TYPE, CHELL_CHART_PIECE, ChellChartEvent, IPlotlyData } from '~chell-viz~/data';
+import { IPlotlyChartProps, PlotlyChart } from '~bioblocks-viz~/component';
+import {
+  BIOBLOCKS_CHART_EVENT_TYPE,
+  BIOBLOCKS_CHART_PIECE,
+  BioblocksChartEvent,
+  IPlotlyData,
+} from '~bioblocks-viz~/data';
 import {
   dispatchPlotlyEvent,
   dispatchPlotlySecondaryAxisEvent,
   dispatchPlotlySelectionEvent,
   IMockDict,
-} from '~chell-viz~/test';
+} from '~bioblocks-viz~/test';
 
 beforeEach(() => {
   jest.resetModules();
@@ -132,10 +137,10 @@ describe('PlotlyChart', () => {
         onClickCallback: onClickSpy,
       });
       await dispatchPlotlyEvent(wrapper, 'plotly_click', { x: 1, y: 2 });
-      const chellEvent = (onClickSpy.mock.calls[0] as ChellChartEvent[])[0];
-      expect(chellEvent.chartPiece).toBe(CHELL_CHART_PIECE.POINT);
-      expect(chellEvent.type).toBe(CHELL_CHART_EVENT_TYPE.CLICK);
-      expect(chellEvent.selectedPoints).toEqual([1, 2]);
+      const bioblocksEvent = (onClickSpy.mock.calls[0] as BioblocksChartEvent[])[0];
+      expect(bioblocksEvent.chartPiece).toBe(BIOBLOCKS_CHART_PIECE.POINT);
+      expect(bioblocksEvent.type).toBe(BIOBLOCKS_CHART_EVENT_TYPE.CLICK);
+      expect(bioblocksEvent.selectedPoints).toEqual([1, 2]);
     });
 
     it('Should return the appropriate event when plotly emits a click event on a secondary x axis.', async () => {
@@ -146,10 +151,10 @@ describe('PlotlyChart', () => {
       });
       dispatchPlotlySecondaryAxisEvent(wrapper, 'plotly_click', { data: { xaxis: 'x2', yaxis: 'y' }, x: 1, y: 2 });
 
-      const chellEvent = (onClickSpy.mock.calls[0] as ChellChartEvent[])[0];
-      expect(chellEvent.chartPiece).toBe(CHELL_CHART_PIECE.AXIS);
-      expect(chellEvent.type).toBe(CHELL_CHART_EVENT_TYPE.CLICK);
-      expect(chellEvent.selectedPoints).toEqual([2]);
+      const bioblocksEvent = (onClickSpy.mock.calls[0] as BioblocksChartEvent[])[0];
+      expect(bioblocksEvent.chartPiece).toBe(BIOBLOCKS_CHART_PIECE.AXIS);
+      expect(bioblocksEvent.type).toBe(BIOBLOCKS_CHART_EVENT_TYPE.CLICK);
+      expect(bioblocksEvent.selectedPoints).toEqual([2]);
     });
 
     it('Should return the appropriate event when plotly emits a click event on a secondary y axis.', async () => {
@@ -159,10 +164,10 @@ describe('PlotlyChart', () => {
         onClickCallback: onClickSpy,
       });
       dispatchPlotlySecondaryAxisEvent(wrapper, 'plotly_click', { data: { xaxis: 'x', yaxis: 'y2' }, x: 1, y: 2 });
-      const chellEvent = (onClickSpy.mock.calls[0] as ChellChartEvent[])[0];
-      expect(chellEvent.chartPiece).toBe(CHELL_CHART_PIECE.AXIS);
-      expect(chellEvent.type).toBe(CHELL_CHART_EVENT_TYPE.CLICK);
-      expect(chellEvent.selectedPoints).toEqual([1]);
+      const bioblocksEvent = (onClickSpy.mock.calls[0] as BioblocksChartEvent[])[0];
+      expect(bioblocksEvent.chartPiece).toBe(BIOBLOCKS_CHART_PIECE.AXIS);
+      expect(bioblocksEvent.type).toBe(BIOBLOCKS_CHART_EVENT_TYPE.CLICK);
+      expect(bioblocksEvent.selectedPoints).toEqual([1]);
     });
 
     it('Should call the appropriate callback when plotly emits a hover event.', async () => {

@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { TensorTComponent } from '~chell-viz~/component';
+import { TensorTComponent } from '~bioblocks-viz~/component';
 
 describe('TensorTComponent', () => {
   it('Should match existing snapshot when given no props.', () => {
