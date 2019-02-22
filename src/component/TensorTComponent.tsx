@@ -5,7 +5,7 @@ import { BioblocksChartEvent, IPlotlyData } from '~bioblocks-viz~/data';
 
 export interface ITensorComponentProps {
   pointsToPlot: Array<Partial<IPlotlyData>>;
-  onSelectedCallback(event: BioblocksChartEvent): void;
+  onSelectedCallback?(event: BioblocksChartEvent): void;
 }
 
 class TensorTComponentClass extends React.Component<ITensorComponentProps> {
