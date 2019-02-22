@@ -8,4 +8,4 @@ export * from './page';
 export * from './reducer';
 export * from './selector';
 
-export * from './ChellVizApp';
+export * from './BioblocksVizApp';

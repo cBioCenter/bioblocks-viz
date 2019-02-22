@@ -1,6 +1,6 @@
 import * as NGL from 'ngl';
 
-import { RESIDUE_TYPE, SECONDARY_STRUCTURE_SECTION } from '~chell-viz~/data';
+import { RESIDUE_TYPE, SECONDARY_STRUCTURE_SECTION } from '~bioblocks-viz~/data';
 
 export const defaultRepParams: Partial<NGL.IStructureRepresentationParams> = {
   color: 'red',

@@ -3,20 +3,20 @@ import 'jest-fetch-mock';
 import { inspect as stringifyCircularJSON } from 'util';
 
 import {
-  ChellPDB,
+  BioblocksPDB,
   CONTACT_DISTANCE_PROXIMITY,
   CouplingContainer,
   IContactMapData,
   ICouplingScore,
   VIZ_TYPE,
-} from '~chell-viz~/data';
+} from '~bioblocks-viz~/data';
 import {
   augmentCouplingScoresWithResidueMapping,
   fetchAppropriateData,
   generateResidueMapping,
   getCouplingScoresData,
   getSecondaryStructureData,
-} from '~chell-viz~/helper';
+} from '~bioblocks-viz~/helper';
 
 describe('DataHelper', () => {
   beforeEach(() => {
@@ -146,7 +146,7 @@ describe('DataHelper', () => {
     });
 
     it('Should load pdb data if available.', async () => {
-      const expected = await ChellPDB.createPDB('sample/protein.pdb');
+      const expected = await BioblocksPDB.createPDB('sample/protein.pdb');
       const response = {
         couplingScores: new CouplingContainer(),
         pdbData: { known: expected.amendPDBWithCouplingScores([], CONTACT_DISTANCE_PROXIMITY.CLOSEST) },

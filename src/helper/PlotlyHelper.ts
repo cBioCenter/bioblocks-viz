@@ -1,5 +1,5 @@
-import { IContactMapChartData } from '~chell-viz~/component';
-import { IPlotlyData, PLOTLY_CHART_TYPE } from '~chell-viz~/data';
+import { IContactMapChartData } from '~bioblocks-viz~/component';
+import { IPlotlyData, PLOTLY_CHART_TYPE } from '~bioblocks-viz~/data';
 
 /**
  * Generate data in the expected format for a WebGL Scatter plot.

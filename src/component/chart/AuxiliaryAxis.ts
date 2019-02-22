@@ -1,15 +1,15 @@
 import { Datum } from 'plotly.js-gl2d-dist';
 
-import { Chell1DSection, CHELL_PLOTLY_DATA, REQUIRED_CHELL_PLOTLY_DATA } from '~chell-viz~/data';
+import { Bioblocks1DSection, BIOBLOCKS_PLOTLY_DATA, REQUIRED_BIOBLOCKS_PLOTLY_DATA } from '~bioblocks-viz~/data';
 
 /**
  * Shorthand to refer to something with both an x and y axis.
  */
 export interface IAxisMapping {
   /** The x axis. */
-  x: CHELL_PLOTLY_DATA;
+  x: BIOBLOCKS_PLOTLY_DATA;
   /** The y axis. */
-  y: CHELL_PLOTLY_DATA;
+  y: BIOBLOCKS_PLOTLY_DATA;
 }
 
 /**
@@ -30,7 +30,7 @@ export class AuxiliaryAxis<T extends string> {
    * Get all the x-axis objects belonging to this Auxiliary Axis.
    */
   public get xAxes() {
-    const result = new Array<Partial<CHELL_PLOTLY_DATA>>();
+    const result = new Array<Partial<BIOBLOCKS_PLOTLY_DATA>>();
     this.axes.forEach(value => {
       result.push(value.x);
     });
@@ -42,7 +42,7 @@ export class AuxiliaryAxis<T extends string> {
    * Get all the highlighted x-axis objects belonging to this Auxiliary Axis.
    */
   public get highlightedXAxes() {
-    const result = new Array<Partial<CHELL_PLOTLY_DATA>>();
+    const result = new Array<Partial<BIOBLOCKS_PLOTLY_DATA>>();
     this.highlightedAxes.forEach(value => {
       result.push(value.x);
     });
@@ -54,7 +54,7 @@ export class AuxiliaryAxis<T extends string> {
    * Get all the y-axis objects belonging to this Auxiliary Axis.
    */
   public get yAxes() {
-    const result = new Array<Partial<CHELL_PLOTLY_DATA>>();
+    const result = new Array<Partial<BIOBLOCKS_PLOTLY_DATA>>();
     this.axes.forEach(value => {
       result.push(value.y);
     });
@@ -66,7 +66,7 @@ export class AuxiliaryAxis<T extends string> {
    * Get all the highlighted y-axis objects belonging to this Auxiliary Axis.
    */
   public get highlightedYAxes() {
-    const result = new Array<Partial<CHELL_PLOTLY_DATA>>();
+    const result = new Array<Partial<BIOBLOCKS_PLOTLY_DATA>>();
     this.highlightedAxes.forEach(value => {
       result.push(value.y);
     });
@@ -85,14 +85,14 @@ export class AuxiliaryAxis<T extends string> {
    * @param [filterFn=() => false] Function to allow certain elements to be filtered out and thus not show up on the axis.
    */
   constructor(
-    readonly sections: Array<Chell1DSection<T>>,
+    readonly sections: Array<Bioblocks1DSection<T>>,
     readonly axisIndex: number = 2,
     readonly defaultColor = 'black',
     readonly colorMap?: { [key: string]: string },
     readonly dataTransformFn?: {
-      [key: string]: (section: Chell1DSection<T>, index: number) => { main: number; opposite: number };
+      [key: string]: (section: Bioblocks1DSection<T>, index: number) => { main: number; opposite: number };
     },
-    readonly filterFn: (section: Chell1DSection<T>) => boolean = () => false,
+    readonly filterFn: (section: Bioblocks1DSection<T>) => boolean = () => false,
   ) {
     this.setupAuxiliaryAxis();
   }
@@ -148,7 +148,7 @@ export class AuxiliaryAxis<T extends string> {
    *
    * @param key The label for this piece of data.
    */
-  protected generateXAxisSegment = (key: T): CHELL_PLOTLY_DATA => ({
+  protected generateXAxisSegment = (key: T): BIOBLOCKS_PLOTLY_DATA => ({
     ...this.auxiliaryAxisDefaults(key),
     orientation: 'h',
     xaxis: 'x',
@@ -160,7 +160,7 @@ export class AuxiliaryAxis<T extends string> {
    *
    * @param key The label for this piece of data.
    */
-  protected generateHighlightedXAxisSegment = (key: T): CHELL_PLOTLY_DATA => ({
+  protected generateHighlightedXAxisSegment = (key: T): BIOBLOCKS_PLOTLY_DATA => ({
     ...this.highlightedAuxiliaryAxisDefaults(key),
     orientation: 'h',
     xaxis: 'x',
@@ -172,7 +172,7 @@ export class AuxiliaryAxis<T extends string> {
    *
    * @param key The label for this piece of data.
    */
-  protected generateYAxisSegment = (key: T): CHELL_PLOTLY_DATA => ({
+  protected generateYAxisSegment = (key: T): BIOBLOCKS_PLOTLY_DATA => ({
     ...this.auxiliaryAxisDefaults(key),
     orientation: 'v',
     xaxis: `x${this.axisIndex}`,
@@ -184,7 +184,7 @@ export class AuxiliaryAxis<T extends string> {
    *
    * @param key The label for this piece of data.
    */
-  protected generateHighlightedYAxisSegment = (key: T): CHELL_PLOTLY_DATA => ({
+  protected generateHighlightedYAxisSegment = (key: T): BIOBLOCKS_PLOTLY_DATA => ({
     ...this.highlightedAuxiliaryAxisDefaults(key),
     orientation: 'v',
     xaxis: `x${this.axisIndex}`,
@@ -196,7 +196,7 @@ export class AuxiliaryAxis<T extends string> {
    *
    * @param key The label for this piece of data.
    */
-  protected auxiliaryAxisDefaults = (key: T): REQUIRED_CHELL_PLOTLY_DATA => ({
+  protected auxiliaryAxisDefaults = (key: T): REQUIRED_BIOBLOCKS_PLOTLY_DATA => ({
     connectgaps: false,
     hoverinfo: 'none',
     line: {
@@ -221,7 +221,7 @@ export class AuxiliaryAxis<T extends string> {
    *
    * @param key The label for this piece of data.
    */
-  protected highlightedAuxiliaryAxisDefaults = (key: T): CHELL_PLOTLY_DATA => ({
+  protected highlightedAuxiliaryAxisDefaults = (key: T): BIOBLOCKS_PLOTLY_DATA => ({
     ...this.auxiliaryAxisDefaults(key),
     fill: 'toself',
     line: {
@@ -234,7 +234,7 @@ export class AuxiliaryAxis<T extends string> {
    * Determines the points that make up the axis for both the main and opposite axis side.
    * @param section The section of data to derive points for.
    */
-  protected derivePointsInAxis = (section: Chell1DSection<T>) => {
+  protected derivePointsInAxis = (section: Bioblocks1DSection<T>) => {
     const result = {
       main: [section.start],
       opposite: [null] as Array<number | null>,
@@ -255,7 +255,7 @@ export class AuxiliaryAxis<T extends string> {
     return result;
   };
 
-  protected deriveHighlightedPointsInAxis = (section: Chell1DSection<T>) => {
+  protected deriveHighlightedPointsInAxis = (section: Bioblocks1DSection<T>) => {
     const result = {
       main: [section.start],
       opposite: [null] as Array<number | null>,

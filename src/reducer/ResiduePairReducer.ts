@@ -1,8 +1,8 @@
 import { Map, Set } from 'immutable';
 import { combineReducers } from 'redux';
 
-import { RESIDUE_TYPE } from '~chell-viz~/data';
-import { ContainerReducer, ObjectReducer, ReducerRegistry } from '~chell-viz~/reducer';
+import { RESIDUE_TYPE } from '~bioblocks-viz~/data';
+import { ContainerReducer, ObjectReducer, ReducerRegistry } from '~bioblocks-viz~/reducer';
 
 export interface ILockedResiduePair {
   [key: string]: RESIDUE_TYPE[];
@@ -16,7 +16,7 @@ export interface IResiduePairReducerState {
 
 export const RESIDUE_PAIR_DATASET_NAME = 'residuePair';
 
-export const ResiduePairReducer = (namespace = 'chell') => {
+export const ResiduePairReducer = (namespace = 'bioblocks') => {
   return combineReducers({
     candidates: ContainerReducer<RESIDUE_TYPE>(`${RESIDUE_PAIR_DATASET_NAME}/candidates`, namespace),
     hovered: ContainerReducer<RESIDUE_TYPE>(`${RESIDUE_PAIR_DATASET_NAME}/hovered`, namespace),
@@ -24,7 +24,7 @@ export const ResiduePairReducer = (namespace = 'chell') => {
   });
 };
 
-export const createResiduePairReducer = (namespace = 'chell') => {
+export const createResiduePairReducer = (namespace = 'bioblocks') => {
   const reducer = ResiduePairReducer(namespace);
 
   const reducerName = `${namespace}/${RESIDUE_PAIR_DATASET_NAME}`;

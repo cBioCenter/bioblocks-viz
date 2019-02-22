@@ -2,8 +2,8 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Button } from 'semantic-ui-react';
 
-import { ISettingsPanelState, SettingsPanel } from '~chell-viz~/component';
-import { ChellWidgetConfig } from '~chell-viz~/data';
+import { ISettingsPanelState, SettingsPanel } from '~bioblocks-viz~/component';
+import { BioblocksWidgetConfig } from '~bioblocks-viz~/data';
 
 describe('SettingsPanel', () => {
   it('Should match the existing snapshot when given no configurations.', () => {
@@ -28,7 +28,7 @@ describe('SettingsPanel', () => {
   });
 
   it('Should display a placeholder message if given an unhandled configuration type.', () => {
-    const mockConfig: ChellWidgetConfig = {
+    const mockConfig: BioblocksWidgetConfig = {
       current: '0',
       name: 'Player HP',
       onChange: jest.fn(),

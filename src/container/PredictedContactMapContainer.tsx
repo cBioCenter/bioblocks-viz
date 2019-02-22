@@ -2,13 +2,13 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
-import { fetchDataset } from '~chell-viz~/action';
-import { ComponentCard, PredictedContactMap } from '~chell-viz~/component';
-import { ChellVisualization } from '~chell-viz~/container';
-import { CouplingContainer, IContactMapData, SECONDARY_STRUCTURE_SECTION } from '~chell-viz~/data';
-import { fetchContactMapData } from '~chell-viz~/helper';
-import { createDataReducer } from '~chell-viz~/reducer';
-import { selectCurrentItems, selectCurrentValue } from '~chell-viz~/selector';
+import { fetchDataset } from '~bioblocks-viz~/action';
+import { ComponentCard, PredictedContactMap } from '~bioblocks-viz~/component';
+import { BioblocksVisualization } from '~bioblocks-viz~/container';
+import { CouplingContainer, IContactMapData, SECONDARY_STRUCTURE_SECTION } from '~bioblocks-viz~/data';
+import { fetchContactMapData } from '~bioblocks-viz~/helper';
+import { createDataReducer } from '~bioblocks-viz~/reducer';
+import { selectCurrentItems, selectCurrentValue } from '~bioblocks-viz~/selector';
 
 export interface IPredictedContactMapContainerProps {
   data: IContactMapData;
@@ -17,7 +17,7 @@ export interface IPredictedContactMapContainerProps {
   dispatchContactMapFetch(dataset: string, fetchFn: () => Promise<IContactMapData>): void;
 }
 
-export class PredictedContactMapContainerClass extends ChellVisualization<IPredictedContactMapContainerProps> {
+export class PredictedContactMapContainerClass extends BioblocksVisualization<IPredictedContactMapContainerProps> {
   constructor(props: IPredictedContactMapContainerProps) {
     super(props);
   }

@@ -1,14 +1,14 @@
 // tslint:disable-next-line:no-relative-imports
 import { AuxiliaryAxis } from './';
 
-// import { AuxiliaryAxis } from '~chell-viz~/component'; // TODO Fix the circular dependency this causes.
+// import { AuxiliaryAxis } from '~bioblocks-viz~/component'; // TODO Fix the circular dependency this causes.
 
 import {
   IPlotlyData,
   SECONDARY_STRUCTURE,
   SECONDARY_STRUCTURE_KEYS,
   SECONDARY_STRUCTURE_SECTION,
-} from '~chell-viz~/data';
+} from '~bioblocks-viz~/data';
 
 /**
  * Class to represent the x and y axis for a secondary structure on a Plotly graph.

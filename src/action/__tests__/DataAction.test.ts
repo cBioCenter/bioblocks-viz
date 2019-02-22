@@ -2,7 +2,7 @@ import { default as reduxMockStore, MockStoreCreator } from 'redux-mock-store';
 import * as thunk from 'redux-thunk';
 import { getType } from 'typesafe-actions';
 
-import { createDataActions, fetchDataset } from '~chell-viz~/action';
+import { createDataActions, fetchDataset } from '~bioblocks-viz~/action';
 
 const middleWares = [thunk.default];
 let mockStore: MockStoreCreator;
@@ -12,14 +12,14 @@ describe('DataAction', () => {
     it('Should create error actions.', () => {
       const expectedAction = {
         payload: Error('Party crashed'),
-        type: 'CHELL/EXAMPLE_FETCH_DATA_FAILURE',
+        type: 'BIOBLOCKS/EXAMPLE_FETCH_DATA_FAILURE',
       };
       expect(createDataActions('example').failure(Error('Party crashed'))).toEqual(expectedAction);
     });
 
     it('Should create request actions.', () => {
       const expectedAction = {
-        type: 'CHELL/EXAMPLE_FETCH_DATA_REQUEST',
+        type: 'BIOBLOCKS/EXAMPLE_FETCH_DATA_REQUEST',
       };
       expect(createDataActions('example').request()).toEqual(expectedAction);
     });
@@ -27,7 +27,7 @@ describe('DataAction', () => {
     it('Should create success actions.', () => {
       const expectedAction = {
         payload: 'party',
-        type: 'CHELL/EXAMPLE_FETCH_DATA_SUCCESS',
+        type: 'BIOBLOCKS/EXAMPLE_FETCH_DATA_SUCCESS',
       };
       expect(createDataActions('example').success('party')).toEqual(expectedAction);
     });

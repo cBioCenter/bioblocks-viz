@@ -1,18 +1,18 @@
-import { createObjectActions } from '~chell-viz~/action';
+import { createObjectActions } from '~bioblocks-viz~/action';
 
 describe('ObjectAction', () => {
   it('Should create add actions.', () => {
     const expectedAction = {
       meta: 'example',
       payload: { element: 'earth' },
-      type: 'CHELL/EXAMPLE_ADD',
+      type: 'BIOBLOCKS/EXAMPLE_ADD',
     };
     expect(createObjectActions('example').add({ element: 'earth' })).toEqual(expectedAction);
   });
 
   it('Should create clear actions.', () => {
     const expectedAction = {
-      type: 'CHELL/EXAMPLE_CLEAR',
+      type: 'BIOBLOCKS/EXAMPLE_CLEAR',
     };
     expect(createObjectActions('example').clear()).toEqual(expectedAction);
   });
@@ -21,7 +21,7 @@ describe('ObjectAction', () => {
     const expectedAction = {
       meta: 'example',
       payload: 'element',
-      type: 'CHELL/EXAMPLE_REMOVE',
+      type: 'BIOBLOCKS/EXAMPLE_REMOVE',
     };
     expect(createObjectActions('example').remove('element')).toEqual(expectedAction);
   });
@@ -30,7 +30,7 @@ describe('ObjectAction', () => {
     const expectedAction = {
       meta: 'example',
       payload: ['earth', 'wind'],
-      type: 'CHELL/EXAMPLE_REMOVE_MULTIPLE',
+      type: 'BIOBLOCKS/EXAMPLE_REMOVE_MULTIPLE',
     };
     expect(createObjectActions('example').removeMultiple(['earth', 'wind'])).toEqual(expectedAction);
   });
@@ -39,7 +39,7 @@ describe('ObjectAction', () => {
     const expectedAction = {
       meta: 'example',
       payload: { element: 'fire' },
-      type: 'CHELL/EXAMPLE_SET',
+      type: 'BIOBLOCKS/EXAMPLE_SET',
     };
     expect(createObjectActions('example').set({ element: 'fire' })).toEqual(expectedAction);
   });

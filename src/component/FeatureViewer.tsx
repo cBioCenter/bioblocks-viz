@@ -1,26 +1,26 @@
 import * as React from 'react';
 
 import { Set } from 'immutable';
-import { PlotlyChart } from '~chell-viz~/component';
-import { Chell1DSection, ChellChartEvent, IPlotlyData, TintedChell1DSection } from '~chell-viz~/data';
+import { PlotlyChart } from '~bioblocks-viz~/component';
+import { Bioblocks1DSection, BioblocksChartEvent, IPlotlyData, TintedBioblocks1DSection } from '~bioblocks-viz~/data';
 
 export interface IFeatureRangeSelection {
   end: number;
   length: number;
   start: number;
-  featuresSelected: Array<Chell1DSection<string>>;
+  featuresSelected: Array<Bioblocks1DSection<string>>;
 }
 
 export interface IFeatureViewerProps {
-  backgroundBar?: TintedChell1DSection<string>;
-  data: Array<TintedChell1DSection<string>>;
+  backgroundBar?: TintedBioblocks1DSection<string>;
+  data: Array<TintedBioblocks1DSection<string>>;
   height: number;
   maxLength?: number;
   showGrouped: boolean;
   title: string;
   width: number;
   getTextForHover?(label: string, index: number): string;
-  onClickCallback?(section: Array<Chell1DSection<string>>): void;
+  onClickCallback?(section: Array<Bioblocks1DSection<string>>): void;
   onSelectCallback?(selection: IFeatureRangeSelection): void;
 }
 
@@ -31,7 +31,7 @@ export interface IFeatureViewerState {
   plotlyConfig: Partial<Plotly.Config>;
   plotlyData: Array<Partial<IPlotlyData>>;
   selectedFeatureIndices: Set<number>;
-  selectedRange: Chell1DSection<string>;
+  selectedRange: Bioblocks1DSection<string>;
 }
 
 export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeatureViewerState> {
@@ -65,7 +65,7 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
     const backgroundBarData = FeatureViewer.getPlotlyBackgroundBarObject(
       backgroundBar
         ? backgroundBar
-        : new TintedChell1DSection('', 0, data.reduce((prev, cur) => Math.max(prev, cur.end), -1), '#b9bcb6'),
+        : new TintedBioblocks1DSection('', 0, data.reduce((prev, cur) => Math.max(prev, cur.end), -1), '#b9bcb6'),
       showGrouped,
       maxGroups / 2,
     );
@@ -131,7 +131,7 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
     };
   }
 
-  protected static getBoxForChellSection(datum: TintedChell1DSection<any>) {
+  protected static getBoxForBioblocksSection(datum: TintedBioblocks1DSection<any>) {
     return [
       datum.end - (datum.end - datum.start) / 2,
       null,
@@ -171,7 +171,7 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
       : [];
 
   protected static getPlotlyBackgroundBarObject = (
-    datum: TintedChell1DSection<string>,
+    datum: TintedBioblocks1DSection<string>,
     showGrouped: boolean,
     yIndex: number,
   ): Partial<IPlotlyData> => ({
@@ -182,7 +182,7 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
   });
 
   protected static getPlotlyDataObject = (
-    datum: TintedChell1DSection<string>,
+    datum: TintedBioblocks1DSection<string>,
     showGrouped: boolean,
     yIndex: number,
   ): Partial<IPlotlyData> => ({
@@ -199,7 +199,7 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
     textfont: { color: ['#FFFFFF'] },
     type: 'scatter',
     // Creates a 'box' so we can fill it and hover over it and add a point to the middle for the label.
-    x: FeatureViewer.getBoxForChellSection(datum),
+    x: FeatureViewer.getBoxForBioblocksSection(datum),
     y: showGrouped
       ? [0.5, null, 0, 1, 1, 0, 0]
       : [yIndex + 0.5, null, yIndex + 1, yIndex, yIndex, yIndex + 1, yIndex + 1],
@@ -217,7 +217,7 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
       plotlyData: [],
       plotlyLayout: {},
       selectedFeatureIndices: Set<number>(),
-      selectedRange: new Chell1DSection('selection', -1, -1),
+      selectedRange: new Bioblocks1DSection('selection', -1, -1),
     };
   }
 
@@ -240,7 +240,7 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
     );
   }
 
-  protected onFeatureHover = (event: ChellChartEvent) => {
+  protected onFeatureHover = (event: BioblocksChartEvent) => {
     const { data, getTextForHover } = this.props;
     let hoveredFeatureIndex = -1;
     // TODO Handle vertical viewer, better selection logic.
@@ -262,7 +262,7 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
     });
   };
 
-  protected onFeatureClick = (event: ChellChartEvent) => {
+  protected onFeatureClick = (event: BioblocksChartEvent) => {
     const { data, onClickCallback } = this.props;
     const selectedFeatureIndices = this.deriveFeatureIndices(data, event.selectedPoints);
 
@@ -272,18 +272,18 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
 
     this.setState({
       selectedFeatureIndices,
-      selectedRange: new Chell1DSection('selection', -1, -1),
+      selectedRange: new Bioblocks1DSection('selection', -1, -1),
     });
   };
 
-  protected onFeatureSelect = (event: ChellChartEvent) => {
+  protected onFeatureSelect = (event: BioblocksChartEvent) => {
     const { data, onSelectCallback } = this.props;
     const selectedFeatureIndices = this.deriveFeatureIndices(data, event.selectedPoints);
 
     const plotlyEvent = event.plotlyEvent as Plotly.PlotSelectionEvent;
     let { selectedRange } = this.state;
     if (plotlyEvent.range) {
-      selectedRange = new Chell1DSection(
+      selectedRange = new Bioblocks1DSection(
         'selection',
         Math.floor(plotlyEvent.range.x[0]),
         Math.ceil(plotlyEvent.range.x[1]),
@@ -310,7 +310,7 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
   /**
    * Derive the indices of the Features from the points the user selected.
    */
-  protected deriveFeatureIndices = (data: Array<TintedChell1DSection<string>>, userSelectedPoints: number[]) => {
+  protected deriveFeatureIndices = (data: Array<TintedBioblocks1DSection<string>>, userSelectedPoints: number[]) => {
     let featureIndices = Set<number>();
 
     // Points come to us as [x0, y0, x1, y1, ..., xn, yn], so we skip every other point.
@@ -329,9 +329,12 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
   /**
    * Shorthand to get the raw section data for a set of Features given some indices.
    */
-  protected deriveSelectedFeatures = (data: Array<TintedChell1DSection<string>>, selectedFeatureIndices: number[]) => {
+  protected deriveSelectedFeatures = (
+    data: Array<TintedBioblocks1DSection<string>>,
+    selectedFeatureIndices: number[],
+  ) => {
     return selectedFeatureIndices.map(
-      index => new Chell1DSection(data[index].label, data[index].start, data[index].end),
+      index => new Bioblocks1DSection(data[index].label, data[index].start, data[index].end),
     );
   };
 }

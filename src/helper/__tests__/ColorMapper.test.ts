@@ -1,4 +1,4 @@
-import { ColorMapper } from '~chell-viz~/helper';
+import { ColorMapper } from '~bioblocks-viz~/helper';
 
 describe('ColorMapper', () => {
   it('Should use a default set of colors when none are provided.', () => {

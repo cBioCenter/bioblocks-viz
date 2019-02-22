@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { VizOverviewPage } from '~chell-viz~/page';
+import { VizOverviewPage } from '~bioblocks-viz~/page';
 
 describe('VizOverviewPage', () => {
   const visualizations = ['anatomogram', 'spring', 'tfjs-tsne'];

@@ -1,1 +1,1 @@
-export * from './ChellChartEvent';
+export * from './BioblocksChartEvent';

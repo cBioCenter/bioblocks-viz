@@ -17,7 +17,7 @@ export const fetchJSONFile = async (filename: string) => {
 };
 
 const genErrorMsg = (fileType: string, response: Response) =>
-  `Chell-viz error fetching ${fileType} File!\nStatus: ${response.status}\nMessage: ${response.statusText}\n`;
+  `Bioblocks-viz error fetching ${fileType} File!\nStatus: ${response.status}\nMessage: ${response.statusText}\n`;
 
 // https://blog.shovonhasan.com/using-promises-with-filereader/
 export const readFileAsText = async (inputFile: File) => {

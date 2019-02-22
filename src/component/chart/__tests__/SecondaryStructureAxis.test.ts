@@ -1,17 +1,17 @@
-import { IAxisMapping, SecondaryStructureAxis } from '~chell-viz~/component';
+import { IAxisMapping, SecondaryStructureAxis } from '~bioblocks-viz~/component';
 import {
-  Chell1DSection,
+  Bioblocks1DSection,
   SECONDARY_STRUCTURE,
   SECONDARY_STRUCTURE_CODES,
   SECONDARY_STRUCTURE_KEYS,
-} from '~chell-viz~/data';
+} from '~bioblocks-viz~/data';
 
 describe('SecondaryStructureAxis', () => {
   const genSeqEntry = (
     structId: keyof typeof SECONDARY_STRUCTURE_CODES,
     resno: number,
     length: number = 1,
-  ): SECONDARY_STRUCTURE => [new Chell1DSection<SECONDARY_STRUCTURE_KEYS>(structId, resno, resno + length - 1)];
+  ): SECONDARY_STRUCTURE => [new Bioblocks1DSection<SECONDARY_STRUCTURE_KEYS>(structId, resno, resno + length - 1)];
 
   it('Should create an empty axis when no secondary structure is provided.', () => {
     const result = new SecondaryStructureAxis([]);

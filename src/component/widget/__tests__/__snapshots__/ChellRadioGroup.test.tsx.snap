@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ChellRadioGroup Should match existing snapshot when given simple data. 1`] = `
+exports[`BioblocksRadioGroup Should match existing snapshot when given simple data. 1`] = `
 <div
   style={Object {}}
 >

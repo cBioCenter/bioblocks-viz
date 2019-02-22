@@ -3,11 +3,11 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Grid } from 'semantic-ui-react';
 
-import { SpringContainer, Store } from '~chell-viz~';
+import { SpringContainer, Store } from '~bioblocks-viz~';
 
 ReactDOM.render(
   <Provider store={Store}>
-    <div id="ChellVizApp">
+    <div id="BioblocksVizApp">
       <div style={{ padding: '20px' }}>
         <Grid centered={true} padded={true} style={{ width: '100vmin', height: '100%' }}>
           <SpringContainer isFullPage={true} datasetLocation={'hpc/full'} />

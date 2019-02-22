@@ -30,11 +30,11 @@ export interface IPlotlyLayout extends Plotly.Layout {
   // TODO Open PR to add these missing Plotly types. - https://plot.ly/javascript/reference/#box
 }
 
-export type REQUIRED_CHELL_PLOTLY_DATA = Required<
+export type REQUIRED_BIOBLOCKS_PLOTLY_DATA = Required<
   Pick<
     IPlotlyData,
     'connectgaps' | 'hoverinfo' | 'line' | 'marker' | 'mode' | 'name' | 'showlegend' | 'type' | 'x' | 'y'
   >
 >;
 
-export type CHELL_PLOTLY_DATA = REQUIRED_CHELL_PLOTLY_DATA & Partial<IPlotlyData>;
+export type BIOBLOCKS_PLOTLY_DATA = REQUIRED_BIOBLOCKS_PLOTLY_DATA & Partial<IPlotlyData>;

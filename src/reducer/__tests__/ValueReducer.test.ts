@@ -1,17 +1,17 @@
-import { createValueReducer, ReducerRegistry, ValueReducer } from '~chell-viz~/reducer';
+import { createValueReducer, ReducerRegistry, ValueReducer } from '~bioblocks-viz~/reducer';
 
 describe('ValueReducer', () => {
   it('Should handle clearing the value.', () => {
     const expectedState = null;
     const reducer = ValueReducer('date');
-    const state = reducer(undefined, { type: 'CHELL/DATE_CLEAR' });
-    expect(reducer(state, { type: 'CHELL/DATE_CLEAR' })).toEqual(expectedState);
+    const state = reducer(undefined, { type: 'BIOBLOCKS/DATE_CLEAR' });
+    expect(reducer(state, { type: 'BIOBLOCKS/DATE_CLEAR' })).toEqual(expectedState);
   });
 
   it('Should handle setting a value.', () => {
     const expectedState = 'Today';
     const reducer = ValueReducer('date');
-    const state = reducer(undefined, { type: 'CHELL/DATE_SET', payload: 'Today' });
+    const state = reducer(undefined, { type: 'BIOBLOCKS/DATE_SET', payload: 'Today' });
     expect(state).toEqual(expectedState);
   });
 

@@ -1,11 +1,11 @@
-import { createContainerActions } from '~chell-viz~/action';
+import { createContainerActions } from '~bioblocks-viz~/action';
 
 describe('ContainerAction', () => {
   it('Should create add actions.', () => {
     const expectedAction = {
       meta: 'example',
       payload: 'Heart',
-      type: 'CHELL/EXAMPLE_ADD',
+      type: 'BIOBLOCKS/EXAMPLE_ADD',
     };
     expect(createContainerActions('example').add('Heart')).toEqual(expectedAction);
   });
@@ -14,14 +14,14 @@ describe('ContainerAction', () => {
     const expectedAction = {
       meta: 'example',
       payload: ['Earth', 'Wind', 'Fire'],
-      type: 'CHELL/EXAMPLE_ADD_MULTIPLE',
+      type: 'BIOBLOCKS/EXAMPLE_ADD_MULTIPLE',
     };
     expect(createContainerActions('example').addMultiple(['Earth', 'Wind', 'Fire'])).toEqual(expectedAction);
   });
 
   it('Should create clear actions.', () => {
     const expectedAction = {
-      type: 'CHELL/EXAMPLE_CLEAR',
+      type: 'BIOBLOCKS/EXAMPLE_CLEAR',
     };
     expect(createContainerActions('example').clear()).toEqual(expectedAction);
   });
@@ -30,7 +30,7 @@ describe('ContainerAction', () => {
     const expectedAction = {
       meta: 'example',
       payload: 'Heart',
-      type: 'CHELL/EXAMPLE_REMOVE',
+      type: 'BIOBLOCKS/EXAMPLE_REMOVE',
     };
     expect(createContainerActions('example').remove('Heart')).toEqual(expectedAction);
   });
@@ -39,7 +39,7 @@ describe('ContainerAction', () => {
     const expectedAction = {
       meta: 'example',
       payload: ['Heart', 'Air'],
-      type: 'CHELL/EXAMPLE_REMOVE_MULTIPLE',
+      type: 'BIOBLOCKS/EXAMPLE_REMOVE_MULTIPLE',
     };
     expect(createContainerActions('example').removeMultiple(['Heart', 'Air'])).toEqual(expectedAction);
   });
@@ -48,7 +48,7 @@ describe('ContainerAction', () => {
     const expectedAction = {
       meta: 'example',
       payload: ['Fire', 'Wind', 'Earth'],
-      type: 'CHELL/EXAMPLE_SET',
+      type: 'BIOBLOCKS/EXAMPLE_SET',
     };
     expect(createContainerActions('example').set(['Fire', 'Wind', 'Earth'])).toEqual(expectedAction);
   });

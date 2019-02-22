@@ -2,19 +2,19 @@ import { mount, shallow } from 'enzyme';
 import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 
-import { ContactMapClass } from '~chell-viz~/component';
+import { ContactMapClass } from '~bioblocks-viz~/component';
 import {
-  Chell1DSection,
-  ChellPDB,
-  ChellWidgetConfig,
+  Bioblocks1DSection,
+  BioblocksPDB,
+  BioblocksWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
   CouplingContainer,
   IContactMapData,
   ICouplingScore,
   SECONDARY_STRUCTURE,
   SECONDARY_STRUCTURE_KEYS,
-} from '~chell-viz~/data';
-import { dispatchPlotlyEvent, dispatchPlotlySelectionEvent, getAsyncMountedComponent } from '~chell-viz~/test';
+} from '~bioblocks-viz~/data';
+import { dispatchPlotlyEvent, dispatchPlotlySelectionEvent, getAsyncMountedComponent } from '~bioblocks-viz~/test';
 
 describe('ContactMap', () => {
   let emptyData: IContactMapData;
@@ -130,7 +130,7 @@ describe('ContactMap', () => {
     });
 
     it('Should match existing snapshot when given data with a PDB.', async () => {
-      const pdbData = { known: await ChellPDB.createPDB() };
+      const pdbData = { known: await BioblocksPDB.createPDB() };
       expect(shallow(<ContactMapClass data={{ ...sampleDataWithAminoAcid, pdbData }} />)).toMatchSnapshot();
     });
 
@@ -214,7 +214,7 @@ describe('ContactMap', () => {
 
     it('Should invoke callback for adding a secondary structure when a mouse clicks it the first time.', async () => {
       const addSecondaryStructureSpy = jest.fn();
-      const testSecStruct = new Chell1DSection<SECONDARY_STRUCTURE_KEYS>('C', 0, 10);
+      const testSecStruct = new Bioblocks1DSection<SECONDARY_STRUCTURE_KEYS>('C', 0, 10);
       const wrapper = await getAsyncMountedComponent(
         <ContactMapClass
           data={{
@@ -235,7 +235,7 @@ describe('ContactMap', () => {
 
     it('Should invoke callback for removing a secondary structure when a mouse clicks one that is already locked', async () => {
       const removeSecondaryStructureSpy = jest.fn();
-      const testSecStruct = new Chell1DSection<SECONDARY_STRUCTURE_KEYS>('C', 0, 10);
+      const testSecStruct = new Bioblocks1DSection<SECONDARY_STRUCTURE_KEYS>('C', 0, 10);
       const wrapper = await getAsyncMountedComponent(
         <ContactMapClass
           data={{
@@ -257,7 +257,7 @@ describe('ContactMap', () => {
 
     it('Should invoke callback for toggling a secondary structure when a mouse hovers over it.', async () => {
       const toggleSecondaryStructureSpy = jest.fn();
-      const testSecStruct = new Chell1DSection<SECONDARY_STRUCTURE_KEYS>('C', 0, 10);
+      const testSecStruct = new Bioblocks1DSection<SECONDARY_STRUCTURE_KEYS>('C', 0, 10);
       const wrapper = await getAsyncMountedComponent(
         <ContactMapClass
           data={{
@@ -278,7 +278,7 @@ describe('ContactMap', () => {
 
     it('Should not invoke callback for toggling a secondary structure when a mouse hovers over a different structure.', async () => {
       const toggleSecondaryStructureSpy = jest.fn();
-      const testSecStruct = new Chell1DSection<SECONDARY_STRUCTURE_KEYS>('C', 10, 11);
+      const testSecStruct = new Bioblocks1DSection<SECONDARY_STRUCTURE_KEYS>('C', 10, 11);
       const wrapper = await getAsyncMountedComponent(
         <ContactMapClass
           data={{
@@ -299,7 +299,7 @@ describe('ContactMap', () => {
 
     it('Should invoke callback for removing a secondary structure when a mouse leaves it.', async () => {
       const removeSecondaryStructureSpy = jest.fn();
-      const testSecStruct = new Chell1DSection<SECONDARY_STRUCTURE_KEYS>('C', 0, 10);
+      const testSecStruct = new Bioblocks1DSection<SECONDARY_STRUCTURE_KEYS>('C', 0, 10);
       const wrapper = await getAsyncMountedComponent(
         <ContactMapClass
           data={{
@@ -322,7 +322,7 @@ describe('ContactMap', () => {
 
     it('Should not invoke callback for toggling a secondary structure when a mouse leaves a different structure.', async () => {
       const toggleSecondaryStructureSpy = jest.fn();
-      const testSecStruct = new Chell1DSection<SECONDARY_STRUCTURE_KEYS>('C', 10, 11);
+      const testSecStruct = new Bioblocks1DSection<SECONDARY_STRUCTURE_KEYS>('C', 10, 11);
       const wrapper = await getAsyncMountedComponent(
         <ContactMapClass
           data={{
@@ -355,7 +355,7 @@ describe('ContactMap', () => {
 
   describe('Configuration', () => {
     it('Should match existing snapshot when given configurations.', () => {
-      const configurations: ChellWidgetConfig[] = [
+      const configurations: BioblocksWidgetConfig[] = [
         {
           name: 'sample slider',
           onChange: jest.fn(),

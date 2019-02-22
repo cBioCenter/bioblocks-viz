@@ -5,13 +5,13 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
-import { createContainerActions } from '~chell-viz~/action';
-import { ComponentCard } from '~chell-viz~/component';
-import { ChellVisualization } from '~chell-viz~/container';
-import { AnatomogramMapping, ISpringGraphData, SPECIES_TYPE } from '~chell-viz~/data';
-import { EMPTY_FUNCTION } from '~chell-viz~/helper';
-import { ChellMiddlewareTransformer, RootState } from '~chell-viz~/reducer';
-import { getSpecies, getSpring, selectCurrentItems } from '~chell-viz~/selector';
+import { createContainerActions } from '~bioblocks-viz~/action';
+import { ComponentCard } from '~bioblocks-viz~/component';
+import { BioblocksVisualization } from '~bioblocks-viz~/container';
+import { AnatomogramMapping, ISpringGraphData, SPECIES_TYPE } from '~bioblocks-viz~/data';
+import { EMPTY_FUNCTION } from '~bioblocks-viz~/helper';
+import { BioblocksMiddlewareTransformer, RootState } from '~bioblocks-viz~/reducer';
+import { getSpecies, getSpring, selectCurrentItems } from '~bioblocks-viz~/selector';
 
 interface IAnatomogramContainerProps {
   selectIds: Set<string>;
@@ -24,7 +24,7 @@ interface IAnatomogramContainerState {
   ids: string[];
 }
 
-export class AnatomogramContainerClass extends ChellVisualization<
+export class AnatomogramContainerClass extends BioblocksVisualization<
   IAnatomogramContainerProps,
   IAnatomogramContainerState
 > {
@@ -49,7 +49,7 @@ export class AnatomogramContainerClass extends ChellVisualization<
   public setupDataServices() {
     this.registerDataset('cells', []);
     this.registerDataset('labels', []);
-    ChellMiddlewareTransformer.addTransform({
+    BioblocksMiddlewareTransformer.addTransform({
       fn: state => {
         const anatomogramMap = AnatomogramMapping[this.props.species];
         let candidateLabels = Set<string>();
@@ -58,7 +58,7 @@ export class AnatomogramContainerClass extends ChellVisualization<
         });
 
         let cellIndices = Set<number>();
-        const springDataHook = ChellVisualization.getActiveChellHooks().springGraphData;
+        const springDataHook = BioblocksVisualization.getActiveBioblocksHooks().springGraphData;
         if (springDataHook) {
           const springData = springDataHook() as ISpringGraphData;
           springData.nodes.forEach(node => {
@@ -74,10 +74,10 @@ export class AnatomogramContainerClass extends ChellVisualization<
 
         return cellIndices;
       },
-      fromState: 'chell/labels',
-      toState: 'chell/cells',
+      fromState: 'bioblocks/labels',
+      toState: 'bioblocks/cells',
     });
-    ChellMiddlewareTransformer.addTransform({
+    BioblocksMiddlewareTransformer.addTransform({
       fn: state => {
         const currentCells = selectCurrentItems<number>(state, 'cells').toArray();
         const { category, graphData } = getSpring(state);

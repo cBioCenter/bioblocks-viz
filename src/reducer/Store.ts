@@ -2,18 +2,18 @@ import { applyMiddleware, combineReducers, createStore, Middleware } from 'redux
 import { logger } from 'redux-logger';
 import * as thunk from 'redux-thunk';
 
-import { ChellVisualization } from '~chell-viz~/container';
-import { ChellMiddleware, IReducerMap, ReducerRegistry, RootState } from '~chell-viz~/reducer';
+import { BioblocksVisualization } from '~bioblocks-viz~/container';
+import { BioblocksMiddleware, IReducerMap, ReducerRegistry, RootState } from '~bioblocks-viz~/reducer';
 
 const middleWares: Middleware[] = [thunk.default];
 if (process.env.NODE_ENV === `development`) {
   middleWares.push(logger);
 }
-middleWares.push(ChellMiddleware);
+middleWares.push(BioblocksMiddleware);
 
-// TODO define initial non-dynamic state for Chell.
+// TODO define initial non-dynamic state for Bioblocks.
 const initialState: RootState = {
-  visualizations: new Array<ChellVisualization>(),
+  visualizations: new Array<BioblocksVisualization>(),
 };
 
 // Preserve initial state for not-yet-loaded reducers

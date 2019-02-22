@@ -5,10 +5,10 @@ import { RouteComponentProps } from 'react-router';
 import { bindActionCreators, Dispatch } from 'redux';
 import { Grid, Message } from 'semantic-ui-react';
 
-import { createSpringActions, fetchSpringGraphData } from '~chell-viz~/action';
-import { AnatomogramContainer, SpringContainer, TensorTContainer } from '~chell-viz~/container';
-import { ISpringGraphData, SPECIES_TYPE, VizData } from '~chell-viz~/data';
-import { fetchSpringData } from '~chell-viz~/helper';
+import { createSpringActions, fetchSpringGraphData } from '~bioblocks-viz~/action';
+import { AnatomogramContainer, SpringContainer, TensorTContainer } from '~bioblocks-viz~/container';
+import { ISpringGraphData, SPECIES_TYPE, VizData } from '~bioblocks-viz~/data';
+import { fetchSpringData } from '~bioblocks-viz~/helper';
 
 export interface IDatasetPageProps extends Partial<RouteComponentProps> {
   dispatchSpringFetch(fetchFn: () => Promise<ISpringGraphData>, namespace?: string): void;

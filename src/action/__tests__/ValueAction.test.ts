@@ -1,9 +1,9 @@
-import { createValueActions } from '~chell-viz~/action';
+import { createValueActions } from '~bioblocks-viz~/action';
 
 describe('ValueAction', () => {
   it('Should create clear actions.', () => {
     const expectedAction = {
-      type: 'CHELL/EXAMPLE_CLEAR',
+      type: 'BIOBLOCKS/EXAMPLE_CLEAR',
     };
     expect(createValueActions('example').clear()).toEqual(expectedAction);
   });
@@ -12,7 +12,7 @@ describe('ValueAction', () => {
     const expectedAction = {
       meta: 'example',
       payload: ['Earth', 'Wind', 'Fire'],
-      type: 'CHELL/EXAMPLE_SET',
+      type: 'BIOBLOCKS/EXAMPLE_SET',
     };
     expect(createValueActions('example').set(['Earth', 'Wind', 'Fire'])).toEqual(expectedAction);
   });

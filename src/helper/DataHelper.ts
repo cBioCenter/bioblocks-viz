@@ -1,7 +1,7 @@
 import * as NGL from 'ngl';
 
 import {
-  ChellPDB,
+  BioblocksPDB,
   CONTACT_DISTANCE_PROXIMITY,
   CouplingContainer,
   IContactMapData,
@@ -12,7 +12,7 @@ import {
   ISpringNode,
   SECONDARY_STRUCTURE_CODES,
   VIZ_TYPE,
-} from '~chell-viz~/data';
+} from '~bioblocks-viz~/data';
 import {
   fetchCSVFile,
   fetchJSONFile,
@@ -20,7 +20,7 @@ import {
   getCouplingHeaderIndices,
   IResidueMapping,
   readFileAsText,
-} from '~chell-viz~/helper';
+} from '~bioblocks-viz~/helper';
 
 export const fetchAppropriateData = async (viz: VIZ_TYPE, dataDir: string) => {
   switch (viz) {
@@ -183,7 +183,7 @@ export const fetchContactMapData = async (
   }
   const contactMapFiles = ['coupling_scores.csv', 'residue_mapping.csv'];
   const promiseResults = await Promise.all(contactMapFiles.map(async file => fetchCSVFile(`${dir}/${file}`)));
-  const pdbFile = await ChellPDB.createPDB(`${dir}/protein.pdb`);
+  const pdbFile = await BioblocksPDB.createPDB(`${dir}/protein.pdb`);
   const pdbData = {
     [knownOrPredicted]: pdbFile,
   };
@@ -207,7 +207,7 @@ export const fetchContactMapData = async (
  *
  * @param line The csv file as a single string.
  * @param residueMapping Maps the coupling_score.csv residue number to the residue number for the PDB.
- * @returns Array of CouplingScores suitable for chell-viz consumption.
+ * @returns Array of CouplingScores suitable for bioblocks-viz consumption.
  */
 export const getCouplingScoresData = (line: string, residueMapping: IResidueMapping[] = []): CouplingContainer => {
   const headerRow = line.split('\n')[0].split(',');
@@ -289,7 +289,7 @@ export const augmentCouplingScoresWithResidueMapping = (
  * As such, any other rows will be ignored.
  *
  * @param line The csv file as a single string.
- * @returns Array of SecondaryStructure mappings suitable for chell-viz consumption.
+ * @returns Array of SecondaryStructure mappings suitable for bioblocks-viz consumption.
  */
 export const getSecondaryStructureData = (line: string): ISecondaryStructureData[] => {
   return line

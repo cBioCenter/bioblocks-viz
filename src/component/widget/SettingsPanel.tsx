@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { Button, Grid, Icon, Label, Menu, Sidebar, SidebarProps } from 'semantic-ui-react';
 
-import { ChellRadioGroup, ChellSlider } from '~chell-viz~/component';
+import { BioblocksRadioGroup, BioblocksSlider } from '~bioblocks-viz~/component';
 import {
+  BioblocksWidgetConfig,
   ButtonWidgetConfig,
-  ChellWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
   LabelWidgetConfig,
   RadioWidgetConfig,
   SliderWidgetConfig,
-} from '~chell-viz~/data';
+} from '~bioblocks-viz~/data';
 
 export interface ISettingsPanelState {
   visible: boolean;
@@ -17,7 +17,7 @@ export interface ISettingsPanelState {
 
 // We are omitting the 'width' prop from the Semantic Sidebar to instead use our own so an exact width may be specified.
 export type SettingsPanelProps = {
-  configurations: ChellWidgetConfig[];
+  configurations: BioblocksWidgetConfig[];
   direction?: 'top' | 'right' | 'bottom' | 'left';
   inverted?: boolean;
   opacity?: number;
@@ -27,7 +27,7 @@ export type SettingsPanelProps = {
 
 export class SettingsPanel extends React.Component<SettingsPanelProps, ISettingsPanelState> {
   public static defaultProps = {
-    configurations: new Array<ChellWidgetConfig>(),
+    configurations: new Array<BioblocksWidgetConfig>(),
     direction: 'left',
     inverted: true,
     opacity: 0.6,
@@ -102,7 +102,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
     <Button basic={true} floated={'right'} icon={'settings'} onClick={this.onButtonClick} />
   );
 
-  public renderConfigurations(configurations: ChellWidgetConfig[]) {
+  public renderConfigurations(configurations: BioblocksWidgetConfig[]) {
     return (
       <Grid relaxed={true} centered={true} columns={1} padded={true} stretched={true} style={{ height: '100%' }}>
         {configurations.map((config, index) => {
@@ -123,7 +123,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
     );
   }
 
-  public renderConfig(config: ChellWidgetConfig, id: string) {
+  public renderConfig(config: BioblocksWidgetConfig, id: string) {
     switch (config.type) {
       case CONFIGURATION_COMPONENT_TYPE.BUTTON:
         return this.renderConfigurationButton(config, id);
@@ -158,7 +158,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
 
   public renderConfigurationRadioButton(config: RadioWidgetConfig, id: string) {
     return (
-      <ChellRadioGroup
+      <BioblocksRadioGroup
         id={id}
         options={config.options}
         onChange={config.onChange}
@@ -170,7 +170,7 @@ export class SettingsPanel extends React.Component<SettingsPanelProps, ISettings
 
   public renderConfigurationSlider(config: SliderWidgetConfig, id: string) {
     return (
-      <ChellSlider
+      <BioblocksSlider
         className={id}
         label={config.name}
         max={config.values.max}

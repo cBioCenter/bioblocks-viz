@@ -3,22 +3,27 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
-import { createResiduePairActions } from '~chell-viz~/action/ResiduePairAction';
-import { NGLComponent } from '~chell-viz~/component';
-import { ChellVisualization } from '~chell-viz~/container';
-import { ChellPDB, CONTACT_DISTANCE_PROXIMITY, RESIDUE_TYPE, SECONDARY_STRUCTURE_SECTION } from '~chell-viz~/data';
-import { EMPTY_FUNCTION } from '~chell-viz~/helper';
+import { createResiduePairActions } from '~bioblocks-viz~/action/ResiduePairAction';
+import { NGLComponent } from '~bioblocks-viz~/component';
+import { BioblocksVisualization } from '~bioblocks-viz~/container';
+import {
+  BioblocksPDB,
+  CONTACT_DISTANCE_PROXIMITY,
+  RESIDUE_TYPE,
+  SECONDARY_STRUCTURE_SECTION,
+} from '~bioblocks-viz~/data';
+import { EMPTY_FUNCTION } from '~bioblocks-viz~/helper';
 import {
   createContainerReducer,
   createDataReducer,
   createResiduePairReducer,
   ILockedResiduePair,
-} from '~chell-viz~/reducer';
-import { getCandidates, getHovered, getLocked, selectCurrentItems, selectCurrentValue } from '~chell-viz~/selector';
+} from '~bioblocks-viz~/reducer';
+import { getCandidates, getHovered, getLocked, selectCurrentItems, selectCurrentValue } from '~bioblocks-viz~/selector';
 
 export interface INGLContainerProps {
   candidateResidues: RESIDUE_TYPE[];
-  data: ChellPDB;
+  data: BioblocksPDB;
   hoveredResidues: RESIDUE_TYPE[];
   hoveredSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
   isDataLoading: boolean;
@@ -38,9 +43,9 @@ export interface INGLContainerProps {
   removeCandidateResidues(): void;
 }
 
-export class NGLContainerClass extends ChellVisualization<INGLContainerProps> {
+export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps> {
   public static defaultProps = {
-    data: ChellPDB.createEmptyPDB(),
+    data: BioblocksPDB.createEmptyPDB(),
     dispatchNglFetch: EMPTY_FUNCTION,
     isDataLoading: false,
     measuredProximity: CONTACT_DISTANCE_PROXIMITY.C_ALPHA,
@@ -54,7 +59,7 @@ export class NGLContainerClass extends ChellVisualization<INGLContainerProps> {
   public setupDataServices() {
     createContainerReducer<SECONDARY_STRUCTURE_SECTION>('secondaryStructure/hovered');
     createContainerReducer<SECONDARY_STRUCTURE_SECTION>('secondaryStructure/selected');
-    createDataReducer<ChellPDB>('pdb');
+    createDataReducer<BioblocksPDB>('pdb');
     createResiduePairReducer();
   }
 
@@ -65,10 +70,10 @@ export class NGLContainerClass extends ChellVisualization<INGLContainerProps> {
   }
 }
 
-const mapStateToProps = (state: { [key: string]: any }, ownProps: { data: ChellPDB }) => ({
+const mapStateToProps = (state: { [key: string]: any }, ownProps: { data: BioblocksPDB }) => ({
   candidateResidues: getCandidates(state).toArray(),
-  data: selectCurrentValue<ChellPDB>(state, 'pdb')
-    ? (selectCurrentValue<ChellPDB>(state, 'pdb') as ChellPDB)
+  data: selectCurrentValue<BioblocksPDB>(state, 'pdb')
+    ? (selectCurrentValue<BioblocksPDB>(state, 'pdb') as BioblocksPDB)
     : ownProps.data,
   hoveredResidues: getHovered(state).toArray(),
   hoveredSecondaryStructures: selectCurrentItems<SECONDARY_STRUCTURE_SECTION>(

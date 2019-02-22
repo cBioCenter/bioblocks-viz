@@ -3,16 +3,16 @@ import * as NGL from 'ngl';
 import * as React from 'react';
 
 import { Form } from 'semantic-ui-react';
-import { NGLComponent } from '~chell-viz~/component';
-import { ChellPDB, CONTACT_DISTANCE_PROXIMITY } from '~chell-viz~/data';
+import { NGLComponent } from '~bioblocks-viz~/component';
+import { BioblocksPDB, CONTACT_DISTANCE_PROXIMITY } from '~bioblocks-viz~/data';
 
 describe('NGLComponent', () => {
-  let sampleData: ChellPDB;
+  let sampleData: BioblocksPDB;
 
   beforeEach(() => {
     const nglStructure = new NGL.Structure();
     nglStructure.residueStore.resno = new Uint32Array([0, 1, 2, 3, 4]);
-    sampleData = ChellPDB.createPDBFromNGLData(nglStructure);
+    sampleData = BioblocksPDB.createPDBFromNGLData(nglStructure);
   });
 
   it('Should match existing snapshot when unconnected to a context.', () => {

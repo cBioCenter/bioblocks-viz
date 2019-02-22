@@ -1,8 +1,8 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { ContactMapChart, IContactMapChartState } from '~chell-viz~/component';
-import { genSecondaryStructureSection } from '~chell-viz~/test';
+import { ContactMapChart, IContactMapChartState } from '~bioblocks-viz~/component';
+import { genSecondaryStructureSection } from '~bioblocks-viz~/test';
 
 describe('ContactMapChart', () => {
   const emptyData = [

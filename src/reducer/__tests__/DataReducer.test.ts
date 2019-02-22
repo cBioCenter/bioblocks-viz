@@ -1,4 +1,4 @@
-import { createDataReducer, DataReducer, ReducerRegistry } from '~chell-viz~/reducer';
+import { createDataReducer, DataReducer, ReducerRegistry } from '~bioblocks-viz~/reducer';
 
 describe('DataReducer', () => {
   it('Should handle undefined state.', () => {
@@ -10,14 +10,14 @@ describe('DataReducer', () => {
   it('Should handle adding elements.', () => {
     const expectedState = 4;
     const reducer = DataReducer('indices');
-    const state = reducer(undefined, { type: 'CHELL/INDICES_FETCH_DATA_SUCCESS', payload: 4 });
+    const state = reducer(undefined, { type: 'BIOBLOCKS/INDICES_FETCH_DATA_SUCCESS', payload: 4 });
     expect(state).toEqual(expectedState);
   });
 
   it('Should handle adding multiple elements.', () => {
     const expectedState = null;
     const reducer = DataReducer('indices');
-    const state = reducer(undefined, { type: 'CHELL/INDICES_FETCH_DATA_FAILURE' });
+    const state = reducer(undefined, { type: 'BIOBLOCKS/INDICES_FETCH_DATA_FAILURE' });
     expect(state).toEqual(expectedState);
   });
 

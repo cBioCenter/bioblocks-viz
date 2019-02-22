@@ -1,13 +1,13 @@
 import { Map } from 'immutable';
 
-import { createObjectReducer, ObjectReducer, ReducerRegistry } from '~chell-viz~/reducer';
+import { createObjectReducer, ObjectReducer, ReducerRegistry } from '~bioblocks-viz~/reducer';
 
 describe('ObjectReducer', () => {
   it('Should handle an empty state.', () => {
     const expectedState = Map();
     const reducer = ObjectReducer('test');
     const state = reducer(undefined, { type: '' });
-    expect(reducer(state, { type: 'CHELL/DATE_CLEAR' })).toEqual(expectedState);
+    expect(reducer(state, { type: 'BIOBLOCKS/DATE_CLEAR' })).toEqual(expectedState);
   });
 
   it('Should handle adding a new field.', () => {
@@ -15,12 +15,12 @@ describe('ObjectReducer', () => {
     const reducer = ObjectReducer('test');
     let state = reducer(undefined, {
       payload: { key1: 'first key' },
-      type: 'CHELL/TEST_SET',
+      type: 'BIOBLOCKS/TEST_SET',
     });
     expect(state).not.toEqual(expectedState);
     state = reducer(state, {
       payload: { key2: 'second key' },
-      type: 'CHELL/TEST_ADD',
+      type: 'BIOBLOCKS/TEST_ADD',
     });
     expect(state).toEqual(expectedState);
   });
@@ -30,11 +30,11 @@ describe('ObjectReducer', () => {
     const reducer = ObjectReducer('test');
     let state = reducer(undefined, {
       payload: { key1: 'first key', key2: 'second key', key3: 'third key' },
-      type: 'CHELL/TEST_SET',
+      type: 'BIOBLOCKS/TEST_SET',
     });
     expect(state).not.toEqual(expectedState);
     state = reducer(state, {
-      type: 'CHELL/TEST_CLEAR',
+      type: 'BIOBLOCKS/TEST_CLEAR',
     });
     expect(state).toEqual(expectedState);
   });
@@ -44,12 +44,12 @@ describe('ObjectReducer', () => {
     const reducer = ObjectReducer('test');
     let state = reducer(undefined, {
       payload: { key1: 'first key', key2: 'second key', key3: 'third key' },
-      type: 'CHELL/TEST_SET',
+      type: 'BIOBLOCKS/TEST_SET',
     });
     expect(state).not.toEqual(expectedState);
     state = reducer(state, {
       payload: 'key3',
-      type: 'CHELL/TEST_REMOVE',
+      type: 'BIOBLOCKS/TEST_REMOVE',
     });
     expect(state).toEqual(expectedState);
   });
@@ -59,12 +59,12 @@ describe('ObjectReducer', () => {
     const reducer = ObjectReducer('test');
     let state = reducer(undefined, {
       payload: { key1: 'first key', key2: 'second key', key3: 'third key' },
-      type: 'CHELL/TEST_SET',
+      type: 'BIOBLOCKS/TEST_SET',
     });
     expect(state).not.toEqual(expectedState);
     state = reducer(state, {
       payload: ['key1', 'key3'],
-      type: 'CHELL/TEST_REMOVE_MULTIPLE',
+      type: 'BIOBLOCKS/TEST_REMOVE_MULTIPLE',
     });
     expect(state).toEqual(expectedState);
   });
@@ -72,9 +72,9 @@ describe('ObjectReducer', () => {
   it('Should handle setting a field on the object.', () => {
     const expectedState = Map({ newKey: 'newValue' });
     const reducer = ObjectReducer('test');
-    let state = reducer(undefined, { type: 'CHELL/TEST_SET', payload: { oldKey: 'oldValue' } });
+    let state = reducer(undefined, { type: 'BIOBLOCKS/TEST_SET', payload: { oldKey: 'oldValue' } });
     expect(state).not.toEqual(expectedState);
-    state = reducer(state, { type: 'CHELL/TEST_SET', payload: { newKey: 'newValue' } });
+    state = reducer(state, { type: 'BIOBLOCKS/TEST_SET', payload: { newKey: 'newValue' } });
     expect(state).toEqual(expectedState);
   });
 

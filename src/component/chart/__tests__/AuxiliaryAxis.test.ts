@@ -1,10 +1,10 @@
-import { AuxiliaryAxis } from '~chell-viz~/component';
-import { Chell1DSection } from '~chell-viz~/data';
+import { AuxiliaryAxis } from '~bioblocks-viz~/component';
+import { Bioblocks1DSection } from '~bioblocks-viz~/data';
 
 describe('AuxiliaryAxis', () => {
-  let sampleSections: Array<Chell1DSection<string>>;
+  let sampleSections: Array<Bioblocks1DSection<string>>;
   beforeEach(() => {
-    sampleSections = [new Chell1DSection('kanto', 1, 151), new Chell1DSection('johto', 152, 251)];
+    sampleSections = [new Bioblocks1DSection('kanto', 1, 151), new Bioblocks1DSection('johto', 152, 251)];
   });
 
   it('Should allow passing a specific axis index.', () => {
@@ -35,7 +35,7 @@ describe('AuxiliaryAxis', () => {
       johto: jest.fn(() => ({ main: 0, opposite: 0 })),
       kanto: jest.fn(),
     };
-    const filterSpy = jest.fn((section: Chell1DSection<string>) => section.label === 'kanto');
+    const filterSpy = jest.fn((section: Bioblocks1DSection<string>) => section.label === 'kanto');
     const result = new AuxiliaryAxis(sampleSections, 0, 'black', {}, dataTransformSpy, filterSpy);
     expect(result.axis.size).toEqual(1);
     expect(filterSpy).toHaveBeenCalled();
@@ -48,7 +48,12 @@ describe('AuxiliaryAxis', () => {
       johto: 'gold',
       kanto: 'red',
     };
-    const result = new AuxiliaryAxis([...sampleSections, new Chell1DSection('unova', 494, 649)], 0, 'black', colorMap);
+    const result = new AuxiliaryAxis(
+      [...sampleSections, new Bioblocks1DSection('unova', 494, 649)],
+      0,
+      'black',
+      colorMap,
+    );
     expect(result.axis.size).toEqual(3);
 
     const johtoAxis = result.getAxisById('johto');

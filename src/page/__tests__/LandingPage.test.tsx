@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { LandingPage } from '~chell-viz~/page';
+import { LandingPage } from '~bioblocks-viz~/page';
 
 describe('LandingPage', () => {
   it('Should match existing snapshot when no props are provided.', () => {

@@ -6,8 +6,8 @@
     "Anatomogram",
     "Asparagine",
     "Aspartic",
+    "Bioblocks",
     "Charizard",
-    "Chell",
     "Coord",
     "Cysteine",
     "DFCI",
@@ -49,6 +49,7 @@
     "autorange",
     "autosize",
     "bgcolor",
+    "bioblocks",
     "bordercolor",
     "borderless",
     "borderpad",
@@ -111,9 +112,8 @@
     "zeroline",
     "ångströms"
   ],
+  "cSpell.flagWords": ["BioBlocks", "bioBlocks"],
   "python.pythonPath": "/usr/local/bin/python3",
-  "typescript.tsdk": "./node_modules/typescript/lib",
-  "tslint.configFile": "tslint.json",
   "prettier.tslintIntegration": true,
-  "tslint.packageManager": "yarn"
+  "cSpell.enabled": false
 }

@@ -2,7 +2,7 @@ import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import { Dropdown, DropdownItem } from 'semantic-ui-react';
 
-import { CategorySelector } from '~chell-viz~/component';
+import { CategorySelector } from '~bioblocks-viz~/component';
 
 describe('CategorySelector', () => {
   const categories = [

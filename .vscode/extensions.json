@@ -2,13 +2,14 @@
   // See http://go.microsoft.com/fwlink/?LinkId=827846
   // for the documentation about the extensions.json format
   "recommendations": [
-    "christian-kohler.path-intellisense",
     "DavidAnson.vscode-markdownlint",
     "DougFinke.vscode-pandoc",
-    "eamodio.gitlens",
     "EditorConfig.EditorConfig",
+    "PeterJausovec.vscode-docker",
+    "Shan.code-settings-sync",
+    "christian-kohler.path-intellisense",
+    "eamodio.gitlens",
     "emmanuelbeziat.vscode-great-icons",
-    "eg2.tslint",
     "esbenp.prettier-vscode",
     "gerane.Theme-TomorrowNightEighties",
     "ionutvmi.spacegray-vscode",
@@ -16,10 +17,9 @@
     "mechatroner.rainbow-csv",
     "ms-vscode.node-debug",
     "ms-vscode.node-debug2",
+    "ms-vscode.vscode-typescript-tslint-plugin",
     "msjsdiag.debugger-for-chrome",
     "naumovs.color-highlight",
-    "PeterJausovec.vscode-docker",
-    "Shan.code-settings-sync",
     "steoates.autoimport",
     "streetsidesoftware.code-spell-checker"
   ]

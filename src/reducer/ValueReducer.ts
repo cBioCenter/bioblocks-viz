@@ -3,12 +3,12 @@ import { ActionType, getType } from 'typesafe-actions';
 // tslint:disable-next-line:no-submodule-imports
 import { PayloadAction } from 'typesafe-actions/dist/types';
 
-import { createValueActions } from '~chell-viz~/action';
-import { ReducerRegistry } from '~chell-viz~/reducer';
+import { createValueActions } from '~bioblocks-viz~/action';
+import { ReducerRegistry } from '~bioblocks-viz~/reducer';
 
 export type IValueReducerState<T> = T | null;
 
-export const ValueReducer = <T>(dataset: string, namespace = 'chell'): Reducer => {
+export const ValueReducer = <T>(dataset: string, namespace = 'bioblocks'): Reducer => {
   const actions = createValueActions<T>(dataset, namespace);
 
   const initialState = null;
@@ -26,7 +26,7 @@ export const ValueReducer = <T>(dataset: string, namespace = 'chell'): Reducer =
   };
 };
 
-export const createValueReducer = <T>(dataset: string, namespace = 'chell') => {
+export const createValueReducer = <T>(dataset: string, namespace = 'bioblocks') => {
   const reducer = ValueReducer<T>(dataset, namespace);
   const reducerName = `${namespace}/${dataset}`;
   ReducerRegistry.register(reducerName, reducer);

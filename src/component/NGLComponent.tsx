@@ -4,27 +4,27 @@ import * as NGL from 'ngl';
 import * as React from 'react';
 import { Vector2 } from 'three';
 
-import { ComponentCard } from '~chell-viz~/component';
+import { ComponentCard } from '~bioblocks-viz~/component';
 import {
   AMINO_ACID_THREE_LETTER_CODE,
   AMINO_ACIDS_BY_THREE_LETTER_CODE,
-  CHELL_CSS_STYLE,
-  ChellPDB,
-  ChellWidgetConfig,
+  BIOBLOCKS_CSS_STYLE,
+  BioblocksPDB,
+  BioblocksWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
   CONTACT_DISTANCE_PROXIMITY,
   RESIDUE_TYPE,
   SECONDARY_STRUCTURE,
   SECONDARY_STRUCTURE_SECTION,
-} from '~chell-viz~/data';
+} from '~bioblocks-viz~/data';
 import {
   capitalizeFirstLetter,
   createBallStickRepresentation,
   createDistanceRepresentation,
   createSecStructRepresentation,
   EMPTY_FUNCTION,
-} from '~chell-viz~/helper';
-import { ILockedResiduePair } from '~chell-viz~/reducer';
+} from '~bioblocks-viz~/helper';
+import { ILockedResiduePair } from '~bioblocks-viz~/reducer';
 
 export type NGL_HOVER_CB_RESULT_TYPE = number;
 
@@ -33,7 +33,7 @@ export type RepresentationDict = Map<string, NGL.RepresentationElement[]>;
 export interface INGLComponentProps {
   backgroundColor: string | number;
   candidateResidues: RESIDUE_TYPE[];
-  data: ChellPDB;
+  data: BioblocksPDB;
   height: number | string;
   hoveredResidues: RESIDUE_TYPE[];
   hoveredSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
@@ -42,12 +42,12 @@ export interface INGLComponentProps {
   measuredProximity: CONTACT_DISTANCE_PROXIMITY;
   selectedSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
   showConfigurations: boolean;
-  style?: CHELL_CSS_STYLE;
+  style?: BIOBLOCKS_CSS_STYLE;
   width: number | string;
   addCandidateResidues(residues: RESIDUE_TYPE[]): void;
   addHoveredResidues(residues: RESIDUE_TYPE[]): void;
   addLockedResiduePair(residuePair: ILockedResiduePair): void;
-  dispatchPdbFetch(dataset: string, fetchFn: () => Promise<ChellPDB>): void;
+  dispatchPdbFetch(dataset: string, fetchFn: () => Promise<BioblocksPDB>): void;
   onMeasuredProximityChange?(value: number): void;
   onResize?(event?: UIEvent): void;
   removeAllLockedResiduePairs(): void;
@@ -71,7 +71,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     addLockedResiduePair: EMPTY_FUNCTION,
     backgroundColor: '#ffffff',
     candidateResidues: [],
-    data: ChellPDB.createEmptyPDB(),
+    data: BioblocksPDB.createEmptyPDB(),
     dispatchNglFetch: EMPTY_FUNCTION,
     dispatchPdbFetch: EMPTY_FUNCTION,
     height: '90%',
@@ -294,7 +294,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
         options: Object.values(['Default', 'Spacefill', 'Backbone', 'Cartoon', 'Surface', 'Tube']),
         type: CONFIGURATION_COMPONENT_TYPE.RADIO,
       },
-    ] as ChellWidgetConfig[];
+    ] as BioblocksWidgetConfig[];
   };
 
   protected onClick = (pickingProxy: NGL.PickingProxy) => {
