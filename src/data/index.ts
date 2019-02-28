@@ -6,6 +6,7 @@ export * from './BioblocksData';
 export * from './BioblocksPDB';
 export * from './CouplingContainer';
 export * from './Dataset';
+export * from './PfamProtein';
 export * from './PlotlyData';
 export * from './Protein';
 export * from './Spring';

@@ -2,13 +2,13 @@ import { CommonWrapper, mount, ReactWrapper, shallow } from 'enzyme';
 import * as plotly from 'plotly.js-gl2d-dist';
 import * as React from 'react';
 
+import { PlotlyChart } from '~bioblocks-viz~/component';
 import {
   Bioblocks1DSection,
-  PlotlyChart,
   SECONDARY_STRUCTURE,
   SECONDARY_STRUCTURE_CODES,
   SECONDARY_STRUCTURE_KEYS,
-} from '~bioblocks-viz~';
+} from '~bioblocks-viz~/data';
 import { IMockPlotlyCanvas } from '~bioblocks-viz~/test';
 
 /**

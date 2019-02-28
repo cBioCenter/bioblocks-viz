@@ -115,5 +115,6 @@
   "cSpell.flagWords": ["BioBlocks", "bioBlocks"],
   "python.pythonPath": "/usr/local/bin/python3",
   "prettier.tslintIntegration": true,
-  "cSpell.enabled": false
+  "cSpell.enabled": false,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
