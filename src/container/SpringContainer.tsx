@@ -24,6 +24,7 @@ export interface ISpringContainerProps {
   selectedCategory: string;
   springGraphData: ISpringGraphData;
   springHeight: number;
+  springSrc: string;
   springWidth: number;
   setCurrentCategory(category: string): void;
   setCurrentCells(cells: number[]): void;
@@ -64,6 +65,10 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
       nodes: new Array<ISpringNode>(),
     },
     springHeight: 1150,
+    springSrc: `${window.location.origin}/${window.location.pathname.substr(
+      0,
+      window.location.pathname.lastIndexOf('/'),
+    )}`,
     springWidth: 1150,
   };
 
@@ -171,11 +176,7 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
     }
   };
 
-  protected generateSpringURL = (dataset: string) =>
-    `${window.location.origin}/${window.location.pathname.substr(
-      0,
-      window.location.pathname.lastIndexOf('/'),
-    )}/springViewer.html?datasets/${dataset}`;
+  protected generateSpringURL = (dataset: string) => `${this.props.springSrc}/springViewer.html?datasets/${dataset}`;
 }
 
 const mapStateToProps = (state: { [key: string]: any }) => ({

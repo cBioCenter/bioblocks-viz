@@ -145,6 +145,6 @@ module.exports = {
       '~bioblocks-viz~/reducer': path.resolve(__dirname, './src/reducer'),
     },
     extensions: ['.js', '.json', '.ts', '.tsx'],
-    modules: [path.join(__dirname, 'src'), path.join(__dirname, 'types'), 'node_modules'],
+    modules: [path.join(__dirname, 'src'), path.join(__dirname, 'types'), path.resolve('node_modules'), 'node_modules'],
   },
 };
