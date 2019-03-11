@@ -1254,7 +1254,7 @@ ajv@^6.5.5:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-anatomogram@^2.0.0:
+anatomogram@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/anatomogram/-/anatomogram-2.1.1.tgz#111776392ae1d0b069cfb35b59bab42947ae7861"
   integrity sha512-lpDvy2j/9qOg68NKTBg8hgDFlRAJ+DfoGRT6nsmraqHchBTC1zNIpLPN5zby30WLc7NwG+yPNmmDyC7zCEs0hA==
