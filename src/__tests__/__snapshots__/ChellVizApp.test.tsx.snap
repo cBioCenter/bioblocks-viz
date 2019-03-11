@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`BioblocksVizApp Should match existing snapshot when given no props. 1`] = `
-<HashRouter>
-  <Route
-    render={[Function]}
-  />
-</HashRouter>
-`;

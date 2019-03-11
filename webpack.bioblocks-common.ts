@@ -11,8 +11,6 @@ import * as path from 'path';
 
 module.exports = {
   entry: {
-    app: './index.tsx',
-    beta: './beta.tsx',
     example: './examples/example.tsx',
   },
   module: {
@@ -103,22 +101,6 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      chunks: ['app'],
-      favicon: 'assets/favicons/favicon.ico',
-      filename: 'app.html',
-      inject: true,
-      template: './index.html',
-      title: 'Development',
-    }),
-    new HtmlWebpackPlugin({
-      chunks: ['beta'],
-      favicon: 'assets/favicons/favicon.ico',
-      filename: 'beta.html',
-      inject: true,
-      template: './beta.html',
-      title: 'Beta',
-    }),
-    new HtmlWebpackPlugin({
       chunks: ['example'],
       favicon: 'assets/favicons/favicon.ico',
       filename: 'example.html',
@@ -163,6 +145,6 @@ module.exports = {
       '~bioblocks-viz~/reducer': path.resolve(__dirname, './src/reducer'),
     },
     extensions: ['.js', '.json', '.ts', '.tsx'],
-    modules: [path.join(__dirname, 'src'), path.join(__dirname, 'types'), 'node_modules'],
+    modules: [path.join(__dirname, 'src'), path.join(__dirname, 'types'), path.resolve('node_modules'), 'node_modules'],
   },
 };

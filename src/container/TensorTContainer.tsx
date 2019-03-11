@@ -23,6 +23,7 @@ import { selectCurrentItems } from '~bioblocks-viz~/selector/ContainerSelectors'
 interface ITensorContainerProps {
   currentCells: Set<number>;
   datasetLocation: string;
+  iconSrc?: string;
   isFullPage: boolean;
   pointColor: string;
   style: BIOBLOCKS_CSS_STYLE;
@@ -100,15 +101,11 @@ export class TensorTContainerClass extends BioblocksVisualization<ITensorContain
   }
 
   public render() {
-    const { isFullPage } = this.props;
+    const { iconSrc, isFullPage } = this.props;
     const { plotlyCoords } = this.state;
 
     return (
-      <ComponentCard
-        componentName={TensorTContainerClass.displayName}
-        iconSrc={'assets/icons/tfjs-tsne-icon.png'}
-        isFullPage={isFullPage}
-      >
+      <ComponentCard componentName={TensorTContainerClass.displayName} iconSrc={iconSrc} isFullPage={isFullPage}>
         <Grid centered={true} style={{ height: '100%', marginLeft: 0, width: '100%' }}>
           <Grid.Row columns={'equal'} style={{ maxHeight: '23px', padding: '7px 0 0 0' }}>
             <Grid.Column floated={'left'}>{this.renderIterateButton()}</Grid.Column>

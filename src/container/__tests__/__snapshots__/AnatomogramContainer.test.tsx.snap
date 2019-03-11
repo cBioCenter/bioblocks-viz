@@ -23,6 +23,7 @@ exports[`AnatomogramContainer Should match existing snapshot for homo sapiens. 1
       highlightIds={Array []}
       highlightOpacity={0.4}
       onClick={[Function]}
+      onInjected={[Function]}
       onMouseOut={[Function]}
       onMouseOver={[Function]}
       selectColour="ffaa00"
@@ -72,6 +73,7 @@ exports[`AnatomogramContainer Should match existing snapshot for mus musculus. 1
       highlightIds={Array []}
       highlightOpacity={0.4}
       onClick={[Function]}
+      onInjected={[Function]}
       onMouseOut={[Function]}
       onMouseOver={[Function]}
       selectColour="ffaa00"

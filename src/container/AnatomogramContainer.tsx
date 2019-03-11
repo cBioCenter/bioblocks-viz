@@ -14,6 +14,7 @@ import { BioblocksMiddlewareTransformer, RootState } from '~bioblocks-viz~/reduc
 import { getSpecies, getSpring, selectCurrentItems } from '~bioblocks-viz~/selector';
 
 interface IAnatomogramContainerProps {
+  iconSrc?: string;
   selectIds: Set<string>;
   species: SPECIES_TYPE;
   addLabel(label: string): void;
@@ -37,7 +38,6 @@ export class AnatomogramContainerClass extends BioblocksVisualization<
   public static displayName = 'Anatomogram';
 
   protected divRef: HTMLDivElement | null = null;
-  protected svgIntervalTimer: number | null = null;
 
   constructor(props: IAnatomogramContainerProps) {
     super(props);
@@ -108,19 +108,6 @@ export class AnatomogramContainerClass extends BioblocksVisualization<
     });
   }
 
-  public componentDidMount() {
-    // We are __currently__ unable to known when Anatomogram finishes loading the svg.
-    // So, we have to wait.
-    this.svgIntervalTimer = window.setInterval(this.resizeSVGElement, 1000 / 60);
-  }
-
-  public componentWillUnmount() {
-    if (this.svgIntervalTimer) {
-      clearInterval(this.svgIntervalTimer);
-      this.svgIntervalTimer = null;
-    }
-  }
-
   public componentDidUpdate(prevProps: IAnatomogramContainerProps) {
     const { species } = this.props;
     if (species !== prevProps.species) {
@@ -128,11 +115,10 @@ export class AnatomogramContainerClass extends BioblocksVisualization<
         ids: this.deriveIdsFromSpecies(species),
       });
     }
-    this.resizeSVGElement();
   }
 
   public render() {
-    const { species, selectIds } = this.props;
+    const { iconSrc, species, selectIds } = this.props;
     const { ids } = this.state;
 
     return (
@@ -144,11 +130,12 @@ export class AnatomogramContainerClass extends BioblocksVisualization<
           }
         }}
       >
-        <ComponentCard componentName={'Anatomogram'}>
+        <ComponentCard componentName={'Anatomogram'} iconSrc={iconSrc}>
           <Anatomogram
             atlasUrl={``}
             highlightColour={'yellow'}
             onClick={this.onClick}
+            onInjected={this.resizeSVGElement}
             onMouseOut={this.onMouseOut}
             onMouseOver={this.onMouseOver}
             selectColour={'ffaa00'}
@@ -190,19 +177,15 @@ export class AnatomogramContainerClass extends BioblocksVisualization<
     return splitCategories[0];
   };
 
-  protected resizeSVGElement = () => {
+  protected resizeSVGElement = (error: any, svgDomNode: SVGSVGElement) => {
     if (this.divRef) {
-      const svgElements = this.divRef.getElementsByTagName('svg');
-      if (svgElements.length >= 1) {
-        const svgElement = svgElements[0];
-        const isSvgHeightBigger = svgElement.height.baseVal.value > svgElement.width.baseVal.value;
+      const isSvgHeightBigger = svgDomNode.height.baseVal.value > svgDomNode.width.baseVal.value;
 
-        // The Anatomogram Component internally sets the svg height to 'auto'.
-        // So, to allow more flexibility in sizing it, we have to manually override it here. Sorry.
-        svgElement.style.height = isSvgHeightBigger ? `calc(${this.divRef.style.height} - 50px)` : 'auto';
-        svgElement.style.padding = '0';
-        svgElement.style.width = isSvgHeightBigger ? 'auto' : `calc(${this.divRef.style.width} - 75px)`;
-      }
+      // The Anatomogram Component internally sets the svg height to 'auto'.
+      // So, to allow more flexibility in sizing it, we have to manually override it here. Sorry.
+      svgDomNode.style.height = isSvgHeightBigger ? `calc(${this.divRef.style.height} - 50px)` : 'auto';
+      svgDomNode.style.padding = '0';
+      svgDomNode.style.width = isSvgHeightBigger ? 'auto' : `calc(${this.divRef.style.width} - 75px)`;
     }
   };
 }

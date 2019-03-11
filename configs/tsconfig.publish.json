@@ -7,7 +7,7 @@
     "sourceMap": false,
     "target": "es5"
   },
-  "files": ["../bioblocks-viz.ts"],
+  "files": ["../index.ts"],
   "include": ["../src/**/*", "../types"],
   "exclude": ["../node_modules", "../**/__tests__/**", "../**/__mocks__/**", "../configs"]
 }
