@@ -19,6 +19,7 @@ export interface ISpringContainerProps {
   currentCells: Set<number>;
   datasetLocation: string;
   headerHeight: number;
+  iconSrc?: string;
   isFullPage: boolean;
   padding: number | string;
   selectedCategory: string;
@@ -68,7 +69,7 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
     springSrc: `${window.location.origin}/${window.location.pathname.substr(
       0,
       window.location.pathname.lastIndexOf('/'),
-    )}`,
+    )}/springViewer.html`,
     springWidth: 1150,
   };
 
@@ -110,7 +111,7 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
   }
 
   public render() {
-    const { headerHeight, isFullPage, springHeight, springWidth } = this.props;
+    const { headerHeight, iconSrc, isFullPage, springHeight, springWidth } = this.props;
     const { postMessageData, springUrl } = this.state;
     const attributes: IframeCommAttributes = {
       allowFullScreen: true,
@@ -124,6 +125,7 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
     return (
       <ComponentCard
         componentName={SpringContainerClass.displayName}
+        iconSrc={iconSrc}
         isFramedComponent={true}
         isFullPage={isFullPage}
         frameHeight={springHeight}
@@ -176,7 +178,7 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
     }
   };
 
-  protected generateSpringURL = (dataset: string) => `${this.props.springSrc}/springViewer.html?datasets/${dataset}`;
+  protected generateSpringURL = (dataset: string) => `${this.props.springSrc}?datasets/${dataset}`;
 }
 
 const mapStateToProps = (state: { [key: string]: any }) => ({
