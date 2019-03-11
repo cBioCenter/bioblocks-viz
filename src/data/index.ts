@@ -11,6 +11,5 @@ export * from './PlotlyData';
 export * from './Protein';
 export * from './Spring';
 export * from './TintedBioblocks1DSection';
-export * from './VizData';
 
 export * from './event';
