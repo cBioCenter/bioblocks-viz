@@ -59,7 +59,7 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
   public setupDataServices() {
     createContainerReducer<SECONDARY_STRUCTURE_SECTION>('secondaryStructure/hovered');
     createContainerReducer<SECONDARY_STRUCTURE_SECTION>('secondaryStructure/selected');
-    createDataReducer<BioblocksPDB>('pdb');
+    createDataReducer<BioblocksPDB>('pdb', BioblocksPDB.createEmptyPDB());
     createResiduePairReducer();
   }
 

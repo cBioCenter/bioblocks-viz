@@ -3,12 +3,7 @@ import * as React from 'react';
 import { isArray } from 'util';
 
 import { Dataset } from '~bioblocks-viz~/data';
-import {
-  createContainerReducer,
-  createDataReducer,
-  createObjectReducer,
-  createValueReducer,
-} from '~bioblocks-viz~/reducer';
+import { createContainerReducer, createObjectReducer, createValueReducer } from '~bioblocks-viz~/reducer';
 
 export const enum BIOBLOCKS_LOADING_STATUS {
   'ERROR',
@@ -26,33 +21,6 @@ export interface IBioblocksHookDict {
 export abstract class BioblocksVisualization<P = any, S = any, SS = any> extends React.Component<P, S, SS> {
   public static getActiveBioblocksVisualizations = () => {
     return BioblocksVisualization.activeBioblocksVisualizations;
-  };
-
-  public static getActiveBioblocksHooks = () => {
-    let allHooks: IBioblocksHookDict = {};
-
-    BioblocksVisualization.activeBioblocksVisualizations.forEach(viz => {
-      if (viz) {
-        allHooks = {
-          ...allHooks,
-          ...viz.bioblocksHooks,
-        };
-      }
-    });
-
-    return allHooks;
-  };
-
-  public static getActiveDatasets = () => {
-    let allDatasets = Set<Dataset>();
-
-    BioblocksVisualization.activeBioblocksVisualizations.forEach(viz => {
-      if (viz) {
-        allDatasets = allDatasets.merge(viz.datasets);
-      }
-    });
-
-    return allDatasets;
   };
 
   private static activeBioblocksVisualizations = Set<BioblocksVisualization>();
@@ -108,15 +76,13 @@ export abstract class BioblocksVisualization<P = any, S = any, SS = any> extends
     );
   }
 
-  protected createReducer<T>(datasetName: string, defaultValue?: T, namespace = 'bioblocks') {
+  protected createReducer<T>(datasetName: string, defaultValue: T, namespace = 'bioblocks') {
     if (isArray(defaultValue)) {
       createContainerReducer<T>(datasetName, namespace);
     } else if (typeof defaultValue === 'object') {
       createObjectReducer<T>(datasetName, namespace);
-    } else if (defaultValue === undefined) {
-      createDataReducer<T>(datasetName, namespace);
     } else {
-      createValueReducer<T>(datasetName, namespace);
+      createValueReducer<T>(datasetName, defaultValue, namespace);
     }
   }
 }

@@ -3,9 +3,9 @@ import { createSpringReducer, ReducerRegistry, SpringReducer } from '~bioblocks-
 describe('SpringReducer', () => {
   it('Should handle undefined state.', () => {
     const expectedState = {
-      category: null,
-      graphData: null,
-      species: null,
+      category: '',
+      graphData: { nodes: [] },
+      species: 'mus_musculus',
     };
     const reducer = SpringReducer();
     expect(reducer(undefined, { type: 'load' })).toMatchObject(expectedState);
