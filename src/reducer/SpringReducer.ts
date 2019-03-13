@@ -11,9 +11,9 @@ export interface ISpringReducerState {
 
 export const SpringReducer = (namespace = 'bioblocks') => {
   return combineReducers({
-    category: ValueReducer<string>('spring/category', namespace),
-    graphData: DataReducer<ISpringGraphData>('spring/graphData', namespace),
-    species: ValueReducer<SPECIES_TYPE>('spring/species', namespace),
+    category: ValueReducer<string>('spring/category', '', namespace),
+    graphData: DataReducer<ISpringGraphData>('spring/graphData', { nodes: [] }, namespace),
+    species: ValueReducer<SPECIES_TYPE>('spring/species', 'mus_musculus', namespace),
   });
 };
 

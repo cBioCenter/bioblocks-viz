@@ -24,7 +24,10 @@ export class PredictedContactMapContainerClass extends BioblocksVisualization<IP
 
   public setupDataServices() {
     const { dispatchContactMapFetch } = this.props;
-    createDataReducer<IContactMapData>('contactMap');
+    createDataReducer<IContactMapData>('contactMap', {
+      couplingScores: new CouplingContainer(),
+      secondaryStructures: [],
+    });
 
     dispatchContactMapFetch('contactMap', async () => fetchContactMapData('assets/1g68', 'known'));
   }

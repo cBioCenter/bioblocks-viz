@@ -3,21 +3,21 @@ import { createValueReducer, ReducerRegistry, ValueReducer } from '~bioblocks-vi
 describe('ValueReducer', () => {
   it('Should handle clearing the value.', () => {
     const expectedState = null;
-    const reducer = ValueReducer('date');
+    const reducer = ValueReducer('date', null);
     const state = reducer(undefined, { type: 'BIOBLOCKS/DATE_CLEAR' });
     expect(reducer(state, { type: 'BIOBLOCKS/DATE_CLEAR' })).toEqual(expectedState);
   });
 
   it('Should handle setting a value.', () => {
     const expectedState = 'Today';
-    const reducer = ValueReducer('date');
+    const reducer = ValueReducer('date', '');
     const state = reducer(undefined, { type: 'BIOBLOCKS/DATE_SET', payload: 'Today' });
     expect(state).toEqual(expectedState);
   });
 
   it('Should allow creating a namespaced value reducer.', () => {
     expect(ReducerRegistry.getReducers()).not.toHaveProperty('queen/album');
-    createValueReducer('album', 'queen');
+    createValueReducer('album', null, 'queen');
     expect(ReducerRegistry.getReducers()).toHaveProperty('queen/album');
   });
 });

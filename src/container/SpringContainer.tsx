@@ -7,10 +7,11 @@ import { bindActionCreators, Dispatch } from 'redux';
 import IframeComm, { IframeCommAttributes } from 'react-iframe-comm';
 // tslint:enable:import-name match-default-export-name
 
-import { createContainerActions, createSpringActions } from '~bioblocks-viz~/action';
+import { createContainerActions, createSpringActions, fetchSpringGraphData } from '~bioblocks-viz~/action';
 import { ComponentCard } from '~bioblocks-viz~/component';
 import { BioblocksVisualization } from '~bioblocks-viz~/container';
 import { ISpringGraphData, ISpringLink, ISpringNode } from '~bioblocks-viz~/data';
+import { EMPTY_FUNCTION, fetchSpringData } from '~bioblocks-viz~/helper';
 import { createSpringReducer } from '~bioblocks-viz~/reducer';
 import { getCategories, getGraphData, selectCurrentItems } from '~bioblocks-viz~/selector';
 
@@ -18,6 +19,7 @@ export interface ISpringContainerProps {
   categories: Set<string>;
   currentCells: Set<number>;
   datasetLocation: string;
+  datasetsURI: string;
   headerHeight: number;
   iconSrc?: string;
   isFullPage: boolean;
@@ -27,6 +29,7 @@ export interface ISpringContainerProps {
   springHeight: number;
   springSrc: string;
   springWidth: number;
+  dispatchSpringFetch(fetchFn: () => Promise<ISpringGraphData>): void;
   setCurrentCategory(category: string): void;
   setCurrentCells(cells: number[]): void;
 }
@@ -51,16 +54,14 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
     categories: Set<string>(),
     currentCells: Set<number>(),
     datasetLocation: 'hpc/full',
+    datasetsURI: '',
+    dispatchSpringFetch: EMPTY_FUNCTION,
     headerHeight: 18,
     isFullPage: false,
     padding: 0,
     selectedCategory: '',
-    setCurrentCategory: () => {
-      return;
-    },
-    setCurrentCells: () => {
-      return;
-    },
+    setCurrentCategory: EMPTY_FUNCTION,
+    setCurrentCells: EMPTY_FUNCTION,
     springGraphData: {
       links: new Array<ISpringLink>(),
       nodes: new Array<ISpringNode>(),
@@ -88,8 +89,11 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
 
   public setupDataServices() {
     createSpringReducer();
+  }
 
-    this.addBioblocksHook('springGraphData', () => this.props.springGraphData);
+  public componentDidMount() {
+    const { datasetLocation, datasetsURI, dispatchSpringFetch } = this.props;
+    dispatchSpringFetch(async () => fetchSpringData(`${datasetsURI}/${datasetLocation}`));
   }
 
   public componentDidUpdate(prevProps: ISpringContainerProps, prevState: ISpringContainerState) {
@@ -104,8 +108,9 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
         },
       });
     } else if (prevProps.datasetLocation !== this.props.datasetLocation) {
+      const springUrl = this.generateSpringURL(this.props.datasetLocation);
       this.setState({
-        springUrl: this.generateSpringURL(this.props.datasetLocation),
+        springUrl,
       });
     }
   }
@@ -190,6 +195,7 @@ const mapStateToProps = (state: { [key: string]: any }) => ({
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
+      dispatchSpringFetch: fetchSpringGraphData,
       setCurrentCategory: createSpringActions().category.set,
       setCurrentCells: createContainerActions<number>('cells').set,
     },

@@ -8,7 +8,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { createContainerActions } from '~bioblocks-viz~/action';
 import { ComponentCard } from '~bioblocks-viz~/component';
 import { BioblocksVisualization } from '~bioblocks-viz~/container';
-import { AnatomogramMapping, ISpringGraphData, SPECIES_TYPE } from '~bioblocks-viz~/data';
+import { AnatomogramMapping, SPECIES_TYPE } from '~bioblocks-viz~/data';
 import { EMPTY_FUNCTION } from '~bioblocks-viz~/helper';
 import { BioblocksMiddlewareTransformer, RootState } from '~bioblocks-viz~/reducer';
 import { getSpecies, getSpring, selectCurrentItems } from '~bioblocks-viz~/selector';
@@ -51,6 +51,7 @@ export class AnatomogramContainerClass extends BioblocksVisualization<
     this.registerDataset('labels', []);
     BioblocksMiddlewareTransformer.addTransform({
       fn: state => {
+        const { graphData } = getSpring(state);
         const anatomogramMap = AnatomogramMapping[this.props.species];
         let candidateLabels = Set<string>();
         this.props.selectIds.forEach(id => {
@@ -58,19 +59,15 @@ export class AnatomogramContainerClass extends BioblocksVisualization<
         });
 
         let cellIndices = Set<number>();
-        const springDataHook = BioblocksVisualization.getActiveBioblocksHooks().springGraphData;
-        if (springDataHook) {
-          const springData = springDataHook() as ISpringGraphData;
-          springData.nodes.forEach(node => {
-            candidateLabels.forEach(label => {
-              if (label && Object.values(node.labelForCategory).includes(label)) {
-                cellIndices = cellIndices.add(node.number);
+        graphData.nodes.forEach(node => {
+          candidateLabels.forEach(label => {
+            if (label && Object.values(node.labelForCategory).includes(label)) {
+              cellIndices = cellIndices.add(node.number);
 
-                return;
-              }
-            });
+              return;
+            }
           });
-        }
+        });
 
         return cellIndices;
       },

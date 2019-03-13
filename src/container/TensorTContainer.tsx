@@ -73,7 +73,7 @@ export class TensorTContainerClass extends BioblocksVisualization<ITensorContain
 
   public async componentDidMount() {
     try {
-      const tensorData = await fetchTensorTSneCoordinateData(`datasets/${this.props.datasetLocation}`);
+      const tensorData = await fetchTensorTSneCoordinateData(this.props.datasetLocation);
       const tsneData = tensorFlow.tensor(tensorData);
       // Initialize the tsne optimizer
       const tsne = (await import('@tensorflow/tfjs-tsne')).tsne(tsneData);
@@ -293,7 +293,7 @@ export class TensorTContainerClass extends BioblocksVisualization<ITensorContain
         tsne: undefined,
       });
 
-      const tensorData = await fetchTensorTSneCoordinateData(`datasets/${this.props.datasetLocation}`);
+      const tensorData = await fetchTensorTSneCoordinateData(this.props.datasetLocation);
       const tsneData = tensorFlow.tensor(tensorData);
       const tsne = new TSNE(tsneData);
       const numIterations = 0;

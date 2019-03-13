@@ -6,12 +6,10 @@ import { PayloadAction } from 'typesafe-actions/dist/types';
 import { createDataActions } from '~bioblocks-viz~/action';
 import { ReducerRegistry } from '~bioblocks-viz~/reducer';
 
-export type IDataReducerState<T> = T | null;
+export type IDataReducerState<T> = T;
 
-export const DataReducer = <T>(dataset: string, namespace = 'bioblocks'): Reducer => {
+export const DataReducer = <T>(dataset: string, initialState: T, namespace = 'bioblocks'): Reducer => {
   const actions = createDataActions<T>(dataset, namespace);
-
-  const initialState = null;
 
   return (state: IDataReducerState<T> = initialState, action: ActionType<typeof actions>): IDataReducerState<T> => {
     switch (action.type) {
@@ -22,7 +20,7 @@ export const DataReducer = <T>(dataset: string, namespace = 'bioblocks'): Reduce
         const payload = (action as PayloadAction<string, Error>).payload;
         console.error(payload);
 
-        return null;
+        return initialState;
       }
       default:
         return state;
@@ -30,8 +28,8 @@ export const DataReducer = <T>(dataset: string, namespace = 'bioblocks'): Reduce
   };
 };
 
-export const createDataReducer = <T>(dataset: string, namespace = 'bioblocks') => {
-  const reducer = DataReducer<T>(dataset, namespace);
+export const createDataReducer = <T>(dataset: string, initialState: T, namespace = 'bioblocks') => {
+  const reducer = DataReducer<T>(dataset, initialState, namespace);
 
   const reducerName = `${namespace}/${dataset}`;
   ReducerRegistry.register(reducerName, reducer);
