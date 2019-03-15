@@ -29,12 +29,13 @@ export class BioblocksRadioGroup extends React.Component<IBioblocksRadioGroupPro
   }
 
   public handleChange = (index: number) => (event: React.FormEvent<HTMLInputElement>, data: CheckboxProps) => {
+    const { onChange } = this.props;
     this.setState({
       selectedIndex: index,
     });
 
-    if (this.props.onChange) {
-      this.props.onChange(index);
+    if (onChange) {
+      onChange(index);
     }
   };
 

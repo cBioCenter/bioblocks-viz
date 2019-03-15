@@ -87,9 +87,9 @@ export class TensorTContainerClass extends BioblocksVisualization<ITensorContain
   }
 
   public async componentDidUpdate(prevProps: ITensorContainerProps) {
-    const { currentCells } = this.props;
+    const { currentCells, datasetLocation } = this.props;
     const { tsne } = this.state;
-    if (this.props.datasetLocation !== prevProps.datasetLocation) {
+    if (datasetLocation !== prevProps.datasetLocation) {
       await this.setupTensorData();
     } else if (tsne) {
       if (currentCells !== prevProps.currentCells) {

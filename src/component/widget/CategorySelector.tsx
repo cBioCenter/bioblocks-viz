@@ -23,13 +23,15 @@ export class CategorySelector extends React.Component<ICategorySelectorProps, an
   }
 
   public render() {
+    const { categories, onCategoryChange } = this.props;
+
     return (
       this.props.categories && (
         <Dropdown
           fluid={true}
-          onChange={this.props.onCategoryChange}
+          onChange={onCategoryChange}
           options={[
-            ...this.props.categories.map(cat => {
+            ...categories.map(cat => {
               return { key: cat, text: cat, value: cat };
             }),
           ]}

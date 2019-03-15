@@ -21,7 +21,7 @@ class TensorTComponentClass extends React.Component<ITensorComponentProps> {
   }
 
   public render() {
-    const { pointsToPlot } = this.props;
+    const { onSelectedCallback, pointsToPlot } = this.props;
 
     return (
       <PlotlyChart
@@ -35,7 +35,7 @@ class TensorTComponentClass extends React.Component<ITensorComponentProps> {
           xaxis: { autorange: false, range: [0, 1], showline: true },
           yaxis: { autorange: false, range: [0, 1], showline: true },
         }}
-        onSelectedCallback={this.props.onSelectedCallback}
+        onSelectedCallback={onSelectedCallback}
       />
     );
   }

@@ -8,12 +8,10 @@ export const getSpring = (state: RootState, namespace = 'bioblocks') => {
     ? {
         category: '',
         graphData: { nodes: [] },
-        species: 'mus_musculus',
       }
     : state[`${namespace}/spring`]) as ISpringReducerState;
 };
 
-export const getSpecies = (state: RootState, namespace = 'bioblocks') => getSpring(state, namespace).species;
 export const getGraphData = (state: RootState, namespace = 'bioblocks') => getSpring(state, namespace).graphData;
 
 export const getCategories = createSelector(

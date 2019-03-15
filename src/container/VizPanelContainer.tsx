@@ -71,28 +71,26 @@ export class VizPanelContainer extends React.Component<IVizPanelContainerProps, 
   }
 
   public render() {
-    const { allowUploads } = this.props;
+    const { allowUploads, initialVisualizations, numPanels, dataDirs } = this.props;
 
     return (
-      <Grid className={'VizPanelContainer'} columns={this.props.numPanels} centered={true} relaxed={true}>
+      <Grid className={'VizPanelContainer'} columns={numPanels} centered={true} relaxed={true}>
         <GridRow columns={1} centered={true}>
           <Dropdown
             className={'viz-panel-container-dropdown'}
             onChange={this.onDataDirChange}
             options={[
-              ...this.props.dataDirs.map(dir => {
+              ...dataDirs.map(dir => {
                 return { key: dir, text: dir, value: dir };
               }),
             ]}
-            placeholder={this.props.dataDirs[0]}
+            placeholder={dataDirs[0]}
             search={true}
           />
         </GridRow>
-        {this.renderPanels(this.props.numPanels, this.state.data, this.props.initialVisualizations).map(
-          (panel, index) => (
-            <GridColumn key={index}>{panel}</GridColumn>
-          ),
-        )}
+        {this.renderPanels(numPanels, this.state.data, initialVisualizations).map((panel, index) => (
+          <GridColumn key={index}>{panel}</GridColumn>
+        ))}
 
         {allowUploads && this.renderFileUploadForm()}
       </Grid>

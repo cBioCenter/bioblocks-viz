@@ -97,7 +97,7 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
   }
 
   public componentDidUpdate(prevProps: ISpringContainerProps, prevState: ISpringContainerState) {
-    const { currentCells } = this.props;
+    const { currentCells, datasetLocation } = this.props;
     if (currentCells !== prevProps.currentCells) {
       this.setState({
         postMessageData: {
@@ -107,8 +107,8 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
           type: 'selected-cells-update',
         },
       });
-    } else if (prevProps.datasetLocation !== this.props.datasetLocation) {
-      const springUrl = this.generateSpringURL(this.props.datasetLocation);
+    } else if (prevProps.datasetLocation !== datasetLocation) {
+      const springUrl = this.generateSpringURL(datasetLocation);
       this.setState({
         springUrl,
       });

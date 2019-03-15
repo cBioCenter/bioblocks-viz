@@ -5,7 +5,6 @@ describe('SpringReducer', () => {
     const expectedState = {
       category: '',
       graphData: { nodes: [] },
-      species: 'mus_musculus',
     };
     const reducer = SpringReducer();
     expect(reducer(undefined, { type: 'load' })).toMatchObject(expectedState);
