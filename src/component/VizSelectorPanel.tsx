@@ -44,7 +44,7 @@ export class VizSelectorPanel extends React.Component<IVizPanelProps, IVizPanelS
   public render() {
     // N.B. We are only setting the width of the VizSelectorPanel, explicitly leaving out the height.
     // This means a component can only grow vertically, but not horizontally, and be correctly styled in containers.
-    const { data, supportedVisualizations, width } = this.props;
+    const { data, initialViz, supportedVisualizations, width } = this.props;
 
     return (
       <div className="VizSelectorPanel" style={{ width }}>
@@ -52,7 +52,7 @@ export class VizSelectorPanel extends React.Component<IVizPanelProps, IVizPanelS
           options={this.generateDropdownItems(supportedVisualizations)}
           fluid={true}
           onChange={this.onVizSelect}
-          defaultValue={this.props.initialViz}
+          defaultValue={initialViz}
         />
         {
           <Card fluid={true} raised={true}>
@@ -64,9 +64,9 @@ export class VizSelectorPanel extends React.Component<IVizPanelProps, IVizPanelS
   }
 
   protected renderVizContainer(viz: VIZ_TYPE, data: Partial<{ [K in VIZ_TYPE]: BIOBLOCKS_DATA_TYPE }>) {
-    const { padding } = this.props;
-    const paddedHeight = this.props.height - padding * 2;
-    const paddedWidth = this.props.width - padding * 2;
+    const { height, padding, width } = this.props;
+    const paddedHeight = height - padding * 2;
+    const paddedWidth = width - padding * 2;
     switch (viz) {
       case VIZ_TYPE['T-SNE']:
       case VIZ_TYPE['TENSOR-T-SNE']:

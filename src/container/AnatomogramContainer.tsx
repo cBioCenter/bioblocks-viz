@@ -11,7 +11,7 @@ import { BioblocksVisualization } from '~bioblocks-viz~/container';
 import { AnatomogramMapping, SPECIES_TYPE } from '~bioblocks-viz~/data';
 import { EMPTY_FUNCTION } from '~bioblocks-viz~/helper';
 import { BioblocksMiddlewareTransformer, RootState } from '~bioblocks-viz~/reducer';
-import { getSpecies, getSpring, selectCurrentItems } from '~bioblocks-viz~/selector';
+import { getSpring, selectCurrentItems } from '~bioblocks-viz~/selector';
 
 interface IAnatomogramContainerProps {
   iconSrc?: string;
@@ -51,10 +51,11 @@ export class AnatomogramContainerClass extends BioblocksVisualization<
     this.registerDataset('labels', []);
     BioblocksMiddlewareTransformer.addTransform({
       fn: state => {
+        const { species, selectIds } = this.props;
         const { graphData } = getSpring(state);
-        const anatomogramMap = AnatomogramMapping[this.props.species];
+        const anatomogramMap = AnatomogramMapping[species];
         let candidateLabels = Set<string>();
-        this.props.selectIds.forEach(id => {
+        selectIds.forEach(id => {
           candidateLabels = id && anatomogramMap[id] ? candidateLabels.merge(anatomogramMap[id]) : candidateLabels;
         });
 
@@ -76,9 +77,9 @@ export class AnatomogramContainerClass extends BioblocksVisualization<
     });
     BioblocksMiddlewareTransformer.addTransform({
       fn: state => {
+        const { species } = this.props;
         const currentCells = selectCurrentItems<number>(state, 'cells').toArray();
         const { category, graphData } = getSpring(state);
-        const species = getSpecies(state);
         let result = Set<string>();
 
         for (const cellIndex of currentCells) {
@@ -189,7 +190,6 @@ export class AnatomogramContainerClass extends BioblocksVisualization<
 
 const mapStateToProps = (state: RootState) => ({
   selectIds: selectCurrentItems<string>(state, 'labels'),
-  species: getSpecies(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) =>

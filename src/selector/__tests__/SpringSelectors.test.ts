@@ -1,13 +1,12 @@
 import { Set } from 'immutable';
 import { ISpringGraphData } from '~bioblocks-viz~/data';
-import { getCategories, getGraphData, getLabels, getSpecies, getSpring } from '~bioblocks-viz~/selector';
+import { getCategories, getGraphData, getLabels, getSpring } from '~bioblocks-viz~/selector';
 
 describe('SpringSelector', () => {
   it('Should create a new spring state if one does not exist.', () => {
     const expectedState = {
       category: '',
       graphData: { nodes: [] },
-      species: 'mus_musculus',
     };
     expect(getSpring(undefined as any)).toMatchObject(expectedState);
     expect(getSpring({})).toMatchObject(expectedState);
@@ -35,11 +34,9 @@ describe('SpringSelector', () => {
       ['sample/spring']: {
         category: ',',
         graphData: { nodes: [] },
-        species: 'mus_musculus',
       },
     };
     expect(getGraphData(state, 'sample')).toEqual({ nodes: [] });
-    expect(getSpecies(state, 'sample')).toEqual('mus_musculus');
   });
 
   it('Should allow selection of categories based off the graph data.', () => {
