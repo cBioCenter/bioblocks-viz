@@ -295,12 +295,10 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
       ...this.generateExtraPlotlyAxis(uniqueYAxisIds),
       xaxis: {
         domain: [0, 1 - uniqueXAxisIds.size * 0.05],
-        range: [30],
         zeroline: false,
       },
       yaxis: {
         domain: [0, 1 - uniqueXAxisIds.size * 0.05],
-        range: [30],
         zeroline: false,
       },
     };
