@@ -1,4 +1,5 @@
-import * as plotly from 'plotly.js-gl2d-dist';
+// tslint:disable-next-line: no-submodule-imports
+import * as plotly from 'plotly.js/lib/index-gl2d';
 
 export enum PLOTLY_CHART_TYPE {
   /** [Plotly Bar Chart](https://plot.ly/javascript/bar-charts/) */

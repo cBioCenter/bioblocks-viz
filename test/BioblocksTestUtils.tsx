@@ -1,5 +1,6 @@
 import { CommonWrapper, mount, ReactWrapper, shallow } from 'enzyme';
-import * as plotly from 'plotly.js-gl2d-dist';
+// tslint:disable-next-line: no-submodule-imports
+import * as plotly from 'plotly.js/lib/index-gl2d';
 import * as React from 'react';
 
 import { PlotlyChart } from '~bioblocks-viz~/component';

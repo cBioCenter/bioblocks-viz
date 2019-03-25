@@ -1,4 +1,5 @@
-import { Color } from 'plotly.js-gl2d-dist';
+// tslint:disable-next-line: no-submodule-imports
+import { Color } from 'plotly.js/lib/index-gl2d';
 import { SemanticCOLORS } from 'semantic-ui-react';
 
 /**

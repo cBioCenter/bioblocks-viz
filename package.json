@@ -47,7 +47,7 @@
       "~bioblocks-viz~/test": "<rootDir>/test",
       "~bioblocks-viz~/(.*)": "<rootDir>/src/$1",
       "\\.(css|less)$": "<rootDir>/test/__mocks__/styleMock.ts",
-      "plotly.js-gl2d-dist": "<rootDir>/test/__mocks__/plotly.ts",
+      "plotly.js/lib/index-gl2d": "<rootDir>/test/__mocks__/plotly.ts",
       "@tensorflow/tfjs-core": "<rootDir>/test/__mocks__/@tensorflow/tfjs-core-mock.ts",
       "@tensorflow/tfjs-tsne": "<rootDir>/test/__mocks__/@tensorflow/tfjs-tsne-mock.ts"
     },
@@ -153,7 +153,7 @@
     "lodash": "^4.17.10",
     "memoize-one": "^5.0.0",
     "ngl": "^2.0.0-dev.33",
-    "plotly.js-gl2d-dist": "^1.41.1",
+    "plotly.js": "^1.45.3",
     "rc-slider": "^8.6.3",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
