@@ -58,7 +58,6 @@ exports[`VizPanelContainer Should match existing snapshot when given a single vi
         }
       }
       labelPosition="right"
-      role="button"
     />
     <input
       hidden={true}
@@ -166,7 +165,6 @@ exports[`VizPanelContainer Should match existing snapshot when given multiple vi
         }
       }
       labelPosition="right"
-      role="button"
     />
     <input
       hidden={true}

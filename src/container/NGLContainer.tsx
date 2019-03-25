@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
 import { createResiduePairActions } from '~bioblocks-viz~/action/ResiduePairAction';
-import { NGLComponent } from '~bioblocks-viz~/component';
 import { BioblocksVisualization } from '~bioblocks-viz~/container';
 import {
   BioblocksPDB,
@@ -20,6 +19,10 @@ import {
   ILockedResiduePair,
 } from '~bioblocks-viz~/reducer';
 import { getCandidates, getHovered, getLocked, selectCurrentItems, selectCurrentValue } from '~bioblocks-viz~/selector';
+
+const NGLComponent = React.lazy(() =>
+  import('~bioblocks-viz~/component/NGLComponent').then(component => ({ default: component.NGLComponent })),
+);
 
 export interface INGLContainerProps {
   candidateResidues: RESIDUE_TYPE[];

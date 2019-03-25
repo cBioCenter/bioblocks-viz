@@ -2583,20 +2583,58 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 <DimmerInner
                   active={false}
                 >
-                  <div
-                    className="ui dimmer"
-                    onClick={[Function]}
+                  <Ref
+                    innerRef={
+                      Object {
+                        "current": <div
+                          class="ui dimmer"
+                          style=""
+                        >
+                          <div
+                            class="content"
+                          >
+                            <div
+                              class="ui loader"
+                            />
+                          </div>
+                        </div>,
+                      }
+                    }
                   >
-                    <div
-                      className="content"
+                    <RefFindNode
+                      innerRef={
+                        Object {
+                          "current": <div
+                            class="ui dimmer"
+                            style=""
+                          >
+                            <div
+                              class="content"
+                            >
+                              <div
+                                class="ui loader"
+                              />
+                            </div>
+                          </div>,
+                        }
+                      }
                     >
-                      <Loader>
+                      <div
+                        className="ui dimmer"
+                        onClick={[Function]}
+                      >
                         <div
-                          className="ui loader"
-                        />
-                      </Loader>
-                    </div>
-                  </div>
+                          className="content"
+                        >
+                          <Loader>
+                            <div
+                              className="ui loader"
+                            />
+                          </Loader>
+                        </div>
+                      </div>
+                    </RefFindNode>
+                  </Ref>
                 </DimmerInner>
               </Dimmer>
               <div

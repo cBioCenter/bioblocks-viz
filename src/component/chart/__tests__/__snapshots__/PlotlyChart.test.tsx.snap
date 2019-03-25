@@ -33,20 +33,56 @@ exports[`PlotlyChart Event Callbacks Should attach events when the container is 
     <DimmerInner
       active={false}
     >
-      <div
-        className="ui dimmer"
-        onClick={[Function]}
+      <Ref
+        innerRef={
+          Object {
+            "current": <div
+              class="ui dimmer"
+            >
+              <div
+                class="content"
+              >
+                <div
+                  class="ui loader"
+                />
+              </div>
+            </div>,
+          }
+        }
       >
-        <div
-          className="content"
+        <RefFindNode
+          innerRef={
+            Object {
+              "current": <div
+                class="ui dimmer"
+              >
+                <div
+                  class="content"
+                >
+                  <div
+                    class="ui loader"
+                  />
+                </div>
+              </div>,
+            }
+          }
         >
-          <Loader>
+          <div
+            className="ui dimmer"
+            onClick={[Function]}
+          >
             <div
-              className="ui loader"
-            />
-          </Loader>
-        </div>
-      </div>
+              className="content"
+            >
+              <Loader>
+                <div
+                  className="ui loader"
+                />
+              </Loader>
+            </div>
+          </div>
+        </RefFindNode>
+      </Ref>
     </DimmerInner>
   </Dimmer>
   <div
@@ -99,20 +135,56 @@ exports[`PlotlyChart Should handle extra axes correctly. 1`] = `
     <DimmerInner
       active={false}
     >
-      <div
-        className="ui dimmer"
-        onClick={[Function]}
+      <Ref
+        innerRef={
+          Object {
+            "current": <div
+              class="ui dimmer"
+            >
+              <div
+                class="content"
+              >
+                <div
+                  class="ui loader"
+                />
+              </div>
+            </div>,
+          }
+        }
       >
-        <div
-          className="content"
+        <RefFindNode
+          innerRef={
+            Object {
+              "current": <div
+                class="ui dimmer"
+              >
+                <div
+                  class="content"
+                >
+                  <div
+                    class="ui loader"
+                  />
+                </div>
+              </div>,
+            }
+          }
         >
-          <Loader>
+          <div
+            className="ui dimmer"
+            onClick={[Function]}
+          >
             <div
-              className="ui loader"
-            />
-          </Loader>
-        </div>
-      </div>
+              className="content"
+            >
+              <Loader>
+                <div
+                  className="ui loader"
+                />
+              </Loader>
+            </div>
+          </div>
+        </RefFindNode>
+      </Ref>
     </DimmerInner>
   </Dimmer>
   <div
@@ -143,20 +215,58 @@ exports[`PlotlyChart Should match existing snapshot when given empty data. 1`] =
     <DimmerInner
       active={true}
     >
-      <div
-        className="ui active transition visible dimmer"
-        onClick={[Function]}
+      <Ref
+        innerRef={
+          Object {
+            "current": <div
+              class="ui active transition visible dimmer"
+              style="display: flex;"
+            >
+              <div
+                class="content"
+              >
+                <div
+                  class="ui loader"
+                />
+              </div>
+            </div>,
+          }
+        }
       >
-        <div
-          className="content"
+        <RefFindNode
+          innerRef={
+            Object {
+              "current": <div
+                class="ui active transition visible dimmer"
+                style="display: flex;"
+              >
+                <div
+                  class="content"
+                >
+                  <div
+                    class="ui loader"
+                  />
+                </div>
+              </div>,
+            }
+          }
         >
-          <Loader>
+          <div
+            className="ui active transition visible dimmer"
+            onClick={[Function]}
+          >
             <div
-              className="ui loader"
-            />
-          </Loader>
-        </div>
-      </div>
+              className="content"
+            >
+              <Loader>
+                <div
+                  className="ui loader"
+                />
+              </Loader>
+            </div>
+          </div>
+        </RefFindNode>
+      </Ref>
     </DimmerInner>
   </Dimmer>
   <div
@@ -203,20 +313,56 @@ exports[`PlotlyChart Should match existing snapshot when given sample data. 1`] 
     <DimmerInner
       active={false}
     >
-      <div
-        className="ui dimmer"
-        onClick={[Function]}
+      <Ref
+        innerRef={
+          Object {
+            "current": <div
+              class="ui dimmer"
+            >
+              <div
+                class="content"
+              >
+                <div
+                  class="ui loader"
+                />
+              </div>
+            </div>,
+          }
+        }
       >
-        <div
-          className="content"
+        <RefFindNode
+          innerRef={
+            Object {
+              "current": <div
+                class="ui dimmer"
+              >
+                <div
+                  class="content"
+                >
+                  <div
+                    class="ui loader"
+                  />
+                </div>
+              </div>,
+            }
+          }
         >
-          <Loader>
+          <div
+            className="ui dimmer"
+            onClick={[Function]}
+          >
             <div
-              className="ui loader"
-            />
-          </Loader>
-        </div>
-      </div>
+              className="content"
+            >
+              <Loader>
+                <div
+                  className="ui loader"
+                />
+              </Loader>
+            </div>
+          </div>
+        </RefFindNode>
+      </Ref>
     </DimmerInner>
   </Dimmer>
   <div

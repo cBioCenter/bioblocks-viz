@@ -48,7 +48,6 @@ exports[`BioblocksSlider Should match existing snapshot when given simple data. 
       as="button"
       icon="undo"
       onClick={[Function]}
-      role="button"
       size="small"
     />
   </GridColumn>

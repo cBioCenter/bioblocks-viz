@@ -1,6 +1,6 @@
 import { default as CleanWebpackPlugin } from 'clean-webpack-plugin';
-import * as CopyWebpackPlugin from 'copy-webpack-plugin';
-import * as HtmlWebpackPlugin from 'html-webpack-plugin';
+import { default as CopyWebpackPlugin } from 'copy-webpack-plugin';
+import { default as HtmlWebpackPlugin } from 'html-webpack-plugin';
 import * as webpack from 'webpack';
 
 // TODO: Use https://github.com/TypeStrong/typedoc and https://github.com/Microsoft/Typedoc-Webpack-Plugin
@@ -134,6 +134,8 @@ module.exports = {
   ],
   resolve: {
     alias: {
+      ngl: path.resolve(__dirname, './node_modules/ngl/dist/ngl.js'),
+      'plotly.js/dist/plotly-gl2d': path.resolve(__dirname, './node_modules/plotly.js/dist/plotly-gl2d.min.js'),
       '~bioblocks-viz~': path.resolve(__dirname, './src'),
       '~bioblocks-viz~/action': path.resolve(__dirname, './src/action'),
       '~bioblocks-viz~/component': path.resolve(__dirname, './src/component'),
