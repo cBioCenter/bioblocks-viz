@@ -1,13 +1,9 @@
 import * as React from 'react';
 import { Card, Dropdown, DropdownItemProps, DropdownProps } from 'semantic-ui-react';
 
-import { PredictedContactMap } from '~bioblocks-viz~/component';
+import { NGLComponent, PredictedContactMap } from '~bioblocks-viz~/component';
 import { InfoPanelContainer, SpringContainer, TensorTContainer } from '~bioblocks-viz~/container';
 import { BIOBLOCKS_DATA_TYPE, IContactMapData, VIZ_TYPE } from '~bioblocks-viz~/data';
-
-const NGLComponent = React.lazy(() =>
-  import('~bioblocks-viz~/component/NGLComponent').then(component => ({ default: component.NGLComponent })),
-);
 
 export interface IVizPanelProps {
   data: Partial<{ [K in VIZ_TYPE]: BIOBLOCKS_DATA_TYPE }>;
