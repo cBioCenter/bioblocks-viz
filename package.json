@@ -1,6 +1,6 @@
 {
   "name": "bioblocks-viz",
-  "version": "0.0.102",
+  "version": "0.0.103",
   "author": "Biostatistics and Computational Biology at Dana-Farber <bcb@jimmy.harvard.edu>",
   "license": "MIT",
   "engines": {
