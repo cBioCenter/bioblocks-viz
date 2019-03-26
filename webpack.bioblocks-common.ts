@@ -41,8 +41,7 @@ module.exports = {
         test: /\.js$/,
       },
       {
-        include: [path.resolve(__dirname, 'node_modules/anatomogram')],
-        test: /\.(jpe?g|png|gif|svg)$/i,
+        test: /\.(jpe?g|png|gif)$/i,
         use: [
           {
             loader: 'file-loader',
@@ -65,6 +64,18 @@ module.exports = {
                   optimizationLevel: 7,
                 },
               },
+            },
+          },
+        ],
+      },
+      {
+        include: [path.resolve(__dirname, 'node_modules/anatomogram')],
+        test: /\.(svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
             },
           },
         ],
