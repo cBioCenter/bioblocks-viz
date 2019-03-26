@@ -25,7 +25,6 @@ exports[`SettingsPanel Should match the existing snapshot when given no configur
         floated="right"
         icon="settings"
         onClick={[Function]}
-        role="button"
       />
     </GridColumn>
     <SidebarPushable
@@ -40,7 +39,6 @@ exports[`SettingsPanel Should match the existing snapshot when given no configur
         animation="overlay"
         as={[Function]}
         direction="left"
-        duration={500}
         inverted={true}
         style={
           Object {

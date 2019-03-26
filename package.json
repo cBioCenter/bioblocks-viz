@@ -1,6 +1,6 @@
 {
   "name": "bioblocks-viz",
-  "version": "0.0.101",
+  "version": "0.0.102",
   "author": "Biostatistics and Computational Biology at Dana-Farber <bcb@jimmy.harvard.edu>",
   "license": "MIT",
   "engines": {
@@ -47,7 +47,7 @@
       "~bioblocks-viz~/test": "<rootDir>/test",
       "~bioblocks-viz~/(.*)": "<rootDir>/src/$1",
       "\\.(css|less)$": "<rootDir>/test/__mocks__/styleMock.ts",
-      "plotly.js-gl2d-dist": "<rootDir>/test/__mocks__/plotly.ts",
+      "plotly.js/lib/index-gl2d": "<rootDir>/test/__mocks__/plotly.ts",
       "@tensorflow/tfjs-core": "<rootDir>/test/__mocks__/@tensorflow/tfjs-core-mock.ts",
       "@tensorflow/tfjs-tsne": "<rootDir>/test/__mocks__/@tensorflow/tfjs-tsne-mock.ts"
     },
@@ -148,12 +148,12 @@
     "@types/react": "^16.4.7",
     "@types/react-dom": "^16.0.5",
     "anatomogram": "^2.1.1",
-    "d3": "^5.4.0",
+    "d3": "^5.9.2",
     "immutable": "^3.8.2",
     "lodash": "^4.17.10",
     "memoize-one": "^5.0.0",
     "ngl": "^2.0.0-dev.33",
-    "plotly.js-gl2d-dist": "^1.41.1",
+    "plotly.js": "^1.45.3",
     "rc-slider": "^8.6.3",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
@@ -165,7 +165,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
-    "semantic-ui-react": "^0.83.0",
+    "semantic-ui-react": "^0.86.0",
     "typesafe-actions": "^2.0.4",
     "xml2js": "^0.4.19"
   },
@@ -178,6 +178,7 @@
     "@types/jest": "^23.3.1",
     "@types/jquery": "^3.3.22",
     "@types/memoize-one": "^3.1.1",
+    "@types/mini-css-extract-plugin": "^0.2.0",
     "@types/node": "^10.5.5",
     "@types/prop-types": "^15.5.6",
     "@types/rc-slider": "^8.2.3",
@@ -198,7 +199,7 @@
     "babel-core": "^6.26.3",
     "babel-jest": "^23.6.0",
     "clean-webpack-plugin": "^2.0.1",
-    "copy-webpack-plugin": "^4.5.1",
+    "copy-webpack-plugin": "^5.0.2",
     "cross-env": "^5.1.4",
     "css-loader": "^1.0.0",
     "enzyme": "^3.5.0",
@@ -221,7 +222,7 @@
     "jsdom": "^13.0.0",
     "lint-staged": "^8.0.3",
     "markdownlint-cli": "^0.13.0",
-    "mini-css-extract-plugin": "^0.4.3",
+    "mini-css-extract-plugin": "^0.5.0",
     "npm-run-all": "^4.1.3",
     "prettier": "^1.14.3",
     "react-test-renderer": "^16.5.2",
@@ -250,7 +251,8 @@
     "webpack-merge": "^4.1.2"
   },
   "peerDependencies": {
-    "canvas": "^2.0.1"
+    "canvas": "^2.0.1",
+    "d3": "^5.4.0"
   },
   "bugs": {
     "url": "https://github.com/cBioCenter/bioblocks-viz/issues"

@@ -1,6 +1,7 @@
 import { default as CleanWebpackPlugin } from 'clean-webpack-plugin';
 import * as CopyWebpackPlugin from 'copy-webpack-plugin';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
+import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import * as webpack from 'webpack';
 
 // TODO: Use https://github.com/TypeStrong/typedoc and https://github.com/Microsoft/Typedoc-Webpack-Plugin
@@ -17,7 +18,12 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          'css-loader',
+        ],
       },
       {
         test: /\.tsx?$/,
@@ -36,8 +42,14 @@ module.exports = {
       },
       {
         include: [path.resolve(__dirname, 'node_modules/anatomogram')],
-        test: /\.(jpe?g|png|gif)$/i,
+        test: /\.(jpe?g|png|gif|svg)$/i,
         use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+            },
+          },
           {
             loader: `image-webpack-loader`,
             options: {
@@ -53,17 +65,6 @@ module.exports = {
                   optimizationLevel: 7,
                 },
               },
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(woff(2)?|ttf|png|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
             },
           },
         ],
@@ -110,13 +111,6 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       {
-        from: './assets/datasets',
-        to: './datasets',
-        toType: 'dir',
-      },
-    ]),
-    new CopyWebpackPlugin([
-      {
         from: './assets',
         ignore: ['*.pdf'],
         to: './assets',
@@ -130,10 +124,13 @@ module.exports = {
         toType: 'dir',
       },
     ]),
+    new MiniCssExtractPlugin(),
     new webpack.NamedModulesPlugin(),
   ],
   resolve: {
     alias: {
+      ngl: path.resolve(__dirname, './node_modules/ngl/dist/ngl.js'),
+      'plotly.js/lib/index-gl2d': path.resolve(__dirname, './node_modules/plotly.js/dist/plotly-gl2d.min.js'),
       '~bioblocks-viz~': path.resolve(__dirname, './src'),
       '~bioblocks-viz~/action': path.resolve(__dirname, './src/action'),
       '~bioblocks-viz~/component': path.resolve(__dirname, './src/component'),

@@ -1,6 +1,7 @@
 import * as Immutable from 'immutable';
 import { isEqual } from 'lodash';
-import * as plotly from 'plotly.js-gl2d-dist';
+// tslint:disable-next-line: no-submodule-imports
+import * as plotly from 'plotly.js/lib/index-gl2d';
 import * as React from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react';
 
