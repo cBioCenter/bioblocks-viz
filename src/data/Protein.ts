@@ -1,7 +1,7 @@
 // cSpell:disable
 // tslint:disable:max-line-length no-reserved-keywords
 
-export interface Info {
+export interface IProteinInfo {
   created: string;
   modified: string;
   type: string;
@@ -313,7 +313,7 @@ export interface IProtein {
   features: Array<Partial<IFeature>>;
   gene: Array<Partial<IGene>>;
   id: string;
-  info: Info;
+  info: IProteinInfo;
   keywords: Array<Partial<ITextValue>>;
   organism: Partial<IOrganism>;
   protein: Partial<IProteinName>;
