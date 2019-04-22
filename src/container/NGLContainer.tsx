@@ -19,7 +19,7 @@ import {
   createResiduePairReducer,
   ILockedResiduePair,
 } from '~bioblocks-viz~/reducer';
-import { getCandidates, getHovered, getLocked, selectCurrentItems, selectCurrentValue } from '~bioblocks-viz~/selector';
+import { getCandidates, getHovered, getLocked, selectCurrentItems } from '~bioblocks-viz~/selector';
 
 export interface INGLContainerProps {
   candidateResidues: RESIDUE_TYPE[];
@@ -72,9 +72,6 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
 
 const mapStateToProps = (state: { [key: string]: any }, ownProps: { data: BioblocksPDB }) => ({
   candidateResidues: getCandidates(state).toArray(),
-  data: selectCurrentValue<BioblocksPDB>(state, 'pdb')
-    ? (selectCurrentValue<BioblocksPDB>(state, 'pdb') as BioblocksPDB)
-    : ownProps.data,
   hoveredResidues: getHovered(state).toArray(),
   hoveredSecondaryStructures: selectCurrentItems<SECONDARY_STRUCTURE_SECTION>(
     state,
