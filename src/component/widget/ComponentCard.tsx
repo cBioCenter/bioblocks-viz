@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Card, Icon, Menu } from 'semantic-ui-react';
+import { Card, Icon, Menu, Modal } from 'semantic-ui-react';
 
 export interface IComponentCardProps {
   componentName: string;
@@ -62,12 +62,6 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     const { isFullPage } = this.state;
     if (isFullPage !== prevState.isFullPage) {
       this.resizeFramedComponent();
-      const dimmedBackground = document.getElementById('bioblocks-dimmed-background');
-      if (isFullPage && dimmedBackground) {
-        dimmedBackground.style.display = 'block';
-      } else if (dimmedBackground) {
-        dimmedBackground.style.display = 'none';
-      }
     }
   }
 
@@ -76,14 +70,9 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     const { isFullPage, framedStyle } = this.state;
 
     const expandedStyle: React.CSSProperties = {
-      bottom: 0,
-      height: 'calc(100vmin)',
-      left: 0,
+      height: '80vh',
       padding: '5px',
-      position: 'fixed',
-      right: 0,
-      width: 'calc(100vmin)',
-      zIndex: 10000,
+      width: '80vh',
     };
 
     const cardStyle: React.CSSProperties = {
@@ -92,12 +81,29 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
       ...(isFullPage ? { ...expandedStyle } : { height, width }),
     };
 
-    return (
+    const card = (
       <Card centered={true} className={'bioblocks-component-card'} ref={ref => (this.cardRef = ref)} style={cardStyle}>
         {this.renderTopMenu(headerHeight)}
         {isFramedComponent ? <div style={framedStyle}>{children}</div> : children}
       </Card>
     );
+
+    if (isFullPage) {
+      return (
+        <Modal
+          closeOnDimmerClick={true}
+          closeOnEscape={true}
+          onClose={this.onFullPageToggle}
+          open={true}
+          size={'large'}
+          style={{ height: '80vh', width: '80vh' }}
+        >
+          {card}
+        </Modal>
+      );
+    } else {
+      return card;
+    }
   }
 
   protected renderTopMenu = (height: number | string) => (
@@ -121,6 +127,7 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     this.setState({
       isFullPage: !this.state.isFullPage,
     });
+    this.forceUpdate();
   };
 
   protected resizeFramedComponent() {

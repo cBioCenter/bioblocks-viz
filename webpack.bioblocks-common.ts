@@ -140,7 +140,7 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      ngl: path.resolve(__dirname, './node_modules/ngl/dist/ngl.js'),
+      ngl: path.resolve(__dirname, './node_modules/ngl/dist/ngl.esm.js'),
       'plotly.js/lib/index-gl2d': path.resolve(__dirname, './node_modules/plotly.js/dist/plotly-gl2d.min.js'),
       '~bioblocks-viz~': path.resolve(__dirname, './src'),
       '~bioblocks-viz~/action': path.resolve(__dirname, './src/action'),

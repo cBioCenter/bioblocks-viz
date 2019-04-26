@@ -20,7 +20,7 @@ describe('NGLComponent', () => {
   });
 
   it('Should handle a data reset.', () => {
-    const wrapper = shallow(<NGLComponent />);
+    const wrapper = mount(<NGLComponent />);
     const initialProps = wrapper.props();
 
     wrapper.setProps({
@@ -31,7 +31,7 @@ describe('NGLComponent', () => {
   });
 
   it('Should handle prop updates.', () => {
-    const wrapper = shallow(<NGLComponent />);
+    const wrapper = mount(<NGLComponent />);
     const initialProps = wrapper.props();
 
     wrapper.setProps({

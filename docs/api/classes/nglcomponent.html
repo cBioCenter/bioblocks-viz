@@ -100,6 +100,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="nglcomponent.html#canvas" class="tsd-kind-icon">canvas</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="nglcomponent.html#context" class="tsd-kind-icon">context</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="nglcomponent.html#prevcanvas" class="tsd-kind-icon">prev<wbr>Canvas</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="nglcomponent.html#props" class="tsd-kind-icon">props</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="nglcomponent.html#refs" class="tsd-kind-icon">refs</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite"><a href="nglcomponent.html#state" class="tsd-kind-icon">state</a></li>
@@ -113,6 +114,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="nglcomponent.html#unsafe_componentwillreceiveprops" class="tsd-kind-icon">UNSAFE_<wbr>component<wbr>Will<wbr>Receive<wbr>Props</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="nglcomponent.html#unsafe_componentwillupdate" class="tsd-kind-icon">UNSAFE_<wbr>component<wbr>Will<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="nglcomponent.html#addstructuretostage" class="tsd-kind-icon">add<wbr>Structure<wbr>ToStage</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="nglcomponent.html#canvasrefcallback" class="tsd-kind-icon">canvas<wbr>Ref<wbr>Callback</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="nglcomponent.html#componentdidcatch" class="tsd-kind-icon">component<wbr>Did<wbr>Catch</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="nglcomponent.html#componentdidmount" class="tsd-kind-icon">component<wbr>Did<wbr>Mount</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="nglcomponent.html#componentdidupdate" class="tsd-kind-icon">component<wbr>Did<wbr>Update</a></li>
@@ -163,7 +165,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L96">src/component/NGLComponent.tsx:96</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L97">src/component/NGLComponent.tsx:97</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -185,7 +187,7 @@
 					<div class="tsd-signature tsd-kind-icon">canvas<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L96">src/component/NGLComponent.tsx:96</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L97">src/component/NGLComponent.tsx:97</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -215,6 +217,16 @@ context!: React.ContextType&lt;<span class="hljs-keyword">typeof</span> MyContex
 							</dd>
 						</dl>
 					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="prevcanvas" class="tsd-anchor"></a>
+					<h3>prev<wbr>Canvas</h3>
+					<div class="tsd-signature tsd-kind-icon">prev<wbr>Canvas<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L96">src/component/NGLComponent.tsx:96</a></li>
+						</ul>
+					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="props" class="tsd-anchor"></a>
@@ -260,7 +272,7 @@ context!: React.ContextType&lt;<span class="hljs-keyword">typeof</span> MyContex
 					<aside class="tsd-sources">
 						<p>Overrides Component.state</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L94">src/component/NGLComponent.tsx:94</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L94">src/component/NGLComponent.tsx:94</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -446,7 +458,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L239">src/component/NGLComponent.tsx:239</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L260">src/component/NGLComponent.tsx:260</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -467,6 +479,29 @@ class Foo extends React.Component {
 									<div class="tsd-comment tsd-typography">
 										<p>A NGL Stage.</p>
 									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="canvasrefcallback" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> canvas<wbr>Ref<wbr>Callback</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">canvas<wbr>Ref<wbr>Callback<span class="tsd-signature-symbol">(</span>el<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLDivElement</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L196">src/component/NGLComponent.tsx:196</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>el: <span class="tsd-signature-type">HTMLDivElement</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -510,27 +545,16 @@ class Foo extends React.Component {
 					<a name="componentdidmount" class="tsd-anchor"></a>
 					<h3>component<wbr>Did<wbr>Mount</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">component<wbr>Did<wbr>Mount<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">component<wbr>Did<wbr>Mount<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides ComponentLifecycle.componentDidMount</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L102">src/component/NGLComponent.tsx:102</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L103">src/component/NGLComponent.tsx:103</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> __namedParameters: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;this.props</span></h5>
-									<ul class="tsd-parameters">
-										<li class="tsd-parameter">
-											<h5>background<wbr>Color<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
-										</li>
-									</ul>
-								</li>
-							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -546,7 +570,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Overrides NewLifecycle.componentDidUpdate</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L129">src/component/NGLComponent.tsx:129</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L130">src/component/NGLComponent.tsx:130</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -658,7 +682,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Overrides ComponentLifecycle.componentWillUnmount</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L116">src/component/NGLComponent.tsx:116</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L117">src/component/NGLComponent.tsx:117</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -724,7 +748,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L209">src/component/NGLComponent.tsx:209</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L230">src/component/NGLComponent.tsx:230</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -771,7 +795,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L480">src/component/NGLComponent.tsx:480</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L501">src/component/NGLComponent.tsx:501</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -797,7 +821,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L258">src/component/NGLComponent.tsx:258</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L279">src/component/NGLComponent.tsx:279</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span><a href="../interfaces/ibasebioblockswidgetconfig.html" class="tsd-signature-type">IBaseBioblocksWidgetConfig</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/ibasebioblockswidgetconfig.html" class="tsd-signature-type">IBaseBioblocksWidgetConfig</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/ibasebioblockswidgetconfig.html" class="tsd-signature-type">IBaseBioblocksWidgetConfig</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/ibasebioblockswidgetconfig.html" class="tsd-signature-type">IBaseBioblocksWidgetConfig</a><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/ibioblockswidgetvalueconfig.html" class="tsd-signature-type">IBioblocksWidgetValueConfig</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></h4>
@@ -814,7 +838,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L399">src/component/NGLComponent.tsx:399</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L420">src/component/NGLComponent.tsx:420</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -879,7 +903,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L411">src/component/NGLComponent.tsx:411</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L432">src/component/NGLComponent.tsx:432</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -905,7 +929,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L424">src/component/NGLComponent.tsx:424</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L445">src/component/NGLComponent.tsx:445</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -931,7 +955,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L441">src/component/NGLComponent.tsx:441</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L462">src/component/NGLComponent.tsx:462</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -957,7 +981,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L195">src/component/NGLComponent.tsx:195</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L216">src/component/NGLComponent.tsx:216</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -983,7 +1007,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L392">src/component/NGLComponent.tsx:392</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L413">src/component/NGLComponent.tsx:413</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1006,7 +1030,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L454">src/component/NGLComponent.tsx:454</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L475">src/component/NGLComponent.tsx:475</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1023,7 +1047,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L300">src/component/NGLComponent.tsx:300</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L321">src/component/NGLComponent.tsx:321</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1046,7 +1070,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L375">src/component/NGLComponent.tsx:375</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L396">src/component/NGLComponent.tsx:396</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1072,7 +1096,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L470">src/component/NGLComponent.tsx:470</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L491">src/component/NGLComponent.tsx:491</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1095,7 +1119,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L459">src/component/NGLComponent.tsx:459</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L480">src/component/NGLComponent.tsx:480</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1119,7 +1143,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Overrides Component.render</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L175">src/component/NGLComponent.tsx:175</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L176">src/component/NGLComponent.tsx:176</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1215,7 +1239,7 @@ class Foo extends React.Component {
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L68">src/component/NGLComponent.tsx:68</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L68">src/component/NGLComponent.tsx:68</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1224,7 +1248,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">add<wbr>Candidate<wbr>Residues<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">EMPTY_FUNCTION</a><span class="tsd-signature-symbol"> =&nbsp;EMPTY_FUNCTION</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L69">src/component/NGLComponent.tsx:69</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L69">src/component/NGLComponent.tsx:69</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1234,7 +1258,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">add<wbr>Hovered<wbr>Residues<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">EMPTY_FUNCTION</a><span class="tsd-signature-symbol"> =&nbsp;EMPTY_FUNCTION</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L70">src/component/NGLComponent.tsx:70</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L70">src/component/NGLComponent.tsx:70</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1244,7 +1268,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">add<wbr>Locked<wbr>Residue<wbr>Pair<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">EMPTY_FUNCTION</a><span class="tsd-signature-symbol"> =&nbsp;EMPTY_FUNCTION</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L71">src/component/NGLComponent.tsx:71</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L71">src/component/NGLComponent.tsx:71</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1254,7 +1278,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">background<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;#ffffff&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L72">src/component/NGLComponent.tsx:72</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L72">src/component/NGLComponent.tsx:72</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1264,7 +1288,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">candidate<wbr>Residues<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L73">src/component/NGLComponent.tsx:73</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L73">src/component/NGLComponent.tsx:73</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1274,7 +1298,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <a href="bioblockspdb.html" class="tsd-signature-type">BioblocksPDB</a><span class="tsd-signature-symbol"> =&nbsp;BioblocksPDB.createEmptyPDB()</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L74">src/component/NGLComponent.tsx:74</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L74">src/component/NGLComponent.tsx:74</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1284,7 +1308,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">dispatch<wbr>Ngl<wbr>Fetch<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">EMPTY_FUNCTION</a><span class="tsd-signature-symbol"> =&nbsp;EMPTY_FUNCTION</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L75">src/component/NGLComponent.tsx:75</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L75">src/component/NGLComponent.tsx:75</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1294,7 +1318,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">dispatch<wbr>Pdb<wbr>Fetch<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">EMPTY_FUNCTION</a><span class="tsd-signature-symbol"> =&nbsp;EMPTY_FUNCTION</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L76">src/component/NGLComponent.tsx:76</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L76">src/component/NGLComponent.tsx:76</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1304,7 +1328,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;90%&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L77">src/component/NGLComponent.tsx:77</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L77">src/component/NGLComponent.tsx:77</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1314,7 +1338,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">hovered<wbr>Residues<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L78">src/component/NGLComponent.tsx:78</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L78">src/component/NGLComponent.tsx:78</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1324,7 +1348,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">hovered<wbr>Secondary<wbr>Structures<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L79">src/component/NGLComponent.tsx:79</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L79">src/component/NGLComponent.tsx:79</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1334,7 +1358,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">is<wbr>Data<wbr>Loading<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L80">src/component/NGLComponent.tsx:80</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L80">src/component/NGLComponent.tsx:80</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1344,7 +1368,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">locked<wbr>Residue<wbr>Pairs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L81">src/component/NGLComponent.tsx:81</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L81">src/component/NGLComponent.tsx:81</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-type-declaration">
@@ -1359,7 +1383,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">measured<wbr>Proximity<span class="tsd-signature-symbol">:</span> <a href="../enums/contact_distance_proximity.html" class="tsd-signature-type">CONTACT_DISTANCE_PROXIMITY</a><span class="tsd-signature-symbol"> =&nbsp;CONTACT_DISTANCE_PROXIMITY.C_ALPHA</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L82">src/component/NGLComponent.tsx:82</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L82">src/component/NGLComponent.tsx:82</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1369,7 +1393,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">on<wbr>Measured<wbr>Proximity<wbr>Change<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">EMPTY_FUNCTION</a><span class="tsd-signature-symbol"> =&nbsp;EMPTY_FUNCTION</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L83">src/component/NGLComponent.tsx:83</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L83">src/component/NGLComponent.tsx:83</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1379,7 +1403,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">on<wbr>Resize<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">EMPTY_FUNCTION</a><span class="tsd-signature-symbol"> =&nbsp;EMPTY_FUNCTION</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L84">src/component/NGLComponent.tsx:84</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L84">src/component/NGLComponent.tsx:84</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1389,7 +1413,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">remove<wbr>All<wbr>Locked<wbr>Residue<wbr>Pairs<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">EMPTY_FUNCTION</a><span class="tsd-signature-symbol"> =&nbsp;EMPTY_FUNCTION</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L85">src/component/NGLComponent.tsx:85</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L85">src/component/NGLComponent.tsx:85</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1399,7 +1423,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">remove<wbr>Candidate<wbr>Residues<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">EMPTY_FUNCTION</a><span class="tsd-signature-symbol"> =&nbsp;EMPTY_FUNCTION</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L86">src/component/NGLComponent.tsx:86</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L86">src/component/NGLComponent.tsx:86</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1409,7 +1433,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">remove<wbr>Hovered<wbr>Residues<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">EMPTY_FUNCTION</a><span class="tsd-signature-symbol"> =&nbsp;EMPTY_FUNCTION</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L87">src/component/NGLComponent.tsx:87</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L87">src/component/NGLComponent.tsx:87</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1419,7 +1443,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">remove<wbr>Locked<wbr>Residue<wbr>Pair<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">EMPTY_FUNCTION</a><span class="tsd-signature-symbol"> =&nbsp;EMPTY_FUNCTION</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L88">src/component/NGLComponent.tsx:88</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L88">src/component/NGLComponent.tsx:88</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1429,7 +1453,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">remove<wbr>Non<wbr>Locked<wbr>Residues<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">EMPTY_FUNCTION</a><span class="tsd-signature-symbol"> =&nbsp;EMPTY_FUNCTION</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L89">src/component/NGLComponent.tsx:89</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L89">src/component/NGLComponent.tsx:89</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1439,7 +1463,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">selected<wbr>Secondary<wbr>Structures<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L90">src/component/NGLComponent.tsx:90</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L90">src/component/NGLComponent.tsx:90</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1449,7 +1473,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">show<wbr>Configurations<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L91">src/component/NGLComponent.tsx:91</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L91">src/component/NGLComponent.tsx:91</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1459,7 +1483,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;100%&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/16efc1ad1/src/component/NGLComponent.tsx#L92">src/component/NGLComponent.tsx:92</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4bf7ac80a/src/component/NGLComponent.tsx#L92">src/component/NGLComponent.tsx:92</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1490,6 +1514,9 @@ class Foo extends React.Component {
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="nglcomponent.html#context" class="tsd-kind-icon">context</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="nglcomponent.html#prevcanvas" class="tsd-kind-icon">prev<wbr>Canvas</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="nglcomponent.html#props" class="tsd-kind-icon">props</a>
 							</li>
@@ -1513,6 +1540,9 @@ class Foo extends React.Component {
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 								<a href="nglcomponent.html#addstructuretostage" class="tsd-kind-icon">add<wbr>Structure<wbr>ToStage</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="nglcomponent.html#canvasrefcallback" class="tsd-kind-icon">canvas<wbr>Ref<wbr>Callback</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="nglcomponent.html#componentdidcatch" class="tsd-kind-icon">component<wbr>Did<wbr>Catch</a>
