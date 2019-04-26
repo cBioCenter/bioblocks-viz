@@ -2,7 +2,7 @@ import { Map } from 'immutable';
 import { cloneDeep } from 'lodash';
 import * as NGL from 'ngl';
 import * as React from 'react';
-import { Vector2 } from 'three';
+import { Matrix4, Vector2 } from 'three';
 
 import { ComponentCard } from '~bioblocks-viz~/component';
 import {
@@ -93,14 +93,15 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   };
   public readonly state: NGLComponentState = initialNGLState;
 
+  public prevCanvas: HTMLElement | null = null;
   public canvas: HTMLElement | null = null;
 
   constructor(props: INGLComponentProps) {
     super(props);
   }
 
-  public componentDidMount({ backgroundColor } = this.props) {
-    const { data } = this.props;
+  public componentDidMount() {
+    const { backgroundColor, data } = this.props;
     if (this.canvas) {
       const stage = this.generateStage(this.canvas, { backgroundColor });
 
@@ -183,7 +184,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
             className="NGLCanvas"
             onKeyDown={this.onKeyDown}
             onMouseLeave={this.onCanvasLeave}
-            ref={el => (this.canvas = el)}
+            ref={this.canvasRefCallback}
             role={'img'}
             style={{ height: '100%', width: '100%' }}
           />
@@ -191,6 +192,26 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       </ComponentCard>
     );
   }
+
+  protected canvasRefCallback = (el: HTMLDivElement) => {
+    this.prevCanvas = this.canvas;
+    this.canvas = el;
+
+    if (this.prevCanvas === null && this.canvas !== null && this.state.stage !== undefined) {
+      const orientation = this.state.stage.viewerControls.getOrientation() as Matrix4;
+      this.state.stage.removeAllComponents();
+      const { data } = this.props;
+      const { parameters } = this.state.stage;
+      const stage = this.generateStage(this.canvas, parameters);
+
+      this.initData(stage, data.nglStructure);
+      stage.viewerControls.orient(orientation);
+      stage.viewer.requestRender();
+      this.setState({
+        stage,
+      });
+    }
+  };
 
   protected initData(stage: NGL.Stage, structure: NGL.Structure | null) {
     stage.removeAllComponents();
