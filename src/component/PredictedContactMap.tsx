@@ -87,8 +87,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
           data={{
             couplingScores: data.couplingScores,
             pdbData: data.pdbData,
-            secondaryStructures:
-              data.pdbData && data.pdbData.known ? data.pdbData.known.secondaryStructureSections : [],
+            secondaryStructures: data.secondaryStructures,
           }}
           formattedPoints={pointsToPlot}
           {...passThroughProps}
