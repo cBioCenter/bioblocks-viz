@@ -2,8 +2,7 @@
 import * as plotly from 'plotly.js/lib/index-gl2d';
 import * as React from 'react';
 
-import { Button, Icon } from 'semantic-ui-react';
-import { AuxiliaryAxis, PlotlyChart, SecondaryStructureAxis, SettingsPanel } from '~bioblocks-viz~/component';
+import { AuxiliaryAxis, PlotlyChart, SecondaryStructureAxis } from '~bioblocks-viz~/component';
 import { BioblocksWidgetConfig, IPlotlyData, RESIDUE_TYPE, SECONDARY_STRUCTURE } from '~bioblocks-viz~/data';
 import { generateScatterGLData } from '~bioblocks-viz~/helper';
 
@@ -12,6 +11,7 @@ export interface IContactMapChartProps {
   configurations: BioblocksWidgetConfig[];
   contactData: IContactMapChartData[];
   height: number | string;
+  isDataLoading: boolean;
   legendModifiers: {
     y: number;
   };
@@ -99,6 +99,7 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
     configurations: new Array<BioblocksWidgetConfig>(),
     dataTransformFn: generateScatterGLData,
     height: '100%',
+    isDataLoading: false,
     legendModifiers: {
       y: -0.4,
     },
@@ -142,6 +143,7 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
     const {
       configurations,
       contactData,
+      isDataLoading,
       legendModifiers,
       marginModifiers,
       range,
@@ -150,57 +152,10 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
     } = this.props;
     const { plotlyData, showlegend } = this.state;
 
-    const isTest = false;
-
-    return isTest ? (
-      <SettingsPanel configurations={configurations} showConfigurations={showConfigurations}>
-        <Button
-          basic={true}
-          floated={'left'}
-          icon={<Icon name={'question circle outline'} size={'large'} />}
-          onClick={this.toggleLegendVisibility}
-          style={{ float: 'left', margin: '0 0 0 15px', position: 'relative', top: '500px', zIndex: 999 }}
-        />
-        <PlotlyChart
-          data={plotlyData}
-          layout={{
-            legend: {
-              orientation: 'h',
-              y: legendModifiers.y,
-              yanchor: 'bottom',
-            },
-            margin: {
-              b: marginModifiers.b,
-              l: marginModifiers.l,
-            },
-            showlegend,
-            xaxis: {
-              autorange: true,
-              fixedrange: true,
-              nticks: 10,
-              range: [0, 33000],
-              rangemode: 'nonnegative',
-              showline: true,
-              tickmode: 'auto',
-              title: 'Residue #',
-            },
-            yaxis: {
-              autorange: 'reversed',
-              fixedrange: true,
-              nticks: 10,
-              range: [0, 33000],
-              rangemode: 'nonnegative',
-              showline: true,
-              tickmode: 'auto',
-              title: 'Residue #',
-            },
-          }}
-          {...passThroughProps}
-        />
-      </SettingsPanel>
-    ) : (
+    return (
       <PlotlyChart
         data={plotlyData}
+        showLoader={isDataLoading}
         layout={{
           legend: {
             orientation: 'h',
