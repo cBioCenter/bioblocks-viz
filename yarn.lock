@@ -893,9 +893,9 @@
   integrity sha512-Fvm24+u85lGmV4hT5G++aht2C5I4Z4dYlWZIh62FAfFO/TfzXtPpoLI6I7AuBWkIFqZCnhFOoTT7RjjaIL5Fjg==
 
 "@types/plotly.js@^1.38.8":
-  version "1.44.3"
-  resolved "https://registry.yarnpkg.com/@types/plotly.js/-/plotly.js-1.44.3.tgz#83e9880fdef2adbc65dc0fae393f3e364d3cfc5e"
-  integrity sha512-iadgTpwKgv9JCn4LdCfmk7zoAs2fhsINNhZmd+6MxvUAwl+5TiLenqyzVkUKy1dJ73vB83MeDrApkqUZ8cB9bQ==
+  version "1.44.5"
+  resolved "https://registry.yarnpkg.com/@types/plotly.js/-/plotly.js-1.44.5.tgz#15a01320a31e5255f6cdf29219a49aa3e8721cdf"
+  integrity sha512-PFlidT6T4nv7zqRIT8lkEXrHWOOE4kZkxjmRL3yfBx59AghcO3RaWYY3JjsU4upczjywoG33rYWwCqKPqNRmww==
   dependencies:
     "@types/d3" "^3"
 
@@ -13965,9 +13965,9 @@ utila@^0.4.0, utila@~0.4:
   integrity sha1-ihagXURWV6Oupe7MWxKk+lN5dyw=
 
 utility-types@^3.2.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/utility-types/-/utility-types-3.5.0.tgz#d80c95b774575d1683f5ba807879c52d8f35db1c"
-  integrity sha512-1XdYkHN+Dcgh1PQEER1CF5BXkGLvf7Owor6tYSyEs+lbHi4obz4ZeJZQVZyinKvFaGwriBKRlEk5hiApfhglQg==
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/utility-types/-/utility-types-3.6.1.tgz#14d0621888c906592d7544414b3762b33a657568"
+  integrity sha512-3MiRraWYaLnIjEbWHQEhuMlPIyjSVPZBlfvulm8xGMSs5nQrP0RiCCGJGvNCi2on8w8B7skRTNJUAGK+8PlbrQ==
 
 utils-copy-error@^1.0.0:
   version "1.0.1"

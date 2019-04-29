@@ -227,6 +227,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     const {
       candidateResidues,
       data,
+      isDataLoading,
       onBoxSelection,
       selectedSecondaryStructures,
       showConfigurations,
@@ -242,6 +243,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
             candidateResidues={candidateResidues}
             configurations={configurations}
             contactData={pointsToPlot}
+            isDataLoading={isDataLoading}
             onClickCallback={this.onMouseClick(toggleLockedResiduePair)}
             onHoverCallback={this.onMouseEnter(addHoveredResidues)}
             onSelectedCallback={this.onMouseSelect(onBoxSelection)}

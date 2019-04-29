@@ -23,6 +23,11 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
       }
     }
   >
+    <Dimmer
+      active={false}
+    >
+      <Loader />
+    </Dimmer>
     <div
       className="NGLCanvas"
       onKeyDown={[Function]}

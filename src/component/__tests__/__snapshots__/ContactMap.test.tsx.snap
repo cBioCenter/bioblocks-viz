@@ -154,6 +154,7 @@ exports[`ContactMap Configuration Should match existing snapshot when given conf
       }
       dataTransformFn={[Function]}
       height="100%"
+      isDataLoading={false}
       legendModifiers={
         Object {
           "y": -0.4,
@@ -340,6 +341,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
       }
       dataTransformFn={[Function]}
       height="100%"
+      isDataLoading={false}
       legendModifiers={
         Object {
           "y": -0.4,
@@ -529,6 +531,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
       }
       dataTransformFn={[Function]}
       height="100%"
+      isDataLoading={false}
       legendModifiers={
         Object {
           "y": -0.4,
@@ -714,6 +717,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
       }
       dataTransformFn={[Function]}
       height="100%"
+      isDataLoading={false}
       legendModifiers={
         Object {
           "y": -0.4,
@@ -888,6 +892,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
       }
       dataTransformFn={[Function]}
       height="100%"
+      isDataLoading={false}
       legendModifiers={
         Object {
           "y": -0.4,
@@ -1052,6 +1057,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
       }
       dataTransformFn={[Function]}
       height="100%"
+      isDataLoading={false}
       legendModifiers={
         Object {
           "y": -0.4,
@@ -1216,6 +1222,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
       }
       dataTransformFn={[Function]}
       height="100%"
+      isDataLoading={false}
       legendModifiers={
         Object {
           "y": -0.4,
@@ -1402,6 +1409,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
       }
       dataTransformFn={[Function]}
       height="100%"
+      isDataLoading={false}
       legendModifiers={
         Object {
           "y": -0.4,
@@ -1613,6 +1621,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
       }
       dataTransformFn={[Function]}
       height="100%"
+      isDataLoading={false}
       legendModifiers={
         Object {
           "y": -0.4,
@@ -2362,6 +2371,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             }
             dataTransformFn={[Function]}
             height="100%"
+            isDataLoading={false}
             legendModifiers={
               Object {
                 "y": -0.4,
@@ -2574,69 +2584,9 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 ]
               }
               selectedSecondaryStructuresColor="#feb83f"
-              showLoader={true}
+              showLoader={false}
               width="100%"
             >
-              <Dimmer
-                active={false}
-              >
-                <DimmerInner
-                  active={false}
-                >
-                  <Ref
-                    innerRef={
-                      Object {
-                        "current": <div
-                          class="ui dimmer"
-                          style=""
-                        >
-                          <div
-                            class="content"
-                          >
-                            <div
-                              class="ui loader"
-                            />
-                          </div>
-                        </div>,
-                      }
-                    }
-                  >
-                    <RefFindNode
-                      innerRef={
-                        Object {
-                          "current": <div
-                            class="ui dimmer"
-                            style=""
-                          >
-                            <div
-                              class="content"
-                            >
-                              <div
-                                class="ui loader"
-                              />
-                            </div>
-                          </div>,
-                        }
-                      }
-                    >
-                      <div
-                        className="ui dimmer"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="content"
-                        >
-                          <Loader>
-                            <div
-                              className="ui loader"
-                            />
-                          </Loader>
-                        </div>
-                      </div>
-                    </RefFindNode>
-                  </Ref>
-                </DimmerInner>
-              </Dimmer>
               <div
                 className="plotly-chart"
                 style={

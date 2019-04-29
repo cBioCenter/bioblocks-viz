@@ -4,6 +4,7 @@ import * as NGL from 'ngl';
 import * as React from 'react';
 import { Matrix4, Vector2 } from 'three';
 
+import { Dimmer, Loader } from 'semantic-ui-react';
 import { ComponentCard } from '~bioblocks-viz~/component';
 import {
   AMINO_ACID_THREE_LETTER_CODE,
@@ -174,12 +175,15 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
    * @returns The NGL Component
    */
   public render() {
-    const { height, style, width } = this.props;
+    const { height, isDataLoading, style, width } = this.props;
     const computedStyle = { ...style, height, width };
 
     return (
       <ComponentCard componentName={'NGL Viewer'}>
         <div className="NGLComponent" style={computedStyle}>
+          <Dimmer active={isDataLoading}>
+            <Loader />
+          </Dimmer>
           <div
             className="NGLCanvas"
             onKeyDown={this.onKeyDown}

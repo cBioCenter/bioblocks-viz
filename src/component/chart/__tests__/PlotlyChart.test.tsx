@@ -239,7 +239,7 @@ describe('PlotlyChart', () => {
     chartInstance.draw = drawSpy;
 
     wrapper.setProps({
-      data: {},
+      data: [],
     });
 
     expect(drawSpy).toHaveBeenCalledTimes(1);

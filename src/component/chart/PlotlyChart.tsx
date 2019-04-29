@@ -406,9 +406,11 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
    * Is the data ready to be plotted?
    */
   private isDataLoaded() {
-    return (
-      this.props.data.length > 0 ||
-      this.plotlyFormattedData.filter(dataPoint => dataPoint.x && dataPoint.x.length >= 1).length > 0
-    );
+    const isLoadedFn = (plotlyData: Array<Partial<IPlotlyData>>) =>
+      plotlyData.filter(
+        dataPoint => (dataPoint.x && dataPoint.x.length >= 1) || (dataPoint.xy && dataPoint.xy.length >= 1),
+      ).length > 0;
+
+    return isLoadedFn(this.props.data) || isLoadedFn(this.plotlyFormattedData);
   }
 }
