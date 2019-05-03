@@ -1,6 +1,6 @@
 {
   "name": "bioblocks-viz",
-  "version": "0.0.108",
+  "version": "0.0.109",
   "author": "Biostatistics and Computational Biology at Dana-Farber <bcb@jimmy.harvard.edu>",
   "license": "MIT",
   "engines": {
@@ -152,7 +152,7 @@
     "immutable": "^3.8.2",
     "lodash": "^4.17.10",
     "memoize-one": "^5.0.0",
-    "ngl": "^2.0.0-dev.36",
+    "ngl": "2.0.0-dev.36",
     "plotly.js": "^1.45.3",
     "rc-slider": "^8.6.3",
     "react": "^16.5.2",
