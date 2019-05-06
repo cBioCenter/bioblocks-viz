@@ -7,12 +7,12 @@ import { NGLComponent } from '~bioblocks-viz~/component';
 import { BioblocksPDB, CONTACT_DISTANCE_PROXIMITY } from '~bioblocks-viz~/data';
 
 describe('NGLComponent', () => {
-  let sampleData: BioblocksPDB;
+  let sampleData: BioblocksPDB[];
 
   beforeEach(() => {
     const nglStructure = new NGL.Structure();
     nglStructure.residueStore.resno = new Uint32Array([0, 1, 2, 3, 4]);
-    sampleData = BioblocksPDB.createPDBFromNGLData(nglStructure);
+    sampleData = [BioblocksPDB.createPDBFromNGLData(nglStructure)];
   });
 
   it('Should match existing snapshot when unconnected to a context.', () => {

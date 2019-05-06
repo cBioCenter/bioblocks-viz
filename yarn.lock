@@ -886,9 +886,9 @@
   integrity sha512-Fvm24+u85lGmV4hT5G++aht2C5I4Z4dYlWZIh62FAfFO/TfzXtPpoLI6I7AuBWkIFqZCnhFOoTT7RjjaIL5Fjg==
 
 "@types/plotly.js@^1.38.8":
-  version "1.44.5"
-  resolved "https://registry.yarnpkg.com/@types/plotly.js/-/plotly.js-1.44.5.tgz#15a01320a31e5255f6cdf29219a49aa3e8721cdf"
-  integrity sha512-PFlidT6T4nv7zqRIT8lkEXrHWOOE4kZkxjmRL3yfBx59AghcO3RaWYY3JjsU4upczjywoG33rYWwCqKPqNRmww==
+  version "1.44.6"
+  resolved "https://registry.yarnpkg.com/@types/plotly.js/-/plotly.js-1.44.6.tgz#14ac04baf8f33ec16fd7015331a9a335cbf6bf41"
+  integrity sha512-gbei0dCw5sp3BEwGxLHbLaaXzXlDN1rcKloMCn/D0UOx8MxEz4eM+oZQMEJ9Xe6iWHCd6nrtrIJDzYFhtCq9zQ==
   dependencies:
     "@types/d3" "^3"
 
@@ -933,9 +933,9 @@
     redux "^4.0.0"
 
 "@types/react-router-dom@^4.3.1":
-  version "4.3.2"
-  resolved "https://registry.yarnpkg.com/@types/react-router-dom/-/react-router-dom-4.3.2.tgz#52c17c3682597638f31c17c42620403dc5c2a3f5"
-  integrity sha512-biesHodFxPgDxku2m08XwPeAfUYBcxAnrQG7pwFikuA3L2e3u2OKAb+Sb16bJuU3L5CTHd+Ivap+ke4mmGsHqQ==
+  version "4.3.3"
+  resolved "https://registry.yarnpkg.com/@types/react-router-dom/-/react-router-dom-4.3.3.tgz#7837e3e9fefbc84a8f6c8a51dca004f4e83e94e3"
+  integrity sha512-xj0DmFjgvAqRfh/kJPO7apD5G30yPQe+8slu/dugioQOkdKpyzc4Fgk4hoTelm6CSHz7pI2PPsW5+Y6GRBF2zw==
   dependencies:
     "@types/history" "*"
     "@types/react" "*"
@@ -956,18 +956,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*":
-  version "16.8.14"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.14.tgz#b561bfabeb8f60d12e6d4766367e7a9ae927aa18"
-  integrity sha512-26tFVJ1omGmzIdFTFmnC5zhz1GTaqCjxgUxV4KzWvsybF42P7/j4RBn6UeO3KbHPXqKWZszMXMoI65xIWm954A==
-  dependencies:
-    "@types/prop-types" "*"
-    csstype "^2.2.0"
-
-"@types/react@^16.4.7":
-  version "16.8.15"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.15.tgz#a76515fed5aa3e996603056f54427fec5f2a5122"
-  integrity sha512-dMhzw1rWK+wwJWvPp5Pk12ksSrm/z/C/+lOQbMZ7YfDQYnJ02bc0wtg4EJD9qrFhuxFrf/ywNgwTboucobJqQg==
+"@types/react@*", "@types/react@^16.4.7":
+  version "16.8.16"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.16.tgz#2bf980b4fb29cceeb01b2c139b3e185e57d3e08e"
+  integrity sha512-A0+6kS6zwPtvubOLiCJmZ8li5bm3wKIkoKV0h3RdMDOnCj9cYkUnj3bWbE03/lcICdQmwBmUfoFiHeNhbFiyHQ==
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
@@ -9460,7 +9452,7 @@ nextafter@^1.0.0:
   dependencies:
     double-bits "^1.1.0"
 
-ngl@^2.0.0-dev.36:
+ngl@2.0.0-dev.36:
   version "2.0.0-dev.36"
   resolved "https://registry.yarnpkg.com/ngl/-/ngl-2.0.0-dev.36.tgz#b44bfe40c9a2bd5dd7c10cedc5318e574a4c60fc"
   integrity sha512-/V/9+dlzP2Sv8HBz0BoM4hskP/BZ/86TUH5DI6MKK7yom7dU+1YIjZwdwfYKB78JhVWew9YOEHeTVCpp83WMGw==
@@ -14252,9 +14244,9 @@ webpack-bundle-analyzer@^3.0.2:
     ws "^6.0.0"
 
 webpack-cli@^3.1.0:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-3.3.1.tgz#98b0499c7138ba9ece8898bd99c4f007db59909d"
-  integrity sha512-c2inFU7SM0IttEgF7fK6AaUsbBnORRzminvbyRKS+NlbQHVZdCtzKBlavRL5359bFsywXGRAItA5di/IruC8mg==
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-3.3.2.tgz#aed2437b0db0a7faa2ad28484e166a5360014a91"
+  integrity sha512-FLkobnaJJ+03j5eplxlI0TUxhGCOdfewspIGuvDVtpOlrAuKMFC57K42Ukxqs1tn8947/PM6tP95gQc0DCzRYA==
   dependencies:
     chalk "^2.4.1"
     cross-spawn "^6.0.5"

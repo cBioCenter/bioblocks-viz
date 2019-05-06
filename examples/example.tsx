@@ -14,7 +14,6 @@ import {
   CouplingContainer,
   getPDBAndCouplingMismatch,
   IResidueMismatchResult,
-  NGL_DATA_TYPE,
   VIZ_TYPE,
 } from '~bioblocks-viz~/data';
 import { generateResidueMapping, getCouplingScoresData, IResidueMapping, readFileAsText } from '~bioblocks-viz~/helper';
@@ -30,7 +29,7 @@ export interface IExampleAppState {
   [VIZ_TYPE.CONTACT_MAP]: CONTACT_MAP_DATA_TYPE & { isLoading: boolean };
   [VIZ_TYPE.NGL]: {
     isLoading: boolean;
-    pdbData?: NGL_DATA_TYPE;
+    pdbData: BioblocksPDB[];
   };
   arePredictionsAvailable: boolean;
   couplingScores: string;
@@ -63,7 +62,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     },
     [VIZ_TYPE.NGL]: {
       isLoading: false,
-      pdbData: undefined,
+      pdbData: [],
     },
     arePredictionsAvailable: false,
     couplingScores: '',
@@ -82,6 +81,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
   }
 
   public componentDidUpdate(prevProps: IExampleAppProps, prevState: IExampleAppState) {
+    console.log(this.state);
     const { measuredProximity, pdbData } = this.state;
     const { couplingScores } = this.state[VIZ_TYPE.CONTACT_MAP];
 
@@ -153,7 +153,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
           <Grid.Row>
             <br />
           </Grid.Row>
-          {this.renderBioblocksComponents(style, arePredictionsAvailable, measuredProximity, pdbData)}
+          {this.renderBioblocksComponents(style, arePredictionsAvailable, measuredProximity, pdbData ? [pdbData] : [])}
         </Grid>
       </Segment>
       {this.renderFooter()}
@@ -300,7 +300,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
             hidden={true}
             type={'file'}
             required={true}
-            multiple={false}
+            multiple={true}
           />
         </Label>
       </GridColumn>
@@ -333,11 +333,11 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     style: React.CSSProperties,
     arePredictionsAvailable: boolean,
     measuredProximity: CONTACT_DISTANCE_PROXIMITY,
-    pdbData?: BioblocksPDB,
+    pdbData: BioblocksPDB[],
     size: number | string = '550px',
   ) => (
     <GridRow columns={2}>
-      <GridColumn width={7}>{this.renderContactMapCard(arePredictionsAvailable, size, style, pdbData)}</GridColumn>
+      <GridColumn width={7}>{this.renderContactMapCard(arePredictionsAvailable, size, style, pdbData[0])}</GridColumn>
       <GridColumn width={7}>{this.renderNGLCard(measuredProximity, pdbData)}</GridColumn>
     </GridRow>
   );
@@ -346,7 +346,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     arePredictionsAvailable: boolean,
     size: number | string,
     style: React.CSSProperties,
-    pdbData?: BioblocksPDB,
+    pdbData: BioblocksPDB | undefined = undefined,
   ) =>
     arePredictionsAvailable ? (
       <PredictedContactMap
@@ -374,9 +374,9 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
       />
     );
 
-  protected renderNGLCard = (measuredProximity: CONTACT_DISTANCE_PROXIMITY, pdbData?: BioblocksPDB) => (
+  protected renderNGLCard = (measuredProximity: CONTACT_DISTANCE_PROXIMITY, pdbData: BioblocksPDB[]) => (
     <NGLContainer
-      data={pdbData}
+      data={this.state[VIZ_TYPE.NGL].pdbData}
       isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
       measuredProximity={measuredProximity}
       onMeasuredProximityChange={this.onMeasuredProximityChange()}
@@ -488,52 +488,25 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
 
   protected onPDBUpload = async (e: React.ChangeEvent) => {
     e.persist();
-    const { measuredProximity } = this.state;
     const files = (e.target as HTMLInputElement).files;
-    const file = files ? files.item(0) : null;
-    if (file !== null) {
-      if (file.name.endsWith('.pdb')) {
-        this.setState({
-          [VIZ_TYPE.CONTACT_MAP]: {
-            ...this.state[VIZ_TYPE.CONTACT_MAP],
-            isLoading: true,
-          },
-          [VIZ_TYPE.NGL]: {
-            ...this.state[VIZ_TYPE.NGL],
-            isLoading: true,
-          },
-        });
-        const pdbData = await BioblocksPDB.createPDB(file);
-        const couplingScores = pdbData.amendPDBWithCouplingScores(
-          this.state[VIZ_TYPE.CONTACT_MAP].couplingScores.rankedContacts,
-          measuredProximity,
-        );
-        this.setState({
-          [VIZ_TYPE.CONTACT_MAP]: {
-            couplingScores,
-            isLoading: false,
-            pdbData: { known: pdbData },
-            secondaryStructures: pdbData.secondaryStructureSections,
-          },
-          [VIZ_TYPE.NGL]: {
-            isLoading: false,
-            pdbData: pdbData.nglStructure,
-          },
-          errorMsg: '',
-          filenames: {
-            ...this.state.filenames,
-            pdb: file.name,
-          },
-          pdbData,
-        });
-      } else {
-        this.setState({
-          errorMsg: `Unable to load PDB file '${file.name}' - Make sure the file ends in '.pdb'!`,
-        });
+    const allPdbData = new Array<BioblocksPDB>();
+    if (files) {
+      for (let i = 0; i < files.length; ++i) {
+        const file = files.item(i);
+        if (file && file.name.endsWith('.pdb')) {
+          const pdbData = await BioblocksPDB.createPDB(file);
+          allPdbData.push(pdbData);
+        }
       }
+      // !IMPORTANT! Allows same user to clear data and then re-upload same file!
+      (e.target as HTMLInputElement).value = '';
     }
-    // !IMPORTANT! Allows same user to clear data and then re-upload same file!
-    (e.target as HTMLInputElement).value = '';
+    this.setState({
+      [VIZ_TYPE.NGL]: {
+        isLoading: false,
+        pdbData: allPdbData,
+      },
+    });
   };
 
   protected onMeasuredProximityChange = () => (value: number) => {

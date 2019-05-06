@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ComponentCollection | bioblocks-viz</title>
+	<title>Alignment | bioblocks-viz</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,10 @@
 					<a href="../modules/_ngl_.html">&quot;ngl&quot;</a>
 				</li>
 				<li>
-					<a href="_ngl_.componentcollection.html">ComponentCollection</a>
+					<a href="_ngl_.alignment.html">Alignment</a>
 				</li>
 			</ul>
-			<h1>Class ComponentCollection</h1>
+			<h1>Class Alignment</h1>
 		</div>
 	</div>
 </header>
@@ -71,7 +71,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ComponentCollection</span>
+						<span class="target">Alignment</span>
 					</li>
 				</ul>
 			</section>
@@ -82,24 +82,26 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_ngl_.componentcollection.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_ngl_.alignment.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_ngl_.componentcollection.html#list" class="tsd-kind-icon">list</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_ngl_.alignment.html#gapextensionpenalty" class="tsd-kind-icon">gap<wbr>Extension<wbr>Penalty</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_ngl_.alignment.html#gappenalty" class="tsd-kind-icon">gap<wbr>Penalty</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_ngl_.alignment.html#seq1" class="tsd-kind-icon">seq1</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_ngl_.alignment.html#seq2" class="tsd-kind-icon">seq2</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ngl_.componentcollection.html#_remove" class="tsd-kind-icon">_remove</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ngl_.componentcollection.html#addrepresentation" class="tsd-kind-icon">add<wbr>Representation</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ngl_.componentcollection.html#autoview" class="tsd-kind-icon">auto<wbr>View</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ngl_.componentcollection.html#dispose" class="tsd-kind-icon">dispose</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ngl_.componentcollection.html#first" class="tsd-kind-icon">first</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ngl_.componentcollection.html#foreach" class="tsd-kind-icon">for<wbr>Each</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ngl_.alignment.html#calc" class="tsd-kind-icon">calc</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ngl_.alignment.html#gap" class="tsd-kind-icon">gap</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ngl_.alignment.html#initmatrices" class="tsd-kind-icon">init<wbr>Matrices</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ngl_.alignment.html#makescorefn" class="tsd-kind-icon">make<wbr>Score<wbr>Fn</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_ngl_.alignment.html#trace" class="tsd-kind-icon">trace</a></li>
 							</ul>
 						</section>
 					</div>
@@ -111,22 +113,34 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Component<wbr>Collection<span class="tsd-signature-symbol">(</span>list<span class="tsd-signature-symbol">?: </span><a href="_ngl_.component.html" class="tsd-signature-type">Component</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_ngl_.componentcollection.html" class="tsd-signature-type">ComponentCollection</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Alignment<span class="tsd-signature-symbol">(</span>seq1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, seq2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, gapPenalty<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, gapExtensionPenalty<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, substMatrix<span class="tsd-signature-symbol">?: </span><a href="../modules/_ngl_.html#substitutionmatrix" class="tsd-signature-type">SubstitutionMatrix</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_ngl_.alignment.html" class="tsd-signature-type">Alignment</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/3dfc14e80/types/ngl/component/component.d.ts#L276">types/ngl/component/component.d.ts:276</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/3dfc14e80/types/ngl/align/align.d.ts#L7">types/ngl/align/align.d.ts:7</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> list: <a href="_ngl_.component.html" class="tsd-signature-type">Component</a><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>seq1: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>seq2: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> gapPenalty: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;-10</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> gapExtensionPenalty: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;-1</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> substMatrix: <a href="../modules/_ngl_.html#substitutionmatrix" class="tsd-signature-type">SubstitutionMatrix</a><span class="tsd-signature-symbol"> =&nbsp;&quot;blosum62&quot;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_ngl_.componentcollection.html" class="tsd-signature-type">ComponentCollection</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_ngl_.alignment.html" class="tsd-signature-type">Alignment</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -134,12 +148,42 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="list" class="tsd-anchor"></a>
-					<h3>list</h3>
-					<div class="tsd-signature tsd-kind-icon">list<span class="tsd-signature-symbol">:</span> <a href="_ngl_.component.html" class="tsd-signature-type">Component</a><span class="tsd-signature-symbol">[]</span></div>
+					<a name="gapextensionpenalty" class="tsd-anchor"></a>
+					<h3>gap<wbr>Extension<wbr>Penalty</h3>
+					<div class="tsd-signature tsd-kind-icon">gap<wbr>Extension<wbr>Penalty<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/3dfc14e80/types/ngl/component/component.d.ts#L276">types/ngl/component/component.d.ts:276</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/3dfc14e80/types/ngl/align/align.d.ts#L12">types/ngl/align/align.d.ts:12</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="gappenalty" class="tsd-anchor"></a>
+					<h3>gap<wbr>Penalty</h3>
+					<div class="tsd-signature tsd-kind-icon">gap<wbr>Penalty<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/3dfc14e80/types/ngl/align/align.d.ts#L11">types/ngl/align/align.d.ts:11</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="seq1" class="tsd-anchor"></a>
+					<h3>seq1</h3>
+					<div class="tsd-signature tsd-kind-icon">seq1<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/3dfc14e80/types/ngl/align/align.d.ts#L9">types/ngl/align/align.d.ts:9</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="seq2" class="tsd-anchor"></a>
+					<h3>seq2</h3>
+					<div class="tsd-signature tsd-kind-icon">seq2<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/3dfc14e80/types/ngl/align/align.d.ts#L10">types/ngl/align/align.d.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -147,152 +191,114 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="_remove" class="tsd-anchor"></a>
-					<h3>_remove</h3>
+					<a name="calc" class="tsd-anchor"></a>
+					<h3>calc</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">_remove<span class="tsd-signature-symbol">(</span>elm<span class="tsd-signature-symbol">: </span><a href="_ngl_.component.html" class="tsd-signature-type">Component</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">calc<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/3dfc14e80/types/ngl/component/component.d.ts#L284">types/ngl/component/component.d.ts:284</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/3dfc14e80/types/ngl/align/align.d.ts#L18">types/ngl/align/align.d.ts:18</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>elm: <a href="_ngl_.component.html" class="tsd-signature-type">Component</a></h5>
-								</li>
-							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="addrepresentation" class="tsd-anchor"></a>
-					<h3>add<wbr>Representation</h3>
+					<a name="gap" class="tsd-anchor"></a>
+					<h3>gap</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Representation<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">: </span><a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_ngl_.istructurerepresentationparams.html" class="tsd-signature-type">IStructureRepresentationParams</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">gap<span class="tsd-signature-symbol">(</span>len<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/3dfc14e80/types/ngl/component/component.d.ts#L285">types/ngl/component/component.d.ts:285</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/3dfc14e80/types/ngl/align/align.d.ts#L16">types/ngl/align/align.d.ts:16</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>name: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>params: <a href="../modules/_ngl_.html#partial" class="tsd-signature-type">Partial</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_ngl_.istructurerepresentationparams.html" class="tsd-signature-type">IStructureRepresentationParams</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>len: <span class="tsd-signature-type">number</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="autoview" class="tsd-anchor"></a>
-					<h3>auto<wbr>View</h3>
+					<a name="initmatrices" class="tsd-anchor"></a>
+					<h3>init<wbr>Matrices</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">auto<wbr>View<span class="tsd-signature-symbol">(</span>duration<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">init<wbr>Matrices<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/3dfc14e80/types/ngl/component/component.d.ts#L286">types/ngl/component/component.d.ts:286</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/3dfc14e80/types/ngl/align/align.d.ts#L15">types/ngl/align/align.d.ts:15</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="makescorefn" class="tsd-anchor"></a>
+					<h3>make<wbr>Score<wbr>Fn</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">make<wbr>Score<wbr>Fn<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/3dfc14e80/types/ngl/align/align.d.ts#L17">types/ngl/align/align.d.ts:17</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
 							<ul class="tsd-parameters">
-								<li>
-									<h5>duration: <span class="tsd-signature-type">number</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="dispose" class="tsd-anchor"></a>
-					<h3>dispose</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">dispose<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/3dfc14e80/types/ngl/component/component.d.ts#L287">types/ngl/component/component.d.ts:287</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="first" class="tsd-anchor"></a>
-					<h3>first</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">first<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="_ngl_.component.html" class="tsd-signature-type">Component</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/3dfc14e80/types/ngl/component/component.d.ts#L281">types/ngl/component/component.d.ts:281</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">undefined</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<a href="_ngl_.component.html" class="tsd-signature-type">Component</a>
-							</h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="foreach" class="tsd-anchor"></a>
-					<h3>for<wbr>Each</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">for<wbr>Each<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/3dfc14e80/types/ngl/component/component.d.ts#L288">types/ngl/component/component.d.ts:288</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>fn: <span class="tsd-signature-type">function</span></h5>
-									<ul class="tsd-parameters">
-										<li class="tsd-parameter-siganture">
-											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><a href="_ngl_.component.html" class="tsd-signature-type">Component</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-											</ul>
-											<ul class="tsd-descriptions">
-												<li class="tsd-description">
-													<h4 class="tsd-parameters-title">Parameters</h4>
-													<ul class="tsd-parameters">
-														<li>
-															<h5>x: <a href="_ngl_.component.html" class="tsd-signature-type">Component</a></h5>
-														</li>
-													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+								<li class="tsd-parameter-siganture">
+									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>i<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, j<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+									</ul>
+									<ul class="tsd-descriptions">
+										<li class="tsd-description">
+											<h4 class="tsd-parameters-title">Parameters</h4>
+											<ul class="tsd-parameters">
+												<li>
+													<h5>i: <span class="tsd-signature-type">number</span></h5>
+												</li>
+												<li>
+													<h5>j: <span class="tsd-signature-type">number</span></h5>
 												</li>
 											</ul>
+											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 										</li>
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="trace" class="tsd-anchor"></a>
+					<h3>trace</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">trace<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/3dfc14e80/types/ngl/align/align.d.ts#L19">types/ngl/align/align.d.ts:19</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -326,31 +332,37 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">
-						<a href="_ngl_.componentcollection.html" class="tsd-kind-icon">Component<wbr>Collection</a>
+						<a href="_ngl_.alignment.html" class="tsd-kind-icon">Alignment</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_ngl_.componentcollection.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="_ngl_.alignment.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_ngl_.componentcollection.html#list" class="tsd-kind-icon">list</a>
+								<a href="_ngl_.alignment.html#gapextensionpenalty" class="tsd-kind-icon">gap<wbr>Extension<wbr>Penalty</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_ngl_.alignment.html#gappenalty" class="tsd-kind-icon">gap<wbr>Penalty</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_ngl_.alignment.html#seq1" class="tsd-kind-icon">seq1</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_ngl_.alignment.html#seq2" class="tsd-kind-icon">seq2</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_ngl_.componentcollection.html#_remove" class="tsd-kind-icon">_remove</a>
+								<a href="_ngl_.alignment.html#calc" class="tsd-kind-icon">calc</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_ngl_.componentcollection.html#addrepresentation" class="tsd-kind-icon">add<wbr>Representation</a>
+								<a href="_ngl_.alignment.html#gap" class="tsd-kind-icon">gap</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_ngl_.componentcollection.html#autoview" class="tsd-kind-icon">auto<wbr>View</a>
+								<a href="_ngl_.alignment.html#initmatrices" class="tsd-kind-icon">init<wbr>Matrices</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_ngl_.componentcollection.html#dispose" class="tsd-kind-icon">dispose</a>
+								<a href="_ngl_.alignment.html#makescorefn" class="tsd-kind-icon">make<wbr>Score<wbr>Fn</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_ngl_.componentcollection.html#first" class="tsd-kind-icon">first</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_ngl_.componentcollection.html#foreach" class="tsd-kind-icon">for<wbr>Each</a>
+								<a href="_ngl_.alignment.html#trace" class="tsd-kind-icon">trace</a>
 							</li>
 						</ul>
 					</li>

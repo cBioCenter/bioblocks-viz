@@ -34,7 +34,7 @@ export type RepresentationDict = Map<string, NGL.RepresentationElement[]>;
 export interface INGLComponentProps {
   backgroundColor: string | number;
   candidateResidues: RESIDUE_TYPE[];
-  data: BioblocksPDB;
+  data: BioblocksPDB[];
   height: number | string;
   hoveredResidues: RESIDUE_TYPE[];
   hoveredSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
@@ -72,7 +72,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     addLockedResiduePair: EMPTY_FUNCTION,
     backgroundColor: '#ffffff',
     candidateResidues: [],
-    data: BioblocksPDB.createEmptyPDB(),
+    data: [],
     dispatchNglFetch: EMPTY_FUNCTION,
     dispatchPdbFetch: EMPTY_FUNCTION,
     height: '90%',
@@ -105,8 +105,11 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     const { backgroundColor, data } = this.props;
     if (this.canvas) {
       const stage = this.generateStage(this.canvas, { backgroundColor });
+      stage.removeAllComponents();
 
-      this.initData(stage, data.nglStructure);
+      data.map(pdb => {
+        this.initData(stage, pdb.nglStructure);
+      });
 
       this.setState({
         stage,
@@ -140,11 +143,18 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     } = this.props;
     const { stage } = this.state;
 
-    if (stage && data.nglStructure !== prevProps.data.nglStructure) {
-      this.initData(stage, data.nglStructure);
+    if (stage && data.length !== prevProps.data.length) {
+      stage.removeAllComponents();
+      data.map(pdb => {
+        this.initData(stage, pdb.nglStructure);
+      });
     }
 
-    if (stage && stage.compList.length >= 1) {
+    if (stage && stage.compList.length === 2) {
+      NGL.superpose(stage.compList[0].object as NGL.Structure, stage.compList[1].object as NGL.Structure, true);
+      stage.compList[0].updateRepresentations({ position: true });
+      stage.compList[0].autoView();
+    } else if (stage && stage.compList.length >= 1) {
       const structureComponent = stage.compList[0] as NGL.StructureComponent;
 
       const isHighlightUpdateNeeded =
@@ -208,7 +218,9 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       const { parameters } = this.state.stage;
       const stage = this.generateStage(this.canvas, parameters);
 
-      this.initData(stage, data.nglStructure);
+      data.map(pdb => {
+        this.initData(stage, pdb.nglStructure);
+      });
       stage.viewerControls.orient(orientation);
       stage.viewer.requestRender();
       this.setState({
@@ -218,8 +230,6 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   };
 
   protected initData(stage: NGL.Stage, structure: NGL.Structure | null) {
-    stage.removeAllComponents();
-
     if (structure) {
       // !IMPORTANT! We need to deeply clone the NGL data!
       // If we have multiple NGL components displaying the same data, removing the component will affect
@@ -227,7 +237,6 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
 
       this.addStructureToStage(cloneDeep(structure), stage);
     }
-
     stage.viewer.requestRender();
   }
 
@@ -263,7 +272,6 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
    */
   protected addStructureToStage(structure: NGL.Structure, stage: NGL.Stage) {
     const structureComponent = stage.addComponentFromObject(structure);
-
     structureComponent.stage.mouseControls.add(
       NGL.MouseActions.HOVER_PICK,
       (aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) => {
@@ -426,8 +434,8 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
 
     if (measuredProximity === CONTACT_DISTANCE_PROXIMITY.C_ALPHA) {
       return createDistanceRepresentation(structureComponent, `${residues.join('.CA, ')}.CA`);
-    } else {
-      const { atomIndexI, atomIndexJ } = data.getMinDistBetweenResidues(residues[0], residues[1]);
+    } else if (data.length >= 1) {
+      const { atomIndexI, atomIndexJ } = data[0].getMinDistBetweenResidues(residues[0], residues[1]);
 
       return createDistanceRepresentation(structureComponent, [atomIndexI, atomIndexJ]);
     }
@@ -439,7 +447,10 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     if (residues.length >= 1) {
       reps.push(createBallStickRepresentation(structureComponent, residues));
       if (residues.length >= 2) {
-        reps.push(this.getDistanceRepForResidues(structureComponent, residues));
+        const rep = this.getDistanceRepForResidues(structureComponent, residues);
+        if (rep) {
+          reps.push(rep);
+        }
       }
     }
 
@@ -456,7 +467,10 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       reps.push(createBallStickRepresentation(structureComponent, residues));
 
       if (residues.length >= 2) {
-        reps.push(this.getDistanceRepForResidues(structureComponent, residues));
+        const rep = this.getDistanceRepForResidues(structureComponent, residues);
+        if (rep) {
+          reps.push(rep);
+        }
       }
     }
 

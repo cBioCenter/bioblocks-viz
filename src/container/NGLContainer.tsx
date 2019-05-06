@@ -13,17 +13,12 @@ import {
   SECONDARY_STRUCTURE_SECTION,
 } from '~bioblocks-viz~/data';
 import { EMPTY_FUNCTION } from '~bioblocks-viz~/helper';
-import {
-  createContainerReducer,
-  createDataReducer,
-  createResiduePairReducer,
-  ILockedResiduePair,
-} from '~bioblocks-viz~/reducer';
+import { createContainerReducer, createResiduePairReducer, ILockedResiduePair } from '~bioblocks-viz~/reducer';
 import { getCandidates, getHovered, getLocked, selectCurrentItems } from '~bioblocks-viz~/selector';
 
 export interface INGLContainerProps {
   candidateResidues: RESIDUE_TYPE[];
-  data: BioblocksPDB;
+  data: BioblocksPDB[];
   hoveredResidues: RESIDUE_TYPE[];
   hoveredSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
   isDataLoading: boolean;
@@ -45,7 +40,7 @@ export interface INGLContainerProps {
 
 export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps> {
   public static defaultProps = {
-    data: BioblocksPDB.createEmptyPDB(),
+    data: [],
     dispatchNglFetch: EMPTY_FUNCTION,
     isDataLoading: false,
     measuredProximity: CONTACT_DISTANCE_PROXIMITY.C_ALPHA,
@@ -59,7 +54,7 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
   public setupDataServices() {
     createContainerReducer<SECONDARY_STRUCTURE_SECTION>('secondaryStructure/hovered');
     createContainerReducer<SECONDARY_STRUCTURE_SECTION>('secondaryStructure/selected');
-    createDataReducer<BioblocksPDB>('pdb', BioblocksPDB.createEmptyPDB());
+    createContainerReducer<BioblocksPDB[]>('pdb');
     createResiduePairReducer();
   }
 
@@ -70,7 +65,7 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
   }
 }
 
-const mapStateToProps = (state: { [key: string]: any }, ownProps: { data: BioblocksPDB }) => ({
+const mapStateToProps = (state: { [key: string]: any }, ownProps: { data: BioblocksPDB[] }) => ({
   candidateResidues: getCandidates(state).toArray(),
   hoveredResidues: getHovered(state).toArray(),
   hoveredSecondaryStructures: selectCurrentItems<SECONDARY_STRUCTURE_SECTION>(
