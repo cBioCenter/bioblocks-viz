@@ -150,11 +150,12 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       });
     }
 
-    if (stage && stage.compList.length === 2) {
-      NGL.superpose(stage.compList[0].object as NGL.Structure, stage.compList[1].object as NGL.Structure, true);
-      stage.compList[0].updateRepresentations({ position: true });
-      stage.compList[0].autoView();
-    } else if (stage && stage.compList.length >= 1) {
+    if (stage && stage.compList.length >= 1) {
+      if (prevProps.data.length !== data.length && stage.compList.length === 2) {
+        NGL.superpose(stage.compList[0].object as NGL.Structure, stage.compList[1].object as NGL.Structure, true);
+        stage.compList[0].updateRepresentations({ position: true });
+        stage.compList[0].autoView();
+      }
       const structureComponent = stage.compList[0] as NGL.StructureComponent;
 
       const isHighlightUpdateNeeded =
@@ -190,12 +191,12 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
 
     return (
       <ComponentCard componentName={'NGL Viewer'}>
-        <div className="NGLComponent" style={computedStyle}>
+        <div className={'NGLComponent'} style={computedStyle}>
           <Dimmer active={isDataLoading}>
             <Loader />
           </Dimmer>
           <div
-            className="NGLCanvas"
+            className={'NGLCanvas'}
             onKeyDown={this.onKeyDown}
             onMouseLeave={this.onCanvasLeave}
             ref={this.canvasRefCallback}
@@ -205,63 +206,6 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
         </div>
       </ComponentCard>
     );
-  }
-
-  protected canvasRefCallback = (el: HTMLDivElement) => {
-    this.prevCanvas = this.canvas;
-    this.canvas = el;
-
-    if (this.prevCanvas === null && this.canvas !== null && this.state.stage !== undefined) {
-      const orientation = this.state.stage.viewerControls.getOrientation() as Matrix4;
-      this.state.stage.removeAllComponents();
-      const { data } = this.props;
-      const { parameters } = this.state.stage;
-      const stage = this.generateStage(this.canvas, parameters);
-
-      data.map(pdb => {
-        this.initData(stage, pdb.nglStructure);
-      });
-      stage.viewerControls.orient(orientation);
-      stage.viewer.requestRender();
-      this.setState({
-        stage,
-      });
-    }
-  };
-
-  protected initData(stage: NGL.Stage, structure: NGL.Structure | null) {
-    if (structure) {
-      // !IMPORTANT! We need to deeply clone the NGL data!
-      // If we have multiple NGL components displaying the same data, removing the component will affect
-      // the others because they (internally) delete keys/references.
-
-      this.addStructureToStage(cloneDeep(structure), stage);
-    }
-    stage.viewer.requestRender();
-  }
-
-  protected deriveActiveRepresentations(structureComponent: NGL.StructureComponent) {
-    const {
-      candidateResidues,
-      hoveredResidues,
-      hoveredSecondaryStructures,
-      lockedResiduePairs,
-      selectedSecondaryStructures,
-    } = this.props;
-
-    return [
-      ...this.highlightCandidateResidues(
-        structureComponent,
-        [...candidateResidues, ...hoveredResidues]
-          .filter((value, index, array) => array.indexOf(value) === index)
-          .sort(),
-      ),
-      ...this.highlightLockedDistancePairs(structureComponent, lockedResiduePairs),
-      ...this.highlightSecondaryStructures(structureComponent, [
-        ...hoveredSecondaryStructures,
-        ...selectedSecondaryStructures,
-      ]),
-    ];
   }
 
   /**
@@ -287,6 +231,70 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     });
     stage.viewer.requestRender();
   }
+
+  /**
+   * Callback for when the canvas element is mounted.
+   * This is needed to ensure the NGL camera preserves orientation if the DOM node is re-mounted, like for full-page mode.
+   *
+   * @param el The canvas element.
+   */
+  protected canvasRefCallback = (el: HTMLDivElement) => {
+    this.prevCanvas = this.canvas;
+    this.canvas = el;
+
+    if (this.prevCanvas === null && this.canvas !== null && this.state.stage !== undefined) {
+      const orientation = this.state.stage.viewerControls.getOrientation() as Matrix4;
+      this.state.stage.removeAllComponents();
+      const { data } = this.props;
+      const { parameters } = this.state.stage;
+      const stage = this.generateStage(this.canvas, parameters);
+
+      data.map(pdb => {
+        this.initData(stage, pdb.nglStructure);
+      });
+      stage.viewerControls.orient(orientation);
+      stage.viewer.requestRender();
+      this.setState({
+        stage,
+      });
+    }
+  };
+
+  protected deriveActiveRepresentations(structureComponent: NGL.StructureComponent) {
+    const {
+      candidateResidues,
+      hoveredResidues,
+      hoveredSecondaryStructures,
+      lockedResiduePairs,
+      selectedSecondaryStructures,
+    } = this.props;
+
+    return [
+      ...this.highlightCandidateResidues(
+        structureComponent,
+        [...candidateResidues, ...hoveredResidues]
+          .filter((value, index, array) => array.indexOf(value) === index)
+          .sort(),
+      ),
+      ...this.highlightLockedDistancePairs(structureComponent, lockedResiduePairs),
+      ...this.highlightSecondaryStructures(structureComponent, [
+        ...hoveredSecondaryStructures,
+        ...selectedSecondaryStructures,
+      ]),
+    ];
+  }
+
+  protected generateStage = (canvas: HTMLElement, params?: Partial<NGL.IStageParameters>) => {
+    const stage = new NGL.Stage(canvas, params);
+
+    // !IMPORTANT! This is needed to prevent the canvas shifting when the user clicks the canvas.
+    // It's unclear why the focus does this, but it's undesirable.
+    stage.keyBehavior.domElement.focus = () => {
+      return;
+    };
+
+    return stage;
+  };
 
   protected getConfigurations = () => {
     const { removeAllLockedResiduePairs } = this.props;
@@ -328,6 +336,90 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
         type: CONFIGURATION_COMPONENT_TYPE.RADIO,
       },
     ] as BioblocksWidgetConfig[];
+  };
+
+  protected getDistanceRepForResidues(structureComponent: NGL.StructureComponent, residues: RESIDUE_TYPE[]) {
+    const { data, measuredProximity } = this.props;
+
+    if (measuredProximity === CONTACT_DISTANCE_PROXIMITY.C_ALPHA) {
+      return createDistanceRepresentation(structureComponent, `${residues.join('.CA, ')}.CA`);
+    } else if (data.length >= 1) {
+      const { atomIndexI, atomIndexJ } = data[0].getMinDistBetweenResidues(residues[0], residues[1]);
+
+      return createDistanceRepresentation(structureComponent, [atomIndexI, atomIndexJ]);
+    }
+  }
+
+  protected highlightCandidateResidues(structureComponent: NGL.StructureComponent, residues: RESIDUE_TYPE[]) {
+    const reps = new Array<NGL.RepresentationElement>();
+
+    if (residues.length >= 1) {
+      reps.push(createBallStickRepresentation(structureComponent, residues));
+      if (residues.length >= 2) {
+        const rep = this.getDistanceRepForResidues(structureComponent, residues);
+        if (rep) {
+          reps.push(rep);
+        }
+      }
+    }
+
+    return reps;
+  }
+
+  protected highlightLockedDistancePairs(
+    structureComponent: NGL.StructureComponent,
+    lockedResidues: ILockedResiduePair,
+  ) {
+    const reps = new Array<NGL.RepresentationElement>();
+
+    for (const residues of Object.values(lockedResidues)) {
+      reps.push(createBallStickRepresentation(structureComponent, residues));
+
+      if (residues.length >= 2) {
+        const rep = this.getDistanceRepForResidues(structureComponent, residues);
+        if (rep) {
+          reps.push(rep);
+        }
+      }
+    }
+
+    return reps;
+  }
+
+  protected highlightSecondaryStructures(
+    structureComponent: NGL.StructureComponent,
+    secondaryStructures: SECONDARY_STRUCTURE,
+  ) {
+    const reps = new Array<NGL.RepresentationElement>();
+
+    for (const structure of secondaryStructures) {
+      reps.push(createSecStructRepresentation(structureComponent, structure));
+    }
+
+    return reps;
+  }
+
+  protected initData(stage: NGL.Stage, structure: NGL.Structure | null) {
+    if (structure) {
+      // !IMPORTANT! We need to deeply clone the NGL data!
+      // If we have multiple NGL components displaying the same data, removing the component will affect
+      // the others because they (internally) delete keys/references.
+
+      this.addStructureToStage(cloneDeep(structure), stage);
+    }
+    stage.viewer.requestRender();
+  }
+
+  protected measuredProximityHandler = (value: number) => {
+    const { onMeasuredProximityChange } = this.props;
+    if (onMeasuredProximityChange) {
+      onMeasuredProximityChange(value);
+    }
+  };
+
+  protected onCanvasLeave = () => {
+    const { removeNonLockedResidues } = this.props;
+    removeNonLockedResidues();
   };
 
   protected onClick = (pickingProxy: NGL.PickingProxy) => {
@@ -422,77 +514,14 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     }
   }
 
-  protected measuredProximityHandler = (value: number) => {
-    const { onMeasuredProximityChange } = this.props;
-    if (onMeasuredProximityChange) {
-      onMeasuredProximityChange(value);
+  protected onKeyDown = (e: React.KeyboardEvent) => {
+    e.preventDefault();
+    const ESC_KEY_CODE = 27;
+
+    if (e.which === ESC_KEY_CODE || e.keyCode === ESC_KEY_CODE) {
+      const { removeNonLockedResidues } = this.props;
+      removeNonLockedResidues();
     }
-  };
-
-  protected getDistanceRepForResidues(structureComponent: NGL.StructureComponent, residues: RESIDUE_TYPE[]) {
-    const { data, measuredProximity } = this.props;
-
-    if (measuredProximity === CONTACT_DISTANCE_PROXIMITY.C_ALPHA) {
-      return createDistanceRepresentation(structureComponent, `${residues.join('.CA, ')}.CA`);
-    } else if (data.length >= 1) {
-      const { atomIndexI, atomIndexJ } = data[0].getMinDistBetweenResidues(residues[0], residues[1]);
-
-      return createDistanceRepresentation(structureComponent, [atomIndexI, atomIndexJ]);
-    }
-  }
-
-  protected highlightCandidateResidues(structureComponent: NGL.StructureComponent, residues: RESIDUE_TYPE[]) {
-    const reps = new Array<NGL.RepresentationElement>();
-
-    if (residues.length >= 1) {
-      reps.push(createBallStickRepresentation(structureComponent, residues));
-      if (residues.length >= 2) {
-        const rep = this.getDistanceRepForResidues(structureComponent, residues);
-        if (rep) {
-          reps.push(rep);
-        }
-      }
-    }
-
-    return reps;
-  }
-
-  protected highlightLockedDistancePairs(
-    structureComponent: NGL.StructureComponent,
-    lockedResidues: ILockedResiduePair,
-  ) {
-    const reps = new Array<NGL.RepresentationElement>();
-
-    for (const residues of Object.values(lockedResidues)) {
-      reps.push(createBallStickRepresentation(structureComponent, residues));
-
-      if (residues.length >= 2) {
-        const rep = this.getDistanceRepForResidues(structureComponent, residues);
-        if (rep) {
-          reps.push(rep);
-        }
-      }
-    }
-
-    return reps;
-  }
-
-  protected highlightSecondaryStructures(
-    structureComponent: NGL.StructureComponent,
-    secondaryStructures: SECONDARY_STRUCTURE,
-  ) {
-    const reps = new Array<NGL.RepresentationElement>();
-
-    for (const structure of secondaryStructures) {
-      reps.push(createSecStructRepresentation(structureComponent, structure));
-    }
-
-    return reps;
-  }
-
-  protected onCanvasLeave = () => {
-    const { removeNonLockedResidues } = this.props;
-    removeNonLockedResidues();
   };
 
   protected onResizeHandler = (event?: UIEvent) => {
@@ -504,27 +533,5 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     if (onResize) {
       onResize(event);
     }
-  };
-
-  protected onKeyDown = (e: React.KeyboardEvent) => {
-    e.preventDefault();
-    const ESC_KEY_CODE = 27;
-
-    if (e.which === ESC_KEY_CODE || e.keyCode === ESC_KEY_CODE) {
-      const { removeNonLockedResidues } = this.props;
-      removeNonLockedResidues();
-    }
-  };
-
-  protected generateStage = (canvas: HTMLElement, params?: NGL.Partial<NGL.IStageParameters>) => {
-    const stage = new NGL.Stage(canvas, params);
-
-    // !IMPORTANT! This is needed to prevent the canvas shifting when the user clicks the canvas.
-    // It's unclear why the focus does this, but it's undesirable.
-    stage.keyBehavior.domElement.focus = () => {
-      return;
-    };
-
-    return stage;
   };
 }

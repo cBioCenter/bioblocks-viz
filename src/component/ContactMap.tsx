@@ -110,6 +110,21 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     }
   }
 
+  public onNodeSizeChange = (index: number) => (value: number) => {
+    const { pointsToPlot } = this.state;
+
+    this.setState({
+      pointsToPlot: [
+        ...pointsToPlot.slice(0, index),
+        {
+          ...pointsToPlot[index],
+          nodeSize: value,
+        },
+        ...pointsToPlot.slice(index + 1),
+      ],
+    });
+  };
+
   public render() {
     const { configurations, removeAllLockedResiduePairs } = this.props;
     const { pointsToPlot } = this.state;
@@ -125,20 +140,57 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     ]);
   }
 
-  public onNodeSizeChange = (index: number) => (value: number) => {
-    const { pointsToPlot } = this.state;
+  protected generateNodeSizeSliderConfigs = (entries: IContactMapChartData[]) =>
+    entries.map(
+      (entry, index): SliderWidgetConfig => {
+        return {
+          id: `node-size-slider-${index}`,
+          name: `Node size for ${entry.name}`,
+          onChange: this.onNodeSizeChange(index),
+          type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
+          values: {
+            current: entry.nodeSize,
+            max: 20,
+            min: 1,
+          },
+        };
+      },
+    );
 
-    this.setState({
-      pointsToPlot: [
-        ...pointsToPlot.slice(0, index),
-        {
-          ...pointsToPlot[index],
-          nodeSize: value,
-        },
-        ...pointsToPlot.slice(index + 1),
-      ],
-    });
-  };
+  protected renderContactMapChart(pointsToPlot: IContactMapChartData[], configurations: BioblocksWidgetConfig[]) {
+    const {
+      candidateResidues,
+      data,
+      isDataLoading,
+      onBoxSelection,
+      selectedSecondaryStructures,
+      showConfigurations,
+      addHoveredResidues,
+      removeHoveredResidues,
+      toggleLockedResiduePair,
+    } = this.props;
+
+    return (
+      <ComponentCard componentName={'Contact Map'}>
+        <div style={{ height: '90%', width: '100%' }}>
+          <ContactMapChart
+            candidateResidues={candidateResidues}
+            configurations={configurations}
+            contactData={pointsToPlot}
+            isDataLoading={isDataLoading}
+            onClickCallback={this.onMouseClick(toggleLockedResiduePair)}
+            onHoverCallback={this.onMouseEnter(addHoveredResidues)}
+            onSelectedCallback={this.onMouseSelect(onBoxSelection)}
+            onUnHoverCallback={this.onMouseLeave(removeHoveredResidues)}
+            range={data.couplingScores.residueIndexRange.max + 20}
+            secondaryStructures={data.secondaryStructures ? data.secondaryStructures : []}
+            selectedSecondaryStructures={[selectedSecondaryStructures]}
+            showConfigurations={showConfigurations}
+          />
+        </div>
+      </ComponentCard>
+    );
+  }
 
   protected setupPointsToPlot(couplingContainer: CouplingContainer) {
     const { data, lockedResiduePairs, hoveredResidues, formattedPoints, observedColor, highlightColor } = this.props;
@@ -223,57 +275,25 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     });
   }
 
-  protected renderContactMapChart(pointsToPlot: IContactMapChartData[], configurations: BioblocksWidgetConfig[]) {
-    const {
-      candidateResidues,
-      data,
-      isDataLoading,
-      onBoxSelection,
-      selectedSecondaryStructures,
-      showConfigurations,
-      addHoveredResidues,
-      removeHoveredResidues,
-      toggleLockedResiduePair,
-    } = this.props;
+  protected onMouseClick = (cb: (residues: ILockedResiduePair) => void) => (e: BioblocksChartEvent) => {
+    if (e.isAxis()) {
+      const { addSelectedSecondaryStructure, data, removeSecondaryStructure, selectedSecondaryStructures } = this.props;
 
-    return (
-      <ComponentCard componentName={'Contact Map'}>
-        <div style={{ height: '90%', width: '100%' }}>
-          <ContactMapChart
-            candidateResidues={candidateResidues}
-            configurations={configurations}
-            contactData={pointsToPlot}
-            isDataLoading={isDataLoading}
-            onClickCallback={this.onMouseClick(toggleLockedResiduePair)}
-            onHoverCallback={this.onMouseEnter(addHoveredResidues)}
-            onSelectedCallback={this.onMouseSelect(onBoxSelection)}
-            onUnHoverCallback={this.onMouseLeave(removeHoveredResidues)}
-            range={data.couplingScores.residueIndexRange.max + 20}
-            secondaryStructures={data.secondaryStructures ? data.secondaryStructures : []}
-            selectedSecondaryStructures={[selectedSecondaryStructures]}
-            showConfigurations={showConfigurations}
-          />
-        </div>
-      </ComponentCard>
-    );
-  }
-
-  protected generateNodeSizeSliderConfigs = (entries: IContactMapChartData[]) =>
-    entries.map(
-      (entry, index): SliderWidgetConfig => {
-        return {
-          id: `node-size-slider-${index}`,
-          name: `Node size for ${entry.name}`,
-          onChange: this.onNodeSizeChange(index),
-          type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
-          values: {
-            current: entry.nodeSize,
-            max: 20,
-            min: 1,
-          },
-        };
-      },
-    );
+      for (const secondaryStructure of data.secondaryStructures) {
+        for (const section of secondaryStructure) {
+          if (section.contains(...e.selectedPoints)) {
+            if (selectedSecondaryStructures.includes(section)) {
+              removeSecondaryStructure(section);
+            } else {
+              addSelectedSecondaryStructure(section);
+            }
+          }
+        }
+      }
+    } else {
+      cb({ [e.selectedPoints.sort().toString()]: e.selectedPoints });
+    }
+  };
 
   protected onMouseEnter = (cb: (residue: RESIDUE_TYPE[]) => void) => (e: BioblocksChartEvent) => {
     if (e.isAxis()) {
@@ -314,26 +334,6 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       }
     } else if (cb) {
       cb(e.selectedPoints);
-    }
-  };
-
-  protected onMouseClick = (cb: (residues: ILockedResiduePair) => void) => (e: BioblocksChartEvent) => {
-    if (e.isAxis()) {
-      const { addSelectedSecondaryStructure, data, removeSecondaryStructure, selectedSecondaryStructures } = this.props;
-
-      for (const secondaryStructure of data.secondaryStructures) {
-        for (const section of secondaryStructure) {
-          if (section.contains(...e.selectedPoints)) {
-            if (selectedSecondaryStructures.includes(section)) {
-              removeSecondaryStructure(section);
-            } else {
-              addSelectedSecondaryStructure(section);
-            }
-          }
-        }
-      }
-    } else {
-      cb({ [e.selectedPoints.sort().toString()]: e.selectedPoints });
     }
   };
 

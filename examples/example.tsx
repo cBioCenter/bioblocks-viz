@@ -81,10 +81,9 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
   }
 
   public componentDidUpdate(prevProps: IExampleAppProps, prevState: IExampleAppState) {
-    console.log(this.state);
     const { measuredProximity, pdbData } = this.state;
     const { couplingScores } = this.state[VIZ_TYPE.CONTACT_MAP];
-
+    console.log(pdbData);
     let errorMsg = '';
 
     let newMismatches = this.state.mismatches;
@@ -337,7 +336,9 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     size: number | string = '550px',
   ) => (
     <GridRow columns={2}>
-      <GridColumn width={7}>{this.renderContactMapCard(arePredictionsAvailable, size, style, pdbData[0])}</GridColumn>
+      <GridColumn width={7}>
+        {this.renderContactMapCard(arePredictionsAvailable, size, style, this.state.pdbData)}
+      </GridColumn>
       <GridColumn width={7}>{this.renderNGLCard(measuredProximity, pdbData)}</GridColumn>
     </GridRow>
   );
@@ -488,24 +489,36 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
 
   protected onPDBUpload = async (e: React.ChangeEvent) => {
     e.persist();
+    const { measuredProximity } = this.state;
     const files = (e.target as HTMLInputElement).files;
     const allPdbData = new Array<BioblocksPDB>();
     if (files) {
       for (let i = 0; i < files.length; ++i) {
         const file = files.item(i);
         if (file && file.name.endsWith('.pdb')) {
-          const pdbData = await BioblocksPDB.createPDB(file);
-          allPdbData.push(pdbData);
+          allPdbData.push(await BioblocksPDB.createPDB(file));
         }
       }
       // !IMPORTANT! Allows same user to clear data and then re-upload same file!
       (e.target as HTMLInputElement).value = '';
     }
+    const pdbData = allPdbData[0];
+    const couplingScores = pdbData.amendPDBWithCouplingScores(
+      this.state[VIZ_TYPE.CONTACT_MAP].couplingScores.rankedContacts,
+      measuredProximity,
+    );
     this.setState({
+      [VIZ_TYPE.CONTACT_MAP]: {
+        couplingScores,
+        isLoading: false,
+        pdbData: { known: pdbData },
+        secondaryStructures: pdbData.secondaryStructureSections,
+      },
       [VIZ_TYPE.NGL]: {
         isLoading: false,
         pdbData: allPdbData,
       },
+      pdbData,
     });
   };
 

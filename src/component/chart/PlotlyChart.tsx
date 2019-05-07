@@ -99,42 +99,6 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     window.addEventListener('resize', this.resize);
   }
 
-  /**
-   * Resizes the inner Plotly canvas.
-   */
-  public resize = () => {
-    if (this.plotlyCanvas) {
-      plotly.Plots.resize(this.plotlyCanvas);
-    }
-  };
-
-  /**
-   * Sends a draw call to Plotly since it is using canvas/WebGL which is outside of the locus of control for React.
-   */
-  public draw = async () => {
-    const { config, layout } = this.props;
-    if (this.plotlyCanvas && this.canvasRef) {
-      const mergedLayout = this.getMergedLayout(layout, this.plotlyFormattedData);
-      const mergedConfig = this.getMergedConfig(config);
-      this.plotlyCanvas = await plotly.react(this.canvasRef, this.plotlyFormattedData, mergedLayout, mergedConfig);
-    }
-  };
-
-  /**
-   * Determines if we should send a draw call to Plotly based on if data has actually changed.
-   *
-   * @param prevProps The previous props for the PlotlyChart.
-   */
-  public async componentDidUpdate(prevProps: IPlotlyChartProps) {
-    const { data, layout, config } = this.props;
-    if (!isEqual(data, prevProps.data) || !isEqual(layout, prevProps.layout) || !isEqual(config, prevProps.config)) {
-      this.plotlyFormattedData = isEqual(data, prevProps.data)
-        ? this.plotlyFormattedData
-        : ((Immutable.fromJS(data) as Immutable.List<keyof IPlotlyData>).toJS() as IPlotlyData[]);
-      await this.draw();
-    }
-  }
-
   public async componentDidMount() {
     /*
     const renderTimeout = async () => {
@@ -172,6 +136,33 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     window.removeEventListener('resize', this.resize);
   }
 
+  /**
+   * Determines if we should send a draw call to Plotly based on if data has actually changed.
+   *
+   * @param prevProps The previous props for the PlotlyChart.
+   */
+  public async componentDidUpdate(prevProps: IPlotlyChartProps) {
+    const { data, layout, config } = this.props;
+    if (!isEqual(data, prevProps.data) || !isEqual(layout, prevProps.layout) || !isEqual(config, prevProps.config)) {
+      this.plotlyFormattedData = isEqual(data, prevProps.data)
+        ? this.plotlyFormattedData
+        : ((Immutable.fromJS(data) as Immutable.List<keyof IPlotlyData>).toJS() as IPlotlyData[]);
+      await this.draw();
+    }
+  }
+
+  /**
+   * Sends a draw call to Plotly since it is using canvas/WebGL which is outside of the locus of control for React.
+   */
+  public draw = async () => {
+    const { config, layout } = this.props;
+    if (this.plotlyCanvas && this.canvasRef) {
+      const mergedLayout = this.getMergedLayout(layout, this.plotlyFormattedData);
+      const mergedConfig = this.getMergedConfig(config);
+      this.plotlyCanvas = await plotly.react(this.canvasRef, this.plotlyFormattedData, mergedLayout, mergedConfig);
+    }
+  };
+
   public render() {
     const { height, showLoader, style, width } = this.props;
 
@@ -189,6 +180,50 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
         />
       </>
     );
+  }
+
+  /**
+   * Resizes the inner Plotly canvas.
+   */
+  public resize = () => {
+    if (this.plotlyCanvas) {
+      plotly.Plots.resize(this.plotlyCanvas);
+    }
+  };
+
+  /**
+   * Create [0-n] plotly axes given some plotly data.
+   *
+   * @param allData The already formatted Plotly data - meaning each data should have the proper axis already assigned.
+   * @returns A object containing xaxis and yaxis fields, as well as xaxis# and yaxis# fields where # is derived from the given data.
+   */
+  protected deriveAxisParams(allData: Array<Partial<IPlotlyData>>): Partial<IPlotlyLayout> {
+    const uniqueXAxisIds = new Set<string>();
+    const uniqueYAxisIds = new Set<string>();
+
+    for (const data of allData) {
+      const { xaxis, yaxis } = data;
+      if (xaxis) {
+        uniqueXAxisIds.add(xaxis);
+      }
+      if (yaxis) {
+        uniqueYAxisIds.add(yaxis);
+      }
+    }
+
+    // TODO Have the spacing number - 0.05 - be configurable. Requires some design work to look good for various numbers of total axes.
+    return {
+      ...this.generateExtraPlotlyAxis(uniqueXAxisIds),
+      ...this.generateExtraPlotlyAxis(uniqueYAxisIds),
+      xaxis: {
+        domain: [0, 1 - uniqueXAxisIds.size * 0.05],
+        zeroline: false,
+      },
+      yaxis: {
+        domain: [0, 1 - uniqueXAxisIds.size * 0.05],
+        zeroline: false,
+      },
+    };
   }
 
   protected deriveChartPiece = (xDatum: Plotly.Datum, yDatum: Plotly.Datum, data?: plotly.ScatterData) => {
@@ -269,41 +304,6 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
 
     return result;
   };
-
-  /**
-   * Create [0-n] plotly axes given some plotly data.
-   *
-   * @param allData The already formatted Plotly data - meaning each data should have the proper axis already assigned.
-   * @returns A object containing xaxis and yaxis fields, as well as xaxis# and yaxis# fields where # is derived from the given data.
-   */
-  protected deriveAxisParams(allData: Array<Partial<IPlotlyData>>): Partial<IPlotlyLayout> {
-    const uniqueXAxisIds = new Set<string>();
-    const uniqueYAxisIds = new Set<string>();
-
-    for (const data of allData) {
-      const { xaxis, yaxis } = data;
-      if (xaxis) {
-        uniqueXAxisIds.add(xaxis);
-      }
-      if (yaxis) {
-        uniqueYAxisIds.add(yaxis);
-      }
-    }
-
-    // TODO Have the spacing number - 0.05 - be configurable. Requires some design work to look good for various numbers of total axes.
-    return {
-      ...this.generateExtraPlotlyAxis(uniqueXAxisIds),
-      ...this.generateExtraPlotlyAxis(uniqueYAxisIds),
-      xaxis: {
-        domain: [0, 1 - uniqueXAxisIds.size * 0.05],
-        zeroline: false,
-      },
-      yaxis: {
-        domain: [0, 1 - uniqueXAxisIds.size * 0.05],
-        zeroline: false,
-      },
-    };
-  }
 
   protected onAfterPlot = () => {
     const { onAfterPlotCallback } = this.props;
