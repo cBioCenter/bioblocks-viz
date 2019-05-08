@@ -2518,6 +2518,70 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                     "y": Array [],
                     "z": Array [],
                   },
+                  Object {
+                    "connectgaps": false,
+                    "hoverinfo": "none",
+                    "line": Object {
+                      "color": "red",
+                      "shape": "spline",
+                      "smoothing": 1.3,
+                      "width": 1.5,
+                    },
+                    "marker": Object {
+                      "symbol": Array [],
+                    },
+                    "mode": "lines",
+                    "name": "C",
+                    "orientation": "h",
+                    "showlegend": false,
+                    "type": "scatter",
+                    "x": Array [
+                      30,
+                      30,
+                      31,
+                      31,
+                    ],
+                    "xaxis": "x",
+                    "y": Array [
+                      null,
+                      0,
+                      0,
+                      null,
+                    ],
+                    "yaxis": "y2",
+                  },
+                  Object {
+                    "connectgaps": false,
+                    "hoverinfo": "none",
+                    "line": Object {
+                      "color": "red",
+                      "shape": "spline",
+                      "smoothing": 1.3,
+                      "width": 1.5,
+                    },
+                    "marker": Object {
+                      "symbol": Array [],
+                    },
+                    "mode": "lines",
+                    "name": "C",
+                    "orientation": "v",
+                    "showlegend": false,
+                    "type": "scatter",
+                    "x": Array [
+                      null,
+                      0,
+                      0,
+                      null,
+                    ],
+                    "xaxis": "x2",
+                    "y": Array [
+                      30,
+                      30,
+                      31,
+                      31,
+                    ],
+                    "yaxis": "y",
+                  },
                 ]
               }
               dataTransformFn={[Function]}

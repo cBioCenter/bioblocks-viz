@@ -434,65 +434,72 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     } = this.props;
     const { stage } = this.state;
     if (this.canvas && stage) {
-      const structureComponent = stage.compList[0] as NGL.StructureComponent;
-      if (pickingProxy) {
-        const isDistancePicker = pickingProxy.picker && pickingProxy.picker.type === 'distance';
+      for (const structureComponent of stage.compList as NGL.StructureComponent[]) {
+        if (pickingProxy) {
+          const isDistancePicker = pickingProxy.picker && pickingProxy.picker.type === 'distance';
 
-        if (isDistancePicker) {
-          const residues = [pickingProxy.distance.atom1.resno, pickingProxy.distance.atom2.resno];
-          removeLockedResiduePair(residues.sort().toString());
-        } else if (pickingProxy.atom || pickingProxy.closestBondAtom) {
-          const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
+          if (isDistancePicker) {
+            const residues = [pickingProxy.distance.atom1.resno, pickingProxy.distance.atom2.resno];
+            removeLockedResiduePair(residues.sort().toString());
+          } else if (pickingProxy.atom || pickingProxy.closestBondAtom) {
+            const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
 
-          if (candidateResidues.length >= 1) {
-            const sortedResidues = [...candidateResidues, atom.resno].sort();
-            addLockedResiduePair({ [sortedResidues.toString()]: [...candidateResidues, atom.resno] });
-            removeCandidateResidues();
-          } else {
-            addCandidateResidues([atom.resno]);
-          }
-        }
-      } else if (candidateResidues.length >= 1 && hoveredResidues.length >= 1) {
-        hoveredResidues.forEach(residueIndex => {
-          const getMinDist = (residueStore: NGL.ResidueStore, target: Vector2) => {
-            let minDist = Number.MAX_SAFE_INTEGER;
-            const atomOffset = residueStore.atomOffset[residueIndex];
-            const atomCount = residueStore.atomCount[residueIndex];
-            for (let i = 0; i < atomCount; ++i) {
-              const atomProxy = structureComponent.structure.getAtomProxy(atomOffset + i);
-              const atomPosition = structureComponent.stage.viewerControls.getPositionOnCanvas(
-                atomProxy.positionToVector3(),
-              );
-              minDist = Math.min(minDist, target.distanceTo(atomPosition));
+            if (candidateResidues.length >= 1) {
+              const sortedResidues = [...candidateResidues, atom.resno].sort();
+              addLockedResiduePair({ [sortedResidues.toString()]: [...candidateResidues, atom.resno] });
+              removeCandidateResidues();
+            } else {
+              addCandidateResidues([atom.resno]);
             }
-
-            return minDist;
-          };
-
-          // ! IMPORTANT !
-          // This is a rather brute force approach to see if the mouse is close to a residue.
-          // The main problem is __reliably__ getting the (x,y) of where the user clicked and the "residue" they were closest to.
-          const { down, canvasPosition, position, prevClickCP, prevPosition } = structureComponent.stage.mouseObserver;
-          const minDistances = [down, canvasPosition, prevClickCP, prevPosition, position].map(pos =>
-            getMinDist(structureComponent.structure.residueStore, pos),
-          );
-
-          // Shorthand to make it clearer that this method is just checking if any distance is within 100.
-          const isWithinSnappingDistance = (distances: number[], limit = 100) =>
-            distances.filter(dist => dist < limit).length >= 1;
-
-          if (isWithinSnappingDistance(minDistances)) {
-            const sortedResidues = [...candidateResidues, residueIndex].sort();
-            addLockedResiduePair({ [sortedResidues.toString()]: [...candidateResidues, residueIndex] });
-
-            removeCandidateResidues();
-          } else {
-            removeNonLockedResidues();
           }
-        });
-      } else {
-        // User clicked off-structure, so clear non-locked residue state.
-        removeNonLockedResidues();
+        } else if (candidateResidues.length >= 1 && hoveredResidues.length >= 1) {
+          hoveredResidues.forEach(residueIndex => {
+            const getMinDist = (residueStore: NGL.ResidueStore, target: Vector2) => {
+              let minDist = Number.MAX_SAFE_INTEGER;
+              const atomOffset = residueStore.atomOffset[residueIndex];
+              const atomCount = residueStore.atomCount[residueIndex];
+              for (let i = 0; i < atomCount; ++i) {
+                const atomProxy = structureComponent.structure.getAtomProxy(atomOffset + i);
+                const atomPosition = structureComponent.stage.viewerControls.getPositionOnCanvas(
+                  atomProxy.positionToVector3(),
+                );
+                minDist = Math.min(minDist, target.distanceTo(atomPosition));
+              }
+
+              return minDist;
+            };
+
+            // ! IMPORTANT !
+            // This is a rather brute force approach to see if the mouse is close to a residue.
+            // The main problem is __reliably__ getting the (x,y) of where the user clicked and the "residue" they were closest to.
+            const {
+              down,
+              canvasPosition,
+              position,
+              prevClickCP,
+              prevPosition,
+            } = structureComponent.stage.mouseObserver;
+            const minDistances = [down, canvasPosition, prevClickCP, prevPosition, position].map(pos =>
+              getMinDist(structureComponent.structure.residueStore, pos),
+            );
+
+            // Shorthand to make it clearer that this method is just checking if any distance is within 100.
+            const isWithinSnappingDistance = (distances: number[], limit = 100) =>
+              distances.filter(dist => dist < limit).length >= 1;
+
+            if (isWithinSnappingDistance(minDistances)) {
+              const sortedResidues = [...candidateResidues, residueIndex].sort();
+              addLockedResiduePair({ [sortedResidues.toString()]: [...candidateResidues, residueIndex] });
+
+              removeCandidateResidues();
+            } else {
+              removeNonLockedResidues();
+            }
+          });
+        } else {
+          // User clicked off-structure, so clear non-locked residue state.
+          removeNonLockedResidues();
+        }
       }
     }
   };

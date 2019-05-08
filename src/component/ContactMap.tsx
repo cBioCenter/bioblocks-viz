@@ -20,10 +20,11 @@ import {
   ICouplingScore,
   RESIDUE_TYPE,
   SECONDARY_STRUCTURE,
+  SECONDARY_STRUCTURE_KEYS,
   SECONDARY_STRUCTURE_SECTION,
   SliderWidgetConfig,
 } from '~bioblocks-viz~/data';
-import { EMPTY_FUNCTION } from '~bioblocks-viz~/helper';
+import { ColorMapper, EMPTY_FUNCTION } from '~bioblocks-viz~/helper';
 import { ILockedResiduePair } from '~bioblocks-viz~/reducer';
 import { getCandidates, getHovered, getLocked, selectCurrentItems } from '~bioblocks-viz~/selector';
 
@@ -42,6 +43,7 @@ export interface IContactMapProps {
   isDataLoading: boolean;
   lockedResiduePairs: ILockedResiduePair;
   observedColor: string;
+  secondaryStructureColors?: ColorMapper<SECONDARY_STRUCTURE_KEYS>;
   selectedSecondaryStructures: SECONDARY_STRUCTURE;
   showConfigurations: boolean;
   style?: BIOBLOCKS_CSS_STYLE;
@@ -159,14 +161,15 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 
   protected renderContactMapChart(pointsToPlot: IContactMapChartData[], configurations: BioblocksWidgetConfig[]) {
     const {
+      addHoveredResidues,
       candidateResidues,
       data,
       isDataLoading,
       onBoxSelection,
+      removeHoveredResidues,
+      secondaryStructureColors,
       selectedSecondaryStructures,
       showConfigurations,
-      addHoveredResidues,
-      removeHoveredResidues,
       toggleLockedResiduePair,
     } = this.props;
 
@@ -184,6 +187,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
             onUnHoverCallback={this.onMouseLeave(removeHoveredResidues)}
             range={data.couplingScores.residueIndexRange.max + 20}
             secondaryStructures={data.secondaryStructures ? data.secondaryStructures : []}
+            secondaryStructureColors={secondaryStructureColors}
             selectedSecondaryStructures={[selectedSecondaryStructures]}
             showConfigurations={showConfigurations}
           />

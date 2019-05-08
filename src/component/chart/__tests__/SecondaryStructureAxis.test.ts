@@ -5,6 +5,7 @@ import {
   SECONDARY_STRUCTURE_CODES,
   SECONDARY_STRUCTURE_KEYS,
 } from '~bioblocks-viz~/data';
+import { ColorMapper } from '~bioblocks-viz~/helper';
 
 describe('SecondaryStructureAxis', () => {
   const genSeqEntry = (
@@ -33,16 +34,14 @@ describe('SecondaryStructureAxis', () => {
   });
 
   it('Should allow custom color mappings.', () => {
-    const newColorMap = {
-      C: 'purple',
-      E: 'orange',
-      H: 'black',
-    };
+    const newColorMap = new ColorMapper<SECONDARY_STRUCTURE_KEYS>(
+      new Map([['C', 'purple'], ['E', 'orange'], ['H', 'black']]),
+      'black',
+    );
     const result = new SecondaryStructureAxis(
       [...genSeqEntry('C', 1), ...genSeqEntry('E', 2), ...genSeqEntry('H', 0)],
       0,
       2,
-      'black',
       newColorMap,
     );
 
@@ -55,14 +54,14 @@ describe('SecondaryStructureAxis', () => {
       expect(eAxis).not.toBeUndefined();
       expect(hAxis).not.toBeUndefined();
     } else {
-      expect(cAxis.x.line && cAxis.x.line.color).toBe(newColorMap.C);
-      expect(cAxis.y.line && cAxis.y.line.color).toBe(newColorMap.C);
+      expect(cAxis.x.line && cAxis.x.line.color).toBe(newColorMap.getColorFor('C'));
+      expect(cAxis.y.line && cAxis.y.line.color).toBe(newColorMap.getColorFor('C'));
 
-      expect(eAxis.x.line && eAxis.x.line.color).toBe(newColorMap.E);
-      expect(eAxis.y.line && eAxis.y.line.color).toBe(newColorMap.E);
+      expect(eAxis.x.line && eAxis.x.line.color).toBe(newColorMap.getColorFor('E'));
+      expect(eAxis.y.line && eAxis.y.line.color).toBe(newColorMap.getColorFor('E'));
 
-      expect(hAxis.x.line && hAxis.x.line.color).toBe(newColorMap.H);
-      expect(hAxis.y.line && hAxis.y.line.color).toBe(newColorMap.H);
+      expect(hAxis.x.line && hAxis.x.line.color).toBe(newColorMap.getColorFor('H'));
+      expect(hAxis.y.line && hAxis.y.line.color).toBe(newColorMap.getColorFor('H'));
     }
   });
 
