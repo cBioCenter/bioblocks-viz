@@ -105,7 +105,6 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite"><a href="secondarystructureaxis.html#axisindex" class="tsd-kind-icon">axis<wbr>Index</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite"><a href="secondarystructureaxis.html#colormap" class="tsd-kind-icon">color<wbr>Map</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite"><a href="secondarystructureaxis.html#datatransformfn" class="tsd-kind-icon">data<wbr>Transform<wbr>Fn</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite"><a href="secondarystructureaxis.html#defaultcolor" class="tsd-kind-icon">default<wbr>Color</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite"><a href="secondarystructureaxis.html#filterfn" class="tsd-kind-icon">filter<wbr>Fn</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="secondarystructureaxis.html#highlightedaxes" class="tsd-kind-icon">highlighted<wbr>Axes</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="secondarystructureaxis.html#minimumrequiredresidues" class="tsd-kind-icon">minimum<wbr>Required<wbr>Residues</a></li>
@@ -148,14 +147,14 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Secondary<wbr>Structure<wbr>Axis<span class="tsd-signature-symbol">(</span>sections<span class="tsd-signature-symbol">: </span><a href="../globals.html#secondary_structure" class="tsd-signature-type">SECONDARY_STRUCTURE</a>, minimumRequiredResidues<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, axisIndex<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, defaultColor<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, colorMap<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span>, dataTransformFn<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span>, filterFn<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="secondarystructureaxis.html" class="tsd-signature-type">SecondaryStructureAxis</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Secondary<wbr>Structure<wbr>Axis<span class="tsd-signature-symbol">(</span>sections<span class="tsd-signature-symbol">: </span><a href="../globals.html#secondary_structure" class="tsd-signature-type">SECONDARY_STRUCTURE</a>, minimumRequiredResidues<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, axisIndex<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, colorMap<span class="tsd-signature-symbol">?: </span><a href="colormapper.html" class="tsd-signature-type">ColorMapper</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"C"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"E"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"G"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"H"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"I"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"S"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"T"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"B"</span><span class="tsd-signature-symbol">&gt;</span>, dataTransformFn<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span>, filterFn<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="secondarystructureaxis.html" class="tsd-signature-type">SecondaryStructureAxis</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/SecondaryStructureAxis.ts#L22">src/component/chart/SecondaryStructureAxis.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/SecondaryStructureAxis.ts#L23">src/component/chart/SecondaryStructureAxis.ts:23</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -170,15 +169,7 @@
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> axisIndex: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;2</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> defaultColor: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;black&quot;</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> colorMap: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;{C: &#x27;red&#x27;,E: &#x27;green&#x27;,H: &#x27;blue&#x27;,}</span></h5>
-									<ul class="tsd-parameters">
-										<li class="tsd-parameter-index-signature">
-											<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">string</span></h5>
-										</li>
-									</ul>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> colorMap: <a href="colormapper.html" class="tsd-signature-type">ColorMapper</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"C"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"E"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"G"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"H"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"I"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"S"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"T"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"B"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new ColorMapper&lt;SECONDARY_STRUCTURE_KEYS&gt;(new Map([[&#x27;C&#x27;, &#x27;red&#x27;], [&#x27;E&#x27;, &#x27;green&#x27;], [&#x27;H&#x27;, &#x27;blue&#x27;]]),&#x27;black&#x27;,)</span></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> dataTransformFn: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;{C: SecondaryStructureAxis.centerSectionPositionFn,E: SecondaryStructureAxis.centerSectionPositionFn,H: (section: SECONDARY_STRUCTURE_SECTION, index: number) &#x3D;&gt; ({main: index,opposite: Math.sin(index),}),}</span></h5>
@@ -198,7 +189,7 @@
 												<li class="tsd-description">
 													<aside class="tsd-sources">
 														<ul>
-															<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/SecondaryStructureAxis.ts#L37">src/component/chart/SecondaryStructureAxis.ts:37</a></li>
+															<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/SecondaryStructureAxis.ts#L36">src/component/chart/SecondaryStructureAxis.ts:36</a></li>
 														</ul>
 													</aside>
 													<h4 class="tsd-parameters-title">Parameters</h4>
@@ -241,7 +232,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#axes">axes</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/AuxiliaryAxis.ts#L20">src/component/chart/AuxiliaryAxis.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/AuxiliaryAxis.ts#L21">src/component/chart/AuxiliaryAxis.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -252,28 +243,20 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#axisindex">axisIndex</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/SecondaryStructureAxis.ts#L27">src/component/chart/SecondaryStructureAxis.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/SecondaryStructureAxis.ts#L28">src/component/chart/SecondaryStructureAxis.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
 					<a name="colormap" class="tsd-anchor"></a>
 					<h3>color<wbr>Map</h3>
-					<div class="tsd-signature tsd-kind-icon">color<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<div class="tsd-signature tsd-kind-icon">color<wbr>Map<span class="tsd-signature-symbol">:</span> <a href="colormapper.html" class="tsd-signature-type">ColorMapper</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"C"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"E"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"G"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"H"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"I"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"S"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"T"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"B"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<p>Overrides <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#colormap">colorMap</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/SecondaryStructureAxis.ts#L29">src/component/chart/SecondaryStructureAxis.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/SecondaryStructureAxis.ts#L29">src/component/chart/SecondaryStructureAxis.ts:29</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-index-signature">
-								<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">string</span></h5>
-							</li>
-						</ul>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
 					<a name="datatransformfn" class="tsd-anchor"></a>
@@ -282,7 +265,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#datatransformfn">dataTransformFn</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/SecondaryStructureAxis.ts#L34">src/component/chart/SecondaryStructureAxis.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/SecondaryStructureAxis.ts#L33">src/component/chart/SecondaryStructureAxis.ts:33</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -303,7 +286,7 @@
 									<li class="tsd-description">
 										<aside class="tsd-sources">
 											<ul>
-												<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/SecondaryStructureAxis.ts#L37">src/component/chart/SecondaryStructureAxis.ts:37</a></li>
+												<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/SecondaryStructureAxis.ts#L36">src/component/chart/SecondaryStructureAxis.ts:36</a></li>
 											</ul>
 										</aside>
 										<h4 class="tsd-parameters-title">Parameters</h4>
@@ -330,24 +313,13 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
-					<a name="defaultcolor" class="tsd-anchor"></a>
-					<h3>default<wbr>Color</h3>
-					<div class="tsd-signature tsd-kind-icon">default<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<p>Overrides <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#defaultcolor">defaultColor</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/SecondaryStructureAxis.ts#L28">src/component/chart/SecondaryStructureAxis.ts:28</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
 					<a name="filterfn" class="tsd-anchor"></a>
 					<h3>filter<wbr>Fn</h3>
 					<div class="tsd-signature tsd-kind-icon">filter<wbr>Fn<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">(Anonymous function)</span></div>
 					<aside class="tsd-sources">
 						<p>Overrides <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#filterfn">filterFn</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/SecondaryStructureAxis.ts#L42">src/component/chart/SecondaryStructureAxis.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/SecondaryStructureAxis.ts#L41">src/component/chart/SecondaryStructureAxis.ts:41</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -358,7 +330,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#highlightedaxes">highlightedAxes</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/AuxiliaryAxis.ts#L21">src/component/chart/AuxiliaryAxis.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/AuxiliaryAxis.ts#L22">src/component/chart/AuxiliaryAxis.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -368,7 +340,7 @@
 					<div class="tsd-signature tsd-kind-icon">minimum<wbr>Required<wbr>Residues<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/SecondaryStructureAxis.ts#L26">src/component/chart/SecondaryStructureAxis.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/SecondaryStructureAxis.ts#L27">src/component/chart/SecondaryStructureAxis.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -379,7 +351,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#sections">sections</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/SecondaryStructureAxis.ts#L25">src/component/chart/SecondaryStructureAxis.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/SecondaryStructureAxis.ts#L26">src/component/chart/SecondaryStructureAxis.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -397,7 +369,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#axis">axis</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/AuxiliaryAxis.ts#L26">src/component/chart/AuxiliaryAxis.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/AuxiliaryAxis.ts#L27">src/component/chart/AuxiliaryAxis.ts:27</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -420,7 +392,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#highlightedxaxes">highlightedXAxes</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/AuxiliaryAxis.ts#L45">src/component/chart/AuxiliaryAxis.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/AuxiliaryAxis.ts#L46">src/component/chart/AuxiliaryAxis.ts:46</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -443,7 +415,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#highlightedyaxes">highlightedYAxes</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/AuxiliaryAxis.ts#L69">src/component/chart/AuxiliaryAxis.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/AuxiliaryAxis.ts#L70">src/component/chart/AuxiliaryAxis.ts:70</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -466,7 +438,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#xaxes">xAxes</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/AuxiliaryAxis.ts#L33">src/component/chart/AuxiliaryAxis.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/AuxiliaryAxis.ts#L34">src/component/chart/AuxiliaryAxis.ts:34</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -489,7 +461,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#yaxes">yAxes</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/AuxiliaryAxis.ts#L57">src/component/chart/AuxiliaryAxis.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/AuxiliaryAxis.ts#L58">src/component/chart/AuxiliaryAxis.ts:58</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -515,7 +487,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#auxiliaryaxisdefaults">auxiliaryAxisDefaults</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/AuxiliaryAxis.ts#L200">src/component/chart/AuxiliaryAxis.ts:200</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/AuxiliaryAxis.ts#L199">src/component/chart/AuxiliaryAxis.ts:199</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -549,7 +521,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#derivehighlightedpointsinaxis">deriveHighlightedPointsInAxis</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/AuxiliaryAxis.ts#L259">src/component/chart/AuxiliaryAxis.ts:259</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/AuxiliaryAxis.ts#L258">src/component/chart/AuxiliaryAxis.ts:258</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -581,7 +553,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#derivepointsinaxis">derivePointsInAxis</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/AuxiliaryAxis.ts#L238">src/component/chart/AuxiliaryAxis.ts:238</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/AuxiliaryAxis.ts#L237">src/component/chart/AuxiliaryAxis.ts:237</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -622,7 +594,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/SecondaryStructureAxis.ts#L86">src/component/chart/SecondaryStructureAxis.ts:86</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/SecondaryStructureAxis.ts#L85">src/component/chart/SecondaryStructureAxis.ts:85</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -661,7 +633,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#generatehighlightedxaxissegment">generateHighlightedXAxisSegment</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/AuxiliaryAxis.ts#L164">src/component/chart/AuxiliaryAxis.ts:164</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/AuxiliaryAxis.ts#L163">src/component/chart/AuxiliaryAxis.ts:163</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -695,7 +667,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#generatehighlightedyaxissegment">generateHighlightedYAxisSegment</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/AuxiliaryAxis.ts#L188">src/component/chart/AuxiliaryAxis.ts:188</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/AuxiliaryAxis.ts#L187">src/component/chart/AuxiliaryAxis.ts:187</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -729,7 +701,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#generatexaxissegment">generateXAxisSegment</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/AuxiliaryAxis.ts#L152">src/component/chart/AuxiliaryAxis.ts:152</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/AuxiliaryAxis.ts#L151">src/component/chart/AuxiliaryAxis.ts:151</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -763,7 +735,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#generateyaxissegment">generateYAxisSegment</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/AuxiliaryAxis.ts#L176">src/component/chart/AuxiliaryAxis.ts:176</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/AuxiliaryAxis.ts#L175">src/component/chart/AuxiliaryAxis.ts:175</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -797,7 +769,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#getaxisbyid">getAxisById</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/AuxiliaryAxis.ts#L101">src/component/chart/AuxiliaryAxis.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/AuxiliaryAxis.ts#L100">src/component/chart/AuxiliaryAxis.ts:100</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -824,7 +796,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#highlightedauxiliaryaxisdefaults">highlightedAuxiliaryAxisDefaults</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/AuxiliaryAxis.ts#L225">src/component/chart/AuxiliaryAxis.ts:225</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/AuxiliaryAxis.ts#L224">src/component/chart/AuxiliaryAxis.ts:224</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -858,7 +830,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="auxiliaryaxis.html">AuxiliaryAxis</a>.<a href="auxiliaryaxis.html#setupauxiliaryaxis">setupAuxiliaryAxis</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/SecondaryStructureAxis.ts#L47">src/component/chart/SecondaryStructureAxis.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/SecondaryStructureAxis.ts#L46">src/component/chart/SecondaryStructureAxis.ts:46</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -875,7 +847,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6bea4a78c/src/component/chart/SecondaryStructureAxis.ts#L19">src/component/chart/SecondaryStructureAxis.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/20cacdf62/src/component/chart/SecondaryStructureAxis.ts#L20">src/component/chart/SecondaryStructureAxis.ts:20</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -930,9 +902,6 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
 								<a href="secondarystructureaxis.html#datatransformfn" class="tsd-kind-icon">data<wbr>Transform<wbr>Fn</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
-								<a href="secondarystructureaxis.html#defaultcolor" class="tsd-kind-icon">default<wbr>Color</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
 								<a href="secondarystructureaxis.html#filterfn" class="tsd-kind-icon">filter<wbr>Fn</a>
