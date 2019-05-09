@@ -5,7 +5,7 @@ import { Accordion, Button, Grid, GridColumn, GridRow, Header, Label, Message, S
 
 import { createContainerActions, createResiduePairActions } from '~bioblocks-viz~/action';
 import { ContactMap, PredictedContactMap } from '~bioblocks-viz~/component';
-import { NGLContainer, ProteinFeatureViewer } from '~bioblocks-viz~/container';
+import { NGLContainer } from '~bioblocks-viz~/container';
 import {
   BIOBLOCKS_CSS_STYLE,
   BioblocksPDB,
@@ -83,7 +83,6 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
   public componentDidUpdate(prevProps: IExampleAppProps, prevState: IExampleAppState) {
     const { measuredProximity, pdbData } = this.state;
     const { couplingScores } = this.state[VIZ_TYPE.CONTACT_MAP];
-    console.log(pdbData);
     let errorMsg = '';
 
     let newMismatches = this.state.mismatches;
@@ -127,9 +126,9 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
 
   public render({ style } = this.props) {
     return (
-      <div id="BioblocksVizApp" style={{ ...style, height: '1000px' }}>
+      <div id={'BioblocksVizApp'} style={{ ...style, height: '1000px' }}>
+        <meta name={'viewport'} content={'width=device-width, initial-scale=1'} />
         {this.renderCouplingComponents()}
-        <ProteinFeatureViewer />
       </div>
     );
   }
@@ -199,22 +198,13 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
   };
 
   protected renderFooter = () => {
-    const bioblocks = <a href="https://github.com/cBioCenter/bioblocks-viz">Bioblocks</a>;
-
-    // prettier-ignore
-    const sayings = [
-      <>Powered by {bioblocks}!</>,
-      <>They love me at the {bioblocks}sea.</>,
-      <>Today's visualization has been brought to you by {bioblocks}.</>,
-      <>{bioblocks}sea, {bioblocks}sea, I believe...</>,
-      <>Now you're thinking with {bioblocks}!</>,
-      <>And {bioblocks}sea says she's got nowhere to go...</>,
-    ].map(saying => <React.Fragment key={'random-bioblocks-saying'}>{saying}</React.Fragment>);
-
-    // tslint:disable-next-line:insecure-random
-    const randomSaying = sayings[Math.floor(Math.random() * sayings.length)];
-
-    return <footer style={{ padding: '25vh 0 25px 25px' }}>{randomSaying}</footer>;
+    return (
+      <footer style={{ padding: '25vh 0 25px 25px' }}>
+        <>
+          Powered by <a href="https://github.com/cBioCenter/bioblocks-viz">Bioblocks</a>!
+        </>
+      </footer>
+    );
   };
 
   protected renderSequenceAccordionMessage = (

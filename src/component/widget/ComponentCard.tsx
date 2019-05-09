@@ -96,7 +96,7 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
           onClose={this.onFullPageToggle}
           open={true}
           size={'large'}
-          style={{ height: '80vh', width: '80vh' }}
+          style={{ height: '80vh', width: '80vh', willChange: 'unset' }}
         >
           {card}
         </Modal>

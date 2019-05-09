@@ -42,13 +42,11 @@ export interface INGLComponentProps {
   lockedResiduePairs: ILockedResiduePair;
   measuredProximity: CONTACT_DISTANCE_PROXIMITY;
   selectedSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
-  showConfigurations: boolean;
   style?: BIOBLOCKS_CSS_STYLE;
   width: number | string;
   addCandidateResidues(residues: RESIDUE_TYPE[]): void;
   addHoveredResidues(residues: RESIDUE_TYPE[]): void;
   addLockedResiduePair(residuePair: ILockedResiduePair): void;
-  dispatchPdbFetch(dataset: string, fetchFn: () => Promise<BioblocksPDB>): void;
   onMeasuredProximityChange?(value: number): void;
   onResize?(event?: UIEvent): void;
   removeAllLockedResiduePairs(): void;
@@ -73,8 +71,6 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     backgroundColor: '#ffffff',
     candidateResidues: [],
     data: [],
-    dispatchNglFetch: EMPTY_FUNCTION,
-    dispatchPdbFetch: EMPTY_FUNCTION,
     height: '90%',
     hoveredResidues: [],
     hoveredSecondaryStructures: [],
@@ -89,7 +85,6 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     removeLockedResiduePair: EMPTY_FUNCTION,
     removeNonLockedResidues: EMPTY_FUNCTION,
     selectedSecondaryStructures: [],
-    showConfigurations: true,
     width: '100%',
   };
   public readonly state: NGLComponentState = initialNGLState;
