@@ -1,3 +1,5 @@
+import { StructureView } from 'ngl';
+
 // tslint:disable:max-classes-per-file no-reserved-keywords
 declare module 'ngl' {
   import { Signal } from 'signals';
@@ -115,6 +117,7 @@ declare module 'ngl' {
     public quaternion: Quaternion;
     public reprList: RepresentationElement[];
     public scale: Vector3;
+    public structureView: StructureView;
 
     /** Events emitted by the component. */
     public readonly signals: {

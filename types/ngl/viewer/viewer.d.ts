@@ -57,6 +57,8 @@ declare module 'ngl' {
   export class Viewer {
     // Properties
     public boundingBox: Box3;
+    public boundingBoxLength: number;
+    public boundingBoxSize: Vector3;
     public camera: OrthographicCamera | PerspectiveCamera;
     public container: HTMLElement;
     public height: number;

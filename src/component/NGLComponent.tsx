@@ -4,7 +4,7 @@ import * as NGL from 'ngl';
 import * as React from 'react';
 import { Matrix4, Vector2 } from 'three';
 
-import { Dimmer, Loader } from 'semantic-ui-react';
+import { Button, Dimmer, Loader } from 'semantic-ui-react';
 import { ComponentCard } from '~bioblocks-viz~/component';
 import {
   AMINO_ACID_THREE_LETTER_CODE,
@@ -30,6 +30,7 @@ import { ILockedResiduePair } from '~bioblocks-viz~/reducer';
 export type NGL_HOVER_CB_RESULT_TYPE = number;
 
 export type RepresentationDict = Map<string, NGL.RepresentationElement[]>;
+export type SUPERPOSITION_STATUS_TYPE = 'NONE' | 'PREDICTED' | 'EXPERIMENTAL' | 'BOTH';
 
 export interface INGLComponentProps {
   backgroundColor: string | number;
@@ -59,6 +60,7 @@ export interface INGLComponentProps {
 export const initialNGLState = {
   activeRepresentations: new Array<NGL.RepresentationElement>(),
   stage: undefined as NGL.Stage | undefined,
+  superpositionStatus: 'NONE' as SUPERPOSITION_STATUS_TYPE,
 };
 
 export type NGLComponentState = Readonly<typeof initialNGLState>;
@@ -136,7 +138,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       measuredProximity,
       selectedSecondaryStructures,
     } = this.props;
-    const { stage } = this.state;
+    const { stage, superpositionStatus } = this.state;
 
     if (stage && data.length !== prevProps.data.length) {
       stage.removeAllComponents();
@@ -146,11 +148,10 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     }
 
     if (stage && stage.compList.length >= 1) {
-      if (prevProps.data.length !== data.length && stage.compList.length === 2) {
-        NGL.superpose(stage.compList[0].object as NGL.Structure, stage.compList[1].object as NGL.Structure, true);
-        stage.compList[0].updateRepresentations({ position: true });
-        stage.compList[0].autoView();
+      if (superpositionStatus !== prevState.superpositionStatus && stage.compList.length >= 2) {
+        this.handleSuperposition(stage, superpositionStatus);
       }
+
       const structureComponent = stage.compList[0] as NGL.StructureComponent;
 
       const isHighlightUpdateNeeded =
@@ -198,6 +199,16 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
             role={'img'}
             style={{ height: '100%', width: '100%' }}
           />
+        </div>
+        <div style={{ bottom: '27px', height: '27px', position: 'relative', right: '5px' }}>
+          <Button
+            active={this.state.superpositionStatus !== 'NONE'}
+            floated={'right'}
+            onClick={this.onSuperpositionToggle}
+            toggle={true}
+          >
+            {`Superposition: ${this.state.superpositionStatus === 'NONE' ? 'off' : 'on'}`}
+          </Button>
         </div>
       </ComponentCard>
     );
@@ -342,6 +353,24 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       const { atomIndexI, atomIndexJ } = data[0].getMinDistBetweenResidues(residues[0], residues[1]);
 
       return createDistanceRepresentation(structureComponent, [atomIndexI, atomIndexJ]);
+    }
+  }
+
+  protected handleSuperposition(stage: NGL.Stage, superpositionStatus: SUPERPOSITION_STATUS_TYPE) {
+    if (superpositionStatus === 'BOTH') {
+      NGL.superpose(stage.compList[0].object as NGL.Structure, stage.compList[1].object as NGL.Structure, true);
+
+      stage.compList[0].setPosition([0, 0, 0]);
+      stage.compList[1].setPosition([0, 0, 0]);
+      stage.compList[0].updateRepresentations({ position: true });
+      stage.compList[1].updateRepresentations({ position: true });
+      stage.compList[0].autoView();
+    } else if (superpositionStatus === 'NONE') {
+      stage.compList[0].setPosition([50, 0, 0]);
+      stage.compList[1].setPosition([-50, 0, 0]);
+      stage.compList[0].updateRepresentations({ position: true });
+      stage.compList[1].updateRepresentations({ position: true });
+      stage.autoView();
     }
   }
 
@@ -516,11 +545,11 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     }
   }
 
-  protected onKeyDown = (e: React.KeyboardEvent) => {
-    e.preventDefault();
+  protected onKeyDown = (event: React.KeyboardEvent) => {
+    event.preventDefault();
     const ESC_KEY_CODE = 27;
 
-    if (e.which === ESC_KEY_CODE || e.keyCode === ESC_KEY_CODE) {
+    if (event.which === ESC_KEY_CODE || event.keyCode === ESC_KEY_CODE) {
       const { removeNonLockedResidues } = this.props;
       removeNonLockedResidues();
     }
@@ -534,6 +563,19 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     }
     if (onResize) {
       onResize(event);
+    }
+  };
+
+  protected onSuperpositionToggle = (event?: React.MouseEvent) => {
+    const { superpositionStatus } = this.state;
+    if (superpositionStatus === 'NONE') {
+      this.setState({
+        superpositionStatus: 'BOTH',
+      });
+    } else {
+      this.setState({
+        superpositionStatus: 'NONE',
+      });
     }
   };
 }
