@@ -150,10 +150,11 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       allProteins.map(pdb => {
         this.initData(stage, pdb.nglStructure);
       });
+      this.handleSuperposition(stage, superpositionStatus);
     }
 
     if (stage && stage.compList.length >= 1) {
-      if (superpositionStatus !== prevState.superpositionStatus && stage.compList.length >= 2) {
+      if (superpositionStatus !== prevState.superpositionStatus) {
         this.handleSuperposition(stage, superpositionStatus);
       }
 
@@ -175,6 +176,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
           activeRepresentations: this.deriveActiveRepresentations(structureComponent),
         });
       }
+      this.handleSuperposition(stage, superpositionStatus);
       stage.viewer.requestRender();
     }
   }
@@ -365,18 +367,25 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
 
   protected handleSuperposition(stage: NGL.Stage, superpositionStatus: SUPERPOSITION_STATUS_TYPE) {
     if (superpositionStatus === 'BOTH') {
-      NGL.superpose(stage.compList[0].object as NGL.Structure, stage.compList[1].object as NGL.Structure, true);
+      for (let i = 1; i < stage.compList.length; ++i) {
+        NGL.superpose(stage.compList[i].object as NGL.Structure, stage.compList[0].object as NGL.Structure, true);
+      }
 
-      stage.compList[0].setPosition([0, 0, 0]);
-      stage.compList[1].setPosition([0, 0, 0]);
-      stage.compList[0].updateRepresentations({ position: true });
-      stage.compList[1].updateRepresentations({ position: true });
-      stage.compList[0].autoView();
+      for (const component of stage.compList) {
+        component.setPosition([0, 0, 0]);
+        component.updateRepresentations({ position: true });
+      }
+
+      if (stage.compList[0]) {
+        stage.compList[0].autoView();
+      } else {
+        stage.autoView();
+      }
     } else if (superpositionStatus === 'NONE') {
-      stage.compList[0].setPosition([50, 0, 0]);
-      stage.compList[1].setPosition([-50, 0, 0]);
-      stage.compList[0].updateRepresentations({ position: true });
-      stage.compList[1].updateRepresentations({ position: true });
+      stage.compList.forEach((component, index) => {
+        component.setPosition([index * 50, 0, 0]);
+        stage.compList[0].updateRepresentations({ position: true });
+      });
       stage.autoView();
     }
   }

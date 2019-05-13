@@ -1,0 +1,553 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NGLContainer Should match the default snapshot when hooked up to a redux store. 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Connect(NGLContainerClass)>
+    <NGLContainerClass
+      addCandidateResidues={[Function]}
+      addHoveredResidues={[Function]}
+      addLockedResiduePair={[Function]}
+      candidateResidues={Array []}
+      dispatchNglFetch={[Function]}
+      experimentalProteins={Array []}
+      hoveredResidues={Array []}
+      hoveredSecondaryStructures={Array []}
+      isDataLoading={false}
+      lockedResiduePairs={Immutable.Map {}}
+      measuredProximity="C-α"
+      predictedProteins={Array []}
+      removeAllLockedResiduePairs={[Function]}
+      removeCandidateResidues={[Function]}
+      removeHoveredResidues={[Function]}
+      removeLockedResiduePair={[Function]}
+      removeNonLockedResidues={[Function]}
+      selectedSecondaryStructures={Array []}
+      showConfigurations={true}
+    >
+      <Grid
+        padded={true}
+      >
+        <div
+          className="ui padded grid"
+        >
+          <GridRow
+            centered={true}
+          >
+            <div
+              className="centered row"
+            >
+              <GridColumn
+                width={5}
+              >
+                <div
+                  className="five wide column"
+                >
+                  <Popup
+                    disabled={false}
+                    keepInViewPort={true}
+                    on="click"
+                    position="bottom center"
+                    trigger={
+                      <Label>
+                        Experimental 0/0
+                      </Label>
+                    }
+                    wide={true}
+                  >
+                    <Portal
+                      closeOnDocumentClick={true}
+                      closeOnEscape={true}
+                      closeOnTriggerClick={true}
+                      eventPool="default"
+                      onClose={[Function]}
+                      onMount={[Function]}
+                      onOpen={[Function]}
+                      onUnmount={[Function]}
+                      openOnTriggerClick={true}
+                      trigger={
+                        <Label>
+                          Experimental 0/0
+                        </Label>
+                      }
+                      triggerRef={[Function]}
+                    >
+                      <Ref
+                        innerRef={[Function]}
+                      >
+                        <RefFindNode
+                          innerRef={[Function]}
+                        >
+                          <Label
+                            onBlur={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onMouseEnter={[Function]}
+                            onMouseLeave={[Function]}
+                          >
+                            <div
+                              className="ui label"
+                              onBlur={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onMouseEnter={[Function]}
+                              onMouseLeave={[Function]}
+                            >
+                              Experimental 0/0
+                            </div>
+                          </Label>
+                        </RefFindNode>
+                      </Ref>
+                    </Portal>
+                  </Popup>
+                </div>
+              </GridColumn>
+              <GridColumn
+                width={5}
+              >
+                <div
+                  className="five wide column"
+                >
+                  <Popup
+                    disabled={false}
+                    keepInViewPort={true}
+                    on="click"
+                    position="bottom center"
+                    trigger={
+                      <Label>
+                        Predicted 0/0
+                      </Label>
+                    }
+                    wide={true}
+                  >
+                    <Portal
+                      closeOnDocumentClick={true}
+                      closeOnEscape={true}
+                      closeOnTriggerClick={true}
+                      eventPool="default"
+                      onClose={[Function]}
+                      onMount={[Function]}
+                      onOpen={[Function]}
+                      onUnmount={[Function]}
+                      openOnTriggerClick={true}
+                      trigger={
+                        <Label>
+                          Predicted 0/0
+                        </Label>
+                      }
+                      triggerRef={[Function]}
+                    >
+                      <Ref
+                        innerRef={[Function]}
+                      >
+                        <RefFindNode
+                          innerRef={[Function]}
+                        >
+                          <Label
+                            onBlur={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onMouseEnter={[Function]}
+                            onMouseLeave={[Function]}
+                          >
+                            <div
+                              className="ui label"
+                              onBlur={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onMouseEnter={[Function]}
+                              onMouseLeave={[Function]}
+                            >
+                              Predicted 0/0
+                            </div>
+                          </Label>
+                        </RefFindNode>
+                      </Ref>
+                    </Portal>
+                  </Popup>
+                </div>
+              </GridColumn>
+            </div>
+          </GridRow>
+          <GridRow>
+            <div
+              className="row"
+            >
+              <NGLComponent
+                addCandidateResidues={[Function]}
+                addHoveredResidues={[Function]}
+                addLockedResiduePair={[Function]}
+                backgroundColor="#ffffff"
+                candidateResidues={Array []}
+                dispatchNglFetch={[Function]}
+                experimentalProteins={Array []}
+                height="90%"
+                hoveredResidues={Array []}
+                hoveredSecondaryStructures={Array []}
+                isDataLoading={false}
+                lockedResiduePairs={Object {}}
+                measuredProximity="C-α"
+                onMeasuredProximityChange={[Function]}
+                onResize={[Function]}
+                predictedProteins={Array []}
+                removeAllLockedResiduePairs={[Function]}
+                removeCandidateResidues={[Function]}
+                removeHoveredResidues={[Function]}
+                removeLockedResiduePair={[Function]}
+                removeNonLockedResidues={[Function]}
+                selectedSecondaryStructures={Array []}
+                showConfigurations={true}
+                width="100%"
+              >
+                <ComponentCard
+                  componentName="NGL Viewer"
+                  frameHeight={0}
+                  frameWidth={0}
+                  headerHeight={32}
+                  height="525px"
+                  iconSrc="assets/icons/spring-icon.png"
+                  isFramedComponent={false}
+                  isFullPage={false}
+                  padding={0}
+                  showSettings={false}
+                  width="525px"
+                >
+                  <Card
+                    centered={true}
+                    className="bioblocks-component-card"
+                    style={
+                      Object {
+                        "height": "525px",
+                        "maxWidth": "unset",
+                        "padding": "0 0 5px 5px",
+                        "width": "525px",
+                      }
+                    }
+                  >
+                    <div
+                      className="ui centered card bioblocks-component-card"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "height": "525px",
+                          "maxWidth": "unset",
+                          "padding": "0 0 5px 5px",
+                          "width": "525px",
+                        }
+                      }
+                    >
+                      <Menu
+                        secondary={true}
+                        style={
+                          Object {
+                            "height": 32,
+                            "margin": 0,
+                          }
+                        }
+                      >
+                        <div
+                          className="ui secondary menu"
+                          style={
+                            Object {
+                              "height": 32,
+                              "margin": 0,
+                            }
+                          }
+                        >
+                          <MenuItem
+                            fitted="horizontally"
+                            position="left"
+                            style={
+                              Object {
+                                "margin": 0,
+                              }
+                            }
+                          >
+                            <div
+                              className="left horizontally fitted item"
+                              onClick={[Function]}
+                              style={
+                                Object {
+                                  "margin": 0,
+                                }
+                              }
+                            >
+                              <img
+                                alt="component icon"
+                                src="assets/icons/spring-icon.png"
+                                style={
+                                  Object {
+                                    "height": "32px",
+                                    "padding": "2px",
+                                    "width": "32px",
+                                  }
+                                }
+                              />
+                              NGL Viewer
+                            </div>
+                          </MenuItem>
+                          <MenuItem
+                            fitted="horizontally"
+                            position="right"
+                            style={
+                              Object {
+                                "margin": 0,
+                              }
+                            }
+                          >
+                            <div
+                              className="right horizontally fitted item"
+                              onClick={[Function]}
+                              style={
+                                Object {
+                                  "margin": 0,
+                                }
+                              }
+                            >
+                              <Icon
+                                as="i"
+                                name="expand arrows alternate"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  aria-hidden="true"
+                                  className="expand arrows alternate icon"
+                                  onClick={[Function]}
+                                />
+                              </Icon>
+                            </div>
+                          </MenuItem>
+                        </div>
+                      </Menu>
+                      <div
+                        className="NGLComponent"
+                        style={
+                          Object {
+                            "height": "90%",
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        <Dimmer
+                          active={false}
+                        >
+                          <DimmerInner
+                            active={false}
+                          >
+                            <Ref
+                              innerRef={
+                                Object {
+                                  "current": <div
+                                    class="ui dimmer"
+                                  >
+                                    <div
+                                      class="content"
+                                    >
+                                      <div
+                                        class="ui loader"
+                                      />
+                                    </div>
+                                  </div>,
+                                }
+                              }
+                            >
+                              <RefFindNode
+                                innerRef={
+                                  Object {
+                                    "current": <div
+                                      class="ui dimmer"
+                                    >
+                                      <div
+                                        class="content"
+                                      >
+                                        <div
+                                          class="ui loader"
+                                        />
+                                      </div>
+                                    </div>,
+                                  }
+                                }
+                              >
+                                <div
+                                  className="ui dimmer"
+                                  onClick={[Function]}
+                                >
+                                  <div
+                                    className="content"
+                                  >
+                                    <Loader>
+                                      <div
+                                        className="ui loader"
+                                      />
+                                    </Loader>
+                                  </div>
+                                </div>
+                              </RefFindNode>
+                            </Ref>
+                          </DimmerInner>
+                        </Dimmer>
+                        <div
+                          className="NGLCanvas"
+                          onKeyDown={[Function]}
+                          onMouseLeave={[Function]}
+                          role="img"
+                          style={
+                            Object {
+                              "height": "100%",
+                              "width": "100%",
+                            }
+                          }
+                        />
+                      </div>
+                      <div
+                        style={
+                          Object {
+                            "bottom": "27px",
+                            "height": "27px",
+                            "position": "relative",
+                            "right": "5px",
+                          }
+                        }
+                      >
+                        <Button
+                          active={false}
+                          as="button"
+                          floated="right"
+                          onClick={[Function]}
+                          toggle={true}
+                        >
+                          <Ref
+                            innerRef={
+                              Object {
+                                "current": <button
+                                  aria-pressed="false"
+                                  class="ui toggle right floated button"
+                                >
+                                  Superposition: off
+                                </button>,
+                              }
+                            }
+                          >
+                            <RefFindNode
+                              innerRef={
+                                Object {
+                                  "current": <button
+                                    aria-pressed="false"
+                                    class="ui toggle right floated button"
+                                  >
+                                    Superposition: off
+                                  </button>,
+                                }
+                              }
+                            >
+                              <button
+                                aria-pressed={false}
+                                className="ui toggle right floated button"
+                                onClick={[Function]}
+                              >
+                                Superposition: off
+                              </button>
+                            </RefFindNode>
+                          </Ref>
+                        </Button>
+                      </div>
+                    </div>
+                  </Card>
+                </ComponentCard>
+              </NGLComponent>
+            </div>
+          </GridRow>
+        </div>
+      </Grid>
+    </NGLContainerClass>
+  </Connect(NGLContainerClass)>
+</Provider>
+`;
+
+exports[`NGLContainer Should match the default snapshot when not hooked up to a redux store. 1`] = `
+<Grid
+  padded={true}
+>
+  <GridRow
+    centered={true}
+  >
+    <GridColumn
+      width={5}
+    >
+      <Popup
+        disabled={false}
+        keepInViewPort={true}
+        on="click"
+        position="bottom center"
+        trigger={
+          <Label>
+            Experimental 0/0
+          </Label>
+        }
+        wide={true}
+      >
+        <Form
+          as="form"
+        />
+      </Popup>
+    </GridColumn>
+    <GridColumn
+      width={5}
+    >
+      <Popup
+        disabled={false}
+        keepInViewPort={true}
+        on="click"
+        position="bottom center"
+        trigger={
+          <Label>
+            Predicted 0/0
+          </Label>
+        }
+        wide={true}
+      >
+        <Form
+          as="form"
+        />
+      </Popup>
+    </GridColumn>
+  </GridRow>
+  <GridRow>
+    <NGLComponent
+      addCandidateResidues={[Function]}
+      addHoveredResidues={[Function]}
+      addLockedResiduePair={[Function]}
+      backgroundColor="#ffffff"
+      candidateResidues={Array []}
+      dispatchNglFetch={[Function]}
+      experimentalProteins={Array []}
+      height="90%"
+      hoveredResidues={Array []}
+      hoveredSecondaryStructures={Array []}
+      isDataLoading={false}
+      lockedResiduePairs={Object {}}
+      measuredProximity="C-α"
+      onMeasuredProximityChange={[Function]}
+      onResize={[Function]}
+      predictedProteins={Array []}
+      removeAllLockedResiduePairs={[Function]}
+      removeCandidateResidues={[Function]}
+      removeHoveredResidues={[Function]}
+      removeLockedResiduePair={[Function]}
+      removeNonLockedResidues={[Function]}
+      selectedSecondaryStructures={Array []}
+      showConfigurations={true}
+      width="100%"
+    />
+  </GridRow>
+</Grid>
+`;

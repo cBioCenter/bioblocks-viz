@@ -324,7 +324,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     measuredProximity: CONTACT_DISTANCE_PROXIMITY,
     size: number | string = '550px',
   ) => (
-    <GridRow columns={2}>
+    <GridRow columns={2} verticalAlign={'bottom'}>
       <GridColumn width={7}>
         {this.renderContactMapCard(arePredictionsAvailable, size, style, this.state.pdbData)}
       </GridColumn>
@@ -367,10 +367,10 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
   protected renderNGLCard = (measuredProximity: CONTACT_DISTANCE_PROXIMITY) => (
     <NGLContainer
       isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
-      experimentalProteins={this.state[VIZ_TYPE.NGL].pdbData.length === 2 ? [this.state[VIZ_TYPE.NGL].pdbData[1]] : []}
+      experimentalProteins={this.state[VIZ_TYPE.NGL].pdbData.filter(pdb => pdb.name.includes('exp'))}
       measuredProximity={measuredProximity}
       onMeasuredProximityChange={this.onMeasuredProximityChange()}
-      predictedProteins={this.state[VIZ_TYPE.NGL].pdbData.length >= 1 ? [this.state[VIZ_TYPE.NGL].pdbData[0]] : []}
+      predictedProteins={this.state[VIZ_TYPE.NGL].pdbData.filter(pdb => pdb.name.includes('pred'))}
     />
   );
 

@@ -93,6 +93,7 @@ class MockStage {
 
     return structure;
   };
+  public autoView = () => jest.fn();
   public defaultFileRepresentation = (...args: any[]) => jest.fn();
   public dispose = () => jest.fn();
   public handleResize = () => jest.fn();
@@ -131,6 +132,7 @@ const sampleResidues = [helixResidue(1), sheetResidue(2), turnResidue(3)];
 // tslint:disable-next-line:max-classes-per-file
 class MockStructureComponent {
   public name = '';
+  public position = new Array<number>();
   public reprList = new Array<string>();
 
   public structure: MockStructure;
@@ -157,6 +159,14 @@ class MockStructureComponent {
   public removeAllRepresentations() {
     this.reprList = [];
   }
+
+  public setPosition(position: number[]) {
+    this.position = position;
+  }
+
+  public updateRepresentations(rep: object) {
+    return;
+  }
 }
 
 // tslint:disable-next-line:max-classes-per-file
@@ -164,7 +174,7 @@ class MockStructure {
   public atomMap = { dict: { 'CA|C': 2 } };
 
   public eachResidue = jest.fn((cb: (...args: any[]) => void) =>
-    this.name.localeCompare('sample.pdb') ? sampleResidues.map(cb) : {},
+    this.name.endsWith('sample.pdb') ? sampleResidues.map(cb) : {},
   );
   public getAtomProxy = jest.fn((index: number) => ({
     distanceTo: (pos: number) => pos + index,
