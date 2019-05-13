@@ -151,7 +151,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
           <Grid.Row>
             <br />
           </Grid.Row>
-          {this.renderBioblocksComponents(style, arePredictionsAvailable, measuredProximity, pdbData ? [pdbData] : [])}
+          {this.renderBioblocksComponents(style, arePredictionsAvailable, measuredProximity)}
         </Grid>
       </Segment>
       {this.renderFooter()}
@@ -322,14 +322,13 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     style: React.CSSProperties,
     arePredictionsAvailable: boolean,
     measuredProximity: CONTACT_DISTANCE_PROXIMITY,
-    pdbData: BioblocksPDB[],
     size: number | string = '550px',
   ) => (
     <GridRow columns={2}>
       <GridColumn width={7}>
         {this.renderContactMapCard(arePredictionsAvailable, size, style, this.state.pdbData)}
       </GridColumn>
-      <GridColumn width={7}>{this.renderNGLCard(measuredProximity, pdbData)}</GridColumn>
+      <GridColumn width={7}>{this.renderNGLCard(measuredProximity)}</GridColumn>
     </GridRow>
   );
 
@@ -365,12 +364,13 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
       />
     );
 
-  protected renderNGLCard = (measuredProximity: CONTACT_DISTANCE_PROXIMITY, pdbData: BioblocksPDB[]) => (
+  protected renderNGLCard = (measuredProximity: CONTACT_DISTANCE_PROXIMITY) => (
     <NGLContainer
-      data={this.state[VIZ_TYPE.NGL].pdbData}
       isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
+      experimentalProteins={this.state[VIZ_TYPE.NGL].pdbData.length === 2 ? [this.state[VIZ_TYPE.NGL].pdbData[1]] : []}
       measuredProximity={measuredProximity}
       onMeasuredProximityChange={this.onMeasuredProximityChange()}
+      predictedProteins={this.state[VIZ_TYPE.NGL].pdbData.length >= 1 ? [this.state[VIZ_TYPE.NGL].pdbData[0]] : []}
     />
   );
 

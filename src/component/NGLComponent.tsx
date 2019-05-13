@@ -35,13 +35,14 @@ export type SUPERPOSITION_STATUS_TYPE = 'NONE' | 'PREDICTED' | 'EXPERIMENTAL' | 
 export interface INGLComponentProps {
   backgroundColor: string | number;
   candidateResidues: RESIDUE_TYPE[];
-  data: BioblocksPDB[];
+  experimentalProteins: BioblocksPDB[];
   height: number | string;
   hoveredResidues: RESIDUE_TYPE[];
   hoveredSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
   isDataLoading: boolean;
   lockedResiduePairs: ILockedResiduePair;
   measuredProximity: CONTACT_DISTANCE_PROXIMITY;
+  predictedProteins: BioblocksPDB[];
   selectedSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
   style?: BIOBLOCKS_CSS_STYLE;
   width: number | string;
@@ -72,7 +73,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     addLockedResiduePair: EMPTY_FUNCTION,
     backgroundColor: '#ffffff',
     candidateResidues: [],
-    data: [],
+    experimentalProteins: [],
     height: '90%',
     hoveredResidues: [],
     hoveredSecondaryStructures: [],
@@ -81,6 +82,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     measuredProximity: CONTACT_DISTANCE_PROXIMITY.C_ALPHA,
     onMeasuredProximityChange: EMPTY_FUNCTION,
     onResize: EMPTY_FUNCTION,
+    predictedProteins: [],
     removeAllLockedResiduePairs: EMPTY_FUNCTION,
     removeCandidateResidues: EMPTY_FUNCTION,
     removeHoveredResidues: EMPTY_FUNCTION,
@@ -99,12 +101,13 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   }
 
   public componentDidMount() {
-    const { backgroundColor, data } = this.props;
+    const { backgroundColor, experimentalProteins, predictedProteins } = this.props;
     if (this.canvas) {
       const stage = this.generateStage(this.canvas, { backgroundColor });
       stage.removeAllComponents();
 
-      data.map(pdb => {
+      const allProteins = [...experimentalProteins, ...predictedProteins];
+      allProteins.map(pdb => {
         this.initData(stage, pdb.nglStructure);
       });
 
@@ -131,18 +134,20 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   public componentDidUpdate(prevProps: INGLComponentProps, prevState: NGLComponentState) {
     const {
       candidateResidues,
+      experimentalProteins,
       hoveredResidues,
       hoveredSecondaryStructures,
       lockedResiduePairs,
-      data,
+      predictedProteins,
       measuredProximity,
       selectedSecondaryStructures,
     } = this.props;
     const { stage, superpositionStatus } = this.state;
 
-    if (stage && data.length !== prevProps.data.length) {
+    const allProteins = [...experimentalProteins, ...predictedProteins];
+    if (stage && allProteins.length !== [...prevProps.experimentalProteins, ...prevProps.predictedProteins].length) {
       stage.removeAllComponents();
-      data.map(pdb => {
+      allProteins.map(pdb => {
         this.initData(stage, pdb.nglStructure);
       });
     }
@@ -251,11 +256,12 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     if (this.prevCanvas === null && this.canvas !== null && this.state.stage !== undefined) {
       const orientation = this.state.stage.viewerControls.getOrientation() as Matrix4;
       this.state.stage.removeAllComponents();
-      const { data } = this.props;
+      const { experimentalProteins, predictedProteins } = this.props;
+      const allProteins = [...experimentalProteins, ...predictedProteins];
       const { parameters } = this.state.stage;
       const stage = this.generateStage(this.canvas, parameters);
 
-      data.map(pdb => {
+      allProteins.map(pdb => {
         this.initData(stage, pdb.nglStructure);
       });
       stage.viewerControls.orient(orientation);
@@ -345,12 +351,13 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   };
 
   protected getDistanceRepForResidues(structureComponent: NGL.StructureComponent, residues: RESIDUE_TYPE[]) {
-    const { data, measuredProximity } = this.props;
+    const { experimentalProteins, predictedProteins, measuredProximity } = this.props;
 
+    const allProteins = [...experimentalProteins, ...predictedProteins];
     if (measuredProximity === CONTACT_DISTANCE_PROXIMITY.C_ALPHA) {
       return createDistanceRepresentation(structureComponent, `${residues.join('.CA, ')}.CA`);
-    } else if (data.length >= 1) {
-      const { atomIndexI, atomIndexJ } = data[0].getMinDistBetweenResidues(residues[0], residues[1]);
+    } else if (allProteins.length >= 1) {
+      const { atomIndexI, atomIndexJ } = allProteins[0].getMinDistBetweenResidues(residues[0], residues[1]);
 
       return createDistanceRepresentation(structureComponent, [atomIndexI, atomIndexJ]);
     }

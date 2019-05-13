@@ -18,12 +18,13 @@ import { getCandidates, getHovered, getLocked, selectCurrentItems } from '~biobl
 
 export interface INGLContainerProps {
   candidateResidues: RESIDUE_TYPE[];
-  data: BioblocksPDB[];
+  experimentalProteins: BioblocksPDB[];
   hoveredResidues: RESIDUE_TYPE[];
   hoveredSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
   isDataLoading: boolean;
   lockedResiduePairs: Map<string, Set<RESIDUE_TYPE>>;
   measuredProximity: CONTACT_DISTANCE_PROXIMITY;
+  predictedProteins: BioblocksPDB[];
   selectedSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
   showConfigurations: boolean;
   addCandidateResidues(residues: RESIDUE_TYPE[]): void;
@@ -40,10 +41,11 @@ export interface INGLContainerProps {
 
 export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps> {
   public static defaultProps = {
-    data: [],
     dispatchNglFetch: EMPTY_FUNCTION,
+    experimentalProteins: [],
     isDataLoading: false,
     measuredProximity: CONTACT_DISTANCE_PROXIMITY.C_ALPHA,
+    predictedProteins: [],
     showConfigurations: true,
   };
 
@@ -65,7 +67,7 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
   }
 }
 
-const mapStateToProps = (state: { [key: string]: any }, ownProps: { data: BioblocksPDB[] }) => ({
+const mapStateToProps = (state: { [key: string]: any }) => ({
   candidateResidues: getCandidates(state).toArray(),
   hoveredResidues: getHovered(state).toArray(),
   hoveredSecondaryStructures: selectCurrentItems<SECONDARY_STRUCTURE_SECTION>(

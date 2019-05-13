@@ -42,7 +42,7 @@ describe('NGLComponent', () => {
   });
 
   it('Should handle candidate residue updates.', () => {
-    const wrapper = shallow(<NGLComponent data={sampleData} />);
+    const wrapper = shallow(<NGLComponent predictedProteins={sampleData} />);
 
     wrapper.setProps({
       candidateResidues: [1, 2, 3],
@@ -50,7 +50,7 @@ describe('NGLComponent', () => {
   });
 
   it('Should handle hovered residue updates.', () => {
-    const wrapper = shallow(<NGLComponent data={sampleData} />);
+    const wrapper = shallow(<NGLComponent predictedProteins={sampleData} />);
 
     wrapper.setProps({
       hoveredResidues: [1, 2, 3],
@@ -59,7 +59,7 @@ describe('NGLComponent', () => {
 
   it('Should show the ball+stick representation for hovered residues.', () => {
     const expectedRep = 'ball+stick';
-    const wrapper = mount(<NGLComponent data={sampleData} />);
+    const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
     const instance = wrapper.instance() as NGLComponent;
 
     wrapper.setProps({
@@ -73,7 +73,7 @@ describe('NGLComponent', () => {
 
   it('Should show the distance and ball+stick representation for locked residues for C-Alpha proximity.', () => {
     const expectedRep = ['ball+stick', 'distance', 'ball+stick', 'distance'];
-    const wrapper = shallow(<NGLComponent data={sampleData} />);
+    const wrapper = shallow(<NGLComponent predictedProteins={sampleData} />);
     const instance = wrapper.instance() as NGLComponent;
 
     wrapper.setProps({
@@ -93,7 +93,9 @@ describe('NGLComponent', () => {
 
   it('Should show the distance and ball+stick representation for locked residues for Closest distance proximity.', () => {
     const expectedRep = ['ball+stick', 'distance', 'ball+stick', 'distance'];
-    const wrapper = shallow(<NGLComponent data={sampleData} measuredProximity={CONTACT_DISTANCE_PROXIMITY.CLOSEST} />);
+    const wrapper = shallow(
+      <NGLComponent predictedProteins={sampleData} measuredProximity={CONTACT_DISTANCE_PROXIMITY.CLOSEST} />,
+    );
     const instance = wrapper.instance() as NGLComponent;
 
     wrapper.setProps({
@@ -113,7 +115,7 @@ describe('NGLComponent', () => {
 
   it('Should show the distance and ball+stick representation for multiple hovered residues.', () => {
     const expectedRep = ['ball+stick', 'distance'];
-    const wrapper = mount(<NGLComponent data={sampleData} />);
+    const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
     const instance = wrapper.instance() as NGLComponent;
 
     wrapper.setProps({
@@ -131,7 +133,7 @@ describe('NGLComponent', () => {
 
   it('Should show the cartoon representation for selected secondary structures.', () => {
     const expectedRep = ['cartoon'];
-    const wrapper = mount(<NGLComponent data={sampleData} />);
+    const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
     const instance = wrapper.instance() as NGLComponent;
 
     wrapper.setProps({
@@ -146,7 +148,7 @@ describe('NGLComponent', () => {
   });
 
   it('Should follow candidate selection flow.', () => {
-    const wrapper = shallow(<NGLComponent data={sampleData} />);
+    const wrapper = shallow(<NGLComponent predictedProteins={sampleData} />);
 
     wrapper.setProps({
       lockedResiduePairs: new Map(
@@ -169,7 +171,7 @@ describe('NGLComponent', () => {
   });
 
   it('Should follow candidate residue selection flow.', () => {
-    const wrapper = mount(<NGLComponent data={sampleData} />);
+    const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
     const activeReps = (wrapper.instance() as NGLComponent).state.activeRepresentations;
 
     wrapper.setProps({
@@ -222,7 +224,7 @@ describe('NGLComponent', () => {
     };
 
     it('Should handle hover events when there is no hovered or candidate residue.', async () => {
-      const wrapper = mount(<NGLComponent data={sampleData} />);
+      const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
 
       const removeHoveredResiduesSpy = jest.fn();
       wrapper.setProps({
@@ -236,7 +238,7 @@ describe('NGLComponent', () => {
     });
 
     it('Should handle hover events when the residue name is not one of the 20 common Amino Acids.', async () => {
-      const wrapper = mount(<NGLComponent data={sampleData} />);
+      const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
 
       const removeHoveredResiduesSpy = jest.fn();
       wrapper.setProps({
@@ -250,7 +252,7 @@ describe('NGLComponent', () => {
     });
 
     it('Should handle hover events when there is a hovered residue but no candidate.', async () => {
-      const wrapper = mount(<NGLComponent data={sampleData} />);
+      const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
 
       const removeHoveredResiduesSpy = jest.fn();
       wrapper.setProps({
@@ -264,7 +266,7 @@ describe('NGLComponent', () => {
     });
 
     it('Should clear candidate and hovered residues when the mouse leaves the canvas.', async () => {
-      const wrapper = shallow(<NGLComponent data={sampleData} />);
+      const wrapper = shallow(<NGLComponent predictedProteins={sampleData} />);
       const removeNonLockedResiduesSpy = jest.fn();
 
       wrapper.setProps({
@@ -282,7 +284,7 @@ describe('NGLComponent', () => {
       'Should handle click events by creating a locked residue pair if there is a candidate.',
       async (pickingResult: NGL.PickingProxy) => {
         const addLockedSpy = jest.fn();
-        const wrapper = mount(<NGLComponent data={sampleData} />);
+        const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
         wrapper.setProps({
           addLockedResiduePair: addLockedSpy,
           candidateResidues: [2],
@@ -297,7 +299,7 @@ describe('NGLComponent', () => {
       'Should handle click events by creating a candidate residue when none is present.',
       async (pickingResult: NGL.PickingProxy) => {
         const addCandidateSpy = jest.fn();
-        const wrapper = mount(<NGLComponent data={sampleData} />);
+        const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
         wrapper.setProps({
           addCandidateResidues: addCandidateSpy,
         });
@@ -307,7 +309,7 @@ describe('NGLComponent', () => {
     );
 
     it('Should handle clicking on a distance representation.', async () => {
-      const wrapper = mount(<NGLComponent data={sampleData} />);
+      const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
       const removedLockedSpy = jest.fn();
       const stage: NGL.Stage = wrapper.state('stage');
       const structureComponent = stage.compList[0] as NGL.StructureComponent;
@@ -329,7 +331,7 @@ describe('NGLComponent', () => {
 
     it('Should handle clicking off-component.', async () => {
       const expected = new Array<string>();
-      const wrapper = mount(<NGLComponent data={sampleData} />);
+      const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
       const removeNonLockedResiduesSpy = jest.fn();
       wrapper.setProps({
         hoveredResidues: [1],
@@ -342,7 +344,7 @@ describe('NGLComponent', () => {
 
     it('Should add the hovered residue if the user clicks within a certain distance (snapping).', async () => {
       const expected = new Array<string>();
-      const wrapper = mount(<NGLComponent data={sampleData} />);
+      const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
       const addLockedResiduePairSpy = jest.fn();
       wrapper.setProps({
         addLockedResiduePair: addLockedResiduePairSpy,
@@ -356,7 +358,7 @@ describe('NGLComponent', () => {
 
     it('Should remove the hovered residue if the user clicks within beyond a certain distance (snapping).', async () => {
       const expected = new Array<string>();
-      const wrapper = mount(<NGLComponent data={sampleData} />);
+      const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
       const removeNonLockedResiduesSpy = jest.fn();
       wrapper.setProps({
         candidateResidues: [0],
@@ -372,7 +374,7 @@ describe('NGLComponent', () => {
       const removeNonLockedResiduesSpy = jest.fn();
       const wrapper = mount(
         <NGLComponent
-          data={sampleData}
+          predictedProteins={sampleData}
           candidateResidues={[1]}
           hoveredResidues={[2]}
           removeNonLockedResidues={removeNonLockedResiduesSpy}
@@ -432,7 +434,7 @@ describe('NGLComponent', () => {
     });
 
     it('Should handle changing the structure representation type to the non-default.', () => {
-      const wrapper = shallow(<NGLComponent data={sampleData} />);
+      const wrapper = shallow(<NGLComponent predictedProteins={sampleData} />);
       const instance = wrapper.instance() as NGLComponent;
       const defaultFileRepresentationSpy = jest.fn();
       if (instance.state.stage) {
@@ -459,7 +461,7 @@ describe('NGLComponent', () => {
     });
 
     it('Should handle changing the structure representation type to a non-default.', () => {
-      const wrapper = shallow(<NGLComponent data={sampleData} />);
+      const wrapper = shallow(<NGLComponent predictedProteins={sampleData} />);
       const instance = wrapper.instance() as NGLComponent;
       const expected = 'spacefill';
       expect(instance.state.activeRepresentations).toHaveLength(0);
