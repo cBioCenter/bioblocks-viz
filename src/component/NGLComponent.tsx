@@ -4,7 +4,7 @@ import * as NGL from 'ngl';
 import * as React from 'react';
 import { Matrix4, Vector2 } from 'three';
 
-import { Dimmer, Loader } from 'semantic-ui-react';
+import { Button, Dimmer, Loader } from 'semantic-ui-react';
 import { ComponentCard } from '~bioblocks-viz~/component';
 import {
   AMINO_ACID_THREE_LETTER_CODE,
@@ -30,25 +30,25 @@ import { ILockedResiduePair } from '~bioblocks-viz~/reducer';
 export type NGL_HOVER_CB_RESULT_TYPE = number;
 
 export type RepresentationDict = Map<string, NGL.RepresentationElement[]>;
+export type SUPERPOSITION_STATUS_TYPE = 'NONE' | 'PREDICTED' | 'EXPERIMENTAL' | 'BOTH';
 
 export interface INGLComponentProps {
   backgroundColor: string | number;
   candidateResidues: RESIDUE_TYPE[];
-  data: BioblocksPDB;
+  experimentalProteins: BioblocksPDB[];
   height: number | string;
   hoveredResidues: RESIDUE_TYPE[];
   hoveredSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
   isDataLoading: boolean;
   lockedResiduePairs: ILockedResiduePair;
   measuredProximity: CONTACT_DISTANCE_PROXIMITY;
+  predictedProteins: BioblocksPDB[];
   selectedSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
-  showConfigurations: boolean;
   style?: BIOBLOCKS_CSS_STYLE;
   width: number | string;
   addCandidateResidues(residues: RESIDUE_TYPE[]): void;
   addHoveredResidues(residues: RESIDUE_TYPE[]): void;
   addLockedResiduePair(residuePair: ILockedResiduePair): void;
-  dispatchPdbFetch(dataset: string, fetchFn: () => Promise<BioblocksPDB>): void;
   onMeasuredProximityChange?(value: number): void;
   onResize?(event?: UIEvent): void;
   removeAllLockedResiduePairs(): void;
@@ -61,6 +61,7 @@ export interface INGLComponentProps {
 export const initialNGLState = {
   activeRepresentations: new Array<NGL.RepresentationElement>(),
   stage: undefined as NGL.Stage | undefined,
+  superpositionStatus: 'NONE' as SUPERPOSITION_STATUS_TYPE,
 };
 
 export type NGLComponentState = Readonly<typeof initialNGLState>;
@@ -72,9 +73,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     addLockedResiduePair: EMPTY_FUNCTION,
     backgroundColor: '#ffffff',
     candidateResidues: [],
-    data: BioblocksPDB.createEmptyPDB(),
-    dispatchNglFetch: EMPTY_FUNCTION,
-    dispatchPdbFetch: EMPTY_FUNCTION,
+    experimentalProteins: [],
     height: '90%',
     hoveredResidues: [],
     hoveredSecondaryStructures: [],
@@ -83,13 +82,13 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     measuredProximity: CONTACT_DISTANCE_PROXIMITY.C_ALPHA,
     onMeasuredProximityChange: EMPTY_FUNCTION,
     onResize: EMPTY_FUNCTION,
+    predictedProteins: [],
     removeAllLockedResiduePairs: EMPTY_FUNCTION,
     removeCandidateResidues: EMPTY_FUNCTION,
     removeHoveredResidues: EMPTY_FUNCTION,
     removeLockedResiduePair: EMPTY_FUNCTION,
     removeNonLockedResidues: EMPTY_FUNCTION,
     selectedSecondaryStructures: [],
-    showConfigurations: true,
     width: '100%',
   };
   public readonly state: NGLComponentState = initialNGLState;
@@ -102,11 +101,15 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   }
 
   public componentDidMount() {
-    const { backgroundColor, data } = this.props;
+    const { backgroundColor, experimentalProteins, predictedProteins } = this.props;
     if (this.canvas) {
       const stage = this.generateStage(this.canvas, { backgroundColor });
+      stage.removeAllComponents();
 
-      this.initData(stage, data.nglStructure);
+      const allProteins = [...experimentalProteins, ...predictedProteins];
+      allProteins.map(pdb => {
+        this.initData(stage, pdb.nglStructure);
+      });
 
       this.setState({
         stage,
@@ -131,20 +134,30 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   public componentDidUpdate(prevProps: INGLComponentProps, prevState: NGLComponentState) {
     const {
       candidateResidues,
+      experimentalProteins,
       hoveredResidues,
       hoveredSecondaryStructures,
       lockedResiduePairs,
-      data,
+      predictedProteins,
       measuredProximity,
       selectedSecondaryStructures,
     } = this.props;
-    const { stage } = this.state;
+    const { stage, superpositionStatus } = this.state;
 
-    if (stage && data.nglStructure !== prevProps.data.nglStructure) {
-      this.initData(stage, data.nglStructure);
+    const allProteins = [...experimentalProteins, ...predictedProteins];
+    if (stage && allProteins.length !== [...prevProps.experimentalProteins, ...prevProps.predictedProteins].length) {
+      stage.removeAllComponents();
+      allProteins.map(pdb => {
+        this.initData(stage, pdb.nglStructure);
+      });
+      this.handleSuperposition(stage, superpositionStatus);
     }
 
     if (stage && stage.compList.length >= 1) {
+      if (superpositionStatus !== prevState.superpositionStatus) {
+        this.handleSuperposition(stage, superpositionStatus);
+      }
+
       const structureComponent = stage.compList[0] as NGL.StructureComponent;
 
       const isHighlightUpdateNeeded =
@@ -163,6 +176,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
           activeRepresentations: this.deriveActiveRepresentations(structureComponent),
         });
       }
+      this.handleSuperposition(stage, superpositionStatus);
       stage.viewer.requestRender();
     }
   }
@@ -180,12 +194,12 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
 
     return (
       <ComponentCard componentName={'NGL Viewer'}>
-        <div className="NGLComponent" style={computedStyle}>
+        <div className={'NGLComponent'} style={computedStyle}>
           <Dimmer active={isDataLoading}>
             <Loader />
           </Dimmer>
           <div
-            className="NGLCanvas"
+            className={'NGLCanvas'}
             onKeyDown={this.onKeyDown}
             onMouseLeave={this.onCanvasLeave}
             ref={this.canvasRefCallback}
@@ -193,10 +207,50 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
             style={{ height: '100%', width: '100%' }}
           />
         </div>
+        <div style={{ bottom: '27px', height: '27px', position: 'relative', right: '5px' }}>
+          <Button
+            active={this.state.superpositionStatus !== 'NONE'}
+            floated={'right'}
+            onClick={this.onSuperpositionToggle}
+            toggle={true}
+          >
+            {`Superposition: ${this.state.superpositionStatus === 'NONE' ? 'off' : 'on'}`}
+          </Button>
+        </div>
       </ComponentCard>
     );
   }
 
+  /**
+   * Adds a NGL structure to the stage.
+   *
+   * @param structure A NGL Structure.
+   * @param stage A NGL Stage.
+   */
+  protected addStructureToStage(structure: NGL.Structure, stage: NGL.Stage) {
+    const structureComponent = stage.addComponentFromObject(structure);
+    structureComponent.stage.mouseControls.add(
+      NGL.MouseActions.HOVER_PICK,
+      (aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) => {
+        this.onHover(aStage, pickingProxy);
+      },
+    );
+
+    stage.defaultFileRepresentation(structureComponent);
+    stage.signals.clicked.add(this.onClick);
+    const activeRepresentations = this.deriveActiveRepresentations(structureComponent);
+    this.setState({
+      activeRepresentations,
+    });
+    stage.viewer.requestRender();
+  }
+
+  /**
+   * Callback for when the canvas element is mounted.
+   * This is needed to ensure the NGL camera preserves orientation if the DOM node is re-mounted, like for full-page mode.
+   *
+   * @param el The canvas element.
+   */
   protected canvasRefCallback = (el: HTMLDivElement) => {
     this.prevCanvas = this.canvas;
     this.canvas = el;
@@ -204,11 +258,14 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     if (this.prevCanvas === null && this.canvas !== null && this.state.stage !== undefined) {
       const orientation = this.state.stage.viewerControls.getOrientation() as Matrix4;
       this.state.stage.removeAllComponents();
-      const { data } = this.props;
+      const { experimentalProteins, predictedProteins } = this.props;
+      const allProteins = [...experimentalProteins, ...predictedProteins];
       const { parameters } = this.state.stage;
       const stage = this.generateStage(this.canvas, parameters);
 
-      this.initData(stage, data.nglStructure);
+      allProteins.map(pdb => {
+        this.initData(stage, pdb.nglStructure);
+      });
       stage.viewerControls.orient(orientation);
       stage.viewer.requestRender();
       this.setState({
@@ -216,20 +273,6 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       });
     }
   };
-
-  protected initData(stage: NGL.Stage, structure: NGL.Structure | null) {
-    stage.removeAllComponents();
-
-    if (structure) {
-      // !IMPORTANT! We need to deeply clone the NGL data!
-      // If we have multiple NGL components displaying the same data, removing the component will affect
-      // the others because they (internally) delete keys/references.
-
-      this.addStructureToStage(cloneDeep(structure), stage);
-    }
-
-    stage.viewer.requestRender();
-  }
 
   protected deriveActiveRepresentations(structureComponent: NGL.StructureComponent) {
     const {
@@ -255,30 +298,17 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     ];
   }
 
-  /**
-   * Adds a NGL structure to the stage.
-   *
-   * @param structure A NGL Structure.
-   * @param stage A NGL Stage.
-   */
-  protected addStructureToStage(structure: NGL.Structure, stage: NGL.Stage) {
-    const structureComponent = stage.addComponentFromObject(structure);
+  protected generateStage = (canvas: HTMLElement, params?: Partial<NGL.IStageParameters>) => {
+    const stage = new NGL.Stage(canvas, params);
 
-    structureComponent.stage.mouseControls.add(
-      NGL.MouseActions.HOVER_PICK,
-      (aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) => {
-        this.onHover(aStage, pickingProxy);
-      },
-    );
+    // !IMPORTANT! This is needed to prevent the canvas shifting when the user clicks the canvas.
+    // It's unclear why the focus does this, but it's undesirable.
+    stage.keyBehavior.domElement.focus = () => {
+      return;
+    };
 
-    stage.defaultFileRepresentation(structureComponent);
-    stage.signals.clicked.add(this.onClick);
-    const activeRepresentations = this.deriveActiveRepresentations(structureComponent);
-    this.setState({
-      activeRepresentations,
-    });
-    stage.viewer.requestRender();
-  }
+    return stage;
+  };
 
   protected getConfigurations = () => {
     const { removeAllLockedResiduePairs } = this.props;
@@ -322,6 +352,116 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     ] as BioblocksWidgetConfig[];
   };
 
+  protected getDistanceRepForResidues(structureComponent: NGL.StructureComponent, residues: RESIDUE_TYPE[]) {
+    const { experimentalProteins, predictedProteins, measuredProximity } = this.props;
+
+    const allProteins = [...experimentalProteins, ...predictedProteins];
+    if (measuredProximity === CONTACT_DISTANCE_PROXIMITY.C_ALPHA) {
+      return createDistanceRepresentation(structureComponent, `${residues.join('.CA, ')}.CA`);
+    } else if (allProteins.length >= 1) {
+      const { atomIndexI, atomIndexJ } = allProteins[0].getMinDistBetweenResidues(residues[0], residues[1]);
+
+      return createDistanceRepresentation(structureComponent, [atomIndexI, atomIndexJ]);
+    }
+  }
+
+  protected handleSuperposition(stage: NGL.Stage, superpositionStatus: SUPERPOSITION_STATUS_TYPE) {
+    if (superpositionStatus === 'BOTH') {
+      for (let i = 1; i < stage.compList.length; ++i) {
+        NGL.superpose(stage.compList[i].object as NGL.Structure, stage.compList[0].object as NGL.Structure, true);
+      }
+
+      for (const component of stage.compList) {
+        component.setPosition([0, 0, 0]);
+        component.updateRepresentations({ position: true });
+      }
+
+      if (stage.compList[0]) {
+        stage.compList[0].autoView();
+      } else {
+        stage.autoView();
+      }
+    } else if (superpositionStatus === 'NONE') {
+      stage.compList.forEach((component, index) => {
+        component.setPosition([index * 50, 0, 0]);
+        stage.compList[0].updateRepresentations({ position: true });
+      });
+      stage.autoView();
+    }
+  }
+
+  protected highlightCandidateResidues(structureComponent: NGL.StructureComponent, residues: RESIDUE_TYPE[]) {
+    const reps = new Array<NGL.RepresentationElement>();
+
+    if (residues.length >= 1) {
+      reps.push(createBallStickRepresentation(structureComponent, residues));
+      if (residues.length >= 2) {
+        const rep = this.getDistanceRepForResidues(structureComponent, residues);
+        if (rep) {
+          reps.push(rep);
+        }
+      }
+    }
+
+    return reps;
+  }
+
+  protected highlightLockedDistancePairs(
+    structureComponent: NGL.StructureComponent,
+    lockedResidues: ILockedResiduePair,
+  ) {
+    const reps = new Array<NGL.RepresentationElement>();
+
+    for (const residues of Object.values(lockedResidues)) {
+      reps.push(createBallStickRepresentation(structureComponent, residues));
+
+      if (residues.length >= 2) {
+        const rep = this.getDistanceRepForResidues(structureComponent, residues);
+        if (rep) {
+          reps.push(rep);
+        }
+      }
+    }
+
+    return reps;
+  }
+
+  protected highlightSecondaryStructures(
+    structureComponent: NGL.StructureComponent,
+    secondaryStructures: SECONDARY_STRUCTURE,
+  ) {
+    const reps = new Array<NGL.RepresentationElement>();
+
+    for (const structure of secondaryStructures) {
+      reps.push(createSecStructRepresentation(structureComponent, structure));
+    }
+
+    return reps;
+  }
+
+  protected initData(stage: NGL.Stage, structure: NGL.Structure | null) {
+    if (structure) {
+      // !IMPORTANT! We need to deeply clone the NGL data!
+      // If we have multiple NGL components displaying the same data, removing the component will affect
+      // the others because they (internally) delete keys/references.
+
+      this.addStructureToStage(cloneDeep(structure), stage);
+    }
+    stage.viewer.requestRender();
+  }
+
+  protected measuredProximityHandler = (value: number) => {
+    const { onMeasuredProximityChange } = this.props;
+    if (onMeasuredProximityChange) {
+      onMeasuredProximityChange(value);
+    }
+  };
+
+  protected onCanvasLeave = () => {
+    const { removeNonLockedResidues } = this.props;
+    removeNonLockedResidues();
+  };
+
   protected onClick = (pickingProxy: NGL.PickingProxy) => {
     const {
       addLockedResiduePair,
@@ -334,65 +474,72 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     } = this.props;
     const { stage } = this.state;
     if (this.canvas && stage) {
-      const structureComponent = stage.compList[0] as NGL.StructureComponent;
-      if (pickingProxy) {
-        const isDistancePicker = pickingProxy.picker && pickingProxy.picker.type === 'distance';
+      for (const structureComponent of stage.compList as NGL.StructureComponent[]) {
+        if (pickingProxy) {
+          const isDistancePicker = pickingProxy.picker && pickingProxy.picker.type === 'distance';
 
-        if (isDistancePicker) {
-          const residues = [pickingProxy.distance.atom1.resno, pickingProxy.distance.atom2.resno];
-          removeLockedResiduePair(residues.sort().toString());
-        } else if (pickingProxy.atom || pickingProxy.closestBondAtom) {
-          const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
+          if (isDistancePicker) {
+            const residues = [pickingProxy.distance.atom1.resno, pickingProxy.distance.atom2.resno];
+            removeLockedResiduePair(residues.sort().toString());
+          } else if (pickingProxy.atom || pickingProxy.closestBondAtom) {
+            const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
 
-          if (candidateResidues.length >= 1) {
-            const sortedResidues = [...candidateResidues, atom.resno].sort();
-            addLockedResiduePair({ [sortedResidues.toString()]: [...candidateResidues, atom.resno] });
-            removeCandidateResidues();
-          } else {
-            addCandidateResidues([atom.resno]);
-          }
-        }
-      } else if (candidateResidues.length >= 1 && hoveredResidues.length >= 1) {
-        hoveredResidues.forEach(residueIndex => {
-          const getMinDist = (residueStore: NGL.ResidueStore, target: Vector2) => {
-            let minDist = Number.MAX_SAFE_INTEGER;
-            const atomOffset = residueStore.atomOffset[residueIndex];
-            const atomCount = residueStore.atomCount[residueIndex];
-            for (let i = 0; i < atomCount; ++i) {
-              const atomProxy = structureComponent.structure.getAtomProxy(atomOffset + i);
-              const atomPosition = structureComponent.stage.viewerControls.getPositionOnCanvas(
-                atomProxy.positionToVector3(),
-              );
-              minDist = Math.min(minDist, target.distanceTo(atomPosition));
+            if (candidateResidues.length >= 1) {
+              const sortedResidues = [...candidateResidues, atom.resno].sort();
+              addLockedResiduePair({ [sortedResidues.toString()]: [...candidateResidues, atom.resno] });
+              removeCandidateResidues();
+            } else {
+              addCandidateResidues([atom.resno]);
             }
-
-            return minDist;
-          };
-
-          // ! IMPORTANT !
-          // This is a rather brute force approach to see if the mouse is close to a residue.
-          // The main problem is __reliably__ getting the (x,y) of where the user clicked and the "residue" they were closest to.
-          const { down, canvasPosition, position, prevClickCP, prevPosition } = structureComponent.stage.mouseObserver;
-          const minDistances = [down, canvasPosition, prevClickCP, prevPosition, position].map(pos =>
-            getMinDist(structureComponent.structure.residueStore, pos),
-          );
-
-          // Shorthand to make it clearer that this method is just checking if any distance is within 100.
-          const isWithinSnappingDistance = (distances: number[], limit = 100) =>
-            distances.filter(dist => dist < limit).length >= 1;
-
-          if (isWithinSnappingDistance(minDistances)) {
-            const sortedResidues = [...candidateResidues, residueIndex].sort();
-            addLockedResiduePair({ [sortedResidues.toString()]: [...candidateResidues, residueIndex] });
-
-            removeCandidateResidues();
-          } else {
-            removeNonLockedResidues();
           }
-        });
-      } else {
-        // User clicked off-structure, so clear non-locked residue state.
-        removeNonLockedResidues();
+        } else if (candidateResidues.length >= 1 && hoveredResidues.length >= 1) {
+          hoveredResidues.forEach(residueIndex => {
+            const getMinDist = (residueStore: NGL.ResidueStore, target: Vector2) => {
+              let minDist = Number.MAX_SAFE_INTEGER;
+              const atomOffset = residueStore.atomOffset[residueIndex];
+              const atomCount = residueStore.atomCount[residueIndex];
+              for (let i = 0; i < atomCount; ++i) {
+                const atomProxy = structureComponent.structure.getAtomProxy(atomOffset + i);
+                const atomPosition = structureComponent.stage.viewerControls.getPositionOnCanvas(
+                  atomProxy.positionToVector3(),
+                );
+                minDist = Math.min(minDist, target.distanceTo(atomPosition));
+              }
+
+              return minDist;
+            };
+
+            // ! IMPORTANT !
+            // This is a rather brute force approach to see if the mouse is close to a residue.
+            // The main problem is __reliably__ getting the (x,y) of where the user clicked and the "residue" they were closest to.
+            const {
+              down,
+              canvasPosition,
+              position,
+              prevClickCP,
+              prevPosition,
+            } = structureComponent.stage.mouseObserver;
+            const minDistances = [down, canvasPosition, prevClickCP, prevPosition, position].map(pos =>
+              getMinDist(structureComponent.structure.residueStore, pos),
+            );
+
+            // Shorthand to make it clearer that this method is just checking if any distance is within 100.
+            const isWithinSnappingDistance = (distances: number[], limit = 100) =>
+              distances.filter(dist => dist < limit).length >= 1;
+
+            if (isWithinSnappingDistance(minDistances)) {
+              const sortedResidues = [...candidateResidues, residueIndex].sort();
+              addLockedResiduePair({ [sortedResidues.toString()]: [...candidateResidues, residueIndex] });
+
+              removeCandidateResidues();
+            } else {
+              removeNonLockedResidues();
+            }
+          });
+        } else {
+          // User clicked off-structure, so clear non-locked residue state.
+          removeNonLockedResidues();
+        }
       }
     }
   };
@@ -414,71 +561,14 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     }
   }
 
-  protected measuredProximityHandler = (value: number) => {
-    const { onMeasuredProximityChange } = this.props;
-    if (onMeasuredProximityChange) {
-      onMeasuredProximityChange(value);
+  protected onKeyDown = (event: React.KeyboardEvent) => {
+    event.preventDefault();
+    const ESC_KEY_CODE = 27;
+
+    if (event.which === ESC_KEY_CODE || event.keyCode === ESC_KEY_CODE) {
+      const { removeNonLockedResidues } = this.props;
+      removeNonLockedResidues();
     }
-  };
-
-  protected getDistanceRepForResidues(structureComponent: NGL.StructureComponent, residues: RESIDUE_TYPE[]) {
-    const { data, measuredProximity } = this.props;
-
-    if (measuredProximity === CONTACT_DISTANCE_PROXIMITY.C_ALPHA) {
-      return createDistanceRepresentation(structureComponent, `${residues.join('.CA, ')}.CA`);
-    } else {
-      const { atomIndexI, atomIndexJ } = data.getMinDistBetweenResidues(residues[0], residues[1]);
-
-      return createDistanceRepresentation(structureComponent, [atomIndexI, atomIndexJ]);
-    }
-  }
-
-  protected highlightCandidateResidues(structureComponent: NGL.StructureComponent, residues: RESIDUE_TYPE[]) {
-    const reps = new Array<NGL.RepresentationElement>();
-
-    if (residues.length >= 1) {
-      reps.push(createBallStickRepresentation(structureComponent, residues));
-      if (residues.length >= 2) {
-        reps.push(this.getDistanceRepForResidues(structureComponent, residues));
-      }
-    }
-
-    return reps;
-  }
-
-  protected highlightLockedDistancePairs(
-    structureComponent: NGL.StructureComponent,
-    lockedResidues: ILockedResiduePair,
-  ) {
-    const reps = new Array<NGL.RepresentationElement>();
-
-    for (const residues of Object.values(lockedResidues)) {
-      reps.push(createBallStickRepresentation(structureComponent, residues));
-
-      if (residues.length >= 2) {
-        reps.push(this.getDistanceRepForResidues(structureComponent, residues));
-      }
-    }
-
-    return reps;
-  }
-
-  protected highlightSecondaryStructures(
-    structureComponent: NGL.StructureComponent,
-    secondaryStructures: SECONDARY_STRUCTURE,
-  ) {
-    const reps = new Array<NGL.RepresentationElement>();
-
-    for (const structure of secondaryStructures) {
-      reps.push(createSecStructRepresentation(structureComponent, structure));
-    }
-
-    return reps;
-  }
-
-  protected onCanvasLeave = () => {
-    const { removeNonLockedResidues } = this.props;
-    removeNonLockedResidues();
   };
 
   protected onResizeHandler = (event?: UIEvent) => {
@@ -492,25 +582,16 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     }
   };
 
-  protected onKeyDown = (e: React.KeyboardEvent) => {
-    e.preventDefault();
-    const ESC_KEY_CODE = 27;
-
-    if (e.which === ESC_KEY_CODE || e.keyCode === ESC_KEY_CODE) {
-      const { removeNonLockedResidues } = this.props;
-      removeNonLockedResidues();
+  protected onSuperpositionToggle = (event?: React.MouseEvent) => {
+    const { superpositionStatus } = this.state;
+    if (superpositionStatus === 'NONE') {
+      this.setState({
+        superpositionStatus: 'BOTH',
+      });
+    } else {
+      this.setState({
+        superpositionStatus: 'NONE',
+      });
     }
-  };
-
-  protected generateStage = (canvas: HTMLElement, params?: NGL.Partial<NGL.IStageParameters>) => {
-    const stage = new NGL.Stage(canvas, params);
-
-    // !IMPORTANT! This is needed to prevent the canvas shifting when the user clicks the canvas.
-    // It's unclear why the focus does this, but it's undesirable.
-    stage.keyBehavior.domElement.focus = () => {
-      return;
-    };
-
-    return stage;
   };
 }

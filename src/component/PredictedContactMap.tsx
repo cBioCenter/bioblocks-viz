@@ -47,18 +47,6 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     super(props);
   }
 
-  public onLinearDistFilterChange = () => (value: number) => {
-    this.setState({
-      linearDistFilter: value,
-    });
-  };
-
-  public onNumPredictionsToShowChange = () => (value: number) => {
-    this.setState({
-      numPredictionsToShow: value,
-    });
-  };
-
   public componentDidMount() {
     this.setupData(true);
   }
@@ -95,6 +83,18 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
       </div>
     );
   }
+
+  public onLinearDistFilterChange = () => (value: number) => {
+    this.setState({
+      linearDistFilter: value,
+    });
+  };
+
+  public onNumPredictionsToShowChange = () => (value: number) => {
+    this.setState({
+      numPredictionsToShow: value,
+    });
+  };
 
   protected getContactMapConfigs = (): BioblocksWidgetConfig[] => [
     {

@@ -3,8 +3,14 @@ import * as plotly from 'plotly.js/lib/index-gl2d';
 import * as React from 'react';
 
 import { AuxiliaryAxis, PlotlyChart, SecondaryStructureAxis } from '~bioblocks-viz~/component';
-import { BioblocksWidgetConfig, IPlotlyData, RESIDUE_TYPE, SECONDARY_STRUCTURE } from '~bioblocks-viz~/data';
-import { generateScatterGLData } from '~bioblocks-viz~/helper';
+import {
+  BioblocksWidgetConfig,
+  IPlotlyData,
+  RESIDUE_TYPE,
+  SECONDARY_STRUCTURE,
+  SECONDARY_STRUCTURE_KEYS,
+} from '~bioblocks-viz~/data';
+import { ColorMapper, generateScatterGLData } from '~bioblocks-viz~/helper';
 
 export interface IContactMapChartProps {
   candidateResidues: RESIDUE_TYPE[];
@@ -21,6 +27,7 @@ export interface IContactMapChartProps {
   };
   range: number;
   secondaryStructures: SECONDARY_STRUCTURE[];
+  secondaryStructureColors?: ColorMapper<SECONDARY_STRUCTURE_KEYS>;
   selectedSecondaryStructures: SECONDARY_STRUCTURE[];
   selectedSecondaryStructuresColor: string;
   showConfigurations: boolean;
@@ -199,16 +206,22 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
    * Transforms all data from bioblocks terminology to data properly formatted for Plotly consumption.
    */
   protected setupData() {
-    const { contactData, dataTransformFn, secondaryStructures, selectedSecondaryStructures } = this.props;
+    const {
+      contactData,
+      dataTransformFn,
+      secondaryStructures,
+      secondaryStructureColors,
+      selectedSecondaryStructures,
+    } = this.props;
     const plotlyData = [...contactData.map(entry => dataTransformFn(entry, true))];
     secondaryStructures.forEach((secondaryStructure, index) => {
-      const axis = new SecondaryStructureAxis(secondaryStructure, 3, index + 2);
+      const axis = new SecondaryStructureAxis(secondaryStructure, 3, index + 2, secondaryStructureColors);
       plotlyData.push(...axis.xAxes, ...axis.yAxes);
     });
 
     const highlightedAxes = new Array<Partial<IPlotlyData>>();
     selectedSecondaryStructures.forEach((selectedStructure, index) => {
-      const axis = new AuxiliaryAxis(selectedStructure, index + 2, 'orange');
+      const axis = new AuxiliaryAxis(selectedStructure, index + 2, new ColorMapper(new Map(), 'orange'));
       highlightedAxes.push(...axis.highlightedXAxes, ...axis.highlightedYAxes);
     });
 

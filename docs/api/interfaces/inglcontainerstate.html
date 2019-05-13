@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ISecondaryStructure | bioblocks-viz</title>
+	<title>INGLContainerState | bioblocks-viz</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="isecondarystructure.html">ISecondaryStructure</a>
+					<a href="inglcontainerstate.html">INGLContainerState</a>
 				</li>
 			</ul>
-			<h1>Interface ISecondaryStructure</h1>
+			<h1>Interface INGLContainerState</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ISecondaryStructure</span>
+						<span class="target">INGLContainerState</span>
 					</li>
 				</ul>
 			</section>
@@ -79,9 +79,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="isecondarystructure.html#code" class="tsd-kind-icon">code</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="isecondarystructure.html#minresiduelength" class="tsd-kind-icon">min<wbr>Residue<wbr>Length</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="isecondarystructure.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="inglcontainerstate.html#selectedexperimentalproteins" class="tsd-kind-icon">selected<wbr>Experimental<wbr>Proteins</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="inglcontainerstate.html#selectedpredictedproteins" class="tsd-kind-icon">selected<wbr>Predicted<wbr>Proteins</a></li>
 							</ul>
 						</section>
 					</div>
@@ -90,32 +89,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="code" class="tsd-anchor"></a>
-					<h3>code</h3>
-					<div class="tsd-signature tsd-kind-icon">code<span class="tsd-signature-symbol">:</span> <a href="../enums/secondary_structure_codes.html" class="tsd-signature-type">SECONDARY_STRUCTURE_CODES</a></div>
+					<a name="selectedexperimentalproteins" class="tsd-anchor"></a>
+					<h3>selected<wbr>Experimental<wbr>Proteins</h3>
+					<div class="tsd-signature tsd-kind-icon">selected<wbr>Experimental<wbr>Proteins<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8755efe5/src/data/BioblocksData.ts#L103">src/data/BioblocksData.ts:103</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/ae4044f01/src/container/NGLContainer.tsx#L44">src/container/NGLContainer.tsx:44</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="minresiduelength" class="tsd-anchor"></a>
-					<h3>min<wbr>Residue<wbr>Length</h3>
-					<div class="tsd-signature tsd-kind-icon">min<wbr>Residue<wbr>Length<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="selectedpredictedproteins" class="tsd-anchor"></a>
+					<h3>selected<wbr>Predicted<wbr>Proteins</h3>
+					<div class="tsd-signature tsd-kind-icon">selected<wbr>Predicted<wbr>Proteins<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8755efe5/src/data/BioblocksData.ts#L105">src/data/BioblocksData.ts:105</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="name" class="tsd-anchor"></a>
-					<h3>name</h3>
-					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8755efe5/src/data/BioblocksData.ts#L104">src/data/BioblocksData.ts:104</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/ae4044f01/src/container/NGLContainer.tsx#L45">src/container/NGLContainer.tsx:45</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -134,16 +123,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="isecondarystructure.html" class="tsd-kind-icon">ISecondary<wbr>Structure</a>
+						<a href="inglcontainerstate.html" class="tsd-kind-icon">INGLContainer<wbr>State</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="isecondarystructure.html#code" class="tsd-kind-icon">code</a>
+								<a href="inglcontainerstate.html#selectedexperimentalproteins" class="tsd-kind-icon">selected<wbr>Experimental<wbr>Proteins</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="isecondarystructure.html#minresiduelength" class="tsd-kind-icon">min<wbr>Residue<wbr>Length</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="isecondarystructure.html#name" class="tsd-kind-icon">name</a>
+								<a href="inglcontainerstate.html#selectedpredictedproteins" class="tsd-kind-icon">selected<wbr>Predicted<wbr>Proteins</a>
 							</li>
 						</ul>
 					</li>

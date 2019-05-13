@@ -9,6 +9,7 @@ import {
   SECONDARY_STRUCTURE_KEYS,
   SECONDARY_STRUCTURE_SECTION,
 } from '~bioblocks-viz~/data';
+import { ColorMapper } from '~bioblocks-viz~/helper';
 
 /**
  * Class to represent the x and y axis for a secondary structure on a Plotly graph.
@@ -25,12 +26,10 @@ export class SecondaryStructureAxis extends AuxiliaryAxis<SECONDARY_STRUCTURE_KE
     readonly sections: SECONDARY_STRUCTURE,
     readonly minimumRequiredResidues: number = 3,
     readonly axisIndex: number = 2,
-    readonly defaultColor = 'black',
-    readonly colorMap: { [key: string]: string } = {
-      C: 'red',
-      E: 'green',
-      H: 'blue',
-    },
+    readonly colorMap = new ColorMapper<SECONDARY_STRUCTURE_KEYS>(
+      new Map([['C', 'red'], ['E', 'green'], ['H', 'blue']]),
+      'black',
+    ),
     readonly dataTransformFn = {
       C: SecondaryStructureAxis.centerSectionPositionFn,
       E: SecondaryStructureAxis.centerSectionPositionFn,
@@ -41,7 +40,7 @@ export class SecondaryStructureAxis extends AuxiliaryAxis<SECONDARY_STRUCTURE_KE
     },
     readonly filterFn = (section: SECONDARY_STRUCTURE_SECTION) => section.length <= minimumRequiredResidues,
   ) {
-    super(sections, axisIndex, defaultColor, colorMap, dataTransformFn, filterFn);
+    super(sections, axisIndex, colorMap, dataTransformFn);
   }
 
   protected setupAuxiliaryAxis() {
@@ -91,7 +90,7 @@ export class SecondaryStructureAxis extends AuxiliaryAxis<SECONDARY_STRUCTURE_KE
       },
       marker: {
         ...data.marker,
-        color: this.colorMap.E,
+        color: this.colorMap.getColorFor('E'),
         size: 10,
         symbol: symbols,
       },

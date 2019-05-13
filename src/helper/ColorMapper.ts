@@ -22,12 +22,11 @@ export class ColorMapper<T> {
     'brown',
   ];
 
-  /**
-   * Used to associate keys with a Color.
-   */
-  protected colorMap: Map<T, Color> = new Map<T, Color>();
-
-  public constructor(readonly colors: Color[] = ColorMapper.DEFAULT_COLORS) {}
+  public constructor(
+    readonly colorMap = new Map<T, Color | undefined>(),
+    readonly defaultColor: SemanticCOLORS = 'black',
+    readonly colors: Color[] = ColorMapper.DEFAULT_COLORS,
+  ) {}
 
   /**
    * Get the color for the provided key - if the key isn't stored, it will be added using the set of colors for this mapper.
@@ -59,8 +58,8 @@ export class ColorMapper<T> {
    * @param [color] Explicit color to use if provided.
    * @param [addToColors] Flag to allow/disallow color to be added to set of colors used by this ColorMapper.
    */
-  protected addColorToMapper(key: T, color?: Color, addToColors?: boolean) {
-    this.colorMap.set(key, color ? color : this.colors[this.colorMap.size % this.colors.length]);
+  protected addColorToMapper(key: T, color: Color = this.defaultColor, addToColors?: boolean) {
+    this.colorMap.set(key, color);
     if (color && addToColors && !this.colors.includes(color)) {
       this.colors.push(color);
     }

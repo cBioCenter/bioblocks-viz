@@ -1,5 +1,6 @@
 import { AuxiliaryAxis } from '~bioblocks-viz~/component';
 import { Bioblocks1DSection } from '~bioblocks-viz~/data';
+import { ColorMapper } from '~bioblocks-viz~/helper';
 
 describe('AuxiliaryAxis', () => {
   let sampleSections: Array<Bioblocks1DSection<string>>;
@@ -17,7 +18,7 @@ describe('AuxiliaryAxis', () => {
       johto: jest.fn(() => ({ main: 0, opposite: 0 })),
       kanto: jest.fn(() => ({ main: 0, opposite: 0 })),
     };
-    const result = new AuxiliaryAxis(sampleSections, 0, 'black', {}, dataTransformSpy);
+    const result = new AuxiliaryAxis(sampleSections, 0, new ColorMapper(), dataTransformSpy);
     expect(result.axis.size).toEqual(2);
     expect(dataTransformSpy.johto).toHaveBeenCalled();
     expect(dataTransformSpy.kanto).toHaveBeenCalled();
@@ -25,7 +26,7 @@ describe('AuxiliaryAxis', () => {
 
   it('Should allow a filter function to determine if a section gets transformed.', () => {
     const filterSpy = jest.fn();
-    const result = new AuxiliaryAxis(sampleSections, 0, 'black', {}, undefined, filterSpy);
+    const result = new AuxiliaryAxis(sampleSections, 0, new ColorMapper(), undefined, filterSpy);
     expect(result.axis.size).toEqual(2);
     expect(filterSpy).toHaveBeenCalledTimes(2);
   });
@@ -36,7 +37,7 @@ describe('AuxiliaryAxis', () => {
       kanto: jest.fn(),
     };
     const filterSpy = jest.fn((section: Bioblocks1DSection<string>) => section.label === 'kanto');
-    const result = new AuxiliaryAxis(sampleSections, 0, 'black', {}, dataTransformSpy, filterSpy);
+    const result = new AuxiliaryAxis(sampleSections, 0, new ColorMapper(), dataTransformSpy, filterSpy);
     expect(result.axis.size).toEqual(1);
     expect(filterSpy).toHaveBeenCalled();
     expect(dataTransformSpy.johto).toHaveBeenCalled();
@@ -44,16 +45,8 @@ describe('AuxiliaryAxis', () => {
   });
 
   it('Should allow a color map to color specific sections.', () => {
-    const colorMap = {
-      johto: 'gold',
-      kanto: 'red',
-    };
-    const result = new AuxiliaryAxis(
-      [...sampleSections, new Bioblocks1DSection('unova', 494, 649)],
-      0,
-      'black',
-      colorMap,
-    );
+    const colorMap = new ColorMapper(new Map([['johto', 'gold'], ['kanto', 'red']]));
+    const result = new AuxiliaryAxis([...sampleSections, new Bioblocks1DSection('unova', 494, 649)], 0, colorMap);
     expect(result.axis.size).toEqual(3);
 
     const johtoAxis = result.getAxisById('johto');

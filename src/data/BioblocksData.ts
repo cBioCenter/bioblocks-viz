@@ -99,12 +99,6 @@ export enum SECONDARY_STRUCTURE_CODES {
 
 export type SECONDARY_STRUCTURE_KEYS = keyof typeof SECONDARY_STRUCTURE_CODES;
 
-export interface ISecondaryStructure {
-  code: SECONDARY_STRUCTURE_CODES;
-  name: string;
-  minResidueLength: number;
-}
-
 export enum BIOBLOCKS_CHART_EVENT_TYPE {
   AFTER_PLOT,
   CLICK,

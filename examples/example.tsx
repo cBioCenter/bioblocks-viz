@@ -5,7 +5,7 @@ import { Accordion, Button, Grid, GridColumn, GridRow, Header, Label, Message, S
 
 import { createContainerActions, createResiduePairActions } from '~bioblocks-viz~/action';
 import { ContactMap, PredictedContactMap } from '~bioblocks-viz~/component';
-import { NGLContainer, ProteinFeatureViewer } from '~bioblocks-viz~/container';
+import { NGLContainer } from '~bioblocks-viz~/container';
 import {
   BIOBLOCKS_CSS_STYLE,
   BioblocksPDB,
@@ -14,7 +14,6 @@ import {
   CouplingContainer,
   getPDBAndCouplingMismatch,
   IResidueMismatchResult,
-  NGL_DATA_TYPE,
   VIZ_TYPE,
 } from '~bioblocks-viz~/data';
 import { generateResidueMapping, getCouplingScoresData, IResidueMapping, readFileAsText } from '~bioblocks-viz~/helper';
@@ -30,7 +29,7 @@ export interface IExampleAppState {
   [VIZ_TYPE.CONTACT_MAP]: CONTACT_MAP_DATA_TYPE & { isLoading: boolean };
   [VIZ_TYPE.NGL]: {
     isLoading: boolean;
-    pdbData?: NGL_DATA_TYPE;
+    pdbData: BioblocksPDB[];
   };
   arePredictionsAvailable: boolean;
   couplingScores: string;
@@ -63,7 +62,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     },
     [VIZ_TYPE.NGL]: {
       isLoading: false,
-      pdbData: undefined,
+      pdbData: [],
     },
     arePredictionsAvailable: false,
     couplingScores: '',
@@ -84,7 +83,6 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
   public componentDidUpdate(prevProps: IExampleAppProps, prevState: IExampleAppState) {
     const { measuredProximity, pdbData } = this.state;
     const { couplingScores } = this.state[VIZ_TYPE.CONTACT_MAP];
-
     let errorMsg = '';
 
     let newMismatches = this.state.mismatches;
@@ -128,9 +126,9 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
 
   public render({ style } = this.props) {
     return (
-      <div id="BioblocksVizApp" style={{ ...style, height: '1000px' }}>
+      <div id={'BioblocksVizApp'} style={{ ...style, height: '1000px' }}>
+        <meta name={'viewport'} content={'width=device-width, initial-scale=1'} />
         {this.renderCouplingComponents()}
-        <ProteinFeatureViewer />
       </div>
     );
   }
@@ -153,7 +151,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
           <Grid.Row>
             <br />
           </Grid.Row>
-          {this.renderBioblocksComponents(style, arePredictionsAvailable, measuredProximity, pdbData)}
+          {this.renderBioblocksComponents(style, arePredictionsAvailable, measuredProximity)}
         </Grid>
       </Segment>
       {this.renderFooter()}
@@ -200,22 +198,13 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
   };
 
   protected renderFooter = () => {
-    const bioblocks = <a href="https://github.com/cBioCenter/bioblocks-viz">Bioblocks</a>;
-
-    // prettier-ignore
-    const sayings = [
-      <>Powered by {bioblocks}!</>,
-      <>They love me at the {bioblocks}sea.</>,
-      <>Today's visualization has been brought to you by {bioblocks}.</>,
-      <>{bioblocks}sea, {bioblocks}sea, I believe...</>,
-      <>Now you're thinking with {bioblocks}!</>,
-      <>And {bioblocks}sea says she's got nowhere to go...</>,
-    ].map(saying => <React.Fragment key={'random-bioblocks-saying'}>{saying}</React.Fragment>);
-
-    // tslint:disable-next-line:insecure-random
-    const randomSaying = sayings[Math.floor(Math.random() * sayings.length)];
-
-    return <footer style={{ padding: '25vh 0 25px 25px' }}>{randomSaying}</footer>;
+    return (
+      <footer style={{ padding: '25vh 0 25px 25px' }}>
+        <>
+          Powered by <a href="https://github.com/cBioCenter/bioblocks-viz">Bioblocks</a>!
+        </>
+      </footer>
+    );
   };
 
   protected renderSequenceAccordionMessage = (
@@ -300,7 +289,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
             hidden={true}
             type={'file'}
             required={true}
-            multiple={false}
+            multiple={true}
           />
         </Label>
       </GridColumn>
@@ -333,12 +322,13 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     style: React.CSSProperties,
     arePredictionsAvailable: boolean,
     measuredProximity: CONTACT_DISTANCE_PROXIMITY,
-    pdbData?: BioblocksPDB,
     size: number | string = '550px',
   ) => (
-    <GridRow columns={2}>
-      <GridColumn width={7}>{this.renderContactMapCard(arePredictionsAvailable, size, style, pdbData)}</GridColumn>
-      <GridColumn width={7}>{this.renderNGLCard(measuredProximity, pdbData)}</GridColumn>
+    <GridRow columns={2} verticalAlign={'bottom'}>
+      <GridColumn width={7}>
+        {this.renderContactMapCard(arePredictionsAvailable, size, style, this.state.pdbData)}
+      </GridColumn>
+      <GridColumn width={7}>{this.renderNGLCard(measuredProximity)}</GridColumn>
     </GridRow>
   );
 
@@ -346,7 +336,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     arePredictionsAvailable: boolean,
     size: number | string,
     style: React.CSSProperties,
-    pdbData?: BioblocksPDB,
+    pdbData: BioblocksPDB | undefined = undefined,
   ) =>
     arePredictionsAvailable ? (
       <PredictedContactMap
@@ -374,12 +364,13 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
       />
     );
 
-  protected renderNGLCard = (measuredProximity: CONTACT_DISTANCE_PROXIMITY, pdbData?: BioblocksPDB) => (
+  protected renderNGLCard = (measuredProximity: CONTACT_DISTANCE_PROXIMITY) => (
     <NGLContainer
-      data={pdbData}
       isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
+      experimentalProteins={this.state[VIZ_TYPE.NGL].pdbData.filter(pdb => pdb.name.includes('exp'))}
       measuredProximity={measuredProximity}
       onMeasuredProximityChange={this.onMeasuredProximityChange()}
+      predictedProteins={this.state[VIZ_TYPE.NGL].pdbData.filter(pdb => pdb.name.includes('pred'))}
     />
   );
 
@@ -490,50 +481,35 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     e.persist();
     const { measuredProximity } = this.state;
     const files = (e.target as HTMLInputElement).files;
-    const file = files ? files.item(0) : null;
-    if (file !== null) {
-      if (file.name.endsWith('.pdb')) {
-        this.setState({
-          [VIZ_TYPE.CONTACT_MAP]: {
-            ...this.state[VIZ_TYPE.CONTACT_MAP],
-            isLoading: true,
-          },
-          [VIZ_TYPE.NGL]: {
-            ...this.state[VIZ_TYPE.NGL],
-            isLoading: true,
-          },
-        });
-        const pdbData = await BioblocksPDB.createPDB(file);
-        const couplingScores = pdbData.amendPDBWithCouplingScores(
-          this.state[VIZ_TYPE.CONTACT_MAP].couplingScores.rankedContacts,
-          measuredProximity,
-        );
-        this.setState({
-          [VIZ_TYPE.CONTACT_MAP]: {
-            couplingScores,
-            isLoading: false,
-            pdbData: { known: pdbData },
-            secondaryStructures: pdbData.secondaryStructureSections,
-          },
-          [VIZ_TYPE.NGL]: {
-            isLoading: false,
-            pdbData: pdbData.nglStructure,
-          },
-          errorMsg: '',
-          filenames: {
-            ...this.state.filenames,
-            pdb: file.name,
-          },
-          pdbData,
-        });
-      } else {
-        this.setState({
-          errorMsg: `Unable to load PDB file '${file.name}' - Make sure the file ends in '.pdb'!`,
-        });
+    const allPdbData = new Array<BioblocksPDB>();
+    if (files) {
+      for (let i = 0; i < files.length; ++i) {
+        const file = files.item(i);
+        if (file && file.name.endsWith('.pdb')) {
+          allPdbData.push(await BioblocksPDB.createPDB(file));
+        }
       }
+      // !IMPORTANT! Allows same user to clear data and then re-upload same file!
+      (e.target as HTMLInputElement).value = '';
     }
-    // !IMPORTANT! Allows same user to clear data and then re-upload same file!
-    (e.target as HTMLInputElement).value = '';
+    const pdbData = allPdbData[0];
+    const couplingScores = pdbData.amendPDBWithCouplingScores(
+      this.state[VIZ_TYPE.CONTACT_MAP].couplingScores.rankedContacts,
+      measuredProximity,
+    );
+    this.setState({
+      [VIZ_TYPE.CONTACT_MAP]: {
+        couplingScores,
+        isLoading: false,
+        pdbData: { known: pdbData },
+        secondaryStructures: pdbData.secondaryStructureSections,
+      },
+      [VIZ_TYPE.NGL]: {
+        isLoading: false,
+        pdbData: allPdbData,
+      },
+      pdbData,
+    });
   };
 
   protected onMeasuredProximityChange = () => (value: number) => {

@@ -2,6 +2,7 @@
 import { Datum } from 'plotly.js/lib/index-gl2d';
 
 import { Bioblocks1DSection, BIOBLOCKS_PLOTLY_DATA, REQUIRED_BIOBLOCKS_PLOTLY_DATA } from '~bioblocks-viz~/data';
+import { ColorMapper } from '~bioblocks-viz~/helper';
 
 /**
  * Shorthand to refer to something with both an x and y axis.
@@ -79,8 +80,7 @@ export class AuxiliaryAxis<T extends string> {
    * Creates an instance of AuxiliaryAxis.
    * @param sections The underlying data to be represented by these axes.
    * @param [axisIndex=2] The index of this axis, if there are multiple auxiliary axes.
-   * @param [defaultColor='black'] What color should the axis be by default?
-   * @param [colorMap] Allows specific data pieces to be colored.
+   * @param [colorMap] Allows specific data pieces to be colored and provide a default color.
    * @param [dataTransformFn] Determine how a section is to be transformed to the main and opposite axis.
    *  For example, for a sine wave, the main axis increments by 1 but the opposite needs to be increased by a Math.sin() call.
    * @param [filterFn=() => false] Function to allow certain elements to be filtered out and thus not show up on the axis.
@@ -88,8 +88,7 @@ export class AuxiliaryAxis<T extends string> {
   constructor(
     readonly sections: Array<Bioblocks1DSection<T>>,
     readonly axisIndex: number = 2,
-    readonly defaultColor = 'black',
-    readonly colorMap?: { [key: string]: string },
+    readonly colorMap = new ColorMapper<T>(),
     readonly dataTransformFn?: {
       [key: string]: (section: Bioblocks1DSection<T>, index: number) => { main: number; opposite: number };
     },
@@ -201,7 +200,7 @@ export class AuxiliaryAxis<T extends string> {
     connectgaps: false,
     hoverinfo: 'none',
     line: {
-      color: this.colorMap && this.colorMap[key] ? this.colorMap[key] : this.defaultColor,
+      color: this.colorMap.getColorFor(key),
       shape: 'spline',
       smoothing: 1.3,
       width: 1.5,
@@ -226,7 +225,7 @@ export class AuxiliaryAxis<T extends string> {
     ...this.auxiliaryAxisDefaults(key),
     fill: 'toself',
     line: {
-      color: this.colorMap && this.colorMap[key] ? this.colorMap[key] : this.defaultColor,
+      color: this.colorMap.getColorFor(key),
       width: 0,
     },
   });
