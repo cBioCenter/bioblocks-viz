@@ -24,6 +24,7 @@ export interface INGLContainerProps {
   hoveredSecondaryStructures?: SECONDARY_STRUCTURE_SECTION[];
   isDataLoading: boolean;
   lockedResiduePairs: Map<string, Set<RESIDUE_TYPE>>;
+  maxPDBPerPopup: number;
   measuredProximity: CONTACT_DISTANCE_PROXIMITY;
   predictedProteins: BioblocksPDB[];
   selectedSecondaryStructures?: SECONDARY_STRUCTURE_SECTION[];
@@ -51,6 +52,7 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
     experimentalProteins: [],
     isDataLoading: false,
     lockedResiduePairs: Map<string, Set<RESIDUE_TYPE>>(),
+    maxPDBPerPopup: 5,
     measuredProximity: CONTACT_DISTANCE_PROXIMITY.C_ALPHA,
     predictedProteins: [],
     showConfigurations: true,
@@ -79,11 +81,12 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
     let { selectedExperimentalProteins, selectedPredictedProteins } = this.state;
     let isNewData = false;
 
-    if (experimentalProteins.length >= 1 && prevProps.experimentalProteins !== experimentalProteins) {
+    if (this.isBioblocksPDBArrayEqual(experimentalProteins, prevProps.experimentalProteins)) {
       isNewData = true;
       selectedExperimentalProteins = [experimentalProteins[0].name];
     }
-    if (predictedProteins.length >= 1 && prevProps.predictedProteins !== predictedProteins) {
+
+    if (this.isBioblocksPDBArrayEqual(predictedProteins, prevProps.predictedProteins)) {
       isNewData = true;
       selectedPredictedProteins = [predictedProteins[0].name];
     }
@@ -121,6 +124,12 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
     );
   }
 
+  protected isBioblocksPDBArrayEqual(a: BioblocksPDB[], b: BioblocksPDB[]) {
+    return (
+      a.length !== b.length || a.reduce((prev, cur, index) => prev || cur.name !== b[index].name, false as boolean)
+    );
+  }
+
   protected onExperimentalProteinSelect = (event: React.FormEvent<HTMLInputElement>, data: CheckboxProps) => {
     const label = data.label as string;
     this.setState({
@@ -144,6 +153,7 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
       <Grid.Row centered={true}>
         <Grid.Column width={5}>
           <Popup
+            disabled={this.props.experimentalProteins.length === 0}
             on={'click'}
             position={'bottom center'}
             trigger={
@@ -153,11 +163,12 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
             }
             wide={true}
           >
-            {this.renderRadioGroup(this.props.experimentalProteins, 'experimental', this.onExperimentalProteinSelect)}
+            {this.renderFormGroup(this.props.experimentalProteins, 'experimental', this.onExperimentalProteinSelect)}
           </Popup>
         </Grid.Column>
         <Grid.Column width={5}>
           <Popup
+            disabled={this.props.predictedProteins.length === 0}
             on={'click'}
             position={'bottom center'}
             trigger={
@@ -167,20 +178,23 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
             }
             wide={true}
           >
-            {this.renderRadioGroup(this.props.predictedProteins, 'predicted', this.onPredictedProteinSelect)}
+            {this.renderFormGroup(this.props.predictedProteins, 'predicted', this.onPredictedProteinSelect)}
           </Popup>
         </Grid.Column>
       </Grid.Row>
     );
   }
 
-  protected renderRadioGroup(
+  protected renderFormGroup(
     data: BioblocksPDB[],
     radioGroup: 'experimental' | 'predicted',
     onChange: (event: React.FormEvent<HTMLInputElement>, data: CheckboxProps) => void,
   ) {
+    const { maxPDBPerPopup } = this.props;
+    const { selectedExperimentalProteins, selectedPredictedProteins } = this.state;
+
     return (
-      <Form>
+      <Form style={{ height: `${maxPDBPerPopup * 33}px`, overflow: 'auto' }}>
         {data.map((pdb, index) => {
           return (
             <Form.Field key={`pdb-radio-${radioGroup}-${index}`}>
@@ -188,8 +202,8 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
                 label={pdb.name}
                 onChange={onChange}
                 checked={(radioGroup === 'experimental'
-                  ? this.state.selectedExperimentalProteins
-                  : this.state.selectedPredictedProteins
+                  ? selectedExperimentalProteins
+                  : selectedPredictedProteins
                 ).includes(pdb.name)}
               />
             </Form.Field>

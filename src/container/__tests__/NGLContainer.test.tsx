@@ -126,4 +126,38 @@ describe('NGLContainer', () => {
       selectedPredictedProteins: ['pred_2_sample'],
     });
   });
+
+  it('Should not show a popup when there are no PDB files to select.', async () => {
+    const wrapper = shallow(<NGLContainerClass />);
+
+    wrapper
+      .find(Popup)
+      .at(0)
+      .simulate('click');
+    expect(wrapper.find(Checkbox).length).toBe(0);
+
+    wrapper
+      .find(Popup)
+      .at(1)
+      .simulate('click');
+    expect(wrapper.find(Checkbox).length).toBe(0);
+
+    const pdbs = await Promise.all([
+      BioblocksPDB.createPDB('exp_1_sample.pdb'),
+      BioblocksPDB.createPDB('exp_2_sample.pdb'),
+    ]);
+
+    wrapper.setProps({ experimentalProteins: pdbs, predictedProteins: pdbs });
+    wrapper
+      .find(Popup)
+      .at(0)
+      .simulate('click');
+    expect(wrapper.find(Checkbox).length).not.toBe(0);
+
+    wrapper
+      .find(Popup)
+      .at(1)
+      .simulate('click');
+    expect(wrapper.find(Checkbox).length).not.toBe(0);
+  });
 });

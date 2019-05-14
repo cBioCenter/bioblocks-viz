@@ -24,6 +24,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
       hoveredSecondaryStructures={Array []}
       isDataLoading={false}
       lockedResiduePairs={Immutable.Map {}}
+      maxPDBPerPopup={5}
       measuredProximity="C-α"
       predictedProteins={Array []}
       removeAllLockedResiduePairs={[Function]}
@@ -53,7 +54,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                   className="five wide column"
                 >
                   <Popup
-                    disabled={false}
+                    disabled={true}
                     keepInViewPort={true}
                     on="click"
                     position="bottom center"
@@ -64,50 +65,14 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                     }
                     wide={true}
                   >
-                    <Portal
-                      closeOnDocumentClick={true}
-                      closeOnEscape={true}
-                      closeOnTriggerClick={true}
-                      eventPool="default"
-                      onClose={[Function]}
-                      onMount={[Function]}
-                      onOpen={[Function]}
-                      onUnmount={[Function]}
-                      openOnTriggerClick={true}
-                      trigger={
-                        <Label>
-                          Experimental 0/0
-                        </Label>
-                      }
-                      triggerRef={[Function]}
-                    >
-                      <Ref
-                        innerRef={[Function]}
+                    <Label>
+                      <div
+                        className="ui label"
+                        onClick={[Function]}
                       >
-                        <RefFindNode
-                          innerRef={[Function]}
-                        >
-                          <Label
-                            onBlur={[Function]}
-                            onClick={[Function]}
-                            onFocus={[Function]}
-                            onMouseEnter={[Function]}
-                            onMouseLeave={[Function]}
-                          >
-                            <div
-                              className="ui label"
-                              onBlur={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onMouseEnter={[Function]}
-                              onMouseLeave={[Function]}
-                            >
-                              Experimental 0/0
-                            </div>
-                          </Label>
-                        </RefFindNode>
-                      </Ref>
-                    </Portal>
+                        Experimental 0/0
+                      </div>
+                    </Label>
                   </Popup>
                 </div>
               </GridColumn>
@@ -118,7 +83,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                   className="five wide column"
                 >
                   <Popup
-                    disabled={false}
+                    disabled={true}
                     keepInViewPort={true}
                     on="click"
                     position="bottom center"
@@ -129,50 +94,14 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                     }
                     wide={true}
                   >
-                    <Portal
-                      closeOnDocumentClick={true}
-                      closeOnEscape={true}
-                      closeOnTriggerClick={true}
-                      eventPool="default"
-                      onClose={[Function]}
-                      onMount={[Function]}
-                      onOpen={[Function]}
-                      onUnmount={[Function]}
-                      openOnTriggerClick={true}
-                      trigger={
-                        <Label>
-                          Predicted 0/0
-                        </Label>
-                      }
-                      triggerRef={[Function]}
-                    >
-                      <Ref
-                        innerRef={[Function]}
+                    <Label>
+                      <div
+                        className="ui label"
+                        onClick={[Function]}
                       >
-                        <RefFindNode
-                          innerRef={[Function]}
-                        >
-                          <Label
-                            onBlur={[Function]}
-                            onClick={[Function]}
-                            onFocus={[Function]}
-                            onMouseEnter={[Function]}
-                            onMouseLeave={[Function]}
-                          >
-                            <div
-                              className="ui label"
-                              onBlur={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onMouseEnter={[Function]}
-                              onMouseLeave={[Function]}
-                            >
-                              Predicted 0/0
-                            </div>
-                          </Label>
-                        </RefFindNode>
-                      </Ref>
-                    </Portal>
+                        Predicted 0/0
+                      </div>
+                    </Label>
                   </Popup>
                 </div>
               </GridColumn>
@@ -195,6 +124,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                 hoveredSecondaryStructures={Array []}
                 isDataLoading={false}
                 lockedResiduePairs={Object {}}
+                maxPDBPerPopup={5}
                 measuredProximity="C-α"
                 onMeasuredProximityChange={[Function]}
                 onResize={[Function]}
@@ -484,7 +414,7 @@ exports[`NGLContainer Should match the default snapshot when not hooked up to a 
       width={5}
     >
       <Popup
-        disabled={false}
+        disabled={true}
         keepInViewPort={true}
         on="click"
         position="bottom center"
@@ -497,6 +427,12 @@ exports[`NGLContainer Should match the default snapshot when not hooked up to a 
       >
         <Form
           as="form"
+          style={
+            Object {
+              "height": "165px",
+              "overflow": "auto",
+            }
+          }
         />
       </Popup>
     </GridColumn>
@@ -504,7 +440,7 @@ exports[`NGLContainer Should match the default snapshot when not hooked up to a 
       width={5}
     >
       <Popup
-        disabled={false}
+        disabled={true}
         keepInViewPort={true}
         on="click"
         position="bottom center"
@@ -517,6 +453,12 @@ exports[`NGLContainer Should match the default snapshot when not hooked up to a 
       >
         <Form
           as="form"
+          style={
+            Object {
+              "height": "165px",
+              "overflow": "auto",
+            }
+          }
         />
       </Popup>
     </GridColumn>
@@ -535,6 +477,7 @@ exports[`NGLContainer Should match the default snapshot when not hooked up to a 
       hoveredSecondaryStructures={Array []}
       isDataLoading={false}
       lockedResiduePairs={Object {}}
+      maxPDBPerPopup={5}
       measuredProximity="C-α"
       onMeasuredProximityChange={[Function]}
       onResize={[Function]}
