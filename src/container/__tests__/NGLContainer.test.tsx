@@ -2,7 +2,7 @@ import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import { Provider } from 'react-redux';
 
-import { Checkbox, Popup } from 'semantic-ui-react';
+import { Checkbox, Icon, Popup, Table } from 'semantic-ui-react';
 import { NGLContainer, NGLContainerClass } from '~bioblocks-viz~/container';
 import { BioblocksPDB } from '~bioblocks-viz~/data';
 import { Store } from '~bioblocks-viz~/reducer';
@@ -106,7 +106,7 @@ describe('NGLContainer', () => {
     });
 
     wrapper
-      .find(Popup)
+      .find(Icon)
       .at(1)
       .simulate('click');
     wrapper
@@ -128,7 +128,7 @@ describe('NGLContainer', () => {
   });
 
   it('Should not show a popup when there are no PDB files to select.', async () => {
-    const wrapper = shallow(<NGLContainerClass />);
+    const wrapper = mount(<NGLContainerClass />);
 
     wrapper
       .find(Popup)
@@ -137,7 +137,7 @@ describe('NGLContainer', () => {
     expect(wrapper.find(Checkbox).length).toBe(0);
 
     wrapper
-      .find(Popup)
+      .find(Icon)
       .at(1)
       .simulate('click');
     expect(wrapper.find(Checkbox).length).toBe(0);
@@ -155,9 +155,52 @@ describe('NGLContainer', () => {
     expect(wrapper.find(Checkbox).length).not.toBe(0);
 
     wrapper
-      .find(Popup)
+      .find(Icon)
       .at(1)
       .simulate('click');
     expect(wrapper.find(Checkbox).length).not.toBe(0);
+  });
+
+  it('Should handle clearing PDB files.', async () => {
+    const pdbs = await Promise.all([
+      BioblocksPDB.createPDB('pred_1_sample.pdb'),
+      BioblocksPDB.createPDB('pred_2_sample.pdb'),
+    ]);
+
+    const wrapper = mount(<NGLContainerClass experimentalProteins={pdbs} predictedProteins={pdbs} />);
+    wrapper
+      .find(Icon)
+      .at(0)
+      .simulate('click');
+    expect(
+      wrapper
+        .find(Table.Cell)
+        .at(1)
+        .text(),
+    ).toEqual('Experimental (1/2)');
+    expect(
+      wrapper
+        .find(Table.Cell)
+        .at(2)
+        .text(),
+    ).toEqual('Predicted (1/2)');
+
+    wrapper.setProps({
+      experimentalProteins: [],
+      predictedProteins: [],
+    });
+    wrapper.update();
+    expect(
+      wrapper
+        .find(Table.Cell)
+        .at(1)
+        .text(),
+    ).toEqual('Experimental (0/0)');
+    expect(
+      wrapper
+        .find(Table.Cell)
+        .at(2)
+        .text(),
+    ).toEqual('Predicted (0/0)');
   });
 });

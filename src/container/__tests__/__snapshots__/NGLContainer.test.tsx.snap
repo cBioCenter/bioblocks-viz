@@ -43,68 +43,74 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
         >
           <GridRow
             centered={true}
+            stretched={true}
           >
             <div
-              className="centered row"
+              className="centered stretched row"
             >
-              <GridColumn
-                width={5}
+              <Popup
+                disabled={false}
+                keepInViewPort={true}
+                on="click"
+                position="bottom center"
+                trigger={
+                  <Icon
+                    as="i"
+                    name="tasks"
+                    size="large"
+                  />
+                }
+                wide={true}
               >
-                <div
-                  className="five wide column"
+                <Portal
+                  closeOnDocumentClick={true}
+                  closeOnEscape={true}
+                  closeOnTriggerClick={true}
+                  eventPool="default"
+                  onClose={[Function]}
+                  onMount={[Function]}
+                  onOpen={[Function]}
+                  onUnmount={[Function]}
+                  openOnTriggerClick={true}
+                  trigger={
+                    <Icon
+                      as="i"
+                      name="tasks"
+                      size="large"
+                    />
+                  }
+                  triggerRef={[Function]}
                 >
-                  <Popup
-                    disabled={true}
-                    keepInViewPort={true}
-                    on="click"
-                    position="bottom center"
-                    trigger={
-                      <Label>
-                        Experimental 0/0
-                      </Label>
-                    }
-                    wide={true}
+                  <Ref
+                    innerRef={[Function]}
                   >
-                    <Label>
-                      <div
-                        className="ui label"
+                    <RefFindNode
+                      innerRef={[Function]}
+                    >
+                      <Icon
+                        as="i"
+                        name="tasks"
+                        onBlur={[Function]}
                         onClick={[Function]}
+                        onFocus={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                        size="large"
                       >
-                        Experimental 0/0
-                      </div>
-                    </Label>
-                  </Popup>
-                </div>
-              </GridColumn>
-              <GridColumn
-                width={5}
-              >
-                <div
-                  className="five wide column"
-                >
-                  <Popup
-                    disabled={true}
-                    keepInViewPort={true}
-                    on="click"
-                    position="bottom center"
-                    trigger={
-                      <Label>
-                        Predicted 0/0
-                      </Label>
-                    }
-                    wide={true}
-                  >
-                    <Label>
-                      <div
-                        className="ui label"
-                        onClick={[Function]}
-                      >
-                        Predicted 0/0
-                      </div>
-                    </Label>
-                  </Popup>
-                </div>
-              </GridColumn>
+                        <i
+                          aria-hidden="true"
+                          className="tasks large icon"
+                          onBlur={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onMouseEnter={[Function]}
+                          onMouseLeave={[Function]}
+                        />
+                      </Icon>
+                    </RefFindNode>
+                  </Ref>
+                </Portal>
+              </Popup>
             </div>
           </GridRow>
           <GridRow>
@@ -409,59 +415,103 @@ exports[`NGLContainer Should match the default snapshot when not hooked up to a 
 >
   <GridRow
     centered={true}
+    stretched={true}
   >
-    <GridColumn
-      width={5}
-    >
-      <Popup
-        disabled={true}
-        keepInViewPort={true}
-        on="click"
-        position="bottom center"
-        trigger={
-          <Label>
-            Experimental 0/0
-          </Label>
-        }
-        wide={true}
-      >
-        <Form
-          as="form"
-          style={
-            Object {
-              "height": "165px",
-              "overflow": "auto",
-            }
-          }
+    <Popup
+      disabled={false}
+      keepInViewPort={true}
+      on="click"
+      position="bottom center"
+      trigger={
+        <Icon
+          as="i"
+          name="tasks"
+          size="large"
         />
-      </Popup>
-    </GridColumn>
-    <GridColumn
-      width={5}
+      }
+      wide={true}
     >
-      <Popup
-        disabled={true}
-        keepInViewPort={true}
-        on="click"
-        position="bottom center"
-        trigger={
-          <Label>
-            Predicted 0/0
-          </Label>
-        }
-        wide={true}
-      >
-        <Form
-          as="form"
-          style={
-            Object {
-              "height": "165px",
-              "overflow": "auto",
-            }
+      <Table
+        as="table"
+        basic="very"
+        style={
+          Object {
+            "maxWidth": "100%",
           }
-        />
-      </Popup>
-    </GridColumn>
+        }
+      >
+        <TableHeader
+          as="thead"
+        >
+          <TableRow
+            as="tr"
+            cellAs="td"
+          >
+            <TableHeaderCell
+              as="th"
+            >
+              Select Structure to View
+            </TableHeaderCell>
+          </TableRow>
+        </TableHeader>
+        <TableHeader
+          as="thead"
+        >
+          <TableRow
+            as="tr"
+            cellAs="td"
+          >
+            <TableCell
+              as="td"
+            >
+              Experimental (0/0)
+            </TableCell>
+            <TableCell
+              as="td"
+            >
+              Predicted (0/0)
+            </TableCell>
+          </TableRow>
+        </TableHeader>
+        <TableBody
+          as="tbody"
+        >
+          <TableRow
+            as="tr"
+            cellAs="td"
+          >
+            <TableCell
+              as="td"
+              width={3}
+            >
+              <Form
+                as="form"
+                style={
+                  Object {
+                    "height": "165px",
+                    "overflow": "auto",
+                  }
+                }
+              />
+            </TableCell>
+            <TableCell
+              as="td"
+              width={1}
+            >
+              <Form
+                as="form"
+                style={
+                  Object {
+                    "height": "165px",
+                    "overflow": "auto",
+                  }
+                }
+              />
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </Popup>
   </GridRow>
   <GridRow>
     <NGLComponent
