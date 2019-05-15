@@ -3,7 +3,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
-import { Checkbox, CheckboxProps, Form, Grid, Icon, Popup, Table } from 'semantic-ui-react';
+import { Checkbox, CheckboxProps, Grid, Header, Icon, Popup, Table } from 'semantic-ui-react';
 import { createResiduePairActions } from '~bioblocks-viz~/action/ResiduePairAction';
 import { NGLComponent } from '~bioblocks-viz~/component';
 import { BioblocksVisualization } from '~bioblocks-viz~/container';
@@ -112,7 +112,14 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
     return (
       <Grid padded={true}>
         <Grid.Row centered={true} stretched={true}>
-          <Popup on={'click'} position={'bottom center'} trigger={<Icon name={'tasks'} size={'large'} />} wide={true}>
+          <Popup
+            disabled={experimentalProteins.length === 0 && predictedProteins.length === 0}
+            on={'click'}
+            position={'bottom center'}
+            style={{ opacity: 0.85 }}
+            trigger={<Icon name={'tasks'} size={'large'} />}
+            wide={'very'}
+          >
             {this.renderPDBSelector()}
           </Popup>
         </Grid.Row>
@@ -154,35 +161,25 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
 
   protected renderPDBSelector() {
     return (
-      <Table basic={'very'} style={{ maxWidth: '100%' }}>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>Select Structure to View</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-        <Table.Header>
-          <Table.Row>
-            <Table.Cell>
-              {`Experimental (${this.state.selectedExperimentalProteins.length}/${
-                this.props.experimentalProteins.length
-              })`}
-            </Table.Cell>
-            <Table.Cell>
-              {`Predicted (${this.state.selectedPredictedProteins.length}/${this.props.predictedProteins.length})`}
-            </Table.Cell>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell width={3}>
-              {this.renderFormGroup(this.props.experimentalProteins, 'experimental', this.onExperimentalProteinSelect)}
-            </Table.Cell>
-            <Table.Cell width={1}>
-              {this.renderFormGroup(this.props.predictedProteins, 'predicted', this.onPredictedProteinSelect)}
-            </Table.Cell>
-          </Table.Row>
-        </Table.Body>
-      </Table>
+      <Grid divided={true} padded={true}>
+        <Grid.Row>
+          <Grid.Column>
+            <Header>Select Structure to View</Header>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column width={9}>
+            {`Experimental (${this.state.selectedExperimentalProteins.length}/${
+              this.props.experimentalProteins.length
+            })`}
+            {this.renderFormGroup(this.props.experimentalProteins, 'experimental', this.onExperimentalProteinSelect)}
+          </Grid.Column>
+          <Grid.Column width={6}>
+            {`Predicted (${this.state.selectedPredictedProteins.length}/${this.props.predictedProteins.length})`}
+            {this.renderFormGroup(this.props.predictedProteins, 'predicted', this.onPredictedProteinSelect)}
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     );
   }
 
@@ -195,36 +192,54 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
     const { selectedExperimentalProteins, selectedPredictedProteins } = this.state;
 
     return (
-      <Form style={{ height: `${maxPDBPerPopup * 33}px`, overflow: 'auto' }}>
-        {data.map((pdb, index) => {
-          return (
-            <Grid.Row key={`pdb-radio-${pdbGroup}-${index}`}>
-              <Checkbox
-                label={`${pdb.name}`}
-                onChange={onChange}
-                checked={(pdbGroup === 'experimental'
-                  ? selectedExperimentalProteins
-                  : selectedPredictedProteins
-                ).includes(pdb.name)}
-              />
-              {pdbGroup === 'experimental' &&
-                this.props.predictedProteins.length &&
-                `\t${this.sequenceSimilarityPercent(pdb.sequence, this.props.predictedProteins[0].sequence)}%`}
-            </Grid.Row>
-          );
-        })}
-      </Form>
+      <div style={{ height: `${maxPDBPerPopup * 50}px`, overflow: 'auto' }}>
+        <Table basic={'very'} compact={true} padded={true}>
+          <Table.Header>
+            <Table.HeaderCell>Name</Table.HeaderCell>
+            {pdbGroup === 'experimental' && <Table.HeaderCell>Percent</Table.HeaderCell>}
+            {pdbGroup === 'experimental' && <Table.HeaderCell>Source</Table.HeaderCell>}
+          </Table.Header>
+          <Table.Body>
+            {data.map((pdb, index) => {
+              return (
+                <Table.Row columns={pdbGroup === 'experimental' ? 3 : 1} key={`pdb-radio-${pdbGroup}-${index}`}>
+                  <Table.Cell>
+                    <Checkbox
+                      label={`${pdb.name}`}
+                      onChange={onChange}
+                      checked={(pdbGroup === 'experimental'
+                        ? selectedExperimentalProteins
+                        : selectedPredictedProteins
+                      ).includes(pdb.name)}
+                    />
+                  </Table.Cell>
+
+                  {pdbGroup === 'experimental' && (
+                    <Table.Cell>
+                      {this.props.predictedProteins.length >= 1
+                        ? `${this.sequenceSimilarityPercent(pdb.sequence, this.props.predictedProteins[0].sequence)}`
+                        : 'N/A'}
+                    </Table.Cell>
+                  )}
+                  {pdbGroup === 'experimental' && <Table.Cell>{pdb.source}</Table.Cell>}
+                </Table.Row>
+              );
+            })}
+          </Table.Body>
+        </Table>
+      </div>
     );
   }
 
   protected sequenceSimilarityPercent(seqA: string, seqB: string, fractionDigits: number = 2) {
-    return (
+    const result =
       (seqA.split('').reduce((prev, cur, seqIndex) => {
         return prev + (cur === seqB[seqIndex] ? 1 : 0);
       }, 0) /
         seqA.length) *
-      100
-    ).toFixed(fractionDigits);
+      100;
+
+    return isNaN(result) ? 'N/A' : `${result.toFixed(fractionDigits)}%`;
   }
 }
 

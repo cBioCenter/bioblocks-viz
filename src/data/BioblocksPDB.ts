@@ -73,6 +73,13 @@ export class BioblocksPDB {
     return this.contactInfo;
   }
 
+  public get name(): string {
+    const splitName = this.fileName.split('/');
+    const lastPart = splitName[splitName.length - 1];
+
+    return lastPart.slice(0, lastPart.lastIndexOf('.'));
+  }
+
   public get nglStructure(): NGL.Structure {
     return this.nglData;
   }
@@ -123,15 +130,12 @@ export class BioblocksPDB {
     return result;
   }
 
-  public get name(): string {
-    const splitName = this.fileName.split('/');
-    const lastPart = splitName[splitName.length - 1];
-
-    return lastPart.slice(0, lastPart.lastIndexOf('.'));
-  }
-
   public get sequence(): string {
     return this.nglData ? this.nglData.getSequence().join('') : '';
+  }
+
+  public get source(): string {
+    return 'Unknown';
   }
 
   protected fileName: string = '';

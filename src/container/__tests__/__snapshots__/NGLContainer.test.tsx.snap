@@ -49,10 +49,15 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
               className="centered stretched row"
             >
               <Popup
-                disabled={false}
+                disabled={true}
                 keepInViewPort={true}
                 on="click"
                 position="bottom center"
+                style={
+                  Object {
+                    "opacity": 0.85,
+                  }
+                }
                 trigger={
                   <Icon
                     as="i"
@@ -60,56 +65,19 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                     size="large"
                   />
                 }
-                wide={true}
+                wide="very"
               >
-                <Portal
-                  closeOnDocumentClick={true}
-                  closeOnEscape={true}
-                  closeOnTriggerClick={true}
-                  eventPool="default"
-                  onClose={[Function]}
-                  onMount={[Function]}
-                  onOpen={[Function]}
-                  onUnmount={[Function]}
-                  openOnTriggerClick={true}
-                  trigger={
-                    <Icon
-                      as="i"
-                      name="tasks"
-                      size="large"
-                    />
-                  }
-                  triggerRef={[Function]}
+                <Icon
+                  as="i"
+                  name="tasks"
+                  size="large"
                 >
-                  <Ref
-                    innerRef={[Function]}
-                  >
-                    <RefFindNode
-                      innerRef={[Function]}
-                    >
-                      <Icon
-                        as="i"
-                        name="tasks"
-                        onBlur={[Function]}
-                        onClick={[Function]}
-                        onFocus={[Function]}
-                        onMouseEnter={[Function]}
-                        onMouseLeave={[Function]}
-                        size="large"
-                      >
-                        <i
-                          aria-hidden="true"
-                          className="tasks large icon"
-                          onBlur={[Function]}
-                          onClick={[Function]}
-                          onFocus={[Function]}
-                          onMouseEnter={[Function]}
-                          onMouseLeave={[Function]}
-                        />
-                      </Icon>
-                    </RefFindNode>
-                  </Ref>
-                </Portal>
+                  <i
+                    aria-hidden="true"
+                    className="tasks large icon"
+                    onClick={[Function]}
+                  />
+                </Icon>
               </Popup>
             </div>
           </GridRow>
@@ -418,10 +386,15 @@ exports[`NGLContainer Should match the default snapshot when not hooked up to a 
     stretched={true}
   >
     <Popup
-      disabled={false}
+      disabled={true}
       keepInViewPort={true}
       on="click"
       position="bottom center"
+      style={
+        Object {
+          "opacity": 0.85,
+        }
+      }
       trigger={
         <Icon
           as="i"
@@ -429,88 +402,98 @@ exports[`NGLContainer Should match the default snapshot when not hooked up to a 
           size="large"
         />
       }
-      wide={true}
+      wide="very"
     >
-      <Table
-        as="table"
-        basic="very"
-        style={
-          Object {
-            "maxWidth": "100%",
-          }
-        }
+      <Grid
+        divided={true}
+        padded={true}
       >
-        <TableHeader
-          as="thead"
-        >
-          <TableRow
-            as="tr"
-            cellAs="td"
-          >
-            <TableHeaderCell
-              as="th"
-            >
+        <GridRow>
+          <GridColumn>
+            <Header>
               Select Structure to View
-            </TableHeaderCell>
-          </TableRow>
-        </TableHeader>
-        <TableHeader
-          as="thead"
-        >
-          <TableRow
-            as="tr"
-            cellAs="td"
+            </Header>
+          </GridColumn>
+        </GridRow>
+        <GridRow>
+          <GridColumn
+            width={9}
           >
-            <TableCell
-              as="td"
+            Experimental (0/0)
+            <div
+              style={
+                Object {
+                  "height": "250px",
+                  "overflow": "auto",
+                }
+              }
             >
-              Experimental (0/0)
-            </TableCell>
-            <TableCell
-              as="td"
-            >
-              Predicted (0/0)
-            </TableCell>
-          </TableRow>
-        </TableHeader>
-        <TableBody
-          as="tbody"
-        >
-          <TableRow
-            as="tr"
-            cellAs="td"
+              <Table
+                as="table"
+                basic="very"
+                compact={true}
+                padded={true}
+              >
+                <TableHeader
+                  as="thead"
+                >
+                  <TableHeaderCell
+                    as="th"
+                  >
+                    Name
+                  </TableHeaderCell>
+                  <TableHeaderCell
+                    as="th"
+                  >
+                    Percent
+                  </TableHeaderCell>
+                  <TableHeaderCell
+                    as="th"
+                  >
+                    Source
+                  </TableHeaderCell>
+                </TableHeader>
+                <TableBody
+                  as="tbody"
+                />
+              </Table>
+            </div>
+          </GridColumn>
+          <GridColumn
+            width={6}
           >
-            <TableCell
-              as="td"
-              width={3}
-            >
-              <Form
-                as="form"
-                style={
-                  Object {
-                    "height": "165px",
-                    "overflow": "auto",
-                  }
+            Predicted (0/0)
+            <div
+              style={
+                Object {
+                  "height": "250px",
+                  "overflow": "auto",
                 }
-              />
-            </TableCell>
-            <TableCell
-              as="td"
-              width={1}
+              }
             >
-              <Form
-                as="form"
-                style={
-                  Object {
-                    "height": "165px",
-                    "overflow": "auto",
-                  }
-                }
-              />
-            </TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
+              <Table
+                as="table"
+                basic="very"
+                compact={true}
+                padded={true}
+              >
+                <TableHeader
+                  as="thead"
+                >
+                  <TableHeaderCell
+                    as="th"
+                  >
+                    Name
+                  </TableHeaderCell>
+                </TableHeader>
+                <TableBody
+                  as="tbody"
+                />
+              </Table>
+            </div>
+          </GridColumn>
+        </GridRow>
+      </Grid>
     </Popup>
   </GridRow>
   <GridRow>

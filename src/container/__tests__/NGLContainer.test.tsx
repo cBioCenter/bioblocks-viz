@@ -168,6 +168,34 @@ describe('NGLContainer', () => {
     ]);
 
     const wrapper = mount(<NGLContainerClass experimentalProteins={pdbs} predictedProteins={pdbs} />);
+    const instance = wrapper.instance() as NGLContainerClass;
+    wrapper
+      .find(Icon)
+      .at(0)
+      .simulate('click');
+    expect(instance.state.selectedExperimentalProteins).toEqual(['pred_1_sample']);
+    expect(instance.state.selectedPredictedProteins).toEqual(['pred_1_sample']);
+
+    wrapper.setProps({
+      experimentalProteins: [],
+      predictedProteins: [],
+    });
+    wrapper.update();
+    expect(instance.state.selectedExperimentalProteins).toEqual([]);
+    expect(instance.state.selectedPredictedProteins).toEqual([]);
+  });
+
+  it('Should show the correct sequence match.', async () => {
+    let experimentalPDB = await BioblocksPDB.createPDB('exp_1_sample');
+    let predictedPDB = await BioblocksPDB.createPDB('pred_1_sample');
+
+    Object.defineProperty(experimentalPDB, 'sequence', { value: 'ABCDEFGHIJ' });
+    Object.defineProperty(predictedPDB, 'sequence', { value: 'ABCDEFGHIJ' });
+
+    const wrapper = mount(
+      <NGLContainerClass experimentalProteins={[experimentalPDB]} predictedProteins={[predictedPDB]} />,
+    );
+
     wrapper
       .find(Icon)
       .at(0)
@@ -175,32 +203,26 @@ describe('NGLContainer', () => {
     expect(
       wrapper
         .find(Table.Cell)
-        .at(1)
+        .at(4)
         .text(),
-    ).toEqual('Experimental (1/2)');
-    expect(
-      wrapper
-        .find(Table.Cell)
-        .at(2)
-        .text(),
-    ).toEqual('Predicted (1/2)');
+    ).toEqual('100.00%');
+
+    experimentalPDB = await BioblocksPDB.createPDB('exp_2_sample');
+    predictedPDB = await BioblocksPDB.createPDB('pred_2_sample');
+
+    Object.defineProperty(experimentalPDB, 'sequence', { value: 'BCDEFFGHIJ' });
+    Object.defineProperty(predictedPDB, 'sequence', { value: 'ABCDEFGHIJ' });
 
     wrapper.setProps({
-      experimentalProteins: [],
-      predictedProteins: [],
+      experimentalProteins: [experimentalPDB],
+      predictedProteins: [predictedPDB],
     });
-    wrapper.update();
+
     expect(
       wrapper
         .find(Table.Cell)
-        .at(1)
+        .at(4)
         .text(),
-    ).toEqual('Experimental (0/0)');
-    expect(
-      wrapper
-        .find(Table.Cell)
-        .at(2)
-        .text(),
-    ).toEqual('Predicted (0/0)');
+    ).toEqual('50.00%');
   });
 });
