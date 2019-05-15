@@ -12,7 +12,7 @@
 
 // tslint:disable:no-backbone-get-set-outside-model
 import * as NGL from 'ngl';
-import { Vector2 } from 'three';
+import { Matrix4, Vector2 } from 'three';
 
 const ngl = jest.genMockFromModule<typeof NGL>('ngl');
 
@@ -74,7 +74,9 @@ class MockStage {
   };
 
   public viewerControls = {
+    getOrientation: () => new Matrix4(),
     getPositionOnCanvas: (pos: number) => pos,
+    orient: (matrix: Matrix4) => undefined,
   };
 
   constructor(readonly canvas: HTMLElement) {

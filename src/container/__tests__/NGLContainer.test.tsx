@@ -2,7 +2,7 @@ import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import { Provider } from 'react-redux';
 
-import { Checkbox, Popup } from 'semantic-ui-react';
+import { Checkbox, Icon, Popup, Table } from 'semantic-ui-react';
 import { NGLContainer, NGLContainerClass } from '~bioblocks-viz~/container';
 import { BioblocksPDB } from '~bioblocks-viz~/data';
 import { Store } from '~bioblocks-viz~/reducer';
@@ -106,7 +106,7 @@ describe('NGLContainer', () => {
     });
 
     wrapper
-      .find(Popup)
+      .find(Icon)
       .at(1)
       .simulate('click');
     wrapper
@@ -125,5 +125,104 @@ describe('NGLContainer', () => {
       selectedExperimentalProteins: ['exp_2_sample'],
       selectedPredictedProteins: ['pred_2_sample'],
     });
+  });
+
+  it('Should not show a popup when there are no PDB files to select.', async () => {
+    const wrapper = mount(<NGLContainerClass />);
+
+    wrapper
+      .find(Popup)
+      .at(0)
+      .simulate('click');
+    expect(wrapper.find(Checkbox).length).toBe(0);
+
+    wrapper
+      .find(Icon)
+      .at(1)
+      .simulate('click');
+    expect(wrapper.find(Checkbox).length).toBe(0);
+
+    const pdbs = await Promise.all([
+      BioblocksPDB.createPDB('exp_1_sample.pdb'),
+      BioblocksPDB.createPDB('exp_2_sample.pdb'),
+    ]);
+
+    wrapper.setProps({ experimentalProteins: pdbs, predictedProteins: pdbs });
+    wrapper
+      .find(Popup)
+      .at(0)
+      .simulate('click');
+    expect(wrapper.find(Checkbox).length).not.toBe(0);
+
+    wrapper
+      .find(Icon)
+      .at(1)
+      .simulate('click');
+    expect(wrapper.find(Checkbox).length).not.toBe(0);
+  });
+
+  it('Should handle clearing PDB files.', async () => {
+    const pdbs = await Promise.all([
+      BioblocksPDB.createPDB('pred_1_sample.pdb'),
+      BioblocksPDB.createPDB('pred_2_sample.pdb'),
+    ]);
+
+    const wrapper = mount(<NGLContainerClass experimentalProteins={pdbs} predictedProteins={pdbs} />);
+    const instance = wrapper.instance() as NGLContainerClass;
+    wrapper
+      .find(Icon)
+      .at(0)
+      .simulate('click');
+    expect(instance.state.selectedExperimentalProteins).toEqual(['pred_1_sample']);
+    expect(instance.state.selectedPredictedProteins).toEqual(['pred_1_sample']);
+
+    wrapper.setProps({
+      experimentalProteins: [],
+      predictedProteins: [],
+    });
+    wrapper.update();
+    expect(instance.state.selectedExperimentalProteins).toEqual([]);
+    expect(instance.state.selectedPredictedProteins).toEqual([]);
+  });
+
+  it('Should show the correct sequence match.', async () => {
+    let experimentalPDB = await BioblocksPDB.createPDB('exp_1_sample');
+    let predictedPDB = await BioblocksPDB.createPDB('pred_1_sample');
+
+    Object.defineProperty(experimentalPDB, 'sequence', { value: 'ABCDEFGHIJ' });
+    Object.defineProperty(predictedPDB, 'sequence', { value: 'ABCDEFGHIJ' });
+
+    const wrapper = mount(
+      <NGLContainerClass experimentalProteins={[experimentalPDB]} predictedProteins={[predictedPDB]} />,
+    );
+
+    wrapper
+      .find(Icon)
+      .at(0)
+      .simulate('click');
+    expect(
+      wrapper
+        .find(Table.Cell)
+        .at(4)
+        .text(),
+    ).toEqual('100.00%');
+
+    experimentalPDB = await BioblocksPDB.createPDB('exp_2_sample');
+    predictedPDB = await BioblocksPDB.createPDB('pred_2_sample');
+
+    Object.defineProperty(experimentalPDB, 'sequence', { value: 'BCDEFFGHIJ' });
+    Object.defineProperty(predictedPDB, 'sequence', { value: 'ABCDEFGHIJ' });
+
+    wrapper.setProps({
+      experimentalProteins: [experimentalPDB],
+      predictedProteins: [predictedPDB],
+    });
+
+    expect(
+      wrapper
+        .find(Table.Cell)
+        .at(4)
+        .text(),
+    ).toEqual('50.00%');
   });
 });

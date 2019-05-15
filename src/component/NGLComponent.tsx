@@ -176,7 +176,6 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
           activeRepresentations: this.deriveActiveRepresentations(structureComponent),
         });
       }
-      this.handleSuperposition(stage, superpositionStatus);
       stage.viewer.requestRender();
     }
   }
@@ -229,12 +228,6 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
    */
   protected addStructureToStage(structure: NGL.Structure, stage: NGL.Stage) {
     const structureComponent = stage.addComponentFromObject(structure);
-    structureComponent.stage.mouseControls.add(
-      NGL.MouseActions.HOVER_PICK,
-      (aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) => {
-        this.onHover(aStage, pickingProxy);
-      },
-    );
 
     stage.defaultFileRepresentation(structureComponent);
     stage.signals.clicked.add(this.onClick);
@@ -300,7 +293,9 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
 
   protected generateStage = (canvas: HTMLElement, params?: Partial<NGL.IStageParameters>) => {
     const stage = new NGL.Stage(canvas, params);
-
+    stage.mouseControls.add(NGL.MouseActions.HOVER_PICK, (aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) => {
+      this.onHover(aStage, pickingProxy);
+    });
     // !IMPORTANT! This is needed to prevent the canvas shifting when the user clicks the canvas.
     // It's unclear why the focus does this, but it's undesirable.
     stage.keyBehavior.domElement.focus = () => {
@@ -384,7 +379,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     } else if (superpositionStatus === 'NONE') {
       stage.compList.forEach((component, index) => {
         component.setPosition([index * 50, 0, 0]);
-        stage.compList[0].updateRepresentations({ position: true });
+        component.updateRepresentations({ position: true });
       });
       stage.autoView();
     }

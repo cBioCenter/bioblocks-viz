@@ -24,6 +24,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
       hoveredSecondaryStructures={Array []}
       isDataLoading={false}
       lockedResiduePairs={Immutable.Map {}}
+      maxPDBPerPopup={5}
       measuredProximity="C-α"
       predictedProteins={Array []}
       removeAllLockedResiduePairs={[Function]}
@@ -42,140 +43,42 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
         >
           <GridRow
             centered={true}
+            stretched={true}
           >
             <div
-              className="centered row"
+              className="centered stretched row"
             >
-              <GridColumn
-                width={5}
+              <Popup
+                disabled={true}
+                keepInViewPort={true}
+                on="click"
+                position="bottom center"
+                style={
+                  Object {
+                    "opacity": 0.85,
+                  }
+                }
+                trigger={
+                  <Icon
+                    as="i"
+                    name="tasks"
+                    size="large"
+                  />
+                }
+                wide="very"
               >
-                <div
-                  className="five wide column"
+                <Icon
+                  as="i"
+                  name="tasks"
+                  size="large"
                 >
-                  <Popup
-                    disabled={false}
-                    keepInViewPort={true}
-                    on="click"
-                    position="bottom center"
-                    trigger={
-                      <Label>
-                        Experimental 0/0
-                      </Label>
-                    }
-                    wide={true}
-                  >
-                    <Portal
-                      closeOnDocumentClick={true}
-                      closeOnEscape={true}
-                      closeOnTriggerClick={true}
-                      eventPool="default"
-                      onClose={[Function]}
-                      onMount={[Function]}
-                      onOpen={[Function]}
-                      onUnmount={[Function]}
-                      openOnTriggerClick={true}
-                      trigger={
-                        <Label>
-                          Experimental 0/0
-                        </Label>
-                      }
-                      triggerRef={[Function]}
-                    >
-                      <Ref
-                        innerRef={[Function]}
-                      >
-                        <RefFindNode
-                          innerRef={[Function]}
-                        >
-                          <Label
-                            onBlur={[Function]}
-                            onClick={[Function]}
-                            onFocus={[Function]}
-                            onMouseEnter={[Function]}
-                            onMouseLeave={[Function]}
-                          >
-                            <div
-                              className="ui label"
-                              onBlur={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onMouseEnter={[Function]}
-                              onMouseLeave={[Function]}
-                            >
-                              Experimental 0/0
-                            </div>
-                          </Label>
-                        </RefFindNode>
-                      </Ref>
-                    </Portal>
-                  </Popup>
-                </div>
-              </GridColumn>
-              <GridColumn
-                width={5}
-              >
-                <div
-                  className="five wide column"
-                >
-                  <Popup
-                    disabled={false}
-                    keepInViewPort={true}
-                    on="click"
-                    position="bottom center"
-                    trigger={
-                      <Label>
-                        Predicted 0/0
-                      </Label>
-                    }
-                    wide={true}
-                  >
-                    <Portal
-                      closeOnDocumentClick={true}
-                      closeOnEscape={true}
-                      closeOnTriggerClick={true}
-                      eventPool="default"
-                      onClose={[Function]}
-                      onMount={[Function]}
-                      onOpen={[Function]}
-                      onUnmount={[Function]}
-                      openOnTriggerClick={true}
-                      trigger={
-                        <Label>
-                          Predicted 0/0
-                        </Label>
-                      }
-                      triggerRef={[Function]}
-                    >
-                      <Ref
-                        innerRef={[Function]}
-                      >
-                        <RefFindNode
-                          innerRef={[Function]}
-                        >
-                          <Label
-                            onBlur={[Function]}
-                            onClick={[Function]}
-                            onFocus={[Function]}
-                            onMouseEnter={[Function]}
-                            onMouseLeave={[Function]}
-                          >
-                            <div
-                              className="ui label"
-                              onBlur={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                              onMouseEnter={[Function]}
-                              onMouseLeave={[Function]}
-                            >
-                              Predicted 0/0
-                            </div>
-                          </Label>
-                        </RefFindNode>
-                      </Ref>
-                    </Portal>
-                  </Popup>
-                </div>
-              </GridColumn>
+                  <i
+                    aria-hidden="true"
+                    className="tasks large icon"
+                    onClick={[Function]}
+                  />
+                </Icon>
+              </Popup>
             </div>
           </GridRow>
           <GridRow>
@@ -195,6 +98,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                 hoveredSecondaryStructures={Array []}
                 isDataLoading={false}
                 lockedResiduePairs={Object {}}
+                maxPDBPerPopup={5}
                 measuredProximity="C-α"
                 onMeasuredProximityChange={[Function]}
                 onResize={[Function]}
@@ -479,47 +383,118 @@ exports[`NGLContainer Should match the default snapshot when not hooked up to a 
 >
   <GridRow
     centered={true}
+    stretched={true}
   >
-    <GridColumn
-      width={5}
-    >
-      <Popup
-        disabled={false}
-        keepInViewPort={true}
-        on="click"
-        position="bottom center"
-        trigger={
-          <Label>
-            Experimental 0/0
-          </Label>
+    <Popup
+      disabled={true}
+      keepInViewPort={true}
+      on="click"
+      position="bottom center"
+      style={
+        Object {
+          "opacity": 0.85,
         }
-        wide={true}
-      >
-        <Form
-          as="form"
+      }
+      trigger={
+        <Icon
+          as="i"
+          name="tasks"
+          size="large"
         />
-      </Popup>
-    </GridColumn>
-    <GridColumn
-      width={5}
+      }
+      wide="very"
     >
-      <Popup
-        disabled={false}
-        keepInViewPort={true}
-        on="click"
-        position="bottom center"
-        trigger={
-          <Label>
-            Predicted 0/0
-          </Label>
-        }
-        wide={true}
+      <Grid
+        divided={true}
+        padded={true}
       >
-        <Form
-          as="form"
-        />
-      </Popup>
-    </GridColumn>
+        <GridRow>
+          <GridColumn>
+            <Header>
+              Select Structure to View
+            </Header>
+          </GridColumn>
+        </GridRow>
+        <GridRow>
+          <GridColumn
+            width={9}
+          >
+            Experimental (0/0)
+            <div
+              style={
+                Object {
+                  "height": "250px",
+                  "overflow": "auto",
+                }
+              }
+            >
+              <Table
+                as="table"
+                basic="very"
+                compact={true}
+                padded={true}
+              >
+                <TableHeader
+                  as="thead"
+                >
+                  <TableHeaderCell
+                    as="th"
+                  >
+                    Name
+                  </TableHeaderCell>
+                  <TableHeaderCell
+                    as="th"
+                  >
+                    Percent
+                  </TableHeaderCell>
+                  <TableHeaderCell
+                    as="th"
+                  >
+                    Source
+                  </TableHeaderCell>
+                </TableHeader>
+                <TableBody
+                  as="tbody"
+                />
+              </Table>
+            </div>
+          </GridColumn>
+          <GridColumn
+            width={6}
+          >
+            Predicted (0/0)
+            <div
+              style={
+                Object {
+                  "height": "250px",
+                  "overflow": "auto",
+                }
+              }
+            >
+              <Table
+                as="table"
+                basic="very"
+                compact={true}
+                padded={true}
+              >
+                <TableHeader
+                  as="thead"
+                >
+                  <TableHeaderCell
+                    as="th"
+                  >
+                    Name
+                  </TableHeaderCell>
+                </TableHeader>
+                <TableBody
+                  as="tbody"
+                />
+              </Table>
+            </div>
+          </GridColumn>
+        </GridRow>
+      </Grid>
+    </Popup>
   </GridRow>
   <GridRow>
     <NGLComponent
@@ -535,6 +510,7 @@ exports[`NGLContainer Should match the default snapshot when not hooked up to a 
       hoveredSecondaryStructures={Array []}
       isDataLoading={false}
       lockedResiduePairs={Object {}}
+      maxPDBPerPopup={5}
       measuredProximity="C-α"
       onMeasuredProximityChange={[Function]}
       onResize={[Function]}
