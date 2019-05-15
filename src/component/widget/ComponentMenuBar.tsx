@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Grid, Icon, Label, Menu, Sidebar, SidebarProps } from 'semantic-ui-react';
+import { Button, Grid, Icon, Label, Menu } from 'semantic-ui-react';
 
 import { BioblocksRadioGroup, BioblocksSlider } from '~bioblocks-viz~/component';
 import {
@@ -11,84 +11,52 @@ import {
   SliderWidgetConfig,
 } from '~bioblocks-viz~/data';
 
-export interface ISettingsPanelState {
+export interface IComponentMenuBarProps {
+  componentName: string;
+  configurations: BioblocksWidgetConfig[];
+  height: number | string;
+  isExpanded: boolean;
+  iconSrc?: string;
+  width: number | string;
+  onExpandToggleCb?(): void;
+}
+
+export interface IComponentMenuBarState {
   visible: boolean;
 }
 
-// We are omitting the 'width' prop from the Semantic Sidebar to instead use our own so an exact width may be specified.
-export type SettingsPanelProps = {
-  configurations: BioblocksWidgetConfig[];
-  direction?: 'top' | 'right' | 'bottom' | 'left';
-  inverted?: boolean;
-  opacity?: number;
-  showConfigurations?: boolean;
-  width?: number | string;
-} & Partial<Omit<SidebarProps, 'width'>>;
-
-export class SettingsPanel extends React.Component<SettingsPanelProps, ISettingsPanelState> {
+export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IComponentMenuBarState> {
   public static defaultProps = {
     configurations: new Array<BioblocksWidgetConfig>(),
-    direction: 'left',
-    inverted: true,
+    height: '100%',
+    isExpanded: false,
     opacity: 0.6,
-    showConfigurations: true,
     width: '100%',
   };
 
-  protected panel: HTMLDivElement | null = null;
-
-  constructor(props: SettingsPanelProps) {
+  constructor(props: IComponentMenuBarProps) {
     super(props);
     this.state = {
       visible: false,
     };
   }
 
-  public componentDidUpdate(prevProps: SettingsPanelProps, prevState: ISettingsPanelState) {
-    const { visible } = this.state;
-    if (visible && prevState.visible !== visible) {
-      window.addEventListener('click', e => {
-        if (this.panel) {
-          const panelRect = this.panel.getBoundingClientRect();
-
-          const { x, y } = e;
-          const isIntersected =
-            x >= panelRect.left && x <= panelRect.right && y >= panelRect.top && y <= panelRect.bottom;
-
-          if (!isIntersected) {
-            this.hideSettingsPanel();
-            window.removeEventListener('click', this.hideSettingsPanel);
-          }
-        }
-      });
-    } else {
-      window.removeEventListener('click', e => this.hideSettingsPanel);
-    }
-  }
-
   public render() {
-    const { children, configurations, inverted, opacity, showConfigurations, width } = this.props;
-    const { visible } = this.state;
+    const { componentName, height, iconSrc, isExpanded, onExpandToggleCb } = this.props;
 
     return (
-      <div ref={node => (this.panel = node ? node : null)}>
-        <Grid columns={1}>
-          {showConfigurations && <Grid.Column>{this.renderSettingsButton()}</Grid.Column>}
-          <Sidebar.Pushable style={{ height: '100%', width }}>
-            <Sidebar
-              as={Menu}
-              animation={'overlay'}
-              inverted={inverted}
-              style={{ opacity, width }}
-              vertical={true}
-              visible={visible}
-            >
-              {this.renderConfigurations(configurations)}
-            </Sidebar>
-            <Sidebar.Pusher>{children}</Sidebar.Pusher>
-          </Sidebar.Pushable>
-        </Grid>
-      </div>
+      <Menu secondary={true} style={{ margin: 0, height }}>
+        <Menu.Item position={'left'} fitted={'horizontally'} style={{ margin: 0 }}>
+          {iconSrc && (
+            <img alt={'component icon'} src={iconSrc} style={{ height: '32px', padding: '2px', width: '32px' }} />
+          )}
+          {componentName}
+        </Menu.Item>
+
+        <Menu.Item position={'right'} fitted={'horizontally'} style={{ margin: 0 }}>
+          <Icon name={isExpanded ? 'compress' : 'expand arrows alternate'} onClick={onExpandToggleCb} />
+        </Menu.Item>
+      </Menu>
     );
   }
 

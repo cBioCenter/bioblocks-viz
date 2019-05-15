@@ -1,6 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Card, Icon, Menu, Modal } from 'semantic-ui-react';
+import { Card, Modal } from 'semantic-ui-react';
+
+import { ComponentMenuBar } from '~bioblocks-viz~/component/widget';
 
 export interface IComponentCardProps {
   componentName: string;
@@ -107,20 +109,12 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
   }
 
   protected renderTopMenu = (height: number | string) => (
-    <Menu secondary={true} style={{ margin: 0, height }}>
-      <Menu.Item position={'left'} fitted={'horizontally'} style={{ margin: 0 }}>
-        <img
-          alt={'component icon'}
-          src={this.props.iconSrc}
-          style={{ height: '32px', padding: '2px', width: '32px' }}
-        />
-        {this.props.componentName}
-      </Menu.Item>
-      <Menu.Item position={'right'} fitted={'horizontally'} style={{ margin: 0 }}>
-        <Icon name={this.state.isFullPage ? 'compress' : 'expand arrows alternate'} onClick={this.onFullPageToggle} />
-        {this.props.showSettings && <Icon name={'settings'} />}
-      </Menu.Item>
-    </Menu>
+    <ComponentMenuBar
+      componentName={this.props.componentName}
+      iconSrc={this.props.iconSrc}
+      isExpanded={this.state.isFullPage}
+      onExpandToggleCb={this.onFullPageToggle}
+    />
   );
 
   protected onFullPageToggle = () => {
