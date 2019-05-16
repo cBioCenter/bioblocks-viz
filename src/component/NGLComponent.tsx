@@ -4,7 +4,7 @@ import * as NGL from 'ngl';
 import * as React from 'react';
 import { Matrix4, Vector2 } from 'three';
 
-import { Dimmer, Loader } from 'semantic-ui-react';
+import { Dimmer, Icon, Loader } from 'semantic-ui-react';
 import { ComponentCard, IComponentMenuBarItem } from '~bioblocks-viz~/component';
 import {
   AMINO_ACID_THREE_LETTER_CODE,
@@ -194,7 +194,29 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     const computedStyle = { ...style, height, width };
 
     return (
-      <ComponentCard componentName={'NGL Viewer'} menuItems={menuItems}>
+      <ComponentCard
+        componentName={'NGL Viewer'}
+        menuItems={[
+          ...menuItems,
+          {
+            component: {
+              configs: this.getConfigurations(),
+              name: 'SIDEBAR',
+              props: {
+                closeOnPortalMouseLeave: false,
+                closeOnTriggerClick: true,
+                closeOnTriggerMouseLeave: false,
+                hoverable: false,
+                openOnTriggerClick: true,
+                openOnTriggerFocus: false,
+                openOnTriggerMouseEnter: false,
+                trigger: <Icon name={'setting'} />,
+              },
+            },
+            description: 'Settings',
+          },
+        ]}
+      >
         <div className={'NGLComponent'} style={computedStyle}>
           <Dimmer active={isDataLoading}>
             <Loader />
