@@ -13,6 +13,7 @@ exports[`AnatomogramContainer Should match existing snapshot for homo sapiens. 1
     iconSrc="assets/icons/spring-icon.png"
     isFramedComponent={false}
     isFullPage={false}
+    menuItems={Array []}
     padding={0}
     showSettings={false}
     width="525px"
@@ -63,6 +64,7 @@ exports[`AnatomogramContainer Should match existing snapshot for mus musculus. 1
     iconSrc="assets/icons/spring-icon.png"
     isFramedComponent={false}
     isFullPage={false}
+    menuItems={Array []}
     padding={0}
     showSettings={false}
     width="525px"

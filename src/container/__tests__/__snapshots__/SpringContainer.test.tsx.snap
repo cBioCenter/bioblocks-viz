@@ -10,6 +10,7 @@ exports[`SpringContainer Should match existing snapshot. 1`] = `
   iconSrc="assets/icons/spring-icon.png"
   isFramedComponent={true}
   isFullPage={false}
+  menuItems={Array []}
   padding={0}
   showSettings={false}
   width="525px"

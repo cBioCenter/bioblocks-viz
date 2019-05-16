@@ -10,6 +10,7 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
   iconSrc="assets/icons/spring-icon.png"
   isFramedComponent={false}
   isFullPage={false}
+  menuItems={Array []}
   padding={0}
   showSettings={false}
   width="525px"
@@ -44,22 +45,20 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
   <div
     style={
       Object {
-        "bottom": "27px",
-        "height": "27px",
-        "position": "relative",
-        "right": "5px",
+        "bottom": "20px",
+        "position": "absolute",
+        "right": "20px",
+        "userSelect": "none",
       }
     }
   >
-    <Button
-      active={false}
-      as="button"
-      floated="right"
+    <a
+      aria-pressed={false}
       onClick={[Function]}
-      toggle={true}
+      role="button"
     >
       Superposition: off
-    </Button>
+    </a>
   </div>
 </ComponentCard>
 `;
