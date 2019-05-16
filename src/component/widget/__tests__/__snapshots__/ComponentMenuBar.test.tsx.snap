@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ComponentMenuBar Should match existing snapshot when given default props. 1`] = `
+<div
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  <Menu
+    secondary={true}
+    style={
+      Object {
+        "height": "100%",
+        "margin": 0,
+      }
+    }
+  >
+    <MenuItem
+      fitted="horizontally"
+      position="left"
+      style={
+        Object {
+          "margin": 0,
+          "padding": 0,
+        }
+      }
+    >
+      The Boxer
+    </MenuItem>
+    <Menu
+      floated="right"
+      secondary={true}
+    >
+      <MenuItem
+        fitted="horizontally"
+        style={
+          Object {
+            "flexDirection": "column",
+          }
+        }
+      >
+        <Icon
+          as="i"
+          name="expand arrows alternate"
+        />
+        <span
+          style={
+            Object {
+              "visibility": "hidden",
+            }
+          }
+        >
+          expand
+        </span>
+      </MenuItem>
+    </Menu>
+  </Menu>
+</div>
+`;
+
+exports[`ComponentMenuBar Should render popup menu items. 1`] = `
+<div
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  <Menu
+    secondary={true}
+    style={
+      Object {
+        "height": "100%",
+        "margin": 0,
+      }
+    }
+  >
+    <MenuItem
+      fitted="horizontally"
+      position="left"
+      style={
+        Object {
+          "margin": 0,
+          "padding": 0,
+        }
+      }
+    >
+      The Boxer
+    </MenuItem>
+    <Menu
+      floated="right"
+      secondary={true}
+    >
+      <MenuItem
+        fitted="horizontally"
+        key="The Boxer-menu-item-0"
+        style={
+          Object {
+            "flexDirection": "column",
+          }
+        }
+      >
+        <Popup
+          disabled={false}
+          keepInViewPort={true}
+          on="hover"
+          position="top left"
+        />
+        <span
+          style={
+            Object {
+              "visibility": "hidden",
+            }
+          }
+        >
+          A Popup
+        </span>
+      </MenuItem>
+      <MenuItem
+        fitted="horizontally"
+        style={
+          Object {
+            "flexDirection": "column",
+          }
+        }
+      >
+        <Icon
+          as="i"
+          name="expand arrows alternate"
+        />
+        <span
+          style={
+            Object {
+              "visibility": "hidden",
+            }
+          }
+        >
+          expand
+        </span>
+      </MenuItem>
+    </Menu>
+  </Menu>
+</div>
+`;

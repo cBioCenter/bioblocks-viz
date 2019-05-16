@@ -90,8 +90,6 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
       let menuItemChild = null;
       if (item.component.name === 'POPUP') {
         menuItemChild = <Popup {...item.component.props} />;
-      } else if (item.component.name === 'ICON') {
-        menuItemChild = <Icon {...item.component.props} />;
       }
 
       return (
