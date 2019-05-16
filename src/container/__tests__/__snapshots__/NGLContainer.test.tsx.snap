@@ -719,7 +719,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                           }
                                         }
                                       >
-                                        expand
+                                        Expand
                                       </span>
                                     </div>
                                   </MenuItem>

@@ -63,7 +63,7 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
             {this.renderMenuItems(menuItems, componentName)}
             <Menu.Item fitted={'horizontally'} style={{ flexDirection: 'column' }}>
               <Icon name={isExpanded ? 'compress' : 'expand arrows alternate'} onClick={onExpandToggleCb} />
-              <span style={{ visibility: isHovered ? 'visible' : 'hidden' }}>{isExpanded ? 'close' : 'expand'}</span>
+              <span style={{ visibility: isHovered ? 'visible' : 'hidden' }}>{isExpanded ? 'Close' : 'Expand'}</span>
             </Menu.Item>
           </Menu>
         </Menu>

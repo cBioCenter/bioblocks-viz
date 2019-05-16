@@ -49,7 +49,7 @@ exports[`ComponentMenuBar Should match existing snapshot when given default prop
             }
           }
         >
-          expand
+          Expand
         </span>
       </MenuItem>
     </Menu>
@@ -131,7 +131,7 @@ exports[`ComponentMenuBar Should render popup menu items. 1`] = `
             }
           }
         >
-          expand
+          Expand
         </span>
       </MenuItem>
     </Menu>

@@ -148,7 +148,7 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
                           }
                         }
                       >
-                        expand
+                        Expand
                       </span>
                     </div>
                   </MenuItem>
