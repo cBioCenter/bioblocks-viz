@@ -123,6 +123,11 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="componentmenubar.html#onmenuenter" class="tsd-kind-icon">on<wbr>Menu<wbr>Enter</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="componentmenubar.html#onmenuleave" class="tsd-kind-icon">on<wbr>Menu<wbr>Leave</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="componentmenubar.html#render" class="tsd-kind-icon">render</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="componentmenubar.html#renderconfig" class="tsd-kind-icon">render<wbr>Config</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="componentmenubar.html#renderconfigurationbutton" class="tsd-kind-icon">render<wbr>Configuration<wbr>Button</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="componentmenubar.html#renderconfigurationlabel" class="tsd-kind-icon">render<wbr>Configuration<wbr>Label</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="componentmenubar.html#renderconfigurationradiobutton" class="tsd-kind-icon">render<wbr>Configuration<wbr>Radio<wbr>Button</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="componentmenubar.html#renderconfigurationslider" class="tsd-kind-icon">render<wbr>Configuration<wbr>Slider</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="componentmenubar.html#rendermenuitems" class="tsd-kind-icon">render<wbr>Menu<wbr>Items</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="componentmenubar.html#setstate" class="tsd-kind-icon">set<wbr>State</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="componentmenubar.html#shouldcomponentupdate" class="tsd-kind-icon">should<wbr>Component<wbr>Update</a></li>
@@ -150,7 +155,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/8b14f6fdf/src/component/widget/ComponentMenuBar.tsx#L39">src/component/widget/ComponentMenuBar.tsx:39</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/da0996607/src/component/widget/ComponentMenuBar.tsx#L53">src/component/widget/ComponentMenuBar.tsx:53</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -736,7 +741,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/8b14f6fdf/src/component/widget/ComponentMenuBar.tsx#L74">src/component/widget/ComponentMenuBar.tsx:74</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/da0996607/src/component/widget/ComponentMenuBar.tsx#L88">src/component/widget/ComponentMenuBar.tsx:88</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -753,7 +758,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/8b14f6fdf/src/component/widget/ComponentMenuBar.tsx#L80">src/component/widget/ComponentMenuBar.tsx:80</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/da0996607/src/component/widget/ComponentMenuBar.tsx#L94">src/component/widget/ComponentMenuBar.tsx:94</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -771,9 +776,142 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Overrides Component.render</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/8b14f6fdf/src/component/widget/ComponentMenuBar.tsx#L48">src/component/widget/ComponentMenuBar.tsx:48</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/da0996607/src/component/widget/ComponentMenuBar.tsx#L62">src/component/widget/ComponentMenuBar.tsx:62</a></li>
 								</ul>
 							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="renderconfig" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> render<wbr>Config</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">render<wbr>Config<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="../globals.html#bioblockswidgetconfig" class="tsd-signature-type">BioblocksWidgetConfig</a>, id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Element</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/da0996607/src/component/widget/ComponentMenuBar.tsx#L100">src/component/widget/ComponentMenuBar.tsx:100</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>config: <a href="../globals.html#bioblockswidgetconfig" class="tsd-signature-type">BioblocksWidgetConfig</a></h5>
+								</li>
+								<li>
+									<h5>id: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">Element</span>
+							</h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="renderconfigurationbutton" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> render<wbr>Configuration<wbr>Button</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">render<wbr>Configuration<wbr>Button<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="../globals.html#buttonwidgetconfig" class="tsd-signature-type">ButtonWidgetConfig</a>, id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/da0996607/src/component/widget/ComponentMenuBar.tsx#L116">src/component/widget/ComponentMenuBar.tsx:116</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>config: <a href="../globals.html#buttonwidgetconfig" class="tsd-signature-type">ButtonWidgetConfig</a></h5>
+								</li>
+								<li>
+									<h5>id: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="renderconfigurationlabel" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> render<wbr>Configuration<wbr>Label</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">render<wbr>Configuration<wbr>Label<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="../globals.html#labelwidgetconfig" class="tsd-signature-type">LabelWidgetConfig</a>, id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/da0996607/src/component/widget/ComponentMenuBar.tsx#L125">src/component/widget/ComponentMenuBar.tsx:125</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>config: <a href="../globals.html#labelwidgetconfig" class="tsd-signature-type">LabelWidgetConfig</a></h5>
+								</li>
+								<li>
+									<h5>id: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="renderconfigurationradiobutton" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> render<wbr>Configuration<wbr>Radio<wbr>Button</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">render<wbr>Configuration<wbr>Radio<wbr>Button<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="../globals.html#radiowidgetconfig" class="tsd-signature-type">RadioWidgetConfig</a>, id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/da0996607/src/component/widget/ComponentMenuBar.tsx#L133">src/component/widget/ComponentMenuBar.tsx:133</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>config: <a href="../globals.html#radiowidgetconfig" class="tsd-signature-type">RadioWidgetConfig</a></h5>
+								</li>
+								<li>
+									<h5>id: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="renderconfigurationslider" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> render<wbr>Configuration<wbr>Slider</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">render<wbr>Configuration<wbr>Slider<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="../globals.html#sliderwidgetconfig" class="tsd-signature-type">SliderWidgetConfig</a>, id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/da0996607/src/component/widget/ComponentMenuBar.tsx#L145">src/component/widget/ComponentMenuBar.tsx:145</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>config: <a href="../globals.html#sliderwidgetconfig" class="tsd-signature-type">SliderWidgetConfig</a></h5>
+								</li>
+								<li>
+									<h5>id: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
 						</li>
 					</ul>
@@ -788,7 +926,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/8b14f6fdf/src/component/widget/ComponentMenuBar.tsx#L86">src/component/widget/ComponentMenuBar.tsx:86</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/da0996607/src/component/widget/ComponentMenuBar.tsx#L160">src/component/widget/ComponentMenuBar.tsx:160</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -886,7 +1024,7 @@ class Foo extends React.Component {
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/8b14f6fdf/src/component/widget/ComponentMenuBar.tsx#L32">src/component/widget/ComponentMenuBar.tsx:32</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/da0996607/src/component/widget/ComponentMenuBar.tsx#L46">src/component/widget/ComponentMenuBar.tsx:46</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -895,7 +1033,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">configurations<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><a href="../interfaces/ibasebioblockswidgetconfig.html" class="tsd-signature-type">IBaseBioblocksWidgetConfig</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/ibasebioblockswidgetconfig.html" class="tsd-signature-type">IBaseBioblocksWidgetConfig</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/ibasebioblockswidgetconfig.html" class="tsd-signature-type">IBaseBioblocksWidgetConfig</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/ibasebioblockswidgetconfig.html" class="tsd-signature-type">IBaseBioblocksWidgetConfig</a><span class="tsd-signature-symbol"> &amp; </span><a href="../interfaces/ibioblockswidgetvalueconfig.html" class="tsd-signature-type">IBioblocksWidgetValueConfig</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;new Array&lt;BioblocksWidgetConfig&gt;()</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/8b14f6fdf/src/component/widget/ComponentMenuBar.tsx#L33">src/component/widget/ComponentMenuBar.tsx:33</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/da0996607/src/component/widget/ComponentMenuBar.tsx#L47">src/component/widget/ComponentMenuBar.tsx:47</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -905,7 +1043,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;100%&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/8b14f6fdf/src/component/widget/ComponentMenuBar.tsx#L34">src/component/widget/ComponentMenuBar.tsx:34</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/da0996607/src/component/widget/ComponentMenuBar.tsx#L48">src/component/widget/ComponentMenuBar.tsx:48</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -915,7 +1053,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">is<wbr>Expanded<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/8b14f6fdf/src/component/widget/ComponentMenuBar.tsx#L35">src/component/widget/ComponentMenuBar.tsx:35</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/da0996607/src/component/widget/ComponentMenuBar.tsx#L49">src/component/widget/ComponentMenuBar.tsx:49</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -925,7 +1063,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">menu<wbr>Items<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/8b14f6fdf/src/component/widget/ComponentMenuBar.tsx#L36">src/component/widget/ComponentMenuBar.tsx:36</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/da0996607/src/component/widget/ComponentMenuBar.tsx#L50">src/component/widget/ComponentMenuBar.tsx:50</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -935,7 +1073,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">opacity<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.6</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/8b14f6fdf/src/component/widget/ComponentMenuBar.tsx#L37">src/component/widget/ComponentMenuBar.tsx:37</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/da0996607/src/component/widget/ComponentMenuBar.tsx#L51">src/component/widget/ComponentMenuBar.tsx:51</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -945,7 +1083,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;100%&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/8b14f6fdf/src/component/widget/ComponentMenuBar.tsx#L38">src/component/widget/ComponentMenuBar.tsx:38</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/da0996607/src/component/widget/ComponentMenuBar.tsx#L52">src/component/widget/ComponentMenuBar.tsx:52</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1029,6 +1167,21 @@ class Foo extends React.Component {
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="componentmenubar.html#render" class="tsd-kind-icon">render</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="componentmenubar.html#renderconfig" class="tsd-kind-icon">render<wbr>Config</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="componentmenubar.html#renderconfigurationbutton" class="tsd-kind-icon">render<wbr>Configuration<wbr>Button</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="componentmenubar.html#renderconfigurationlabel" class="tsd-kind-icon">render<wbr>Configuration<wbr>Label</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="componentmenubar.html#renderconfigurationradiobutton" class="tsd-kind-icon">render<wbr>Configuration<wbr>Radio<wbr>Button</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="componentmenubar.html#renderconfigurationslider" class="tsd-kind-icon">render<wbr>Configuration<wbr>Slider</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 								<a href="componentmenubar.html#rendermenuitems" class="tsd-kind-icon">render<wbr>Menu<wbr>Items</a>
