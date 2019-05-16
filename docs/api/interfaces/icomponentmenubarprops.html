@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IBioblocksTooltipProps | bioblocks-viz</title>
+	<title>IComponentMenuBarProps | bioblocks-viz</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="ibioblockstooltipprops.html">IBioblocksTooltipProps</a>
+					<a href="icomponentmenubarprops.html">IComponentMenuBarProps</a>
 				</li>
 			</ul>
-			<h1>Interface IBioblocksTooltipProps</h1>
+			<h1>Interface IComponentMenuBarProps</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IBioblocksTooltipProps</span>
+						<span class="target">IComponentMenuBarProps</span>
 					</li>
 				</ul>
 			</section>
@@ -79,9 +79,19 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ibioblockstooltipprops.html#message" class="tsd-kind-icon">message</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ibioblockstooltipprops.html#style" class="tsd-kind-icon">style</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ibioblockstooltipprops.html#timeout" class="tsd-kind-icon">timeout</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icomponentmenubarprops.html#componentname" class="tsd-kind-icon">component<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icomponentmenubarprops.html#configurations" class="tsd-kind-icon">configurations</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icomponentmenubarprops.html#height" class="tsd-kind-icon">height</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icomponentmenubarprops.html#iconsrc" class="tsd-kind-icon">icon<wbr>Src</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icomponentmenubarprops.html#isexpanded" class="tsd-kind-icon">is<wbr>Expanded</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icomponentmenubarprops.html#menuitems" class="tsd-kind-icon">menu<wbr>Items</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icomponentmenubarprops.html#width" class="tsd-kind-icon">width</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="icomponentmenubarprops.html#onexpandtogglecb" class="tsd-kind-icon">on<wbr>Expand<wbr>Toggle<wbr>Cb</a></li>
 							</ul>
 						</section>
 					</div>
@@ -90,34 +100,94 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="message" class="tsd-anchor"></a>
-					<h3>message</h3>
-					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="componentname" class="tsd-anchor"></a>
+					<h3>component<wbr>Name</h3>
+					<div class="tsd-signature tsd-kind-icon">component<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/8ec42026c/src/component/widget/BioblocksTooltip.tsx#L5">src/component/widget/BioblocksTooltip.tsx:5</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/5df21112c/src/component/widget/ComponentMenuBar.tsx#L7">src/component/widget/ComponentMenuBar.tsx:7</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="style" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> style</h3>
-					<div class="tsd-signature tsd-kind-icon">style<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">React.CSSProperties</span></div>
+					<a name="configurations" class="tsd-anchor"></a>
+					<h3>configurations</h3>
+					<div class="tsd-signature tsd-kind-icon">configurations<span class="tsd-signature-symbol">:</span> <a href="../globals.html#bioblockswidgetconfig" class="tsd-signature-type">BioblocksWidgetConfig</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/8ec42026c/src/component/widget/BioblocksTooltip.tsx#L4">src/component/widget/BioblocksTooltip.tsx:4</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/5df21112c/src/component/widget/ComponentMenuBar.tsx#L8">src/component/widget/ComponentMenuBar.tsx:8</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="timeout" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> timeout</h3>
-					<div class="tsd-signature tsd-kind-icon">timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<a name="height" class="tsd-anchor"></a>
+					<h3>height</h3>
+					<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/8ec42026c/src/component/widget/BioblocksTooltip.tsx#L6">src/component/widget/BioblocksTooltip.tsx:6</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/5df21112c/src/component/widget/ComponentMenuBar.tsx#L9">src/component/widget/ComponentMenuBar.tsx:9</a></li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="iconsrc" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> icon<wbr>Src</h3>
+					<div class="tsd-signature tsd-kind-icon">icon<wbr>Src<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/5df21112c/src/component/widget/ComponentMenuBar.tsx#L11">src/component/widget/ComponentMenuBar.tsx:11</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="isexpanded" class="tsd-anchor"></a>
+					<h3>is<wbr>Expanded</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Expanded<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/5df21112c/src/component/widget/ComponentMenuBar.tsx#L10">src/component/widget/ComponentMenuBar.tsx:10</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="menuitems" class="tsd-anchor"></a>
+					<h3>menu<wbr>Items</h3>
+					<div class="tsd-signature tsd-kind-icon">menu<wbr>Items<span class="tsd-signature-symbol">:</span> <a href="icomponentmenubaritem.html" class="tsd-signature-type">IComponentMenuBarItem</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/5df21112c/src/component/widget/ComponentMenuBar.tsx#L12">src/component/widget/ComponentMenuBar.tsx:12</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="width" class="tsd-anchor"></a>
+					<h3>width</h3>
+					<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/5df21112c/src/component/widget/ComponentMenuBar.tsx#L13">src/component/widget/ComponentMenuBar.tsx:13</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="onexpandtogglecb" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Expand<wbr>Toggle<wbr>Cb</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Expand<wbr>Toggle<wbr>Cb<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/5df21112c/src/component/widget/ComponentMenuBar.tsx#L14">src/component/widget/ComponentMenuBar.tsx:14</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -134,16 +204,31 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="ibioblockstooltipprops.html" class="tsd-kind-icon">IBioblocks<wbr>Tooltip<wbr>Props</a>
+						<a href="icomponentmenubarprops.html" class="tsd-kind-icon">IComponent<wbr>Menu<wbr>Bar<wbr>Props</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="ibioblockstooltipprops.html#message" class="tsd-kind-icon">message</a>
+								<a href="icomponentmenubarprops.html#componentname" class="tsd-kind-icon">component<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="ibioblockstooltipprops.html#style" class="tsd-kind-icon">style</a>
+								<a href="icomponentmenubarprops.html#configurations" class="tsd-kind-icon">configurations</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="ibioblockstooltipprops.html#timeout" class="tsd-kind-icon">timeout</a>
+								<a href="icomponentmenubarprops.html#height" class="tsd-kind-icon">height</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="icomponentmenubarprops.html#iconsrc" class="tsd-kind-icon">icon<wbr>Src</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="icomponentmenubarprops.html#isexpanded" class="tsd-kind-icon">is<wbr>Expanded</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="icomponentmenubarprops.html#menuitems" class="tsd-kind-icon">menu<wbr>Items</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="icomponentmenubarprops.html#width" class="tsd-kind-icon">width</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="icomponentmenubarprops.html#onexpandtogglecb" class="tsd-kind-icon">on<wbr>Expand<wbr>Toggle<wbr>Cb</a>
 							</li>
 						</ul>
 					</li>
