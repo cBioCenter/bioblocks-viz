@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Card, Modal } from 'semantic-ui-react';
 
-import { ComponentMenuBar } from '~bioblocks-viz~/component/widget';
+import { ComponentMenuBar, IComponentMenuBarItem } from '~bioblocks-viz~/component/widget';
 
 export interface IComponentCardProps {
   componentName: string;
@@ -13,6 +13,7 @@ export interface IComponentCardProps {
   iconSrc: string;
   isFramedComponent: boolean;
   isFullPage: boolean;
+  menuItems: IComponentMenuBarItem[];
   padding: number | string;
   showSettings: boolean;
   width: number | string;
@@ -32,6 +33,7 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     iconSrc: 'assets/icons/spring-icon.png',
     isFramedComponent: false,
     isFullPage: false,
+    menuItems: [],
     padding: 0,
     showSettings: false,
     width: '525px',
@@ -108,14 +110,21 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     }
   }
 
-  protected renderTopMenu = (height: number | string) => (
-    <ComponentMenuBar
-      componentName={this.props.componentName}
-      iconSrc={this.props.iconSrc}
-      isExpanded={this.state.isFullPage}
-      onExpandToggleCb={this.onFullPageToggle}
-    />
-  );
+  protected renderTopMenu = (height: number | string) => {
+    const { componentName, iconSrc, menuItems } = this.props;
+    const { isFullPage } = this.state;
+
+    return (
+      <ComponentMenuBar
+        componentName={componentName}
+        height={height}
+        iconSrc={iconSrc}
+        isExpanded={isFullPage}
+        menuItems={menuItems}
+        onExpandToggleCb={this.onFullPageToggle}
+      />
+    );
+  };
 
   protected onFullPageToggle = () => {
     this.setState({
