@@ -1986,7 +1986,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           isExpanded={false}
           menuItems={Array []}
           onExpandToggleCb={[Function]}
-          opacity={0.6}
           width="100%"
         >
           <div
@@ -2083,6 +2082,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         <span
                           style={
                             Object {
+                              "fontSize": "11px",
                               "visibility": "hidden",
                             }
                           }

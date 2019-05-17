@@ -203,13 +203,6 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
               configs: this.getConfigurations(),
               name: 'SIDEBAR',
               props: {
-                closeOnPortalMouseLeave: false,
-                closeOnTriggerClick: true,
-                closeOnTriggerMouseLeave: false,
-                hoverable: false,
-                openOnTriggerClick: true,
-                openOnTriggerFocus: false,
-                openOnTriggerMouseEnter: false,
                 trigger: <Icon name={'setting'} />,
               },
             },

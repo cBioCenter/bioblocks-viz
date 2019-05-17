@@ -122,7 +122,6 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
                   props: {
                     children: this.renderPDBSelector(),
                     disabled: experimentalProteins.length === 0 && predictedProteins.length === 0,
-                    on: 'click',
                     style: { opacity: 0.85 },
                     trigger: <Icon name={'tasks'} />,
                     wide: 'very',
@@ -168,7 +167,7 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
       <Grid divided={true} padded={true}>
         <Grid.Row>
           <Grid.Column>
-            <Header>Select Structure to View</Header>
+            <Header>Select Structures to Display</Header>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row style={{ padding: '5px 0' }}>
@@ -194,22 +193,24 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
   ) {
     const { maxPDBPerPopup } = this.props;
     const { selectedExperimentalProteins, selectedPredictedProteins } = this.state;
+    const cellStyle = { padding: '5px 0' };
 
     return (
       <div style={{ height: `${maxPDBPerPopup * 50}px`, overflow: 'auto' }}>
         <Table basic={'very'} compact={true} padded={true}>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell style={{ padding: '5px 0' }}>Name</Table.HeaderCell>
-              {pdbGroup === 'experimental' && <Table.HeaderCell style={{ padding: '0' }}>Percent</Table.HeaderCell>}
-              {pdbGroup === 'experimental' && <Table.HeaderCell style={{ padding: '0' }}>Source</Table.HeaderCell>}
+              <Table.HeaderCell style={cellStyle}>Name</Table.HeaderCell>
+              {pdbGroup === 'experimental' && <Table.HeaderCell style={cellStyle}>Seq. ID</Table.HeaderCell>}
+              {pdbGroup === 'experimental' && <Table.HeaderCell style={cellStyle}>Source</Table.HeaderCell>}
+              {pdbGroup === 'predicted' && <Table.HeaderCell style={cellStyle}>Rank</Table.HeaderCell>}
             </Table.Row>
           </Table.Header>
           <Table.Body>
             {data.map((pdb, index) => {
               return (
                 <Table.Row columns={pdbGroup === 'experimental' ? 3 : 1} key={`pdb-radio-${pdbGroup}-${index}`}>
-                  <Table.Cell>
+                  <Table.Cell style={cellStyle}>
                     <Checkbox
                       label={`${pdb.name}`}
                       onChange={onChange}
@@ -221,13 +222,14 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
                   </Table.Cell>
 
                   {pdbGroup === 'experimental' && (
-                    <Table.Cell>
+                    <Table.Cell style={cellStyle}>
                       {this.props.predictedProteins.length >= 1
                         ? `${this.sequenceSimilarityPercent(pdb.sequence, this.props.predictedProteins[0].sequence)}`
                         : 'N/A'}
                     </Table.Cell>
                   )}
-                  {pdbGroup === 'experimental' && <Table.Cell>{pdb.source}</Table.Cell>}
+                  {pdbGroup === 'experimental' && <Table.Cell style={cellStyle}>{pdb.source}</Table.Cell>}
+                  {pdbGroup === 'predicted' && <Table.Cell style={cellStyle}>{pdb.rank}</Table.Cell>}
                 </Table.Row>
               );
             })}

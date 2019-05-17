@@ -131,14 +131,8 @@ describe('NGLContainer', () => {
     const wrapper = mount(<NGLContainerClass />);
 
     wrapper
-      .find(Popup)
-      .at(0)
-      .simulate('click');
-    expect(wrapper.find(Checkbox).length).toBe(0);
-
-    wrapper
       .find(Icon)
-      .at(1)
+      .at(0)
       .simulate('click');
     expect(wrapper.find(Checkbox).length).toBe(0);
 

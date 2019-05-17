@@ -42,13 +42,22 @@ export interface IComponentMenuBarItem<T = IPopupType | ISidebarType> {
   description: string;
 }
 
+export const DEFAULT_POPUP_PROPS: Partial<PopupProps> = {
+  closeOnPortalMouseLeave: false,
+  closeOnTriggerClick: true,
+  closeOnTriggerMouseLeave: false,
+  hoverable: false,
+  openOnTriggerClick: true,
+  openOnTriggerFocus: false,
+  openOnTriggerMouseEnter: false,
+};
+
 export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IComponentMenuBarState> {
   public static defaultProps = {
     configurations: new Array<BioblocksWidgetConfig>(),
     height: '100%',
     isExpanded: false,
     menuItems: [],
-    opacity: 0.6,
     width: '100%',
   };
 
@@ -61,7 +70,6 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
 
   public render() {
     const { componentName, height, iconSrc, isExpanded, menuItems, onExpandToggleCb } = this.props;
-    const { isHovered } = this.state;
 
     return (
       <div onMouseEnter={this.onMenuEnter} onMouseLeave={this.onMenuLeave}>
@@ -77,7 +85,7 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
             {this.renderMenuItems(menuItems, componentName)}
             <Menu.Item fitted={'horizontally'} style={{ flexDirection: 'column' }}>
               <Icon name={isExpanded ? 'compress' : 'expand arrows alternate'} onClick={onExpandToggleCb} />
-              <span style={{ visibility: isHovered ? 'visible' : 'hidden' }}>{isExpanded ? 'Close' : 'Expand'}</span>
+              {this.renderMenuIconText(isExpanded ? 'Close' : 'Expand')}
             </Menu.Item>
           </Menu>
         </Menu>
@@ -157,16 +165,21 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
     );
   }
 
-  protected renderMenuItems(items: IComponentMenuBarItem[], componentName: string) {
+  protected renderMenuIconText(text: string) {
     const { isHovered } = this.state;
 
+    return <span style={{ fontSize: '11px', visibility: isHovered ? 'visible' : 'hidden' }}>{text}</span>;
+  }
+
+  protected renderMenuItems(items: IComponentMenuBarItem[], componentName: string) {
     return items.map((item, index) => {
+      const combinedProps = { ...DEFAULT_POPUP_PROPS, ...item.component.props };
       let menuItemChild = null;
       if (item.component.name === 'POPUP') {
-        menuItemChild = <Popup {...item.component.props} />;
+        menuItemChild = <Popup {...combinedProps} />;
       } else if (item.component.name === 'SIDEBAR') {
         menuItemChild = (
-          <Popup {...item.component.props}>
+          <Popup {...combinedProps}>
             {item.component.configs.map(config => this.renderConfig(config, `${index}`))}
           </Popup>
         );
@@ -180,7 +193,7 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
             style={{ flexDirection: 'column' }}
           >
             {menuItemChild}
-            <span style={{ visibility: isHovered ? 'visible' : 'hidden' }}>{item.description}</span>
+            {this.renderMenuIconText(item.description)}
           </Menu.Item>
         )
       );

@@ -45,6 +45,7 @@ exports[`ComponentMenuBar Should match existing snapshot when given default prop
         <span
           style={
             Object {
+              "fontSize": "11px",
               "visibility": "hidden",
             }
           }
@@ -97,14 +98,22 @@ exports[`ComponentMenuBar Should render popup menu items. 1`] = `
         }
       >
         <Popup
+          closeOnPortalMouseLeave={false}
+          closeOnTriggerClick={true}
+          closeOnTriggerMouseLeave={false}
           disabled={false}
+          hoverable={false}
           keepInViewPort={true}
           on="hover"
+          openOnTriggerClick={true}
+          openOnTriggerFocus={false}
+          openOnTriggerMouseEnter={false}
           position="top left"
         />
         <span
           style={
             Object {
+              "fontSize": "11px",
               "visibility": "hidden",
             }
           }
@@ -127,6 +136,7 @@ exports[`ComponentMenuBar Should render popup menu items. 1`] = `
         <span
           style={
             Object {
+              "fontSize": "11px",
               "visibility": "hidden",
             }
           }

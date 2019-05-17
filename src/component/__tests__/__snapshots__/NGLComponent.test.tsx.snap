@@ -10,7 +10,53 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
   iconSrc="assets/icons/spring-icon.png"
   isFramedComponent={false}
   isFullPage={false}
-  menuItems={Array []}
+  menuItems={
+    Array [
+      Object {
+        "component": Object {
+          "configs": Array [
+            Object {
+              "name": "Clear Selections",
+              "onClick": [Function],
+              "type": "BUTTON",
+            },
+            Object {
+              "current": "CLOSEST",
+              "name": "Proximity Metric",
+              "onChange": [Function],
+              "options": Array [
+                "Closest",
+                "C-α",
+              ],
+              "type": "RADIO",
+            },
+            Object {
+              "current": "default",
+              "name": "Structure Representation Type",
+              "onChange": [Function],
+              "options": Array [
+                "Default",
+                "Spacefill",
+                "Backbone",
+                "Cartoon",
+                "Surface",
+                "Tube",
+              ],
+              "type": "RADIO",
+            },
+          ],
+          "name": "SIDEBAR",
+          "props": Object {
+            "trigger": <Icon
+              as="i"
+              name="setting"
+            />,
+          },
+        },
+        "description": "Settings",
+      },
+    ]
+  }
   padding={0}
   showSettings={false}
   width="525px"
