@@ -123,6 +123,12 @@ exports[`ComponentMenuBar Should render popup menu items. 1`] = `
           openOnTriggerFocus={false}
           openOnTriggerMouseEnter={false}
           position="bottom center"
+          trigger={
+            <Icon
+              as="i"
+              name="setting"
+            />
+          }
         />
         <span
           style={

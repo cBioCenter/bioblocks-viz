@@ -152,6 +152,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
           type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
           values: {
             current: entry.nodeSize,
+            defaultValue: 4,
             max: 20,
             min: 1,
           },
@@ -176,10 +177,20 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     } = this.props;
 
     return (
-      <ComponentCard componentName={'Contact Map'}>
+      <ComponentCard
+        componentName={'Contact Map'}
+        menuItems={[
+          {
+            component: {
+              configs: configurations,
+              name: 'POPUP',
+            },
+            description: 'Settings',
+          },
+        ]}
+      >
         <ContactMapChart
           candidateResidues={candidateResidues}
-          configurations={configurations}
           contactData={pointsToPlot}
           height={height}
           isDataLoading={isDataLoading}
@@ -260,7 +271,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
         highlightColor,
         chartNames.selected,
         '',
-        selectedPointIndex >= 0 ? pointsToPlot[selectedPointIndex].nodeSize : 6,
+        selectedPointIndex >= 0 ? pointsToPlot[selectedPointIndex].nodeSize : 4,
         chartPoints,
         {
           marker: {

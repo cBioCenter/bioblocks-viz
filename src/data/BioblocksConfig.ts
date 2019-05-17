@@ -18,6 +18,7 @@ export interface IBaseBioblocksWidgetConfig {
 export interface IBioblocksWidgetValueConfig {
   values: {
     current: number;
+    defaultValue: number;
     max: number;
     min: number;
   };

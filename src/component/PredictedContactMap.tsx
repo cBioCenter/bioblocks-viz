@@ -103,6 +103,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
       type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
       values: {
         current: this.state.linearDistFilter,
+        defaultValue: 5,
         max: 10,
         min: 1,
       },
@@ -113,6 +114,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
       type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
       values: {
         current: this.state.numPredictionsToShow,
+        defaultValue: 100,
         max: this.props.data.couplingScores.chainLength,
         min: 1,
       },

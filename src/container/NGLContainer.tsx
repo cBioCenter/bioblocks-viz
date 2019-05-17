@@ -3,7 +3,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
-import { Checkbox, CheckboxProps, Grid, Header, Icon, Table } from 'semantic-ui-react';
+import { Checkbox, CheckboxProps, Grid, Header, Table } from 'semantic-ui-react';
 import { createResiduePairActions } from '~bioblocks-viz~/action/ResiduePairAction';
 import { NGLComponent } from '~bioblocks-viz~/component';
 import { BioblocksVisualization } from '~bioblocks-viz~/container';
@@ -123,11 +123,11 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
                     children: this.renderPDBSelector(),
                     disabled: experimentalProteins.length === 0 && predictedProteins.length === 0,
                     style: { opacity: 0.85 },
-                    trigger: <Icon name={'tasks'} />,
                     wide: 'very',
                   },
                 },
                 description: 'PDB Selector',
+                iconName: 'tasks',
               },
             ]}
             predictedProteins={predictedProteins.filter(pdb => selectedPredictedProteins.includes(pdb.name))}

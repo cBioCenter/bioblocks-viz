@@ -206,14 +206,11 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                           "style": Object {
                             "opacity": 0.85,
                           },
-                          "trigger": <Icon
-                            as="i"
-                            name="tasks"
-                          />,
                           "wide": "very",
                         },
                       },
                       "description": "PDB Selector",
+                      "iconName": "tasks",
                     },
                   ]
                 }
@@ -384,14 +381,11 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                             "style": Object {
                               "opacity": 0.85,
                             },
-                            "trigger": <Icon
-                              as="i"
-                              name="tasks"
-                            />,
                             "wide": "very",
                           },
                         },
                         "description": "PDB Selector",
+                        "iconName": "tasks",
                       },
                       Object {
                         "component": Object {
@@ -616,14 +610,11 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                   "style": Object {
                                     "opacity": 0.85,
                                   },
-                                  "trigger": <Icon
-                                    as="i"
-                                    name="tasks"
-                                  />,
                                   "wide": "very",
                                 },
                               },
                               "description": "PDB Selector",
+                              "iconName": "tasks",
                             },
                             Object {
                               "component": Object {
@@ -1240,14 +1231,11 @@ exports[`NGLContainer Should match the default snapshot when not hooked up to a 
                 "style": Object {
                   "opacity": 0.85,
                 },
-                "trigger": <Icon
-                  as="i"
-                  name="tasks"
-                />,
                 "wide": "very",
               },
             },
             "description": "PDB Selector",
+            "iconName": "tasks",
           },
         ]
       }
