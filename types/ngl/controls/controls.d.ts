@@ -14,7 +14,8 @@ declare module 'ngl' {
   export type MouseActionCallback = ScrollCallback | DragCallback | PickCallback;
   export type MouseActionPreset = Array<[string, MouseActionCallback]>;
   export type MouseActionType = '' | 'scroll' | 'drag' | 'click' | 'doubleClick' | 'hover' | 'clickPick' | 'hoverPick';
-  export const enum MouseActions {
+
+  export const enum MouseActionTypes {
     'SCROLL' = 'scroll',
     'DRAG' = 'drag',
     'CLICK' = 'click',
@@ -22,6 +23,129 @@ declare module 'ngl' {
     'HOVER' = 'hover',
     'CLICK_PICK' = 'clickPick',
     'HOVER_PICK' = 'hoverPick',
+  }
+
+  /**
+   * Mouse actions provided as static methods
+   */
+  // tslint:disable-next-line: no-unnecessary-class
+  export class MouseActions {
+    /**
+     * Zoom scene based on scroll-delta
+     * @param  stage - the stage
+     * @param delta - amount to zoom
+     */
+    public static zoomScroll(stage: Stage, delta: number);
+
+    /**
+     * Move near clipping plane based on scroll-delta
+     * @param stage - the stage
+     * @param delta - amount to move clipping plane
+     */
+    public static clipNearScroll(stage: Stage, delta: number);
+
+    /**
+     * Move focus planes based on scroll-delta
+     * @param stage - the stage
+     * @param delta - amount to move focus planes
+     */
+    public static focusScroll(stage: Stage, delta: number);
+
+    /**
+     * Zoom scene based on scroll-delta and
+     * move focus planes based on camera position (zoom)
+     * @param stage - the stage
+     * @param delta - amount to move focus planes and zoom
+     */
+    public static zoomFocusScroll(stage: Stage, delta: number);
+
+    /**
+     * Change isolevel of volume surfaces based on scroll-delta
+     * @param stage - the stage
+     * @param delta - amount to change isolevel
+     */
+    public static isolevelScroll(stage: Stage, delta: number);
+
+    /**
+     * Pan scene based on mouse coordinate changes
+     * @param stage - the stage
+     * @param dx - amount to pan in x direction
+     * @param dy - amount to pan in y direction
+     */
+    public static panDrag(stage: Stage, dx: number, dy: number);
+
+    /**
+     * Rotate scene based on mouse coordinate changes
+     * @param stage - the stage
+     * @param dx - amount to rotate in x direction
+     * @param dy - amount to rotate in y direction
+     */
+    public static rotateDrag(stage: Stage, dx: number, dy: number);
+
+    /**
+     * Rotate scene around z axis based on mouse coordinate changes
+     * @param stage - the stage
+     * @param dx - amount to rotate in x direction
+     * @param dy - amount to rotate in y direction
+     */
+    public static zRotateDrag(stage: Stage, dx: number, dy: number);
+
+    /**
+     * Zoom scene based on mouse coordinate changes
+     * @param stage - the stage
+     * @param dx - amount to zoom
+     * @param dy - amount to zoom
+     */
+    public static zoomDrag(stage: Stage, dx: number, dy: number);
+
+    /**
+     * Zoom scene based on mouse coordinate changes and
+     * move focus planes based on camera position (zoom)
+     * @param stage - the stage
+     * @param dx - amount to zoom and focus
+     * @param dy - amount to zoom and focus
+     */
+    public static zoomFocusDrag(stage: Stage, dx: number, dy: number);
+
+    /**
+     * Pan picked component based on mouse coordinate changes
+     * @param stage - the stage
+     * @param dx - amount to pan in x direction
+     * @param dy - amount to pan in y direction
+     */
+    public static panComponentDrag(stage: Stage, dx: number, dy: number);
+
+    /**
+     * Pan picked atom based on mouse coordinate changes
+     * @param stage - the stage
+     * @param dx - amount to pan in x direction
+     * @param dy - amount to pan in y direction
+     */
+    public static panAtomDrag(stage: Stage, dx: number, dy: number);
+
+    /**
+     * Rotate picked component based on mouse coordinate changes
+     * @param stage - the stage
+     * @param dx - amount to rotate in x direction
+     * @param dy - amount to rotate in y direction
+     */
+    public static rotateComponentDrag(stage: Stage, dx: number, dy: number);
+
+    /**
+     * Move picked element to the center of the screen
+     * @param stage - the stage
+     * @param pickingProxy - the picking data object
+     */
+    public static movePick(stage: Stage, pickingProxy: PickingProxy);
+
+    /**
+     * Show tooltip with information of picked element
+     * @param stage - the stage
+     * @param pickingProxy - the picking data object
+     */
+    public static tooltipPick(stage: Stage, pickingProxy: PickingProxy);
+
+    public static measurePick(stage: Stage, pickingProxy: PickingProxy);
   }
 
   export class ComponentControls {
@@ -71,7 +195,8 @@ declare module 'ngl' {
 
     // Methods
     /**
-     * Add a key action triggered by pressing the given character. The KeyActions class provides a number of static methods for use as callback functions.
+     * Add a key action triggered by pressing the given character.
+     * The KeyActions class provides a number of static methods for use as callback functions.
      *
      * @example // Call KeyActions.toggleRock when "k" is pressed.
      * stage.keyControls.remove("k", KeyActions.toggleRock);
@@ -110,6 +235,7 @@ declare module 'ngl' {
   }
 
   export interface IMouseAction {
+    // tslint:disable-next-line: no-reserved-keywords
     type: MouseActionType;
     key: number;
     button: number;
@@ -141,7 +267,8 @@ declare module 'ngl' {
 
     // Methods
     /**
-     * Add a new mouse action triggered by an event, key and button combination. The MouseActions class provides a number of static methods for use as callback functions.
+     * Add a new mouse action triggered by an event, key and button combination.
+     * The MouseActions class provides a number of static methods for use as callback functions.
      *
      * @example // change ambient light intensity on mouse scroll while the ctrl and shift keys are pressed.
      * stage.mouseControls.add("scroll-ctrl+shift", function(stage, delta) {
@@ -185,8 +312,9 @@ declare module 'ngl' {
      * @param triggerStr The trigger for the action.
      * @param callback Only actions that call this function will be removed.
      */
-    public remove(triggerStr: string, callback: MouseActionCallback): void;
+    public remove(triggerStr: string, callback?: MouseActionCallback): void;
 
+    // tslint:disable-next-line: no-reserved-keywords
     public run(type: MouseActionType, ...args: any[]): void;
   }
 
@@ -198,6 +326,7 @@ declare module 'ngl' {
 
   export interface IPicker {
     array: any[];
+    // tslint:disable-next-line: no-reserved-keywords
     type: string;
     data: object;
   }
@@ -248,6 +377,7 @@ declare module 'ngl' {
     public surface: object;
     public tetrahedron: ShapePrimitive;
     public torus: ShapePrimitive;
+    // tslint:disable-next-line: no-reserved-keywords
     public type: string;
     public unitcell: {
       structure: Structure;
@@ -271,6 +401,7 @@ declare module 'ngl' {
     constructor(pickingData: IPickingData, stage: Stage);
 
     // Methods
+    // tslint:disable-next-line: no-reserved-keywords
     public _objectIfType(type: string): any;
     public getLabel(): string;
   }

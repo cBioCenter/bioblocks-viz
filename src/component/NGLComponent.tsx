@@ -254,6 +254,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
 
     stage.defaultFileRepresentation(structureComponent);
     stage.signals.clicked.add(this.onClick);
+
     const activeRepresentations = this.deriveActiveRepresentations(structureComponent);
     this.setState({
       activeRepresentations,
@@ -316,9 +317,10 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
 
   protected generateStage = (canvas: HTMLElement, params?: Partial<NGL.IStageParameters>) => {
     const stage = new NGL.Stage(canvas, params);
-    stage.mouseControls.add(NGL.MouseActions.HOVER_PICK, (aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) => {
+    stage.mouseControls.add(NGL.MouseActionTypes.HOVER_PICK, (aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) => {
       this.onHover(aStage, pickingProxy);
     });
+    stage.mouseControls.remove('clickPick-*', NGL.MouseActions.movePick);
     // !IMPORTANT! This is needed to prevent the canvas shifting when the user clicks the canvas.
     // It's unclear why the focus does this, but it's undesirable.
     stage.keyBehavior.domElement.focus = () => {

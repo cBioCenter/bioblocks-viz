@@ -28,6 +28,7 @@ class MockStage {
 
   public mouseControls = {
     add: (eventName: string, callback: (...args: any[]) => void) => this.events.set(eventName, callback),
+    remove: (eventName: string, callback: (...args: any[]) => void) => this.events.delete(eventName),
     run: (eventName: string, ...args: any[]) => {
       const cb = this.events.get(eventName);
       if (cb !== undefined) {
