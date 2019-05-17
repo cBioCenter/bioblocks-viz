@@ -84,6 +84,10 @@ export class BioblocksPDB {
     return this.nglData;
   }
 
+  public get rank(): string {
+    return 'UKN';
+  }
+
   public get secondaryStructure(): ISecondaryStructureData[] {
     const result = new Array<ISecondaryStructureData>();
     this.nglData.eachResidue(residue => {
@@ -135,7 +139,7 @@ export class BioblocksPDB {
   }
 
   public get source(): string {
-    return 'Unknown';
+    return 'UKN';
   }
 
   protected fileName: string = '';

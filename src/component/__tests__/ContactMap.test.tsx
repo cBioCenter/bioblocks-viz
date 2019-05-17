@@ -7,8 +7,6 @@ import { ContactMapClass } from '~bioblocks-viz~/component';
 import {
   Bioblocks1DSection,
   BioblocksPDB,
-  BioblocksWidgetConfig,
-  CONFIGURATION_COMPONENT_TYPE,
   CouplingContainer,
   IContactMapData,
   ICouplingScore,
@@ -355,30 +353,6 @@ describe('ContactMap', () => {
   });
 
   describe('Configuration', () => {
-    it('Should match existing snapshot when given configurations.', () => {
-      const configurations: BioblocksWidgetConfig[] = [
-        {
-          name: 'sample slider',
-          onChange: jest.fn(),
-          type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
-          values: {
-            current: 5,
-            max: 10,
-            min: 0,
-          },
-        },
-        {
-          current: 'yes',
-          name: 'sample radio',
-          onChange: jest.fn(),
-          options: ['yes', 'no'],
-          type: CONFIGURATION_COMPONENT_TYPE.RADIO,
-        },
-      ];
-      const wrapper = shallow(<ContactMapClass configurations={configurations} />);
-      expect(wrapper).toMatchSnapshot();
-    });
-
     it('Should handle the node size being changed.', () => {
       const wrapper = mount(<ContactMapClass />);
       const instance = wrapper.instance() as ContactMapClass;

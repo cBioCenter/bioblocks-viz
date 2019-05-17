@@ -152,6 +152,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
           type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
           values: {
             current: entry.nodeSize,
+            defaultValue: 4,
             max: 20,
             min: 1,
           },
@@ -164,6 +165,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       addHoveredResidues,
       candidateResidues,
       data,
+      height,
       isDataLoading,
       onBoxSelection,
       removeHoveredResidues,
@@ -171,27 +173,38 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       selectedSecondaryStructures,
       showConfigurations,
       toggleLockedResiduePair,
+      width,
     } = this.props;
 
     return (
-      <ComponentCard componentName={'Contact Map'}>
-        <div style={{ height: '90%', width: '100%' }}>
-          <ContactMapChart
-            candidateResidues={candidateResidues}
-            configurations={configurations}
-            contactData={pointsToPlot}
-            isDataLoading={isDataLoading}
-            onClickCallback={this.onMouseClick(toggleLockedResiduePair)}
-            onHoverCallback={this.onMouseEnter(addHoveredResidues)}
-            onSelectedCallback={this.onMouseSelect(onBoxSelection)}
-            onUnHoverCallback={this.onMouseLeave(removeHoveredResidues)}
-            range={data.couplingScores.residueIndexRange.max + 20}
-            secondaryStructures={data.secondaryStructures ? data.secondaryStructures : []}
-            secondaryStructureColors={secondaryStructureColors}
-            selectedSecondaryStructures={[selectedSecondaryStructures]}
-            showConfigurations={showConfigurations}
-          />
-        </div>
+      <ComponentCard
+        componentName={'Contact Map'}
+        menuItems={[
+          {
+            component: {
+              configs: configurations,
+              name: 'POPUP',
+            },
+            description: 'Settings',
+          },
+        ]}
+      >
+        <ContactMapChart
+          candidateResidues={candidateResidues}
+          contactData={pointsToPlot}
+          height={height}
+          isDataLoading={isDataLoading}
+          onClickCallback={this.onMouseClick(toggleLockedResiduePair)}
+          onHoverCallback={this.onMouseEnter(addHoveredResidues)}
+          onSelectedCallback={this.onMouseSelect(onBoxSelection)}
+          onUnHoverCallback={this.onMouseLeave(removeHoveredResidues)}
+          range={data.couplingScores.residueIndexRange.max + 20}
+          secondaryStructures={data.secondaryStructures ? data.secondaryStructures : []}
+          secondaryStructureColors={secondaryStructureColors}
+          selectedSecondaryStructures={[selectedSecondaryStructures]}
+          showConfigurations={showConfigurations}
+          width={width}
+        />
       </ComponentCard>
     );
   }
@@ -258,7 +271,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
         highlightColor,
         chartNames.selected,
         '',
-        selectedPointIndex >= 0 ? pointsToPlot[selectedPointIndex].nodeSize : 6,
+        selectedPointIndex >= 0 ? pointsToPlot[selectedPointIndex].nodeSize : 4,
         chartPoints,
         {
           marker: {

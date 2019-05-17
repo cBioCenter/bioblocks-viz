@@ -1,6 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Card, Icon, Menu, Modal } from 'semantic-ui-react';
+import { Card, Modal } from 'semantic-ui-react';
+
+import { ComponentMenuBar, IComponentMenuBarItem } from '~bioblocks-viz~/component/widget';
 
 export interface IComponentCardProps {
   componentName: string;
@@ -11,6 +13,7 @@ export interface IComponentCardProps {
   iconSrc: string;
   isFramedComponent: boolean;
   isFullPage: boolean;
+  menuItems: IComponentMenuBarItem[];
   padding: number | string;
   showSettings: boolean;
   width: number | string;
@@ -25,11 +28,12 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
   public static defaultProps = {
     frameHeight: 0,
     frameWidth: 0,
-    headerHeight: 32,
-    height: '525px',
+    headerHeight: 40,
+    height: '570px',
     iconSrc: 'assets/icons/spring-icon.png',
     isFramedComponent: false,
     isFullPage: false,
+    menuItems: [],
     padding: 0,
     showSettings: false,
     width: '525px',
@@ -70,14 +74,13 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     const { isFullPage, framedStyle } = this.state;
 
     const expandedStyle: React.CSSProperties = {
-      height: '80vh',
+      height: 'calc(80vh + 45px)',
       padding: '5px',
       width: '80vh',
     };
 
     const cardStyle: React.CSSProperties = {
       maxWidth: 'unset',
-      padding: '0 0 5px 5px',
       ...(isFullPage ? { ...expandedStyle } : { height, width }),
     };
 
@@ -106,22 +109,21 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     }
   }
 
-  protected renderTopMenu = (height: number | string) => (
-    <Menu secondary={true} style={{ margin: 0, height }}>
-      <Menu.Item position={'left'} fitted={'horizontally'} style={{ margin: 0 }}>
-        <img
-          alt={'component icon'}
-          src={this.props.iconSrc}
-          style={{ height: '32px', padding: '2px', width: '32px' }}
-        />
-        {this.props.componentName}
-      </Menu.Item>
-      <Menu.Item position={'right'} fitted={'horizontally'} style={{ margin: 0 }}>
-        <Icon name={this.state.isFullPage ? 'compress' : 'expand arrows alternate'} onClick={this.onFullPageToggle} />
-        {this.props.showSettings && <Icon name={'settings'} />}
-      </Menu.Item>
-    </Menu>
-  );
+  protected renderTopMenu = (height: number | string) => {
+    const { componentName, iconSrc, menuItems } = this.props;
+    const { isFullPage } = this.state;
+
+    return (
+      <ComponentMenuBar
+        componentName={componentName}
+        height={height}
+        iconSrc={iconSrc}
+        isExpanded={isFullPage}
+        menuItems={menuItems}
+        onExpandToggleCb={this.onFullPageToggle}
+      />
+    );
+  };
 
   protected onFullPageToggle = () => {
     this.setState({

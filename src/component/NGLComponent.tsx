@@ -4,8 +4,8 @@ import * as NGL from 'ngl';
 import * as React from 'react';
 import { Matrix4, Vector2 } from 'three';
 
-import { Button, Dimmer, Loader } from 'semantic-ui-react';
-import { ComponentCard } from '~bioblocks-viz~/component';
+import { Dimmer, Icon, Loader } from 'semantic-ui-react';
+import { ComponentCard, IComponentMenuBarItem } from '~bioblocks-viz~/component';
 import {
   AMINO_ACID_THREE_LETTER_CODE,
   AMINO_ACIDS_BY_THREE_LETTER_CODE,
@@ -42,6 +42,7 @@ export interface INGLComponentProps {
   isDataLoading: boolean;
   lockedResiduePairs: ILockedResiduePair;
   measuredProximity: CONTACT_DISTANCE_PROXIMITY;
+  menuItems: IComponentMenuBarItem[];
   predictedProteins: BioblocksPDB[];
   selectedSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
   style?: BIOBLOCKS_CSS_STYLE;
@@ -74,12 +75,13 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     backgroundColor: '#ffffff',
     candidateResidues: [],
     experimentalProteins: [],
-    height: '90%',
+    height: '92%',
     hoveredResidues: [],
     hoveredSecondaryStructures: [],
     isDataLoading: false,
     lockedResiduePairs: {},
     measuredProximity: CONTACT_DISTANCE_PROXIMITY.C_ALPHA,
+    menuItems: [],
     onMeasuredProximityChange: EMPTY_FUNCTION,
     onResize: EMPTY_FUNCTION,
     predictedProteins: [],
@@ -188,11 +190,26 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
    * @returns The NGL Component
    */
   public render() {
-    const { height, isDataLoading, style, width } = this.props;
+    const { height, isDataLoading, menuItems, style, width } = this.props;
     const computedStyle = { ...style, height, width };
 
     return (
-      <ComponentCard componentName={'NGL Viewer'}>
+      <ComponentCard
+        componentName={'NGL Viewer'}
+        menuItems={[
+          ...menuItems,
+          {
+            component: {
+              configs: this.getConfigurations(),
+              name: 'POPUP',
+              props: {
+                trigger: <Icon name={'setting'} />,
+              },
+            },
+            description: 'Settings',
+          },
+        ]}
+      >
         <div className={'NGLComponent'} style={computedStyle}>
           <Dimmer active={isDataLoading}>
             <Loader />
@@ -206,15 +223,21 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
             style={{ height: '100%', width: '100%' }}
           />
         </div>
-        <div style={{ bottom: '27px', height: '27px', position: 'relative', right: '5px' }}>
-          <Button
-            active={this.state.superpositionStatus !== 'NONE'}
-            floated={'right'}
+        <div
+          style={{
+            bottom: '20px',
+            position: 'absolute',
+            right: '20px',
+            userSelect: 'none',
+          }}
+        >
+          <a
+            aria-pressed={this.state.superpositionStatus !== 'NONE'}
             onClick={this.onSuperpositionToggle}
-            toggle={true}
+            role={'button'}
           >
             {`Superposition: ${this.state.superpositionStatus === 'NONE' ? 'off' : 'on'}`}
-          </Button>
+          </a>
         </div>
       </ComponentCard>
     );
@@ -231,6 +254,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
 
     stage.defaultFileRepresentation(structureComponent);
     stage.signals.clicked.add(this.onClick);
+
     const activeRepresentations = this.deriveActiveRepresentations(structureComponent);
     this.setState({
       activeRepresentations,
@@ -293,9 +317,10 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
 
   protected generateStage = (canvas: HTMLElement, params?: Partial<NGL.IStageParameters>) => {
     const stage = new NGL.Stage(canvas, params);
-    stage.mouseControls.add(NGL.MouseActions.HOVER_PICK, (aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) => {
+    stage.mouseControls.add(NGL.MouseActionTypes.HOVER_PICK, (aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) => {
       this.onHover(aStage, pickingProxy);
     });
+    stage.mouseControls.remove('clickPick-*', NGL.MouseActions.movePick);
     // !IMPORTANT! This is needed to prevent the canvas shifting when the user clicks the canvas.
     // It's unclear why the focus does this, but it's undesirable.
     stage.keyBehavior.domElement.focus = () => {

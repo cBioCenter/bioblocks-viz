@@ -5,11 +5,58 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
   componentName="NGL Viewer"
   frameHeight={0}
   frameWidth={0}
-  headerHeight={32}
-  height="525px"
+  headerHeight={40}
+  height="570px"
   iconSrc="assets/icons/spring-icon.png"
   isFramedComponent={false}
   isFullPage={false}
+  menuItems={
+    Array [
+      Object {
+        "component": Object {
+          "configs": Array [
+            Object {
+              "name": "Clear Selections",
+              "onClick": [Function],
+              "type": "BUTTON",
+            },
+            Object {
+              "current": "CLOSEST",
+              "name": "Proximity Metric",
+              "onChange": [Function],
+              "options": Array [
+                "Closest",
+                "C-α",
+              ],
+              "type": "RADIO",
+            },
+            Object {
+              "current": "default",
+              "name": "Structure Representation Type",
+              "onChange": [Function],
+              "options": Array [
+                "Default",
+                "Spacefill",
+                "Backbone",
+                "Cartoon",
+                "Surface",
+                "Tube",
+              ],
+              "type": "RADIO",
+            },
+          ],
+          "name": "POPUP",
+          "props": Object {
+            "trigger": <Icon
+              as="i"
+              name="setting"
+            />,
+          },
+        },
+        "description": "Settings",
+      },
+    ]
+  }
   padding={0}
   showSettings={false}
   width="525px"
@@ -18,7 +65,7 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
     className="NGLComponent"
     style={
       Object {
-        "height": "90%",
+        "height": "92%",
         "width": "100%",
       }
     }
@@ -44,22 +91,20 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
   <div
     style={
       Object {
-        "bottom": "27px",
-        "height": "27px",
-        "position": "relative",
-        "right": "5px",
+        "bottom": "20px",
+        "position": "absolute",
+        "right": "20px",
+        "userSelect": "none",
       }
     }
   >
-    <Button
-      active={false}
-      as="button"
-      floated="right"
+    <a
+      aria-pressed={false}
       onClick={[Function]}
-      toggle={true}
+      role="button"
     >
       Superposition: off
-    </Button>
+    </a>
   </div>
 </ComponentCard>
 `;

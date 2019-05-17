@@ -2,7 +2,7 @@ import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import { Provider } from 'react-redux';
 
-import { Checkbox, Icon, Popup, Table } from 'semantic-ui-react';
+import { Checkbox, Icon, Menu, Popup, Table } from 'semantic-ui-react';
 import { NGLContainer, NGLContainerClass } from '~bioblocks-viz~/container';
 import { BioblocksPDB } from '~bioblocks-viz~/data';
 import { Store } from '~bioblocks-viz~/reducer';
@@ -106,7 +106,7 @@ describe('NGLContainer', () => {
     });
 
     wrapper
-      .find(Icon)
+      .find(Menu.Item)
       .at(1)
       .simulate('click');
     wrapper
@@ -131,14 +131,8 @@ describe('NGLContainer', () => {
     const wrapper = mount(<NGLContainerClass />);
 
     wrapper
-      .find(Popup)
-      .at(0)
-      .simulate('click');
-    expect(wrapper.find(Checkbox).length).toBe(0);
-
-    wrapper
       .find(Icon)
-      .at(1)
+      .at(0)
       .simulate('click');
     expect(wrapper.find(Checkbox).length).toBe(0);
 
@@ -155,7 +149,7 @@ describe('NGLContainer', () => {
     expect(wrapper.find(Checkbox).length).not.toBe(0);
 
     wrapper
-      .find(Icon)
+      .find(Menu.Item)
       .at(1)
       .simulate('click');
     expect(wrapper.find(Checkbox).length).not.toBe(0);
