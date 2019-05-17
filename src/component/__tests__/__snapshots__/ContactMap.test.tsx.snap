@@ -5,8 +5,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
   componentName="Contact Map"
   frameHeight={0}
   frameWidth={0}
-  headerHeight={32}
-  height="525px"
+  headerHeight={40}
+  height="570px"
   iconSrc="assets/icons/spring-icon.png"
   isFramedComponent={false}
   isFullPage={false}
@@ -15,187 +15,178 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
   showSettings={false}
   width="525px"
 >
-  <div
-    style={
-      Object {
-        "height": "90%",
-        "width": "100%",
-      }
+  <ContactMapChart
+    candidateResidues={Array []}
+    configurations={
+      Array [
+        Object {
+          "name": "Clear Selections",
+          "onClick": [Function],
+          "type": "BUTTON",
+        },
+        Object {
+          "id": "node-size-slider-0",
+          "name": "Node size for Unknown Structure Contact",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 4,
+            "max": 20,
+            "min": 1,
+          },
+        },
+        Object {
+          "id": "node-size-slider-1",
+          "name": "Node size for Selected Residue Pairs",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 6,
+            "max": 20,
+            "min": 1,
+          },
+        },
+      ]
     }
-  >
-    <ContactMapChart
-      candidateResidues={Array []}
-      configurations={
-        Array [
-          Object {
-            "name": "Clear Selections",
-            "onClick": [Function],
-            "type": "BUTTON",
-          },
-          Object {
-            "id": "node-size-slider-0",
-            "name": "Node size for Unknown Structure Contact",
-            "onChange": [Function],
-            "type": "SLIDER",
-            "values": Object {
-              "current": 4,
-              "max": 20,
-              "min": 1,
-            },
-          },
-          Object {
-            "id": "node-size-slider-1",
-            "name": "Node size for Selected Residue Pairs",
-            "onChange": [Function],
-            "type": "SLIDER",
-            "values": Object {
-              "current": 6,
-              "max": 20,
-              "min": 1,
-            },
-          },
-        ]
-      }
-      contactData={
-        Array [
-          Object {
-            "hoverinfo": "text",
-            "marker": Object {
-              "colorscale": Array [
-                Array [
-                  0,
-                  "rgb(12,50,102)",
-                ],
-                Array [
-                  0.1,
-                  "rgb(17,83,150)",
-                ],
-                Array [
-                  0.2,
-                  "rgb(40,114,175)",
-                ],
-                Array [
-                  0.3,
-                  "rgb(71,147,193)",
-                ],
-                Array [
-                  0.4,
-                  "rgb(111,175,209)",
-                ],
-                Array [
-                  0.5,
-                  "rgb(160,202,222)",
-                ],
-                Array [
-                  0.6,
-                  "rgb(200,219,237)",
-                ],
-                Array [
-                  0.7,
-                  "rgb(224,235,246)",
-                ],
-                Array [
-                  0.8,
-                  "rgb(247,251,255)",
-                ],
-                Array [
-                  0.9,
-                  "rgb(249,253,255)",
-                ],
-                Array [
-                  1,
-                  "rgb(255,255,255)",
-                ],
-              ],
-            },
-            "mode": "lines+markers",
-            "name": "Unknown Structure Contact",
-            "nodeSize": 4,
-            "points": Array [
-              Object {
-                "dist": 1.3,
-                "i": 41,
-                "j": 52,
-              },
-              Object {
-                "dist": 2.4,
-                "i": 50,
-                "j": 56,
-              },
-            ],
-            "subtitle": "(from PDB structure)",
-            "text": Array [
-              "(41, 52)",
-              "(50, 56)",
-            ],
-          },
-          Object {
-            "hoverinfo": "none",
-            "marker": Object {
-              "color": Array [
-                "#ff8800",
-                "#ff8800",
-              ],
-              "line": Object {
-                "color": "#ff8800",
-                "width": 3,
-              },
-              "symbol": "circle-open",
-            },
-            "mode": "lines+markers",
-            "name": "Selected Residue Pairs",
-            "nodeSize": 6,
-            "points": Array [
-              Object {
-                "i": 41,
-                "j": 41,
-              },
-            ],
-            "subtitle": "",
-          },
-        ]
-      }
-      dataTransformFn={[Function]}
-      height="100%"
-      isDataLoading={false}
-      legendModifiers={
+    contactData={
+      Array [
         Object {
-          "y": -0.4,
-        }
-      }
-      marginModifiers={
-        Object {
-          "b": 65,
-          "l": 65,
-        }
-      }
-      onClickCallback={[Function]}
-      onHoverCallback={[Function]}
-      onSelectedCallback={[Function]}
-      onUnHoverCallback={[Function]}
-      range={77}
-      secondaryStructures={
-        Array [
-          Array [
+          "hoverinfo": "text",
+          "marker": Object {
+            "colorscale": Array [
+              Array [
+                0,
+                "rgb(12,50,102)",
+              ],
+              Array [
+                0.1,
+                "rgb(17,83,150)",
+              ],
+              Array [
+                0.2,
+                "rgb(40,114,175)",
+              ],
+              Array [
+                0.3,
+                "rgb(71,147,193)",
+              ],
+              Array [
+                0.4,
+                "rgb(111,175,209)",
+              ],
+              Array [
+                0.5,
+                "rgb(160,202,222)",
+              ],
+              Array [
+                0.6,
+                "rgb(200,219,237)",
+              ],
+              Array [
+                0.7,
+                "rgb(224,235,246)",
+              ],
+              Array [
+                0.8,
+                "rgb(247,251,255)",
+              ],
+              Array [
+                0.9,
+                "rgb(249,253,255)",
+              ],
+              Array [
+                1,
+                "rgb(255,255,255)",
+              ],
+            ],
+          },
+          "mode": "lines+markers",
+          "name": "Unknown Structure Contact",
+          "nodeSize": 4,
+          "points": Array [
             Object {
-              "end": 31,
-              "label": "C",
-              "length": 2,
-              "start": 30,
+              "dist": 1.3,
+              "i": 41,
+              "j": 52,
+            },
+            Object {
+              "dist": 2.4,
+              "i": 50,
+              "j": 56,
             },
           ],
-        ]
+          "subtitle": "(from PDB structure)",
+          "text": Array [
+            "(41, 52)",
+            "(50, 56)",
+          ],
+        },
+        Object {
+          "hoverinfo": "none",
+          "marker": Object {
+            "color": Array [
+              "#ff8800",
+              "#ff8800",
+            ],
+            "line": Object {
+              "color": "#ff8800",
+              "width": 3,
+            },
+            "symbol": "circle-open",
+          },
+          "mode": "lines+markers",
+          "name": "Selected Residue Pairs",
+          "nodeSize": 6,
+          "points": Array [
+            Object {
+              "i": 41,
+              "j": 41,
+            },
+          ],
+          "subtitle": "",
+        },
+      ]
+    }
+    dataTransformFn={[Function]}
+    height="100%"
+    isDataLoading={false}
+    legendModifiers={
+      Object {
+        "y": -0.4,
       }
-      selectedSecondaryStructures={
+    }
+    marginModifiers={
+      Object {
+        "b": 65,
+        "l": 65,
+      }
+    }
+    onClickCallback={[Function]}
+    onHoverCallback={[Function]}
+    onSelectedCallback={[Function]}
+    onUnHoverCallback={[Function]}
+    range={77}
+    secondaryStructures={
+      Array [
         Array [
-          Array [],
-        ]
-      }
-      selectedSecondaryStructuresColor="#feb83f"
-      showConfigurations={true}
-      width="100%"
-    />
-  </div>
+          Object {
+            "end": 31,
+            "label": "C",
+            "length": 2,
+            "start": 30,
+          },
+        ],
+      ]
+    }
+    selectedSecondaryStructures={
+      Array [
+        Array [],
+      ]
+    }
+    selectedSecondaryStructuresColor="#feb83f"
+    showConfigurations={true}
+    width="100%"
+  />
 </ComponentCard>
 `;
 
@@ -204,8 +195,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
   componentName="Contact Map"
   frameHeight={0}
   frameWidth={0}
-  headerHeight={32}
-  height="525px"
+  headerHeight={40}
+  height="570px"
   iconSrc="assets/icons/spring-icon.png"
   isFramedComponent={false}
   isFullPage={false}
@@ -214,179 +205,170 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
   showSettings={false}
   width="525px"
 >
-  <div
-    style={
-      Object {
-        "height": "90%",
-        "width": "100%",
-      }
+  <ContactMapChart
+    candidateResidues={Array []}
+    configurations={
+      Array [
+        Object {
+          "name": "Clear Selections",
+          "onClick": [Function],
+          "type": "BUTTON",
+        },
+        Object {
+          "id": "node-size-slider-0",
+          "name": "Node size for Unknown Structure Contact",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 4,
+            "max": 20,
+            "min": 1,
+          },
+        },
+        Object {
+          "id": "node-size-slider-1",
+          "name": "Node size for Selected Residue Pairs",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 6,
+            "max": 20,
+            "min": 1,
+          },
+        },
+      ]
     }
-  >
-    <ContactMapChart
-      candidateResidues={Array []}
-      configurations={
-        Array [
-          Object {
-            "name": "Clear Selections",
-            "onClick": [Function],
-            "type": "BUTTON",
-          },
-          Object {
-            "id": "node-size-slider-0",
-            "name": "Node size for Unknown Structure Contact",
-            "onChange": [Function],
-            "type": "SLIDER",
-            "values": Object {
-              "current": 4,
-              "max": 20,
-              "min": 1,
-            },
-          },
-          Object {
-            "id": "node-size-slider-1",
-            "name": "Node size for Selected Residue Pairs",
-            "onChange": [Function],
-            "type": "SLIDER",
-            "values": Object {
-              "current": 6,
-              "max": 20,
-              "min": 1,
-            },
-          },
-        ]
-      }
-      contactData={
-        Array [
-          Object {
-            "hoverinfo": "text",
-            "marker": Object {
-              "colorscale": Array [
-                Array [
-                  0,
-                  "rgb(12,50,102)",
-                ],
-                Array [
-                  0.1,
-                  "rgb(17,83,150)",
-                ],
-                Array [
-                  0.2,
-                  "rgb(40,114,175)",
-                ],
-                Array [
-                  0.3,
-                  "rgb(71,147,193)",
-                ],
-                Array [
-                  0.4,
-                  "rgb(111,175,209)",
-                ],
-                Array [
-                  0.5,
-                  "rgb(160,202,222)",
-                ],
-                Array [
-                  0.6,
-                  "rgb(200,219,237)",
-                ],
-                Array [
-                  0.7,
-                  "rgb(224,235,246)",
-                ],
-                Array [
-                  0.8,
-                  "rgb(247,251,255)",
-                ],
-                Array [
-                  0.9,
-                  "rgb(249,253,255)",
-                ],
-                Array [
-                  1,
-                  "rgb(255,255,255)",
-                ],
+    contactData={
+      Array [
+        Object {
+          "hoverinfo": "text",
+          "marker": Object {
+            "colorscale": Array [
+              Array [
+                0,
+                "rgb(12,50,102)",
               ],
-            },
-            "mode": "lines+markers",
-            "name": "Unknown Structure Contact",
-            "nodeSize": 4,
-            "points": Array [
-              Object {
-                "dist": 1.3,
-                "i": 41,
-                "j": 52,
-              },
-              Object {
-                "dist": 2.4,
-                "i": 50,
-                "j": 56,
-              },
-            ],
-            "subtitle": "(from PDB structure)",
-            "text": Array [
-              "(41, 52)",
-              "(50, 56)",
+              Array [
+                0.1,
+                "rgb(17,83,150)",
+              ],
+              Array [
+                0.2,
+                "rgb(40,114,175)",
+              ],
+              Array [
+                0.3,
+                "rgb(71,147,193)",
+              ],
+              Array [
+                0.4,
+                "rgb(111,175,209)",
+              ],
+              Array [
+                0.5,
+                "rgb(160,202,222)",
+              ],
+              Array [
+                0.6,
+                "rgb(200,219,237)",
+              ],
+              Array [
+                0.7,
+                "rgb(224,235,246)",
+              ],
+              Array [
+                0.8,
+                "rgb(247,251,255)",
+              ],
+              Array [
+                0.9,
+                "rgb(249,253,255)",
+              ],
+              Array [
+                1,
+                "rgb(255,255,255)",
+              ],
             ],
           },
-          Object {
-            "hoverinfo": "none",
-            "marker": Object {
-              "color": Array [],
-              "line": Object {
-                "color": "#ff8800",
-                "width": 3,
-              },
-              "symbol": "circle-open",
-            },
-            "mode": "lines+markers",
-            "name": "Selected Residue Pairs",
-            "nodeSize": 6,
-            "points": Array [],
-            "subtitle": "",
-          },
-        ]
-      }
-      dataTransformFn={[Function]}
-      height="100%"
-      isDataLoading={false}
-      legendModifiers={
-        Object {
-          "y": -0.4,
-        }
-      }
-      marginModifiers={
-        Object {
-          "b": 65,
-          "l": 65,
-        }
-      }
-      onClickCallback={[Function]}
-      onHoverCallback={[Function]}
-      onSelectedCallback={[Function]}
-      onUnHoverCallback={[Function]}
-      range={77}
-      secondaryStructures={
-        Array [
-          Array [
+          "mode": "lines+markers",
+          "name": "Unknown Structure Contact",
+          "nodeSize": 4,
+          "points": Array [
             Object {
-              "end": 31,
-              "label": "C",
-              "length": 2,
-              "start": 30,
+              "dist": 1.3,
+              "i": 41,
+              "j": 52,
+            },
+            Object {
+              "dist": 2.4,
+              "i": 50,
+              "j": 56,
             },
           ],
-        ]
+          "subtitle": "(from PDB structure)",
+          "text": Array [
+            "(41, 52)",
+            "(50, 56)",
+          ],
+        },
+        Object {
+          "hoverinfo": "none",
+          "marker": Object {
+            "color": Array [],
+            "line": Object {
+              "color": "#ff8800",
+              "width": 3,
+            },
+            "symbol": "circle-open",
+          },
+          "mode": "lines+markers",
+          "name": "Selected Residue Pairs",
+          "nodeSize": 6,
+          "points": Array [],
+          "subtitle": "",
+        },
+      ]
+    }
+    dataTransformFn={[Function]}
+    height="100%"
+    isDataLoading={false}
+    legendModifiers={
+      Object {
+        "y": -0.4,
       }
-      selectedSecondaryStructures={
+    }
+    marginModifiers={
+      Object {
+        "b": 65,
+        "l": 65,
+      }
+    }
+    onClickCallback={[Function]}
+    onHoverCallback={[Function]}
+    onSelectedCallback={[Function]}
+    onUnHoverCallback={[Function]}
+    range={77}
+    secondaryStructures={
+      Array [
         Array [
-          Array [],
-        ]
-      }
-      selectedSecondaryStructuresColor="#feb83f"
-      showConfigurations={true}
-      width="100%"
-    />
-  </div>
+          Object {
+            "end": 31,
+            "label": "C",
+            "length": 2,
+            "start": 30,
+          },
+        ],
+      ]
+    }
+    selectedSecondaryStructures={
+      Array [
+        Array [],
+      ]
+    }
+    selectedSecondaryStructuresColor="#feb83f"
+    showConfigurations={true}
+    width="100%"
+  />
 </ComponentCard>
 `;
 
@@ -395,8 +377,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
   componentName="Contact Map"
   frameHeight={0}
   frameWidth={0}
-  headerHeight={32}
-  height="525px"
+  headerHeight={40}
+  height="570px"
   iconSrc="assets/icons/spring-icon.png"
   isFramedComponent={false}
   isFullPage={false}
@@ -405,164 +387,155 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
   showSettings={false}
   width="525px"
 >
-  <div
-    style={
+  <ContactMapChart
+    candidateResidues={Array []}
+    configurations={
+      Array [
+        Object {
+          "name": "Clear Selections",
+          "onClick": [Function],
+          "type": "BUTTON",
+        },
+        Object {
+          "id": "node-size-slider-0",
+          "name": "Node size for Known Structure Contact",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 4,
+            "max": 20,
+            "min": 1,
+          },
+        },
+        Object {
+          "id": "node-size-slider-1",
+          "name": "Node size for Selected Residue Pairs",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 6,
+            "max": 20,
+            "min": 1,
+          },
+        },
+      ]
+    }
+    contactData={
+      Array [
+        Object {
+          "hoverinfo": "text",
+          "marker": Object {
+            "colorscale": Array [
+              Array [
+                0,
+                "rgb(12,50,102)",
+              ],
+              Array [
+                0.1,
+                "rgb(17,83,150)",
+              ],
+              Array [
+                0.2,
+                "rgb(40,114,175)",
+              ],
+              Array [
+                0.3,
+                "rgb(71,147,193)",
+              ],
+              Array [
+                0.4,
+                "rgb(111,175,209)",
+              ],
+              Array [
+                0.5,
+                "rgb(160,202,222)",
+              ],
+              Array [
+                0.6,
+                "rgb(200,219,237)",
+              ],
+              Array [
+                0.7,
+                "rgb(224,235,246)",
+              ],
+              Array [
+                0.8,
+                "rgb(247,251,255)",
+              ],
+              Array [
+                0.9,
+                "rgb(249,253,255)",
+              ],
+              Array [
+                1,
+                "rgb(255,255,255)",
+              ],
+            ],
+          },
+          "mode": "lines+markers",
+          "name": "Known Structure Contact",
+          "nodeSize": 4,
+          "points": Array [
+            Object {
+              "A_i": "N",
+              "A_j": "I",
+              "dist": 1.3,
+              "i": 1,
+              "j": 10,
+            },
+          ],
+          "subtitle": "(from PDB structure)",
+          "text": Array [
+            "(1N, 10I)",
+          ],
+        },
+        Object {
+          "hoverinfo": "none",
+          "marker": Object {
+            "color": Array [],
+            "line": Object {
+              "color": "#ff8800",
+              "width": 3,
+            },
+            "symbol": "circle-open",
+          },
+          "mode": "lines+markers",
+          "name": "Selected Residue Pairs",
+          "nodeSize": 6,
+          "points": Array [],
+          "subtitle": "",
+        },
+      ]
+    }
+    dataTransformFn={[Function]}
+    height="100%"
+    isDataLoading={false}
+    legendModifiers={
       Object {
-        "height": "90%",
-        "width": "100%",
+        "y": -0.4,
       }
     }
-  >
-    <ContactMapChart
-      candidateResidues={Array []}
-      configurations={
-        Array [
-          Object {
-            "name": "Clear Selections",
-            "onClick": [Function],
-            "type": "BUTTON",
-          },
-          Object {
-            "id": "node-size-slider-0",
-            "name": "Node size for Known Structure Contact",
-            "onChange": [Function],
-            "type": "SLIDER",
-            "values": Object {
-              "current": 4,
-              "max": 20,
-              "min": 1,
-            },
-          },
-          Object {
-            "id": "node-size-slider-1",
-            "name": "Node size for Selected Residue Pairs",
-            "onChange": [Function],
-            "type": "SLIDER",
-            "values": Object {
-              "current": 6,
-              "max": 20,
-              "min": 1,
-            },
-          },
-        ]
+    marginModifiers={
+      Object {
+        "b": 65,
+        "l": 65,
       }
-      contactData={
-        Array [
-          Object {
-            "hoverinfo": "text",
-            "marker": Object {
-              "colorscale": Array [
-                Array [
-                  0,
-                  "rgb(12,50,102)",
-                ],
-                Array [
-                  0.1,
-                  "rgb(17,83,150)",
-                ],
-                Array [
-                  0.2,
-                  "rgb(40,114,175)",
-                ],
-                Array [
-                  0.3,
-                  "rgb(71,147,193)",
-                ],
-                Array [
-                  0.4,
-                  "rgb(111,175,209)",
-                ],
-                Array [
-                  0.5,
-                  "rgb(160,202,222)",
-                ],
-                Array [
-                  0.6,
-                  "rgb(200,219,237)",
-                ],
-                Array [
-                  0.7,
-                  "rgb(224,235,246)",
-                ],
-                Array [
-                  0.8,
-                  "rgb(247,251,255)",
-                ],
-                Array [
-                  0.9,
-                  "rgb(249,253,255)",
-                ],
-                Array [
-                  1,
-                  "rgb(255,255,255)",
-                ],
-              ],
-            },
-            "mode": "lines+markers",
-            "name": "Known Structure Contact",
-            "nodeSize": 4,
-            "points": Array [
-              Object {
-                "A_i": "N",
-                "A_j": "I",
-                "dist": 1.3,
-                "i": 1,
-                "j": 10,
-              },
-            ],
-            "subtitle": "(from PDB structure)",
-            "text": Array [
-              "(1N, 10I)",
-            ],
-          },
-          Object {
-            "hoverinfo": "none",
-            "marker": Object {
-              "color": Array [],
-              "line": Object {
-                "color": "#ff8800",
-                "width": 3,
-              },
-              "symbol": "circle-open",
-            },
-            "mode": "lines+markers",
-            "name": "Selected Residue Pairs",
-            "nodeSize": 6,
-            "points": Array [],
-            "subtitle": "",
-          },
-        ]
-      }
-      dataTransformFn={[Function]}
-      height="100%"
-      isDataLoading={false}
-      legendModifiers={
-        Object {
-          "y": -0.4,
-        }
-      }
-      marginModifiers={
-        Object {
-          "b": 65,
-          "l": 65,
-        }
-      }
-      onClickCallback={[Function]}
-      onHoverCallback={[Function]}
-      onSelectedCallback={[Function]}
-      onUnHoverCallback={[Function]}
-      range={70}
-      secondaryStructures={Array []}
-      selectedSecondaryStructures={
-        Array [
-          Array [],
-        ]
-      }
-      selectedSecondaryStructuresColor="#feb83f"
-      showConfigurations={true}
-      width="100%"
-    />
-  </div>
+    }
+    onClickCallback={[Function]}
+    onHoverCallback={[Function]}
+    onSelectedCallback={[Function]}
+    onUnHoverCallback={[Function]}
+    range={70}
+    secondaryStructures={Array []}
+    selectedSecondaryStructures={
+      Array [
+        Array [],
+      ]
+    }
+    selectedSecondaryStructuresColor="#feb83f"
+    showConfigurations={true}
+    width="100%"
+  />
 </ComponentCard>
 `;
 
@@ -571,8 +544,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
   componentName="Contact Map"
   frameHeight={0}
   frameWidth={0}
-  headerHeight={32}
-  height="525px"
+  headerHeight={40}
+  height="570px"
   iconSrc="assets/icons/spring-icon.png"
   isFramedComponent={false}
   isFullPage={false}
@@ -581,164 +554,155 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
   showSettings={false}
   width="525px"
 >
-  <div
-    style={
+  <ContactMapChart
+    candidateResidues={Array []}
+    configurations={
+      Array [
+        Object {
+          "name": "Clear Selections",
+          "onClick": [Function],
+          "type": "BUTTON",
+        },
+        Object {
+          "id": "node-size-slider-0",
+          "name": "Node size for Unknown Structure Contact",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 4,
+            "max": 20,
+            "min": 1,
+          },
+        },
+        Object {
+          "id": "node-size-slider-1",
+          "name": "Node size for Selected Residue Pairs",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 6,
+            "max": 20,
+            "min": 1,
+          },
+        },
+      ]
+    }
+    contactData={
+      Array [
+        Object {
+          "hoverinfo": "text",
+          "marker": Object {
+            "colorscale": Array [
+              Array [
+                0,
+                "rgb(12,50,102)",
+              ],
+              Array [
+                0.1,
+                "rgb(17,83,150)",
+              ],
+              Array [
+                0.2,
+                "rgb(40,114,175)",
+              ],
+              Array [
+                0.3,
+                "rgb(71,147,193)",
+              ],
+              Array [
+                0.4,
+                "rgb(111,175,209)",
+              ],
+              Array [
+                0.5,
+                "rgb(160,202,222)",
+              ],
+              Array [
+                0.6,
+                "rgb(200,219,237)",
+              ],
+              Array [
+                0.7,
+                "rgb(224,235,246)",
+              ],
+              Array [
+                0.8,
+                "rgb(247,251,255)",
+              ],
+              Array [
+                0.9,
+                "rgb(249,253,255)",
+              ],
+              Array [
+                1,
+                "rgb(255,255,255)",
+              ],
+            ],
+          },
+          "mode": "lines+markers",
+          "name": "Unknown Structure Contact",
+          "nodeSize": 4,
+          "points": Array [
+            Object {
+              "A_i": "N",
+              "A_j": "I",
+              "dist": 1.3,
+              "i": 1,
+              "j": 10,
+            },
+          ],
+          "subtitle": "(from PDB structure)",
+          "text": Array [
+            "(1N, 10I)",
+          ],
+        },
+        Object {
+          "hoverinfo": "none",
+          "marker": Object {
+            "color": Array [],
+            "line": Object {
+              "color": "#ff8800",
+              "width": 3,
+            },
+            "symbol": "circle-open",
+          },
+          "mode": "lines+markers",
+          "name": "Selected Residue Pairs",
+          "nodeSize": 6,
+          "points": Array [],
+          "subtitle": "",
+        },
+      ]
+    }
+    dataTransformFn={[Function]}
+    height="100%"
+    isDataLoading={false}
+    legendModifiers={
       Object {
-        "height": "90%",
-        "width": "100%",
+        "y": -0.4,
       }
     }
-  >
-    <ContactMapChart
-      candidateResidues={Array []}
-      configurations={
-        Array [
-          Object {
-            "name": "Clear Selections",
-            "onClick": [Function],
-            "type": "BUTTON",
-          },
-          Object {
-            "id": "node-size-slider-0",
-            "name": "Node size for Unknown Structure Contact",
-            "onChange": [Function],
-            "type": "SLIDER",
-            "values": Object {
-              "current": 4,
-              "max": 20,
-              "min": 1,
-            },
-          },
-          Object {
-            "id": "node-size-slider-1",
-            "name": "Node size for Selected Residue Pairs",
-            "onChange": [Function],
-            "type": "SLIDER",
-            "values": Object {
-              "current": 6,
-              "max": 20,
-              "min": 1,
-            },
-          },
-        ]
+    marginModifiers={
+      Object {
+        "b": 65,
+        "l": 65,
       }
-      contactData={
-        Array [
-          Object {
-            "hoverinfo": "text",
-            "marker": Object {
-              "colorscale": Array [
-                Array [
-                  0,
-                  "rgb(12,50,102)",
-                ],
-                Array [
-                  0.1,
-                  "rgb(17,83,150)",
-                ],
-                Array [
-                  0.2,
-                  "rgb(40,114,175)",
-                ],
-                Array [
-                  0.3,
-                  "rgb(71,147,193)",
-                ],
-                Array [
-                  0.4,
-                  "rgb(111,175,209)",
-                ],
-                Array [
-                  0.5,
-                  "rgb(160,202,222)",
-                ],
-                Array [
-                  0.6,
-                  "rgb(200,219,237)",
-                ],
-                Array [
-                  0.7,
-                  "rgb(224,235,246)",
-                ],
-                Array [
-                  0.8,
-                  "rgb(247,251,255)",
-                ],
-                Array [
-                  0.9,
-                  "rgb(249,253,255)",
-                ],
-                Array [
-                  1,
-                  "rgb(255,255,255)",
-                ],
-              ],
-            },
-            "mode": "lines+markers",
-            "name": "Unknown Structure Contact",
-            "nodeSize": 4,
-            "points": Array [
-              Object {
-                "A_i": "N",
-                "A_j": "I",
-                "dist": 1.3,
-                "i": 1,
-                "j": 10,
-              },
-            ],
-            "subtitle": "(from PDB structure)",
-            "text": Array [
-              "(1N, 10I)",
-            ],
-          },
-          Object {
-            "hoverinfo": "none",
-            "marker": Object {
-              "color": Array [],
-              "line": Object {
-                "color": "#ff8800",
-                "width": 3,
-              },
-              "symbol": "circle-open",
-            },
-            "mode": "lines+markers",
-            "name": "Selected Residue Pairs",
-            "nodeSize": 6,
-            "points": Array [],
-            "subtitle": "",
-          },
-        ]
-      }
-      dataTransformFn={[Function]}
-      height="100%"
-      isDataLoading={false}
-      legendModifiers={
-        Object {
-          "y": -0.4,
-        }
-      }
-      marginModifiers={
-        Object {
-          "b": 65,
-          "l": 65,
-        }
-      }
-      onClickCallback={[Function]}
-      onHoverCallback={[Function]}
-      onSelectedCallback={[Function]}
-      onUnHoverCallback={[Function]}
-      range={70}
-      secondaryStructures={Array []}
-      selectedSecondaryStructures={
-        Array [
-          Array [],
-        ]
-      }
-      selectedSecondaryStructuresColor="#feb83f"
-      showConfigurations={true}
-      width="100%"
-    />
-  </div>
+    }
+    onClickCallback={[Function]}
+    onHoverCallback={[Function]}
+    onSelectedCallback={[Function]}
+    onUnHoverCallback={[Function]}
+    range={70}
+    secondaryStructures={Array []}
+    selectedSecondaryStructures={
+      Array [
+        Array [],
+      ]
+    }
+    selectedSecondaryStructuresColor="#feb83f"
+    showConfigurations={true}
+    width="100%"
+  />
 </ComponentCard>
 `;
 
@@ -747,8 +711,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
   componentName="Contact Map"
   frameHeight={0}
   frameWidth={0}
-  headerHeight={32}
-  height="525px"
+  headerHeight={40}
+  height="570px"
   iconSrc="assets/icons/spring-icon.png"
   isFramedComponent={false}
   isFullPage={false}
@@ -757,154 +721,145 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
   showSettings={false}
   width="525px"
 >
-  <div
-    style={
+  <ContactMapChart
+    candidateResidues={Array []}
+    configurations={
+      Array [
+        Object {
+          "name": "Clear Selections",
+          "onClick": [Function],
+          "type": "BUTTON",
+        },
+        Object {
+          "id": "node-size-slider-0",
+          "name": "Node size for Unknown Structure Contact",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 4,
+            "max": 20,
+            "min": 1,
+          },
+        },
+        Object {
+          "id": "node-size-slider-1",
+          "name": "Node size for Selected Residue Pairs",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 6,
+            "max": 20,
+            "min": 1,
+          },
+        },
+      ]
+    }
+    contactData={
+      Array [
+        Object {
+          "hoverinfo": "text",
+          "marker": Object {
+            "colorscale": Array [
+              Array [
+                0,
+                "rgb(12,50,102)",
+              ],
+              Array [
+                0.1,
+                "rgb(17,83,150)",
+              ],
+              Array [
+                0.2,
+                "rgb(40,114,175)",
+              ],
+              Array [
+                0.3,
+                "rgb(71,147,193)",
+              ],
+              Array [
+                0.4,
+                "rgb(111,175,209)",
+              ],
+              Array [
+                0.5,
+                "rgb(160,202,222)",
+              ],
+              Array [
+                0.6,
+                "rgb(200,219,237)",
+              ],
+              Array [
+                0.7,
+                "rgb(224,235,246)",
+              ],
+              Array [
+                0.8,
+                "rgb(247,251,255)",
+              ],
+              Array [
+                0.9,
+                "rgb(249,253,255)",
+              ],
+              Array [
+                1,
+                "rgb(255,255,255)",
+              ],
+            ],
+          },
+          "mode": "lines+markers",
+          "name": "Unknown Structure Contact",
+          "nodeSize": 4,
+          "points": Array [],
+          "subtitle": "(from PDB structure)",
+          "text": Array [],
+        },
+        Object {
+          "hoverinfo": "none",
+          "marker": Object {
+            "color": Array [],
+            "line": Object {
+              "color": "#ff8800",
+              "width": 3,
+            },
+            "symbol": "circle-open",
+          },
+          "mode": "lines+markers",
+          "name": "Selected Residue Pairs",
+          "nodeSize": 6,
+          "points": Array [],
+          "subtitle": "",
+        },
+      ]
+    }
+    dataTransformFn={[Function]}
+    height="100%"
+    isDataLoading={false}
+    legendModifiers={
       Object {
-        "height": "90%",
-        "width": "100%",
+        "y": -0.4,
       }
     }
-  >
-    <ContactMapChart
-      candidateResidues={Array []}
-      configurations={
-        Array [
-          Object {
-            "name": "Clear Selections",
-            "onClick": [Function],
-            "type": "BUTTON",
-          },
-          Object {
-            "id": "node-size-slider-0",
-            "name": "Node size for Unknown Structure Contact",
-            "onChange": [Function],
-            "type": "SLIDER",
-            "values": Object {
-              "current": 4,
-              "max": 20,
-              "min": 1,
-            },
-          },
-          Object {
-            "id": "node-size-slider-1",
-            "name": "Node size for Selected Residue Pairs",
-            "onChange": [Function],
-            "type": "SLIDER",
-            "values": Object {
-              "current": 6,
-              "max": 20,
-              "min": 1,
-            },
-          },
-        ]
+    marginModifiers={
+      Object {
+        "b": 65,
+        "l": 65,
       }
-      contactData={
-        Array [
-          Object {
-            "hoverinfo": "text",
-            "marker": Object {
-              "colorscale": Array [
-                Array [
-                  0,
-                  "rgb(12,50,102)",
-                ],
-                Array [
-                  0.1,
-                  "rgb(17,83,150)",
-                ],
-                Array [
-                  0.2,
-                  "rgb(40,114,175)",
-                ],
-                Array [
-                  0.3,
-                  "rgb(71,147,193)",
-                ],
-                Array [
-                  0.4,
-                  "rgb(111,175,209)",
-                ],
-                Array [
-                  0.5,
-                  "rgb(160,202,222)",
-                ],
-                Array [
-                  0.6,
-                  "rgb(200,219,237)",
-                ],
-                Array [
-                  0.7,
-                  "rgb(224,235,246)",
-                ],
-                Array [
-                  0.8,
-                  "rgb(247,251,255)",
-                ],
-                Array [
-                  0.9,
-                  "rgb(249,253,255)",
-                ],
-                Array [
-                  1,
-                  "rgb(255,255,255)",
-                ],
-              ],
-            },
-            "mode": "lines+markers",
-            "name": "Unknown Structure Contact",
-            "nodeSize": 4,
-            "points": Array [],
-            "subtitle": "(from PDB structure)",
-            "text": Array [],
-          },
-          Object {
-            "hoverinfo": "none",
-            "marker": Object {
-              "color": Array [],
-              "line": Object {
-                "color": "#ff8800",
-                "width": 3,
-              },
-              "symbol": "circle-open",
-            },
-            "mode": "lines+markers",
-            "name": "Selected Residue Pairs",
-            "nodeSize": 6,
-            "points": Array [],
-            "subtitle": "",
-          },
-        ]
-      }
-      dataTransformFn={[Function]}
-      height="100%"
-      isDataLoading={false}
-      legendModifiers={
-        Object {
-          "y": -0.4,
-        }
-      }
-      marginModifiers={
-        Object {
-          "b": 65,
-          "l": 65,
-        }
-      }
-      onClickCallback={[Function]}
-      onHoverCallback={[Function]}
-      onSelectedCallback={[Function]}
-      onUnHoverCallback={[Function]}
-      range={70}
-      secondaryStructures={Array []}
-      selectedSecondaryStructures={
-        Array [
-          Array [],
-        ]
-      }
-      selectedSecondaryStructuresColor="#feb83f"
-      showConfigurations={true}
-      width="100%"
-    />
-  </div>
+    }
+    onClickCallback={[Function]}
+    onHoverCallback={[Function]}
+    onSelectedCallback={[Function]}
+    onUnHoverCallback={[Function]}
+    range={70}
+    secondaryStructures={Array []}
+    selectedSecondaryStructures={
+      Array [
+        Array [],
+      ]
+    }
+    selectedSecondaryStructuresColor="#feb83f"
+    showConfigurations={true}
+    width="100%"
+  />
 </ComponentCard>
 `;
 
@@ -913,8 +868,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
   componentName="Contact Map"
   frameHeight={0}
   frameWidth={0}
-  headerHeight={32}
-  height="525px"
+  headerHeight={40}
+  height="570px"
   iconSrc="assets/icons/spring-icon.png"
   isFramedComponent={false}
   isFullPage={false}
@@ -923,154 +878,145 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
   showSettings={false}
   width="525px"
 >
-  <div
-    style={
+  <ContactMapChart
+    candidateResidues={Array []}
+    configurations={
+      Array [
+        Object {
+          "name": "Clear Selections",
+          "onClick": [Function],
+          "type": "BUTTON",
+        },
+        Object {
+          "id": "node-size-slider-0",
+          "name": "Node size for Unknown Structure Contact",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 4,
+            "max": 20,
+            "min": 1,
+          },
+        },
+        Object {
+          "id": "node-size-slider-1",
+          "name": "Node size for Selected Residue Pairs",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 6,
+            "max": 20,
+            "min": 1,
+          },
+        },
+      ]
+    }
+    contactData={
+      Array [
+        Object {
+          "hoverinfo": "text",
+          "marker": Object {
+            "colorscale": Array [
+              Array [
+                0,
+                "rgb(12,50,102)",
+              ],
+              Array [
+                0.1,
+                "rgb(17,83,150)",
+              ],
+              Array [
+                0.2,
+                "rgb(40,114,175)",
+              ],
+              Array [
+                0.3,
+                "rgb(71,147,193)",
+              ],
+              Array [
+                0.4,
+                "rgb(111,175,209)",
+              ],
+              Array [
+                0.5,
+                "rgb(160,202,222)",
+              ],
+              Array [
+                0.6,
+                "rgb(200,219,237)",
+              ],
+              Array [
+                0.7,
+                "rgb(224,235,246)",
+              ],
+              Array [
+                0.8,
+                "rgb(247,251,255)",
+              ],
+              Array [
+                0.9,
+                "rgb(249,253,255)",
+              ],
+              Array [
+                1,
+                "rgb(255,255,255)",
+              ],
+            ],
+          },
+          "mode": "lines+markers",
+          "name": "Unknown Structure Contact",
+          "nodeSize": 4,
+          "points": Array [],
+          "subtitle": "(from PDB structure)",
+          "text": Array [],
+        },
+        Object {
+          "hoverinfo": "none",
+          "marker": Object {
+            "color": Array [],
+            "line": Object {
+              "color": "#ff8800",
+              "width": 3,
+            },
+            "symbol": "circle-open",
+          },
+          "mode": "lines+markers",
+          "name": "Selected Residue Pairs",
+          "nodeSize": 6,
+          "points": Array [],
+          "subtitle": "",
+        },
+      ]
+    }
+    dataTransformFn={[Function]}
+    height="100%"
+    isDataLoading={false}
+    legendModifiers={
       Object {
-        "height": "90%",
-        "width": "100%",
+        "y": -0.4,
       }
     }
-  >
-    <ContactMapChart
-      candidateResidues={Array []}
-      configurations={
-        Array [
-          Object {
-            "name": "Clear Selections",
-            "onClick": [Function],
-            "type": "BUTTON",
-          },
-          Object {
-            "id": "node-size-slider-0",
-            "name": "Node size for Unknown Structure Contact",
-            "onChange": [Function],
-            "type": "SLIDER",
-            "values": Object {
-              "current": 4,
-              "max": 20,
-              "min": 1,
-            },
-          },
-          Object {
-            "id": "node-size-slider-1",
-            "name": "Node size for Selected Residue Pairs",
-            "onChange": [Function],
-            "type": "SLIDER",
-            "values": Object {
-              "current": 6,
-              "max": 20,
-              "min": 1,
-            },
-          },
-        ]
+    marginModifiers={
+      Object {
+        "b": 65,
+        "l": 65,
       }
-      contactData={
-        Array [
-          Object {
-            "hoverinfo": "text",
-            "marker": Object {
-              "colorscale": Array [
-                Array [
-                  0,
-                  "rgb(12,50,102)",
-                ],
-                Array [
-                  0.1,
-                  "rgb(17,83,150)",
-                ],
-                Array [
-                  0.2,
-                  "rgb(40,114,175)",
-                ],
-                Array [
-                  0.3,
-                  "rgb(71,147,193)",
-                ],
-                Array [
-                  0.4,
-                  "rgb(111,175,209)",
-                ],
-                Array [
-                  0.5,
-                  "rgb(160,202,222)",
-                ],
-                Array [
-                  0.6,
-                  "rgb(200,219,237)",
-                ],
-                Array [
-                  0.7,
-                  "rgb(224,235,246)",
-                ],
-                Array [
-                  0.8,
-                  "rgb(247,251,255)",
-                ],
-                Array [
-                  0.9,
-                  "rgb(249,253,255)",
-                ],
-                Array [
-                  1,
-                  "rgb(255,255,255)",
-                ],
-              ],
-            },
-            "mode": "lines+markers",
-            "name": "Unknown Structure Contact",
-            "nodeSize": 4,
-            "points": Array [],
-            "subtitle": "(from PDB structure)",
-            "text": Array [],
-          },
-          Object {
-            "hoverinfo": "none",
-            "marker": Object {
-              "color": Array [],
-              "line": Object {
-                "color": "#ff8800",
-                "width": 3,
-              },
-              "symbol": "circle-open",
-            },
-            "mode": "lines+markers",
-            "name": "Selected Residue Pairs",
-            "nodeSize": 6,
-            "points": Array [],
-            "subtitle": "",
-          },
-        ]
-      }
-      dataTransformFn={[Function]}
-      height="100%"
-      isDataLoading={false}
-      legendModifiers={
-        Object {
-          "y": -0.4,
-        }
-      }
-      marginModifiers={
-        Object {
-          "b": 65,
-          "l": 65,
-        }
-      }
-      onClickCallback={[Function]}
-      onHoverCallback={[Function]}
-      onSelectedCallback={[Function]}
-      onUnHoverCallback={[Function]}
-      range={70}
-      secondaryStructures={Array []}
-      selectedSecondaryStructures={
-        Array [
-          Array [],
-        ]
-      }
-      selectedSecondaryStructuresColor="#feb83f"
-      showConfigurations={true}
-      width="100%"
-    />
-  </div>
+    }
+    onClickCallback={[Function]}
+    onHoverCallback={[Function]}
+    onSelectedCallback={[Function]}
+    onUnHoverCallback={[Function]}
+    range={70}
+    secondaryStructures={Array []}
+    selectedSecondaryStructures={
+      Array [
+        Array [],
+      ]
+    }
+    selectedSecondaryStructuresColor="#feb83f"
+    showConfigurations={true}
+    width="100%"
+  />
 </ComponentCard>
 `;
 
@@ -1079,8 +1025,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
   componentName="Contact Map"
   frameHeight={0}
   frameWidth={0}
-  headerHeight={32}
-  height="525px"
+  headerHeight={40}
+  height="570px"
   iconSrc="assets/icons/spring-icon.png"
   isFramedComponent={false}
   isFullPage={false}
@@ -1089,187 +1035,178 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
   showSettings={false}
   width="525px"
 >
-  <div
-    style={
-      Object {
-        "height": "90%",
-        "width": "100%",
-      }
+  <ContactMapChart
+    candidateResidues={Array []}
+    configurations={
+      Array [
+        Object {
+          "name": "Clear Selections",
+          "onClick": [Function],
+          "type": "BUTTON",
+        },
+        Object {
+          "id": "node-size-slider-0",
+          "name": "Node size for Unknown Structure Contact",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 4,
+            "max": 20,
+            "min": 1,
+          },
+        },
+        Object {
+          "id": "node-size-slider-1",
+          "name": "Node size for Selected Residue Pairs",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 6,
+            "max": 20,
+            "min": 1,
+          },
+        },
+      ]
     }
-  >
-    <ContactMapChart
-      candidateResidues={Array []}
-      configurations={
-        Array [
-          Object {
-            "name": "Clear Selections",
-            "onClick": [Function],
-            "type": "BUTTON",
-          },
-          Object {
-            "id": "node-size-slider-0",
-            "name": "Node size for Unknown Structure Contact",
-            "onChange": [Function],
-            "type": "SLIDER",
-            "values": Object {
-              "current": 4,
-              "max": 20,
-              "min": 1,
-            },
-          },
-          Object {
-            "id": "node-size-slider-1",
-            "name": "Node size for Selected Residue Pairs",
-            "onChange": [Function],
-            "type": "SLIDER",
-            "values": Object {
-              "current": 6,
-              "max": 20,
-              "min": 1,
-            },
-          },
-        ]
-      }
-      contactData={
-        Array [
-          Object {
-            "hoverinfo": "text",
-            "marker": Object {
-              "colorscale": Array [
-                Array [
-                  0,
-                  "rgb(12,50,102)",
-                ],
-                Array [
-                  0.1,
-                  "rgb(17,83,150)",
-                ],
-                Array [
-                  0.2,
-                  "rgb(40,114,175)",
-                ],
-                Array [
-                  0.3,
-                  "rgb(71,147,193)",
-                ],
-                Array [
-                  0.4,
-                  "rgb(111,175,209)",
-                ],
-                Array [
-                  0.5,
-                  "rgb(160,202,222)",
-                ],
-                Array [
-                  0.6,
-                  "rgb(200,219,237)",
-                ],
-                Array [
-                  0.7,
-                  "rgb(224,235,246)",
-                ],
-                Array [
-                  0.8,
-                  "rgb(247,251,255)",
-                ],
-                Array [
-                  0.9,
-                  "rgb(249,253,255)",
-                ],
-                Array [
-                  1,
-                  "rgb(255,255,255)",
-                ],
-              ],
-            },
-            "mode": "lines+markers",
-            "name": "Unknown Structure Contact",
-            "nodeSize": 4,
-            "points": Array [
-              Object {
-                "dist": 1.3,
-                "i": 41,
-                "j": 52,
-              },
-              Object {
-                "dist": 2.4,
-                "i": 50,
-                "j": 56,
-              },
-            ],
-            "subtitle": "(from PDB structure)",
-            "text": Array [
-              "(41, 52)",
-              "(50, 56)",
-            ],
-          },
-          Object {
-            "hoverinfo": "none",
-            "marker": Object {
-              "color": Array [
-                "#ff8800",
-                "#ff8800",
-              ],
-              "line": Object {
-                "color": "#ff8800",
-                "width": 3,
-              },
-              "symbol": "circle-open",
-            },
-            "mode": "lines+markers",
-            "name": "Selected Residue Pairs",
-            "nodeSize": 6,
-            "points": Array [
-              Object {
-                "i": 41,
-                "j": 52,
-              },
-            ],
-            "subtitle": "",
-          },
-        ]
-      }
-      dataTransformFn={[Function]}
-      height="100%"
-      isDataLoading={false}
-      legendModifiers={
+    contactData={
+      Array [
         Object {
-          "y": -0.4,
-        }
-      }
-      marginModifiers={
-        Object {
-          "b": 65,
-          "l": 65,
-        }
-      }
-      onClickCallback={[Function]}
-      onHoverCallback={[Function]}
-      onSelectedCallback={[Function]}
-      onUnHoverCallback={[Function]}
-      range={77}
-      secondaryStructures={
-        Array [
-          Array [
+          "hoverinfo": "text",
+          "marker": Object {
+            "colorscale": Array [
+              Array [
+                0,
+                "rgb(12,50,102)",
+              ],
+              Array [
+                0.1,
+                "rgb(17,83,150)",
+              ],
+              Array [
+                0.2,
+                "rgb(40,114,175)",
+              ],
+              Array [
+                0.3,
+                "rgb(71,147,193)",
+              ],
+              Array [
+                0.4,
+                "rgb(111,175,209)",
+              ],
+              Array [
+                0.5,
+                "rgb(160,202,222)",
+              ],
+              Array [
+                0.6,
+                "rgb(200,219,237)",
+              ],
+              Array [
+                0.7,
+                "rgb(224,235,246)",
+              ],
+              Array [
+                0.8,
+                "rgb(247,251,255)",
+              ],
+              Array [
+                0.9,
+                "rgb(249,253,255)",
+              ],
+              Array [
+                1,
+                "rgb(255,255,255)",
+              ],
+            ],
+          },
+          "mode": "lines+markers",
+          "name": "Unknown Structure Contact",
+          "nodeSize": 4,
+          "points": Array [
             Object {
-              "end": 31,
-              "label": "C",
-              "length": 2,
-              "start": 30,
+              "dist": 1.3,
+              "i": 41,
+              "j": 52,
+            },
+            Object {
+              "dist": 2.4,
+              "i": 50,
+              "j": 56,
             },
           ],
-        ]
+          "subtitle": "(from PDB structure)",
+          "text": Array [
+            "(41, 52)",
+            "(50, 56)",
+          ],
+        },
+        Object {
+          "hoverinfo": "none",
+          "marker": Object {
+            "color": Array [
+              "#ff8800",
+              "#ff8800",
+            ],
+            "line": Object {
+              "color": "#ff8800",
+              "width": 3,
+            },
+            "symbol": "circle-open",
+          },
+          "mode": "lines+markers",
+          "name": "Selected Residue Pairs",
+          "nodeSize": 6,
+          "points": Array [
+            Object {
+              "i": 41,
+              "j": 52,
+            },
+          ],
+          "subtitle": "",
+        },
+      ]
+    }
+    dataTransformFn={[Function]}
+    height="100%"
+    isDataLoading={false}
+    legendModifiers={
+      Object {
+        "y": -0.4,
       }
-      selectedSecondaryStructures={
+    }
+    marginModifiers={
+      Object {
+        "b": 65,
+        "l": 65,
+      }
+    }
+    onClickCallback={[Function]}
+    onHoverCallback={[Function]}
+    onSelectedCallback={[Function]}
+    onUnHoverCallback={[Function]}
+    range={77}
+    secondaryStructures={
+      Array [
         Array [
-          Array [],
-        ]
-      }
-      selectedSecondaryStructuresColor="#feb83f"
-      showConfigurations={true}
-      width="100%"
-    />
-  </div>
+          Object {
+            "end": 31,
+            "label": "C",
+            "length": 2,
+            "start": 30,
+          },
+        ],
+      ]
+    }
+    selectedSecondaryStructures={
+      Array [
+        Array [],
+      ]
+    }
+    selectedSecondaryStructuresColor="#feb83f"
+    showConfigurations={true}
+    width="100%"
+  />
 </ComponentCard>
 `;
 
@@ -1278,8 +1215,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
   componentName="Contact Map"
   frameHeight={0}
   frameWidth={0}
-  headerHeight={32}
-  height="525px"
+  headerHeight={40}
+  height="570px"
   iconSrc="assets/icons/spring-icon.png"
   isFramedComponent={false}
   isFullPage={false}
@@ -1288,201 +1225,192 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
   showSettings={false}
   width="525px"
 >
-  <div
-    style={
-      Object {
-        "height": "90%",
-        "width": "100%",
-      }
+  <ContactMapChart
+    candidateResidues={Array []}
+    configurations={
+      Array [
+        Object {
+          "name": "Clear Selections",
+          "onClick": [Function],
+          "type": "BUTTON",
+        },
+        Object {
+          "id": "node-size-slider-0",
+          "name": "Node size for Unknown Structure Contact",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 4,
+            "max": 20,
+            "min": 1,
+          },
+        },
+        Object {
+          "id": "node-size-slider-1",
+          "name": "Node size for Selected Residue Pairs",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 6,
+            "max": 20,
+            "min": 1,
+          },
+        },
+      ]
     }
-  >
-    <ContactMapChart
-      candidateResidues={Array []}
-      configurations={
-        Array [
-          Object {
-            "name": "Clear Selections",
-            "onClick": [Function],
-            "type": "BUTTON",
-          },
-          Object {
-            "id": "node-size-slider-0",
-            "name": "Node size for Unknown Structure Contact",
-            "onChange": [Function],
-            "type": "SLIDER",
-            "values": Object {
-              "current": 4,
-              "max": 20,
-              "min": 1,
-            },
-          },
-          Object {
-            "id": "node-size-slider-1",
-            "name": "Node size for Selected Residue Pairs",
-            "onChange": [Function],
-            "type": "SLIDER",
-            "values": Object {
-              "current": 6,
-              "max": 20,
-              "min": 1,
-            },
-          },
-        ]
-      }
-      contactData={
-        Array [
-          Object {
-            "hoverinfo": "text",
-            "marker": Object {
-              "colorscale": Array [
-                Array [
-                  0,
-                  "rgb(12,50,102)",
-                ],
-                Array [
-                  0.1,
-                  "rgb(17,83,150)",
-                ],
-                Array [
-                  0.2,
-                  "rgb(40,114,175)",
-                ],
-                Array [
-                  0.3,
-                  "rgb(71,147,193)",
-                ],
-                Array [
-                  0.4,
-                  "rgb(111,175,209)",
-                ],
-                Array [
-                  0.5,
-                  "rgb(160,202,222)",
-                ],
-                Array [
-                  0.6,
-                  "rgb(200,219,237)",
-                ],
-                Array [
-                  0.7,
-                  "rgb(224,235,246)",
-                ],
-                Array [
-                  0.8,
-                  "rgb(247,251,255)",
-                ],
-                Array [
-                  0.9,
-                  "rgb(249,253,255)",
-                ],
-                Array [
-                  1,
-                  "rgb(255,255,255)",
-                ],
-              ],
-            },
-            "mode": "lines+markers",
-            "name": "Unknown Structure Contact",
-            "nodeSize": 4,
-            "points": Array [
-              Object {
-                "dist": 1.3,
-                "i": 41,
-                "j": 52,
-              },
-              Object {
-                "dist": 2.4,
-                "i": 50,
-                "j": 56,
-              },
-            ],
-            "subtitle": "(from PDB structure)",
-            "text": Array [
-              "(41, 52)",
-              "(50, 56)",
-            ],
-          },
-          Object {
-            "hoverinfo": "none",
-            "marker": Object {
-              "color": Array [
-                "#ff8800",
-                "#ff8800",
-                "#ff8800",
-                "#ff8800",
-                "#ff8800",
-                "#ff8800",
-              ],
-              "line": Object {
-                "color": "#ff8800",
-                "width": 3,
-              },
-              "symbol": "circle-open",
-            },
-            "mode": "lines+markers",
-            "name": "Selected Residue Pairs",
-            "nodeSize": 6,
-            "points": Array [
-              Object {
-                "i": 41,
-                "j": 52,
-              },
-              Object {
-                "dist": 0,
-                "i": 41,
-                "j": 52,
-              },
-              Object {
-                "dist": 0,
-                "i": 50,
-                "j": 56,
-              },
-            ],
-            "subtitle": "",
-          },
-        ]
-      }
-      dataTransformFn={[Function]}
-      height="100%"
-      isDataLoading={false}
-      legendModifiers={
+    contactData={
+      Array [
         Object {
-          "y": -0.4,
-        }
-      }
-      marginModifiers={
-        Object {
-          "b": 65,
-          "l": 65,
-        }
-      }
-      onClickCallback={[Function]}
-      onHoverCallback={[Function]}
-      onSelectedCallback={[Function]}
-      onUnHoverCallback={[Function]}
-      range={77}
-      secondaryStructures={
-        Array [
-          Array [
+          "hoverinfo": "text",
+          "marker": Object {
+            "colorscale": Array [
+              Array [
+                0,
+                "rgb(12,50,102)",
+              ],
+              Array [
+                0.1,
+                "rgb(17,83,150)",
+              ],
+              Array [
+                0.2,
+                "rgb(40,114,175)",
+              ],
+              Array [
+                0.3,
+                "rgb(71,147,193)",
+              ],
+              Array [
+                0.4,
+                "rgb(111,175,209)",
+              ],
+              Array [
+                0.5,
+                "rgb(160,202,222)",
+              ],
+              Array [
+                0.6,
+                "rgb(200,219,237)",
+              ],
+              Array [
+                0.7,
+                "rgb(224,235,246)",
+              ],
+              Array [
+                0.8,
+                "rgb(247,251,255)",
+              ],
+              Array [
+                0.9,
+                "rgb(249,253,255)",
+              ],
+              Array [
+                1,
+                "rgb(255,255,255)",
+              ],
+            ],
+          },
+          "mode": "lines+markers",
+          "name": "Unknown Structure Contact",
+          "nodeSize": 4,
+          "points": Array [
             Object {
-              "end": 31,
-              "label": "C",
-              "length": 2,
-              "start": 30,
+              "dist": 1.3,
+              "i": 41,
+              "j": 52,
+            },
+            Object {
+              "dist": 2.4,
+              "i": 50,
+              "j": 56,
             },
           ],
-        ]
+          "subtitle": "(from PDB structure)",
+          "text": Array [
+            "(41, 52)",
+            "(50, 56)",
+          ],
+        },
+        Object {
+          "hoverinfo": "none",
+          "marker": Object {
+            "color": Array [
+              "#ff8800",
+              "#ff8800",
+              "#ff8800",
+              "#ff8800",
+              "#ff8800",
+              "#ff8800",
+            ],
+            "line": Object {
+              "color": "#ff8800",
+              "width": 3,
+            },
+            "symbol": "circle-open",
+          },
+          "mode": "lines+markers",
+          "name": "Selected Residue Pairs",
+          "nodeSize": 6,
+          "points": Array [
+            Object {
+              "i": 41,
+              "j": 52,
+            },
+            Object {
+              "dist": 0,
+              "i": 41,
+              "j": 52,
+            },
+            Object {
+              "dist": 0,
+              "i": 50,
+              "j": 56,
+            },
+          ],
+          "subtitle": "",
+        },
+      ]
+    }
+    dataTransformFn={[Function]}
+    height="100%"
+    isDataLoading={false}
+    legendModifiers={
+      Object {
+        "y": -0.4,
       }
-      selectedSecondaryStructures={
+    }
+    marginModifiers={
+      Object {
+        "b": 65,
+        "l": 65,
+      }
+    }
+    onClickCallback={[Function]}
+    onHoverCallback={[Function]}
+    onSelectedCallback={[Function]}
+    onUnHoverCallback={[Function]}
+    range={77}
+    secondaryStructures={
+      Array [
         Array [
-          Array [],
-        ]
-      }
-      selectedSecondaryStructuresColor="#feb83f"
-      showConfigurations={true}
-      width="100%"
-    />
-  </div>
+          Object {
+            "end": 31,
+            "label": "C",
+            "length": 2,
+            "start": 30,
+          },
+        ],
+      ]
+    }
+    selectedSecondaryStructures={
+      Array [
+        Array [],
+      ]
+    }
+    selectedSecondaryStructuresColor="#feb83f"
+    showConfigurations={true}
+    width="100%"
+  />
 </ComponentCard>
 `;
 
@@ -1944,8 +1872,8 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
     componentName="Contact Map"
     frameHeight={0}
     frameWidth={0}
-    headerHeight={32}
-    height="525px"
+    headerHeight={40}
+    height="570px"
     iconSrc="assets/icons/spring-icon.png"
     isFramedComponent={false}
     isFullPage={false}
@@ -1959,9 +1887,8 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       className="bioblocks-component-card"
       style={
         Object {
-          "height": "525px",
+          "height": "570px",
           "maxWidth": "unset",
-          "padding": "0 0 5px 5px",
           "width": "525px",
         }
       }
@@ -1971,9 +1898,8 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         onClick={[Function]}
         style={
           Object {
-            "height": "525px",
+            "height": "570px",
             "maxWidth": "unset",
-            "padding": "0 0 5px 5px",
             "width": "525px",
           }
         }
@@ -1981,7 +1907,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         <ComponentMenuBar
           componentName="Contact Map"
           configurations={Array []}
-          height={32}
+          height={40}
           iconSrc="assets/icons/spring-icon.png"
           isExpanded={false}
           menuItems={Array []}
@@ -1996,7 +1922,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               secondary={true}
               style={
                 Object {
-                  "height": 32,
+                  "height": 40,
                   "margin": 0,
                 }
               }
@@ -2005,7 +1931,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 className="ui secondary menu"
                 style={
                   Object {
-                    "height": 32,
+                    "height": 40,
                     "margin": 0,
                   }
                 }
@@ -2097,52 +2023,184 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             </Menu>
           </div>
         </ComponentMenuBar>
-        <div
-          style={
+        <ContactMapChart
+          candidateResidues={Array []}
+          configurations={
+            Array [
+              Object {
+                "name": "Clear Selections",
+                "onClick": [Function],
+                "type": "BUTTON",
+              },
+              Object {
+                "id": "node-size-slider-0",
+                "name": "Node size for Unknown Structure Contact",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "max": 20,
+                  "min": 1,
+                },
+              },
+              Object {
+                "id": "node-size-slider-1",
+                "name": "Node size for Selected Residue Pairs",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 6,
+                  "max": 20,
+                  "min": 1,
+                },
+              },
+            ]
+          }
+          contactData={
+            Array [
+              Object {
+                "hoverinfo": "text",
+                "marker": Object {
+                  "colorscale": Array [
+                    Array [
+                      0,
+                      "rgb(12,50,102)",
+                    ],
+                    Array [
+                      0.1,
+                      "rgb(17,83,150)",
+                    ],
+                    Array [
+                      0.2,
+                      "rgb(40,114,175)",
+                    ],
+                    Array [
+                      0.3,
+                      "rgb(71,147,193)",
+                    ],
+                    Array [
+                      0.4,
+                      "rgb(111,175,209)",
+                    ],
+                    Array [
+                      0.5,
+                      "rgb(160,202,222)",
+                    ],
+                    Array [
+                      0.6,
+                      "rgb(200,219,237)",
+                    ],
+                    Array [
+                      0.7,
+                      "rgb(224,235,246)",
+                    ],
+                    Array [
+                      0.8,
+                      "rgb(247,251,255)",
+                    ],
+                    Array [
+                      0.9,
+                      "rgb(249,253,255)",
+                    ],
+                    Array [
+                      1,
+                      "rgb(255,255,255)",
+                    ],
+                  ],
+                },
+                "mode": "lines+markers",
+                "name": "Unknown Structure Contact",
+                "nodeSize": 4,
+                "points": Array [
+                  Object {
+                    "dist": 1.3,
+                    "i": 41,
+                    "j": 52,
+                  },
+                  Object {
+                    "dist": 2.4,
+                    "i": 50,
+                    "j": 56,
+                  },
+                ],
+                "subtitle": "(from PDB structure)",
+                "text": Array [
+                  "(41, 52)",
+                  "(50, 56)",
+                ],
+              },
+              Object {
+                "hoverinfo": "none",
+                "marker": Object {
+                  "color": Array [],
+                  "line": Object {
+                    "color": "#ff8800",
+                    "width": 3,
+                  },
+                  "symbol": "circle-open",
+                },
+                "mode": "lines+markers",
+                "name": "Selected Residue Pairs",
+                "nodeSize": 6,
+                "points": Array [],
+                "subtitle": "",
+              },
+            ]
+          }
+          dataTransformFn={[Function]}
+          height="100%"
+          isDataLoading={false}
+          legendModifiers={
             Object {
-              "height": "90%",
-              "width": "100%",
+              "y": -0.4,
             }
           }
-        >
-          <ContactMapChart
-            candidateResidues={Array []}
-            configurations={
+          marginModifiers={
+            Object {
+              "b": 65,
+              "l": 65,
+            }
+          }
+          onClickCallback={[Function]}
+          onHoverCallback={[Function]}
+          onSelectedCallback={[Function]}
+          onUnHoverCallback={[Function]}
+          range={77}
+          secondaryStructures={
+            Array [
               Array [
                 Object {
-                  "name": "Clear Selections",
-                  "onClick": [Function],
-                  "type": "BUTTON",
+                  "end": 31,
+                  "label": "C",
+                  "length": 2,
+                  "start": 30,
                 },
-                Object {
-                  "id": "node-size-slider-0",
-                  "name": "Node size for Unknown Structure Contact",
-                  "onChange": [Function],
-                  "type": "SLIDER",
-                  "values": Object {
-                    "current": 4,
-                    "max": 20,
-                    "min": 1,
-                  },
-                },
-                Object {
-                  "id": "node-size-slider-1",
-                  "name": "Node size for Selected Residue Pairs",
-                  "onChange": [Function],
-                  "type": "SLIDER",
-                  "values": Object {
-                    "current": 6,
-                    "max": 20,
-                    "min": 1,
-                  },
-                },
-              ]
-            }
-            contactData={
+              ],
+            ]
+          }
+          selectedSecondaryStructures={
+            Array [
+              Array [],
+            ]
+          }
+          selectedSecondaryStructuresColor="#feb83f"
+          showConfigurations={true}
+          width="100%"
+        >
+          <PlotlyChart
+            candidateResidues={Array []}
+            config={Object {}}
+            data={
               Array [
                 Object {
                   "hoverinfo": "text",
                   "marker": Object {
+                    "color": Array [
+                      "1.3",
+                      "2.4",
+                      "1.3",
+                      "2.4",
+                    ],
                     "colorscale": Array [
                       Array [
                         0,
@@ -2189,26 +2247,34 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         "rgb(255,255,255)",
                       ],
                     ],
+                    "size": 4,
                   },
-                  "mode": "lines+markers",
-                  "name": "Unknown Structure Contact",
-                  "nodeSize": 4,
-                  "points": Array [
-                    Object {
-                      "dist": 1.3,
-                      "i": 41,
-                      "j": 52,
-                    },
-                    Object {
-                      "dist": 2.4,
-                      "i": 50,
-                      "j": 56,
-                    },
-                  ],
-                  "subtitle": "(from PDB structure)",
+                  "mode": "markers",
+                  "name": "Unknown Structure Contact (from PDB structure)",
                   "text": Array [
                     "(41, 52)",
                     "(50, 56)",
+                    "(52, 41)",
+                    "(56, 50)",
+                  ],
+                  "type": "scattergl",
+                  "x": Array [
+                    41,
+                    50,
+                    52,
+                    56,
+                  ],
+                  "y": Array [
+                    52,
+                    56,
+                    41,
+                    50,
+                  ],
+                  "z": Array [
+                    1.3,
+                    2.4,
+                    1.3,
+                    2.4,
                   ],
                 },
                 Object {
@@ -2219,35 +2285,128 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       "color": "#ff8800",
                       "width": 3,
                     },
+                    "size": 6,
                     "symbol": "circle-open",
                   },
-                  "mode": "lines+markers",
-                  "name": "Selected Residue Pairs",
-                  "nodeSize": 6,
-                  "points": Array [],
-                  "subtitle": "",
+                  "mode": "markers",
+                  "name": "Selected Residue Pairs ",
+                  "text": Array [],
+                  "type": "scattergl",
+                  "x": Array [],
+                  "y": Array [],
+                  "z": Array [],
+                },
+                Object {
+                  "connectgaps": false,
+                  "hoverinfo": "none",
+                  "line": Object {
+                    "color": "red",
+                    "shape": "spline",
+                    "smoothing": 1.3,
+                    "width": 1.5,
+                  },
+                  "marker": Object {
+                    "symbol": Array [],
+                  },
+                  "mode": "lines",
+                  "name": "C",
+                  "orientation": "h",
+                  "showlegend": false,
+                  "type": "scatter",
+                  "x": Array [
+                    30,
+                    30,
+                    31,
+                    31,
+                  ],
+                  "xaxis": "x",
+                  "y": Array [
+                    null,
+                    0,
+                    0,
+                    null,
+                  ],
+                  "yaxis": "y2",
+                },
+                Object {
+                  "connectgaps": false,
+                  "hoverinfo": "none",
+                  "line": Object {
+                    "color": "red",
+                    "shape": "spline",
+                    "smoothing": 1.3,
+                    "width": 1.5,
+                  },
+                  "marker": Object {
+                    "symbol": Array [],
+                  },
+                  "mode": "lines",
+                  "name": "C",
+                  "orientation": "v",
+                  "showlegend": false,
+                  "type": "scatter",
+                  "x": Array [
+                    null,
+                    0,
+                    0,
+                    null,
+                  ],
+                  "xaxis": "x2",
+                  "y": Array [
+                    30,
+                    30,
+                    31,
+                    31,
+                  ],
+                  "yaxis": "y",
                 },
               ]
             }
             dataTransformFn={[Function]}
             height="100%"
-            isDataLoading={false}
-            legendModifiers={
+            layout={
               Object {
-                "y": -0.4,
-              }
-            }
-            marginModifiers={
-              Object {
-                "b": 65,
-                "l": 65,
+                "legend": Object {
+                  "orientation": "h",
+                  "y": -0.4,
+                  "yanchor": "bottom",
+                },
+                "margin": Object {
+                  "b": 65,
+                  "l": 65,
+                },
+                "showlegend": false,
+                "xaxis": Object {
+                  "autorange": true,
+                  "nticks": 10,
+                  "range": Array [
+                    0,
+                    33000,
+                  ],
+                  "rangemode": "nonnegative",
+                  "scaleanchor": "y",
+                  "showline": true,
+                  "tickmode": "auto",
+                  "title": "Residue #",
+                },
+                "yaxis": Object {
+                  "autorange": "reversed",
+                  "nticks": 10,
+                  "range": Array [
+                    0,
+                    33000,
+                  ],
+                  "rangemode": "nonnegative",
+                  "showline": true,
+                  "tickmode": "auto",
+                  "title": "Residue #",
+                },
               }
             }
             onClickCallback={[Function]}
             onHoverCallback={[Function]}
             onSelectedCallback={[Function]}
             onUnHoverCallback={[Function]}
-            range={77}
             secondaryStructures={
               Array [
                 Array [
@@ -2266,264 +2425,21 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               ]
             }
             selectedSecondaryStructuresColor="#feb83f"
-            showConfigurations={true}
+            showLoader={false}
             width="100%"
           >
-            <PlotlyChart
-              candidateResidues={Array []}
-              config={Object {}}
-              data={
-                Array [
-                  Object {
-                    "hoverinfo": "text",
-                    "marker": Object {
-                      "color": Array [
-                        "1.3",
-                        "2.4",
-                        "1.3",
-                        "2.4",
-                      ],
-                      "colorscale": Array [
-                        Array [
-                          0,
-                          "rgb(12,50,102)",
-                        ],
-                        Array [
-                          0.1,
-                          "rgb(17,83,150)",
-                        ],
-                        Array [
-                          0.2,
-                          "rgb(40,114,175)",
-                        ],
-                        Array [
-                          0.3,
-                          "rgb(71,147,193)",
-                        ],
-                        Array [
-                          0.4,
-                          "rgb(111,175,209)",
-                        ],
-                        Array [
-                          0.5,
-                          "rgb(160,202,222)",
-                        ],
-                        Array [
-                          0.6,
-                          "rgb(200,219,237)",
-                        ],
-                        Array [
-                          0.7,
-                          "rgb(224,235,246)",
-                        ],
-                        Array [
-                          0.8,
-                          "rgb(247,251,255)",
-                        ],
-                        Array [
-                          0.9,
-                          "rgb(249,253,255)",
-                        ],
-                        Array [
-                          1,
-                          "rgb(255,255,255)",
-                        ],
-                      ],
-                      "size": 4,
-                    },
-                    "mode": "markers",
-                    "name": "Unknown Structure Contact (from PDB structure)",
-                    "text": Array [
-                      "(41, 52)",
-                      "(50, 56)",
-                      "(52, 41)",
-                      "(56, 50)",
-                    ],
-                    "type": "scattergl",
-                    "x": Array [
-                      41,
-                      50,
-                      52,
-                      56,
-                    ],
-                    "y": Array [
-                      52,
-                      56,
-                      41,
-                      50,
-                    ],
-                    "z": Array [
-                      1.3,
-                      2.4,
-                      1.3,
-                      2.4,
-                    ],
-                  },
-                  Object {
-                    "hoverinfo": "none",
-                    "marker": Object {
-                      "color": Array [],
-                      "line": Object {
-                        "color": "#ff8800",
-                        "width": 3,
-                      },
-                      "size": 6,
-                      "symbol": "circle-open",
-                    },
-                    "mode": "markers",
-                    "name": "Selected Residue Pairs ",
-                    "text": Array [],
-                    "type": "scattergl",
-                    "x": Array [],
-                    "y": Array [],
-                    "z": Array [],
-                  },
-                  Object {
-                    "connectgaps": false,
-                    "hoverinfo": "none",
-                    "line": Object {
-                      "color": "red",
-                      "shape": "spline",
-                      "smoothing": 1.3,
-                      "width": 1.5,
-                    },
-                    "marker": Object {
-                      "symbol": Array [],
-                    },
-                    "mode": "lines",
-                    "name": "C",
-                    "orientation": "h",
-                    "showlegend": false,
-                    "type": "scatter",
-                    "x": Array [
-                      30,
-                      30,
-                      31,
-                      31,
-                    ],
-                    "xaxis": "x",
-                    "y": Array [
-                      null,
-                      0,
-                      0,
-                      null,
-                    ],
-                    "yaxis": "y2",
-                  },
-                  Object {
-                    "connectgaps": false,
-                    "hoverinfo": "none",
-                    "line": Object {
-                      "color": "red",
-                      "shape": "spline",
-                      "smoothing": 1.3,
-                      "width": 1.5,
-                    },
-                    "marker": Object {
-                      "symbol": Array [],
-                    },
-                    "mode": "lines",
-                    "name": "C",
-                    "orientation": "v",
-                    "showlegend": false,
-                    "type": "scatter",
-                    "x": Array [
-                      null,
-                      0,
-                      0,
-                      null,
-                    ],
-                    "xaxis": "x2",
-                    "y": Array [
-                      30,
-                      30,
-                      31,
-                      31,
-                    ],
-                    "yaxis": "y",
-                  },
-                ]
-              }
-              dataTransformFn={[Function]}
-              height="100%"
-              layout={
+            <div
+              className="plotly-chart"
+              style={
                 Object {
-                  "legend": Object {
-                    "orientation": "h",
-                    "y": -0.4,
-                    "yanchor": "bottom",
-                  },
-                  "margin": Object {
-                    "b": 65,
-                    "l": 65,
-                  },
-                  "showlegend": false,
-                  "xaxis": Object {
-                    "autorange": true,
-                    "fixedrange": true,
-                    "nticks": 10,
-                    "range": Array [
-                      0,
-                      33000,
-                    ],
-                    "rangemode": "nonnegative",
-                    "showline": true,
-                    "tickmode": "auto",
-                    "title": "Residue #",
-                  },
-                  "yaxis": Object {
-                    "autorange": "reversed",
-                    "fixedrange": true,
-                    "nticks": 10,
-                    "range": Array [
-                      0,
-                      33000,
-                    ],
-                    "rangemode": "nonnegative",
-                    "showline": true,
-                    "tickmode": "auto",
-                    "title": "Residue #",
-                  },
+                  "height": "100%",
+                  "marginBottom": 5,
+                  "width": "100%",
                 }
               }
-              onClickCallback={[Function]}
-              onHoverCallback={[Function]}
-              onSelectedCallback={[Function]}
-              onUnHoverCallback={[Function]}
-              secondaryStructures={
-                Array [
-                  Array [
-                    Object {
-                      "end": 31,
-                      "label": "C",
-                      "length": 2,
-                      "start": 30,
-                    },
-                  ],
-                ]
-              }
-              selectedSecondaryStructures={
-                Array [
-                  Array [],
-                ]
-              }
-              selectedSecondaryStructuresColor="#feb83f"
-              showLoader={false}
-              width="100%"
-            >
-              <div
-                className="plotly-chart"
-                style={
-                  Object {
-                    "height": "100%",
-                    "marginBottom": 5,
-                    "width": "100%",
-                  }
-                }
-              />
-            </PlotlyChart>
-          </ContactMapChart>
-        </div>
+            />
+          </PlotlyChart>
+        </ContactMapChart>
       </div>
     </Card>
   </ComponentCard>

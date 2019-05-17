@@ -322,19 +322,15 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     style: React.CSSProperties,
     arePredictionsAvailable: boolean,
     measuredProximity: CONTACT_DISTANCE_PROXIMITY,
-    size: number | string = '550px',
   ) => (
     <GridRow columns={2} verticalAlign={'bottom'}>
-      <GridColumn width={7}>
-        {this.renderContactMapCard(arePredictionsAvailable, size, style, this.state.pdbData)}
-      </GridColumn>
+      <GridColumn width={7}>{this.renderContactMapCard(arePredictionsAvailable, style, this.state.pdbData)}</GridColumn>
       <GridColumn width={7}>{this.renderNGLCard(measuredProximity)}</GridColumn>
     </GridRow>
   );
 
   protected renderContactMapCard = (
     arePredictionsAvailable: boolean,
-    size: number | string,
     style: React.CSSProperties,
     pdbData: BioblocksPDB | undefined = undefined,
   ) =>
@@ -345,10 +341,8 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
           pdbData: { known: pdbData },
           secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
         }}
-        height={size}
         isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
         style={style}
-        width={size}
       />
     ) : (
       <ContactMap
@@ -357,10 +351,8 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
           pdbData: { known: pdbData },
           secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
         }}
-        height={size}
         isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
         style={style}
-        width={size}
       />
     );
 

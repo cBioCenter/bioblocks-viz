@@ -5,8 +5,8 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
   componentName="Let's"
   frameHeight={0}
   frameWidth={0}
-  headerHeight={32}
-  height="525px"
+  headerHeight={40}
+  height="570px"
   iconSrc="assets/icons/spring-icon.png"
   isFramedComponent={true}
   isFullPage={false}
@@ -20,9 +20,8 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
     className="bioblocks-component-card"
     style={
       Object {
-        "height": "525px",
+        "height": "570px",
         "maxWidth": "unset",
-        "padding": "0 0 5px 5px",
         "width": "525px",
       }
     }
@@ -32,9 +31,8 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
       onClick={[Function]}
       style={
         Object {
-          "height": "525px",
+          "height": "570px",
           "maxWidth": "unset",
-          "padding": "0 0 5px 5px",
           "width": "525px",
         }
       }
@@ -42,7 +40,7 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
       <ComponentMenuBar
         componentName="Let's"
         configurations={Array []}
-        height={32}
+        height={40}
         iconSrc="assets/icons/spring-icon.png"
         isExpanded={false}
         menuItems={Array []}
@@ -57,7 +55,7 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
             secondary={true}
             style={
               Object {
-                "height": 32,
+                "height": 40,
                 "margin": 0,
               }
             }
@@ -66,7 +64,7 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
               className="ui secondary menu"
               style={
                 Object {
-                  "height": 32,
+                  "height": 40,
                   "margin": 0,
                 }
               }
@@ -161,7 +159,7 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
       <div
         style={
           Object {
-            "transform": "scale(calc(515/0),calc((507 - 32)/0))",
+            "transform": "scale(calc(515/0),calc((552 - 40)/0))",
             "transformOrigin": "top left",
           }
         }
@@ -181,9 +179,8 @@ exports[`ComponentCard Should match existing snapshot when framed. 1`] = `
   className="bioblocks-component-card"
   style={
     Object {
-      "height": "525px",
+      "height": "570px",
       "maxWidth": "unset",
-      "padding": "0 0 5px 5px",
       "width": "525px",
     }
   }
@@ -191,7 +188,7 @@ exports[`ComponentCard Should match existing snapshot when framed. 1`] = `
   <ComponentMenuBar
     componentName="The Boxer"
     configurations={Array []}
-    height={32}
+    height={40}
     iconSrc="assets/icons/spring-icon.png"
     isExpanded={false}
     menuItems={Array []}
@@ -214,9 +211,8 @@ exports[`ComponentCard Should match existing snapshot when given default props. 
   className="bioblocks-component-card"
   style={
     Object {
-      "height": "525px",
+      "height": "570px",
       "maxWidth": "unset",
-      "padding": "0 0 5px 5px",
       "width": "525px",
     }
   }
@@ -224,7 +220,7 @@ exports[`ComponentCard Should match existing snapshot when given default props. 
   <ComponentMenuBar
     componentName="The Boxer"
     configurations={Array []}
-    height={32}
+    height={40}
     iconSrc="assets/icons/spring-icon.png"
     isExpanded={false}
     menuItems={Array []}
@@ -240,9 +236,8 @@ exports[`ComponentCard Should match existing snapshot when not framed. 1`] = `
   className="bioblocks-component-card"
   style={
     Object {
-      "height": "525px",
+      "height": "570px",
       "maxWidth": "unset",
-      "padding": "0 0 5px 5px",
       "width": "525px",
     }
   }
@@ -250,7 +245,7 @@ exports[`ComponentCard Should match existing snapshot when not framed. 1`] = `
   <ComponentMenuBar
     componentName="The Boxer"
     configurations={Array []}
-    height={32}
+    height={40}
     iconSrc="assets/icons/spring-icon.png"
     isExpanded={false}
     menuItems={Array []}

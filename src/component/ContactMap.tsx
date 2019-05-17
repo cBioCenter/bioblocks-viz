@@ -164,6 +164,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       addHoveredResidues,
       candidateResidues,
       data,
+      height,
       isDataLoading,
       onBoxSelection,
       removeHoveredResidues,
@@ -171,27 +172,28 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       selectedSecondaryStructures,
       showConfigurations,
       toggleLockedResiduePair,
+      width,
     } = this.props;
 
     return (
       <ComponentCard componentName={'Contact Map'}>
-        <div style={{ height: '90%', width: '100%' }}>
-          <ContactMapChart
-            candidateResidues={candidateResidues}
-            configurations={configurations}
-            contactData={pointsToPlot}
-            isDataLoading={isDataLoading}
-            onClickCallback={this.onMouseClick(toggleLockedResiduePair)}
-            onHoverCallback={this.onMouseEnter(addHoveredResidues)}
-            onSelectedCallback={this.onMouseSelect(onBoxSelection)}
-            onUnHoverCallback={this.onMouseLeave(removeHoveredResidues)}
-            range={data.couplingScores.residueIndexRange.max + 20}
-            secondaryStructures={data.secondaryStructures ? data.secondaryStructures : []}
-            secondaryStructureColors={secondaryStructureColors}
-            selectedSecondaryStructures={[selectedSecondaryStructures]}
-            showConfigurations={showConfigurations}
-          />
-        </div>
+        <ContactMapChart
+          candidateResidues={candidateResidues}
+          configurations={configurations}
+          contactData={pointsToPlot}
+          height={height}
+          isDataLoading={isDataLoading}
+          onClickCallback={this.onMouseClick(toggleLockedResiduePair)}
+          onHoverCallback={this.onMouseEnter(addHoveredResidues)}
+          onSelectedCallback={this.onMouseSelect(onBoxSelection)}
+          onUnHoverCallback={this.onMouseLeave(removeHoveredResidues)}
+          range={data.couplingScores.residueIndexRange.max + 20}
+          secondaryStructures={data.secondaryStructures ? data.secondaryStructures : []}
+          secondaryStructureColors={secondaryStructureColors}
+          selectedSecondaryStructures={[selectedSecondaryStructures]}
+          showConfigurations={showConfigurations}
+          width={width}
+        />
       </ComponentCard>
     );
   }

@@ -176,17 +176,16 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
           showlegend,
           xaxis: {
             autorange: true,
-            fixedrange: true,
             nticks: 10,
             range: [0, 33000],
             rangemode: 'nonnegative',
+            scaleanchor: 'y',
             showline: true,
             tickmode: 'auto',
             title: 'Residue #',
           },
           yaxis: {
             autorange: 'reversed',
-            fixedrange: true,
             nticks: 10,
             range: [0, 33000],
             rangemode: 'nonnegative',

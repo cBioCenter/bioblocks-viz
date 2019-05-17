@@ -28,8 +28,8 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
   public static defaultProps = {
     frameHeight: 0,
     frameWidth: 0,
-    headerHeight: 32,
-    height: '525px',
+    headerHeight: 40,
+    height: '570px',
     iconSrc: 'assets/icons/spring-icon.png',
     isFramedComponent: false,
     isFullPage: false,
@@ -74,14 +74,13 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     const { isFullPage, framedStyle } = this.state;
 
     const expandedStyle: React.CSSProperties = {
-      height: '80vh',
+      height: 'calc(80vh + 45px)',
       padding: '5px',
       width: '80vh',
     };
 
     const cardStyle: React.CSSProperties = {
       maxWidth: 'unset',
-      padding: '0 0 5px 5px',
       ...(isFullPage ? { ...expandedStyle } : { height, width }),
     };
 

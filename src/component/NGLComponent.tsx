@@ -75,7 +75,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     backgroundColor: '#ffffff',
     candidateResidues: [],
     experimentalProteins: [],
-    height: '90%',
+    height: '92%',
     hoveredResidues: [],
     hoveredSecondaryStructures: [],
     isDataLoading: false,
