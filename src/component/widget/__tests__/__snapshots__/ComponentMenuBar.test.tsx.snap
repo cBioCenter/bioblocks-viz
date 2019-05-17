@@ -13,25 +13,32 @@ exports[`ComponentMenuBar Should match existing snapshot when given default prop
         "margin": 0,
       }
     }
+    widths={2}
   >
-    <MenuItem
-      fitted="horizontally"
-      position="left"
-      style={
-        Object {
-          "margin": 0,
-          "padding": 0,
-        }
-      }
-    >
-      The Boxer
-    </MenuItem>
     <Menu
-      floated="right"
       secondary={true}
+      widths={1}
     >
       <MenuItem
         fitted="horizontally"
+        position="left"
+        style={
+          Object {
+            "margin": 0,
+            "padding": 0,
+          }
+        }
+      >
+        The Boxer
+      </MenuItem>
+    </Menu>
+    <Menu
+      secondary={true}
+      widths={4}
+    >
+      <MenuItem
+        fitted="horizontally"
+        position="right"
         style={
           Object {
             "flexDirection": "column",
@@ -71,26 +78,33 @@ exports[`ComponentMenuBar Should render popup menu items. 1`] = `
         "margin": 0,
       }
     }
+    widths={2}
   >
-    <MenuItem
-      fitted="horizontally"
-      position="left"
-      style={
-        Object {
-          "margin": 0,
-          "padding": 0,
-        }
-      }
-    >
-      The Boxer
-    </MenuItem>
     <Menu
-      floated="right"
       secondary={true}
+      widths={1}
+    >
+      <MenuItem
+        fitted="horizontally"
+        position="left"
+        style={
+          Object {
+            "margin": 0,
+            "padding": 0,
+          }
+        }
+      >
+        The Boxer
+      </MenuItem>
+    </Menu>
+    <Menu
+      secondary={true}
+      widths={4}
     >
       <MenuItem
         fitted="horizontally"
         key="The Boxer-menu-item-0"
+        position="right"
         style={
           Object {
             "flexDirection": "column",
@@ -108,7 +122,7 @@ exports[`ComponentMenuBar Should render popup menu items. 1`] = `
           openOnTriggerClick={true}
           openOnTriggerFocus={false}
           openOnTriggerMouseEnter={false}
-          position="top left"
+          position="bottom center"
         />
         <span
           style={
@@ -123,6 +137,7 @@ exports[`ComponentMenuBar Should render popup menu items. 1`] = `
       </MenuItem>
       <MenuItem
         fitted="horizontally"
+        position="right"
         style={
           Object {
             "flexDirection": "column",

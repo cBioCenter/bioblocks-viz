@@ -45,7 +45,7 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
               "type": "RADIO",
             },
           ],
-          "name": "SIDEBAR",
+          "name": "POPUP",
           "props": Object {
             "trigger": <Icon
               as="i"

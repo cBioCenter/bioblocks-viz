@@ -59,9 +59,10 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
                 "margin": 0,
               }
             }
+            widths={2}
           >
             <div
-              className="ui secondary menu"
+              className="ui secondary two item menu"
               style={
                 Object {
                   "height": 40,
@@ -69,49 +70,59 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
                 }
               }
             >
-              <MenuItem
-                fitted="horizontally"
-                position="left"
-                style={
-                  Object {
-                    "margin": 0,
-                    "padding": 0,
-                  }
-                }
-              >
-                <div
-                  className="left horizontally fitted item"
-                  onClick={[Function]}
-                  style={
-                    Object {
-                      "margin": 0,
-                      "padding": 0,
-                    }
-                  }
-                >
-                  <img
-                    alt="component icon"
-                    src="assets/icons/spring-icon.png"
-                    style={
-                      Object {
-                        "height": "32px",
-                        "padding": "2px",
-                        "width": "32px",
-                      }
-                    }
-                  />
-                  Let's
-                </div>
-              </MenuItem>
               <Menu
-                floated="right"
                 secondary={true}
+                widths={1}
               >
                 <div
-                  className="ui secondary right floated menu"
+                  className="ui secondary one item menu"
                 >
                   <MenuItem
                     fitted="horizontally"
+                    position="left"
+                    style={
+                      Object {
+                        "margin": 0,
+                        "padding": 0,
+                      }
+                    }
+                  >
+                    <div
+                      className="left horizontally fitted item"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "margin": 0,
+                          "padding": 0,
+                        }
+                      }
+                    >
+                      <img
+                        alt="component icon"
+                        src="assets/icons/spring-icon.png"
+                        style={
+                          Object {
+                            "height": "32px",
+                            "padding": "2px",
+                            "width": "32px",
+                          }
+                        }
+                      />
+                      Let's
+                    </div>
+                  </MenuItem>
+                </div>
+              </Menu>
+              <Menu
+                secondary={true}
+                widths={4}
+              >
+                <div
+                  className="ui secondary four item menu"
+                >
+                  <MenuItem
+                    fitted="horizontally"
+                    position="right"
                     style={
                       Object {
                         "flexDirection": "column",
@@ -119,7 +130,7 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
                     }
                   >
                     <div
-                      className="horizontally fitted item"
+                      className="right horizontally fitted item"
                       onClick={[Function]}
                       style={
                         Object {

@@ -27,17 +27,12 @@ export interface IComponentMenuBarState {
 }
 
 interface IPopupType {
+  configs?: BioblocksWidgetConfig[];
   name: 'POPUP';
   props?: PopupProps;
 }
 
-interface ISidebarType {
-  configs: BioblocksWidgetConfig[];
-  name: 'SIDEBAR';
-  props?: PopupProps;
-}
-
-export interface IComponentMenuBarItem<T = IPopupType | ISidebarType> {
+export interface IComponentMenuBarItem<T = IPopupType> {
   component: T;
   description: string;
 }
@@ -50,6 +45,7 @@ export const DEFAULT_POPUP_PROPS: Partial<PopupProps> = {
   openOnTriggerClick: true,
   openOnTriggerFocus: false,
   openOnTriggerMouseEnter: false,
+  position: 'bottom center',
 };
 
 export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IComponentMenuBarState> {
@@ -73,17 +69,18 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
 
     return (
       <div onMouseEnter={this.onMenuEnter} onMouseLeave={this.onMenuLeave}>
-        <Menu secondary={true} style={{ margin: 0, height }}>
-          <Menu.Item position={'left'} fitted={'horizontally'} style={{ margin: 0, padding: 0 }}>
-            {iconSrc && (
-              <img alt={'component icon'} src={iconSrc} style={{ height: '32px', padding: '2px', width: '32px' }} />
-            )}
-            {componentName}
-          </Menu.Item>
-
-          <Menu floated={'right'} secondary={true}>
+        <Menu secondary={true} style={{ margin: 0, height }} widths={2}>
+          <Menu secondary={true} widths={1}>
+            <Menu.Item fitted={'horizontally'} position={'left'} style={{ margin: 0, padding: 0 }}>
+              {iconSrc && (
+                <img alt={'component icon'} src={iconSrc} style={{ height: '32px', padding: '2px', width: '32px' }} />
+              )}
+              {componentName}
+            </Menu.Item>
+          </Menu>
+          <Menu secondary={true} widths={4}>
             {this.renderMenuItems(menuItems, componentName)}
-            <Menu.Item fitted={'horizontally'} style={{ flexDirection: 'column' }}>
+            <Menu.Item fitted={'horizontally'} position={'right'} style={{ flexDirection: 'column' }}>
               <Icon name={isExpanded ? 'compress' : 'expand arrows alternate'} onClick={onExpandToggleCb} />
               {this.renderMenuIconText(isExpanded ? 'Close' : 'Expand')}
             </Menu.Item>
@@ -123,7 +120,7 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
 
   protected renderConfigurationButton(config: ButtonWidgetConfig, id: string) {
     return (
-      <Button compact={true} id={id} onClick={config.onClick} style={config.style}>
+      <Button compact={true} key={id} onClick={config.onClick} style={config.style}>
         {config.icon && <Icon name={config.icon} />}
         {config.name}
       </Button>
@@ -132,7 +129,7 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
 
   protected renderConfigurationLabel(config: LabelWidgetConfig, id: string) {
     return (
-      <Label basic={true} id={id} style={config.style} color={'orange'}>
+      <Label basic={true} key={id} style={config.style} color={'orange'}>
         {config.name}
       </Label>
     );
@@ -142,6 +139,7 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
     return (
       <BioblocksRadioGroup
         id={id}
+        key={id}
         options={config.options}
         onChange={config.onChange}
         style={config.style}
@@ -172,16 +170,18 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
   }
 
   protected renderMenuItems(items: IComponentMenuBarItem[], componentName: string) {
-    return items.map((item, index) => {
+    return items.map((item, menuBarIndex) => {
       const combinedProps = { ...DEFAULT_POPUP_PROPS, ...item.component.props };
       let menuItemChild = null;
       if (item.component.name === 'POPUP') {
-        menuItemChild = <Popup {...combinedProps} />;
-      } else if (item.component.name === 'SIDEBAR') {
-        menuItemChild = (
+        menuItemChild = item.component.configs ? (
           <Popup {...combinedProps}>
-            {item.component.configs.map(config => this.renderConfig(config, `${index}`))}
+            {item.component.configs.map((config, configIndex) =>
+              this.renderConfig(config, `${menuBarIndex}-${configIndex}`),
+            )}
           </Popup>
+        ) : (
+          <Popup {...combinedProps} />
         );
       }
 
@@ -189,7 +189,8 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         menuItemChild && (
           <Menu.Item
             fitted={'horizontally'}
-            key={`${componentName}-menu-item-${index}`}
+            key={`${componentName}-menu-item-${menuBarIndex}`}
+            position={'right'}
             style={{ flexDirection: 'column' }}
           >
             {menuItemChild}

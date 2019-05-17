@@ -426,7 +426,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                               "type": "RADIO",
                             },
                           ],
-                          "name": "SIDEBAR",
+                          "name": "POPUP",
                           "props": Object {
                             "trigger": <Icon
                               as="i"
@@ -658,7 +658,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                     "type": "RADIO",
                                   },
                                 ],
-                                "name": "SIDEBAR",
+                                "name": "POPUP",
                                 "props": Object {
                                   "trigger": <Icon
                                     as="i"
@@ -685,9 +685,10 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                 "margin": 0,
                               }
                             }
+                            widths={2}
                           >
                             <div
-                              className="ui secondary menu"
+                              className="ui secondary two item menu"
                               style={
                                 Object {
                                   "height": 40,
@@ -695,50 +696,60 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                 }
                               }
                             >
-                              <MenuItem
-                                fitted="horizontally"
-                                position="left"
-                                style={
-                                  Object {
-                                    "margin": 0,
-                                    "padding": 0,
-                                  }
-                                }
+                              <Menu
+                                secondary={true}
+                                widths={1}
                               >
                                 <div
-                                  className="left horizontally fitted item"
-                                  onClick={[Function]}
-                                  style={
-                                    Object {
-                                      "margin": 0,
-                                      "padding": 0,
-                                    }
-                                  }
+                                  className="ui secondary one item menu"
                                 >
-                                  <img
-                                    alt="component icon"
-                                    src="assets/icons/spring-icon.png"
+                                  <MenuItem
+                                    fitted="horizontally"
+                                    position="left"
                                     style={
                                       Object {
-                                        "height": "32px",
-                                        "padding": "2px",
-                                        "width": "32px",
+                                        "margin": 0,
+                                        "padding": 0,
                                       }
                                     }
-                                  />
-                                  NGL Viewer
+                                  >
+                                    <div
+                                      className="left horizontally fitted item"
+                                      onClick={[Function]}
+                                      style={
+                                        Object {
+                                          "margin": 0,
+                                          "padding": 0,
+                                        }
+                                      }
+                                    >
+                                      <img
+                                        alt="component icon"
+                                        src="assets/icons/spring-icon.png"
+                                        style={
+                                          Object {
+                                            "height": "32px",
+                                            "padding": "2px",
+                                            "width": "32px",
+                                          }
+                                        }
+                                      />
+                                      NGL Viewer
+                                    </div>
+                                  </MenuItem>
                                 </div>
-                              </MenuItem>
+                              </Menu>
                               <Menu
-                                floated="right"
                                 secondary={true}
+                                widths={4}
                               >
                                 <div
-                                  className="ui secondary right floated menu"
+                                  className="ui secondary four item menu"
                                 >
                                   <MenuItem
                                     fitted="horizontally"
                                     key="NGL Viewer-menu-item-0"
+                                    position="right"
                                     style={
                                       Object {
                                         "flexDirection": "column",
@@ -746,7 +757,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                     }
                                   >
                                     <div
-                                      className="horizontally fitted item"
+                                      className="right horizontally fitted item"
                                       onClick={[Function]}
                                       style={
                                         Object {
@@ -765,7 +776,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                         openOnTriggerClick={true}
                                         openOnTriggerFocus={false}
                                         openOnTriggerMouseEnter={false}
-                                        position="top left"
+                                        position="bottom center"
                                         style={
                                           Object {
                                             "opacity": 0.85,
@@ -805,6 +816,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                   <MenuItem
                                     fitted="horizontally"
                                     key="NGL Viewer-menu-item-1"
+                                    position="right"
                                     style={
                                       Object {
                                         "flexDirection": "column",
@@ -812,7 +824,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                     }
                                   >
                                     <div
-                                      className="horizontally fitted item"
+                                      className="right horizontally fitted item"
                                       onClick={[Function]}
                                       style={
                                         Object {
@@ -831,7 +843,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                         openOnTriggerClick={true}
                                         openOnTriggerFocus={false}
                                         openOnTriggerMouseEnter={false}
-                                        position="top left"
+                                        position="bottom center"
                                         trigger={
                                           <Icon
                                             as="i"
@@ -906,6 +918,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                   </MenuItem>
                                   <MenuItem
                                     fitted="horizontally"
+                                    position="right"
                                     style={
                                       Object {
                                         "flexDirection": "column",
@@ -913,7 +926,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                     }
                                   >
                                     <div
-                                      className="horizontally fitted item"
+                                      className="right horizontally fitted item"
                                       onClick={[Function]}
                                       style={
                                         Object {
