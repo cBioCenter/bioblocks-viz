@@ -34,9 +34,10 @@ export interface IPlotlyChartProps {
 export const defaultPlotlyConfig: Partial<Plotly.Config> = {
   displayModeBar: false,
   doubleClick: 'reset',
-  scrollZoom: true,
+  scrollZoom: false,
   showAxisDragHandles: false,
   staticPlot: false,
+
   // modeBarButtons: [['zoomOut2d', 'zoomIn2d'], ['resetScale2d', 'autoScale2d'], ['select2d', 'pan2d']],
 };
 
@@ -269,6 +270,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
       [`${axisId}axis${axisNum}`]: {
         // TODO Have this number - 0.05 - be configurable. Requires some design work to look good for various numbers of total axes.
         domain: [1 - (axisNum - 1) * 0.05, 1 - (axisNum - 2) * 0.05],
+        fixedrange: true,
         visible: false,
       },
     };

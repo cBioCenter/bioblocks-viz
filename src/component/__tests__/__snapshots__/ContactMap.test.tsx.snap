@@ -2378,19 +2378,20 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 "showlegend": false,
                 "xaxis": Object {
                   "autorange": true,
+                  "fixedrange": true,
                   "nticks": 10,
                   "range": Array [
                     0,
                     33000,
                   ],
                   "rangemode": "nonnegative",
-                  "scaleanchor": "y",
                   "showline": true,
                   "tickmode": "auto",
                   "title": "Residue #",
                 },
                 "yaxis": Object {
                   "autorange": "reversed",
+                  "fixedrange": true,
                   "nticks": 10,
                   "range": Array [
                     0,
