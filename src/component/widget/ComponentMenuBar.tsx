@@ -47,7 +47,7 @@ export const DEFAULT_POPUP_PROPS: Partial<PopupProps> = {
   openOnTriggerFocus: false,
   openOnTriggerMouseEnter: false,
   position: 'bottom center',
-  // style: { maxHeight: '350px', opacity: 0.85, overflow: 'auto', zIndex: 3 },
+  style: { marginTop: 0, maxHeight: '350px', opacity: 0.85, overflow: 'auto', zIndex: 3 },
 };
 
 export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IComponentMenuBarState> {
