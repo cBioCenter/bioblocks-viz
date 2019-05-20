@@ -340,10 +340,10 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
         type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
       },
       {
-        defaultOption: 'disable',
+        defaultOption: 'Disable',
         name: 'Zoom on Click',
         onChange: this.toggleMovePick,
-        options: ['enable', 'disable'],
+        options: ['Enable', 'Disable'],
         type: CONFIGURATION_COMPONENT_TYPE.RADIO,
       },
       {

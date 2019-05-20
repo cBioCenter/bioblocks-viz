@@ -2184,6 +2184,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                               name="setting"
                             />
                           }
+                          wide={true}
                         >
                           <Portal
                             closeOnDocumentClick={true}

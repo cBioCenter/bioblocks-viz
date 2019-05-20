@@ -21,12 +21,12 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
               "type": "BUTTON",
             },
             Object {
-              "defaultOption": "disable",
+              "defaultOption": "Disable",
               "name": "Zoom on Click",
               "onChange": [Function],
               "options": Array [
-                "enable",
-                "disable",
+                "Enable",
+                "Disable",
               ],
               "type": "RADIO",
             },
