@@ -15,16 +15,6 @@ declare module 'ngl' {
   export type MouseActionPreset = Array<[string, MouseActionCallback]>;
   export type MouseActionType = '' | 'scroll' | 'drag' | 'click' | 'doubleClick' | 'hover' | 'clickPick' | 'hoverPick';
 
-  export const enum MouseActionTypes {
-    'SCROLL' = 'scroll',
-    'DRAG' = 'drag',
-    'CLICK' = 'click',
-    'DOUBLE_CLICK' = 'doubleClick',
-    'HOVER' = 'hover',
-    'CLICK_PICK' = 'clickPick',
-    'HOVER_PICK' = 'hoverPick',
-  }
-
   /**
    * Mouse actions provided as static methods
    */

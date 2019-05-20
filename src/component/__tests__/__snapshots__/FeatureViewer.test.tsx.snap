@@ -1057,7 +1057,7 @@ exports[`ProteinFeatureViewer Should match the snapshot for sample data. 1`] = `
 </div>
 `;
 
-exports[`ProteinFeatureViewer Should match the snapshot when a background bar is provided 1`] = `
+exports[`ProteinFeatureViewer Should match the snapshot when a background bar is provided. 1`] = `
 <div
   style={
     Object {

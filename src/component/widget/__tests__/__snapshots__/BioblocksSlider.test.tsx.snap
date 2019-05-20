@@ -1,11 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BioblocksSlider Should match existing snapshot when given simple data. 1`] = `
-<Grid
-  columns="equal"
-  textAlign="left"
->
-  <GridColumn>
+<div>
+  <GridColumn
+    style={
+      Object {
+        "float": "left",
+        "height": "100%",
+        "width": "75%",
+      }
+    }
+  >
     <p>
       test: 1
     </p>
@@ -41,8 +46,14 @@ exports[`BioblocksSlider Should match existing snapshot when given simple data. 
     />
   </GridColumn>
   <GridColumn
+    style={
+      Object {
+        "float": "right",
+        "padding": "5% 0",
+        "width": "20%",
+      }
+    }
     verticalAlign="middle"
-    width={2}
   >
     <Button
       as="button"
@@ -51,5 +62,5 @@ exports[`BioblocksSlider Should match existing snapshot when given simple data. 
       size="small"
     />
   </GridColumn>
-</Grid>
+</div>
 `;

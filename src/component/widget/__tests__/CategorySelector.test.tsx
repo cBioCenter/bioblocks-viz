@@ -18,7 +18,7 @@ describe('CategorySelector', () => {
     expect(selectorWrapper).toMatchSnapshot();
   });
 
-  it('Should invoke callback if provided when category is selected', () => {
+  it('Should invoke callback if provided when category is selected.', () => {
     const onCategoryChangeSpy = jest.fn();
     const selectorWrapper = mount(<CategorySelector categories={categories} onCategoryChange={onCategoryChangeSpy} />);
 

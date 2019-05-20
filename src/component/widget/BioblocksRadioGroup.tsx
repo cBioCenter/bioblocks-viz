@@ -2,6 +2,7 @@ import * as React from 'react';
 import { CheckboxProps, Form, Grid } from 'semantic-ui-react';
 
 export interface IBioblocksRadioGroupProps {
+  defaultOption?: string;
   disabled: boolean;
   id: string;
   options: string[];
@@ -23,8 +24,9 @@ export class BioblocksRadioGroup extends React.Component<IBioblocksRadioGroupPro
 
   constructor(props: IBioblocksRadioGroupProps) {
     super(props);
+    const { defaultOption, options } = props;
     this.state = {
-      selectedIndex: 0,
+      selectedIndex: defaultOption && options.includes(defaultOption) ? options.indexOf(defaultOption) : 0,
     };
   }
 
@@ -44,26 +46,24 @@ export class BioblocksRadioGroup extends React.Component<IBioblocksRadioGroupPro
 
     return (
       <div style={style}>
-        <div style={{ fontStyle: 'italic', fontWeight: 'bold', textDecoration: 'underline' }}>{title}</div>
-        {this.renderOptions(id, options, disabled, style)}
+        <Grid centered={true} columns={2} padded={true}>
+          <Grid.Row>
+            <div style={{ fontStyle: 'italic', fontWeight: 'bold', textDecoration: 'underline' }}>{title}</div>
+          </Grid.Row>
+          {options.map((option, index) => (
+            <Grid.Column key={`${id}-${option}`} style={{ paddingBottom: 0, paddingTop: '7px' }}>
+              <Form.Radio
+                checked={this.state.selectedIndex === index}
+                disabled={disabled}
+                label={{ children: option, style }}
+                name={option}
+                onChange={this.handleChange(index)}
+                value={index}
+              />
+            </Grid.Column>
+          ))}
+        </Grid>
       </div>
     );
   }
-
-  protected renderOptions = (id: string, options: string[], disabled: boolean, style: React.CSSProperties) => (
-    <Grid centered={true} columns={2} padded={true}>
-      {options.map((option, index) => (
-        <Grid.Column key={`${id}-${option}`}>
-          <Form.Radio
-            checked={this.state.selectedIndex === index}
-            disabled={disabled}
-            label={{ children: option, style }}
-            name={option}
-            onChange={this.handleChange(index)}
-            value={index}
-          />
-        </Grid.Column>
-      ))}
-    </Grid>
-  );
 }

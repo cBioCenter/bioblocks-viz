@@ -203,9 +203,6 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                             </GridRow>
                           </Grid>,
                           "disabled": true,
-                          "style": Object {
-                            "opacity": 0.85,
-                          },
                           "wide": "very",
                         },
                       },
@@ -378,9 +375,6 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                               </GridRow>
                             </Grid>,
                             "disabled": true,
-                            "style": Object {
-                              "opacity": 0.85,
-                            },
                             "wide": "very",
                           },
                         },
@@ -394,6 +388,16 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                               "name": "Clear Selections",
                               "onClick": [Function],
                               "type": "BUTTON",
+                            },
+                            Object {
+                              "defaultOption": "Disable",
+                              "name": "Zoom on Click",
+                              "onChange": [Function],
+                              "options": Array [
+                                "Enable",
+                                "Disable",
+                              ],
+                              "type": "RADIO",
                             },
                             Object {
                               "current": "CLOSEST",
@@ -607,9 +611,6 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                     </GridRow>
                                   </Grid>,
                                   "disabled": true,
-                                  "style": Object {
-                                    "opacity": 0.85,
-                                  },
                                   "wide": "very",
                                 },
                               },
@@ -623,6 +624,16 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                     "name": "Clear Selections",
                                     "onClick": [Function],
                                     "type": "BUTTON",
+                                  },
+                                  Object {
+                                    "defaultOption": "Disable",
+                                    "name": "Zoom on Click",
+                                    "onChange": [Function],
+                                    "options": Array [
+                                      "Enable",
+                                      "Disable",
+                                    ],
+                                    "type": "RADIO",
                                   },
                                   Object {
                                     "current": "CLOSEST",
@@ -768,11 +779,6 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                         openOnTriggerFocus={false}
                                         openOnTriggerMouseEnter={false}
                                         position="bottom center"
-                                        style={
-                                          Object {
-                                            "opacity": 0.85,
-                                          }
-                                        }
                                         trigger={
                                           <Icon
                                             as="i"
@@ -841,6 +847,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                             name="setting"
                                           />
                                         }
+                                        wide={true}
                                       >
                                         <Portal
                                           closeOnDocumentClick={true}
@@ -1228,9 +1235,6 @@ exports[`NGLContainer Should match the default snapshot when not hooked up to a 
                   </GridRow>
                 </Grid>,
                 "disabled": true,
-                "style": Object {
-                  "opacity": 0.85,
-                },
                 "wide": "very",
               },
             },

@@ -91,22 +91,11 @@ export class BioblocksSlider extends React.Component<BioblocksSliderProps, IBiob
   }
 
   public render() {
-    const {
-      className,
-      value,
-      hideLabelValue,
-      max,
-      min,
-      label,
-      onAfterChange,
-      onChange,
-      style,
-      ...remainingProps
-    } = this.props;
+    const { value, hideLabelValue, max, min, label, onAfterChange, onChange, style, ...remainingProps } = this.props;
 
     return (
-      <Grid columns={'equal'} style={style} textAlign={'left'}>
-        <Grid.Column className={className}>
+      <div style={style}>
+        <Grid.Column style={{ float: 'left', height: '100%', width: '75%' }}>
           {!hideLabelValue && <p>{`${label}: ${this.state.value}`}</p>}
           <Slider
             max={max}
@@ -117,10 +106,10 @@ export class BioblocksSlider extends React.Component<BioblocksSliderProps, IBiob
             {...remainingProps}
           />
         </Grid.Column>
-        <Grid.Column verticalAlign={'middle'} width={2}>
+        <Grid.Column style={{ float: 'right', padding: '5% 0', width: '20%' }} verticalAlign={'middle'}>
           <Button icon={'undo'} onClick={this.onReset} size={'small'} />
         </Grid.Column>
-      </Grid>
+      </div>
     );
   }
 

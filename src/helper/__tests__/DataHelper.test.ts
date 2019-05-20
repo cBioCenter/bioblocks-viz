@@ -181,7 +181,7 @@ describe('DataHelper', () => {
   });
 
   describe('T-SNE', () => {
-    it('Should return empty data for an incorrect location', async () => {
+    it('Should return empty data for an incorrect location.', async () => {
       const expected = [
         [0.2586516988310038068, -5.607454590334670641],
         [-3.112878150223143958, -3.342860779282196049],

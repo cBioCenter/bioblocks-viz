@@ -21,7 +21,7 @@ describe('DataReducer', () => {
     expect(state).toEqual(expectedState);
   });
 
-  it('Should allow creating a DataReducer', () => {
+  it('Should allow creating a DataReducer.', () => {
     expect(ReducerRegistry.getReducers()).not.toHaveProperty('ludo/horror');
     createDataReducer('horror', '', 'ludo');
     expect(ReducerRegistry.getReducers()).toHaveProperty('ludo/horror');

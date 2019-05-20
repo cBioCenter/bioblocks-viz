@@ -4,24 +4,32 @@ exports[`BioblocksRadioGroup Should match existing snapshot when given simple da
 <div
   style={Object {}}
 >
-  <div
-    style={
-      Object {
-        "fontStyle": "italic",
-        "fontWeight": "bold",
-        "textDecoration": "underline",
-      }
-    }
-  >
-    How to calculate distance between two residues:
-  </div>
   <Grid
     centered={true}
     columns={2}
     padded={true}
   >
+    <GridRow>
+      <div
+        style={
+          Object {
+            "fontStyle": "italic",
+            "fontWeight": "bold",
+            "textDecoration": "underline",
+          }
+        }
+      >
+        How to calculate distance between two residues:
+      </div>
+    </GridRow>
     <GridColumn
       key="Sample-first"
+      style={
+        Object {
+          "paddingBottom": 0,
+          "paddingTop": "7px",
+        }
+      }
     >
       <FormRadio
         as={[Function]}

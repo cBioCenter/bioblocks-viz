@@ -122,7 +122,6 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
                   props: {
                     children: this.renderPDBSelector(),
                     disabled: experimentalProteins.length === 0 && predictedProteins.length === 0,
-                    style: { opacity: 0.85 },
                     wide: 'very',
                   },
                 },
