@@ -38,7 +38,7 @@ describe('ProteinFeatureViewer', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('Should match the snapshot when a background bar is provided', () => {
+  it('Should match the snapshot when a background bar is provided.', () => {
     const wrapper = shallow(<FeatureViewer backgroundBar={new TintedBioblocks1DSection('', 1999, 2018, 'purple')} />);
     expect(wrapper).toMatchSnapshot();
   });

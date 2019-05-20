@@ -396,6 +396,16 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                               "type": "BUTTON",
                             },
                             Object {
+                              "defaultOption": "disable",
+                              "name": "Zoom on Click",
+                              "onChange": [Function],
+                              "options": Array [
+                                "enable",
+                                "disable",
+                              ],
+                              "type": "RADIO",
+                            },
+                            Object {
                               "current": "CLOSEST",
                               "name": "Proximity Metric",
                               "onChange": [Function],
@@ -623,6 +633,16 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                     "name": "Clear Selections",
                                     "onClick": [Function],
                                     "type": "BUTTON",
+                                  },
+                                  Object {
+                                    "defaultOption": "disable",
+                                    "name": "Zoom on Click",
+                                    "onChange": [Function],
+                                    "options": Array [
+                                      "enable",
+                                      "disable",
+                                    ],
+                                    "type": "RADIO",
                                   },
                                   Object {
                                     "current": "CLOSEST",

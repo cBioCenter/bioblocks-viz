@@ -42,6 +42,7 @@ export type LabelWidgetConfig = IBaseBioblocksWidgetConfig &
 export type RadioWidgetConfig = IBaseBioblocksWidgetConfig &
   ({
     current: string;
+    defaultOption?: string;
     options: string[];
     // tslint:disable-next-line:no-reserved-keywords
     type: CONFIGURATION_COMPONENT_TYPE.RADIO;

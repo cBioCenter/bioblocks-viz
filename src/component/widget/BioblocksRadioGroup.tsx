@@ -2,6 +2,7 @@ import * as React from 'react';
 import { CheckboxProps, Form, Grid } from 'semantic-ui-react';
 
 export interface IBioblocksRadioGroupProps {
+  defaultOption?: string;
   disabled: boolean;
   id: string;
   options: string[];
@@ -23,8 +24,9 @@ export class BioblocksRadioGroup extends React.Component<IBioblocksRadioGroupPro
 
   constructor(props: IBioblocksRadioGroupProps) {
     super(props);
+    const { defaultOption, options } = props;
     this.state = {
-      selectedIndex: 0,
+      selectedIndex: defaultOption && options.includes(defaultOption) ? options.indexOf(defaultOption) : 0,
     };
   }
 

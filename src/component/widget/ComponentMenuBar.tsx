@@ -139,6 +139,7 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
   protected renderConfigurationRadioButton(config: RadioWidgetConfig, id: string) {
     return (
       <BioblocksRadioGroup
+        defaultOption={config.defaultOption}
         id={id}
         key={id}
         options={config.options}

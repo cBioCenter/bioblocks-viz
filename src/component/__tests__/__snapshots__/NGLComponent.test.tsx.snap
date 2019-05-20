@@ -21,6 +21,16 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
               "type": "BUTTON",
             },
             Object {
+              "defaultOption": "disable",
+              "name": "Zoom on Click",
+              "onChange": [Function],
+              "options": Array [
+                "enable",
+                "disable",
+              ],
+              "type": "RADIO",
+            },
+            Object {
               "current": "CLOSEST",
               "name": "Proximity Metric",
               "onChange": [Function],

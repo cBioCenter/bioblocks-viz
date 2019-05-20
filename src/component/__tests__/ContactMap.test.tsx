@@ -232,7 +232,7 @@ describe('ContactMap', () => {
       expect(addSecondaryStructureSpy).toHaveBeenLastCalledWith(testSecStruct);
     });
 
-    it('Should invoke callback for removing a secondary structure when a mouse clicks one that is already locked', async () => {
+    it('Should invoke callback for removing a secondary structure when a mouse clicks one that is already locked.', async () => {
       const removeSecondaryStructureSpy = jest.fn();
       const testSecStruct = new Bioblocks1DSection<SECONDARY_STRUCTURE_KEYS>('C', 0, 10);
       const wrapper = await getAsyncMountedComponent(

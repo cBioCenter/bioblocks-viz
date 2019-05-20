@@ -207,7 +207,7 @@ describe('NGLComponent', () => {
       const instance = wrapper.instance() as NGLComponent;
       const { stage } = instance.state;
       if (stage) {
-        stage.mouseControls.run(NGL.MouseActionTypes.HOVER_PICK, instance.state.stage, opts);
+        stage.mouseControls.run('hoverPick', instance.state.stage, opts);
       } else {
         expect(stage).not.toBeUndefined();
       }

@@ -1,0 +1,469 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BioblocksRadioGroup Should a 1`] = `
+<div
+  style={Object {}}
+>
+  <div
+    style={
+      Object {
+        "fontStyle": "italic",
+        "fontWeight": "bold",
+        "textDecoration": "underline",
+      }
+    }
+  >
+    How to calculate distance between two residues:
+  </div>
+  <Grid
+    centered={true}
+    columns={2}
+    padded={true}
+  >
+    <GridColumn
+      key="Sample-first"
+    >
+      <FormRadio
+        as={[Function]}
+        checked={true}
+        control={[Function]}
+        disabled={false}
+        label={
+          Object {
+            "children": "first",
+            "style": Object {},
+          }
+        }
+        name="first"
+        onChange={[Function]}
+        value={0}
+      />
+    </GridColumn>
+  </Grid>
+</div>
+`;
+
+exports[`BioblocksRadioGroup Should all 1`] = `
+<div
+  style={Object {}}
+>
+  <div
+    style={
+      Object {
+        "fontStyle": "italic",
+        "fontWeight": "bold",
+        "textDecoration": "underline",
+      }
+    }
+  >
+    How to calculate distance between two residues:
+  </div>
+  <Grid
+    centered={true}
+    columns={2}
+    padded={true}
+  >
+    <GridColumn
+      key="Sample-first"
+    >
+      <FormRadio
+        as={[Function]}
+        checked={true}
+        control={[Function]}
+        disabled={false}
+        label={
+          Object {
+            "children": "first",
+            "style": Object {},
+          }
+        }
+        name="first"
+        onChange={[Function]}
+        value={0}
+      />
+    </GridColumn>
+  </Grid>
+</div>
+`;
+
+exports[`BioblocksRadioGroup Should allow a de 1`] = `
+<div
+  style={Object {}}
+>
+  <div
+    style={
+      Object {
+        "fontStyle": "italic",
+        "fontWeight": "bold",
+        "textDecoration": "underline",
+      }
+    }
+  >
+    How to calculate distance between two residues:
+  </div>
+  <Grid
+    centered={true}
+    columns={2}
+    padded={true}
+  >
+    <GridColumn
+      key="Sample-first"
+    >
+      <FormRadio
+        as={[Function]}
+        checked={true}
+        control={[Function]}
+        disabled={false}
+        label={
+          Object {
+            "children": "first",
+            "style": Object {},
+          }
+        }
+        name="first"
+        onChange={[Function]}
+        value={0}
+      />
+    </GridColumn>
+  </Grid>
+</div>
+`;
+
+exports[`BioblocksRadioGroup Should allow a default 1`] = `
+<div
+  style={Object {}}
+>
+  <div
+    style={
+      Object {
+        "fontStyle": "italic",
+        "fontWeight": "bold",
+        "textDecoration": "underline",
+      }
+    }
+  >
+    How to calculate distance between two residues:
+  </div>
+  <Grid
+    centered={true}
+    columns={2}
+    padded={true}
+  >
+    <GridColumn
+      key="Sample-first"
+    >
+      <FormRadio
+        as={[Function]}
+        checked={true}
+        control={[Function]}
+        disabled={false}
+        label={
+          Object {
+            "children": "first",
+            "style": Object {},
+          }
+        }
+        name="first"
+        onChange={[Function]}
+        value={0}
+      />
+    </GridColumn>
+  </Grid>
+</div>
+`;
+
+exports[`BioblocksRadioGroup Should allow a default optio 1`] = `
+<div
+  style={Object {}}
+>
+  <div
+    style={
+      Object {
+        "fontStyle": "italic",
+        "fontWeight": "bold",
+        "textDecoration": "underline",
+      }
+    }
+  >
+    How to calculate distance between two residues:
+  </div>
+  <Grid
+    centered={true}
+    columns={2}
+    padded={true}
+  >
+    <GridColumn
+      key="Sample-first"
+    >
+      <FormRadio
+        as={[Function]}
+        checked={true}
+        control={[Function]}
+        disabled={false}
+        label={
+          Object {
+            "children": "first",
+            "style": Object {},
+          }
+        }
+        name="first"
+        onChange={[Function]}
+        value={0}
+      />
+    </GridColumn>
+  </Grid>
+</div>
+`;
+
+exports[`BioblocksRadioGroup Should allow a default option to  1`] = `
+<div
+  style={Object {}}
+>
+  <div
+    style={
+      Object {
+        "fontStyle": "italic",
+        "fontWeight": "bold",
+        "textDecoration": "underline",
+      }
+    }
+  >
+    How to calculate distance between two residues:
+  </div>
+  <Grid
+    centered={true}
+    columns={2}
+    padded={true}
+  >
+    <GridColumn
+      key="Sample-first"
+    >
+      <FormRadio
+        as={[Function]}
+        checked={true}
+        control={[Function]}
+        disabled={false}
+        label={
+          Object {
+            "children": "first",
+            "style": Object {},
+          }
+        }
+        name="first"
+        onChange={[Function]}
+        value={0}
+      />
+    </GridColumn>
+  </Grid>
+</div>
+`;
+
+exports[`BioblocksRadioGroup Should allow a default option to be provide 1`] = `
+<div
+  style={Object {}}
+>
+  <div
+    style={
+      Object {
+        "fontStyle": "italic",
+        "fontWeight": "bold",
+        "textDecoration": "underline",
+      }
+    }
+  >
+    How to calculate distance between two residues:
+  </div>
+  <Grid
+    centered={true}
+    columns={2}
+    padded={true}
+  >
+    <GridColumn
+      key="Sample-first"
+    >
+      <FormRadio
+        as={[Function]}
+        checked={true}
+        control={[Function]}
+        disabled={false}
+        label={
+          Object {
+            "children": "first",
+            "style": Object {},
+          }
+        }
+        name="first"
+        onChange={[Function]}
+        value={0}
+      />
+    </GridColumn>
+  </Grid>
+</div>
+`;
+
+exports[`BioblocksRadioGroup Should allow a default option to be provided. 1`] = `
+<div
+  style={Object {}}
+>
+  <div
+    style={
+      Object {
+        "fontStyle": "italic",
+        "fontWeight": "bold",
+        "textDecoration": "underline",
+      }
+    }
+  >
+    How to calculate distance between two residues:
+  </div>
+  <Grid
+    centered={true}
+    columns={2}
+    padded={true}
+  >
+    <GridColumn
+      key="undefined-Lannister"
+    >
+      <FormRadio
+        as={[Function]}
+        checked={false}
+        control={[Function]}
+        disabled={false}
+        label={
+          Object {
+            "children": "Lannister",
+            "style": Object {},
+          }
+        }
+        name="Lannister"
+        onChange={[Function]}
+        value={0}
+      />
+    </GridColumn>
+    <GridColumn
+      key="undefined-Stark"
+    >
+      <FormRadio
+        as={[Function]}
+        checked={true}
+        control={[Function]}
+        disabled={false}
+        label={
+          Object {
+            "children": "Stark",
+            "style": Object {},
+          }
+        }
+        name="Stark"
+        onChange={[Function]}
+        value={1}
+      />
+    </GridColumn>
+    <GridColumn
+      key="undefined-Targaryen"
+    >
+      <FormRadio
+        as={[Function]}
+        checked={false}
+        control={[Function]}
+        disabled={false}
+        label={
+          Object {
+            "children": "Targaryen",
+            "style": Object {},
+          }
+        }
+        name="Targaryen"
+        onChange={[Function]}
+        value={2}
+      />
+    </GridColumn>
+  </Grid>
+</div>
+`;
+
+exports[`BioblocksRadioGroup Should match existing snapshot when given simple data. 1`] = `
+<div
+  style={Object {}}
+>
+  <div
+    style={
+      Object {
+        "fontStyle": "italic",
+        "fontWeight": "bold",
+        "textDecoration": "underline",
+      }
+    }
+  >
+    How to calculate distance between two residues:
+  </div>
+  <Grid
+    centered={true}
+    columns={2}
+    padded={true}
+  >
+    <GridColumn
+      key="Sample-first"
+    >
+      <FormRadio
+        as={[Function]}
+        checked={true}
+        control={[Function]}
+        disabled={false}
+        label={
+          Object {
+            "children": "first",
+            "style": Object {},
+          }
+        }
+        name="first"
+        onChange={[Function]}
+        value={0}
+      />
+    </GridColumn>
+  </Grid>
+</div>
+`;
+
+exports[`BioblocksRadioGroup Should match existing snapshot when given simple data. 2`] = `
+<div
+  style={Object {}}
+>
+  <div
+    style={
+      Object {
+        "fontStyle": "italic",
+        "fontWeight": "bold",
+        "textDecoration": "underline",
+      }
+    }
+  >
+    How to calculate distance between two residues:
+  </div>
+  <Grid
+    centered={true}
+    columns={2}
+    padded={true}
+  >
+    <GridColumn
+      key="Sample-first"
+    >
+      <FormRadio
+        as={[Function]}
+        checked={true}
+        control={[Function]}
+        disabled={false}
+        label={
+          Object {
+            "children": "first",
+            "style": Object {},
+          }
+        }
+        name="first"
+        onChange={[Function]}
+        value={0}
+      />
+    </GridColumn>
+  </Grid>
+</div>
+`;

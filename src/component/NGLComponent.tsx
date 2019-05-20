@@ -317,7 +317,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
 
   protected generateStage = (canvas: HTMLElement, params?: Partial<NGL.IStageParameters>) => {
     const stage = new NGL.Stage(canvas, params);
-    stage.mouseControls.add(NGL.MouseActionTypes.HOVER_PICK, (aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) => {
+    stage.mouseControls.add('hoverPick', (aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) => {
       this.onHover(aStage, pickingProxy);
     });
     stage.mouseControls.remove('clickPick-*', NGL.MouseActions.movePick);
@@ -338,6 +338,13 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
         name: 'Clear Selections',
         onClick: removeAllLockedResiduePairs,
         type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
+      },
+      {
+        defaultOption: 'disable',
+        name: 'Zoom on Click',
+        onChange: this.toggleMovePick,
+        options: ['enable', 'disable'],
+        type: CONFIGURATION_COMPONENT_TYPE.RADIO,
       },
       {
         current: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
@@ -612,6 +619,19 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       this.setState({
         superpositionStatus: 'NONE',
       });
+    }
+  };
+
+  protected toggleMovePick = (event?: React.MouseEvent) => {
+    const { stage } = this.state;
+    if (stage) {
+      const clickPickEnabled =
+        stage.mouseControls.actionList.find(action => action.callback === NGL.MouseActions.movePick) !== undefined;
+      if (clickPickEnabled) {
+        stage.mouseControls.remove('clickPick-*', NGL.MouseActions.movePick);
+      } else {
+        stage.mouseControls.add('clickPick-left', NGL.MouseActions.movePick);
+      }
     }
   };
 }
