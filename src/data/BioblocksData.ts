@@ -52,7 +52,15 @@ export interface IMonomerContact {
   j: number;
 }
 
-export type COUPLING_SCORE_SOURCE = 'cn' | 'dist' | 'dist_intra' | 'dist_multimer' | 'fn' | 'probability' | 'precision';
+export enum COUPLING_SCORE_SOURCE {
+  'cn' = 'cn',
+  'dist' = 'dist',
+  'dist_intra' = 'dist_intra',
+  'dist_multimer' = 'dist_multimer',
+  'fn' = 'fn',
+  'probability' = 'probability',
+  'precision' = 'precision',
+}
 
 export interface ICouplingScore {
   A_i?: AMINO_ACID_SINGLE_LETTER_CODE;

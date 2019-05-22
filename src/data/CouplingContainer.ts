@@ -52,7 +52,10 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
   /** Used for iterator access. */
   private colCounter = 0;
 
-  public constructor(scores: ICouplingScore[] = [], readonly scoreSource: COUPLING_SCORE_SOURCE = 'cn') {
+  public constructor(
+    scores: ICouplingScore[] = [],
+    readonly scoreSource: COUPLING_SCORE_SOURCE = COUPLING_SCORE_SOURCE.cn,
+  ) {
     for (const score of scores) {
       this.addCouplingScore(score);
     }
@@ -249,7 +252,7 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
     };
   }
 
-  public updateContact(i: number, j: number, couplingScore: Partial<Omit<ICouplingScore, 'i' | 'j' | 'score'>>) {
+  public updateContact(i: number, j: number, couplingScore: Partial<Omit<ICouplingScore, 'i' | 'j'>>) {
     this.addCouplingScore({ i, j, ...couplingScore });
   }
 }
