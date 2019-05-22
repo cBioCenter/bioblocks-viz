@@ -47,25 +47,35 @@ export interface IContactMapData {
 }
 
 export interface IMonomerContact {
+  dist?: number;
   i: number;
   j: number;
-  dist?: number;
+}
+
+export enum COUPLING_SCORE_SOURCE {
+  'cn' = 'cn',
+  'dist' = 'dist',
+  'dist_intra' = 'dist_intra',
+  'dist_multimer' = 'dist_multimer',
+  'fn' = 'fn',
+  'probability' = 'probability',
+  'precision' = 'precision',
 }
 
 export interface ICouplingScore {
-  i: number;
   A_i?: AMINO_ACID_SINGLE_LETTER_CODE;
-  j: number;
   A_j?: AMINO_ACID_SINGLE_LETTER_CODE;
-  fn?: number;
   cn?: number;
-  segment_i?: string;
-  segment_j?: string;
-  probability?: number;
+  dist?: number;
   dist_intra?: number;
   dist_multimer?: number;
-  dist?: number;
+  fn?: number;
+  i: number;
+  j: number;
   precision?: number;
+  probability?: number;
+  segment_i?: string;
+  segment_j?: string;
 }
 
 export enum CONTACT_DISTANCE_PROXIMITY {

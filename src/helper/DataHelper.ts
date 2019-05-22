@@ -261,15 +261,15 @@ export const augmentCouplingScoresWithResidueMapping = (
   residueMapping: IResidueMapping[] = [],
 ): CouplingContainer => {
   const result = new CouplingContainer();
-  for (const score of couplingScores) {
-    const mappedIndexI = residueMapping.findIndex(mapping => mapping.couplingsResno === score.i);
-    const mappedIndexJ = residueMapping.findIndex(mapping => mapping.couplingsResno === score.j);
+  for (const couplingScore of couplingScores) {
+    const mappedIndexI = residueMapping.findIndex(mapping => mapping.couplingsResno === couplingScore.i);
+    const mappedIndexJ = residueMapping.findIndex(mapping => mapping.couplingsResno === couplingScore.j);
 
     result.addCouplingScore({
       A_i: residueMapping[mappedIndexI].pdbResCode,
       A_j: residueMapping[mappedIndexJ].pdbResCode,
-      cn: score.cn,
-      dist: score.dist,
+      cn: couplingScore.cn,
+      dist: couplingScore.dist,
       i: residueMapping[mappedIndexI].pdbResno,
       j: residueMapping[mappedIndexJ].pdbResno,
     });

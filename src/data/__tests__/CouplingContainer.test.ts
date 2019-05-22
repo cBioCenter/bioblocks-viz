@@ -1,4 +1,9 @@
-import { AMINO_ACIDS_BY_SINGLE_LETTER_CODE, CouplingContainer, ICouplingScore } from '~bioblocks-viz~/data';
+import {
+  AMINO_ACIDS_BY_SINGLE_LETTER_CODE,
+  COUPLING_SCORE_SOURCE,
+  CouplingContainer,
+  ICouplingScore,
+} from '~bioblocks-viz~/data';
 
 describe('CouplingContainer', () => {
   // This same intentionally includes a mirrored pair, [i=1,j=0] and [i=0][j=1].
@@ -162,6 +167,49 @@ describe('CouplingContainer', () => {
       const container = new CouplingContainer(contacts);
       expect(container.getAminoAcidOfContact(1)).toEqual(AMINO_ACIDS_BY_SINGLE_LETTER_CODE.A);
       expect(container.getAminoAcidOfContact(2)).toEqual(AMINO_ACIDS_BY_SINGLE_LETTER_CODE.N);
+    });
+  });
+
+  describe('Scores', () => {
+    it('Should allow sorting by different score sources.', () => {
+      const sampleScores = [
+        { i: 1, j: 10, cn: 6, dist: 0, dist_intra: 1, dist_multimer: 2, fn: 3, probability: 4, precision: 5 },
+        { i: 2, j: 11, cn: 5, dist: 6, dist_intra: 0, dist_multimer: 1, fn: 2, probability: 3, precision: 4 },
+        { i: 3, j: 12, cn: 4, dist: 5, dist_intra: 6, dist_multimer: 0, fn: 1, probability: 2, precision: 3 },
+        { i: 4, j: 13, cn: 3, dist: 4, dist_intra: 5, dist_multimer: 6, fn: 0, probability: 1, precision: 2 },
+        { i: 5, j: 14, cn: 2, dist: 3, dist_intra: 4, dist_multimer: 5, fn: 6, probability: 0, precision: 1 },
+        { i: 6, j: 15, cn: 1, dist: 2, dist_intra: 3, dist_multimer: 4, fn: 5, probability: 6, precision: 0 },
+        { i: 7, j: 16, cn: 0, dist: 1, dist_intra: 2, dist_multimer: 3, fn: 4, probability: 5, precision: 6 },
+      ];
+
+      const undefinedScores = [{ i: 8, j: 17 }, { i: 9, j: 18 }];
+
+      let expected = Array.from(sampleScores);
+      Object.keys(COUPLING_SCORE_SOURCE).forEach(scoreSource => {
+        const result = new CouplingContainer(
+          [...sampleScores, ...undefinedScores],
+          scoreSource as COUPLING_SCORE_SOURCE,
+        ).rankedContacts;
+
+        expect(result).toEqual([...expected, ...undefinedScores]);
+        expected = [...expected.slice(1, expected.length), expected[0]];
+      });
+    });
+
+    it('Should sort the scores by cn if an invalid source is provided.', () => {
+      const sampleScores = [
+        { i: 1, j: 10, cn: 6, dist: 0, dist_intra: 1, dist_multimer: 2, fn: 3, probability: 4, precision: 5 },
+        { i: 2, j: 11, cn: 5, dist: 6, dist_intra: 0, dist_multimer: 1, fn: 2, probability: 3, precision: 4 },
+        { i: 3, j: 12, cn: 4, dist: 5, dist_intra: 6, dist_multimer: 0, fn: 1, probability: 2, precision: 3 },
+        { i: 4, j: 13, cn: 3, dist: 4, dist_intra: 5, dist_multimer: 6, fn: 0, probability: 1, precision: 2 },
+        { i: 5, j: 14, cn: 2, dist: 3, dist_intra: 4, dist_multimer: 5, fn: 6, probability: 0, precision: 1 },
+        { i: 6, j: 15, cn: 1, dist: 2, dist_intra: 3, dist_multimer: 4, fn: 5, probability: 6, precision: 0 },
+        { i: 7, j: 16, cn: 0, dist: 1, dist_intra: 2, dist_multimer: 3, fn: 4, probability: 5, precision: 6 },
+      ];
+
+      const result = new CouplingContainer(sampleScores, 'smoke' as any).rankedContacts;
+      const expected = Array.from(sampleScores);
+      expect(result).toEqual(expected);
     });
   });
 });

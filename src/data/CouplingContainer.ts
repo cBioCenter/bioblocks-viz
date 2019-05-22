@@ -1,4 +1,9 @@
-import { AMINO_ACIDS_BY_SINGLE_LETTER_CODE, IAminoAcid, ICouplingScore } from '~bioblocks-viz~/data';
+import {
+  AMINO_ACIDS_BY_SINGLE_LETTER_CODE,
+  COUPLING_SCORE_SOURCE,
+  IAminoAcid,
+  ICouplingScore,
+} from '~bioblocks-viz~/data';
 
 /**
  * A CouplingContainer provides access to the coupling information of residue pairs.
@@ -8,6 +13,29 @@ import { AMINO_ACIDS_BY_SINGLE_LETTER_CODE, IAminoAcid, ICouplingScore } from '~
  * @export
  */
 export class CouplingContainer implements IterableIterator<ICouplingScore> {
+  protected static getScore(couplingScore: ICouplingScore, scoreSource: COUPLING_SCORE_SOURCE) {
+    switch (scoreSource) {
+      case 'cn':
+        return couplingScore.cn;
+      case 'dist':
+        return couplingScore.dist;
+      case 'dist_intra':
+        return couplingScore.dist_intra;
+      case 'dist_multimer':
+        return couplingScore.dist_multimer;
+      case 'fn':
+        return couplingScore.fn;
+      case 'probability':
+        return couplingScore.probability;
+      case 'precision':
+        return couplingScore.precision;
+      default:
+        console.log(`Unknown score source ${scoreSource}`);
+    }
+
+    return undefined;
+  }
+
   protected contacts: ICouplingScore[][] = new Array<ICouplingScore[]>();
 
   /** How many distinct contacts are currently stored. */
@@ -24,7 +52,10 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
   /** Used for iterator access. */
   private colCounter = 0;
 
-  public constructor(scores: ICouplingScore[] = []) {
+  public constructor(
+    scores: ICouplingScore[] = [],
+    readonly scoreSource: COUPLING_SCORE_SOURCE = COUPLING_SCORE_SOURCE.cn,
+  ) {
     for (const score of scores) {
       this.addCouplingScore(score);
     }
@@ -40,11 +71,13 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
 
   public get rankedContacts() {
     return Array.from(this).sort((a, b) => {
-      if (a.cn && b.cn) {
-        return b.cn - a.cn;
-      } else if (a.cn && !b.cn) {
+      const aScore = CouplingContainer.getScore(a, this.scoreSource);
+      const bScore = CouplingContainer.getScore(b, this.scoreSource);
+      if (aScore && bScore) {
+        return bScore - aScore;
+      } else if (aScore && !bScore) {
         return -1;
-      } else if (!a.cn && b.cn) {
+      } else if (!aScore && bScore) {
         return 1;
       }
 
@@ -219,7 +252,7 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
     };
   }
 
-  public updateContact(i: number, j: number, score: Partial<Omit<ICouplingScore, 'i' | 'j'>>) {
-    this.addCouplingScore({ i, j, ...score });
+  public updateContact(i: number, j: number, couplingScore: Partial<Omit<ICouplingScore, 'i' | 'j'>>) {
+    this.addCouplingScore({ i, j, ...couplingScore });
   }
 }
