@@ -3,7 +3,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
-import { Checkbox, CheckboxProps, Grid, Header, Table } from 'semantic-ui-react';
+import { Checkbox, CheckboxProps, Grid, Header, Popup, Table } from 'semantic-ui-react';
 import { createResiduePairActions } from '~bioblocks-viz~/action/ResiduePairAction';
 import { NGLComponent } from '~bioblocks-viz~/component';
 import { BioblocksVisualization } from '~bioblocks-viz~/container';
@@ -210,15 +210,22 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
               return (
                 <Table.Row key={`pdb-radio-${pdbGroup}-${index}`}>
                   <Table.Cell style={cellStyle}>
-                    <Checkbox
-                      checked={(pdbGroup === 'experimental'
-                        ? selectedExperimentalProteins
-                        : selectedPredictedProteins
-                      ).includes(pdb.name)}
-                      label={`${pdb.getTrimmedName('_', 6)}`}
-                      onChange={onChange}
-                      value={pdb.name}
-                    />
+                    <Popup
+                      position={'top left'}
+                      trigger={
+                        <Checkbox
+                          checked={(pdbGroup === 'experimental'
+                            ? selectedExperimentalProteins
+                            : selectedPredictedProteins
+                          ).includes(pdb.name)}
+                          onChange={onChange}
+                          value={pdb.name}
+                          label={pdb.getTrimmedName('_', 6)}
+                        />
+                      }
+                    >
+                      {pdb.name}
+                    </Popup>
                   </Table.Cell>
 
                   {pdbGroup === 'experimental' && (
