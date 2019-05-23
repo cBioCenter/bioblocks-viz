@@ -20,35 +20,6 @@ import {
  * @export
  */
 export class BioblocksPDB {
-  public static readonly NGL_C_ALPHA_INDEX = 'CA|C';
-
-  public static createEmptyPDB() {
-    return new BioblocksPDB();
-  }
-
-  /**
-   * Creates an instance of BioblocksPDB with PDB data.
-   *
-   * !IMPORTANT! Since fetching the data is an asynchronous action, this must be used to create a new instance!
-   */
-  public static async createPDB(file: File | string = '') {
-    const result = new BioblocksPDB();
-    result.nglData = (await NGL.autoLoad(file)) as NGL.Structure;
-    result.fileName = typeof file === 'string' ? file : file.name;
-
-    return result;
-  }
-
-  public static createPDBFromNGLData(nglData: NGL.Structure) {
-    const result = new BioblocksPDB();
-    result.nglData = nglData;
-    result.fileName = nglData.path;
-
-    return result;
-  }
-
-  protected contactInfo?: CouplingContainer;
-
   public get contactInformation(): CouplingContainer {
     if (!this.contactInfo) {
       const result = new CouplingContainer();
@@ -141,6 +112,34 @@ export class BioblocksPDB {
   public get source(): string {
     return 'UKN';
   }
+  public static readonly NGL_C_ALPHA_INDEX = 'CA|C';
+
+  public static createEmptyPDB() {
+    return new BioblocksPDB();
+  }
+
+  /**
+   * Creates an instance of BioblocksPDB with PDB data.
+   *
+   * !IMPORTANT! Since fetching the data is an asynchronous action, this must be used to create a new instance!
+   */
+  public static async createPDB(file: File | string = '') {
+    const result = new BioblocksPDB();
+    result.nglData = (await NGL.autoLoad(file)) as NGL.Structure;
+    result.fileName = typeof file === 'string' ? file : file.name;
+
+    return result;
+  }
+
+  public static createPDBFromNGLData(nglData: NGL.Structure) {
+    const result = new BioblocksPDB();
+    result.nglData = nglData;
+    result.fileName = nglData.path;
+
+    return result;
+  }
+
+  protected contactInfo?: CouplingContainer;
 
   protected fileName: string = '';
   protected nglData: NGL.Structure = new NGL.Structure();
@@ -255,6 +254,23 @@ export class BioblocksPDB {
     });
 
     return result;
+  }
+
+  public getTrimmedName(
+    separator: string = '_',
+    wordsToTrim: number = 3,
+    direction: 'front' | 'back' = 'back',
+  ): string {
+    const splitName = this.name.split(separator);
+
+    if (splitName.length > wordsToTrim) {
+      return (direction === 'back'
+        ? splitName.slice(0, splitName.length - wordsToTrim)
+        : splitName.slice(wordsToTrim)
+      ).join(separator);
+    } else {
+      return this.name;
+    }
   }
 
   /**

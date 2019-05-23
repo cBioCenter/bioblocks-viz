@@ -125,11 +125,7 @@ exports[`ComponentMenuBar Should render popup menu items. 1`] = `
           position="bottom center"
           style={
             Object {
-              "marginTop": 0,
-              "maxHeight": "350px",
               "opacity": 0.85,
-              "overflow": "auto",
-              "zIndex": 3,
             }
           }
           trigger={

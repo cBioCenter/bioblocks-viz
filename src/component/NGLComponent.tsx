@@ -2,7 +2,7 @@ import { Map } from 'immutable';
 import { cloneDeep } from 'lodash';
 import * as NGL from 'ngl';
 import * as React from 'react';
-import { Dimmer, Icon, Loader } from 'semantic-ui-react';
+import { Dimmer, Grid, Icon, Loader } from 'semantic-ui-react';
 import { Matrix4, Vector2 } from 'three';
 
 import { ComponentCard, IComponentMenuBarItem } from '~bioblocks-viz~/component';
@@ -223,23 +223,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
             style={{ height: '100%', width: '100%' }}
           />
         </div>
-        {this.renderBottomToggle(
-          'Superimpose',
-          () => this.state.superpositionStatus !== 'NONE',
-          this.onSuperpositionToggle,
-        )}
-        <div
-          style={{
-            bottom: '20px',
-            position: 'absolute',
-            right: '225px',
-            userSelect: 'none',
-          }}
-        >
-          <a aria-pressed={false} onClick={this.centerCamera} role={'button'}>
-            Center View
-          </a>
-        </div>
+        {this.renderBottomToggles()}
       </ComponentCard>
     );
   }
@@ -277,6 +261,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       const orientation = this.state.stage.viewerControls.getOrientation() as Matrix4;
       this.state.stage.removeAllComponents();
       const { experimentalProteins, predictedProteins } = this.props;
+      const { superpositionStatus } = this.state;
       const allProteins = [...experimentalProteins, ...predictedProteins];
       const { parameters } = this.state.stage;
       const stage = this.generateStage(this.canvas, parameters);
@@ -284,6 +269,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       allProteins.map(pdb => {
         this.initData(stage, pdb.nglStructure);
       });
+      this.handleSuperposition(stage, superpositionStatus);
       stage.viewerControls.orient(orientation);
       stage.viewer.requestRender();
       this.setState({
@@ -630,20 +616,28 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     }
   };
 
-  protected renderBottomToggle = (label: string, flagFn: () => boolean, onClick: () => void) => {
+  protected renderBottomToggles = () => {
+    const isSuperPositionOn = this.state.superpositionStatus !== 'NONE';
+
     return (
-      <div
-        style={{
-          bottom: '20px',
-          position: 'absolute',
-          right: '20px',
-          userSelect: 'none',
-        }}
-      >
-        <a aria-pressed={flagFn()} onClick={onClick} role={'button'}>
-          {`${label}: ${flagFn() ? 'on' : 'off'}`}
-        </a>
-      </div>
+      <Grid>
+        <Grid.Row centered={true} columns={2}>
+          <Grid.Column>
+            <div style={{ userSelect: 'none' }}>
+              <a aria-pressed={false} onClick={this.centerCamera} role={'button'}>
+                Center View
+              </a>
+            </div>
+          </Grid.Column>
+          <Grid.Column>
+            <div style={{ userSelect: 'none' }}>
+              <a aria-pressed={isSuperPositionOn} onClick={this.onSuperpositionToggle} role={'button'}>
+                {`Superimpose: ${isSuperPositionOn ? 'on' : 'off'}`}
+              </a>
+            </div>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     );
   };
 

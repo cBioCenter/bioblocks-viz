@@ -1,12 +1,12 @@
 {
   "name": "bioblocks-viz",
-  "version": "0.0.113",
+  "version": "0.0.114",
   "author": "Biostatistics and Computational Biology at Dana-Farber <bcb@jimmy.harvard.edu>",
   "license": "MIT",
   "engines": {
-    "node": "^10.0.0 || ^11.0.0",
+    "node": "^10.0.0 || ^11.0.0 || ^12.0.0",
     "npm": "^6.0.0",
-    "yarn": "^1.7.0"
+    "yarn": "^1.13.0"
   },
   "files": [
     "lib"
@@ -122,7 +122,7 @@
     "deploy:demo": "yarn build && yarn deploy:doc && yarn deploy:gh-pages",
     "deploy:doc": "yarn doc && cp -r docs dist && cp README.md dist",
     "deploy:gh-pages": "gh-pages -d dist && git reset --hard HEAD",
-    "predoc": "rm -rf lib node_modules/typedoc/node_modules/typescript/lib",
+    "predoc": "rm -rf lib node_modules/typedoc/node_modules/typescript/lib && cp -r node_modules/typescript/lib node_modules/typedoc/node_modules/typescript/",
     "doc": "typedoc --tsconfig ./configs/tsconfig.doc.json",
     "doc:precommit": "yarn doc && git add docs/api && git add -u docs/api",
     "fix-alias": "tscpaths -p tsconfig.json -s ./ -o ./lib",
@@ -241,7 +241,7 @@
     "tslint-jsdoc-rules": "^0.1.2",
     "tslint-microsoft-contrib": "^5.2.1",
     "tslint-react": "^3.5.1",
-    "typedoc": "^0.13.0",
+    "typedoc": "^0.14.2",
     "typescript": "^3.0.1",
     "utility-types": "^3.2.0",
     "webpack": "^4.19.1",

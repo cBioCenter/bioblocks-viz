@@ -1,4 +1,4 @@
-import { StructureView } from 'ngl';
+import { StructureView, ViewerControls } from 'ngl';
 
 // tslint:disable:max-classes-per-file no-reserved-keywords
 declare module 'ngl' {
@@ -118,6 +118,7 @@ declare module 'ngl' {
     public reprList: RepresentationElement[];
     public scale: Vector3;
     public structureView: StructureView;
+    public viewerControls: ViewerControls;
 
     /** Events emitted by the component. */
     public readonly signals: {

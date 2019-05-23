@@ -7,4 +7,3 @@ export * from '../container/InfoPanelContainer';
 export * from './NGLComponent';
 export * from './PredictedContactMap';
 export * from './TensorTComponent';
-export * from './VizSelectorPanel';
