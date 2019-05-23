@@ -45,6 +45,7 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
         isExpanded={false}
         menuItems={Array []}
         onExpandToggleCb={[Function]}
+        opacity={0.85}
         width="100%"
       >
         <div
@@ -204,6 +205,7 @@ exports[`ComponentCard Should match existing snapshot when framed. 1`] = `
     isExpanded={false}
     menuItems={Array []}
     onExpandToggleCb={[Function]}
+    opacity={0.85}
     width="100%"
   />
   <div
@@ -236,6 +238,7 @@ exports[`ComponentCard Should match existing snapshot when given default props. 
     isExpanded={false}
     menuItems={Array []}
     onExpandToggleCb={[Function]}
+    opacity={0.85}
     width="100%"
   />
 </Card>
@@ -261,6 +264,7 @@ exports[`ComponentCard Should match existing snapshot when not framed. 1`] = `
     isExpanded={false}
     menuItems={Array []}
     onExpandToggleCb={[Function]}
+    opacity={0.85}
     width="100%"
   />
 </Card>

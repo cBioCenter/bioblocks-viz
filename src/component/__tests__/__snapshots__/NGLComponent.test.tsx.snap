@@ -31,11 +31,11 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
               "type": "RADIO",
             },
             Object {
-              "current": "CLOSEST",
+              "current": "CLOSEST ATOM",
               "name": "Proximity Metric",
               "onChange": [Function],
               "options": Array [
-                "Closest",
+                "Closest Atom",
                 "C-α",
               ],
               "type": "RADIO",
@@ -113,7 +113,25 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
       onClick={[Function]}
       role="button"
     >
-      Superposition: off
+      Superimpose: off
+    </a>
+  </div>
+  <div
+    style={
+      Object {
+        "bottom": "20px",
+        "position": "absolute",
+        "right": "225px",
+        "userSelect": "none",
+      }
+    }
+  >
+    <a
+      aria-pressed={false}
+      onClick={[Function]}
+      role="button"
+    >
+      Center View
     </a>
   </div>
 </ComponentCard>

@@ -238,7 +238,7 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
     );
   }
 
-  protected sequenceSimilarityPercent(seqA: string, seqB: string, fractionDigits: number = 2) {
+  protected sequenceSimilarityPercent(seqA: string, seqB: string, fractionDigits: number = 1) {
     const result =
       (seqA.split('').reduce((prev, cur, seqIndex) => {
         return prev + (cur === seqB[seqIndex] ? 1 : 0);

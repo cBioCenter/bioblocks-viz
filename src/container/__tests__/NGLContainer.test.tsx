@@ -199,7 +199,7 @@ describe('NGLContainer', () => {
         .find(Table.Cell)
         .at(4)
         .text(),
-    ).toEqual('100.00%');
+    ).toEqual('100.0%');
 
     experimentalPDB = await BioblocksPDB.createPDB('exp_2_sample');
     predictedPDB = await BioblocksPDB.createPDB('pred_2_sample');
@@ -217,6 +217,6 @@ describe('NGLContainer', () => {
         .find(Table.Cell)
         .at(4)
         .text(),
-    ).toEqual('50.00%');
+    ).toEqual('50.0%');
   });
 });

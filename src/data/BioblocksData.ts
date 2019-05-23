@@ -79,7 +79,7 @@ export interface ICouplingScore {
 }
 
 export enum CONTACT_DISTANCE_PROXIMITY {
-  CLOSEST = 'CLOSEST',
+  CLOSEST = 'CLOSEST ATOM',
   C_ALPHA = 'C-α',
 }
 
