@@ -78,6 +78,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                               </GridColumn>
                             </GridRow>
                             <GridRow
+                              columns={2}
                               style={
                                 Object {
                                   "padding": "5px 0",
@@ -148,7 +149,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                 </div>
                               </GridColumn>
                               <GridColumn
-                                width={6}
+                                width={7}
                               >
                                 Predicted (0/0)
                                 <div
@@ -250,6 +251,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                 </GridColumn>
                               </GridRow>
                               <GridRow
+                                columns={2}
                                 style={
                                   Object {
                                     "padding": "5px 0",
@@ -320,7 +322,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                   </div>
                                 </GridColumn>
                                 <GridColumn
-                                  width={6}
+                                  width={7}
                                 >
                                   Predicted (0/0)
                                   <div
@@ -486,6 +488,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                       </GridColumn>
                                     </GridRow>
                                     <GridRow
+                                      columns={2}
                                       style={
                                         Object {
                                           "padding": "5px 0",
@@ -556,7 +559,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                         </div>
                                       </GridColumn>
                                       <GridColumn
-                                        width={6}
+                                        width={7}
                                       >
                                         Predicted (0/0)
                                         <div
@@ -782,11 +785,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                         position="bottom center"
                                         style={
                                           Object {
-                                            "marginTop": 0,
-                                            "maxHeight": "350px",
                                             "opacity": 0.85,
-                                            "overflow": "auto",
-                                            "zIndex": 3,
                                           }
                                         }
                                         trigger={
@@ -1056,42 +1055,63 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                           }
                         />
                       </div>
-                      <div
-                        style={
-                          Object {
-                            "bottom": "20px",
-                            "position": "absolute",
-                            "right": "20px",
-                            "userSelect": "none",
-                          }
-                        }
-                      >
-                        <a
-                          aria-pressed={false}
-                          onClick={[Function]}
-                          role="button"
+                      <Grid>
+                        <div
+                          className="ui grid"
                         >
-                          Superimpose: off
-                        </a>
-                      </div>
-                      <div
-                        style={
-                          Object {
-                            "bottom": "20px",
-                            "position": "absolute",
-                            "right": "225px",
-                            "userSelect": "none",
-                          }
-                        }
-                      >
-                        <a
-                          aria-pressed={false}
-                          onClick={[Function]}
-                          role="button"
-                        >
-                          Center View
-                        </a>
-                      </div>
+                          <GridRow
+                            centered={true}
+                            columns={2}
+                          >
+                            <div
+                              className="centered two column row"
+                            >
+                              <GridColumn>
+                                <div
+                                  className="column"
+                                >
+                                  <div
+                                    style={
+                                      Object {
+                                        "userSelect": "none",
+                                      }
+                                    }
+                                  >
+                                    <a
+                                      aria-pressed={false}
+                                      onClick={[Function]}
+                                      role="button"
+                                    >
+                                      Center View
+                                    </a>
+                                  </div>
+                                </div>
+                              </GridColumn>
+                              <GridColumn>
+                                <div
+                                  className="column"
+                                >
+                                  <div
+                                    style={
+                                      Object {
+                                        "userSelect": "none",
+                                      }
+                                    }
+                                  >
+                                    <a
+                                      aria-pressed={false}
+                                      onClick={[Function]}
+                                      role="button"
+                                    >
+                                      Superimpose: off
+                                    </a>
+                                  </div>
+                                </div>
+                              </GridColumn>
+                            </div>
+                          </GridRow>
+                        </div>
+                      </Grid>
                     </div>
                   </Card>
                 </ComponentCard>
@@ -1143,6 +1163,7 @@ exports[`NGLContainer Should match the default snapshot when not hooked up to a 
                     </GridColumn>
                   </GridRow>
                   <GridRow
+                    columns={2}
                     style={
                       Object {
                         "padding": "5px 0",
@@ -1213,7 +1234,7 @@ exports[`NGLContainer Should match the default snapshot when not hooked up to a 
                       </div>
                     </GridColumn>
                     <GridColumn
-                      width={6}
+                      width={7}
                     >
                       Predicted (0/0)
                       <div

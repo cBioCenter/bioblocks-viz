@@ -98,41 +98,46 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
       }
     />
   </div>
-  <div
-    style={
-      Object {
-        "bottom": "20px",
-        "position": "absolute",
-        "right": "20px",
-        "userSelect": "none",
-      }
-    }
-  >
-    <a
-      aria-pressed={false}
-      onClick={[Function]}
-      role="button"
+  <Grid>
+    <GridRow
+      centered={true}
+      columns={2}
     >
-      Superimpose: off
-    </a>
-  </div>
-  <div
-    style={
-      Object {
-        "bottom": "20px",
-        "position": "absolute",
-        "right": "225px",
-        "userSelect": "none",
-      }
-    }
-  >
-    <a
-      aria-pressed={false}
-      onClick={[Function]}
-      role="button"
-    >
-      Center View
-    </a>
-  </div>
+      <GridColumn>
+        <div
+          style={
+            Object {
+              "userSelect": "none",
+            }
+          }
+        >
+          <a
+            aria-pressed={false}
+            onClick={[Function]}
+            role="button"
+          >
+            Center View
+          </a>
+        </div>
+      </GridColumn>
+      <GridColumn>
+        <div
+          style={
+            Object {
+              "userSelect": "none",
+            }
+          }
+        >
+          <a
+            aria-pressed={false}
+            onClick={[Function]}
+            role="button"
+          >
+            Superimpose: off
+          </a>
+        </div>
+      </GridColumn>
+    </GridRow>
+  </Grid>
 </ComponentCard>
 `;

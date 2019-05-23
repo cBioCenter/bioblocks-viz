@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { connect, Provider } from 'react-redux';
-import { Accordion, Button, Grid, GridColumn, GridRow, Header, Label, Message, Segment } from 'semantic-ui-react';
+import { Button, Grid, GridColumn, GridRow, Header, Label, Message, Segment } from 'semantic-ui-react';
 
 import { createContainerActions, createResiduePairActions } from '~bioblocks-viz~/action';
 import { ContactMap, PredictedContactMap } from '~bioblocks-viz~/component';
@@ -12,7 +12,6 @@ import {
   CONTACT_DISTANCE_PROXIMITY,
   CONTACT_MAP_DATA_TYPE,
   CouplingContainer,
-  getPDBAndCouplingMismatch,
   IResidueMismatchResult,
   VIZ_TYPE,
 } from '~bioblocks-viz~/data';
@@ -33,15 +32,12 @@ export interface IExampleAppState {
   };
   arePredictionsAvailable: boolean;
   couplingScores: string;
-  errorMsg: string;
   filenames: Partial<{
     couplings: string;
     pdb: string;
     residue_mapper: string;
   }>;
   measuredProximity: CONTACT_DISTANCE_PROXIMITY;
-  mismatches: IResidueMismatchResult[];
-  isResidueMappingNeeded: boolean;
   pdbData?: BioblocksPDB;
   residueMapping: IResidueMapping[];
 }
@@ -66,11 +62,8 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     },
     arePredictionsAvailable: false,
     couplingScores: '',
-    errorMsg: '',
     filenames: {},
-    isResidueMappingNeeded: false,
     measuredProximity: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
-    mismatches: [],
     pdbData: undefined,
     residueMapping: [],
   };
@@ -83,26 +76,8 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
   public componentDidUpdate(prevProps: IExampleAppProps, prevState: IExampleAppState) {
     const { measuredProximity, pdbData } = this.state;
     const { couplingScores } = this.state[VIZ_TYPE.CONTACT_MAP];
-    let errorMsg = '';
 
-    let newMismatches = this.state.mismatches;
-    let isResidueMappingNeeded = this.state.isResidueMappingNeeded;
-
-    if (
-      pdbData &&
-      (couplingScores !== prevState[VIZ_TYPE.CONTACT_MAP].couplingScores || pdbData !== prevState.pdbData)
-    ) {
-      newMismatches = getPDBAndCouplingMismatch(pdbData, couplingScores);
-
-      if (newMismatches.length >= 1) {
-        errorMsg = `Error details: ${newMismatches.length} mismatch(es) detected between coupling scores and PDB!\
-        For example, residue number ${newMismatches[0].resno} is '${
-          newMismatches[0].pdbAminoAcid.threeLetterCode
-        }' in the PDB but '${newMismatches[0].couplingAminoAcid.threeLetterCode}' in the coupling scores file.`;
-        isResidueMappingNeeded = true;
-      }
-    }
-
+    console.log(pdbData);
     if (pdbData && measuredProximity !== prevState.measuredProximity) {
       this.setState({
         [VIZ_TYPE.CONTACT_MAP]: {
@@ -111,15 +86,6 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
           pdbData: { known: this.state.pdbData },
           secondaryStructures: [],
         },
-        errorMsg,
-        isResidueMappingNeeded,
-        mismatches: newMismatches,
-      });
-    } else if (errorMsg.length >= 1) {
-      this.setState({
-        errorMsg,
-        isResidueMappingNeeded,
-        mismatches: newMismatches,
       });
     }
   }
@@ -135,77 +101,25 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
 
   protected renderCouplingComponents = (
     { style } = this.props,
-    { arePredictionsAvailable, couplingScores, errorMsg, isResidueMappingNeeded, measuredProximity, pdbData } = this
-      .state,
+    { arePredictionsAvailable, couplingScores, measuredProximity, pdbData } = this.state,
   ) => (
     <div>
       <Header as={'h1'} attached={'top'}>
-        ContactMap.org: 2D and 3D Visualization
+        Bioblocks-Viz: Visualization Component Library
       </Header>
-      {errorMsg.length > 1 && this.renderErrorMessage()}
       {!pdbData && couplingScores.length === 0 && this.renderStartMessage()}
 
       <Segment attached={true} raised={true}>
         <Grid centered={true} padded={true} relaxed={true}>
-          {this.renderUploadButtonsRow(isResidueMappingNeeded)}
+          {this.renderUploadButtonsRow()}
           <Grid.Row>
             <br />
           </Grid.Row>
           {this.renderBioblocksComponents(style, arePredictionsAvailable, measuredProximity)}
         </Grid>
       </Segment>
-      {this.renderFooter()}
     </div>
   );
-
-  protected renderErrorMessage = ({ errorMsg, isResidueMappingNeeded, mismatches, pdbData } = this.state) => {
-    return (
-      <Message warning={true}>
-        {isResidueMappingNeeded && pdbData ? (
-          <div>
-            <Message.Header>
-              {`Residue numbering mismatch detected. Please upload a file to correct the position numbering differences.`}
-              {<br />}
-              {`EVCouplings and EVFold outputs this file in the `}
-              <strong>OUTPUT</strong>
-              {` directory.
-                This file might be named similar to
-                '${pdbData.name}.csv' or '${pdbData.name}.indextableplus'`}
-            </Message.Header>
-            <Message.List>{errorMsg}</Message.List>
-            <Message.Content>
-              <Accordion
-                fluid={true}
-                exclusive={false}
-                defaultActiveIndex={[]}
-                panels={[
-                  this.renderSequenceAccordionMessage('PDB sequence', pdbData.sequence, mismatches, 'pdb'),
-                  this.renderSequenceAccordionMessage(
-                    'Couplings Score sequence',
-                    this.state[VIZ_TYPE.CONTACT_MAP].couplingScores.sequence,
-                    mismatches,
-                    'coupling',
-                  ),
-                ]}
-              />
-            </Message.Content>
-          </div>
-        ) : (
-          errorMsg
-        )}
-      </Message>
-    );
-  };
-
-  protected renderFooter = () => {
-    return (
-      <footer style={{ padding: '25vh 0 25px 25px' }}>
-        <>
-          Powered by <a href="https://github.com/cBioCenter/bioblocks-viz">Bioblocks</a>!
-        </>
-      </footer>
-    );
-  };
 
   protected renderSequenceAccordionMessage = (
     title: string,
@@ -366,11 +280,11 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     />
   );
 
-  protected renderUploadButtonsRow = (isResidueMappingNeeded: boolean) => (
+  protected renderUploadButtonsRow = () => (
     <GridRow columns={4} textAlign={'center'} verticalAlign={'bottom'}>
       <GridColumn>{this.renderCouplingScoresUploadForm()}</GridColumn>
       <GridColumn>{this.renderPDBUploadForm()}</GridColumn>
-      {isResidueMappingNeeded && <GridColumn>{this.renderResidueMappingUploadForm()}</GridColumn>}
+      <GridColumn>{this.renderResidueMappingUploadForm()}</GridColumn>
       <GridColumn>{this.renderClearAllButton()}</GridColumn>
     </GridRow>
   );
@@ -435,8 +349,6 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
           });
           const parsedFile = await readFileAsText(file);
           const couplingScores = getCouplingScoresData(parsedFile, this.state.residueMapping);
-          const mismatches = pdbData ? pdbData.getResidueNumberingMismatches(couplingScores) : [];
-          const isResidueMappingNeeded = mismatches.length > 0;
 
           this.setState({
             [VIZ_TYPE.CONTACT_MAP]: {
@@ -449,20 +361,14 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
             },
             arePredictionsAvailable: true,
             couplingScores: parsedFile,
-            errorMsg: '',
             filenames: {
               ...this.state.filenames,
               couplings: file.name,
             },
-            isResidueMappingNeeded,
           });
         } catch (e) {
           console.log(e);
         }
-      } else {
-        this.setState({
-          errorMsg: `Unable to load Coupling Score file '${file.name}' - Make sure the file ends in '.csv'!`,
-        });
       }
     }
     // !IMPORTANT! Allows same user to clear data and then re-upload same file!
@@ -537,7 +443,6 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
               isLoading: false,
               secondaryStructures: [],
             },
-            errorMsg: '',
             filenames: {
               ...this.state.filenames,
               residue_mapper: file.name,
@@ -547,12 +452,6 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
         } catch (e) {
           console.log(e);
         }
-      } else {
-        this.setState({
-          errorMsg: `Unable to load Residue Mapping file '${
-            file.name
-          }' - Make sure the file ends in one of the following: '${validFileExtensions.join("', '")}'`,
-        });
       }
     }
     // !IMPORTANT! Allows same user to clear data and then re-upload same file!

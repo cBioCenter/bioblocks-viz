@@ -195,7 +195,7 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
             </Grid>
           </Popup>
         ) : (
-          <Popup trigger={trigger} {...combinedProps} style={{ ...style, opacity }} />
+          <Popup trigger={trigger} {...combinedProps} style={{ opacity }} />
         );
       }
 

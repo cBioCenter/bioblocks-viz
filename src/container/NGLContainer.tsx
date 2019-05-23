@@ -144,20 +144,20 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
   }
 
   protected onExperimentalProteinSelect = (event: React.FormEvent<HTMLInputElement>, data: CheckboxProps) => {
-    const label = (data.label as string).split(' ')[0];
+    const fullName = (data.value as string).split(' ')[0];
     this.setState({
       selectedExperimentalProteins: data.checked
-        ? [...this.state.selectedExperimentalProteins, label]
-        : this.state.selectedExperimentalProteins.filter(pdb => pdb !== label),
+        ? [...this.state.selectedExperimentalProteins, fullName]
+        : this.state.selectedExperimentalProteins.filter(pdb => pdb !== fullName),
     });
   };
 
   protected onPredictedProteinSelect = (event: React.FormEvent<HTMLInputElement>, data: CheckboxProps) => {
-    const label = (data.label as string).split(' ')[0];
+    const fullName = (data.value as string).split(' ')[0];
     this.setState({
       selectedPredictedProteins: data.checked
-        ? [...this.state.selectedPredictedProteins, label]
-        : this.state.selectedPredictedProteins.filter(pdb => pdb !== label),
+        ? [...this.state.selectedPredictedProteins, fullName]
+        : this.state.selectedPredictedProteins.filter(pdb => pdb !== fullName),
     });
   };
 
@@ -169,14 +169,14 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
             <Header>Select Structures to Display</Header>
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row style={{ padding: '5px 0' }}>
+        <Grid.Row columns={2} style={{ padding: '5px 0' }}>
           <Grid.Column width={9}>
             {`Experimental (${this.state.selectedExperimentalProteins.length}/${
               this.props.experimentalProteins.length
             })`}
             {this.renderPDBTable(this.props.experimentalProteins, 'experimental', this.onExperimentalProteinSelect)}
           </Grid.Column>
-          <Grid.Column width={6}>
+          <Grid.Column width={7}>
             {`Predicted (${this.state.selectedPredictedProteins.length}/${this.props.predictedProteins.length})`}
             {this.renderPDBTable(this.props.predictedProteins, 'predicted', this.onPredictedProteinSelect)}
           </Grid.Column>
@@ -208,15 +208,16 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
           <Table.Body>
             {data.map((pdb, index) => {
               return (
-                <Table.Row columns={pdbGroup === 'experimental' ? 3 : 1} key={`pdb-radio-${pdbGroup}-${index}`}>
+                <Table.Row key={`pdb-radio-${pdbGroup}-${index}`}>
                   <Table.Cell style={cellStyle}>
                     <Checkbox
-                      label={`${pdb.name}`}
-                      onChange={onChange}
                       checked={(pdbGroup === 'experimental'
                         ? selectedExperimentalProteins
                         : selectedPredictedProteins
                       ).includes(pdb.name)}
+                      label={`${pdb.getTrimmedName('_', 6)}`}
+                      onChange={onChange}
+                      value={pdb.name}
                     />
                   </Table.Cell>
 
