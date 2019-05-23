@@ -18,6 +18,7 @@ export interface IComponentMenuBarProps {
   isExpanded: boolean;
   iconSrc?: string;
   menuItems: IComponentMenuBarItem[];
+  opacity: number;
   width: number | string;
   onExpandToggleCb?(): void;
 }
@@ -47,7 +48,7 @@ export const DEFAULT_POPUP_PROPS: Partial<PopupProps> = {
   openOnTriggerFocus: false,
   openOnTriggerMouseEnter: false,
   position: 'bottom center',
-  style: { marginTop: 0, maxHeight: '350px', opacity: 0.85, overflow: 'auto', zIndex: 3 },
+  style: { marginTop: 0, maxHeight: '350px', overflow: 'auto', zIndex: 3 },
 };
 
 export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IComponentMenuBarState> {
@@ -56,6 +57,7 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
     height: '100%',
     isExpanded: false,
     menuItems: [],
+    opacity: 0.85,
     width: '100%',
   };
 
@@ -174,15 +176,16 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
   }
 
   protected renderMenuItems(items: IComponentMenuBarItem[], componentName: string) {
+    const { opacity } = this.props;
+
     return items.map((item, menuBarIndex) => {
       // We are separating the style to prevent a bug where the popup arrow does not display if overflow is set.
       const { style, ...combinedProps } = { ...DEFAULT_POPUP_PROPS, ...item.component.props };
-
       let menuItemChild = null;
       if (item.component.name === 'POPUP') {
         const trigger = <Icon name={item.iconName ? item.iconName : 'setting'} />;
         menuItemChild = item.component.configs ? (
-          <Popup trigger={trigger} {...combinedProps} wide={true}>
+          <Popup trigger={trigger} {...combinedProps} wide={true} style={{ opacity }}>
             <Grid centered={true} divided={'vertically'} style={style}>
               {item.component.configs.map((config, configIndex) => (
                 <Grid.Row columns={1} key={`menu-bar-${menuBarIndex}-row-${configIndex}`} style={{ padding: '7px 0' }}>
@@ -192,7 +195,7 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
             </Grid>
           </Popup>
         ) : (
-          <Popup trigger={trigger} {...combinedProps} />
+          <Popup trigger={trigger} {...combinedProps} style={{ ...style, opacity }} />
         );
       }
 

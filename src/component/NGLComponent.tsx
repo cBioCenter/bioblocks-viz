@@ -2,9 +2,9 @@ import { Map } from 'immutable';
 import { cloneDeep } from 'lodash';
 import * as NGL from 'ngl';
 import * as React from 'react';
+import { Dimmer, Icon, Loader } from 'semantic-ui-react';
 import { Matrix4, Vector2 } from 'three';
 
-import { Dimmer, Icon, Loader } from 'semantic-ui-react';
 import { ComponentCard, IComponentMenuBarItem } from '~bioblocks-viz~/component';
 import {
   AMINO_ACID_THREE_LETTER_CODE,
@@ -19,7 +19,7 @@ import {
   SECONDARY_STRUCTURE_SECTION,
 } from '~bioblocks-viz~/data';
 import {
-  capitalizeFirstLetter,
+  capitalizeEveryWord,
   createBallStickRepresentation,
   createDistanceRepresentation,
   createSecStructRepresentation,
@@ -223,20 +223,21 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
             style={{ height: '100%', width: '100%' }}
           />
         </div>
+        {this.renderBottomToggle(
+          'Superimpose',
+          () => this.state.superpositionStatus !== 'NONE',
+          this.onSuperpositionToggle,
+        )}
         <div
           style={{
             bottom: '20px',
             position: 'absolute',
-            right: '20px',
+            right: '225px',
             userSelect: 'none',
           }}
         >
-          <a
-            aria-pressed={this.state.superpositionStatus !== 'NONE'}
-            onClick={this.onSuperpositionToggle}
-            role={'button'}
-          >
-            {`Superposition: ${this.state.superpositionStatus === 'NONE' ? 'off' : 'on'}`}
+          <a aria-pressed={false} onClick={this.centerCamera} role={'button'}>
+            Center View
           </a>
         </div>
       </ComponentCard>
@@ -288,6 +289,13 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       this.setState({
         stage,
       });
+    }
+  };
+
+  protected centerCamera = () => {
+    const { stage } = this.state;
+    if (stage) {
+      stage.autoView();
     }
   };
 
@@ -350,7 +358,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
         current: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
         name: 'Proximity Metric',
         onChange: this.measuredProximityHandler,
-        options: Object.values(CONTACT_DISTANCE_PROXIMITY).map(capitalizeFirstLetter),
+        options: Object.values(CONTACT_DISTANCE_PROXIMITY).map(capitalizeEveryWord),
         type: CONFIGURATION_COMPONENT_TYPE.RADIO,
       },
       {
@@ -620,6 +628,23 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
         superpositionStatus: 'NONE',
       });
     }
+  };
+
+  protected renderBottomToggle = (label: string, flagFn: () => boolean, onClick: () => void) => {
+    return (
+      <div
+        style={{
+          bottom: '20px',
+          position: 'absolute',
+          right: '20px',
+          userSelect: 'none',
+        }}
+      >
+        <a aria-pressed={flagFn()} onClick={onClick} role={'button'}>
+          {`${label}: ${flagFn() ? 'on' : 'off'}`}
+        </a>
+      </div>
+    );
   };
 
   protected toggleMovePick = (event?: React.MouseEvent) => {

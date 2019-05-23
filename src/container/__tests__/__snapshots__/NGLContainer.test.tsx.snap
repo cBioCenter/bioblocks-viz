@@ -400,11 +400,11 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                               "type": "RADIO",
                             },
                             Object {
-                              "current": "CLOSEST",
+                              "current": "CLOSEST ATOM",
                               "name": "Proximity Metric",
                               "onChange": [Function],
                               "options": Array [
-                                "Closest",
+                                "Closest Atom",
                                 "C-α",
                               ],
                               "type": "RADIO",
@@ -636,11 +636,11 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                     "type": "RADIO",
                                   },
                                   Object {
-                                    "current": "CLOSEST",
+                                    "current": "CLOSEST ATOM",
                                     "name": "Proximity Metric",
                                     "onChange": [Function],
                                     "options": Array [
-                                      "Closest",
+                                      "Closest Atom",
                                       "C-α",
                                     ],
                                     "type": "RADIO",
@@ -673,6 +673,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                           ]
                         }
                         onExpandToggleCb={[Function]}
+                        opacity={0.85}
                         width="100%"
                       >
                         <div
@@ -779,6 +780,15 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                         openOnTriggerFocus={false}
                                         openOnTriggerMouseEnter={false}
                                         position="bottom center"
+                                        style={
+                                          Object {
+                                            "marginTop": 0,
+                                            "maxHeight": "350px",
+                                            "opacity": 0.85,
+                                            "overflow": "auto",
+                                            "zIndex": 3,
+                                          }
+                                        }
                                         trigger={
                                           <Icon
                                             as="i"
@@ -841,6 +851,11 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                         openOnTriggerFocus={false}
                                         openOnTriggerMouseEnter={false}
                                         position="bottom center"
+                                        style={
+                                          Object {
+                                            "opacity": 0.85,
+                                          }
+                                        }
                                         trigger={
                                           <Icon
                                             as="i"
@@ -1056,7 +1071,25 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                           onClick={[Function]}
                           role="button"
                         >
-                          Superposition: off
+                          Superimpose: off
+                        </a>
+                      </div>
+                      <div
+                        style={
+                          Object {
+                            "bottom": "20px",
+                            "position": "absolute",
+                            "right": "225px",
+                            "userSelect": "none",
+                          }
+                        }
+                      >
+                        <a
+                          aria-pressed={false}
+                          onClick={[Function]}
+                          role="button"
+                        >
+                          Center View
                         </a>
                       </div>
                     </div>

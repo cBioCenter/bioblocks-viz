@@ -2073,6 +2073,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             ]
           }
           onExpandToggleCb={[Function]}
+          opacity={0.85}
           width="100%"
         >
           <div
@@ -2179,6 +2180,11 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                           openOnTriggerFocus={false}
                           openOnTriggerMouseEnter={false}
                           position="bottom center"
+                          style={
+                            Object {
+                              "opacity": 0.85,
+                            }
+                          }
                           trigger={
                             <Icon
                               as="i"
