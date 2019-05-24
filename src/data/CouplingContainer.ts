@@ -29,6 +29,8 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
         return couplingScore.probability;
       case 'precision':
         return couplingScore.precision;
+      case 'score':
+        return couplingScore.score;
       default:
         console.log(`Unknown score source ${scoreSource}`);
     }
@@ -128,6 +130,7 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
     if (!this.contacts[minResidueIndex][maxResidueIndex]) {
       this.totalStoredContacts++;
     }
+
     this.contacts[minResidueIndex][maxResidueIndex] = {
       ...this.contacts[minResidueIndex][maxResidueIndex],
       ...score,

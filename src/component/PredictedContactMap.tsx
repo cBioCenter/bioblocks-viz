@@ -11,10 +11,10 @@ import {
 } from '~bioblocks-viz~/data';
 
 export interface IPredictedContactMapProps {
-  correctColor: string;
+  agreementColor: string;
+  allColor: string;
   data: IContactMapData;
   height: number | string;
-  incorrectColor: string;
   isDataLoading: boolean;
   style?: BIOBLOCKS_CSS_STYLE;
   width: number | string;
@@ -30,13 +30,13 @@ export type PredictedContactMapState = typeof initialPredictedContactMapState;
 
 export class PredictedContactMap extends React.Component<IPredictedContactMapProps, PredictedContactMapState> {
   public static defaultProps = {
-    correctColor: '#ff0000',
+    agreementColor: '#ff0000',
+    allColor: '#000000',
     data: {
       couplingScores: new CouplingContainer(),
       secondaryStructures: new Array<SECONDARY_STRUCTURE>(),
     },
     height: '100%',
-    incorrectColor: '#000000',
     isDataLoading: false,
     width: '100%',
   };
@@ -127,7 +127,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
    * @param isNewData Is this an entirely new dataset?
    */
   protected setupData(isNewData: boolean) {
-    const { correctColor, data, incorrectColor } = this.props;
+    const { agreementColor: correctColor, data, allColor: incorrectColor } = this.props;
     const { linearDistFilter, numPredictionsToShow } = this.state;
 
     let couplingScores = new CouplingContainer();
@@ -143,9 +143,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     }
 
     const { chainLength } = couplingScores;
-
     const allPredictions = couplingScores.getPredictedContacts(numPredictionsToShow, linearDistFilter);
-
     const correctPredictionPercent = ((allPredictions.correct.length / allPredictions.predicted.length) * 100).toFixed(
       1,
     );
@@ -160,11 +158,18 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
         allPredictions.predicted,
         {
           text: allPredictions.predicted.map(point => {
-            const score = data.couplingScores.getCouplingScore(point.i, point.j);
+            let hoverText =
+              point && point.A_i && point.A_j
+                ? `(${point.i}${point.A_i}, ${point.j}${point.A_j})`
+                : `(${point.i}, ${point.j})`;
+            if (point && point.score) {
+              hoverText = `${hoverText}<br>Score: ${point.score}`;
+            }
+            if (point && point.probability) {
+              hoverText = `${hoverText}<br>Probability: ${point.probability.toFixed(1)}`;
+            }
 
-            return score && score.A_i && score.A_j
-              ? `(${point.i}${score.A_i}, ${point.j}${score.A_j})`
-              : `(${point.i}, ${point.j})`;
+            return hoverText;
           }),
         },
       ),
@@ -177,11 +182,16 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
         allPredictions.correct,
         {
           text: allPredictions.correct.map(point => {
-            const score = data.couplingScores.getCouplingScore(point.i, point.j);
+            let hoverText =
+              point.A_i && point.A_j ? `(${point.i}${point.A_i}, ${point.j}${point.A_j})` : `(${point.i}, ${point.j})`;
+            if (point && point.score) {
+              hoverText = `${hoverText}<br>Score: ${point.score}`;
+            }
+            if (point && point.probability) {
+              hoverText = `${hoverText}<br>Probability: ${point.probability.toFixed(1)}`;
+            }
 
-            return score && score.A_i && score.A_j
-              ? `(${point.i}${score.A_i}, ${point.j}${score.A_j})`
-              : `(${point.i}, ${point.j})`;
+            return hoverText;
           }),
         },
       ),

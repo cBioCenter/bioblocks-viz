@@ -80,6 +80,8 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
   className="PredictedContactMapComponent"
 >
   <Connect(ContactMapClass)
+    agreementColor="#ff0000"
+    allColor="#000000"
     configurations={
       Array [
         Object {
@@ -106,7 +108,6 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
         },
       ]
     }
-    correctColor="#ff0000"
     data={
       Object {
         "couplingScores": CouplingContainer {
@@ -155,7 +156,6 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
       ]
     }
     height="100%"
-    incorrectColor="#000000"
     isDataLoading={false}
     width="100%"
   />
@@ -167,6 +167,8 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
   className="PredictedContactMapComponent"
 >
   <Connect(ContactMapClass)
+    agreementColor="#ff0000"
+    allColor="#000000"
     configurations={
       Array [
         Object {
@@ -193,7 +195,6 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
         },
       ]
     }
-    correctColor="#ff0000"
     data={
       Object {
         "couplingScores": CouplingContainer {
@@ -242,7 +243,6 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
       ]
     }
     height="100%"
-    incorrectColor="#000000"
     isDataLoading={false}
     width="100%"
   />
@@ -254,6 +254,8 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
   className="PredictedContactMapComponent"
 >
   <Connect(ContactMapClass)
+    agreementColor="#ff0000"
+    allColor="#000000"
     configurations={
       Array [
         Object {
@@ -280,7 +282,6 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
         },
       ]
     }
-    correctColor="#ff0000"
     data={
       Object {
         "couplingScores": CouplingContainer {
@@ -329,7 +330,6 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
       ]
     }
     height="100%"
-    incorrectColor="#000000"
     isDataLoading={false}
     lockedResiduePairs={
       Object {

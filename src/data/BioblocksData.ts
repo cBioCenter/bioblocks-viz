@@ -60,6 +60,7 @@ export enum COUPLING_SCORE_SOURCE {
   'fn' = 'fn',
   'probability' = 'probability',
   'precision' = 'precision',
+  'score' = 'score',
 }
 
 export interface ICouplingScore {
@@ -74,6 +75,7 @@ export interface ICouplingScore {
   j: number;
   precision?: number;
   probability?: number;
+  score?: number;
   segment_i?: string;
   segment_j?: string;
 }

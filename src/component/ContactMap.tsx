@@ -232,11 +232,18 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
         observedContactPoints,
         {
           text: observedContactPoints.map(point => {
-            const score = couplingContainer.getCouplingScore(point.i, point.j);
+            let hoverText =
+              point && point.A_i && point.A_j
+                ? `(${point.i}${point.A_i}, ${point.j}${point.A_j})`
+                : `(${point.i}, ${point.j})`;
+            if (point && point.score) {
+              hoverText = `${hoverText}<br>Score: ${point.score}`;
+            }
+            if (point && point.probability) {
+              hoverText = `${hoverText}<br>Probability: ${point.probability.toFixed(1)}`;
+            }
 
-            return score && score.A_i && score.A_j
-              ? `(${point.i}${score.A_i}, ${point.j}${score.A_j})`
-              : `(${point.i}, ${point.j})`;
+            return hoverText;
           }),
         },
       ),

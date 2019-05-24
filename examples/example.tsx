@@ -177,7 +177,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
           residueMapping = generateResidueMapping(parsedFile);
         } else if (file.name.endsWith('CouplingScores.csv')) {
           couplingScoresCSV = parsedFile;
-        } else if (file.name.endsWith('.csv') && file.name.toLowerCase().includes('residue')) {
+        } else if (file.name.endsWith('.csv') && file.name.includes('distance_map')) {
           secondaryStructures = new Array<SECONDARY_STRUCTURE_SECTION>();
           parsedFile
             .split('\n')
