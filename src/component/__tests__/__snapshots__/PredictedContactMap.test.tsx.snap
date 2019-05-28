@@ -106,6 +106,46 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
             "min": 1,
           },
         },
+        Object {
+          "name": "Minimum Allowed Probability",
+          "onChange": [Function],
+          "step": 0.01,
+          "type": "SLIDER",
+          "values": Object {
+            "current": 0.9,
+            "defaultValue": 0.9,
+            "max": 1,
+            "min": 0,
+          },
+        },
+        Object {
+          "name": "Minimum Allowed Score",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 0,
+            "defaultValue": 0,
+            "max": 100,
+            "min": 0,
+          },
+        },
+        Object {
+          "name": "Rank Range",
+          "onChange": [Function],
+          "range": Object {
+            "current": Array [
+              1,
+              100,
+            ],
+            "defaultRange": Array [
+              1,
+              100,
+            ],
+            "max": 100,
+            "min": 0,
+          },
+          "type": "RANGE_SLIDER",
+        },
       ]
     }
     data={
@@ -193,6 +233,46 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
             "min": 1,
           },
         },
+        Object {
+          "name": "Minimum Allowed Probability",
+          "onChange": [Function],
+          "step": 0.01,
+          "type": "SLIDER",
+          "values": Object {
+            "current": 0.9,
+            "defaultValue": 0.9,
+            "max": 1,
+            "min": 0,
+          },
+        },
+        Object {
+          "name": "Minimum Allowed Score",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 0,
+            "defaultValue": 0,
+            "max": 100,
+            "min": 0,
+          },
+        },
+        Object {
+          "name": "Rank Range",
+          "onChange": [Function],
+          "range": Object {
+            "current": Array [
+              1,
+              100,
+            ],
+            "defaultRange": Array [
+              1,
+              100,
+            ],
+            "max": 100,
+            "min": 0,
+          },
+          "type": "RANGE_SLIDER",
+        },
       ]
     }
     data={
@@ -279,6 +359,46 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
             "max": 50,
             "min": 1,
           },
+        },
+        Object {
+          "name": "Minimum Allowed Probability",
+          "onChange": [Function],
+          "step": 0.01,
+          "type": "SLIDER",
+          "values": Object {
+            "current": 0.9,
+            "defaultValue": 0.9,
+            "max": 1,
+            "min": 0,
+          },
+        },
+        Object {
+          "name": "Minimum Allowed Score",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 0,
+            "defaultValue": 0,
+            "max": 100,
+            "min": 0,
+          },
+        },
+        Object {
+          "name": "Rank Range",
+          "onChange": [Function],
+          "range": Object {
+            "current": Array [
+              1,
+              100,
+            ],
+            "defaultRange": Array [
+              1,
+              100,
+            ],
+            "max": 100,
+            "min": 0,
+          },
+          "type": "RANGE_SLIDER",
         },
       ]
     }

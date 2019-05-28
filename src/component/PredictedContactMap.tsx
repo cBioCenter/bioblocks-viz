@@ -22,8 +22,11 @@ export interface IPredictedContactMapProps {
 
 export const initialPredictedContactMapState = {
   linearDistFilter: 5,
+  minimumProbability: 0.9,
+  minimumScore: 0,
   numPredictionsToShow: -1,
   pointsToPlot: [] as IContactMapChartData[],
+  rankFilter: [1, 100],
 };
 
 export type PredictedContactMapState = typeof initialPredictedContactMapState;
@@ -53,12 +56,15 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
 
   public componentDidUpdate(prevProps: IPredictedContactMapProps, prevState: PredictedContactMapState) {
     const { data } = this.props;
-    const { linearDistFilter, numPredictionsToShow } = this.state;
+    const { linearDistFilter, minimumProbability, minimumScore, numPredictionsToShow, rankFilter } = this.state;
 
     const isRecomputeNeeded =
       data.couplingScores !== prevProps.data.couplingScores ||
       linearDistFilter !== prevState.linearDistFilter ||
-      numPredictionsToShow !== prevState.numPredictionsToShow;
+      minimumProbability !== prevState.minimumProbability ||
+      minimumScore !== prevState.minimumScore ||
+      numPredictionsToShow !== prevState.numPredictionsToShow ||
+      rankFilter !== prevState.rankFilter;
     if (isRecomputeNeeded) {
       this.setupData(data.couplingScores !== prevProps.data.couplingScores);
     }
@@ -71,7 +77,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     return (
       <div className="PredictedContactMapComponent" style={style}>
         <ContactMap
-          configurations={this.getContactMapConfigs()}
+          configurations={this.getConfigs()}
           data={{
             couplingScores: data.couplingScores,
             pdbData: data.pdbData,
@@ -90,36 +96,93 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     });
   };
 
+  public onMinimumProbabilityChange = () => (value: number) => {
+    this.setState({
+      minimumProbability: value,
+    });
+  };
+
+  public onMinimumScoreChange = () => (value: number) => {
+    this.setState({
+      minimumScore: value,
+    });
+  };
+
   public onNumPredictionsToShowChange = () => (value: number) => {
     this.setState({
       numPredictionsToShow: value,
     });
   };
 
-  protected getContactMapConfigs = (): BioblocksWidgetConfig[] => [
-    {
-      name: 'Linear Distance Filter (|i - j|)',
-      onChange: this.onLinearDistFilterChange(),
-      type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
-      values: {
-        current: this.state.linearDistFilter,
-        defaultValue: 5,
-        max: 10,
-        min: 1,
+  public onRankChange = () => (range: number[]) => {
+    this.setState({
+      rankFilter: range,
+    });
+  };
+
+  protected getConfigs = (): BioblocksWidgetConfig[] => {
+    const { linearDistFilter, minimumProbability, minimumScore, numPredictionsToShow, rankFilter } = this.state;
+
+    return [
+      {
+        name: 'Linear Distance Filter (|i - j|)',
+        onChange: this.onLinearDistFilterChange(),
+        type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
+        values: {
+          current: linearDistFilter,
+          defaultValue: initialPredictedContactMapState.linearDistFilter,
+          max: 10,
+          min: 1,
+        },
       },
-    },
-    {
-      name: 'Top N Predictions to Show',
-      onChange: this.onNumPredictionsToShowChange(),
-      type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
-      values: {
-        current: this.state.numPredictionsToShow,
-        defaultValue: 100,
-        max: this.props.data.couplingScores.chainLength,
-        min: 1,
+      {
+        name: 'Top N Predictions to Show',
+        onChange: this.onNumPredictionsToShowChange(),
+        type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
+        values: {
+          current: numPredictionsToShow,
+          defaultValue: 100,
+          max: this.props.data.couplingScores.chainLength,
+          min: 1,
+        },
       },
-    },
-  ];
+      {
+        name: 'Minimum Allowed Probability',
+        onChange: this.onMinimumProbabilityChange(),
+        step: 0.01,
+        type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
+        values: {
+          current: minimumProbability,
+          defaultValue: initialPredictedContactMapState.minimumProbability,
+          max: 1.0,
+          min: 0.0,
+        },
+      },
+      {
+        name: 'Minimum Allowed Score',
+        onChange: this.onMinimumScoreChange(),
+        type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
+        values: {
+          current: minimumScore,
+          defaultValue: initialPredictedContactMapState.minimumScore,
+          max: 100,
+          min: 0,
+        },
+      },
+
+      {
+        name: 'Rank Range',
+        onChange: this.onRankChange(),
+        range: {
+          current: rankFilter,
+          defaultRange: initialPredictedContactMapState.rankFilter,
+          max: 100,
+          min: 0,
+        },
+        type: CONFIGURATION_COMPONENT_TYPE.RANGE_SLIDER,
+      },
+    ];
+  };
 
   /**
    * Setups up the prediction values for the data.
@@ -127,8 +190,8 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
    * @param isNewData Is this an entirely new dataset?
    */
   protected setupData(isNewData: boolean) {
-    const { agreementColor: correctColor, data, allColor: incorrectColor } = this.props;
-    const { linearDistFilter, numPredictionsToShow } = this.state;
+    const { agreementColor: correctColor, data, allColor } = this.props;
+    const { linearDistFilter, minimumProbability, minimumScore, numPredictionsToShow } = this.state;
 
     let couplingScores = new CouplingContainer();
     const { pdbData } = data;
@@ -143,7 +206,13 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     }
 
     const { chainLength } = couplingScores;
-    const allPredictions = couplingScores.getPredictedContacts(numPredictionsToShow, linearDistFilter);
+    const allPredictions = couplingScores.getPredictedContacts(
+      numPredictionsToShow,
+      linearDistFilter,
+      5,
+      minimumProbability,
+      minimumScore,
+    );
     const correctPredictionPercent = ((allPredictions.correct.length / allPredictions.predicted.length) * 100).toFixed(
       1,
     );
@@ -151,7 +220,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     const newPoints: IContactMapChartData[] = [
       generateChartDataEntry(
         'text',
-        incorrectColor,
+        allColor,
         'Predicted Contact',
         `(N=${numPredictionsToShow}, L=${chainLength})`,
         4,

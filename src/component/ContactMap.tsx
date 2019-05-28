@@ -128,18 +128,9 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
   };
 
   public render() {
-    const { configurations, removeAllLockedResiduePairs } = this.props;
     const { pointsToPlot } = this.state;
 
-    return this.renderContactMapChart(pointsToPlot, [
-      {
-        name: 'Clear Selections',
-        onClick: removeAllLockedResiduePairs,
-        type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
-      },
-      ...configurations,
-      ...this.generateNodeSizeSliderConfigs(pointsToPlot),
-    ]);
+    return this.renderContactMapChart(pointsToPlot);
   }
 
   protected generateNodeSizeSliderConfigs = (entries: IContactMapChartData[]) =>
@@ -160,7 +151,123 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       },
     );
 
-  protected renderContactMapChart(pointsToPlot: IContactMapChartData[], configurations: BioblocksWidgetConfig[]) {
+  protected getFilterConfigs = (): BioblocksWidgetConfig[] => {
+    const { configurations } = this.props;
+
+    return [
+      ...configurations,
+      /*
+      {
+        name: 'Maximum Rank',
+        onChange: this.onLinearDistFilterChange(),
+        type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
+        values: {
+          current: this.state.linearDistFilter,
+          defaultValue: 5,
+          max: 10,
+          min: 1,
+        },
+      },
+      {
+        name: 'Top N Predictions to Show',
+        onChange: this.onNumPredictionsToShowChange(),
+        type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
+        values: {
+          current: this.state.numPredictionsToShow,
+          defaultValue: 100,
+          max: this.props.data.couplingScores.chainLength,
+          min: 1,
+        },
+      },
+      */
+    ];
+  };
+
+  protected getSettingsConfigs = (): BioblocksWidgetConfig[] => {
+    const { removeAllLockedResiduePairs } = this.props;
+    const { pointsToPlot } = this.state;
+
+    return [
+      {
+        name: 'Clear Selections',
+        onClick: removeAllLockedResiduePairs,
+        type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
+      },
+      ...this.generateNodeSizeSliderConfigs(pointsToPlot),
+    ];
+  };
+
+  protected onMouseClick = (cb: (residues: ILockedResiduePair) => void) => (e: BioblocksChartEvent) => {
+    if (e.isAxis()) {
+      const { addSelectedSecondaryStructure, data, removeSecondaryStructure, selectedSecondaryStructures } = this.props;
+
+      for (const secondaryStructure of data.secondaryStructures) {
+        for (const section of secondaryStructure) {
+          if (section.contains(...e.selectedPoints)) {
+            if (selectedSecondaryStructures.includes(section)) {
+              removeSecondaryStructure(section);
+            } else {
+              addSelectedSecondaryStructure(section);
+            }
+          }
+        }
+      }
+    } else {
+      cb({ [e.selectedPoints.sort().toString()]: e.selectedPoints });
+    }
+  };
+
+  protected onMouseEnter = (cb: (residue: RESIDUE_TYPE[]) => void) => (e: BioblocksChartEvent) => {
+    if (e.isAxis()) {
+      const { addHoveredSecondaryStructure, hoveredSecondaryStructures, data } = this.props;
+
+      for (const secondaryStructure of data.secondaryStructures) {
+        for (const section of secondaryStructure) {
+          if (
+            section.contains(...e.selectedPoints) &&
+            !hoveredSecondaryStructures.find(
+              secStruct =>
+                secStruct.end === section.end && secStruct.label === section.label && secStruct.start === section.start,
+            )
+          ) {
+            addHoveredSecondaryStructure(section);
+          }
+        }
+      }
+    } else {
+      cb(e.selectedPoints);
+    }
+  };
+
+  protected onMouseLeave = (cb?: (residue: RESIDUE_TYPE[]) => void) => (e: BioblocksChartEvent) => {
+    if (e.isAxis()) {
+      const { data, hoveredSecondaryStructures, removeHoveredSecondaryStructure } = this.props;
+
+      for (const secondaryStructure of data.secondaryStructures) {
+        for (const section of secondaryStructure) {
+          const searchResult = hoveredSecondaryStructures.find(
+            secStruct =>
+              secStruct.end === section.end && secStruct.label === section.label && secStruct.start === section.start,
+          );
+          if (section.contains(...e.selectedPoints) && searchResult) {
+            removeHoveredSecondaryStructure(searchResult);
+          }
+        }
+      }
+    } else if (cb) {
+      cb(e.selectedPoints);
+    }
+  };
+
+  protected onMouseSelect = (cb?: (residues: RESIDUE_TYPE[]) => void) => (e: BioblocksChartEvent) => {
+    if (cb) {
+      // For the contact map, all the x/y values are mirrored and correspond directly with i/j values.
+      // Thus, all the residue numbers can be obtained by getting either all x or values from ths selected points.
+      cb(e.selectedPoints.map(point => point));
+    }
+  };
+
+  protected renderContactMapChart(pointsToPlot: IContactMapChartData[]) {
     const {
       addHoveredResidues,
       candidateResidues,
@@ -182,7 +289,15 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
         menuItems={[
           {
             component: {
-              configs: configurations,
+              configs: this.getFilterConfigs(),
+              name: 'POPUP',
+            },
+            description: 'Filter',
+            iconName: 'filter',
+          },
+          {
+            component: {
+              configs: this.getSettingsConfigs(),
               name: 'POPUP',
             },
             description: 'Settings',
@@ -298,76 +413,6 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       pointsToPlot: [...result],
     });
   }
-
-  protected onMouseClick = (cb: (residues: ILockedResiduePair) => void) => (e: BioblocksChartEvent) => {
-    if (e.isAxis()) {
-      const { addSelectedSecondaryStructure, data, removeSecondaryStructure, selectedSecondaryStructures } = this.props;
-
-      for (const secondaryStructure of data.secondaryStructures) {
-        for (const section of secondaryStructure) {
-          if (section.contains(...e.selectedPoints)) {
-            if (selectedSecondaryStructures.includes(section)) {
-              removeSecondaryStructure(section);
-            } else {
-              addSelectedSecondaryStructure(section);
-            }
-          }
-        }
-      }
-    } else {
-      cb({ [e.selectedPoints.sort().toString()]: e.selectedPoints });
-    }
-  };
-
-  protected onMouseEnter = (cb: (residue: RESIDUE_TYPE[]) => void) => (e: BioblocksChartEvent) => {
-    if (e.isAxis()) {
-      const { addHoveredSecondaryStructure, hoveredSecondaryStructures, data } = this.props;
-
-      for (const secondaryStructure of data.secondaryStructures) {
-        for (const section of secondaryStructure) {
-          if (
-            section.contains(...e.selectedPoints) &&
-            !hoveredSecondaryStructures.find(
-              secStruct =>
-                secStruct.end === section.end && secStruct.label === section.label && secStruct.start === section.start,
-            )
-          ) {
-            addHoveredSecondaryStructure(section);
-          }
-        }
-      }
-    } else {
-      cb(e.selectedPoints);
-    }
-  };
-
-  protected onMouseLeave = (cb?: (residue: RESIDUE_TYPE[]) => void) => (e: BioblocksChartEvent) => {
-    if (e.isAxis()) {
-      const { data, hoveredSecondaryStructures, removeHoveredSecondaryStructure } = this.props;
-
-      for (const secondaryStructure of data.secondaryStructures) {
-        for (const section of secondaryStructure) {
-          const searchResult = hoveredSecondaryStructures.find(
-            secStruct =>
-              secStruct.end === section.end && secStruct.label === section.label && secStruct.start === section.start,
-          );
-          if (section.contains(...e.selectedPoints) && searchResult) {
-            removeHoveredSecondaryStructure(searchResult);
-          }
-        }
-      }
-    } else if (cb) {
-      cb(e.selectedPoints);
-    }
-  };
-
-  protected onMouseSelect = (cb?: (residues: RESIDUE_TYPE[]) => void) => (e: BioblocksChartEvent) => {
-    if (cb) {
-      // For the contact map, all the x/y values are mirrored and correspond directly with i/j values.
-      // Thus, all the residue numbers can be obtained by getting either all x or values from ths selected points.
-      cb(e.selectedPoints.map(point => point));
-    }
-  };
 }
 
 const mapStateToProps = (state: { [key: string]: any }) => ({

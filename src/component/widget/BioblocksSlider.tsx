@@ -20,6 +20,8 @@ export type BioblocksSliderCallback =
  * @export
  */
 export type BioblocksSliderProps = {
+  defaultValue?: number;
+
   /** Value the slider is set to. */
   value: number;
 

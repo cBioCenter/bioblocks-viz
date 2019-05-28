@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { Button, Grid, Icon, Label, Menu, Popup, PopupProps, SemanticICONS } from 'semantic-ui-react';
 
-import { BioblocksRadioGroup, BioblocksSlider } from '~bioblocks-viz~/component/widget';
+import { BioblocksRadioGroup, BioblocksRangeSlider, BioblocksSlider } from '~bioblocks-viz~/component/widget';
 import {
   BioblocksWidgetConfig,
   ButtonWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
   LabelWidgetConfig,
   RadioWidgetConfig,
+  RangeSliderWidgetConfig,
   SliderWidgetConfig,
 } from '~bioblocks-viz~/data';
 
@@ -114,6 +115,8 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         return this.renderConfigurationLabel(config, id);
       case CONFIGURATION_COMPONENT_TYPE.RADIO:
         return this.renderConfigurationRadioButton(config, id);
+      case CONFIGURATION_COMPONENT_TYPE.RANGE_SLIDER:
+        return this.renderConfigurationRangeSlider(config, id);
       case CONFIGURATION_COMPONENT_TYPE.SLIDER:
         return this.renderConfigurationSlider(config, id);
       default: {
@@ -153,6 +156,22 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
     );
   }
 
+  protected renderConfigurationRangeSlider(config: RangeSliderWidgetConfig, id: string) {
+    return (
+      <BioblocksRangeSlider
+        key={id}
+        label={config.name}
+        defaultValue={config.range.defaultRange}
+        max={config.range.max}
+        min={config.range.min}
+        onAfterChange={config.onAfterChange}
+        onChange={config.onChange}
+        style={{ padding: '0 18px', width: '100%', ...config.style }}
+        value={config.range.current}
+      />
+    );
+  }
+
   protected renderConfigurationSlider(config: SliderWidgetConfig, id: string) {
     return (
       <BioblocksSlider
@@ -163,6 +182,7 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         min={config.values.min}
         onAfterChange={config.onAfterChange}
         onChange={config.onChange}
+        step={config.step}
         style={{ padding: '0 18px', width: '100%', ...config.style }}
         value={config.values.current}
       />

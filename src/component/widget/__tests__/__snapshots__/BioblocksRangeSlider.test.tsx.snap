@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BioblocksRangeSlider Should match existing snapshot when given simple data. 1`] = `
+<div>
+  <GridColumn
+    style={
+      Object {
+        "float": "left",
+        "height": "100%",
+        "width": "75%",
+      }
+    }
+  >
+    <p>
+      test: [0 - 1]
+    </p>
+    <ComponentEnhancer(Range)
+      activeDotStyle={Object {}}
+      allowCross={false}
+      className=""
+      count={1}
+      disabled={false}
+      dotStyle={Object {}}
+      dots={false}
+      handle={[Function]}
+      handleStyle={
+        Array [
+          Object {},
+        ]
+      }
+      included={true}
+      marks={Object {}}
+      max={100}
+      min={1}
+      onAfterChange={[Function]}
+      onBeforeChange={[Function]}
+      onChange={[Function]}
+      prefixCls="rc-slider"
+      pushable={false}
+      railStyle={Object {}}
+      step={1}
+      tabIndex={Array []}
+      trackStyle={
+        Array [
+          Object {},
+        ]
+      }
+      value={
+        Array [
+          0,
+          1,
+        ]
+      }
+      vertical={false}
+    />
+  </GridColumn>
+  <GridColumn
+    style={
+      Object {
+        "float": "right",
+        "padding": "5% 0",
+        "width": "20%",
+      }
+    }
+    verticalAlign="middle"
+  >
+    <Button
+      as="button"
+      icon="undo"
+      onClick={[Function]}
+      size="small"
+    />
+  </GridColumn>
+</div>
+`;

@@ -173,11 +173,11 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
   /**
    * Determine which contacts in this coupling container are observed.
    *
-   * @param [distFilter=5] For each score, if dist <= distFilter, it is considered observed.
-   * @param [linearDistFilter=5] For each score, if |i - j| >= linearDistFilter, it will be a candidate for being correct/incorrect.
+   * @param [distFilter=5] - For each score, if dist <= distFilter, it is considered observed.
+   * @param [linearDistFilter=5] - For each score, if |i - j| >= linearDistFilter, it will be a candidate for being correct/incorrect.
    * @returns Contacts that should be considered observed in the current data set.
    */
-  public getObservedContacts(distFilter: number = 5, linearDistFilter = 5): ICouplingScore[] {
+  public getObservedContacts(distFilter: number = 5, linearDistFilter: number = 5): ICouplingScore[] {
     const result = new Array<ICouplingScore>();
     for (const score of this) {
       if (score.dist && score.dist <= distFilter && Math.abs(score.i - score.j) >= linearDistFilter) {
@@ -196,14 +196,25 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
    * @param [measuredContactDistFilter=5]  If the dist for the contact is less than predictionCutoffDist, it is considered correct.
    * @returns An object containing 2 array fields: correct and predicted.
    */
-  public getPredictedContacts(totalPredictionsToShow: number, linearDistFilter = 5, measuredContactDistFilter = 5) {
+  public getPredictedContacts(
+    totalPredictionsToShow: number,
+    linearDistFilter = 5,
+    measuredContactDistFilter = 5,
+    minimumProbabilityFilter = 0,
+    minimumScoreFilter = 0,
+  ) {
     const result = {
       correct: new Array<ICouplingScore>(),
       predicted: new Array<ICouplingScore>(),
     };
 
     for (const contact of this.rankedContacts
-      .filter(score => Math.abs(score.i - score.j) >= linearDistFilter)
+      .filter(
+        score =>
+          Math.abs(score.i - score.j) >= linearDistFilter &&
+          (score.probability ? score.probability >= minimumProbabilityFilter : true) &&
+          (score.score ? score.score >= minimumScoreFilter : true),
+      )
       .slice(0, totalPredictionsToShow)) {
       if (contact.dist && contact.dist < measuredContactDistFilter) {
         result.correct.push(contact);
