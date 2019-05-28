@@ -52,7 +52,7 @@ export const generateScatterData = (
                 const breakIndex = coord.indexOf('<br>');
 
                 return `(${coord
-                  .substr(1, breakIndex - 1)
+                  .substr(1, breakIndex - 2)
                   .split(', ')
                   .reverse()
                   .join(', ')})${coord.substring(breakIndex)}`;

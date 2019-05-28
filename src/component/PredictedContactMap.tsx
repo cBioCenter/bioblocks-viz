@@ -7,6 +7,7 @@ import {
   CONFIGURATION_COMPONENT_TYPE,
   CouplingContainer,
   IContactMapData,
+  ICouplingScoreFilter,
   SECONDARY_STRUCTURE,
 } from '~bioblocks-viz~/data';
 
@@ -14,6 +15,7 @@ export interface IPredictedContactMapProps {
   agreementColor: string;
   allColor: string;
   data: IContactMapData;
+  filters: ICouplingScoreFilter[];
   height: number | string;
   isDataLoading: boolean;
   style?: BIOBLOCKS_CSS_STYLE;
@@ -39,6 +41,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
       couplingScores: new CouplingContainer(),
       secondaryStructures: new Array<SECONDARY_STRUCTURE>(),
     },
+    filters: [],
     height: '100%',
     isDataLoading: false,
     width: '100%',
@@ -102,28 +105,27 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     });
   };
 
-  public onMinimumScoreChange = () => (value: number) => {
-    this.setState({
-      minimumScore: value,
-    });
-  };
-
   public onNumPredictionsToShowChange = () => (value: number) => {
     this.setState({
       numPredictionsToShow: value,
     });
   };
 
-  public onRankChange = () => (range: number[]) => {
-    this.setState({
-      rankFilter: range,
-    });
-  };
-
   protected getConfigs = (): BioblocksWidgetConfig[] => {
-    const { linearDistFilter, minimumProbability, minimumScore, numPredictionsToShow, rankFilter } = this.state;
+    const { linearDistFilter, minimumProbability, numPredictionsToShow } = this.state;
 
     return [
+      {
+        name: 'Number of Couplings to Display',
+        onChange: this.onNumPredictionsToShowChange(),
+        type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
+        values: {
+          current: numPredictionsToShow,
+          defaultValue: 100,
+          max: this.props.data.couplingScores.chainLength,
+          min: 1,
+        },
+      },
       {
         name: 'Linear Distance Filter (|i - j|)',
         onChange: this.onLinearDistFilterChange(),
@@ -132,17 +134,6 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
           current: linearDistFilter,
           defaultValue: initialPredictedContactMapState.linearDistFilter,
           max: 10,
-          min: 1,
-        },
-      },
-      {
-        name: 'Top N Predictions to Show',
-        onChange: this.onNumPredictionsToShowChange(),
-        type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
-        values: {
-          current: numPredictionsToShow,
-          defaultValue: 100,
-          max: this.props.data.couplingScores.chainLength,
           min: 1,
         },
       },
@@ -157,29 +148,6 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
           max: 1.0,
           min: 0.0,
         },
-      },
-      {
-        name: 'Minimum Allowed Score',
-        onChange: this.onMinimumScoreChange(),
-        type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
-        values: {
-          current: minimumScore,
-          defaultValue: initialPredictedContactMapState.minimumScore,
-          max: 100,
-          min: 0,
-        },
-      },
-
-      {
-        name: 'Rank Range',
-        onChange: this.onRankChange(),
-        range: {
-          current: rankFilter,
-          defaultRange: initialPredictedContactMapState.rankFilter,
-          max: 100,
-          min: 0,
-        },
-        type: CONFIGURATION_COMPONENT_TYPE.RANGE_SLIDER,
       },
     ];
   };
@@ -206,13 +174,17 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     }
 
     const { chainLength } = couplingScores;
-    const allPredictions = couplingScores.getPredictedContacts(
-      numPredictionsToShow,
-      linearDistFilter,
-      5,
-      minimumProbability,
-      minimumScore,
-    );
+    const allPredictions = couplingScores.getPredictedContacts(numPredictionsToShow, linearDistFilter, [
+      {
+        filterFn: score => (score.probability ? score.probability >= minimumProbability : true),
+      },
+      {
+        filterFn: score => (score.score ? score.score >= minimumScore : true),
+      },
+      {
+        filterFn: score => Math.abs(score.i - score.j) >= linearDistFilter,
+      },
+    ]);
     const correctPredictionPercent = ((allPredictions.correct.length / allPredictions.predicted.length) * 100).toFixed(
       1,
     );

@@ -63,6 +63,14 @@ export enum COUPLING_SCORE_SOURCE {
   'score' = 'score',
 }
 
+export interface ICouplingScoreFilter<T = number | number[]> {
+  // currentValue: T;
+  // defaultValue: T;
+  // name: string;
+  filterFn(couplingScore: ICouplingScore): boolean;
+  // onChange(newValue: T): void;
+}
+
 export interface ICouplingScore {
   A_i?: AMINO_ACID_SINGLE_LETTER_CODE;
   A_j?: AMINO_ACID_SINGLE_LETTER_CODE;

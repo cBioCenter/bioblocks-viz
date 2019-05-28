@@ -6,6 +6,7 @@ export interface IBioblocksRadioGroupProps {
   disabled: boolean;
   id: string;
   options: string[];
+  selectedOption?: string;
   style: React.CSSProperties;
   title: string;
   onChange?(value: any): void;
@@ -24,9 +25,16 @@ export class BioblocksRadioGroup extends React.Component<IBioblocksRadioGroupPro
 
   constructor(props: IBioblocksRadioGroupProps) {
     super(props);
-    const { defaultOption, options } = props;
+    const { defaultOption, options, selectedOption } = props;
+    let selectedIndex = 0;
+    if (selectedOption && options.includes(selectedOption)) {
+      selectedIndex = options.indexOf(selectedOption);
+    } else if (defaultOption && options.includes(defaultOption)) {
+      selectedIndex = options.indexOf(defaultOption);
+    }
+
     this.state = {
-      selectedIndex: defaultOption && options.includes(defaultOption) ? options.indexOf(defaultOption) : 0,
+      selectedIndex,
     };
   }
 

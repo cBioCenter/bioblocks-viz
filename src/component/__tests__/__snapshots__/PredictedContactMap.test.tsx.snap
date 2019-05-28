@@ -85,6 +85,17 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
     configurations={
       Array [
         Object {
+          "name": "Number of Couplings to Display",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 25,
+            "defaultValue": 100,
+            "max": 50,
+            "min": 1,
+          },
+        },
+        Object {
           "name": "Linear Distance Filter (|i - j|)",
           "onChange": [Function],
           "type": "SLIDER",
@@ -92,17 +103,6 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
             "current": 5,
             "defaultValue": 5,
             "max": 10,
-            "min": 1,
-          },
-        },
-        Object {
-          "name": "Top N Predictions to Show",
-          "onChange": [Function],
-          "type": "SLIDER",
-          "values": Object {
-            "current": 25,
-            "defaultValue": 100,
-            "max": 50,
             "min": 1,
           },
         },
@@ -117,34 +117,6 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
             "max": 1,
             "min": 0,
           },
-        },
-        Object {
-          "name": "Minimum Allowed Score",
-          "onChange": [Function],
-          "type": "SLIDER",
-          "values": Object {
-            "current": 0,
-            "defaultValue": 0,
-            "max": 100,
-            "min": 0,
-          },
-        },
-        Object {
-          "name": "Rank Range",
-          "onChange": [Function],
-          "range": Object {
-            "current": Array [
-              1,
-              100,
-            ],
-            "defaultRange": Array [
-              1,
-              100,
-            ],
-            "max": 100,
-            "min": 0,
-          },
-          "type": "RANGE_SLIDER",
         },
       ]
     }
@@ -167,6 +139,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
         "secondaryStructures": Array [],
       }
     }
+    filters={Array []}
     formattedPoints={
       Array [
         Object {
@@ -212,6 +185,17 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
     configurations={
       Array [
         Object {
+          "name": "Number of Couplings to Display",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 25,
+            "defaultValue": 100,
+            "max": 50,
+            "min": 1,
+          },
+        },
+        Object {
           "name": "Linear Distance Filter (|i - j|)",
           "onChange": [Function],
           "type": "SLIDER",
@@ -219,17 +203,6 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
             "current": 5,
             "defaultValue": 5,
             "max": 10,
-            "min": 1,
-          },
-        },
-        Object {
-          "name": "Top N Predictions to Show",
-          "onChange": [Function],
-          "type": "SLIDER",
-          "values": Object {
-            "current": 25,
-            "defaultValue": 100,
-            "max": 50,
             "min": 1,
           },
         },
@@ -244,34 +217,6 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
             "max": 1,
             "min": 0,
           },
-        },
-        Object {
-          "name": "Minimum Allowed Score",
-          "onChange": [Function],
-          "type": "SLIDER",
-          "values": Object {
-            "current": 0,
-            "defaultValue": 0,
-            "max": 100,
-            "min": 0,
-          },
-        },
-        Object {
-          "name": "Rank Range",
-          "onChange": [Function],
-          "range": Object {
-            "current": Array [
-              1,
-              100,
-            ],
-            "defaultRange": Array [
-              1,
-              100,
-            ],
-            "max": 100,
-            "min": 0,
-          },
-          "type": "RANGE_SLIDER",
         },
       ]
     }
@@ -294,6 +239,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
         "secondaryStructures": Array [],
       }
     }
+    filters={Array []}
     formattedPoints={
       Array [
         Object {
@@ -339,6 +285,17 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
     configurations={
       Array [
         Object {
+          "name": "Number of Couplings to Display",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 25,
+            "defaultValue": 100,
+            "max": 50,
+            "min": 1,
+          },
+        },
+        Object {
           "name": "Linear Distance Filter (|i - j|)",
           "onChange": [Function],
           "type": "SLIDER",
@@ -346,17 +303,6 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
             "current": 5,
             "defaultValue": 5,
             "max": 10,
-            "min": 1,
-          },
-        },
-        Object {
-          "name": "Top N Predictions to Show",
-          "onChange": [Function],
-          "type": "SLIDER",
-          "values": Object {
-            "current": 25,
-            "defaultValue": 100,
-            "max": 50,
             "min": 1,
           },
         },
@@ -371,34 +317,6 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
             "max": 1,
             "min": 0,
           },
-        },
-        Object {
-          "name": "Minimum Allowed Score",
-          "onChange": [Function],
-          "type": "SLIDER",
-          "values": Object {
-            "current": 0,
-            "defaultValue": 0,
-            "max": 100,
-            "min": 0,
-          },
-        },
-        Object {
-          "name": "Rank Range",
-          "onChange": [Function],
-          "range": Object {
-            "current": Array [
-              1,
-              100,
-            ],
-            "defaultRange": Array [
-              1,
-              100,
-            ],
-            "max": 100,
-            "min": 0,
-          },
-          "type": "RANGE_SLIDER",
         },
       ]
     }
@@ -421,6 +339,7 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
         "secondaryStructures": Array [],
       }
     }
+    filters={Array []}
     formattedPoints={
       Array [
         Object {

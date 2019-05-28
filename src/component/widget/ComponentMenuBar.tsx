@@ -150,6 +150,7 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         key={id}
         options={config.options}
         onChange={config.onChange}
+        selectedOption={config.current}
         style={config.style}
         title={config.name}
       />

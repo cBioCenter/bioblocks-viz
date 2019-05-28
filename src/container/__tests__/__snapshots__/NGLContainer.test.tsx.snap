@@ -392,7 +392,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                               "type": "BUTTON",
                             },
                             Object {
-                              "defaultOption": "Disable",
+                              "current": "Disable",
                               "name": "Zoom on Click",
                               "onChange": [Function],
                               "options": Array [
@@ -402,7 +402,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                               "type": "RADIO",
                             },
                             Object {
-                              "current": "CLOSEST ATOM",
+                              "current": "C-α",
                               "name": "Proximity Metric",
                               "onChange": [Function],
                               "options": Array [
@@ -413,7 +413,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                             },
                             Object {
                               "current": "default",
-                              "name": "Structure Representation Type",
+                              "name": "Structure Representation",
                               "onChange": [Function],
                               "options": Array [
                                 "Default",
@@ -629,7 +629,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                     "type": "BUTTON",
                                   },
                                   Object {
-                                    "defaultOption": "Disable",
+                                    "current": "Disable",
                                     "name": "Zoom on Click",
                                     "onChange": [Function],
                                     "options": Array [
@@ -639,7 +639,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                     "type": "RADIO",
                                   },
                                   Object {
-                                    "current": "CLOSEST ATOM",
+                                    "current": "C-α",
                                     "name": "Proximity Metric",
                                     "onChange": [Function],
                                     "options": Array [
@@ -650,7 +650,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                   },
                                   Object {
                                     "current": "default",
-                                    "name": "Structure Representation Type",
+                                    "name": "Structure Representation",
                                     "onChange": [Function],
                                     "options": Array [
                                       "Default",

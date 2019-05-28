@@ -61,6 +61,7 @@ export interface INGLComponentProps {
 
 export const initialNGLState = {
   activeRepresentations: new Array<NGL.RepresentationElement>(),
+  isMovePickEnabled: false,
   stage: undefined as NGL.Stage | undefined,
   superpositionStatus: 'NONE' as SUPERPOSITION_STATUS_TYPE,
 };
@@ -325,7 +326,8 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   };
 
   protected getConfigurations = () => {
-    const { removeAllLockedResiduePairs } = this.props;
+    const { measuredProximity, removeAllLockedResiduePairs } = this.props;
+    const { isMovePickEnabled } = this.state;
 
     return [
       {
@@ -334,14 +336,14 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
         type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
       },
       {
-        defaultOption: 'Disable',
+        current: isMovePickEnabled ? 'Enable' : 'Disable',
         name: 'Zoom on Click',
         onChange: this.toggleMovePick,
         options: ['Enable', 'Disable'],
         type: CONFIGURATION_COMPONENT_TYPE.RADIO,
       },
       {
-        current: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
+        current: measuredProximity,
         name: 'Proximity Metric',
         onChange: this.measuredProximityHandler,
         options: Object.values(CONTACT_DISTANCE_PROXIMITY).map(capitalizeEveryWord),
@@ -349,7 +351,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       },
       {
         current: 'default',
-        name: 'Structure Representation Type',
+        name: 'Structure Representation',
         onChange: (value: number) => {
           const { stage } = this.state;
           const reps = ['default', 'spacefill', 'backbone', 'cartoon', 'surface', 'tube'];
@@ -651,6 +653,10 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       } else {
         stage.mouseControls.add('clickPick-left', NGL.MouseActions.movePick);
       }
+
+      this.setState({
+        isMovePickEnabled: !clickPickEnabled,
+      });
     }
   };
 }

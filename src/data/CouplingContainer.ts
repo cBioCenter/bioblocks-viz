@@ -3,6 +3,7 @@ import {
   COUPLING_SCORE_SOURCE,
   IAminoAcid,
   ICouplingScore,
+  ICouplingScoreFilter,
 } from '~bioblocks-viz~/data';
 
 /**
@@ -198,10 +199,8 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
    */
   public getPredictedContacts(
     totalPredictionsToShow: number,
-    linearDistFilter = 5,
     measuredContactDistFilter = 5,
-    minimumProbabilityFilter = 0,
-    minimumScoreFilter = 0,
+    filters: ICouplingScoreFilter[] = [],
   ) {
     const result = {
       correct: new Array<ICouplingScore>(),
@@ -209,12 +208,7 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
     };
 
     for (const contact of this.rankedContacts
-      .filter(
-        score =>
-          Math.abs(score.i - score.j) >= linearDistFilter &&
-          (score.probability ? score.probability >= minimumProbabilityFilter : true) &&
-          (score.score ? score.score >= minimumScoreFilter : true),
-      )
+      .filter(score => filters.reduce((prev: boolean, filter) => prev && filter.filterFn(score), true))
       .slice(0, totalPredictionsToShow)) {
       if (contact.dist && contact.dist < measuredContactDistFilter) {
         result.correct.push(contact);

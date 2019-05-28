@@ -21,7 +21,7 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
               "type": "BUTTON",
             },
             Object {
-              "defaultOption": "Disable",
+              "current": "Disable",
               "name": "Zoom on Click",
               "onChange": [Function],
               "options": Array [
@@ -31,7 +31,7 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
               "type": "RADIO",
             },
             Object {
-              "current": "CLOSEST ATOM",
+              "current": "C-α",
               "name": "Proximity Metric",
               "onChange": [Function],
               "options": Array [
@@ -42,7 +42,7 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
             },
             Object {
               "current": "default",
-              "name": "Structure Representation Type",
+              "name": "Structure Representation",
               "onChange": [Function],
               "options": Array [
                 "Default",
