@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ISpringReducerState | bioblocks-viz</title>
+	<title>IBioblocksWidgetRangeConfig | bioblocks-viz</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="ispringreducerstate.html">ISpringReducerState</a>
+					<a href="ibioblockswidgetrangeconfig.html">IBioblocksWidgetRangeConfig</a>
 				</li>
 			</ul>
-			<h1>Interface ISpringReducerState</h1>
+			<h1>Interface IBioblocksWidgetRangeConfig</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ISpringReducerState</span>
+						<span class="target">IBioblocksWidgetRangeConfig</span>
 					</li>
 				</ul>
 			</section>
@@ -79,8 +79,14 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ispringreducerstate.html#category" class="tsd-kind-icon">category</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ispringreducerstate.html#graphdata" class="tsd-kind-icon">graph<wbr>Data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ibioblockswidgetrangeconfig.html#range" class="tsd-kind-icon">range</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="ibioblockswidgetrangeconfig.html#onafterchange" class="tsd-kind-icon">on<wbr>After<wbr>Change</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="ibioblockswidgetrangeconfig.html#onchange" class="tsd-kind-icon">on<wbr>Change</a></li>
 							</ul>
 						</section>
 					</div>
@@ -89,24 +95,80 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="category" class="tsd-anchor"></a>
-					<h3>category</h3>
-					<div class="tsd-signature tsd-kind-icon">category<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="range" class="tsd-anchor"></a>
+					<h3>range</h3>
+					<div class="tsd-signature tsd-kind-icon">range<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/328601928/src/reducer/SpringReducer.ts#L7">src/reducer/SpringReducer.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/328601928/src/data/BioblocksConfig.ts#L20">src/data/BioblocksConfig.ts:20</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>current<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>default<wbr>Range<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>max<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>min<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+							</li>
+						</ul>
+					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="graphdata" class="tsd-anchor"></a>
-					<h3>graph<wbr>Data</h3>
-					<div class="tsd-signature tsd-kind-icon">graph<wbr>Data<span class="tsd-signature-symbol">:</span> <a href="ispringgraphdata.html" class="tsd-signature-type">ISpringGraphData</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/328601928/src/reducer/SpringReducer.ts#L8">src/reducer/SpringReducer.ts:8</a></li>
-						</ul>
-					</aside>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="onafterchange" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>After<wbr>Change</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>After<wbr>Change<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/328601928/src/data/BioblocksConfig.ts#L27">src/data/BioblocksConfig.ts:27</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="onchange" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Change</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Change<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/328601928/src/data/BioblocksConfig.ts#L26">src/data/BioblocksConfig.ts:26</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -123,13 +185,16 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="ispringreducerstate.html" class="tsd-kind-icon">ISpring<wbr>Reducer<wbr>State</a>
+						<a href="ibioblockswidgetrangeconfig.html" class="tsd-kind-icon">IBioblocks<wbr>Widget<wbr>Range<wbr>Config</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="ispringreducerstate.html#category" class="tsd-kind-icon">category</a>
+								<a href="ibioblockswidgetrangeconfig.html#range" class="tsd-kind-icon">range</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="ispringreducerstate.html#graphdata" class="tsd-kind-icon">graph<wbr>Data</a>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="ibioblockswidgetrangeconfig.html#onafterchange" class="tsd-kind-icon">on<wbr>After<wbr>Change</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="ibioblockswidgetrangeconfig.html#onchange" class="tsd-kind-icon">on<wbr>Change</a>
 							</li>
 						</ul>
 					</li>
