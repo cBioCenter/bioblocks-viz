@@ -1089,11 +1089,32 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                         >
                           <GridRow
                             centered={true}
-                            columns={2}
+                            columns={3}
                           >
                             <div
-                              className="centered two column row"
+                              className="centered three column row"
                             >
+                              <GridColumn>
+                                <div
+                                  className="column"
+                                >
+                                  <div
+                                    style={
+                                      Object {
+                                        "userSelect": "none",
+                                      }
+                                    }
+                                  >
+                                    <a
+                                      aria-pressed={false}
+                                      onClick={[Function]}
+                                      role="button"
+                                    >
+                                      Toggle Camera
+                                    </a>
+                                  </div>
+                                </div>
+                              </GridColumn>
                               <GridColumn>
                                 <div
                                   className="column"

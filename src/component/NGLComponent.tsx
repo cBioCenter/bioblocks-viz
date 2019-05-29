@@ -320,6 +320,21 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     }
   };
 
+  protected switchCameraType = () => {
+    const { stage } = this.state;
+    if (stage) {
+      if (stage.parameters.cameraType === 'stereo') {
+        stage.setParameters({
+          cameraType: 'perspective',
+        });
+      } else {
+        stage.setParameters({
+          cameraType: 'stereo',
+        });
+      }
+    }
+  };
+
   protected deriveActiveRepresentations(structureComponent: NGL.StructureComponent) {
     const {
       candidateResidues,
@@ -741,7 +756,14 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
 
     return (
       <Grid>
-        <Grid.Row centered={true} columns={2}>
+        <Grid.Row centered={true} columns={3}>
+          <Grid.Column>
+            <div style={{ userSelect: 'none' }}>
+              <a aria-pressed={false} onClick={this.switchCameraType} role={'button'}>
+                Toggle Camera
+              </a>
+            </div>
+          </Grid.Column>
           <Grid.Column>
             <div style={{ userSelect: 'none' }}>
               <a aria-pressed={false} onClick={this.centerCamera} role={'button'}>

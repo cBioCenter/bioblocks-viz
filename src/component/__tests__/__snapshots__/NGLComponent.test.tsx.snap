@@ -115,8 +115,25 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
   <Grid>
     <GridRow
       centered={true}
-      columns={2}
+      columns={3}
     >
+      <GridColumn>
+        <div
+          style={
+            Object {
+              "userSelect": "none",
+            }
+          }
+        >
+          <a
+            aria-pressed={false}
+            onClick={[Function]}
+            role="button"
+          >
+            Toggle Camera
+          </a>
+        </div>
+      </GridColumn>
       <GridColumn>
         <div
           style={
