@@ -47,12 +47,23 @@ export const generateScatterData = (
           ...textValues,
           ...textValues.map(
             // Given a coordinate '(x, y)', create '(y, x)' - needed because we have custom hover labels.
-            coord =>
-              `(${coord
-                .substr(1, coord.length - 2)
-                .split(', ')
-                .reverse()
-                .join(', ')})`,
+            coord => {
+              if (coord.includes('<br>')) {
+                const breakIndex = coord.indexOf('<br>');
+
+                return `(${coord
+                  .substr(1, breakIndex - 2)
+                  .split(', ')
+                  .reverse()
+                  .join(', ')})${coord.substring(breakIndex)}`;
+              } else {
+                return `(${coord
+                  .substr(1, coord.length - 2)
+                  .split(', ')
+                  .reverse()
+                  .join(', ')})`;
+              }
+            },
           ),
         ]
       : textValues,

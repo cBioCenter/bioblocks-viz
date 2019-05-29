@@ -6,6 +6,7 @@ export interface IBioblocksRadioGroupProps {
   disabled: boolean;
   id: string;
   options: string[];
+  selectedOption?: string;
   style: React.CSSProperties;
   title: string;
   onChange?(value: any): void;
@@ -24,9 +25,16 @@ export class BioblocksRadioGroup extends React.Component<IBioblocksRadioGroupPro
 
   constructor(props: IBioblocksRadioGroupProps) {
     super(props);
-    const { defaultOption, options } = props;
+    const { defaultOption, options, selectedOption } = props;
+    let selectedIndex = 0;
+    if (selectedOption && options.includes(selectedOption)) {
+      selectedIndex = options.indexOf(selectedOption);
+    } else if (defaultOption && options.includes(defaultOption)) {
+      selectedIndex = options.indexOf(defaultOption);
+    }
+
     this.state = {
-      selectedIndex: defaultOption && options.includes(defaultOption) ? options.indexOf(defaultOption) : 0,
+      selectedIndex,
     };
   }
 
@@ -46,23 +54,25 @@ export class BioblocksRadioGroup extends React.Component<IBioblocksRadioGroupPro
 
     return (
       <div style={style}>
-        <Grid centered={true} columns={2} padded={true}>
-          <Grid.Row>
-            <div style={{ fontStyle: 'italic', fontWeight: 'bold', textDecoration: 'underline' }}>{title}</div>
-          </Grid.Row>
-          {options.map((option, index) => (
-            <Grid.Column key={`${id}-${option}`} style={{ paddingBottom: 0, paddingTop: '7px' }}>
-              <Form.Radio
-                checked={this.state.selectedIndex === index}
-                disabled={disabled}
-                label={{ children: option, style }}
-                name={option}
-                onChange={this.handleChange(index)}
-                value={index}
-              />
-            </Grid.Column>
-          ))}
-        </Grid>
+        <Form>
+          <Grid centered={true} columns={2} padded={true}>
+            <Grid.Row>
+              <div style={{ fontStyle: 'italic', fontWeight: 'bold', textDecoration: 'underline' }}>{title}</div>
+            </Grid.Row>
+            {options.map((option, index) => (
+              <Grid.Column key={`${id}-${option}-${index}`} style={{ paddingBottom: 0, paddingTop: '7px' }}>
+                <Form.Radio
+                  checked={this.state.selectedIndex === index}
+                  disabled={disabled}
+                  label={{ children: option, style }}
+                  name={option}
+                  onChange={this.handleChange(index)}
+                  value={index}
+                />
+              </Grid.Column>
+            ))}
+          </Grid>
+        </Form>
       </div>
     );
   }

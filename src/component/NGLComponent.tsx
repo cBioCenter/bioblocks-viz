@@ -20,6 +20,7 @@ import {
 } from '~bioblocks-viz~/data';
 import {
   capitalizeEveryWord,
+  capitalizeFirstLetter,
   createBallStickRepresentation,
   createDistanceRepresentation,
   createSecStructRepresentation,
@@ -60,7 +61,17 @@ export interface INGLComponentProps {
 }
 
 export const initialNGLState = {
-  activeRepresentations: new Array<NGL.RepresentationElement>(),
+  activeRepresentations: {
+    experimental: {
+      reps: new Array<NGL.RepresentationElement>(),
+      structType: 'default' as NGL.StructureRepresentationType,
+    },
+    predicted: {
+      reps: new Array<NGL.RepresentationElement>(),
+      structType: 'default' as NGL.StructureRepresentationType,
+    },
+  },
+  isMovePickEnabled: false,
   stage: undefined as NGL.Stage | undefined,
   superpositionStatus: 'NONE' as SUPERPOSITION_STATUS_TYPE,
 };
@@ -126,7 +137,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       stage.viewer.renderer.forceContextLoss();
       stage.dispose();
       this.setState({
-        activeRepresentations: [],
+        activeRepresentations: initialNGLState.activeRepresentations,
         stage: undefined,
       });
     }
@@ -160,8 +171,6 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
         this.handleSuperposition(stage, superpositionStatus);
       }
 
-      const structureComponent = stage.compList[0] as NGL.StructureComponent;
-
       const isHighlightUpdateNeeded =
         candidateResidues !== prevProps.candidateResidues ||
         hoveredResidues !== prevProps.hoveredResidues ||
@@ -169,15 +178,13 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
         lockedResiduePairs !== prevProps.lockedResiduePairs ||
         measuredProximity !== prevProps.measuredProximity ||
         selectedSecondaryStructures !== prevProps.selectedSecondaryStructures;
-      if (isHighlightUpdateNeeded) {
-        for (const rep of this.state.activeRepresentations) {
-          structureComponent.removeRepresentation(rep);
-        }
 
+      if (isHighlightUpdateNeeded) {
         this.setState({
-          activeRepresentations: this.deriveActiveRepresentations(structureComponent),
+          activeRepresentations: { ...this.handleRepresentationUpdate(stage) },
         });
       }
+
       stage.viewer.requestRender();
     }
   }
@@ -236,14 +243,42 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
    */
   protected addStructureToStage(structure: NGL.Structure, stage: NGL.Stage) {
     const structureComponent = stage.addComponentFromObject(structure);
+    const { predictedProteins } = this.props;
+    const { activeRepresentations } = this.state;
 
-    stage.defaultFileRepresentation(structureComponent);
     stage.signals.clicked.add(this.onClick);
 
-    const activeRepresentations = this.deriveActiveRepresentations(structureComponent);
-    this.setState({
-      activeRepresentations,
-    });
+    if (predictedProteins.find(pred => pred.nglStructure.name === structureComponent.name)) {
+      if (activeRepresentations.predicted.structType === 'default') {
+        stage.defaultFileRepresentation(structureComponent);
+      } else {
+        structureComponent.addRepresentation(activeRepresentations.predicted.structType);
+      }
+      this.setState({
+        activeRepresentations: {
+          experimental: { ...activeRepresentations.experimental },
+          predicted: {
+            ...activeRepresentations.predicted,
+            reps: [...this.deriveActiveRepresentations(structureComponent)],
+          },
+        },
+      });
+    } else {
+      if (activeRepresentations.experimental.structType === 'default') {
+        stage.defaultFileRepresentation(structureComponent);
+      } else {
+        structureComponent.addRepresentation(activeRepresentations.experimental.structType);
+      }
+      this.setState({
+        activeRepresentations: {
+          experimental: {
+            ...activeRepresentations.experimental,
+            reps: [...this.deriveActiveRepresentations(structureComponent)],
+          },
+          predicted: { ...activeRepresentations.predicted },
+        },
+      });
+    }
     stage.viewer.requestRender();
   }
 
@@ -325,7 +360,8 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   };
 
   protected getConfigurations = () => {
-    const { removeAllLockedResiduePairs } = this.props;
+    const { measuredProximity, removeAllLockedResiduePairs } = this.props;
+    const { isMovePickEnabled } = this.state;
 
     return [
       {
@@ -334,35 +370,83 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
         type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
       },
       {
-        defaultOption: 'Disable',
+        current: isMovePickEnabled ? 'Enable' : 'Disable',
         name: 'Zoom on Click',
         onChange: this.toggleMovePick,
         options: ['Enable', 'Disable'],
         type: CONFIGURATION_COMPONENT_TYPE.RADIO,
       },
       {
-        current: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
+        current: measuredProximity,
         name: 'Proximity Metric',
         onChange: this.measuredProximityHandler,
         options: Object.values(CONTACT_DISTANCE_PROXIMITY).map(capitalizeEveryWord),
         type: CONFIGURATION_COMPONENT_TYPE.RADIO,
       },
       {
-        current: 'default',
-        name: 'Structure Representation Type',
+        current: capitalizeFirstLetter(this.state.activeRepresentations.predicted.structType),
+        name: 'Predicted Structure Representation',
         onChange: (value: number) => {
+          const { predictedProteins } = this.props;
           const { stage } = this.state;
-          const reps = ['default', 'spacefill', 'backbone', 'cartoon', 'surface', 'tube'];
-          if (stage && stage.compList.length >= 1) {
-            const structureComponent = stage.compList[0] as NGL.StructureComponent;
-            structureComponent.removeAllRepresentations();
-            if (value === 0) {
-              stage.defaultFileRepresentation(structureComponent);
-            } else {
-              structureComponent.addRepresentation(reps[value] as NGL.StructureRepresentationType);
+          const rep = ['default', 'spacefill', 'backbone', 'cartoon', 'surface', 'tube'][
+            value
+          ] as NGL.StructureRepresentationType;
+          if (stage) {
+            const activeRepresentations = this.state.activeRepresentations;
+            activeRepresentations.predicted.reps = [];
+            activeRepresentations.predicted.structType = rep;
+            for (const structureComponent of stage.compList) {
+              if (predictedProteins.find(pred => pred.nglStructure.name === structureComponent.name)) {
+                structureComponent.removeAllRepresentations();
+                if (rep === 'default') {
+                  stage.defaultFileRepresentation(structureComponent);
+                } else {
+                  structureComponent.addRepresentation(rep);
+                }
+                activeRepresentations.predicted.reps.push(
+                  ...this.deriveActiveRepresentations(structureComponent as NGL.StructureComponent),
+                );
+              }
+            }
+
+            this.setState({
+              activeRepresentations,
+            });
+            stage.viewer.requestRender();
+          }
+        },
+        options: Object.values(['Default', 'Spacefill', 'Backbone', 'Cartoon', 'Surface', 'Tube']),
+        type: CONFIGURATION_COMPONENT_TYPE.RADIO,
+      },
+      {
+        current: capitalizeFirstLetter(this.state.activeRepresentations.experimental.structType),
+        name: 'Experimental Structure Representation',
+        onChange: (value: number) => {
+          const { experimentalProteins } = this.props;
+          const { stage } = this.state;
+          const rep = ['default', 'spacefill', 'backbone', 'cartoon', 'surface', 'tube'][
+            value
+          ] as NGL.StructureRepresentationType;
+          if (stage) {
+            const activeRepresentations = this.state.activeRepresentations;
+            activeRepresentations.experimental.reps = [];
+            activeRepresentations.experimental.structType = rep;
+            for (const structureComponent of stage.compList) {
+              if (experimentalProteins.find(exp => exp.nglStructure.name === structureComponent.name)) {
+                structureComponent.removeAllRepresentations();
+                if (rep === 'default') {
+                  stage.defaultFileRepresentation(structureComponent);
+                } else {
+                  structureComponent.addRepresentation(rep);
+                }
+                activeRepresentations.experimental.reps.push(
+                  ...this.deriveActiveRepresentations(structureComponent as NGL.StructureComponent),
+                );
+              }
             }
             this.setState({
-              activeRepresentations: this.deriveActiveRepresentations(structureComponent),
+              activeRepresentations,
             });
             stage.viewer.requestRender();
           }
@@ -384,6 +468,42 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
 
       return createDistanceRepresentation(structureComponent, [atomIndexI, atomIndexJ]);
     }
+  }
+
+  protected handleRepresentationUpdate(stage: NGL.Stage) {
+    const { predictedProteins } = this.props;
+    const { activeRepresentations } = this.state;
+    for (const structureComponent of stage.compList) {
+      let isExperimental = true;
+
+      if (predictedProteins.find(pred => pred.nglStructure.name === structureComponent.name)) {
+        isExperimental = false;
+      }
+
+      for (const rep of isExperimental
+        ? this.state.activeRepresentations.experimental.reps
+        : this.state.activeRepresentations.predicted.reps) {
+        structureComponent.removeRepresentation(rep);
+      }
+
+      if (isExperimental) {
+        for (const rep of this.state.activeRepresentations.experimental.reps) {
+          structureComponent.removeRepresentation(rep);
+        }
+        activeRepresentations.experimental.reps.push(
+          ...this.deriveActiveRepresentations(structureComponent as NGL.StructureComponent),
+        );
+      } else {
+        for (const rep of this.state.activeRepresentations.predicted.reps) {
+          structureComponent.removeRepresentation(rep);
+        }
+        activeRepresentations.predicted.reps.push(
+          ...this.deriveActiveRepresentations(structureComponent as NGL.StructureComponent),
+        );
+      }
+    }
+
+    return activeRepresentations;
   }
 
   protected handleSuperposition(stage: NGL.Stage, superpositionStatus: SUPERPOSITION_STATUS_TYPE) {
@@ -651,6 +771,10 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       } else {
         stage.mouseControls.add('clickPick-left', NGL.MouseActions.movePick);
       }
+
+      this.setState({
+        isMovePickEnabled: !clickPickEnabled,
+      });
     }
   };
 }

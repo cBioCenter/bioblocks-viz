@@ -5,6 +5,7 @@ import {
   CONTACT_DISTANCE_PROXIMITY,
   CouplingContainer,
   IContactMapData,
+  ICouplingScore,
   ISecondaryStructureData,
   ISpringCategoricalColorData,
   ISpringCategoricalColorDataInput,
@@ -242,7 +243,7 @@ export const getCouplingScoresData = (line: string, residueMapping: IResidueMapp
 const isCouplingHeaderPresent = (headerRow: string[]) =>
   ['cn', 'dist', 'i', 'j'].filter(row => headerRow.includes(row)).length >= 1;
 
-const getCouplingScoreFromCSVRow = (row: string[], headerIndices: { [key: string]: number }) =>
+const getCouplingScoreFromCSVRow = (row: string[], headerIndices: { [key: string]: number }): ICouplingScore =>
   Object.entries(headerIndices).reduce(
     (prev, headerName) => {
       const couplingKey = headerName[0];
@@ -266,10 +267,9 @@ export const augmentCouplingScoresWithResidueMapping = (
     const mappedIndexJ = residueMapping.findIndex(mapping => mapping.couplingsResno === couplingScore.j);
 
     result.addCouplingScore({
+      ...couplingScore,
       A_i: residueMapping[mappedIndexI].pdbResCode,
       A_j: residueMapping[mappedIndexJ].pdbResCode,
-      cn: couplingScore.cn,
-      dist: couplingScore.dist,
       i: residueMapping[mappedIndexI].pdbResno,
       j: residueMapping[mappedIndexJ].pdbResno,
     });

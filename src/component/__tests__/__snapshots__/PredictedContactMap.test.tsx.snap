@@ -80,8 +80,21 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
   className="PredictedContactMapComponent"
 >
   <Connect(ContactMapClass)
+    agreementColor="#ff0000"
+    allColor="#000000"
     configurations={
       Array [
+        Object {
+          "name": "Number of Couplings to Display",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 25,
+            "defaultValue": 100,
+            "max": 50,
+            "min": 1,
+          },
+        },
         Object {
           "name": "Linear Distance Filter (|i - j|)",
           "onChange": [Function],
@@ -94,19 +107,19 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
           },
         },
         Object {
-          "name": "Top N Predictions to Show",
+          "name": "Minimum Allowed Probability",
           "onChange": [Function],
+          "step": 0.01,
           "type": "SLIDER",
           "values": Object {
-            "current": 25,
-            "defaultValue": 100,
-            "max": 50,
-            "min": 1,
+            "current": 0.9,
+            "defaultValue": 0.9,
+            "max": 1,
+            "min": 0,
           },
         },
       ]
     }
-    correctColor="#ff0000"
     data={
       Object {
         "couplingScores": CouplingContainer {
@@ -126,6 +139,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
         "secondaryStructures": Array [],
       }
     }
+    filters={Array []}
     formattedPoints={
       Array [
         Object {
@@ -155,7 +169,6 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
       ]
     }
     height="100%"
-    incorrectColor="#000000"
     isDataLoading={false}
     width="100%"
   />
@@ -167,8 +180,21 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
   className="PredictedContactMapComponent"
 >
   <Connect(ContactMapClass)
+    agreementColor="#ff0000"
+    allColor="#000000"
     configurations={
       Array [
+        Object {
+          "name": "Number of Couplings to Display",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 25,
+            "defaultValue": 100,
+            "max": 50,
+            "min": 1,
+          },
+        },
         Object {
           "name": "Linear Distance Filter (|i - j|)",
           "onChange": [Function],
@@ -181,19 +207,19 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
           },
         },
         Object {
-          "name": "Top N Predictions to Show",
+          "name": "Minimum Allowed Probability",
           "onChange": [Function],
+          "step": 0.01,
           "type": "SLIDER",
           "values": Object {
-            "current": 25,
-            "defaultValue": 100,
-            "max": 50,
-            "min": 1,
+            "current": 0.9,
+            "defaultValue": 0.9,
+            "max": 1,
+            "min": 0,
           },
         },
       ]
     }
-    correctColor="#ff0000"
     data={
       Object {
         "couplingScores": CouplingContainer {
@@ -213,6 +239,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
         "secondaryStructures": Array [],
       }
     }
+    filters={Array []}
     formattedPoints={
       Array [
         Object {
@@ -242,7 +269,6 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
       ]
     }
     height="100%"
-    incorrectColor="#000000"
     isDataLoading={false}
     width="100%"
   />
@@ -254,8 +280,21 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
   className="PredictedContactMapComponent"
 >
   <Connect(ContactMapClass)
+    agreementColor="#ff0000"
+    allColor="#000000"
     configurations={
       Array [
+        Object {
+          "name": "Number of Couplings to Display",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 25,
+            "defaultValue": 100,
+            "max": 50,
+            "min": 1,
+          },
+        },
         Object {
           "name": "Linear Distance Filter (|i - j|)",
           "onChange": [Function],
@@ -268,19 +307,19 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
           },
         },
         Object {
-          "name": "Top N Predictions to Show",
+          "name": "Minimum Allowed Probability",
           "onChange": [Function],
+          "step": 0.01,
           "type": "SLIDER",
           "values": Object {
-            "current": 25,
-            "defaultValue": 100,
-            "max": 50,
-            "min": 1,
+            "current": 0.9,
+            "defaultValue": 0.9,
+            "max": 1,
+            "min": 0,
           },
         },
       ]
     }
-    correctColor="#ff0000"
     data={
       Object {
         "couplingScores": CouplingContainer {
@@ -300,6 +339,7 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
         "secondaryStructures": Array [],
       }
     }
+    filters={Array []}
     formattedPoints={
       Array [
         Object {
@@ -329,7 +369,6 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
       ]
     }
     height="100%"
-    incorrectColor="#000000"
     isDataLoading={false}
     lockedResiduePairs={
       Object {

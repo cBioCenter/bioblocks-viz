@@ -220,7 +220,12 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
                           ).includes(pdb.name)}
                           onChange={onChange}
                           value={pdb.name}
-                          label={pdb.getTrimmedName('_', 6)}
+                          label={pdb.name
+                            .split('_')
+                            .reverse()
+                            .slice(0, 4)
+                            .reverse()
+                            .join('_')}
                         />
                       }
                     >

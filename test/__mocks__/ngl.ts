@@ -27,6 +27,7 @@ class MockStage {
   };
 
   public mouseControls = {
+    actionList: new Array<string>(),
     add: (eventName: string, callback: (...args: any[]) => void) => this.events.set(eventName, callback),
     remove: (eventName: string, callback: (...args: any[]) => void) => this.events.delete(eventName),
     run: (eventName: string, ...args: any[]) => {

@@ -1,49 +1,54 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { connect, Provider } from 'react-redux';
-import { Button, Grid, GridColumn, GridRow, Header, Label, Message, Segment } from 'semantic-ui-react';
+import { Button, Grid, Header, Label, Message, Segment } from 'semantic-ui-react';
 
 import { createContainerActions, createResiduePairActions } from '~bioblocks-viz~/action';
-import { ContactMap, PredictedContactMap } from '~bioblocks-viz~/component';
+import { PredictedContactMap } from '~bioblocks-viz~/component';
 import { NGLContainer } from '~bioblocks-viz~/container';
 import {
-  BIOBLOCKS_CSS_STYLE,
+  Bioblocks1DSection,
   BioblocksPDB,
   CONTACT_DISTANCE_PROXIMITY,
   CONTACT_MAP_DATA_TYPE,
   CouplingContainer,
+  getPDBAndCouplingMismatch,
   IResidueMismatchResult,
+  SECONDARY_STRUCTURE_CODES,
+  SECONDARY_STRUCTURE_SECTION,
   VIZ_TYPE,
 } from '~bioblocks-viz~/data';
-import { generateResidueMapping, getCouplingScoresData, IResidueMapping, readFileAsText } from '~bioblocks-viz~/helper';
+import {
+  EMPTY_FUNCTION,
+  generateResidueMapping,
+  getCouplingScoresData,
+  IResidueMapping,
+  readFileAsText,
+} from '~bioblocks-viz~/helper';
 import { Store } from '~bioblocks-viz~/reducer';
 
 export interface IExampleAppProps {
-  style: BIOBLOCKS_CSS_STYLE;
+  style: Exclude<React.CSSProperties, 'height' | 'width'>;
   clearAllResidues(): void;
   clearAllSecondaryStructures(): void;
 }
 
 export interface IExampleAppState {
-  [VIZ_TYPE.CONTACT_MAP]: CONTACT_MAP_DATA_TYPE & { isLoading: boolean };
-  [VIZ_TYPE.NGL]: {
-    isLoading: boolean;
-    pdbData: BioblocksPDB[];
-  };
-  arePredictionsAvailable: boolean;
-  couplingScores: string;
-  filenames: Partial<{
-    couplings: string;
-    pdb: string;
-    residue_mapper: string;
-  }>;
+  [VIZ_TYPE.CONTACT_MAP]: CONTACT_MAP_DATA_TYPE;
+  errorMsg: string;
+  experimentalProteins: BioblocksPDB[];
+  isDragHappening: boolean;
+  isLoading: boolean;
   measuredProximity: CONTACT_DISTANCE_PROXIMITY;
-  pdbData?: BioblocksPDB;
+  mismatches: IResidueMismatchResult[];
+  predictedProteins: BioblocksPDB[];
   residueMapping: IResidueMapping[];
 }
 
 class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState> {
   public static defaultProps = {
+    clearAllResidues: EMPTY_FUNCTION,
+    clearAllSecondaryStructures: EMPTY_FUNCTION,
     style: {
       backgroundColor: '#ffffff',
     },
@@ -52,19 +57,16 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
   protected static initialState: IExampleAppState = {
     [VIZ_TYPE.CONTACT_MAP]: {
       couplingScores: new CouplingContainer(),
-      isLoading: false,
       pdbData: undefined,
       secondaryStructures: [],
     },
-    [VIZ_TYPE.NGL]: {
-      isLoading: false,
-      pdbData: [],
-    },
-    arePredictionsAvailable: false,
-    couplingScores: '',
-    filenames: {},
+    errorMsg: '',
+    experimentalProteins: [],
+    isDragHappening: false,
+    isLoading: false,
     measuredProximity: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
-    pdbData: undefined,
+    mismatches: [],
+    predictedProteins: [],
     residueMapping: [],
   };
 
@@ -74,18 +76,44 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
   }
 
   public componentDidUpdate(prevProps: IExampleAppProps, prevState: IExampleAppState) {
-    const { measuredProximity, pdbData } = this.state;
+    const { measuredProximity, predictedProteins } = this.state;
     const { couplingScores } = this.state[VIZ_TYPE.CONTACT_MAP];
 
-    console.log(pdbData);
+    const pdbData = predictedProteins.length >= 1 ? predictedProteins[0] : undefined;
+
+    let errorMsg = '';
+
+    let newMismatches = this.state.mismatches;
+
+    if (
+      pdbData &&
+      (prevState.predictedProteins.length === 0 || prevState.predictedProteins[0] !== pdbData) &&
+      couplingScores !== prevState[VIZ_TYPE.CONTACT_MAP].couplingScores
+    ) {
+      newMismatches = getPDBAndCouplingMismatch(pdbData, couplingScores);
+
+      if (newMismatches.length >= 1) {
+        errorMsg = `Error details: ${newMismatches.length} mismatch(es) detected between coupling scores and PDB!\
+        For example, residue number ${newMismatches[0].resno} is '${
+          newMismatches[0].pdbAminoAcid.threeLetterCode
+        }' in the PDB but '${newMismatches[0].couplingAminoAcid.threeLetterCode}' in the coupling scores file.`;
+      }
+    }
+
     if (pdbData && measuredProximity !== prevState.measuredProximity) {
       this.setState({
         [VIZ_TYPE.CONTACT_MAP]: {
           couplingScores: pdbData.amendPDBWithCouplingScores(couplingScores.rankedContacts, measuredProximity),
-          isLoading: false,
-          pdbData: { known: this.state.pdbData },
+          pdbData: { known: pdbData },
           secondaryStructures: [],
         },
+        errorMsg,
+        mismatches: newMismatches,
+      });
+    } else if (errorMsg.length >= 1) {
+      this.setState({
+        errorMsg,
+        mismatches: newMismatches,
       });
     }
   }
@@ -99,26 +127,141 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     );
   }
 
-  protected renderCouplingComponents = (
-    { style } = this.props,
-    { arePredictionsAvailable, couplingScores, measuredProximity, pdbData } = this.state,
-  ) => (
-    <div>
+  protected onClearAll = () => async () => {
+    const { clearAllResidues, clearAllSecondaryStructures } = this.props;
+    this.setState(ExampleAppClass.initialState);
+    clearAllResidues();
+    clearAllSecondaryStructures();
+    this.forceUpdate();
+  };
+
+  protected onFileUpload = async (e: React.ChangeEvent) => {
+    e.persist();
+    const files = (e.target as HTMLInputElement).files;
+    if (!files) {
+      return;
+    }
+
+    await this.onClearAll()();
+    const { measuredProximity } = this.state;
+
+    this.setState({
+      isDragHappening: false,
+      isLoading: true,
+    });
+
+    let couplingScoresCSV: string = '';
+    let pdbData = BioblocksPDB.createEmptyPDB();
+    let residueMapping: IResidueMapping[] = [];
+    let secondaryStructures: SECONDARY_STRUCTURE_SECTION[] = [];
+
+    const experimentalProteins = new Array<BioblocksPDB>();
+    const predictedProteins = new Array<BioblocksPDB>();
+    for (let i = 0; i < files.length; ++i) {
+      const file = files.item(i) as { path?: string } & File;
+
+      if (file.name.endsWith('.pdb')) {
+        pdbData = await BioblocksPDB.createPDB(file);
+        if (file.name.includes('pred')) {
+          predictedProteins.push(pdbData);
+        } else if (file.name.includes('exp')) {
+          experimentalProteins.push(pdbData);
+        }
+      } else {
+        const parsedFile = await readFileAsText(file);
+        if (
+          file.name.endsWith('indextable') ||
+          file.name.endsWith('indextableplus') ||
+          file.name.startsWith('residue_mapping')
+        ) {
+          residueMapping = generateResidueMapping(parsedFile);
+        } else if (file.name.endsWith('CouplingScores.csv')) {
+          couplingScoresCSV = parsedFile;
+        } else if (file.name.endsWith('.csv') && file.name.includes('distance_map')) {
+          secondaryStructures = new Array<SECONDARY_STRUCTURE_SECTION>();
+          parsedFile
+            .split('\n')
+            .slice(1)
+            .filter(row => row.split(',').length >= 3)
+            .forEach(row => {
+              const items = row.split(',');
+              const resno = parseFloat(items[1]);
+              const structId = items[2] as keyof typeof SECONDARY_STRUCTURE_CODES;
+              if (
+                secondaryStructures[secondaryStructures.length - 1] &&
+                secondaryStructures[secondaryStructures.length - 1].label === structId
+              ) {
+                secondaryStructures[secondaryStructures.length - 1].updateEnd(resno);
+              } else {
+                secondaryStructures.push(new Bioblocks1DSection(structId, resno));
+              }
+            });
+        }
+      }
+    }
+
+    if (predictedProteins.length === 0) {
+      predictedProteins.push(pdbData);
+    } else {
+      pdbData = predictedProteins[0];
+    }
+
+    let couplingScores = getCouplingScoresData(couplingScoresCSV, residueMapping);
+    couplingScores = pdbData.amendPDBWithCouplingScores(couplingScores.rankedContacts, measuredProximity);
+    const mismatches = pdbData.getResidueNumberingMismatches(couplingScores);
+
+    this.setState({
+      [VIZ_TYPE.CONTACT_MAP]: {
+        couplingScores,
+        pdbData: { known: pdbData },
+        secondaryStructures:
+          secondaryStructures.length >= 1 ? [secondaryStructures] : pdbData.secondaryStructureSections,
+      },
+      errorMsg: '',
+      experimentalProteins,
+      isLoading: false,
+      mismatches,
+      predictedProteins,
+    });
+  };
+
+  protected onMeasuredProximityChange = () => (value: number) => {
+    this.setState({
+      measuredProximity: Object.values(CONTACT_DISTANCE_PROXIMITY)[value] as CONTACT_DISTANCE_PROXIMITY,
+    });
+  };
+
+  protected renderButtonsRow = () => {
+    return (
+      <Grid.Row textAlign={'right'} verticalAlign={'bottom'}>
+        <Grid.Column style={{ height: '100%', width: 'auto' }}>{this.renderClearAllButton()}</Grid.Column>
+        <Grid.Column style={{ height: '100%', width: 'auto' }}>
+          <Grid.Row>
+            {this.renderUploadForm(this.onFileUpload, 'upload-coupling-scores', 'CouplingScores files / folders')}
+          </Grid.Row>
+        </Grid.Column>
+      </Grid.Row>
+    );
+  };
+
+  protected renderCouplingComponents = ({ style } = this.props, { measuredProximity } = this.state) => (
+    <Segment attached={true} raised={true}>
       <Header as={'h1'} attached={'top'}>
         Bioblocks-Viz: Visualization Component Library
       </Header>
-      {!pdbData && couplingScores.length === 0 && this.renderStartMessage()}
 
-      <Segment attached={true} raised={true}>
-        <Grid centered={true} padded={true} relaxed={true}>
-          {this.renderUploadButtonsRow()}
-          <Grid.Row>
-            <br />
-          </Grid.Row>
-          {this.renderBioblocksComponents(style, arePredictionsAvailable, measuredProximity)}
-        </Grid>
-      </Segment>
-    </div>
+      {this.renderStartMessage()}
+      <Grid centered={true} padded={true} relaxed={true}>
+        {this.renderButtonsRow()}
+        <Grid.Row>
+          <br />
+        </Grid.Row>
+        <Grid.Row columns={2} verticalAlign={'bottom'}>
+          <Grid.Column width={7}>{this.renderContactMapCard(style)}</Grid.Column>
+          <Grid.Column width={7}>{this.renderNGLCard(measuredProximity)}</Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </Segment>
   );
 
   protected renderSequenceAccordionMessage = (
@@ -181,11 +324,10 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     id: string,
     content: string,
     disabled?: boolean,
-    accepts: string[] = [],
   ) => {
     return (
-      <GridColumn>
-        <Label as="label" basic={true} htmlFor={id}>
+      <Grid.Column>
+        <Label as={'label'} basic={true} htmlFor={id}>
           <Button
             disabled={disabled}
             icon={'upload'}
@@ -196,7 +338,6 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
             labelPosition={'right'}
           />
           <input
-            accept={`.${accepts.join(',.')}`}
             disabled={disabled}
             id={id}
             onChange={onChange}
@@ -206,110 +347,41 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
             multiple={true}
           />
         </Label>
-      </GridColumn>
+      </Grid.Column>
     );
   };
 
-  protected renderUploadLabel = (label: string | undefined) =>
-    label ? (
-      <GridColumn verticalAlign={'middle'} textAlign={'justified'}>
-        <Label>{label}</Label>
-      </GridColumn>
-    ) : null;
+  protected renderContactMapCard = (style: React.CSSProperties) => {
+    const { isLoading, 'Contact Map': contactMapState } = this.state;
 
-  protected renderCouplingScoresUploadForm = ({ couplingScores, filenames } = this.state) => {
     return (
-      <GridRow>
-        {this.renderUploadLabel(filenames.couplings)}
-        {this.renderUploadForm(
-          this.onCouplingScoreUpload,
-          'coupling-score',
-          'Coupling Scores',
-          couplingScores.length > 0,
-          ['csv'],
-        )}
-      </GridRow>
-    );
-  };
-
-  protected renderBioblocksComponents = (
-    style: React.CSSProperties,
-    arePredictionsAvailable: boolean,
-    measuredProximity: CONTACT_DISTANCE_PROXIMITY,
-  ) => (
-    <GridRow columns={2} verticalAlign={'bottom'}>
-      <GridColumn width={7}>{this.renderContactMapCard(arePredictionsAvailable, style, this.state.pdbData)}</GridColumn>
-      <GridColumn width={7}>{this.renderNGLCard(measuredProximity)}</GridColumn>
-    </GridRow>
-  );
-
-  protected renderContactMapCard = (
-    arePredictionsAvailable: boolean,
-    style: React.CSSProperties,
-    pdbData: BioblocksPDB | undefined = undefined,
-  ) =>
-    arePredictionsAvailable ? (
       <PredictedContactMap
         data={{
-          couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
-          pdbData: { known: pdbData },
-          secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
+          couplingScores: contactMapState.couplingScores,
+          pdbData: { known: contactMapState.pdbData ? contactMapState.pdbData.known : undefined },
+          secondaryStructures: contactMapState.secondaryStructures,
         }}
-        isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
-        style={style}
-      />
-    ) : (
-      <ContactMap
-        data={{
-          couplingScores: this.state[VIZ_TYPE.CONTACT_MAP].couplingScores,
-          pdbData: { known: pdbData },
-          secondaryStructures: this.state[VIZ_TYPE.CONTACT_MAP].secondaryStructures,
-        }}
-        isDataLoading={this.state[VIZ_TYPE.CONTACT_MAP].isLoading}
+        isDataLoading={isLoading}
         style={style}
       />
     );
+  };
 
-  protected renderNGLCard = (measuredProximity: CONTACT_DISTANCE_PROXIMITY) => (
-    <NGLContainer
-      isDataLoading={this.state[VIZ_TYPE.NGL].isLoading}
-      experimentalProteins={this.state[VIZ_TYPE.NGL].pdbData.filter(pdb => pdb.name.includes('exp'))}
-      measuredProximity={measuredProximity}
-      onMeasuredProximityChange={this.onMeasuredProximityChange()}
-      predictedProteins={this.state[VIZ_TYPE.NGL].pdbData.filter(pdb => pdb.name.includes('pred'))}
-    />
-  );
-
-  protected renderUploadButtonsRow = () => (
-    <GridRow columns={4} textAlign={'center'} verticalAlign={'bottom'}>
-      <GridColumn>{this.renderCouplingScoresUploadForm()}</GridColumn>
-      <GridColumn>{this.renderPDBUploadForm()}</GridColumn>
-      <GridColumn>{this.renderResidueMappingUploadForm()}</GridColumn>
-      <GridColumn>{this.renderClearAllButton()}</GridColumn>
-    </GridRow>
-  );
-
-  protected renderPDBUploadForm = ({ filenames, pdbData } = this.state) => (
-    <GridRow>
-      {this.renderUploadLabel(filenames.pdb)}
-      {this.renderUploadForm(this.onPDBUpload, 'pdb', 'PDB', pdbData !== undefined, ['pdb'])}
-    </GridRow>
-  );
-
-  protected renderResidueMappingUploadForm = ({ filenames } = this.state) => (
-    <GridRow verticalAlign={'middle'} columns={1} centered={true}>
-      {this.renderUploadLabel(filenames.residue_mapper)}
-      {this.renderUploadForm(this.onResidueMappingUpload, 'residue-mapping', 'Residue Mapping', false, [
-        'csv',
-        'indextable',
-        'indextableplus',
-      ])}
-    </GridRow>
-  );
+  protected renderNGLCard = (measuredProximity: CONTACT_DISTANCE_PROXIMITY) => {
+    return (
+      <NGLContainer
+        experimentalProteins={this.state.experimentalProteins}
+        isDataLoading={this.state.isLoading}
+        measuredProximity={measuredProximity}
+        onMeasuredProximityChange={this.onMeasuredProximityChange()}
+        predictedProteins={this.state.predictedProteins}
+      />
+    );
+  };
 
   protected renderClearAllButton = () => (
-    <GridRow verticalAlign={'middle'} columns={1} centered={true}>
-      <GridColumn>
+    <Grid.Row verticalAlign={'middle'} columns={1} centered={true}>
+      <Grid.Column>
         <Label as="label" basic={true} htmlFor={'clear-data'}>
           <Button
             icon={'trash'}
@@ -321,142 +393,9 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
             onClick={this.onClearAll()}
           />
         </Label>
-      </GridColumn>
-    </GridRow>
+      </Grid.Column>
+    </Grid.Row>
   );
-
-  protected onClearAll = () => async () => {
-    const { clearAllResidues, clearAllSecondaryStructures } = this.props;
-    this.setState(ExampleAppClass.initialState);
-    clearAllResidues();
-    clearAllSecondaryStructures();
-    this.forceUpdate();
-  };
-
-  protected onCouplingScoreUpload = async (e: React.ChangeEvent) => {
-    e.persist();
-    const { measuredProximity, pdbData } = this.state;
-    const files = (e.target as HTMLInputElement).files;
-    const file = files ? files.item(0) : null;
-    if (file !== null) {
-      if (file.name.endsWith('.csv')) {
-        try {
-          this.setState({
-            [VIZ_TYPE.CONTACT_MAP]: {
-              ...this.state[VIZ_TYPE.CONTACT_MAP],
-              isLoading: true,
-            },
-          });
-          const parsedFile = await readFileAsText(file);
-          const couplingScores = getCouplingScoresData(parsedFile, this.state.residueMapping);
-
-          this.setState({
-            [VIZ_TYPE.CONTACT_MAP]: {
-              couplingScores: pdbData
-                ? pdbData.amendPDBWithCouplingScores(couplingScores.rankedContacts, measuredProximity)
-                : couplingScores,
-              isLoading: false,
-              pdbData: { known: this.state.pdbData },
-              secondaryStructures: [],
-            },
-            arePredictionsAvailable: true,
-            couplingScores: parsedFile,
-            filenames: {
-              ...this.state.filenames,
-              couplings: file.name,
-            },
-          });
-        } catch (e) {
-          console.log(e);
-        }
-      }
-    }
-    // !IMPORTANT! Allows same user to clear data and then re-upload same file!
-    (e.target as HTMLInputElement).value = '';
-  };
-
-  protected onPDBUpload = async (e: React.ChangeEvent) => {
-    e.persist();
-    const { measuredProximity } = this.state;
-    const files = (e.target as HTMLInputElement).files;
-    const allPdbData = new Array<BioblocksPDB>();
-    if (files) {
-      for (let i = 0; i < files.length; ++i) {
-        const file = files.item(i);
-        if (file && file.name.endsWith('.pdb')) {
-          allPdbData.push(await BioblocksPDB.createPDB(file));
-        }
-      }
-      // !IMPORTANT! Allows same user to clear data and then re-upload same file!
-      (e.target as HTMLInputElement).value = '';
-    }
-    const pdbData = allPdbData[0];
-    const couplingScores = pdbData.amendPDBWithCouplingScores(
-      this.state[VIZ_TYPE.CONTACT_MAP].couplingScores.rankedContacts,
-      measuredProximity,
-    );
-    this.setState({
-      [VIZ_TYPE.CONTACT_MAP]: {
-        couplingScores,
-        isLoading: false,
-        pdbData: { known: pdbData },
-        secondaryStructures: pdbData.secondaryStructureSections,
-      },
-      [VIZ_TYPE.NGL]: {
-        isLoading: false,
-        pdbData: allPdbData,
-      },
-      pdbData,
-    });
-  };
-
-  protected onMeasuredProximityChange = () => (value: number) => {
-    this.setState({
-      measuredProximity: Object.values(CONTACT_DISTANCE_PROXIMITY)[value] as CONTACT_DISTANCE_PROXIMITY,
-    });
-  };
-
-  protected onResidueMappingUpload = async (e: React.ChangeEvent) => {
-    e.persist();
-    const { measuredProximity, pdbData } = this.state;
-    const files = (e.target as HTMLInputElement).files;
-    const file = files ? files.item(0) : null;
-    const validFileExtensions = ['csv', 'indextable', 'indextableplus'];
-    if (file !== null) {
-      const isValidFile = validFileExtensions.reduce((prev, ext) => prev || file.name.endsWith(`.${ext}`), false);
-      if (isValidFile) {
-        try {
-          this.setState({
-            [VIZ_TYPE.CONTACT_MAP]: {
-              ...this.state[VIZ_TYPE.CONTACT_MAP],
-              isLoading: true,
-            },
-          });
-          const parsedFile = await readFileAsText(file);
-          const residueMapping = generateResidueMapping(parsedFile);
-          const couplingScores = getCouplingScoresData(this.state.couplingScores, residueMapping);
-          this.setState({
-            [VIZ_TYPE.CONTACT_MAP]: {
-              couplingScores: pdbData
-                ? pdbData.amendPDBWithCouplingScores(couplingScores.rankedContacts, measuredProximity)
-                : couplingScores,
-              isLoading: false,
-              secondaryStructures: [],
-            },
-            filenames: {
-              ...this.state.filenames,
-              residue_mapper: file.name,
-            },
-            residueMapping,
-          });
-        } catch (e) {
-          console.log(e);
-        }
-      }
-    }
-    // !IMPORTANT! Allows same user to clear data and then re-upload same file!
-    (e.target as HTMLInputElement).value = '';
-  };
 }
 
 const mapStateToProps = (state: { [key: string]: any }) => ({

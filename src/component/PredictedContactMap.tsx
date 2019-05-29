@@ -7,14 +7,16 @@ import {
   CONFIGURATION_COMPONENT_TYPE,
   CouplingContainer,
   IContactMapData,
+  ICouplingScoreFilter,
   SECONDARY_STRUCTURE,
 } from '~bioblocks-viz~/data';
 
 export interface IPredictedContactMapProps {
-  correctColor: string;
+  agreementColor: string;
+  allColor: string;
   data: IContactMapData;
+  filters: ICouplingScoreFilter[];
   height: number | string;
-  incorrectColor: string;
   isDataLoading: boolean;
   style?: BIOBLOCKS_CSS_STYLE;
   width: number | string;
@@ -22,21 +24,25 @@ export interface IPredictedContactMapProps {
 
 export const initialPredictedContactMapState = {
   linearDistFilter: 5,
+  minimumProbability: 0.9,
+  minimumScore: 0,
   numPredictionsToShow: -1,
   pointsToPlot: [] as IContactMapChartData[],
+  rankFilter: [1, 100],
 };
 
 export type PredictedContactMapState = typeof initialPredictedContactMapState;
 
 export class PredictedContactMap extends React.Component<IPredictedContactMapProps, PredictedContactMapState> {
   public static defaultProps = {
-    correctColor: '#ff0000',
+    agreementColor: '#ff0000',
+    allColor: '#000000',
     data: {
       couplingScores: new CouplingContainer(),
       secondaryStructures: new Array<SECONDARY_STRUCTURE>(),
     },
+    filters: [],
     height: '100%',
-    incorrectColor: '#000000',
     isDataLoading: false,
     width: '100%',
   };
@@ -53,12 +59,15 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
 
   public componentDidUpdate(prevProps: IPredictedContactMapProps, prevState: PredictedContactMapState) {
     const { data } = this.props;
-    const { linearDistFilter, numPredictionsToShow } = this.state;
+    const { linearDistFilter, minimumProbability, minimumScore, numPredictionsToShow, rankFilter } = this.state;
 
     const isRecomputeNeeded =
       data.couplingScores !== prevProps.data.couplingScores ||
       linearDistFilter !== prevState.linearDistFilter ||
-      numPredictionsToShow !== prevState.numPredictionsToShow;
+      minimumProbability !== prevState.minimumProbability ||
+      minimumScore !== prevState.minimumScore ||
+      numPredictionsToShow !== prevState.numPredictionsToShow ||
+      rankFilter !== prevState.rankFilter;
     if (isRecomputeNeeded) {
       this.setupData(data.couplingScores !== prevProps.data.couplingScores);
     }
@@ -71,7 +80,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     return (
       <div className="PredictedContactMapComponent" style={style}>
         <ContactMap
-          configurations={this.getContactMapConfigs()}
+          configurations={this.getConfigs()}
           data={{
             couplingScores: data.couplingScores,
             pdbData: data.pdbData,
@@ -90,36 +99,58 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     });
   };
 
+  public onMinimumProbabilityChange = () => (value: number) => {
+    this.setState({
+      minimumProbability: value,
+    });
+  };
+
   public onNumPredictionsToShowChange = () => (value: number) => {
     this.setState({
       numPredictionsToShow: value,
     });
   };
 
-  protected getContactMapConfigs = (): BioblocksWidgetConfig[] => [
-    {
-      name: 'Linear Distance Filter (|i - j|)',
-      onChange: this.onLinearDistFilterChange(),
-      type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
-      values: {
-        current: this.state.linearDistFilter,
-        defaultValue: 5,
-        max: 10,
-        min: 1,
+  protected getConfigs = (): BioblocksWidgetConfig[] => {
+    const { linearDistFilter, minimumProbability, numPredictionsToShow } = this.state;
+
+    return [
+      {
+        name: 'Number of Couplings to Display',
+        onChange: this.onNumPredictionsToShowChange(),
+        type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
+        values: {
+          current: numPredictionsToShow,
+          defaultValue: 100,
+          max: this.props.data.couplingScores.chainLength,
+          min: 1,
+        },
       },
-    },
-    {
-      name: 'Top N Predictions to Show',
-      onChange: this.onNumPredictionsToShowChange(),
-      type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
-      values: {
-        current: this.state.numPredictionsToShow,
-        defaultValue: 100,
-        max: this.props.data.couplingScores.chainLength,
-        min: 1,
+      {
+        name: 'Linear Distance Filter (|i - j|)',
+        onChange: this.onLinearDistFilterChange(),
+        type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
+        values: {
+          current: linearDistFilter,
+          defaultValue: initialPredictedContactMapState.linearDistFilter,
+          max: 10,
+          min: 1,
+        },
       },
-    },
-  ];
+      {
+        name: 'Minimum Allowed Probability',
+        onChange: this.onMinimumProbabilityChange(),
+        step: 0.01,
+        type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
+        values: {
+          current: minimumProbability,
+          defaultValue: initialPredictedContactMapState.minimumProbability,
+          max: 1.0,
+          min: 0.0,
+        },
+      },
+    ];
+  };
 
   /**
    * Setups up the prediction values for the data.
@@ -127,8 +158,8 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
    * @param isNewData Is this an entirely new dataset?
    */
   protected setupData(isNewData: boolean) {
-    const { correctColor, data, incorrectColor } = this.props;
-    const { linearDistFilter, numPredictionsToShow } = this.state;
+    const { agreementColor: correctColor, data, allColor } = this.props;
+    const { linearDistFilter, minimumProbability, minimumScore, numPredictionsToShow } = this.state;
 
     let couplingScores = new CouplingContainer();
     const { pdbData } = data;
@@ -143,9 +174,17 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     }
 
     const { chainLength } = couplingScores;
-
-    const allPredictions = couplingScores.getPredictedContacts(numPredictionsToShow, linearDistFilter);
-
+    const allPredictions = couplingScores.getPredictedContacts(numPredictionsToShow, linearDistFilter, [
+      {
+        filterFn: score => (score.probability ? score.probability >= minimumProbability : true),
+      },
+      {
+        filterFn: score => (score.score ? score.score >= minimumScore : true),
+      },
+      {
+        filterFn: score => Math.abs(score.i - score.j) >= linearDistFilter,
+      },
+    ]);
     const correctPredictionPercent = ((allPredictions.correct.length / allPredictions.predicted.length) * 100).toFixed(
       1,
     );
@@ -153,18 +192,25 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     const newPoints: IContactMapChartData[] = [
       generateChartDataEntry(
         'text',
-        incorrectColor,
+        allColor,
         'Predicted Contact',
         `(N=${numPredictionsToShow}, L=${chainLength})`,
         4,
         allPredictions.predicted,
         {
           text: allPredictions.predicted.map(point => {
-            const score = data.couplingScores.getCouplingScore(point.i, point.j);
+            let hoverText =
+              point && point.A_i && point.A_j
+                ? `(${point.i}${point.A_i}, ${point.j}${point.A_j})`
+                : `(${point.i}, ${point.j})`;
+            if (point && point.score) {
+              hoverText = `${hoverText}<br>Score: ${point.score}`;
+            }
+            if (point && point.probability) {
+              hoverText = `${hoverText}<br>Probability: ${point.probability.toFixed(1)}`;
+            }
 
-            return score && score.A_i && score.A_j
-              ? `(${point.i}${score.A_i}, ${point.j}${score.A_j})`
-              : `(${point.i}, ${point.j})`;
+            return hoverText;
           }),
         },
       ),
@@ -177,11 +223,16 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
         allPredictions.correct,
         {
           text: allPredictions.correct.map(point => {
-            const score = data.couplingScores.getCouplingScore(point.i, point.j);
+            let hoverText =
+              point.A_i && point.A_j ? `(${point.i}${point.A_i}, ${point.j}${point.A_j})` : `(${point.i}, ${point.j})`;
+            if (point && point.score) {
+              hoverText = `${hoverText}<br>Score: ${point.score}`;
+            }
+            if (point && point.probability) {
+              hoverText = `${hoverText}<br>Probability: ${point.probability.toFixed(1)}`;
+            }
 
-            return score && score.A_i && score.A_j
-              ? `(${point.i}${score.A_i}, ${point.j}${score.A_j})`
-              : `(${point.i}, ${point.j})`;
+            return hoverText;
           }),
         },
       ),

@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { Button, Grid, Icon, Label, Menu, Popup, PopupProps, SemanticICONS } from 'semantic-ui-react';
 
-import { BioblocksRadioGroup, BioblocksSlider } from '~bioblocks-viz~/component/widget';
+import { BioblocksRadioGroup, BioblocksRangeSlider, BioblocksSlider } from '~bioblocks-viz~/component/widget';
 import {
   BioblocksWidgetConfig,
   ButtonWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
   LabelWidgetConfig,
   RadioWidgetConfig,
+  RangeSliderWidgetConfig,
   SliderWidgetConfig,
 } from '~bioblocks-viz~/data';
 
@@ -109,13 +110,15 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
   protected renderConfig(config: BioblocksWidgetConfig, id: string) {
     switch (config.type) {
       case CONFIGURATION_COMPONENT_TYPE.BUTTON:
-        return this.renderConfigurationButton(config, id);
+        return this.renderConfigurationButton(config, `button-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.LABEL:
-        return this.renderConfigurationLabel(config, id);
+        return this.renderConfigurationLabel(config, `label-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.RADIO:
-        return this.renderConfigurationRadioButton(config, id);
+        return this.renderConfigurationRadioButton(config, `radio-${id}`);
+      case CONFIGURATION_COMPONENT_TYPE.RANGE_SLIDER:
+        return this.renderConfigurationRangeSlider(config, `range-slider-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.SLIDER:
-        return this.renderConfigurationSlider(config, id);
+        return this.renderConfigurationSlider(config, `slider-${id}`);
       default: {
         return `configuration for ${id}`;
       }
@@ -147,8 +150,25 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         key={id}
         options={config.options}
         onChange={config.onChange}
+        selectedOption={config.current}
         style={config.style}
         title={config.name}
+      />
+    );
+  }
+
+  protected renderConfigurationRangeSlider(config: RangeSliderWidgetConfig, id: string) {
+    return (
+      <BioblocksRangeSlider
+        key={id}
+        label={config.name}
+        defaultValue={config.range.defaultRange}
+        max={config.range.max}
+        min={config.range.min}
+        onAfterChange={config.onAfterChange}
+        onChange={config.onChange}
+        style={{ padding: '0 18px', width: '100%', ...config.style }}
+        value={config.range.current}
       />
     );
   }
@@ -163,6 +183,7 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         min={config.values.min}
         onAfterChange={config.onAfterChange}
         onChange={config.onChange}
+        step={config.step}
         style={{ padding: '0 18px', width: '100%', ...config.style }}
         value={config.values.current}
       />

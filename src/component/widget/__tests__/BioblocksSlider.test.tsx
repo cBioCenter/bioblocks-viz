@@ -20,70 +20,76 @@ describe('BioblocksSlider', () => {
     const onChangeSpy = jest.fn();
     const expected = 42;
     const wrapper = shallow(sampleBioblocksSlider({ onChange: onChangeSpy }));
+    const instance = wrapper.instance() as BioblocksSlider;
 
-    expect(wrapper.state('value')).not.toBe(expected);
+    expect(instance.state.value).not.toBe(expected);
     wrapper.find(Slider).simulate('change', expected);
     expect(onChangeSpy).toHaveBeenLastCalledWith(expected);
-    expect(wrapper.state('value')).toBe(expected);
+    expect(instance.state.value).toBe(expected);
   });
 
   it('Should handle onAfterChange callbacks.', () => {
     const onAfterChangeSpy = jest.fn();
     const expected = 42;
     const wrapper = shallow(sampleBioblocksSlider({ onAfterChange: onAfterChangeSpy }));
+    const instance = wrapper.instance() as BioblocksSlider;
 
-    expect(wrapper.state('value')).not.toBe(expected);
+    expect(instance.state.value).not.toBe(expected);
     wrapper.find(Slider).simulate('afterChange', expected);
     expect(onAfterChangeSpy).toHaveBeenLastCalledWith(expected);
-    expect(wrapper.state('value')).toBe(expected);
+    expect(instance.state.value).toBe(expected);
   });
 
   it('Should handle resetting the slider when no default is originally given.', () => {
     const onChangeSpy = jest.fn();
     const wrapper = shallow(sampleBioblocksSlider({ onChange: onChangeSpy }));
+    const instance = wrapper.instance() as BioblocksSlider;
     wrapper.find(Slider).simulate('change', 42);
-    expect(wrapper.state('value')).toBe(42);
+    expect(instance.state.value).toBe(42);
 
     wrapper.find(Button).simulate('click');
 
-    expect(wrapper.state('value')).not.toBe(42);
-    expect(wrapper.state('value')).toBe(1);
+    expect(instance.state.value).not.toBe(42);
+    expect(instance.state.value).toBe(1);
   });
 
   it('Should handle resetting the slider to a default value when available.', () => {
     const expected = 2001;
     const onChangeSpy = jest.fn();
     const wrapper = shallow(sampleBioblocksSlider({ defaultValue: expected, onChange: onChangeSpy }));
+    const instance = wrapper.instance() as BioblocksSlider;
     wrapper.find(Slider).simulate('change', 42);
-    expect(wrapper.state('value')).toBe(42);
+    expect(instance.state.value).toBe(42);
 
     wrapper.find(Button).simulate('click');
 
-    expect(wrapper.state('value')).not.toBe(42);
-    expect(wrapper.state('value')).toBe(expected);
+    expect(instance.state.value).not.toBe(42);
+    expect(instance.state.value).toBe(expected);
   });
 
   it('Should allow the default value to be updated if one was not provided when mounted.', () => {
     const wrapper = shallow(<BioblocksSlider label={'Lucky numbers'} value={-1} max={1000} min={0} />);
+    const instance = wrapper.instance() as BioblocksSlider;
     const expected = 777;
 
-    expect(wrapper.state('value')).not.toBe(expected);
+    expect(instance.state.value).not.toBe(expected);
     wrapper.setProps({
       defaultValue: expected,
     });
     wrapper.find(Button).simulate('click');
-    expect(wrapper.state('value')).toBe(expected);
+    expect(instance.state.value).toBe(expected);
   });
 
   it('Should allow the value to be updated via props.', () => {
     const wrapper = shallow(<BioblocksSlider label={'Lucky numbers'} value={-1} max={1000} min={0} />);
+    const instance = wrapper.instance() as BioblocksSlider;
     const expected = 777;
 
-    expect(wrapper.state('value')).not.toBe(expected);
+    expect(instance.state.value).not.toBe(expected);
     wrapper.setProps({
       value: expected,
     });
     wrapper.find(Button).simulate('click');
-    expect(wrapper.state('value')).toBe(expected);
+    expect(instance.state.value).toBe(expected);
   });
 });

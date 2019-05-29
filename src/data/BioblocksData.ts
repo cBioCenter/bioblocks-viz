@@ -60,6 +60,15 @@ export enum COUPLING_SCORE_SOURCE {
   'fn' = 'fn',
   'probability' = 'probability',
   'precision' = 'precision',
+  'score' = 'score',
+}
+
+export interface ICouplingScoreFilter<T = number | number[]> {
+  // currentValue: T;
+  // defaultValue: T;
+  // name: string;
+  filterFn(couplingScore: ICouplingScore): boolean;
+  // onChange(newValue: T): void;
 }
 
 export interface ICouplingScore {
@@ -74,6 +83,7 @@ export interface ICouplingScore {
   j: number;
   precision?: number;
   probability?: number;
+  score?: number;
   segment_i?: string;
   segment_j?: string;
 }
