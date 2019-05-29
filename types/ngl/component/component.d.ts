@@ -15,6 +15,7 @@ declare module 'ngl' {
     | 'base'
     | 'cartoon'
     | 'contact'
+    | 'default'
     | 'dihedral'
     | 'distance'
     | 'helixorient'
@@ -117,6 +118,7 @@ declare module 'ngl' {
     public quaternion: Quaternion;
     public reprList: RepresentationElement[];
     public scale: Vector3;
+    public structure: Structure;
     public structureView: StructureView;
     public viewerControls: ViewerControls;
 
@@ -154,7 +156,7 @@ declare module 'ngl' {
     public addAnnotation(position: Vector3, content: string | HTMLElement, params: IAnnotationParams): Annotation;
 
     public addBufferRepresentation(buffer: any, params: any): any;
-    public addRepresentation(type: any, params: any): any;
+    public addRepresentation(type: any, params?: any): any;
 
     /**
      * Automatically center and zoom the component.

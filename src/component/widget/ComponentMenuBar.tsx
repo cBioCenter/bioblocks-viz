@@ -110,15 +110,15 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
   protected renderConfig(config: BioblocksWidgetConfig, id: string) {
     switch (config.type) {
       case CONFIGURATION_COMPONENT_TYPE.BUTTON:
-        return this.renderConfigurationButton(config, id);
+        return this.renderConfigurationButton(config, `button-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.LABEL:
-        return this.renderConfigurationLabel(config, id);
+        return this.renderConfigurationLabel(config, `label-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.RADIO:
-        return this.renderConfigurationRadioButton(config, id);
+        return this.renderConfigurationRadioButton(config, `radio-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.RANGE_SLIDER:
-        return this.renderConfigurationRangeSlider(config, id);
+        return this.renderConfigurationRangeSlider(config, `range-slider-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.SLIDER:
-        return this.renderConfigurationSlider(config, id);
+        return this.renderConfigurationSlider(config, `slider-${id}`);
       default: {
         return `configuration for ${id}`;
       }

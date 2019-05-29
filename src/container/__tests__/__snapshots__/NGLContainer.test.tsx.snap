@@ -412,8 +412,22 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                               "type": "RADIO",
                             },
                             Object {
-                              "current": "default",
-                              "name": "Structure Representation",
+                              "current": "Default",
+                              "name": "Predicted Structure Representation",
+                              "onChange": [Function],
+                              "options": Array [
+                                "Default",
+                                "Spacefill",
+                                "Backbone",
+                                "Cartoon",
+                                "Surface",
+                                "Tube",
+                              ],
+                              "type": "RADIO",
+                            },
+                            Object {
+                              "current": "Default",
+                              "name": "Experimental Structure Representation",
                               "onChange": [Function],
                               "options": Array [
                                 "Default",
@@ -649,8 +663,22 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                     "type": "RADIO",
                                   },
                                   Object {
-                                    "current": "default",
-                                    "name": "Structure Representation",
+                                    "current": "Default",
+                                    "name": "Predicted Structure Representation",
+                                    "onChange": [Function],
+                                    "options": Array [
+                                      "Default",
+                                      "Spacefill",
+                                      "Backbone",
+                                      "Cartoon",
+                                      "Surface",
+                                      "Tube",
+                                    ],
+                                    "type": "RADIO",
+                                  },
+                                  Object {
+                                    "current": "Default",
+                                    "name": "Experimental Structure Representation",
                                     "onChange": [Function],
                                     "options": Array [
                                       "Default",

@@ -4,49 +4,53 @@ exports[`BioblocksRadioGroup Should match existing snapshot when given simple da
 <div
   style={Object {}}
 >
-  <Grid
-    centered={true}
-    columns={2}
-    padded={true}
+  <Form
+    as="form"
   >
-    <GridRow>
-      <div
+    <Grid
+      centered={true}
+      columns={2}
+      padded={true}
+    >
+      <GridRow>
+        <div
+          style={
+            Object {
+              "fontStyle": "italic",
+              "fontWeight": "bold",
+              "textDecoration": "underline",
+            }
+          }
+        >
+          How to calculate distance between two residues:
+        </div>
+      </GridRow>
+      <GridColumn
+        key="Sample-first-0"
         style={
           Object {
-            "fontStyle": "italic",
-            "fontWeight": "bold",
-            "textDecoration": "underline",
+            "paddingBottom": 0,
+            "paddingTop": "7px",
           }
         }
       >
-        How to calculate distance between two residues:
-      </div>
-    </GridRow>
-    <GridColumn
-      key="Sample-first"
-      style={
-        Object {
-          "paddingBottom": 0,
-          "paddingTop": "7px",
-        }
-      }
-    >
-      <FormRadio
-        as={[Function]}
-        checked={true}
-        control={[Function]}
-        disabled={false}
-        label={
-          Object {
-            "children": "first",
-            "style": Object {},
+        <FormRadio
+          as={[Function]}
+          checked={true}
+          control={[Function]}
+          disabled={false}
+          label={
+            Object {
+              "children": "first",
+              "style": Object {},
+            }
           }
-        }
-        name="first"
-        onChange={[Function]}
-        value={0}
-      />
-    </GridColumn>
-  </Grid>
+          name="first"
+          onChange={[Function]}
+          value={0}
+        />
+      </GridColumn>
+    </Grid>
+  </Form>
 </div>
 `;

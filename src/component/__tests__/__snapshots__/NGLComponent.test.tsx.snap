@@ -41,8 +41,22 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
               "type": "RADIO",
             },
             Object {
-              "current": "default",
-              "name": "Structure Representation",
+              "current": "Default",
+              "name": "Predicted Structure Representation",
+              "onChange": [Function],
+              "options": Array [
+                "Default",
+                "Spacefill",
+                "Backbone",
+                "Cartoon",
+                "Surface",
+                "Tube",
+              ],
+              "type": "RADIO",
+            },
+            Object {
+              "current": "Default",
+              "name": "Experimental Structure Representation",
               "onChange": [Function],
               "options": Array [
                 "Default",
