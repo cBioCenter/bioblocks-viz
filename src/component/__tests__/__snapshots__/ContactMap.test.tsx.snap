@@ -2823,7 +2823,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   "nticks": 10,
                   "range": Array [
                     0,
-                    33000,
+                    77,
                   ],
                   "rangemode": "nonnegative",
                   "showline": true,
@@ -2836,7 +2836,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   "nticks": 10,
                   "range": Array [
                     0,
-                    33000,
+                    77,
                   ],
                   "rangemode": "nonnegative",
                   "showline": true,

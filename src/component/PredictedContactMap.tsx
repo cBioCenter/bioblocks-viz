@@ -172,16 +172,13 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     let couplingScores = new CouplingContainer();
     const { pdbData } = data;
     if (pdbData) {
-      if (pdbData.known) {
-        couplingScores = pdbData.known.contactInformation;
-      } else if (pdbData.predicted) {
-        couplingScores = pdbData.predicted.contactInformation;
+      if (pdbData.experimental) {
+        couplingScores = pdbData.experimental.contactInformation;
       }
     } else {
       couplingScores = new CouplingContainer(data.couplingScores.rankedContacts);
     }
 
-    const { chainLength } = couplingScores;
     const allPredictions = couplingScores.getPredictedContacts(numPredictionsToShow, linearDistFilter, [
       {
         filterFn: score => (score.probability ? score.probability >= minimumProbability : true),
@@ -197,6 +194,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
       1,
     );
 
+    const { chainLength } = couplingScores;
     const newPoints: IContactMapChartData[] = [
       generateChartDataEntry(
         'text',

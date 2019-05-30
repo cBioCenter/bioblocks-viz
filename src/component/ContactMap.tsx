@@ -252,6 +252,13 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       width,
     } = this.props;
 
+    let range;
+    if (data.pdbData && data.pdbData.predicted && !data.pdbData.experimental) {
+      range = data.pdbData.predicted.sequence.length + 20;
+    } else if (data.pdbData && data.pdbData.experimental) {
+      range = data.pdbData.experimental.sequence.length + 20;
+    }
+
     return (
       <ComponentCard
         componentName={'Contact Map'}
@@ -282,7 +289,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
           onHoverCallback={this.onMouseEnter(addHoveredResidues)}
           onSelectedCallback={this.onMouseSelect(onBoxSelection)}
           onUnHoverCallback={this.onMouseLeave(removeHoveredResidues)}
-          range={data.couplingScores.residueIndexRange.max + 20}
+          range={range}
           secondaryStructures={data.secondaryStructures ? data.secondaryStructures : []}
           secondaryStructureColors={secondaryStructureColors}
           selectedSecondaryStructures={[selectedSecondaryStructures]}
@@ -299,7 +306,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 
     const chartNames = {
       selected: 'Selected Residue Pair',
-      structure: `${data.pdbData ? (data.pdbData.known ? 'Known' : 'Predicted') : 'Unknown'} Structure Contact`,
+      structure: `${data.pdbData ? (data.pdbData.experimental ? 'Known' : 'Predicted') : 'Unknown'} Structure Contact`,
     };
 
     const knownPointsIndex = pointsToPlot.findIndex(entry => entry.name === chartNames.structure);

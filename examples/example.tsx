@@ -104,7 +104,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
       this.setState({
         [VIZ_TYPE.CONTACT_MAP]: {
           couplingScores: pdbData.amendPDBWithCouplingScores(couplingScores.rankedContacts, measuredProximity),
-          pdbData: { known: pdbData },
+          pdbData: { experimental: pdbData },
           secondaryStructures: [],
         },
         errorMsg,
@@ -200,11 +200,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
       }
     }
 
-    if (predictedProteins.length === 0) {
-      predictedProteins.push(pdbData);
-    } else {
-      pdbData = predictedProteins[0];
-    }
+    pdbData = experimentalProteins.length === 0 ? BioblocksPDB.createEmptyPDB() : experimentalProteins[0];
 
     let couplingScores = getCouplingScoresData(couplingScoresCSV, residueMapping);
     couplingScores = pdbData.amendPDBWithCouplingScores(couplingScores.rankedContacts, measuredProximity);
@@ -213,7 +209,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     this.setState({
       [VIZ_TYPE.CONTACT_MAP]: {
         couplingScores,
-        pdbData: { known: pdbData },
+        pdbData: { experimental: experimentalProteins[0], predicted: predictedProteins[0] },
         secondaryStructures:
           secondaryStructures.length >= 1 ? [secondaryStructures] : pdbData.secondaryStructureSections,
       },
@@ -358,7 +354,10 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
       <PredictedContactMap
         data={{
           couplingScores: contactMapState.couplingScores,
-          pdbData: { known: contactMapState.pdbData ? contactMapState.pdbData.known : undefined },
+          pdbData: {
+            experimental: contactMapState.pdbData ? contactMapState.pdbData.experimental : undefined,
+            predicted: contactMapState.pdbData ? contactMapState.pdbData.predicted : undefined,
+          },
           secondaryStructures: contactMapState.secondaryStructures,
         }}
         isDataLoading={isLoading}

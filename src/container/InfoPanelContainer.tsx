@@ -42,8 +42,8 @@ export class InfoPanelContainerClass extends React.Component<IInfoPanelProps, an
     const { data, height, lockedResiduePairs, selectedSecondaryStructures, width } = this.props;
     const { pdbData } = data;
     const unassignedResidues =
-      pdbData && pdbData.known
-        ? this.renderUnassignedResidues(pdbData.known)
+      pdbData && pdbData.experimental
+        ? this.renderUnassignedResidues(pdbData.experimental)
         : [<Label key={'unassigned-residues-none'} />];
 
     return (
@@ -52,12 +52,12 @@ export class InfoPanelContainerClass extends React.Component<IInfoPanelProps, an
           exclusive={false}
           panels={[
             pdbData &&
-              pdbData.known &&
-              pdbData.known.secondaryStructureSections.map(secondaryStructure => ({
+              pdbData.experimental &&
+              pdbData.experimental.secondaryStructureSections.map(secondaryStructure => ({
                 content: this.renderSecondaryStructures(secondaryStructure),
                 key: 'all-secondary-structures',
                 title: `All Secondary Structures (${
-                  pdbData.known ? pdbData.known.secondaryStructureSections.length : 0
+                  pdbData.experimental ? pdbData.experimental.secondaryStructureSections.length : 0
                 }):`,
               })),
             {
