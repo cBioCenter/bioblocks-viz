@@ -1110,7 +1110,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                       onClick={[Function]}
                                       role="button"
                                     >
-                                      Stereo
+                                      Switch to Stereo
                                     </a>
                                   </div>
                                 </div>

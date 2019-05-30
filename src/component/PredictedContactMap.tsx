@@ -113,17 +113,25 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
 
   protected getConfigs = (): BioblocksWidgetConfig[] => {
     const { linearDistFilter, minimumProbability, numPredictionsToShow } = this.state;
+    const { chainLength } = this.props.data.couplingScores;
 
     return [
       {
+        marks: {
+          0: '0',
+          [Math.floor(chainLength / 2)]: 'L/2',
+          [chainLength]: 'L',
+          [Math.floor(chainLength * 1.5)]: '3L/2',
+          [chainLength * 2]: '2L',
+        },
         name: 'Number of Couplings to Display',
         onChange: this.onNumPredictionsToShowChange(),
         type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
         values: {
           current: numPredictionsToShow,
           defaultValue: 100,
-          max: this.props.data.couplingScores.chainLength,
-          min: 1,
+          max: chainLength * 2,
+          min: 0,
         },
       },
       {

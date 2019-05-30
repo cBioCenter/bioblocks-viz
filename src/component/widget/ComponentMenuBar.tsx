@@ -179,6 +179,7 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         key={id}
         label={config.name}
         defaultValue={config.values.defaultValue}
+        marks={config.marks}
         max={config.values.max}
         min={config.values.min}
         onAfterChange={config.onAfterChange}

@@ -763,7 +763,9 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
           <Grid.Column>
             <div style={{ userSelect: 'none' }}>
               <a aria-pressed={false} onClick={this.switchCameraType} role={'button'}>
-                {this.state.stage && this.state.stage.parameters.cameraType === 'stereo' ? `Perspective` : 'Stereo'}
+                {`Switch to ${
+                  this.state.stage && this.state.stage.parameters.cameraType === 'stereo' ? `Perspective` : 'Stereo'
+                }`}
               </a>
             </div>
           </Grid.Column>

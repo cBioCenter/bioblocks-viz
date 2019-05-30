@@ -151,38 +151,6 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       },
     );
 
-  protected getFilterConfigs = (): BioblocksWidgetConfig[] => {
-    const { configurations } = this.props;
-
-    return [
-      ...configurations,
-      /*
-      {
-        name: 'Maximum Rank',
-        onChange: this.onLinearDistFilterChange(),
-        type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
-        values: {
-          current: this.state.linearDistFilter,
-          defaultValue: 5,
-          max: 10,
-          min: 1,
-        },
-      },
-      {
-        name: 'Top N Predictions to Show',
-        onChange: this.onNumPredictionsToShowChange(),
-        type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
-        values: {
-          current: this.state.numPredictionsToShow,
-          defaultValue: 100,
-          max: this.props.data.couplingScores.chainLength,
-          min: 1,
-        },
-      },
-      */
-    ];
-  };
-
   protected getSettingsConfigs = (): BioblocksWidgetConfig[] => {
     const { removeAllLockedResiduePairs } = this.props;
     const { pointsToPlot } = this.state;
@@ -271,6 +239,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     const {
       addHoveredResidues,
       candidateResidues,
+      configurations,
       data,
       height,
       isDataLoading,
@@ -289,7 +258,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
         menuItems={[
           {
             component: {
-              configs: this.getFilterConfigs(),
+              configs: configurations,
               name: 'POPUP',
             },
             description: 'Filter',

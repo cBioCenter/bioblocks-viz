@@ -85,14 +85,21 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
     configurations={
       Array [
         Object {
+          "marks": Object {
+            "0": "0",
+            "100": "2L",
+            "25": "L/2",
+            "50": "L",
+            "75": "3L/2",
+          },
           "name": "Number of Couplings to Display",
           "onChange": [Function],
           "type": "SLIDER",
           "values": Object {
             "current": 25,
             "defaultValue": 100,
-            "max": 50,
-            "min": 1,
+            "max": 100,
+            "min": 0,
           },
         },
         Object {
@@ -185,14 +192,21 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
     configurations={
       Array [
         Object {
+          "marks": Object {
+            "0": "0",
+            "100": "2L",
+            "25": "L/2",
+            "50": "L",
+            "75": "3L/2",
+          },
           "name": "Number of Couplings to Display",
           "onChange": [Function],
           "type": "SLIDER",
           "values": Object {
             "current": 25,
             "defaultValue": 100,
-            "max": 50,
-            "min": 1,
+            "max": 100,
+            "min": 0,
           },
         },
         Object {
@@ -285,14 +299,21 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
     configurations={
       Array [
         Object {
+          "marks": Object {
+            "0": "0",
+            "100": "2L",
+            "25": "L/2",
+            "50": "L",
+            "75": "3L/2",
+          },
           "name": "Number of Couplings to Display",
           "onChange": [Function],
           "type": "SLIDER",
           "values": Object {
             "current": 25,
             "defaultValue": 100,
-            "max": 50,
-            "min": 1,
+            "max": 100,
+            "min": 0,
           },
         },
         Object {
