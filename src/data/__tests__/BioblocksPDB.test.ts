@@ -11,6 +11,35 @@ describe('BioblocksPDB', () => {
     await expect(BioblocksPDB.createPDB('error/protein.pdb')).rejects.toEqual('Invalid NGL path.');
   });
 
+  it('Should correctly handle naming the pdb.', async () => {
+    let result = await BioblocksPDB.createPDB('protein.pdb');
+    expect(result.name).toEqual('protein');
+
+    result = await BioblocksPDB.createPDB('folder/protein.pdb');
+    expect(result.name).toEqual('protein');
+
+    result = await BioblocksPDB.createPDB('protein');
+    expect(result.name).toEqual('protein');
+  });
+
+  it('Should correctly handle getting the secondary structure.', async () => {
+    const expected = [{ resno: 1, structId: 'H' }, { resno: 2, structId: 'E' }];
+    const result = await BioblocksPDB.createPDB('sample.pdb');
+    expect(result.secondaryStructure).toEqual(expected);
+  });
+
+  it('Should correctly handle getting the secondary structure sections.', async () => {
+    const expected = [
+      [
+        { label: 'H', sectionEnd: 1, sectionStart: 1 },
+        { label: 'E', sectionEnd: 2, sectionStart: 2 },
+        { label: 'C', sectionEnd: 3, sectionStart: 3 },
+      ],
+    ];
+    const result = await BioblocksPDB.createPDB('sample.pdb');
+    expect(result.secondaryStructureSections).toEqual(expected);
+  });
+
   describe('Getting a trimmed name', () => {
     it('should trim the last 3 underscores by default.', async () => {
       const result = await BioblocksPDB.createPDB('protein_0_1_2.pdb');

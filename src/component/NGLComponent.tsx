@@ -71,6 +71,7 @@ export const initialNGLState = {
       structType: 'default' as NGL.StructureRepresentationType,
     },
   },
+  isDistRepEnabled: true,
   isMovePickEnabled: false,
   stage: undefined as NGL.Stage | undefined,
   superpositionStatus: 'NONE' as SUPERPOSITION_STATUS_TYPE,
@@ -155,7 +156,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       measuredProximity,
       selectedSecondaryStructures,
     } = this.props;
-    const { stage, superpositionStatus } = this.state;
+    const { isDistRepEnabled, stage, superpositionStatus } = this.state;
 
     const allProteins = [...experimentalProteins, ...predictedProteins];
     if (stage && allProteins.length !== [...prevProps.experimentalProteins, ...prevProps.predictedProteins].length) {
@@ -175,6 +176,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
         candidateResidues !== prevProps.candidateResidues ||
         hoveredResidues !== prevProps.hoveredResidues ||
         hoveredSecondaryStructures !== prevProps.hoveredSecondaryStructures ||
+        isDistRepEnabled !== prevState.isDistRepEnabled ||
         lockedResiduePairs !== prevProps.lockedResiduePairs ||
         measuredProximity !== prevProps.measuredProximity ||
         selectedSecondaryStructures !== prevProps.selectedSecondaryStructures;
@@ -377,13 +379,21 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
 
   protected getConfigurations = () => {
     const { measuredProximity, removeAllLockedResiduePairs } = this.props;
-    const { isMovePickEnabled } = this.state;
+    const { isDistRepEnabled, isMovePickEnabled } = this.state;
+    const reps: NGL.StructureRepresentationType[] = ['default', 'spacefill', 'backbone', 'cartoon', 'surface', 'tube'];
 
     return [
       {
         name: 'Clear Selections',
         onClick: removeAllLockedResiduePairs,
         type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
+      },
+      {
+        current: isDistRepEnabled ? 'Enable' : 'Disable',
+        name: 'Distance Representation',
+        onChange: this.toggleDistRep,
+        options: ['Enable', 'Disable'],
+        type: CONFIGURATION_COMPONENT_TYPE.RADIO,
       },
       {
         current: isMovePickEnabled ? 'Enable' : 'Disable',
@@ -404,30 +414,13 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
         name: 'Predicted Structure Representation',
         onChange: (value: number) => {
           const { predictedProteins } = this.props;
-          const { stage } = this.state;
-          const rep = ['default', 'spacefill', 'backbone', 'cartoon', 'surface', 'tube'][
-            value
-          ] as NGL.StructureRepresentationType;
+          const { activeRepresentations, stage } = this.state;
           if (stage) {
-            const activeRepresentations = this.state.activeRepresentations;
-            activeRepresentations.predicted.reps = [];
-            activeRepresentations.predicted.structType = rep;
-            for (const structureComponent of stage.compList) {
-              if (predictedProteins.find(pred => pred.nglStructure.name === structureComponent.name)) {
-                structureComponent.removeAllRepresentations();
-                if (rep === 'default') {
-                  stage.defaultFileRepresentation(structureComponent);
-                } else {
-                  structureComponent.addRepresentation(rep);
-                }
-                activeRepresentations.predicted.reps.push(
-                  ...this.deriveActiveRepresentations(structureComponent as NGL.StructureComponent),
-                );
-              }
-            }
-
             this.setState({
-              activeRepresentations,
+              activeRepresentations: {
+                ...activeRepresentations,
+                predicted: this.updateRepresentation(stage, reps[value], predictedProteins),
+              },
             });
             stage.viewer.requestRender();
           }
@@ -440,29 +433,13 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
         name: 'Experimental Structure Representation',
         onChange: (value: number) => {
           const { experimentalProteins } = this.props;
-          const { stage } = this.state;
-          const rep = ['default', 'spacefill', 'backbone', 'cartoon', 'surface', 'tube'][
-            value
-          ] as NGL.StructureRepresentationType;
+          const { activeRepresentations, stage } = this.state;
           if (stage) {
-            const activeRepresentations = this.state.activeRepresentations;
-            activeRepresentations.experimental.reps = [];
-            activeRepresentations.experimental.structType = rep;
-            for (const structureComponent of stage.compList) {
-              if (experimentalProteins.find(exp => exp.nglStructure.name === structureComponent.name)) {
-                structureComponent.removeAllRepresentations();
-                if (rep === 'default') {
-                  stage.defaultFileRepresentation(structureComponent);
-                } else {
-                  structureComponent.addRepresentation(rep);
-                }
-                activeRepresentations.experimental.reps.push(
-                  ...this.deriveActiveRepresentations(structureComponent as NGL.StructureComponent),
-                );
-              }
-            }
             this.setState({
-              activeRepresentations,
+              activeRepresentations: {
+                ...activeRepresentations,
+                experimental: this.updateRepresentation(stage, reps[value], experimentalProteins),
+              },
             });
             stage.viewer.requestRender();
           }
@@ -550,11 +527,12 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   }
 
   protected highlightCandidateResidues(structureComponent: NGL.StructureComponent, residues: RESIDUE_TYPE[]) {
+    const { isDistRepEnabled } = this.state;
     const reps = new Array<NGL.RepresentationElement>();
 
     if (residues.length >= 1) {
       reps.push(createBallStickRepresentation(structureComponent, residues));
-      if (residues.length >= 2) {
+      if (residues.length >= 2 && isDistRepEnabled) {
         const rep = this.getDistanceRepForResidues(structureComponent, residues);
         if (rep) {
           reps.push(rep);
@@ -569,12 +547,13 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     structureComponent: NGL.StructureComponent,
     lockedResidues: ILockedResiduePair,
   ) {
+    const { isDistRepEnabled } = this.state;
     const reps = new Array<NGL.RepresentationElement>();
 
     for (const residues of Object.values(lockedResidues)) {
       reps.push(createBallStickRepresentation(structureComponent, residues));
 
-      if (residues.length >= 2) {
+      if (residues.length >= 2 && isDistRepEnabled) {
         const rep = this.getDistanceRepForResidues(structureComponent, residues);
         if (rep) {
           reps.push(rep);
@@ -788,20 +767,46 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     );
   };
 
+  protected toggleDistRep = (event?: React.MouseEvent) => {
+    const { isDistRepEnabled } = this.state;
+    this.setState({
+      isDistRepEnabled: !isDistRepEnabled,
+    });
+  };
+
   protected toggleMovePick = (event?: React.MouseEvent) => {
-    const { stage } = this.state;
+    const { isMovePickEnabled, stage } = this.state;
     if (stage) {
-      const clickPickEnabled =
-        stage.mouseControls.actionList.find(action => action.callback === NGL.MouseActions.movePick) !== undefined;
-      if (clickPickEnabled) {
+      if (isMovePickEnabled) {
         stage.mouseControls.remove('clickPick-*', NGL.MouseActions.movePick);
       } else {
         stage.mouseControls.add('clickPick-left', NGL.MouseActions.movePick);
       }
 
       this.setState({
-        isMovePickEnabled: !clickPickEnabled,
+        isMovePickEnabled: !isMovePickEnabled,
       });
     }
+  };
+
+  protected updateRepresentation = (stage: NGL.Stage, rep: NGL.StructureRepresentationType, pdbs: BioblocksPDB[]) => {
+    const result = {
+      reps: new Array<NGL.RepresentationElement>(),
+      structType: rep,
+    };
+
+    for (const structureComponent of stage.compList) {
+      if (pdbs.find(pdb => pdb.nglStructure.name === structureComponent.name)) {
+        structureComponent.removeAllRepresentations();
+        if (rep === 'default') {
+          stage.defaultFileRepresentation(structureComponent);
+        } else {
+          structureComponent.addRepresentation(rep);
+        }
+        result.reps.push(...this.deriveActiveRepresentations(structureComponent as NGL.StructureComponent));
+      }
+    }
+
+    return result;
   };
 }
