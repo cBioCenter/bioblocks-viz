@@ -201,7 +201,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
       generateChartDataEntry(
         'text',
         allColor,
-        'Predicted Contact',
+        'Inferred Contact',
         `(N=${numPredictionsToShow}, L=${chainLength})`,
         4,
         allPredictions.predicted,
@@ -225,7 +225,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
       generateChartDataEntry(
         'text',
         correctColor,
-        'Correct Prediction',
+        'Inferred Contact Agrees with X-ray Contact',
         `(N=${allPredictions.correct.length}, ${correctPredictionPercent}%)`,
         6,
         allPredictions.correct,

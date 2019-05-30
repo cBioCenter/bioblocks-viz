@@ -298,7 +298,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     const { pointsToPlot } = this.state;
 
     const chartNames = {
-      selected: 'Selected Residue Pairs',
+      selected: 'Selected Residue Pair',
       structure: `${data.pdbData ? (data.pdbData.known ? 'Known' : 'Predicted') : 'Unknown'} Structure Contact`,
     };
 
@@ -310,8 +310,8 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       generateChartDataEntry(
         'text',
         { start: observedColor, end: 'rgb(100,177,200)' },
+        'X-ray Structure Contact',
         chartNames.structure,
-        '(from PDB structure)',
         knownPointsIndex >= 0 ? pointsToPlot[knownPointsIndex].nodeSize : 4,
         observedContactPoints,
         {
