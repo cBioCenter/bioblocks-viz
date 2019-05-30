@@ -183,7 +183,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
     onHoverCallback={[Function]}
     onSelectedCallback={[Function]}
     onUnHoverCallback={[Function]}
-    range={77}
+    range={33000}
     secondaryStructures={
       Array [
         Array [
@@ -383,7 +383,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
     onHoverCallback={[Function]}
     onSelectedCallback={[Function]}
     onUnHoverCallback={[Function]}
-    range={77}
+    range={33000}
     secondaryStructures={
       Array [
         Array [
@@ -579,7 +579,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
     onHoverCallback={[Function]}
     onSelectedCallback={[Function]}
     onUnHoverCallback={[Function]}
-    range={70}
+    range={20}
     secondaryStructures={Array []}
     selectedSecondaryStructures={
       Array [
@@ -764,7 +764,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
     onHoverCallback={[Function]}
     onSelectedCallback={[Function]}
     onUnHoverCallback={[Function]}
-    range={70}
+    range={33000}
     secondaryStructures={Array []}
     selectedSecondaryStructures={
       Array [
@@ -939,7 +939,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
     onHoverCallback={[Function]}
     onSelectedCallback={[Function]}
     onUnHoverCallback={[Function]}
-    range={70}
+    range={33000}
     secondaryStructures={Array []}
     selectedSecondaryStructures={
       Array [
@@ -1114,7 +1114,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
     onHoverCallback={[Function]}
     onSelectedCallback={[Function]}
     onUnHoverCallback={[Function]}
-    range={70}
+    range={33000}
     secondaryStructures={Array []}
     selectedSecondaryStructures={
       Array [
@@ -1311,7 +1311,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
     onHoverCallback={[Function]}
     onSelectedCallback={[Function]}
     onUnHoverCallback={[Function]}
-    range={77}
+    range={33000}
     secondaryStructures={
       Array [
         Array [
@@ -1533,7 +1533,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
     onHoverCallback={[Function]}
     onSelectedCallback={[Function]}
     onUnHoverCallback={[Function]}
-    range={77}
+    range={33000}
     secondaryStructures={
       Array [
         Array [
@@ -2606,7 +2606,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           onHoverCallback={[Function]}
           onSelectedCallback={[Function]}
           onUnHoverCallback={[Function]}
-          range={77}
+          range={33000}
           secondaryStructures={
             Array [
               Array [
@@ -2818,12 +2818,11 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 },
                 "showlegend": false,
                 "xaxis": Object {
-                  "autorange": true,
                   "fixedrange": true,
                   "nticks": 10,
                   "range": Array [
                     0,
-                    77,
+                    33000,
                   ],
                   "rangemode": "nonnegative",
                   "showline": true,
@@ -2831,12 +2830,11 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   "title": "Residue #",
                 },
                 "yaxis": Object {
-                  "autorange": "reversed",
                   "fixedrange": true,
                   "nticks": 10,
                   "range": Array [
+                    33000,
                     0,
-                    77,
                   ],
                   "rangemode": "nonnegative",
                   "showline": true,
