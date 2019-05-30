@@ -113,17 +113,25 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
 
   protected getConfigs = (): BioblocksWidgetConfig[] => {
     const { linearDistFilter, minimumProbability, numPredictionsToShow } = this.state;
+    const { chainLength } = this.props.data.couplingScores;
 
     return [
       {
+        marks: {
+          0: '0',
+          [Math.floor(chainLength / 2)]: 'L/2',
+          [chainLength]: 'L',
+          [Math.floor(chainLength * 1.5)]: '3L/2',
+          [chainLength * 2]: '2L',
+        },
         name: 'Number of Couplings to Display',
         onChange: this.onNumPredictionsToShowChange(),
         type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
         values: {
           current: numPredictionsToShow,
           defaultValue: 100,
-          max: this.props.data.couplingScores.chainLength,
-          min: 1,
+          max: chainLength * 2,
+          min: 0,
         },
       },
       {
@@ -164,16 +172,13 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     let couplingScores = new CouplingContainer();
     const { pdbData } = data;
     if (pdbData) {
-      if (pdbData.known) {
-        couplingScores = pdbData.known.contactInformation;
-      } else if (pdbData.predicted) {
-        couplingScores = pdbData.predicted.contactInformation;
+      if (pdbData.experimental) {
+        couplingScores = pdbData.experimental.contactInformation;
       }
     } else {
       couplingScores = new CouplingContainer(data.couplingScores.rankedContacts);
     }
 
-    const { chainLength } = couplingScores;
     const allPredictions = couplingScores.getPredictedContacts(numPredictionsToShow, linearDistFilter, [
       {
         filterFn: score => (score.probability ? score.probability >= minimumProbability : true),
@@ -189,11 +194,12 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
       1,
     );
 
+    const { chainLength } = couplingScores;
     const newPoints: IContactMapChartData[] = [
       generateChartDataEntry(
         'text',
         allColor,
-        'Predicted Contact',
+        'Inferred Contact',
         `(N=${numPredictionsToShow}, L=${chainLength})`,
         4,
         allPredictions.predicted,
@@ -217,7 +223,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
       generateChartDataEntry(
         'text',
         correctColor,
-        'Correct Prediction',
+        'Inferred Contact Agrees with X-ray Contact',
         `(N=${allPredictions.correct.length}, ${correctPredictionPercent}%)`,
         6,
         allPredictions.correct,

@@ -1,3 +1,4 @@
+import { Marks } from 'rc-slider';
 import { ButtonProps, SemanticICONS } from 'semantic-ui-react';
 
 export enum CONFIGURATION_COMPONENT_TYPE {
@@ -71,6 +72,7 @@ export type RangeSliderWidgetConfig = IBaseBioblocksWidgetConfig &
 export type SliderWidgetConfig = IBaseBioblocksWidgetConfig &
   IBioblocksWidgetValueConfig &
   ({
+    marks?: Marks;
     // tslint:disable-next-line:no-reserved-keywords
     type: CONFIGURATION_COMPONENT_TYPE.SLIDER;
   });

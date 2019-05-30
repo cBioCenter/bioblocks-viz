@@ -151,38 +151,6 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       },
     );
 
-  protected getFilterConfigs = (): BioblocksWidgetConfig[] => {
-    const { configurations } = this.props;
-
-    return [
-      ...configurations,
-      /*
-      {
-        name: 'Maximum Rank',
-        onChange: this.onLinearDistFilterChange(),
-        type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
-        values: {
-          current: this.state.linearDistFilter,
-          defaultValue: 5,
-          max: 10,
-          min: 1,
-        },
-      },
-      {
-        name: 'Top N Predictions to Show',
-        onChange: this.onNumPredictionsToShowChange(),
-        type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
-        values: {
-          current: this.state.numPredictionsToShow,
-          defaultValue: 100,
-          max: this.props.data.couplingScores.chainLength,
-          min: 1,
-        },
-      },
-      */
-    ];
-  };
-
   protected getSettingsConfigs = (): BioblocksWidgetConfig[] => {
     const { removeAllLockedResiduePairs } = this.props;
     const { pointsToPlot } = this.state;
@@ -271,6 +239,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     const {
       addHoveredResidues,
       candidateResidues,
+      configurations,
       data,
       height,
       isDataLoading,
@@ -283,13 +252,20 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       width,
     } = this.props;
 
+    let range;
+    if (data.pdbData && data.pdbData.predicted && !data.pdbData.experimental) {
+      range = data.pdbData.predicted.sequence.length + 20;
+    } else if (data.pdbData && data.pdbData.experimental) {
+      range = data.pdbData.experimental.sequence.length + 20;
+    }
+
     return (
       <ComponentCard
         componentName={'Contact Map'}
         menuItems={[
           {
             component: {
-              configs: this.getFilterConfigs(),
+              configs: configurations,
               name: 'POPUP',
             },
             description: 'Filter',
@@ -313,7 +289,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
           onHoverCallback={this.onMouseEnter(addHoveredResidues)}
           onSelectedCallback={this.onMouseSelect(onBoxSelection)}
           onUnHoverCallback={this.onMouseLeave(removeHoveredResidues)}
-          range={data.couplingScores.residueIndexRange.max + 20}
+          range={range}
           secondaryStructures={data.secondaryStructures ? data.secondaryStructures : []}
           secondaryStructureColors={secondaryStructureColors}
           selectedSecondaryStructures={[selectedSecondaryStructures]}
@@ -329,8 +305,8 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     const { pointsToPlot } = this.state;
 
     const chartNames = {
-      selected: 'Selected Residue Pairs',
-      structure: `${data.pdbData ? (data.pdbData.known ? 'Known' : 'Predicted') : 'Unknown'} Structure Contact`,
+      selected: 'Selected Residue Pair',
+      structure: `${data.pdbData ? (data.pdbData.experimental ? 'Known' : 'Predicted') : 'Unknown'} Structure Contact`,
     };
 
     const knownPointsIndex = pointsToPlot.findIndex(entry => entry.name === chartNames.structure);
@@ -341,8 +317,8 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       generateChartDataEntry(
         'text',
         { start: observedColor, end: 'rgb(100,177,200)' },
+        'X-ray Structure Contact',
         chartNames.structure,
-        '(from PDB structure)',
         knownPointsIndex >= 0 ? pointsToPlot[knownPointsIndex].nodeSize : 4,
         observedContactPoints,
         {

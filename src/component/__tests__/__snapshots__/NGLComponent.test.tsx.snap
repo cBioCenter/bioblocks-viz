@@ -21,6 +21,16 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
               "type": "BUTTON",
             },
             Object {
+              "current": "Enable",
+              "name": "Distance Representation",
+              "onChange": [Function],
+              "options": Array [
+                "Enable",
+                "Disable",
+              ],
+              "type": "RADIO",
+            },
+            Object {
               "current": "Disable",
               "name": "Zoom on Click",
               "onChange": [Function],
@@ -130,7 +140,7 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
             onClick={[Function]}
             role="button"
           >
-            Toggle Camera
+            Switch to Stereo
           </a>
         </div>
       </GridColumn>

@@ -2,7 +2,7 @@ import { mount, ReactWrapper, shallow } from 'enzyme';
 import * as NGL from 'ngl';
 import * as React from 'react';
 
-import { Form } from 'semantic-ui-react';
+import { Popup } from 'semantic-ui-react';
 import { NGLComponent } from '~bioblocks-viz~/component';
 import { BioblocksPDB, CONTACT_DISTANCE_PROXIMITY } from '~bioblocks-viz~/data';
 
@@ -10,7 +10,7 @@ describe('NGLComponent', () => {
   let sampleData: BioblocksPDB[];
 
   beforeEach(() => {
-    const nglStructure = new NGL.Structure();
+    const nglStructure = new NGL.Structure('sample');
     nglStructure.residueStore.resno = new Uint32Array([0, 1, 2, 3, 4]);
     sampleData = [BioblocksPDB.createPDBFromNGLData(nglStructure)];
   });
@@ -68,7 +68,7 @@ describe('NGLComponent', () => {
 
     wrapper.update();
 
-    expect(instance.state.activeRepresentations.experimental.reps[0].name()).toEqual(expectedRep);
+    expect(instance.state.activeRepresentations.predicted.reps[0].name()).toEqual(expectedRep);
   });
 
   it('Should show the distance and ball+stick representation for locked residues for C-Alpha proximity.', () => {
@@ -125,9 +125,9 @@ describe('NGLComponent', () => {
     wrapper.update();
 
     const { activeRepresentations } = instance.state;
-    expect(activeRepresentations.experimental.reps.length).toEqual(expectedRep.length);
-    for (let i = 0; i < activeRepresentations.experimental.reps.length; i++) {
-      expect(activeRepresentations.experimental.reps[i].name()).toEqual(expectedRep[i]);
+    expect(activeRepresentations.predicted.reps.length).toEqual(expectedRep.length);
+    for (let i = 0; i < activeRepresentations.predicted.reps.length; i++) {
+      expect(activeRepresentations.predicted.reps[i].name()).toEqual(expectedRep[i]);
     }
   });
 
@@ -141,9 +141,9 @@ describe('NGLComponent', () => {
     });
 
     const { activeRepresentations } = instance.state;
-    expect(activeRepresentations.experimental.reps.length).toEqual(expectedRep.length);
-    for (let i = 0; i < activeRepresentations.experimental.reps.length; i++) {
-      expect(activeRepresentations.experimental.reps[i].name()).toEqual(expectedRep[i]);
+    expect(activeRepresentations.predicted.reps.length).toEqual(expectedRep.length);
+    for (let i = 0; i < activeRepresentations.predicted.reps.length; i++) {
+      expect(activeRepresentations.predicted.reps[i].name()).toEqual(expectedRep[i]);
     }
   });
 
@@ -420,23 +420,25 @@ describe('NGLComponent', () => {
     });
   });
 
-  describe.skip('Configurations', () => {
+  describe('Configurations', () => {
     it('Should handle changing the measuring proximity.', () => {
       const onMeasuredProximityChangeSpy = jest.fn();
-      const wrapper = shallow(<NGLComponent onMeasuredProximityChange={onMeasuredProximityChangeSpy} />);
+      const wrapper = mount(<NGLComponent onMeasuredProximityChange={onMeasuredProximityChangeSpy} />);
       const expected = CONTACT_DISTANCE_PROXIMITY.CLOSEST;
       expect((wrapper.instance() as NGLComponent).props.measuredProximity).not.toEqual(expected);
+
       wrapper
-        .find('#proximity-metric-1')
-        .find(Form.Radio)
-        .at(1)
-        .find('input')
-        .simulate('change', 1);
-      expect(onMeasuredProximityChangeSpy).toHaveBeenLastCalledWith(1);
+        .find(Popup)
+        .at(0)
+        .simulate('click');
+
+      wrapper.find('input[name="Closest Atom"]').simulate('change');
+
+      expect(onMeasuredProximityChangeSpy).toHaveBeenLastCalledWith(0);
     });
 
     it('Should handle changing the structure representation type to the non-default.', () => {
-      const wrapper = shallow(<NGLComponent predictedProteins={sampleData} />);
+      const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
       const instance = wrapper.instance() as NGLComponent;
       const defaultFileRepresentationSpy = jest.fn();
       if (instance.state.stage) {
@@ -446,36 +448,132 @@ describe('NGLComponent', () => {
       }
 
       wrapper
-        .find('#structure-representation-type-2')
-        .find(Form.Radio)
-        .at(1)
-        .find('input')
+        .find(Popup)
+        .at(0)
+        .simulate('click');
+      wrapper
+        .find('input[name="Tube"]')
+        .at(0)
         .simulate('change');
       wrapper
-        .find('#structure-representation-type-2')
-        .find(Form.Radio)
+        .find('input[name="Default"]')
         .at(0)
-        .find('input')
         .simulate('change');
-      wrapper.update();
-      wrapper.instance().forceUpdate();
       expect(defaultFileRepresentationSpy).toHaveBeenCalledTimes(1);
     });
 
     it('Should handle changing the structure representation type to a non-default.', () => {
-      const wrapper = shallow(<NGLComponent predictedProteins={sampleData} />);
+      const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
       const instance = wrapper.instance() as NGLComponent;
       const expected = 'spacefill';
-      expect(instance.state.activeRepresentations).toHaveLength(0);
+      expect(instance.state.activeRepresentations.experimental.structType).toEqual('default');
+      expect(instance.state.activeRepresentations.predicted.structType).toEqual('default');
       wrapper
-        .find('#structure-representation-type-2')
-        .find(Form.Radio)
+        .find(Popup)
+        .at(0)
+        .simulate('click');
+      wrapper
+        .find('input[name="Spacefill"]')
+        .at(0)
+        .simulate('change');
+      wrapper
+        .find('input[name="Spacefill"]')
         .at(1)
-        .find('input')
-        .simulate('change', 1);
-      wrapper.update();
-      wrapper.instance().forceUpdate();
-      expect(instance.state.activeRepresentations.experimental.reps[0]).toEqual(expected);
+        .simulate('change');
+      expect(instance.state.activeRepresentations.experimental.structType).toEqual(expected);
+      expect(instance.state.activeRepresentations.predicted.structType).toEqual(expected);
+    });
+
+    it('Should handle turning the distance representation off.', () => {
+      const wrapper = mount(<NGLComponent />);
+      const instance = wrapper.instance() as NGLComponent;
+      expect(instance.state.isDistRepEnabled).not.toEqual(false);
+
+      wrapper
+        .find(Popup)
+        .at(0)
+        .simulate('click');
+
+      wrapper
+        .find('input[name="Disable"]')
+        .at(0)
+        .simulate('change');
+
+      expect(instance.state.isDistRepEnabled).not.toEqual(true);
+    });
+
+    it('Should handle turning movePick off.', () => {
+      const wrapper = mount(<NGLComponent />);
+      const instance = wrapper.instance() as NGLComponent;
+      expect(instance.state.isMovePickEnabled).toEqual(false);
+
+      wrapper
+        .find(Popup)
+        .at(0)
+        .simulate('click');
+
+      wrapper
+        .find('input[name="Enable"]')
+        .at(1)
+        .simulate('change');
+
+      expect(instance.state.isMovePickEnabled).toEqual(true);
+
+      wrapper
+        .find('input[name="Disable"]')
+        .at(1)
+        .simulate('change');
+
+      expect(instance.state.isMovePickEnabled).toEqual(false);
+    });
+
+    it('Should handle switching cameras.', () => {
+      const wrapper = mount(<NGLComponent />);
+      const instance = wrapper.instance() as NGLComponent;
+      const { stage } = instance.state;
+      if (stage) {
+        expect(stage.parameters.cameraType).toEqual('perspective');
+        wrapper
+          .find('a')
+          .at(0)
+          .simulate('click');
+        expect(stage.parameters.cameraType).toEqual('stereo');
+        wrapper
+          .find('a')
+          .at(0)
+          .simulate('click');
+        expect(stage.parameters.cameraType).toEqual('perspective');
+      } else {
+        expect(stage).not.toBeUndefined();
+      }
+    });
+
+    it('Should handle switching superposition.', () => {
+      const wrapper = mount(<NGLComponent />);
+      const instance = wrapper.instance() as NGLComponent;
+      expect(instance.state.superpositionStatus).toEqual('NONE');
+      wrapper
+        .find('a')
+        .at(2)
+        .simulate('click');
+      expect(instance.state.superpositionStatus).toEqual('BOTH');
+    });
+
+    it('Should handle centering the camera.', () => {
+      const wrapper = mount(<NGLComponent />);
+      const instance = wrapper.instance() as NGLComponent;
+      const { stage } = instance.state;
+      if (stage) {
+        const autoViewSpy = jest.fn();
+        stage.autoView = autoViewSpy;
+        wrapper
+          .find('a')
+          .at(1)
+          .simulate('click');
+        expect(autoViewSpy).toHaveBeenCalled();
+      } else {
+        expect(stage).not.toBeUndefined();
+      }
     });
   });
 });

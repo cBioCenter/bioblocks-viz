@@ -37,7 +37,7 @@ describe('InfoPanelContainer', () => {
   });
 
   it('Should match existing snapshot when given sample data and a known PDB.', () => {
-    const wrapper = shallow(<InfoPanelContainerClass data={{ ...sampleData, pdbData: { known: pdbData } }} />);
+    const wrapper = shallow(<InfoPanelContainerClass data={{ ...sampleData, pdbData: { experimental: pdbData } }} />);
     expect(wrapper).toMatchSnapshot();
   });
 

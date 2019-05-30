@@ -47,8 +47,9 @@ export class BioblocksPDB {
   public get name(): string {
     const splitName = this.fileName.split('/');
     const lastPart = splitName[splitName.length - 1];
+    const lastIndex = lastPart.lastIndexOf('.');
 
-    return lastPart.slice(0, lastPart.lastIndexOf('.'));
+    return lastPart.slice(0, lastIndex === -1 ? undefined : lastIndex);
   }
 
   public get nglStructure(): NGL.Structure {
@@ -56,7 +57,7 @@ export class BioblocksPDB {
   }
 
   public get rank(): string {
-    return 'UKN';
+    return 'UNK';
   }
 
   public get secondaryStructure(): ISecondaryStructureData[] {
@@ -134,7 +135,7 @@ export class BioblocksPDB {
   public static createPDBFromNGLData(nglData: NGL.Structure) {
     const result = new BioblocksPDB();
     result.nglData = nglData;
-    result.fileName = nglData.path;
+    result.fileName = nglData.path ? nglData.path : nglData.name;
 
     return result;
   }

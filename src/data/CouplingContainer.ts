@@ -45,7 +45,7 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
   protected totalStoredContacts: number = 0;
 
   protected indexRange = {
-    max: 50,
+    max: 1,
     min: 1,
   };
 

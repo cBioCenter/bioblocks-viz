@@ -129,7 +129,7 @@ describe('ContactMap', () => {
     });
 
     it('Should match existing snapshot when given data with a PDB.', async () => {
-      const pdbData = { known: await BioblocksPDB.createPDB() };
+      const pdbData = { experimental: await BioblocksPDB.createPDB() };
       expect(shallow(<ContactMapClass data={{ ...sampleDataWithAminoAcid, pdbData }} />)).toMatchSnapshot();
     });
 

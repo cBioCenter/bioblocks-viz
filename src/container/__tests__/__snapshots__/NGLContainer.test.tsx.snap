@@ -392,6 +392,16 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                               "type": "BUTTON",
                             },
                             Object {
+                              "current": "Enable",
+                              "name": "Distance Representation",
+                              "onChange": [Function],
+                              "options": Array [
+                                "Enable",
+                                "Disable",
+                              ],
+                              "type": "RADIO",
+                            },
+                            Object {
                               "current": "Disable",
                               "name": "Zoom on Click",
                               "onChange": [Function],
@@ -641,6 +651,16 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                     "name": "Clear Selections",
                                     "onClick": [Function],
                                     "type": "BUTTON",
+                                  },
+                                  Object {
+                                    "current": "Enable",
+                                    "name": "Distance Representation",
+                                    "onChange": [Function],
+                                    "options": Array [
+                                      "Enable",
+                                      "Disable",
+                                    ],
+                                    "type": "RADIO",
                                   },
                                   Object {
                                     "current": "Disable",
@@ -1110,7 +1130,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                       onClick={[Function]}
                                       role="button"
                                     >
-                                      Toggle Camera
+                                      Switch to Stereo
                                     </a>
                                   </div>
                                 </div>

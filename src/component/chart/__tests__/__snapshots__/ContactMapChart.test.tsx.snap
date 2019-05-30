@@ -199,7 +199,6 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
       },
       "showlegend": false,
       "xaxis": Object {
-        "autorange": true,
         "fixedrange": true,
         "nticks": 10,
         "range": Array [
@@ -212,12 +211,11 @@ exports[`ContactMapChart Should match existing snapshot when given data with ext
         "title": "Residue #",
       },
       "yaxis": Object {
-        "autorange": "reversed",
         "fixedrange": true,
         "nticks": 10,
         "range": Array [
-          0,
           33000,
+          0,
         ],
         "rangemode": "nonnegative",
         "showline": true,
@@ -584,7 +582,6 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
       },
       "showlegend": false,
       "xaxis": Object {
-        "autorange": true,
         "fixedrange": true,
         "nticks": 10,
         "range": Array [
@@ -597,12 +594,11 @@ exports[`ContactMapChart Should match existing snapshot when given data with mul
         "title": "Residue #",
       },
       "yaxis": Object {
-        "autorange": "reversed",
         "fixedrange": true,
         "nticks": 10,
         "range": Array [
-          0,
           33000,
+          0,
         ],
         "rangemode": "nonnegative",
         "showline": true,
@@ -683,7 +679,6 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
       },
       "showlegend": false,
       "xaxis": Object {
-        "autorange": true,
         "fixedrange": true,
         "nticks": 10,
         "range": Array [
@@ -696,12 +691,11 @@ exports[`ContactMapChart Should match existing snapshot when given simple data. 
         "title": "Residue #",
       },
       "yaxis": Object {
-        "autorange": "reversed",
         "fixedrange": true,
         "nticks": 10,
         "range": Array [
-          0,
           33000,
+          0,
         ],
         "rangemode": "nonnegative",
         "showline": true,

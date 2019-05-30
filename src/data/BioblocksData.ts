@@ -40,7 +40,7 @@ export enum VIZ_TYPE {
 export interface IContactMapData {
   couplingScores: CouplingContainer;
   pdbData?: {
-    known?: BioblocksPDB;
+    experimental?: BioblocksPDB;
     predicted?: BioblocksPDB;
   };
   secondaryStructures: SECONDARY_STRUCTURE[];
