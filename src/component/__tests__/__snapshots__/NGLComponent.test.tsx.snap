@@ -130,7 +130,7 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
             onClick={[Function]}
             role="button"
           >
-            Toggle Camera
+            Stereo
           </a>
         </div>
       </GridColumn>

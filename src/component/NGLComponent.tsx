@@ -329,6 +329,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
         });
       } else {
         stage.setParameters({
+          cameraFov: 65,
           cameraType: 'stereo',
         });
       }
@@ -475,11 +476,13 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   protected getDistanceRepForResidues(structureComponent: NGL.StructureComponent, residues: RESIDUE_TYPE[]) {
     const { experimentalProteins, predictedProteins, measuredProximity } = this.props;
 
-    const allProteins = [...experimentalProteins, ...predictedProteins];
+    const pdbData = [...experimentalProteins, ...predictedProteins].find(
+      pdb => pdb.nglStructure.name === structureComponent.name,
+    );
     if (measuredProximity === CONTACT_DISTANCE_PROXIMITY.C_ALPHA) {
       return createDistanceRepresentation(structureComponent, `${residues.join('.CA, ')}.CA`);
-    } else if (allProteins.length >= 1) {
-      const { atomIndexI, atomIndexJ } = allProteins[0].getMinDistBetweenResidues(residues[0], residues[1]);
+    } else if (pdbData) {
+      const { atomIndexI, atomIndexJ } = pdbData.getMinDistBetweenResidues(residues[0], residues[1]);
 
       return createDistanceRepresentation(structureComponent, [atomIndexI, atomIndexJ]);
     }
@@ -760,7 +763,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
           <Grid.Column>
             <div style={{ userSelect: 'none' }}>
               <a aria-pressed={false} onClick={this.switchCameraType} role={'button'}>
-                Toggle Camera
+                {this.state.stage && this.state.stage.parameters.cameraType === 'stereo' ? `Perspective` : 'Stereo'}
               </a>
             </div>
           </Grid.Column>

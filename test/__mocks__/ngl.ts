@@ -56,6 +56,10 @@ class MockStage {
     },
   };
 
+  public parameters = {
+    cameraType: 'perspective',
+  };
+
   public signals = {
     clicked: {
       add: (callback: (...args: any[]) => void) => this.events.set('click', callback),
