@@ -2,8 +2,11 @@ import * as NGL from 'ngl';
 
 import { RESIDUE_TYPE, SECONDARY_STRUCTURE_SECTION } from '~bioblocks-viz~/data';
 
-export const defaultRepParams: Partial<NGL.IStructureRepresentationParams> = {
+export const defaultDistanceParams: Partial<NGL.IStructureRepresentationParams> = {
   color: 'red',
+};
+
+export const defaultDistanceTooltipParams: Partial<NGL.IStructureRepresentationParams> = {
   labelBackground: true,
   labelBackgroundColor: 'lightgrey',
   labelBackgroundMargin: 0.75,
@@ -25,13 +28,24 @@ export const defaultRepParams: Partial<NGL.IStructureRepresentationParams> = {
 export const createDistanceRepresentation = (
   structureComponent: NGL.StructureComponent,
   selection: string | number[],
+  isTooltipEnabled: boolean,
   params: Partial<NGL.IStructureRepresentationParams> = {},
-) =>
-  structureComponent.addRepresentation('distance', {
-    ...defaultRepParams,
+) => {
+  let representationParams: Partial<NGL.IStructureRepresentationParams> = {
+    ...defaultDistanceParams,
     ...params,
     atomPair: Array.isArray(selection) ? [selection] : [selection.split(',')],
-  });
+  };
+
+  if (isTooltipEnabled) {
+    representationParams = {
+      ...representationParams,
+      ...defaultDistanceTooltipParams,
+    };
+  }
+
+  return structureComponent.addRepresentation('distance', representationParams);
+};
 
 /**
  * Marks a set of residues with a ball+stick representation in NGL.

@@ -87,8 +87,9 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
         Object {
           "marks": Object {
             "0": "L/2",
-            "1": "3L/2",
+            "1": "L",
             "2": "2L",
+            "3": "3L",
           },
           "name": "Number of Couplings to Display",
           "onChange": [Function],
@@ -96,7 +97,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
           "values": Object {
             "current": 0,
             "defaultValue": 100,
-            "max": 2,
+            "max": 3,
             "min": 0,
           },
         },
@@ -112,7 +113,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
           },
         },
         Object {
-          "name": "Minimum Allowed Probability",
+          "name": "Minimum Probability",
           "onChange": [Function],
           "step": 0.01,
           "type": "SLIDER",
@@ -192,8 +193,9 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
         Object {
           "marks": Object {
             "0": "L/2",
-            "1": "3L/2",
+            "1": "L",
             "2": "2L",
+            "3": "3L",
           },
           "name": "Number of Couplings to Display",
           "onChange": [Function],
@@ -201,7 +203,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
           "values": Object {
             "current": 0,
             "defaultValue": 100,
-            "max": 2,
+            "max": 3,
             "min": 0,
           },
         },
@@ -217,7 +219,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
           },
         },
         Object {
-          "name": "Minimum Allowed Probability",
+          "name": "Minimum Probability",
           "onChange": [Function],
           "step": 0.01,
           "type": "SLIDER",
@@ -297,8 +299,9 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
         Object {
           "marks": Object {
             "0": "L/2",
-            "1": "3L/2",
+            "1": "L",
             "2": "2L",
+            "3": "3L",
           },
           "name": "Number of Couplings to Display",
           "onChange": [Function],
@@ -306,7 +309,7 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
           "values": Object {
             "current": 0,
             "defaultValue": 100,
-            "max": 2,
+            "max": 3,
             "min": 0,
           },
         },
@@ -322,7 +325,7 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
           },
         },
         Object {
-          "name": "Minimum Allowed Probability",
+          "name": "Minimum Probability",
           "onChange": [Function],
           "step": 0.01,
           "type": "SLIDER",

@@ -119,10 +119,11 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
       {
         marks: {
           0: '0',
+          [Math.floor(chainLength / 4)]: 'L/4',
           [Math.floor(chainLength / 2)]: 'L/2',
           [chainLength]: 'L',
-          [Math.floor(chainLength * 1.5)]: '3L/2',
           [chainLength * 2]: '2L',
+          [chainLength * 3]: '3L',
         },
         name: 'Number of Couplings to Display',
         onChange: this.onNumPredictionsToShowChange(),
@@ -130,7 +131,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
         values: {
           current: numPredictionsToShow,
           defaultValue: 100,
-          max: chainLength * 2,
+          max: chainLength * 3,
           min: 0,
         },
       },
@@ -146,7 +147,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
         },
       },
       {
-        name: 'Minimum Allowed Probability',
+        name: 'Minimum Probability',
         onChange: this.onMinimumProbabilityChange(),
         step: 0.01,
         type: CONFIGURATION_COMPONENT_TYPE.SLIDER,

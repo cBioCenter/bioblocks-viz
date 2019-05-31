@@ -422,7 +422,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                               "type": "RADIO",
                             },
                             Object {
-                              "current": "Default",
+                              "current": "Cartoon",
                               "name": "Predicted Structure Representation",
                               "onChange": [Function],
                               "options": Array [
@@ -683,7 +683,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                     "type": "RADIO",
                                   },
                                   Object {
-                                    "current": "Default",
+                                    "current": "Cartoon",
                                     "name": "Predicted Structure Representation",
                                     "onChange": [Function],
                                     "options": Array [
