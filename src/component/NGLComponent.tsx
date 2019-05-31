@@ -68,7 +68,7 @@ export const initialNGLState = {
     },
     predicted: {
       reps: new Array<NGL.RepresentationElement>(),
-      structType: 'default' as NGL.StructureRepresentationType,
+      structType: 'cartoon' as NGL.StructureRepresentationType,
     },
   },
   isDistRepEnabled: true,
@@ -335,6 +335,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
           cameraType: 'stereo',
         });
       }
+      this.forceUpdate();
     }
   };
 
@@ -452,16 +453,17 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
 
   protected getDistanceRepForResidues(structureComponent: NGL.StructureComponent, residues: RESIDUE_TYPE[]) {
     const { experimentalProteins, predictedProteins, measuredProximity } = this.props;
+    const { isDistRepEnabled } = this.state;
 
     const pdbData = [...experimentalProteins, ...predictedProteins].find(
       pdb => pdb.nglStructure.name === structureComponent.name,
     );
     if (measuredProximity === CONTACT_DISTANCE_PROXIMITY.C_ALPHA) {
-      return createDistanceRepresentation(structureComponent, `${residues.join('.CA, ')}.CA`);
+      return createDistanceRepresentation(structureComponent, `${residues.join('.CA, ')}.CA`, isDistRepEnabled);
     } else if (pdbData) {
       const { atomIndexI, atomIndexJ } = pdbData.getMinDistBetweenResidues(residues[0], residues[1]);
 
-      return createDistanceRepresentation(structureComponent, [atomIndexI, atomIndexJ]);
+      return createDistanceRepresentation(structureComponent, [atomIndexI, atomIndexJ], isDistRepEnabled);
     }
   }
 
@@ -527,12 +529,11 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   }
 
   protected highlightCandidateResidues(structureComponent: NGL.StructureComponent, residues: RESIDUE_TYPE[]) {
-    const { isDistRepEnabled } = this.state;
     const reps = new Array<NGL.RepresentationElement>();
 
     if (residues.length >= 1) {
       reps.push(createBallStickRepresentation(structureComponent, residues));
-      if (residues.length >= 2 && isDistRepEnabled) {
+      if (residues.length >= 2) {
         const rep = this.getDistanceRepForResidues(structureComponent, residues);
         if (rep) {
           reps.push(rep);
@@ -547,13 +548,12 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     structureComponent: NGL.StructureComponent,
     lockedResidues: ILockedResiduePair,
   ) {
-    const { isDistRepEnabled } = this.state;
     const reps = new Array<NGL.RepresentationElement>();
 
     for (const residues of Object.values(lockedResidues)) {
       reps.push(createBallStickRepresentation(structureComponent, residues));
 
-      if (residues.length >= 2 && isDistRepEnabled) {
+      if (residues.length >= 2) {
         const rep = this.getDistanceRepForResidues(structureComponent, residues);
         if (rep) {
           reps.push(rep);

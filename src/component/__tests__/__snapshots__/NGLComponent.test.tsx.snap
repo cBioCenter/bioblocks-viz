@@ -51,7 +51,7 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
               "type": "RADIO",
             },
             Object {
-              "current": "Default",
+              "current": "Cartoon",
               "name": "Predicted Structure Representation",
               "onChange": [Function],
               "options": Array [

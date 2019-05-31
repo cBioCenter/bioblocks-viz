@@ -467,7 +467,7 @@ describe('NGLComponent', () => {
       const instance = wrapper.instance() as NGLComponent;
       const expected = 'spacefill';
       expect(instance.state.activeRepresentations.experimental.structType).toEqual('default');
-      expect(instance.state.activeRepresentations.predicted.structType).toEqual('default');
+      expect(instance.state.activeRepresentations.predicted.structType).toEqual('cartoon');
       wrapper
         .find(Popup)
         .at(0)
