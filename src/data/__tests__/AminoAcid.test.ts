@@ -1,5 +1,5 @@
 import {
-  AMINO_ACIDS_BY_SINGLE_LETTER_CODE,
+  AMINO_ACID_BY_CODE,
   BioblocksPDB,
   CouplingContainer,
   getPDBAndCouplingMismatch,
@@ -15,8 +15,8 @@ describe('Sequence Mismatch', () => {
   it('Should correctly report sequence mismatches.', () => {
     const expected: IResidueMismatchResult[] = [
       {
-        couplingAminoAcid: AMINO_ACIDS_BY_SINGLE_LETTER_CODE.E,
-        pdbAminoAcid: AMINO_ACIDS_BY_SINGLE_LETTER_CODE.A,
+        couplingAminoAcid: AMINO_ACID_BY_CODE.E,
+        pdbAminoAcid: AMINO_ACID_BY_CODE.A,
         resno: 8,
       },
     ];

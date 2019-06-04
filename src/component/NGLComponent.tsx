@@ -7,8 +7,8 @@ import { Matrix4, Vector2 } from 'three';
 
 import { ComponentCard, IComponentMenuBarItem } from '~bioblocks-viz~/component';
 import {
+  AMINO_ACID_BY_CODE,
   AMINO_ACID_THREE_LETTER_CODE,
-  AMINO_ACIDS_BY_THREE_LETTER_CODE,
   BIOBLOCKS_CSS_STYLE,
   BioblocksPDB,
   BioblocksWidgetConfig,
@@ -688,8 +688,8 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     if (stage) {
       if (pickingProxy && (pickingProxy.atom || pickingProxy.closestBondAtom)) {
         const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
-        const resname = AMINO_ACIDS_BY_THREE_LETTER_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE]
-          ? AMINO_ACIDS_BY_THREE_LETTER_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE].singleLetterCode
+        const resname = AMINO_ACID_BY_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE]
+          ? AMINO_ACID_BY_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE].singleLetterCode
           : atom.resname;
         stage.tooltip.textContent = `${atom.resno}${resname}`;
         addHoveredResidues([atom.resno]);

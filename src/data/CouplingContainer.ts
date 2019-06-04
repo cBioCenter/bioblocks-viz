@@ -1,5 +1,5 @@
 import {
-  AMINO_ACIDS_BY_SINGLE_LETTER_CODE,
+  AMINO_ACID_BY_CODE,
   COUPLING_SCORE_SOURCE,
   IAminoAcid,
   ICouplingScore,
@@ -160,9 +160,9 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
       if (outerContact) {
         for (const innerContact of outerContact) {
           if (innerContact && innerContact.i === resno && innerContact.A_i) {
-            return AMINO_ACIDS_BY_SINGLE_LETTER_CODE[innerContact.A_i];
+            return AMINO_ACID_BY_CODE[innerContact.A_i];
           } else if (innerContact && innerContact.j === resno && innerContact.A_j) {
-            return AMINO_ACIDS_BY_SINGLE_LETTER_CODE[innerContact.A_j];
+            return AMINO_ACID_BY_CODE[innerContact.A_j];
           }
         }
       }

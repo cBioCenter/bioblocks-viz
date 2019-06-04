@@ -1,9 +1,8 @@
 import * as NGL from 'ngl';
 
 import {
+  AMINO_ACID_BY_CODE,
   AMINO_ACID_THREE_LETTER_CODE,
-  AMINO_ACIDS_BY_SINGLE_LETTER_CODE,
-  AMINO_ACIDS_BY_THREE_LETTER_CODE,
   Bioblocks1DSection,
   CONTACT_DISTANCE_PROXIMITY,
   CouplingContainer,
@@ -113,6 +112,7 @@ export class BioblocksPDB {
   public get source(): string {
     return 'UKN';
   }
+
   public static readonly NGL_C_ALPHA_INDEX = 'CA|C';
 
   public static createEmptyPDB() {
@@ -141,7 +141,6 @@ export class BioblocksPDB {
   }
 
   protected contactInfo?: CouplingContainer;
-
   protected fileName: string = '';
   protected nglData: NGL.Structure = new NGL.Structure();
 
@@ -243,12 +242,11 @@ export class BioblocksPDB {
       const couplingAminoAcid = contacts.getAminoAcidOfContact(residue.resno);
       if (
         couplingAminoAcid &&
-        AMINO_ACIDS_BY_THREE_LETTER_CODE[pdbResCode] !==
-          AMINO_ACIDS_BY_SINGLE_LETTER_CODE[couplingAminoAcid.singleLetterCode]
+        AMINO_ACID_BY_CODE[pdbResCode] !== AMINO_ACID_BY_CODE[couplingAminoAcid.singleLetterCode]
       ) {
         result.push({
-          couplingAminoAcid: AMINO_ACIDS_BY_SINGLE_LETTER_CODE[couplingAminoAcid.singleLetterCode],
-          pdbAminoAcid: AMINO_ACIDS_BY_THREE_LETTER_CODE[pdbResCode],
+          couplingAminoAcid: AMINO_ACID_BY_CODE[couplingAminoAcid.singleLetterCode],
+          pdbAminoAcid: AMINO_ACID_BY_CODE[pdbResCode],
           resno: residue.resno,
         });
       }
