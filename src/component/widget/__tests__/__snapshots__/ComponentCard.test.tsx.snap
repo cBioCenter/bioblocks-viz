@@ -39,7 +39,6 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
     >
       <ComponentMenuBar
         componentName="Let's"
-        configurations={Array []}
         height={40}
         iconSrc="assets/icons/spring-icon.png"
         isExpanded={false}
@@ -199,7 +198,6 @@ exports[`ComponentCard Should match existing snapshot when framed. 1`] = `
 >
   <ComponentMenuBar
     componentName="The Boxer"
-    configurations={Array []}
     height={40}
     iconSrc="assets/icons/spring-icon.png"
     isExpanded={false}
@@ -232,7 +230,6 @@ exports[`ComponentCard Should match existing snapshot when given default props. 
 >
   <ComponentMenuBar
     componentName="The Boxer"
-    configurations={Array []}
     height={40}
     iconSrc="assets/icons/spring-icon.png"
     isExpanded={false}
@@ -258,7 +255,6 @@ exports[`ComponentCard Should match existing snapshot when not framed. 1`] = `
 >
   <ComponentMenuBar
     componentName="The Boxer"
-    configurations={Array []}
     height={40}
     iconSrc="assets/icons/spring-icon.png"
     isExpanded={false}

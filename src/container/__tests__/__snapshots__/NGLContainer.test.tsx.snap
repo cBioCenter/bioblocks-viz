@@ -385,71 +385,70 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                       },
                       Object {
                         "component": Object {
-                          "configs": Array [
-                            Object {
-                              "name": "Clear Selections",
-                              "onClick": [Function],
-                              "type": "BUTTON",
-                            },
-                            Object {
-                              "current": "Enable",
-                              "name": "Distance Representation",
-                              "onChange": [Function],
-                              "options": Array [
-                                "Enable",
-                                "Disable",
-                              ],
-                              "type": "RADIO",
-                            },
-                            Object {
-                              "current": "Disable",
-                              "name": "Zoom on Click",
-                              "onChange": [Function],
-                              "options": Array [
-                                "Enable",
-                                "Disable",
-                              ],
-                              "type": "RADIO",
-                            },
-                            Object {
-                              "current": "C-α",
-                              "name": "Proximity Metric",
-                              "onChange": [Function],
-                              "options": Array [
-                                "Closest Atom",
-                                "C-α",
-                              ],
-                              "type": "RADIO",
-                            },
-                            Object {
-                              "current": "Cartoon",
-                              "name": "Predicted Structure Representation",
-                              "onChange": [Function],
-                              "options": Array [
-                                "Default",
-                                "Spacefill",
-                                "Backbone",
-                                "Cartoon",
-                                "Surface",
-                                "Tube",
-                              ],
-                              "type": "RADIO",
-                            },
-                            Object {
-                              "current": "Default",
-                              "name": "Experimental Structure Representation",
-                              "onChange": [Function],
-                              "options": Array [
-                                "Default",
-                                "Spacefill",
-                                "Backbone",
-                                "Cartoon",
-                                "Surface",
-                                "Tube",
-                              ],
-                              "type": "RADIO",
-                            },
-                          ],
+                          "configs": Object {
+                            "Representations": Array [
+                              Object {
+                                "current": "Cartoon",
+                                "name": "Predicted Structure Representation",
+                                "onChange": [Function],
+                                "options": Array [
+                                  "Default",
+                                  "Spacefill",
+                                  "Backbone",
+                                  "Cartoon",
+                                  "Surface",
+                                  "Tube",
+                                ],
+                                "type": "RADIO",
+                              },
+                              Object {
+                                "current": "Default",
+                                "name": "Experimental Structure Representation",
+                                "onChange": [Function],
+                                "options": Array [
+                                  "Default",
+                                  "Spacefill",
+                                  "Backbone",
+                                  "Cartoon",
+                                  "Surface",
+                                  "Tube",
+                                ],
+                                "type": "RADIO",
+                              },
+                            ],
+                            "Viewer": Array [
+                              Object {
+                                "current": "Enable",
+                                "name": "Distance Representation",
+                                "onChange": [Function],
+                                "options": Array [
+                                  "Enable",
+                                  "Disable",
+                                ],
+                                "type": "RADIO",
+                              },
+                              Object {
+                                "current": "Disable",
+                                "name": "Zoom on Click",
+                                "onChange": [Function],
+                                "options": Array [
+                                  "Enable",
+                                  "Disable",
+                                ],
+                                "type": "RADIO",
+                              },
+                              Object {
+                                "current": "C-α",
+                                "name": "Proximity Metric",
+                                "onChange": [Function],
+                                "options": Array [
+                                  "Closest Atom",
+                                  "C-α",
+                                ],
+                                "type": "RADIO",
+                              },
+                            ],
+                          },
                           "name": "POPUP",
                           "props": Object {
                             "trigger": <Icon
@@ -490,7 +489,6 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                     >
                       <ComponentMenuBar
                         componentName="NGL Viewer"
-                        configurations={Array []}
                         height={40}
                         iconSrc="assets/icons/spring-icon.png"
                         isExpanded={false}
@@ -646,71 +644,70 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                             },
                             Object {
                               "component": Object {
-                                "configs": Array [
-                                  Object {
-                                    "name": "Clear Selections",
-                                    "onClick": [Function],
-                                    "type": "BUTTON",
-                                  },
-                                  Object {
-                                    "current": "Enable",
-                                    "name": "Distance Representation",
-                                    "onChange": [Function],
-                                    "options": Array [
-                                      "Enable",
-                                      "Disable",
-                                    ],
-                                    "type": "RADIO",
-                                  },
-                                  Object {
-                                    "current": "Disable",
-                                    "name": "Zoom on Click",
-                                    "onChange": [Function],
-                                    "options": Array [
-                                      "Enable",
-                                      "Disable",
-                                    ],
-                                    "type": "RADIO",
-                                  },
-                                  Object {
-                                    "current": "C-α",
-                                    "name": "Proximity Metric",
-                                    "onChange": [Function],
-                                    "options": Array [
-                                      "Closest Atom",
-                                      "C-α",
-                                    ],
-                                    "type": "RADIO",
-                                  },
-                                  Object {
-                                    "current": "Cartoon",
-                                    "name": "Predicted Structure Representation",
-                                    "onChange": [Function],
-                                    "options": Array [
-                                      "Default",
-                                      "Spacefill",
-                                      "Backbone",
-                                      "Cartoon",
-                                      "Surface",
-                                      "Tube",
-                                    ],
-                                    "type": "RADIO",
-                                  },
-                                  Object {
-                                    "current": "Default",
-                                    "name": "Experimental Structure Representation",
-                                    "onChange": [Function],
-                                    "options": Array [
-                                      "Default",
-                                      "Spacefill",
-                                      "Backbone",
-                                      "Cartoon",
-                                      "Surface",
-                                      "Tube",
-                                    ],
-                                    "type": "RADIO",
-                                  },
-                                ],
+                                "configs": Object {
+                                  "Representations": Array [
+                                    Object {
+                                      "current": "Cartoon",
+                                      "name": "Predicted Structure Representation",
+                                      "onChange": [Function],
+                                      "options": Array [
+                                        "Default",
+                                        "Spacefill",
+                                        "Backbone",
+                                        "Cartoon",
+                                        "Surface",
+                                        "Tube",
+                                      ],
+                                      "type": "RADIO",
+                                    },
+                                    Object {
+                                      "current": "Default",
+                                      "name": "Experimental Structure Representation",
+                                      "onChange": [Function],
+                                      "options": Array [
+                                        "Default",
+                                        "Spacefill",
+                                        "Backbone",
+                                        "Cartoon",
+                                        "Surface",
+                                        "Tube",
+                                      ],
+                                      "type": "RADIO",
+                                    },
+                                  ],
+                                  "Viewer": Array [
+                                    Object {
+                                      "current": "Enable",
+                                      "name": "Distance Representation",
+                                      "onChange": [Function],
+                                      "options": Array [
+                                        "Enable",
+                                        "Disable",
+                                      ],
+                                      "type": "RADIO",
+                                    },
+                                    Object {
+                                      "current": "Disable",
+                                      "name": "Zoom on Click",
+                                      "onChange": [Function],
+                                      "options": Array [
+                                        "Enable",
+                                        "Disable",
+                                      ],
+                                      "type": "RADIO",
+                                    },
+                                    Object {
+                                      "current": "C-α",
+                                      "name": "Proximity Metric",
+                                      "onChange": [Function],
+                                      "options": Array [
+                                        "Closest Atom",
+                                        "C-α",
+                                      ],
+                                      "type": "RADIO",
+                                    },
+                                  ],
+                                },
                                 "name": "POPUP",
                                 "props": Object {
                                   "trigger": <Icon
@@ -830,7 +827,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                         openOnTriggerClick={true}
                                         openOnTriggerFocus={false}
                                         openOnTriggerMouseEnter={false}
-                                        position="bottom center"
+                                        position="bottom left"
                                         style={
                                           Object {
                                             "opacity": 0.85,
@@ -897,7 +894,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                         openOnTriggerClick={true}
                                         openOnTriggerFocus={false}
                                         openOnTriggerMouseEnter={false}
-                                        position="bottom center"
+                                        position="bottom left"
                                         style={
                                           Object {
                                             "opacity": 0.85,

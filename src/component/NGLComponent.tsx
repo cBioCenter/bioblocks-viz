@@ -209,7 +209,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
           ...menuItems,
           {
             component: {
-              configs: this.getConfigurations(),
+              configs: { ...this.getSettingsConfigurations(), ...this.getRepresentationConfigs() },
               name: 'POPUP',
               props: {
                 trigger: <Icon name={'setting'} />,
@@ -378,79 +378,6 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     return stage;
   };
 
-  protected getConfigurations = () => {
-    const { measuredProximity, removeAllLockedResiduePairs } = this.props;
-    const { isDistRepEnabled, isMovePickEnabled } = this.state;
-    const reps: NGL.StructureRepresentationType[] = ['default', 'spacefill', 'backbone', 'cartoon', 'surface', 'tube'];
-
-    return [
-      {
-        name: 'Clear Selections',
-        onClick: removeAllLockedResiduePairs,
-        type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
-      },
-      {
-        current: isDistRepEnabled ? 'Enable' : 'Disable',
-        name: 'Distance Representation',
-        onChange: this.toggleDistRep,
-        options: ['Enable', 'Disable'],
-        type: CONFIGURATION_COMPONENT_TYPE.RADIO,
-      },
-      {
-        current: isMovePickEnabled ? 'Enable' : 'Disable',
-        name: 'Zoom on Click',
-        onChange: this.toggleMovePick,
-        options: ['Enable', 'Disable'],
-        type: CONFIGURATION_COMPONENT_TYPE.RADIO,
-      },
-      {
-        current: measuredProximity,
-        name: 'Proximity Metric',
-        onChange: this.measuredProximityHandler,
-        options: Object.values(CONTACT_DISTANCE_PROXIMITY).map(capitalizeEveryWord),
-        type: CONFIGURATION_COMPONENT_TYPE.RADIO,
-      },
-      {
-        current: capitalizeFirstLetter(this.state.activeRepresentations.predicted.structType),
-        name: 'Predicted Structure Representation',
-        onChange: (value: number) => {
-          const { predictedProteins } = this.props;
-          const { activeRepresentations, stage } = this.state;
-          if (stage) {
-            this.setState({
-              activeRepresentations: {
-                ...activeRepresentations,
-                predicted: this.updateRepresentation(stage, reps[value], predictedProteins),
-              },
-            });
-            stage.viewer.requestRender();
-          }
-        },
-        options: Object.values(['Default', 'Spacefill', 'Backbone', 'Cartoon', 'Surface', 'Tube']),
-        type: CONFIGURATION_COMPONENT_TYPE.RADIO,
-      },
-      {
-        current: capitalizeFirstLetter(this.state.activeRepresentations.experimental.structType),
-        name: 'Experimental Structure Representation',
-        onChange: (value: number) => {
-          const { experimentalProteins } = this.props;
-          const { activeRepresentations, stage } = this.state;
-          if (stage) {
-            this.setState({
-              activeRepresentations: {
-                ...activeRepresentations,
-                experimental: this.updateRepresentation(stage, reps[value], experimentalProteins),
-              },
-            });
-            stage.viewer.requestRender();
-          }
-        },
-        options: Object.values(['Default', 'Spacefill', 'Backbone', 'Cartoon', 'Surface', 'Tube']),
-        type: CONFIGURATION_COMPONENT_TYPE.RADIO,
-      },
-    ] as BioblocksWidgetConfig[];
-  };
-
   protected getDistanceRepForResidues(structureComponent: NGL.StructureComponent, residues: RESIDUE_TYPE[]) {
     const { experimentalProteins, predictedProteins, measuredProximity } = this.props;
     const { isDistRepEnabled } = this.state;
@@ -466,6 +393,84 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       return createDistanceRepresentation(structureComponent, [atomIndexI, atomIndexJ], isDistRepEnabled);
     }
   }
+
+  protected getRepresentationConfigs = () => {
+    const reps: NGL.StructureRepresentationType[] = ['default', 'spacefill', 'backbone', 'cartoon', 'surface', 'tube'];
+
+    return {
+      Representations: [
+        {
+          current: capitalizeFirstLetter(this.state.activeRepresentations.predicted.structType),
+          name: 'Predicted Structure Representation',
+          onChange: (value: number) => {
+            const { predictedProteins } = this.props;
+            const { activeRepresentations, stage } = this.state;
+            if (stage) {
+              this.setState({
+                activeRepresentations: {
+                  ...activeRepresentations,
+                  predicted: this.updateRepresentation(stage, reps[value], predictedProteins),
+                },
+              });
+              stage.viewer.requestRender();
+            }
+          },
+          options: Object.values(['Default', 'Spacefill', 'Backbone', 'Cartoon', 'Surface', 'Tube']),
+          type: CONFIGURATION_COMPONENT_TYPE.RADIO,
+        },
+        {
+          current: capitalizeFirstLetter(this.state.activeRepresentations.experimental.structType),
+          name: 'Experimental Structure Representation',
+          onChange: (value: number) => {
+            const { experimentalProteins } = this.props;
+            const { activeRepresentations, stage } = this.state;
+            if (stage) {
+              this.setState({
+                activeRepresentations: {
+                  ...activeRepresentations,
+                  experimental: this.updateRepresentation(stage, reps[value], experimentalProteins),
+                },
+              });
+              stage.viewer.requestRender();
+            }
+          },
+          options: Object.values(['Default', 'Spacefill', 'Backbone', 'Cartoon', 'Surface', 'Tube']),
+          type: CONFIGURATION_COMPONENT_TYPE.RADIO,
+        },
+      ] as BioblocksWidgetConfig[],
+    };
+  };
+
+  protected getSettingsConfigurations = () => {
+    const { measuredProximity } = this.props;
+    const { isDistRepEnabled, isMovePickEnabled } = this.state;
+
+    return {
+      Viewer: [
+        {
+          current: isDistRepEnabled ? 'Enable' : 'Disable',
+          name: 'Distance Representation',
+          onChange: this.toggleDistRep,
+          options: ['Enable', 'Disable'],
+          type: CONFIGURATION_COMPONENT_TYPE.RADIO,
+        },
+        {
+          current: isMovePickEnabled ? 'Enable' : 'Disable',
+          name: 'Zoom on Click',
+          onChange: this.toggleMovePick,
+          options: ['Enable', 'Disable'],
+          type: CONFIGURATION_COMPONENT_TYPE.RADIO,
+        },
+        {
+          current: measuredProximity,
+          name: 'Proximity Metric',
+          onChange: this.measuredProximityHandler,
+          options: Object.values(CONTACT_DISTANCE_PROXIMITY).map(capitalizeEveryWord),
+          type: CONFIGURATION_COMPONENT_TYPE.RADIO,
+        },
+      ] as BioblocksWidgetConfig[],
+    };
+  };
 
   protected handleRepresentationUpdate(stage: NGL.Stage) {
     const { predictedProteins } = this.props;

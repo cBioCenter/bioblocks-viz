@@ -14,7 +14,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
     Array [
       Object {
         "component": Object {
-          "configs": Array [],
+          "configs": Object {
+            "Filters": Array [],
+          },
           "name": "POPUP",
         },
         "description": "Filter",
@@ -22,37 +24,34 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
       },
       Object {
         "component": Object {
-          "configs": Array [
-            Object {
-              "name": "Clear Selections",
-              "onClick": [Function],
-              "type": "BUTTON",
-            },
-            Object {
-              "id": "node-size-slider-0",
-              "name": "Node size for X-ray Structure Contact",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+          "configs": Object {
+            "Node Sizes": Array [
+              Object {
+                "id": "node-size-slider-0",
+                "name": "Node size for X-ray Structure Contact",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-            Object {
-              "id": "node-size-slider-1",
-              "name": "Node size for Selected Residue Pair",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+              Object {
+                "id": "node-size-slider-1",
+                "name": "Node size for Selected Residue Pair",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-          ],
+            ],
+          },
           "name": "POPUP",
         },
         "description": "Settings",
@@ -222,7 +221,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
     Array [
       Object {
         "component": Object {
-          "configs": Array [],
+          "configs": Object {
+            "Filters": Array [],
+          },
           "name": "POPUP",
         },
         "description": "Filter",
@@ -230,37 +231,34 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
       },
       Object {
         "component": Object {
-          "configs": Array [
-            Object {
-              "name": "Clear Selections",
-              "onClick": [Function],
-              "type": "BUTTON",
-            },
-            Object {
-              "id": "node-size-slider-0",
-              "name": "Node size for X-ray Structure Contact",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+          "configs": Object {
+            "Node Sizes": Array [
+              Object {
+                "id": "node-size-slider-0",
+                "name": "Node size for X-ray Structure Contact",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-            Object {
-              "id": "node-size-slider-1",
-              "name": "Node size for Selected Residue Pair",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+              Object {
+                "id": "node-size-slider-1",
+                "name": "Node size for Selected Residue Pair",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-          ],
+            ],
+          },
           "name": "POPUP",
         },
         "description": "Settings",
@@ -422,7 +420,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
     Array [
       Object {
         "component": Object {
-          "configs": Array [],
+          "configs": Object {
+            "Filters": Array [],
+          },
           "name": "POPUP",
         },
         "description": "Filter",
@@ -430,37 +430,34 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
       },
       Object {
         "component": Object {
-          "configs": Array [
-            Object {
-              "name": "Clear Selections",
-              "onClick": [Function],
-              "type": "BUTTON",
-            },
-            Object {
-              "id": "node-size-slider-0",
-              "name": "Node size for X-ray Structure Contact",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+          "configs": Object {
+            "Node Sizes": Array [
+              Object {
+                "id": "node-size-slider-0",
+                "name": "Node size for X-ray Structure Contact",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-            Object {
-              "id": "node-size-slider-1",
-              "name": "Node size for Selected Residue Pair",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+              Object {
+                "id": "node-size-slider-1",
+                "name": "Node size for Selected Residue Pair",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-          ],
+            ],
+          },
           "name": "POPUP",
         },
         "description": "Settings",
@@ -607,7 +604,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
     Array [
       Object {
         "component": Object {
-          "configs": Array [],
+          "configs": Object {
+            "Filters": Array [],
+          },
           "name": "POPUP",
         },
         "description": "Filter",
@@ -615,37 +614,34 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
       },
       Object {
         "component": Object {
-          "configs": Array [
-            Object {
-              "name": "Clear Selections",
-              "onClick": [Function],
-              "type": "BUTTON",
-            },
-            Object {
-              "id": "node-size-slider-0",
-              "name": "Node size for X-ray Structure Contact",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+          "configs": Object {
+            "Node Sizes": Array [
+              Object {
+                "id": "node-size-slider-0",
+                "name": "Node size for X-ray Structure Contact",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-            Object {
-              "id": "node-size-slider-1",
-              "name": "Node size for Selected Residue Pair",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+              Object {
+                "id": "node-size-slider-1",
+                "name": "Node size for Selected Residue Pair",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-          ],
+            ],
+          },
           "name": "POPUP",
         },
         "description": "Settings",
@@ -792,7 +788,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
     Array [
       Object {
         "component": Object {
-          "configs": Array [],
+          "configs": Object {
+            "Filters": Array [],
+          },
           "name": "POPUP",
         },
         "description": "Filter",
@@ -800,37 +798,34 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
       },
       Object {
         "component": Object {
-          "configs": Array [
-            Object {
-              "name": "Clear Selections",
-              "onClick": [Function],
-              "type": "BUTTON",
-            },
-            Object {
-              "id": "node-size-slider-0",
-              "name": "Node size for X-ray Structure Contact",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+          "configs": Object {
+            "Node Sizes": Array [
+              Object {
+                "id": "node-size-slider-0",
+                "name": "Node size for X-ray Structure Contact",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-            Object {
-              "id": "node-size-slider-1",
-              "name": "Node size for Selected Residue Pair",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+              Object {
+                "id": "node-size-slider-1",
+                "name": "Node size for Selected Residue Pair",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-          ],
+            ],
+          },
           "name": "POPUP",
         },
         "description": "Settings",
@@ -967,7 +962,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
     Array [
       Object {
         "component": Object {
-          "configs": Array [],
+          "configs": Object {
+            "Filters": Array [],
+          },
           "name": "POPUP",
         },
         "description": "Filter",
@@ -975,37 +972,34 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
       },
       Object {
         "component": Object {
-          "configs": Array [
-            Object {
-              "name": "Clear Selections",
-              "onClick": [Function],
-              "type": "BUTTON",
-            },
-            Object {
-              "id": "node-size-slider-0",
-              "name": "Node size for X-ray Structure Contact",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+          "configs": Object {
+            "Node Sizes": Array [
+              Object {
+                "id": "node-size-slider-0",
+                "name": "Node size for X-ray Structure Contact",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-            Object {
-              "id": "node-size-slider-1",
-              "name": "Node size for Selected Residue Pair",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+              Object {
+                "id": "node-size-slider-1",
+                "name": "Node size for Selected Residue Pair",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-          ],
+            ],
+          },
           "name": "POPUP",
         },
         "description": "Settings",
@@ -1142,7 +1136,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
     Array [
       Object {
         "component": Object {
-          "configs": Array [],
+          "configs": Object {
+            "Filters": Array [],
+          },
           "name": "POPUP",
         },
         "description": "Filter",
@@ -1150,37 +1146,34 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
       },
       Object {
         "component": Object {
-          "configs": Array [
-            Object {
-              "name": "Clear Selections",
-              "onClick": [Function],
-              "type": "BUTTON",
-            },
-            Object {
-              "id": "node-size-slider-0",
-              "name": "Node size for X-ray Structure Contact",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+          "configs": Object {
+            "Node Sizes": Array [
+              Object {
+                "id": "node-size-slider-0",
+                "name": "Node size for X-ray Structure Contact",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-            Object {
-              "id": "node-size-slider-1",
-              "name": "Node size for Selected Residue Pair",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+              Object {
+                "id": "node-size-slider-1",
+                "name": "Node size for Selected Residue Pair",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-          ],
+            ],
+          },
           "name": "POPUP",
         },
         "description": "Settings",
@@ -1350,7 +1343,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
     Array [
       Object {
         "component": Object {
-          "configs": Array [],
+          "configs": Object {
+            "Filters": Array [],
+          },
           "name": "POPUP",
         },
         "description": "Filter",
@@ -1358,37 +1353,34 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
       },
       Object {
         "component": Object {
-          "configs": Array [
-            Object {
-              "name": "Clear Selections",
-              "onClick": [Function],
-              "type": "BUTTON",
-            },
-            Object {
-              "id": "node-size-slider-0",
-              "name": "Node size for X-ray Structure Contact",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+          "configs": Object {
+            "Node Sizes": Array [
+              Object {
+                "id": "node-size-slider-0",
+                "name": "Node size for X-ray Structure Contact",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-            Object {
-              "id": "node-size-slider-1",
-              "name": "Node size for Selected Residue Pair",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+              Object {
+                "id": "node-size-slider-1",
+                "name": "Node size for Selected Residue Pair",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-          ],
+            ],
+          },
           "name": "POPUP",
         },
         "description": "Settings",
@@ -2026,7 +2018,9 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       Array [
         Object {
           "component": Object {
-            "configs": Array [],
+            "configs": Object {
+              "Filters": Array [],
+            },
             "name": "POPUP",
           },
           "description": "Filter",
@@ -2034,37 +2028,34 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         },
         Object {
           "component": Object {
-            "configs": Array [
-              Object {
-                "name": "Clear Selections",
-                "onClick": [Function],
-                "type": "BUTTON",
-              },
-              Object {
-                "id": "node-size-slider-0",
-                "name": "Node size for X-ray Structure Contact",
-                "onChange": [Function],
-                "type": "SLIDER",
-                "values": Object {
-                  "current": 4,
-                  "defaultValue": 4,
-                  "max": 20,
-                  "min": 1,
+            "configs": Object {
+              "Node Sizes": Array [
+                Object {
+                  "id": "node-size-slider-0",
+                  "name": "Node size for X-ray Structure Contact",
+                  "onChange": [Function],
+                  "type": "SLIDER",
+                  "values": Object {
+                    "current": 4,
+                    "defaultValue": 4,
+                    "max": 20,
+                    "min": 1,
+                  },
                 },
-              },
-              Object {
-                "id": "node-size-slider-1",
-                "name": "Node size for Selected Residue Pair",
-                "onChange": [Function],
-                "type": "SLIDER",
-                "values": Object {
-                  "current": 4,
-                  "defaultValue": 4,
-                  "max": 20,
-                  "min": 1,
+                Object {
+                  "id": "node-size-slider-1",
+                  "name": "Node size for Selected Residue Pair",
+                  "onChange": [Function],
+                  "type": "SLIDER",
+                  "values": Object {
+                    "current": 4,
+                    "defaultValue": 4,
+                    "max": 20,
+                    "min": 1,
+                  },
                 },
-              },
-            ],
+              ],
+            },
             "name": "POPUP",
           },
           "description": "Settings",
@@ -2099,7 +2090,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       >
         <ComponentMenuBar
           componentName="Contact Map"
-          configurations={Array []}
           height={40}
           iconSrc="assets/icons/spring-icon.png"
           isExpanded={false}
@@ -2107,7 +2097,9 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             Array [
               Object {
                 "component": Object {
-                  "configs": Array [],
+                  "configs": Object {
+                    "Filters": Array [],
+                  },
                   "name": "POPUP",
                 },
                 "description": "Filter",
@@ -2115,37 +2107,34 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               },
               Object {
                 "component": Object {
-                  "configs": Array [
-                    Object {
-                      "name": "Clear Selections",
-                      "onClick": [Function],
-                      "type": "BUTTON",
-                    },
-                    Object {
-                      "id": "node-size-slider-0",
-                      "name": "Node size for X-ray Structure Contact",
-                      "onChange": [Function],
-                      "type": "SLIDER",
-                      "values": Object {
-                        "current": 4,
-                        "defaultValue": 4,
-                        "max": 20,
-                        "min": 1,
+                  "configs": Object {
+                    "Node Sizes": Array [
+                      Object {
+                        "id": "node-size-slider-0",
+                        "name": "Node size for X-ray Structure Contact",
+                        "onChange": [Function],
+                        "type": "SLIDER",
+                        "values": Object {
+                          "current": 4,
+                          "defaultValue": 4,
+                          "max": 20,
+                          "min": 1,
+                        },
                       },
-                    },
-                    Object {
-                      "id": "node-size-slider-1",
-                      "name": "Node size for Selected Residue Pair",
-                      "onChange": [Function],
-                      "type": "SLIDER",
-                      "values": Object {
-                        "current": 4,
-                        "defaultValue": 4,
-                        "max": 20,
-                        "min": 1,
+                      Object {
+                        "id": "node-size-slider-1",
+                        "name": "Node size for Selected Residue Pair",
+                        "onChange": [Function],
+                        "type": "SLIDER",
+                        "values": Object {
+                          "current": 4,
+                          "defaultValue": 4,
+                          "max": 20,
+                          "min": 1,
+                        },
                       },
-                    },
-                  ],
+                    ],
+                  },
                   "name": "POPUP",
                 },
                 "description": "Settings",
@@ -2259,7 +2248,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                           openOnTriggerClick={true}
                           openOnTriggerFocus={false}
                           openOnTriggerMouseEnter={false}
-                          position="bottom center"
+                          position="bottom left"
                           style={
                             Object {
                               "opacity": 0.85,
@@ -2368,7 +2357,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                           openOnTriggerClick={true}
                           openOnTriggerFocus={false}
                           openOnTriggerMouseEnter={false}
-                          position="bottom center"
+                          position="bottom left"
                           style={
                             Object {
                               "opacity": 0.85,

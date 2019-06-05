@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { Button, Grid, Icon, Label, Menu, Popup, PopupProps, SemanticICONS } from 'semantic-ui-react';
 
-import { BioblocksRadioGroup, BioblocksRangeSlider, BioblocksSlider } from '~bioblocks-viz~/component/widget';
+import {
+  BioblocksRadioGroup,
+  BioblocksRangeSlider,
+  BioblocksSlider,
+  ConfigAccordion,
+} from '~bioblocks-viz~/component/widget';
 import {
   BioblocksWidgetConfig,
   ButtonWidgetConfig,
@@ -14,7 +19,6 @@ import {
 
 export interface IComponentMenuBarProps {
   componentName: string;
-  configurations: BioblocksWidgetConfig[];
   height: number | string;
   isExpanded: boolean;
   iconSrc?: string;
@@ -29,7 +33,7 @@ export interface IComponentMenuBarState {
 }
 
 interface IPopupType {
-  configs?: BioblocksWidgetConfig[];
+  configs?: { [key: string]: BioblocksWidgetConfig[] };
   name: 'POPUP';
   props?: PopupProps;
 }
@@ -48,13 +52,12 @@ export const DEFAULT_POPUP_PROPS: Partial<PopupProps> = {
   openOnTriggerClick: true,
   openOnTriggerFocus: false,
   openOnTriggerMouseEnter: false,
-  position: 'bottom center',
+  position: 'bottom left',
   style: { marginTop: 0, maxHeight: '350px', overflow: 'auto', zIndex: 3 },
 };
 
 export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IComponentMenuBarState> {
   public static defaultProps = {
-    configurations: new Array<BioblocksWidgetConfig>(),
     height: '100%',
     isExpanded: false,
     menuItems: [],
@@ -203,18 +206,33 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
     return items.map((item, menuBarIndex) => {
       // We are separating the style to prevent a bug where the popup arrow does not display if overflow is set.
       const { style, ...combinedProps } = { ...DEFAULT_POPUP_PROPS, ...item.component.props };
+
       let menuItemChild = null;
       if (item.component.name === 'POPUP') {
         const trigger = <Icon name={item.iconName ? item.iconName : 'setting'} />;
         menuItemChild = item.component.configs ? (
           <Popup trigger={trigger} {...combinedProps} wide={true} style={{ opacity }}>
-            <Grid centered={true} divided={'vertically'} style={style}>
-              {item.component.configs.map((config, configIndex) => (
-                <Grid.Row columns={1} key={`menu-bar-${menuBarIndex}-row-${configIndex}`} style={{ padding: '7px 0' }}>
-                  {this.renderConfig(config, `${menuBarIndex}-${configIndex}`)}
-                </Grid.Row>
-              ))}
-            </Grid>
+            {item.component.configs && (
+              <Grid centered={true} style={style}>
+                <ConfigAccordion
+                  configs={Object.keys(item.component.configs).map(configKey => ({
+                    [configKey]: item.component.configs
+                      ? item.component.configs[configKey].map((config, configIndex) => (
+                          <Grid.Row
+                            columns={1}
+                            key={`menu-bar-${configKey}-row-${configIndex}`}
+                            style={{ padding: '7px 0' }}
+                          >
+                            {this.renderConfig(config, `${configKey}-row-${configIndex}`)}
+                          </Grid.Row>
+                        ))
+                      : [],
+                  }))}
+                  gridStyle={style}
+                  title={'Config'}
+                />
+              </Grid>
+            )}
           </Popup>
         ) : (
           <Popup trigger={trigger} {...combinedProps} style={{ opacity }} />
