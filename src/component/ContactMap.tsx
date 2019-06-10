@@ -275,24 +275,22 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
           },
         ]}
       >
-        <div style={{ height: '92%' }}>
-          <ContactMapChart
-            candidateResidues={candidateResidues}
-            contactData={pointsToPlot}
-            height={height}
-            isDataLoading={isDataLoading}
-            onClickCallback={this.onMouseClick(toggleLockedResiduePair)}
-            onHoverCallback={this.onMouseEnter(addHoveredResidues)}
-            onSelectedCallback={this.onMouseSelect(onBoxSelection)}
-            onUnHoverCallback={this.onMouseLeave(removeHoveredResidues)}
-            range={range}
-            secondaryStructures={data.secondaryStructures ? data.secondaryStructures : []}
-            secondaryStructureColors={secondaryStructureColors}
-            selectedSecondaryStructures={[selectedSecondaryStructures]}
-            showConfigurations={showConfigurations}
-            width={width}
-          />
-        </div>
+        <ContactMapChart
+          candidateResidues={candidateResidues}
+          contactData={pointsToPlot}
+          height={height}
+          isDataLoading={isDataLoading}
+          onClickCallback={this.onMouseClick(toggleLockedResiduePair)}
+          onHoverCallback={this.onMouseEnter(addHoveredResidues)}
+          onSelectedCallback={this.onMouseSelect(onBoxSelection)}
+          onUnHoverCallback={this.onMouseLeave(removeHoveredResidues)}
+          range={range}
+          secondaryStructures={data.secondaryStructures ? data.secondaryStructures : []}
+          secondaryStructureColors={secondaryStructureColors}
+          selectedSecondaryStructures={[selectedSecondaryStructures]}
+          showConfigurations={showConfigurations}
+          width={width}
+        />
       </ComponentCard>
     );
   }

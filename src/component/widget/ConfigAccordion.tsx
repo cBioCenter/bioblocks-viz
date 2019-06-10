@@ -8,30 +8,32 @@ export interface IConfigGroup {
 }
 
 export interface IConfigAccordionProps {
+  allowMultipleOpen: boolean;
   configs: IConfigGroup[];
   gridStyle: BIOBLOCKS_CSS_STYLE;
   title: string;
 }
 
 export interface IConfigAccordionState {
-  activeIndex: string | number | undefined;
+  activeIndices: Array<string | number>;
 }
 
 export class ConfigAccordion extends React.Component<IConfigAccordionProps, IConfigAccordionState> {
   public static defaultProps = {
+    allowMultipleOpen: false,
     gridStyle: {},
   };
 
   constructor(props: IConfigAccordionProps) {
     super(props);
     this.state = {
-      activeIndex: -1,
+      activeIndices: [],
     };
   }
 
   public render() {
     const { configs, gridStyle } = this.props;
-    const { activeIndex } = this.state;
+    const { activeIndices } = this.state;
 
     return (
       <Accordion>
@@ -41,7 +43,7 @@ export class ConfigAccordion extends React.Component<IConfigAccordionProps, ICon
                 Object.keys(config).map(configKey => (
                   <Grid.Row key={`accordion-${configKey}`} textAlign={'left'}>
                     <Accordion.Title
-                      active={activeIndex === index}
+                      active={activeIndices.includes(index)}
                       index={index}
                       key={`${configKey}-title`}
                       onClick={this.onClick}
@@ -51,7 +53,7 @@ export class ConfigAccordion extends React.Component<IConfigAccordionProps, ICon
                       {configKey}
                     </Accordion.Title>
                     <Accordion.Content
-                      active={activeIndex === index}
+                      active={activeIndices.includes(index)}
                       key={`${configKey}-content`}
                       style={{ width: '100%' }}
                     >
@@ -67,11 +69,26 @@ export class ConfigAccordion extends React.Component<IConfigAccordionProps, ICon
   }
 
   protected onClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, data: AccordionTitleProps) => {
-    const { activeIndex } = this.state;
+    const { allowMultipleOpen } = this.props;
+    const { activeIndices } = this.state;
+    if (data === undefined || data.index === undefined) {
+      return;
+    }
 
-    this.setState({
-      activeIndex: data === undefined || activeIndex === data.index ? -1 : data.index,
-    });
+    const alreadyActive = activeIndices.includes(data.index);
+    if (alreadyActive) {
+      this.setState({
+        activeIndices: activeIndices.filter(index => index !== data.index),
+      });
+    } else if (allowMultipleOpen) {
+      this.setState({
+        activeIndices: [...activeIndices, data.index],
+      });
+    } else {
+      this.setState({
+        activeIndices: [data.index],
+      });
+    }
   };
 
   protected renderSingleConfig = (config: [string, IConfigGroup]) => {

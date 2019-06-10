@@ -88,9 +88,9 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
 
     const card = (
       <Card centered={true} className={'bioblocks-component-card'} ref={ref => (this.cardRef = ref)} style={cardStyle}>
-        {this.renderTopMenu(headerHeight)}
-        {isFramedComponent ? <div style={framedStyle}>{children}</div> : children}
-        {this.renderDock(headerHeight)}
+        <div style={{ height: '6%' }}>{this.renderTopMenu(headerHeight)}</div>
+        <div style={{ height: '91%' }}>{isFramedComponent ? <div style={framedStyle}>{children}</div> : children}</div>
+        <div style={{ height: '3%' }}>{this.renderDock(headerHeight)}</div>
       </Card>
     );
 

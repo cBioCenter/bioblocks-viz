@@ -38,59 +38,56 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
         }
       }
     >
-      <ComponentMenuBar
-        componentName="Let's"
-        height={40}
-        iconSrc="assets/icons/spring-icon.png"
-        isExpanded={false}
-        menuItems={Array []}
-        onExpandToggleCb={[Function]}
-        opacity={0.85}
-        width="100%"
+      <div
+        style={
+          Object {
+            "height": "6%",
+          }
+        }
       >
-        <div
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
+        <ComponentMenuBar
+          componentName="Let's"
+          height={40}
+          iconSrc="assets/icons/spring-icon.png"
+          isExpanded={false}
+          menuItems={Array []}
+          onExpandToggleCb={[Function]}
+          opacity={0.85}
+          width="100%"
         >
-          <Menu
-            secondary={true}
-            style={
-              Object {
-                "height": 40,
-                "margin": 0,
-              }
-            }
-            widths={2}
+          <div
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
-            <div
-              className="ui secondary two item menu"
+            <Menu
+              secondary={true}
               style={
                 Object {
                   "height": 40,
                   "margin": 0,
                 }
               }
+              widths={2}
             >
-              <Menu
-                secondary={true}
-                widths={1}
+              <div
+                className="ui secondary two item menu"
+                style={
+                  Object {
+                    "height": 40,
+                    "margin": 0,
+                  }
+                }
               >
-                <div
-                  className="ui secondary one item menu"
+                <Menu
+                  secondary={true}
+                  widths={1}
                 >
-                  <MenuItem
-                    fitted="horizontally"
-                    position="left"
-                    style={
-                      Object {
-                        "margin": 0,
-                        "padding": 0,
-                      }
-                    }
+                  <div
+                    className="ui secondary one item menu"
                   >
-                    <div
-                      className="left horizontally fitted item"
-                      onClick={[Function]}
+                    <MenuItem
+                      fitted="horizontally"
+                      position="left"
                       style={
                         Object {
                           "margin": 0,
@@ -98,88 +95,114 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
                         }
                       }
                     >
-                      <img
-                        alt="component icon"
-                        src="assets/icons/spring-icon.png"
+                      <div
+                        className="left horizontally fitted item"
+                        onClick={[Function]}
                         style={
                           Object {
-                            "height": "32px",
-                            "padding": "2px",
-                            "width": "32px",
+                            "margin": 0,
+                            "padding": 0,
                           }
                         }
-                      />
-                      Let's
-                    </div>
-                  </MenuItem>
-                </div>
-              </Menu>
-              <Menu
-                secondary={true}
-                widths={4}
-              >
-                <div
-                  className="ui secondary four item menu"
+                      >
+                        <img
+                          alt="component icon"
+                          src="assets/icons/spring-icon.png"
+                          style={
+                            Object {
+                              "height": "32px",
+                              "padding": "2px",
+                              "width": "32px",
+                            }
+                          }
+                        />
+                        Let's
+                      </div>
+                    </MenuItem>
+                  </div>
+                </Menu>
+                <Menu
+                  secondary={true}
+                  widths={4}
                 >
-                  <MenuItem
-                    fitted="horizontally"
-                    position="right"
-                    style={
-                      Object {
-                        "flexDirection": "column",
-                      }
-                    }
+                  <div
+                    className="ui secondary four item menu"
                   >
-                    <div
-                      className="right horizontally fitted item"
-                      onClick={[Function]}
+                    <MenuItem
+                      fitted="horizontally"
+                      position="right"
                       style={
                         Object {
                           "flexDirection": "column",
                         }
                       }
                     >
-                      <Icon
-                        as="i"
-                        name="expand arrows alternate"
+                      <div
+                        className="right horizontally fitted item"
                         onClick={[Function]}
-                      >
-                        <i
-                          aria-hidden="true"
-                          className="expand arrows alternate icon"
-                          onClick={[Function]}
-                        />
-                      </Icon>
-                      <span
                         style={
                           Object {
-                            "fontSize": "11px",
-                            "visibility": "hidden",
+                            "flexDirection": "column",
                           }
                         }
                       >
-                        Expand
-                      </span>
-                    </div>
-                  </MenuItem>
-                </div>
-              </Menu>
-            </div>
-          </Menu>
-        </div>
-      </ComponentMenuBar>
+                        <Icon
+                          as="i"
+                          name="expand arrows alternate"
+                          onClick={[Function]}
+                        >
+                          <i
+                            aria-hidden="true"
+                            className="expand arrows alternate icon"
+                            onClick={[Function]}
+                          />
+                        </Icon>
+                        <span
+                          style={
+                            Object {
+                              "fontSize": "11px",
+                              "visibility": "hidden",
+                            }
+                          }
+                        >
+                          Expand
+                        </span>
+                      </div>
+                    </MenuItem>
+                  </div>
+                </Menu>
+              </div>
+            </Menu>
+          </div>
+        </ComponentMenuBar>
+      </div>
       <div
         style={
           Object {
-            "transform": "scale(calc(515/0),calc((552 - 40)/0))",
-            "transformOrigin": "top left",
+            "height": "91%",
           }
         }
       >
-        <div>
-          Go!
+        <div
+          style={
+            Object {
+              "transform": "scale(calc(515/0),calc((552 - 40)/0))",
+              "transformOrigin": "top left",
+            }
+          }
+        >
+          <div>
+            Go!
+          </div>
         </div>
       </div>
+      <div
+        style={
+          Object {
+            "height": "3%",
+          }
+        }
+      />
     </div>
   </Card>
 </ComponentCard>
@@ -197,20 +220,43 @@ exports[`ComponentCard Should match existing snapshot when framed. 1`] = `
     }
   }
 >
-  <ComponentMenuBar
-    componentName="The Boxer"
-    height={40}
-    iconSrc="assets/icons/spring-icon.png"
-    isExpanded={false}
-    menuItems={Array []}
-    onExpandToggleCb={[Function]}
-    opacity={0.85}
-    width="100%"
-  />
   <div
     style={
       Object {
-        "transformOrigin": "top left",
+        "height": "6%",
+      }
+    }
+  >
+    <ComponentMenuBar
+      componentName="The Boxer"
+      height={40}
+      iconSrc="assets/icons/spring-icon.png"
+      isExpanded={false}
+      menuItems={Array []}
+      onExpandToggleCb={[Function]}
+      opacity={0.85}
+      width="100%"
+    />
+  </div>
+  <div
+    style={
+      Object {
+        "height": "91%",
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "transformOrigin": "top left",
+        }
+      }
+    />
+  </div>
+  <div
+    style={
+      Object {
+        "height": "3%",
       }
     }
   />
@@ -229,15 +275,37 @@ exports[`ComponentCard Should match existing snapshot when given default props. 
     }
   }
 >
-  <ComponentMenuBar
-    componentName="The Boxer"
-    height={40}
-    iconSrc="assets/icons/spring-icon.png"
-    isExpanded={false}
-    menuItems={Array []}
-    onExpandToggleCb={[Function]}
-    opacity={0.85}
-    width="100%"
+  <div
+    style={
+      Object {
+        "height": "6%",
+      }
+    }
+  >
+    <ComponentMenuBar
+      componentName="The Boxer"
+      height={40}
+      iconSrc="assets/icons/spring-icon.png"
+      isExpanded={false}
+      menuItems={Array []}
+      onExpandToggleCb={[Function]}
+      opacity={0.85}
+      width="100%"
+    />
+  </div>
+  <div
+    style={
+      Object {
+        "height": "91%",
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "height": "3%",
+      }
+    }
   />
 </Card>
 `;
@@ -254,15 +322,37 @@ exports[`ComponentCard Should match existing snapshot when not framed. 1`] = `
     }
   }
 >
-  <ComponentMenuBar
-    componentName="The Boxer"
-    height={40}
-    iconSrc="assets/icons/spring-icon.png"
-    isExpanded={false}
-    menuItems={Array []}
-    onExpandToggleCb={[Function]}
-    opacity={0.85}
-    width="100%"
+  <div
+    style={
+      Object {
+        "height": "6%",
+      }
+    }
+  >
+    <ComponentMenuBar
+      componentName="The Boxer"
+      height={40}
+      iconSrc="assets/icons/spring-icon.png"
+      isExpanded={false}
+      menuItems={Array []}
+      onExpandToggleCb={[Function]}
+      opacity={0.85}
+      width="100%"
+    />
+  </div>
+  <div
+    style={
+      Object {
+        "height": "91%",
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "height": "3%",
+      }
+    }
   />
 </Card>
 `;

@@ -16,26 +16,70 @@ describe('ConfigAccordion', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('Should handle click events when there are 2 or more configs.', () => {
+  it('Should handle click events when there are 2 or more exclusive configs.', () => {
     const configs: IConfigGroup[] = [
       { 'The Fratellis': [<div key={1}>Jeannie Nitro</div>, <div key={2}>Me and the Devil</div>] },
       { Eminem: [<div key={3}>Stan</div>, <div key={4}>Evil Deeds</div>] },
     ];
     const wrapper = mount(<ConfigAccordion configs={configs} title={'songs'} />);
     const instance = wrapper.instance() as ConfigAccordion;
-    expect(instance.state.activeIndex).toEqual(-1);
+    expect(instance.state.activeIndices).toEqual([]);
     wrapper
       .find(Accordion.Title)
       .at(0)
       .simulate('click');
 
-    expect(instance.state.activeIndex).toEqual(0);
+    expect(instance.state.activeIndices).toEqual([0]);
     wrapper
       .find(Accordion.Title)
       .at(1)
       .simulate('click');
 
-    expect(instance.state.activeIndex).toEqual(1);
+    expect(instance.state.activeIndices).toEqual([1]);
+  });
+
+  it('Should close configs when the same one is clicked.', () => {
+    const configs: IConfigGroup[] = [
+      { 'The Fratellis': [<div key={1}>Jeannie Nitro</div>, <div key={2}>Me and the Devil</div>] },
+      { Eminem: [<div key={3}>Stan</div>, <div key={4}>Evil Deeds</div>] },
+    ];
+    const wrapper = mount(<ConfigAccordion configs={configs} title={'songs'} />);
+    const instance = wrapper.instance() as ConfigAccordion;
+    expect(instance.state.activeIndices).toEqual([]);
+    wrapper
+      .find(Accordion.Title)
+      .at(0)
+      .simulate('click');
+
+    expect(instance.state.activeIndices).toEqual([0]);
+    wrapper
+      .find(Accordion.Title)
+      .at(0)
+      .simulate('click');
+
+    expect(instance.state.activeIndices).toEqual([]);
+  });
+
+  it('Should handle click events when there are 2 or more mutual configs.', () => {
+    const configs: IConfigGroup[] = [
+      { 'The Fratellis': [<div key={1}>Jeannie Nitro</div>, <div key={2}>Me and the Devil</div>] },
+      { Eminem: [<div key={3}>Stan</div>, <div key={4}>Evil Deeds</div>] },
+    ];
+    const wrapper = mount(<ConfigAccordion allowMultipleOpen={true} configs={configs} title={'songs'} />);
+    const instance = wrapper.instance() as ConfigAccordion;
+    expect(instance.state.activeIndices).toEqual([]);
+    wrapper
+      .find(Accordion.Title)
+      .at(0)
+      .simulate('click');
+
+    expect(instance.state.activeIndices).toEqual([0]);
+    wrapper
+      .find(Accordion.Title)
+      .at(1)
+      .simulate('click');
+
+    expect(instance.state.activeIndices).toEqual([0, 1]);
   });
 
   it('Should handle click events when rendering shallowly.', () => {
@@ -45,12 +89,12 @@ describe('ConfigAccordion', () => {
     ];
     const wrapper = shallow(<ConfigAccordion configs={configs} title={'songs'} />);
     const instance = wrapper.instance() as ConfigAccordion;
-    expect(instance.state.activeIndex).toEqual(-1);
+    expect(instance.state.activeIndices).toEqual([]);
     wrapper
       .find(Accordion.Title)
       .at(0)
       .simulate('click');
 
-    expect(instance.state.activeIndex).toEqual(-1);
+    expect(instance.state.activeIndices).toEqual([]);
   });
 });

@@ -19,9 +19,14 @@ export class ComponentDock extends React.Component<IComponentDockProps> {
     const { dockItems } = this.props;
 
     return (
-      <Grid centered={true} columns={'equal'} style={{ marginLeft: 'initial', marginRight: 'initial', padding: 0 }}>
+      <Grid
+        centered={true}
+        columns={'equal'}
+        style={{ marginLeft: 'initial', marginRight: 'initial', marginTop: '-0.5rem', padding: 0 }}
+        stretched={true}
+      >
         {dockItems.map((dockItem, index) => (
-          <Grid.Column floated={'left'} key={`dock-item-${index}`} style={{ padding: 0 }}>
+          <Grid.Column key={`dock-item-${index}`} style={{ padding: 0 }}>
             <div style={{ userSelect: 'none' }}>
               <a aria-pressed={false} onClick={dockItem.onClick} role={'button'}>
                 {dockItem.text}
