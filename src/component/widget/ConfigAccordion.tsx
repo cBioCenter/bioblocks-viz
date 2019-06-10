@@ -3,8 +3,6 @@ import { Accordion, AccordionTitleProps, Grid, Icon } from 'semantic-ui-react';
 
 import { BIOBLOCKS_CSS_STYLE } from '~bioblocks-viz~/data';
 
-// import { BioblocksWidgetConfig } from '~bioblocks-viz~/data';
-
 export interface IConfigGroup {
   [key: string]: JSX.Element[];
 }
@@ -38,9 +36,9 @@ export class ConfigAccordion extends React.Component<IConfigAccordionProps, ICon
     return (
       <Accordion>
         <Grid padded={true} stretched={true} style={gridStyle}>
-          {configs.map((config, index) =>
-            Object.keys(config).length >= 2
-              ? Object.keys(config).map(configKey => (
+          {configs.length >= 2
+            ? configs.map((config, index) =>
+                Object.keys(config).map(configKey => (
                   <Grid.Row key={`accordion-${configKey}`} textAlign={'left'}>
                     <Accordion.Title
                       active={activeIndex === index}
@@ -57,14 +55,12 @@ export class ConfigAccordion extends React.Component<IConfigAccordionProps, ICon
                       key={`${configKey}-content`}
                       style={{ width: '100%' }}
                     >
-                      <Grid padded={true} relaxed={true} stretched={true} style={{ marginTop: '7px' }}>
-                        {...config[configKey]}
-                      </Grid>
+                      {this.renderSingleConfig(Object.entries(configs)[index])}
                     </Accordion.Content>
                   </Grid.Row>
-                ))
-              : this.renderSingleConfig(Object.keys(config)[0], Object.values(config)[0]),
-          )}
+                )),
+              )
+            : configs.length === 1 && this.renderSingleConfig(Object.entries(configs)[0])}
         </Grid>
       </Accordion>
     );
@@ -72,16 +68,17 @@ export class ConfigAccordion extends React.Component<IConfigAccordionProps, ICon
 
   protected onClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, data: AccordionTitleProps) => {
     const { activeIndex } = this.state;
+
     this.setState({
-      activeIndex: activeIndex === data.index ? -1 : data.index,
+      activeIndex: data === undefined || activeIndex === data.index ? -1 : data.index,
     });
   };
 
-  protected renderSingleConfig = (key: string, elements: JSX.Element[]) => {
+  protected renderSingleConfig = (config: [string, IConfigGroup]) => {
     return (
-      <Grid.Row key={`accordion-${key}`} textAlign={'left'}>
+      <Grid.Row key={`accordion-${config[0]}`} textAlign={'left'}>
         <Grid padded={true} relaxed={true} stretched={true} style={{ marginTop: '7px' }}>
-          {...elements}
+          {...Object.values(config[1])}
         </Grid>
       </Grid.Row>
     );
