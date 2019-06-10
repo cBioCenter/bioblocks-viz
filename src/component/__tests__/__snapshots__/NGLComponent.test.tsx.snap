@@ -3,6 +3,26 @@
 exports[`NGLComponent Should match existing snapshot when unconnected to a context. 1`] = `
 <ComponentCard
   componentName="NGL Viewer"
+  dockItems={
+    Array [
+      Object {
+        "onClick": [Function],
+        "text": "Clear Selections",
+      },
+      Object {
+        "onClick": [Function],
+        "text": "Center View",
+      },
+      Object {
+        "onClick": [Function],
+        "text": "Superimpose: Off",
+      },
+      Object {
+        "onClick": [Function],
+        "text": "Enable Stereo",
+      },
+    ]
+  }
   frameHeight={0}
   frameWidth={0}
   headerHeight={40}
@@ -121,63 +141,5 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
       }
     />
   </div>
-  <Grid>
-    <GridRow
-      centered={true}
-      columns={3}
-    >
-      <GridColumn>
-        <div
-          style={
-            Object {
-              "userSelect": "none",
-            }
-          }
-        >
-          <a
-            aria-pressed={false}
-            onClick={[Function]}
-            role="button"
-          >
-            Switch to Stereo
-          </a>
-        </div>
-      </GridColumn>
-      <GridColumn>
-        <div
-          style={
-            Object {
-              "userSelect": "none",
-            }
-          }
-        >
-          <a
-            aria-pressed={false}
-            onClick={[Function]}
-            role="button"
-          >
-            Center View
-          </a>
-        </div>
-      </GridColumn>
-      <GridColumn>
-        <div
-          style={
-            Object {
-              "userSelect": "none",
-            }
-          }
-        >
-          <a
-            aria-pressed={false}
-            onClick={[Function]}
-            role="button"
-          >
-            Superimpose: off
-          </a>
-        </div>
-      </GridColumn>
-    </GridRow>
-  </Grid>
 </ComponentCard>
 `;

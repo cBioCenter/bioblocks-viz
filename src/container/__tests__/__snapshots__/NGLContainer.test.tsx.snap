@@ -226,6 +226,26 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
               >
                 <ComponentCard
                   componentName="NGL Viewer"
+                  dockItems={
+                    Array [
+                      Object {
+                        "onClick": [Function],
+                        "text": "Clear Selections",
+                      },
+                      Object {
+                        "onClick": [Function],
+                        "text": "Center View",
+                      },
+                      Object {
+                        "onClick": [Function],
+                        "text": "Superimpose: Off",
+                      },
+                      Object {
+                        "onClick": [Function],
+                        "text": "Enable Stereo",
+                      },
+                    ]
+                  }
                   frameHeight={0}
                   frameWidth={0}
                   headerHeight={40}
@@ -1100,84 +1120,188 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                           }
                         />
                       </div>
-                      <Grid>
-                        <div
-                          className="ui grid"
+                      <ComponentDock
+                        dockItems={
+                          Array [
+                            Object {
+                              "onClick": [Function],
+                              "text": "Clear Selections",
+                            },
+                            Object {
+                              "onClick": [Function],
+                              "text": "Center View",
+                            },
+                            Object {
+                              "onClick": [Function],
+                              "text": "Superimpose: Off",
+                            },
+                            Object {
+                              "onClick": [Function],
+                              "text": "Enable Stereo",
+                            },
+                          ]
+                        }
+                      >
+                        <Grid
+                          centered={true}
+                          columns="equal"
+                          style={
+                            Object {
+                              "marginLeft": "initial",
+                              "marginRight": "initial",
+                              "padding": 0,
+                            }
+                          }
                         >
-                          <GridRow
-                            centered={true}
-                            columns={3}
+                          <div
+                            className="ui centered equal width grid"
+                            style={
+                              Object {
+                                "marginLeft": "initial",
+                                "marginRight": "initial",
+                                "padding": 0,
+                              }
+                            }
                           >
-                            <div
-                              className="centered three column row"
+                            <GridColumn
+                              floated="left"
+                              key="dock-item-0"
+                              style={
+                                Object {
+                                  "padding": 0,
+                                }
+                              }
                             >
-                              <GridColumn>
+                              <div
+                                className="left floated column"
+                                style={
+                                  Object {
+                                    "padding": 0,
+                                  }
+                                }
+                              >
                                 <div
-                                  className="column"
-                                >
-                                  <div
-                                    style={
-                                      Object {
-                                        "userSelect": "none",
-                                      }
+                                  style={
+                                    Object {
+                                      "userSelect": "none",
                                     }
+                                  }
+                                >
+                                  <a
+                                    aria-pressed={false}
+                                    onClick={[Function]}
+                                    role="button"
                                   >
-                                    <a
-                                      aria-pressed={false}
-                                      onClick={[Function]}
-                                      role="button"
-                                    >
-                                      Switch to Stereo
-                                    </a>
-                                  </div>
+                                    Clear Selections
+                                  </a>
                                 </div>
-                              </GridColumn>
-                              <GridColumn>
+                              </div>
+                            </GridColumn>
+                            <GridColumn
+                              floated="left"
+                              key="dock-item-1"
+                              style={
+                                Object {
+                                  "padding": 0,
+                                }
+                              }
+                            >
+                              <div
+                                className="left floated column"
+                                style={
+                                  Object {
+                                    "padding": 0,
+                                  }
+                                }
+                              >
                                 <div
-                                  className="column"
-                                >
-                                  <div
-                                    style={
-                                      Object {
-                                        "userSelect": "none",
-                                      }
+                                  style={
+                                    Object {
+                                      "userSelect": "none",
                                     }
+                                  }
+                                >
+                                  <a
+                                    aria-pressed={false}
+                                    onClick={[Function]}
+                                    role="button"
                                   >
-                                    <a
-                                      aria-pressed={false}
-                                      onClick={[Function]}
-                                      role="button"
-                                    >
-                                      Center View
-                                    </a>
-                                  </div>
+                                    Center View
+                                  </a>
                                 </div>
-                              </GridColumn>
-                              <GridColumn>
+                              </div>
+                            </GridColumn>
+                            <GridColumn
+                              floated="left"
+                              key="dock-item-2"
+                              style={
+                                Object {
+                                  "padding": 0,
+                                }
+                              }
+                            >
+                              <div
+                                className="left floated column"
+                                style={
+                                  Object {
+                                    "padding": 0,
+                                  }
+                                }
+                              >
                                 <div
-                                  className="column"
-                                >
-                                  <div
-                                    style={
-                                      Object {
-                                        "userSelect": "none",
-                                      }
+                                  style={
+                                    Object {
+                                      "userSelect": "none",
                                     }
+                                  }
+                                >
+                                  <a
+                                    aria-pressed={false}
+                                    onClick={[Function]}
+                                    role="button"
                                   >
-                                    <a
-                                      aria-pressed={false}
-                                      onClick={[Function]}
-                                      role="button"
-                                    >
-                                      Superimpose: off
-                                    </a>
-                                  </div>
+                                    Superimpose: Off
+                                  </a>
                                 </div>
-                              </GridColumn>
-                            </div>
-                          </GridRow>
-                        </div>
-                      </Grid>
+                              </div>
+                            </GridColumn>
+                            <GridColumn
+                              floated="left"
+                              key="dock-item-3"
+                              style={
+                                Object {
+                                  "padding": 0,
+                                }
+                              }
+                            >
+                              <div
+                                className="left floated column"
+                                style={
+                                  Object {
+                                    "padding": 0,
+                                  }
+                                }
+                              >
+                                <div
+                                  style={
+                                    Object {
+                                      "userSelect": "none",
+                                    }
+                                  }
+                                >
+                                  <a
+                                    aria-pressed={false}
+                                    onClick={[Function]}
+                                    role="button"
+                                  >
+                                    Enable Stereo
+                                  </a>
+                                </div>
+                              </div>
+                            </GridColumn>
+                          </div>
+                        </Grid>
+                      </ComponentDock>
                     </div>
                   </Card>
                 </ComponentCard>

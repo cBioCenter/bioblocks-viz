@@ -535,12 +535,12 @@ describe('NGLComponent', () => {
         expect(stage.parameters.cameraType).toEqual('perspective');
         wrapper
           .find('a')
-          .at(0)
+          .at(3)
           .simulate('click');
         expect(stage.parameters.cameraType).toEqual('stereo');
         wrapper
           .find('a')
-          .at(0)
+          .at(3)
           .simulate('click');
         expect(stage.parameters.cameraType).toEqual('perspective');
       } else {

@@ -2,7 +2,7 @@ import { Map } from 'immutable';
 import { cloneDeep } from 'lodash';
 import * as NGL from 'ngl';
 import * as React from 'react';
-import { Dimmer, Grid, Icon, Loader } from 'semantic-ui-react';
+import { Dimmer, Icon, Loader } from 'semantic-ui-react';
 import { Matrix4, Vector2 } from 'three';
 
 import { ComponentCard, IComponentMenuBarItem } from '~bioblocks-viz~/component';
@@ -205,6 +205,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     return (
       <ComponentCard
         componentName={'NGL Viewer'}
+        dockItems={this.getDockItems()}
         menuItems={[
           ...menuItems,
           {
@@ -232,7 +233,6 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
             style={{ height: '100%', width: '100%' }}
           />
         </div>
-        {this.renderBottomToggles()}
       </ComponentCard>
     );
   }
@@ -738,38 +738,29 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     }
   };
 
-  protected renderBottomToggles = () => {
+  protected getDockItems = () => {
     const isSuperPositionOn = this.state.superpositionStatus !== 'NONE';
 
-    return (
-      <Grid>
-        <Grid.Row centered={true} columns={3}>
-          <Grid.Column>
-            <div style={{ userSelect: 'none' }}>
-              <a aria-pressed={false} onClick={this.switchCameraType} role={'button'}>
-                {`Switch to ${
-                  this.state.stage && this.state.stage.parameters.cameraType === 'stereo' ? `Perspective` : 'Stereo'
-                }`}
-              </a>
-            </div>
-          </Grid.Column>
-          <Grid.Column>
-            <div style={{ userSelect: 'none' }}>
-              <a aria-pressed={false} onClick={this.centerCamera} role={'button'}>
-                Center View
-              </a>
-            </div>
-          </Grid.Column>
-          <Grid.Column>
-            <div style={{ userSelect: 'none' }}>
-              <a aria-pressed={isSuperPositionOn} onClick={this.onSuperpositionToggle} role={'button'}>
-                {`Superimpose: ${isSuperPositionOn ? 'on' : 'off'}`}
-              </a>
-            </div>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    );
+    return [
+      {
+        onClick: this.props.removeNonLockedResidues,
+        text: 'Clear Selections',
+      },
+      {
+        onClick: this.centerCamera,
+        text: 'Center View',
+      },
+      {
+        onClick: this.onSuperpositionToggle,
+        text: `Superimpose: ${isSuperPositionOn ? 'On' : 'Off'}`,
+      },
+      {
+        onClick: this.switchCameraType,
+        text: `Enable ${
+          this.state.stage && this.state.stage.parameters.cameraType === 'stereo' ? `Perspective` : 'Stereo'
+        }`,
+      },
+    ];
   };
 
   protected toggleDistRep = (event?: React.MouseEvent) => {

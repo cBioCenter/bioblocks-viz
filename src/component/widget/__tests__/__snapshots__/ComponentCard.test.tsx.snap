@@ -3,6 +3,7 @@
 exports[`ComponentCard Should handle resizing a framed component. 1`] = `
 <ComponentCard
   componentName="Let's"
+  dockItems={Array []}
   frameHeight={0}
   frameWidth={0}
   headerHeight={40}

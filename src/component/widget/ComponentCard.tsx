@@ -2,10 +2,11 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Card, Modal } from 'semantic-ui-react';
 
-import { ComponentMenuBar, IComponentMenuBarItem } from '~bioblocks-viz~/component/widget';
+import { ComponentDock, ComponentMenuBar, IComponentMenuBarItem, IDockItem } from '~bioblocks-viz~/component/widget';
 
 export interface IComponentCardProps {
   componentName: string;
+  dockItems: IDockItem[];
   frameHeight: number;
   frameWidth: number;
   headerHeight: number;
@@ -26,6 +27,7 @@ export interface IComponentCardState {
 
 export class ComponentCard extends React.Component<IComponentCardProps, IComponentCardState> {
   public static defaultProps = {
+    dockItems: [],
     frameHeight: 0,
     frameWidth: 0,
     headerHeight: 40,
@@ -88,6 +90,7 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
       <Card centered={true} className={'bioblocks-component-card'} ref={ref => (this.cardRef = ref)} style={cardStyle}>
         {this.renderTopMenu(headerHeight)}
         {isFramedComponent ? <div style={framedStyle}>{children}</div> : children}
+        {this.renderDock(headerHeight)}
       </Card>
     );
 
@@ -108,6 +111,12 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
       return card;
     }
   }
+
+  protected renderDock = (height: number | string) => {
+    const { dockItems } = this.props;
+
+    return dockItems.length >= 1 && <ComponentDock dockItems={dockItems} />;
+  };
 
   protected renderTopMenu = (height: number | string) => {
     const { componentName, iconSrc, menuItems } = this.props;

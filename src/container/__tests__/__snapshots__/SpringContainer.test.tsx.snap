@@ -3,6 +3,7 @@
 exports[`SpringContainer Should match existing snapshot. 1`] = `
 <ComponentCard
   componentName="SPRING"
+  dockItems={Array []}
   frameHeight={1150}
   frameWidth={1150}
   headerHeight={40}
