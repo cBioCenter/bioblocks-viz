@@ -170,7 +170,7 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         min={config.range.min}
         onAfterChange={config.onAfterChange}
         onChange={config.onChange}
-        style={{ padding: '0 18px', width: '100%', ...config.style }}
+        style={{ padding: '2px 0 3px 18px', width: '100%', ...config.style }}
         value={config.range.current}
       />
     );
@@ -188,7 +188,7 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         onAfterChange={config.onAfterChange}
         onChange={config.onChange}
         step={config.step}
-        style={{ padding: '0 18px', width: '100%', ...config.style }}
+        style={{ padding: '2px 0 3px 18px', width: '100%', ...config.style }}
         value={config.values.current}
       />
     );
@@ -213,25 +213,23 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         menuItemChild = item.component.configs ? (
           <Popup trigger={trigger} {...combinedProps} wide={true} style={{ opacity }}>
             {item.component.configs && (
-              <Grid centered={true} style={style}>
-                <ConfigAccordion
-                  configs={Object.keys(item.component.configs).map(configKey => ({
-                    [configKey]: item.component.configs
-                      ? item.component.configs[configKey].map((config, configIndex) => (
-                          <Grid.Row
-                            columns={1}
-                            key={`menu-bar-${configKey}-row-${configIndex}`}
-                            style={{ padding: '7px 0' }}
-                          >
-                            {this.renderConfig(config, `${configKey}-row-${configIndex}`)}
-                          </Grid.Row>
-                        ))
-                      : [],
-                  }))}
-                  gridStyle={style}
-                  title={'Config'}
-                />
-              </Grid>
+              <ConfigAccordion
+                configs={Object.keys(item.component.configs).map(configKey => ({
+                  [configKey]: item.component.configs
+                    ? item.component.configs[configKey].map((config, configIndex) => (
+                        <Grid.Row
+                          columns={1}
+                          key={`menu-bar-${configKey}-row-${configIndex}`}
+                          style={{ padding: '5px 0', width: '100%' }}
+                        >
+                          {this.renderConfig(config, `${configKey}-row-${configIndex}`)}
+                        </Grid.Row>
+                      ))
+                    : [],
+                }))}
+                gridStyle={style}
+                title={'Config'}
+              />
             )}
           </Popup>
         ) : (

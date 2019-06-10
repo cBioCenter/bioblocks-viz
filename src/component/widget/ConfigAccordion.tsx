@@ -37,26 +37,35 @@ export class ConfigAccordion extends React.Component<IConfigAccordionProps, ICon
 
     return (
       <Accordion>
-        {configs.map((config, index) =>
-          Object.keys(config).map(configKey => (
-            <>
-              <Accordion.Title
-                active={activeIndex === index}
-                index={index}
-                key={`${configKey}-title`}
-                onClick={this.onClick}
-              >
-                <Icon name={'dropdown'} />
-                {configKey}
-              </Accordion.Title>
-              <Accordion.Content active={activeIndex === index} key={`${configKey}-content`}>
-                <Grid centered={true} style={gridStyle}>
-                  {...config[configKey]}
-                </Grid>
-              </Accordion.Content>
-            </>
-          )),
-        )}
+        <Grid padded={true} stretched={true} style={gridStyle}>
+          {configs.map((config, index) =>
+            Object.keys(config).length >= 2
+              ? Object.keys(config).map(configKey => (
+                  <Grid.Row key={`accordion-${configKey}`} textAlign={'left'}>
+                    <Accordion.Title
+                      active={activeIndex === index}
+                      index={index}
+                      key={`${configKey}-title`}
+                      onClick={this.onClick}
+                      style={{ textAlign: 'left' }}
+                    >
+                      <Icon name={'dropdown'} />
+                      {configKey}
+                    </Accordion.Title>
+                    <Accordion.Content
+                      active={activeIndex === index}
+                      key={`${configKey}-content`}
+                      style={{ width: '100%' }}
+                    >
+                      <Grid padded={true} relaxed={true} stretched={true} style={{ marginTop: '7px' }}>
+                        {...config[configKey]}
+                      </Grid>
+                    </Accordion.Content>
+                  </Grid.Row>
+                ))
+              : this.renderSingleConfig(Object.keys(config)[0], Object.values(config)[0]),
+          )}
+        </Grid>
       </Accordion>
     );
   }
@@ -66,5 +75,15 @@ export class ConfigAccordion extends React.Component<IConfigAccordionProps, ICon
     this.setState({
       activeIndex: activeIndex === data.index ? -1 : data.index,
     });
+  };
+
+  protected renderSingleConfig = (key: string, elements: JSX.Element[]) => {
+    return (
+      <Grid.Row key={`accordion-${key}`} textAlign={'left'}>
+        <Grid padded={true} relaxed={true} stretched={true} style={{ marginTop: '7px' }}>
+          {...elements}
+        </Grid>
+      </Grid.Row>
+    );
   };
 }
