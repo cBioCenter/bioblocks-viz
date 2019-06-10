@@ -3,6 +3,14 @@
 exports[`ContactMap Snapshots Should match existing snapshot when a single point are hovered. 1`] = `
 <ComponentCard
   componentName="Contact Map"
+  dockItems={
+    Array [
+      Object {
+        "onClick": [Function],
+        "text": "Clear Selections",
+      },
+    ]
+  }
   frameHeight={0}
   frameWidth={0}
   headerHeight={40}
@@ -14,7 +22,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
     Array [
       Object {
         "component": Object {
-          "configs": Array [],
+          "configs": Object {
+            "Filters": Array [],
+          },
           "name": "POPUP",
         },
         "description": "Filter",
@@ -22,37 +32,34 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
       },
       Object {
         "component": Object {
-          "configs": Array [
-            Object {
-              "name": "Clear Selections",
-              "onClick": [Function],
-              "type": "BUTTON",
-            },
-            Object {
-              "id": "node-size-slider-0",
-              "name": "Node size for X-ray Structure Contact",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+          "configs": Object {
+            "Node Sizes": Array [
+              Object {
+                "id": "node-size-slider-0",
+                "name": "Node size for X-ray Structure Contact",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-            Object {
-              "id": "node-size-slider-1",
-              "name": "Node size for Selected Residue Pair",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+              Object {
+                "id": "node-size-slider-1",
+                "name": "Node size for Selected Residue Pair",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-          ],
+            ],
+          },
           "name": "POPUP",
         },
         "description": "Settings",
@@ -175,8 +182,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
     }
     marginModifiers={
       Object {
-        "b": 65,
-        "l": 65,
+        "b": 67,
+        "l": 67,
       }
     }
     onClickCallback={[Function]}
@@ -211,6 +218,14 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
 exports[`ContactMap Snapshots Should match existing snapshot when given basic data. 1`] = `
 <ComponentCard
   componentName="Contact Map"
+  dockItems={
+    Array [
+      Object {
+        "onClick": [Function],
+        "text": "Clear Selections",
+      },
+    ]
+  }
   frameHeight={0}
   frameWidth={0}
   headerHeight={40}
@@ -222,7 +237,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
     Array [
       Object {
         "component": Object {
-          "configs": Array [],
+          "configs": Object {
+            "Filters": Array [],
+          },
           "name": "POPUP",
         },
         "description": "Filter",
@@ -230,37 +247,34 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
       },
       Object {
         "component": Object {
-          "configs": Array [
-            Object {
-              "name": "Clear Selections",
-              "onClick": [Function],
-              "type": "BUTTON",
-            },
-            Object {
-              "id": "node-size-slider-0",
-              "name": "Node size for X-ray Structure Contact",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+          "configs": Object {
+            "Node Sizes": Array [
+              Object {
+                "id": "node-size-slider-0",
+                "name": "Node size for X-ray Structure Contact",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-            Object {
-              "id": "node-size-slider-1",
-              "name": "Node size for Selected Residue Pair",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+              Object {
+                "id": "node-size-slider-1",
+                "name": "Node size for Selected Residue Pair",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-          ],
+            ],
+          },
           "name": "POPUP",
         },
         "description": "Settings",
@@ -375,8 +389,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
     }
     marginModifiers={
       Object {
-        "b": 65,
-        "l": 65,
+        "b": 67,
+        "l": 67,
       }
     }
     onClickCallback={[Function]}
@@ -411,6 +425,14 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
 exports[`ContactMap Snapshots Should match existing snapshot when given data with a PDB. 1`] = `
 <ComponentCard
   componentName="Contact Map"
+  dockItems={
+    Array [
+      Object {
+        "onClick": [Function],
+        "text": "Clear Selections",
+      },
+    ]
+  }
   frameHeight={0}
   frameWidth={0}
   headerHeight={40}
@@ -422,7 +444,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
     Array [
       Object {
         "component": Object {
-          "configs": Array [],
+          "configs": Object {
+            "Filters": Array [],
+          },
           "name": "POPUP",
         },
         "description": "Filter",
@@ -430,37 +454,34 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
       },
       Object {
         "component": Object {
-          "configs": Array [
-            Object {
-              "name": "Clear Selections",
-              "onClick": [Function],
-              "type": "BUTTON",
-            },
-            Object {
-              "id": "node-size-slider-0",
-              "name": "Node size for X-ray Structure Contact",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+          "configs": Object {
+            "Node Sizes": Array [
+              Object {
+                "id": "node-size-slider-0",
+                "name": "Node size for X-ray Structure Contact",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-            Object {
-              "id": "node-size-slider-1",
-              "name": "Node size for Selected Residue Pair",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+              Object {
+                "id": "node-size-slider-1",
+                "name": "Node size for Selected Residue Pair",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-          ],
+            ],
+          },
           "name": "POPUP",
         },
         "description": "Settings",
@@ -571,8 +592,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
     }
     marginModifiers={
       Object {
-        "b": 65,
-        "l": 65,
+        "b": 67,
+        "l": 67,
       }
     }
     onClickCallback={[Function]}
@@ -596,6 +617,14 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
 exports[`ContactMap Snapshots Should match existing snapshot when given data with amino acids. 1`] = `
 <ComponentCard
   componentName="Contact Map"
+  dockItems={
+    Array [
+      Object {
+        "onClick": [Function],
+        "text": "Clear Selections",
+      },
+    ]
+  }
   frameHeight={0}
   frameWidth={0}
   headerHeight={40}
@@ -607,7 +636,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
     Array [
       Object {
         "component": Object {
-          "configs": Array [],
+          "configs": Object {
+            "Filters": Array [],
+          },
           "name": "POPUP",
         },
         "description": "Filter",
@@ -615,37 +646,34 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
       },
       Object {
         "component": Object {
-          "configs": Array [
-            Object {
-              "name": "Clear Selections",
-              "onClick": [Function],
-              "type": "BUTTON",
-            },
-            Object {
-              "id": "node-size-slider-0",
-              "name": "Node size for X-ray Structure Contact",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+          "configs": Object {
+            "Node Sizes": Array [
+              Object {
+                "id": "node-size-slider-0",
+                "name": "Node size for X-ray Structure Contact",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-            Object {
-              "id": "node-size-slider-1",
-              "name": "Node size for Selected Residue Pair",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+              Object {
+                "id": "node-size-slider-1",
+                "name": "Node size for Selected Residue Pair",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-          ],
+            ],
+          },
           "name": "POPUP",
         },
         "description": "Settings",
@@ -756,8 +784,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
     }
     marginModifiers={
       Object {
-        "b": 65,
-        "l": 65,
+        "b": 67,
+        "l": 67,
       }
     }
     onClickCallback={[Function]}
@@ -781,6 +809,14 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
 exports[`ContactMap Snapshots Should match existing snapshot when given empty data. 1`] = `
 <ComponentCard
   componentName="Contact Map"
+  dockItems={
+    Array [
+      Object {
+        "onClick": [Function],
+        "text": "Clear Selections",
+      },
+    ]
+  }
   frameHeight={0}
   frameWidth={0}
   headerHeight={40}
@@ -792,7 +828,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
     Array [
       Object {
         "component": Object {
-          "configs": Array [],
+          "configs": Object {
+            "Filters": Array [],
+          },
           "name": "POPUP",
         },
         "description": "Filter",
@@ -800,37 +838,34 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
       },
       Object {
         "component": Object {
-          "configs": Array [
-            Object {
-              "name": "Clear Selections",
-              "onClick": [Function],
-              "type": "BUTTON",
-            },
-            Object {
-              "id": "node-size-slider-0",
-              "name": "Node size for X-ray Structure Contact",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+          "configs": Object {
+            "Node Sizes": Array [
+              Object {
+                "id": "node-size-slider-0",
+                "name": "Node size for X-ray Structure Contact",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-            Object {
-              "id": "node-size-slider-1",
-              "name": "Node size for Selected Residue Pair",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+              Object {
+                "id": "node-size-slider-1",
+                "name": "Node size for Selected Residue Pair",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-          ],
+            ],
+          },
           "name": "POPUP",
         },
         "description": "Settings",
@@ -931,8 +966,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
     }
     marginModifiers={
       Object {
-        "b": 65,
-        "l": 65,
+        "b": 67,
+        "l": 67,
       }
     }
     onClickCallback={[Function]}
@@ -956,6 +991,14 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
 exports[`ContactMap Snapshots Should match existing snapshot when given no data. 1`] = `
 <ComponentCard
   componentName="Contact Map"
+  dockItems={
+    Array [
+      Object {
+        "onClick": [Function],
+        "text": "Clear Selections",
+      },
+    ]
+  }
   frameHeight={0}
   frameWidth={0}
   headerHeight={40}
@@ -967,7 +1010,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
     Array [
       Object {
         "component": Object {
-          "configs": Array [],
+          "configs": Object {
+            "Filters": Array [],
+          },
           "name": "POPUP",
         },
         "description": "Filter",
@@ -975,37 +1020,34 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
       },
       Object {
         "component": Object {
-          "configs": Array [
-            Object {
-              "name": "Clear Selections",
-              "onClick": [Function],
-              "type": "BUTTON",
-            },
-            Object {
-              "id": "node-size-slider-0",
-              "name": "Node size for X-ray Structure Contact",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+          "configs": Object {
+            "Node Sizes": Array [
+              Object {
+                "id": "node-size-slider-0",
+                "name": "Node size for X-ray Structure Contact",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-            Object {
-              "id": "node-size-slider-1",
-              "name": "Node size for Selected Residue Pair",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+              Object {
+                "id": "node-size-slider-1",
+                "name": "Node size for Selected Residue Pair",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-          ],
+            ],
+          },
           "name": "POPUP",
         },
         "description": "Settings",
@@ -1106,8 +1148,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
     }
     marginModifiers={
       Object {
-        "b": 65,
-        "l": 65,
+        "b": 67,
+        "l": 67,
       }
     }
     onClickCallback={[Function]}
@@ -1131,6 +1173,14 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
 exports[`ContactMap Snapshots Should match existing snapshot when multiple points are hovered. 1`] = `
 <ComponentCard
   componentName="Contact Map"
+  dockItems={
+    Array [
+      Object {
+        "onClick": [Function],
+        "text": "Clear Selections",
+      },
+    ]
+  }
   frameHeight={0}
   frameWidth={0}
   headerHeight={40}
@@ -1142,7 +1192,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
     Array [
       Object {
         "component": Object {
-          "configs": Array [],
+          "configs": Object {
+            "Filters": Array [],
+          },
           "name": "POPUP",
         },
         "description": "Filter",
@@ -1150,37 +1202,34 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
       },
       Object {
         "component": Object {
-          "configs": Array [
-            Object {
-              "name": "Clear Selections",
-              "onClick": [Function],
-              "type": "BUTTON",
-            },
-            Object {
-              "id": "node-size-slider-0",
-              "name": "Node size for X-ray Structure Contact",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+          "configs": Object {
+            "Node Sizes": Array [
+              Object {
+                "id": "node-size-slider-0",
+                "name": "Node size for X-ray Structure Contact",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-            Object {
-              "id": "node-size-slider-1",
-              "name": "Node size for Selected Residue Pair",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+              Object {
+                "id": "node-size-slider-1",
+                "name": "Node size for Selected Residue Pair",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-          ],
+            ],
+          },
           "name": "POPUP",
         },
         "description": "Settings",
@@ -1303,8 +1352,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
     }
     marginModifiers={
       Object {
-        "b": 65,
-        "l": 65,
+        "b": 67,
+        "l": 67,
       }
     }
     onClickCallback={[Function]}
@@ -1339,6 +1388,14 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
 exports[`ContactMap Snapshots Should match existing snapshot when multiple points are selected. 1`] = `
 <ComponentCard
   componentName="Contact Map"
+  dockItems={
+    Array [
+      Object {
+        "onClick": [Function],
+        "text": "Clear Selections",
+      },
+    ]
+  }
   frameHeight={0}
   frameWidth={0}
   headerHeight={40}
@@ -1350,7 +1407,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
     Array [
       Object {
         "component": Object {
-          "configs": Array [],
+          "configs": Object {
+            "Filters": Array [],
+          },
           "name": "POPUP",
         },
         "description": "Filter",
@@ -1358,37 +1417,34 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
       },
       Object {
         "component": Object {
-          "configs": Array [
-            Object {
-              "name": "Clear Selections",
-              "onClick": [Function],
-              "type": "BUTTON",
-            },
-            Object {
-              "id": "node-size-slider-0",
-              "name": "Node size for X-ray Structure Contact",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+          "configs": Object {
+            "Node Sizes": Array [
+              Object {
+                "id": "node-size-slider-0",
+                "name": "Node size for X-ray Structure Contact",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-            Object {
-              "id": "node-size-slider-1",
-              "name": "Node size for Selected Residue Pair",
-              "onChange": [Function],
-              "type": "SLIDER",
-              "values": Object {
-                "current": 4,
-                "defaultValue": 4,
-                "max": 20,
-                "min": 1,
+              Object {
+                "id": "node-size-slider-1",
+                "name": "Node size for Selected Residue Pair",
+                "onChange": [Function],
+                "type": "SLIDER",
+                "values": Object {
+                  "current": 4,
+                  "defaultValue": 4,
+                  "max": 20,
+                  "min": 1,
+                },
               },
-            },
-          ],
+            ],
+          },
           "name": "POPUP",
         },
         "description": "Settings",
@@ -1525,8 +1581,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
     }
     marginModifiers={
       Object {
-        "b": 65,
-        "l": 65,
+        "b": 67,
+        "l": 67,
       }
     }
     onClickCallback={[Function]}
@@ -2015,6 +2071,14 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
 >
   <ComponentCard
     componentName="Contact Map"
+    dockItems={
+      Array [
+        Object {
+          "onClick": [Function],
+          "text": "Clear Selections",
+        },
+      ]
+    }
     frameHeight={0}
     frameWidth={0}
     headerHeight={40}
@@ -2026,7 +2090,9 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       Array [
         Object {
           "component": Object {
-            "configs": Array [],
+            "configs": Object {
+              "Filters": Array [],
+            },
             "name": "POPUP",
           },
           "description": "Filter",
@@ -2034,37 +2100,34 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         },
         Object {
           "component": Object {
-            "configs": Array [
-              Object {
-                "name": "Clear Selections",
-                "onClick": [Function],
-                "type": "BUTTON",
-              },
-              Object {
-                "id": "node-size-slider-0",
-                "name": "Node size for X-ray Structure Contact",
-                "onChange": [Function],
-                "type": "SLIDER",
-                "values": Object {
-                  "current": 4,
-                  "defaultValue": 4,
-                  "max": 20,
-                  "min": 1,
+            "configs": Object {
+              "Node Sizes": Array [
+                Object {
+                  "id": "node-size-slider-0",
+                  "name": "Node size for X-ray Structure Contact",
+                  "onChange": [Function],
+                  "type": "SLIDER",
+                  "values": Object {
+                    "current": 4,
+                    "defaultValue": 4,
+                    "max": 20,
+                    "min": 1,
+                  },
                 },
-              },
-              Object {
-                "id": "node-size-slider-1",
-                "name": "Node size for Selected Residue Pair",
-                "onChange": [Function],
-                "type": "SLIDER",
-                "values": Object {
-                  "current": 4,
-                  "defaultValue": 4,
-                  "max": 20,
-                  "min": 1,
+                Object {
+                  "id": "node-size-slider-1",
+                  "name": "Node size for Selected Residue Pair",
+                  "onChange": [Function],
+                  "type": "SLIDER",
+                  "values": Object {
+                    "current": 4,
+                    "defaultValue": 4,
+                    "max": 20,
+                    "min": 1,
+                  },
                 },
-              },
-            ],
+              ],
+            },
             "name": "POPUP",
           },
           "description": "Settings",
@@ -2097,108 +2160,103 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           }
         }
       >
-        <ComponentMenuBar
-          componentName="Contact Map"
-          configurations={Array []}
-          height={40}
-          iconSrc="assets/icons/spring-icon.png"
-          isExpanded={false}
-          menuItems={
-            Array [
-              Object {
-                "component": Object {
-                  "configs": Array [],
-                  "name": "POPUP",
-                },
-                "description": "Filter",
-                "iconName": "filter",
-              },
-              Object {
-                "component": Object {
-                  "configs": Array [
-                    Object {
-                      "name": "Clear Selections",
-                      "onClick": [Function],
-                      "type": "BUTTON",
-                    },
-                    Object {
-                      "id": "node-size-slider-0",
-                      "name": "Node size for X-ray Structure Contact",
-                      "onChange": [Function],
-                      "type": "SLIDER",
-                      "values": Object {
-                        "current": 4,
-                        "defaultValue": 4,
-                        "max": 20,
-                        "min": 1,
-                      },
-                    },
-                    Object {
-                      "id": "node-size-slider-1",
-                      "name": "Node size for Selected Residue Pair",
-                      "onChange": [Function],
-                      "type": "SLIDER",
-                      "values": Object {
-                        "current": 4,
-                        "defaultValue": 4,
-                        "max": 20,
-                        "min": 1,
-                      },
-                    },
-                  ],
-                  "name": "POPUP",
-                },
-                "description": "Settings",
-              },
-            ]
+        <div
+          style={
+            Object {
+              "height": "6%",
+            }
           }
-          onExpandToggleCb={[Function]}
-          opacity={0.85}
-          width="100%"
         >
-          <div
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <Menu
-              secondary={true}
-              style={
+          <ComponentMenuBar
+            componentName="Contact Map"
+            height={40}
+            iconSrc="assets/icons/spring-icon.png"
+            isExpanded={false}
+            menuItems={
+              Array [
                 Object {
-                  "height": 40,
-                  "margin": 0,
-                }
-              }
-              widths={2}
+                  "component": Object {
+                    "configs": Object {
+                      "Filters": Array [],
+                    },
+                    "name": "POPUP",
+                  },
+                  "description": "Filter",
+                  "iconName": "filter",
+                },
+                Object {
+                  "component": Object {
+                    "configs": Object {
+                      "Node Sizes": Array [
+                        Object {
+                          "id": "node-size-slider-0",
+                          "name": "Node size for X-ray Structure Contact",
+                          "onChange": [Function],
+                          "type": "SLIDER",
+                          "values": Object {
+                            "current": 4,
+                            "defaultValue": 4,
+                            "max": 20,
+                            "min": 1,
+                          },
+                        },
+                        Object {
+                          "id": "node-size-slider-1",
+                          "name": "Node size for Selected Residue Pair",
+                          "onChange": [Function],
+                          "type": "SLIDER",
+                          "values": Object {
+                            "current": 4,
+                            "defaultValue": 4,
+                            "max": 20,
+                            "min": 1,
+                          },
+                        },
+                      ],
+                    },
+                    "name": "POPUP",
+                  },
+                  "description": "Settings",
+                },
+              ]
+            }
+            onExpandToggleCb={[Function]}
+            opacity={0.85}
+            width="100%"
+          >
+            <div
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
-              <div
-                className="ui secondary two item menu"
+              <Menu
+                secondary={true}
                 style={
                   Object {
                     "height": 40,
                     "margin": 0,
                   }
                 }
+                widths={2}
               >
-                <Menu
-                  secondary={true}
-                  widths={1}
+                <div
+                  className="ui secondary two item menu"
+                  style={
+                    Object {
+                      "height": 40,
+                      "margin": 0,
+                    }
+                  }
                 >
-                  <div
-                    className="ui secondary one item menu"
+                  <Menu
+                    secondary={true}
+                    widths={1}
                   >
-                    <MenuItem
-                      fitted="horizontally"
-                      position="left"
-                      style={
-                        Object {
-                          "margin": 0,
-                          "padding": 0,
-                        }
-                      }
+                    <div
+                      className="ui secondary one item menu"
                     >
-                      <div
-                        className="left horizontally fitted item"
-                        onClick={[Function]}
+                      <MenuItem
+                        fitted="horizontally"
+                        position="left"
                         style={
                           Object {
                             "margin": 0,
@@ -2206,442 +2264,320 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                           }
                         }
                       >
-                        <img
-                          alt="component icon"
-                          src="assets/icons/spring-icon.png"
+                        <div
+                          className="left horizontally fitted item"
+                          onClick={[Function]}
                           style={
                             Object {
-                              "height": "32px",
-                              "padding": "2px",
-                              "width": "32px",
+                              "margin": 0,
+                              "padding": 0,
                             }
                           }
-                        />
-                        Contact Map
-                      </div>
-                    </MenuItem>
-                  </div>
-                </Menu>
-                <Menu
-                  secondary={true}
-                  widths={4}
-                >
-                  <div
-                    className="ui secondary four item menu"
+                        >
+                          <img
+                            alt="component icon"
+                            src="assets/icons/spring-icon.png"
+                            style={
+                              Object {
+                                "height": "32px",
+                                "padding": "2px",
+                                "width": "32px",
+                              }
+                            }
+                          />
+                          Contact Map
+                        </div>
+                      </MenuItem>
+                    </div>
+                  </Menu>
+                  <Menu
+                    secondary={true}
+                    widths={4}
                   >
-                    <MenuItem
-                      fitted="horizontally"
-                      key="Contact Map-menu-item-0"
-                      position="right"
-                      style={
-                        Object {
-                          "flexDirection": "column",
-                        }
-                      }
+                    <div
+                      className="ui secondary four item menu"
                     >
-                      <div
-                        className="right horizontally fitted item"
-                        onClick={[Function]}
+                      <MenuItem
+                        fitted="horizontally"
+                        key="Contact Map-menu-item-0"
+                        position="right"
                         style={
                           Object {
                             "flexDirection": "column",
                           }
                         }
                       >
-                        <Popup
-                          closeOnPortalMouseLeave={false}
-                          closeOnTriggerClick={true}
-                          closeOnTriggerMouseLeave={false}
-                          disabled={false}
-                          hoverable={false}
-                          keepInViewPort={true}
-                          on="hover"
-                          openOnTriggerClick={true}
-                          openOnTriggerFocus={false}
-                          openOnTriggerMouseEnter={false}
-                          position="bottom center"
+                        <div
+                          className="right horizontally fitted item"
+                          onClick={[Function]}
                           style={
                             Object {
-                              "opacity": 0.85,
+                              "flexDirection": "column",
                             }
                           }
-                          trigger={
-                            <Icon
-                              as="i"
-                              name="filter"
-                            />
-                          }
-                          wide={true}
                         >
-                          <Portal
-                            closeOnDocumentClick={true}
-                            closeOnEscape={true}
+                          <Popup
                             closeOnPortalMouseLeave={false}
                             closeOnTriggerClick={true}
                             closeOnTriggerMouseLeave={false}
-                            eventPool="default"
-                            mouseEnterDelay={50}
-                            mouseLeaveDelay={70}
-                            onClose={[Function]}
-                            onMount={[Function]}
-                            onOpen={[Function]}
-                            onUnmount={[Function]}
+                            disabled={false}
+                            hoverable={false}
+                            keepInViewPort={true}
+                            on="hover"
                             openOnTriggerClick={true}
                             openOnTriggerFocus={false}
                             openOnTriggerMouseEnter={false}
+                            position="bottom left"
+                            style={
+                              Object {
+                                "opacity": 0.85,
+                              }
+                            }
                             trigger={
                               <Icon
                                 as="i"
                                 name="filter"
                               />
                             }
-                            triggerRef={[Function]}
+                            wide={true}
                           >
-                            <Ref
-                              innerRef={[Function]}
-                            >
-                              <RefFindNode
-                                innerRef={[Function]}
-                              >
+                            <Portal
+                              closeOnDocumentClick={true}
+                              closeOnEscape={true}
+                              closeOnPortalMouseLeave={false}
+                              closeOnTriggerClick={true}
+                              closeOnTriggerMouseLeave={false}
+                              eventPool="default"
+                              mouseEnterDelay={50}
+                              mouseLeaveDelay={70}
+                              onClose={[Function]}
+                              onMount={[Function]}
+                              onOpen={[Function]}
+                              onUnmount={[Function]}
+                              openOnTriggerClick={true}
+                              openOnTriggerFocus={false}
+                              openOnTriggerMouseEnter={false}
+                              trigger={
                                 <Icon
                                   as="i"
                                   name="filter"
-                                  onBlur={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onMouseEnter={[Function]}
-                                  onMouseLeave={[Function]}
+                                />
+                              }
+                              triggerRef={[Function]}
+                            >
+                              <Ref
+                                innerRef={[Function]}
+                              >
+                                <RefFindNode
+                                  innerRef={[Function]}
                                 >
-                                  <i
-                                    aria-hidden="true"
-                                    className="filter icon"
+                                  <Icon
+                                    as="i"
+                                    name="filter"
                                     onBlur={[Function]}
                                     onClick={[Function]}
                                     onFocus={[Function]}
                                     onMouseEnter={[Function]}
                                     onMouseLeave={[Function]}
-                                  />
-                                </Icon>
-                              </RefFindNode>
-                            </Ref>
-                          </Portal>
-                        </Popup>
-                        <span
-                          style={
-                            Object {
-                              "fontSize": "11px",
-                              "visibility": "hidden",
+                                  >
+                                    <i
+                                      aria-hidden="true"
+                                      className="filter icon"
+                                      onBlur={[Function]}
+                                      onClick={[Function]}
+                                      onFocus={[Function]}
+                                      onMouseEnter={[Function]}
+                                      onMouseLeave={[Function]}
+                                    />
+                                  </Icon>
+                                </RefFindNode>
+                              </Ref>
+                            </Portal>
+                          </Popup>
+                          <span
+                            style={
+                              Object {
+                                "fontSize": "11px",
+                                "visibility": "hidden",
+                              }
                             }
-                          }
-                        >
-                          Filter
-                        </span>
-                      </div>
-                    </MenuItem>
-                    <MenuItem
-                      fitted="horizontally"
-                      key="Contact Map-menu-item-1"
-                      position="right"
-                      style={
-                        Object {
-                          "flexDirection": "column",
-                        }
-                      }
-                    >
-                      <div
-                        className="right horizontally fitted item"
-                        onClick={[Function]}
+                          >
+                            Filter
+                          </span>
+                        </div>
+                      </MenuItem>
+                      <MenuItem
+                        fitted="horizontally"
+                        key="Contact Map-menu-item-1"
+                        position="right"
                         style={
                           Object {
                             "flexDirection": "column",
                           }
                         }
                       >
-                        <Popup
-                          closeOnPortalMouseLeave={false}
-                          closeOnTriggerClick={true}
-                          closeOnTriggerMouseLeave={false}
-                          disabled={false}
-                          hoverable={false}
-                          keepInViewPort={true}
-                          on="hover"
-                          openOnTriggerClick={true}
-                          openOnTriggerFocus={false}
-                          openOnTriggerMouseEnter={false}
-                          position="bottom center"
+                        <div
+                          className="right horizontally fitted item"
+                          onClick={[Function]}
                           style={
                             Object {
-                              "opacity": 0.85,
+                              "flexDirection": "column",
                             }
                           }
-                          trigger={
-                            <Icon
-                              as="i"
-                              name="setting"
-                            />
-                          }
-                          wide={true}
                         >
-                          <Portal
-                            closeOnDocumentClick={true}
-                            closeOnEscape={true}
+                          <Popup
                             closeOnPortalMouseLeave={false}
                             closeOnTriggerClick={true}
                             closeOnTriggerMouseLeave={false}
-                            eventPool="default"
-                            mouseEnterDelay={50}
-                            mouseLeaveDelay={70}
-                            onClose={[Function]}
-                            onMount={[Function]}
-                            onOpen={[Function]}
-                            onUnmount={[Function]}
+                            disabled={false}
+                            hoverable={false}
+                            keepInViewPort={true}
+                            on="hover"
                             openOnTriggerClick={true}
                             openOnTriggerFocus={false}
                             openOnTriggerMouseEnter={false}
+                            position="bottom left"
+                            style={
+                              Object {
+                                "opacity": 0.85,
+                              }
+                            }
                             trigger={
                               <Icon
                                 as="i"
                                 name="setting"
                               />
                             }
-                            triggerRef={[Function]}
+                            wide={true}
                           >
-                            <Ref
-                              innerRef={[Function]}
-                            >
-                              <RefFindNode
-                                innerRef={[Function]}
-                              >
+                            <Portal
+                              closeOnDocumentClick={true}
+                              closeOnEscape={true}
+                              closeOnPortalMouseLeave={false}
+                              closeOnTriggerClick={true}
+                              closeOnTriggerMouseLeave={false}
+                              eventPool="default"
+                              mouseEnterDelay={50}
+                              mouseLeaveDelay={70}
+                              onClose={[Function]}
+                              onMount={[Function]}
+                              onOpen={[Function]}
+                              onUnmount={[Function]}
+                              openOnTriggerClick={true}
+                              openOnTriggerFocus={false}
+                              openOnTriggerMouseEnter={false}
+                              trigger={
                                 <Icon
                                   as="i"
                                   name="setting"
-                                  onBlur={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onMouseEnter={[Function]}
-                                  onMouseLeave={[Function]}
+                                />
+                              }
+                              triggerRef={[Function]}
+                            >
+                              <Ref
+                                innerRef={[Function]}
+                              >
+                                <RefFindNode
+                                  innerRef={[Function]}
                                 >
-                                  <i
-                                    aria-hidden="true"
-                                    className="setting icon"
+                                  <Icon
+                                    as="i"
+                                    name="setting"
                                     onBlur={[Function]}
                                     onClick={[Function]}
                                     onFocus={[Function]}
                                     onMouseEnter={[Function]}
                                     onMouseLeave={[Function]}
-                                  />
-                                </Icon>
-                              </RefFindNode>
-                            </Ref>
-                          </Portal>
-                        </Popup>
-                        <span
-                          style={
-                            Object {
-                              "fontSize": "11px",
-                              "visibility": "hidden",
+                                  >
+                                    <i
+                                      aria-hidden="true"
+                                      className="setting icon"
+                                      onBlur={[Function]}
+                                      onClick={[Function]}
+                                      onFocus={[Function]}
+                                      onMouseEnter={[Function]}
+                                      onMouseLeave={[Function]}
+                                    />
+                                  </Icon>
+                                </RefFindNode>
+                              </Ref>
+                            </Portal>
+                          </Popup>
+                          <span
+                            style={
+                              Object {
+                                "fontSize": "11px",
+                                "visibility": "hidden",
+                              }
                             }
-                          }
-                        >
-                          Settings
-                        </span>
-                      </div>
-                    </MenuItem>
-                    <MenuItem
-                      fitted="horizontally"
-                      position="right"
-                      style={
-                        Object {
-                          "flexDirection": "column",
-                        }
-                      }
-                    >
-                      <div
-                        className="right horizontally fitted item"
-                        onClick={[Function]}
+                          >
+                            Settings
+                          </span>
+                        </div>
+                      </MenuItem>
+                      <MenuItem
+                        fitted="horizontally"
+                        position="right"
                         style={
                           Object {
                             "flexDirection": "column",
                           }
                         }
                       >
-                        <Icon
-                          as="i"
-                          name="expand arrows alternate"
+                        <div
+                          className="right horizontally fitted item"
                           onClick={[Function]}
-                        >
-                          <i
-                            aria-hidden="true"
-                            className="expand arrows alternate icon"
-                            onClick={[Function]}
-                          />
-                        </Icon>
-                        <span
                           style={
                             Object {
-                              "fontSize": "11px",
-                              "visibility": "hidden",
+                              "flexDirection": "column",
                             }
                           }
                         >
-                          Expand
-                        </span>
-                      </div>
-                    </MenuItem>
-                  </div>
-                </Menu>
-              </div>
-            </Menu>
-          </div>
-        </ComponentMenuBar>
-        <ContactMapChart
-          candidateResidues={Array []}
-          configurations={Array []}
-          contactData={
-            Array [
-              Object {
-                "hoverinfo": "text",
-                "marker": Object {
-                  "colorscale": Array [
-                    Array [
-                      0,
-                      "rgb(12,50,102)",
-                    ],
-                    Array [
-                      0.1,
-                      "rgb(17,83,150)",
-                    ],
-                    Array [
-                      0.2,
-                      "rgb(40,114,175)",
-                    ],
-                    Array [
-                      0.3,
-                      "rgb(71,147,193)",
-                    ],
-                    Array [
-                      0.4,
-                      "rgb(111,175,209)",
-                    ],
-                    Array [
-                      0.5,
-                      "rgb(160,202,222)",
-                    ],
-                    Array [
-                      0.6,
-                      "rgb(200,219,237)",
-                    ],
-                    Array [
-                      0.7,
-                      "rgb(224,235,246)",
-                    ],
-                    Array [
-                      0.8,
-                      "rgb(247,251,255)",
-                    ],
-                    Array [
-                      0.9,
-                      "rgb(249,253,255)",
-                    ],
-                    Array [
-                      1,
-                      "rgb(255,255,255)",
-                    ],
-                  ],
-                },
-                "mode": "lines+markers",
-                "name": "X-ray Structure Contact",
-                "nodeSize": 4,
-                "points": Array [
-                  Object {
-                    "dist": 1.3,
-                    "i": 41,
-                    "j": 52,
-                  },
-                  Object {
-                    "dist": 2.4,
-                    "i": 50,
-                    "j": 56,
-                  },
-                ],
-                "subtitle": "Unknown Structure Contact",
-                "text": Array [
-                  "(41, 52)",
-                  "(50, 56)",
-                ],
-              },
-              Object {
-                "hoverinfo": "none",
-                "marker": Object {
-                  "color": Array [],
-                  "line": Object {
-                    "color": "#ff8800",
-                    "width": 3,
-                  },
-                  "symbol": "circle-open",
-                },
-                "mode": "lines+markers",
-                "name": "Selected Residue Pair",
-                "nodeSize": 4,
-                "points": Array [],
-                "subtitle": "",
-              },
-            ]
-          }
-          dataTransformFn={[Function]}
-          height="100%"
-          isDataLoading={false}
-          legendModifiers={
+                          <Icon
+                            as="i"
+                            name="expand arrows alternate"
+                            onClick={[Function]}
+                          >
+                            <i
+                              aria-hidden="true"
+                              className="expand arrows alternate icon"
+                              onClick={[Function]}
+                            />
+                          </Icon>
+                          <span
+                            style={
+                              Object {
+                                "fontSize": "11px",
+                                "visibility": "hidden",
+                              }
+                            }
+                          >
+                            Expand
+                          </span>
+                        </div>
+                      </MenuItem>
+                    </div>
+                  </Menu>
+                </div>
+              </Menu>
+            </div>
+          </ComponentMenuBar>
+        </div>
+        <div
+          style={
             Object {
-              "y": -0.4,
+              "height": "91%",
             }
           }
-          marginModifiers={
-            Object {
-              "b": 65,
-              "l": 65,
-            }
-          }
-          onClickCallback={[Function]}
-          onHoverCallback={[Function]}
-          onSelectedCallback={[Function]}
-          onUnHoverCallback={[Function]}
-          range={33000}
-          secondaryStructures={
-            Array [
-              Array [
-                Object {
-                  "end": 31,
-                  "label": "C",
-                  "length": 2,
-                  "start": 30,
-                },
-              ],
-            ]
-          }
-          selectedSecondaryStructures={
-            Array [
-              Array [],
-            ]
-          }
-          selectedSecondaryStructuresColor="#feb83f"
-          showConfigurations={true}
-          width="100%"
         >
-          <PlotlyChart
+          <ContactMapChart
             candidateResidues={Array []}
-            config={Object {}}
-            data={
+            configurations={Array []}
+            contactData={
               Array [
                 Object {
                   "hoverinfo": "text",
                   "marker": Object {
-                    "color": Array [
-                      "1.3",
-                      "2.4",
-                      "1.3",
-                      "2.4",
-                    ],
                     "colorscale": Array [
                       Array [
                         0,
@@ -2688,34 +2624,26 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         "rgb(255,255,255)",
                       ],
                     ],
-                    "size": 4,
                   },
-                  "mode": "markers",
-                  "name": "X-ray Structure Contact Unknown Structure Contact",
+                  "mode": "lines+markers",
+                  "name": "X-ray Structure Contact",
+                  "nodeSize": 4,
+                  "points": Array [
+                    Object {
+                      "dist": 1.3,
+                      "i": 41,
+                      "j": 52,
+                    },
+                    Object {
+                      "dist": 2.4,
+                      "i": 50,
+                      "j": 56,
+                    },
+                  ],
+                  "subtitle": "Unknown Structure Contact",
                   "text": Array [
                     "(41, 52)",
                     "(50, 56)",
-                    "(52, 41)",
-                    "(56, 50)",
-                  ],
-                  "type": "scattergl",
-                  "x": Array [
-                    41,
-                    50,
-                    52,
-                    56,
-                  ],
-                  "y": Array [
-                    52,
-                    56,
-                    41,
-                    50,
-                  ],
-                  "z": Array [
-                    1.3,
-                    2.4,
-                    1.3,
-                    2.4,
                   ],
                 },
                 Object {
@@ -2726,127 +2654,35 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       "color": "#ff8800",
                       "width": 3,
                     },
-                    "size": 4,
                     "symbol": "circle-open",
                   },
-                  "mode": "markers",
-                  "name": "Selected Residue Pair ",
-                  "text": Array [],
-                  "type": "scattergl",
-                  "x": Array [],
-                  "y": Array [],
-                  "z": Array [],
-                },
-                Object {
-                  "connectgaps": false,
-                  "hoverinfo": "none",
-                  "line": Object {
-                    "color": "red",
-                    "shape": "spline",
-                    "smoothing": 1.3,
-                    "width": 1.5,
-                  },
-                  "marker": Object {
-                    "symbol": Array [],
-                  },
-                  "mode": "lines",
-                  "name": "C",
-                  "orientation": "h",
-                  "showlegend": false,
-                  "type": "scatter",
-                  "x": Array [
-                    30,
-                    30,
-                    31,
-                    31,
-                  ],
-                  "xaxis": "x",
-                  "y": Array [
-                    null,
-                    0,
-                    0,
-                    null,
-                  ],
-                  "yaxis": "y2",
-                },
-                Object {
-                  "connectgaps": false,
-                  "hoverinfo": "none",
-                  "line": Object {
-                    "color": "red",
-                    "shape": "spline",
-                    "smoothing": 1.3,
-                    "width": 1.5,
-                  },
-                  "marker": Object {
-                    "symbol": Array [],
-                  },
-                  "mode": "lines",
-                  "name": "C",
-                  "orientation": "v",
-                  "showlegend": false,
-                  "type": "scatter",
-                  "x": Array [
-                    null,
-                    0,
-                    0,
-                    null,
-                  ],
-                  "xaxis": "x2",
-                  "y": Array [
-                    30,
-                    30,
-                    31,
-                    31,
-                  ],
-                  "yaxis": "y",
+                  "mode": "lines+markers",
+                  "name": "Selected Residue Pair",
+                  "nodeSize": 4,
+                  "points": Array [],
+                  "subtitle": "",
                 },
               ]
             }
             dataTransformFn={[Function]}
             height="100%"
-            layout={
+            isDataLoading={false}
+            legendModifiers={
               Object {
-                "legend": Object {
-                  "orientation": "h",
-                  "y": -0.4,
-                  "yanchor": "bottom",
-                },
-                "margin": Object {
-                  "b": 65,
-                  "l": 65,
-                },
-                "showlegend": false,
-                "xaxis": Object {
-                  "fixedrange": true,
-                  "nticks": 10,
-                  "range": Array [
-                    0,
-                    33000,
-                  ],
-                  "rangemode": "nonnegative",
-                  "showline": true,
-                  "tickmode": "auto",
-                  "title": "Residue #",
-                },
-                "yaxis": Object {
-                  "fixedrange": true,
-                  "nticks": 10,
-                  "range": Array [
-                    33000,
-                    0,
-                  ],
-                  "rangemode": "nonnegative",
-                  "showline": true,
-                  "tickmode": "auto",
-                  "title": "Residue #",
-                },
+                "y": -0.4,
+              }
+            }
+            marginModifiers={
+              Object {
+                "b": 67,
+                "l": 67,
               }
             }
             onClickCallback={[Function]}
             onHoverCallback={[Function]}
             onSelectedCallback={[Function]}
             onUnHoverCallback={[Function]}
+            range={33000}
             secondaryStructures={
               Array [
                 Array [
@@ -2865,21 +2701,340 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               ]
             }
             selectedSecondaryStructuresColor="#feb83f"
-            showLoader={false}
+            showConfigurations={true}
             width="100%"
           >
-            <div
-              className="plotly-chart"
-              style={
+            <PlotlyChart
+              candidateResidues={Array []}
+              config={Object {}}
+              data={
+                Array [
+                  Object {
+                    "hoverinfo": "text",
+                    "marker": Object {
+                      "color": Array [
+                        "1.3",
+                        "2.4",
+                        "1.3",
+                        "2.4",
+                      ],
+                      "colorscale": Array [
+                        Array [
+                          0,
+                          "rgb(12,50,102)",
+                        ],
+                        Array [
+                          0.1,
+                          "rgb(17,83,150)",
+                        ],
+                        Array [
+                          0.2,
+                          "rgb(40,114,175)",
+                        ],
+                        Array [
+                          0.3,
+                          "rgb(71,147,193)",
+                        ],
+                        Array [
+                          0.4,
+                          "rgb(111,175,209)",
+                        ],
+                        Array [
+                          0.5,
+                          "rgb(160,202,222)",
+                        ],
+                        Array [
+                          0.6,
+                          "rgb(200,219,237)",
+                        ],
+                        Array [
+                          0.7,
+                          "rgb(224,235,246)",
+                        ],
+                        Array [
+                          0.8,
+                          "rgb(247,251,255)",
+                        ],
+                        Array [
+                          0.9,
+                          "rgb(249,253,255)",
+                        ],
+                        Array [
+                          1,
+                          "rgb(255,255,255)",
+                        ],
+                      ],
+                      "size": 4,
+                    },
+                    "mode": "markers",
+                    "name": "X-ray Structure Contact Unknown Structure Contact",
+                    "text": Array [
+                      "(41, 52)",
+                      "(50, 56)",
+                      "(52, 41)",
+                      "(56, 50)",
+                    ],
+                    "type": "scattergl",
+                    "x": Array [
+                      41,
+                      50,
+                      52,
+                      56,
+                    ],
+                    "y": Array [
+                      52,
+                      56,
+                      41,
+                      50,
+                    ],
+                    "z": Array [
+                      1.3,
+                      2.4,
+                      1.3,
+                      2.4,
+                    ],
+                  },
+                  Object {
+                    "hoverinfo": "none",
+                    "marker": Object {
+                      "color": Array [],
+                      "line": Object {
+                        "color": "#ff8800",
+                        "width": 3,
+                      },
+                      "size": 4,
+                      "symbol": "circle-open",
+                    },
+                    "mode": "markers",
+                    "name": "Selected Residue Pair ",
+                    "text": Array [],
+                    "type": "scattergl",
+                    "x": Array [],
+                    "y": Array [],
+                    "z": Array [],
+                  },
+                  Object {
+                    "connectgaps": false,
+                    "hoverinfo": "none",
+                    "line": Object {
+                      "color": "red",
+                      "shape": "spline",
+                      "smoothing": 1.3,
+                      "width": 1.5,
+                    },
+                    "marker": Object {
+                      "symbol": Array [],
+                    },
+                    "mode": "lines",
+                    "name": "C",
+                    "orientation": "h",
+                    "showlegend": false,
+                    "type": "scatter",
+                    "x": Array [
+                      30,
+                      30,
+                      31,
+                      31,
+                    ],
+                    "xaxis": "x",
+                    "y": Array [
+                      null,
+                      0,
+                      0,
+                      null,
+                    ],
+                    "yaxis": "y2",
+                  },
+                  Object {
+                    "connectgaps": false,
+                    "hoverinfo": "none",
+                    "line": Object {
+                      "color": "red",
+                      "shape": "spline",
+                      "smoothing": 1.3,
+                      "width": 1.5,
+                    },
+                    "marker": Object {
+                      "symbol": Array [],
+                    },
+                    "mode": "lines",
+                    "name": "C",
+                    "orientation": "v",
+                    "showlegend": false,
+                    "type": "scatter",
+                    "x": Array [
+                      null,
+                      0,
+                      0,
+                      null,
+                    ],
+                    "xaxis": "x2",
+                    "y": Array [
+                      30,
+                      30,
+                      31,
+                      31,
+                    ],
+                    "yaxis": "y",
+                  },
+                ]
+              }
+              dataTransformFn={[Function]}
+              height="100%"
+              layout={
                 Object {
-                  "height": "100%",
-                  "marginBottom": 5,
-                  "width": "100%",
+                  "legend": Object {
+                    "orientation": "h",
+                    "y": -0.4,
+                    "yanchor": "bottom",
+                  },
+                  "margin": Object {
+                    "b": 67,
+                    "l": 67,
+                  },
+                  "showlegend": false,
+                  "xaxis": Object {
+                    "fixedrange": true,
+                    "nticks": 10,
+                    "range": Array [
+                      0,
+                      33000,
+                    ],
+                    "rangemode": "nonnegative",
+                    "showline": true,
+                    "tickmode": "auto",
+                    "title": "Residue #",
+                  },
+                  "yaxis": Object {
+                    "fixedrange": true,
+                    "nticks": 10,
+                    "range": Array [
+                      33000,
+                      0,
+                    ],
+                    "rangemode": "nonnegative",
+                    "showline": true,
+                    "tickmode": "auto",
+                    "title": "Residue #",
+                  },
                 }
               }
-            />
-          </PlotlyChart>
-        </ContactMapChart>
+              onClickCallback={[Function]}
+              onHoverCallback={[Function]}
+              onSelectedCallback={[Function]}
+              onUnHoverCallback={[Function]}
+              secondaryStructures={
+                Array [
+                  Array [
+                    Object {
+                      "end": 31,
+                      "label": "C",
+                      "length": 2,
+                      "start": 30,
+                    },
+                  ],
+                ]
+              }
+              selectedSecondaryStructures={
+                Array [
+                  Array [],
+                ]
+              }
+              selectedSecondaryStructuresColor="#feb83f"
+              showLoader={false}
+              width="100%"
+            >
+              <div
+                className="plotly-chart"
+                style={
+                  Object {
+                    "height": "100%",
+                    "marginBottom": 5,
+                    "width": "100%",
+                  }
+                }
+              />
+            </PlotlyChart>
+          </ContactMapChart>
+        </div>
+        <div
+          style={
+            Object {
+              "height": "3%",
+            }
+          }
+        >
+          <ComponentDock
+            dockItems={
+              Array [
+                Object {
+                  "onClick": [Function],
+                  "text": "Clear Selections",
+                },
+              ]
+            }
+          >
+            <Grid
+              centered={true}
+              columns="equal"
+              stretched={true}
+              style={
+                Object {
+                  "marginLeft": "initial",
+                  "marginRight": "initial",
+                  "marginTop": "-0.5rem",
+                  "padding": 0,
+                }
+              }
+            >
+              <div
+                className="ui centered stretched equal width grid"
+                style={
+                  Object {
+                    "marginLeft": "initial",
+                    "marginRight": "initial",
+                    "marginTop": "-0.5rem",
+                    "padding": 0,
+                  }
+                }
+              >
+                <GridColumn
+                  key="dock-item-0"
+                  style={
+                    Object {
+                      "padding": 0,
+                    }
+                  }
+                >
+                  <div
+                    className="column"
+                    style={
+                      Object {
+                        "padding": 0,
+                      }
+                    }
+                  >
+                    <div
+                      style={
+                        Object {
+                          "userSelect": "none",
+                        }
+                      }
+                    >
+                      <a
+                        aria-pressed={false}
+                        onClick={[Function]}
+                        role="button"
+                      >
+                        Clear Selections
+                      </a>
+                    </div>
+                  </div>
+                </GridColumn>
+              </div>
+            </Grid>
+          </ComponentDock>
+        </div>
       </div>
     </Card>
   </ComponentCard>

@@ -6,6 +6,7 @@ exports[`AnatomogramContainer Should match existing snapshot for homo sapiens. 1
 >
   <ComponentCard
     componentName="Anatomogram"
+    dockItems={Array []}
     frameHeight={0}
     frameWidth={0}
     headerHeight={40}
@@ -57,6 +58,7 @@ exports[`AnatomogramContainer Should match existing snapshot for mus musculus. 1
 >
   <ComponentCard
     componentName="Anatomogram"
+    dockItems={Array []}
     frameHeight={0}
     frameWidth={0}
     headerHeight={40}

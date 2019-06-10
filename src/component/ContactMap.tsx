@@ -133,8 +133,8 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     return this.renderContactMapChart(pointsToPlot);
   }
 
-  protected generateNodeSizeSliderConfigs = (entries: IContactMapChartData[]) =>
-    entries.map(
+  protected getNodeSizeSliderConfigs = (entries: IContactMapChartData[]) => ({
+    'Node Sizes': entries.map(
       (entry, index): SliderWidgetConfig => {
         return {
           id: `node-size-slider-${index}`,
@@ -149,21 +149,8 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
           },
         };
       },
-    );
-
-  protected getSettingsConfigs = (): BioblocksWidgetConfig[] => {
-    const { removeAllLockedResiduePairs } = this.props;
-    const { pointsToPlot } = this.state;
-
-    return [
-      {
-        name: 'Clear Selections',
-        onClick: removeAllLockedResiduePairs,
-        type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
-      },
-      ...this.generateNodeSizeSliderConfigs(pointsToPlot),
-    ];
-  };
+    ),
+  });
 
   protected onMouseClick = (cb: (residues: ILockedResiduePair) => void) => (e: BioblocksChartEvent) => {
     if (e.isAxis()) {
@@ -262,10 +249,18 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     return (
       <ComponentCard
         componentName={'Contact Map'}
+        dockItems={[
+          {
+            onClick: () => {
+              this.props.removeAllLockedResiduePairs();
+            },
+            text: 'Clear Selections',
+          },
+        ]}
         menuItems={[
           {
             component: {
-              configs: configurations,
+              configs: { Filters: configurations },
               name: 'POPUP',
             },
             description: 'Filter',
@@ -273,7 +268,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
           },
           {
             component: {
-              configs: this.getSettingsConfigs(),
+              configs: this.getNodeSizeSliderConfigs(pointsToPlot),
               name: 'POPUP',
             },
             description: 'Settings',

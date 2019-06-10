@@ -122,7 +122,7 @@ exports[`ComponentMenuBar Should render popup menu items. 1`] = `
           openOnTriggerClick={true}
           openOnTriggerFocus={false}
           openOnTriggerMouseEnter={false}
-          position="bottom center"
+          position="bottom left"
           style={
             Object {
               "opacity": 0.85,

@@ -1,9 +1,4 @@
-import {
-  AMINO_ACIDS_BY_SINGLE_LETTER_CODE,
-  COUPLING_SCORE_SOURCE,
-  CouplingContainer,
-  ICouplingScore,
-} from '~bioblocks-viz~/data';
+import { AMINO_ACID_BY_CODE, COUPLING_SCORE_SOURCE, CouplingContainer, ICouplingScore } from '~bioblocks-viz~/data';
 
 describe('CouplingContainer', () => {
   // This same intentionally includes a mirrored pair, [i=1,j=0] and [i=0][j=1].
@@ -165,8 +160,8 @@ describe('CouplingContainer', () => {
         { A_i: 'N', A_j: 'A', cn: 0.5, i: 2, j: 1, dist: 1 },
       ];
       const container = new CouplingContainer(contacts);
-      expect(container.getAminoAcidOfContact(1)).toEqual(AMINO_ACIDS_BY_SINGLE_LETTER_CODE.A);
-      expect(container.getAminoAcidOfContact(2)).toEqual(AMINO_ACIDS_BY_SINGLE_LETTER_CODE.N);
+      expect(container.getAminoAcidOfContact(1)).toEqual(AMINO_ACID_BY_CODE.A);
+      expect(container.getAminoAcidOfContact(2)).toEqual(AMINO_ACID_BY_CODE.N);
     });
   });
 

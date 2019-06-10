@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConfigAccordion Should match existing snapshot when given default props. 1`] = `
+<Accordion>
+  <Grid
+    padded={true}
+    stretched={true}
+    style={Object {}}
+  />
+</Accordion>
+`;
+
+exports[`ConfigAccordion Should match existing snapshot when given some configuration. 1`] = `
+<Accordion>
+  <Grid
+    padded={true}
+    stretched={true}
+    style={Object {}}
+  >
+    <GridRow
+      key="accordion-0"
+      textAlign="left"
+    >
+      <Grid
+        padded={true}
+        relaxed={true}
+        stretched={true}
+        style={
+          Object {
+            "marginTop": "7px",
+          }
+        }
+      >
+        <div
+          key="1"
+        >
+          Nitro
+        </div>
+        <div
+          key="1"
+        >
+          Devil
+        </div>
+      </Grid>
+    </GridRow>
+  </Grid>
+</Accordion>
+`;

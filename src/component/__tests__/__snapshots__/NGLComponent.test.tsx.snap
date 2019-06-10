@@ -3,6 +3,26 @@
 exports[`NGLComponent Should match existing snapshot when unconnected to a context. 1`] = `
 <ComponentCard
   componentName="NGL Viewer"
+  dockItems={
+    Array [
+      Object {
+        "onClick": [Function],
+        "text": "Clear Selections",
+      },
+      Object {
+        "onClick": [Function],
+        "text": "Center View",
+      },
+      Object {
+        "onClick": [Function],
+        "text": "Superimpose: Off",
+      },
+      Object {
+        "onClick": [Function],
+        "text": "Enable Stereo",
+      },
+    ]
+  }
   frameHeight={0}
   frameWidth={0}
   headerHeight={40}
@@ -14,71 +34,70 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
     Array [
       Object {
         "component": Object {
-          "configs": Array [
-            Object {
-              "name": "Clear Selections",
-              "onClick": [Function],
-              "type": "BUTTON",
-            },
-            Object {
-              "current": "Enable",
-              "name": "Distance Representation",
-              "onChange": [Function],
-              "options": Array [
-                "Enable",
-                "Disable",
-              ],
-              "type": "RADIO",
-            },
-            Object {
-              "current": "Disable",
-              "name": "Zoom on Click",
-              "onChange": [Function],
-              "options": Array [
-                "Enable",
-                "Disable",
-              ],
-              "type": "RADIO",
-            },
-            Object {
-              "current": "C-α",
-              "name": "Proximity Metric",
-              "onChange": [Function],
-              "options": Array [
-                "Closest Atom",
-                "C-α",
-              ],
-              "type": "RADIO",
-            },
-            Object {
-              "current": "Cartoon",
-              "name": "Predicted Structure Representation",
-              "onChange": [Function],
-              "options": Array [
-                "Default",
-                "Spacefill",
-                "Backbone",
-                "Cartoon",
-                "Surface",
-                "Tube",
-              ],
-              "type": "RADIO",
-            },
-            Object {
-              "current": "Default",
-              "name": "Experimental Structure Representation",
-              "onChange": [Function],
-              "options": Array [
-                "Default",
-                "Spacefill",
-                "Backbone",
-                "Cartoon",
-                "Surface",
-                "Tube",
-              ],
-              "type": "RADIO",
-            },
-          ],
+          "configs": Object {
+            "Representations": Array [
+              Object {
+                "current": "Cartoon",
+                "name": "Predicted Structure Representation",
+                "onChange": [Function],
+                "options": Array [
+                  "Default",
+                  "Spacefill",
+                  "Backbone",
+                  "Cartoon",
+                  "Surface",
+                  "Tube",
+                ],
+                "type": "RADIO",
+              },
+              Object {
+                "current": "Default",
+                "name": "Experimental Structure Representation",
+                "onChange": [Function],
+                "options": Array [
+                  "Default",
+                  "Spacefill",
+                  "Backbone",
+                  "Cartoon",
+                  "Surface",
+                  "Tube",
+                ],
+                "type": "RADIO",
+              },
+            ],
+            "Viewer": Array [
+              Object {
+                "current": "Enable",
+                "name": "Distance Representation",
+                "onChange": [Function],
+                "options": Array [
+                  "Enable",
+                  "Disable",
+                ],
+                "type": "RADIO",
+              },
+              Object {
+                "current": "Disable",
+                "name": "Zoom on Click",
+                "onChange": [Function],
+                "options": Array [
+                  "Enable",
+                  "Disable",
+                ],
+                "type": "RADIO",
+              },
+              Object {
+                "current": "C-α",
+                "name": "Proximity Metric",
+                "onChange": [Function],
+                "options": Array [
+                  "Closest Atom",
+                  "C-α",
+                ],
+                "type": "RADIO",
+              },
+            ],
+          },
           "name": "POPUP",
           "props": Object {
             "trigger": <Icon
@@ -122,63 +141,5 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
       }
     />
   </div>
-  <Grid>
-    <GridRow
-      centered={true}
-      columns={3}
-    >
-      <GridColumn>
-        <div
-          style={
-            Object {
-              "userSelect": "none",
-            }
-          }
-        >
-          <a
-            aria-pressed={false}
-            onClick={[Function]}
-            role="button"
-          >
-            Switch to Stereo
-          </a>
-        </div>
-      </GridColumn>
-      <GridColumn>
-        <div
-          style={
-            Object {
-              "userSelect": "none",
-            }
-          }
-        >
-          <a
-            aria-pressed={false}
-            onClick={[Function]}
-            role="button"
-          >
-            Center View
-          </a>
-        </div>
-      </GridColumn>
-      <GridColumn>
-        <div
-          style={
-            Object {
-              "userSelect": "none",
-            }
-          }
-        >
-          <a
-            aria-pressed={false}
-            onClick={[Function]}
-            role="button"
-          >
-            Superimpose: off
-          </a>
-        </div>
-      </GridColumn>
-    </GridRow>
-  </Grid>
 </ComponentCard>
 `;
