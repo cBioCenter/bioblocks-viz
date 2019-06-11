@@ -456,7 +456,7 @@ describe('NGLComponent', () => {
         .at(0)
         .simulate('change');
       wrapper
-        .find('input[name="Default"]')
+        .find('input[name="Rainbow"]')
         .at(0)
         .simulate('change');
       expect(defaultFileRepresentationSpy).toHaveBeenCalledTimes(1);

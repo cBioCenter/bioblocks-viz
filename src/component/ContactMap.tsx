@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
+import { Icon } from 'semantic-ui-react';
 import { createContainerActions, createResiduePairActions } from '~bioblocks-viz~/action';
 import {
   ComponentCard,
@@ -136,15 +137,45 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
   protected getNodeSizeSliderConfigs = (entries: IContactMapChartData[]) => ({
     'Node Sizes': entries.map(
       (entry, index): SliderWidgetConfig => {
+        let color;
+        color = entry.marker && entry.marker.line ? entry.marker.line.color : undefined;
+        if (!color) {
+          color =
+            entry.marker && entry.marker.color && Array.isArray(entry.marker.color) && entry.marker.color.length >= 1
+              ? entry.marker.color[0]
+              : undefined;
+        }
+        if (!color) {
+          color = entry.marker && entry.marker.color ? entry.marker.color : undefined;
+        }
+        if (!color) {
+          color =
+            entry.marker &&
+            entry.marker.colorscale &&
+            Array.isArray(entry.marker.colorscale) &&
+            entry.marker.colorscale.length >= 1
+              ? entry.marker.colorscale[0][1]
+              : undefined;
+        }
+        if (!color) {
+          color = entry.marker && entry.marker.colorscale ? entry.marker.colorscale : undefined;
+        }
+
         return {
           id: `node-size-slider-${index}`,
+          marks: {
+            1: <Icon name={'circle'} size={'mini'} style={{ color }} />,
+            4: <Icon name={'circle'} size={'tiny'} style={{ color }} />,
+            6: <Icon name={'circle'} size={'small'} style={{ color }} />,
+          },
           name: `Node size for ${entry.name}`,
           onChange: this.onNodeSizeChange(index),
+          step: null,
           type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
           values: {
             current: entry.nodeSize,
             defaultValue: 4,
-            max: 20,
+            max: 6,
             min: 1,
           },
         };
@@ -301,12 +332,11 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 
     const chartNames = {
       selected: 'Selected Residue Pair',
-      structure: `${data.pdbData ? (data.pdbData.experimental ? 'Known' : 'Predicted') : 'Unknown'} Structure Contact`,
+      structure: `${data.pdbData ? (data.pdbData.experimental ? 'X-ray' : 'Inferred') : 'Unknown'} Structure Contact`,
     };
 
     const knownPointsIndex = pointsToPlot.findIndex(entry => entry.name === chartNames.structure);
     const selectedPointIndex = pointsToPlot.findIndex(entry => entry.name === chartNames.selected);
-
     const observedContactPoints = couplingContainer.getObservedContacts();
     const result = new Array<IContactMapChartData>(
       generateChartDataEntry(
@@ -333,7 +363,17 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
           }),
         },
       ),
-      ...formattedPoints,
+      ...formattedPoints.map(formattedPoint => {
+        const index = pointsToPlot.findIndex(pointPlot => pointPlot.name === formattedPoint.name);
+        if (index >= 0) {
+          return {
+            ...formattedPoint,
+            nodeSize: pointsToPlot[index].nodeSize,
+          };
+        } else {
+          return formattedPoint;
+        }
+      }),
     );
 
     const chartPoints = new Array<IContactMapChartPoint>();

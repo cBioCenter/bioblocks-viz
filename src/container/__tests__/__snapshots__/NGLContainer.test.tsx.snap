@@ -412,7 +412,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                 "name": "Predicted Structure Representation",
                                 "onChange": [Function],
                                 "options": Array [
-                                  "Default",
+                                  "Rainbow",
                                   "Spacefill",
                                   "Backbone",
                                   "Cartoon",
@@ -426,7 +426,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                 "name": "Experimental Structure Representation",
                                 "onChange": [Function],
                                 "options": Array [
-                                  "Default",
+                                  "Rainbow",
                                   "Spacefill",
                                   "Backbone",
                                   "Cartoon",
@@ -678,7 +678,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                         "name": "Predicted Structure Representation",
                                         "onChange": [Function],
                                         "options": Array [
-                                          "Default",
+                                          "Rainbow",
                                           "Spacefill",
                                           "Backbone",
                                           "Cartoon",
@@ -692,7 +692,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                         "name": "Experimental Structure Representation",
                                         "onChange": [Function],
                                         "options": Array [
-                                          "Default",
+                                          "Rainbow",
                                           "Spacefill",
                                           "Backbone",
                                           "Cartoon",

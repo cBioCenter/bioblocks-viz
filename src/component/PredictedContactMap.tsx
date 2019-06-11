@@ -167,7 +167,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
    * @param isNewData Is this an entirely new dataset?
    */
   protected setupData(isNewData: boolean) {
-    const { agreementColor: correctColor, data, allColor } = this.props;
+    const { agreementColor, data, allColor } = this.props;
     const { linearDistFilter, minimumProbability, minimumScore, numPredictionsToShow } = this.state;
 
     let couplingScores = new CouplingContainer();
@@ -223,7 +223,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
       ),
       generateChartDataEntry(
         'text',
-        correctColor,
+        agreementColor,
         'Inferred Contact Agrees with X-ray Contact',
         `(N=${allPredictions.correct.length}, ${correctPredictionPercent}%)`,
         6,

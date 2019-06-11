@@ -415,7 +415,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
               stage.viewer.requestRender();
             }
           },
-          options: Object.values(['Default', 'Spacefill', 'Backbone', 'Cartoon', 'Surface', 'Tube']),
+          options: ['Rainbow', 'Spacefill', 'Backbone', 'Cartoon', 'Surface', 'Tube'],
           type: CONFIGURATION_COMPONENT_TYPE.RADIO,
         },
         {
@@ -434,7 +434,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
               stage.viewer.requestRender();
             }
           },
-          options: Object.values(['Default', 'Spacefill', 'Backbone', 'Cartoon', 'Surface', 'Tube']),
+          options: ['Rainbow', 'Spacefill', 'Backbone', 'Cartoon', 'Surface', 'Tube'],
           type: CONFIGURATION_COMPONENT_TYPE.RADIO,
         },
       ] as BioblocksWidgetConfig[],

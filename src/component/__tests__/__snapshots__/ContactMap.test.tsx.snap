@@ -36,25 +36,91 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
+                "marks": Object {
+                  "1": <Icon
+                    as="i"
+                    name="circle"
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  "4": <Icon
+                    as="i"
+                    name="circle"
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  "6": <Icon
+                    as="i"
+                    name="circle"
+                    size="small"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                },
                 "name": "Node size for X-ray Structure Contact",
                 "onChange": [Function],
+                "step": null,
                 "type": "SLIDER",
                 "values": Object {
                   "current": 4,
                   "defaultValue": 4,
-                  "max": 20,
+                  "max": 6,
                   "min": 1,
                 },
               },
               Object {
                 "id": "node-size-slider-1",
+                "marks": Object {
+                  "1": <Icon
+                    as="i"
+                    name="circle"
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  "4": <Icon
+                    as="i"
+                    name="circle"
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  "6": <Icon
+                    as="i"
+                    name="circle"
+                    size="small"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                },
                 "name": "Node size for Selected Residue Pair",
                 "onChange": [Function],
+                "step": null,
                 "type": "SLIDER",
                 "values": Object {
                   "current": 4,
                   "defaultValue": 4,
-                  "max": 20,
+                  "max": 6,
                   "min": 1,
                 },
               },
@@ -251,25 +317,91 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
+                "marks": Object {
+                  "1": <Icon
+                    as="i"
+                    name="circle"
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  "4": <Icon
+                    as="i"
+                    name="circle"
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  "6": <Icon
+                    as="i"
+                    name="circle"
+                    size="small"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                },
                 "name": "Node size for X-ray Structure Contact",
                 "onChange": [Function],
+                "step": null,
                 "type": "SLIDER",
                 "values": Object {
                   "current": 4,
                   "defaultValue": 4,
-                  "max": 20,
+                  "max": 6,
                   "min": 1,
                 },
               },
               Object {
                 "id": "node-size-slider-1",
+                "marks": Object {
+                  "1": <Icon
+                    as="i"
+                    name="circle"
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  "4": <Icon
+                    as="i"
+                    name="circle"
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  "6": <Icon
+                    as="i"
+                    name="circle"
+                    size="small"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                },
                 "name": "Node size for Selected Residue Pair",
                 "onChange": [Function],
+                "step": null,
                 "type": "SLIDER",
                 "values": Object {
                   "current": 4,
                   "defaultValue": 4,
-                  "max": 20,
+                  "max": 6,
                   "min": 1,
                 },
               },
@@ -458,25 +590,91 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
+                "marks": Object {
+                  "1": <Icon
+                    as="i"
+                    name="circle"
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  "4": <Icon
+                    as="i"
+                    name="circle"
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  "6": <Icon
+                    as="i"
+                    name="circle"
+                    size="small"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                },
                 "name": "Node size for X-ray Structure Contact",
                 "onChange": [Function],
+                "step": null,
                 "type": "SLIDER",
                 "values": Object {
                   "current": 4,
                   "defaultValue": 4,
-                  "max": 20,
+                  "max": 6,
                   "min": 1,
                 },
               },
               Object {
                 "id": "node-size-slider-1",
+                "marks": Object {
+                  "1": <Icon
+                    as="i"
+                    name="circle"
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  "4": <Icon
+                    as="i"
+                    name="circle"
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  "6": <Icon
+                    as="i"
+                    name="circle"
+                    size="small"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                },
                 "name": "Node size for Selected Residue Pair",
                 "onChange": [Function],
+                "step": null,
                 "type": "SLIDER",
                 "values": Object {
                   "current": 4,
                   "defaultValue": 4,
-                  "max": 20,
+                  "max": 6,
                   "min": 1,
                 },
               },
@@ -559,7 +757,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
               "j": 10,
             },
           ],
-          "subtitle": "Known Structure Contact",
+          "subtitle": "X-ray Structure Contact",
           "text": Array [
             "(1N, 10I)",
           ],
@@ -650,25 +848,91 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
+                "marks": Object {
+                  "1": <Icon
+                    as="i"
+                    name="circle"
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  "4": <Icon
+                    as="i"
+                    name="circle"
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  "6": <Icon
+                    as="i"
+                    name="circle"
+                    size="small"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                },
                 "name": "Node size for X-ray Structure Contact",
                 "onChange": [Function],
+                "step": null,
                 "type": "SLIDER",
                 "values": Object {
                   "current": 4,
                   "defaultValue": 4,
-                  "max": 20,
+                  "max": 6,
                   "min": 1,
                 },
               },
               Object {
                 "id": "node-size-slider-1",
+                "marks": Object {
+                  "1": <Icon
+                    as="i"
+                    name="circle"
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  "4": <Icon
+                    as="i"
+                    name="circle"
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  "6": <Icon
+                    as="i"
+                    name="circle"
+                    size="small"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                },
                 "name": "Node size for Selected Residue Pair",
                 "onChange": [Function],
+                "step": null,
                 "type": "SLIDER",
                 "values": Object {
                   "current": 4,
                   "defaultValue": 4,
-                  "max": 20,
+                  "max": 6,
                   "min": 1,
                 },
               },
@@ -842,25 +1106,91 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
+                "marks": Object {
+                  "1": <Icon
+                    as="i"
+                    name="circle"
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  "4": <Icon
+                    as="i"
+                    name="circle"
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  "6": <Icon
+                    as="i"
+                    name="circle"
+                    size="small"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                },
                 "name": "Node size for X-ray Structure Contact",
                 "onChange": [Function],
+                "step": null,
                 "type": "SLIDER",
                 "values": Object {
                   "current": 4,
                   "defaultValue": 4,
-                  "max": 20,
+                  "max": 6,
                   "min": 1,
                 },
               },
               Object {
                 "id": "node-size-slider-1",
+                "marks": Object {
+                  "1": <Icon
+                    as="i"
+                    name="circle"
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  "4": <Icon
+                    as="i"
+                    name="circle"
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  "6": <Icon
+                    as="i"
+                    name="circle"
+                    size="small"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                },
                 "name": "Node size for Selected Residue Pair",
                 "onChange": [Function],
+                "step": null,
                 "type": "SLIDER",
                 "values": Object {
                   "current": 4,
                   "defaultValue": 4,
-                  "max": 20,
+                  "max": 6,
                   "min": 1,
                 },
               },
@@ -1024,25 +1354,91 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
+                "marks": Object {
+                  "1": <Icon
+                    as="i"
+                    name="circle"
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  "4": <Icon
+                    as="i"
+                    name="circle"
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  "6": <Icon
+                    as="i"
+                    name="circle"
+                    size="small"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                },
                 "name": "Node size for X-ray Structure Contact",
                 "onChange": [Function],
+                "step": null,
                 "type": "SLIDER",
                 "values": Object {
                   "current": 4,
                   "defaultValue": 4,
-                  "max": 20,
+                  "max": 6,
                   "min": 1,
                 },
               },
               Object {
                 "id": "node-size-slider-1",
+                "marks": Object {
+                  "1": <Icon
+                    as="i"
+                    name="circle"
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  "4": <Icon
+                    as="i"
+                    name="circle"
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  "6": <Icon
+                    as="i"
+                    name="circle"
+                    size="small"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                },
                 "name": "Node size for Selected Residue Pair",
                 "onChange": [Function],
+                "step": null,
                 "type": "SLIDER",
                 "values": Object {
                   "current": 4,
                   "defaultValue": 4,
-                  "max": 20,
+                  "max": 6,
                   "min": 1,
                 },
               },
@@ -1206,25 +1602,91 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
+                "marks": Object {
+                  "1": <Icon
+                    as="i"
+                    name="circle"
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  "4": <Icon
+                    as="i"
+                    name="circle"
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  "6": <Icon
+                    as="i"
+                    name="circle"
+                    size="small"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                },
                 "name": "Node size for X-ray Structure Contact",
                 "onChange": [Function],
+                "step": null,
                 "type": "SLIDER",
                 "values": Object {
                   "current": 4,
                   "defaultValue": 4,
-                  "max": 20,
+                  "max": 6,
                   "min": 1,
                 },
               },
               Object {
                 "id": "node-size-slider-1",
+                "marks": Object {
+                  "1": <Icon
+                    as="i"
+                    name="circle"
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  "4": <Icon
+                    as="i"
+                    name="circle"
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  "6": <Icon
+                    as="i"
+                    name="circle"
+                    size="small"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                },
                 "name": "Node size for Selected Residue Pair",
                 "onChange": [Function],
+                "step": null,
                 "type": "SLIDER",
                 "values": Object {
                   "current": 4,
                   "defaultValue": 4,
-                  "max": 20,
+                  "max": 6,
                   "min": 1,
                 },
               },
@@ -1421,25 +1883,91 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
+                "marks": Object {
+                  "1": <Icon
+                    as="i"
+                    name="circle"
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  "4": <Icon
+                    as="i"
+                    name="circle"
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  "6": <Icon
+                    as="i"
+                    name="circle"
+                    size="small"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                },
                 "name": "Node size for X-ray Structure Contact",
                 "onChange": [Function],
+                "step": null,
                 "type": "SLIDER",
                 "values": Object {
                   "current": 4,
                   "defaultValue": 4,
-                  "max": 20,
+                  "max": 6,
                   "min": 1,
                 },
               },
               Object {
                 "id": "node-size-slider-1",
+                "marks": Object {
+                  "1": <Icon
+                    as="i"
+                    name="circle"
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  "4": <Icon
+                    as="i"
+                    name="circle"
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  "6": <Icon
+                    as="i"
+                    name="circle"
+                    size="small"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                },
                 "name": "Node size for Selected Residue Pair",
                 "onChange": [Function],
+                "step": null,
                 "type": "SLIDER",
                 "values": Object {
                   "current": 4,
                   "defaultValue": 4,
-                  "max": 20,
+                  "max": 6,
                   "min": 1,
                 },
               },
@@ -2104,25 +2632,91 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "Node Sizes": Array [
                 Object {
                   "id": "node-size-slider-0",
+                  "marks": Object {
+                    "1": <Icon
+                      as="i"
+                      name="circle"
+                      size="mini"
+                      style={
+                        Object {
+                          "color": "rgb(12,50,102)",
+                        }
+                      }
+                    />,
+                    "4": <Icon
+                      as="i"
+                      name="circle"
+                      size="tiny"
+                      style={
+                        Object {
+                          "color": "rgb(12,50,102)",
+                        }
+                      }
+                    />,
+                    "6": <Icon
+                      as="i"
+                      name="circle"
+                      size="small"
+                      style={
+                        Object {
+                          "color": "rgb(12,50,102)",
+                        }
+                      }
+                    />,
+                  },
                   "name": "Node size for X-ray Structure Contact",
                   "onChange": [Function],
+                  "step": null,
                   "type": "SLIDER",
                   "values": Object {
                     "current": 4,
                     "defaultValue": 4,
-                    "max": 20,
+                    "max": 6,
                     "min": 1,
                   },
                 },
                 Object {
                   "id": "node-size-slider-1",
+                  "marks": Object {
+                    "1": <Icon
+                      as="i"
+                      name="circle"
+                      size="mini"
+                      style={
+                        Object {
+                          "color": "#ff8800",
+                        }
+                      }
+                    />,
+                    "4": <Icon
+                      as="i"
+                      name="circle"
+                      size="tiny"
+                      style={
+                        Object {
+                          "color": "#ff8800",
+                        }
+                      }
+                    />,
+                    "6": <Icon
+                      as="i"
+                      name="circle"
+                      size="small"
+                      style={
+                        Object {
+                          "color": "#ff8800",
+                        }
+                      }
+                    />,
+                  },
                   "name": "Node size for Selected Residue Pair",
                   "onChange": [Function],
+                  "step": null,
                   "type": "SLIDER",
                   "values": Object {
                     "current": 4,
                     "defaultValue": 4,
-                    "max": 20,
+                    "max": 6,
                     "min": 1,
                   },
                 },
@@ -2190,25 +2784,91 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       "Node Sizes": Array [
                         Object {
                           "id": "node-size-slider-0",
+                          "marks": Object {
+                            "1": <Icon
+                              as="i"
+                              name="circle"
+                              size="mini"
+                              style={
+                                Object {
+                                  "color": "rgb(12,50,102)",
+                                }
+                              }
+                            />,
+                            "4": <Icon
+                              as="i"
+                              name="circle"
+                              size="tiny"
+                              style={
+                                Object {
+                                  "color": "rgb(12,50,102)",
+                                }
+                              }
+                            />,
+                            "6": <Icon
+                              as="i"
+                              name="circle"
+                              size="small"
+                              style={
+                                Object {
+                                  "color": "rgb(12,50,102)",
+                                }
+                              }
+                            />,
+                          },
                           "name": "Node size for X-ray Structure Contact",
                           "onChange": [Function],
+                          "step": null,
                           "type": "SLIDER",
                           "values": Object {
                             "current": 4,
                             "defaultValue": 4,
-                            "max": 20,
+                            "max": 6,
                             "min": 1,
                           },
                         },
                         Object {
                           "id": "node-size-slider-1",
+                          "marks": Object {
+                            "1": <Icon
+                              as="i"
+                              name="circle"
+                              size="mini"
+                              style={
+                                Object {
+                                  "color": "#ff8800",
+                                }
+                              }
+                            />,
+                            "4": <Icon
+                              as="i"
+                              name="circle"
+                              size="tiny"
+                              style={
+                                Object {
+                                  "color": "#ff8800",
+                                }
+                              }
+                            />,
+                            "6": <Icon
+                              as="i"
+                              name="circle"
+                              size="small"
+                              style={
+                                Object {
+                                  "color": "#ff8800",
+                                }
+                              }
+                            />,
+                          },
                           "name": "Node size for Selected Residue Pair",
                           "onChange": [Function],
+                          "step": null,
                           "type": "SLIDER",
                           "values": Object {
                             "current": 4,
                             "defaultValue": 4,
-                            "max": 20,
+                            "max": 6,
                             "min": 1,
                           },
                         },

@@ -41,7 +41,7 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
                 "name": "Predicted Structure Representation",
                 "onChange": [Function],
                 "options": Array [
-                  "Default",
+                  "Rainbow",
                   "Spacefill",
                   "Backbone",
                   "Cartoon",
@@ -55,7 +55,7 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
                 "name": "Experimental Structure Representation",
                 "onChange": [Function],
                 "options": Array [
-                  "Default",
+                  "Rainbow",
                   "Spacefill",
                   "Backbone",
                   "Cartoon",

@@ -36,7 +36,7 @@ export interface IBioblocksWidgetValueConfig {
     max: number;
     min: number;
   };
-  step?: number;
+  step?: number | null;
   onChange?(...args: any): any;
   onAfterChange?(...args: any): any;
 }
