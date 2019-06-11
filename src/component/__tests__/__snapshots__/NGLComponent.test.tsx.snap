@@ -67,24 +67,24 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
             ],
             "Viewer": Array [
               Object {
-                "current": "Enable",
+                "currentOption": "on",
                 "name": "Distance Representation",
                 "onChange": [Function],
-                "options": Array [
-                  "Enable",
-                  "Disable",
-                ],
-                "type": "RADIO",
+                "options": Object {
+                  "off": "Off",
+                  "on": "On",
+                },
+                "type": "TOGGLE",
               },
               Object {
-                "current": "Disable",
+                "currentOption": "off",
                 "name": "Zoom on Click",
                 "onChange": [Function],
-                "options": Array [
-                  "Enable",
-                  "Disable",
-                ],
-                "type": "RADIO",
+                "options": Object {
+                  "off": "Off",
+                  "on": "On",
+                },
+                "type": "TOGGLE",
               },
               Object {
                 "current": "C-α",

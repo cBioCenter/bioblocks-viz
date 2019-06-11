@@ -7,6 +7,7 @@ export enum CONFIGURATION_COMPONENT_TYPE {
   RADIO = 'RADIO',
   RANGE_SLIDER = 'RANGE_SLIDER',
   SLIDER = 'SLIDER',
+  TOGGLE = 'TOGGLE',
 }
 
 export interface IBaseBioblocksWidgetConfig {
@@ -77,12 +78,24 @@ export type SliderWidgetConfig = IBaseBioblocksWidgetConfig &
     type: CONFIGURATION_COMPONENT_TYPE.SLIDER;
   });
 
+export type ToggleWidgetConfig = IBaseBioblocksWidgetConfig &
+  ({
+    currentOption: 'on' | 'off';
+    options: {
+      on: string;
+      off: string;
+    };
+    // tslint:disable-next-line:no-reserved-keywords
+    type: CONFIGURATION_COMPONENT_TYPE.TOGGLE;
+  });
+
 export type BioblocksWidgetConfig =
   | ButtonWidgetConfig
+  | LabelWidgetConfig
   | RadioWidgetConfig
   | RangeSliderWidgetConfig
   | SliderWidgetConfig
-  | LabelWidgetConfig;
+  | ToggleWidgetConfig;
 
 // This is to allow components to use a direct height/width prop and not get the two mixed up.
 export type BIOBLOCKS_CSS_STYLE = Omit<React.CSSProperties, 'height' | 'width'>;

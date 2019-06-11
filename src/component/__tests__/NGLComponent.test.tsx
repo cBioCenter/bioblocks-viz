@@ -2,7 +2,7 @@ import { mount, ReactWrapper, shallow } from 'enzyme';
 import * as NGL from 'ngl';
 import * as React from 'react';
 
-import { Popup } from 'semantic-ui-react';
+import { Button, Popup } from 'semantic-ui-react';
 import { NGLComponent } from '~bioblocks-viz~/component';
 import { BioblocksPDB, CONTACT_DISTANCE_PROXIMITY } from '~bioblocks-viz~/data';
 
@@ -495,9 +495,9 @@ describe('NGLComponent', () => {
         .simulate('click');
 
       wrapper
-        .find('input[name="Disable"]')
+        .find(Button)
         .at(0)
-        .simulate('change');
+        .simulate('click');
 
       expect(instance.state.isDistRepEnabled).not.toEqual(true);
     });
@@ -513,16 +513,16 @@ describe('NGLComponent', () => {
         .simulate('click');
 
       wrapper
-        .find('input[name="Enable"]')
+        .find(Button)
         .at(1)
-        .simulate('change');
+        .simulate('click');
 
       expect(instance.state.isMovePickEnabled).toEqual(true);
 
       wrapper
-        .find('input[name="Disable"]')
+        .find(Button)
         .at(1)
-        .simulate('change');
+        .simulate('click');
 
       expect(instance.state.isMovePickEnabled).toEqual(false);
     });

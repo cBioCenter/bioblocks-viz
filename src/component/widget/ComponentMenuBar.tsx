@@ -5,6 +5,7 @@ import {
   BioblocksRadioGroup,
   BioblocksRangeSlider,
   BioblocksSlider,
+  BioblocksToggleButton,
   ConfigAccordion,
 } from '~bioblocks-viz~/component/widget';
 import {
@@ -15,6 +16,7 @@ import {
   RadioWidgetConfig,
   RangeSliderWidgetConfig,
   SliderWidgetConfig,
+  ToggleWidgetConfig,
 } from '~bioblocks-viz~/data';
 
 export interface IComponentMenuBarProps {
@@ -122,6 +124,8 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         return this.renderConfigurationRangeSlider(config, `range-slider-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.SLIDER:
         return this.renderConfigurationSlider(config, `slider-${id}`);
+      case CONFIGURATION_COMPONENT_TYPE.TOGGLE:
+        return this.renderConfigurationToggle(config, `slider-${id}`);
       default: {
         return `configuration for ${id}`;
       }
@@ -192,6 +196,10 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         value={config.values.current}
       />
     );
+  }
+
+  protected renderConfigurationToggle(config: ToggleWidgetConfig, id: string) {
+    return <BioblocksToggleButton config={config} />;
   }
 
   protected renderMenuIconText(text: string) {
