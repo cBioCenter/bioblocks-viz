@@ -10,6 +10,7 @@ import {
 } from '~bioblocks-viz~/component/widget';
 import {
   BioblocksWidgetConfig,
+  ButtonGroupWidgetConfig,
   ButtonWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
   LabelWidgetConfig,
@@ -116,6 +117,8 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
     switch (config.type) {
       case CONFIGURATION_COMPONENT_TYPE.BUTTON:
         return this.renderConfigurationButton(config, `button-${id}`);
+      case CONFIGURATION_COMPONENT_TYPE.BUTTON_GROUP:
+        return this.renderConfigurationButtonGroup(config, `button-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.LABEL:
         return this.renderConfigurationLabel(config, `label-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.RADIO:
@@ -138,6 +141,23 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         {config.icon && <Icon name={config.icon} />}
         {config.name}
       </Button>
+    );
+  }
+
+  protected renderConfigurationButtonGroup(config: ButtonGroupWidgetConfig, id: string) {
+    return (
+      <Grid padded={true} style={{ padding: 'initial 0' }}>
+        <Grid.Row columns={15}>
+          <Grid.Column width={11}>{config.name}</Grid.Column>
+          <Grid.Column width={4}>
+            <Button.Group floated={'right'} fluid={true}>
+              {config.options.map((singleConfig, index) => (
+                <Button icon={singleConfig} key={`${id}-${index}`} style={config.style} basic={true} compact={true} />
+              ))}
+            </Button.Group>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     );
   }
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
-import { Icon } from 'semantic-ui-react';
+import { ButtonProps, Icon } from 'semantic-ui-react';
 import { createContainerActions, createResiduePairActions } from '~bioblocks-viz~/action';
 import {
   ComponentCard,
@@ -15,6 +15,7 @@ import {
   BIOBLOCKS_CSS_STYLE,
   BioblocksChartEvent,
   BioblocksWidgetConfig,
+  ButtonGroupWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
   CouplingContainer,
   IContactMapData,
@@ -23,7 +24,6 @@ import {
   SECONDARY_STRUCTURE,
   SECONDARY_STRUCTURE_KEYS,
   SECONDARY_STRUCTURE_SECTION,
-  SliderWidgetConfig,
 } from '~bioblocks-viz~/data';
 import { ColorMapper, EMPTY_FUNCTION } from '~bioblocks-viz~/helper';
 import { ILockedResiduePair } from '~bioblocks-viz~/reducer';
@@ -113,7 +113,10 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     }
   }
 
-  public onNodeSizeChange = (index: number) => (value: number) => {
+  public onNodeSizeChange = (index: number, nodeSize: number) => (
+    event?: React.MouseEvent<HTMLButtonElement>,
+    data?: ButtonProps,
+  ) => {
     const { pointsToPlot } = this.state;
 
     this.setState({
@@ -121,7 +124,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
         ...pointsToPlot.slice(0, index),
         {
           ...pointsToPlot[index],
-          nodeSize: value,
+          nodeSize,
         },
         ...pointsToPlot.slice(index + 1),
       ],
@@ -136,7 +139,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 
   protected getNodeSizeSliderConfigs = (entries: IContactMapChartData[]) => ({
     'Node Sizes': entries.map(
-      (entry, index): SliderWidgetConfig => {
+      (entry, index): ButtonGroupWidgetConfig => {
         let color;
         color = entry.marker && entry.marker.line ? entry.marker.line.color : undefined;
         if (!color) {
@@ -161,23 +164,36 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
           color = entry.marker && entry.marker.colorscale ? entry.marker.colorscale : undefined;
         }
 
+        // prettier-ignore
+        const options = [(
+          <Icon
+            key={`node-size-slider-${index}-1`}
+            name={'circle'}
+            onClick={this.onNodeSizeChange(index, 3)}
+            size={'mini'}
+            style={{ color }}
+          />), (
+          <Icon
+            key={`node-size-slider-${index}-2`}
+            name={'circle'}
+            onClick={this.onNodeSizeChange(index, 4)}
+            size={'tiny'}
+            style={{ color }}
+          />), (
+          <Icon
+            key={`node-size-slider-${index}-3`}
+            name={'circle'}
+            onClick={this.onNodeSizeChange(index, 5)}
+            size={'small'}
+            style={{ color }}
+          />
+        )];
+
         return {
           id: `node-size-slider-${index}`,
-          marks: {
-            1: <Icon name={'circle'} size={'mini'} style={{ color }} />,
-            4: <Icon name={'circle'} size={'tiny'} style={{ color }} />,
-            6: <Icon name={'circle'} size={'small'} style={{ color }} />,
-          },
-          name: `Node size for ${entry.name}`,
-          onChange: this.onNodeSizeChange(index),
-          step: null,
-          type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
-          values: {
-            current: entry.nodeSize,
-            defaultValue: 4,
-            max: 6,
-            min: 1,
-          },
+          name: entry.name,
+          options,
+          type: CONFIGURATION_COMPONENT_TYPE.BUTTON_GROUP,
         };
       },
     ),

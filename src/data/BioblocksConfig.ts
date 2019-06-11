@@ -3,6 +3,7 @@ import { ButtonProps, SemanticICONS } from 'semantic-ui-react';
 
 export enum CONFIGURATION_COMPONENT_TYPE {
   BUTTON = 'BUTTON',
+  BUTTON_GROUP = 'BUTTON_GROUP',
   LABEL = 'LABEL',
   RADIO = 'RADIO',
   RANGE_SLIDER = 'RANGE_SLIDER',
@@ -48,6 +49,13 @@ export type ButtonWidgetConfig = IBaseBioblocksWidgetConfig &
     onClick(event: React.MouseEvent<HTMLButtonElement>, data: ButtonProps): void;
   });
 
+export type ButtonGroupWidgetConfig = IBaseBioblocksWidgetConfig &
+  ({
+    options: JSX.Element[];
+    // tslint:disable-next-line:no-reserved-keywords
+    type: CONFIGURATION_COMPONENT_TYPE.BUTTON_GROUP;
+  });
+
 export type LabelWidgetConfig = IBaseBioblocksWidgetConfig &
   ({
     // tslint:disable-next-line:no-reserved-keywords
@@ -91,6 +99,7 @@ export type ToggleWidgetConfig = IBaseBioblocksWidgetConfig &
 
 export type BioblocksWidgetConfig =
   | ButtonWidgetConfig
+  | ButtonGroupWidgetConfig
   | LabelWidgetConfig
   | RadioWidgetConfig
   | RangeSliderWidgetConfig
