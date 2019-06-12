@@ -35,7 +35,7 @@ export interface IComponentMenuBarState {
   isHovered: boolean;
 }
 
-interface IPopupType {
+export interface IPopupType {
   configs?: { [key: string]: BioblocksWidgetConfig[] };
   name: 'POPUP';
   props?: PopupProps;
@@ -100,6 +100,20 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
       </div>
     );
   }
+
+  protected renderConfigs = (configs: { [key: string]: BioblocksWidgetConfig[] }) => {
+    return Object.keys(configs).map(configKey => ({
+      [configKey]: configs[configKey].map((config, configIndex) => (
+        <Grid.Row
+          columns={1}
+          key={`menu-bar-${configKey}-row-${configIndex}`}
+          style={{ padding: '5px 0', width: '100%' }}
+        >
+          {this.renderConfig(config, `${configKey}-row-${configIndex}`)}
+        </Grid.Row>
+      )),
+    }));
+  };
 
   protected onMenuEnter = () => {
     this.setState({
@@ -240,25 +254,7 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         const trigger = <Icon name={item.iconName ? item.iconName : 'setting'} />;
         menuItemChild = item.component.configs ? (
           <Popup trigger={trigger} {...combinedProps} wide={true} style={{ opacity }}>
-            {item.component.configs && (
-              <ConfigAccordion
-                configs={Object.keys(item.component.configs).map(configKey => ({
-                  [configKey]: item.component.configs
-                    ? item.component.configs[configKey].map((config, configIndex) => (
-                        <Grid.Row
-                          columns={1}
-                          key={`menu-bar-${configKey}-row-${configIndex}`}
-                          style={{ padding: '5px 0', width: '100%' }}
-                        >
-                          {this.renderConfig(config, `${configKey}-row-${configIndex}`)}
-                        </Grid.Row>
-                      ))
-                    : [],
-                }))}
-                gridStyle={style}
-                title={'Config'}
-              />
-            )}
+            <ConfigAccordion configs={this.renderConfigs(item.component.configs)} gridStyle={style} title={'Config'} />
           </Popup>
         ) : (
           <Popup trigger={trigger} {...combinedProps} style={{ opacity }} />

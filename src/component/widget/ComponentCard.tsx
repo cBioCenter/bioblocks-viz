@@ -72,8 +72,8 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
   }
 
   public render() {
-    const { children, headerHeight, height, isFramedComponent, width } = this.props;
-    const { isFullPage, framedStyle } = this.state;
+    const { height, width } = this.props;
+    const { isFullPage } = this.state;
 
     const expandedStyle: React.CSSProperties = {
       height: 'calc(80vh + 45px)',
@@ -88,12 +88,14 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
 
     const card = (
       <Card centered={true} className={'bioblocks-component-card'} ref={ref => (this.cardRef = ref)} style={cardStyle}>
-        <div style={{ height: '6%' }}>{this.renderTopMenu(headerHeight)}</div>
-        <div style={{ height: '91%' }}>{isFramedComponent ? <div style={framedStyle}>{children}</div> : children}</div>
-        <div style={{ height: '3%' }}>{this.renderDock(headerHeight)}</div>
+        {this.renderCardChildren()}
       </Card>
     );
 
+    return this.renderCard(card, isFullPage);
+  }
+
+  protected renderCard = (card: JSX.Element, isFullPage: boolean) => {
     if (isFullPage) {
       return (
         <Modal
@@ -110,9 +112,21 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     } else {
       return card;
     }
-  }
+  };
 
-  protected renderDock = (height: number | string) => {
+  protected renderCardChildren = () => {
+    const { children, headerHeight, isFramedComponent } = this.props;
+    const { framedStyle } = this.state;
+
+    return (
+      <>
+        <div style={{ height: '6%' }}>{this.renderTopMenu(headerHeight)}</div>
+        <div style={{ height: '91%' }}>{isFramedComponent ? <div style={framedStyle}>{children}</div> : children}</div>
+        <div style={{ height: '3%' }}>{this.renderDock()}</div>
+      </>
+    );
+  };
+  protected renderDock = () => {
     const { dockItems } = this.props;
 
     return dockItems.length >= 1 && <ComponentDock dockItems={dockItems} />;

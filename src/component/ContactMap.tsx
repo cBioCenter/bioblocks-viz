@@ -8,6 +8,7 @@ import {
   ComponentCard,
   ContactMapChart,
   generateChartDataEntry,
+  IComponentMenuBarItem,
   IContactMapChartData,
   IContactMapChartPoint,
 } from '~bioblocks-viz~/component';
@@ -25,7 +26,7 @@ import {
   SECONDARY_STRUCTURE_KEYS,
   SECONDARY_STRUCTURE_SECTION,
 } from '~bioblocks-viz~/data';
-import { ColorMapper, EMPTY_FUNCTION } from '~bioblocks-viz~/helper';
+import { ColorMapper, EMPTY_FUNCTION, generateCouplingScoreHoverText } from '~bioblocks-viz~/helper';
 import { ILockedResiduePair } from '~bioblocks-viz~/reducer';
 import { getCandidates, getHovered, getLocked, selectCurrentItems } from '~bioblocks-viz~/selector';
 
@@ -137,32 +138,138 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     return this.renderContactMapChart(pointsToPlot);
   }
 
+  /**
+   * Given a chart data entry, sets the node size if one already is set for this point.
+   *
+   * @param chartDatum A single chart data entry.
+   */
+  protected applyNodeSize = (chartDatum: IContactMapChartData) => {
+    const { pointsToPlot } = this.state;
+    const index = pointsToPlot.findIndex(currentPoint => currentPoint.name === chartDatum.name);
+    if (index >= 0) {
+      return {
+        ...chartDatum,
+        nodeSize: pointsToPlot[index].nodeSize,
+      };
+    } else {
+      return chartDatum;
+    }
+  };
+
+  /**
+   * Returns an {i, j} pair for a hovered residue. Handles case when a single residue is hovered.
+   *
+   * @param hoveredResidues Array of residues that are hovered.
+   */
+  protected generateHoveredResiduePairs = (hoveredResidues: RESIDUE_TYPE[]) => {
+    if (hoveredResidues.length >= 1) {
+      return [
+        {
+          i: hoveredResidues[0],
+          j: hoveredResidues.length === 1 ? hoveredResidues[0] : hoveredResidues[1],
+        },
+      ];
+    }
+
+    return [];
+  };
+
+  /**
+   * Returns contact map points for locked residue pairs.
+   *
+   * @param hoveredResidues Array of residues that are hovered.
+   */
+  protected generateLockedResiduePairs = (lockedResiduePairs: ILockedResiduePair) => {
+    const lockedResiduePairKeys = Object.keys(lockedResiduePairs);
+
+    return lockedResiduePairKeys.reduce((reduceResult: IContactMapChartPoint[], key) => {
+      const keyPair = lockedResiduePairs[key];
+      if (keyPair && keyPair.length === 2) {
+        reduceResult.push({ i: keyPair[0], j: keyPair[1], dist: 0 });
+      }
+
+      return reduceResult;
+    }, new Array<IContactMapChartPoint>());
+  };
+
+  protected generateSelectedResiduesChartData = (
+    highlightColor: string,
+    chartName: string,
+    nodeSize: number,
+    chartPoints: IContactMapChartPoint[],
+  ) => {
+    return generateChartDataEntry('none', highlightColor, chartName, '', nodeSize, chartPoints, {
+      marker: {
+        color: new Array<string>(chartPoints.length * 2).fill(highlightColor),
+        line: {
+          color: highlightColor,
+          width: 3,
+        },
+        symbol: 'circle-open',
+      },
+    });
+  };
+
+  /**
+   * Gets the color from the provided chart entry.
+   *
+   * The following are checked in order - the first one found is the color returned:
+   * - Marker's line color.
+   * - Marker's color.
+   * - Marker's colorscale.
+   * - Line color.
+   */
+  protected getColorFromEntry = (entry: IContactMapChartData) => {
+    if (entry.marker) {
+      if (entry.marker.line && entry.marker.line.color) {
+        return entry.marker.line.color;
+      }
+      if (entry.marker.color) {
+        return Array.isArray(entry.marker.color) ? entry.marker.color[0] : entry.marker.color;
+      }
+      if (entry.marker.colorscale) {
+        return Array.isArray(entry.marker.colorscale) ? entry.marker.colorscale[0][1] : entry.marker.colorscale;
+      }
+    }
+    if (entry.line && entry.line.color) {
+      return entry.line.color;
+    }
+  };
+
+  protected getDockConfigs = () => [
+    {
+      onClick: () => {
+        this.props.removeAllLockedResiduePairs();
+      },
+      text: 'Clear Selections',
+    },
+  ];
+
+  protected getMenuConfigs = (
+    Filters: BioblocksWidgetConfig[],
+    pointsToPlot: IContactMapChartData[],
+  ): IComponentMenuBarItem[] => [
+    {
+      component: {
+        configs: { Filters },
+        name: 'POPUP',
+      },
+      description: 'Filter',
+      iconName: 'filter',
+    },
+    {
+      component: {
+        configs: this.getNodeSizeSliderConfigs(pointsToPlot),
+        name: 'POPUP',
+      },
+      description: 'Settings',
+    },
+  ];
+
   protected getNodeSizeSliderConfigs = (entries: IContactMapChartData[]) => ({
     'Node Sizes': entries.map(
       (entry, index): ButtonGroupWidgetConfig => {
-        let color;
-        color = entry.marker && entry.marker.line ? entry.marker.line.color : undefined;
-        if (!color) {
-          color =
-            entry.marker && entry.marker.color && Array.isArray(entry.marker.color) && entry.marker.color.length >= 1
-              ? entry.marker.color[0]
-              : undefined;
-        }
-        if (!color) {
-          color = entry.marker && entry.marker.color ? entry.marker.color : undefined;
-        }
-        if (!color) {
-          color =
-            entry.marker &&
-            entry.marker.colorscale &&
-            Array.isArray(entry.marker.colorscale) &&
-            entry.marker.colorscale.length >= 1
-              ? entry.marker.colorscale[0][1]
-              : undefined;
-        }
-        if (!color) {
-          color = entry.marker && entry.marker.colorscale ? entry.marker.colorscale : undefined;
-        }
+        const color = this.getColorFromEntry(entry);
 
         // prettier-ignore
         const options = [(
@@ -199,21 +306,53 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     ),
   });
 
-  protected onMouseClick = (cb: (residues: ILockedResiduePair) => void) => (e: BioblocksChartEvent) => {
-    if (e.isAxis()) {
-      const { addSelectedSecondaryStructure, data, removeSecondaryStructure, selectedSecondaryStructures } = this.props;
+  protected handleAxisClick = (e: BioblocksChartEvent) => {
+    const { addSelectedSecondaryStructure, data, removeSecondaryStructure, selectedSecondaryStructures } = this.props;
 
-      for (const secondaryStructure of data.secondaryStructures) {
-        for (const section of secondaryStructure) {
-          if (section.contains(...e.selectedPoints)) {
-            if (selectedSecondaryStructures.includes(section)) {
-              removeSecondaryStructure(section);
-            } else {
-              addSelectedSecondaryStructure(section);
-            }
+    for (const secondaryStructure of data.secondaryStructures) {
+      for (const section of secondaryStructure) {
+        if (section.contains(...e.selectedPoints)) {
+          if (selectedSecondaryStructures.includes(section)) {
+            removeSecondaryStructure(section);
+          } else {
+            addSelectedSecondaryStructure(section);
           }
         }
       }
+    }
+  };
+
+  protected handleAxisEnter = (e: BioblocksChartEvent) => {
+    const { addHoveredSecondaryStructure, hoveredSecondaryStructures, data } = this.props;
+
+    for (const secondaryStructure of data.secondaryStructures) {
+      for (const section of secondaryStructure) {
+        if (
+          section.contains(...e.selectedPoints) &&
+          !hoveredSecondaryStructures.find(secStruct => section.isEqual(secStruct))
+        ) {
+          addHoveredSecondaryStructure(section);
+        }
+      }
+    }
+  };
+
+  protected handleAxisLeave = (e: BioblocksChartEvent) => {
+    const { data, hoveredSecondaryStructures, removeHoveredSecondaryStructure } = this.props;
+
+    for (const secondaryStructure of data.secondaryStructures) {
+      for (const section of secondaryStructure) {
+        const searchResult = hoveredSecondaryStructures.find(secStruct => section.isEqual(secStruct));
+        if (section.contains(...e.selectedPoints) && searchResult) {
+          removeHoveredSecondaryStructure(searchResult);
+        }
+      }
+    }
+  };
+
+  protected onMouseClick = (cb: (residues: ILockedResiduePair) => void) => (e: BioblocksChartEvent) => {
+    if (e.isAxis()) {
+      this.handleAxisClick(e);
     } else {
       cb({ [e.selectedPoints.sort().toString()]: e.selectedPoints });
     }
@@ -221,21 +360,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 
   protected onMouseEnter = (cb: (residue: RESIDUE_TYPE[]) => void) => (e: BioblocksChartEvent) => {
     if (e.isAxis()) {
-      const { addHoveredSecondaryStructure, hoveredSecondaryStructures, data } = this.props;
-
-      for (const secondaryStructure of data.secondaryStructures) {
-        for (const section of secondaryStructure) {
-          if (
-            section.contains(...e.selectedPoints) &&
-            !hoveredSecondaryStructures.find(
-              secStruct =>
-                secStruct.end === section.end && secStruct.label === section.label && secStruct.start === section.start,
-            )
-          ) {
-            addHoveredSecondaryStructure(section);
-          }
-        }
-      }
+      this.handleAxisEnter(e);
     } else {
       cb(e.selectedPoints);
     }
@@ -243,19 +368,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 
   protected onMouseLeave = (cb?: (residue: RESIDUE_TYPE[]) => void) => (e: BioblocksChartEvent) => {
     if (e.isAxis()) {
-      const { data, hoveredSecondaryStructures, removeHoveredSecondaryStructure } = this.props;
-
-      for (const secondaryStructure of data.secondaryStructures) {
-        for (const section of secondaryStructure) {
-          const searchResult = hoveredSecondaryStructures.find(
-            secStruct =>
-              secStruct.end === section.end && secStruct.label === section.label && secStruct.start === section.start,
-          );
-          if (section.contains(...e.selectedPoints) && searchResult) {
-            removeHoveredSecondaryStructure(searchResult);
-          }
-        }
-      }
+      this.handleAxisLeave(e);
     } else if (cb) {
       cb(e.selectedPoints);
     }
@@ -287,40 +400,19 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     } = this.props;
 
     let range;
-    if (data.pdbData && data.pdbData.predicted && !data.pdbData.experimental) {
-      range = data.pdbData.predicted.sequence.length + 20;
-    } else if (data.pdbData && data.pdbData.experimental) {
-      range = data.pdbData.experimental.sequence.length + 20;
+    if (data.pdbData) {
+      if (data.pdbData.experimental) {
+        range = data.pdbData.experimental.sequence.length + 20;
+      } else if (data.pdbData.predicted) {
+        range = data.pdbData.predicted.sequence.length + 20;
+      }
     }
 
     return (
       <ComponentCard
         componentName={'Contact Map'}
-        dockItems={[
-          {
-            onClick: () => {
-              this.props.removeAllLockedResiduePairs();
-            },
-            text: 'Clear Selections',
-          },
-        ]}
-        menuItems={[
-          {
-            component: {
-              configs: { Filters: configurations },
-              name: 'POPUP',
-            },
-            description: 'Filter',
-            iconName: 'filter',
-          },
-          {
-            component: {
-              configs: this.getNodeSizeSliderConfigs(pointsToPlot),
-              name: 'POPUP',
-            },
-            description: 'Settings',
-          },
-        ]}
+        dockItems={this.getDockConfigs()}
+        menuItems={this.getMenuConfigs(configurations, pointsToPlot)}
       >
         <ContactMapChart
           candidateResidues={candidateResidues}
@@ -344,15 +436,12 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 
   protected setupPointsToPlot(couplingContainer: CouplingContainer) {
     const { data, lockedResiduePairs, hoveredResidues, formattedPoints, observedColor, highlightColor } = this.props;
-    const { pointsToPlot } = this.state;
 
     const chartNames = {
       selected: 'Selected Residue Pair',
       structure: `${data.pdbData ? (data.pdbData.experimental ? 'X-ray' : 'Inferred') : 'Unknown'} Structure Contact`,
     };
 
-    const knownPointsIndex = pointsToPlot.findIndex(entry => entry.name === chartNames.structure);
-    const selectedPointIndex = pointsToPlot.findIndex(entry => entry.name === chartNames.selected);
     const observedContactPoints = couplingContainer.getObservedContacts();
     const result = new Array<IContactMapChartData>(
       generateChartDataEntry(
@@ -360,84 +449,25 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
         { start: observedColor, end: 'rgb(100,177,200)' },
         'X-ray Structure Contact',
         chartNames.structure,
-        knownPointsIndex >= 0 ? pointsToPlot[knownPointsIndex].nodeSize : 4,
+        4,
         observedContactPoints,
         {
-          text: observedContactPoints.map(point => {
-            let hoverText =
-              point && point.A_i && point.A_j
-                ? `(${point.i}${point.A_i}, ${point.j}${point.A_j})`
-                : `(${point.i}, ${point.j})`;
-            if (point && point.score) {
-              hoverText = `${hoverText}<br>Score: ${point.score}`;
-            }
-            if (point && point.probability) {
-              hoverText = `${hoverText}<br>Probability: ${point.probability.toFixed(1)}`;
-            }
-
-            return hoverText;
-          }),
+          text: observedContactPoints.map(generateCouplingScoreHoverText),
         },
       ),
-      ...formattedPoints.map(formattedPoint => {
-        const index = pointsToPlot.findIndex(pointPlot => pointPlot.name === formattedPoint.name);
-        if (index >= 0) {
-          return {
-            ...formattedPoint,
-            nodeSize: pointsToPlot[index].nodeSize,
-          };
-        } else {
-          return formattedPoint;
-        }
-      }),
+      ...formattedPoints,
     );
 
     const chartPoints = new Array<IContactMapChartPoint>();
 
-    if (hoveredResidues.length >= 1) {
-      chartPoints.push({
-        i: hoveredResidues[0],
-        j: hoveredResidues.length === 1 ? hoveredResidues[0] : hoveredResidues[1],
-      });
-    }
+    chartPoints.push(...this.generateHoveredResiduePairs(hoveredResidues));
+    chartPoints.push(...this.generateLockedResiduePairs(lockedResiduePairs));
 
-    if (Object.keys(lockedResiduePairs).length >= 1) {
-      chartPoints.push(
-        ...Array.from(Object.keys(lockedResiduePairs)).reduce((reduceResult: IContactMapChartPoint[], key) => {
-          const keyPair = lockedResiduePairs[key];
-          if (keyPair && keyPair.length === 2) {
-            reduceResult.push({ i: keyPair[0], j: keyPair[1], dist: 0 });
-          }
-
-          return reduceResult;
-        }, new Array<IContactMapChartPoint>()),
-      );
-    }
-
-    result.push(
-      generateChartDataEntry(
-        'none',
-        highlightColor,
-        chartNames.selected,
-        '',
-        selectedPointIndex >= 0 ? pointsToPlot[selectedPointIndex].nodeSize : 4,
-        chartPoints,
-        {
-          marker: {
-            color: new Array<string>(chartPoints.length * 2).fill(highlightColor),
-            line: {
-              color: highlightColor,
-              width: 3,
-            },
-            symbol: 'circle-open',
-          },
-        },
-      ),
-    );
+    result.push(this.generateSelectedResiduesChartData(highlightColor, chartNames.selected, 4, chartPoints));
 
     this.setState({
       ...this.state,
-      pointsToPlot: [...result],
+      pointsToPlot: result.map(this.applyNodeSize),
     });
   }
 }

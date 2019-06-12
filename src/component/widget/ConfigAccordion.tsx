@@ -14,8 +14,9 @@ export interface IConfigAccordionProps {
   title: string;
 }
 
+export type CONFIG_ACCORDION_INDEX = string | number;
 export interface IConfigAccordionState {
-  activeIndices: Array<string | number>;
+  activeIndices: CONFIG_ACCORDION_INDEX[];
 }
 
 export class ConfigAccordion extends React.Component<IConfigAccordionProps, IConfigAccordionState> {
@@ -38,33 +39,37 @@ export class ConfigAccordion extends React.Component<IConfigAccordionProps, ICon
     return (
       <Accordion>
         <Grid padded={true} stretched={true} style={gridStyle}>
-          {configs.map((config, index) =>
-            Object.keys(config).map(configKey => (
-              <Grid.Row key={`accordion-${configKey}`} textAlign={'left'}>
-                <Accordion.Title
-                  active={activeIndices.includes(index)}
-                  index={index}
-                  key={`${configKey}-title`}
-                  onClick={this.onClick}
-                  style={{ textAlign: 'left' }}
-                >
-                  <Icon name={'dropdown'} />
-                  {configKey}
-                </Accordion.Title>
-                <Accordion.Content
-                  active={activeIndices.includes(index)}
-                  key={`${configKey}-content`}
-                  style={{ width: '100%' }}
-                >
-                  {this.renderSingleConfig(Object.entries(configs)[index])}
-                </Accordion.Content>
-              </Grid.Row>
-            )),
-          )}
+          {this.renderConfigs(configs, activeIndices)}
         </Grid>
       </Accordion>
     );
   }
+
+  protected renderConfigs = (configs: IConfigGroup[], activeIndices: CONFIG_ACCORDION_INDEX[]) => {
+    return configs.map((config, index) =>
+      Object.keys(config).map(configKey => (
+        <Grid.Row key={`accordion-${configKey}`} textAlign={'left'}>
+          <Accordion.Title
+            active={activeIndices.includes(index)}
+            index={index}
+            key={`${configKey}-title`}
+            onClick={this.onClick}
+            style={{ textAlign: 'left' }}
+          >
+            <Icon name={'dropdown'} />
+            {configKey}
+          </Accordion.Title>
+          <Accordion.Content
+            active={activeIndices.includes(index)}
+            key={`${configKey}-content`}
+            style={{ width: '100%' }}
+          >
+            {this.renderSingleConfig(Object.entries(configs)[index])}
+          </Accordion.Content>
+        </Grid.Row>
+      )),
+    );
+  };
 
   protected onClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, data: AccordionTitleProps) => {
     const { allowMultipleOpen } = this.props;

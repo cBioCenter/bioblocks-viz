@@ -82,23 +82,7 @@ export class BioblocksPDB {
     const result = new Array<SECONDARY_STRUCTURE_SECTION[]>();
     this.nglData.eachResidue(residue => {
       if (residue.isProtein()) {
-        const { chainIndex } = residue;
-        while (!result[chainIndex]) {
-          result.push(new Array<SECONDARY_STRUCTURE_SECTION>());
-        }
-
-        let structId = 'C' as SECONDARY_STRUCTURE_KEYS;
-        if (residue.isSheet()) {
-          structId = 'E';
-        } else if (residue.isHelix()) {
-          structId = 'H';
-        }
-
-        if (result[chainIndex].length >= 1 && result[chainIndex][result[chainIndex].length - 1].label === structId) {
-          result[chainIndex][result[chainIndex].length - 1].updateEnd(residue.resno);
-        } else {
-          result[chainIndex].push(new Bioblocks1DSection(structId, residue.resno));
-        }
+        this.getSecStructFromNGLResidue(residue, result);
       }
     });
 
@@ -308,4 +292,24 @@ export class BioblocksPDB {
 
     return result;
   }
+
+  protected getSecStructFromNGLResidue = (residue: NGL.ResidueProxy, result: SECONDARY_STRUCTURE_SECTION[][]) => {
+    const { chainIndex } = residue;
+    while (!result[chainIndex]) {
+      result.push(new Array<SECONDARY_STRUCTURE_SECTION>());
+    }
+
+    let structId = 'C' as SECONDARY_STRUCTURE_KEYS;
+    if (residue.isSheet()) {
+      structId = 'E';
+    } else if (residue.isHelix()) {
+      structId = 'H';
+    }
+
+    if (result[chainIndex].length >= 1 && result[chainIndex][result[chainIndex].length - 1].label === structId) {
+      result[chainIndex][result[chainIndex].length - 1].updateEnd(residue.resno);
+    } else {
+      result[chainIndex].push(new Bioblocks1DSection(structId, residue.resno));
+    }
+  };
 }
