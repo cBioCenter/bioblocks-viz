@@ -8,6 +8,7 @@ import { createResiduePairActions } from '~bioblocks-viz~/action/ResiduePairActi
 import { NGLComponent } from '~bioblocks-viz~/component';
 import { BioblocksVisualization } from '~bioblocks-viz~/container';
 import {
+  BIOBLOCKS_CSS_STYLE,
   BioblocksPDB,
   CONTACT_DISTANCE_PROXIMITY,
   RESIDUE_TYPE,
@@ -171,9 +172,7 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
         </Grid.Row>
         <Grid.Row columns={2} style={{ padding: '5px 0' }}>
           <Grid.Column width={9}>
-            {`Experimental (${this.state.selectedExperimentalProteins.length}/${
-              this.props.experimentalProteins.length
-            })`}
+            {`Experimental (${this.state.selectedExperimentalProteins.length}/${this.props.experimentalProteins.length})`}
             {this.renderPDBTable(this.props.experimentalProteins, 'experimental', this.onExperimentalProteinSelect)}
           </Grid.Column>
           <Grid.Column width={7}>
@@ -191,65 +190,112 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
     onChange: (event: React.FormEvent<HTMLInputElement>, data: CheckboxProps) => void,
   ) {
     const { maxPDBPerPopup } = this.props;
-    const { selectedExperimentalProteins, selectedPredictedProteins } = this.state;
     const cellStyle = { padding: '5px 0' };
 
     return (
       <div style={{ height: `${maxPDBPerPopup * 50}px`, overflow: 'auto' }}>
         <Table basic={'very'} compact={true} padded={true}>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell style={cellStyle}>Name</Table.HeaderCell>
-              {pdbGroup === 'experimental' && <Table.HeaderCell style={cellStyle}>Seq. ID</Table.HeaderCell>}
-              {pdbGroup === 'experimental' && <Table.HeaderCell style={cellStyle}>Source</Table.HeaderCell>}
-              {pdbGroup === 'predicted' && <Table.HeaderCell style={cellStyle}>Rank</Table.HeaderCell>}
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {data.map((pdb, index) => {
-              return (
-                <Table.Row key={`pdb-radio-${pdbGroup}-${index}`}>
-                  <Table.Cell style={cellStyle}>
-                    <Popup
-                      position={'top left'}
-                      trigger={
-                        <Checkbox
-                          checked={(pdbGroup === 'experimental'
-                            ? selectedExperimentalProteins
-                            : selectedPredictedProteins
-                          ).includes(pdb.name)}
-                          onChange={onChange}
-                          value={pdb.name}
-                          label={pdb.name
-                            .split('_')
-                            .reverse()
-                            .slice(0, 4)
-                            .reverse()
-                            .join('_')}
-                        />
-                      }
-                    >
-                      {pdb.name}
-                    </Popup>
-                  </Table.Cell>
-
-                  {pdbGroup === 'experimental' && (
-                    <Table.Cell style={cellStyle}>
-                      {this.props.predictedProteins.length >= 1
-                        ? `${this.sequenceSimilarityPercent(pdb.sequence, this.props.predictedProteins[0].sequence)}`
-                        : 'N/A'}
-                    </Table.Cell>
-                  )}
-                  {pdbGroup === 'experimental' && <Table.Cell style={cellStyle}>{pdb.source}</Table.Cell>}
-                  {pdbGroup === 'predicted' && <Table.Cell style={cellStyle}>{pdb.rank}</Table.Cell>}
-                </Table.Row>
-              );
-            })}
-          </Table.Body>
+          {this.renderPDBTableHeader(pdbGroup, cellStyle)}
+          {this.renderPDBTableBody(data, pdbGroup, cellStyle, onChange)}
         </Table>
       </div>
     );
   }
+
+  protected renderPDBTableBody = (
+    data: BioblocksPDB[],
+    pdbGroup: string,
+    cellStyle: BIOBLOCKS_CSS_STYLE,
+    onChange: (event: React.FormEvent<HTMLInputElement>, data: CheckboxProps) => void,
+  ) => {
+    return <Table.Body>{this.renderPDBTableBodyRows(data, pdbGroup, cellStyle, onChange)}</Table.Body>;
+  };
+
+  protected renderPDBTableBodyRows = (
+    data: BioblocksPDB[],
+    pdbGroup: string,
+    cellStyle: BIOBLOCKS_CSS_STYLE,
+    onChange: (event: React.FormEvent<HTMLInputElement>, data: CheckboxProps) => void,
+  ) => {
+    const { selectedExperimentalProteins, selectedPredictedProteins } = this.state;
+
+    return data.map((pdb, index) => (
+      <Table.Row key={`pdb-radio-${pdbGroup}-${index}`}>
+        <Table.Cell style={cellStyle}>
+          <Popup
+            position={'top left'}
+            trigger={
+              <Checkbox
+                checked={(pdbGroup === 'experimental'
+                  ? selectedExperimentalProteins
+                  : selectedPredictedProteins
+                ).includes(pdb.name)}
+                onChange={onChange}
+                value={pdb.name}
+                label={pdb.name
+                  .split('_')
+                  .reverse()
+                  .slice(0, 4)
+                  .reverse()
+                  .join('_')}
+              />
+            }
+          >
+            {pdb.name}
+          </Popup>
+        </Table.Cell>
+
+        {this.renderPDBTableSequenceCell(pdbGroup, cellStyle, pdb)}
+        {this.renderPDBTableSourceCell(pdbGroup, cellStyle, pdb)}
+        {this.renderPDBTableRankCell(pdbGroup, cellStyle, pdb)}
+      </Table.Row>
+    ));
+  };
+
+  protected renderPDBTableHeader = (pdbGroup: string, cellStyle: BIOBLOCKS_CSS_STYLE) => {
+    return (
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell style={cellStyle}>Name</Table.HeaderCell>
+          {this.renderPDBTableSequenceHeader(pdbGroup, cellStyle)}
+          {this.renderPDBTableSourceHeader(pdbGroup, cellStyle)}
+          {this.renderPDBTableRankHeader(pdbGroup, cellStyle)}
+        </Table.Row>
+      </Table.Header>
+    );
+  };
+
+  protected renderPDBTableRankCell = (pdbGroup: string, cellStyle: BIOBLOCKS_CSS_STYLE, pdb: BioblocksPDB) => {
+    return pdbGroup === 'predicted' && <Table.Cell style={cellStyle}>{pdb.rank}</Table.Cell>;
+  };
+
+  protected renderPDBTableRankHeader = (pdbGroup: string, cellStyle: BIOBLOCKS_CSS_STYLE) => {
+    return pdbGroup === 'predicted' && <Table.HeaderCell style={cellStyle}>Rank</Table.HeaderCell>;
+  };
+
+  protected renderPDBTableSequenceCell = (pdbGroup: string, cellStyle: BIOBLOCKS_CSS_STYLE, pdb: BioblocksPDB) => {
+    return (
+      pdbGroup === 'experimental' && (
+        <Table.Cell style={cellStyle}>
+          {this.props.predictedProteins.length >= 1
+            ? `${this.sequenceSimilarityPercent(pdb.sequence, this.props.predictedProteins[0].sequence)}`
+            : 'N/A'}
+        </Table.Cell>
+      )
+    );
+  };
+
+  protected renderPDBTableSequenceHeader = (pdbGroup: string, cellStyle: BIOBLOCKS_CSS_STYLE) => {
+    return pdbGroup === 'experimental' && <Table.HeaderCell style={cellStyle}>Seq. ID</Table.HeaderCell>;
+  };
+
+  protected renderPDBTableSourceCell = (pdbGroup: string, cellStyle: BIOBLOCKS_CSS_STYLE, pdb: BioblocksPDB) => {
+    return pdbGroup === 'experimental' && <Table.Cell style={cellStyle}>{pdb.source}</Table.Cell>;
+  };
+
+  protected renderPDBTableSourceHeader = (pdbGroup: string, cellStyle: BIOBLOCKS_CSS_STYLE) => {
+    return pdbGroup === 'experimental' && <Table.HeaderCell style={cellStyle}>Source</Table.HeaderCell>;
+  };
 
   protected sequenceSimilarityPercent(seqA: string, seqB: string, fractionDigits: number = 1) {
     const result =

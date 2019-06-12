@@ -36,6 +36,10 @@ export class Bioblocks1DSection<T> {
     return true;
   }
 
+  public isEqual(otherSection: Bioblocks1DSection<T>) {
+    return otherSection.end === this.end && otherSection.label === this.label && otherSection.start === this.start;
+  }
+
   public updateStart(newNum: number) {
     if (newNum > this.sectionEnd) {
       this.sectionStart = this.sectionEnd;

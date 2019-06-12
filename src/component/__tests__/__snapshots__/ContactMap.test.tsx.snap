@@ -36,27 +36,83 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
-                "name": "Node size for X-ray Structure Contact",
-                "onChange": [Function],
-                "type": "SLIDER",
-                "values": Object {
-                  "current": 4,
-                  "defaultValue": 4,
-                  "max": 20,
-                  "min": 1,
-                },
+                "name": "X-ray Structure Contact",
+                "options": Array [
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="small"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                ],
+                "type": "BUTTON_GROUP",
               },
               Object {
                 "id": "node-size-slider-1",
-                "name": "Node size for Selected Residue Pair",
-                "onChange": [Function],
-                "type": "SLIDER",
-                "values": Object {
-                  "current": 4,
-                  "defaultValue": 4,
-                  "max": 20,
-                  "min": 1,
-                },
+                "name": "Selected Residue Pair",
+                "options": Array [
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="small"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                ],
+                "type": "BUTTON_GROUP",
               },
             ],
           },
@@ -251,27 +307,83 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
-                "name": "Node size for X-ray Structure Contact",
-                "onChange": [Function],
-                "type": "SLIDER",
-                "values": Object {
-                  "current": 4,
-                  "defaultValue": 4,
-                  "max": 20,
-                  "min": 1,
-                },
+                "name": "X-ray Structure Contact",
+                "options": Array [
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="small"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                ],
+                "type": "BUTTON_GROUP",
               },
               Object {
                 "id": "node-size-slider-1",
-                "name": "Node size for Selected Residue Pair",
-                "onChange": [Function],
-                "type": "SLIDER",
-                "values": Object {
-                  "current": 4,
-                  "defaultValue": 4,
-                  "max": 20,
-                  "min": 1,
-                },
+                "name": "Selected Residue Pair",
+                "options": Array [
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="small"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                ],
+                "type": "BUTTON_GROUP",
               },
             ],
           },
@@ -458,27 +570,83 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
-                "name": "Node size for X-ray Structure Contact",
-                "onChange": [Function],
-                "type": "SLIDER",
-                "values": Object {
-                  "current": 4,
-                  "defaultValue": 4,
-                  "max": 20,
-                  "min": 1,
-                },
+                "name": "X-ray Structure Contact",
+                "options": Array [
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="small"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                ],
+                "type": "BUTTON_GROUP",
               },
               Object {
                 "id": "node-size-slider-1",
-                "name": "Node size for Selected Residue Pair",
-                "onChange": [Function],
-                "type": "SLIDER",
-                "values": Object {
-                  "current": 4,
-                  "defaultValue": 4,
-                  "max": 20,
-                  "min": 1,
-                },
+                "name": "Selected Residue Pair",
+                "options": Array [
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="small"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                ],
+                "type": "BUTTON_GROUP",
               },
             ],
           },
@@ -559,7 +727,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
               "j": 10,
             },
           ],
-          "subtitle": "Known Structure Contact",
+          "subtitle": "X-ray Structure Contact",
           "text": Array [
             "(1N, 10I)",
           ],
@@ -650,27 +818,83 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
-                "name": "Node size for X-ray Structure Contact",
-                "onChange": [Function],
-                "type": "SLIDER",
-                "values": Object {
-                  "current": 4,
-                  "defaultValue": 4,
-                  "max": 20,
-                  "min": 1,
-                },
+                "name": "X-ray Structure Contact",
+                "options": Array [
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="small"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                ],
+                "type": "BUTTON_GROUP",
               },
               Object {
                 "id": "node-size-slider-1",
-                "name": "Node size for Selected Residue Pair",
-                "onChange": [Function],
-                "type": "SLIDER",
-                "values": Object {
-                  "current": 4,
-                  "defaultValue": 4,
-                  "max": 20,
-                  "min": 1,
-                },
+                "name": "Selected Residue Pair",
+                "options": Array [
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="small"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                ],
+                "type": "BUTTON_GROUP",
               },
             ],
           },
@@ -842,27 +1066,83 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
-                "name": "Node size for X-ray Structure Contact",
-                "onChange": [Function],
-                "type": "SLIDER",
-                "values": Object {
-                  "current": 4,
-                  "defaultValue": 4,
-                  "max": 20,
-                  "min": 1,
-                },
+                "name": "X-ray Structure Contact",
+                "options": Array [
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="small"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                ],
+                "type": "BUTTON_GROUP",
               },
               Object {
                 "id": "node-size-slider-1",
-                "name": "Node size for Selected Residue Pair",
-                "onChange": [Function],
-                "type": "SLIDER",
-                "values": Object {
-                  "current": 4,
-                  "defaultValue": 4,
-                  "max": 20,
-                  "min": 1,
-                },
+                "name": "Selected Residue Pair",
+                "options": Array [
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="small"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                ],
+                "type": "BUTTON_GROUP",
               },
             ],
           },
@@ -1024,27 +1304,83 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
-                "name": "Node size for X-ray Structure Contact",
-                "onChange": [Function],
-                "type": "SLIDER",
-                "values": Object {
-                  "current": 4,
-                  "defaultValue": 4,
-                  "max": 20,
-                  "min": 1,
-                },
+                "name": "X-ray Structure Contact",
+                "options": Array [
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="small"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                ],
+                "type": "BUTTON_GROUP",
               },
               Object {
                 "id": "node-size-slider-1",
-                "name": "Node size for Selected Residue Pair",
-                "onChange": [Function],
-                "type": "SLIDER",
-                "values": Object {
-                  "current": 4,
-                  "defaultValue": 4,
-                  "max": 20,
-                  "min": 1,
-                },
+                "name": "Selected Residue Pair",
+                "options": Array [
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="small"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                ],
+                "type": "BUTTON_GROUP",
               },
             ],
           },
@@ -1206,27 +1542,83 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
-                "name": "Node size for X-ray Structure Contact",
-                "onChange": [Function],
-                "type": "SLIDER",
-                "values": Object {
-                  "current": 4,
-                  "defaultValue": 4,
-                  "max": 20,
-                  "min": 1,
-                },
+                "name": "X-ray Structure Contact",
+                "options": Array [
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="small"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                ],
+                "type": "BUTTON_GROUP",
               },
               Object {
                 "id": "node-size-slider-1",
-                "name": "Node size for Selected Residue Pair",
-                "onChange": [Function],
-                "type": "SLIDER",
-                "values": Object {
-                  "current": 4,
-                  "defaultValue": 4,
-                  "max": 20,
-                  "min": 1,
-                },
+                "name": "Selected Residue Pair",
+                "options": Array [
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="small"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                ],
+                "type": "BUTTON_GROUP",
               },
             ],
           },
@@ -1421,27 +1813,83 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
-                "name": "Node size for X-ray Structure Contact",
-                "onChange": [Function],
-                "type": "SLIDER",
-                "values": Object {
-                  "current": 4,
-                  "defaultValue": 4,
-                  "max": 20,
-                  "min": 1,
-                },
+                "name": "X-ray Structure Contact",
+                "options": Array [
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="small"
+                    style={
+                      Object {
+                        "color": "rgb(12,50,102)",
+                      }
+                    }
+                  />,
+                ],
+                "type": "BUTTON_GROUP",
               },
               Object {
                 "id": "node-size-slider-1",
-                "name": "Node size for Selected Residue Pair",
-                "onChange": [Function],
-                "type": "SLIDER",
-                "values": Object {
-                  "current": 4,
-                  "defaultValue": 4,
-                  "max": 20,
-                  "min": 1,
-                },
+                "name": "Selected Residue Pair",
+                "options": Array [
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="mini"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="tiny"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                  <Icon
+                    as="i"
+                    name="circle"
+                    onClick={[Function]}
+                    size="small"
+                    style={
+                      Object {
+                        "color": "#ff8800",
+                      }
+                    }
+                  />,
+                ],
+                "type": "BUTTON_GROUP",
               },
             ],
           },
@@ -2104,27 +2552,83 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "Node Sizes": Array [
                 Object {
                   "id": "node-size-slider-0",
-                  "name": "Node size for X-ray Structure Contact",
-                  "onChange": [Function],
-                  "type": "SLIDER",
-                  "values": Object {
-                    "current": 4,
-                    "defaultValue": 4,
-                    "max": 20,
-                    "min": 1,
-                  },
+                  "name": "X-ray Structure Contact",
+                  "options": Array [
+                    <Icon
+                      as="i"
+                      name="circle"
+                      onClick={[Function]}
+                      size="mini"
+                      style={
+                        Object {
+                          "color": "rgb(12,50,102)",
+                        }
+                      }
+                    />,
+                    <Icon
+                      as="i"
+                      name="circle"
+                      onClick={[Function]}
+                      size="tiny"
+                      style={
+                        Object {
+                          "color": "rgb(12,50,102)",
+                        }
+                      }
+                    />,
+                    <Icon
+                      as="i"
+                      name="circle"
+                      onClick={[Function]}
+                      size="small"
+                      style={
+                        Object {
+                          "color": "rgb(12,50,102)",
+                        }
+                      }
+                    />,
+                  ],
+                  "type": "BUTTON_GROUP",
                 },
                 Object {
                   "id": "node-size-slider-1",
-                  "name": "Node size for Selected Residue Pair",
-                  "onChange": [Function],
-                  "type": "SLIDER",
-                  "values": Object {
-                    "current": 4,
-                    "defaultValue": 4,
-                    "max": 20,
-                    "min": 1,
-                  },
+                  "name": "Selected Residue Pair",
+                  "options": Array [
+                    <Icon
+                      as="i"
+                      name="circle"
+                      onClick={[Function]}
+                      size="mini"
+                      style={
+                        Object {
+                          "color": "#ff8800",
+                        }
+                      }
+                    />,
+                    <Icon
+                      as="i"
+                      name="circle"
+                      onClick={[Function]}
+                      size="tiny"
+                      style={
+                        Object {
+                          "color": "#ff8800",
+                        }
+                      }
+                    />,
+                    <Icon
+                      as="i"
+                      name="circle"
+                      onClick={[Function]}
+                      size="small"
+                      style={
+                        Object {
+                          "color": "#ff8800",
+                        }
+                      }
+                    />,
+                  ],
+                  "type": "BUTTON_GROUP",
                 },
               ],
             },
@@ -2190,27 +2694,83 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       "Node Sizes": Array [
                         Object {
                           "id": "node-size-slider-0",
-                          "name": "Node size for X-ray Structure Contact",
-                          "onChange": [Function],
-                          "type": "SLIDER",
-                          "values": Object {
-                            "current": 4,
-                            "defaultValue": 4,
-                            "max": 20,
-                            "min": 1,
-                          },
+                          "name": "X-ray Structure Contact",
+                          "options": Array [
+                            <Icon
+                              as="i"
+                              name="circle"
+                              onClick={[Function]}
+                              size="mini"
+                              style={
+                                Object {
+                                  "color": "rgb(12,50,102)",
+                                }
+                              }
+                            />,
+                            <Icon
+                              as="i"
+                              name="circle"
+                              onClick={[Function]}
+                              size="tiny"
+                              style={
+                                Object {
+                                  "color": "rgb(12,50,102)",
+                                }
+                              }
+                            />,
+                            <Icon
+                              as="i"
+                              name="circle"
+                              onClick={[Function]}
+                              size="small"
+                              style={
+                                Object {
+                                  "color": "rgb(12,50,102)",
+                                }
+                              }
+                            />,
+                          ],
+                          "type": "BUTTON_GROUP",
                         },
                         Object {
                           "id": "node-size-slider-1",
-                          "name": "Node size for Selected Residue Pair",
-                          "onChange": [Function],
-                          "type": "SLIDER",
-                          "values": Object {
-                            "current": 4,
-                            "defaultValue": 4,
-                            "max": 20,
-                            "min": 1,
-                          },
+                          "name": "Selected Residue Pair",
+                          "options": Array [
+                            <Icon
+                              as="i"
+                              name="circle"
+                              onClick={[Function]}
+                              size="mini"
+                              style={
+                                Object {
+                                  "color": "#ff8800",
+                                }
+                              }
+                            />,
+                            <Icon
+                              as="i"
+                              name="circle"
+                              onClick={[Function]}
+                              size="tiny"
+                              style={
+                                Object {
+                                  "color": "#ff8800",
+                                }
+                              }
+                            />,
+                            <Icon
+                              as="i"
+                              name="circle"
+                              onClick={[Function]}
+                              size="small"
+                              style={
+                                Object {
+                                  "color": "#ff8800",
+                                }
+                              }
+                            />,
+                          ],
+                          "type": "BUTTON_GROUP",
                         },
                       ],
                     },

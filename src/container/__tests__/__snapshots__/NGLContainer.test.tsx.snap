@@ -412,7 +412,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                 "name": "Predicted Structure Representation",
                                 "onChange": [Function],
                                 "options": Array [
-                                  "Default",
+                                  "Rainbow",
                                   "Spacefill",
                                   "Backbone",
                                   "Cartoon",
@@ -426,7 +426,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                 "name": "Experimental Structure Representation",
                                 "onChange": [Function],
                                 "options": Array [
-                                  "Default",
+                                  "Rainbow",
                                   "Spacefill",
                                   "Backbone",
                                   "Cartoon",
@@ -438,24 +438,24 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                             ],
                             "Viewer": Array [
                               Object {
-                                "current": "Enable",
+                                "currentOption": "on",
                                 "name": "Distance Representation",
                                 "onChange": [Function],
-                                "options": Array [
-                                  "Enable",
-                                  "Disable",
-                                ],
-                                "type": "RADIO",
+                                "options": Object {
+                                  "off": "Off",
+                                  "on": "On",
+                                },
+                                "type": "TOGGLE",
                               },
                               Object {
-                                "current": "Disable",
+                                "currentOption": "off",
                                 "name": "Zoom on Click",
                                 "onChange": [Function],
-                                "options": Array [
-                                  "Enable",
-                                  "Disable",
-                                ],
-                                "type": "RADIO",
+                                "options": Object {
+                                  "off": "Off",
+                                  "on": "On",
+                                },
+                                "type": "TOGGLE",
                               },
                               Object {
                                 "current": "C-α",
@@ -678,7 +678,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                         "name": "Predicted Structure Representation",
                                         "onChange": [Function],
                                         "options": Array [
-                                          "Default",
+                                          "Rainbow",
                                           "Spacefill",
                                           "Backbone",
                                           "Cartoon",
@@ -692,7 +692,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                         "name": "Experimental Structure Representation",
                                         "onChange": [Function],
                                         "options": Array [
-                                          "Default",
+                                          "Rainbow",
                                           "Spacefill",
                                           "Backbone",
                                           "Cartoon",
@@ -704,24 +704,24 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                     ],
                                     "Viewer": Array [
                                       Object {
-                                        "current": "Enable",
+                                        "currentOption": "on",
                                         "name": "Distance Representation",
                                         "onChange": [Function],
-                                        "options": Array [
-                                          "Enable",
-                                          "Disable",
-                                        ],
-                                        "type": "RADIO",
+                                        "options": Object {
+                                          "off": "Off",
+                                          "on": "On",
+                                        },
+                                        "type": "TOGGLE",
                                       },
                                       Object {
-                                        "current": "Disable",
+                                        "currentOption": "off",
                                         "name": "Zoom on Click",
                                         "onChange": [Function],
-                                        "options": Array [
-                                          "Enable",
-                                          "Disable",
-                                        ],
-                                        "type": "RADIO",
+                                        "options": Object {
+                                          "off": "Off",
+                                          "on": "On",
+                                        },
+                                        "type": "TOGGLE",
                                       },
                                       Object {
                                         "current": "C-α",

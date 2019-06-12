@@ -55,11 +55,11 @@ const Val: IAminoAcid = { fullName: 'Valine', singleLetterCode: 'V', threeLetter
 
 // tslint:disable:object-literal-sort-keys
 /**
- * Conviencence map to get an Amino Acid via either the single or three letter code.
+ * Convenience map to get an Amino Acid via either the single or three letter code.
  * @example AMINO_ACID_BY_CODE['A'] === AMINO_ACID_BY_CODE.A === AMINO_ACID_BY_CODE['ALA'] === AMINO_ACID_BY_CODE.ALA
  */
 export const AMINO_ACID_BY_CODE: {
-  [key in AMINO_ACID_THREE_LETTER_CODE | AMINO_ACID_SINGLE_LETTER_CODE]: IAminoAcid
+  [key in AMINO_ACID_THREE_LETTER_CODE | AMINO_ACID_SINGLE_LETTER_CODE]: IAminoAcid;
 } = {
   ALA: Ala,
   ARG: Arg,

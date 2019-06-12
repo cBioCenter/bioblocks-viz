@@ -359,7 +359,7 @@ describe('ContactMap', () => {
       const expected = 10;
       expect(instance.state.pointsToPlot[0].nodeSize).not.toEqual(expected);
 
-      instance.onNodeSizeChange(0)(expected);
+      instance.onNodeSizeChange(0, expected)();
       expect(instance.state.pointsToPlot[0].nodeSize).toEqual(expected);
     });
   });

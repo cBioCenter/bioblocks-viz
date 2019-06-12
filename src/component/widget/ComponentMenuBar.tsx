@@ -5,16 +5,19 @@ import {
   BioblocksRadioGroup,
   BioblocksRangeSlider,
   BioblocksSlider,
+  BioblocksToggleButton,
   ConfigAccordion,
 } from '~bioblocks-viz~/component/widget';
 import {
   BioblocksWidgetConfig,
+  ButtonGroupWidgetConfig,
   ButtonWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
   LabelWidgetConfig,
   RadioWidgetConfig,
   RangeSliderWidgetConfig,
   SliderWidgetConfig,
+  ToggleWidgetConfig,
 } from '~bioblocks-viz~/data';
 
 export interface IComponentMenuBarProps {
@@ -32,7 +35,7 @@ export interface IComponentMenuBarState {
   isHovered: boolean;
 }
 
-interface IPopupType {
+export interface IPopupType {
   configs?: { [key: string]: BioblocksWidgetConfig[] };
   name: 'POPUP';
   props?: PopupProps;
@@ -98,6 +101,20 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
     );
   }
 
+  protected renderConfigs = (configs: { [key: string]: BioblocksWidgetConfig[] }) => {
+    return Object.keys(configs).map(configKey => ({
+      [configKey]: configs[configKey].map((config, configIndex) => (
+        <Grid.Row
+          columns={1}
+          key={`menu-bar-${configKey}-row-${configIndex}`}
+          style={{ padding: '5px 0', width: '100%' }}
+        >
+          {this.renderConfig(config, `${configKey}-row-${configIndex}`)}
+        </Grid.Row>
+      )),
+    }));
+  };
+
   protected onMenuEnter = () => {
     this.setState({
       isHovered: true,
@@ -114,6 +131,8 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
     switch (config.type) {
       case CONFIGURATION_COMPONENT_TYPE.BUTTON:
         return this.renderConfigurationButton(config, `button-${id}`);
+      case CONFIGURATION_COMPONENT_TYPE.BUTTON_GROUP:
+        return this.renderConfigurationButtonGroup(config, `button-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.LABEL:
         return this.renderConfigurationLabel(config, `label-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.RADIO:
@@ -122,6 +141,8 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         return this.renderConfigurationRangeSlider(config, `range-slider-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.SLIDER:
         return this.renderConfigurationSlider(config, `slider-${id}`);
+      case CONFIGURATION_COMPONENT_TYPE.TOGGLE:
+        return this.renderConfigurationToggle(config, `slider-${id}`);
       default: {
         return `configuration for ${id}`;
       }
@@ -134,6 +155,23 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         {config.icon && <Icon name={config.icon} />}
         {config.name}
       </Button>
+    );
+  }
+
+  protected renderConfigurationButtonGroup(config: ButtonGroupWidgetConfig, id: string) {
+    return (
+      <Grid padded={true} style={{ padding: 'initial 0' }}>
+        <Grid.Row columns={15}>
+          <Grid.Column width={11}>{config.name}</Grid.Column>
+          <Grid.Column width={4}>
+            <Button.Group floated={'right'} fluid={true}>
+              {config.options.map((singleConfig, index) => (
+                <Button icon={singleConfig} key={`${id}-${index}`} style={config.style} basic={true} compact={true} />
+              ))}
+            </Button.Group>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     );
   }
 
@@ -194,6 +232,10 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
     );
   }
 
+  protected renderConfigurationToggle(config: ToggleWidgetConfig, id: string) {
+    return <BioblocksToggleButton config={config} />;
+  }
+
   protected renderMenuIconText(text: string) {
     const { isHovered } = this.state;
 
@@ -212,25 +254,7 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         const trigger = <Icon name={item.iconName ? item.iconName : 'setting'} />;
         menuItemChild = item.component.configs ? (
           <Popup trigger={trigger} {...combinedProps} wide={true} style={{ opacity }}>
-            {item.component.configs && (
-              <ConfigAccordion
-                configs={Object.keys(item.component.configs).map(configKey => ({
-                  [configKey]: item.component.configs
-                    ? item.component.configs[configKey].map((config, configIndex) => (
-                        <Grid.Row
-                          columns={1}
-                          key={`menu-bar-${configKey}-row-${configIndex}`}
-                          style={{ padding: '5px 0', width: '100%' }}
-                        >
-                          {this.renderConfig(config, `${configKey}-row-${configIndex}`)}
-                        </Grid.Row>
-                      ))
-                    : [],
-                }))}
-                gridStyle={style}
-                title={'Config'}
-              />
-            )}
+            <ConfigAccordion configs={this.renderConfigs(item.component.configs)} gridStyle={style} title={'Config'} />
           </Popup>
         ) : (
           <Popup trigger={trigger} {...combinedProps} style={{ opacity }} />

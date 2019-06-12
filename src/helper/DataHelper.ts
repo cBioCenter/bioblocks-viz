@@ -79,24 +79,7 @@ const fetchCategoricalColorData = async (file: string): Promise<{ [key: string]:
     if (!colorData.label_colors || !colorData.label_list) {
       throw new Error("Unable to parse color data - does it have keys named 'label_colors' and 'label_list'");
     }
-    const output: ISpringCategoricalColorData = {
-      label_colors: {},
-      label_list: colorData.label_list,
-    };
-
-    const { label_colors } = input[Object.keys(input)[0]];
-
-    // The input file might specify hex values as either 0xrrggbb or #rrggbb, so we need to convert the input to a consistent output format.
-    for (const labelColorKey of Object.keys(label_colors)) {
-      const hex = label_colors[labelColorKey];
-      if (typeof hex === 'number') {
-        output.label_colors[labelColorKey] = hex;
-      } else if (hex.charAt(0) === '#') {
-        output.label_colors[labelColorKey] = Number.parseInt(`0x${hex.slice(1)}`, 16);
-      } else {
-        output.label_colors[labelColorKey] = Number.parseInt(hex, 16);
-      }
-    }
+    const output = getParsedColor(colorData, input);
 
     result[key] = output;
   }
@@ -197,6 +180,35 @@ export const fetchContactMapData = async (
     pdbData,
     secondaryStructures: [],
   };
+};
+
+const getParsedColor = (
+  colorData: {
+    label_colors: { [key: string]: string | number };
+    label_list: string[];
+  },
+  input: ISpringCategoricalColorDataInput,
+) => {
+  const output: ISpringCategoricalColorData = {
+    label_colors: {},
+    label_list: colorData.label_list,
+  };
+
+  const { label_colors } = input[Object.keys(input)[0]];
+
+  // The input file might specify hex values as either 0xrrggbb or #rrggbb, so we need to convert the input to a consistent output format.
+  for (const labelColorKey of Object.keys(label_colors)) {
+    const hex = label_colors[labelColorKey];
+    if (typeof hex === 'number') {
+      output.label_colors[labelColorKey] = hex;
+    } else if (hex.charAt(0) === '#') {
+      output.label_colors[labelColorKey] = Number.parseInt(`0x${hex.slice(1)}`, 16);
+    } else {
+      output.label_colors[labelColorKey] = Number.parseInt(hex, 16);
+    }
+  }
+
+  return output;
 };
 
 /**
