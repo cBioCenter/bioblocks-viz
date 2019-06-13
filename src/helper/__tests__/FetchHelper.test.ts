@@ -1,4 +1,4 @@
-import { fetchCSVFile, fetchJSONFile } from '~bioblocks-viz~/helper';
+import { fetchCSVFile, fetchJSONFile, readFileAsText } from '~bioblocks-viz~/helper';
 
 describe('FetchHelper', () => {
   beforeEach(() => {
@@ -32,6 +32,35 @@ describe('FetchHelper', () => {
       const expected = 'Bioblocks-viz error fetching JSON File!';
       fetchMock.mockResponseOnce('error', { status: 400 });
       await expect(fetchJSONFile('foo.json')).rejects.toThrowError(expected);
+    });
+  });
+
+  describe('Text Files', () => {
+    it('Should allow any file to be read as text', async () => {
+      const expected = JSON.stringify({ nier: 'automata' });
+      const file = new File([expected], 'file', { type: 'text/html' });
+      const result = await readFileAsText(file);
+      expect(result).toEqual(expected);
+    });
+
+    it('Should catch errors with invalid files.', async () => {
+      expect.assertions(1);
+
+      return expect(readFileAsText({} as any)).rejects.toBeTruthy();
+    });
+
+    it('Should catch parsing errors with.', async () => {
+      expect.assertions(1);
+      const expected = JSON.stringify({ nier: 'automata' });
+      const file = new File([expected], 'file', { type: 'text/html' });
+
+      FileReader.prototype.readAsText = function() {
+        if (this.onerror) {
+          this.onerror(new ProgressEvent('error'));
+        }
+      };
+
+      return expect(readFileAsText(file)).rejects.toEqual('Problem parsing input file.');
     });
   });
 });

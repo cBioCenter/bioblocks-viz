@@ -159,11 +159,10 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     const { frameHeight, frameWidth, headerHeight } = this.props;
     const { framedStyle, isFullPage } = this.state;
 
-    if (this.cardRef) {
-      const iFrameNodeRef = ReactDOM.findDOMNode(this.cardRef) as Element;
-      const iFrameNodeStyle = iFrameNodeRef ? window.getComputedStyle(iFrameNodeRef) : null;
-
-      if (iFrameNodeStyle && iFrameNodeStyle.width && iFrameNodeStyle.height) {
+    const iFrameNodeRef = ReactDOM.findDOMNode(this.cardRef) as Element;
+    if (iFrameNodeRef) {
+      const iFrameNodeStyle = window.getComputedStyle(iFrameNodeRef);
+      if (iFrameNodeStyle && iFrameNodeStyle.width !== null && iFrameNodeStyle.height !== null) {
         document.body.style.overflowY = isFullPage ? 'hidden' : 'auto';
         const refHeight = parseInt(iFrameNodeStyle.height, 10) - 18;
         const refWidth = parseInt(iFrameNodeStyle.width, 10) - 10;

@@ -2509,6 +2509,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
   }
   observedColor="#0000ff"
   removeAllLockedResiduePairs={[Function]}
+  removeAllSelectedSecondaryStructures={[Function]}
   removeHoveredResidues={[Function]}
   removeHoveredSecondaryStructure={[Function]}
   removeSecondaryStructure={[Function]}

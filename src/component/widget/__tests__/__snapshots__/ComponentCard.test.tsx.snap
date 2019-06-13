@@ -1,5 +1,2084 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ComponentCard Should handle expanding a framed and non-full page component. 1`] = `
+<ComponentCard
+  componentName="Let's"
+  dockItems={Array []}
+  frameHeight={0}
+  frameWidth={0}
+  headerHeight={40}
+  height="570px"
+  iconSrc="assets/icons/spring-icon.png"
+  isFramedComponent={true}
+  isFullPage={false}
+  menuItems={Array []}
+  padding={0}
+  showSettings={false}
+  width="525px"
+>
+  <Modal
+    centered={true}
+    closeOnDimmerClick={true}
+    closeOnDocumentClick={false}
+    closeOnEscape={true}
+    dimmer={true}
+    eventPool="Modal"
+    onClose={[Function]}
+    open={true}
+    size="large"
+    style={
+      Object {
+        "height": "80vh",
+        "width": "80vh",
+        "willChange": "unset",
+      }
+    }
+  >
+    <Portal
+      closeOnDocumentClick={false}
+      closeOnEscape={true}
+      eventPool="Modal"
+      mountNode={
+        <body
+          class="dimmable dimmed"
+          style="overflow-y: hidden;"
+        >
+          <div
+            class="ui page modals dimmer transition visible active"
+            style="display: flex;"
+          >
+            <div
+              class="ui large modal transition visible active"
+              style="height: 80vh; width: 80vh; will-change: unset;"
+            >
+              <div
+                class="ui centered card bioblocks-component-card"
+                style="max-width: unset; padding: 5px; width: 80vh;"
+              >
+                <div
+                  style="height: 6%;"
+                >
+                  <div>
+                    <div
+                      class="ui secondary two item menu"
+                      style="margin: 0px; height: 40px;"
+                    >
+                      <div
+                        class="ui secondary one item menu"
+                      >
+                        <div
+                          class="left horizontally fitted item"
+                          style="margin: 0px; padding: 0px;"
+                        >
+                          <img
+                            alt="component icon"
+                            src="assets/icons/spring-icon.png"
+                            style="height: 32px; padding: 2px; width: 32px;"
+                          />
+                          Let's
+                        </div>
+                      </div>
+                      <div
+                        class="ui secondary four item menu"
+                      >
+                        <div
+                          class="right horizontally fitted item"
+                          style="flex-direction: column;"
+                        >
+                          <i
+                            aria-hidden="true"
+                            class="compress icon"
+                          />
+                          <span
+                            style="font-size: 11px; visibility: hidden;"
+                          >
+                            Close
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  style="height: 91%;"
+                >
+                  <div
+                    style="transform-origin: top left; transform: scale(calc(70/0),calc((NaN - 40)/0));"
+                  >
+                    <div>
+                      Go!
+                    </div>
+                  </div>
+                </div>
+                <div
+                  style="height: 3%;"
+                />
+              </div>
+            </div>
+          </div>
+        </body>
+      }
+      onClose={[Function]}
+      onMount={[Function]}
+      onOpen={[Function]}
+      onUnmount={[Function]}
+      open={true}
+      openOnTriggerClick={true}
+    >
+      <PortalInner
+        innerRef={
+          Object {
+            "current": <div
+              class="ui page modals dimmer transition visible active"
+              style="display: flex;"
+            >
+              <div
+                class="ui large modal transition visible active"
+                style="height: 80vh; width: 80vh; will-change: unset;"
+              >
+                <div
+                  class="ui centered card bioblocks-component-card"
+                  style="max-width: unset; padding: 5px; width: 80vh;"
+                >
+                  <div
+                    style="height: 6%;"
+                  >
+                    <div>
+                      <div
+                        class="ui secondary two item menu"
+                        style="margin: 0px; height: 40px;"
+                      >
+                        <div
+                          class="ui secondary one item menu"
+                        >
+                          <div
+                            class="left horizontally fitted item"
+                            style="margin: 0px; padding: 0px;"
+                          >
+                            <img
+                              alt="component icon"
+                              src="assets/icons/spring-icon.png"
+                              style="height: 32px; padding: 2px; width: 32px;"
+                            />
+                            Let's
+                          </div>
+                        </div>
+                        <div
+                          class="ui secondary four item menu"
+                        >
+                          <div
+                            class="right horizontally fitted item"
+                            style="flex-direction: column;"
+                          >
+                            <i
+                              aria-hidden="true"
+                              class="compress icon"
+                            />
+                            <span
+                              style="font-size: 11px; visibility: hidden;"
+                            >
+                              Close
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    style="height: 91%;"
+                  >
+                    <div
+                      style="transform-origin: top left; transform: scale(calc(70/0),calc((NaN - 40)/0));"
+                    >
+                      <div>
+                        Go!
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    style="height: 3%;"
+                  />
+                </div>
+              </div>
+            </div>,
+          }
+        }
+        mountNode={
+          <body
+            class="dimmable dimmed"
+            style="overflow-y: hidden;"
+          >
+            <div
+              class="ui page modals dimmer transition visible active"
+              style="display: flex;"
+            >
+              <div
+                class="ui large modal transition visible active"
+                style="height: 80vh; width: 80vh; will-change: unset;"
+              >
+                <div
+                  class="ui centered card bioblocks-component-card"
+                  style="max-width: unset; padding: 5px; width: 80vh;"
+                >
+                  <div
+                    style="height: 6%;"
+                  >
+                    <div>
+                      <div
+                        class="ui secondary two item menu"
+                        style="margin: 0px; height: 40px;"
+                      >
+                        <div
+                          class="ui secondary one item menu"
+                        >
+                          <div
+                            class="left horizontally fitted item"
+                            style="margin: 0px; padding: 0px;"
+                          >
+                            <img
+                              alt="component icon"
+                              src="assets/icons/spring-icon.png"
+                              style="height: 32px; padding: 2px; width: 32px;"
+                            />
+                            Let's
+                          </div>
+                        </div>
+                        <div
+                          class="ui secondary four item menu"
+                        >
+                          <div
+                            class="right horizontally fitted item"
+                            style="flex-direction: column;"
+                          >
+                            <i
+                              aria-hidden="true"
+                              class="compress icon"
+                            />
+                            <span
+                              style="font-size: 11px; visibility: hidden;"
+                            >
+                              Close
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    style="height: 91%;"
+                  >
+                    <div
+                      style="transform-origin: top left; transform: scale(calc(70/0),calc((NaN - 40)/0));"
+                    >
+                      <div>
+                        Go!
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    style="height: 3%;"
+                  />
+                </div>
+              </div>
+            </div>
+          </body>
+        }
+        onMount={[Function]}
+        onUnmount={[Function]}
+      >
+        <Portal
+          containerInfo={
+            <body
+              class="dimmable dimmed"
+              style="overflow-y: hidden;"
+            >
+              <div
+                class="ui page modals dimmer transition visible active"
+                style="display: flex;"
+              >
+                <div
+                  class="ui large modal transition visible active"
+                  style="height: 80vh; width: 80vh; will-change: unset;"
+                >
+                  <div
+                    class="ui centered card bioblocks-component-card"
+                    style="max-width: unset; padding: 5px; width: 80vh;"
+                  >
+                    <div
+                      style="height: 6%;"
+                    >
+                      <div>
+                        <div
+                          class="ui secondary two item menu"
+                          style="margin: 0px; height: 40px;"
+                        >
+                          <div
+                            class="ui secondary one item menu"
+                          >
+                            <div
+                              class="left horizontally fitted item"
+                              style="margin: 0px; padding: 0px;"
+                            >
+                              <img
+                                alt="component icon"
+                                src="assets/icons/spring-icon.png"
+                                style="height: 32px; padding: 2px; width: 32px;"
+                              />
+                              Let's
+                            </div>
+                          </div>
+                          <div
+                            class="ui secondary four item menu"
+                          >
+                            <div
+                              class="right horizontally fitted item"
+                              style="flex-direction: column;"
+                            >
+                              <i
+                                aria-hidden="true"
+                                class="compress icon"
+                              />
+                              <span
+                                style="font-size: 11px; visibility: hidden;"
+                              >
+                                Close
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      style="height: 91%;"
+                    >
+                      <div
+                        style="transform-origin: top left; transform: scale(calc(70/0),calc((NaN - 40)/0));"
+                      >
+                        <div>
+                          Go!
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      style="height: 3%;"
+                    />
+                  </div>
+                </div>
+              </div>
+            </body>
+          }
+        >
+          <Ref
+            innerRef={[Function]}
+          >
+            <RefFindNode
+              innerRef={[Function]}
+            >
+              <div
+                className="ui page modals dimmer transition visible active"
+              >
+                <Ref
+                  innerRef={
+                    Object {
+                      "current": <div
+                        class="ui large modal transition visible active"
+                        style="height: 80vh; width: 80vh; will-change: unset;"
+                      >
+                        <div
+                          class="ui centered card bioblocks-component-card"
+                          style="max-width: unset; padding: 5px; width: 80vh;"
+                        >
+                          <div
+                            style="height: 6%;"
+                          >
+                            <div>
+                              <div
+                                class="ui secondary two item menu"
+                                style="margin: 0px; height: 40px;"
+                              >
+                                <div
+                                  class="ui secondary one item menu"
+                                >
+                                  <div
+                                    class="left horizontally fitted item"
+                                    style="margin: 0px; padding: 0px;"
+                                  >
+                                    <img
+                                      alt="component icon"
+                                      src="assets/icons/spring-icon.png"
+                                      style="height: 32px; padding: 2px; width: 32px;"
+                                    />
+                                    Let's
+                                  </div>
+                                </div>
+                                <div
+                                  class="ui secondary four item menu"
+                                >
+                                  <div
+                                    class="right horizontally fitted item"
+                                    style="flex-direction: column;"
+                                  >
+                                    <i
+                                      aria-hidden="true"
+                                      class="compress icon"
+                                    />
+                                    <span
+                                      style="font-size: 11px; visibility: hidden;"
+                                    >
+                                      Close
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            style="height: 91%;"
+                          >
+                            <div
+                              style="transform-origin: top left; transform: scale(calc(70/0),calc((NaN - 40)/0));"
+                            >
+                              <div>
+                                Go!
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            style="height: 3%;"
+                          />
+                        </div>
+                      </div>,
+                    }
+                  }
+                >
+                  <RefFindNode
+                    innerRef={
+                      Object {
+                        "current": <div
+                          class="ui large modal transition visible active"
+                          style="height: 80vh; width: 80vh; will-change: unset;"
+                        >
+                          <div
+                            class="ui centered card bioblocks-component-card"
+                            style="max-width: unset; padding: 5px; width: 80vh;"
+                          >
+                            <div
+                              style="height: 6%;"
+                            >
+                              <div>
+                                <div
+                                  class="ui secondary two item menu"
+                                  style="margin: 0px; height: 40px;"
+                                >
+                                  <div
+                                    class="ui secondary one item menu"
+                                  >
+                                    <div
+                                      class="left horizontally fitted item"
+                                      style="margin: 0px; padding: 0px;"
+                                    >
+                                      <img
+                                        alt="component icon"
+                                        src="assets/icons/spring-icon.png"
+                                        style="height: 32px; padding: 2px; width: 32px;"
+                                      />
+                                      Let's
+                                    </div>
+                                  </div>
+                                  <div
+                                    class="ui secondary four item menu"
+                                  >
+                                    <div
+                                      class="right horizontally fitted item"
+                                      style="flex-direction: column;"
+                                    >
+                                      <i
+                                        aria-hidden="true"
+                                        class="compress icon"
+                                      />
+                                      <span
+                                        style="font-size: 11px; visibility: hidden;"
+                                      >
+                                        Close
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              style="height: 91%;"
+                            >
+                              <div
+                                style="transform-origin: top left; transform: scale(calc(70/0),calc((NaN - 40)/0));"
+                              >
+                                <div>
+                                  Go!
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              style="height: 3%;"
+                            />
+                          </div>
+                        </div>,
+                      }
+                    }
+                  >
+                    <div
+                      className="ui large modal transition visible active"
+                      style={
+                        Object {
+                          "height": "80vh",
+                          "marginTop": null,
+                          "width": "80vh",
+                          "willChange": "unset",
+                        }
+                      }
+                    >
+                      <MountNode
+                        className="dimmable dimmed"
+                      />
+                      <Card
+                        centered={true}
+                        className="bioblocks-component-card"
+                        style={
+                          Object {
+                            "height": "calc(80vh + 45px)",
+                            "maxWidth": "unset",
+                            "padding": "5px",
+                            "width": "80vh",
+                          }
+                        }
+                      >
+                        <div
+                          className="ui centered card bioblocks-component-card"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "height": "calc(80vh + 45px)",
+                              "maxWidth": "unset",
+                              "padding": "5px",
+                              "width": "80vh",
+                            }
+                          }
+                        >
+                          <div
+                            style={
+                              Object {
+                                "height": "6%",
+                              }
+                            }
+                          >
+                            <ComponentMenuBar
+                              componentName="Let's"
+                              height={40}
+                              iconSrc="assets/icons/spring-icon.png"
+                              isExpanded={true}
+                              menuItems={Array []}
+                              onExpandToggleCb={[Function]}
+                              opacity={0.85}
+                              width="100%"
+                            >
+                              <div
+                                onMouseEnter={[Function]}
+                                onMouseLeave={[Function]}
+                              >
+                                <Menu
+                                  secondary={true}
+                                  style={
+                                    Object {
+                                      "height": 40,
+                                      "margin": 0,
+                                    }
+                                  }
+                                  widths={2}
+                                >
+                                  <div
+                                    className="ui secondary two item menu"
+                                    style={
+                                      Object {
+                                        "height": 40,
+                                        "margin": 0,
+                                      }
+                                    }
+                                  >
+                                    <Menu
+                                      secondary={true}
+                                      widths={1}
+                                    >
+                                      <div
+                                        className="ui secondary one item menu"
+                                      >
+                                        <MenuItem
+                                          fitted="horizontally"
+                                          position="left"
+                                          style={
+                                            Object {
+                                              "margin": 0,
+                                              "padding": 0,
+                                            }
+                                          }
+                                        >
+                                          <div
+                                            className="left horizontally fitted item"
+                                            onClick={[Function]}
+                                            style={
+                                              Object {
+                                                "margin": 0,
+                                                "padding": 0,
+                                              }
+                                            }
+                                          >
+                                            <img
+                                              alt="component icon"
+                                              src="assets/icons/spring-icon.png"
+                                              style={
+                                                Object {
+                                                  "height": "32px",
+                                                  "padding": "2px",
+                                                  "width": "32px",
+                                                }
+                                              }
+                                            />
+                                            Let's
+                                          </div>
+                                        </MenuItem>
+                                      </div>
+                                    </Menu>
+                                    <Menu
+                                      secondary={true}
+                                      widths={4}
+                                    >
+                                      <div
+                                        className="ui secondary four item menu"
+                                      >
+                                        <MenuItem
+                                          fitted="horizontally"
+                                          position="right"
+                                          style={
+                                            Object {
+                                              "flexDirection": "column",
+                                            }
+                                          }
+                                        >
+                                          <div
+                                            className="right horizontally fitted item"
+                                            onClick={[Function]}
+                                            style={
+                                              Object {
+                                                "flexDirection": "column",
+                                              }
+                                            }
+                                          >
+                                            <Icon
+                                              as="i"
+                                              name="compress"
+                                              onClick={[Function]}
+                                            >
+                                              <i
+                                                aria-hidden="true"
+                                                className="compress icon"
+                                                onClick={[Function]}
+                                              />
+                                            </Icon>
+                                            <span
+                                              style={
+                                                Object {
+                                                  "fontSize": "11px",
+                                                  "visibility": "hidden",
+                                                }
+                                              }
+                                            >
+                                              Close
+                                            </span>
+                                          </div>
+                                        </MenuItem>
+                                      </div>
+                                    </Menu>
+                                  </div>
+                                </Menu>
+                              </div>
+                            </ComponentMenuBar>
+                          </div>
+                          <div
+                            style={
+                              Object {
+                                "height": "91%",
+                              }
+                            }
+                          >
+                            <div
+                              style={
+                                Object {
+                                  "transform": "scale(calc(70/0),calc((NaN - 40)/0))",
+                                  "transformOrigin": "top left",
+                                }
+                              }
+                            >
+                              <div>
+                                Go!
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            style={
+                              Object {
+                                "height": "3%",
+                              }
+                            }
+                          />
+                        </div>
+                      </Card>
+                    </div>
+                  </RefFindNode>
+                </Ref>
+              </div>
+            </RefFindNode>
+          </Ref>
+        </Portal>
+      </PortalInner>
+    </Portal>
+  </Modal>
+</ComponentCard>
+`;
+
+exports[`ComponentCard Should handle expanding a framed full page component. 1`] = `
+<ComponentCard
+  componentName="Let's"
+  dockItems={Array []}
+  frameHeight={0}
+  frameWidth={0}
+  headerHeight={40}
+  height="570px"
+  iconSrc="assets/icons/spring-icon.png"
+  isFramedComponent={true}
+  isFullPage={true}
+  menuItems={Array []}
+  padding={0}
+  showSettings={false}
+  width="525px"
+>
+  <Card
+    centered={true}
+    className="bioblocks-component-card"
+    style={
+      Object {
+        "height": "570px",
+        "maxWidth": "unset",
+        "width": "525px",
+      }
+    }
+  >
+    <div
+      className="ui centered card bioblocks-component-card"
+      onClick={[Function]}
+      style={
+        Object {
+          "height": "570px",
+          "maxWidth": "unset",
+          "width": "525px",
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "height": "6%",
+          }
+        }
+      >
+        <ComponentMenuBar
+          componentName="Let's"
+          height={40}
+          iconSrc="assets/icons/spring-icon.png"
+          isExpanded={false}
+          menuItems={Array []}
+          onExpandToggleCb={[Function]}
+          opacity={0.85}
+          width="100%"
+        >
+          <div
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <Menu
+              secondary={true}
+              style={
+                Object {
+                  "height": 40,
+                  "margin": 0,
+                }
+              }
+              widths={2}
+            >
+              <div
+                className="ui secondary two item menu"
+                style={
+                  Object {
+                    "height": 40,
+                    "margin": 0,
+                  }
+                }
+              >
+                <Menu
+                  secondary={true}
+                  widths={1}
+                >
+                  <div
+                    className="ui secondary one item menu"
+                  >
+                    <MenuItem
+                      fitted="horizontally"
+                      position="left"
+                      style={
+                        Object {
+                          "margin": 0,
+                          "padding": 0,
+                        }
+                      }
+                    >
+                      <div
+                        className="left horizontally fitted item"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "margin": 0,
+                            "padding": 0,
+                          }
+                        }
+                      >
+                        <img
+                          alt="component icon"
+                          src="assets/icons/spring-icon.png"
+                          style={
+                            Object {
+                              "height": "32px",
+                              "padding": "2px",
+                              "width": "32px",
+                            }
+                          }
+                        />
+                        Let's
+                      </div>
+                    </MenuItem>
+                  </div>
+                </Menu>
+                <Menu
+                  secondary={true}
+                  widths={4}
+                >
+                  <div
+                    className="ui secondary four item menu"
+                  >
+                    <MenuItem
+                      fitted="horizontally"
+                      position="right"
+                      style={
+                        Object {
+                          "flexDirection": "column",
+                        }
+                      }
+                    >
+                      <div
+                        className="right horizontally fitted item"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flexDirection": "column",
+                          }
+                        }
+                      >
+                        <Icon
+                          as="i"
+                          name="expand arrows alternate"
+                          onClick={[Function]}
+                        >
+                          <i
+                            aria-hidden="true"
+                            className="expand arrows alternate icon"
+                            onClick={[Function]}
+                          />
+                        </Icon>
+                        <span
+                          style={
+                            Object {
+                              "fontSize": "11px",
+                              "visibility": "hidden",
+                            }
+                          }
+                        >
+                          Expand
+                        </span>
+                      </div>
+                    </MenuItem>
+                  </div>
+                </Menu>
+              </div>
+            </Menu>
+          </div>
+        </ComponentMenuBar>
+      </div>
+      <div
+        style={
+          Object {
+            "height": "91%",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "transform": "scale(calc(515/0),calc((552 - 40)/0))",
+              "transformOrigin": "top left",
+            }
+          }
+        >
+          <div>
+            Go!
+          </div>
+        </div>
+      </div>
+      <div
+        style={
+          Object {
+            "height": "3%",
+          }
+        }
+      />
+    </div>
+  </Card>
+</ComponentCard>
+`;
+
+exports[`ComponentCard Should handle expanding a non-framed and non-full page component. 1`] = `
+<ComponentCard
+  componentName="Let's"
+  dockItems={Array []}
+  frameHeight={0}
+  frameWidth={0}
+  headerHeight={40}
+  height="570px"
+  iconSrc="assets/icons/spring-icon.png"
+  isFramedComponent={false}
+  isFullPage={false}
+  menuItems={Array []}
+  padding={0}
+  showSettings={false}
+  width="525px"
+>
+  <Modal
+    centered={true}
+    closeOnDimmerClick={true}
+    closeOnDocumentClick={false}
+    closeOnEscape={true}
+    dimmer={true}
+    eventPool="Modal"
+    onClose={[Function]}
+    open={true}
+    size="large"
+    style={
+      Object {
+        "height": "80vh",
+        "width": "80vh",
+        "willChange": "unset",
+      }
+    }
+  >
+    <Portal
+      closeOnDocumentClick={false}
+      closeOnEscape={true}
+      eventPool="Modal"
+      mountNode={
+        <body
+          class="dimmable dimmed"
+          style="overflow-y: hidden;"
+        >
+          <div
+            class="ui page modals dimmer transition visible active"
+            style="display: flex;"
+          >
+            <div
+              class="ui large modal transition visible active"
+              style="height: 80vh; width: 80vh; will-change: unset;"
+            >
+              <div
+                class="ui centered card bioblocks-component-card"
+                style="max-width: unset; padding: 5px; width: 80vh;"
+              >
+                <div
+                  style="height: 6%;"
+                >
+                  <div>
+                    <div
+                      class="ui secondary two item menu"
+                      style="margin: 0px; height: 40px;"
+                    >
+                      <div
+                        class="ui secondary one item menu"
+                      >
+                        <div
+                          class="left horizontally fitted item"
+                          style="margin: 0px; padding: 0px;"
+                        >
+                          <img
+                            alt="component icon"
+                            src="assets/icons/spring-icon.png"
+                            style="height: 32px; padding: 2px; width: 32px;"
+                          />
+                          Let's
+                        </div>
+                      </div>
+                      <div
+                        class="ui secondary four item menu"
+                      >
+                        <div
+                          class="right horizontally fitted item"
+                          style="flex-direction: column;"
+                        >
+                          <i
+                            aria-hidden="true"
+                            class="compress icon"
+                          />
+                          <span
+                            style="font-size: 11px; visibility: hidden;"
+                          >
+                            Close
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  style="height: 91%;"
+                >
+                  <div
+                    style="transform-origin: top left; transform: scale(calc(70/0),calc((NaN - 40)/0));"
+                  >
+                    <div>
+                      Go!
+                    </div>
+                  </div>
+                </div>
+                <div
+                  style="height: 3%;"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="ui page modals dimmer transition visible active"
+            style="display: flex;"
+          >
+            <div
+              class="ui large modal transition visible active"
+              style="height: 80vh; width: 80vh; will-change: unset;"
+            >
+              <div
+                class="ui centered card bioblocks-component-card"
+                style="max-width: unset; padding: 5px; width: 80vh;"
+              >
+                <div
+                  style="height: 6%;"
+                >
+                  <div>
+                    <div
+                      class="ui secondary two item menu"
+                      style="margin: 0px; height: 40px;"
+                    >
+                      <div
+                        class="ui secondary one item menu"
+                      >
+                        <div
+                          class="left horizontally fitted item"
+                          style="margin: 0px; padding: 0px;"
+                        >
+                          <img
+                            alt="component icon"
+                            src="assets/icons/spring-icon.png"
+                            style="height: 32px; padding: 2px; width: 32px;"
+                          />
+                          Let's
+                        </div>
+                      </div>
+                      <div
+                        class="ui secondary four item menu"
+                      >
+                        <div
+                          class="right horizontally fitted item"
+                          style="flex-direction: column;"
+                        >
+                          <i
+                            aria-hidden="true"
+                            class="compress icon"
+                          />
+                          <span
+                            style="font-size: 11px; visibility: hidden;"
+                          >
+                            Close
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  style="height: 91%;"
+                >
+                  <div>
+                    Go!
+                  </div>
+                </div>
+                <div
+                  style="height: 3%;"
+                />
+              </div>
+            </div>
+          </div>
+        </body>
+      }
+      onClose={[Function]}
+      onMount={[Function]}
+      onOpen={[Function]}
+      onUnmount={[Function]}
+      open={true}
+      openOnTriggerClick={true}
+    >
+      <PortalInner
+        innerRef={
+          Object {
+            "current": <div
+              class="ui page modals dimmer transition visible active"
+              style="display: flex;"
+            >
+              <div
+                class="ui large modal transition visible active"
+                style="height: 80vh; width: 80vh; will-change: unset;"
+              >
+                <div
+                  class="ui centered card bioblocks-component-card"
+                  style="max-width: unset; padding: 5px; width: 80vh;"
+                >
+                  <div
+                    style="height: 6%;"
+                  >
+                    <div>
+                      <div
+                        class="ui secondary two item menu"
+                        style="margin: 0px; height: 40px;"
+                      >
+                        <div
+                          class="ui secondary one item menu"
+                        >
+                          <div
+                            class="left horizontally fitted item"
+                            style="margin: 0px; padding: 0px;"
+                          >
+                            <img
+                              alt="component icon"
+                              src="assets/icons/spring-icon.png"
+                              style="height: 32px; padding: 2px; width: 32px;"
+                            />
+                            Let's
+                          </div>
+                        </div>
+                        <div
+                          class="ui secondary four item menu"
+                        >
+                          <div
+                            class="right horizontally fitted item"
+                            style="flex-direction: column;"
+                          >
+                            <i
+                              aria-hidden="true"
+                              class="compress icon"
+                            />
+                            <span
+                              style="font-size: 11px; visibility: hidden;"
+                            >
+                              Close
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    style="height: 91%;"
+                  >
+                    <div>
+                      Go!
+                    </div>
+                  </div>
+                  <div
+                    style="height: 3%;"
+                  />
+                </div>
+              </div>
+            </div>,
+          }
+        }
+        mountNode={
+          <body
+            class="dimmable dimmed"
+            style="overflow-y: hidden;"
+          >
+            <div
+              class="ui page modals dimmer transition visible active"
+              style="display: flex;"
+            >
+              <div
+                class="ui large modal transition visible active"
+                style="height: 80vh; width: 80vh; will-change: unset;"
+              >
+                <div
+                  class="ui centered card bioblocks-component-card"
+                  style="max-width: unset; padding: 5px; width: 80vh;"
+                >
+                  <div
+                    style="height: 6%;"
+                  >
+                    <div>
+                      <div
+                        class="ui secondary two item menu"
+                        style="margin: 0px; height: 40px;"
+                      >
+                        <div
+                          class="ui secondary one item menu"
+                        >
+                          <div
+                            class="left horizontally fitted item"
+                            style="margin: 0px; padding: 0px;"
+                          >
+                            <img
+                              alt="component icon"
+                              src="assets/icons/spring-icon.png"
+                              style="height: 32px; padding: 2px; width: 32px;"
+                            />
+                            Let's
+                          </div>
+                        </div>
+                        <div
+                          class="ui secondary four item menu"
+                        >
+                          <div
+                            class="right horizontally fitted item"
+                            style="flex-direction: column;"
+                          >
+                            <i
+                              aria-hidden="true"
+                              class="compress icon"
+                            />
+                            <span
+                              style="font-size: 11px; visibility: hidden;"
+                            >
+                              Close
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    style="height: 91%;"
+                  >
+                    <div
+                      style="transform-origin: top left; transform: scale(calc(70/0),calc((NaN - 40)/0));"
+                    >
+                      <div>
+                        Go!
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    style="height: 3%;"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="ui page modals dimmer transition visible active"
+              style="display: flex;"
+            >
+              <div
+                class="ui large modal transition visible active"
+                style="height: 80vh; width: 80vh; will-change: unset;"
+              >
+                <div
+                  class="ui centered card bioblocks-component-card"
+                  style="max-width: unset; padding: 5px; width: 80vh;"
+                >
+                  <div
+                    style="height: 6%;"
+                  >
+                    <div>
+                      <div
+                        class="ui secondary two item menu"
+                        style="margin: 0px; height: 40px;"
+                      >
+                        <div
+                          class="ui secondary one item menu"
+                        >
+                          <div
+                            class="left horizontally fitted item"
+                            style="margin: 0px; padding: 0px;"
+                          >
+                            <img
+                              alt="component icon"
+                              src="assets/icons/spring-icon.png"
+                              style="height: 32px; padding: 2px; width: 32px;"
+                            />
+                            Let's
+                          </div>
+                        </div>
+                        <div
+                          class="ui secondary four item menu"
+                        >
+                          <div
+                            class="right horizontally fitted item"
+                            style="flex-direction: column;"
+                          >
+                            <i
+                              aria-hidden="true"
+                              class="compress icon"
+                            />
+                            <span
+                              style="font-size: 11px; visibility: hidden;"
+                            >
+                              Close
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    style="height: 91%;"
+                  >
+                    <div>
+                      Go!
+                    </div>
+                  </div>
+                  <div
+                    style="height: 3%;"
+                  />
+                </div>
+              </div>
+            </div>
+          </body>
+        }
+        onMount={[Function]}
+        onUnmount={[Function]}
+      >
+        <Portal
+          containerInfo={
+            <body
+              class="dimmable dimmed"
+              style="overflow-y: hidden;"
+            >
+              <div
+                class="ui page modals dimmer transition visible active"
+                style="display: flex;"
+              >
+                <div
+                  class="ui large modal transition visible active"
+                  style="height: 80vh; width: 80vh; will-change: unset;"
+                >
+                  <div
+                    class="ui centered card bioblocks-component-card"
+                    style="max-width: unset; padding: 5px; width: 80vh;"
+                  >
+                    <div
+                      style="height: 6%;"
+                    >
+                      <div>
+                        <div
+                          class="ui secondary two item menu"
+                          style="margin: 0px; height: 40px;"
+                        >
+                          <div
+                            class="ui secondary one item menu"
+                          >
+                            <div
+                              class="left horizontally fitted item"
+                              style="margin: 0px; padding: 0px;"
+                            >
+                              <img
+                                alt="component icon"
+                                src="assets/icons/spring-icon.png"
+                                style="height: 32px; padding: 2px; width: 32px;"
+                              />
+                              Let's
+                            </div>
+                          </div>
+                          <div
+                            class="ui secondary four item menu"
+                          >
+                            <div
+                              class="right horizontally fitted item"
+                              style="flex-direction: column;"
+                            >
+                              <i
+                                aria-hidden="true"
+                                class="compress icon"
+                              />
+                              <span
+                                style="font-size: 11px; visibility: hidden;"
+                              >
+                                Close
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      style="height: 91%;"
+                    >
+                      <div
+                        style="transform-origin: top left; transform: scale(calc(70/0),calc((NaN - 40)/0));"
+                      >
+                        <div>
+                          Go!
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      style="height: 3%;"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="ui page modals dimmer transition visible active"
+                style="display: flex;"
+              >
+                <div
+                  class="ui large modal transition visible active"
+                  style="height: 80vh; width: 80vh; will-change: unset;"
+                >
+                  <div
+                    class="ui centered card bioblocks-component-card"
+                    style="max-width: unset; padding: 5px; width: 80vh;"
+                  >
+                    <div
+                      style="height: 6%;"
+                    >
+                      <div>
+                        <div
+                          class="ui secondary two item menu"
+                          style="margin: 0px; height: 40px;"
+                        >
+                          <div
+                            class="ui secondary one item menu"
+                          >
+                            <div
+                              class="left horizontally fitted item"
+                              style="margin: 0px; padding: 0px;"
+                            >
+                              <img
+                                alt="component icon"
+                                src="assets/icons/spring-icon.png"
+                                style="height: 32px; padding: 2px; width: 32px;"
+                              />
+                              Let's
+                            </div>
+                          </div>
+                          <div
+                            class="ui secondary four item menu"
+                          >
+                            <div
+                              class="right horizontally fitted item"
+                              style="flex-direction: column;"
+                            >
+                              <i
+                                aria-hidden="true"
+                                class="compress icon"
+                              />
+                              <span
+                                style="font-size: 11px; visibility: hidden;"
+                              >
+                                Close
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      style="height: 91%;"
+                    >
+                      <div>
+                        Go!
+                      </div>
+                    </div>
+                    <div
+                      style="height: 3%;"
+                    />
+                  </div>
+                </div>
+              </div>
+            </body>
+          }
+        >
+          <Ref
+            innerRef={[Function]}
+          >
+            <RefFindNode
+              innerRef={[Function]}
+            >
+              <div
+                className="ui page modals dimmer transition visible active"
+              >
+                <Ref
+                  innerRef={
+                    Object {
+                      "current": <div
+                        class="ui large modal transition visible active"
+                        style="height: 80vh; width: 80vh; will-change: unset;"
+                      >
+                        <div
+                          class="ui centered card bioblocks-component-card"
+                          style="max-width: unset; padding: 5px; width: 80vh;"
+                        >
+                          <div
+                            style="height: 6%;"
+                          >
+                            <div>
+                              <div
+                                class="ui secondary two item menu"
+                                style="margin: 0px; height: 40px;"
+                              >
+                                <div
+                                  class="ui secondary one item menu"
+                                >
+                                  <div
+                                    class="left horizontally fitted item"
+                                    style="margin: 0px; padding: 0px;"
+                                  >
+                                    <img
+                                      alt="component icon"
+                                      src="assets/icons/spring-icon.png"
+                                      style="height: 32px; padding: 2px; width: 32px;"
+                                    />
+                                    Let's
+                                  </div>
+                                </div>
+                                <div
+                                  class="ui secondary four item menu"
+                                >
+                                  <div
+                                    class="right horizontally fitted item"
+                                    style="flex-direction: column;"
+                                  >
+                                    <i
+                                      aria-hidden="true"
+                                      class="compress icon"
+                                    />
+                                    <span
+                                      style="font-size: 11px; visibility: hidden;"
+                                    >
+                                      Close
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            style="height: 91%;"
+                          >
+                            <div>
+                              Go!
+                            </div>
+                          </div>
+                          <div
+                            style="height: 3%;"
+                          />
+                        </div>
+                      </div>,
+                    }
+                  }
+                >
+                  <RefFindNode
+                    innerRef={
+                      Object {
+                        "current": <div
+                          class="ui large modal transition visible active"
+                          style="height: 80vh; width: 80vh; will-change: unset;"
+                        >
+                          <div
+                            class="ui centered card bioblocks-component-card"
+                            style="max-width: unset; padding: 5px; width: 80vh;"
+                          >
+                            <div
+                              style="height: 6%;"
+                            >
+                              <div>
+                                <div
+                                  class="ui secondary two item menu"
+                                  style="margin: 0px; height: 40px;"
+                                >
+                                  <div
+                                    class="ui secondary one item menu"
+                                  >
+                                    <div
+                                      class="left horizontally fitted item"
+                                      style="margin: 0px; padding: 0px;"
+                                    >
+                                      <img
+                                        alt="component icon"
+                                        src="assets/icons/spring-icon.png"
+                                        style="height: 32px; padding: 2px; width: 32px;"
+                                      />
+                                      Let's
+                                    </div>
+                                  </div>
+                                  <div
+                                    class="ui secondary four item menu"
+                                  >
+                                    <div
+                                      class="right horizontally fitted item"
+                                      style="flex-direction: column;"
+                                    >
+                                      <i
+                                        aria-hidden="true"
+                                        class="compress icon"
+                                      />
+                                      <span
+                                        style="font-size: 11px; visibility: hidden;"
+                                      >
+                                        Close
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              style="height: 91%;"
+                            >
+                              <div>
+                                Go!
+                              </div>
+                            </div>
+                            <div
+                              style="height: 3%;"
+                            />
+                          </div>
+                        </div>,
+                      }
+                    }
+                  >
+                    <div
+                      className="ui large modal transition visible active"
+                      style={
+                        Object {
+                          "height": "80vh",
+                          "marginTop": null,
+                          "width": "80vh",
+                          "willChange": "unset",
+                        }
+                      }
+                    >
+                      <MountNode
+                        className="dimmable dimmed"
+                      />
+                      <Card
+                        centered={true}
+                        className="bioblocks-component-card"
+                        style={
+                          Object {
+                            "height": "calc(80vh + 45px)",
+                            "maxWidth": "unset",
+                            "padding": "5px",
+                            "width": "80vh",
+                          }
+                        }
+                      >
+                        <div
+                          className="ui centered card bioblocks-component-card"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "height": "calc(80vh + 45px)",
+                              "maxWidth": "unset",
+                              "padding": "5px",
+                              "width": "80vh",
+                            }
+                          }
+                        >
+                          <div
+                            style={
+                              Object {
+                                "height": "6%",
+                              }
+                            }
+                          >
+                            <ComponentMenuBar
+                              componentName="Let's"
+                              height={40}
+                              iconSrc="assets/icons/spring-icon.png"
+                              isExpanded={true}
+                              menuItems={Array []}
+                              onExpandToggleCb={[Function]}
+                              opacity={0.85}
+                              width="100%"
+                            >
+                              <div
+                                onMouseEnter={[Function]}
+                                onMouseLeave={[Function]}
+                              >
+                                <Menu
+                                  secondary={true}
+                                  style={
+                                    Object {
+                                      "height": 40,
+                                      "margin": 0,
+                                    }
+                                  }
+                                  widths={2}
+                                >
+                                  <div
+                                    className="ui secondary two item menu"
+                                    style={
+                                      Object {
+                                        "height": 40,
+                                        "margin": 0,
+                                      }
+                                    }
+                                  >
+                                    <Menu
+                                      secondary={true}
+                                      widths={1}
+                                    >
+                                      <div
+                                        className="ui secondary one item menu"
+                                      >
+                                        <MenuItem
+                                          fitted="horizontally"
+                                          position="left"
+                                          style={
+                                            Object {
+                                              "margin": 0,
+                                              "padding": 0,
+                                            }
+                                          }
+                                        >
+                                          <div
+                                            className="left horizontally fitted item"
+                                            onClick={[Function]}
+                                            style={
+                                              Object {
+                                                "margin": 0,
+                                                "padding": 0,
+                                              }
+                                            }
+                                          >
+                                            <img
+                                              alt="component icon"
+                                              src="assets/icons/spring-icon.png"
+                                              style={
+                                                Object {
+                                                  "height": "32px",
+                                                  "padding": "2px",
+                                                  "width": "32px",
+                                                }
+                                              }
+                                            />
+                                            Let's
+                                          </div>
+                                        </MenuItem>
+                                      </div>
+                                    </Menu>
+                                    <Menu
+                                      secondary={true}
+                                      widths={4}
+                                    >
+                                      <div
+                                        className="ui secondary four item menu"
+                                      >
+                                        <MenuItem
+                                          fitted="horizontally"
+                                          position="right"
+                                          style={
+                                            Object {
+                                              "flexDirection": "column",
+                                            }
+                                          }
+                                        >
+                                          <div
+                                            className="right horizontally fitted item"
+                                            onClick={[Function]}
+                                            style={
+                                              Object {
+                                                "flexDirection": "column",
+                                              }
+                                            }
+                                          >
+                                            <Icon
+                                              as="i"
+                                              name="compress"
+                                              onClick={[Function]}
+                                            >
+                                              <i
+                                                aria-hidden="true"
+                                                className="compress icon"
+                                                onClick={[Function]}
+                                              />
+                                            </Icon>
+                                            <span
+                                              style={
+                                                Object {
+                                                  "fontSize": "11px",
+                                                  "visibility": "hidden",
+                                                }
+                                              }
+                                            >
+                                              Close
+                                            </span>
+                                          </div>
+                                        </MenuItem>
+                                      </div>
+                                    </Menu>
+                                  </div>
+                                </Menu>
+                              </div>
+                            </ComponentMenuBar>
+                          </div>
+                          <div
+                            style={
+                              Object {
+                                "height": "91%",
+                              }
+                            }
+                          >
+                            <div>
+                              Go!
+                            </div>
+                          </div>
+                          <div
+                            style={
+                              Object {
+                                "height": "3%",
+                              }
+                            }
+                          />
+                        </div>
+                      </Card>
+                    </div>
+                  </RefFindNode>
+                </Ref>
+              </div>
+            </RefFindNode>
+          </Ref>
+        </Portal>
+      </PortalInner>
+    </Portal>
+  </Modal>
+</ComponentCard>
+`;
+
+exports[`ComponentCard Should handle expanding a non-framed full page component. 1`] = `
+<ComponentCard
+  componentName="Let's"
+  dockItems={Array []}
+  frameHeight={0}
+  frameWidth={0}
+  headerHeight={40}
+  height="570px"
+  iconSrc="assets/icons/spring-icon.png"
+  isFramedComponent={false}
+  isFullPage={true}
+  menuItems={Array []}
+  padding={0}
+  showSettings={false}
+  width="525px"
+>
+  <Card
+    centered={true}
+    className="bioblocks-component-card"
+    style={
+      Object {
+        "height": "570px",
+        "maxWidth": "unset",
+        "width": "525px",
+      }
+    }
+  >
+    <div
+      className="ui centered card bioblocks-component-card"
+      onClick={[Function]}
+      style={
+        Object {
+          "height": "570px",
+          "maxWidth": "unset",
+          "width": "525px",
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "height": "6%",
+          }
+        }
+      >
+        <ComponentMenuBar
+          componentName="Let's"
+          height={40}
+          iconSrc="assets/icons/spring-icon.png"
+          isExpanded={false}
+          menuItems={Array []}
+          onExpandToggleCb={[Function]}
+          opacity={0.85}
+          width="100%"
+        >
+          <div
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <Menu
+              secondary={true}
+              style={
+                Object {
+                  "height": 40,
+                  "margin": 0,
+                }
+              }
+              widths={2}
+            >
+              <div
+                className="ui secondary two item menu"
+                style={
+                  Object {
+                    "height": 40,
+                    "margin": 0,
+                  }
+                }
+              >
+                <Menu
+                  secondary={true}
+                  widths={1}
+                >
+                  <div
+                    className="ui secondary one item menu"
+                  >
+                    <MenuItem
+                      fitted="horizontally"
+                      position="left"
+                      style={
+                        Object {
+                          "margin": 0,
+                          "padding": 0,
+                        }
+                      }
+                    >
+                      <div
+                        className="left horizontally fitted item"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "margin": 0,
+                            "padding": 0,
+                          }
+                        }
+                      >
+                        <img
+                          alt="component icon"
+                          src="assets/icons/spring-icon.png"
+                          style={
+                            Object {
+                              "height": "32px",
+                              "padding": "2px",
+                              "width": "32px",
+                            }
+                          }
+                        />
+                        Let's
+                      </div>
+                    </MenuItem>
+                  </div>
+                </Menu>
+                <Menu
+                  secondary={true}
+                  widths={4}
+                >
+                  <div
+                    className="ui secondary four item menu"
+                  >
+                    <MenuItem
+                      fitted="horizontally"
+                      position="right"
+                      style={
+                        Object {
+                          "flexDirection": "column",
+                        }
+                      }
+                    >
+                      <div
+                        className="right horizontally fitted item"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flexDirection": "column",
+                          }
+                        }
+                      >
+                        <Icon
+                          as="i"
+                          name="expand arrows alternate"
+                          onClick={[Function]}
+                        >
+                          <i
+                            aria-hidden="true"
+                            className="expand arrows alternate icon"
+                            onClick={[Function]}
+                          />
+                        </Icon>
+                        <span
+                          style={
+                            Object {
+                              "fontSize": "11px",
+                              "visibility": "hidden",
+                            }
+                          }
+                        >
+                          Expand
+                        </span>
+                      </div>
+                    </MenuItem>
+                  </div>
+                </Menu>
+              </div>
+            </Menu>
+          </div>
+        </ComponentMenuBar>
+      </div>
+      <div
+        style={
+          Object {
+            "height": "91%",
+          }
+        }
+      >
+        <div>
+          Go!
+        </div>
+      </div>
+      <div
+        style={
+          Object {
+            "height": "3%",
+          }
+        }
+      />
+    </div>
+  </Card>
+</ComponentCard>
+`;
+
 exports[`ComponentCard Should handle resizing a framed component. 1`] = `
 <ComponentCard
   componentName="Let's"

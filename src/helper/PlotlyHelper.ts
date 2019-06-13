@@ -73,7 +73,7 @@ const deriveScatterText = (mirrorPoints: boolean, textValues: string[]) => {
         ...textValues.map(
           // Given a coordinate '(x, y)', create '(y, x)' - needed because we have custom hover labels.
           coord => {
-            if (coord.includes('<br>')) {
+            if (coord.includes('<br>') && coord.includes('(')) {
               const breakIndex = coord.indexOf('<br>');
 
               return `(${coord
@@ -81,12 +81,17 @@ const deriveScatterText = (mirrorPoints: boolean, textValues: string[]) => {
                 .split(', ')
                 .reverse()
                 .join(', ')})${coord.substring(breakIndex)}`;
-            } else {
+            } else if (coord.includes('(')) {
               return `(${coord
                 .substr(1, coord.length - 2)
                 .split(', ')
                 .reverse()
                 .join(', ')})`;
+            } else {
+              return `${coord
+                .split(', ')
+                .reverse()
+                .join(', ')}`;
             }
           },
         ),
