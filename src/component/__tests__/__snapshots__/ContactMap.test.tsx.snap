@@ -40,9 +40,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
                 "options": Array [
                   <Icon
                     as="i"
-                    name="circle"
+                    name="minus"
                     onClick={[Function]}
-                    size="mini"
+                    size="small"
                     style={
                       Object {
                         "color": "rgb(12,50,102)",
@@ -52,8 +52,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
                   <Icon
                     as="i"
                     name="circle"
-                    onClick={[Function]}
-                    size="tiny"
+                    size="small"
                     style={
                       Object {
                         "color": "rgb(12,50,102)",
@@ -62,7 +61,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
                   />,
                   <Icon
                     as="i"
-                    name="circle"
+                    name="plus"
                     onClick={[Function]}
                     size="small"
                     style={
@@ -72,6 +71,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
                     }
                   />,
                 ],
+                "style": Object {
+                  "padding": ".5em",
+                },
                 "type": "BUTTON_GROUP",
               },
               Object {
@@ -80,9 +82,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
                 "options": Array [
                   <Icon
                     as="i"
-                    name="circle"
+                    name="minus"
                     onClick={[Function]}
-                    size="mini"
+                    size="small"
                     style={
                       Object {
                         "color": "#ff8800",
@@ -92,8 +94,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
                   <Icon
                     as="i"
                     name="circle"
-                    onClick={[Function]}
-                    size="tiny"
+                    size="small"
                     style={
                       Object {
                         "color": "#ff8800",
@@ -102,7 +103,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
                   />,
                   <Icon
                     as="i"
-                    name="circle"
+                    name="plus"
                     onClick={[Function]}
                     size="small"
                     style={
@@ -112,6 +113,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
                     }
                   />,
                 ],
+                "style": Object {
+                  "padding": ".5em",
+                },
                 "type": "BUTTON_GROUP",
               },
             ],
@@ -311,9 +315,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
                 "options": Array [
                   <Icon
                     as="i"
-                    name="circle"
+                    name="minus"
                     onClick={[Function]}
-                    size="mini"
+                    size="small"
                     style={
                       Object {
                         "color": "rgb(12,50,102)",
@@ -323,8 +327,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
                   <Icon
                     as="i"
                     name="circle"
-                    onClick={[Function]}
-                    size="tiny"
+                    size="small"
                     style={
                       Object {
                         "color": "rgb(12,50,102)",
@@ -333,7 +336,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
                   />,
                   <Icon
                     as="i"
-                    name="circle"
+                    name="plus"
                     onClick={[Function]}
                     size="small"
                     style={
@@ -343,6 +346,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
                     }
                   />,
                 ],
+                "style": Object {
+                  "padding": ".5em",
+                },
                 "type": "BUTTON_GROUP",
               },
               Object {
@@ -351,9 +357,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
                 "options": Array [
                   <Icon
                     as="i"
-                    name="circle"
+                    name="minus"
                     onClick={[Function]}
-                    size="mini"
+                    size="small"
                     style={
                       Object {
                         "color": "#ff8800",
@@ -363,8 +369,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
                   <Icon
                     as="i"
                     name="circle"
-                    onClick={[Function]}
-                    size="tiny"
+                    size="small"
                     style={
                       Object {
                         "color": "#ff8800",
@@ -373,7 +378,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
                   />,
                   <Icon
                     as="i"
-                    name="circle"
+                    name="plus"
                     onClick={[Function]}
                     size="small"
                     style={
@@ -383,6 +388,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
                     }
                   />,
                 ],
+                "style": Object {
+                  "padding": ".5em",
+                },
                 "type": "BUTTON_GROUP",
               },
             ],
@@ -574,9 +582,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
                 "options": Array [
                   <Icon
                     as="i"
-                    name="circle"
+                    name="minus"
                     onClick={[Function]}
-                    size="mini"
+                    size="small"
                     style={
                       Object {
                         "color": "rgb(12,50,102)",
@@ -586,8 +594,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
                   <Icon
                     as="i"
                     name="circle"
-                    onClick={[Function]}
-                    size="tiny"
+                    size="small"
                     style={
                       Object {
                         "color": "rgb(12,50,102)",
@@ -596,7 +603,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
                   />,
                   <Icon
                     as="i"
-                    name="circle"
+                    name="plus"
                     onClick={[Function]}
                     size="small"
                     style={
@@ -606,6 +613,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
                     }
                   />,
                 ],
+                "style": Object {
+                  "padding": ".5em",
+                },
                 "type": "BUTTON_GROUP",
               },
               Object {
@@ -614,9 +624,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
                 "options": Array [
                   <Icon
                     as="i"
-                    name="circle"
+                    name="minus"
                     onClick={[Function]}
-                    size="mini"
+                    size="small"
                     style={
                       Object {
                         "color": "#ff8800",
@@ -626,8 +636,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
                   <Icon
                     as="i"
                     name="circle"
-                    onClick={[Function]}
-                    size="tiny"
+                    size="small"
                     style={
                       Object {
                         "color": "#ff8800",
@@ -636,7 +645,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
                   />,
                   <Icon
                     as="i"
-                    name="circle"
+                    name="plus"
                     onClick={[Function]}
                     size="small"
                     style={
@@ -646,6 +655,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
                     }
                   />,
                 ],
+                "style": Object {
+                  "padding": ".5em",
+                },
                 "type": "BUTTON_GROUP",
               },
             ],
@@ -822,9 +834,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
                 "options": Array [
                   <Icon
                     as="i"
-                    name="circle"
+                    name="minus"
                     onClick={[Function]}
-                    size="mini"
+                    size="small"
                     style={
                       Object {
                         "color": "rgb(12,50,102)",
@@ -834,8 +846,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
                   <Icon
                     as="i"
                     name="circle"
-                    onClick={[Function]}
-                    size="tiny"
+                    size="small"
                     style={
                       Object {
                         "color": "rgb(12,50,102)",
@@ -844,7 +855,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
                   />,
                   <Icon
                     as="i"
-                    name="circle"
+                    name="plus"
                     onClick={[Function]}
                     size="small"
                     style={
@@ -854,6 +865,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
                     }
                   />,
                 ],
+                "style": Object {
+                  "padding": ".5em",
+                },
                 "type": "BUTTON_GROUP",
               },
               Object {
@@ -862,9 +876,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
                 "options": Array [
                   <Icon
                     as="i"
-                    name="circle"
+                    name="minus"
                     onClick={[Function]}
-                    size="mini"
+                    size="small"
                     style={
                       Object {
                         "color": "#ff8800",
@@ -874,8 +888,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
                   <Icon
                     as="i"
                     name="circle"
-                    onClick={[Function]}
-                    size="tiny"
+                    size="small"
                     style={
                       Object {
                         "color": "#ff8800",
@@ -884,7 +897,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
                   />,
                   <Icon
                     as="i"
-                    name="circle"
+                    name="plus"
                     onClick={[Function]}
                     size="small"
                     style={
@@ -894,6 +907,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
                     }
                   />,
                 ],
+                "style": Object {
+                  "padding": ".5em",
+                },
                 "type": "BUTTON_GROUP",
               },
             ],
@@ -1070,9 +1086,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
                 "options": Array [
                   <Icon
                     as="i"
-                    name="circle"
+                    name="minus"
                     onClick={[Function]}
-                    size="mini"
+                    size="small"
                     style={
                       Object {
                         "color": "rgb(12,50,102)",
@@ -1082,8 +1098,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
                   <Icon
                     as="i"
                     name="circle"
-                    onClick={[Function]}
-                    size="tiny"
+                    size="small"
                     style={
                       Object {
                         "color": "rgb(12,50,102)",
@@ -1092,7 +1107,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
                   />,
                   <Icon
                     as="i"
-                    name="circle"
+                    name="plus"
                     onClick={[Function]}
                     size="small"
                     style={
@@ -1102,6 +1117,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
                     }
                   />,
                 ],
+                "style": Object {
+                  "padding": ".5em",
+                },
                 "type": "BUTTON_GROUP",
               },
               Object {
@@ -1110,9 +1128,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
                 "options": Array [
                   <Icon
                     as="i"
-                    name="circle"
+                    name="minus"
                     onClick={[Function]}
-                    size="mini"
+                    size="small"
                     style={
                       Object {
                         "color": "#ff8800",
@@ -1122,8 +1140,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
                   <Icon
                     as="i"
                     name="circle"
-                    onClick={[Function]}
-                    size="tiny"
+                    size="small"
                     style={
                       Object {
                         "color": "#ff8800",
@@ -1132,7 +1149,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
                   />,
                   <Icon
                     as="i"
-                    name="circle"
+                    name="plus"
                     onClick={[Function]}
                     size="small"
                     style={
@@ -1142,6 +1159,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
                     }
                   />,
                 ],
+                "style": Object {
+                  "padding": ".5em",
+                },
                 "type": "BUTTON_GROUP",
               },
             ],
@@ -1308,9 +1328,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
                 "options": Array [
                   <Icon
                     as="i"
-                    name="circle"
+                    name="minus"
                     onClick={[Function]}
-                    size="mini"
+                    size="small"
                     style={
                       Object {
                         "color": "rgb(12,50,102)",
@@ -1320,8 +1340,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
                   <Icon
                     as="i"
                     name="circle"
-                    onClick={[Function]}
-                    size="tiny"
+                    size="small"
                     style={
                       Object {
                         "color": "rgb(12,50,102)",
@@ -1330,7 +1349,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
                   />,
                   <Icon
                     as="i"
-                    name="circle"
+                    name="plus"
                     onClick={[Function]}
                     size="small"
                     style={
@@ -1340,6 +1359,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
                     }
                   />,
                 ],
+                "style": Object {
+                  "padding": ".5em",
+                },
                 "type": "BUTTON_GROUP",
               },
               Object {
@@ -1348,9 +1370,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
                 "options": Array [
                   <Icon
                     as="i"
-                    name="circle"
+                    name="minus"
                     onClick={[Function]}
-                    size="mini"
+                    size="small"
                     style={
                       Object {
                         "color": "#ff8800",
@@ -1360,8 +1382,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
                   <Icon
                     as="i"
                     name="circle"
-                    onClick={[Function]}
-                    size="tiny"
+                    size="small"
                     style={
                       Object {
                         "color": "#ff8800",
@@ -1370,7 +1391,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
                   />,
                   <Icon
                     as="i"
-                    name="circle"
+                    name="plus"
                     onClick={[Function]}
                     size="small"
                     style={
@@ -1380,6 +1401,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
                     }
                   />,
                 ],
+                "style": Object {
+                  "padding": ".5em",
+                },
                 "type": "BUTTON_GROUP",
               },
             ],
@@ -1546,9 +1570,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                 "options": Array [
                   <Icon
                     as="i"
-                    name="circle"
+                    name="minus"
                     onClick={[Function]}
-                    size="mini"
+                    size="small"
                     style={
                       Object {
                         "color": "rgb(12,50,102)",
@@ -1558,8 +1582,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                   <Icon
                     as="i"
                     name="circle"
-                    onClick={[Function]}
-                    size="tiny"
+                    size="small"
                     style={
                       Object {
                         "color": "rgb(12,50,102)",
@@ -1568,7 +1591,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                   />,
                   <Icon
                     as="i"
-                    name="circle"
+                    name="plus"
                     onClick={[Function]}
                     size="small"
                     style={
@@ -1578,6 +1601,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                     }
                   />,
                 ],
+                "style": Object {
+                  "padding": ".5em",
+                },
                 "type": "BUTTON_GROUP",
               },
               Object {
@@ -1586,9 +1612,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                 "options": Array [
                   <Icon
                     as="i"
-                    name="circle"
+                    name="minus"
                     onClick={[Function]}
-                    size="mini"
+                    size="small"
                     style={
                       Object {
                         "color": "#ff8800",
@@ -1598,8 +1624,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                   <Icon
                     as="i"
                     name="circle"
-                    onClick={[Function]}
-                    size="tiny"
+                    size="small"
                     style={
                       Object {
                         "color": "#ff8800",
@@ -1608,7 +1633,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                   />,
                   <Icon
                     as="i"
-                    name="circle"
+                    name="plus"
                     onClick={[Function]}
                     size="small"
                     style={
@@ -1618,6 +1643,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                     }
                   />,
                 ],
+                "style": Object {
+                  "padding": ".5em",
+                },
                 "type": "BUTTON_GROUP",
               },
             ],
@@ -1817,9 +1845,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                 "options": Array [
                   <Icon
                     as="i"
-                    name="circle"
+                    name="minus"
                     onClick={[Function]}
-                    size="mini"
+                    size="small"
                     style={
                       Object {
                         "color": "rgb(12,50,102)",
@@ -1829,8 +1857,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                   <Icon
                     as="i"
                     name="circle"
-                    onClick={[Function]}
-                    size="tiny"
+                    size="small"
                     style={
                       Object {
                         "color": "rgb(12,50,102)",
@@ -1839,7 +1866,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                   />,
                   <Icon
                     as="i"
-                    name="circle"
+                    name="plus"
                     onClick={[Function]}
                     size="small"
                     style={
@@ -1849,6 +1876,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                     }
                   />,
                 ],
+                "style": Object {
+                  "padding": ".5em",
+                },
                 "type": "BUTTON_GROUP",
               },
               Object {
@@ -1857,9 +1887,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                 "options": Array [
                   <Icon
                     as="i"
-                    name="circle"
+                    name="minus"
                     onClick={[Function]}
-                    size="mini"
+                    size="small"
                     style={
                       Object {
                         "color": "#ff8800",
@@ -1869,8 +1899,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                   <Icon
                     as="i"
                     name="circle"
-                    onClick={[Function]}
-                    size="tiny"
+                    size="small"
                     style={
                       Object {
                         "color": "#ff8800",
@@ -1879,7 +1908,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                   />,
                   <Icon
                     as="i"
-                    name="circle"
+                    name="plus"
                     onClick={[Function]}
                     size="small"
                     style={
@@ -1889,6 +1918,9 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                     }
                   />,
                 ],
+                "style": Object {
+                  "padding": ".5em",
+                },
                 "type": "BUTTON_GROUP",
               },
             ],
@@ -2557,9 +2589,9 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   "options": Array [
                     <Icon
                       as="i"
-                      name="circle"
+                      name="minus"
                       onClick={[Function]}
-                      size="mini"
+                      size="small"
                       style={
                         Object {
                           "color": "rgb(12,50,102)",
@@ -2569,8 +2601,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                     <Icon
                       as="i"
                       name="circle"
-                      onClick={[Function]}
-                      size="tiny"
+                      size="small"
                       style={
                         Object {
                           "color": "rgb(12,50,102)",
@@ -2579,7 +2610,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                     />,
                     <Icon
                       as="i"
-                      name="circle"
+                      name="plus"
                       onClick={[Function]}
                       size="small"
                       style={
@@ -2589,6 +2620,9 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       }
                     />,
                   ],
+                  "style": Object {
+                    "padding": ".5em",
+                  },
                   "type": "BUTTON_GROUP",
                 },
                 Object {
@@ -2597,9 +2631,9 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   "options": Array [
                     <Icon
                       as="i"
-                      name="circle"
+                      name="minus"
                       onClick={[Function]}
-                      size="mini"
+                      size="small"
                       style={
                         Object {
                           "color": "#ff8800",
@@ -2609,8 +2643,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                     <Icon
                       as="i"
                       name="circle"
-                      onClick={[Function]}
-                      size="tiny"
+                      size="small"
                       style={
                         Object {
                           "color": "#ff8800",
@@ -2619,7 +2652,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                     />,
                     <Icon
                       as="i"
-                      name="circle"
+                      name="plus"
                       onClick={[Function]}
                       size="small"
                       style={
@@ -2629,6 +2662,9 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       }
                     />,
                   ],
+                  "style": Object {
+                    "padding": ".5em",
+                  },
                   "type": "BUTTON_GROUP",
                 },
               ],
@@ -2699,9 +2735,9 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                           "options": Array [
                             <Icon
                               as="i"
-                              name="circle"
+                              name="minus"
                               onClick={[Function]}
-                              size="mini"
+                              size="small"
                               style={
                                 Object {
                                   "color": "rgb(12,50,102)",
@@ -2711,8 +2747,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                             <Icon
                               as="i"
                               name="circle"
-                              onClick={[Function]}
-                              size="tiny"
+                              size="small"
                               style={
                                 Object {
                                   "color": "rgb(12,50,102)",
@@ -2721,7 +2756,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                             />,
                             <Icon
                               as="i"
-                              name="circle"
+                              name="plus"
                               onClick={[Function]}
                               size="small"
                               style={
@@ -2731,6 +2766,9 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                               }
                             />,
                           ],
+                          "style": Object {
+                            "padding": ".5em",
+                          },
                           "type": "BUTTON_GROUP",
                         },
                         Object {
@@ -2739,9 +2777,9 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                           "options": Array [
                             <Icon
                               as="i"
-                              name="circle"
+                              name="minus"
                               onClick={[Function]}
-                              size="mini"
+                              size="small"
                               style={
                                 Object {
                                   "color": "#ff8800",
@@ -2751,8 +2789,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                             <Icon
                               as="i"
                               name="circle"
-                              onClick={[Function]}
-                              size="tiny"
+                              size="small"
                               style={
                                 Object {
                                   "color": "#ff8800",
@@ -2761,7 +2798,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                             />,
                             <Icon
                               as="i"
-                              name="circle"
+                              name="plus"
                               onClick={[Function]}
                               size="small"
                               style={
@@ -2771,6 +2808,9 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                               }
                             />,
                           ],
+                          "style": Object {
+                            "padding": ".5em",
+                          },
                           "type": "BUTTON_GROUP",
                         },
                       ],

@@ -368,7 +368,7 @@ exports[`ComponentMenuBar Should render a Button Group menu item. 1`] = `
                         }
                       >
                         <GridRow
-                          columns={15}
+                          columns={2}
                         >
                           <GridColumn
                             width={11}
@@ -376,12 +376,9 @@ exports[`ComponentMenuBar Should render a Button Group menu item. 1`] = `
                             Rye
                           </GridColumn>
                           <GridColumn
-                            width={4}
+                            width={5}
                           >
-                            <ButtonGroup
-                              floated="right"
-                              fluid={true}
-                            >
+                            <ButtonGroup>
                               <Button
                                 as="button"
                                 basic={true}
@@ -912,154 +909,6 @@ exports[`ComponentMenuBar Should render a Checkbox menu item. 1`] = `
 `;
 
 exports[`ComponentMenuBar Should render a Label menu item. 1`] = `
-<div
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
->
-  <Menu
-    secondary={true}
-    style={
-      Object {
-        "height": "100%",
-        "margin": 0,
-      }
-    }
-    widths={2}
-  >
-    <Menu
-      secondary={true}
-      widths={1}
-    >
-      <MenuItem
-        fitted="horizontally"
-        position="left"
-        style={
-          Object {
-            "margin": 0,
-            "padding": 0,
-          }
-        }
-      >
-        The Boxer
-      </MenuItem>
-    </Menu>
-    <Menu
-      secondary={true}
-      widths={4}
-    >
-      <MenuItem
-        fitted="horizontally"
-        key="The Boxer-menu-item-0"
-        position="right"
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
-      >
-        <Popup
-          closeOnPortalMouseLeave={false}
-          closeOnTriggerClick={true}
-          closeOnTriggerMouseLeave={false}
-          disabled={false}
-          hoverable={false}
-          keepInViewPort={true}
-          on="hover"
-          openOnTriggerClick={true}
-          openOnTriggerFocus={false}
-          openOnTriggerMouseEnter={false}
-          position="bottom left"
-          style={
-            Object {
-              "opacity": 0.85,
-            }
-          }
-          trigger={
-            <Icon
-              as="i"
-              name="setting"
-            />
-          }
-          wide={true}
-        >
-          <ConfigAccordion
-            allowMultipleOpen={false}
-            configs={
-              Array [
-                Object {
-                  "Catcher": Array [
-                    <GridRow
-                      columns={1}
-                      style={
-                        Object {
-                          "padding": "5px 0",
-                          "width": "100%",
-                        }
-                      }
-                    >
-                      <Label
-                        basic={true}
-                        color="orange"
-                      >
-                        Rye
-                      </Label>
-                    </GridRow>,
-                  ],
-                },
-              ]
-            }
-            gridStyle={
-              Object {
-                "marginTop": 0,
-                "maxHeight": "350px",
-                "overflow": "auto",
-                "zIndex": 3,
-              }
-            }
-            title="Config"
-          />
-        </Popup>
-        <span
-          style={
-            Object {
-              "fontSize": "11px",
-              "visibility": "hidden",
-            }
-          }
-        >
-          A Popup
-        </span>
-      </MenuItem>
-      <MenuItem
-        fitted="horizontally"
-        position="right"
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
-      >
-        <Icon
-          as="i"
-          name="expand arrows alternate"
-        />
-        <span
-          style={
-            Object {
-              "fontSize": "11px",
-              "visibility": "hidden",
-            }
-          }
-        >
-          Expand
-        </span>
-      </MenuItem>
-    </Menu>
-  </Menu>
-</div>
-`;
-
-exports[`ComponentMenuBar Should render a Label menu item. 2`] = `
 <div
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}

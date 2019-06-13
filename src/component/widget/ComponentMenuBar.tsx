@@ -164,10 +164,10 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
   protected renderConfigurationButtonGroup(config: ButtonGroupWidgetConfig, id: string) {
     return (
       <Grid padded={true} style={{ padding: 'initial 0' }}>
-        <Grid.Row columns={15}>
+        <Grid.Row columns={2}>
           <Grid.Column width={11}>{config.name}</Grid.Column>
-          <Grid.Column width={4}>
-            <Button.Group floated={'right'} fluid={true}>
+          <Grid.Column width={5}>
+            <Button.Group>
               {config.options.map((singleConfig, index) => (
                 <Button icon={singleConfig} key={`${id}-${index}`} style={config.style} basic={true} compact={true} />
               ))}
