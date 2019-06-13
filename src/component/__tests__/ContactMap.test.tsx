@@ -350,6 +350,22 @@ describe('ContactMap', () => {
       wrapper.update();
       expect(onClearResidueSpy).toHaveBeenCalledTimes(0);
     });
+
+    it('Should invoke callback for clearing all selections when clicked.', async () => {
+      const mocks = [jest.fn(), jest.fn(), jest.fn()];
+      const wrapper = await getAsyncMountedComponent(
+        <ContactMapClass
+          data={sampleData}
+          removeAllLockedResiduePairs={mocks[0]}
+          removeAllSelectedSecondaryStructures={mocks[1]}
+          removeHoveredResidues={mocks[2]}
+        />,
+      );
+      wrapper.find('a[children="Clear Selections"]').simulate('click');
+      mocks.forEach(mock => {
+        expect(mock).toHaveBeenCalledTimes(1);
+      });
+    });
   });
 
   describe('Configuration', () => {

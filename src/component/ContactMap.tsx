@@ -54,6 +54,7 @@ export interface IContactMapProps {
   addHoveredSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
   addSelectedSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
   removeAllLockedResiduePairs(): void;
+  removeAllSelectedSecondaryStructures(): void;
   removeSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
   removeHoveredResidues(): void;
   removeHoveredSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
@@ -88,6 +89,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     lockedResiduePairs: {},
     observedColor: '#0000ff',
     removeAllLockedResiduePairs: EMPTY_FUNCTION,
+    removeAllSelectedSecondaryStructures: EMPTY_FUNCTION,
     removeHoveredResidues: EMPTY_FUNCTION,
     removeHoveredSecondaryStructure: EMPTY_FUNCTION,
     removeSecondaryStructure: EMPTY_FUNCTION,
@@ -240,6 +242,8 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     {
       onClick: () => {
         this.props.removeAllLockedResiduePairs();
+        this.props.removeAllSelectedSecondaryStructures();
+        this.props.removeHoveredResidues();
       },
       text: 'Clear Selections',
     },
@@ -493,6 +497,7 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
       addHoveredSecondaryStructure: createContainerActions('secondaryStructure/hovered').add,
       addSelectedSecondaryStructure: createContainerActions('secondaryStructure/selected').add,
       removeAllLockedResiduePairs: createResiduePairActions().locked.clear,
+      removeAllSelectedSecondaryStructures: createContainerActions('secondaryStructure/selected').clear,
       removeHoveredResidues: createResiduePairActions().hovered.clear,
       removeHoveredSecondaryStructure: createContainerActions('secondaryStructure/hovered').remove,
       removeSecondaryStructure: createContainerActions('secondaryStructure/selected').remove,
