@@ -398,7 +398,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     const reps: NGL.StructureRepresentationType[] = ['default', 'spacefill', 'backbone', 'cartoon', 'surface', 'tube'];
 
     return {
-      Representations: [
+      'Structure Representations': [
         {
           current: capitalizeFirstLetter(this.state.activeRepresentations.predicted.structType),
           name: 'Predicted Structure Representation',
@@ -446,7 +446,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     const { isDistRepEnabled, isMovePickEnabled } = this.state;
 
     return {
-      Viewer: [
+      'View Options': [
         {
           currentOption: isDistRepEnabled ? 'on' : 'off',
           name: 'Distance Representation',

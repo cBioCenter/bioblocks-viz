@@ -406,7 +406,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                       Object {
                         "component": Object {
                           "configs": Object {
-                            "Representations": Array [
+                            "Structure Representations": Array [
                               Object {
                                 "current": "Cartoon",
                                 "name": "Predicted Structure Representation",
@@ -436,7 +436,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                 "type": "RADIO",
                               },
                             ],
-                            "Viewer": Array [
+                            "View Options": Array [
                               Object {
                                 "currentOption": "on",
                                 "name": "Distance Representation",
@@ -672,7 +672,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                               Object {
                                 "component": Object {
                                   "configs": Object {
-                                    "Representations": Array [
+                                    "Structure Representations": Array [
                                       Object {
                                         "current": "Cartoon",
                                         "name": "Predicted Structure Representation",
@@ -702,7 +702,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                         "type": "RADIO",
                                       },
                                     ],
-                                    "Viewer": Array [
+                                    "View Options": Array [
                                       Object {
                                         "currentOption": "on",
                                         "name": "Distance Representation",

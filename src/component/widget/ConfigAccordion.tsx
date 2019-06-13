@@ -28,7 +28,7 @@ export class ConfigAccordion extends React.Component<IConfigAccordionProps, ICon
   constructor(props: IConfigAccordionProps) {
     super(props);
     this.state = {
-      activeIndices: props.configs.length === 1 ? [0] : [],
+      activeIndices: props.configs.length >= 1 ? [0] : [],
     };
   }
 
@@ -54,7 +54,7 @@ export class ConfigAccordion extends React.Component<IConfigAccordionProps, ICon
             index={index}
             key={`${configKey}-title`}
             onClick={this.onClick}
-            style={{ textAlign: 'left' }}
+            style={{ fontWeight: 'bolder', textAlign: 'left' }}
           >
             <Icon name={'dropdown'} />
             {configKey}

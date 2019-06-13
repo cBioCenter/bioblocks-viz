@@ -23,13 +23,13 @@ describe('ConfigAccordion', () => {
     ];
     const wrapper = mount(<ConfigAccordion configs={configs} title={'songs'} />);
     const instance = wrapper.instance() as ConfigAccordion;
-    expect(instance.state.activeIndices).toEqual([]);
+    expect(instance.state.activeIndices).toEqual([0]);
     wrapper
       .find(Accordion.Title)
       .at(0)
       .simulate('click');
 
-    expect(instance.state.activeIndices).toEqual([0]);
+    expect(instance.state.activeIndices).toEqual([]);
     wrapper
       .find(Accordion.Title)
       .at(1)
@@ -45,12 +45,6 @@ describe('ConfigAccordion', () => {
     ];
     const wrapper = mount(<ConfigAccordion configs={configs} title={'songs'} />);
     const instance = wrapper.instance() as ConfigAccordion;
-    expect(instance.state.activeIndices).toEqual([]);
-    wrapper
-      .find(Accordion.Title)
-      .at(0)
-      .simulate('click');
-
     expect(instance.state.activeIndices).toEqual([0]);
     wrapper
       .find(Accordion.Title)
@@ -58,6 +52,12 @@ describe('ConfigAccordion', () => {
       .simulate('click');
 
     expect(instance.state.activeIndices).toEqual([]);
+    wrapper
+      .find(Accordion.Title)
+      .at(0)
+      .simulate('click');
+
+    expect(instance.state.activeIndices).toEqual([0]);
   });
 
   it('Should handle click events when there are 2 or more mutual configs.', () => {
@@ -67,13 +67,8 @@ describe('ConfigAccordion', () => {
     ];
     const wrapper = mount(<ConfigAccordion allowMultipleOpen={true} configs={configs} title={'songs'} />);
     const instance = wrapper.instance() as ConfigAccordion;
-    expect(instance.state.activeIndices).toEqual([]);
-    wrapper
-      .find(Accordion.Title)
-      .at(0)
-      .simulate('click');
-
     expect(instance.state.activeIndices).toEqual([0]);
+
     wrapper
       .find(Accordion.Title)
       .at(1)
@@ -89,12 +84,12 @@ describe('ConfigAccordion', () => {
     ];
     const wrapper = shallow(<ConfigAccordion configs={configs} title={'songs'} />);
     const instance = wrapper.instance() as ConfigAccordion;
-    expect(instance.state.activeIndices).toEqual([]);
+    expect(instance.state.activeIndices).toEqual([0]);
     wrapper
       .find(Accordion.Title)
       .at(0)
       .simulate('click');
 
-    expect(instance.state.activeIndices).toEqual([]);
+    expect(instance.state.activeIndices).toEqual([0]);
   });
 });

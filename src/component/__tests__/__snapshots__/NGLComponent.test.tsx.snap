@@ -35,7 +35,7 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
       Object {
         "component": Object {
           "configs": Object {
-            "Representations": Array [
+            "Structure Representations": Array [
               Object {
                 "current": "Cartoon",
                 "name": "Predicted Structure Representation",
@@ -65,7 +65,7 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
                 "type": "RADIO",
               },
             ],
-            "Viewer": Array [
+            "View Options": Array [
               Object {
                 "currentOption": "on",
                 "name": "Distance Representation",
