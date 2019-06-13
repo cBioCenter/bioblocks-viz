@@ -5,6 +5,7 @@ export enum CONFIGURATION_COMPONENT_TYPE {
   BUTTON = 'BUTTON',
   BUTTON_GROUP = 'BUTTON_GROUP',
   LABEL = 'LABEL',
+  CHECKBOX = 'CHECKBOX',
   RADIO = 'RADIO',
   RANGE_SLIDER = 'RANGE_SLIDER',
   SLIDER = 'SLIDER',
@@ -56,6 +57,13 @@ export type ButtonGroupWidgetConfig = IBaseBioblocksWidgetConfig &
     type: CONFIGURATION_COMPONENT_TYPE.BUTTON_GROUP;
   });
 
+export type CheckboxWidgetConfig = IBaseBioblocksWidgetConfig &
+  ({
+    checked: boolean;
+    // tslint:disable-next-line:no-reserved-keywords
+    type: CONFIGURATION_COMPONENT_TYPE.CHECKBOX;
+  });
+
 export type LabelWidgetConfig = IBaseBioblocksWidgetConfig &
   ({
     // tslint:disable-next-line:no-reserved-keywords
@@ -100,6 +108,7 @@ export type ToggleWidgetConfig = IBaseBioblocksWidgetConfig &
 export type BioblocksWidgetConfig =
   | ButtonWidgetConfig
   | ButtonGroupWidgetConfig
+  | CheckboxWidgetConfig
   | LabelWidgetConfig
   | RadioWidgetConfig
   | RangeSliderWidgetConfig

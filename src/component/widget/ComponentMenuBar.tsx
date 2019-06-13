@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Grid, Icon, Label, Menu, Popup, PopupProps, SemanticICONS } from 'semantic-ui-react';
+import { Button, Checkbox, Grid, Icon, Label, Menu, Popup, PopupProps, SemanticICONS } from 'semantic-ui-react';
 
 import {
   BioblocksRadioGroup,
@@ -12,6 +12,7 @@ import {
   BioblocksWidgetConfig,
   ButtonGroupWidgetConfig,
   ButtonWidgetConfig,
+  CheckboxWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
   LabelWidgetConfig,
   RadioWidgetConfig,
@@ -133,6 +134,8 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         return this.renderConfigurationButton(config, `button-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.BUTTON_GROUP:
         return this.renderConfigurationButtonGroup(config, `button-${id}`);
+      case CONFIGURATION_COMPONENT_TYPE.CHECKBOX:
+        return this.renderConfigurationCheckbox(config, `label-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.LABEL:
         return this.renderConfigurationLabel(config, `label-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.RADIO:
@@ -172,6 +175,12 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
           </Grid.Column>
         </Grid.Row>
       </Grid>
+    );
+  }
+
+  protected renderConfigurationCheckbox(config: CheckboxWidgetConfig, id: string) {
+    return (
+      <Checkbox key={id} checked={config.checked} label={config.name} onChange={config.onChange} style={config.style} />
     );
   }
 

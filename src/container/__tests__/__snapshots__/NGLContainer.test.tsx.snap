@@ -438,24 +438,16 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                             ],
                             "View Options": Array [
                               Object {
-                                "currentOption": "on",
+                                "checked": true,
                                 "name": "Distance Representation",
                                 "onChange": [Function],
-                                "options": Object {
-                                  "off": "Off",
-                                  "on": "On",
-                                },
-                                "type": "TOGGLE",
+                                "type": "CHECKBOX",
                               },
                               Object {
-                                "currentOption": "off",
+                                "checked": false,
                                 "name": "Zoom on Click",
                                 "onChange": [Function],
-                                "options": Object {
-                                  "off": "Off",
-                                  "on": "On",
-                                },
-                                "type": "TOGGLE",
+                                "type": "CHECKBOX",
                               },
                               Object {
                                 "current": "C-α",
@@ -704,24 +696,16 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                     ],
                                     "View Options": Array [
                                       Object {
-                                        "currentOption": "on",
+                                        "checked": true,
                                         "name": "Distance Representation",
                                         "onChange": [Function],
-                                        "options": Object {
-                                          "off": "Off",
-                                          "on": "On",
-                                        },
-                                        "type": "TOGGLE",
+                                        "type": "CHECKBOX",
                                       },
                                       Object {
-                                        "currentOption": "off",
+                                        "checked": false,
                                         "name": "Zoom on Click",
                                         "onChange": [Function],
-                                        "options": Object {
-                                          "off": "Off",
-                                          "on": "On",
-                                        },
-                                        "type": "TOGGLE",
+                                        "type": "CHECKBOX",
                                       },
                                       Object {
                                         "current": "C-α",

@@ -448,24 +448,16 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     return {
       'View Options': [
         {
-          currentOption: isDistRepEnabled ? 'on' : 'off',
+          checked: isDistRepEnabled,
           name: 'Distance Representation',
           onChange: this.toggleDistRep,
-          options: {
-            off: 'Off',
-            on: 'On',
-          },
-          type: CONFIGURATION_COMPONENT_TYPE.TOGGLE,
+          type: CONFIGURATION_COMPONENT_TYPE.CHECKBOX,
         },
         {
-          currentOption: isMovePickEnabled ? 'on' : 'off',
+          checked: isMovePickEnabled,
           name: 'Zoom on Click',
           onChange: this.toggleMovePick,
-          options: {
-            off: 'Off',
-            on: 'On',
-          },
-          type: CONFIGURATION_COMPONENT_TYPE.TOGGLE,
+          type: CONFIGURATION_COMPONENT_TYPE.CHECKBOX,
         },
         {
           current: measuredProximity,
