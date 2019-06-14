@@ -116,7 +116,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     }
   }
 
-  public onNodeSizeChange = (index: number, nodeSize: number) => (
+  public onNodeSizeChange = (index: number, nodeSizeMod: number) => (
     event?: React.MouseEvent<HTMLButtonElement>,
     data?: ButtonProps,
   ) => {
@@ -127,7 +127,8 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
         ...pointsToPlot.slice(0, index),
         {
           ...pointsToPlot[index],
-          nodeSize,
+          // This ensures a number in the range [1, 10]. 0 is an invalid point size in plotly.
+          nodeSize: Math.min(Math.max(Math.abs(pointsToPlot[index].nodeSize + nodeSizeMod), 1), 10),
         },
         ...pointsToPlot.slice(index + 1),
       ],
@@ -278,23 +279,22 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
         // prettier-ignore
         const options = [(
           <Icon
-            key={`node-size-slider-${index}-1`}
-            name={'circle'}
-            onClick={this.onNodeSizeChange(index, 3)}
-            size={'mini'}
+            key={`node-size-slider-${index}-minus`}
+            name={'minus'}
+            onClick={this.onNodeSizeChange(index, -1)}
+            size={'small'}
             style={{ color }}
           />), (
           <Icon
             key={`node-size-slider-${index}-2`}
             name={'circle'}
-            onClick={this.onNodeSizeChange(index, 4)}
-            size={'tiny'}
+            size={'small'}
             style={{ color }}
           />), (
           <Icon
-            key={`node-size-slider-${index}-3`}
-            name={'circle'}
-            onClick={this.onNodeSizeChange(index, 5)}
+            key={`node-size-slider-${index}-plus`}
+            name={'plus'}
+            onClick={this.onNodeSizeChange(index, 1)}
             size={'small'}
             style={{ color }}
           />
@@ -304,6 +304,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
           id: `node-size-slider-${index}`,
           name: entry.name,
           options,
+          style: { padding: '.5em' },
           type: CONFIGURATION_COMPONENT_TYPE.BUTTON_GROUP,
         };
       },

@@ -28,6 +28,7 @@ exports[`ConfigAccordion Should match existing snapshot when given some configur
         onClick={[Function]}
         style={
           Object {
+            "fontWeight": "bolder",
             "textAlign": "left",
           }
         }

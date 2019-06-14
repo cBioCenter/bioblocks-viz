@@ -398,7 +398,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     const reps: NGL.StructureRepresentationType[] = ['default', 'spacefill', 'backbone', 'cartoon', 'surface', 'tube'];
 
     return {
-      Representations: [
+      'Structure Representations': [
         {
           current: capitalizeFirstLetter(this.state.activeRepresentations.predicted.structType),
           name: 'Predicted Structure Representation',
@@ -446,26 +446,18 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     const { isDistRepEnabled, isMovePickEnabled } = this.state;
 
     return {
-      Viewer: [
+      'View Options': [
         {
-          currentOption: isDistRepEnabled ? 'on' : 'off',
+          checked: isDistRepEnabled,
           name: 'Distance Representation',
           onChange: this.toggleDistRep,
-          options: {
-            off: 'Off',
-            on: 'On',
-          },
-          type: CONFIGURATION_COMPONENT_TYPE.TOGGLE,
+          type: CONFIGURATION_COMPONENT_TYPE.CHECKBOX,
         },
         {
-          currentOption: isMovePickEnabled ? 'on' : 'off',
+          checked: isMovePickEnabled,
           name: 'Zoom on Click',
           onChange: this.toggleMovePick,
-          options: {
-            off: 'Off',
-            on: 'On',
-          },
-          type: CONFIGURATION_COMPONENT_TYPE.TOGGLE,
+          type: CONFIGURATION_COMPONENT_TYPE.CHECKBOX,
         },
         {
           current: measuredProximity,

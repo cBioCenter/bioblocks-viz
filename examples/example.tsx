@@ -94,9 +94,8 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
 
       if (newMismatches.length >= 1) {
         errorMsg = `Error details: ${newMismatches.length} mismatch(es) detected between coupling scores and PDB!\
-        For example, residue number ${newMismatches[0].resno} is '${
-          newMismatches[0].pdbAminoAcid.threeLetterCode
-        }' in the PDB but '${newMismatches[0].couplingAminoAcid.threeLetterCode}' in the coupling scores file.`;
+        For example, residue number ${newMismatches[0].resno} is '${newMismatches[0].pdbAminoAcid.threeLetterCode}'\
+        in the PDB but '${newMismatches[0].couplingAminoAcid.threeLetterCode}' in the coupling scores file.`;
       }
     }
 
@@ -233,7 +232,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
         <Grid.Column style={{ height: '100%', width: 'auto' }}>{this.renderClearAllButton()}</Grid.Column>
         <Grid.Column style={{ height: '100%', width: 'auto' }}>
           <Grid.Row>
-            {this.renderUploadForm(this.onFileUpload, 'upload-coupling-scores', 'CouplingScores files / folders')}
+            {this.renderUploadForm(this.onFileUpload, 'upload-coupling-scores', 'CouplingScores Files')}
           </Grid.Row>
         </Grid.Column>
       </Grid.Row>

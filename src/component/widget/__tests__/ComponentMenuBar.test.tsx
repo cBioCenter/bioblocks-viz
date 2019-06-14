@@ -5,6 +5,7 @@ import { ComponentMenuBar, IComponentMenuBarItem } from '~bioblocks-viz~/compone
 import {
   ButtonGroupWidgetConfig,
   ButtonWidgetConfig,
+  CheckboxWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
   LabelWidgetConfig,
   RadioWidgetConfig,
@@ -158,6 +159,30 @@ describe('ComponentMenuBar', () => {
       name: 'Rye',
       options: [<div key={1}>Howdy</div>, <div key={2}>Ho</div>],
       type: CONFIGURATION_COMPONENT_TYPE.BUTTON_GROUP,
+    };
+
+    const menuItems: IComponentMenuBarItem[] = [
+      {
+        component: {
+          configs: {
+            Catcher: [config],
+          },
+          name: 'POPUP',
+          props: {},
+        },
+        description: 'A Popup',
+      },
+    ];
+
+    const wrapper = shallow(<ComponentMenuBar componentName={'The Boxer'} menuItems={menuItems} />);
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('Should render a Checkbox menu item.', () => {
+    const config: CheckboxWidgetConfig = {
+      checked: false,
+      name: 'Rye',
+      type: CONFIGURATION_COMPONENT_TYPE.CHECKBOX,
     };
 
     const menuItems: IComponentMenuBarItem[] = [
