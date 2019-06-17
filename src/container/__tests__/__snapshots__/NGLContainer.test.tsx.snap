@@ -28,6 +28,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
       measuredProximity="C-α"
       predictedProteins={Array []}
       removeAllLockedResiduePairs={[Function]}
+      removeAllSelectedSecondaryStructures={[Function]}
       removeCandidateResidues={[Function]}
       removeHoveredResidues={[Function]}
       removeLockedResiduePair={[Function]}
@@ -216,6 +217,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                 onResize={[Function]}
                 predictedProteins={Array []}
                 removeAllLockedResiduePairs={[Function]}
+                removeAllSelectedSecondaryStructures={[Function]}
                 removeCandidateResidues={[Function]}
                 removeHoveredResidues={[Function]}
                 removeLockedResiduePair={[Function]}
@@ -229,6 +231,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                   dockItems={
                     Array [
                       Object {
+                        "isVisibleCb": [Function],
                         "onClick": [Function],
                         "text": "Clear Selections",
                       },
@@ -251,6 +254,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                   headerHeight={40}
                   height="570px"
                   iconSrc="assets/icons/spring-icon.png"
+                  isDataReady={false}
                   isFramedComponent={false}
                   isFullPage={false}
                   menuItems={
@@ -1131,6 +1135,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                           dockItems={
                             Array [
                               Object {
+                                "isVisibleCb": [Function],
                                 "onClick": [Function],
                                 "text": "Clear Selections",
                               },
@@ -1148,166 +1153,8 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                               },
                             ]
                           }
-                        >
-                          <Grid
-                            centered={true}
-                            columns="equal"
-                            stretched={true}
-                            style={
-                              Object {
-                                "marginLeft": "initial",
-                                "marginRight": "initial",
-                                "marginTop": "-0.5rem",
-                                "padding": 0,
-                              }
-                            }
-                          >
-                            <div
-                              className="ui centered stretched equal width grid"
-                              style={
-                                Object {
-                                  "marginLeft": "initial",
-                                  "marginRight": "initial",
-                                  "marginTop": "-0.5rem",
-                                  "padding": 0,
-                                }
-                              }
-                            >
-                              <GridColumn
-                                key="dock-item-0"
-                                style={
-                                  Object {
-                                    "padding": 0,
-                                  }
-                                }
-                              >
-                                <div
-                                  className="column"
-                                  style={
-                                    Object {
-                                      "padding": 0,
-                                    }
-                                  }
-                                >
-                                  <div
-                                    style={
-                                      Object {
-                                        "userSelect": "none",
-                                      }
-                                    }
-                                  >
-                                    <a
-                                      aria-pressed={false}
-                                      onClick={[Function]}
-                                      role="button"
-                                    >
-                                      Clear Selections
-                                    </a>
-                                  </div>
-                                </div>
-                              </GridColumn>
-                              <GridColumn
-                                key="dock-item-1"
-                                style={
-                                  Object {
-                                    "padding": 0,
-                                  }
-                                }
-                              >
-                                <div
-                                  className="column"
-                                  style={
-                                    Object {
-                                      "padding": 0,
-                                    }
-                                  }
-                                >
-                                  <div
-                                    style={
-                                      Object {
-                                        "userSelect": "none",
-                                      }
-                                    }
-                                  >
-                                    <a
-                                      aria-pressed={false}
-                                      onClick={[Function]}
-                                      role="button"
-                                    >
-                                      Center View
-                                    </a>
-                                  </div>
-                                </div>
-                              </GridColumn>
-                              <GridColumn
-                                key="dock-item-2"
-                                style={
-                                  Object {
-                                    "padding": 0,
-                                  }
-                                }
-                              >
-                                <div
-                                  className="column"
-                                  style={
-                                    Object {
-                                      "padding": 0,
-                                    }
-                                  }
-                                >
-                                  <div
-                                    style={
-                                      Object {
-                                        "userSelect": "none",
-                                      }
-                                    }
-                                  >
-                                    <a
-                                      aria-pressed={false}
-                                      onClick={[Function]}
-                                      role="button"
-                                    >
-                                      Superimpose: Off
-                                    </a>
-                                  </div>
-                                </div>
-                              </GridColumn>
-                              <GridColumn
-                                key="dock-item-3"
-                                style={
-                                  Object {
-                                    "padding": 0,
-                                  }
-                                }
-                              >
-                                <div
-                                  className="column"
-                                  style={
-                                    Object {
-                                      "padding": 0,
-                                    }
-                                  }
-                                >
-                                  <div
-                                    style={
-                                      Object {
-                                        "userSelect": "none",
-                                      }
-                                    }
-                                  >
-                                    <a
-                                      aria-pressed={false}
-                                      onClick={[Function]}
-                                      role="button"
-                                    >
-                                      Enable Stereo
-                                    </a>
-                                  </div>
-                                </div>
-                              </GridColumn>
-                            </div>
-                          </Grid>
-                        </ComponentDock>
+                          visible={false}
+                        />
                       </div>
                     </div>
                   </Card>
@@ -1498,6 +1345,7 @@ exports[`NGLContainer Should match the default snapshot when not hooked up to a 
       onResize={[Function]}
       predictedProteins={Array []}
       removeAllLockedResiduePairs={[Function]}
+      removeAllSelectedSecondaryStructures={[Function]}
       removeCandidateResidues={[Function]}
       removeHoveredResidues={[Function]}
       removeLockedResiduePair={[Function]}

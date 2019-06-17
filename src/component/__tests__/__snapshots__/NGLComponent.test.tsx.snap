@@ -6,6 +6,7 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
   dockItems={
     Array [
       Object {
+        "isVisibleCb": [Function],
         "onClick": [Function],
         "text": "Clear Selections",
       },
@@ -28,6 +29,7 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
   headerHeight={40}
   height="570px"
   iconSrc="assets/icons/spring-icon.png"
+  isDataReady={false}
   isFramedComponent={false}
   isFullPage={false}
   menuItems={

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
 import { Checkbox, CheckboxProps, Grid, Header, Popup, Table } from 'semantic-ui-react';
+import { createContainerActions } from '~bioblocks-viz~/action';
 import { createResiduePairActions } from '~bioblocks-viz~/action/ResiduePairAction';
 import { NGLComponent } from '~bioblocks-viz~/component';
 import { BioblocksVisualization } from '~bioblocks-viz~/container';
@@ -335,6 +336,7 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
       addHoveredResidues: createResiduePairActions().hovered.set,
       addLockedResiduePair: createResiduePairActions().locked.add,
       removeAllLockedResiduePairs: createResiduePairActions().locked.clear,
+      removeAllSelectedSecondaryStructures: createContainerActions('secondaryStructure/selected').clear,
       removeCandidateResidues: createResiduePairActions().candidates.clear,
       removeHoveredResidues: createResiduePairActions().hovered.clear,
       removeLockedResiduePair: createResiduePairActions().locked.remove,

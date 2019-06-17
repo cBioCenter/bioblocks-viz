@@ -160,6 +160,10 @@ class MockStructureComponent {
     return { name: () => name, setParameters: jest.fn() };
   }
 
+  public autoView() {
+    return;
+  }
+
   public hasRepresentation(name: string, ...args: any[]) {
     return this.reprList.indexOf(name) !== -1;
   }

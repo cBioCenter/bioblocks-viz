@@ -6,6 +6,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
   dockItems={
     Array [
       Object {
+        "isVisibleCb": [Function],
         "onClick": [Function],
         "text": "Clear Selections",
       },
@@ -16,6 +17,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
   headerHeight={40}
   height="570px"
   iconSrc="assets/icons/spring-icon.png"
+  isDataReady={true}
   isFramedComponent={false}
   isFullPage={false}
   menuItems={
@@ -281,6 +283,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
   dockItems={
     Array [
       Object {
+        "isVisibleCb": [Function],
         "onClick": [Function],
         "text": "Clear Selections",
       },
@@ -291,6 +294,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
   headerHeight={40}
   height="570px"
   iconSrc="assets/icons/spring-icon.png"
+  isDataReady={true}
   isFramedComponent={false}
   isFullPage={false}
   menuItems={
@@ -548,6 +552,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
   dockItems={
     Array [
       Object {
+        "isVisibleCb": [Function],
         "onClick": [Function],
         "text": "Clear Selections",
       },
@@ -558,6 +563,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
   headerHeight={40}
   height="570px"
   iconSrc="assets/icons/spring-icon.png"
+  isDataReady={true}
   isFramedComponent={false}
   isFullPage={false}
   menuItems={
@@ -800,6 +806,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
   dockItems={
     Array [
       Object {
+        "isVisibleCb": [Function],
         "onClick": [Function],
         "text": "Clear Selections",
       },
@@ -810,6 +817,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
   headerHeight={40}
   height="570px"
   iconSrc="assets/icons/spring-icon.png"
+  isDataReady={true}
   isFramedComponent={false}
   isFullPage={false}
   menuItems={
@@ -1052,6 +1060,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
   dockItems={
     Array [
       Object {
+        "isVisibleCb": [Function],
         "onClick": [Function],
         "text": "Clear Selections",
       },
@@ -1062,6 +1071,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
   headerHeight={40}
   height="570px"
   iconSrc="assets/icons/spring-icon.png"
+  isDataReady={false}
   isFramedComponent={false}
   isFullPage={false}
   menuItems={
@@ -1294,6 +1304,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
   dockItems={
     Array [
       Object {
+        "isVisibleCb": [Function],
         "onClick": [Function],
         "text": "Clear Selections",
       },
@@ -1304,6 +1315,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
   headerHeight={40}
   height="570px"
   iconSrc="assets/icons/spring-icon.png"
+  isDataReady={false}
   isFramedComponent={false}
   isFullPage={false}
   menuItems={
@@ -1536,6 +1548,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
   dockItems={
     Array [
       Object {
+        "isVisibleCb": [Function],
         "onClick": [Function],
         "text": "Clear Selections",
       },
@@ -1546,6 +1559,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
   headerHeight={40}
   height="570px"
   iconSrc="assets/icons/spring-icon.png"
+  isDataReady={true}
   isFramedComponent={false}
   isFullPage={false}
   menuItems={
@@ -1811,6 +1825,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
   dockItems={
     Array [
       Object {
+        "isVisibleCb": [Function],
         "onClick": [Function],
         "text": "Clear Selections",
       },
@@ -1821,6 +1836,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
   headerHeight={40}
   height="570px"
   iconSrc="assets/icons/spring-icon.png"
+  isDataReady={true}
   isFramedComponent={false}
   isFullPage={false}
   menuItems={
@@ -2555,6 +2571,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
     dockItems={
       Array [
         Object {
+          "isVisibleCb": [Function],
           "onClick": [Function],
           "text": "Clear Selections",
         },
@@ -2565,6 +2582,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
     headerHeight={40}
     height="570px"
     iconSrc="assets/icons/spring-icon.png"
+    isDataReady={true}
     isFramedComponent={false}
     isFullPage={false}
     menuItems={
@@ -3569,11 +3587,13 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             dockItems={
               Array [
                 Object {
+                  "isVisibleCb": [Function],
                   "onClick": [Function],
                   "text": "Clear Selections",
                 },
               ]
             }
+            visible={true}
           >
             <Grid
               centered={true}
@@ -3598,41 +3618,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                     "padding": 0,
                   }
                 }
-              >
-                <GridColumn
-                  key="dock-item-0"
-                  style={
-                    Object {
-                      "padding": 0,
-                    }
-                  }
-                >
-                  <div
-                    className="column"
-                    style={
-                      Object {
-                        "padding": 0,
-                      }
-                    }
-                  >
-                    <div
-                      style={
-                        Object {
-                          "userSelect": "none",
-                        }
-                      }
-                    >
-                      <a
-                        aria-pressed={false}
-                        onClick={[Function]}
-                        role="button"
-                      >
-                        Clear Selections
-                      </a>
-                    </div>
-                  </div>
-                </GridColumn>
-              </div>
+              />
             </Grid>
           </ComponentDock>
         </div>
