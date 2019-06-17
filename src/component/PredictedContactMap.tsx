@@ -10,6 +10,7 @@ import {
   ICouplingScoreFilter,
   SECONDARY_STRUCTURE,
 } from '~bioblocks-viz~/data';
+import { generateCouplingScoreHoverText } from '~bioblocks-viz~/helper';
 
 export interface IPredictedContactMapProps {
   agreementColor: string;
@@ -119,10 +120,11 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
       {
         marks: {
           0: '0',
+          [Math.floor(chainLength / 4)]: 'L/4',
           [Math.floor(chainLength / 2)]: 'L/2',
           [chainLength]: 'L',
-          [Math.floor(chainLength * 1.5)]: '3L/2',
           [chainLength * 2]: '2L',
+          [chainLength * 3]: '3L',
         },
         name: 'Number of Couplings to Display',
         onChange: this.onNumPredictionsToShowChange(),
@@ -130,7 +132,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
         values: {
           current: numPredictionsToShow,
           defaultValue: 100,
-          max: chainLength * 2,
+          max: chainLength * 3,
           min: 0,
         },
       },
@@ -146,7 +148,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
         },
       },
       {
-        name: 'Minimum Allowed Probability',
+        name: 'Minimum Probability',
         onChange: this.onMinimumProbabilityChange(),
         step: 0.01,
         type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
@@ -160,26 +162,10 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     ];
   };
 
-  /**
-   * Setups up the prediction values for the data.
-   *
-   * @param isNewData Is this an entirely new dataset?
-   */
-  protected setupData(isNewData: boolean) {
-    const { agreementColor: correctColor, data, allColor } = this.props;
-    const { linearDistFilter, minimumProbability, minimumScore, numPredictionsToShow } = this.state;
+  protected getPredictedFilters = () => {
+    const { linearDistFilter, minimumProbability, minimumScore } = this.state;
 
-    let couplingScores = new CouplingContainer();
-    const { pdbData } = data;
-    if (pdbData) {
-      if (pdbData.experimental) {
-        couplingScores = pdbData.experimental.contactInformation;
-      }
-    } else {
-      couplingScores = new CouplingContainer(data.couplingScores.rankedContacts);
-    }
-
-    const allPredictions = couplingScores.getPredictedContacts(numPredictionsToShow, linearDistFilter, [
+    return new Array<ICouplingScoreFilter>(
       {
         filterFn: score => (score.probability ? score.probability >= minimumProbability : true),
       },
@@ -189,7 +175,29 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
       {
         filterFn: score => Math.abs(score.i - score.j) >= linearDistFilter,
       },
-    ]);
+    );
+  };
+
+  /**
+   * Setups up the prediction values for the data.
+   *
+   * @param isNewData Is this an entirely new dataset?
+   */
+  protected setupData(isNewData: boolean) {
+    const { agreementColor, data, allColor } = this.props;
+    const { linearDistFilter, numPredictionsToShow } = this.state;
+
+    const { pdbData } = data;
+    const couplingScores =
+      pdbData && pdbData.experimental
+        ? pdbData.experimental.contactInformation
+        : new CouplingContainer(data.couplingScores.rankedContacts);
+
+    const allPredictions = couplingScores.getPredictedContacts(
+      numPredictionsToShow,
+      linearDistFilter,
+      this.getPredictedFilters(),
+    );
     const correctPredictionPercent = ((allPredictions.correct.length / allPredictions.predicted.length) * 100).toFixed(
       1,
     );
@@ -204,42 +212,18 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
         4,
         allPredictions.predicted,
         {
-          text: allPredictions.predicted.map(point => {
-            let hoverText =
-              point && point.A_i && point.A_j
-                ? `(${point.i}${point.A_i}, ${point.j}${point.A_j})`
-                : `(${point.i}, ${point.j})`;
-            if (point && point.score) {
-              hoverText = `${hoverText}<br>Score: ${point.score}`;
-            }
-            if (point && point.probability) {
-              hoverText = `${hoverText}<br>Probability: ${point.probability.toFixed(1)}`;
-            }
-
-            return hoverText;
-          }),
+          text: allPredictions.predicted.map(generateCouplingScoreHoverText),
         },
       ),
       generateChartDataEntry(
         'text',
-        correctColor,
+        agreementColor,
         'Inferred Contact Agrees with X-ray Contact',
         `(N=${allPredictions.correct.length}, ${correctPredictionPercent}%)`,
         6,
         allPredictions.correct,
         {
-          text: allPredictions.correct.map(point => {
-            let hoverText =
-              point.A_i && point.A_j ? `(${point.i}${point.A_i}, ${point.j}${point.A_j})` : `(${point.i}, ${point.j})`;
-            if (point && point.score) {
-              hoverText = `${hoverText}<br>Score: ${point.score}`;
-            }
-            if (point && point.probability) {
-              hoverText = `${hoverText}<br>Probability: ${point.probability.toFixed(1)}`;
-            }
-
-            return hoverText;
-          }),
+          text: allPredictions.correct.map(generateCouplingScoreHoverText),
         },
       ),
     ];

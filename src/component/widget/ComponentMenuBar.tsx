@@ -1,20 +1,28 @@
 import * as React from 'react';
-import { Button, Grid, Icon, Label, Menu, Popup, PopupProps, SemanticICONS } from 'semantic-ui-react';
+import { Button, Checkbox, Grid, Icon, Label, Menu, Popup, PopupProps, SemanticICONS } from 'semantic-ui-react';
 
-import { BioblocksRadioGroup, BioblocksRangeSlider, BioblocksSlider } from '~bioblocks-viz~/component/widget';
+import {
+  BioblocksRadioGroup,
+  BioblocksRangeSlider,
+  BioblocksSlider,
+  BioblocksToggleButton,
+  ConfigAccordion,
+} from '~bioblocks-viz~/component/widget';
 import {
   BioblocksWidgetConfig,
+  ButtonGroupWidgetConfig,
   ButtonWidgetConfig,
+  CheckboxWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
   LabelWidgetConfig,
   RadioWidgetConfig,
   RangeSliderWidgetConfig,
   SliderWidgetConfig,
+  ToggleWidgetConfig,
 } from '~bioblocks-viz~/data';
 
 export interface IComponentMenuBarProps {
   componentName: string;
-  configurations: BioblocksWidgetConfig[];
   height: number | string;
   isExpanded: boolean;
   iconSrc?: string;
@@ -28,8 +36,8 @@ export interface IComponentMenuBarState {
   isHovered: boolean;
 }
 
-interface IPopupType {
-  configs?: BioblocksWidgetConfig[];
+export interface IPopupType {
+  configs?: { [key: string]: BioblocksWidgetConfig[] };
   name: 'POPUP';
   props?: PopupProps;
 }
@@ -48,13 +56,12 @@ export const DEFAULT_POPUP_PROPS: Partial<PopupProps> = {
   openOnTriggerClick: true,
   openOnTriggerFocus: false,
   openOnTriggerMouseEnter: false,
-  position: 'bottom center',
+  position: 'bottom left',
   style: { marginTop: 0, maxHeight: '350px', overflow: 'auto', zIndex: 3 },
 };
 
 export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IComponentMenuBarState> {
   public static defaultProps = {
-    configurations: new Array<BioblocksWidgetConfig>(),
     height: '100%',
     isExpanded: false,
     menuItems: [],
@@ -95,6 +102,20 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
     );
   }
 
+  protected renderConfigs = (configs: { [key: string]: BioblocksWidgetConfig[] }) => {
+    return Object.keys(configs).map(configKey => ({
+      [configKey]: configs[configKey].map((config, configIndex) => (
+        <Grid.Row
+          columns={1}
+          key={`menu-bar-${configKey}-row-${configIndex}`}
+          style={{ padding: '5px 0', width: '100%' }}
+        >
+          {this.renderConfig(config, `${configKey}-row-${configIndex}`)}
+        </Grid.Row>
+      )),
+    }));
+  };
+
   protected onMenuEnter = () => {
     this.setState({
       isHovered: true,
@@ -111,6 +132,10 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
     switch (config.type) {
       case CONFIGURATION_COMPONENT_TYPE.BUTTON:
         return this.renderConfigurationButton(config, `button-${id}`);
+      case CONFIGURATION_COMPONENT_TYPE.BUTTON_GROUP:
+        return this.renderConfigurationButtonGroup(config, `button-${id}`);
+      case CONFIGURATION_COMPONENT_TYPE.CHECKBOX:
+        return this.renderConfigurationCheckbox(config, `label-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.LABEL:
         return this.renderConfigurationLabel(config, `label-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.RADIO:
@@ -119,6 +144,8 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         return this.renderConfigurationRangeSlider(config, `range-slider-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.SLIDER:
         return this.renderConfigurationSlider(config, `slider-${id}`);
+      case CONFIGURATION_COMPONENT_TYPE.TOGGLE:
+        return this.renderConfigurationToggle(config, `slider-${id}`);
       default: {
         return `configuration for ${id}`;
       }
@@ -131,6 +158,29 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         {config.icon && <Icon name={config.icon} />}
         {config.name}
       </Button>
+    );
+  }
+
+  protected renderConfigurationButtonGroup(config: ButtonGroupWidgetConfig, id: string) {
+    return (
+      <Grid padded={true} style={{ padding: 'initial 0' }}>
+        <Grid.Row columns={2}>
+          <Grid.Column width={11}>{config.name}</Grid.Column>
+          <Grid.Column width={5}>
+            <Button.Group>
+              {config.options.map((singleConfig, index) => (
+                <Button icon={singleConfig} key={`${id}-${index}`} style={config.style} basic={true} compact={true} />
+              ))}
+            </Button.Group>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    );
+  }
+
+  protected renderConfigurationCheckbox(config: CheckboxWidgetConfig, id: string) {
+    return (
+      <Checkbox key={id} checked={config.checked} label={config.name} onChange={config.onChange} style={config.style} />
     );
   }
 
@@ -167,7 +217,7 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         min={config.range.min}
         onAfterChange={config.onAfterChange}
         onChange={config.onChange}
-        style={{ padding: '0 18px', width: '100%', ...config.style }}
+        style={{ padding: '2px 0 3px 18px', width: '100%', ...config.style }}
         value={config.range.current}
       />
     );
@@ -185,10 +235,14 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         onAfterChange={config.onAfterChange}
         onChange={config.onChange}
         step={config.step}
-        style={{ padding: '0 18px', width: '100%', ...config.style }}
+        style={{ padding: '2px 0 3px 18px', width: '100%', ...config.style }}
         value={config.values.current}
       />
     );
+  }
+
+  protected renderConfigurationToggle(config: ToggleWidgetConfig, id: string) {
+    return <BioblocksToggleButton config={config} />;
   }
 
   protected renderMenuIconText(text: string) {
@@ -203,18 +257,13 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
     return items.map((item, menuBarIndex) => {
       // We are separating the style to prevent a bug where the popup arrow does not display if overflow is set.
       const { style, ...combinedProps } = { ...DEFAULT_POPUP_PROPS, ...item.component.props };
+
       let menuItemChild = null;
       if (item.component.name === 'POPUP') {
         const trigger = <Icon name={item.iconName ? item.iconName : 'setting'} />;
         menuItemChild = item.component.configs ? (
           <Popup trigger={trigger} {...combinedProps} wide={true} style={{ opacity }}>
-            <Grid centered={true} divided={'vertically'} style={style}>
-              {item.component.configs.map((config, configIndex) => (
-                <Grid.Row columns={1} key={`menu-bar-${menuBarIndex}-row-${configIndex}`} style={{ padding: '7px 0' }}>
-                  {this.renderConfig(config, `${menuBarIndex}-${configIndex}`)}
-                </Grid.Row>
-              ))}
-            </Grid>
+            <ConfigAccordion configs={this.renderConfigs(item.component.configs)} gridStyle={style} title={'Config'} />
           </Popup>
         ) : (
           <Popup trigger={trigger} {...combinedProps} style={{ opacity }} />

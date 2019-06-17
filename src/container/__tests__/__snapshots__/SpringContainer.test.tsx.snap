@@ -3,11 +3,13 @@
 exports[`SpringContainer Should match existing snapshot. 1`] = `
 <ComponentCard
   componentName="SPRING"
+  dockItems={Array []}
   frameHeight={1150}
   frameWidth={1150}
   headerHeight={40}
   height="570px"
   iconSrc="assets/icons/spring-icon.png"
+  isDataReady={false}
   isFramedComponent={true}
   isFullPage={false}
   menuItems={Array []}

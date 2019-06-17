@@ -2,13 +2,13 @@ import { Map } from 'immutable';
 import { cloneDeep } from 'lodash';
 import * as NGL from 'ngl';
 import * as React from 'react';
-import { Dimmer, Grid, Icon, Loader } from 'semantic-ui-react';
+import { Dimmer, Icon, Loader } from 'semantic-ui-react';
 import { Matrix4, Vector2 } from 'three';
 
 import { ComponentCard, IComponentMenuBarItem } from '~bioblocks-viz~/component';
 import {
+  AMINO_ACID_BY_CODE,
   AMINO_ACID_THREE_LETTER_CODE,
-  AMINO_ACIDS_BY_THREE_LETTER_CODE,
   BIOBLOCKS_CSS_STYLE,
   BioblocksPDB,
   BioblocksWidgetConfig,
@@ -54,6 +54,7 @@ export interface INGLComponentProps {
   onMeasuredProximityChange?(value: number): void;
   onResize?(event?: UIEvent): void;
   removeAllLockedResiduePairs(): void;
+  removeAllSelectedSecondaryStructures(): void;
   removeHoveredResidues(): void;
   removeNonLockedResidues(): void;
   removeLockedResiduePair(key: string): void;
@@ -68,7 +69,7 @@ export const initialNGLState = {
     },
     predicted: {
       reps: new Array<NGL.RepresentationElement>(),
-      structType: 'default' as NGL.StructureRepresentationType,
+      structType: 'cartoon' as NGL.StructureRepresentationType,
     },
   },
   isDistRepEnabled: true,
@@ -98,6 +99,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     onResize: EMPTY_FUNCTION,
     predictedProteins: [],
     removeAllLockedResiduePairs: EMPTY_FUNCTION,
+    removeAllSelectedSecondaryStructures: EMPTY_FUNCTION,
     removeCandidateResidues: EMPTY_FUNCTION,
     removeHoveredResidues: EMPTY_FUNCTION,
     removeLockedResiduePair: EMPTY_FUNCTION,
@@ -199,17 +201,19 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
    * @returns The NGL Component
    */
   public render() {
-    const { height, isDataLoading, menuItems, style, width } = this.props;
+    const { experimentalProteins, height, isDataLoading, menuItems, predictedProteins, style, width } = this.props;
     const computedStyle = { ...style, height, width };
 
     return (
       <ComponentCard
         componentName={'NGL Viewer'}
+        dockItems={this.getDockItems()}
+        isDataReady={experimentalProteins.length >= 1 || predictedProteins.length >= 1}
         menuItems={[
           ...menuItems,
           {
             component: {
-              configs: this.getConfigurations(),
+              configs: { ...this.getSettingsConfigurations(), ...this.getRepresentationConfigs() },
               name: 'POPUP',
               props: {
                 trigger: <Icon name={'setting'} />,
@@ -232,7 +236,6 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
             style={{ height: '100%', width: '100%' }}
           />
         </div>
-        {this.renderBottomToggles()}
       </ComponentCard>
     );
   }
@@ -335,6 +338,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
           cameraType: 'stereo',
         });
       }
+      this.forceUpdate();
     }
   };
 
@@ -377,93 +381,97 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     return stage;
   };
 
-  protected getConfigurations = () => {
-    const { measuredProximity, removeAllLockedResiduePairs } = this.props;
-    const { isDistRepEnabled, isMovePickEnabled } = this.state;
-    const reps: NGL.StructureRepresentationType[] = ['default', 'spacefill', 'backbone', 'cartoon', 'surface', 'tube'];
-
-    return [
-      {
-        name: 'Clear Selections',
-        onClick: removeAllLockedResiduePairs,
-        type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
-      },
-      {
-        current: isDistRepEnabled ? 'Enable' : 'Disable',
-        name: 'Distance Representation',
-        onChange: this.toggleDistRep,
-        options: ['Enable', 'Disable'],
-        type: CONFIGURATION_COMPONENT_TYPE.RADIO,
-      },
-      {
-        current: isMovePickEnabled ? 'Enable' : 'Disable',
-        name: 'Zoom on Click',
-        onChange: this.toggleMovePick,
-        options: ['Enable', 'Disable'],
-        type: CONFIGURATION_COMPONENT_TYPE.RADIO,
-      },
-      {
-        current: measuredProximity,
-        name: 'Proximity Metric',
-        onChange: this.measuredProximityHandler,
-        options: Object.values(CONTACT_DISTANCE_PROXIMITY).map(capitalizeEveryWord),
-        type: CONFIGURATION_COMPONENT_TYPE.RADIO,
-      },
-      {
-        current: capitalizeFirstLetter(this.state.activeRepresentations.predicted.structType),
-        name: 'Predicted Structure Representation',
-        onChange: (value: number) => {
-          const { predictedProteins } = this.props;
-          const { activeRepresentations, stage } = this.state;
-          if (stage) {
-            this.setState({
-              activeRepresentations: {
-                ...activeRepresentations,
-                predicted: this.updateRepresentation(stage, reps[value], predictedProteins),
-              },
-            });
-            stage.viewer.requestRender();
-          }
-        },
-        options: Object.values(['Default', 'Spacefill', 'Backbone', 'Cartoon', 'Surface', 'Tube']),
-        type: CONFIGURATION_COMPONENT_TYPE.RADIO,
-      },
-      {
-        current: capitalizeFirstLetter(this.state.activeRepresentations.experimental.structType),
-        name: 'Experimental Structure Representation',
-        onChange: (value: number) => {
-          const { experimentalProteins } = this.props;
-          const { activeRepresentations, stage } = this.state;
-          if (stage) {
-            this.setState({
-              activeRepresentations: {
-                ...activeRepresentations,
-                experimental: this.updateRepresentation(stage, reps[value], experimentalProteins),
-              },
-            });
-            stage.viewer.requestRender();
-          }
-        },
-        options: Object.values(['Default', 'Spacefill', 'Backbone', 'Cartoon', 'Surface', 'Tube']),
-        type: CONFIGURATION_COMPONENT_TYPE.RADIO,
-      },
-    ] as BioblocksWidgetConfig[];
-  };
-
   protected getDistanceRepForResidues(structureComponent: NGL.StructureComponent, residues: RESIDUE_TYPE[]) {
     const { experimentalProteins, predictedProteins, measuredProximity } = this.props;
+    const { isDistRepEnabled } = this.state;
 
     const pdbData = [...experimentalProteins, ...predictedProteins].find(
       pdb => pdb.nglStructure.name === structureComponent.name,
     );
     if (measuredProximity === CONTACT_DISTANCE_PROXIMITY.C_ALPHA) {
-      return createDistanceRepresentation(structureComponent, `${residues.join('.CA, ')}.CA`);
+      return createDistanceRepresentation(structureComponent, `${residues.join('.CA, ')}.CA`, isDistRepEnabled);
     } else if (pdbData) {
       const { atomIndexI, atomIndexJ } = pdbData.getMinDistBetweenResidues(residues[0], residues[1]);
 
-      return createDistanceRepresentation(structureComponent, [atomIndexI, atomIndexJ]);
+      return createDistanceRepresentation(structureComponent, [atomIndexI, atomIndexJ], isDistRepEnabled);
     }
   }
+
+  protected getRepresentationConfigs = () => {
+    const reps: NGL.StructureRepresentationType[] = ['default', 'spacefill', 'backbone', 'cartoon', 'surface', 'tube'];
+
+    return {
+      'Structure Representations': [
+        {
+          current: capitalizeFirstLetter(this.state.activeRepresentations.predicted.structType),
+          name: 'Predicted Structure Representation',
+          onChange: (value: number) => {
+            const { predictedProteins } = this.props;
+            const { activeRepresentations, stage } = this.state;
+            if (stage) {
+              this.setState({
+                activeRepresentations: {
+                  ...activeRepresentations,
+                  predicted: this.updateRepresentation(stage, reps[value], predictedProteins),
+                },
+              });
+              stage.viewer.requestRender();
+            }
+          },
+          options: ['Rainbow', 'Spacefill', 'Backbone', 'Cartoon', 'Surface', 'Tube'],
+          type: CONFIGURATION_COMPONENT_TYPE.RADIO,
+        },
+        {
+          current: capitalizeFirstLetter(this.state.activeRepresentations.experimental.structType),
+          name: 'Experimental Structure Representation',
+          onChange: (value: number) => {
+            const { experimentalProteins } = this.props;
+            const { activeRepresentations, stage } = this.state;
+            if (stage) {
+              this.setState({
+                activeRepresentations: {
+                  ...activeRepresentations,
+                  experimental: this.updateRepresentation(stage, reps[value], experimentalProteins),
+                },
+              });
+              stage.viewer.requestRender();
+            }
+          },
+          options: ['Rainbow', 'Spacefill', 'Backbone', 'Cartoon', 'Surface', 'Tube'],
+          type: CONFIGURATION_COMPONENT_TYPE.RADIO,
+        },
+      ] as BioblocksWidgetConfig[],
+    };
+  };
+
+  protected getSettingsConfigurations = () => {
+    const { measuredProximity } = this.props;
+    const { isDistRepEnabled, isMovePickEnabled } = this.state;
+
+    return {
+      'View Options': [
+        {
+          checked: isDistRepEnabled,
+          name: 'Distance Representation',
+          onChange: this.toggleDistRep,
+          type: CONFIGURATION_COMPONENT_TYPE.CHECKBOX,
+        },
+        {
+          checked: isMovePickEnabled,
+          name: 'Zoom on Click',
+          onChange: this.toggleMovePick,
+          type: CONFIGURATION_COMPONENT_TYPE.CHECKBOX,
+        },
+        {
+          current: measuredProximity,
+          name: 'Proximity Metric',
+          onChange: this.measuredProximityHandler,
+          options: Object.values(CONTACT_DISTANCE_PROXIMITY).map(capitalizeEveryWord),
+          type: CONFIGURATION_COMPONENT_TYPE.RADIO,
+        },
+      ] as BioblocksWidgetConfig[],
+    };
+  };
 
   protected handleRepresentationUpdate(stage: NGL.Stage) {
     const { predictedProteins } = this.props;
@@ -527,12 +535,11 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   }
 
   protected highlightCandidateResidues(structureComponent: NGL.StructureComponent, residues: RESIDUE_TYPE[]) {
-    const { isDistRepEnabled } = this.state;
     const reps = new Array<NGL.RepresentationElement>();
 
     if (residues.length >= 1) {
       reps.push(createBallStickRepresentation(structureComponent, residues));
-      if (residues.length >= 2 && isDistRepEnabled) {
+      if (residues.length >= 2) {
         const rep = this.getDistanceRepForResidues(structureComponent, residues);
         if (rep) {
           reps.push(rep);
@@ -547,13 +554,12 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     structureComponent: NGL.StructureComponent,
     lockedResidues: ILockedResiduePair,
   ) {
-    const { isDistRepEnabled } = this.state;
     const reps = new Array<NGL.RepresentationElement>();
 
     for (const residues of Object.values(lockedResidues)) {
       reps.push(createBallStickRepresentation(structureComponent, residues));
 
-      if (residues.length >= 2 && isDistRepEnabled) {
+      if (residues.length >= 2) {
         const rep = this.getDistanceRepForResidues(structureComponent, residues);
         if (rep) {
           reps.push(rep);
@@ -688,8 +694,8 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     if (stage) {
       if (pickingProxy && (pickingProxy.atom || pickingProxy.closestBondAtom)) {
         const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
-        const resname = AMINO_ACIDS_BY_THREE_LETTER_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE]
-          ? AMINO_ACIDS_BY_THREE_LETTER_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE].singleLetterCode
+        const resname = AMINO_ACID_BY_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE]
+          ? AMINO_ACID_BY_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE].singleLetterCode
           : atom.resname;
         stage.tooltip.textContent = `${atom.resno}${resname}`;
         addHoveredResidues([atom.resno]);
@@ -733,38 +739,38 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     }
   };
 
-  protected renderBottomToggles = () => {
+  protected getDockItems = () => {
     const isSuperPositionOn = this.state.superpositionStatus !== 'NONE';
 
-    return (
-      <Grid>
-        <Grid.Row centered={true} columns={3}>
-          <Grid.Column>
-            <div style={{ userSelect: 'none' }}>
-              <a aria-pressed={false} onClick={this.switchCameraType} role={'button'}>
-                {`Switch to ${
-                  this.state.stage && this.state.stage.parameters.cameraType === 'stereo' ? `Perspective` : 'Stereo'
-                }`}
-              </a>
-            </div>
-          </Grid.Column>
-          <Grid.Column>
-            <div style={{ userSelect: 'none' }}>
-              <a aria-pressed={false} onClick={this.centerCamera} role={'button'}>
-                Center View
-              </a>
-            </div>
-          </Grid.Column>
-          <Grid.Column>
-            <div style={{ userSelect: 'none' }}>
-              <a aria-pressed={isSuperPositionOn} onClick={this.onSuperpositionToggle} role={'button'}>
-                {`Superimpose: ${isSuperPositionOn ? 'on' : 'off'}`}
-              </a>
-            </div>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    );
+    return [
+      {
+        isVisibleCb: () =>
+          this.props.selectedSecondaryStructures.length >= 1 ||
+          Object.values(this.props.lockedResiduePairs).length >= 1 ||
+          this.props.candidateResidues.length >= 1,
+        onClick: () => {
+          this.props.removeAllLockedResiduePairs();
+          this.props.removeAllSelectedSecondaryStructures();
+          this.props.removeCandidateResidues();
+          this.props.removeHoveredResidues();
+        },
+        text: 'Clear Selections',
+      },
+      {
+        onClick: this.centerCamera,
+        text: 'Center View',
+      },
+      {
+        onClick: this.onSuperpositionToggle,
+        text: `Superimpose: ${isSuperPositionOn ? 'On' : 'Off'}`,
+      },
+      {
+        onClick: this.switchCameraType,
+        text: `Enable ${
+          this.state.stage && this.state.stage.parameters.cameraType === 'stereo' ? `Perspective` : 'Stereo'
+        }`,
+      },
+    ];
   };
 
   protected toggleDistRep = (event?: React.MouseEvent) => {

@@ -13,6 +13,9 @@ import {
 import {
   augmentCouplingScoresWithResidueMapping,
   fetchAppropriateData,
+  fetchGraphData,
+  fetchSpringCoordinateData,
+  fetchSpringData,
   generateResidueMapping,
   getCouplingScoresData,
   getSecondaryStructureData,
@@ -174,9 +177,123 @@ describe('DataHelper', () => {
   });
 
   describe('Spring', () => {
-    it('Should throw on incorrect location.', async () => {
-      expect.assertions(1);
-      await expect(fetchAppropriateData(VIZ_TYPE.SPRING, '')).rejects.toThrowError();
+    describe('Categorical Coloring File', () => {
+      it('Should throw on incorrect location.', async () => {
+        await expect(fetchSpringData('')).rejects.toThrowError();
+      });
+
+      it('Should parse a correctly formatted categorical file.', async () => {
+        const colorData = {
+          Sample: {
+            label_colors: {
+              P11A: '#7cff79',
+              P11B: '#00007f',
+              P12A: '#ff9400',
+              P9A: '#0080ff',
+            },
+            label_list: ['P9A', 'P9A'],
+          },
+        };
+        fetchMock.mockResponse(JSON.stringify(colorData));
+        const result = await fetchSpringData('somewhere.place');
+        expect(result).toEqual({
+          nodes: [
+            {
+              labelForCategory: { Sample: 'P9A' },
+              number: 0,
+            },
+            {
+              labelForCategory: { Sample: 'P9A' },
+              number: 1,
+            },
+          ],
+        });
+      });
+
+      it('Should throw on a incorrectly formatted categorical file.', async () => {
+        expect.assertions(1);
+        const colorData = {
+          Sample: {
+            label_colors: {
+              P11A: '#7cff79',
+              P11B: '#00007f',
+              P12A: '#ff9400',
+              P9A: '#0080ff',
+            },
+          },
+        };
+        fetchMock.mockResponse(JSON.stringify(colorData));
+        await expect(fetchSpringData('somewhere.place')).rejects.toBeTruthy();
+      });
+    });
+
+    describe('Coordinate File', () => {
+      it('Should throw on incorrect column count.', async () => {
+        fetchMock.mockResponse('1,2');
+        await expect(fetchSpringCoordinateData('')).rejects.toThrowError();
+      });
+
+      it('Should parse a correctly formatted coordinate file.', async () => {
+        const expected = '0,21,12\n1,12,21\n';
+        fetchMock.mockResponse(expected);
+        const result = await fetchSpringCoordinateData('somewhere.place');
+        expect(result).toEqual([[21, 12], [12, 21]]);
+      });
+
+      it('Should parse a empty coordinate file.', async () => {
+        fetchMock.mockResponse('');
+        const result = await fetchSpringCoordinateData('somewhere.place');
+        expect(result).toEqual([]);
+      });
+    });
+
+    describe('Graph File', () => {
+      it('Should throw on incorrect location.', async () => {
+        expect.assertions(1);
+        await expect(fetchAppropriateData(VIZ_TYPE.SPRING, '')).rejects.toThrowError();
+      });
+
+      it('Should parse a correctly formatted graph file.', async () => {
+        const expected = {
+          links: [
+            {
+              distance: 2,
+              source: 0,
+              target: 1,
+            },
+          ],
+          nodes: [
+            {
+              name: 0,
+              number: 0,
+            },
+            {
+              name: 1,
+              number: 1,
+            },
+          ],
+        };
+        const stringified = JSON.stringify(expected);
+        fetchMock.mockResponse(stringified);
+        const result = await fetchGraphData(stringified);
+        expect(result).toEqual(expected);
+      });
+
+      it('Should throw on a incorrectly formatted graph file.', async () => {
+        expect.assertions(1);
+        const expected = {
+          links: [
+            {
+              distance: 2,
+              source: 0,
+              target: 1,
+            },
+          ],
+        };
+        const stringified = JSON.stringify(expected);
+        fetchMock.mockResponse(stringified);
+        await expect(fetchGraphData(stringified)).rejects.toBeTruthy();
+      });
     });
   });
 

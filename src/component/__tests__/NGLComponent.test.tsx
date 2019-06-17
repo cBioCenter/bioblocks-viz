@@ -2,7 +2,7 @@ import { mount, ReactWrapper, shallow } from 'enzyme';
 import * as NGL from 'ngl';
 import * as React from 'react';
 
-import { Popup } from 'semantic-ui-react';
+import { Checkbox, Popup } from 'semantic-ui-react';
 import { NGLComponent } from '~bioblocks-viz~/component';
 import { BioblocksPDB, CONTACT_DISTANCE_PROXIMITY } from '~bioblocks-viz~/data';
 
@@ -456,7 +456,7 @@ describe('NGLComponent', () => {
         .at(0)
         .simulate('change');
       wrapper
-        .find('input[name="Default"]')
+        .find('input[name="Rainbow"]')
         .at(0)
         .simulate('change');
       expect(defaultFileRepresentationSpy).toHaveBeenCalledTimes(1);
@@ -467,7 +467,7 @@ describe('NGLComponent', () => {
       const instance = wrapper.instance() as NGLComponent;
       const expected = 'spacefill';
       expect(instance.state.activeRepresentations.experimental.structType).toEqual('default');
-      expect(instance.state.activeRepresentations.predicted.structType).toEqual('default');
+      expect(instance.state.activeRepresentations.predicted.structType).toEqual('cartoon');
       wrapper
         .find(Popup)
         .at(0)
@@ -495,7 +495,7 @@ describe('NGLComponent', () => {
         .simulate('click');
 
       wrapper
-        .find('input[name="Disable"]')
+        .find(Checkbox)
         .at(0)
         .simulate('change');
 
@@ -513,14 +513,14 @@ describe('NGLComponent', () => {
         .simulate('click');
 
       wrapper
-        .find('input[name="Enable"]')
+        .find(Checkbox)
         .at(1)
         .simulate('change');
 
       expect(instance.state.isMovePickEnabled).toEqual(true);
 
       wrapper
-        .find('input[name="Disable"]')
+        .find(Checkbox)
         .at(1)
         .simulate('change');
 
@@ -528,19 +528,19 @@ describe('NGLComponent', () => {
     });
 
     it('Should handle switching cameras.', () => {
-      const wrapper = mount(<NGLComponent />);
+      const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
       const instance = wrapper.instance() as NGLComponent;
       const { stage } = instance.state;
       if (stage) {
         expect(stage.parameters.cameraType).toEqual('perspective');
         wrapper
           .find('a')
-          .at(0)
+          .at(2)
           .simulate('click');
         expect(stage.parameters.cameraType).toEqual('stereo');
         wrapper
           .find('a')
-          .at(0)
+          .at(2)
           .simulate('click');
         expect(stage.parameters.cameraType).toEqual('perspective');
       } else {
@@ -549,18 +549,18 @@ describe('NGLComponent', () => {
     });
 
     it('Should handle switching superposition.', () => {
-      const wrapper = mount(<NGLComponent />);
+      const wrapper = mount(<NGLComponent experimentalProteins={sampleData} />);
       const instance = wrapper.instance() as NGLComponent;
       expect(instance.state.superpositionStatus).toEqual('NONE');
       wrapper
         .find('a')
-        .at(2)
+        .at(1)
         .simulate('click');
       expect(instance.state.superpositionStatus).toEqual('BOTH');
     });
 
     it('Should handle centering the camera.', () => {
-      const wrapper = mount(<NGLComponent />);
+      const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
       const instance = wrapper.instance() as NGLComponent;
       const { stage } = instance.state;
       if (stage) {
@@ -568,7 +568,7 @@ describe('NGLComponent', () => {
         stage.autoView = autoViewSpy;
         wrapper
           .find('a')
-          .at(1)
+          .at(0)
           .simulate('click');
         expect(autoViewSpy).toHaveBeenCalled();
       } else {

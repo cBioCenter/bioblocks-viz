@@ -2,15 +2,17 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Card, Modal } from 'semantic-ui-react';
 
-import { ComponentMenuBar, IComponentMenuBarItem } from '~bioblocks-viz~/component/widget';
+import { ComponentDock, ComponentMenuBar, IComponentMenuBarItem, IDockItem } from '~bioblocks-viz~/component/widget';
 
 export interface IComponentCardProps {
   componentName: string;
+  dockItems: IDockItem[];
   frameHeight: number;
   frameWidth: number;
   headerHeight: number;
   height: number | string;
   iconSrc: string;
+  isDataReady: boolean;
   isFramedComponent: boolean;
   isFullPage: boolean;
   menuItems: IComponentMenuBarItem[];
@@ -26,11 +28,13 @@ export interface IComponentCardState {
 
 export class ComponentCard extends React.Component<IComponentCardProps, IComponentCardState> {
   public static defaultProps = {
+    dockItems: [],
     frameHeight: 0,
     frameWidth: 0,
     headerHeight: 40,
     height: '570px',
     iconSrc: 'assets/icons/spring-icon.png',
+    isDataReady: false,
     isFramedComponent: false,
     isFullPage: false,
     menuItems: [],
@@ -70,8 +74,8 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
   }
 
   public render() {
-    const { children, headerHeight, height, isFramedComponent, width } = this.props;
-    const { isFullPage, framedStyle } = this.state;
+    const { height, width } = this.props;
+    const { isFullPage } = this.state;
 
     const expandedStyle: React.CSSProperties = {
       height: 'calc(80vh + 45px)',
@@ -86,11 +90,14 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
 
     const card = (
       <Card centered={true} className={'bioblocks-component-card'} ref={ref => (this.cardRef = ref)} style={cardStyle}>
-        {this.renderTopMenu(headerHeight)}
-        {isFramedComponent ? <div style={framedStyle}>{children}</div> : children}
+        {this.renderCardChildren()}
       </Card>
     );
 
+    return this.renderCard(card, isFullPage);
+  }
+
+  protected renderCard = (card: JSX.Element, isFullPage: boolean) => {
     if (isFullPage) {
       return (
         <Modal
@@ -107,7 +114,25 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     } else {
       return card;
     }
-  }
+  };
+
+  protected renderCardChildren = () => {
+    const { children, headerHeight, isFramedComponent } = this.props;
+    const { framedStyle } = this.state;
+
+    return (
+      <>
+        <div style={{ height: '6%' }}>{this.renderTopMenu(headerHeight)}</div>
+        <div style={{ height: '91%' }}>{isFramedComponent ? <div style={framedStyle}>{children}</div> : children}</div>
+        <div style={{ height: '3%' }}>{this.renderDock()}</div>
+      </>
+    );
+  };
+  protected renderDock = () => {
+    const { dockItems, isDataReady } = this.props;
+
+    return dockItems.length >= 1 && <ComponentDock dockItems={dockItems} visible={isDataReady} />;
+  };
 
   protected renderTopMenu = (height: number | string) => {
     const { componentName, iconSrc, menuItems } = this.props;
@@ -136,11 +161,10 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     const { frameHeight, frameWidth, headerHeight } = this.props;
     const { framedStyle, isFullPage } = this.state;
 
-    if (this.cardRef) {
-      const iFrameNodeRef = ReactDOM.findDOMNode(this.cardRef) as Element;
-      const iFrameNodeStyle = iFrameNodeRef ? window.getComputedStyle(iFrameNodeRef) : null;
-
-      if (iFrameNodeStyle && iFrameNodeStyle.width && iFrameNodeStyle.height) {
+    const iFrameNodeRef = ReactDOM.findDOMNode(this.cardRef) as Element;
+    if (iFrameNodeRef) {
+      const iFrameNodeStyle = window.getComputedStyle(iFrameNodeRef);
+      if (iFrameNodeStyle && iFrameNodeStyle.width !== null && iFrameNodeStyle.height !== null) {
         document.body.style.overflowY = isFullPage ? 'hidden' : 'auto';
         const refHeight = parseInt(iFrameNodeStyle.height, 10) - 18;
         const refWidth = parseInt(iFrameNodeStyle.width, 10) - 10;

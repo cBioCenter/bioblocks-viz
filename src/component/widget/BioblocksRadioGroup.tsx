@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { CheckboxProps, Form, Grid } from 'semantic-ui-react';
+import { BIOBLOCKS_CSS_STYLE } from '~bioblocks-viz~/data';
 
 export interface IBioblocksRadioGroupProps {
   defaultOption?: string;
@@ -59,21 +60,24 @@ export class BioblocksRadioGroup extends React.Component<IBioblocksRadioGroupPro
             <Grid.Row>
               <div style={{ fontStyle: 'italic', fontWeight: 'bold', textDecoration: 'underline' }}>{title}</div>
             </Grid.Row>
-            {options.map((option, index) => (
-              <Grid.Column key={`${id}-${option}-${index}`} style={{ paddingBottom: 0, paddingTop: '7px' }}>
-                <Form.Radio
-                  checked={this.state.selectedIndex === index}
-                  disabled={disabled}
-                  label={{ children: option, style }}
-                  name={option}
-                  onChange={this.handleChange(index)}
-                  value={index}
-                />
-              </Grid.Column>
-            ))}
+            {this.renderOptions(options, id, disabled, style)}
           </Grid>
         </Form>
       </div>
     );
   }
+
+  protected renderOptions = (options: string[], id: string, disabled: boolean, style: BIOBLOCKS_CSS_STYLE) =>
+    options.map((option, index) => (
+      <Grid.Column key={`${id}-${option}-${index}`} style={{ paddingBottom: 0, paddingTop: '7px' }}>
+        <Form.Radio
+          checked={this.state.selectedIndex === index}
+          disabled={disabled}
+          label={{ children: option, style }}
+          name={option}
+          onChange={this.handleChange(index)}
+          value={index}
+        />
+      </Grid.Column>
+    ));
 }

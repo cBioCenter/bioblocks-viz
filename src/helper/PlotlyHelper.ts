@@ -1,5 +1,5 @@
 import { IContactMapChartData } from '~bioblocks-viz~/component';
-import { IPlotlyData, PLOTLY_CHART_TYPE } from '~bioblocks-viz~/data';
+import { ICouplingScore, IPlotlyData, PLOTLY_CHART_TYPE } from '~bioblocks-viz~/data';
 
 /**
  * Generate data in the expected format for a WebGL Scatter plot.
@@ -42,35 +42,11 @@ export const generateScatterData = (
     },
     mode: 'markers',
     name: `${name} ${subtitle}`,
-    text: mirrorPoints
-      ? [
-          ...textValues,
-          ...textValues.map(
-            // Given a coordinate '(x, y)', create '(y, x)' - needed because we have custom hover labels.
-            coord => {
-              if (coord.includes('<br>')) {
-                const breakIndex = coord.indexOf('<br>');
-
-                return `(${coord
-                  .substr(1, breakIndex - 2)
-                  .split(', ')
-                  .reverse()
-                  .join(', ')})${coord.substring(breakIndex)}`;
-              } else {
-                return `(${coord
-                  .substr(1, coord.length - 2)
-                  .split(', ')
-                  .reverse()
-                  .join(', ')})`;
-              }
-            },
-          ),
-        ]
-      : textValues,
+    text: deriveScatterText(mirrorPoints, textValues),
     type: PLOTLY_CHART_TYPE.scatter,
-    x: mirrorPoints ? [...xValues, ...yValues] : xValues,
-    y: mirrorPoints ? [...yValues, ...xValues] : yValues,
-    z: mirrorPoints ? [...zValues, ...zValues] : zValues,
+    x: derivePoints(mirrorPoints, xValues, yValues),
+    y: derivePoints(mirrorPoints, yValues, xValues),
+    z: derivePoints(mirrorPoints, zValues, zValues),
   };
 };
 
@@ -85,6 +61,67 @@ const derivePlotlyColor = (mirrorPoints: boolean, zValues: number[], entry: ICon
 
     return mirrorPoints ? [...zStrings, ...zStrings] : zStrings;
   }
+};
+
+const derivePoints = (mirrorPoints: boolean, points: number[], oppositePoints?: number[]) =>
+  mirrorPoints ? [...points, ...oppositePoints] : points;
+
+const deriveScatterText = (mirrorPoints: boolean, textValues: string[]) => {
+  return mirrorPoints
+    ? [
+        ...textValues,
+        ...textValues.map(
+          // Given a coordinate '(x, y)', create '(y, x)' - needed because we have custom hover labels.
+          coord => {
+            if (coord.includes('<br>') && coord.includes('(')) {
+              const breakIndex = coord.indexOf('<br>');
+
+              return `(${coord
+                .substr(1, breakIndex - 2)
+                .split(', ')
+                .reverse()
+                .join(', ')})${coord.substring(breakIndex)}`;
+            } else if (coord.includes('(')) {
+              return `(${coord
+                .substr(1, coord.length - 2)
+                .split(', ')
+                .reverse()
+                .join(', ')})`;
+            } else {
+              return `${coord
+                .split(', ')
+                .reverse()
+                .join(', ')}`;
+            }
+          },
+        ),
+      ]
+    : textValues;
+};
+/**
+ * Determines the appropriate hover text in plotly for this coupling score.
+ *
+ * Currently the following 3 fields will be appended if present:
+ * - Amino acid (A_i, A_j)
+ * - Score
+ * - Probability
+ */
+export const generateCouplingScoreHoverText = (point: ICouplingScore) => {
+  let hoverText = '';
+  if (point) {
+    // Yields the format '(2B, 9S)' if amino acid is known, otherwise just '(2, 9)'
+    hoverText =
+      point.A_i && point.A_j ? `(${point.i}${point.A_i}, ${point.j}${point.A_j})` : `(${point.i}, ${point.j})`;
+
+    if (point.score) {
+      hoverText = `${hoverText}<br>Score: ${point.score}`;
+    }
+    if (point.probability) {
+      hoverText = `${hoverText}<br>Probability: ${point.probability.toFixed(1)}`;
+    }
+  }
+
+  return hoverText;
 };
 
 export const generateFloat32ArrayFromContacts = (array: Array<{ i: number; j: number }>) => {

@@ -3,14 +3,17 @@ import * as CopyWebpackPlugin from 'copy-webpack-plugin';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import * as webpack from 'webpack';
-
 // TODO: Use https://github.com/TypeStrong/typedoc and https://github.com/Microsoft/Typedoc-Webpack-Plugin
 // tslint:disable-next-line:no-var-requires
 // const TypedocWebpackPlugin = require('typedoc-webpack-plugin'); //
 
 import * as path from 'path';
 
-module.exports = {
+// tslint:disable-next-line: export-name  max-func-body-length
+export const generateCommonConfig = (
+  env: webpack.Compiler.Handler,
+  argv: webpack.Configuration,
+): webpack.Configuration => ({
   entry: {
     example: './examples/example.tsx',
   },
@@ -30,7 +33,11 @@ module.exports = {
         use: {
           loader: 'ts-loader',
           options: {
-            configFile: path.resolve(__dirname, 'configs', 'tsconfig.webpack.json'),
+            configFile: path.resolve(
+              __dirname,
+              'configs',
+              argv.mode === 'development' ? 'tsconfig.dev.json' : 'tsconfig.webpack.json',
+            ),
             context: __dirname,
           },
         },
@@ -163,4 +170,8 @@ module.exports = {
     extensions: ['.js', '.json', '.ts', '.tsx'],
     modules: [path.join(__dirname, 'src'), path.join(__dirname, 'types'), path.resolve('node_modules'), 'node_modules'],
   },
+});
+
+module.exports = (env: webpack.Compiler.Handler, argv: webpack.Configuration) => {
+  return generateCommonConfig(env, argv);
 };

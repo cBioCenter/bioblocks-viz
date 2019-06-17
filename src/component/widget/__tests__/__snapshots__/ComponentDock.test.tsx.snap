@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ComponentDock Should match existing snapshot when given empty dock items. 1`] = `
+<Grid
+  centered={true}
+  columns="equal"
+  stretched={true}
+  style={
+    Object {
+      "marginLeft": "initial",
+      "marginRight": "initial",
+      "marginTop": "-0.5rem",
+      "padding": 0,
+    }
+  }
+/>
+`;
+
+exports[`ComponentDock Should match existing snapshot when given sample dock items. 1`] = `
+<Grid
+  centered={true}
+  columns="equal"
+  stretched={true}
+  style={
+    Object {
+      "marginLeft": "initial",
+      "marginRight": "initial",
+      "marginTop": "-0.5rem",
+      "padding": 0,
+    }
+  }
+>
+  <GridColumn
+    key="dock-item-0"
+    style={
+      Object {
+        "padding": 0,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "userSelect": "none",
+        }
+      }
+    >
+      <a
+        aria-pressed={false}
+        role="button"
+      >
+        A Little Respect
+      </a>
+    </div>
+  </GridColumn>
+  <GridColumn
+    key="dock-item-1"
+    style={
+      Object {
+        "padding": 0,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "userSelect": "none",
+        }
+      }
+    >
+      <a
+        aria-pressed={false}
+        role="button"
+      >
+        Erasure
+      </a>
+    </div>
+  </GridColumn>
+</Grid>
+`;

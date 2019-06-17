@@ -350,6 +350,23 @@ describe('ContactMap', () => {
       wrapper.update();
       expect(onClearResidueSpy).toHaveBeenCalledTimes(0);
     });
+
+    it('Should invoke callback for clearing all selections when clicked.', async () => {
+      const mocks = [jest.fn(), jest.fn(), jest.fn()];
+      const wrapper = await getAsyncMountedComponent(
+        <ContactMapClass
+          data={sampleData}
+          selectedSecondaryStructures={sampleData.secondaryStructures[0]}
+          removeAllLockedResiduePairs={mocks[0]}
+          removeAllSelectedSecondaryStructures={mocks[1]}
+          removeHoveredResidues={mocks[2]}
+        />,
+      );
+      wrapper.find('a[children="Clear Selections"]').simulate('click');
+      mocks.forEach(mock => {
+        expect(mock).toHaveBeenCalledTimes(1);
+      });
+    });
   });
 
   describe('Configuration', () => {
@@ -359,7 +376,7 @@ describe('ContactMap', () => {
       const expected = 10;
       expect(instance.state.pointsToPlot[0].nodeSize).not.toEqual(expected);
 
-      instance.onNodeSizeChange(0)(expected);
+      instance.onNodeSizeChange(0, expected)();
       expect(instance.state.pointsToPlot[0].nodeSize).toEqual(expected);
     });
   });

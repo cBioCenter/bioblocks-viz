@@ -111,8 +111,8 @@ export class ContactMapChart extends React.Component<IContactMapChartProps, ICon
       y: -0.4,
     },
     marginModifiers: {
-      b: 65,
-      l: 65,
+      b: 67,
+      l: 67,
     },
     range: 33000,
     secondaryStructures: [],

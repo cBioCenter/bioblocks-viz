@@ -2,7 +2,7 @@ import * as React from 'react';
 import { CheckboxProps, Form, FormProps, GridColumn, GridRow, InputOnChangeData } from 'semantic-ui-react';
 
 import { FeatureViewer } from '~bioblocks-viz~/component';
-import { IPlotlyData, IProtein, TintedBioblocks1DSection } from '~bioblocks-viz~/data';
+import { IDbReference, IPlotlyData, IProtein, TintedBioblocks1DSection } from '~bioblocks-viz~/data';
 import { ColorMapper } from '~bioblocks-viz~/helper';
 
 export interface IProteinFeatureViewerProps {
@@ -57,17 +57,42 @@ export class ProteinFeatureViewer extends React.Component<IProteinFeatureViewerP
               showGrouped={showGrouped}
             />
           </GridColumn>
-          <GridColumn>
-            <Form onSubmit={this.onProteinInputSubmit}>
-              <Form.Input onChange={this.onProteinInputChange} value={proteinId} fluid={false} width={'three'} />
-              <Form.Button>Submit Protein ID</Form.Button>
-              <Form.Checkbox defaultChecked={true} label={'Show grouped?'} onChange={this.onShowGroupedChange} />
-            </Form>
-          </GridColumn>
+          <GridColumn>{this.renderProteinForm(proteinId)}</GridColumn>
         </GridRow>
       </div>
     );
   }
+  protected getPFamFamilyLink = (pFamRef: Partial<IDbReference>) =>
+    `<a href="http://pfam.xfam.org/family/${pFamRef.id}">PFAM</a>`;
+
+  protected getPFamDomainLink = (pFamRef: Partial<IDbReference>) =>
+    `<a href="http://mutationaligner.org/domains/${pFamRef.id}">Mutagen Aligner</a>`;
+
+  protected getPFamLinks = (pFamIds: Array<Partial<IDbReference>>) =>
+    `${this.getPFamFamilyLink(pFamIds[0])} ${this.getPFamDomainLink(pFamIds[0])}`;
+
+  protected initializeProteinData = (protein: IProtein) => {
+    const domains = protein.features.filter(feature => feature.type === 'DOMAIN');
+    const colorMapper = new ColorMapper<string>();
+
+    const domainData = domains.map((domain, index) => {
+      const { begin, description = '', end } = domain;
+      // This matches domains that do and do not have other of the same domain in the protein.
+      const domainName = description.split('-like')[0];
+
+      return new TintedBioblocks1DSection(
+        domainName,
+        begin ? Number.parseInt(begin, 10) : -1,
+        end ? Number.parseInt(end, 10) : -1,
+        colorMapper.getColorFor(domainName),
+      );
+    });
+
+    this.setState({
+      domainData,
+      protein,
+    });
+  };
 
   protected onProteinInputChange = (event: React.SyntheticEvent<HTMLInputElement>, data: InputOnChangeData) => {
     this.setState({
@@ -80,26 +105,7 @@ export class ProteinFeatureViewer extends React.Component<IProteinFeatureViewerP
       const result = await fetch(`https://www.ebi.ac.uk/proteins/api/proteins/${this.state.proteinId}`);
       if (result && result.ok) {
         const protein = (await result.json()) as IProtein;
-        const domains = protein.features.filter(feature => feature.type === 'DOMAIN');
-        const colorMapper = new ColorMapper<string>();
-
-        const domainData = domains.map((domain, index) => {
-          const { begin, description = '', end } = domain;
-          // This matches domains that do and do not have other of the same domain in the protein.
-          const domainName = description.split('-like')[0];
-
-          return new TintedBioblocks1DSection(
-            domainName,
-            begin ? Number.parseInt(begin, 10) : -1,
-            end ? Number.parseInt(end, 10) : -1,
-            colorMapper.getColorFor(domainName),
-          );
-        });
-
-        this.setState({
-          domainData,
-          protein,
-        });
+        this.initializeProteinData(protein);
       }
     } catch (e) {
       console.error(e);
@@ -132,9 +138,15 @@ export class ProteinFeatureViewer extends React.Component<IProteinFeatureViewerP
     return pFamIds.length >= 1
       ? `${proteinId}: ${proteinId} domain (${domainData[index].start} - ${
           domainData[index].end
-        })<br /><a href="http://pfam.xfam.org/family/${
-          pFamIds[0].id
-        }">PFAM</a> <a href="http://mutationaligner.org/domains/${pFamIds[0].id}">Mutagen Aligner</a>`
+        })<br />${this.getPFamLinks(pFamIds)}`
       : '';
   };
+
+  protected renderProteinForm = (proteinId: string) => (
+    <Form onSubmit={this.onProteinInputSubmit}>
+      <Form.Input onChange={this.onProteinInputChange} value={proteinId} fluid={false} width={'three'} />
+      <Form.Button>Submit Protein ID</Form.Button>
+      <Form.Checkbox defaultChecked={true} label={'Show grouped?'} onChange={this.onShowGroupedChange} />
+    </Form>
+  );
 }

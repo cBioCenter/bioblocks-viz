@@ -1,10 +1,11 @@
+import { Config } from 'html-webpack-plugin';
 import * as webpack from 'webpack';
 import * as merge from 'webpack-merge';
 
 // tslint:disable-next-line:no-relative-imports
-import * as common from '../webpack.bioblocks-common';
+import * as generateCommonConfig from '../webpack.bioblocks-common';
 
-module.exports = merge(common, {
+const prodConfig: Config = {
   mode: 'production',
   optimization: {
     minimize: true,
@@ -14,4 +15,10 @@ module.exports = merge(common, {
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
   ],
-});
+};
+
+module.exports = (env: webpack.Compiler.Handler, argv: webpack.Configuration) => {
+  // @ts-ignore
+  // tslint:disable-next-line: no-unsafe-any
+  return merge(generateCommonConfig(env, argv), prodConfig);
+};

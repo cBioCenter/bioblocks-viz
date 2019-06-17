@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IComposerProps | bioblocks-viz</title>
+	<title>IDockItem | bioblocks-viz</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,30 +54,21 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="icomposerprops.html">IComposerProps</a>
+					<a href="idockitem.html">IDockItem</a>
 				</li>
 			</ul>
-			<h1>Interface IComposerProps</h1>
+			<h1>Interface IDockItem</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>ContextConsumerComposer is meant to streamline connecting various context consumers.
-						Heavily based off of <a href="https://github.com/jamesplease/react-composer">react-composer</a>.</p>
-					</div>
-					<p>However, this only accepts an array of context types instead.</p>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IComposerProps</span>
+						<span class="target">IDockItem</span>
 					</li>
 				</ul>
 			</section>
@@ -88,13 +79,14 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icomposerprops.html#components" class="tsd-kind-icon">components</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="idockitem.html#text" class="tsd-kind-icon">text</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="icomposerprops.html#children" class="tsd-kind-icon">children</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="idockitem.html#isvisiblecb" class="tsd-kind-icon">is<wbr>Visible<wbr>Cb</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="idockitem.html#onclick" class="tsd-kind-icon">on<wbr>Click</a></li>
 							</ul>
 						</section>
 					</div>
@@ -103,12 +95,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="components" class="tsd-anchor"></a>
-					<h3>components</h3>
-					<div class="tsd-signature tsd-kind-icon">components<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">React.ComponentType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="text" class="tsd-anchor"></a>
+					<h3>text</h3>
+					<div class="tsd-signature tsd-kind-icon">text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/2eb739f16/src/hoc/ContextConsumerComposer.tsx#L10">src/hoc/ContextConsumerComposer.tsx:10</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/a956efeb8/src/component/widget/ComponentDock.tsx#L5">src/component/widget/ComponentDock.tsx:5</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -116,25 +108,48 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="children" class="tsd-anchor"></a>
-					<h3>children</h3>
+					<a name="isvisiblecb" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> is<wbr>Visible<wbr>Cb</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">children<span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Visible<wbr>Cb<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/2eb739f16/src/hoc/ContextConsumerComposer.tsx#L11">src/hoc/ContextConsumerComposer.tsx:11</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/a956efeb8/src/component/widget/ComponentDock.tsx#L11">src/component/widget/ComponentDock.tsx:11</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>If present, calls function to determine if it is rendered.
+									If omitted, DockItem will be rendered.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="onclick" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Click</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Click<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MouseEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLAnchorElement</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">MouseEvent</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/a956efeb8/src/component/widget/ComponentDock.tsx#L12">src/component/widget/ComponentDock.tsx:12</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>event: <span class="tsd-signature-type">MouseEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLAnchorElement</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">MouseEvent</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -153,13 +168,16 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="icomposerprops.html" class="tsd-kind-icon">IComposer<wbr>Props</a>
+						<a href="idockitem.html" class="tsd-kind-icon">IDock<wbr>Item</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="icomposerprops.html#components" class="tsd-kind-icon">components</a>
+								<a href="idockitem.html#text" class="tsd-kind-icon">text</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="icomposerprops.html#children" class="tsd-kind-icon">children</a>
+								<a href="idockitem.html#isvisiblecb" class="tsd-kind-icon">is<wbr>Visible<wbr>Cb</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="idockitem.html#onclick" class="tsd-kind-icon">on<wbr>Click</a>
 							</li>
 						</ul>
 					</li>
