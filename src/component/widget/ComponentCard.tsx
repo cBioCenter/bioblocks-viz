@@ -12,6 +12,7 @@ export interface IComponentCardProps {
   headerHeight: number;
   height: number | string;
   iconSrc: string;
+  isDataReady: boolean;
   isFramedComponent: boolean;
   isFullPage: boolean;
   menuItems: IComponentMenuBarItem[];
@@ -33,6 +34,7 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     headerHeight: 40,
     height: '570px',
     iconSrc: 'assets/icons/spring-icon.png',
+    isDataReady: false,
     isFramedComponent: false,
     isFullPage: false,
     menuItems: [],
@@ -127,9 +129,9 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     );
   };
   protected renderDock = () => {
-    const { dockItems } = this.props;
+    const { dockItems, isDataReady } = this.props;
 
-    return dockItems.length >= 1 && <ComponentDock dockItems={dockItems} />;
+    return dockItems.length >= 1 && <ComponentDock dockItems={dockItems} visible={isDataReady} />;
   };
 
   protected renderTopMenu = (height: number | string) => {

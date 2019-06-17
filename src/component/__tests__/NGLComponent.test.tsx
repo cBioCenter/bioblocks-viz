@@ -528,19 +528,19 @@ describe('NGLComponent', () => {
     });
 
     it('Should handle switching cameras.', () => {
-      const wrapper = mount(<NGLComponent />);
+      const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
       const instance = wrapper.instance() as NGLComponent;
       const { stage } = instance.state;
       if (stage) {
         expect(stage.parameters.cameraType).toEqual('perspective');
         wrapper
           .find('a')
-          .at(3)
+          .at(2)
           .simulate('click');
         expect(stage.parameters.cameraType).toEqual('stereo');
         wrapper
           .find('a')
-          .at(3)
+          .at(2)
           .simulate('click');
         expect(stage.parameters.cameraType).toEqual('perspective');
       } else {
@@ -549,18 +549,18 @@ describe('NGLComponent', () => {
     });
 
     it('Should handle switching superposition.', () => {
-      const wrapper = mount(<NGLComponent />);
+      const wrapper = mount(<NGLComponent experimentalProteins={sampleData} />);
       const instance = wrapper.instance() as NGLComponent;
       expect(instance.state.superpositionStatus).toEqual('NONE');
       wrapper
         .find('a')
-        .at(2)
+        .at(1)
         .simulate('click');
       expect(instance.state.superpositionStatus).toEqual('BOTH');
     });
 
     it('Should handle centering the camera.', () => {
-      const wrapper = mount(<NGLComponent />);
+      const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
       const instance = wrapper.instance() as NGLComponent;
       const { stage } = instance.state;
       if (stage) {
@@ -568,7 +568,7 @@ describe('NGLComponent', () => {
         stage.autoView = autoViewSpy;
         wrapper
           .find('a')
-          .at(1)
+          .at(0)
           .simulate('click');
         expect(autoViewSpy).toHaveBeenCalled();
       } else {

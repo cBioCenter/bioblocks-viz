@@ -54,6 +54,7 @@ export interface INGLComponentProps {
   onMeasuredProximityChange?(value: number): void;
   onResize?(event?: UIEvent): void;
   removeAllLockedResiduePairs(): void;
+  removeAllSelectedSecondaryStructures(): void;
   removeHoveredResidues(): void;
   removeNonLockedResidues(): void;
   removeLockedResiduePair(key: string): void;
@@ -98,6 +99,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     onResize: EMPTY_FUNCTION,
     predictedProteins: [],
     removeAllLockedResiduePairs: EMPTY_FUNCTION,
+    removeAllSelectedSecondaryStructures: EMPTY_FUNCTION,
     removeCandidateResidues: EMPTY_FUNCTION,
     removeHoveredResidues: EMPTY_FUNCTION,
     removeLockedResiduePair: EMPTY_FUNCTION,
@@ -199,13 +201,14 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
    * @returns The NGL Component
    */
   public render() {
-    const { height, isDataLoading, menuItems, style, width } = this.props;
+    const { experimentalProteins, height, isDataLoading, menuItems, predictedProteins, style, width } = this.props;
     const computedStyle = { ...style, height, width };
 
     return (
       <ComponentCard
         componentName={'NGL Viewer'}
         dockItems={this.getDockItems()}
+        isDataReady={experimentalProteins.length >= 1 || predictedProteins.length >= 1}
         menuItems={[
           ...menuItems,
           {
@@ -741,7 +744,16 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
 
     return [
       {
-        onClick: this.props.removeNonLockedResidues,
+        isVisibleCb: () =>
+          this.props.selectedSecondaryStructures.length >= 1 ||
+          Object.values(this.props.lockedResiduePairs).length >= 1 ||
+          this.props.candidateResidues.length >= 1,
+        onClick: () => {
+          this.props.removeAllLockedResiduePairs();
+          this.props.removeAllSelectedSecondaryStructures();
+          this.props.removeCandidateResidues();
+          this.props.removeHoveredResidues();
+        },
         text: 'Clear Selections',
       },
       {

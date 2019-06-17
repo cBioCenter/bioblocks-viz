@@ -356,6 +356,7 @@ describe('ContactMap', () => {
       const wrapper = await getAsyncMountedComponent(
         <ContactMapClass
           data={sampleData}
+          selectedSecondaryStructures={sampleData.secondaryStructures[0]}
           removeAllLockedResiduePairs={mocks[0]}
           removeAllSelectedSecondaryStructures={mocks[1]}
           removeHoveredResidues={mocks[2]}

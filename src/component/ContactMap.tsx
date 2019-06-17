@@ -241,6 +241,8 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 
   protected getDockConfigs = () => [
     {
+      isVisibleCb: () =>
+        this.props.selectedSecondaryStructures.length >= 1 || Object.values(this.props.lockedResiduePairs).length >= 1,
       onClick: () => {
         this.props.removeAllLockedResiduePairs();
         this.props.removeAllSelectedSecondaryStructures();
@@ -417,6 +419,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       <ComponentCard
         componentName={'Contact Map'}
         dockItems={this.getDockConfigs()}
+        isDataReady={data.couplingScores.allContacts.length >= 1}
         menuItems={this.getMenuConfigs(configurations, pointsToPlot)}
       >
         <ContactMapChart

@@ -9,6 +9,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
   headerHeight={40}
   height="570px"
   iconSrc="assets/icons/spring-icon.png"
+  isDataReady={false}
   isFramedComponent={true}
   isFullPage={false}
   menuItems={Array []}
@@ -752,6 +753,7 @@ exports[`ComponentCard Should handle expanding a framed full page component. 1`]
   headerHeight={40}
   height="570px"
   iconSrc="assets/icons/spring-icon.png"
+  isDataReady={false}
   isFramedComponent={true}
   isFullPage={true}
   menuItems={Array []}
@@ -960,6 +962,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
   headerHeight={40}
   height="570px"
   iconSrc="assets/icons/spring-icon.png"
+  isDataReady={false}
   isFramedComponent={false}
   isFullPage={false}
   menuItems={Array []}
@@ -1889,6 +1892,7 @@ exports[`ComponentCard Should handle expanding a non-framed full page component.
   headerHeight={40}
   height="570px"
   iconSrc="assets/icons/spring-icon.png"
+  isDataReady={false}
   isFramedComponent={false}
   isFullPage={true}
   menuItems={Array []}
@@ -2088,6 +2092,7 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
   headerHeight={40}
   height="570px"
   iconSrc="assets/icons/spring-icon.png"
+  isDataReady={false}
   isFramedComponent={true}
   isFullPage={false}
   menuItems={Array []}
