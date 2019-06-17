@@ -130,6 +130,14 @@ module.exports = {
     ]),
     new CopyWebpackPlugin([
       {
+        from: './datasets',
+        ignore: ['*.pdf'],
+        to: './datasets',
+        toType: 'dir',
+      },
+    ]),
+    new CopyWebpackPlugin([
+      {
         from: './SPRING_dev',
         to: './',
         toType: 'dir',

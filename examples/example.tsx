@@ -3,9 +3,12 @@ import * as ReactDOM from 'react-dom';
 import { connect, Provider } from 'react-redux';
 import { Button, Grid, Header, Label, Message, Segment } from 'semantic-ui-react';
 
+import { UMAPVisualization } from '~bioblocks-viz~/singlepage/UMAPVisualization';
+
 import { createContainerActions, createResiduePairActions } from '~bioblocks-viz~/action';
 import { PredictedContactMap } from '~bioblocks-viz~/component';
 import { NGLContainer } from '~bioblocks-viz~/container';
+/*import { SpringContainer, TensorTContainer } from '~bioblocks-viz~/container';*/
 import {
   Bioblocks1DSection,
   BioblocksPDB,
@@ -122,7 +125,12 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     return (
       <div id={'BioblocksVizApp'} style={{ ...style, height: '1000px' }}>
         <meta name={'viewport'} content={'width=device-width, initial-scale=1'} />
-        {this.renderCouplingComponents()}
+        {/*{this.renderCouplingComponents()}*/}
+        {/*<iframe sandbox="">*/}
+        <UMAPVisualization />
+        {/*</iframe>*/}
+        {/*<SpringContainer datasetsURI={'datasets'} />
+        <TensorTContainer datasetLocation={'datasets/hpc/full'} />*/}
       </div>
     );
   }

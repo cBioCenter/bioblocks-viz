@@ -124,6 +124,19 @@ export const fetchSpringCoordinateData = async (file: string) => {
   return coordinates;
 };
 
+export const fetchMatrixData = async (filePath: string) => {
+  const coordText: string = await fetchCSVFile(`${filePath}`);
+  const result: number[][] = [];
+  coordText.split('\n').forEach(entry => {
+    if (entry.length > 0) {
+      const items = entry.split(',').map(Number.parseFloat);
+      result.push(items);
+    }
+  });
+
+  return result;
+};
+
 export const fetchTSneCoordinateData = async (dataDir: string) => {
   const coordText: string = await fetchCSVFile(`${dataDir}/tsne_output.csv`);
   const result: number[][] = [];
