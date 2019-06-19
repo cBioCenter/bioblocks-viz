@@ -200,9 +200,9 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     }
 
     if (experimentalProteins.length === 0 && predictedProteins.length === 0) {
-      predictedProteins.push(pdbData);
+      experimentalProteins.push(pdbData);
     } else if (experimentalProteins.length === 0) {
-      pdbData = BioblocksPDB.createEmptyPDB();
+      pdbData = predictedProteins[0];
     } else {
       pdbData = experimentalProteins[0];
     }
@@ -237,9 +237,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
       <Grid.Row textAlign={'right'} verticalAlign={'bottom'}>
         <Grid.Column style={{ height: '100%', width: 'auto' }}>{this.renderClearAllButton()}</Grid.Column>
         <Grid.Column style={{ height: '100%', width: 'auto' }}>
-          <Grid.Row>
-            {this.renderUploadForm(this.onFileUpload, 'upload-coupling-scores', 'CouplingScores Files')}
-          </Grid.Row>
+          <Grid.Row>{this.renderUploadForm(this.onFileUpload, 'upload-coupling-scores', 'Upload Files')}</Grid.Row>
         </Grid.Column>
       </Grid.Row>
     );

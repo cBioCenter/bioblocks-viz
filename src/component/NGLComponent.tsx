@@ -240,6 +240,16 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     );
   }
 
+  protected addNewHoveredResidue = (pickingProxy: NGL.PickingProxy, stage: NGL.Stage) => {
+    const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
+    const { addHoveredResidues } = this.props;
+    const resname = AMINO_ACID_BY_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE]
+      ? AMINO_ACID_BY_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE].singleLetterCode
+      : atom.resname;
+    stage.tooltip.textContent = `${atom.resno}${resname}`;
+    addHoveredResidues([atom.resno]);
+  };
+
   /**
    * Adds a NGL structure to the stage.
    *
@@ -325,23 +335,6 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     }
   };
 
-  protected switchCameraType = () => {
-    const { stage } = this.state;
-    if (stage) {
-      if (stage.parameters.cameraType === 'stereo') {
-        stage.setParameters({
-          cameraType: 'perspective',
-        });
-      } else {
-        stage.setParameters({
-          cameraFov: 65,
-          cameraType: 'stereo',
-        });
-      }
-      this.forceUpdate();
-    }
-  };
-
   protected deriveActiveRepresentations(structureComponent: NGL.StructureComponent) {
     const {
       candidateResidues,
@@ -396,6 +389,40 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       return createDistanceRepresentation(structureComponent, [atomIndexI, atomIndexJ], isDistRepEnabled);
     }
   }
+
+  protected getDockItems = () => {
+    const isSuperPositionOn = this.state.superpositionStatus !== 'NONE';
+
+    return [
+      {
+        isVisibleCb: () =>
+          this.props.selectedSecondaryStructures.length >= 1 ||
+          Object.values(this.props.lockedResiduePairs).length >= 1 ||
+          this.props.candidateResidues.length >= 1,
+        onClick: () => {
+          this.props.removeAllLockedResiduePairs();
+          this.props.removeAllSelectedSecondaryStructures();
+          this.props.removeCandidateResidues();
+          this.props.removeHoveredResidues();
+        },
+        text: 'Clear Selections',
+      },
+      {
+        onClick: this.centerCamera,
+        text: 'Center View',
+      },
+      {
+        onClick: this.onSuperpositionToggle,
+        text: `Superimpose: ${isSuperPositionOn ? 'On' : 'Off'}`,
+      },
+      {
+        onClick: this.switchCameraType,
+        text: `Enable ${
+          this.state.stage && this.state.stage.parameters.cameraType === 'stereo' ? `Perspective` : 'Stereo'
+        }`,
+      },
+    ];
+  };
 
   protected getRepresentationConfigs = () => {
     const reps: NGL.StructureRepresentationType[] = ['default', 'spacefill', 'backbone', 'cartoon', 'surface', 'tube'];
@@ -473,15 +500,97 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     };
   };
 
+  protected handleAtomClick = (pickingProxy: NGL.PickingProxy) => {
+    const { addLockedResiduePair, addCandidateResidues, candidateResidues, removeCandidateResidues } = this.props;
+
+    const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
+
+    if (candidateResidues.length >= 1) {
+      const sortedResidues = [...candidateResidues, atom.resno].sort();
+      addLockedResiduePair({ [sortedResidues.toString()]: [...candidateResidues, atom.resno] });
+      removeCandidateResidues();
+    } else {
+      addCandidateResidues([atom.resno]);
+    }
+  };
+
+  protected handleBothSuperposition = (stage: NGL.Stage) => {
+    for (let i = 1; i < stage.compList.length; ++i) {
+      NGL.superpose(stage.compList[i].object as NGL.Structure, stage.compList[0].object as NGL.Structure, true);
+    }
+
+    for (const component of stage.compList) {
+      component.setPosition([0, 0, 0]);
+      component.updateRepresentations({ position: true });
+    }
+
+    if (stage.compList[0]) {
+      stage.compList[0].autoView();
+    } else {
+      stage.autoView();
+    }
+  };
+
+  protected handleClickHover = (structureComponent: NGL.Component) => {
+    const { hoveredResidues } = this.props;
+
+    hoveredResidues.forEach(residueIndex => {
+      this.handleHoveredDistances(residueIndex, structureComponent);
+    });
+  };
+
+  protected handleClickPick = (pickingProxy: NGL.PickingProxy) => {
+    const { removeLockedResiduePair } = this.props;
+
+    if (pickingProxy.picker && pickingProxy.picker.type === 'distance') {
+      const residues = [pickingProxy.distance.atom1.resno, pickingProxy.distance.atom2.resno];
+      removeLockedResiduePair(residues.sort().toString());
+    } else if (pickingProxy.atom || pickingProxy.closestBondAtom) {
+      this.handleAtomClick(pickingProxy);
+    }
+  };
+
+  protected handleHoveredDistances = (residueIndex: number, structureComponent: NGL.Component) => {
+    const { addLockedResiduePair, candidateResidues, removeCandidateResidues, removeNonLockedResidues } = this.props;
+    const getMinDist = (residueStore: NGL.ResidueStore, target: Vector2) => {
+      let minDist = Number.MAX_SAFE_INTEGER;
+      const atomOffset = residueStore.atomOffset[residueIndex];
+      const atomCount = residueStore.atomCount[residueIndex];
+      for (let i = 0; i < atomCount; ++i) {
+        const atomProxy = structureComponent.structure.getAtomProxy(atomOffset + i);
+        const atomPosition = structureComponent.stage.viewerControls.getPositionOnCanvas(atomProxy.positionToVector3());
+        minDist = Math.min(minDist, target.distanceTo(atomPosition));
+      }
+
+      return minDist;
+    };
+
+    // ! IMPORTANT !
+    // This is a rather brute force approach to see if the mouse is close to a residue.
+    // The main problem is __reliably__ getting the (x,y) of where the user clicked and the "residue" they were closest to.
+    const { down, canvasPosition, position, prevClickCP, prevPosition } = structureComponent.stage.mouseObserver;
+    const minDistances = [down, canvasPosition, prevClickCP, prevPosition, position].map(pos =>
+      getMinDist(structureComponent.structure.residueStore, pos),
+    );
+
+    // Shorthand to make it clearer that this method is just checking if any distance is within 100.
+    const isWithinSnappingDistance = (distances: number[], limit = 100) =>
+      distances.filter(dist => dist < limit).length >= 1;
+
+    if (isWithinSnappingDistance(minDistances)) {
+      const sortedResidues = [...candidateResidues, residueIndex].sort();
+      addLockedResiduePair({ [sortedResidues.toString()]: [...candidateResidues, residueIndex] });
+
+      removeCandidateResidues();
+    } else {
+      removeNonLockedResidues();
+    }
+  };
+
   protected handleRepresentationUpdate(stage: NGL.Stage) {
-    const { predictedProteins } = this.props;
     const { activeRepresentations } = this.state;
     for (const structureComponent of stage.compList) {
-      let isExperimental = true;
-
-      if (predictedProteins.find(pred => pred.nglStructure.name === structureComponent.name)) {
-        isExperimental = false;
-      }
+      const isExperimental = this.isExperimentalStructure(structureComponent);
 
       for (const rep of isExperimental
         ? this.state.activeRepresentations.experimental.reps
@@ -509,22 +618,21 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     return activeRepresentations;
   }
 
+  protected handleStructureClick = (structureComponent: NGL.StructureComponent, pickingProxy: NGL.PickingProxy) => {
+    const { candidateResidues, hoveredResidues, removeNonLockedResidues } = this.props;
+    if (pickingProxy) {
+      this.handleClickPick(pickingProxy);
+    } else if (candidateResidues.length >= 1 && hoveredResidues.length >= 1) {
+      this.handleClickHover(structureComponent);
+    } else {
+      // User clicked off-structure, so clear non-locked residue state.
+      removeNonLockedResidues();
+    }
+  };
+
   protected handleSuperposition(stage: NGL.Stage, superpositionStatus: SUPERPOSITION_STATUS_TYPE) {
     if (superpositionStatus === 'BOTH') {
-      for (let i = 1; i < stage.compList.length; ++i) {
-        NGL.superpose(stage.compList[i].object as NGL.Structure, stage.compList[0].object as NGL.Structure, true);
-      }
-
-      for (const component of stage.compList) {
-        component.setPosition([0, 0, 0]);
-        component.updateRepresentations({ position: true });
-      }
-
-      if (stage.compList[0]) {
-        stage.compList[0].autoView();
-      } else {
-        stage.autoView();
-      }
+      this.handleBothSuperposition(stage);
     } else if (superpositionStatus === 'NONE') {
       stage.compList.forEach((component, index) => {
         component.setPosition([index * 50, 0, 0]);
@@ -594,6 +702,15 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     stage.viewer.requestRender();
   }
 
+  protected isExperimentalStructure = (structureComponent: NGL.Component) => {
+    const { predictedProteins } = this.props;
+    if (predictedProteins.find(pred => pred.nglStructure.name === structureComponent.name)) {
+      return false;
+    }
+
+    return true;
+  };
+
   protected measuredProximityHandler = (value: number) => {
     const { onMeasuredProximityChange } = this.props;
     if (onMeasuredProximityChange) {
@@ -607,98 +724,20 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   };
 
   protected onClick = (pickingProxy: NGL.PickingProxy) => {
-    const {
-      addLockedResiduePair,
-      addCandidateResidues,
-      candidateResidues,
-      hoveredResidues,
-      removeLockedResiduePair,
-      removeCandidateResidues,
-      removeNonLockedResidues,
-    } = this.props;
     const { stage } = this.state;
     if (this.canvas && stage) {
       for (const structureComponent of stage.compList as NGL.StructureComponent[]) {
-        if (pickingProxy) {
-          const isDistancePicker = pickingProxy.picker && pickingProxy.picker.type === 'distance';
-
-          if (isDistancePicker) {
-            const residues = [pickingProxy.distance.atom1.resno, pickingProxy.distance.atom2.resno];
-            removeLockedResiduePair(residues.sort().toString());
-          } else if (pickingProxy.atom || pickingProxy.closestBondAtom) {
-            const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
-
-            if (candidateResidues.length >= 1) {
-              const sortedResidues = [...candidateResidues, atom.resno].sort();
-              addLockedResiduePair({ [sortedResidues.toString()]: [...candidateResidues, atom.resno] });
-              removeCandidateResidues();
-            } else {
-              addCandidateResidues([atom.resno]);
-            }
-          }
-        } else if (candidateResidues.length >= 1 && hoveredResidues.length >= 1) {
-          hoveredResidues.forEach(residueIndex => {
-            const getMinDist = (residueStore: NGL.ResidueStore, target: Vector2) => {
-              let minDist = Number.MAX_SAFE_INTEGER;
-              const atomOffset = residueStore.atomOffset[residueIndex];
-              const atomCount = residueStore.atomCount[residueIndex];
-              for (let i = 0; i < atomCount; ++i) {
-                const atomProxy = structureComponent.structure.getAtomProxy(atomOffset + i);
-                const atomPosition = structureComponent.stage.viewerControls.getPositionOnCanvas(
-                  atomProxy.positionToVector3(),
-                );
-                minDist = Math.min(minDist, target.distanceTo(atomPosition));
-              }
-
-              return minDist;
-            };
-
-            // ! IMPORTANT !
-            // This is a rather brute force approach to see if the mouse is close to a residue.
-            // The main problem is __reliably__ getting the (x,y) of where the user clicked and the "residue" they were closest to.
-            const {
-              down,
-              canvasPosition,
-              position,
-              prevClickCP,
-              prevPosition,
-            } = structureComponent.stage.mouseObserver;
-            const minDistances = [down, canvasPosition, prevClickCP, prevPosition, position].map(pos =>
-              getMinDist(structureComponent.structure.residueStore, pos),
-            );
-
-            // Shorthand to make it clearer that this method is just checking if any distance is within 100.
-            const isWithinSnappingDistance = (distances: number[], limit = 100) =>
-              distances.filter(dist => dist < limit).length >= 1;
-
-            if (isWithinSnappingDistance(minDistances)) {
-              const sortedResidues = [...candidateResidues, residueIndex].sort();
-              addLockedResiduePair({ [sortedResidues.toString()]: [...candidateResidues, residueIndex] });
-
-              removeCandidateResidues();
-            } else {
-              removeNonLockedResidues();
-            }
-          });
-        } else {
-          // User clicked off-structure, so clear non-locked residue state.
-          removeNonLockedResidues();
-        }
+        this.handleStructureClick(structureComponent, pickingProxy);
       }
     }
   };
 
   protected onHover(aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) {
-    const { addHoveredResidues, candidateResidues, hoveredResidues, removeHoveredResidues } = this.props;
+    const { candidateResidues, hoveredResidues, removeHoveredResidues } = this.props;
     const { stage } = this.state;
     if (stage) {
       if (pickingProxy && (pickingProxy.atom || pickingProxy.closestBondAtom)) {
-        const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
-        const resname = AMINO_ACID_BY_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE]
-          ? AMINO_ACID_BY_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE].singleLetterCode
-          : atom.resname;
-        stage.tooltip.textContent = `${atom.resno}${resname}`;
-        addHoveredResidues([atom.resno]);
+        this.addNewHoveredResidue(pickingProxy, stage);
       } else if (candidateResidues.length === 0 && hoveredResidues.length !== 0) {
         removeHoveredResidues();
       }
@@ -739,38 +778,21 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     }
   };
 
-  protected getDockItems = () => {
-    const isSuperPositionOn = this.state.superpositionStatus !== 'NONE';
-
-    return [
-      {
-        isVisibleCb: () =>
-          this.props.selectedSecondaryStructures.length >= 1 ||
-          Object.values(this.props.lockedResiduePairs).length >= 1 ||
-          this.props.candidateResidues.length >= 1,
-        onClick: () => {
-          this.props.removeAllLockedResiduePairs();
-          this.props.removeAllSelectedSecondaryStructures();
-          this.props.removeCandidateResidues();
-          this.props.removeHoveredResidues();
-        },
-        text: 'Clear Selections',
-      },
-      {
-        onClick: this.centerCamera,
-        text: 'Center View',
-      },
-      {
-        onClick: this.onSuperpositionToggle,
-        text: `Superimpose: ${isSuperPositionOn ? 'On' : 'Off'}`,
-      },
-      {
-        onClick: this.switchCameraType,
-        text: `Enable ${
-          this.state.stage && this.state.stage.parameters.cameraType === 'stereo' ? `Perspective` : 'Stereo'
-        }`,
-      },
-    ];
+  protected switchCameraType = () => {
+    const { stage } = this.state;
+    if (stage) {
+      if (stage.parameters.cameraType === 'stereo') {
+        stage.setParameters({
+          cameraType: 'perspective',
+        });
+      } else {
+        stage.setParameters({
+          cameraFov: 65,
+          cameraType: 'stereo',
+        });
+      }
+      this.forceUpdate();
+    }
   };
 
   protected toggleDistRep = (event?: React.MouseEvent) => {
