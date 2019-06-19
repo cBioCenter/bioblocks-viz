@@ -496,7 +496,7 @@ describe('NGLComponent', () => {
 
       wrapper
         .find(Checkbox)
-        .at(0)
+        .at(1)
         .simulate('change');
 
       expect(instance.state.isDistRepEnabled).not.toEqual(true);
@@ -514,14 +514,14 @@ describe('NGLComponent', () => {
 
       wrapper
         .find(Checkbox)
-        .at(1)
+        .at(0)
         .simulate('change');
 
       expect(instance.state.isMovePickEnabled).toEqual(true);
 
       wrapper
         .find(Checkbox)
-        .at(1)
+        .at(0)
         .simulate('change');
 
       expect(instance.state.isMovePickEnabled).toEqual(false);

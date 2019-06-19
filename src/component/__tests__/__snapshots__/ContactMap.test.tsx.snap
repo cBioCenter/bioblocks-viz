@@ -38,7 +38,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
-                "name": "X-ray Structure Contact",
+                "name": "Structure Contact (Coupling Scores)",
                 "options": Array [
                   <Icon
                     as="i"
@@ -188,7 +188,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
             ],
           },
           "mode": "lines+markers",
-          "name": "X-ray Structure Contact",
+          "name": "Structure Contact (Coupling Scores)",
           "nodeSize": 4,
           "points": Array [
             Object {
@@ -252,7 +252,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
     onHoverCallback={[Function]}
     onSelectedCallback={[Function]}
     onUnHoverCallback={[Function]}
-    range={33000}
+    range={98}
     secondaryStructures={
       Array [
         Array [
@@ -315,7 +315,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
-                "name": "X-ray Structure Contact",
+                "name": "Structure Contact (Coupling Scores)",
                 "options": Array [
                   <Icon
                     as="i"
@@ -465,7 +465,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
             ],
           },
           "mode": "lines+markers",
-          "name": "X-ray Structure Contact",
+          "name": "Structure Contact (Coupling Scores)",
           "nodeSize": 4,
           "points": Array [
             Object {
@@ -521,7 +521,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
     onHoverCallback={[Function]}
     onSelectedCallback={[Function]}
     onUnHoverCallback={[Function]}
-    range={33000}
+    range={98}
     secondaryStructures={
       Array [
         Array [
@@ -584,7 +584,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
-                "name": "X-ray Structure Contact",
+                "name": "Structure Contact (PDB)",
                 "options": Array [
                   <Icon
                     as="i"
@@ -734,7 +734,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
             ],
           },
           "mode": "lines+markers",
-          "name": "X-ray Structure Contact",
+          "name": "Structure Contact (PDB)",
           "nodeSize": 4,
           "points": Array [
             Object {
@@ -786,7 +786,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
     onHoverCallback={[Function]}
     onSelectedCallback={[Function]}
     onUnHoverCallback={[Function]}
-    range={20}
+    range={11}
     secondaryStructures={Array []}
     selectedSecondaryStructures={
       Array [
@@ -838,7 +838,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
-                "name": "X-ray Structure Contact",
+                "name": "Structure Contact (Coupling Scores)",
                 "options": Array [
                   <Icon
                     as="i"
@@ -988,7 +988,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
             ],
           },
           "mode": "lines+markers",
-          "name": "X-ray Structure Contact",
+          "name": "Structure Contact (Coupling Scores)",
           "nodeSize": 4,
           "points": Array [
             Object {
@@ -1040,7 +1040,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
     onHoverCallback={[Function]}
     onSelectedCallback={[Function]}
     onUnHoverCallback={[Function]}
-    range={33000}
+    range={11}
     secondaryStructures={Array []}
     selectedSecondaryStructures={
       Array [
@@ -1092,7 +1092,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
-                "name": "X-ray Structure Contact",
+                "name": "Structure Contact (Coupling Scores)",
                 "options": Array [
                   <Icon
                     as="i"
@@ -1242,7 +1242,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
             ],
           },
           "mode": "lines+markers",
-          "name": "X-ray Structure Contact",
+          "name": "Structure Contact (Coupling Scores)",
           "nodeSize": 4,
           "points": Array [],
           "subtitle": "Unknown Structure Contact",
@@ -1284,7 +1284,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
     onHoverCallback={[Function]}
     onSelectedCallback={[Function]}
     onUnHoverCallback={[Function]}
-    range={33000}
+    range={30001}
     secondaryStructures={Array []}
     selectedSecondaryStructures={
       Array [
@@ -1336,7 +1336,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
-                "name": "X-ray Structure Contact",
+                "name": "Structure Contact (PDB)",
                 "options": Array [
                   <Icon
                     as="i"
@@ -1486,10 +1486,10 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
             ],
           },
           "mode": "lines+markers",
-          "name": "X-ray Structure Contact",
+          "name": "Structure Contact (PDB)",
           "nodeSize": 4,
           "points": Array [],
-          "subtitle": "Unknown Structure Contact",
+          "subtitle": "Inferred Structure Contact",
           "text": Array [],
         },
         Object {
@@ -1528,7 +1528,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
     onHoverCallback={[Function]}
     onSelectedCallback={[Function]}
     onUnHoverCallback={[Function]}
-    range={33000}
+    range={30001}
     secondaryStructures={Array []}
     selectedSecondaryStructures={
       Array [
@@ -1580,7 +1580,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
-                "name": "X-ray Structure Contact",
+                "name": "Structure Contact (Coupling Scores)",
                 "options": Array [
                   <Icon
                     as="i"
@@ -1730,7 +1730,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
             ],
           },
           "mode": "lines+markers",
-          "name": "X-ray Structure Contact",
+          "name": "Structure Contact (Coupling Scores)",
           "nodeSize": 4,
           "points": Array [
             Object {
@@ -1794,7 +1794,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
     onHoverCallback={[Function]}
     onSelectedCallback={[Function]}
     onUnHoverCallback={[Function]}
-    range={33000}
+    range={98}
     secondaryStructures={
       Array [
         Array [
@@ -1857,7 +1857,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
-                "name": "X-ray Structure Contact",
+                "name": "Structure Contact (Coupling Scores)",
                 "options": Array [
                   <Icon
                     as="i"
@@ -2007,7 +2007,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
             ],
           },
           "mode": "lines+markers",
-          "name": "X-ray Structure Contact",
+          "name": "Structure Contact (Coupling Scores)",
           "nodeSize": 4,
           "points": Array [
             Object {
@@ -2085,7 +2085,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
     onHoverCallback={[Function]}
     onSelectedCallback={[Function]}
     onUnHoverCallback={[Function]}
-    range={33000}
+    range={98}
     secondaryStructures={
       Array [
         Array [
@@ -2515,11 +2515,12 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             },
           ],
         ],
+        "derivedFromCouplingScoresFlag": true,
         "getCouplingScore": [Function],
         "includes": [Function],
         "indexRange": Object {
           "max": 57,
-          "min": 1,
+          "min": 41,
         },
         "rowCounter": 0,
         "scoreSource": "cn",
@@ -2603,7 +2604,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               "Node Sizes": Array [
                 Object {
                   "id": "node-size-slider-0",
-                  "name": "X-ray Structure Contact",
+                  "name": "Structure Contact (Coupling Scores)",
                   "options": Array [
                     <Icon
                       as="i"
@@ -2749,7 +2750,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       "Node Sizes": Array [
                         Object {
                           "id": "node-size-slider-0",
-                          "name": "X-ray Structure Contact",
+                          "name": "Structure Contact (Coupling Scores)",
                           "options": Array [
                             <Icon
                               as="i"
@@ -3261,7 +3262,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                     ],
                   },
                   "mode": "lines+markers",
-                  "name": "X-ray Structure Contact",
+                  "name": "Structure Contact (Coupling Scores)",
                   "nodeSize": 4,
                   "points": Array [
                     Object {
@@ -3317,7 +3318,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             onHoverCallback={[Function]}
             onSelectedCallback={[Function]}
             onUnHoverCallback={[Function]}
-            range={33000}
+            range={98}
             secondaryStructures={
               Array [
                 Array [
@@ -3402,7 +3403,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       "size": 4,
                     },
                     "mode": "markers",
-                    "name": "X-ray Structure Contact Unknown Structure Contact",
+                    "name": "Structure Contact (Coupling Scores) Unknown Structure Contact",
                     "text": Array [
                       "(41, 52)",
                       "(50, 56)",
@@ -3533,7 +3534,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                     "nticks": 10,
                     "range": Array [
                       0,
-                      33000,
+                      98,
                     ],
                     "rangemode": "nonnegative",
                     "showline": true,
@@ -3544,7 +3545,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                     "fixedrange": true,
                     "nticks": 10,
                     "range": Array [
-                      33000,
+                      98,
                       0,
                     ],
                     "rangemode": "nonnegative",

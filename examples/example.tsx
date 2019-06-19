@@ -57,7 +57,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
   protected static initialState: IExampleAppState = {
     [VIZ_TYPE.CONTACT_MAP]: {
       couplingScores: new CouplingContainer(),
-      pdbData: undefined,
+      pdbData: { experimental: undefined, predicted: undefined },
       secondaryStructures: [],
     },
     errorMsg: '',
@@ -134,6 +134,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     this.forceUpdate();
   };
 
+  // tslint:disable-next-line: max-func-body-length
   protected onFileUpload = async (e: React.ChangeEvent) => {
     e.persist();
     const files = (e.target as HTMLInputElement).files;
@@ -150,7 +151,8 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     });
 
     let couplingScoresCSV: string = '';
-    let pdbData = BioblocksPDB.createEmptyPDB();
+    let couplingFlag: boolean = false;
+    let pdbData: BioblocksPDB | undefined;
     let residueMapping: IResidueMapping[] = [];
     let secondaryStructures: SECONDARY_STRUCTURE_SECTION[] = [];
 
@@ -174,8 +176,9 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
           file.name.startsWith('residue_mapping')
         ) {
           residueMapping = generateResidueMapping(parsedFile);
-        } else if (file.name.endsWith('CouplingScores.csv')) {
+        } else if (file.name.endsWith('.csv') && file.name.includes('CouplingScores')) {
           couplingScoresCSV = parsedFile;
+          couplingFlag = true;
         } else if (file.name.endsWith('.csv') && file.name.includes('distance_map')) {
           secondaryStructures = new Array<SECONDARY_STRUCTURE_SECTION>();
           parsedFile
@@ -199,7 +202,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
       }
     }
 
-    if (experimentalProteins.length === 0 && predictedProteins.length === 0) {
+    if (pdbData && experimentalProteins.length === 0 && predictedProteins.length === 0) {
       experimentalProteins.push(pdbData);
     } else if (experimentalProteins.length === 0) {
       pdbData = predictedProteins[0];
@@ -208,15 +211,23 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     }
 
     let couplingScores = getCouplingScoresData(couplingScoresCSV, residueMapping);
-    couplingScores = pdbData.amendPDBWithCouplingScores(couplingScores.rankedContacts, measuredProximity);
-    const mismatches = pdbData.getResidueNumberingMismatches(couplingScores);
+    let mismatches = new Array<IResidueMismatchResult>();
+
+    if (pdbData) {
+      if (couplingScores.rankedContacts.length === 0 || couplingScores.rankedContacts[0].dist === undefined) {
+        couplingScores = pdbData.amendPDBWithCouplingScores(couplingScores.rankedContacts, measuredProximity);
+      } else {
+        mismatches = pdbData.getResidueNumberingMismatches(couplingScores);
+      }
+    }
+    couplingScores.isDerivedFromCouplingScores = couplingFlag;
 
     this.setState({
       [VIZ_TYPE.CONTACT_MAP]: {
         couplingScores,
         pdbData: { experimental: experimentalProteins[0], predicted: predictedProteins[0] },
         secondaryStructures:
-          secondaryStructures.length >= 1 ? [secondaryStructures] : pdbData.secondaryStructureSections,
+          secondaryStructures.length >= 1 ? [secondaryStructures] : pdbData ? pdbData.secondaryStructureSections : [],
       },
       errorMsg: '',
       experimentalProteins,
