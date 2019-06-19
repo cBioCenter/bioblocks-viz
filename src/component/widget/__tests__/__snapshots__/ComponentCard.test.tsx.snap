@@ -1238,6 +1238,79 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                 <div
                   style="height: 91%;"
                 >
+                  <div
+                    style="transform-origin: top left; transform: scale(calc(70/0),calc((NaN - 40)/0));"
+                  >
+                    <div>
+                      Go!
+                    </div>
+                  </div>
+                </div>
+                <div
+                  style="height: 3%;"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="ui page modals dimmer transition visible active"
+            style="display: flex;"
+          >
+            <div
+              class="ui large modal transition visible active"
+              style="height: 80vh; width: 80vh; will-change: unset;"
+            >
+              <div
+                class="ui centered card bioblocks-component-card"
+                style="max-width: unset; padding: 5px; width: 80vh;"
+              >
+                <div
+                  style="height: 6%;"
+                >
+                  <div>
+                    <div
+                      class="ui secondary two item menu"
+                      style="margin: 0px; height: 40px;"
+                    >
+                      <div
+                        class="ui secondary one item menu"
+                      >
+                        <div
+                          class="left horizontally fitted item"
+                          style="margin: 0px; padding: 0px;"
+                        >
+                          <img
+                            alt="component icon"
+                            src="assets/icons/spring-icon.png"
+                            style="height: 32px; padding: 2px; width: 32px;"
+                          />
+                          Let's
+                        </div>
+                      </div>
+                      <div
+                        class="ui secondary four item menu"
+                      >
+                        <div
+                          class="right horizontally fitted item"
+                          style="flex-direction: column;"
+                        >
+                          <i
+                            aria-hidden="true"
+                            class="compress icon"
+                          />
+                          <span
+                            style="font-size: 11px; visibility: hidden;"
+                          >
+                            Close
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  style="height: 91%;"
+                >
                   <div>
                     Go!
                   </div>
@@ -1395,6 +1468,79 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                   <div
                     style="height: 91%;"
                   >
+                    <div
+                      style="transform-origin: top left; transform: scale(calc(70/0),calc((NaN - 40)/0));"
+                    >
+                      <div>
+                        Go!
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    style="height: 3%;"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="ui page modals dimmer transition visible active"
+              style="display: flex;"
+            >
+              <div
+                class="ui large modal transition visible active"
+                style="height: 80vh; width: 80vh; will-change: unset;"
+              >
+                <div
+                  class="ui centered card bioblocks-component-card"
+                  style="max-width: unset; padding: 5px; width: 80vh;"
+                >
+                  <div
+                    style="height: 6%;"
+                  >
+                    <div>
+                      <div
+                        class="ui secondary two item menu"
+                        style="margin: 0px; height: 40px;"
+                      >
+                        <div
+                          class="ui secondary one item menu"
+                        >
+                          <div
+                            class="left horizontally fitted item"
+                            style="margin: 0px; padding: 0px;"
+                          >
+                            <img
+                              alt="component icon"
+                              src="assets/icons/spring-icon.png"
+                              style="height: 32px; padding: 2px; width: 32px;"
+                            />
+                            Let's
+                          </div>
+                        </div>
+                        <div
+                          class="ui secondary four item menu"
+                        >
+                          <div
+                            class="right horizontally fitted item"
+                            style="flex-direction: column;"
+                          >
+                            <i
+                              aria-hidden="true"
+                              class="compress icon"
+                            />
+                            <span
+                              style="font-size: 11px; visibility: hidden;"
+                            >
+                              Close
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    style="height: 91%;"
+                  >
                     <div>
                       Go!
                     </div>
@@ -1416,6 +1562,79 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
               class="dimmable dimmed"
               style="overflow-y: hidden;"
             >
+              <div
+                class="ui page modals dimmer transition visible active"
+                style="display: flex;"
+              >
+                <div
+                  class="ui large modal transition visible active"
+                  style="height: 80vh; width: 80vh; will-change: unset;"
+                >
+                  <div
+                    class="ui centered card bioblocks-component-card"
+                    style="max-width: unset; padding: 5px; width: 80vh;"
+                  >
+                    <div
+                      style="height: 6%;"
+                    >
+                      <div>
+                        <div
+                          class="ui secondary two item menu"
+                          style="margin: 0px; height: 40px;"
+                        >
+                          <div
+                            class="ui secondary one item menu"
+                          >
+                            <div
+                              class="left horizontally fitted item"
+                              style="margin: 0px; padding: 0px;"
+                            >
+                              <img
+                                alt="component icon"
+                                src="assets/icons/spring-icon.png"
+                                style="height: 32px; padding: 2px; width: 32px;"
+                              />
+                              Let's
+                            </div>
+                          </div>
+                          <div
+                            class="ui secondary four item menu"
+                          >
+                            <div
+                              class="right horizontally fitted item"
+                              style="flex-direction: column;"
+                            >
+                              <i
+                                aria-hidden="true"
+                                class="compress icon"
+                              />
+                              <span
+                                style="font-size: 11px; visibility: hidden;"
+                              >
+                                Close
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      style="height: 91%;"
+                    >
+                      <div
+                        style="transform-origin: top left; transform: scale(calc(70/0),calc((NaN - 40)/0));"
+                      >
+                        <div>
+                          Go!
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      style="height: 3%;"
+                    />
+                  </div>
+                </div>
+              </div>
               <div
                 class="ui page modals dimmer transition visible active"
                 style="display: flex;"
