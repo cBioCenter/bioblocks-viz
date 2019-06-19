@@ -412,6 +412,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
         text: 'Center View',
       },
       {
+        isVisibleCb: () => this.props.experimentalProteins.length + this.props.predictedProteins.length >= 2,
         onClick: this.onSuperpositionToggle,
         text: `Superimpose: ${isSuperPositionOn ? 'On' : 'Off'}`,
       },
