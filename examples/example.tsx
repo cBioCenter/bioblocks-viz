@@ -199,7 +199,13 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
       }
     }
 
-    pdbData = experimentalProteins.length === 0 ? BioblocksPDB.createEmptyPDB() : experimentalProteins[0];
+    if (experimentalProteins.length === 0 && predictedProteins.length === 0) {
+      predictedProteins.push(pdbData);
+    } else if (experimentalProteins.length === 0) {
+      pdbData = BioblocksPDB.createEmptyPDB();
+    } else {
+      pdbData = experimentalProteins[0];
+    }
 
     let couplingScores = getCouplingScoresData(couplingScoresCSV, residueMapping);
     couplingScores = pdbData.amendPDBWithCouplingScores(couplingScores.rankedContacts, measuredProximity);
