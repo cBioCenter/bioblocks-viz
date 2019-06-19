@@ -15,6 +15,7 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
         "text": "Center View",
       },
       Object {
+        "isVisibleCb": [Function],
         "onClick": [Function],
         "text": "Superimpose: Off",
       },

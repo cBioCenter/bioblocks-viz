@@ -126,7 +126,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
           [chainLength * 2]: '2L',
           [chainLength * 3]: '3L',
         },
-        name: 'Number of Couplings to Display',
+        name: '# Couplings to Display',
         onChange: this.onNumPredictionsToShowChange(),
         type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
         values: {

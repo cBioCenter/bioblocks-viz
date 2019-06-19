@@ -2941,11 +2941,12 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                             closeOnTriggerMouseLeave={false}
                             disabled={false}
                             hoverable={false}
-                            keepInViewPort={true}
+                            offset={0}
                             on="hover"
                             openOnTriggerClick={true}
                             openOnTriggerFocus={false}
                             openOnTriggerMouseEnter={false}
+                            pinned={false}
                             position="bottom left"
                             style={
                               Object {
@@ -2982,7 +2983,14 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                   name="filter"
                                 />
                               }
-                              triggerRef={[Function]}
+                              triggerRef={
+                                Object {
+                                  "current": <i
+                                    aria-hidden="true"
+                                    class="filter icon"
+                                  />,
+                                }
+                              }
                             >
                               <Ref
                                 innerRef={[Function]}
@@ -3050,11 +3058,12 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                             closeOnTriggerMouseLeave={false}
                             disabled={false}
                             hoverable={false}
-                            keepInViewPort={true}
+                            offset={0}
                             on="hover"
                             openOnTriggerClick={true}
                             openOnTriggerFocus={false}
                             openOnTriggerMouseEnter={false}
+                            pinned={false}
                             position="bottom left"
                             style={
                               Object {
@@ -3091,7 +3100,14 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                   name="setting"
                                 />
                               }
-                              triggerRef={[Function]}
+                              triggerRef={
+                                Object {
+                                  "current": <i
+                                    aria-hidden="true"
+                                    class="setting icon"
+                                  />,
+                                }
+                              }
                             >
                               <Ref
                                 innerRef={[Function]}

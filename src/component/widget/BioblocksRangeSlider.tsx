@@ -62,7 +62,7 @@ export interface IBioblocksRangeSliderState {
 }
 
 /**
- * Represents a simple 2d slider, allowing a value to be selected between a minimum and maximum.
+ * Represents a simple 2d slider, allowing a range to be selected within a minimum and maximum.
  *
  * @export
  * @extends {React.Component<BioblocksRangeSliderProps, IBioblocksRangeSliderState>}

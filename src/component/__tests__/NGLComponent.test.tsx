@@ -535,12 +535,12 @@ describe('NGLComponent', () => {
         expect(stage.parameters.cameraType).toEqual('perspective');
         wrapper
           .find('a')
-          .at(2)
+          .at(1)
           .simulate('click');
         expect(stage.parameters.cameraType).toEqual('stereo');
         wrapper
           .find('a')
-          .at(2)
+          .at(1)
           .simulate('click');
         expect(stage.parameters.cameraType).toEqual('perspective');
       } else {
@@ -548,8 +548,19 @@ describe('NGLComponent', () => {
       }
     });
 
-    it('Should handle switching superposition.', () => {
+    it('Should not allow switching superposition when not enough proteins.', () => {
       const wrapper = mount(<NGLComponent experimentalProteins={sampleData} />);
+      const instance = wrapper.instance() as NGLComponent;
+      expect(instance.state.superpositionStatus).toEqual('NONE');
+      const links = wrapper.find('a');
+      expect(links.length).toBeGreaterThanOrEqual(1);
+      links.forEach(link => {
+        expect(link.text()).not.toContain('Superimpose');
+      });
+    });
+
+    it('Should handle switching superposition.', () => {
+      const wrapper = mount(<NGLComponent experimentalProteins={sampleData} predictedProteins={sampleData} />);
       const instance = wrapper.instance() as NGLComponent;
       expect(instance.state.superpositionStatus).toEqual('NONE');
       wrapper

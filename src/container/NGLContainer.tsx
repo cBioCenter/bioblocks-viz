@@ -124,6 +124,7 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
                   props: {
                     children: this.renderPDBSelector(),
                     disabled: experimentalProteins.length === 0 && predictedProteins.length === 0,
+                    position: 'top center',
                     wide: 'very',
                   },
                 },
@@ -224,7 +225,8 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
       <Table.Row key={`pdb-radio-${pdbGroup}-${index}`}>
         <Table.Cell style={cellStyle}>
           <Popup
-            position={'top left'}
+            position={'bottom center'}
+            pinned={true}
             trigger={
               <Checkbox
                 checked={(pdbGroup === 'experimental'

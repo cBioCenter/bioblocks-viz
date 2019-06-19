@@ -10,6 +10,11 @@ export interface IBioblocksToggleButtonProps {
 export class BioblocksToggleButton extends React.Component<IBioblocksToggleButtonProps> {
   constructor(props: IBioblocksToggleButtonProps) {
     super(props);
+    console.log(props);
+  }
+
+  public componentDidMount() {
+    console.log(this.props);
   }
 
   public render() {

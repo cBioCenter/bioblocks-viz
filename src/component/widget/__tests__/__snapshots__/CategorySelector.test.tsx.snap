@@ -5,6 +5,7 @@ exports[`CategorySelector Should match existing snapshot when given simple data.
   additionLabel="Add "
   additionPosition="top"
   closeOnBlur={true}
+  closeOnEscape={true}
   deburr={false}
   fluid={true}
   icon="dropdown"

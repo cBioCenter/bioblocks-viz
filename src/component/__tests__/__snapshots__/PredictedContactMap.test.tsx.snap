@@ -91,7 +91,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
             "2": "2L",
             "3": "3L",
           },
-          "name": "Number of Couplings to Display",
+          "name": "# Couplings to Display",
           "onChange": [Function],
           "type": "SLIDER",
           "values": Object {
@@ -197,7 +197,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
             "2": "2L",
             "3": "3L",
           },
-          "name": "Number of Couplings to Display",
+          "name": "# Couplings to Display",
           "onChange": [Function],
           "type": "SLIDER",
           "values": Object {
@@ -303,7 +303,7 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
             "2": "2L",
             "3": "3L",
           },
-          "name": "Number of Couplings to Display",
+          "name": "# Couplings to Display",
           "onChange": [Function],
           "type": "SLIDER",
           "values": Object {
