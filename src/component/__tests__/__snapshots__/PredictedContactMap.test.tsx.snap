@@ -34,7 +34,7 @@ Array [
         "j": 56,
       },
     ],
-    "subtitle": "(N=28, L=57)",
+    "subtitle": "(N=8, L=17)",
     "text": Array [
       "(41, 52)",
       "(42, 50)",
@@ -86,18 +86,20 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
       Array [
         Object {
           "marks": Object {
-            "0": "L/2",
-            "1": "L",
-            "2": "2L",
-            "3": "3L",
+            "-14999": "L/2",
+            "-29998": "L",
+            "-59996": "2L",
+            "-7500": "L/4",
+            "-89994": "3L",
+            "0": "0",
           },
           "name": "# Couplings to Display",
           "onChange": [Function],
           "type": "SLIDER",
           "values": Object {
-            "current": 0,
+            "current": -14999,
             "defaultValue": 100,
-            "max": 3,
+            "max": -89994,
             "min": 0,
           },
         },
@@ -131,11 +133,12 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
         "couplingScores": CouplingContainer {
           "colCounter": 0,
           "contacts": Array [],
+          "derivedFromCouplingScoresFlag": true,
           "getCouplingScore": [Function],
           "includes": [Function],
           "indexRange": Object {
             "max": 1,
-            "min": 1,
+            "min": 30000,
           },
           "rowCounter": 0,
           "scoreSource": "cn",
@@ -157,7 +160,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
           "name": "Inferred Contact",
           "nodeSize": 4,
           "points": Array [],
-          "subtitle": "(N=0, L=1)",
+          "subtitle": "(N=-14999, L=-29998)",
           "text": Array [],
         },
         Object {
@@ -192,18 +195,20 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
       Array [
         Object {
           "marks": Object {
-            "0": "L/2",
-            "1": "L",
-            "2": "2L",
-            "3": "3L",
+            "-14999": "L/2",
+            "-29998": "L",
+            "-59996": "2L",
+            "-7500": "L/4",
+            "-89994": "3L",
+            "0": "0",
           },
           "name": "# Couplings to Display",
           "onChange": [Function],
           "type": "SLIDER",
           "values": Object {
-            "current": 0,
+            "current": -14999,
             "defaultValue": 100,
-            "max": 3,
+            "max": -89994,
             "min": 0,
           },
         },
@@ -237,11 +242,12 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
         "couplingScores": CouplingContainer {
           "colCounter": 0,
           "contacts": Array [],
+          "derivedFromCouplingScoresFlag": true,
           "getCouplingScore": [Function],
           "includes": [Function],
           "indexRange": Object {
             "max": 1,
-            "min": 1,
+            "min": 30000,
           },
           "rowCounter": 0,
           "scoreSource": "cn",
@@ -263,7 +269,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
           "name": "Inferred Contact",
           "nodeSize": 4,
           "points": Array [],
-          "subtitle": "(N=0, L=1)",
+          "subtitle": "(N=-14999, L=-29998)",
           "text": Array [],
         },
         Object {
@@ -298,18 +304,20 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
       Array [
         Object {
           "marks": Object {
-            "0": "L/2",
-            "1": "L",
-            "2": "2L",
-            "3": "3L",
+            "-14999": "L/2",
+            "-29998": "L",
+            "-59996": "2L",
+            "-7500": "L/4",
+            "-89994": "3L",
+            "0": "0",
           },
           "name": "# Couplings to Display",
           "onChange": [Function],
           "type": "SLIDER",
           "values": Object {
-            "current": 0,
+            "current": -14999,
             "defaultValue": 100,
-            "max": 3,
+            "max": -89994,
             "min": 0,
           },
         },
@@ -343,11 +351,12 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
         "couplingScores": CouplingContainer {
           "colCounter": 0,
           "contacts": Array [],
+          "derivedFromCouplingScoresFlag": true,
           "getCouplingScore": [Function],
           "includes": [Function],
           "indexRange": Object {
             "max": 1,
-            "min": 1,
+            "min": 30000,
           },
           "rowCounter": 0,
           "scoreSource": "cn",
@@ -369,7 +378,7 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
           "name": "Inferred Contact",
           "nodeSize": 4,
           "points": Array [],
-          "subtitle": "(N=0, L=1)",
+          "subtitle": "(N=-14999, L=-29998)",
           "text": Array [],
         },
         Object {

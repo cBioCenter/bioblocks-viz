@@ -187,6 +187,10 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     const { agreementColor, data, allColor } = this.props;
     const { linearDistFilter, numPredictionsToShow } = this.state;
 
+    if (!data.couplingScores.isDerivedFromCouplingScores) {
+      return;
+    }
+
     const { pdbData } = data;
     const couplingScores =
       pdbData && pdbData.experimental

@@ -41,13 +41,23 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
 
   protected contacts: ICouplingScore[][] = new Array<ICouplingScore[]>();
 
+  protected indexRange = {
+    max: 1,
+    min: 30000,
+  };
+
+  public get isDerivedFromCouplingScores(): boolean {
+    return this.derivedFromCouplingScoresFlag;
+  }
+
+  public set isDerivedFromCouplingScores(value: boolean) {
+    this.derivedFromCouplingScoresFlag = value;
+  }
+
   /** How many distinct contacts are currently stored. */
   protected totalStoredContacts: number = 0;
 
-  protected indexRange = {
-    max: 1,
-    min: 1,
-  };
+  private derivedFromCouplingScoresFlag: boolean = true;
 
   /** Used for iterator access. */
   private rowCounter = 0;

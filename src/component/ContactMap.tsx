@@ -77,6 +77,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     configurations: new Array<BioblocksWidgetConfig>(),
     data: {
       couplingScores: new CouplingContainer(),
+      pdbData: { experimental: undefined, predicted: undefined },
       secondaryStructures: new Array<SECONDARY_STRUCTURE>(),
     },
     enableSliders: true,
@@ -406,14 +407,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       width,
     } = this.props;
 
-    let range;
-    if (data.pdbData) {
-      if (data.pdbData.experimental) {
-        range = data.pdbData.experimental.sequence.length + 20;
-      } else if (data.pdbData.predicted) {
-        range = data.pdbData.predicted.sequence.length + 20;
-      }
-    }
+    const range = data.couplingScores.residueIndexRange.max + data.couplingScores.residueIndexRange.min;
 
     return (
       <ComponentCard
@@ -455,7 +449,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       generateChartDataEntry(
         'text',
         { start: observedColor, end: 'rgb(100,177,200)' },
-        'X-ray Structure Contact',
+        `Structure Contact (${data.pdbData ? 'PDB' : 'Coupling Scores'})`,
         chartNames.structure,
         4,
         observedContactPoints,
