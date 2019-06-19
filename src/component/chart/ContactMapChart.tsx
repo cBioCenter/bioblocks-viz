@@ -97,7 +97,7 @@ export interface IContactMapChartPoint {
 /**
  * Intermediary between a ContactMap and a PlotlyChart.
  *
- * Will transform data and setup layout from science/bioblocks data type into the Plotly type.
+ * Will transform data and setup layout from science/bioblocks into a format suitable for Plotly consumption.
  * @extends {React.Component<IContactMapChartProps, any>}
  */
 export class ContactMapChart extends React.Component<IContactMapChartProps, IContactMapChartState> {

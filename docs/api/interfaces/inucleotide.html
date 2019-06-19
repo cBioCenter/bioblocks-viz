@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IRingBuffer | bioblocks-viz</title>
+	<title>INucleotide | bioblocks-viz</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,32 +54,21 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_ngl_.html">&quot;ngl&quot;</a>
-				</li>
-				<li>
-					<a href="_ngl_.iringbuffer.html">IRingBuffer</a>
+					<a href="inucleotide.html">INucleotide</a>
 				</li>
 			</ul>
-			<h1>Interface IRingBuffer&lt;T&gt;</h1>
+			<h1>Interface INucleotide</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-type-parameters">
-				<h3>Type parameters</h3>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>T</h4>
-					</li>
-				</ul>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IRingBuffer</span>
+						<span class="target">INucleotide</span>
 					</li>
 				</ul>
 			</section>
@@ -90,17 +79,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.iringbuffer.html#count" class="tsd-kind-icon">count</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_ngl_.iringbuffer.html#data" class="tsd-kind-icon">data</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Methods</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_ngl_.iringbuffer.html#clear" class="tsd-kind-icon">clear</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_ngl_.iringbuffer.html#get" class="tsd-kind-icon">get</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_ngl_.iringbuffer.html#has" class="tsd-kind-icon">has</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_ngl_.iringbuffer.html#push" class="tsd-kind-icon">push</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="inucleotide.html#fullname" class="tsd-kind-icon">full<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="inucleotide.html#singlelettercode" class="tsd-kind-icon">single<wbr>Letter<wbr>Code</a></li>
 							</ul>
 						</section>
 					</div>
@@ -109,113 +89,24 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="count" class="tsd-anchor"></a>
-					<h3>count</h3>
-					<div class="tsd-signature tsd-kind-icon">count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="fullname" class="tsd-anchor"></a>
+					<h3>full<wbr>Name</h3>
+					<div class="tsd-signature tsd-kind-icon">full<wbr>Name<span class="tsd-signature-symbol">:</span> <a href="../globals.html#nucleotide_full_name" class="tsd-signature-type">NUCLEOTIDE_FULL_NAME</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/69d5b0913/types/ngl/utils/utils.d.ts#L321">types/ngl/utils/utils.d.ts:321</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/69d5b0913/src/data/NucleotideHelper.ts#L19">src/data/NucleotideHelper.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="data" class="tsd-anchor"></a>
-					<h3>data</h3>
-					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></div>
+					<a name="singlelettercode" class="tsd-anchor"></a>
+					<h3>single<wbr>Letter<wbr>Code</h3>
+					<div class="tsd-signature tsd-kind-icon">single<wbr>Letter<wbr>Code<span class="tsd-signature-symbol">:</span> <a href="../globals.html#nucleotide_single_letter_codes" class="tsd-signature-type">NUCLEOTIDE_SINGLE_LETTER_CODES</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/69d5b0913/types/ngl/utils/utils.d.ts#L322">types/ngl/utils/utils.d.ts:322</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/69d5b0913/src/data/NucleotideHelper.ts#L20">src/data/NucleotideHelper.ts:20</a></li>
 						</ul>
 					</aside>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="clear" class="tsd-anchor"></a>
-					<h3>clear</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">clear<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/69d5b0913/types/ngl/utils/utils.d.ts#L323">types/ngl/utils/utils.d.ts:323</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="get" class="tsd-anchor"></a>
-					<h3>get</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/69d5b0913/types/ngl/utils/utils.d.ts#L324">types/ngl/utils/utils.d.ts:324</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>index: <span class="tsd-signature-type">number</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="has" class="tsd-anchor"></a>
-					<h3>has</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">has<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/69d5b0913/types/ngl/utils/utils.d.ts#L325">types/ngl/utils/utils.d.ts:325</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>value: <span class="tsd-signature-type">T</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="push" class="tsd-anchor"></a>
-					<h3>push</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">push<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/69d5b0913/types/ngl/utils/utils.d.ts#L326">types/ngl/utils/utils.d.ts:326</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>value: <span class="tsd-signature-type">T</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
 				</section>
 			</section>
 		</div>
@@ -225,47 +116,20 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_anatomogram_.html">"anatomogram"</a>
-					</li>
-					<li class="current tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_ngl_.html">"ngl"</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_react_full_screen_.html">"react-<wbr>full-<wbr>screen"</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/_react_iframe_comm_.html">"react-<wbr>iframe-<wbr>comm"</a>
-					</li>
-					<li class=" tsd-kind-module tsd-is-not-exported">
-						<a href="../modules/nodejs.html">NodeJS</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
-						<a href="_ngl_.iringbuffer.html" class="tsd-kind-icon">IRing<wbr>Buffer</a>
+					<li class="current tsd-kind-interface">
+						<a href="inucleotide.html" class="tsd-kind-icon">INucleotide</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.iringbuffer.html#count" class="tsd-kind-icon">count</a>
+								<a href="inucleotide.html#fullname" class="tsd-kind-icon">full<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_ngl_.iringbuffer.html#data" class="tsd-kind-icon">data</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="_ngl_.iringbuffer.html#clear" class="tsd-kind-icon">clear</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="_ngl_.iringbuffer.html#get" class="tsd-kind-icon">get</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="_ngl_.iringbuffer.html#has" class="tsd-kind-icon">has</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="_ngl_.iringbuffer.html#push" class="tsd-kind-icon">push</a>
+								<a href="inucleotide.html#singlelettercode" class="tsd-kind-icon">single<wbr>Letter<wbr>Code</a>
 							</li>
 						</ul>
 					</li>

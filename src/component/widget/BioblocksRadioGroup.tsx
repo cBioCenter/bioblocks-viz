@@ -17,6 +17,12 @@ export interface IBioblocksRadioGroupState {
   selectedIndex: number;
 }
 
+/**
+ * Represents a single grouping of radio buttons for bioblocks, including selection logic.
+ *
+ * @export
+ * @extends {React.Component<IBioblocksRadioGroupProps, IBioblocksRadioGroupState>}
+ */
 export class BioblocksRadioGroup extends React.Component<IBioblocksRadioGroupProps, IBioblocksRadioGroupState> {
   public static defaultProps = {
     disabled: false,

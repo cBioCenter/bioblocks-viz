@@ -1,30 +1,33 @@
 import { BioblocksPDB, CouplingContainer } from '~bioblocks-viz~/data';
 
-export const enum AMINO_ACID_CODES {
-  'A' = 'ALA',
-  'R' = 'ARG',
-  'N' = 'ASN',
-  'D' = 'ASP',
-  'C' = 'CYS',
-  'Q' = 'GLN',
-  'E' = 'GLU',
-  'G' = 'GLY',
-  'H' = 'HIS',
-  'I' = 'ILE',
-  'L' = 'LEU',
-  'K' = 'LYS',
-  'M' = 'MET',
-  'F' = 'PHE',
-  'P' = 'PRO',
-  'S' = 'SER',
-  'T' = 'THR',
-  'W' = 'TRP',
-  'Y' = 'TYR',
-  'V' = 'VAL',
-}
+export const AminoAcids = [
+  { fullName: 'Alanine', singleLetterCode: 'A', threeLetterCode: 'ALA' },
+  { fullName: 'Arginine', singleLetterCode: 'R', threeLetterCode: 'ARG' },
+  { fullName: 'Asparagine', singleLetterCode: 'N', threeLetterCode: 'ASN' },
+  { fullName: 'Aspartic Acid', singleLetterCode: 'D', threeLetterCode: 'ASP' },
+  { fullName: 'Cysteine', singleLetterCode: 'C', threeLetterCode: 'CYS' },
+  { fullName: 'Glutamine', singleLetterCode: 'Q', threeLetterCode: 'GLN' },
+  { fullName: 'Glutamic Acid', singleLetterCode: 'E', threeLetterCode: 'GLU' },
+  { fullName: 'Glycine', singleLetterCode: 'G', threeLetterCode: 'GLY' },
+  { fullName: 'Histidine', singleLetterCode: 'H', threeLetterCode: 'HIS' },
+  { fullName: 'Isoleucine', singleLetterCode: 'I', threeLetterCode: 'ILE' },
+  { fullName: 'Leucine', singleLetterCode: 'L', threeLetterCode: 'LEU' },
+  { fullName: 'Lysine', singleLetterCode: 'K', threeLetterCode: 'LYS' },
+  { fullName: 'Methionine', singleLetterCode: 'M', threeLetterCode: 'MET' },
+  { fullName: 'Phenylalanine', singleLetterCode: 'F', threeLetterCode: 'PHE' },
+  { fullName: 'Proline', singleLetterCode: 'P', threeLetterCode: 'PRO' },
+  { fullName: 'Serine', singleLetterCode: 'S', threeLetterCode: 'SER' },
+  { fullName: 'Threonine', singleLetterCode: 'T', threeLetterCode: 'THR' },
+  { fullName: 'Tryptophan', singleLetterCode: 'W', threeLetterCode: 'TRP' },
+  { fullName: 'Tyrosine', singleLetterCode: 'Y', threeLetterCode: 'TYR' },
+  { fullName: 'Valine', singleLetterCode: 'V', threeLetterCode: 'VAL' },
+] as const;
 
-export type AMINO_ACID_SINGLE_LETTER_CODE = keyof typeof AMINO_ACID_CODES;
-export type AMINO_ACID_THREE_LETTER_CODE = AMINO_ACID_CODES;
+const singleCodes = () => AminoAcids.map(a => a.singleLetterCode);
+const threeCodes = () => AminoAcids.map(a => a.threeLetterCode);
+
+export type AMINO_ACID_SINGLE_LETTER_CODE = keyof { [K in (ReturnType<typeof singleCodes>)[number]]: string };
+export type AMINO_ACID_THREE_LETTER_CODE = keyof { [K in (ReturnType<typeof threeCodes>)[number]]: string };
 
 export interface IAminoAcid {
   fullName: string;
@@ -32,77 +35,17 @@ export interface IAminoAcid {
   singleLetterCode: AMINO_ACID_SINGLE_LETTER_CODE;
 }
 
-const Ala: IAminoAcid = { fullName: 'Alanine', singleLetterCode: 'A', threeLetterCode: AMINO_ACID_CODES.A };
-const Arg: IAminoAcid = { fullName: 'Arginine', singleLetterCode: 'R', threeLetterCode: AMINO_ACID_CODES.R };
-const Asn: IAminoAcid = { fullName: 'Asparagine', singleLetterCode: 'N', threeLetterCode: AMINO_ACID_CODES.N };
-const Asp: IAminoAcid = { fullName: 'Aspartic Acid', singleLetterCode: 'D', threeLetterCode: AMINO_ACID_CODES.D };
-const Cys: IAminoAcid = { fullName: 'Cysteine', singleLetterCode: 'C', threeLetterCode: AMINO_ACID_CODES.C };
-const Gln: IAminoAcid = { fullName: 'Glutamine', singleLetterCode: 'Q', threeLetterCode: AMINO_ACID_CODES.Q };
-const Glu: IAminoAcid = { fullName: 'Glutamic Acid', singleLetterCode: 'E', threeLetterCode: AMINO_ACID_CODES.E };
-const Gly: IAminoAcid = { fullName: 'Glycine', singleLetterCode: 'G', threeLetterCode: AMINO_ACID_CODES.G };
-const His: IAminoAcid = { fullName: 'Histidine', singleLetterCode: 'H', threeLetterCode: AMINO_ACID_CODES.H };
-const Ile: IAminoAcid = { fullName: 'Isoleucine', singleLetterCode: 'I', threeLetterCode: AMINO_ACID_CODES.I };
-const Leu: IAminoAcid = { fullName: 'Leucine', singleLetterCode: 'L', threeLetterCode: AMINO_ACID_CODES.L };
-const Lys: IAminoAcid = { fullName: 'Lysine', singleLetterCode: 'K', threeLetterCode: AMINO_ACID_CODES.K };
-const Met: IAminoAcid = { fullName: 'Methionine', singleLetterCode: 'M', threeLetterCode: AMINO_ACID_CODES.M };
-const Phe: IAminoAcid = { fullName: 'Phenylalanine', singleLetterCode: 'F', threeLetterCode: AMINO_ACID_CODES.F };
-const Pro: IAminoAcid = { fullName: 'Proline', singleLetterCode: 'P', threeLetterCode: AMINO_ACID_CODES.P };
-const Ser: IAminoAcid = { fullName: 'Serine', singleLetterCode: 'S', threeLetterCode: AMINO_ACID_CODES.S };
-const Thr: IAminoAcid = { fullName: 'Threonine', singleLetterCode: 'T', threeLetterCode: AMINO_ACID_CODES.T };
-const Trp: IAminoAcid = { fullName: 'Tryptophan', singleLetterCode: 'W', threeLetterCode: AMINO_ACID_CODES.W };
-const Tyr: IAminoAcid = { fullName: 'Tyrosine', singleLetterCode: 'Y', threeLetterCode: AMINO_ACID_CODES.Y };
-const Val: IAminoAcid = { fullName: 'Valine', singleLetterCode: 'V', threeLetterCode: AMINO_ACID_CODES.V };
+export const AMINO_ACID_BY_CODE = AminoAcids.reduce<
+  Record<AMINO_ACID_SINGLE_LETTER_CODE | AMINO_ACID_THREE_LETTER_CODE, IAminoAcid>
+>(
+  (acc, acid) => {
+    acc[acid.singleLetterCode] = acid;
+    acc[acid.threeLetterCode] = acid;
 
-// tslint:disable:object-literal-sort-keys
-/**
- * Convenience map to get an Amino Acid via either the single or three letter code.
- * @example AMINO_ACID_BY_CODE['A'] === AMINO_ACID_BY_CODE.A === AMINO_ACID_BY_CODE['ALA'] === AMINO_ACID_BY_CODE.ALA
- */
-export const AMINO_ACID_BY_CODE: {
-  [key in AMINO_ACID_THREE_LETTER_CODE | AMINO_ACID_SINGLE_LETTER_CODE]: IAminoAcid;
-} = {
-  ALA: Ala,
-  ARG: Arg,
-  ASN: Asn,
-  ASP: Asp,
-  CYS: Cys,
-  GLN: Gln,
-  GLU: Glu,
-  GLY: Gly,
-  HIS: His,
-  ILE: Ile,
-  LEU: Leu,
-  LYS: Lys,
-  MET: Met,
-  PHE: Phe,
-  PRO: Pro,
-  SER: Ser,
-  THR: Thr,
-  TRP: Trp,
-  TYR: Tyr,
-  VAL: Val,
-  A: Ala,
-  R: Arg,
-  N: Asn,
-  D: Asp,
-  C: Cys,
-  Q: Gln,
-  E: Glu,
-  G: Gly,
-  H: His,
-  I: Ile,
-  L: Leu,
-  K: Lys,
-  M: Met,
-  F: Phe,
-  P: Pro,
-  S: Ser,
-  T: Thr,
-  W: Trp,
-  Y: Tyr,
-  V: Val,
-};
-// tslint:enable:object-literal-sort-keys
+    return acc;
+  },
+  {} as any,
+);
 
 export interface IResidueMismatchResult {
   couplingAminoAcid: IAminoAcid;
