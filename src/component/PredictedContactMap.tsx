@@ -186,51 +186,46 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
   protected setupData(isNewData: boolean) {
     const { agreementColor, data, allColor } = this.props;
     const { linearDistFilter, numPredictionsToShow } = this.state;
-
-    if (!data.couplingScores.isDerivedFromCouplingScores) {
-      return;
-    }
-
-    const { pdbData } = data;
-    const couplingScores =
-      pdbData && pdbData.experimental
-        ? pdbData.experimental.contactInformation
-        : new CouplingContainer(data.couplingScores.rankedContacts);
-
-    const allPredictions = couplingScores.getPredictedContacts(
-      numPredictionsToShow,
-      linearDistFilter,
-      this.getPredictedFilters(),
-    );
-    const correctPredictionPercent = ((allPredictions.correct.length / allPredictions.predicted.length) * 100).toFixed(
-      1,
-    );
-
+    const { couplingScores } = data;
     const { chainLength } = couplingScores;
-    const newPoints: IContactMapChartData[] = [
-      generateChartDataEntry(
-        'text',
-        allColor,
-        'Experimental Contact',
-        `(N=${numPredictionsToShow}, L=${chainLength})`,
-        4,
-        allPredictions.predicted,
-        {
-          text: allPredictions.predicted.map(generateCouplingScoreHoverText),
-        },
-      ),
-      generateChartDataEntry(
-        'text',
-        agreementColor,
-        'Inferred Contact Agrees with Experimental Contact',
-        `(N=${allPredictions.correct.length}, ${correctPredictionPercent}%)`,
-        6,
-        allPredictions.correct,
-        {
-          text: allPredictions.correct.map(generateCouplingScoreHoverText),
-        },
-      ),
-    ];
+
+    const newPoints = new Array<IContactMapChartData>();
+
+    if (couplingScores.isDerivedFromCouplingScores) {
+      const allPredictions = couplingScores.getPredictedContacts(
+        numPredictionsToShow,
+        linearDistFilter,
+        this.getPredictedFilters(),
+      );
+      const correctPredictionPercent = (
+        (allPredictions.correct.length / allPredictions.predicted.length) *
+        100
+      ).toFixed(1);
+      newPoints.push(
+        generateChartDataEntry(
+          'text',
+          allColor,
+          'Experimental Contact',
+          `(N=${numPredictionsToShow}, L=${chainLength})`,
+          4,
+          allPredictions.predicted,
+          {
+            text: allPredictions.predicted.map(generateCouplingScoreHoverText),
+          },
+        ),
+        generateChartDataEntry(
+          'text',
+          agreementColor,
+          'Inferred Contact Agrees with Experimental Contact',
+          `(N=${allPredictions.correct.length}, ${correctPredictionPercent}%)`,
+          6,
+          allPredictions.correct,
+          {
+            text: allPredictions.correct.map(generateCouplingScoreHoverText),
+          },
+        ),
+      );
+    }
 
     this.setState({
       numPredictionsToShow: isNewData ? Math.floor(chainLength / 2) : numPredictionsToShow,

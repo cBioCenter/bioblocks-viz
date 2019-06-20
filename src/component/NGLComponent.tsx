@@ -404,6 +404,21 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
           this.props.removeAllSelectedSecondaryStructures();
           this.props.removeCandidateResidues();
           this.props.removeHoveredResidues();
+
+          /*
+          this.setState({
+            activeRepresentations: {
+              experimental: {
+                reps: new Array<NGL.RepresentationElement>(),
+                structType: this.state.activeRepresentations.experimental.structType,
+              },
+              predicted: {
+                reps: new Array<NGL.RepresentationElement>(),
+                structType: this.state.activeRepresentations.predicted.structType,
+              },
+            },
+          });
+        */
         },
         text: 'Clear Selections',
       },
@@ -590,33 +605,35 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
 
   protected handleRepresentationUpdate(stage: NGL.Stage) {
     const { activeRepresentations } = this.state;
+    const result = {
+      experimental: {
+        reps: new Array<NGL.RepresentationElement>(),
+        structType: activeRepresentations.experimental.structType,
+      },
+      predicted: {
+        reps: new Array<NGL.RepresentationElement>(),
+        structType: activeRepresentations.predicted.structType,
+      },
+    };
     for (const structureComponent of stage.compList) {
       const isExperimental = this.isExperimentalStructure(structureComponent);
 
-      for (const rep of isExperimental
-        ? this.state.activeRepresentations.experimental.reps
-        : this.state.activeRepresentations.predicted.reps) {
-        structureComponent.removeRepresentation(rep);
+      for (const rep of [...activeRepresentations.experimental.reps, ...activeRepresentations.predicted.reps]) {
+        if (structureComponent.reprList.includes(rep)) {
+          structureComponent.removeRepresentation(rep);
+        }
       }
 
       if (isExperimental) {
-        for (const rep of this.state.activeRepresentations.experimental.reps) {
-          structureComponent.removeRepresentation(rep);
-        }
-        activeRepresentations.experimental.reps.push(
+        result.experimental.reps.push(
           ...this.deriveActiveRepresentations(structureComponent as NGL.StructureComponent),
         );
       } else {
-        for (const rep of this.state.activeRepresentations.predicted.reps) {
-          structureComponent.removeRepresentation(rep);
-        }
-        activeRepresentations.predicted.reps.push(
-          ...this.deriveActiveRepresentations(structureComponent as NGL.StructureComponent),
-        );
+        result.predicted.reps.push(...this.deriveActiveRepresentations(structureComponent as NGL.StructureComponent));
       }
     }
 
-    return activeRepresentations;
+    return result;
   }
 
   protected handleStructureClick = (structureComponent: NGL.StructureComponent, pickingProxy: NGL.PickingProxy) => {

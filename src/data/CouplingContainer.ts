@@ -184,14 +184,13 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
   /**
    * Determine which contacts in this coupling container are observed.
    *
-   * @param [distFilter=5] - For each score, if dist <= distFilter, it is considered observed.
-   * @param [linearDistFilter=5] - For each score, if |i - j| >= linearDistFilter, it will be a candidate for being correct/incorrect.
+   * @param [distFilter=10] - For each score, if dist <= distFilter, it is considered observed.
    * @returns Contacts that should be considered observed in the current data set.
    */
-  public getObservedContacts(distFilter: number = 5, linearDistFilter: number = 5): ICouplingScore[] {
+  public getObservedContacts(distFilter: number = 10): ICouplingScore[] {
     const result = new Array<ICouplingScore>();
     for (const score of this) {
-      if (score.dist && score.dist <= distFilter && Math.abs(score.i - score.j) >= linearDistFilter) {
+      if (score.dist && score.dist <= distFilter) {
         result.push(score);
       }
     }

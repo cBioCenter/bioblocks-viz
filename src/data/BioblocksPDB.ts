@@ -144,7 +144,6 @@ export class BioblocksPDB {
   public amendPDBWithCouplingScores(couplingScores: ICouplingScore[], measuredProximity: CONTACT_DISTANCE_PROXIMITY) {
     const result = new CouplingContainer(couplingScores);
     const alphaId = this.nglData.atomMap.dict[BioblocksPDB.NGL_C_ALPHA_INDEX];
-
     const minDist: {
       [key: string]: number;
     } = {};

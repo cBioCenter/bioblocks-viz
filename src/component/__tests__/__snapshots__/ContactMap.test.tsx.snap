@@ -47,7 +47,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
                     size="small"
                     style={
                       Object {
-                        "color": "rgb(12,50,102)",
+                        "color": "#0000ff",
                       }
                     }
                   />,
@@ -57,7 +57,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
                     size="small"
                     style={
                       Object {
-                        "color": "rgb(12,50,102)",
+                        "color": "#0000ff",
                       }
                     }
                   />,
@@ -68,7 +68,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
                     size="small"
                     style={
                       Object {
-                        "color": "rgb(12,50,102)",
+                        "color": "#0000ff",
                       }
                     }
                   />,
@@ -143,47 +143,11 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
             "colorscale": Array [
               Array [
                 0,
-                "rgb(12,50,102)",
-              ],
-              Array [
-                0.1,
-                "rgb(17,83,150)",
-              ],
-              Array [
-                0.2,
-                "rgb(40,114,175)",
-              ],
-              Array [
-                0.3,
-                "rgb(71,147,193)",
-              ],
-              Array [
-                0.4,
-                "rgb(111,175,209)",
-              ],
-              Array [
-                0.5,
-                "rgb(160,202,222)",
-              ],
-              Array [
-                0.6,
-                "rgb(200,219,237)",
-              ],
-              Array [
-                0.7,
-                "rgb(224,235,246)",
-              ],
-              Array [
-                0.8,
-                "rgb(247,251,255)",
-              ],
-              Array [
-                0.9,
-                "rgb(249,253,255)",
+                "#0000ff",
               ],
               Array [
                 1,
-                "rgb(255,255,255)",
+                "rgb(247,251,255)",
               ],
             ],
           },
@@ -201,11 +165,29 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
               "i": 41,
               "j": 52,
             },
+            Object {
+              "dist": 1.3,
+              "i": 44,
+              "j": 45,
+            },
+            Object {
+              "dist": 1.3,
+              "i": 45,
+              "j": 46,
+            },
+            Object {
+              "dist": 1.3,
+              "i": 56,
+              "j": 57,
+            },
           ],
           "subtitle": "Unknown Structure Contact",
           "text": Array [
             "(50, 56)",
             "(41, 52)",
+            "(44, 45)",
+            "(45, 46)",
+            "(56, 57)",
           ],
         },
         Object {
@@ -324,7 +306,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
                     size="small"
                     style={
                       Object {
-                        "color": "rgb(12,50,102)",
+                        "color": "#0000ff",
                       }
                     }
                   />,
@@ -334,7 +316,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
                     size="small"
                     style={
                       Object {
-                        "color": "rgb(12,50,102)",
+                        "color": "#0000ff",
                       }
                     }
                   />,
@@ -345,7 +327,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
                     size="small"
                     style={
                       Object {
-                        "color": "rgb(12,50,102)",
+                        "color": "#0000ff",
                       }
                     }
                   />,
@@ -420,47 +402,11 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
             "colorscale": Array [
               Array [
                 0,
-                "rgb(12,50,102)",
-              ],
-              Array [
-                0.1,
-                "rgb(17,83,150)",
-              ],
-              Array [
-                0.2,
-                "rgb(40,114,175)",
-              ],
-              Array [
-                0.3,
-                "rgb(71,147,193)",
-              ],
-              Array [
-                0.4,
-                "rgb(111,175,209)",
-              ],
-              Array [
-                0.5,
-                "rgb(160,202,222)",
-              ],
-              Array [
-                0.6,
-                "rgb(200,219,237)",
-              ],
-              Array [
-                0.7,
-                "rgb(224,235,246)",
-              ],
-              Array [
-                0.8,
-                "rgb(247,251,255)",
-              ],
-              Array [
-                0.9,
-                "rgb(249,253,255)",
+                "#0000ff",
               ],
               Array [
                 1,
-                "rgb(255,255,255)",
+                "rgb(247,251,255)",
               ],
             ],
           },
@@ -478,11 +424,29 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
               "i": 41,
               "j": 52,
             },
+            Object {
+              "dist": 1.3,
+              "i": 44,
+              "j": 45,
+            },
+            Object {
+              "dist": 1.3,
+              "i": 45,
+              "j": 46,
+            },
+            Object {
+              "dist": 1.3,
+              "i": 56,
+              "j": 57,
+            },
           ],
           "subtitle": "Unknown Structure Contact",
           "text": Array [
             "(50, 56)",
             "(41, 52)",
+            "(44, 45)",
+            "(45, 46)",
+            "(56, 57)",
           ],
         },
         Object {
@@ -593,7 +557,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
                     size="small"
                     style={
                       Object {
-                        "color": "rgb(12,50,102)",
+                        "color": "#0000ff",
                       }
                     }
                   />,
@@ -603,7 +567,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
                     size="small"
                     style={
                       Object {
-                        "color": "rgb(12,50,102)",
+                        "color": "#0000ff",
                       }
                     }
                   />,
@@ -614,7 +578,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
                     size="small"
                     style={
                       Object {
-                        "color": "rgb(12,50,102)",
+                        "color": "#0000ff",
                       }
                     }
                   />,
@@ -689,47 +653,11 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
             "colorscale": Array [
               Array [
                 0,
-                "rgb(12,50,102)",
-              ],
-              Array [
-                0.1,
-                "rgb(17,83,150)",
-              ],
-              Array [
-                0.2,
-                "rgb(40,114,175)",
-              ],
-              Array [
-                0.3,
-                "rgb(71,147,193)",
-              ],
-              Array [
-                0.4,
-                "rgb(111,175,209)",
-              ],
-              Array [
-                0.5,
-                "rgb(160,202,222)",
-              ],
-              Array [
-                0.6,
-                "rgb(200,219,237)",
-              ],
-              Array [
-                0.7,
-                "rgb(224,235,246)",
-              ],
-              Array [
-                0.8,
-                "rgb(247,251,255)",
-              ],
-              Array [
-                0.9,
-                "rgb(249,253,255)",
+                "#0000ff",
               ],
               Array [
                 1,
-                "rgb(255,255,255)",
+                "rgb(247,251,255)",
               ],
             ],
           },
@@ -847,7 +775,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
                     size="small"
                     style={
                       Object {
-                        "color": "rgb(12,50,102)",
+                        "color": "#0000ff",
                       }
                     }
                   />,
@@ -857,7 +785,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
                     size="small"
                     style={
                       Object {
-                        "color": "rgb(12,50,102)",
+                        "color": "#0000ff",
                       }
                     }
                   />,
@@ -868,7 +796,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
                     size="small"
                     style={
                       Object {
-                        "color": "rgb(12,50,102)",
+                        "color": "#0000ff",
                       }
                     }
                   />,
@@ -943,47 +871,11 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
             "colorscale": Array [
               Array [
                 0,
-                "rgb(12,50,102)",
-              ],
-              Array [
-                0.1,
-                "rgb(17,83,150)",
-              ],
-              Array [
-                0.2,
-                "rgb(40,114,175)",
-              ],
-              Array [
-                0.3,
-                "rgb(71,147,193)",
-              ],
-              Array [
-                0.4,
-                "rgb(111,175,209)",
-              ],
-              Array [
-                0.5,
-                "rgb(160,202,222)",
-              ],
-              Array [
-                0.6,
-                "rgb(200,219,237)",
-              ],
-              Array [
-                0.7,
-                "rgb(224,235,246)",
-              ],
-              Array [
-                0.8,
-                "rgb(247,251,255)",
-              ],
-              Array [
-                0.9,
-                "rgb(249,253,255)",
+                "#0000ff",
               ],
               Array [
                 1,
-                "rgb(255,255,255)",
+                "rgb(247,251,255)",
               ],
             ],
           },
@@ -1101,7 +993,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
                     size="small"
                     style={
                       Object {
-                        "color": "rgb(12,50,102)",
+                        "color": "#0000ff",
                       }
                     }
                   />,
@@ -1111,7 +1003,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
                     size="small"
                     style={
                       Object {
-                        "color": "rgb(12,50,102)",
+                        "color": "#0000ff",
                       }
                     }
                   />,
@@ -1122,7 +1014,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
                     size="small"
                     style={
                       Object {
-                        "color": "rgb(12,50,102)",
+                        "color": "#0000ff",
                       }
                     }
                   />,
@@ -1197,47 +1089,11 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
             "colorscale": Array [
               Array [
                 0,
-                "rgb(12,50,102)",
-              ],
-              Array [
-                0.1,
-                "rgb(17,83,150)",
-              ],
-              Array [
-                0.2,
-                "rgb(40,114,175)",
-              ],
-              Array [
-                0.3,
-                "rgb(71,147,193)",
-              ],
-              Array [
-                0.4,
-                "rgb(111,175,209)",
-              ],
-              Array [
-                0.5,
-                "rgb(160,202,222)",
-              ],
-              Array [
-                0.6,
-                "rgb(200,219,237)",
-              ],
-              Array [
-                0.7,
-                "rgb(224,235,246)",
-              ],
-              Array [
-                0.8,
-                "rgb(247,251,255)",
-              ],
-              Array [
-                0.9,
-                "rgb(249,253,255)",
+                "#0000ff",
               ],
               Array [
                 1,
-                "rgb(255,255,255)",
+                "rgb(247,251,255)",
               ],
             ],
           },
@@ -1345,7 +1201,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
                     size="small"
                     style={
                       Object {
-                        "color": "rgb(12,50,102)",
+                        "color": "#0000ff",
                       }
                     }
                   />,
@@ -1355,7 +1211,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
                     size="small"
                     style={
                       Object {
-                        "color": "rgb(12,50,102)",
+                        "color": "#0000ff",
                       }
                     }
                   />,
@@ -1366,7 +1222,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
                     size="small"
                     style={
                       Object {
-                        "color": "rgb(12,50,102)",
+                        "color": "#0000ff",
                       }
                     }
                   />,
@@ -1441,47 +1297,11 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
             "colorscale": Array [
               Array [
                 0,
-                "rgb(12,50,102)",
-              ],
-              Array [
-                0.1,
-                "rgb(17,83,150)",
-              ],
-              Array [
-                0.2,
-                "rgb(40,114,175)",
-              ],
-              Array [
-                0.3,
-                "rgb(71,147,193)",
-              ],
-              Array [
-                0.4,
-                "rgb(111,175,209)",
-              ],
-              Array [
-                0.5,
-                "rgb(160,202,222)",
-              ],
-              Array [
-                0.6,
-                "rgb(200,219,237)",
-              ],
-              Array [
-                0.7,
-                "rgb(224,235,246)",
-              ],
-              Array [
-                0.8,
-                "rgb(247,251,255)",
-              ],
-              Array [
-                0.9,
-                "rgb(249,253,255)",
+                "#0000ff",
               ],
               Array [
                 1,
-                "rgb(255,255,255)",
+                "rgb(247,251,255)",
               ],
             ],
           },
@@ -1589,7 +1409,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                     size="small"
                     style={
                       Object {
-                        "color": "rgb(12,50,102)",
+                        "color": "#0000ff",
                       }
                     }
                   />,
@@ -1599,7 +1419,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                     size="small"
                     style={
                       Object {
-                        "color": "rgb(12,50,102)",
+                        "color": "#0000ff",
                       }
                     }
                   />,
@@ -1610,7 +1430,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                     size="small"
                     style={
                       Object {
-                        "color": "rgb(12,50,102)",
+                        "color": "#0000ff",
                       }
                     }
                   />,
@@ -1685,47 +1505,11 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
             "colorscale": Array [
               Array [
                 0,
-                "rgb(12,50,102)",
-              ],
-              Array [
-                0.1,
-                "rgb(17,83,150)",
-              ],
-              Array [
-                0.2,
-                "rgb(40,114,175)",
-              ],
-              Array [
-                0.3,
-                "rgb(71,147,193)",
-              ],
-              Array [
-                0.4,
-                "rgb(111,175,209)",
-              ],
-              Array [
-                0.5,
-                "rgb(160,202,222)",
-              ],
-              Array [
-                0.6,
-                "rgb(200,219,237)",
-              ],
-              Array [
-                0.7,
-                "rgb(224,235,246)",
-              ],
-              Array [
-                0.8,
-                "rgb(247,251,255)",
-              ],
-              Array [
-                0.9,
-                "rgb(249,253,255)",
+                "#0000ff",
               ],
               Array [
                 1,
-                "rgb(255,255,255)",
+                "rgb(247,251,255)",
               ],
             ],
           },
@@ -1743,11 +1527,29 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
               "i": 41,
               "j": 52,
             },
+            Object {
+              "dist": 1.3,
+              "i": 44,
+              "j": 45,
+            },
+            Object {
+              "dist": 1.3,
+              "i": 45,
+              "j": 46,
+            },
+            Object {
+              "dist": 1.3,
+              "i": 56,
+              "j": 57,
+            },
           ],
           "subtitle": "Unknown Structure Contact",
           "text": Array [
             "(50, 56)",
             "(41, 52)",
+            "(44, 45)",
+            "(45, 46)",
+            "(56, 57)",
           ],
         },
         Object {
@@ -1866,7 +1668,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                     size="small"
                     style={
                       Object {
-                        "color": "rgb(12,50,102)",
+                        "color": "#0000ff",
                       }
                     }
                   />,
@@ -1876,7 +1678,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                     size="small"
                     style={
                       Object {
-                        "color": "rgb(12,50,102)",
+                        "color": "#0000ff",
                       }
                     }
                   />,
@@ -1887,7 +1689,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                     size="small"
                     style={
                       Object {
-                        "color": "rgb(12,50,102)",
+                        "color": "#0000ff",
                       }
                     }
                   />,
@@ -1962,47 +1764,11 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
             "colorscale": Array [
               Array [
                 0,
-                "rgb(12,50,102)",
-              ],
-              Array [
-                0.1,
-                "rgb(17,83,150)",
-              ],
-              Array [
-                0.2,
-                "rgb(40,114,175)",
-              ],
-              Array [
-                0.3,
-                "rgb(71,147,193)",
-              ],
-              Array [
-                0.4,
-                "rgb(111,175,209)",
-              ],
-              Array [
-                0.5,
-                "rgb(160,202,222)",
-              ],
-              Array [
-                0.6,
-                "rgb(200,219,237)",
-              ],
-              Array [
-                0.7,
-                "rgb(224,235,246)",
-              ],
-              Array [
-                0.8,
-                "rgb(247,251,255)",
-              ],
-              Array [
-                0.9,
-                "rgb(249,253,255)",
+                "#0000ff",
               ],
               Array [
                 1,
-                "rgb(255,255,255)",
+                "rgb(247,251,255)",
               ],
             ],
           },
@@ -2020,11 +1786,29 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
               "i": 41,
               "j": 52,
             },
+            Object {
+              "dist": 1.3,
+              "i": 44,
+              "j": 45,
+            },
+            Object {
+              "dist": 1.3,
+              "i": 45,
+              "j": 46,
+            },
+            Object {
+              "dist": 1.3,
+              "i": 56,
+              "j": 57,
+            },
           ],
           "subtitle": "Unknown Structure Contact",
           "text": Array [
             "(50, 56)",
             "(41, 52)",
+            "(44, 45)",
+            "(45, 46)",
+            "(56, 57)",
           ],
         },
         Object {
@@ -2613,7 +2397,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       size="small"
                       style={
                         Object {
-                          "color": "rgb(12,50,102)",
+                          "color": "#0000ff",
                         }
                       }
                     />,
@@ -2623,7 +2407,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       size="small"
                       style={
                         Object {
-                          "color": "rgb(12,50,102)",
+                          "color": "#0000ff",
                         }
                       }
                     />,
@@ -2634,7 +2418,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       size="small"
                       style={
                         Object {
-                          "color": "rgb(12,50,102)",
+                          "color": "#0000ff",
                         }
                       }
                     />,
@@ -2759,7 +2543,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                               size="small"
                               style={
                                 Object {
-                                  "color": "rgb(12,50,102)",
+                                  "color": "#0000ff",
                                 }
                               }
                             />,
@@ -2769,7 +2553,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                               size="small"
                               style={
                                 Object {
-                                  "color": "rgb(12,50,102)",
+                                  "color": "#0000ff",
                                 }
                               }
                             />,
@@ -2780,7 +2564,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                               size="small"
                               style={
                                 Object {
-                                  "color": "rgb(12,50,102)",
+                                  "color": "#0000ff",
                                 }
                               }
                             />,
@@ -3217,47 +3001,11 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                     "colorscale": Array [
                       Array [
                         0,
-                        "rgb(12,50,102)",
-                      ],
-                      Array [
-                        0.1,
-                        "rgb(17,83,150)",
-                      ],
-                      Array [
-                        0.2,
-                        "rgb(40,114,175)",
-                      ],
-                      Array [
-                        0.3,
-                        "rgb(71,147,193)",
-                      ],
-                      Array [
-                        0.4,
-                        "rgb(111,175,209)",
-                      ],
-                      Array [
-                        0.5,
-                        "rgb(160,202,222)",
-                      ],
-                      Array [
-                        0.6,
-                        "rgb(200,219,237)",
-                      ],
-                      Array [
-                        0.7,
-                        "rgb(224,235,246)",
-                      ],
-                      Array [
-                        0.8,
-                        "rgb(247,251,255)",
-                      ],
-                      Array [
-                        0.9,
-                        "rgb(249,253,255)",
+                        "#0000ff",
                       ],
                       Array [
                         1,
-                        "rgb(255,255,255)",
+                        "rgb(247,251,255)",
                       ],
                     ],
                   },
@@ -3275,11 +3023,29 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       "i": 41,
                       "j": 52,
                     },
+                    Object {
+                      "dist": 1.3,
+                      "i": 44,
+                      "j": 45,
+                    },
+                    Object {
+                      "dist": 1.3,
+                      "i": 45,
+                      "j": 46,
+                    },
+                    Object {
+                      "dist": 1.3,
+                      "i": 56,
+                      "j": 57,
+                    },
                   ],
                   "subtitle": "Unknown Structure Contact",
                   "text": Array [
                     "(50, 56)",
                     "(41, 52)",
+                    "(44, 45)",
+                    "(45, 46)",
+                    "(56, 57)",
                   ],
                 },
                 Object {
@@ -3351,53 +3117,23 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       "color": Array [
                         "2.4",
                         "1.3",
+                        "1.3",
+                        "1.3",
+                        "1.3",
                         "2.4",
+                        "1.3",
+                        "1.3",
+                        "1.3",
                         "1.3",
                       ],
                       "colorscale": Array [
                         Array [
                           0,
-                          "rgb(12,50,102)",
-                        ],
-                        Array [
-                          0.1,
-                          "rgb(17,83,150)",
-                        ],
-                        Array [
-                          0.2,
-                          "rgb(40,114,175)",
-                        ],
-                        Array [
-                          0.3,
-                          "rgb(71,147,193)",
-                        ],
-                        Array [
-                          0.4,
-                          "rgb(111,175,209)",
-                        ],
-                        Array [
-                          0.5,
-                          "rgb(160,202,222)",
-                        ],
-                        Array [
-                          0.6,
-                          "rgb(200,219,237)",
-                        ],
-                        Array [
-                          0.7,
-                          "rgb(224,235,246)",
-                        ],
-                        Array [
-                          0.8,
-                          "rgb(247,251,255)",
-                        ],
-                        Array [
-                          0.9,
-                          "rgb(249,253,255)",
+                          "#0000ff",
                         ],
                         Array [
                           1,
-                          "rgb(255,255,255)",
+                          "rgb(247,251,255)",
                         ],
                       ],
                       "size": 4,
@@ -3407,26 +3143,50 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                     "text": Array [
                       "(50, 56)",
                       "(41, 52)",
+                      "(44, 45)",
+                      "(45, 46)",
+                      "(56, 57)",
                       "(56, 50)",
                       "(52, 41)",
+                      "(45, 44)",
+                      "(46, 45)",
+                      "(57, 56)",
                     ],
                     "type": "scattergl",
                     "x": Array [
                       50,
                       41,
+                      44,
+                      45,
+                      56,
                       56,
                       52,
+                      45,
+                      46,
+                      57,
                     ],
                     "y": Array [
                       56,
                       52,
+                      45,
+                      46,
+                      57,
                       50,
                       41,
+                      44,
+                      45,
+                      56,
                     ],
                     "z": Array [
                       2.4,
                       1.3,
+                      1.3,
+                      1.3,
+                      1.3,
                       2.4,
+                      1.3,
+                      1.3,
+                      1.3,
                       1.3,
                     ],
                   },

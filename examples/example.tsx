@@ -176,7 +176,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
           file.name.startsWith('residue_mapping')
         ) {
           residueMapping = generateResidueMapping(parsedFile);
-        } else if (file.name.endsWith('.csv') && file.name.includes('CouplingScores')) {
+        } else if (file.name.endsWith('CouplingScoresCompared_all.csv')) {
           couplingScoresCSV = parsedFile;
           couplingFlag = true;
         } else if (file.name.endsWith('.csv') && file.name.includes('distance_map')) {
