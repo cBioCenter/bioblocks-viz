@@ -449,7 +449,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       generateChartDataEntry(
         'text',
         { start: observedColor, end: 'rgb(100,177,200)' },
-        `Structure Contact (${data.pdbData ? 'PDB' : 'Coupling Scores'})`,
+        `Structure Contact (${data.couplingScores.isDerivedFromCouplingScores ? 'Coupling Scores' : 'PDB'})`,
         chartNames.structure,
         4,
         observedContactPoints,
