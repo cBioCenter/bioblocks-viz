@@ -43,7 +43,7 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
 
   protected indexRange = {
     max: 1,
-    min: 30000,
+    min: 1,
   };
 
   public get isDerivedFromCouplingScores(): boolean {
