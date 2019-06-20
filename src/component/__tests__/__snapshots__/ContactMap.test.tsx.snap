@@ -584,7 +584,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
-                "name": "Structure Contact (PDB)",
+                "name": "Structure Contact (Coupling Scores)",
                 "options": Array [
                   <Icon
                     as="i"
@@ -734,7 +734,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
             ],
           },
           "mode": "lines+markers",
-          "name": "Structure Contact (PDB)",
+          "name": "Structure Contact (Coupling Scores)",
           "nodeSize": 4,
           "points": Array [
             Object {
@@ -1336,7 +1336,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
             "Node Sizes": Array [
               Object {
                 "id": "node-size-slider-0",
-                "name": "Structure Contact (PDB)",
+                "name": "Structure Contact (Coupling Scores)",
                 "options": Array [
                   <Icon
                     as="i"
@@ -1486,7 +1486,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
             ],
           },
           "mode": "lines+markers",
-          "name": "Structure Contact (PDB)",
+          "name": "Structure Contact (Coupling Scores)",
           "nodeSize": 4,
           "points": Array [],
           "subtitle": "Inferred Structure Contact",
