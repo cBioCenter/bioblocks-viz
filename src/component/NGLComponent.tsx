@@ -418,9 +418,9 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       },
       {
         onClick: this.switchCameraType,
-        text: `Enable ${
-          this.state.stage && this.state.stage.parameters.cameraType === 'stereo' ? `Perspective` : 'Stereo'
-        }`,
+        text: `${
+          this.state.stage && this.state.stage.parameters.cameraType === 'stereo' ? `Disable` : 'Enable'
+        } Stereo`,
       },
     ];
   };

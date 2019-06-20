@@ -407,7 +407,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       width,
     } = this.props;
 
-    const range = data.couplingScores.residueIndexRange.max + data.couplingScores.residueIndexRange.min;
+    const range = data.couplingScores.totalContacts >= 1 ? data.couplingScores.residueIndexRange.max : undefined;
 
     return (
       <ComponentCard
@@ -444,7 +444,9 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       structure: `${data.pdbData ? (data.pdbData.experimental ? 'X-ray' : 'Inferred') : 'Unknown'} Structure Contact`,
     };
 
-    const observedContactPoints = couplingContainer.getObservedContacts();
+    const observedContactPoints = couplingContainer
+      .getObservedContacts()
+      .sort((pointA, pointB) => (pointA.dist && pointB.dist ? pointB.dist - pointA.dist : 0));
     const result = new Array<IContactMapChartData>(
       generateChartDataEntry(
         'text',

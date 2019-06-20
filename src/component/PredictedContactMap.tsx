@@ -119,9 +119,9 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     return [
       {
         marks: {
-          0: '0',
-          [Math.floor(chainLength / 4)]: 'L/4',
           [Math.floor(chainLength / 2)]: 'L/2',
+          [Math.floor(chainLength / 4)]: 'L/4',
+          0: '0',
           [chainLength]: 'L',
           [chainLength * 2]: '2L',
           [chainLength * 3]: '3L',
@@ -131,7 +131,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
         type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
         values: {
           current: numPredictionsToShow,
-          defaultValue: 100,
+          defaultValue: Math.floor(chainLength / 2),
           max: chainLength * 3,
           min: 0,
         },
@@ -211,7 +211,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
       generateChartDataEntry(
         'text',
         allColor,
-        'Inferred Contact',
+        'Experimental Contact',
         `(N=${numPredictionsToShow}, L=${chainLength})`,
         4,
         allPredictions.predicted,
@@ -222,7 +222,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
       generateChartDataEntry(
         'text',
         agreementColor,
-        'Inferred Contact Agrees with X-ray Contact',
+        'Inferred Contact Agrees with Experimental Contact',
         `(N=${allPredictions.correct.length}, ${correctPredictionPercent}%)`,
         6,
         allPredictions.correct,
