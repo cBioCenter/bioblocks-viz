@@ -974,18 +974,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*":
+"@types/react@*", "@types/react@16.8.21":
   version "16.8.21"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.21.tgz#aefb32519a4111964993be5b2bd3f172f81c34ff"
   integrity sha512-+jAtgtJ3htE+VEP/bMzBBOANGkaTbMOGYWVrmhCVtp2WE//lNG6Irw9kBEaLR7lQGjjkt/BlSSHPgArFNOKhkg==
-  dependencies:
-    "@types/prop-types" "*"
-    csstype "^2.2.0"
-
-"@types/react@^16.8.21":
-  version "16.8.22"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.22.tgz#7f18bf5ea0c1cad73c46b6b1c804a3ce0eec6d54"
-  integrity sha512-C3O1yVqk4sUXqWyx0wlys76eQfhrQhiDhDlHBrjER76lR2S2Agiid/KpOU9oCqj1dISStscz7xXz1Cg8+sCQeA==
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
@@ -13910,7 +13902,7 @@ typescript@3.2.x:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.2.4.tgz#c585cb952912263d915b462726ce244ba510ef3d"
   integrity sha512-0RNDbSdEokBeEAkgNbxJ+BLwSManFy9TeXz8uW+48j/xhEXv1ePME60olyzw2XzUqUBNAYFeJadIqAgNqIACwg==
 
-typescript@^3.0.1:
+typescript@^3.5.2:
   version "3.5.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.2.tgz#a09e1dc69bc9551cadf17dba10ee42cf55e5d56c"
   integrity sha512-7KxJovlYhTX5RaRbUdkAXN1KUZ8PwWlTzQdHV6xNqvuFOs7+WBo10TQUqT19Q/Jz2hk5v9TQDIhyLhhJY4p5AA==
