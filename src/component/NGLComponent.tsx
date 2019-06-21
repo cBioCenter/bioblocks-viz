@@ -404,21 +404,6 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
           this.props.removeAllSelectedSecondaryStructures();
           this.props.removeCandidateResidues();
           this.props.removeHoveredResidues();
-
-          /*
-          this.setState({
-            activeRepresentations: {
-              experimental: {
-                reps: new Array<NGL.RepresentationElement>(),
-                structType: this.state.activeRepresentations.experimental.structType,
-              },
-              predicted: {
-                reps: new Array<NGL.RepresentationElement>(),
-                structType: this.state.activeRepresentations.predicted.structType,
-              },
-            },
-          });
-        */
         },
         text: 'Clear Selections',
       },
@@ -596,7 +581,6 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     if (isWithinSnappingDistance(minDistances)) {
       const sortedResidues = [...candidateResidues, residueIndex].sort();
       addLockedResiduePair({ [sortedResidues.toString()]: [...candidateResidues, residueIndex] });
-
       removeCandidateResidues();
     } else {
       removeNonLockedResidues();
@@ -743,9 +727,18 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
 
   protected onClick = (pickingProxy: NGL.PickingProxy) => {
     const { stage } = this.state;
-    if (this.canvas && stage) {
-      for (const structureComponent of stage.compList as NGL.StructureComponent[]) {
-        this.handleStructureClick(structureComponent, pickingProxy);
+    const { candidateResidues, hoveredResidues, removeNonLockedResidues } = this.props;
+
+    if (stage) {
+      if (pickingProxy) {
+        this.handleClickPick(pickingProxy);
+      } else if (candidateResidues.length >= 1 && hoveredResidues.length >= 1) {
+        for (const structureComponent of stage.compList as NGL.StructureComponent[]) {
+          this.handleClickHover(structureComponent);
+        }
+      } else {
+        // User clicked off-structure, so clear non-locked residue state.
+        removeNonLockedResidues();
       }
     }
   };
