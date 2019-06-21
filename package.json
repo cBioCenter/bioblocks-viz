@@ -1,6 +1,6 @@
 {
   "name": "bioblocks-viz",
-  "version": "0.0.125",
+  "version": "0.0.126",
   "author": "Biostatistics and Computational Biology at Dana-Farber <bcb@jimmy.harvard.edu>",
   "license": "MIT",
   "engines": {
@@ -145,8 +145,6 @@
     "@tensorflow/tfjs-tsne": "^0.2.0",
     "@types/lodash": "^4.14.116",
     "@types/plotly.js": "^1.38.8",
-    "@types/react": "^16.4.7",
-    "@types/react-dom": "^16.0.5",
     "anatomogram": "^2.1.1",
     "d3": "^5.9.2",
     "immutable": "^3.8.2",
@@ -182,6 +180,8 @@
     "@types/node": "^10.5.5",
     "@types/prop-types": "^15.5.6",
     "@types/rc-slider": "^8.2.3",
+    "@types/react": "16.8.21",
+    "@types/react-dom": "^16.8.4",
     "@types/react-redux": "^6.0.11",
     "@types/react-router-dom": "^4.3.1",
     "@types/react-test-renderer": "^16.0.1",
@@ -242,7 +242,7 @@
     "tslint-microsoft-contrib": "^5.2.1",
     "tslint-react": "^3.5.1",
     "typedoc": "^0.14.2",
-    "typescript": "^3.0.1",
+    "typescript": "^3.5.2",
     "utility-types": "^3.2.0",
     "webpack": "^4.19.1",
     "webpack-bundle-analyzer": "^3.0.2",
@@ -260,7 +260,7 @@
   "husky": {
     "hooks": {
       "pre-push": "yarn lint",
-      "pre-commit": "lint-staged && yarn test:staged && yarn doc:precommit"
+      "pre-commit": "lint-staged && yarn test:staged"
     }
   },
   "repository": {

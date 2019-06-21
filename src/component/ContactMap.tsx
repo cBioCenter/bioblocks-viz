@@ -407,7 +407,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       width,
     } = this.props;
 
-    const range = data.couplingScores.residueIndexRange.max + data.couplingScores.residueIndexRange.min;
+    const range = data.couplingScores.totalContacts >= 1 ? data.couplingScores.residueIndexRange.max : undefined;
 
     return (
       <ComponentCard
@@ -444,11 +444,13 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       structure: `${data.pdbData ? (data.pdbData.experimental ? 'X-ray' : 'Inferred') : 'Unknown'} Structure Contact`,
     };
 
-    const observedContactPoints = couplingContainer.getObservedContacts();
+    const observedContactPoints = couplingContainer
+      .getObservedContacts()
+      .sort((pointA, pointB) => (pointA.dist && pointB.dist ? pointB.dist - pointA.dist : 0));
     const result = new Array<IContactMapChartData>(
       generateChartDataEntry(
         'text',
-        { start: observedColor, end: 'rgb(100,177,200)' },
+        { start: observedColor, end: 'rgb(247,251,255)' },
         `Structure Contact (${data.couplingScores.isDerivedFromCouplingScores ? 'Coupling Scores' : 'PDB'})`,
         chartNames.structure,
         4,

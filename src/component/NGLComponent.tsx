@@ -418,9 +418,9 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       },
       {
         onClick: this.switchCameraType,
-        text: `Enable ${
-          this.state.stage && this.state.stage.parameters.cameraType === 'stereo' ? `Perspective` : 'Stereo'
-        }`,
+        text: `${
+          this.state.stage && this.state.stage.parameters.cameraType === 'stereo' ? `Disable` : 'Enable'
+        } Stereo`,
       },
     ];
   };
@@ -581,7 +581,6 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     if (isWithinSnappingDistance(minDistances)) {
       const sortedResidues = [...candidateResidues, residueIndex].sort();
       addLockedResiduePair({ [sortedResidues.toString()]: [...candidateResidues, residueIndex] });
-
       removeCandidateResidues();
     } else {
       removeNonLockedResidues();
@@ -590,33 +589,35 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
 
   protected handleRepresentationUpdate(stage: NGL.Stage) {
     const { activeRepresentations } = this.state;
+    const result = {
+      experimental: {
+        reps: new Array<NGL.RepresentationElement>(),
+        structType: activeRepresentations.experimental.structType,
+      },
+      predicted: {
+        reps: new Array<NGL.RepresentationElement>(),
+        structType: activeRepresentations.predicted.structType,
+      },
+    };
     for (const structureComponent of stage.compList) {
       const isExperimental = this.isExperimentalStructure(structureComponent);
 
-      for (const rep of isExperimental
-        ? this.state.activeRepresentations.experimental.reps
-        : this.state.activeRepresentations.predicted.reps) {
-        structureComponent.removeRepresentation(rep);
+      for (const rep of [...activeRepresentations.experimental.reps, ...activeRepresentations.predicted.reps]) {
+        if (structureComponent.reprList.includes(rep)) {
+          structureComponent.removeRepresentation(rep);
+        }
       }
 
       if (isExperimental) {
-        for (const rep of this.state.activeRepresentations.experimental.reps) {
-          structureComponent.removeRepresentation(rep);
-        }
-        activeRepresentations.experimental.reps.push(
+        result.experimental.reps.push(
           ...this.deriveActiveRepresentations(structureComponent as NGL.StructureComponent),
         );
       } else {
-        for (const rep of this.state.activeRepresentations.predicted.reps) {
-          structureComponent.removeRepresentation(rep);
-        }
-        activeRepresentations.predicted.reps.push(
-          ...this.deriveActiveRepresentations(structureComponent as NGL.StructureComponent),
-        );
+        result.predicted.reps.push(...this.deriveActiveRepresentations(structureComponent as NGL.StructureComponent));
       }
     }
 
-    return activeRepresentations;
+    return result;
   }
 
   protected handleStructureClick = (structureComponent: NGL.StructureComponent, pickingProxy: NGL.PickingProxy) => {
@@ -726,9 +727,18 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
 
   protected onClick = (pickingProxy: NGL.PickingProxy) => {
     const { stage } = this.state;
-    if (this.canvas && stage) {
-      for (const structureComponent of stage.compList as NGL.StructureComponent[]) {
-        this.handleStructureClick(structureComponent, pickingProxy);
+    const { candidateResidues, hoveredResidues, removeNonLockedResidues } = this.props;
+
+    if (stage) {
+      if (pickingProxy) {
+        this.handleClickPick(pickingProxy);
+      } else if (candidateResidues.length >= 1 && hoveredResidues.length >= 1) {
+        for (const structureComponent of stage.compList as NGL.StructureComponent[]) {
+          this.handleClickHover(structureComponent);
+        }
+      } else {
+        // User clicked off-structure, so clear non-locked residue state.
+        removeNonLockedResidues();
       }
     }
   };
