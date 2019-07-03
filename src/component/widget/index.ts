@@ -1,7 +1,6 @@
 export * from './BioblocksRadioGroup';
 export * from './BioblocksRangeSlider';
 export * from './BioblocksSlider';
-export * from './BioblocksToggleButton';
 export * from './CategorySelector';
 export * from './ComponentCard';
 export * from './ComponentDock';

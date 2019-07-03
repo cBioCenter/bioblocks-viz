@@ -23,11 +23,15 @@ export const AminoAcids = [
   { fullName: 'Valine', singleLetterCode: 'V', threeLetterCode: 'VAL' },
 ] as const;
 
-const singleCodes = () => AminoAcids.map(a => a.singleLetterCode);
-const threeCodes = () => AminoAcids.map(a => a.threeLetterCode);
+export const ALL_AMINO_ACID_SINGLE_LETTER_CODES = () => AminoAcids.map(a => a.singleLetterCode);
+export const ALL_AMINO_ACID_THREE_LETTER_CODES = () => AminoAcids.map(a => a.threeLetterCode);
 
-export type AMINO_ACID_SINGLE_LETTER_CODE = keyof { [K in (ReturnType<typeof singleCodes>)[number]]: string };
-export type AMINO_ACID_THREE_LETTER_CODE = keyof { [K in (ReturnType<typeof threeCodes>)[number]]: string };
+export type AMINO_ACID_SINGLE_LETTER_CODE = keyof {
+  [K in (ReturnType<typeof ALL_AMINO_ACID_SINGLE_LETTER_CODES>)[number]]: string;
+};
+export type AMINO_ACID_THREE_LETTER_CODE = keyof {
+  [K in (ReturnType<typeof ALL_AMINO_ACID_THREE_LETTER_CODES>)[number]]: string;
+};
 
 export interface IAminoAcid {
   fullName: string;

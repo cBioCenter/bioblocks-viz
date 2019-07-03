@@ -11,7 +11,6 @@ import {
   RadioWidgetConfig,
   RangeSliderWidgetConfig,
   SliderWidgetConfig,
-  ToggleWidgetConfig,
 } from '~bioblocks-viz~/data';
 import { EMPTY_FUNCTION } from '~bioblocks-viz~/helper';
 
@@ -289,34 +288,6 @@ describe('ComponentMenuBar', () => {
         max: 4,
         min: 0,
       },
-    };
-
-    const menuItems: IComponentMenuBarItem[] = [
-      {
-        component: {
-          configs: {
-            Catcher: [config],
-          },
-          name: 'POPUP',
-          props: {},
-        },
-        description: 'A Popup',
-      },
-    ];
-
-    const wrapper = shallow(<ComponentMenuBar componentName={'The Boxer'} menuItems={menuItems} />);
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('Should render a Toggle menu item.', () => {
-    const config: ToggleWidgetConfig = {
-      currentOption: 'off',
-      name: 'Rye',
-      options: {
-        off: 'Deactivate',
-        on: 'Activate',
-      },
-      type: CONFIGURATION_COMPONENT_TYPE.TOGGLE,
     };
 
     const menuItems: IComponentMenuBarItem[] = [
