@@ -115,8 +115,8 @@ class MockStage {
   return new MockStage(canvas);
 });
 
-const genericResidue = (resno: number) => ({
-  chainIndex: 0,
+const genericResidue = (resno: number, chainIndex: number = 0) => ({
+  chainIndex,
   isHelix: () => false,
   isProtein: () => true,
   isSheet: () => false,
@@ -124,22 +124,26 @@ const genericResidue = (resno: number) => ({
   resno,
 });
 
-const helixResidue = (resno: number) => ({
-  ...genericResidue(resno),
+const helixResidue = (resno: number, chainIndex: number = 0) => ({
+  ...genericResidue(resno, chainIndex),
   isHelix: () => true,
+  resname: 'Histidine',
 });
 
-const sheetResidue = (resno: number) => ({
-  ...genericResidue(resno),
+const sheetResidue = (resno: number, chainIndex: number = 0) => ({
+  ...genericResidue(resno, chainIndex),
   isSheet: () => true,
+  resname: 'Glutamic Acid',
 });
 
-const turnResidue = (resno: number) => ({
-  ...genericResidue(resno),
+const turnResidue = (resno: number, chainIndex: number = 0) => ({
+  ...genericResidue(resno, chainIndex),
   isTurn: () => true,
+  resname: 'Cysteine',
 });
 
 const sampleResidues = [helixResidue(1), sheetResidue(2), turnResidue(3)];
+const chainResidues = [...sampleResidues, helixResidue(1, 1), helixResidue(2, 1), helixResidue(3, 1)];
 
 // tslint:disable-next-line:max-classes-per-file
 class MockStructureComponent {
@@ -189,11 +193,18 @@ class MockStructureComponent {
 class MockStructure {
   public atomMap = { dict: { 'CA|C': 2 } };
 
-  public eachResidue = jest.fn((cb: (...args: any[]) => void) =>
-    this.name.endsWith('sample.pdb') ? sampleResidues.map(cb) : {},
-  );
+  public eachResidue = jest.fn((cb: (...args: any[]) => void) => {
+    if (this.name.endsWith('sample.pdb')) {
+      return sampleResidues.map(cb);
+    } else if (this.name.endsWith('chain.pdb')) {
+      return chainResidues.map(cb);
+    }
+
+    return {};
+  });
   public getAtomProxy = jest.fn((index: number) => ({
-    distanceTo: (pos: number) => pos + index,
+    distanceTo: (atomProxy: NGL.AtomProxy) => atomProxy.index + index,
+    index,
     positionToVector3: () => index,
   }));
   public getResidueProxy = jest.fn((resno: number) => ({

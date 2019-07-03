@@ -64,8 +64,6 @@ export interface IResidueMismatchResult {
 export const getPDBAndCouplingMismatch = (pdbData: BioblocksPDB, couplingScores: CouplingContainer) => {
   const pdbSequence = pdbData.sequence;
   const couplingSequence = couplingScores.sequence;
-  console.log(pdbSequence);
-  console.log(couplingSequence);
   const mismatches = getSequenceMismatch(pdbSequence, couplingSequence);
 
   if (mismatches.length === 0) {

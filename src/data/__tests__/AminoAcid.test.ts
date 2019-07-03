@@ -116,4 +116,21 @@ describe('Sequence Mismatch', () => {
     ];
     expect(getPDBAndCouplingMismatch(pdb, couplings)).toEqual(expected);
   });
+
+  it('Should correctly report empty mismatches for PDB and CouplingContainer with different length sequence.', async () => {
+    const pdb = await BioblocksPDB.createPDB('sample.pdb');
+    const couplings = new CouplingContainer(
+      firstSequence
+        .substr(1)
+        .split('')
+        .map((char, index) => ({
+          A_i: char as AMINO_ACID_SINGLE_LETTER_CODE,
+          A_j: char as AMINO_ACID_SINGLE_LETTER_CODE,
+          i: index + 1,
+          j: index + 1,
+        })),
+    );
+
+    expect(getPDBAndCouplingMismatch(pdb, couplings)).toEqual([]);
+  });
 });

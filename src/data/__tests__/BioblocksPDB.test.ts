@@ -40,6 +40,31 @@ describe('BioblocksPDB', () => {
     expect(result.secondaryStructureSections).toEqual(expected);
   });
 
+  it('Should correctly handle getting the secondary structure sections for multiple chains.', async () => {
+    const expected = [
+      [
+        { label: 'H', sectionEnd: 1, sectionStart: 1 },
+        { label: 'E', sectionEnd: 2, sectionStart: 2 },
+        { label: 'C', sectionEnd: 3, sectionStart: 3 },
+      ],
+      [{ label: 'H', sectionEnd: 3, sectionStart: 1 }],
+    ];
+    const result = await BioblocksPDB.createPDB('chain.pdb');
+    expect(result.secondaryStructureSections).toEqual(expected);
+  });
+
+  describe('Residue distances', () => {
+    it('Should report the minimum distance between the same residue as 0.', async () => {
+      const nglData = await BioblocksPDB.createPDB('sample.pdb');
+      expect(nglData.getMinDistBetweenResidues(1, 1).dist).toEqual(0);
+    });
+
+    it('Should report the minimum distance between two discrete residues.', async () => {
+      const nglData = await BioblocksPDB.createPDB('sample.pdb');
+      expect(nglData.getMinDistBetweenResidues(1, 2).dist).toEqual(2);
+    });
+  });
+
   describe('Getting a trimmed name', () => {
     it('should trim the last 3 underscores by default.', async () => {
       const result = await BioblocksPDB.createPDB('protein_0_1_2.pdb');
