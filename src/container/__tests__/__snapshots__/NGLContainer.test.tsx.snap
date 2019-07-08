@@ -205,6 +205,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                             </GridRow>
                           </Grid>,
                           "disabled": true,
+                          "position": "top center",
                           "wide": "very",
                         },
                       },
@@ -240,6 +241,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                         "text": "Center View",
                       },
                       Object {
+                        "isVisibleCb": [Function],
                         "onClick": [Function],
                         "text": "Superimpose: Off",
                       },
@@ -401,6 +403,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                               </GridRow>
                             </Grid>,
                             "disabled": true,
+                            "position": "top center",
                             "wide": "very",
                           },
                         },
@@ -442,14 +445,14 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                             ],
                             "View Options": Array [
                               Object {
-                                "checked": true,
-                                "name": "Distance Representation",
+                                "checked": false,
+                                "name": "Zoom on Click",
                                 "onChange": [Function],
                                 "type": "CHECKBOX",
                               },
                               Object {
-                                "checked": false,
-                                "name": "Zoom on Click",
+                                "checked": true,
+                                "name": "Display Distance in Ångström",
                                 "onChange": [Function],
                                 "type": "CHECKBOX",
                               },
@@ -659,6 +662,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                       </GridRow>
                                     </Grid>,
                                     "disabled": true,
+                                    "position": "top center",
                                     "wide": "very",
                                   },
                                 },
@@ -700,14 +704,14 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                     ],
                                     "View Options": Array [
                                       Object {
-                                        "checked": true,
-                                        "name": "Distance Representation",
+                                        "checked": false,
+                                        "name": "Zoom on Click",
                                         "onChange": [Function],
                                         "type": "CHECKBOX",
                                       },
                                       Object {
-                                        "checked": false,
-                                        "name": "Zoom on Click",
+                                        "checked": true,
+                                        "name": "Display Distance in Ångström",
                                         "onChange": [Function],
                                         "type": "CHECKBOX",
                                       },
@@ -837,12 +841,13 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                           closeOnTriggerMouseLeave={false}
                                           disabled={true}
                                           hoverable={false}
-                                          keepInViewPort={true}
+                                          offset={0}
                                           on="hover"
                                           openOnTriggerClick={true}
                                           openOnTriggerFocus={false}
                                           openOnTriggerMouseEnter={false}
-                                          position="bottom left"
+                                          pinned={false}
+                                          position="top center"
                                           style={
                                             Object {
                                               "opacity": 0.85,
@@ -904,11 +909,12 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                           closeOnTriggerMouseLeave={false}
                                           disabled={false}
                                           hoverable={false}
-                                          keepInViewPort={true}
+                                          offset={0}
                                           on="hover"
                                           openOnTriggerClick={true}
                                           openOnTriggerFocus={false}
                                           openOnTriggerMouseEnter={false}
+                                          pinned={false}
                                           position="bottom left"
                                           style={
                                             Object {
@@ -945,7 +951,14 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                                 name="setting"
                                               />
                                             }
-                                            triggerRef={[Function]}
+                                            triggerRef={
+                                              Object {
+                                                "current": <i
+                                                  aria-hidden="true"
+                                                  class="setting icon"
+                                                />,
+                                              }
+                                            }
                                           >
                                             <Ref
                                               innerRef={[Function]}
@@ -1144,6 +1157,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                 "text": "Center View",
                               },
                               Object {
+                                "isVisibleCb": [Function],
                                 "onClick": [Function],
                                 "text": "Superimpose: Off",
                               },
@@ -1333,6 +1347,7 @@ exports[`NGLContainer Should match the default snapshot when not hooked up to a 
                   </GridRow>
                 </Grid>,
                 "disabled": true,
+                "position": "top center",
                 "wide": "very",
               },
             },

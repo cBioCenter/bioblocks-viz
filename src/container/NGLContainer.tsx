@@ -124,6 +124,7 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
                   props: {
                     children: this.renderPDBSelector(),
                     disabled: experimentalProteins.length === 0 && predictedProteins.length === 0,
+                    position: 'top center',
                     wide: 'very',
                   },
                 },
@@ -173,7 +174,9 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
         </Grid.Row>
         <Grid.Row columns={2} style={{ padding: '5px 0' }}>
           <Grid.Column width={9}>
-            {`Experimental (${this.state.selectedExperimentalProteins.length}/${this.props.experimentalProteins.length})`}
+            {`Experimental (${this.state.selectedExperimentalProteins.length}/${
+              this.props.experimentalProteins.length
+            })`}
             {this.renderPDBTable(this.props.experimentalProteins, 'experimental', this.onExperimentalProteinSelect)}
           </Grid.Column>
           <Grid.Column width={7}>
@@ -224,7 +227,8 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
       <Table.Row key={`pdb-radio-${pdbGroup}-${index}`}>
         <Table.Cell style={cellStyle}>
           <Popup
-            position={'top left'}
+            position={'bottom center'}
+            pinned={true}
             trigger={
               <Checkbox
                 checked={(pdbGroup === 'experimental'

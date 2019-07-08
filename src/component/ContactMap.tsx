@@ -77,6 +77,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     configurations: new Array<BioblocksWidgetConfig>(),
     data: {
       couplingScores: new CouplingContainer(),
+      pdbData: { experimental: undefined, predicted: undefined },
       secondaryStructures: new Array<SECONDARY_STRUCTURE>(),
     },
     enableSliders: true,
@@ -406,14 +407,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       width,
     } = this.props;
 
-    let range;
-    if (data.pdbData) {
-      if (data.pdbData.experimental) {
-        range = data.pdbData.experimental.sequence.length + 20;
-      } else if (data.pdbData.predicted) {
-        range = data.pdbData.predicted.sequence.length + 20;
-      }
-    }
+    const range = data.couplingScores.totalContacts >= 1 ? data.couplingScores.residueIndexRange.max : undefined;
 
     return (
       <ComponentCard
@@ -450,12 +444,14 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
       structure: `${data.pdbData ? (data.pdbData.experimental ? 'X-ray' : 'Inferred') : 'Unknown'} Structure Contact`,
     };
 
-    const observedContactPoints = couplingContainer.getObservedContacts();
+    const observedContactPoints = couplingContainer
+      .getObservedContacts()
+      .sort((pointA, pointB) => (pointA.dist && pointB.dist ? pointB.dist - pointA.dist : 0));
     const result = new Array<IContactMapChartData>(
       generateChartDataEntry(
         'text',
-        { start: observedColor, end: 'rgb(100,177,200)' },
-        'X-ray Structure Contact',
+        { start: observedColor, end: 'rgb(247,251,255)' },
+        `Structure Contact (${data.couplingScores.isDerivedFromCouplingScores ? 'Coupling Scores' : 'PDB'})`,
         chartNames.structure,
         4,
         observedContactPoints,

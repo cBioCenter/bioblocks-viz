@@ -144,7 +144,6 @@ export class BioblocksPDB {
   public amendPDBWithCouplingScores(couplingScores: ICouplingScore[], measuredProximity: CONTACT_DISTANCE_PROXIMITY) {
     const result = new CouplingContainer(couplingScores);
     const alphaId = this.nglData.atomMap.dict[BioblocksPDB.NGL_C_ALPHA_INDEX];
-
     const minDist: {
       [key: string]: number;
     } = {};
@@ -155,13 +154,16 @@ export class BioblocksPDB {
           if (measuredProximity === CONTACT_DISTANCE_PROXIMITY.C_ALPHA) {
             const firstResidueCAlphaIndex = this.getCAlphaAtomIndexFromResidue(outerResidue.index, alphaId);
             const secondResidueCAlphaIndex = this.getCAlphaAtomIndexFromResidue(innerResidue.index, alphaId);
-            result.addCouplingScore({
-              dist: this.nglData
-                .getAtomProxy(firstResidueCAlphaIndex)
-                .distanceTo(this.nglData.getAtomProxy(secondResidueCAlphaIndex)),
-              i: outerResidue.resno,
-              j: innerResidue.resno,
-            });
+            const dist = this.nglData
+              .getAtomProxy(firstResidueCAlphaIndex)
+              .distanceTo(this.nglData.getAtomProxy(secondResidueCAlphaIndex));
+            if (dist !== 0) {
+              result.addCouplingScore({
+                dist,
+                i: outerResidue.resno,
+                j: innerResidue.resno,
+              });
+            }
           } else {
             const key = `${Math.min(outerResidue.resno, innerResidue.resno)},${Math.max(
               outerResidue.resno,
@@ -171,11 +173,13 @@ export class BioblocksPDB {
               minDist[key] = this.getMinDistBetweenResidueIndices(outerResidue.index, innerResidue.index).dist;
             }
 
-            result.addCouplingScore({
-              dist: minDist[key],
-              i: outerResidue.resno,
-              j: innerResidue.resno,
-            });
+            if (minDist[key] !== 0) {
+              result.addCouplingScore({
+                dist: minDist[key],
+                i: outerResidue.resno,
+                j: innerResidue.resno,
+              });
+            }
           }
         }
       });

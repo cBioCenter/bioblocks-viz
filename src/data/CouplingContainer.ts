@@ -41,13 +41,23 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
 
   protected contacts: ICouplingScore[][] = new Array<ICouplingScore[]>();
 
-  /** How many distinct contacts are currently stored. */
-  protected totalStoredContacts: number = 0;
-
   protected indexRange = {
     max: 1,
     min: 1,
   };
+
+  public get isDerivedFromCouplingScores(): boolean {
+    return this.derivedFromCouplingScoresFlag;
+  }
+
+  public set isDerivedFromCouplingScores(value: boolean) {
+    this.derivedFromCouplingScoresFlag = value;
+  }
+
+  /** How many distinct contacts are currently stored. */
+  protected totalStoredContacts: number = 0;
+
+  private derivedFromCouplingScoresFlag: boolean = true;
 
   /** Used for iterator access. */
   private rowCounter = 0;
@@ -174,14 +184,13 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
   /**
    * Determine which contacts in this coupling container are observed.
    *
-   * @param [distFilter=5] - For each score, if dist <= distFilter, it is considered observed.
-   * @param [linearDistFilter=5] - For each score, if |i - j| >= linearDistFilter, it will be a candidate for being correct/incorrect.
+   * @param [distFilter=10] - For each score, if dist <= distFilter, it is considered observed.
    * @returns Contacts that should be considered observed in the current data set.
    */
-  public getObservedContacts(distFilter: number = 5, linearDistFilter: number = 5): ICouplingScore[] {
+  public getObservedContacts(distFilter: number = 10): ICouplingScore[] {
     const result = new Array<ICouplingScore>();
     for (const score of this) {
-      if (score.dist && score.dist <= distFilter && Math.abs(score.i - score.j) >= linearDistFilter) {
+      if (score.dist && score.dist <= distFilter) {
         result.push(score);
       }
     }

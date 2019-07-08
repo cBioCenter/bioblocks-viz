@@ -15,7 +15,7 @@ Array [
       ],
     },
     "mode": "lines+markers",
-    "name": "Inferred Contact",
+    "name": "Experimental Contact",
     "nodeSize": 4,
     "points": Array [
       Object {
@@ -52,7 +52,7 @@ Array [
       ],
     },
     "mode": "lines+markers",
-    "name": "Inferred Contact Agrees with X-ray Contact",
+    "name": "Inferred Contact Agrees with Experimental Contact",
     "nodeSize": 6,
     "points": Array [
       Object {
@@ -86,17 +86,17 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
       Array [
         Object {
           "marks": Object {
-            "0": "L/2",
+            "0": "0",
             "1": "L",
             "2": "2L",
             "3": "3L",
           },
-          "name": "Number of Couplings to Display",
+          "name": "# Couplings to Display",
           "onChange": [Function],
           "type": "SLIDER",
           "values": Object {
             "current": 0,
-            "defaultValue": 100,
+            "defaultValue": 0,
             "max": 3,
             "min": 0,
           },
@@ -131,6 +131,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
         "couplingScores": CouplingContainer {
           "colCounter": 0,
           "contacts": Array [],
+          "derivedFromCouplingScoresFlag": true,
           "getCouplingScore": [Function],
           "includes": [Function],
           "indexRange": Object {
@@ -154,7 +155,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
             "color": Array [],
           },
           "mode": "lines+markers",
-          "name": "Inferred Contact",
+          "name": "Experimental Contact",
           "nodeSize": 4,
           "points": Array [],
           "subtitle": "(N=0, L=1)",
@@ -166,7 +167,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
             "color": Array [],
           },
           "mode": "lines+markers",
-          "name": "Inferred Contact Agrees with X-ray Contact",
+          "name": "Inferred Contact Agrees with Experimental Contact",
           "nodeSize": 6,
           "points": Array [],
           "subtitle": "(N=0, NaN%)",
@@ -192,17 +193,17 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
       Array [
         Object {
           "marks": Object {
-            "0": "L/2",
+            "0": "0",
             "1": "L",
             "2": "2L",
             "3": "3L",
           },
-          "name": "Number of Couplings to Display",
+          "name": "# Couplings to Display",
           "onChange": [Function],
           "type": "SLIDER",
           "values": Object {
             "current": 0,
-            "defaultValue": 100,
+            "defaultValue": 0,
             "max": 3,
             "min": 0,
           },
@@ -237,6 +238,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
         "couplingScores": CouplingContainer {
           "colCounter": 0,
           "contacts": Array [],
+          "derivedFromCouplingScoresFlag": true,
           "getCouplingScore": [Function],
           "includes": [Function],
           "indexRange": Object {
@@ -260,7 +262,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
             "color": Array [],
           },
           "mode": "lines+markers",
-          "name": "Inferred Contact",
+          "name": "Experimental Contact",
           "nodeSize": 4,
           "points": Array [],
           "subtitle": "(N=0, L=1)",
@@ -272,7 +274,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
             "color": Array [],
           },
           "mode": "lines+markers",
-          "name": "Inferred Contact Agrees with X-ray Contact",
+          "name": "Inferred Contact Agrees with Experimental Contact",
           "nodeSize": 6,
           "points": Array [],
           "subtitle": "(N=0, NaN%)",
@@ -298,17 +300,17 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
       Array [
         Object {
           "marks": Object {
-            "0": "L/2",
+            "0": "0",
             "1": "L",
             "2": "2L",
             "3": "3L",
           },
-          "name": "Number of Couplings to Display",
+          "name": "# Couplings to Display",
           "onChange": [Function],
           "type": "SLIDER",
           "values": Object {
             "current": 0,
-            "defaultValue": 100,
+            "defaultValue": 0,
             "max": 3,
             "min": 0,
           },
@@ -343,6 +345,7 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
         "couplingScores": CouplingContainer {
           "colCounter": 0,
           "contacts": Array [],
+          "derivedFromCouplingScoresFlag": true,
           "getCouplingScore": [Function],
           "includes": [Function],
           "indexRange": Object {
@@ -366,7 +369,7 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
             "color": Array [],
           },
           "mode": "lines+markers",
-          "name": "Inferred Contact",
+          "name": "Experimental Contact",
           "nodeSize": 4,
           "points": Array [],
           "subtitle": "(N=0, L=1)",
@@ -378,7 +381,7 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
             "color": Array [],
           },
           "mode": "lines+markers",
-          "name": "Inferred Contact Agrees with X-ray Contact",
+          "name": "Inferred Contact Agrees with Experimental Contact",
           "nodeSize": 6,
           "points": Array [],
           "subtitle": "(N=0, NaN%)",

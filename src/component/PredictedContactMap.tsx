@@ -119,19 +119,19 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     return [
       {
         marks: {
-          0: '0',
-          [Math.floor(chainLength / 4)]: 'L/4',
           [Math.floor(chainLength / 2)]: 'L/2',
+          [Math.floor(chainLength / 4)]: 'L/4',
+          0: '0',
           [chainLength]: 'L',
           [chainLength * 2]: '2L',
           [chainLength * 3]: '3L',
         },
-        name: 'Number of Couplings to Display',
+        name: '# Couplings to Display',
         onChange: this.onNumPredictionsToShowChange(),
         type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
         values: {
           current: numPredictionsToShow,
-          defaultValue: 100,
+          defaultValue: Math.floor(chainLength / 2),
           max: chainLength * 3,
           min: 0,
         },
@@ -186,47 +186,46 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
   protected setupData(isNewData: boolean) {
     const { agreementColor, data, allColor } = this.props;
     const { linearDistFilter, numPredictionsToShow } = this.state;
-
-    const { pdbData } = data;
-    const couplingScores =
-      pdbData && pdbData.experimental
-        ? pdbData.experimental.contactInformation
-        : new CouplingContainer(data.couplingScores.rankedContacts);
-
-    const allPredictions = couplingScores.getPredictedContacts(
-      numPredictionsToShow,
-      linearDistFilter,
-      this.getPredictedFilters(),
-    );
-    const correctPredictionPercent = ((allPredictions.correct.length / allPredictions.predicted.length) * 100).toFixed(
-      1,
-    );
-
+    const { couplingScores } = data;
     const { chainLength } = couplingScores;
-    const newPoints: IContactMapChartData[] = [
-      generateChartDataEntry(
-        'text',
-        allColor,
-        'Inferred Contact',
-        `(N=${numPredictionsToShow}, L=${chainLength})`,
-        4,
-        allPredictions.predicted,
-        {
-          text: allPredictions.predicted.map(generateCouplingScoreHoverText),
-        },
-      ),
-      generateChartDataEntry(
-        'text',
-        agreementColor,
-        'Inferred Contact Agrees with X-ray Contact',
-        `(N=${allPredictions.correct.length}, ${correctPredictionPercent}%)`,
-        6,
-        allPredictions.correct,
-        {
-          text: allPredictions.correct.map(generateCouplingScoreHoverText),
-        },
-      ),
-    ];
+
+    const newPoints = new Array<IContactMapChartData>();
+
+    if (couplingScores.isDerivedFromCouplingScores) {
+      const allPredictions = couplingScores.getPredictedContacts(
+        numPredictionsToShow,
+        linearDistFilter,
+        this.getPredictedFilters(),
+      );
+      const correctPredictionPercent = (
+        (allPredictions.correct.length / allPredictions.predicted.length) *
+        100
+      ).toFixed(1);
+      newPoints.push(
+        generateChartDataEntry(
+          'text',
+          allColor,
+          'Experimental Contact',
+          `(N=${numPredictionsToShow}, L=${chainLength})`,
+          4,
+          allPredictions.predicted,
+          {
+            text: allPredictions.predicted.map(generateCouplingScoreHoverText),
+          },
+        ),
+        generateChartDataEntry(
+          'text',
+          agreementColor,
+          'Inferred Contact Agrees with Experimental Contact',
+          `(N=${allPredictions.correct.length}, ${correctPredictionPercent}%)`,
+          6,
+          allPredictions.correct,
+          {
+            text: allPredictions.correct.map(generateCouplingScoreHoverText),
+          },
+        ),
+      );
+    }
 
     this.setState({
       numPredictionsToShow: isNewData ? Math.floor(chainLength / 2) : numPredictionsToShow,

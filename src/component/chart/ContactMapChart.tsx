@@ -66,19 +66,7 @@ export const generateChartDataEntry = (
     typeof color === 'string'
       ? { color: new Array(points.length * 2).fill(color) }
       : {
-          colorscale: [
-            [0, 'rgb(12,50,102)'],
-            [0.1, 'rgb(17,83,150)'],
-            [0.2, 'rgb(40,114,175)'],
-            [0.3, 'rgb(71,147,193)'],
-            [0.4, 'rgb(111,175,209)'],
-            [0.5, 'rgb(160,202,222)'],
-            [0.6, 'rgb(200,219,237)'],
-            [0.7, 'rgb(224,235,246)'],
-            [0.8, 'rgb(247,251,255)'],
-            [0.9, 'rgb(249,253,255)'],
-            [1, 'rgb(255,255,255)'],
-          ],
+          colorscale: [[0, color.start], [1, color.end]],
         },
   mode: 'lines+markers',
   name,
@@ -97,7 +85,7 @@ export interface IContactMapChartPoint {
 /**
  * Intermediary between a ContactMap and a PlotlyChart.
  *
- * Will transform data and setup layout from science/bioblocks data type into the Plotly type.
+ * Will transform data and setup layout from science/bioblocks into a format suitable for Plotly consumption.
  * @extends {React.Component<IContactMapChartProps, any>}
  */
 export class ContactMapChart extends React.Component<IContactMapChartProps, IContactMapChartState> {

@@ -3,8 +3,7 @@ import * as ReactDOM from 'react-dom';
 import { connect, Provider } from 'react-redux';
 import { Button, Grid, Header, Label, Message, Segment } from 'semantic-ui-react';
 
-import { UMAPVisualization } from '~bioblocks-viz~/singlepage/UMAPVisualization';
-
+import { bindActionCreators, Dispatch } from 'redux';
 import { createContainerActions, createResiduePairActions } from '~bioblocks-viz~/action';
 import { PredictedContactMap } from '~bioblocks-viz~/component';
 import { NGLContainer } from '~bioblocks-viz~/container';
@@ -29,11 +28,16 @@ import {
   readFileAsText,
 } from '~bioblocks-viz~/helper';
 import { Store } from '~bioblocks-viz~/reducer';
+import { UMAPVisualization } from '~bioblocks-viz~/singlepage/UMAPVisualization';
 
 export interface IExampleAppProps {
   style: Exclude<React.CSSProperties, 'height' | 'width'>;
-  clearAllResidues(): void;
-  clearAllSecondaryStructures(): void;
+  removeAllHoveredSecondaryStructures(): void;
+  removeAllLockedResiduePairs(): void;
+  removeAllSelectedSecondaryStructures(): void;
+  removeCandidateResidues(): void;
+  removeHoveredResidues(): void;
+  removeNonLockedResidues(): void;
 }
 
 export interface IExampleAppState {
@@ -50,8 +54,12 @@ export interface IExampleAppState {
 
 class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState> {
   public static defaultProps = {
-    clearAllResidues: EMPTY_FUNCTION,
-    clearAllSecondaryStructures: EMPTY_FUNCTION,
+    removeAllHoveredSecondaryStructures: EMPTY_FUNCTION,
+    removeAllLockedResiduePairs: EMPTY_FUNCTION,
+    removeAllSelectedSecondaryStructures: EMPTY_FUNCTION,
+    removeCandidateResidues: EMPTY_FUNCTION,
+    removeHoveredResidues: EMPTY_FUNCTION,
+    removeNonLockedResidues: EMPTY_FUNCTION,
     style: {
       backgroundColor: '#ffffff',
     },
@@ -60,7 +68,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
   protected static initialState: IExampleAppState = {
     [VIZ_TYPE.CONTACT_MAP]: {
       couplingScores: new CouplingContainer(),
-      pdbData: undefined,
+      pdbData: { experimental: undefined, predicted: undefined },
       secondaryStructures: [],
     },
     errorMsg: '',
@@ -135,14 +143,27 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
   }
 
   protected onClearAll = () => async () => {
-    const { clearAllResidues, clearAllSecondaryStructures } = this.props;
-    this.setState(ExampleAppClass.initialState);
-    clearAllResidues();
-    clearAllSecondaryStructures();
+    const {
+      removeAllHoveredSecondaryStructures,
+      removeAllLockedResiduePairs,
+      removeAllSelectedSecondaryStructures,
+      removeCandidateResidues,
+      removeHoveredResidues,
+      removeNonLockedResidues,
+    } = this.props;
+
+    removeAllHoveredSecondaryStructures();
+    removeAllSelectedSecondaryStructures();
+    removeAllLockedResiduePairs();
+    removeCandidateResidues();
+    removeHoveredResidues();
+    removeNonLockedResidues();
+    this.setState({ ...ExampleAppClass.initialState });
     this.forceUpdate();
   };
 
-  protected onFileUpload = async (e: React.ChangeEvent) => {
+  // tslint:disable-next-line: max-func-body-length
+  protected onFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.persist();
     const files = (e.target as HTMLInputElement).files;
     if (!files) {
@@ -153,12 +174,15 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     const { measuredProximity } = this.state;
 
     this.setState({
+      experimentalProteins: [],
       isDragHappening: false,
       isLoading: true,
+      predictedProteins: [],
     });
 
     let couplingScoresCSV: string = '';
-    let pdbData = BioblocksPDB.createEmptyPDB();
+    let couplingFlag: boolean = false;
+    let pdbData: BioblocksPDB | undefined;
     let residueMapping: IResidueMapping[] = [];
     let secondaryStructures: SECONDARY_STRUCTURE_SECTION[] = [];
 
@@ -182,8 +206,9 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
           file.name.startsWith('residue_mapping')
         ) {
           residueMapping = generateResidueMapping(parsedFile);
-        } else if (file.name.endsWith('CouplingScores.csv')) {
+        } else if (file.name.endsWith('CouplingScoresCompared_all.csv')) {
           couplingScoresCSV = parsedFile;
+          couplingFlag = true;
         } else if (file.name.endsWith('.csv') && file.name.includes('distance_map')) {
           secondaryStructures = new Array<SECONDARY_STRUCTURE_SECTION>();
           parsedFile
@@ -207,18 +232,32 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
       }
     }
 
-    pdbData = experimentalProteins.length === 0 ? BioblocksPDB.createEmptyPDB() : experimentalProteins[0];
+    if (pdbData && experimentalProteins.length === 0 && predictedProteins.length === 0) {
+      experimentalProteins.push(pdbData);
+    } else if (experimentalProteins.length === 0) {
+      pdbData = predictedProteins[0];
+    } else {
+      pdbData = experimentalProteins[0];
+    }
 
     let couplingScores = getCouplingScoresData(couplingScoresCSV, residueMapping);
-    couplingScores = pdbData.amendPDBWithCouplingScores(couplingScores.rankedContacts, measuredProximity);
-    const mismatches = pdbData.getResidueNumberingMismatches(couplingScores);
+    let mismatches = new Array<IResidueMismatchResult>();
+
+    if (pdbData) {
+      if (couplingScores.rankedContacts.length === 0 || couplingScores.rankedContacts[0].dist === undefined) {
+        couplingScores = pdbData.amendPDBWithCouplingScores(couplingScores.rankedContacts, measuredProximity);
+      } else {
+        mismatches = pdbData.getResidueNumberingMismatches(couplingScores);
+      }
+    }
+    couplingScores.isDerivedFromCouplingScores = couplingFlag;
 
     this.setState({
       [VIZ_TYPE.CONTACT_MAP]: {
         couplingScores,
         pdbData: { experimental: experimentalProteins[0], predicted: predictedProteins[0] },
         secondaryStructures:
-          secondaryStructures.length >= 1 ? [secondaryStructures] : pdbData.secondaryStructureSections,
+          secondaryStructures.length >= 1 ? [secondaryStructures] : pdbData ? pdbData.secondaryStructureSections : [],
       },
       errorMsg: '',
       experimentalProteins,
@@ -226,6 +265,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
       mismatches,
       predictedProteins,
     });
+    e.target.value = '';
   };
 
   protected onMeasuredProximityChange = () => (value: number) => {
@@ -239,9 +279,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
       <Grid.Row textAlign={'right'} verticalAlign={'bottom'}>
         <Grid.Column style={{ height: '100%', width: 'auto' }}>{this.renderClearAllButton()}</Grid.Column>
         <Grid.Column style={{ height: '100%', width: 'auto' }}>
-          <Grid.Row>
-            {this.renderUploadForm(this.onFileUpload, 'upload-coupling-scores', 'CouplingScores Files')}
-          </Grid.Row>
+          <Grid.Row>{this.renderUploadForm(this.onFileUpload, 'upload-coupling-scores', 'Upload Files')}</Grid.Row>
         </Grid.Column>
       </Grid.Row>
     );
@@ -323,7 +361,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
   );
 
   protected renderUploadForm = (
-    onChange: (e: React.ChangeEvent) => void,
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
     id: string,
     content: string,
     disabled?: boolean,
@@ -374,13 +412,16 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
   };
 
   protected renderNGLCard = (measuredProximity: CONTACT_DISTANCE_PROXIMITY) => {
+    const { isLoading, experimentalProteins, predictedProteins } = this.state;
+    console.log('ngl render');
+
     return (
       <NGLContainer
-        experimentalProteins={this.state.experimentalProteins}
-        isDataLoading={this.state.isLoading}
+        experimentalProteins={experimentalProteins}
+        isDataLoading={isLoading}
         measuredProximity={measuredProximity}
         onMeasuredProximityChange={this.onMeasuredProximityChange()}
-        predictedProteins={this.state.predictedProteins}
+        predictedProteins={predictedProteins}
       />
     );
   };
@@ -404,19 +445,22 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
   );
 }
 
-const mapStateToProps = (state: { [key: string]: any }) => ({
-  clearAllResidues: () => {
-    createResiduePairActions().candidates.clear();
-    createResiduePairActions().hovered.clear();
-    createResiduePairActions().locked.clear();
-  },
-  clearAllSecondaryStructures: () => {
-    createContainerActions('secondaryStructure/hovered').clear();
-    createContainerActions('secondaryStructure/selected').clear();
-  },
-});
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators(
+    {
+      removeAllHoveredSecondaryStructures: createContainerActions('secondaryStructure/hovered').clear,
+      removeAllLockedResiduePairs: createResiduePairActions().locked.clear,
+      removeAllSelectedSecondaryStructures: createContainerActions('secondaryStructure/selected').clear,
+      removeCandidateResidues: createResiduePairActions().candidates.clear,
+      removeHoveredResidues: createResiduePairActions().hovered.clear,
+    },
+    dispatch,
+  );
 
-const ExampleApp = connect(mapStateToProps)(ExampleAppClass);
+const ExampleApp = connect(
+  null,
+  mapDispatchToProps,
+)(ExampleAppClass);
 
 ReactDOM.render(
   <Provider store={Store}>
