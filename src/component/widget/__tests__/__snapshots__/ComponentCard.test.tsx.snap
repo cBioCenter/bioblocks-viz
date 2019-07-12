@@ -531,7 +531,6 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                       style={
                         Object {
                           "height": "80vh",
-                          "marginTop": null,
                           "width": "80vh",
                           "willChange": "unset",
                         }
@@ -1861,7 +1860,6 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                       style={
                         Object {
                           "height": "80vh",
-                          "marginTop": null,
                           "width": "80vh",
                           "willChange": "unset",
                         }
