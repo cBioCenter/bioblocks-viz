@@ -1,12 +1,11 @@
 import * as CopyWebpackPlugin from 'copy-webpack-plugin';
-import { Config } from 'html-webpack-plugin';
 import * as webpack from 'webpack';
 import * as merge from 'webpack-merge';
 
 // tslint:disable-next-line:no-relative-imports
 import * as generateCommonConfig from '../webpack.bioblocks-common';
 
-const devConfig: Config = {
+const devConfig = {
   devServer: {
     contentBase: './dist',
     hot: true,
