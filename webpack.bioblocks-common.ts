@@ -16,6 +16,7 @@ export const generateCommonConfig = (
 ): webpack.Configuration => ({
   entry: {
     example: './examples/example.tsx',
+    frame: './frames/Frame.tsx',
   },
   module: {
     rules: [
@@ -126,6 +127,13 @@ export const generateCommonConfig = (
       inject: true,
       template: './examples/example.html',
       title: 'Bioblocks - Contact Map / NGL Example',
+    }) as webpack.Plugin,
+    new HtmlWebpackPlugin({
+      chunks: ['frame'],
+      favicon: 'assets/favicons/favicon.ico',
+      filename: 'frame.html',
+      inject: true,
+      template: './frames/frame.html',
     }) as webpack.Plugin,
     new CopyWebpackPlugin([
       {

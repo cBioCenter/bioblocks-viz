@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { connect, Provider } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
 import { Button, Grid, Header, Label, Message, Segment } from 'semantic-ui-react';
 
-import { bindActionCreators, Dispatch } from 'redux';
 import { createContainerActions, createResiduePairActions } from '~bioblocks-viz~/action';
 import { PredictedContactMap } from '~bioblocks-viz~/component';
 import { NGLContainer } from '~bioblocks-viz~/container';
