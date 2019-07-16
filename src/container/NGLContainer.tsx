@@ -1,6 +1,6 @@
 import { Map, Set } from 'immutable';
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { connect, Provider } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
 import { Checkbox, CheckboxProps, Grid, Header, Popup, Table } from 'semantic-ui-react';
@@ -16,7 +16,7 @@ import {
   SECONDARY_STRUCTURE_SECTION,
 } from '~bioblocks-viz~/data';
 import { EMPTY_FUNCTION } from '~bioblocks-viz~/helper';
-import { createContainerReducer, createResiduePairReducer, ILockedResiduePair } from '~bioblocks-viz~/reducer';
+import { BBStore, createContainerReducer, createResiduePairReducer, ILockedResiduePair } from '~bioblocks-viz~/reducer';
 import { getCandidates, getHovered, getLocked, selectCurrentItems } from '~bioblocks-viz~/selector';
 
 export interface INGLContainerProps {
@@ -112,31 +112,33 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
     const { selectedExperimentalProteins, selectedPredictedProteins } = this.state;
 
     return (
-      <Grid padded={true}>
-        <Grid.Row>
-          <NGLComponent
-            experimentalProteins={experimentalProteins.filter(pdb => selectedExperimentalProteins.includes(pdb.name))}
-            lockedResiduePairs={lockedResiduePairs.toJS() as ILockedResiduePair}
-            menuItems={[
-              {
-                component: {
-                  name: 'POPUP',
-                  props: {
-                    children: this.renderPDBSelector(),
-                    disabled: experimentalProteins.length === 0 && predictedProteins.length === 0,
-                    position: 'top center',
-                    wide: 'very',
+      <Provider store={BBStore}>
+        <Grid padded={true}>
+          <Grid.Row>
+            <NGLComponent
+              experimentalProteins={experimentalProteins.filter(pdb => selectedExperimentalProteins.includes(pdb.name))}
+              lockedResiduePairs={lockedResiduePairs.toJS() as ILockedResiduePair}
+              menuItems={[
+                {
+                  component: {
+                    name: 'POPUP',
+                    props: {
+                      children: this.renderPDBSelector(),
+                      disabled: experimentalProteins.length === 0 && predictedProteins.length === 0,
+                      position: 'top center',
+                      wide: 'very',
+                    },
                   },
+                  description: 'PDB Selector',
+                  iconName: 'tasks',
                 },
-                description: 'PDB Selector',
-                iconName: 'tasks',
-              },
-            ]}
-            predictedProteins={predictedProteins.filter(pdb => selectedPredictedProteins.includes(pdb.name))}
-            {...rest}
-          />
-        </Grid.Row>
-      </Grid>
+              ]}
+              predictedProteins={predictedProteins.filter(pdb => selectedPredictedProteins.includes(pdb.name))}
+              {...rest}
+            />
+          </Grid.Row>
+        </Grid>
+      </Provider>
     );
   }
 

@@ -5,11 +5,11 @@ import { Provider } from 'react-redux';
 import { Checkbox, Icon, Menu, Popup, Table } from 'semantic-ui-react';
 import { NGLContainer, NGLContainerClass } from '~bioblocks-viz~/container';
 import { BioblocksPDB } from '~bioblocks-viz~/data';
-import { Store } from '~bioblocks-viz~/reducer';
+import { BBStore } from '~bioblocks-viz~/reducer';
 
 describe('NGLContainer', () => {
   it('Should match the default snapshot when hooked up to a redux store.', () => {
-    const store = Store;
+    const store = BBStore;
     const wrapper = mount(
       <Provider store={store}>
         <NGLContainer />

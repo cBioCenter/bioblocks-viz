@@ -3,7 +3,7 @@ import * as tensorFlow from '@tensorflow/tfjs-core';
 import { TSNE } from '@tensorflow/tfjs-tsne/dist/tsne';
 import { Set } from 'immutable';
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { connect, Provider } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { Grid, Icon, Radio } from 'semantic-ui-react';
 
@@ -17,7 +17,8 @@ import {
   CONFIGURATION_COMPONENT_TYPE,
   IPlotlyData,
 } from '~bioblocks-viz~/data';
-import { fetchTensorTSneCoordinateData } from '~bioblocks-viz~/helper';
+import { EMPTY_FUNCTION, fetchTensorTSneCoordinateData } from '~bioblocks-viz~/helper';
+import { BBStore } from '~bioblocks-viz~/reducer';
 import { selectCurrentItems } from '~bioblocks-viz~/selector/ContainerSelectors';
 
 interface ITensorContainerProps {
@@ -46,6 +47,7 @@ export class TensorTContainerClass extends BioblocksVisualization<ITensorContain
     height: 400,
     isFullPage: false,
     pointColor: '#aa0000',
+    setCurrentCells: EMPTY_FUNCTION,
     style: {
       padding: 0,
     },
@@ -105,14 +107,16 @@ export class TensorTContainerClass extends BioblocksVisualization<ITensorContain
     const { plotlyCoords } = this.state;
 
     return (
-      <ComponentCard componentName={TensorTContainerClass.displayName} iconSrc={iconSrc} isFullPage={isFullPage}>
-        <Grid centered={true} style={{ height: '100%', marginLeft: 0, width: '100%' }}>
-          {this.renderPlaybackControls()}
-          <Grid.Row stretched={true} style={{ height: '90%', margin: 0 }}>
-            <TensorTComponent onSelectedCallback={this.handlePointSelection} pointsToPlot={plotlyCoords} />
-          </Grid.Row>
-        </Grid>
-      </ComponentCard>
+      <Provider store={BBStore}>
+        <ComponentCard componentName={TensorTContainerClass.displayName} iconSrc={iconSrc} isFullPage={isFullPage}>
+          <Grid centered={true} style={{ height: '100%', marginLeft: 0, width: '100%' }}>
+            {this.renderPlaybackControls()}
+            <Grid.Row stretched={true} style={{ height: '90%', margin: 0 }}>
+              <TensorTComponent onSelectedCallback={this.handlePointSelection} pointsToPlot={plotlyCoords} />
+            </Grid.Row>
+          </Grid>
+        </ComponentCard>
+      </Provider>
     );
   }
 

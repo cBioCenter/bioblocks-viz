@@ -2,7 +2,7 @@
 import Anatomogram from 'anatomogram';
 import { Set } from 'immutable';
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { connect, Provider } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
 import { createContainerActions } from '~bioblocks-viz~/action';
@@ -10,7 +10,7 @@ import { ComponentCard } from '~bioblocks-viz~/component';
 import { BioblocksVisualization } from '~bioblocks-viz~/container';
 import { AnatomogramMapping, SPECIES_TYPE } from '~bioblocks-viz~/data';
 import { EMPTY_FUNCTION } from '~bioblocks-viz~/helper';
-import { BioblocksMiddlewareTransformer, RootState } from '~bioblocks-viz~/reducer';
+import { BBStore, BioblocksMiddlewareTransformer, RootState } from '~bioblocks-viz~/reducer';
 import { getSpring, selectCurrentItems } from '~bioblocks-viz~/selector';
 
 interface IAnatomogramContainerProps {
@@ -120,30 +120,32 @@ export class AnatomogramContainerClass extends BioblocksVisualization<
     const { ids } = this.state;
 
     return (
-      <div
-        className={'anatomogram-container'}
-        ref={node => {
-          if (node) {
-            this.divRef = node.getElementsByTagName('div')[0];
-          }
-        }}
-      >
-        <ComponentCard componentName={'Anatomogram'} iconSrc={iconSrc}>
-          <Anatomogram
-            atlasUrl={``}
-            highlightColour={'yellow'}
-            onClick={this.onClick}
-            onInjected={this.resizeSVGElement}
-            onMouseOut={this.onMouseOut}
-            onMouseOver={this.onMouseOver}
-            selectColour={'ffaa00'}
-            selectIds={selectIds.toArray()}
-            showIds={ids}
-            species={species}
-            selectedView={species === 'mus_musculus' ? 'female' : 'male'}
-          />
-        </ComponentCard>
-      </div>
+      <Provider store={BBStore}>
+        <div
+          className={'anatomogram-container'}
+          ref={node => {
+            if (node) {
+              this.divRef = node.getElementsByTagName('div')[0];
+            }
+          }}
+        >
+          <ComponentCard componentName={'Anatomogram'} iconSrc={iconSrc}>
+            <Anatomogram
+              atlasUrl={``}
+              highlightColour={'yellow'}
+              onClick={this.onClick}
+              onInjected={this.resizeSVGElement}
+              onMouseOut={this.onMouseOut}
+              onMouseOver={this.onMouseOver}
+              selectColour={'ffaa00'}
+              selectIds={selectIds.toArray()}
+              showIds={ids}
+              species={species}
+              selectedView={species === 'mus_musculus' ? 'female' : 'male'}
+            />
+          </ComponentCard>
+        </div>
+      </Provider>
     );
   }
 

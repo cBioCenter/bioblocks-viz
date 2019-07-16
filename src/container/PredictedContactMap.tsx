@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Provider } from 'react-redux';
 
 import { ContactMap, generateChartDataEntry, IContactMapChartData } from '~bioblocks-viz~/component';
 import {
@@ -11,6 +12,7 @@ import {
   SECONDARY_STRUCTURE,
 } from '~bioblocks-viz~/data';
 import { generateCouplingScoreHoverText } from '~bioblocks-viz~/helper';
+import { BBStore } from '~bioblocks-viz~/reducer';
 
 export interface IPredictedContactMapProps {
   agreementColor: string;
@@ -79,18 +81,20 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     const { pointsToPlot } = this.state;
 
     return (
-      <div className="PredictedContactMapComponent" style={style}>
-        <ContactMap
-          configurations={this.getConfigs()}
-          data={{
-            couplingScores: data.couplingScores,
-            pdbData: data.pdbData,
-            secondaryStructures: data.secondaryStructures,
-          }}
-          formattedPoints={pointsToPlot}
-          {...passThroughProps}
-        />
-      </div>
+      <Provider store={BBStore}>
+        <div className="PredictedContactMapComponent" style={style}>
+          <ContactMap
+            configurations={this.getConfigs()}
+            data={{
+              couplingScores: data.couplingScores,
+              pdbData: data.pdbData,
+              secondaryStructures: data.secondaryStructures,
+            }}
+            formattedPoints={pointsToPlot}
+            {...passThroughProps}
+          />
+        </div>
+      </Provider>
     );
   }
 

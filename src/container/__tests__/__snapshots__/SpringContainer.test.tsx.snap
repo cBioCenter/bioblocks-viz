@@ -1,41 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SpringContainer Should match existing snapshot. 1`] = `
-<ComponentCard
-  componentName="SPRING"
-  dockItems={Array []}
-  frameHeight={1150}
-  frameWidth={1150}
-  headerHeight={40}
-  height="570px"
-  iconSrc="assets/icons/spring-icon.png"
-  isDataReady={false}
-  isFramedComponent={true}
-  isFullPage={false}
-  menuItems={Array []}
-  padding={0}
-  showSettings={false}
-  width="525px"
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
 >
-  <IframeComm
-    attributes={
-      Object {
-        "allowFullScreen": true,
-        "height": 1168,
-        "src": "http://localhost//springViewer.html?datasets/hpc/full",
-        "width": 1150,
+  <ComponentCard
+    componentName="SPRING"
+    dockItems={Array []}
+    frameHeight={1150}
+    frameWidth={1150}
+    headerHeight={40}
+    height="570px"
+    iconSrc="assets/icons/spring-icon.png"
+    isDataReady={false}
+    isFramedComponent={true}
+    isFullPage={false}
+    menuItems={Array []}
+    padding={0}
+    showSettings={false}
+    width="525px"
+  >
+    <IframeComm
+      attributes={
+        Object {
+          "allowFullScreen": true,
+          "height": 1168,
+          "src": "http://localhost//springViewer.html?datasets/hpc/full",
+          "width": 1150,
+        }
       }
-    }
-    handleReady={[Function]}
-    handleReceiveMessage={[Function]}
-    postMessageData={
-      Object {
-        "payload": Object {},
-        "type": "init",
+      handleReady={[Function]}
+      handleReceiveMessage={[Function]}
+      postMessageData={
+        Object {
+          "payload": Object {},
+          "type": "init",
+        }
       }
-    }
-    serializeMessage={true}
-    targetOrigin="http://localhost"
-  />
-</ComponentCard>
+      serializeMessage={true}
+      targetOrigin="http://localhost"
+    />
+  </ComponentCard>
+</Provider>
 `;
