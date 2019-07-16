@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { PredictedContactMap, PredictedContactMapState } from '~bioblocks-viz~/component';
+import { PredictedContactMap, PredictedContactMapState } from '~bioblocks-viz~/container';
 import {
   Bioblocks1DSection,
   CouplingContainer,
