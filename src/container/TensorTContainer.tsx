@@ -17,7 +17,7 @@ import {
   CONFIGURATION_COMPONENT_TYPE,
   IPlotlyData,
 } from '~bioblocks-viz~/data';
-import { fetchTensorTSneCoordinateData } from '~bioblocks-viz~/helper';
+import { EMPTY_FUNCTION, fetchTensorTSneCoordinateData } from '~bioblocks-viz~/helper';
 import { BBStore } from '~bioblocks-viz~/reducer';
 import { selectCurrentItems } from '~bioblocks-viz~/selector/ContainerSelectors';
 
@@ -47,6 +47,7 @@ export class TensorTContainerClass extends BioblocksVisualization<ITensorContain
     height: 400,
     isFullPage: false,
     pointColor: '#aa0000',
+    setCurrentCells: EMPTY_FUNCTION,
     style: {
       padding: 0,
     },
