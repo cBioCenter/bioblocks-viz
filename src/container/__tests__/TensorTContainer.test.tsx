@@ -2,17 +2,17 @@ import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 
 import { Radio } from 'semantic-ui-react';
-import { TensorTContainer, TensorTContainerClass } from '~bioblocks-viz~/container';
+import { TensorTContainerClass } from '~bioblocks-viz~/container';
 import { dispatchPlotlySelectionEvent, genTensorTsneData } from '~bioblocks-viz~/test';
 
 describe('TensorTContainer', () => {
   it('Should match existing snapshot when given no props.', () => {
-    const wrapper = shallow(<TensorTContainer />);
+    const wrapper = shallow(<TensorTContainerClass />);
     expect(wrapper).toMatchSnapshot();
   });
 
   it('Should match existing snapshot when given sample data.', () => {
-    const wrapper = shallow(<TensorTContainer />);
+    const wrapper = shallow(<TensorTContainerClass />);
     expect(wrapper).toMatchSnapshot();
   });
 

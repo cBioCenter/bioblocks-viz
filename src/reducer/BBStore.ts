@@ -31,11 +31,11 @@ const combine = (reducers: IReducerMap) => {
 const reducer = combine(ReducerRegistry.getReducers());
 
 ReducerRegistry.setChangeListener((reducers: IReducerMap) => {
-  Store.replaceReducer(combine(reducers));
+  BBStore.replaceReducer(combine(reducers));
 });
 
 const configureStore = () => {
   return createStore(reducer, initialState, applyMiddleware(...middleWares));
 };
 
-export const Store = configureStore();
+export const BBStore = configureStore();
