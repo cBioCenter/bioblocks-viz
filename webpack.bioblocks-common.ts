@@ -15,8 +15,8 @@ export const generateCommonConfig = (
   argv: webpack.Configuration,
 ): webpack.Configuration => ({
   entry: {
+    bbFrame: './frames/BBFrame.tsx',
     example: './examples/example.tsx',
-    frame: './frames/Frame.tsx',
   },
   module: {
     rules: [
@@ -129,11 +129,11 @@ export const generateCommonConfig = (
       title: 'Bioblocks - Contact Map / NGL Example',
     }) as webpack.Plugin,
     new HtmlWebpackPlugin({
-      chunks: ['frame'],
+      chunks: ['bbFrame'],
       favicon: 'assets/favicons/favicon.ico',
-      filename: 'frame.html',
+      filename: 'bb_frame.html',
       inject: true,
-      template: './frames/frame.html',
+      template: './frames/bb_frame.html',
     }) as webpack.Plugin,
     new CopyWebpackPlugin([
       {
