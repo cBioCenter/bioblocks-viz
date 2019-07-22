@@ -15,7 +15,7 @@ export const generateCommonConfig = (
   argv: webpack.Configuration,
 ): webpack.Configuration => ({
   entry: {
-    bbFrame: './frames/BBFrame.tsx',
+    bioblocks: './frames/BBFrame.tsx',
     example: './examples/example.tsx',
   },
   module: {
@@ -91,7 +91,7 @@ export const generateCommonConfig = (
     ],
   },
   optimization: {
-    runtimeChunk: true,
+    runtimeChunk: false,
     splitChunks: {
       automaticNameDelimiter: '~',
       cacheGroups: {
@@ -105,7 +105,7 @@ export const generateCommonConfig = (
           test: /[\\/]node_modules[\\/]/,
         },
       },
-      chunks: 'all',
+      chunks: chunk => chunk.name !== 'bioblocks',
       maxAsyncRequests: 5,
       maxInitialRequests: 3,
       maxSize: 0,
@@ -129,11 +129,11 @@ export const generateCommonConfig = (
       title: 'Bioblocks - Contact Map / NGL Example',
     }) as webpack.Plugin,
     new HtmlWebpackPlugin({
-      chunks: ['bbFrame'],
+      chunks: ['bioblocks'],
       favicon: 'assets/favicons/favicon.ico',
-      filename: 'bb_frame.html',
+      filename: 'bioblocks.html',
       inject: true,
-      template: './frames/bb_frame.html',
+      template: './frames/bioblocks.html',
     }) as webpack.Plugin,
     new CopyWebpackPlugin([
       {

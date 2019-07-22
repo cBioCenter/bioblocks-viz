@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import { NGLContainer, PredictedContactMap } from '~bioblocks-viz~/container';
+import { NGLContainer, PredictedContactMap, SpringContainer } from '~bioblocks-viz~/container';
 import { BIOBLOCKS_CSS_STYLE, VIZ_TYPE } from '~bioblocks-viz~/data';
 import { BBStore } from '~bioblocks-viz~/reducer';
 
@@ -11,10 +11,16 @@ export interface IBBFrameProps {
 }
 
 export interface IBBFrameState {
-  currentViz: VIZ_TYPE;
+  currentViz: VIZ_TYPE | undefined;
 }
 
 export class BBFrame extends React.Component<any, IBBFrameState> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      currentViz: undefined,
+    };
+  }
   public componentDidMount() {
     window.addEventListener('message', this.onMessage);
   }
@@ -40,12 +46,14 @@ export class BBFrame extends React.Component<any, IBBFrameState> {
     console.log(msg.data);
   };
 
-  protected renderViz = (viz: VIZ_TYPE) => {
+  protected renderViz = (viz?: VIZ_TYPE) => {
     switch (viz) {
       case VIZ_TYPE.CONTACT_MAP:
         return <PredictedContactMap />;
       case VIZ_TYPE.NGL:
         return <NGLContainer />;
+      case VIZ_TYPE.SPRING:
+        return <SpringContainer />;
       default:
         return <div>{`Unsupported viz ${viz}!`}</div>;
     }
