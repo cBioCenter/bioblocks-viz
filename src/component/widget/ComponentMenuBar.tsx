@@ -81,7 +81,7 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
       <div onMouseEnter={this.onMenuEnter} onMouseLeave={this.onMenuLeave}>
         <Menu secondary={true} style={{ margin: 0, height }} widths={2}>
           <Menu secondary={true} widths={1}>
-            <Menu.Item fitted={'horizontally'} position={'left'} style={{ margin: 0, padding: 0 }}>
+            <Menu.Item fitted={'horizontally'} position={'left'} style={{ margin: 0, padding: 0, width: 'auto' }}>
               {iconSrc && (
                 <img alt={'component icon'} src={iconSrc} style={{ height: '32px', padding: '2px', width: '32px' }} />
               )}
