@@ -1,21 +1,19 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { connect, Provider } from 'react-redux';
+/*
 import { Button, Grid, Header, Label, Message, Segment } from 'semantic-ui-react';
 
 import { bindActionCreators, Dispatch } from 'redux';
 import { createContainerActions, createResiduePairActions } from '~bioblocks-viz~/action';
 import { PredictedContactMap } from '~bioblocks-viz~/component';
 import { NGLContainer } from '~bioblocks-viz~/container';
-/*import { SpringContainer, TensorTContainer } from '~bioblocks-viz~/container';*/
 import {
   Bioblocks1DSection,
   BioblocksPDB,
   CONTACT_DISTANCE_PROXIMITY,
   CONTACT_MAP_DATA_TYPE,
   CouplingContainer,
-  getPDBAndCouplingMismatch,
-  IResidueMismatchResult,
   SECONDARY_STRUCTURE_CODES,
   SECONDARY_STRUCTURE_SECTION,
   VIZ_TYPE,
@@ -26,66 +24,86 @@ import {
   getCouplingScoresData,
   IResidueMapping,
   readFileAsText,
-} from '~bioblocks-viz~/helper';
+} from '~bioblocks-viz~/helper';*/
+import { SeqIO, SEQUENCE_FILE_TYPES } from '~bioblocks-viz~/data/SeqIO';
+import { SeqRecord } from '~bioblocks-viz~/data/SeqRecord';
 import { Store } from '~bioblocks-viz~/reducer';
-import { UMAPVisualization } from '~bioblocks-viz~/singlepage/UMAPVisualization';
+import { UMAPSequenceContainer, UMAPVisualization } from '~bioblocks-viz~/singlepage/UMAPVisualization';
 
 export interface IExampleAppProps {
   style: Exclude<React.CSSProperties, 'height' | 'width'>;
-  removeAllHoveredSecondaryStructures(): void;
-  removeAllLockedResiduePairs(): void;
-  removeAllSelectedSecondaryStructures(): void;
-  removeCandidateResidues(): void;
-  removeHoveredResidues(): void;
-  removeNonLockedResidues(): void;
+  // removeAllHoveredSecondaryStructures(): void;
+  // removeAllLockedResiduePairs(): void;
+  // removeAllSelectedSecondaryStructures(): void;
+  // removeCandidateResidues(): void;
+  // removeHoveredResidues(): void;
+  // removeNonLockedResidues(): void;
+  taxonomyFilename?: string;
+  fastaFilename: string;
 }
 
 export interface IExampleAppState {
-  [VIZ_TYPE.CONTACT_MAP]: CONTACT_MAP_DATA_TYPE;
-  errorMsg: string;
-  experimentalProteins: BioblocksPDB[];
-  isDragHappening: boolean;
+  // [VIZ_TYPE.CONTACT_MAP]: CONTACT_MAP_DATA_TYPE;
+  // errorMsg: string;
+  // experimentalProteins: BioblocksPDB[];
+  // isDragHappening: boolean;
   isLoading: boolean;
-  measuredProximity: CONTACT_DISTANCE_PROXIMITY;
-  mismatches: IResidueMismatchResult[];
-  predictedProteins: BioblocksPDB[];
-  residueMapping: IResidueMapping[];
+  taxonomyText?: string;
+  allSequences: SeqRecord[];
+  // measuredProximity: CONTACT_DISTANCE_PROXIMITY;
+  // mismatches: IResidueMismatchResult[];
+  // predictedProteins: BioblocksPDB[];
+  // residueMapping: IResidueMapping[];
 }
+
+// TODO: Move to helper.
+export const fetchFastaFile = async (filename: string) => {
+  const response = await fetch(filename);
+  if (response.ok) {
+    return SeqIO.parseFile(await response.text(), SEQUENCE_FILE_TYPES.fasta);
+  } else {
+    throw new Error(`error ${response}`);
+  }
+};
 
 class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState> {
   public static defaultProps = {
-    removeAllHoveredSecondaryStructures: EMPTY_FUNCTION,
-    removeAllLockedResiduePairs: EMPTY_FUNCTION,
-    removeAllSelectedSecondaryStructures: EMPTY_FUNCTION,
-    removeCandidateResidues: EMPTY_FUNCTION,
-    removeHoveredResidues: EMPTY_FUNCTION,
-    removeNonLockedResidues: EMPTY_FUNCTION,
+    // removeAllHoveredSecondaryStructures: EMPTY_FUNCTION,
+    // removeAllLockedResiduePairs: EMPTY_FUNCTION,
+    // removeAllSelectedSecondaryStructures: EMPTY_FUNCTION,
+    // removeCandidateResidues: EMPTY_FUNCTION,
+    // removeHoveredResidues: EMPTY_FUNCTION,
+    // removeNonLockedResidues: EMPTY_FUNCTION,
+    fastaFilename: 'datasets/betalactamase_alignment/PSE1_natural_top5K_subsample.a2m',
     style: {
       backgroundColor: '#ffffff',
     },
+    taxonomyFilename: 'datasets/betalactamase_alignment/PSE1_NATURAL_TAXONOMY.csv',
   };
 
   protected static initialState: IExampleAppState = {
-    [VIZ_TYPE.CONTACT_MAP]: {
-      couplingScores: new CouplingContainer(),
-      pdbData: { experimental: undefined, predicted: undefined },
-      secondaryStructures: [],
-    },
-    errorMsg: '',
-    experimentalProteins: [],
-    isDragHappening: false,
+    // [VIZ_TYPE.CONTACT_MAP]: {
+    //  couplingScores: new CouplingContainer(),
+    //  pdbData: { experimental: undefined, predicted: undefined },
+    //  secondaryStructures: [],
+    // },
+    // errorMsg: '',
+    // experimentalProteins: [],
+    // isDragHappening: false,
+    allSequences: new Array<SeqRecord>(),
     isLoading: false,
-    measuredProximity: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
-    mismatches: [],
-    predictedProteins: [],
-    residueMapping: [],
+    taxonomyText: '',
+    // measuredProximity: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
+    // mismatches: [],
+    // predictedProteins: [],
+    // residueMapping: [],
   };
 
   public constructor(props: IExampleAppProps) {
     super(props);
     this.state = ExampleAppClass.initialState;
   }
-
+  /*
   public componentDidUpdate(prevProps: IExampleAppProps, prevState: IExampleAppState) {
     const { measuredProximity, predictedProteins } = this.state;
     const { couplingScores } = this.state[VIZ_TYPE.CONTACT_MAP];
@@ -126,6 +144,17 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
         mismatches: newMismatches,
       });
     }
+  }*/
+
+  public async componentDidMount() {
+    let taxonomyText;
+    if (this.props.taxonomyFilename) {
+      taxonomyText = await (await fetch(this.props.taxonomyFilename)).text();
+    }
+    this.setState({
+      allSequences: await fetchFastaFile(this.props.fastaFilename),
+      taxonomyText,
+    });
   }
 
   public render({ style } = this.props) {
@@ -134,7 +163,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
         <meta name={'viewport'} content={'width=device-width, initial-scale=1'} />
         {/*{this.renderCouplingComponents()}*/}
         {/*<iframe sandbox="">*/}
-        <UMAPVisualization />
+        <UMAPSequenceContainer allSequences={this.state.allSequences} taxonomyText={this.state.taxonomyText} />
         {/*</iframe>*/}
         {/*<SpringContainer datasetsURI={'datasets'} />
         <TensorTContainer datasetLocation={'datasets/hpc/full'} />*/}
@@ -142,6 +171,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     );
   }
 
+  /*
   protected onClearAll = () => async () => {
     const {
       removeAllHoveredSecondaryStructures,
@@ -350,11 +380,9 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
       },
     };
   };
-
   protected renderStartMessage = () => (
     <Message>
       {`To get started, please upload either a PDB (.pdb) or EVCouplings score (.csv) file!`} {<br />} Check out the
-      {/* tslint:disable-next-line:no-http-string */}
       {<a href="http://evfold.org"> EVFold</a>}, {<a href="http://sanderlab.org/contact-maps/">Sander Lab</a>}, or
       {<a href="https://evcouplings.org/"> EVCouplings </a>} website to get these files.
     </Message>
@@ -442,9 +470,9 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
         </Label>
       </Grid.Column>
     </Grid.Row>
-  );
+  );*/
 }
-
+/*
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
@@ -456,10 +484,10 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     },
     dispatch,
   );
-
+*/
 const ExampleApp = connect(
   null,
-  mapDispatchToProps,
+  // mapDispatchToProps,
 )(ExampleAppClass);
 
 ReactDOM.render(
