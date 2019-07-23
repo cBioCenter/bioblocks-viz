@@ -1,10 +1,4 @@
-import {
-  AMINO_ACID_BY_CODE,
-  COUPLING_SCORE_SOURCE,
-  IAminoAcid,
-  ICouplingScore,
-  ICouplingScoreFilter,
-} from '~bioblocks-viz~/data';
+import { AminoAcid, COUPLING_SCORE_SOURCE, ICouplingScore, ICouplingScoreFilter } from '~bioblocks-viz~/data';
 
 /**
  * A CouplingContainer provides access to the coupling information of residue pairs.
@@ -162,7 +156,7 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
     };
   }
 
-  public getAminoAcidOfContact(resno: number): IAminoAcid | undefined {
+  public getAminoAcidOfContact(resno: number): AminoAcid | undefined {
     if (resno > this.chainLength + 1) {
       return undefined;
     }
@@ -170,9 +164,9 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
       if (outerContact) {
         for (const innerContact of outerContact) {
           if (innerContact && innerContact.i === resno && innerContact.A_i) {
-            return AMINO_ACID_BY_CODE[innerContact.A_i];
+            return AminoAcid.fromSingleLetterCode(innerContact.A_i);
           } else if (innerContact && innerContact.j === resno && innerContact.A_j) {
-            return AMINO_ACID_BY_CODE[innerContact.A_j];
+            return AminoAcid.fromSingleLetterCode(innerContact.A_j);
           }
         }
       }

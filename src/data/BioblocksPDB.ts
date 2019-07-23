@@ -1,8 +1,7 @@
 import * as NGL from 'ngl';
 
 import {
-  AMINO_ACID_BY_CODE,
-  AMINO_ACID_THREE_LETTER_CODE,
+  AminoAcid,
   Bioblocks1DSection,
   CONTACT_DISTANCE_PROXIMITY,
   CouplingContainer,
@@ -226,17 +225,22 @@ export class BioblocksPDB {
   public getResidueNumberingMismatches(contacts: CouplingContainer) {
     const result = new Array<IResidueMismatchResult>();
     this.eachResidue(residue => {
-      const pdbResCode = residue.resname.toUpperCase() as AMINO_ACID_THREE_LETTER_CODE;
+      const pdbResCode = residue.resname.toUpperCase();
       const couplingAminoAcid = contacts.getAminoAcidOfContact(residue.resno);
       if (
         couplingAminoAcid &&
-        AMINO_ACID_BY_CODE[pdbResCode] !== AMINO_ACID_BY_CODE[couplingAminoAcid.singleLetterCode]
+        AminoAcid.fromSingleLetterCode(pdbResCode) !==
+          AminoAcid.fromSingleLetterCode(couplingAminoAcid.singleLetterCode)
       ) {
-        result.push({
-          couplingAminoAcid: AMINO_ACID_BY_CODE[couplingAminoAcid.singleLetterCode],
-          pdbAminoAcid: AMINO_ACID_BY_CODE[pdbResCode],
-          resno: residue.resno,
-        });
+        const caa = AminoAcid.fromSingleLetterCode(couplingAminoAcid.singleLetterCode);
+        const paa = AminoAcid.fromSingleLetterCode(pdbResCode);
+        if (caa && paa) {
+          result.push({
+            couplingAminoAcid: caa,
+            pdbAminoAcid: paa,
+            resno: residue.resno,
+          });
+        }
       }
     });
 
