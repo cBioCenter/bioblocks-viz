@@ -1,11 +1,10 @@
-import { Config } from 'html-webpack-plugin';
 import * as webpack from 'webpack';
 import * as merge from 'webpack-merge';
 
 // tslint:disable-next-line:no-relative-imports
 import * as generateCommonConfig from '../webpack.bioblocks-common';
 
-const prodConfig: Config = {
+const prodConfig = {
   mode: 'production',
   optimization: {
     minimize: true,

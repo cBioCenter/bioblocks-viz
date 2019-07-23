@@ -1,13 +1,205 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TensorTContainer Should match existing snapshot when given no props. 1`] = `
-<ContextConsumer>
-  <Component />
-</ContextConsumer>
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <ComponentCard
+    componentName="tSNE - TensorFlow"
+    dockItems={Array []}
+    frameHeight={0}
+    frameWidth={0}
+    headerHeight={40}
+    height="570px"
+    iconSrc="assets/icons/spring-icon.png"
+    isDataReady={false}
+    isFramedComponent={false}
+    isFullPage={false}
+    menuItems={Array []}
+    padding={0}
+    showSettings={false}
+    width="525px"
+  >
+    <Grid
+      centered={true}
+      style={
+        Object {
+          "height": "100%",
+          "marginLeft": 0,
+          "width": "100%",
+        }
+      }
+    >
+      <GridRow
+        columns="equal"
+        style={
+          Object {
+            "maxHeight": "23px",
+            "padding": "7px 0 0 0",
+          }
+        }
+      >
+        <GridColumn
+          floated="left"
+        >
+          <Radio
+            label={
+              <label
+                style={
+                  Object {
+                    "fontSize": "14px",
+                    "fontWeight": "bold",
+                  }
+                }
+              >
+                iterate
+              </label>
+            }
+            onClick={[Function]}
+            toggle={true}
+            type="radio"
+          />
+        </GridColumn>
+        <GridColumn>
+          <label>
+            iterations: 0
+          </label>
+        </GridColumn>
+        <GridColumn
+          floated="right"
+        >
+          <Icon
+            as="i"
+            name="undo"
+            onClick={[Function]}
+          />
+        </GridColumn>
+      </GridRow>
+      <GridRow
+        stretched={true}
+        style={
+          Object {
+            "height": "90%",
+            "margin": 0,
+          }
+        }
+      >
+        <Component
+          onSelectedCallback={[Function]}
+          pointsToPlot={Array []}
+        />
+      </GridRow>
+    </Grid>
+  </ComponentCard>
+</Provider>
 `;
 
 exports[`TensorTContainer Should match existing snapshot when given sample data. 1`] = `
-<ContextConsumer>
-  <Component />
-</ContextConsumer>
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <ComponentCard
+    componentName="tSNE - TensorFlow"
+    dockItems={Array []}
+    frameHeight={0}
+    frameWidth={0}
+    headerHeight={40}
+    height="570px"
+    iconSrc="assets/icons/spring-icon.png"
+    isDataReady={false}
+    isFramedComponent={false}
+    isFullPage={false}
+    menuItems={Array []}
+    padding={0}
+    showSettings={false}
+    width="525px"
+  >
+    <Grid
+      centered={true}
+      style={
+        Object {
+          "height": "100%",
+          "marginLeft": 0,
+          "width": "100%",
+        }
+      }
+    >
+      <GridRow
+        columns="equal"
+        style={
+          Object {
+            "maxHeight": "23px",
+            "padding": "7px 0 0 0",
+          }
+        }
+      >
+        <GridColumn
+          floated="left"
+        >
+          <Radio
+            label={
+              <label
+                style={
+                  Object {
+                    "fontSize": "14px",
+                    "fontWeight": "bold",
+                  }
+                }
+              >
+                iterate
+              </label>
+            }
+            onClick={[Function]}
+            toggle={true}
+            type="radio"
+          />
+        </GridColumn>
+        <GridColumn>
+          <label>
+            iterations: 0
+          </label>
+        </GridColumn>
+        <GridColumn
+          floated="right"
+        >
+          <Icon
+            as="i"
+            name="undo"
+            onClick={[Function]}
+          />
+        </GridColumn>
+      </GridRow>
+      <GridRow
+        stretched={true}
+        style={
+          Object {
+            "height": "90%",
+            "margin": 0,
+          }
+        }
+      >
+        <Component
+          onSelectedCallback={[Function]}
+          pointsToPlot={Array []}
+        />
+      </GridRow>
+    </Grid>
+  </ComponentCard>
+</Provider>
 `;

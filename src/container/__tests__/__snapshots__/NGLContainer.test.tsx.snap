@@ -36,229 +36,42 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
       selectedSecondaryStructures={Array []}
       showConfigurations={true}
     >
-      <Grid
-        padded={true}
+      <Provider
+        store={
+          Object {
+            "dispatch": [Function],
+            "getState": [Function],
+            "replaceReducer": [Function],
+            "subscribe": [Function],
+            Symbol(observable): [Function],
+          }
+        }
       >
-        <div
-          className="ui padded grid"
+        <Grid
+          padded={true}
         >
-          <GridRow>
-            <div
-              className="row"
-            >
-              <NGLComponent
-                addCandidateResidues={[Function]}
-                addHoveredResidues={[Function]}
-                addLockedResiduePair={[Function]}
-                backgroundColor="#ffffff"
-                candidateResidues={Array []}
-                dispatchNglFetch={[Function]}
-                experimentalProteins={Array []}
-                height="92%"
-                hoveredResidues={Array []}
-                hoveredSecondaryStructures={Array []}
-                isDataLoading={false}
-                lockedResiduePairs={Object {}}
-                maxPDBPerPopup={5}
-                measuredProximity="C-α"
-                menuItems={
-                  Array [
-                    Object {
-                      "component": Object {
-                        "name": "POPUP",
-                        "props": Object {
-                          "children": <Grid
-                            divided={true}
-                            padded={true}
-                          >
-                            <GridRow>
-                              <GridColumn>
-                                <Header>
-                                  Select Structures to Display
-                                </Header>
-                              </GridColumn>
-                            </GridRow>
-                            <GridRow
-                              columns={2}
-                              style={
-                                Object {
-                                  "padding": "5px 0",
-                                }
-                              }
-                            >
-                              <GridColumn
-                                width={9}
-                              >
-                                Experimental (0/0)
-                                <div
-                                  style={
-                                    Object {
-                                      "height": "250px",
-                                      "overflow": "auto",
-                                    }
-                                  }
-                                >
-                                  <Table
-                                    as="table"
-                                    basic="very"
-                                    compact={true}
-                                    padded={true}
-                                  >
-                                    <TableHeader
-                                      as="thead"
-                                    >
-                                      <TableRow
-                                        as="tr"
-                                        cellAs="td"
-                                      >
-                                        <TableHeaderCell
-                                          as="th"
-                                          style={
-                                            Object {
-                                              "padding": "5px 0",
-                                            }
-                                          }
-                                        >
-                                          Name
-                                        </TableHeaderCell>
-                                        <TableHeaderCell
-                                          as="th"
-                                          style={
-                                            Object {
-                                              "padding": "5px 0",
-                                            }
-                                          }
-                                        >
-                                          Seq. ID
-                                        </TableHeaderCell>
-                                        <TableHeaderCell
-                                          as="th"
-                                          style={
-                                            Object {
-                                              "padding": "5px 0",
-                                            }
-                                          }
-                                        >
-                                          Source
-                                        </TableHeaderCell>
-                                      </TableRow>
-                                    </TableHeader>
-                                    <TableBody
-                                      as="tbody"
-                                    />
-                                  </Table>
-                                </div>
-                              </GridColumn>
-                              <GridColumn
-                                width={7}
-                              >
-                                Predicted (0/0)
-                                <div
-                                  style={
-                                    Object {
-                                      "height": "250px",
-                                      "overflow": "auto",
-                                    }
-                                  }
-                                >
-                                  <Table
-                                    as="table"
-                                    basic="very"
-                                    compact={true}
-                                    padded={true}
-                                  >
-                                    <TableHeader
-                                      as="thead"
-                                    >
-                                      <TableRow
-                                        as="tr"
-                                        cellAs="td"
-                                      >
-                                        <TableHeaderCell
-                                          as="th"
-                                          style={
-                                            Object {
-                                              "padding": "5px 0",
-                                            }
-                                          }
-                                        >
-                                          Name
-                                        </TableHeaderCell>
-                                        <TableHeaderCell
-                                          as="th"
-                                          style={
-                                            Object {
-                                              "padding": "5px 0",
-                                            }
-                                          }
-                                        >
-                                          Rank
-                                        </TableHeaderCell>
-                                      </TableRow>
-                                    </TableHeader>
-                                    <TableBody
-                                      as="tbody"
-                                    />
-                                  </Table>
-                                </div>
-                              </GridColumn>
-                            </GridRow>
-                          </Grid>,
-                          "disabled": true,
-                          "position": "top center",
-                          "wide": "very",
-                        },
-                      },
-                      "description": "PDB Selector",
-                      "iconName": "tasks",
-                    },
-                  ]
-                }
-                onMeasuredProximityChange={[Function]}
-                onResize={[Function]}
-                predictedProteins={Array []}
-                removeAllLockedResiduePairs={[Function]}
-                removeAllSelectedSecondaryStructures={[Function]}
-                removeCandidateResidues={[Function]}
-                removeHoveredResidues={[Function]}
-                removeLockedResiduePair={[Function]}
-                removeNonLockedResidues={[Function]}
-                selectedSecondaryStructures={Array []}
-                showConfigurations={true}
-                width="100%"
+          <div
+            className="ui padded grid"
+          >
+            <GridRow>
+              <div
+                className="row"
               >
-                <ComponentCard
-                  componentName="NGL Viewer"
-                  dockItems={
-                    Array [
-                      Object {
-                        "isVisibleCb": [Function],
-                        "onClick": [Function],
-                        "text": "Clear Selections",
-                      },
-                      Object {
-                        "onClick": [Function],
-                        "text": "Center View",
-                      },
-                      Object {
-                        "isVisibleCb": [Function],
-                        "onClick": [Function],
-                        "text": "Superimpose: Off",
-                      },
-                      Object {
-                        "onClick": [Function],
-                        "text": "Enable Stereo",
-                      },
-                    ]
-                  }
-                  frameHeight={0}
-                  frameWidth={0}
-                  headerHeight={40}
-                  height="570px"
-                  iconSrc="assets/icons/spring-icon.png"
-                  isDataReady={false}
-                  isFramedComponent={false}
-                  isFullPage={false}
+                <NGLComponent
+                  addCandidateResidues={[Function]}
+                  addHoveredResidues={[Function]}
+                  addLockedResiduePair={[Function]}
+                  backgroundColor="#ffffff"
+                  candidateResidues={Array []}
+                  dispatchNglFetch={[Function]}
+                  experimentalProteins={Array []}
+                  height="92%"
+                  hoveredResidues={Array []}
+                  hoveredSecondaryStructures={Array []}
+                  isDataLoading={false}
+                  lockedResiduePairs={Object {}}
+                  maxPDBPerPopup={5}
+                  measuredProximity="C-α"
                   menuItems={
                     Array [
                       Object {
@@ -410,94 +223,281 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                         "description": "PDB Selector",
                         "iconName": "tasks",
                       },
-                      Object {
-                        "component": Object {
-                          "configs": Object {
-                            "Structure Representations": Array [
-                              Object {
-                                "current": "Cartoon",
-                                "name": "Predicted Structure Representation",
-                                "onChange": [Function],
-                                "options": Array [
-                                  "Rainbow",
-                                  "Spacefill",
-                                  "Backbone",
-                                  "Cartoon",
-                                  "Surface",
-                                  "Tube",
-                                ],
-                                "type": "RADIO",
-                              },
-                              Object {
-                                "current": "Default",
-                                "name": "Experimental Structure Representation",
-                                "onChange": [Function],
-                                "options": Array [
-                                  "Rainbow",
-                                  "Spacefill",
-                                  "Backbone",
-                                  "Cartoon",
-                                  "Surface",
-                                  "Tube",
-                                ],
-                                "type": "RADIO",
-                              },
-                            ],
-                            "View Options": Array [
-                              Object {
-                                "checked": false,
-                                "name": "Zoom on Click",
-                                "onChange": [Function],
-                                "type": "CHECKBOX",
-                              },
-                              Object {
-                                "checked": true,
-                                "name": "Display Distance in Ångström",
-                                "onChange": [Function],
-                                "type": "CHECKBOX",
-                              },
-                              Object {
-                                "current": "C-α",
-                                "name": "Proximity Metric",
-                                "onChange": [Function],
-                                "options": Array [
-                                  "Closest Atom",
-                                  "C-α",
-                                ],
-                                "type": "RADIO",
-                              },
-                            ],
-                          },
-                          "name": "POPUP",
-                          "props": Object {
-                            "trigger": <Icon
-                              as="i"
-                              name="setting"
-                            />,
-                          },
-                        },
-                        "description": "Settings",
-                      },
                     ]
                   }
-                  padding={0}
-                  showSettings={false}
-                  width="525px"
+                  onMeasuredProximityChange={[Function]}
+                  onResize={[Function]}
+                  predictedProteins={Array []}
+                  removeAllLockedResiduePairs={[Function]}
+                  removeAllSelectedSecondaryStructures={[Function]}
+                  removeCandidateResidues={[Function]}
+                  removeHoveredResidues={[Function]}
+                  removeLockedResiduePair={[Function]}
+                  removeNonLockedResidues={[Function]}
+                  selectedSecondaryStructures={Array []}
+                  showConfigurations={true}
+                  width="100%"
                 >
-                  <Card
-                    centered={true}
-                    className="bioblocks-component-card"
-                    style={
-                      Object {
-                        "height": "570px",
-                        "maxWidth": "unset",
-                        "width": "525px",
-                      }
+                  <ComponentCard
+                    componentName="NGL Viewer"
+                    dockItems={
+                      Array [
+                        Object {
+                          "isVisibleCb": [Function],
+                          "onClick": [Function],
+                          "text": "Clear Selections",
+                        },
+                        Object {
+                          "onClick": [Function],
+                          "text": "Center View",
+                        },
+                        Object {
+                          "isVisibleCb": [Function],
+                          "onClick": [Function],
+                          "text": "Superimpose: Off",
+                        },
+                        Object {
+                          "onClick": [Function],
+                          "text": "Enable Stereo",
+                        },
+                      ]
                     }
+                    frameHeight={0}
+                    frameWidth={0}
+                    headerHeight={40}
+                    height="570px"
+                    iconSrc="assets/icons/spring-icon.png"
+                    isDataReady={false}
+                    isFramedComponent={false}
+                    isFullPage={false}
+                    menuItems={
+                      Array [
+                        Object {
+                          "component": Object {
+                            "name": "POPUP",
+                            "props": Object {
+                              "children": <Grid
+                                divided={true}
+                                padded={true}
+                              >
+                                <GridRow>
+                                  <GridColumn>
+                                    <Header>
+                                      Select Structures to Display
+                                    </Header>
+                                  </GridColumn>
+                                </GridRow>
+                                <GridRow
+                                  columns={2}
+                                  style={
+                                    Object {
+                                      "padding": "5px 0",
+                                    }
+                                  }
+                                >
+                                  <GridColumn
+                                    width={9}
+                                  >
+                                    Experimental (0/0)
+                                    <div
+                                      style={
+                                        Object {
+                                          "height": "250px",
+                                          "overflow": "auto",
+                                        }
+                                      }
+                                    >
+                                      <Table
+                                        as="table"
+                                        basic="very"
+                                        compact={true}
+                                        padded={true}
+                                      >
+                                        <TableHeader
+                                          as="thead"
+                                        >
+                                          <TableRow
+                                            as="tr"
+                                            cellAs="td"
+                                          >
+                                            <TableHeaderCell
+                                              as="th"
+                                              style={
+                                                Object {
+                                                  "padding": "5px 0",
+                                                }
+                                              }
+                                            >
+                                              Name
+                                            </TableHeaderCell>
+                                            <TableHeaderCell
+                                              as="th"
+                                              style={
+                                                Object {
+                                                  "padding": "5px 0",
+                                                }
+                                              }
+                                            >
+                                              Seq. ID
+                                            </TableHeaderCell>
+                                            <TableHeaderCell
+                                              as="th"
+                                              style={
+                                                Object {
+                                                  "padding": "5px 0",
+                                                }
+                                              }
+                                            >
+                                              Source
+                                            </TableHeaderCell>
+                                          </TableRow>
+                                        </TableHeader>
+                                        <TableBody
+                                          as="tbody"
+                                        />
+                                      </Table>
+                                    </div>
+                                  </GridColumn>
+                                  <GridColumn
+                                    width={7}
+                                  >
+                                    Predicted (0/0)
+                                    <div
+                                      style={
+                                        Object {
+                                          "height": "250px",
+                                          "overflow": "auto",
+                                        }
+                                      }
+                                    >
+                                      <Table
+                                        as="table"
+                                        basic="very"
+                                        compact={true}
+                                        padded={true}
+                                      >
+                                        <TableHeader
+                                          as="thead"
+                                        >
+                                          <TableRow
+                                            as="tr"
+                                            cellAs="td"
+                                          >
+                                            <TableHeaderCell
+                                              as="th"
+                                              style={
+                                                Object {
+                                                  "padding": "5px 0",
+                                                }
+                                              }
+                                            >
+                                              Name
+                                            </TableHeaderCell>
+                                            <TableHeaderCell
+                                              as="th"
+                                              style={
+                                                Object {
+                                                  "padding": "5px 0",
+                                                }
+                                              }
+                                            >
+                                              Rank
+                                            </TableHeaderCell>
+                                          </TableRow>
+                                        </TableHeader>
+                                        <TableBody
+                                          as="tbody"
+                                        />
+                                      </Table>
+                                    </div>
+                                  </GridColumn>
+                                </GridRow>
+                              </Grid>,
+                              "disabled": true,
+                              "position": "top center",
+                              "wide": "very",
+                            },
+                          },
+                          "description": "PDB Selector",
+                          "iconName": "tasks",
+                        },
+                        Object {
+                          "component": Object {
+                            "configs": Object {
+                              "Structure Representations": Array [
+                                Object {
+                                  "current": "Cartoon",
+                                  "name": "Predicted Structure Representation",
+                                  "onChange": [Function],
+                                  "options": Array [
+                                    "Rainbow",
+                                    "Spacefill",
+                                    "Backbone",
+                                    "Cartoon",
+                                    "Surface",
+                                    "Tube",
+                                  ],
+                                  "type": "RADIO",
+                                },
+                                Object {
+                                  "current": "Default",
+                                  "name": "Experimental Structure Representation",
+                                  "onChange": [Function],
+                                  "options": Array [
+                                    "Rainbow",
+                                    "Spacefill",
+                                    "Backbone",
+                                    "Cartoon",
+                                    "Surface",
+                                    "Tube",
+                                  ],
+                                  "type": "RADIO",
+                                },
+                              ],
+                              "View Options": Array [
+                                Object {
+                                  "checked": false,
+                                  "name": "Zoom on Click",
+                                  "onChange": [Function],
+                                  "type": "CHECKBOX",
+                                },
+                                Object {
+                                  "checked": true,
+                                  "name": "Display Distance in Ångström",
+                                  "onChange": [Function],
+                                  "type": "CHECKBOX",
+                                },
+                                Object {
+                                  "current": "C-α",
+                                  "name": "Proximity Metric",
+                                  "onChange": [Function],
+                                  "options": Array [
+                                    "Closest Atom",
+                                    "C-α",
+                                  ],
+                                  "type": "RADIO",
+                                },
+                              ],
+                            },
+                            "name": "POPUP",
+                            "props": Object {
+                              "trigger": <Icon
+                                as="i"
+                                name="setting"
+                              />,
+                            },
+                          },
+                          "description": "Settings",
+                        },
+                      ]
+                    }
+                    padding={0}
+                    showSettings={false}
+                    width="525px"
                   >
-                    <div
-                      className="ui centered card bioblocks-component-card"
-                      onClick={[Function]}
+                    <Card
+                      centered={true}
+                      className="bioblocks-component-card"
                       style={
                         Object {
                           "height": "570px",
@@ -507,285 +507,286 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                       }
                     >
                       <div
+                        className="ui centered card bioblocks-component-card"
+                        onClick={[Function]}
                         style={
                           Object {
-                            "height": "6%",
+                            "height": "570px",
+                            "maxWidth": "unset",
+                            "width": "525px",
                           }
                         }
                       >
-                        <ComponentMenuBar
-                          componentName="NGL Viewer"
-                          height={40}
-                          iconSrc="assets/icons/spring-icon.png"
-                          isExpanded={false}
-                          menuItems={
-                            Array [
-                              Object {
-                                "component": Object {
-                                  "name": "POPUP",
-                                  "props": Object {
-                                    "children": <Grid
-                                      divided={true}
-                                      padded={true}
-                                    >
-                                      <GridRow>
-                                        <GridColumn>
-                                          <Header>
-                                            Select Structures to Display
-                                          </Header>
-                                        </GridColumn>
-                                      </GridRow>
-                                      <GridRow
-                                        columns={2}
-                                        style={
-                                          Object {
-                                            "padding": "5px 0",
-                                          }
-                                        }
-                                      >
-                                        <GridColumn
-                                          width={9}
-                                        >
-                                          Experimental (0/0)
-                                          <div
-                                            style={
-                                              Object {
-                                                "height": "250px",
-                                                "overflow": "auto",
-                                              }
-                                            }
-                                          >
-                                            <Table
-                                              as="table"
-                                              basic="very"
-                                              compact={true}
-                                              padded={true}
-                                            >
-                                              <TableHeader
-                                                as="thead"
-                                              >
-                                                <TableRow
-                                                  as="tr"
-                                                  cellAs="td"
-                                                >
-                                                  <TableHeaderCell
-                                                    as="th"
-                                                    style={
-                                                      Object {
-                                                        "padding": "5px 0",
-                                                      }
-                                                    }
-                                                  >
-                                                    Name
-                                                  </TableHeaderCell>
-                                                  <TableHeaderCell
-                                                    as="th"
-                                                    style={
-                                                      Object {
-                                                        "padding": "5px 0",
-                                                      }
-                                                    }
-                                                  >
-                                                    Seq. ID
-                                                  </TableHeaderCell>
-                                                  <TableHeaderCell
-                                                    as="th"
-                                                    style={
-                                                      Object {
-                                                        "padding": "5px 0",
-                                                      }
-                                                    }
-                                                  >
-                                                    Source
-                                                  </TableHeaderCell>
-                                                </TableRow>
-                                              </TableHeader>
-                                              <TableBody
-                                                as="tbody"
-                                              />
-                                            </Table>
-                                          </div>
-                                        </GridColumn>
-                                        <GridColumn
-                                          width={7}
-                                        >
-                                          Predicted (0/0)
-                                          <div
-                                            style={
-                                              Object {
-                                                "height": "250px",
-                                                "overflow": "auto",
-                                              }
-                                            }
-                                          >
-                                            <Table
-                                              as="table"
-                                              basic="very"
-                                              compact={true}
-                                              padded={true}
-                                            >
-                                              <TableHeader
-                                                as="thead"
-                                              >
-                                                <TableRow
-                                                  as="tr"
-                                                  cellAs="td"
-                                                >
-                                                  <TableHeaderCell
-                                                    as="th"
-                                                    style={
-                                                      Object {
-                                                        "padding": "5px 0",
-                                                      }
-                                                    }
-                                                  >
-                                                    Name
-                                                  </TableHeaderCell>
-                                                  <TableHeaderCell
-                                                    as="th"
-                                                    style={
-                                                      Object {
-                                                        "padding": "5px 0",
-                                                      }
-                                                    }
-                                                  >
-                                                    Rank
-                                                  </TableHeaderCell>
-                                                </TableRow>
-                                              </TableHeader>
-                                              <TableBody
-                                                as="tbody"
-                                              />
-                                            </Table>
-                                          </div>
-                                        </GridColumn>
-                                      </GridRow>
-                                    </Grid>,
-                                    "disabled": true,
-                                    "position": "top center",
-                                    "wide": "very",
-                                  },
-                                },
-                                "description": "PDB Selector",
-                                "iconName": "tasks",
-                              },
-                              Object {
-                                "component": Object {
-                                  "configs": Object {
-                                    "Structure Representations": Array [
-                                      Object {
-                                        "current": "Cartoon",
-                                        "name": "Predicted Structure Representation",
-                                        "onChange": [Function],
-                                        "options": Array [
-                                          "Rainbow",
-                                          "Spacefill",
-                                          "Backbone",
-                                          "Cartoon",
-                                          "Surface",
-                                          "Tube",
-                                        ],
-                                        "type": "RADIO",
-                                      },
-                                      Object {
-                                        "current": "Default",
-                                        "name": "Experimental Structure Representation",
-                                        "onChange": [Function],
-                                        "options": Array [
-                                          "Rainbow",
-                                          "Spacefill",
-                                          "Backbone",
-                                          "Cartoon",
-                                          "Surface",
-                                          "Tube",
-                                        ],
-                                        "type": "RADIO",
-                                      },
-                                    ],
-                                    "View Options": Array [
-                                      Object {
-                                        "checked": false,
-                                        "name": "Zoom on Click",
-                                        "onChange": [Function],
-                                        "type": "CHECKBOX",
-                                      },
-                                      Object {
-                                        "checked": true,
-                                        "name": "Display Distance in Ångström",
-                                        "onChange": [Function],
-                                        "type": "CHECKBOX",
-                                      },
-                                      Object {
-                                        "current": "C-α",
-                                        "name": "Proximity Metric",
-                                        "onChange": [Function],
-                                        "options": Array [
-                                          "Closest Atom",
-                                          "C-α",
-                                        ],
-                                        "type": "RADIO",
-                                      },
-                                    ],
-                                  },
-                                  "name": "POPUP",
-                                  "props": Object {
-                                    "trigger": <Icon
-                                      as="i"
-                                      name="setting"
-                                    />,
-                                  },
-                                },
-                                "description": "Settings",
-                              },
-                            ]
+                        <div
+                          style={
+                            Object {
+                              "height": "6%",
+                            }
                           }
-                          onExpandToggleCb={[Function]}
-                          opacity={0.85}
-                          width="100%"
                         >
-                          <div
-                            onMouseEnter={[Function]}
-                            onMouseLeave={[Function]}
-                          >
-                            <Menu
-                              secondary={true}
-                              style={
+                          <ComponentMenuBar
+                            componentName="NGL Viewer"
+                            height={40}
+                            iconSrc="assets/icons/spring-icon.png"
+                            isExpanded={false}
+                            menuItems={
+                              Array [
                                 Object {
-                                  "height": 40,
-                                  "margin": 0,
-                                }
-                              }
-                              widths={2}
+                                  "component": Object {
+                                    "name": "POPUP",
+                                    "props": Object {
+                                      "children": <Grid
+                                        divided={true}
+                                        padded={true}
+                                      >
+                                        <GridRow>
+                                          <GridColumn>
+                                            <Header>
+                                              Select Structures to Display
+                                            </Header>
+                                          </GridColumn>
+                                        </GridRow>
+                                        <GridRow
+                                          columns={2}
+                                          style={
+                                            Object {
+                                              "padding": "5px 0",
+                                            }
+                                          }
+                                        >
+                                          <GridColumn
+                                            width={9}
+                                          >
+                                            Experimental (0/0)
+                                            <div
+                                              style={
+                                                Object {
+                                                  "height": "250px",
+                                                  "overflow": "auto",
+                                                }
+                                              }
+                                            >
+                                              <Table
+                                                as="table"
+                                                basic="very"
+                                                compact={true}
+                                                padded={true}
+                                              >
+                                                <TableHeader
+                                                  as="thead"
+                                                >
+                                                  <TableRow
+                                                    as="tr"
+                                                    cellAs="td"
+                                                  >
+                                                    <TableHeaderCell
+                                                      as="th"
+                                                      style={
+                                                        Object {
+                                                          "padding": "5px 0",
+                                                        }
+                                                      }
+                                                    >
+                                                      Name
+                                                    </TableHeaderCell>
+                                                    <TableHeaderCell
+                                                      as="th"
+                                                      style={
+                                                        Object {
+                                                          "padding": "5px 0",
+                                                        }
+                                                      }
+                                                    >
+                                                      Seq. ID
+                                                    </TableHeaderCell>
+                                                    <TableHeaderCell
+                                                      as="th"
+                                                      style={
+                                                        Object {
+                                                          "padding": "5px 0",
+                                                        }
+                                                      }
+                                                    >
+                                                      Source
+                                                    </TableHeaderCell>
+                                                  </TableRow>
+                                                </TableHeader>
+                                                <TableBody
+                                                  as="tbody"
+                                                />
+                                              </Table>
+                                            </div>
+                                          </GridColumn>
+                                          <GridColumn
+                                            width={7}
+                                          >
+                                            Predicted (0/0)
+                                            <div
+                                              style={
+                                                Object {
+                                                  "height": "250px",
+                                                  "overflow": "auto",
+                                                }
+                                              }
+                                            >
+                                              <Table
+                                                as="table"
+                                                basic="very"
+                                                compact={true}
+                                                padded={true}
+                                              >
+                                                <TableHeader
+                                                  as="thead"
+                                                >
+                                                  <TableRow
+                                                    as="tr"
+                                                    cellAs="td"
+                                                  >
+                                                    <TableHeaderCell
+                                                      as="th"
+                                                      style={
+                                                        Object {
+                                                          "padding": "5px 0",
+                                                        }
+                                                      }
+                                                    >
+                                                      Name
+                                                    </TableHeaderCell>
+                                                    <TableHeaderCell
+                                                      as="th"
+                                                      style={
+                                                        Object {
+                                                          "padding": "5px 0",
+                                                        }
+                                                      }
+                                                    >
+                                                      Rank
+                                                    </TableHeaderCell>
+                                                  </TableRow>
+                                                </TableHeader>
+                                                <TableBody
+                                                  as="tbody"
+                                                />
+                                              </Table>
+                                            </div>
+                                          </GridColumn>
+                                        </GridRow>
+                                      </Grid>,
+                                      "disabled": true,
+                                      "position": "top center",
+                                      "wide": "very",
+                                    },
+                                  },
+                                  "description": "PDB Selector",
+                                  "iconName": "tasks",
+                                },
+                                Object {
+                                  "component": Object {
+                                    "configs": Object {
+                                      "Structure Representations": Array [
+                                        Object {
+                                          "current": "Cartoon",
+                                          "name": "Predicted Structure Representation",
+                                          "onChange": [Function],
+                                          "options": Array [
+                                            "Rainbow",
+                                            "Spacefill",
+                                            "Backbone",
+                                            "Cartoon",
+                                            "Surface",
+                                            "Tube",
+                                          ],
+                                          "type": "RADIO",
+                                        },
+                                        Object {
+                                          "current": "Default",
+                                          "name": "Experimental Structure Representation",
+                                          "onChange": [Function],
+                                          "options": Array [
+                                            "Rainbow",
+                                            "Spacefill",
+                                            "Backbone",
+                                            "Cartoon",
+                                            "Surface",
+                                            "Tube",
+                                          ],
+                                          "type": "RADIO",
+                                        },
+                                      ],
+                                      "View Options": Array [
+                                        Object {
+                                          "checked": false,
+                                          "name": "Zoom on Click",
+                                          "onChange": [Function],
+                                          "type": "CHECKBOX",
+                                        },
+                                        Object {
+                                          "checked": true,
+                                          "name": "Display Distance in Ångström",
+                                          "onChange": [Function],
+                                          "type": "CHECKBOX",
+                                        },
+                                        Object {
+                                          "current": "C-α",
+                                          "name": "Proximity Metric",
+                                          "onChange": [Function],
+                                          "options": Array [
+                                            "Closest Atom",
+                                            "C-α",
+                                          ],
+                                          "type": "RADIO",
+                                        },
+                                      ],
+                                    },
+                                    "name": "POPUP",
+                                    "props": Object {
+                                      "trigger": <Icon
+                                        as="i"
+                                        name="setting"
+                                      />,
+                                    },
+                                  },
+                                  "description": "Settings",
+                                },
+                              ]
+                            }
+                            onExpandToggleCb={[Function]}
+                            opacity={0.85}
+                            width="100%"
+                          >
+                            <div
+                              onMouseEnter={[Function]}
+                              onMouseLeave={[Function]}
                             >
-                              <div
-                                className="ui secondary two item menu"
+                              <Menu
+                                secondary={true}
                                 style={
                                   Object {
                                     "height": 40,
                                     "margin": 0,
                                   }
                                 }
+                                widths={2}
                               >
-                                <Menu
-                                  secondary={true}
-                                  widths={1}
+                                <div
+                                  className="ui secondary two item menu"
+                                  style={
+                                    Object {
+                                      "height": 40,
+                                      "margin": 0,
+                                    }
+                                  }
                                 >
-                                  <div
-                                    className="ui secondary one item menu"
+                                  <Menu
+                                    secondary={true}
+                                    widths={1}
                                   >
-                                    <MenuItem
-                                      fitted="horizontally"
-                                      position="left"
-                                      style={
-                                        Object {
-                                          "margin": 0,
-                                          "padding": 0,
-                                        }
-                                      }
+                                    <div
+                                      className="ui secondary one item menu"
                                     >
-                                      <div
-                                        className="left horizontally fitted item"
-                                        onClick={[Function]}
+                                      <MenuItem
+                                        fitted="horizontally"
+                                        position="left"
                                         style={
                                           Object {
                                             "margin": 0,
@@ -793,302 +794,295 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                           }
                                         }
                                       >
-                                        <img
-                                          alt="component icon"
-                                          src="assets/icons/spring-icon.png"
+                                        <div
+                                          className="left horizontally fitted item"
+                                          onClick={[Function]}
                                           style={
                                             Object {
-                                              "height": "32px",
-                                              "padding": "2px",
-                                              "width": "32px",
+                                              "margin": 0,
+                                              "padding": 0,
                                             }
                                           }
-                                        />
-                                        NGL Viewer
-                                      </div>
-                                    </MenuItem>
-                                  </div>
-                                </Menu>
-                                <Menu
-                                  secondary={true}
-                                  widths={4}
-                                >
-                                  <div
-                                    className="ui secondary four item menu"
+                                        >
+                                          <img
+                                            alt="component icon"
+                                            src="assets/icons/spring-icon.png"
+                                            style={
+                                              Object {
+                                                "height": "32px",
+                                                "padding": "2px",
+                                                "width": "32px",
+                                              }
+                                            }
+                                          />
+                                          NGL Viewer
+                                        </div>
+                                      </MenuItem>
+                                    </div>
+                                  </Menu>
+                                  <Menu
+                                    secondary={true}
+                                    widths={4}
                                   >
-                                    <MenuItem
-                                      fitted="horizontally"
-                                      key="NGL Viewer-menu-item-0"
-                                      position="right"
-                                      style={
-                                        Object {
-                                          "flexDirection": "column",
-                                        }
-                                      }
+                                    <div
+                                      className="ui secondary four item menu"
                                     >
-                                      <div
-                                        className="right horizontally fitted item"
-                                        onClick={[Function]}
+                                      <MenuItem
+                                        fitted="horizontally"
+                                        key="NGL Viewer-menu-item-0"
+                                        position="right"
                                         style={
                                           Object {
                                             "flexDirection": "column",
                                           }
                                         }
                                       >
-                                        <Popup
-                                          closeOnPortalMouseLeave={false}
-                                          closeOnTriggerClick={true}
-                                          closeOnTriggerMouseLeave={false}
-                                          disabled={true}
-                                          hoverable={false}
-                                          offset={0}
-                                          on="hover"
-                                          openOnTriggerClick={true}
-                                          openOnTriggerFocus={false}
-                                          openOnTriggerMouseEnter={false}
-                                          pinned={false}
-                                          position="top center"
+                                        <div
+                                          className="right horizontally fitted item"
+                                          onClick={[Function]}
                                           style={
                                             Object {
-                                              "opacity": 0.85,
-                                            }
-                                          }
-                                          trigger={
-                                            <Icon
-                                              as="i"
-                                              name="tasks"
-                                            />
-                                          }
-                                          wide="very"
-                                        >
-                                          <Icon
-                                            as="i"
-                                            name="tasks"
-                                          >
-                                            <i
-                                              aria-hidden="true"
-                                              className="tasks icon"
-                                              onClick={[Function]}
-                                            />
-                                          </Icon>
-                                        </Popup>
-                                        <span
-                                          style={
-                                            Object {
-                                              "fontSize": "11px",
-                                              "visibility": "hidden",
+                                              "flexDirection": "column",
                                             }
                                           }
                                         >
-                                          PDB Selector
-                                        </span>
-                                      </div>
-                                    </MenuItem>
-                                    <MenuItem
-                                      fitted="horizontally"
-                                      key="NGL Viewer-menu-item-1"
-                                      position="right"
-                                      style={
-                                        Object {
-                                          "flexDirection": "column",
-                                        }
-                                      }
-                                    >
-                                      <div
-                                        className="right horizontally fitted item"
-                                        onClick={[Function]}
-                                        style={
-                                          Object {
-                                            "flexDirection": "column",
-                                          }
-                                        }
-                                      >
-                                        <Popup
-                                          closeOnPortalMouseLeave={false}
-                                          closeOnTriggerClick={true}
-                                          closeOnTriggerMouseLeave={false}
-                                          disabled={false}
-                                          hoverable={false}
-                                          offset={0}
-                                          on="hover"
-                                          openOnTriggerClick={true}
-                                          openOnTriggerFocus={false}
-                                          openOnTriggerMouseEnter={false}
-                                          pinned={false}
-                                          position="bottom left"
-                                          style={
-                                            Object {
-                                              "opacity": 0.85,
-                                            }
-                                          }
-                                          trigger={
-                                            <Icon
-                                              as="i"
-                                              name="setting"
-                                            />
-                                          }
-                                          wide={true}
-                                        >
-                                          <Portal
-                                            closeOnDocumentClick={true}
-                                            closeOnEscape={true}
+                                          <Popup
                                             closeOnPortalMouseLeave={false}
                                             closeOnTriggerClick={true}
                                             closeOnTriggerMouseLeave={false}
-                                            eventPool="default"
-                                            mouseEnterDelay={50}
-                                            mouseLeaveDelay={70}
-                                            onClose={[Function]}
-                                            onMount={[Function]}
-                                            onOpen={[Function]}
-                                            onUnmount={[Function]}
+                                            disabled={true}
+                                            hoverable={false}
+                                            offset={0}
+                                            on="hover"
                                             openOnTriggerClick={true}
                                             openOnTriggerFocus={false}
                                             openOnTriggerMouseEnter={false}
+                                            pinned={false}
+                                            position="top center"
+                                            style={
+                                              Object {
+                                                "opacity": 0.85,
+                                              }
+                                            }
+                                            trigger={
+                                              <Icon
+                                                as="i"
+                                                name="tasks"
+                                              />
+                                            }
+                                            wide="very"
+                                          >
+                                            <Icon
+                                              as="i"
+                                              name="tasks"
+                                            >
+                                              <i
+                                                aria-hidden="true"
+                                                className="tasks icon"
+                                                onClick={[Function]}
+                                              />
+                                            </Icon>
+                                          </Popup>
+                                          <span
+                                            style={
+                                              Object {
+                                                "fontSize": "11px",
+                                                "visibility": "hidden",
+                                              }
+                                            }
+                                          >
+                                            PDB Selector
+                                          </span>
+                                        </div>
+                                      </MenuItem>
+                                      <MenuItem
+                                        fitted="horizontally"
+                                        key="NGL Viewer-menu-item-1"
+                                        position="right"
+                                        style={
+                                          Object {
+                                            "flexDirection": "column",
+                                          }
+                                        }
+                                      >
+                                        <div
+                                          className="right horizontally fitted item"
+                                          onClick={[Function]}
+                                          style={
+                                            Object {
+                                              "flexDirection": "column",
+                                            }
+                                          }
+                                        >
+                                          <Popup
+                                            closeOnPortalMouseLeave={false}
+                                            closeOnTriggerClick={true}
+                                            closeOnTriggerMouseLeave={false}
+                                            disabled={false}
+                                            hoverable={false}
+                                            offset={0}
+                                            on="hover"
+                                            openOnTriggerClick={true}
+                                            openOnTriggerFocus={false}
+                                            openOnTriggerMouseEnter={false}
+                                            pinned={false}
+                                            position="bottom left"
+                                            style={
+                                              Object {
+                                                "opacity": 0.85,
+                                              }
+                                            }
                                             trigger={
                                               <Icon
                                                 as="i"
                                                 name="setting"
                                               />
                                             }
-                                            triggerRef={
-                                              Object {
-                                                "current": <i
-                                                  aria-hidden="true"
-                                                  class="setting icon"
-                                                />,
-                                              }
-                                            }
+                                            wide={true}
                                           >
-                                            <Ref
-                                              innerRef={[Function]}
-                                            >
-                                              <RefFindNode
-                                                innerRef={[Function]}
-                                              >
+                                            <Portal
+                                              closeOnDocumentClick={true}
+                                              closeOnEscape={true}
+                                              closeOnPortalMouseLeave={false}
+                                              closeOnTriggerClick={true}
+                                              closeOnTriggerMouseLeave={false}
+                                              eventPool="default"
+                                              mouseEnterDelay={50}
+                                              mouseLeaveDelay={70}
+                                              onClose={[Function]}
+                                              onMount={[Function]}
+                                              onOpen={[Function]}
+                                              onUnmount={[Function]}
+                                              openOnTriggerClick={true}
+                                              openOnTriggerFocus={false}
+                                              openOnTriggerMouseEnter={false}
+                                              trigger={
                                                 <Icon
                                                   as="i"
                                                   name="setting"
-                                                  onBlur={[Function]}
-                                                  onClick={[Function]}
-                                                  onFocus={[Function]}
-                                                  onMouseEnter={[Function]}
-                                                  onMouseLeave={[Function]}
-                                                >
-                                                  <i
+                                                />
+                                              }
+                                              triggerRef={
+                                                Object {
+                                                  "current": <i
                                                     aria-hidden="true"
-                                                    className="setting icon"
+                                                    class="setting icon"
+                                                  />,
+                                                }
+                                              }
+                                            >
+                                              <Ref
+                                                innerRef={[Function]}
+                                              >
+                                                <RefFindNode
+                                                  innerRef={[Function]}
+                                                >
+                                                  <Icon
+                                                    as="i"
+                                                    name="setting"
                                                     onBlur={[Function]}
                                                     onClick={[Function]}
                                                     onFocus={[Function]}
                                                     onMouseEnter={[Function]}
                                                     onMouseLeave={[Function]}
-                                                  />
-                                                </Icon>
-                                              </RefFindNode>
-                                            </Ref>
-                                          </Portal>
-                                        </Popup>
-                                        <span
-                                          style={
-                                            Object {
-                                              "fontSize": "11px",
-                                              "visibility": "hidden",
+                                                  >
+                                                    <i
+                                                      aria-hidden="true"
+                                                      className="setting icon"
+                                                      onBlur={[Function]}
+                                                      onClick={[Function]}
+                                                      onFocus={[Function]}
+                                                      onMouseEnter={[Function]}
+                                                      onMouseLeave={[Function]}
+                                                    />
+                                                  </Icon>
+                                                </RefFindNode>
+                                              </Ref>
+                                            </Portal>
+                                          </Popup>
+                                          <span
+                                            style={
+                                              Object {
+                                                "fontSize": "11px",
+                                                "visibility": "hidden",
+                                              }
                                             }
-                                          }
-                                        >
-                                          Settings
-                                        </span>
-                                      </div>
-                                    </MenuItem>
-                                    <MenuItem
-                                      fitted="horizontally"
-                                      position="right"
-                                      style={
-                                        Object {
-                                          "flexDirection": "column",
-                                        }
-                                      }
-                                    >
-                                      <div
-                                        className="right horizontally fitted item"
-                                        onClick={[Function]}
+                                          >
+                                            Settings
+                                          </span>
+                                        </div>
+                                      </MenuItem>
+                                      <MenuItem
+                                        fitted="horizontally"
+                                        position="right"
                                         style={
                                           Object {
                                             "flexDirection": "column",
                                           }
                                         }
                                       >
-                                        <Icon
-                                          as="i"
-                                          name="expand arrows alternate"
+                                        <div
+                                          className="right horizontally fitted item"
                                           onClick={[Function]}
-                                        >
-                                          <i
-                                            aria-hidden="true"
-                                            className="expand arrows alternate icon"
-                                            onClick={[Function]}
-                                          />
-                                        </Icon>
-                                        <span
                                           style={
                                             Object {
-                                              "fontSize": "11px",
-                                              "visibility": "hidden",
+                                              "flexDirection": "column",
                                             }
                                           }
                                         >
-                                          Expand
-                                        </span>
-                                      </div>
-                                    </MenuItem>
-                                  </div>
-                                </Menu>
-                              </div>
-                            </Menu>
-                          </div>
-                        </ComponentMenuBar>
-                      </div>
-                      <div
-                        style={
-                          Object {
-                            "height": "91%",
-                          }
-                        }
-                      >
+                                          <Icon
+                                            as="i"
+                                            name="expand arrows alternate"
+                                            onClick={[Function]}
+                                          >
+                                            <i
+                                              aria-hidden="true"
+                                              className="expand arrows alternate icon"
+                                              onClick={[Function]}
+                                            />
+                                          </Icon>
+                                          <span
+                                            style={
+                                              Object {
+                                                "fontSize": "11px",
+                                                "visibility": "hidden",
+                                              }
+                                            }
+                                          >
+                                            Expand
+                                          </span>
+                                        </div>
+                                      </MenuItem>
+                                    </div>
+                                  </Menu>
+                                </div>
+                              </Menu>
+                            </div>
+                          </ComponentMenuBar>
+                        </div>
                         <div
-                          className="NGLComponent"
                           style={
                             Object {
-                              "height": "92%",
-                              "width": "100%",
+                              "height": "91%",
                             }
                           }
                         >
-                          <Dimmer
-                            active={false}
+                          <div
+                            className="NGLComponent"
+                            style={
+                              Object {
+                                "height": "92%",
+                                "width": "100%",
+                              }
+                            }
                           >
-                            <DimmerInner
+                            <Dimmer
                               active={false}
                             >
-                              <Ref
-                                innerRef={
-                                  Object {
-                                    "current": <div
-                                      class="ui dimmer"
-                                    >
-                                      <div
-                                        class="content"
-                                      >
-                                        <div
-                                          class="ui loader"
-                                        />
-                                      </div>
-                                    </div>,
-                                  }
-                                }
+                              <DimmerInner
+                                active={false}
                               >
-                                <RefFindNode
+                                <Ref
                                   innerRef={
                                     Object {
                                       "current": <div
@@ -1105,270 +1099,300 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                     }
                                   }
                                 >
-                                  <div
-                                    className="ui dimmer"
-                                    onClick={[Function]}
+                                  <RefFindNode
+                                    innerRef={
+                                      Object {
+                                        "current": <div
+                                          class="ui dimmer"
+                                        >
+                                          <div
+                                            class="content"
+                                          >
+                                            <div
+                                              class="ui loader"
+                                            />
+                                          </div>
+                                        </div>,
+                                      }
+                                    }
                                   >
                                     <div
-                                      className="content"
+                                      className="ui dimmer"
+                                      onClick={[Function]}
                                     >
-                                      <Loader>
-                                        <div
-                                          className="ui loader"
-                                        />
-                                      </Loader>
+                                      <div
+                                        className="content"
+                                      >
+                                        <Loader>
+                                          <div
+                                            className="ui loader"
+                                          />
+                                        </Loader>
+                                      </div>
                                     </div>
-                                  </div>
-                                </RefFindNode>
-                              </Ref>
-                            </DimmerInner>
-                          </Dimmer>
-                          <div
-                            className="NGLCanvas"
-                            onKeyDown={[Function]}
-                            onMouseLeave={[Function]}
-                            role="img"
-                            style={
-                              Object {
-                                "height": "100%",
-                                "width": "100%",
+                                  </RefFindNode>
+                                </Ref>
+                              </DimmerInner>
+                            </Dimmer>
+                            <div
+                              className="NGLCanvas"
+                              onKeyDown={[Function]}
+                              onMouseLeave={[Function]}
+                              role="img"
+                              style={
+                                Object {
+                                  "height": "100%",
+                                  "width": "100%",
+                                }
                               }
+                            />
+                          </div>
+                        </div>
+                        <div
+                          style={
+                            Object {
+                              "height": "3%",
                             }
+                          }
+                        >
+                          <ComponentDock
+                            dockItems={
+                              Array [
+                                Object {
+                                  "isVisibleCb": [Function],
+                                  "onClick": [Function],
+                                  "text": "Clear Selections",
+                                },
+                                Object {
+                                  "onClick": [Function],
+                                  "text": "Center View",
+                                },
+                                Object {
+                                  "isVisibleCb": [Function],
+                                  "onClick": [Function],
+                                  "text": "Superimpose: Off",
+                                },
+                                Object {
+                                  "onClick": [Function],
+                                  "text": "Enable Stereo",
+                                },
+                              ]
+                            }
+                            visible={false}
                           />
                         </div>
                       </div>
-                      <div
-                        style={
-                          Object {
-                            "height": "3%",
-                          }
-                        }
-                      >
-                        <ComponentDock
-                          dockItems={
-                            Array [
-                              Object {
-                                "isVisibleCb": [Function],
-                                "onClick": [Function],
-                                "text": "Clear Selections",
-                              },
-                              Object {
-                                "onClick": [Function],
-                                "text": "Center View",
-                              },
-                              Object {
-                                "isVisibleCb": [Function],
-                                "onClick": [Function],
-                                "text": "Superimpose: Off",
-                              },
-                              Object {
-                                "onClick": [Function],
-                                "text": "Enable Stereo",
-                              },
-                            ]
-                          }
-                          visible={false}
-                        />
-                      </div>
-                    </div>
-                  </Card>
-                </ComponentCard>
-              </NGLComponent>
-            </div>
-          </GridRow>
-        </div>
-      </Grid>
+                    </Card>
+                  </ComponentCard>
+                </NGLComponent>
+              </div>
+            </GridRow>
+          </div>
+        </Grid>
+      </Provider>
     </NGLContainerClass>
   </Connect(NGLContainerClass)>
 </Provider>
 `;
 
 exports[`NGLContainer Should match the default snapshot when not hooked up to a redux store. 1`] = `
-<Grid
-  padded={true}
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
 >
-  <GridRow>
-    <NGLComponent
-      addCandidateResidues={[Function]}
-      addHoveredResidues={[Function]}
-      addLockedResiduePair={[Function]}
-      backgroundColor="#ffffff"
-      candidateResidues={Array []}
-      dispatchNglFetch={[Function]}
-      experimentalProteins={Array []}
-      height="92%"
-      hoveredResidues={Array []}
-      hoveredSecondaryStructures={Array []}
-      isDataLoading={false}
-      lockedResiduePairs={Object {}}
-      maxPDBPerPopup={5}
-      measuredProximity="C-α"
-      menuItems={
-        Array [
-          Object {
-            "component": Object {
-              "name": "POPUP",
-              "props": Object {
-                "children": <Grid
-                  divided={true}
-                  padded={true}
-                >
-                  <GridRow>
-                    <GridColumn>
-                      <Header>
-                        Select Structures to Display
-                      </Header>
-                    </GridColumn>
-                  </GridRow>
-                  <GridRow
-                    columns={2}
-                    style={
-                      Object {
-                        "padding": "5px 0",
-                      }
-                    }
+  <Grid
+    padded={true}
+  >
+    <GridRow>
+      <NGLComponent
+        addCandidateResidues={[Function]}
+        addHoveredResidues={[Function]}
+        addLockedResiduePair={[Function]}
+        backgroundColor="#ffffff"
+        candidateResidues={Array []}
+        dispatchNglFetch={[Function]}
+        experimentalProteins={Array []}
+        height="92%"
+        hoveredResidues={Array []}
+        hoveredSecondaryStructures={Array []}
+        isDataLoading={false}
+        lockedResiduePairs={Object {}}
+        maxPDBPerPopup={5}
+        measuredProximity="C-α"
+        menuItems={
+          Array [
+            Object {
+              "component": Object {
+                "name": "POPUP",
+                "props": Object {
+                  "children": <Grid
+                    divided={true}
+                    padded={true}
                   >
-                    <GridColumn
-                      width={9}
-                    >
-                      Experimental (0/0)
-                      <div
-                        style={
-                          Object {
-                            "height": "250px",
-                            "overflow": "auto",
-                          }
+                    <GridRow>
+                      <GridColumn>
+                        <Header>
+                          Select Structures to Display
+                        </Header>
+                      </GridColumn>
+                    </GridRow>
+                    <GridRow
+                      columns={2}
+                      style={
+                        Object {
+                          "padding": "5px 0",
                         }
-                      >
-                        <Table
-                          as="table"
-                          basic="very"
-                          compact={true}
-                          padded={true}
-                        >
-                          <TableHeader
-                            as="thead"
-                          >
-                            <TableRow
-                              as="tr"
-                              cellAs="td"
-                            >
-                              <TableHeaderCell
-                                as="th"
-                                style={
-                                  Object {
-                                    "padding": "5px 0",
-                                  }
-                                }
-                              >
-                                Name
-                              </TableHeaderCell>
-                              <TableHeaderCell
-                                as="th"
-                                style={
-                                  Object {
-                                    "padding": "5px 0",
-                                  }
-                                }
-                              >
-                                Seq. ID
-                              </TableHeaderCell>
-                              <TableHeaderCell
-                                as="th"
-                                style={
-                                  Object {
-                                    "padding": "5px 0",
-                                  }
-                                }
-                              >
-                                Source
-                              </TableHeaderCell>
-                            </TableRow>
-                          </TableHeader>
-                          <TableBody
-                            as="tbody"
-                          />
-                        </Table>
-                      </div>
-                    </GridColumn>
-                    <GridColumn
-                      width={7}
+                      }
                     >
-                      Predicted (0/0)
-                      <div
-                        style={
-                          Object {
-                            "height": "250px",
-                            "overflow": "auto",
-                          }
-                        }
+                      <GridColumn
+                        width={9}
                       >
-                        <Table
-                          as="table"
-                          basic="very"
-                          compact={true}
-                          padded={true}
+                        Experimental (0/0)
+                        <div
+                          style={
+                            Object {
+                              "height": "250px",
+                              "overflow": "auto",
+                            }
+                          }
                         >
-                          <TableHeader
-                            as="thead"
+                          <Table
+                            as="table"
+                            basic="very"
+                            compact={true}
+                            padded={true}
                           >
-                            <TableRow
-                              as="tr"
-                              cellAs="td"
+                            <TableHeader
+                              as="thead"
                             >
-                              <TableHeaderCell
-                                as="th"
-                                style={
-                                  Object {
-                                    "padding": "5px 0",
-                                  }
-                                }
+                              <TableRow
+                                as="tr"
+                                cellAs="td"
                               >
-                                Name
-                              </TableHeaderCell>
-                              <TableHeaderCell
-                                as="th"
-                                style={
-                                  Object {
-                                    "padding": "5px 0",
+                                <TableHeaderCell
+                                  as="th"
+                                  style={
+                                    Object {
+                                      "padding": "5px 0",
+                                    }
                                   }
-                                }
+                                >
+                                  Name
+                                </TableHeaderCell>
+                                <TableHeaderCell
+                                  as="th"
+                                  style={
+                                    Object {
+                                      "padding": "5px 0",
+                                    }
+                                  }
+                                >
+                                  Seq. ID
+                                </TableHeaderCell>
+                                <TableHeaderCell
+                                  as="th"
+                                  style={
+                                    Object {
+                                      "padding": "5px 0",
+                                    }
+                                  }
+                                >
+                                  Source
+                                </TableHeaderCell>
+                              </TableRow>
+                            </TableHeader>
+                            <TableBody
+                              as="tbody"
+                            />
+                          </Table>
+                        </div>
+                      </GridColumn>
+                      <GridColumn
+                        width={7}
+                      >
+                        Predicted (0/0)
+                        <div
+                          style={
+                            Object {
+                              "height": "250px",
+                              "overflow": "auto",
+                            }
+                          }
+                        >
+                          <Table
+                            as="table"
+                            basic="very"
+                            compact={true}
+                            padded={true}
+                          >
+                            <TableHeader
+                              as="thead"
+                            >
+                              <TableRow
+                                as="tr"
+                                cellAs="td"
                               >
-                                Rank
-                              </TableHeaderCell>
-                            </TableRow>
-                          </TableHeader>
-                          <TableBody
-                            as="tbody"
-                          />
-                        </Table>
-                      </div>
-                    </GridColumn>
-                  </GridRow>
-                </Grid>,
-                "disabled": true,
-                "position": "top center",
-                "wide": "very",
+                                <TableHeaderCell
+                                  as="th"
+                                  style={
+                                    Object {
+                                      "padding": "5px 0",
+                                    }
+                                  }
+                                >
+                                  Name
+                                </TableHeaderCell>
+                                <TableHeaderCell
+                                  as="th"
+                                  style={
+                                    Object {
+                                      "padding": "5px 0",
+                                    }
+                                  }
+                                >
+                                  Rank
+                                </TableHeaderCell>
+                              </TableRow>
+                            </TableHeader>
+                            <TableBody
+                              as="tbody"
+                            />
+                          </Table>
+                        </div>
+                      </GridColumn>
+                    </GridRow>
+                  </Grid>,
+                  "disabled": true,
+                  "position": "top center",
+                  "wide": "very",
+                },
               },
+              "description": "PDB Selector",
+              "iconName": "tasks",
             },
-            "description": "PDB Selector",
-            "iconName": "tasks",
-          },
-        ]
-      }
-      onMeasuredProximityChange={[Function]}
-      onResize={[Function]}
-      predictedProteins={Array []}
-      removeAllLockedResiduePairs={[Function]}
-      removeAllSelectedSecondaryStructures={[Function]}
-      removeCandidateResidues={[Function]}
-      removeHoveredResidues={[Function]}
-      removeLockedResiduePair={[Function]}
-      removeNonLockedResidues={[Function]}
-      selectedSecondaryStructures={Array []}
-      showConfigurations={true}
-      width="100%"
-    />
-  </GridRow>
-</Grid>
+          ]
+        }
+        onMeasuredProximityChange={[Function]}
+        onResize={[Function]}
+        predictedProteins={Array []}
+        removeAllLockedResiduePairs={[Function]}
+        removeAllSelectedSecondaryStructures={[Function]}
+        removeCandidateResidues={[Function]}
+        removeHoveredResidues={[Function]}
+        removeLockedResiduePair={[Function]}
+        removeNonLockedResidues={[Function]}
+        selectedSecondaryStructures={Array []}
+        showConfigurations={true}
+        width="100%"
+      />
+    </GridRow>
+  </Grid>
+</Provider>
 `;

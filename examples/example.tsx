@@ -6,8 +6,7 @@ import { Button, Grid, Header, Label, Message, Segment } from 'semantic-ui-react
 
 import { bindActionCreators, Dispatch } from 'redux';
 import { createContainerActions, createResiduePairActions } from '~bioblocks-viz~/action';
-import { PredictedContactMap } from '~bioblocks-viz~/component';
-import { NGLContainer } from '~bioblocks-viz~/container';
+import { NGLContainer, PredictedContactMap } from '~bioblocks-viz~/container';
 import {
   Bioblocks1DSection,
   BioblocksPDB,
@@ -27,8 +26,8 @@ import {
 } from '~bioblocks-viz~/helper';*/
 import { SeqIO, SEQUENCE_FILE_TYPES } from '~bioblocks-viz~/data/SeqIO';
 import { SeqRecord } from '~bioblocks-viz~/data/SeqRecord';
-import { Store } from '~bioblocks-viz~/reducer';
-import { UMAPSequenceContainer, UMAPVisualization } from '~bioblocks-viz~/singlepage/UMAPVisualization';
+import { BBStore } from '~bioblocks-viz~/reducer';
+import { UMAPSequenceContainer } from '~bioblocks-viz~/singlepage/UMAPVisualization';
 
 export interface IExampleAppProps {
   style: Exclude<React.CSSProperties, 'height' | 'width'>;
@@ -441,7 +440,6 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
 
   protected renderNGLCard = (measuredProximity: CONTACT_DISTANCE_PROXIMITY) => {
     const { isLoading, experimentalProteins, predictedProteins } = this.state;
-    console.log('ngl render');
 
     return (
       <NGLContainer
@@ -491,7 +489,7 @@ const ExampleApp = connect(
 )(ExampleAppClass);
 
 ReactDOM.render(
-  <Provider store={Store}>
+  <Provider store={BBStore}>
     <ExampleApp />
   </Provider>,
   document.getElementById('example-root'),

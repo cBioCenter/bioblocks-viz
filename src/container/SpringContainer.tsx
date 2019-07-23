@@ -1,6 +1,6 @@
 import { Set } from 'immutable';
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { connect, Provider } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
 // tslint:disable:import-name match-default-export-name
@@ -12,7 +12,7 @@ import { ComponentCard } from '~bioblocks-viz~/component';
 import { BioblocksVisualization } from '~bioblocks-viz~/container';
 import { ISpringGraphData, ISpringLink, ISpringNode } from '~bioblocks-viz~/data';
 import { EMPTY_FUNCTION, fetchSpringData } from '~bioblocks-viz~/helper';
-import { createSpringReducer } from '~bioblocks-viz~/reducer';
+import { BBStore, createSpringReducer } from '~bioblocks-viz~/reducer';
 import { getCategories, getGraphData, selectCurrentItems } from '~bioblocks-viz~/selector';
 
 export interface ISpringContainerProps {
@@ -128,22 +128,24 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
     const targetOriginPieces = springUrl.split('/');
 
     return (
-      <ComponentCard
-        componentName={SpringContainerClass.displayName}
-        iconSrc={iconSrc}
-        isFramedComponent={true}
-        isFullPage={isFullPage}
-        frameHeight={springHeight}
-        frameWidth={springWidth}
-      >
-        <IframeComm
-          attributes={attributes}
-          postMessageData={postMessageData}
-          handleReady={this.onReady}
-          handleReceiveMessage={this.onReceiveMessage}
-          targetOrigin={`${targetOriginPieces[0]}//${targetOriginPieces[2]}`}
-        />
-      </ComponentCard>
+      <Provider store={BBStore}>
+        <ComponentCard
+          componentName={SpringContainerClass.displayName}
+          iconSrc={iconSrc}
+          isFramedComponent={true}
+          isFullPage={isFullPage}
+          frameHeight={springHeight}
+          frameWidth={springWidth}
+        >
+          <IframeComm
+            attributes={attributes}
+            postMessageData={postMessageData}
+            handleReady={this.onReady}
+            handleReceiveMessage={this.onReceiveMessage}
+            targetOrigin={`${targetOriginPieces[0]}//${targetOriginPieces[2]}`}
+          />
+        </ComponentCard>
+      </Provider>
     );
   }
 
