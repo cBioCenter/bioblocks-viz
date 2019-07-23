@@ -78,7 +78,7 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     const { isFullPage } = this.state;
 
     const expandedStyle: React.CSSProperties = {
-      height: 'calc(80vh + 45px)',
+      height: '80vh',
       padding: '5px',
       width: '80vh',
     };
@@ -87,7 +87,7 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     const cardStyle: React.CSSProperties = {
       maxWidth: 'unset',
       padding: '0 0 5px 5px',
-      ...(isFullPage ? { ...expandedStyle } : { height: `${heightAsNumber * 1.09}px`, width }),
+      ...(isFullPage ? { ...expandedStyle } : { height: `${heightAsNumber * 1.01}px`, width }),
     };
 
     const card = (

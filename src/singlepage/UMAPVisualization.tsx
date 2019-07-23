@@ -158,7 +158,7 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
 
     this.setState({
       randomSequencesDataMatrix: subsampledSequences.map(seq => {
-        return seq.integerRepresntation(['-']);
+        return seq.integerRepresentation(['-']);
       }),
       selectedLabelCategory: initialLabelCategory,
       subsampledSequences,

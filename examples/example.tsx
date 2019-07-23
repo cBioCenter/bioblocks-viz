@@ -43,7 +43,7 @@ export interface IExampleAppProps {
 
 export interface IExampleAppState {
   // [VIZ_TYPE.CONTACT_MAP]: CONTACT_MAP_DATA_TYPE;
-  // errorMsg: string;
+  //  : string;
   // experimentalProteins: BioblocksPDB[];
   // isDragHappening: boolean;
   isLoading: boolean;

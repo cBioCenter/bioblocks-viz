@@ -145,7 +145,7 @@ export class Seq {
    *          function call - it is set from indexing the strings in IUPACData:
    *          protein_letters, unambiguous_dna_letters and unambiguous_rna_letters
    */
-  public binaryRepresntation(additionalAcceptedCharacters: string[] = ['-']): number[] {
+  public binaryRepresentation(additionalAcceptedCharacters: string[] = ['-']): number[] {
     const alphabet = this.determineAlphabet(additionalAcceptedCharacters);
     let idxString = proteinLetters;
     if (alphabet === ALPHABET.generic_dna) {
@@ -172,7 +172,7 @@ export class Seq {
   }
 
   /**
-   * integerRepresntation
+   * integerRepresentation
    * Returns an integer representation of this sequence. Each index in the array
    * represents a single position. ** The values have no meaning other than to check
    * for equality in a custom hamming distance function. **
@@ -182,7 +182,7 @@ export class Seq {
    * @param additionalAcceptedCharacters characters to consider valid and add to
    *                                     give  returned array.
    */
-  public integerRepresntation(additionalAcceptedCharacters: string[] = ['-']): number[] {
+  public integerRepresentation(additionalAcceptedCharacters: string[] = ['-']): number[] {
     const alphabet = this.determineAlphabet(additionalAcceptedCharacters);
     let idxString = proteinLetters;
     if (alphabet === ALPHABET.generic_dna) {
@@ -351,7 +351,3 @@ export class Seq {
     return new Seq(proteinSequence, ALPHABET.generic_protein);
   }
 }
-
-// console.log(new Seq('auGC').complement());
-// console.log(new Seq('atgcW').binaryRepresntation());
-// console.log(new Seq('atgcW').integerRepresntation());
