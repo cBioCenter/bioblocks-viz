@@ -1,4 +1,4 @@
-import { AMINO_ACID_SINGLE_LETTER_CODE } from '~bioblocks-viz~/data';
+import { AMINO_ACID_1LETTER_CODE } from '~bioblocks-viz~/data';
 
 const UNI_PROT_RESNO_HEADER = 'up_index';
 const UNI_PROT_RESNAME_HEADER = 'up_residue';
@@ -18,7 +18,7 @@ const EVSERVER_EXPECTED_HEADERS = [
 
 export interface IResidueMapping {
   /** Name of the residue in the PDB file. */
-  pdbResCode: AMINO_ACID_SINGLE_LETTER_CODE;
+  pdbResCode: AMINO_ACID_1LETTER_CODE;
 
   /** Number of the residue in the PDB file. */
   pdbResno: number;
@@ -27,7 +27,7 @@ export interface IResidueMapping {
   couplingsResno: number;
 
   /** Single letter code of the residue from CouplingScores file. */
-  couplingsResCode: AMINO_ACID_SINGLE_LETTER_CODE;
+  couplingsResCode: AMINO_ACID_1LETTER_CODE;
 }
 
 /**
@@ -66,10 +66,10 @@ export const generateResidueMapping = (text: string): IResidueMapping[] => {
       if (splitLine.length >= EVFOLD_EXPECTED_HEADERS.length) {
         result.push({
           couplingsResCode: isEvServer
-            ? (splitLine[structureResCodeIndex] as AMINO_ACID_SINGLE_LETTER_CODE)
-            : (splitLine[headerMap[UNI_PROT_RESNAME_HEADER]] as AMINO_ACID_SINGLE_LETTER_CODE),
+            ? splitLine[structureResCodeIndex]
+            : splitLine[headerMap[UNI_PROT_RESNAME_HEADER]],
           couplingsResno: parseInt(splitLine[couplingsResnoIndex], 10),
-          pdbResCode: splitLine[structureResCodeIndex] as AMINO_ACID_SINGLE_LETTER_CODE,
+          pdbResCode: splitLine[structureResCodeIndex],
           pdbResno: parseInt(splitLine[structureResnoIndex], 10),
         });
       }
