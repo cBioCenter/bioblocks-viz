@@ -7,7 +7,6 @@ import { euclidean } from 'umap-js/dist/umap';
 import { ComponentCard, defaultPlotlyLayout, PlotlyChart } from '~bioblocks-viz~/component';
 import { ILabel, ILabelCategory } from '~bioblocks-viz~/data/Label';
 import { Marker } from '~bioblocks-viz~/data/Markers';
-import { SeqIO, SEQUENCE_FILE_TYPES } from '~bioblocks-viz~/data/SeqIO';
 import { SeqRecord } from '~bioblocks-viz~/data/SeqRecord';
 
 export interface IUMAPSequenceContainerProps {
@@ -23,24 +22,52 @@ export interface IUMAPSequenceContainerProps {
   //                           'class': the class of the organism the sequence originated from
   taxonomyText?: string;
 
-  initialLabelCategory: string;
+  labelCategory: string;
 
-  // text from multiple sequence alignment file (in fasta format)
+  // the sequences to display (will be subsampled)
   allSequences: SeqRecord[];
 }
 export interface IUMAPSequenceContainerState {
-  selectedLabelCategory: string;
-  seqnameToTaxonomyMetadata: Record<string, Record<string, string>>;
+  labelCategory: string;
+  seqnameToTaxonomyMetadata: {
+    [seqName: string]: {
+      [taxonomyCategory: string]: string;
+    };
+  };
   subsampledSequences: SeqRecord[];
   randomSequencesDataMatrix: number[][];
+}
+
+export interface ICategoricalAnnotation {
+  [labelCategoryName: string]: {
+    label_colors: {
+      [labelName: string]: string;
+    };
+    label_list: string[]; // Discrete labels for each sample in the dataMatrix. Length must equal dataMatrix.length.
+  };
 }
 
 export interface IUMAPTranscriptionalContainerProps {
   // if the number of data points are too large, the container will randomly subsample points
   numSamplesToShow: number;
+  numIterationsBeforeReRender: number;
+  categoricalAnnotations?: ICategoricalAnnotation;
+  labelCategory?: string;
+
+  // names of the samples (will be displayed in tooltip)
+  sampleNames?: string[];
+
+  // the data to display (will be subsampled) - if sampleNames are provided sampleNames.length must equal dataMatrix.length
+  dataMatrix: number[][];
 }
+
 export interface IUMAPTranscriptionalContainerState {
-  placeholder: number;
+  // completeSampleAnnotations: ILabelCategory2;
+  completeSampleAnnotations: {
+    [labelCategoryName: string]: Array<ILabel | undefined>;
+  };
+
+  errorMessages: string[];
 }
 
 export type DISTANCE_FN_TYPE = (arg1: number[], arg2: number[]) => number;
@@ -49,6 +76,7 @@ export interface IUMAPVisualizationProps {
   dataMatrix: number[][];
   dataLabels?: Array<ILabel | undefined>;
   numIterationsBeforeReRender: number;
+  errorMessages: string[];
   tooltipNames?: string[];
   distanceFn?: DISTANCE_FN_TYPE;
 
@@ -61,17 +89,176 @@ export interface IUMAPVisualizationState {
   umapEmbedding: number[][];
 }
 
+/**
+ * TODO: move to a math or array helper class
+ *
+ * Randomly select and return "n" objects or indicies (if returnIndicies==true) and return
+ * in a new array.
+ *
+ * If "n" is larger than the array, return the array directly or all the indicies in the
+ * array (if returnIndicies==true).
+ *
+ * No duplicates are returned
+ */
+export function subsample(arr: any[], n: number, returnIndicies: boolean = false): any[] {
+  const unselectedObjBowl = returnIndicies ? arr.map((obj, idx) => idx) : [...arr];
+  if (n >= arr.length) {
+    return unselectedObjBowl;
+  }
+
+  const toreturn = new Array<any>();
+  while (toreturn.length < n) {
+    // tslint:disable-next-line: insecure-random
+    const randomIdx = Math.floor(Math.random() * unselectedObjBowl.length); // btw 0 and length of in sequenceBowl
+    toreturn.push(unselectedObjBowl[randomIdx]);
+    unselectedObjBowl.splice(randomIdx, 1);
+  }
+
+  return toreturn;
+}
+
 export class UMAPTransciptionalContainer extends React.Component<
   IUMAPTranscriptionalContainerProps,
   IUMAPTranscriptionalContainerState
 > {
-  public static defaultProps = {};
+  public static defaultProps = {
+    numIterationsBeforeReRender: 1,
+    numSamplesToShow: 4000,
+  };
+
+  private subsampledIndicies: number[] = [];
+
+  constructor(props: IUMAPTranscriptionalContainerProps) {
+    super(props);
+    this.state = {
+      completeSampleAnnotations: {},
+      errorMessages: [],
+    };
+  }
+
+  public async componentDidMount() {
+    this.prepareData();
+  }
+
+  public async componentDidUpdate(
+    prevProps: IUMAPTranscriptionalContainerProps,
+    prevState: IUMAPTranscriptionalContainerState,
+  ) {
+    if (
+      prevProps.dataMatrix !== this.props.dataMatrix ||
+      prevProps.numSamplesToShow !== this.props.numSamplesToShow ||
+      prevProps.sampleNames !== this.props.sampleNames ||
+      prevProps.categoricalAnnotations !== this.props.categoricalAnnotations ||
+      prevProps.labelCategory !== this.props.labelCategory
+    ) {
+      this.prepareData(prevProps.categoricalAnnotations === this.props.categoricalAnnotations);
+    }
+  }
+
+  public render() {
+    const { dataMatrix, labelCategory, numIterationsBeforeReRender } = this.props;
+    const { completeSampleAnnotations, errorMessages } = this.state;
+
+    let dataLabels = new Array<ILabel | undefined>();
+    let subsampledSampleNames = new Array<string>();
+    let subsampledData = new Array<number[]>();
+
+    if (this.subsampledIndicies) {
+      subsampledData = this.subsampledIndicies.map(idx => dataMatrix[idx]);
+
+      if (labelCategory && completeSampleAnnotations && completeSampleAnnotations[labelCategory]) {
+        const labelAnnotations = completeSampleAnnotations[labelCategory];
+        dataLabels = this.subsampledIndicies.map(idx => {
+          return labelAnnotations[idx];
+        });
+        subsampledSampleNames = this.subsampledIndicies.map(idx => {
+          const sampleLabel = labelAnnotations[idx];
+
+          return sampleLabel ? sampleLabel.name : 'unannotated';
+        });
+      }
+    }
+
+    return (
+      <UMAPVisualization
+        dataLabels={dataLabels}
+        dataMatrix={subsampledData}
+        errorMessages={errorMessages}
+        tooltipNames={subsampledSampleNames}
+        numIterationsBeforeReRender={numIterationsBeforeReRender}
+      />
+    );
+  }
+
+  private prepareData(annotationsUnchanged: boolean = false) {
+    const { categoricalAnnotations, sampleNames, dataMatrix, numSamplesToShow } = this.props;
+    const {} = this.state;
+
+    // rudimentary error checking
+    const errorMessages = new Array<string>();
+    if (sampleNames && dataMatrix.length !== sampleNames.length) {
+      errorMessages.push(
+        `The ${sampleNames.length} sample names provided do not account for all ${dataMatrix.length} data matrix rows.`,
+      );
+    }
+    if (annotationsUnchanged === false && categoricalAnnotations) {
+      Object.keys(categoricalAnnotations).forEach(labelCategory => {
+        const category = categoricalAnnotations[labelCategory];
+        if (category.label_list.length !== dataMatrix.length) {
+          errorMessages.push(
+            `Label category ${labelCategory} does not provide labels for all ${dataMatrix.length} samples in the data matrix.`,
+          );
+        }
+      });
+    }
+
+    // auto generate marker properties if they are not explicitly set
+    let annotations = this.state.completeSampleAnnotations;
+    if (annotationsUnchanged === false) {
+      annotations = {};
+      if (categoricalAnnotations) {
+        Object.keys(categoricalAnnotations).forEach(catName => {
+          // build the annotations state object from the prop
+          const propLabelList = categoricalAnnotations[catName].label_list;
+          const propLabelColors = categoricalAnnotations[catName].label_colors;
+
+          let stateLabelStyles;
+          if (!propLabelColors || Object.keys(propLabelColors).length === 0) {
+            // auto generate styles for the labels
+            stateLabelStyles = Marker.colors.autoColorFromStates(propLabelList);
+          } else {
+            stateLabelStyles = propLabelList.map(labelName => {
+              if (propLabelColors[labelName]) {
+                return {
+                  color: propLabelColors[labelName],
+                  name: labelName,
+                };
+              }
+
+              return undefined;
+            });
+          }
+
+          annotations[catName] = stateLabelStyles;
+        });
+      }
+    }
+
+    // subsample data if needed
+    if (!this.subsampledIndicies || this.subsampledIndicies.length !== numSamplesToShow) {
+      this.subsampledIndicies = subsample(this.props.dataMatrix, numSamplesToShow, true) as number[];
+    }
+    this.setState({
+      completeSampleAnnotations: annotations,
+      errorMessages,
+    });
+  }
 }
 
 // tslint:disable-next-line: max-classes-per-file
 export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContainerProps, IUMAPSequenceContainerState> {
   public static defaultProps = {
-    initialLabelCategory: 'class',
+    labelCategory: 'class',
     numIterationsBeforeReRender: 1,
     numSequencesToShow: 2000,
   };
@@ -81,12 +268,17 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
   }
 
   public async componentDidMount() {
-    this.loadFiles();
+    this.prepareData();
   }
 
   public async componentDidUpdate(prevProps: IUMAPSequenceContainerProps, prevState: IUMAPSequenceContainerState) {
-    if (prevProps.taxonomyText !== this.props.taxonomyText || prevProps.allSequences !== this.props.allSequences) {
-      this.loadFiles();
+    if (
+      prevProps.allSequences !== this.props.allSequences ||
+      prevProps.numSequencesToShow !== this.props.numSequencesToShow ||
+      prevProps.labelCategory !== this.props.labelCategory ||
+      prevProps.taxonomyText !== this.props.taxonomyText
+    ) {
+      this.prepareData();
     }
   }
 
@@ -100,7 +292,7 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
       if (seqnameToTaxonomyMetadata) {
         const seqStates = subsampledSequences.map(seq => {
           if (seq.annotations.name && seqnameToTaxonomyMetadata[seq.annotations.name]) {
-            return seqnameToTaxonomyMetadata[seq.annotations.name][this.state.selectedLabelCategory];
+            return seqnameToTaxonomyMetadata[seq.annotations.name][this.state.labelCategory];
           }
 
           return undefined;
@@ -113,9 +305,10 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
         <UMAPVisualization
           dataLabels={dataLabels}
           dataMatrix={randomSequencesDataMatrix}
-          tooltipNames={tooltipNames}
-          numIterationsBeforeReRender={numIterationsBeforeReRender}
           distanceFn={this.equalityHammingDistance}
+          errorMessages={[]}
+          numIterationsBeforeReRender={numIterationsBeforeReRender}
+          tooltipNames={tooltipNames}
         />
       );
     }
@@ -123,7 +316,7 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
     return null;
   }
 
-  /*
+  /* testing
   public flipAnnotation() {
     const thisObj = this;
     const selectedCat = this.state.selectedLabelCategory;
@@ -142,8 +335,8 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
     }, 5000);
   }*/
 
-  private loadFiles() {
-    const { numSequencesToShow, initialLabelCategory } = this.props;
+  private prepareData() {
+    const { numSequencesToShow, labelCategory: labelCategory } = this.props;
 
     // load taxonomy
     if (this.props.taxonomyText) {
@@ -152,15 +345,18 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
     // load sequences
     console.log(`all ${this.props.allSequences.length} fasta sequences:`, this.props.allSequences);
 
-    // slice reasonable number of sequences
-    const subsampledSequences = SeqIO.getRandomSetOfSequences(this.props.allSequences, numSequencesToShow);
+    // slice reasonable number of sequences if needed
+    let subsampledSequences = this.state ? this.state.subsampledSequences : undefined;
+    if (!subsampledSequences || subsampledSequences.length !== numSequencesToShow) {
+      subsampledSequences = subsample(this.props.allSequences, numSequencesToShow);
+    }
     console.log(`random ${subsampledSequences.length} fasta sequences:`, subsampledSequences);
 
     this.setState({
+      labelCategory,
       randomSequencesDataMatrix: subsampledSequences.map(seq => {
         return seq.integerRepresntation(['-']);
       }),
-      selectedLabelCategory: initialLabelCategory,
       subsampledSequences,
     });
 
@@ -346,6 +542,9 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
 
   private executeUMAP() {
     const { dataMatrix, distanceFn } = this.props;
+
+    console.log('dataMatrix', dataMatrix);
+    console.log('distanceFn', distanceFn);
 
     // is this an update? if so, halt any previous executions
     clearTimeout(this.timeout1);
