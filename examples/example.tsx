@@ -26,8 +26,13 @@ import {
 } from '~bioblocks-viz~/helper';*/
 import { SeqIO, SEQUENCE_FILE_TYPES } from '~bioblocks-viz~/data/SeqIO';
 import { SeqRecord } from '~bioblocks-viz~/data/SeqRecord';
+import { fetchJSONFile, fetchMatrixData } from '~bioblocks-viz~/helper';
 import { BBStore } from '~bioblocks-viz~/reducer';
-import { UMAPSequenceContainer } from '~bioblocks-viz~/singlepage/UMAPVisualization';
+import {
+  ICategoricalAnnotation,
+  UMAPSequenceContainer,
+  UMAPTransciptionalContainer,
+} from '~bioblocks-viz~/singlepage/UMAPVisualization';
 
 export interface IExampleAppProps {
   style: Exclude<React.CSSProperties, 'height' | 'width'>;
@@ -39,6 +44,8 @@ export interface IExampleAppProps {
   // removeNonLockedResidues(): void;
   taxonomyFilename?: string;
   fastaFilename: string;
+  scRNAseqMatrixFilename: string;
+  scRNAseqCategoricalDataFilename: string;
 }
 
 export interface IExampleAppState {
@@ -49,6 +56,9 @@ export interface IExampleAppState {
   isLoading: boolean;
   taxonomyText?: string;
   allSequences: SeqRecord[];
+  scRNAseqMatrix: number[][];
+  scRNAseqCategoricalData: ICategoricalAnnotation;
+  scRNAseqCategorySelected: string;
   // measuredProximity: CONTACT_DISTANCE_PROXIMITY;
   // mismatches: IResidueMismatchResult[];
   // predictedProteins: BioblocksPDB[];
@@ -74,6 +84,10 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     // removeHoveredResidues: EMPTY_FUNCTION,
     // removeNonLockedResidues: EMPTY_FUNCTION,
     fastaFilename: 'datasets/betalactamase_alignment/PSE1_natural_top5K_subsample.a2m',
+    scRNAseqCategoricalDataFilename: 'datasets/tabula_muris/full/categorical_coloring_data.json',
+    // scRNAseqCategoricalDataFilename: 'datasets/hpc/full/categorical_coloring_data.json',
+    scRNAseqMatrixFilename: 'datasets/tabula_muris/full/tsne_matrix.csv',
+    // scRNAseqMatrixFilename: 'datasets/hpc/full/tsne_matrix.csv',
     style: {
       backgroundColor: '#ffffff',
     },
@@ -91,6 +105,9 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     // isDragHappening: false,
     allSequences: new Array<SeqRecord>(),
     isLoading: false,
+    scRNAseqCategoricalData: {},
+    scRNAseqCategorySelected: 'Sample', // 'Louvain cluster',
+    scRNAseqMatrix: new Array<number[]>(),
     taxonomyText: '',
     // measuredProximity: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
     // mismatches: [],
@@ -150,8 +167,13 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     if (this.props.taxonomyFilename) {
       taxonomyText = await (await fetch(this.props.taxonomyFilename)).text();
     }
+
     this.setState({
       allSequences: await fetchFastaFile(this.props.fastaFilename),
+      scRNAseqCategoricalData: (await fetchJSONFile(
+        this.props.scRNAseqCategoricalDataFilename,
+      )) as ICategoricalAnnotation,
+      scRNAseqMatrix: await fetchMatrixData(this.props.scRNAseqMatrixFilename),
       taxonomyText,
     });
   }
@@ -162,7 +184,20 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
         <meta name={'viewport'} content={'width=device-width, initial-scale=1'} />
         {/*{this.renderCouplingComponents()}*/}
         {/*<iframe sandbox="">*/}
-        <UMAPSequenceContainer allSequences={this.state.allSequences} taxonomyText={this.state.taxonomyText} />
+        <UMAPTransciptionalContainer
+          numSamplesToShow={5000}
+          numIterationsBeforeReRender={1}
+          categoricalAnnotations={this.state.scRNAseqCategoricalData}
+          labelCategory={this.state.scRNAseqCategorySelected}
+          sampleNames={undefined}
+          dataMatrix={this.state.scRNAseqMatrix}
+        />
+        {/*
+        <UMAPSequenceContainer
+          allSequences={this.state.allSequences}
+          taxonomyText={this.state.taxonomyText}
+          labelCategory={'class'}
+        />*/}
         {/*</iframe>*/}
         {/*<SpringContainer datasetsURI={'datasets'} />
         <TensorTContainer datasetLocation={'datasets/hpc/full'} />*/}
