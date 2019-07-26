@@ -35,6 +35,7 @@ exports[`ComponentDock Should match existing snapshot when given sample dock ite
     style={
       Object {
         "padding": 0,
+        "paddingTop": "3px",
       }
     }
   >
@@ -58,6 +59,7 @@ exports[`ComponentDock Should match existing snapshot when given sample dock ite
     style={
       Object {
         "padding": 0,
+        "paddingTop": "3px",
       }
     }
   >
