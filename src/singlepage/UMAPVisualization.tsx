@@ -5,9 +5,7 @@ import { UMAP } from 'umap-js';
 import { euclidean } from 'umap-js/dist/umap';
 
 import { ComponentCard, defaultPlotlyLayout, PlotlyChart } from '~bioblocks-viz~/component';
-import { ILabel, ILabelCategory } from '~bioblocks-viz~/data/Label';
-import { Marker } from '~bioblocks-viz~/data/Markers';
-import { SeqRecord } from '~bioblocks-viz~/data/SeqRecord';
+import { ILabel, Marker, SeqRecord } from '~bioblocks-viz~/data';
 
 export interface IUMAPSequenceContainerProps {
   // if the number of data points are too large, the container will randomly subsample points

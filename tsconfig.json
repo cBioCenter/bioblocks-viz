@@ -13,7 +13,6 @@
     "outDir": "./dist/",
     "paths": {
       "plotly.js/*": ["node_modules/@types/plotly.js"],
-      "~bioblocks-viz~": ["src/*"],
       "~bioblocks-viz~/*": ["src/*"],
       "~bioblocks-viz~/test": ["./test"],
       "jest": ["node_modules/@types/jest/index.d.ts"]
