@@ -110,11 +110,8 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     };
     this.renderTimeout = setTimeout(renderTimeout, 50);
     */
-
-    console.log(JSON.stringify(this.props.data));
     if (this.canvasRef && !this.plotlyCanvas) {
       const { data } = this.props;
-      console.log(JSON.stringify(data));
       // !Important! This is to make a DEEP COPY of the data because Plotly will modify it, thus causing false positive data updates.
       const immutableData = Immutable.fromJS(data) as Immutable.List<keyof IPlotlyData>;
       this.plotlyFormattedData = immutableData.toJS() as IPlotlyData[];
@@ -146,7 +143,6 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
    */
   public async componentDidUpdate(prevProps: IPlotlyChartProps) {
     const { data, layout, config } = this.props;
-    // console.log(JSON.stringify(data[0]));
     if (
       !isEqual(data[0], prevProps.data[0]) ||
       !isEqual(layout, prevProps.layout) ||

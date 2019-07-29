@@ -26,6 +26,7 @@ exports[`ComponentMenuBar Should handle an unknown menu item. 1`] = `
           Object {
             "margin": 0,
             "padding": 0,
+            "width": "auto",
           }
         }
       >
@@ -170,6 +171,7 @@ exports[`ComponentMenuBar Should match existing snapshot when expanded 1`] = `
           Object {
             "margin": 0,
             "padding": 0,
+            "width": "auto",
           }
         }
       >
@@ -235,6 +237,7 @@ exports[`ComponentMenuBar Should match existing snapshot when given default prop
           Object {
             "margin": 0,
             "padding": 0,
+            "width": "auto",
           }
         }
       >
@@ -300,6 +303,7 @@ exports[`ComponentMenuBar Should render a Button Group menu item. 1`] = `
           Object {
             "margin": 0,
             "padding": 0,
+            "width": "auto",
           }
         }
       >
@@ -487,6 +491,7 @@ exports[`ComponentMenuBar Should render a Button menu item with an icon. 1`] = `
           Object {
             "margin": 0,
             "padding": 0,
+            "width": "auto",
           }
         }
       >
@@ -641,6 +646,7 @@ exports[`ComponentMenuBar Should render a Button menu item. 1`] = `
           Object {
             "margin": 0,
             "padding": 0,
+            "width": "auto",
           }
         }
       >
@@ -791,6 +797,7 @@ exports[`ComponentMenuBar Should render a Checkbox menu item. 1`] = `
           Object {
             "margin": 0,
             "padding": 0,
+            "width": "auto",
           }
         }
       >
@@ -939,6 +946,7 @@ exports[`ComponentMenuBar Should render a Label menu item. 1`] = `
           Object {
             "margin": 0,
             "padding": 0,
+            "width": "auto",
           }
         }
       >
@@ -1088,6 +1096,7 @@ exports[`ComponentMenuBar Should render a Radio menu item. 1`] = `
           Object {
             "margin": 0,
             "padding": 0,
+            "width": "auto",
           }
         }
       >
@@ -1244,6 +1253,7 @@ exports[`ComponentMenuBar Should render a Range Slider menu item. 1`] = `
           Object {
             "margin": 0,
             "padding": 0,
+            "width": "auto",
           }
         }
       >
@@ -1410,6 +1420,7 @@ exports[`ComponentMenuBar Should render a Slider menu item. 1`] = `
           Object {
             "margin": 0,
             "padding": 0,
+            "width": "auto",
           }
         }
       >
@@ -1566,6 +1577,7 @@ exports[`ComponentMenuBar Should render popup menu items. 1`] = `
           Object {
             "margin": 0,
             "padding": 0,
+            "width": "auto",
           }
         }
       >

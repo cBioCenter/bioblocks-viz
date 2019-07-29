@@ -29,7 +29,7 @@ export interface IUMAPSequenceContainerProps {
 }
 export interface IUMAPSequenceContainerState {
   labelCategory: string;
-  seqnameToTaxonomyMetadata: {
+  seqNameToTaxonomyMetadata: {
     [seqName: string]: {
       [taxonomyCategory: string]: string;
     };
@@ -94,32 +94,32 @@ export interface IUMAPVisualizationState {
 /**
  * TODO: move to a math or array helper class
  *
- * Randomly select and return "n" objects or indicies (if returnIndicies==true) and return
+ * Randomly select and return "n" objects or indices (if returnIndices==true) and return
  * in a new array.
  *
- * If "n" is larger than the array, return the array directly or all the indicies in the
- * array (if returnIndicies==true).
+ * If "n" is larger than the array, return the array directly or all the indices in the
+ * array (if returnIndices==true).
  *
  * No duplicates are returned
  */
-export function subsample(arr: any[], n: number, returnIndicies: boolean = false): any[] {
-  const unselectedObjBowl = returnIndicies ? arr.map((obj, idx) => idx) : [...arr];
+export function subsample(arr: any[], n: number, returnIndices: boolean = false): any[] {
+  const unselectedObjBowl = returnIndices ? arr.map((obj, idx) => idx) : [...arr];
   if (n >= arr.length) {
     return unselectedObjBowl;
   }
 
-  const toreturn = new Array<any>();
-  while (toreturn.length < n) {
+  const toReturn = new Array<any>();
+  while (toReturn.length < n) {
     // tslint:disable-next-line: insecure-random
     const randomIdx = Math.floor(Math.random() * unselectedObjBowl.length); // btw 0 and length of in sequenceBowl
-    toreturn.push(unselectedObjBowl[randomIdx]);
+    toReturn.push(unselectedObjBowl[randomIdx]);
     unselectedObjBowl.splice(randomIdx, 1);
   }
 
-  return toreturn;
+  return toReturn;
 }
 
-export class UMAPTransciptionalContainer extends React.Component<
+export class UMAPTranscriptionalContainer extends React.Component<
   IUMAPTranscriptionalContainerProps,
   IUMAPTranscriptionalContainerState
 > {
@@ -128,7 +128,7 @@ export class UMAPTransciptionalContainer extends React.Component<
     numSamplesToShow: 4000,
   };
 
-  private subsampledIndicies: number[] = [];
+  private subsampledIndices = new Array<number>();
 
   constructor(props: IUMAPTranscriptionalContainerProps) {
     super(props);
@@ -153,6 +153,7 @@ export class UMAPTransciptionalContainer extends React.Component<
       prevProps.categoricalAnnotations !== this.props.categoricalAnnotations ||
       prevProps.labelCategory !== this.props.labelCategory
     ) {
+      console.log('UMAP T Preparing data');
       this.prepareData(prevProps.categoricalAnnotations === this.props.categoricalAnnotations);
     }
   }
@@ -163,17 +164,17 @@ export class UMAPTransciptionalContainer extends React.Component<
 
     let dataLabels = new Array<ILabel | undefined>();
     let subsampledSampleNames = new Array<string>();
-    let subsampledData = new Array<number[]>();
+    let subsampledData = new Array(new Array<number>());
 
-    if (this.subsampledIndicies) {
-      subsampledData = this.subsampledIndicies.map(idx => dataMatrix[idx]);
+    if (this.subsampledIndices.length > 0) {
+      subsampledData = this.subsampledIndices.map(idx => dataMatrix[idx]);
 
       if (labelCategory && completeSampleAnnotations && completeSampleAnnotations[labelCategory]) {
         const labelAnnotations = completeSampleAnnotations[labelCategory];
-        dataLabels = this.subsampledIndicies.map(idx => {
+        dataLabels = this.subsampledIndices.map(idx => {
           return labelAnnotations[idx];
         });
-        subsampledSampleNames = this.subsampledIndicies.map(idx => {
+        subsampledSampleNames = this.subsampledIndices.map(idx => {
           const sampleLabel = labelAnnotations[idx];
 
           return sampleLabel ? sampleLabel.name : 'unannotated';
@@ -247,8 +248,8 @@ export class UMAPTransciptionalContainer extends React.Component<
     }
 
     // subsample data if needed
-    if (!this.subsampledIndicies || this.subsampledIndicies.length !== numSamplesToShow) {
-      this.subsampledIndicies = subsample(this.props.dataMatrix, numSamplesToShow, true) as number[];
+    if (!this.subsampledIndices || this.subsampledIndices.length !== numSamplesToShow) {
+      this.subsampledIndices = subsample(this.props.dataMatrix, numSamplesToShow, true) as number[];
     }
     this.setState({
       completeSampleAnnotations: annotations,
@@ -267,6 +268,12 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
 
   constructor(props: IUMAPSequenceContainerProps) {
     super(props);
+    this.state = {
+      labelCategory: '',
+      randomSequencesDataMatrix: new Array(new Array<number>()),
+      seqNameToTaxonomyMetadata: {},
+      subsampledSequences: new Array(),
+    };
   }
 
   public async componentDidMount() {
@@ -287,14 +294,14 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
   public render() {
     const { numIterationsBeforeReRender } = this.props;
     if (this.state && this.state.subsampledSequences) {
-      const { seqnameToTaxonomyMetadata, subsampledSequences, randomSequencesDataMatrix } = this.state;
+      const { seqNameToTaxonomyMetadata, subsampledSequences, randomSequencesDataMatrix } = this.state;
       const tooltipNames = subsampledSequences.map(seq => (seq.annotations.name ? seq.annotations.name : ''));
 
       let dataLabels = new Array<ILabel | undefined>();
-      if (seqnameToTaxonomyMetadata) {
+      if (seqNameToTaxonomyMetadata) {
         const seqStates = subsampledSequences.map(seq => {
-          if (seq.annotations.name && seqnameToTaxonomyMetadata[seq.annotations.name]) {
-            return seqnameToTaxonomyMetadata[seq.annotations.name][this.state.labelCategory];
+          if (seq.annotations.name && seqNameToTaxonomyMetadata[seq.annotations.name]) {
+            return seqNameToTaxonomyMetadata[seq.annotations.name][this.state.labelCategory];
           }
 
           return undefined;
@@ -357,7 +364,7 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
     this.setState({
       labelCategory,
       randomSequencesDataMatrix: subsampledSequences.map(seq => {
-        return seq.integerRepresntation(['-']);
+        return seq.integerRepresentation(['-']);
       }),
       subsampledSequences,
     });
@@ -375,7 +382,7 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
 
           // const labelProperties = this.getClassPhylumLabelDescription(); // todo: auto compute
           this.setState({
-            seqnameToTaxonomyMetadata: results.data.reduce<{
+            seqNameToTaxonomyMetadata: results.data.reduce<{
               [seqName: string]: {};
             }>((acc, seqMetadata: { seq_name: string }) => {
               acc[seqMetadata.seq_name] = seqMetadata;
@@ -425,7 +432,7 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     this.state = {
       currentEpoch: undefined,
       totalNumberEpochs: undefined,
-      umapEmbedding: new Array<number[]>(),
+      umapEmbedding: new Array(new Array<number>()),
     };
   }
 

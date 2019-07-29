@@ -6,7 +6,7 @@
 
 Visualization components for use in [Human Cell Atlas](https://www.humancellatlas.org/) portals, such as with [Bioblocks](https://github.com/cBioCenter/bioblocks).
 
-Check out the [API Docs](https://cbiocenter.github.io/bioblocks-viz/docs/api/index.html), some [live examples](https://cbiocenter.github.io/bioblocks-viz/app.html), or even the [Contact Map](http://contactmap.org) site!
+Check out the [API Docs](https://cbiocenter.github.io/bioblocks-viz/docs/api/index.html), some [live examples](https://cbiocenter.github.io/bioblocks-viz/example.html), or even the [Contact Map](http://contactmap.org) site!
 
 ## Getting Started (For Development Use)
 

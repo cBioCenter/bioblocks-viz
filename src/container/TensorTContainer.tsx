@@ -111,7 +111,7 @@ export class TensorTContainerClass extends BioblocksVisualization<ITensorContain
         <ComponentCard componentName={TensorTContainerClass.displayName} iconSrc={iconSrc} isFullPage={isFullPage}>
           <Grid centered={true} style={{ height: '100%', marginLeft: 0, width: '100%' }}>
             {this.renderPlaybackControls()}
-            <Grid.Row stretched={true} style={{ height: '90%', margin: 0 }}>
+            <Grid.Row style={{ height: '100%', margin: 0 }}>
               <TensorTComponent onSelectedCallback={this.handlePointSelection} pointsToPlot={plotlyCoords} />
             </Grid.Row>
           </Grid>
@@ -286,7 +286,7 @@ export class TensorTContainerClass extends BioblocksVisualization<ITensorContain
 
   protected renderPlaybackControls = () => {
     return (
-      <Grid.Row columns={'equal'} style={{ maxHeight: '23px', padding: '7px 0 0 0' }}>
+      <Grid.Row columns={'equal'} style={{ maxHeight: '42px', padding: '14px 0 0 0' }}>
         <Grid.Column floated={'left'}>{this.renderIterateButton()}</Grid.Column>
         <Grid.Column>{this.renderIterateLabel()}</Grid.Column>
         <Grid.Column floated={'right'}>{this.renderResetButton()}</Grid.Column>

@@ -14088,9 +14088,9 @@ uglify-to-browserify@~1.0.0:
   integrity sha1-bgkk1r2mta/jSeOabWMoUKD4grc=
 
 umap-js@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/umap-js/-/umap-js-1.3.0.tgz#1aa3d63d5f6ce00272df7de23d40180d55ea344c"
-  integrity sha512-/H7ZD7aCoUh9xdxPty52qWiTq18lpKZELjUpzaqMBukwQlhC4oIosWbJyekKGeelDpfQWV791qWxwvpDTZ6F/w==
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/umap-js/-/umap-js-1.3.1.tgz#708a80c7d5a6fbe001ce2a95e1d4c5c5d037c0e6"
+  integrity sha512-jK+b+Mr/30bKRXZIwO2krgNcjkKMYquWmBpmmc7N+xtsXK81HCkKD21snQS/mNCh6jIh4Ru86QSEoB2NKk+Wig==
   dependencies:
     ml-levenberg-marquardt "^1.0.3"
 
