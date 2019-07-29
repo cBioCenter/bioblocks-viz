@@ -3,6 +3,7 @@ import { Grid } from 'semantic-ui-react';
 
 export interface IDockItem {
   text: string;
+  isLink?: boolean;
 
   /**
    * If present, calls function to determine if it is rendered.
@@ -51,14 +52,19 @@ export class ComponentDock extends React.Component<IComponentDockProps> {
     if (dockItem.isVisibleCb && dockItem.isVisibleCb() === false) {
       return null;
     }
+    const isLink = dockItem.isLink === undefined ? true : dockItem.isLink;
 
     return (
-      <Grid.Column key={`dock-item-${index}`} style={{ padding: 0 }}>
-        <div style={{ userSelect: 'none' }}>
-          <a aria-pressed={false} onClick={dockItem.onClick} role={'button'}>
-            {dockItem.text}
-          </a>
-        </div>
+      <Grid.Column key={`dock-item-${index}`} style={{ padding: 0, paddingTop: '3px' }}>
+        {isLink ? (
+          <div style={{ userSelect: 'none' }}>
+            <a aria-pressed={false} onClick={dockItem.onClick} role={'button'}>
+              {dockItem.text}
+            </a>
+          </div>
+        ) : (
+          <div>{dockItem.text}</div>
+        )}
       </Grid.Column>
     );
   };

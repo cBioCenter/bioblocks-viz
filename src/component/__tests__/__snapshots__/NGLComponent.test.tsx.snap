@@ -27,8 +27,8 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
   }
   frameHeight={0}
   frameWidth={0}
-  headerHeight={40}
-  height="570px"
+  headerHeight={20}
+  height="525px"
   iconSrc="assets/icons/spring-icon.png"
   isDataReady={false}
   isFramedComponent={false}

@@ -86,6 +86,8 @@ export interface IUMAPVisualizationProps {
 }
 
 export interface IUMAPVisualizationState {
+  currentEpoch: number | undefined;
+  totalNumberEpochs: number | undefined;
   umapEmbedding: number[][];
 }
 
@@ -428,6 +430,8 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
   constructor(props: IUMAPVisualizationProps) {
     super(props);
     this.state = {
+      currentEpoch: undefined,
+      totalNumberEpochs: undefined,
       umapEmbedding: new Array(new Array<number>()),
     };
   }
@@ -441,37 +445,6 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     if (this.props.distanceFn !== prevProps.distanceFn || this.props.dataMatrix !== prevProps.dataMatrix) {
       this.executeUMAP();
     }
-    /* // WORKING FOR UMAP scRNAseq dataset
-    const { numIterationsBeforeReRender } = this.props;
-
-    const data = await fetchMatrixData('datasets/hpc/full/tsne_matrix.csv');
-
-    const { numIterationsBeforeReRender } = this.props;
-    console.log(`UMAP got data (${data.length}, ${data[0].length})`);
-
-    const umap = new UMAP({ nComponents: 2 });
-    const nEpochs = umap.initializeFit(data);
-    console.log(`UMAP wants to do ${nEpochs} epochs`);
-
-    const stepUmapFn = (counter: number) => {
-      if (counter % numIterationsBeforeReRender === 0 && counter <= nEpochs) {
-        console.log(`UMAP on iteration ${counter}`);
-        const embedding = umap.getEmbedding();
-        this.setState({
-          twoDimensionalData: embedding,
-        });
-      }
-      umap.step();
-      if (counter <= nEpochs) {
-        setTimeout(() => {
-          stepUmapFn(counter + 1);
-        });
-      }
-    };
-
-    setTimeout(() => {
-      stepUmapFn(0);
-    });*/
   }
   public render() {
     const { tooltipNames, xRange, yRange } = this.props;
@@ -514,9 +487,18 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
       yRange[1] = Math.max(...dataY) + 5;
     }
 
+    let epochInfo: string | undefined;
+    if (this.state.totalNumberEpochs && this.state.currentEpoch) {
+      epochInfo = `epoch ${this.state.currentEpoch}/${this.state.totalNumberEpochs}`;
+    }
+
     return (
       <div>
-        <ComponentCard componentName={'UMAPVisualization'}>
+        <ComponentCard
+          componentName={'UMAP'}
+          isDataReady={epochInfo !== undefined}
+          dockItems={[{ text: epochInfo ? epochInfo : '', isLink: false }]}
+        >
           <PlotlyChart
             layout={{
               ...defaultPlotlyLayout,
@@ -540,7 +522,7 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
                 // z: dataZ,
               },
             ]}
-            showLoader={false}
+            showLoader={true}
           />
         </ComponentCard>
       </div>
@@ -572,7 +554,7 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
       console.log(`UMAP wants to do ${optimalNumberEpochs} epochs`);
 
       const stepUmapFn = (epochCounter: number) => {
-        if (epochCounter % this.props.numIterationsBeforeReRender === 0 && epochCounter <= optimalNumberEpochs) {
+        if (epochCounter % this.props.numIterationsBeforeReRender === 0 && epochCounter < optimalNumberEpochs) {
           if (epochCounter % 50 === 0) {
             console.log(`${epochCounter} :: ${(performance.now() - t0) / 1000} sec`);
           }
@@ -582,6 +564,8 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
           }
 
           this.setState({
+            currentEpoch: epochCounter + 1,
+            totalNumberEpochs: optimalNumberEpochs,
             umapEmbedding: embedding,
           });
         }

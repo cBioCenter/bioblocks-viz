@@ -2,7 +2,7 @@
 
 exports[`ContactMap Snapshots Should match existing snapshot when a single point are hovered. 1`] = `
 <ComponentCard
-  componentName="Contact Map"
+  componentName="tSNE - TensorFlow"
   dockItems={
     Array [
       Object {
@@ -14,8 +14,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
   }
   frameHeight={0}
   frameWidth={0}
-  headerHeight={40}
-  height="570px"
+  headerHeight={20}
+  height="525px"
   iconSrc="assets/icons/spring-icon.png"
   isDataReady={true}
   isFramedComponent={false}
@@ -261,7 +261,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
 
 exports[`ContactMap Snapshots Should match existing snapshot when given basic data. 1`] = `
 <ComponentCard
-  componentName="Contact Map"
+  componentName="tSNE - TensorFlow"
   dockItems={
     Array [
       Object {
@@ -273,8 +273,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
   }
   frameHeight={0}
   frameWidth={0}
-  headerHeight={40}
-  height="570px"
+  headerHeight={20}
+  height="525px"
   iconSrc="assets/icons/spring-icon.png"
   isDataReady={true}
   isFramedComponent={false}
@@ -512,7 +512,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
 
 exports[`ContactMap Snapshots Should match existing snapshot when given data with a PDB. 1`] = `
 <ComponentCard
-  componentName="Contact Map"
+  componentName="tSNE - TensorFlow"
   dockItems={
     Array [
       Object {
@@ -524,8 +524,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
   }
   frameHeight={0}
   frameWidth={0}
-  headerHeight={40}
-  height="570px"
+  headerHeight={20}
+  height="525px"
   iconSrc="assets/icons/spring-icon.png"
   isDataReady={true}
   isFramedComponent={false}
@@ -730,7 +730,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
 
 exports[`ContactMap Snapshots Should match existing snapshot when given data with amino acids. 1`] = `
 <ComponentCard
-  componentName="Contact Map"
+  componentName="tSNE - TensorFlow"
   dockItems={
     Array [
       Object {
@@ -742,8 +742,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
   }
   frameHeight={0}
   frameWidth={0}
-  headerHeight={40}
-  height="570px"
+  headerHeight={20}
+  height="525px"
   iconSrc="assets/icons/spring-icon.png"
   isDataReady={true}
   isFramedComponent={false}
@@ -948,7 +948,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
 
 exports[`ContactMap Snapshots Should match existing snapshot when given empty data. 1`] = `
 <ComponentCard
-  componentName="Contact Map"
+  componentName="tSNE - TensorFlow"
   dockItems={
     Array [
       Object {
@@ -960,8 +960,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
   }
   frameHeight={0}
   frameWidth={0}
-  headerHeight={40}
-  height="570px"
+  headerHeight={20}
+  height="525px"
   iconSrc="assets/icons/spring-icon.png"
   isDataReady={false}
   isFramedComponent={false}
@@ -1156,7 +1156,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
 
 exports[`ContactMap Snapshots Should match existing snapshot when given no data. 1`] = `
 <ComponentCard
-  componentName="Contact Map"
+  componentName="tSNE - TensorFlow"
   dockItems={
     Array [
       Object {
@@ -1168,8 +1168,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
   }
   frameHeight={0}
   frameWidth={0}
-  headerHeight={40}
-  height="570px"
+  headerHeight={20}
+  height="525px"
   iconSrc="assets/icons/spring-icon.png"
   isDataReady={false}
   isFramedComponent={false}
@@ -1364,7 +1364,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
 
 exports[`ContactMap Snapshots Should match existing snapshot when multiple points are hovered. 1`] = `
 <ComponentCard
-  componentName="Contact Map"
+  componentName="tSNE - TensorFlow"
   dockItems={
     Array [
       Object {
@@ -1376,8 +1376,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
   }
   frameHeight={0}
   frameWidth={0}
-  headerHeight={40}
-  height="570px"
+  headerHeight={20}
+  height="525px"
   iconSrc="assets/icons/spring-icon.png"
   isDataReady={true}
   isFramedComponent={false}
@@ -1623,7 +1623,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
 
 exports[`ContactMap Snapshots Should match existing snapshot when multiple points are selected. 1`] = `
 <ComponentCard
-  componentName="Contact Map"
+  componentName="tSNE - TensorFlow"
   dockItems={
     Array [
       Object {
@@ -1635,8 +1635,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
   }
   frameHeight={0}
   frameWidth={0}
-  headerHeight={40}
-  height="570px"
+  headerHeight={20}
+  height="525px"
   iconSrc="assets/icons/spring-icon.png"
   isDataReady={true}
   isFramedComponent={false}
@@ -2352,7 +2352,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
   width="100%"
 >
   <ComponentCard
-    componentName="Contact Map"
+    componentName="tSNE - TensorFlow"
     dockItems={
       Array [
         Object {
@@ -2364,8 +2364,8 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
     }
     frameHeight={0}
     frameWidth={0}
-    headerHeight={40}
-    height="570px"
+    headerHeight={20}
+    height="525px"
     iconSrc="assets/icons/spring-icon.png"
     isDataReady={true}
     isFramedComponent={false}
@@ -2487,8 +2487,9 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       className="bioblocks-component-card"
       style={
         Object {
-          "height": "570px",
+          "height": "530.25px",
           "maxWidth": "unset",
+          "padding": "0 0 5px 5px",
           "width": "525px",
         }
       }
@@ -2498,8 +2499,9 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         onClick={[Function]}
         style={
           Object {
-            "height": "570px",
+            "height": "530.25px",
             "maxWidth": "unset",
+            "padding": "0 0 5px 5px",
             "width": "525px",
           }
         }
@@ -2512,8 +2514,8 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           }
         >
           <ComponentMenuBar
-            componentName="Contact Map"
-            height={40}
+            componentName="tSNE - TensorFlow"
+            height={20}
             iconSrc="assets/icons/spring-icon.png"
             isExpanded={false}
             menuItems={
@@ -2636,7 +2638,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 secondary={true}
                 style={
                   Object {
-                    "height": 40,
+                    "height": 20,
                     "margin": 0,
                   }
                 }
@@ -2646,7 +2648,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   className="ui secondary two item menu"
                   style={
                     Object {
-                      "height": 40,
+                      "height": 20,
                       "margin": 0,
                     }
                   }
@@ -2665,6 +2667,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                           Object {
                             "margin": 0,
                             "padding": 0,
+                            "width": "auto",
                           }
                         }
                       >
@@ -2675,6 +2678,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                             Object {
                               "margin": 0,
                               "padding": 0,
+                              "width": "auto",
                             }
                           }
                         >
@@ -2689,7 +2693,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                               }
                             }
                           />
-                          Contact Map
+                          tSNE - TensorFlow
                         </div>
                       </MenuItem>
                     </div>
@@ -2703,7 +2707,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                     >
                       <MenuItem
                         fitted="horizontally"
-                        key="Contact Map-menu-item-0"
+                        key="tSNE - TensorFlow-menu-item-0"
                         position="right"
                         style={
                           Object {
@@ -2820,7 +2824,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       </MenuItem>
                       <MenuItem
                         fitted="horizontally"
-                        key="Contact Map-menu-item-1"
+                        key="tSNE - TensorFlow-menu-item-1"
                         position="right"
                         style={
                           Object {
@@ -2987,6 +2991,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           style={
             Object {
               "height": "91%",
+              "width": "100%",
             }
           }
         >

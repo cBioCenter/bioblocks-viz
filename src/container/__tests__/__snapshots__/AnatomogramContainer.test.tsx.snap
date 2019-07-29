@@ -20,8 +20,8 @@ exports[`AnatomogramContainer Should match existing snapshot for homo sapiens. 1
       dockItems={Array []}
       frameHeight={0}
       frameWidth={0}
-      headerHeight={40}
-      height="570px"
+      headerHeight={20}
+      height="525px"
       iconSrc="assets/icons/spring-icon.png"
       isDataReady={false}
       isFramedComponent={false}
@@ -85,8 +85,8 @@ exports[`AnatomogramContainer Should match existing snapshot for mus musculus. 1
       dockItems={Array []}
       frameHeight={0}
       frameWidth={0}
-      headerHeight={40}
-      height="570px"
+      headerHeight={20}
+      height="525px"
       iconSrc="assets/icons/spring-icon.png"
       isDataReady={false}
       isFramedComponent={false}

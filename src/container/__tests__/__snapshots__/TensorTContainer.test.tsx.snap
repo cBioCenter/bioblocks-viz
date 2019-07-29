@@ -17,8 +17,8 @@ exports[`TensorTContainer Should match existing snapshot when given no props. 1`
     dockItems={Array []}
     frameHeight={0}
     frameWidth={0}
-    headerHeight={40}
-    height="570px"
+    headerHeight={20}
+    height="525px"
     iconSrc="assets/icons/spring-icon.png"
     isDataReady={false}
     isFramedComponent={false}
@@ -42,8 +42,8 @@ exports[`TensorTContainer Should match existing snapshot when given no props. 1`
         columns="equal"
         style={
           Object {
-            "maxHeight": "23px",
-            "padding": "7px 0 0 0",
+            "maxHeight": "42px",
+            "padding": "14px 0 0 0",
           }
         }
       >
@@ -84,10 +84,9 @@ exports[`TensorTContainer Should match existing snapshot when given no props. 1`
         </GridColumn>
       </GridRow>
       <GridRow
-        stretched={true}
         style={
           Object {
-            "height": "90%",
+            "height": "100%",
             "margin": 0,
           }
         }
@@ -119,8 +118,8 @@ exports[`TensorTContainer Should match existing snapshot when given sample data.
     dockItems={Array []}
     frameHeight={0}
     frameWidth={0}
-    headerHeight={40}
-    height="570px"
+    headerHeight={20}
+    height="525px"
     iconSrc="assets/icons/spring-icon.png"
     isDataReady={false}
     isFramedComponent={false}
@@ -144,8 +143,8 @@ exports[`TensorTContainer Should match existing snapshot when given sample data.
         columns="equal"
         style={
           Object {
-            "maxHeight": "23px",
-            "padding": "7px 0 0 0",
+            "maxHeight": "42px",
+            "padding": "14px 0 0 0",
           }
         }
       >
@@ -186,10 +185,9 @@ exports[`TensorTContainer Should match existing snapshot when given sample data.
         </GridColumn>
       </GridRow>
       <GridRow
-        stretched={true}
         style={
           Object {
-            "height": "90%",
+            "height": "100%",
             "margin": 0,
           }
         }
