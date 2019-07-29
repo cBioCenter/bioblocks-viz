@@ -33,7 +33,7 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     frameWidth: 0,
     headerHeight: 20,
     height: '525px',
-    iconSrc: 'assets/icons/spring-icon.png',
+    iconSrc: 'https://bioblocks.org/media/5d3f528028d9720a3428e4b2',
     isDataReady: false,
     isFramedComponent: false,
     isFullPage: false,
