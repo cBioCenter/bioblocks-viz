@@ -16,7 +16,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
   frameWidth={0}
   headerHeight={20}
   height="525px"
-  iconSrc="assets/icons/spring-icon.png"
+  iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
   isDataReady={true}
   isFramedComponent={false}
   isFullPage={false}
@@ -275,7 +275,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
   frameWidth={0}
   headerHeight={20}
   height="525px"
-  iconSrc="assets/icons/spring-icon.png"
+  iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
   isDataReady={true}
   isFramedComponent={false}
   isFullPage={false}
@@ -526,7 +526,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
   frameWidth={0}
   headerHeight={20}
   height="525px"
-  iconSrc="assets/icons/spring-icon.png"
+  iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
   isDataReady={true}
   isFramedComponent={false}
   isFullPage={false}
@@ -744,7 +744,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
   frameWidth={0}
   headerHeight={20}
   height="525px"
-  iconSrc="assets/icons/spring-icon.png"
+  iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
   isDataReady={true}
   isFramedComponent={false}
   isFullPage={false}
@@ -962,7 +962,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
   frameWidth={0}
   headerHeight={20}
   height="525px"
-  iconSrc="assets/icons/spring-icon.png"
+  iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
   isDataReady={false}
   isFramedComponent={false}
   isFullPage={false}
@@ -1170,7 +1170,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
   frameWidth={0}
   headerHeight={20}
   height="525px"
-  iconSrc="assets/icons/spring-icon.png"
+  iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
   isDataReady={false}
   isFramedComponent={false}
   isFullPage={false}
@@ -1378,7 +1378,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
   frameWidth={0}
   headerHeight={20}
   height="525px"
-  iconSrc="assets/icons/spring-icon.png"
+  iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
   isDataReady={true}
   isFramedComponent={false}
   isFullPage={false}
@@ -1637,7 +1637,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
   frameWidth={0}
   headerHeight={20}
   height="525px"
-  iconSrc="assets/icons/spring-icon.png"
+  iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
   isDataReady={true}
   isFramedComponent={false}
   isFullPage={false}
@@ -2366,7 +2366,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
     frameWidth={0}
     headerHeight={20}
     height="525px"
-    iconSrc="assets/icons/spring-icon.png"
+    iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
     isDataReady={true}
     isFramedComponent={false}
     isFullPage={false}
@@ -2516,7 +2516,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           <ComponentMenuBar
             componentName="tSNE - TensorFlow"
             height={20}
-            iconSrc="assets/icons/spring-icon.png"
+            iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
             isExpanded={false}
             menuItems={
               Array [
@@ -2684,7 +2684,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         >
                           <img
                             alt="component icon"
-                            src="assets/icons/spring-icon.png"
+                            src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                             style={
                               Object {
                                 "height": "32px",

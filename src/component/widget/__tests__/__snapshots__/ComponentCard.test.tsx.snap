@@ -8,7 +8,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
   frameWidth={0}
   headerHeight={20}
   height="525px"
-  iconSrc="assets/icons/spring-icon.png"
+  iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
   isDataReady={false}
   isFramedComponent={true}
   isFullPage={false}
@@ -73,7 +73,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                         >
                           <img
                             alt="component icon"
-                            src="assets/icons/spring-icon.png"
+                            src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                             style="height: 32px; padding: 2px; width: 32px;"
                           />
                           Let's
@@ -158,7 +158,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                           >
                             <img
                               alt="component icon"
-                              src="assets/icons/spring-icon.png"
+                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                               style="height: 32px; padding: 2px; width: 32px;"
                             />
                             Let's
@@ -238,7 +238,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                           >
                             <img
                               alt="component icon"
-                              src="assets/icons/spring-icon.png"
+                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                               style="height: 32px; padding: 2px; width: 32px;"
                             />
                             Let's
@@ -322,7 +322,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                             >
                               <img
                                 alt="component icon"
-                                src="assets/icons/spring-icon.png"
+                                src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                                 style="height: 32px; padding: 2px; width: 32px;"
                               />
                               Let's
@@ -406,7 +406,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                                   >
                                     <img
                                       alt="component icon"
-                                      src="assets/icons/spring-icon.png"
+                                      src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                                       style="height: 32px; padding: 2px; width: 32px;"
                                     />
                                     Let's
@@ -480,7 +480,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                                     >
                                       <img
                                         alt="component icon"
-                                        src="assets/icons/spring-icon.png"
+                                        src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                                         style="height: 32px; padding: 2px; width: 32px;"
                                       />
                                       Let's
@@ -573,7 +573,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                             <ComponentMenuBar
                               componentName="Let's"
                               height={20}
-                              iconSrc="assets/icons/spring-icon.png"
+                              iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                               isExpanded={true}
                               menuItems={Array []}
                               onExpandToggleCb={[Function]}
@@ -634,7 +634,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                                           >
                                             <img
                                               alt="component icon"
-                                              src="assets/icons/spring-icon.png"
+                                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                                               style={
                                                 Object {
                                                   "height": "32px",
@@ -776,7 +776,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                           >
                             <img
                               alt="component icon"
-                              src="assets/icons/spring-icon.png"
+                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                               style="height: 32px; padding: 2px; width: 32px;"
                             />
                             Let's
@@ -858,7 +858,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                           >
                             <img
                               alt="component icon"
-                              src="assets/icons/spring-icon.png"
+                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                               style="height: 32px; padding: 2px; width: 32px;"
                             />
                             Let's
@@ -936,7 +936,7 @@ exports[`ComponentCard Should handle expanding a framed full page component. 1`]
   frameWidth={0}
   headerHeight={20}
   height="525px"
-  iconSrc="assets/icons/spring-icon.png"
+  iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
   isDataReady={false}
   isFramedComponent={true}
   isFullPage={true}
@@ -979,7 +979,7 @@ exports[`ComponentCard Should handle expanding a framed full page component. 1`]
         <ComponentMenuBar
           componentName="Let's"
           height={20}
-          iconSrc="assets/icons/spring-icon.png"
+          iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
           isExpanded={false}
           menuItems={Array []}
           onExpandToggleCb={[Function]}
@@ -1040,7 +1040,7 @@ exports[`ComponentCard Should handle expanding a framed full page component. 1`]
                       >
                         <img
                           alt="component icon"
-                          src="assets/icons/spring-icon.png"
+                          src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                           style={
                             Object {
                               "height": "32px",
@@ -1150,7 +1150,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
   frameWidth={0}
   headerHeight={20}
   height="525px"
-  iconSrc="assets/icons/spring-icon.png"
+  iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
   isDataReady={false}
   isFramedComponent={false}
   isFullPage={false}
@@ -1215,7 +1215,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                         >
                           <img
                             alt="component icon"
-                            src="assets/icons/spring-icon.png"
+                            src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                             style="height: 32px; padding: 2px; width: 32px;"
                           />
                           Let's
@@ -1288,7 +1288,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                         >
                           <img
                             alt="component icon"
-                            src="assets/icons/spring-icon.png"
+                            src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                             style="height: 32px; padding: 2px; width: 32px;"
                           />
                           Let's
@@ -1369,7 +1369,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                           >
                             <img
                               alt="component icon"
-                              src="assets/icons/spring-icon.png"
+                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                               style="height: 32px; padding: 2px; width: 32px;"
                             />
                             Let's
@@ -1445,7 +1445,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                           >
                             <img
                               alt="component icon"
-                              src="assets/icons/spring-icon.png"
+                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                               style="height: 32px; padding: 2px; width: 32px;"
                             />
                             Let's
@@ -1518,7 +1518,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                           >
                             <img
                               alt="component icon"
-                              src="assets/icons/spring-icon.png"
+                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                               style="height: 32px; padding: 2px; width: 32px;"
                             />
                             Let's
@@ -1598,7 +1598,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                             >
                               <img
                                 alt="component icon"
-                                src="assets/icons/spring-icon.png"
+                                src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                                 style="height: 32px; padding: 2px; width: 32px;"
                               />
                               Let's
@@ -1671,7 +1671,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                             >
                               <img
                                 alt="component icon"
-                                src="assets/icons/spring-icon.png"
+                                src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                                 style="height: 32px; padding: 2px; width: 32px;"
                               />
                               Let's
@@ -1751,7 +1751,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                                   >
                                     <img
                                       alt="component icon"
-                                      src="assets/icons/spring-icon.png"
+                                      src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                                       style="height: 32px; padding: 2px; width: 32px;"
                                     />
                                     Let's
@@ -1821,7 +1821,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                                     >
                                       <img
                                         alt="component icon"
-                                        src="assets/icons/spring-icon.png"
+                                        src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                                         style="height: 32px; padding: 2px; width: 32px;"
                                       />
                                       Let's
@@ -1910,7 +1910,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                             <ComponentMenuBar
                               componentName="Let's"
                               height={20}
-                              iconSrc="assets/icons/spring-icon.png"
+                              iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                               isExpanded={true}
                               menuItems={Array []}
                               onExpandToggleCb={[Function]}
@@ -1971,7 +1971,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                                           >
                                             <img
                                               alt="component icon"
-                                              src="assets/icons/spring-icon.png"
+                                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                                               style={
                                                 Object {
                                                   "height": "32px",
@@ -2104,7 +2104,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                           >
                             <img
                               alt="component icon"
-                              src="assets/icons/spring-icon.png"
+                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                               style="height: 32px; padding: 2px; width: 32px;"
                             />
                             Let's
@@ -2182,7 +2182,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                           >
                             <img
                               alt="component icon"
-                              src="assets/icons/spring-icon.png"
+                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                               style="height: 32px; padding: 2px; width: 32px;"
                             />
                             Let's
@@ -2256,7 +2256,7 @@ exports[`ComponentCard Should handle expanding a non-framed full page component.
   frameWidth={0}
   headerHeight={20}
   height="525px"
-  iconSrc="assets/icons/spring-icon.png"
+  iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
   isDataReady={false}
   isFramedComponent={false}
   isFullPage={true}
@@ -2299,7 +2299,7 @@ exports[`ComponentCard Should handle expanding a non-framed full page component.
         <ComponentMenuBar
           componentName="Let's"
           height={20}
-          iconSrc="assets/icons/spring-icon.png"
+          iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
           isExpanded={false}
           menuItems={Array []}
           onExpandToggleCb={[Function]}
@@ -2360,7 +2360,7 @@ exports[`ComponentCard Should handle expanding a non-framed full page component.
                       >
                         <img
                           alt="component icon"
-                          src="assets/icons/spring-icon.png"
+                          src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                           style={
                             Object {
                               "height": "32px",
@@ -2461,7 +2461,7 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
   frameWidth={0}
   headerHeight={20}
   height="525px"
-  iconSrc="assets/icons/spring-icon.png"
+  iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
   isDataReady={false}
   isFramedComponent={true}
   isFullPage={false}
@@ -2504,7 +2504,7 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
         <ComponentMenuBar
           componentName="Let's"
           height={20}
-          iconSrc="assets/icons/spring-icon.png"
+          iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
           isExpanded={false}
           menuItems={Array []}
           onExpandToggleCb={[Function]}
@@ -2565,7 +2565,7 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
                       >
                         <img
                           alt="component icon"
-                          src="assets/icons/spring-icon.png"
+                          src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                           style={
                             Object {
                               "height": "32px",
@@ -2690,7 +2690,7 @@ exports[`ComponentCard Should match existing snapshot when framed. 1`] = `
     <ComponentMenuBar
       componentName="The Boxer"
       height={20}
-      iconSrc="assets/icons/spring-icon.png"
+      iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
       isExpanded={false}
       menuItems={Array []}
       onExpandToggleCb={[Function]}
@@ -2747,7 +2747,7 @@ exports[`ComponentCard Should match existing snapshot when given default props. 
     <ComponentMenuBar
       componentName="The Boxer"
       height={20}
-      iconSrc="assets/icons/spring-icon.png"
+      iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
       isExpanded={false}
       menuItems={Array []}
       onExpandToggleCb={[Function]}
@@ -2796,7 +2796,7 @@ exports[`ComponentCard Should match existing snapshot when not framed. 1`] = `
     <ComponentMenuBar
       componentName="The Boxer"
       height={20}
-      iconSrc="assets/icons/spring-icon.png"
+      iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
       isExpanded={false}
       menuItems={Array []}
       onExpandToggleCb={[Function]}
