@@ -136,11 +136,11 @@ export class UMAPTranscriptionalContainer extends React.Component<
     };
   }
 
-  public async componentDidMount() {
+  public componentDidMount() {
     this.prepareData();
   }
 
-  public async componentDidUpdate(
+  public componentDidUpdate(
     prevProps: IUMAPTranscriptionalContainerProps,
     prevState: IUMAPTranscriptionalContainerState,
   ) {
@@ -274,11 +274,11 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
     };
   }
 
-  public async componentDidMount() {
+  public componentDidMount() {
     this.prepareData();
   }
 
-  public async componentDidUpdate(prevProps: IUMAPSequenceContainerProps, prevState: IUMAPSequenceContainerState) {
+  public componentDidUpdate(prevProps: IUMAPSequenceContainerProps, prevState: IUMAPSequenceContainerState) {
     if (
       prevProps.allSequences !== this.props.allSequences ||
       prevProps.numSequencesToShow !== this.props.numSequencesToShow ||
@@ -434,12 +434,12 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     };
   }
 
-  public async componentDidMount() {
+  public componentDidMount() {
     this.executeUMAP();
   }
 
   // tslint:disable-next-line: max-func-body-length
-  public async componentDidUpdate(prevProps: IUMAPVisualizationProps, prevState: IUMAPVisualizationState) {
+  public componentDidUpdate(prevProps: IUMAPVisualizationProps, prevState: IUMAPVisualizationState) {
     if (this.props.distanceFn !== prevProps.distanceFn || this.props.dataMatrix !== prevProps.dataMatrix) {
       this.executeUMAP();
     }
