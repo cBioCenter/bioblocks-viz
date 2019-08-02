@@ -22,7 +22,7 @@ export class Marker {
       states: Array<string | undefined>,
       colorSet: string[] = Marker.colorSets.colorBrewer,
     ): Array<ILabel | undefined> {
-      const stateStatecount = states.reduce<{ [statename: string]: number }>((acc, state) => {
+      const stateCounts = states.reduce<{ [state: string]: number }>((acc, state) => {
         if (state) {
           if (!acc[state]) {
             acc[state] = 0;
@@ -33,17 +33,13 @@ export class Marker {
         return acc;
       }, {});
 
-      const sortedStateCountTuple = Object.entries(stateStatecount)
-        .sort((a, b) => {
-          if (a[1] === b[1]) {
-            // trick to only reorder those with different count values
-            // (otherwise reverse flips the final order)
-            return -1;
-          }
+      const sortedStateCountTuple = Object.entries(stateCounts).sort((a, b) => {
+        if (a[1] === b[1]) {
+          return 0;
+        }
 
-          return a[1] - b[1];
-        })
-        .reverse();
+        return a[1] > b[1] ? -1 : 1;
+      });
 
       const stateToColor = sortedStateCountTuple.reduce<{ [state: string]: ILabel | undefined }>(
         (acc, stateCountTuple, idx) => {
