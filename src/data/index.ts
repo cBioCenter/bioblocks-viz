@@ -1,4 +1,5 @@
 export * from './AminoAcid';
+export * from './Nucleotide';
 export * from './AnatomogramMapping';
 export * from './Bioblocks1DSection';
 export * from './BioblocksConfig';
@@ -10,7 +11,6 @@ export * from './Dataset';
 export * from './IUPACData';
 export * from './Label';
 export * from './Markers';
-export * from './Nucleotide';
 export * from './PfamProtein';
 export * from './PlotlyData';
 export * from './Protein';

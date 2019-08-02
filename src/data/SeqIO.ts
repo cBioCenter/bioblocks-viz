@@ -1,7 +1,7 @@
 import { ALPHABET, Seq, SeqRecord } from '~bioblocks-viz~/data/';
 
-export const enum SEQUENCE_FILE_TYPES {
-  'fasta',
+export enum SEQUENCE_FILE_TYPES {
+  'fasta' = 'fasta',
   // 'fastq'
 }
 
@@ -42,8 +42,8 @@ export class SeqIO {
               sequence: '',
             });
           } else if (accumulator.length > 0) {
-            const sequnceOnLine = trimmedLine.replace(/\./g, '-');
-            accumulator[accumulator.length - 1].sequence += sequnceOnLine;
+            const sequenceOnLine = trimmedLine.replace(/\./g, '-');
+            accumulator[accumulator.length - 1].sequence += sequenceOnLine;
           }
         }
 

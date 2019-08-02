@@ -417,6 +417,7 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
 export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, IUMAPVisualizationState> {
   public static defaultProps = {
     distanceFn: euclidean,
+    errorMessages: [],
     numIterationsBeforeReRender: 1,
     xRange: [-20, 20],
     yRange: [-20, 20],

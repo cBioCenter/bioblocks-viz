@@ -9,10 +9,10 @@ import {
   unambiguousRnaLetters,
 } from '~bioblocks-viz~/data/';
 
-export const enum ALPHABET {
-  'generic_dna',
-  'generic_rna',
-  'generic_protein',
+export enum ALPHABET {
+  'generic_dna' = 'generic_dna',
+  'generic_rna' = 'generic_rna',
+  'generic_protein' = 'generic_protein',
 }
 
 /**
