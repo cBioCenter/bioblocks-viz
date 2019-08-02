@@ -6,19 +6,19 @@ describe('Marker', () => {
   });
 
   it('Should return color-brewer colors for a small set of data.', () => {
-    const state = ['ala', 'glu'];
+    const state = ['ala', 'val'];
     expect(Marker.colors.autoColorFromStates(state)).toEqual([
       { color: '#66c2a5', name: 'ala' },
-      { color: '#fc8d62', name: 'glu' },
+      { color: '#fc8d62', name: 'val' },
     ]);
   });
 
   it('Should sort color-brewer colors when different counts are detected.', () => {
-    const state = ['ala', 'ala', 'glu'];
+    const state = ['ala', 'ala', 'val'];
     expect(Marker.colors.autoColorFromStates(state)).toEqual([
       { color: '#66c2a5', name: 'ala' },
       { color: '#66c2a5', name: 'ala' },
-      { color: '#fc8d62', name: 'glu' },
+      { color: '#fc8d62', name: 'val' },
     ]);
   });
 });
