@@ -35,9 +35,13 @@ export class Marker {
 
       const sortedStateCountTuple = Object.entries(stateCounts)
         .sort((a, b) => {
-          // trick to only reorder those with different count values
-          // (otherwise reverse flips the final order)
-          return a[1] === b[1] ? -1 : 0;
+          if (a[1] === b[1]) {
+            // trick to only reorder those with different count values
+            // (otherwise reverse flips the final order)
+            return -1;
+          }
+
+          return a[1] - b[1];
         })
         .reverse();
 
