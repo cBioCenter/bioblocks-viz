@@ -7,7 +7,7 @@ import { euclidean } from 'umap-js/dist/umap';
 import { ComponentCard, defaultPlotlyLayout, PlotlyChart } from '~bioblocks-viz~/component';
 import { ILabel, Marker, SeqRecord } from '~bioblocks-viz~/data';
 
-export interface IUMAPSequenceContainerProps {
+export interface IUMAPSequenceContainerProps extends Partial<IUMAPVisualizationProps> {
   // if the number of data points are too large, the container will randomly subsample points
   numSequencesToShow: number;
   numIterationsBeforeReRender: number;
@@ -45,19 +45,18 @@ export interface ICategoricalAnnotation {
   };
 }
 
-export interface IUMAPTranscriptionalContainerProps {
-  // if the number of data points are too large, the container will randomly subsample points
-  numSamplesToShow: number;
-  numIterationsBeforeReRender: number;
-  categoricalAnnotations?: ICategoricalAnnotation;
-  labelCategory?: string;
+export type IUMAPTranscriptionalContainerProps = Required<
+  Pick<IUMAPVisualizationProps, 'dataMatrix' | 'numIterationsBeforeReRender'>
+> &
+  Partial<IUMAPVisualizationProps> & {
+    // if the number of data points are too large, the container will randomly subsample points
+    numSamplesToShow: number;
+    categoricalAnnotations?: ICategoricalAnnotation;
+    labelCategory?: string;
 
-  // names of the samples (will be displayed in tooltip)
-  sampleNames?: string[];
-
-  // the data to display (will be subsampled) - if sampleNames are provided sampleNames.length must equal dataMatrix.length
-  dataMatrix: number[][];
-}
+    // names of the samples (will be displayed in tooltip)
+    sampleNames?: string[];
+  };
 
 export interface IUMAPTranscriptionalContainerState {
   // completeSampleAnnotations: ILabelCategory2;
@@ -71,6 +70,7 @@ export interface IUMAPTranscriptionalContainerState {
 export type DISTANCE_FN_TYPE = (arg1: number[], arg2: number[]) => number;
 
 export interface IUMAPVisualizationProps {
+  // the data to display (will be subsampled) - if sampleNames are provided sampleNames.length must equal dataMatrix.length
   dataMatrix: number[][];
   dataLabels?: Array<ILabel | undefined>;
   numIterationsBeforeReRender: number;
@@ -81,6 +81,8 @@ export interface IUMAPVisualizationProps {
   // the initial min/max of the x-axis and y-axis. If null, will be set from data.
   xRange: number[];
   yRange: number[];
+
+  iconSrc?: string;
 }
 
 export interface IUMAPVisualizationState {
@@ -157,7 +159,7 @@ export class UMAPTranscriptionalContainer extends React.Component<
   }
 
   public render() {
-    const { dataMatrix, labelCategory, numIterationsBeforeReRender } = this.props;
+    const { dataMatrix, labelCategory, numIterationsBeforeReRender, ...rest } = this.props;
     const { completeSampleAnnotations, errorMessages } = this.state;
 
     let dataLabels = new Array<ILabel | undefined>();
@@ -187,6 +189,7 @@ export class UMAPTranscriptionalContainer extends React.Component<
         errorMessages={errorMessages}
         tooltipNames={subsampledSampleNames}
         numIterationsBeforeReRender={numIterationsBeforeReRender}
+        {...rest}
       />
     );
   }
@@ -290,16 +293,16 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
   }
 
   public render() {
-    const { numIterationsBeforeReRender } = this.props;
-    if (this.state && this.state.subsampledSequences) {
-      const { seqNameToTaxonomyMetadata, subsampledSequences, randomSequencesDataMatrix } = this.state;
+    const { numIterationsBeforeReRender, ...rest } = this.props;
+    const { labelCategory, randomSequencesDataMatrix, seqNameToTaxonomyMetadata, subsampledSequences } = this.state;
+    if (subsampledSequences) {
       const tooltipNames = subsampledSequences.map(seq => (seq.annotations.name ? seq.annotations.name : ''));
 
       let dataLabels = new Array<ILabel | undefined>();
       if (seqNameToTaxonomyMetadata) {
         const seqStates = subsampledSequences.map(seq => {
           if (seq.annotations.name && seqNameToTaxonomyMetadata[seq.annotations.name]) {
-            return seqNameToTaxonomyMetadata[seq.annotations.name][this.state.labelCategory];
+            return seqNameToTaxonomyMetadata[seq.annotations.name][labelCategory];
           }
 
           return undefined;
@@ -316,6 +319,7 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
           errorMessages={[]}
           numIterationsBeforeReRender={numIterationsBeforeReRender}
           tooltipNames={tooltipNames}
+          {...rest}
         />
       );
     }
@@ -446,7 +450,7 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     }
   }
   public render() {
-    const { tooltipNames, xRange, yRange } = this.props;
+    const { iconSrc, tooltipNames, xRange, yRange } = this.props;
 
     let plotType: string = 'scattergl';
     const dataX = new Float32Array(this.state.umapEmbedding.map(datum => datum[0]));
@@ -495,8 +499,9 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
       <div>
         <ComponentCard
           componentName={'UMAP'}
-          isDataReady={epochInfo !== undefined}
           dockItems={[{ text: epochInfo ? epochInfo : '', isLink: false }]}
+          iconSrc={iconSrc}
+          isDataReady={epochInfo !== undefined}
         >
           <PlotlyChart
             layout={{
