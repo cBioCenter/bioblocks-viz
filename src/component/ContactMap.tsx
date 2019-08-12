@@ -411,7 +411,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 
     return (
       <ComponentCard
-        componentName={'Contact Map'}
+        componentName={'tSNE - TensorFlow'}
         dockItems={this.getDockConfigs()}
         isDataReady={data.couplingScores.allContacts.length >= 1}
         menuItems={this.getMenuConfigs(configurations, pointsToPlot)}

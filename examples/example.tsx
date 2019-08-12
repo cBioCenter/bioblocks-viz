@@ -5,7 +5,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { Button, Grid, Header, Label, Message, Segment } from 'semantic-ui-react';
 
 import { createContainerActions, createResiduePairActions } from '~bioblocks-viz~/action';
-import { NGLContainer, PredictedContactMap } from '~bioblocks-viz~/container';
+import { NGLContainer, PredictedContactMap, SpringContainer } from '~bioblocks-viz~/container';
 import {
   Bioblocks1DSection,
   BioblocksPDB,
@@ -16,19 +16,31 @@ import {
   IResidueMismatchResult,
   SECONDARY_STRUCTURE_CODES,
   SECONDARY_STRUCTURE_SECTION,
+  SeqIO,
+  SeqRecord,
+  SEQUENCE_FILE_TYPES,
   VIZ_TYPE,
 } from '~bioblocks-viz~/data';
 import {
   EMPTY_FUNCTION,
+  fetchJSONFile,
+  fetchMatrixData,
   generateResidueMapping,
   getCouplingScoresData,
   IResidueMapping,
   readFileAsText,
 } from '~bioblocks-viz~/helper';
 import { BBStore } from '~bioblocks-viz~/reducer';
+import {
+  ICategoricalAnnotation,
+  UMAPSequenceContainer,
+  UMAPTranscriptionalContainer,
+} from '~bioblocks-viz~/singlepage';
 
 export interface IExampleAppProps {
+  fastaFilename: string;
   style: Exclude<React.CSSProperties, 'height' | 'width'>;
+  taxonomyFilename?: string;
   removeAllHoveredSecondaryStructures(): void;
   removeAllLockedResiduePairs(): void;
   removeAllSelectedSecondaryStructures(): void;
@@ -39,18 +51,57 @@ export interface IExampleAppProps {
 
 export interface IExampleAppState {
   [VIZ_TYPE.CONTACT_MAP]: CONTACT_MAP_DATA_TYPE;
-  errorMsg: string;
   experimentalProteins: BioblocksPDB[];
   isDragHappening: boolean;
+  datasetLocation: string;
+  errorMsg: string;
   isLoading: boolean;
+  taxonomyText?: string;
+  allSequences: SeqRecord[];
+  scRNAseqMatrix: number[][];
+  scRNAseqCategoricalData: ICategoricalAnnotation;
+  scRNAseqCategorySelected: string;
   measuredProximity: CONTACT_DISTANCE_PROXIMITY;
   mismatches: IResidueMismatchResult[];
   predictedProteins: BioblocksPDB[];
   residueMapping: IResidueMapping[];
 }
 
+// TODO: Move to helper.
+export const fetchFastaFile = async (filename: string) => {
+  const response = await fetch(filename);
+  if (response.ok) {
+    return SeqIO.parseFile(await response.text(), SEQUENCE_FILE_TYPES.fasta);
+  } else {
+    throw new Error(`error ${response}`);
+  }
+};
+
 class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState> {
+  public static initialState: IExampleAppState = {
+    [VIZ_TYPE.CONTACT_MAP]: {
+      couplingScores: new CouplingContainer(),
+      pdbData: { experimental: undefined, predicted: undefined },
+      secondaryStructures: [],
+    },
+    allSequences: new Array<SeqRecord>(),
+    datasetLocation: 'hpc/full', // tabula_muris/full
+    errorMsg: '',
+    experimentalProteins: [],
+    isDragHappening: false,
+    isLoading: false,
+    measuredProximity: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
+    mismatches: [],
+    predictedProteins: [],
+    residueMapping: [],
+    scRNAseqCategoricalData: {},
+    scRNAseqCategorySelected: 'Sample', // 'Louvain cluster',
+    scRNAseqMatrix: new Array<number[]>(),
+    taxonomyText: '',
+  };
+
   public static defaultProps = {
+    fastaFilename: 'datasets/betalactamase_alignment/PSE1_natural_top5K_subsample.a2m',
     removeAllHoveredSecondaryStructures: EMPTY_FUNCTION,
     removeAllLockedResiduePairs: EMPTY_FUNCTION,
     removeAllSelectedSecondaryStructures: EMPTY_FUNCTION,
@@ -60,22 +111,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     style: {
       backgroundColor: '#ffffff',
     },
-  };
-
-  protected static initialState: IExampleAppState = {
-    [VIZ_TYPE.CONTACT_MAP]: {
-      couplingScores: new CouplingContainer(),
-      pdbData: { experimental: undefined, predicted: undefined },
-      secondaryStructures: [],
-    },
-    errorMsg: '',
-    experimentalProteins: [],
-    isDragHappening: false,
-    isLoading: false,
-    measuredProximity: CONTACT_DISTANCE_PROXIMITY.CLOSEST,
-    mismatches: [],
-    predictedProteins: [],
-    residueMapping: [],
+    taxonomyFilename: 'datasets/betalactamase_alignment/PSE1_NATURAL_TAXONOMY.csv',
   };
 
   public constructor(props: IExampleAppProps) {
@@ -83,8 +119,12 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     this.state = ExampleAppClass.initialState;
   }
 
-  public componentDidUpdate(prevProps: IExampleAppProps, prevState: IExampleAppState) {
-    const { measuredProximity, predictedProteins } = this.state;
+  public async componentDidMount() {
+    await this.setupUMAPData();
+  }
+
+  public async componentDidUpdate(prevProps: IExampleAppProps, prevState: IExampleAppState) {
+    const { datasetLocation, measuredProximity, predictedProteins } = this.state;
     const { couplingScores } = this.state[VIZ_TYPE.CONTACT_MAP];
 
     const pdbData = predictedProteins.length >= 1 ? predictedProteins[0] : undefined;
@@ -93,7 +133,9 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
 
     let newMismatches = this.state.mismatches;
 
-    if (
+    if (prevState.datasetLocation !== datasetLocation) {
+      await this.setupUMAPData();
+    } else if (
       pdbData &&
       (prevState.predictedProteins.length === 0 || prevState.predictedProteins[0] !== pdbData) &&
       couplingScores !== prevState[VIZ_TYPE.CONTACT_MAP].couplingScores
@@ -129,10 +171,76 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     return (
       <div id={'BioblocksVizApp'} style={{ ...style, height: '1000px' }}>
         <meta name={'viewport'} content={'width=device-width, initial-scale=1'} />
-        {this.renderCouplingComponents()}
+        {this.renderUMapAndSpring()}
+        {/*
+        <UMAPSequenceContainer
+          allSequences={this.state.allSequences}
+          taxonomyText={this.state.taxonomyText}
+          labelCategory={'class'}
+        />*/}
+        {/*</iframe>*/}
+        {/*<TensorTContainer datasetLocation={'datasets/hpc/full'} />*/}
       </div>
     );
   }
+
+  protected renderUMapAndSpring() {
+    const { datasetLocation, scRNAseqCategoricalData, scRNAseqCategorySelected, scRNAseqMatrix } = this.state;
+
+    return (
+      <Grid centered={true} padded={true}>
+        <Grid.Row columns={2} verticalAlign={'bottom'}>
+          <Grid.Column width={7}>
+            <UMAPTranscriptionalContainer
+              numSamplesToShow={5000}
+              numIterationsBeforeReRender={1}
+              categoricalAnnotations={scRNAseqCategoricalData}
+              labelCategory={scRNAseqCategorySelected}
+              sampleNames={undefined}
+              dataMatrix={scRNAseqMatrix}
+            />
+          </Grid.Column>
+          <Grid.Column width={7}>
+            <SpringContainer datasetsURI={'datasets'} datasetLocation={datasetLocation} />
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row style={{ padding: '15px 0 0 0' }} verticalAlign={'bottom'}>
+          <Grid.Column width={7}>{`Currently viewing ${this.state.datasetLocation} dataset`}</Grid.Column>
+          <Grid.Column width={7}>
+            <Button onClick={this.onSwitchDataset}>
+              {`Switch to ${this.state.datasetLocation === 'hpc/full' ? 'tabula_muris/full' : 'hpc/full'} dataset`}
+            </Button>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    );
+  }
+
+  protected async setupUMAPData() {
+    const { datasetLocation } = this.state;
+    let taxonomyText;
+    if (this.props.taxonomyFilename) {
+      taxonomyText = await (await fetch(this.props.taxonomyFilename)).text();
+    }
+
+    this.setState({
+      allSequences: await fetchFastaFile(this.props.fastaFilename),
+      scRNAseqCategoricalData: (await fetchJSONFile(
+        `datasets/${datasetLocation}/categorical_coloring_data.json`,
+      )) as ICategoricalAnnotation,
+      scRNAseqMatrix: await fetchMatrixData(`datasets/${datasetLocation}/tsne_matrix.csv`),
+      taxonomyText,
+    });
+  }
+
+  protected onSwitchDataset = () => {
+    this.setState({
+      allSequences: [],
+      datasetLocation: this.state.datasetLocation === 'hpc/full' ? 'tabula_muris/full' : 'hpc/full',
+      scRNAseqCategoricalData: {},
+      scRNAseqMatrix: new Array(new Array<number>()),
+    });
+  };
 
   protected onClearAll = () => async () => {
     const {
@@ -342,11 +450,10 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
       },
     };
   };
-
   protected renderStartMessage = () => (
     <Message>
       {`To get started, please upload either a PDB (.pdb) or EVCouplings score (.csv) file!`} {<br />} Check out the
-      {/* tslint:disable-next-line:no-http-string */}
+      {/* tslint:disable-next-line: no-http-string*/}
       {<a href="http://evfold.org"> EVFold</a>}, {<a href="http://sanderlab.org/contact-maps/">Sander Lab</a>}, or
       {<a href="https://evcouplings.org/"> EVCouplings </a>} website to get these files.
     </Message>

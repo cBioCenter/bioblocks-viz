@@ -31,9 +31,9 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     dockItems: [],
     frameHeight: 0,
     frameWidth: 0,
-    headerHeight: 40,
-    height: '570px',
-    iconSrc: 'assets/icons/spring-icon.png',
+    headerHeight: 20,
+    height: '525px',
+    iconSrc: 'https://bioblocks.org/media/5d3f528028d9720a3428e4b2',
     isDataReady: false,
     isFramedComponent: false,
     isFullPage: false,
@@ -78,14 +78,16 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     const { isFullPage } = this.state;
 
     const expandedStyle: React.CSSProperties = {
-      height: 'calc(80vh + 45px)',
+      height: '80vh',
       padding: '5px',
       width: '80vh',
     };
 
+    const heightAsNumber = typeof height === 'string' ? parseInt(height, 10) : height;
     const cardStyle: React.CSSProperties = {
       maxWidth: 'unset',
-      ...(isFullPage ? { ...expandedStyle } : { height, width }),
+      padding: '0 0 5px 5px',
+      ...(isFullPage ? { ...expandedStyle } : { height: `${heightAsNumber * 1.01}px`, width }),
     };
 
     const card = (
@@ -123,7 +125,9 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     return (
       <>
         <div style={{ height: '6%' }}>{this.renderTopMenu(headerHeight)}</div>
-        <div style={{ height: '91%' }}>{isFramedComponent ? <div style={framedStyle}>{children}</div> : children}</div>
+        <div style={{ height: '91%', width: '100%' }}>
+          {isFramedComponent ? <div style={framedStyle}>{children}</div> : children}
+        </div>
         <div style={{ height: '3%' }}>{this.renderDock()}</div>
       </>
     );

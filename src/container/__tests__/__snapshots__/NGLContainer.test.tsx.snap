@@ -264,9 +264,9 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                     }
                     frameHeight={0}
                     frameWidth={0}
-                    headerHeight={40}
-                    height="570px"
-                    iconSrc="assets/icons/spring-icon.png"
+                    headerHeight={20}
+                    height="525px"
+                    iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                     isDataReady={false}
                     isFramedComponent={false}
                     isFullPage={false}
@@ -500,8 +500,9 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                       className="bioblocks-component-card"
                       style={
                         Object {
-                          "height": "570px",
+                          "height": "530.25px",
                           "maxWidth": "unset",
+                          "padding": "0 0 5px 5px",
                           "width": "525px",
                         }
                       }
@@ -511,8 +512,9 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                         onClick={[Function]}
                         style={
                           Object {
-                            "height": "570px",
+                            "height": "530.25px",
                             "maxWidth": "unset",
+                            "padding": "0 0 5px 5px",
                             "width": "525px",
                           }
                         }
@@ -526,8 +528,8 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                         >
                           <ComponentMenuBar
                             componentName="NGL Viewer"
-                            height={40}
-                            iconSrc="assets/icons/spring-icon.png"
+                            height={20}
+                            iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                             isExpanded={false}
                             menuItems={
                               Array [
@@ -762,7 +764,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                 secondary={true}
                                 style={
                                   Object {
-                                    "height": 40,
+                                    "height": 20,
                                     "margin": 0,
                                   }
                                 }
@@ -772,7 +774,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                   className="ui secondary two item menu"
                                   style={
                                     Object {
-                                      "height": 40,
+                                      "height": 20,
                                       "margin": 0,
                                     }
                                   }
@@ -791,6 +793,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                           Object {
                                             "margin": 0,
                                             "padding": 0,
+                                            "width": "auto",
                                           }
                                         }
                                       >
@@ -801,12 +804,13 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                             Object {
                                               "margin": 0,
                                               "padding": 0,
+                                              "width": "auto",
                                             }
                                           }
                                         >
                                           <img
                                             alt="component icon"
-                                            src="assets/icons/spring-icon.png"
+                                            src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                                             style={
                                               Object {
                                                 "height": "32px",
@@ -1064,6 +1068,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                           style={
                             Object {
                               "height": "91%",
+                              "width": "100%",
                             }
                           }
                         >

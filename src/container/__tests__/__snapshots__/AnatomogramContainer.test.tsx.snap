@@ -20,9 +20,9 @@ exports[`AnatomogramContainer Should match existing snapshot for homo sapiens. 1
       dockItems={Array []}
       frameHeight={0}
       frameWidth={0}
-      headerHeight={40}
-      height="570px"
-      iconSrc="assets/icons/spring-icon.png"
+      headerHeight={20}
+      height="525px"
+      iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
       isDataReady={false}
       isFramedComponent={false}
       isFullPage={false}
@@ -85,9 +85,9 @@ exports[`AnatomogramContainer Should match existing snapshot for mus musculus. 1
       dockItems={Array []}
       frameHeight={0}
       frameWidth={0}
-      headerHeight={40}
-      height="570px"
-      iconSrc="assets/icons/spring-icon.png"
+      headerHeight={20}
+      height="525px"
+      iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
       isDataReady={false}
       isFramedComponent={false}
       isFullPage={false}

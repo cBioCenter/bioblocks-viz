@@ -5,10 +5,12 @@ import * as React from 'react';
 import { Dimmer, Icon, Loader } from 'semantic-ui-react';
 import { Matrix4, Vector2 } from 'three';
 
+import { AMINO_ACID_1LETTER_CODE, AminoAcid } from '~bioblocks-viz~/data/AminoAcid';
+
 import { ComponentCard, IComponentMenuBarItem } from '~bioblocks-viz~/component';
 import {
-  AMINO_ACID_BY_CODE,
-  AMINO_ACID_THREE_LETTER_CODE,
+  // AMINO_ACID_BY_CODE,
+  // AMINO_ACID_THREE_LETTER_CODE,
   BIOBLOCKS_CSS_STYLE,
   BioblocksPDB,
   BioblocksWidgetConfig,
@@ -243,9 +245,13 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   protected addNewHoveredResidue = (pickingProxy: NGL.PickingProxy, stage: NGL.Stage) => {
     const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
     const { addHoveredResidues } = this.props;
-    const resname = AMINO_ACID_BY_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE]
-      ? AMINO_ACID_BY_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE].singleLetterCode
-      : atom.resname;
+
+    const aa = AminoAcid.fromThreeLetterCode(atom.resname);
+    const resname = aa ? aa.singleLetterCode : atom.resname;
+
+    // const resname = AMINO_ACID_BY_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE]
+    //  ? AMINO_ACID_BY_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE].singleLetterCode
+    //  : atom.resname;
     stage.tooltip.textContent = `${atom.resno}${resname}`;
     addHoveredResidues([atom.resno]);
   };

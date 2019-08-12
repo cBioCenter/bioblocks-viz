@@ -1,10 +1,8 @@
 import * as NGL from 'ngl';
 
 import {
-  ALL_AMINO_ACID_SINGLE_LETTER_CODES,
-  ALL_AMINO_ACID_THREE_LETTER_CODES,
-  AMINO_ACID_BY_CODE,
-  AMINO_ACID_SINGLE_LETTER_CODE,
+  AMINO_ACID_1LETTER_CODE,
+  AminoAcid,
   BioblocksPDB,
   CouplingContainer,
   getPDBAndCouplingMismatch,
@@ -36,7 +34,7 @@ describe('Amino Acids', () => {
       'Y',
       'V',
     ];
-    expect(ALL_AMINO_ACID_SINGLE_LETTER_CODES()).toEqual(expected);
+    expect(AminoAcid.ALL_1LETTER_CODES()).toEqual(expected);
   });
 
   it('Should correctly have all single letter codes.', () => {
@@ -62,7 +60,7 @@ describe('Amino Acids', () => {
       'TYR',
       'VAL',
     ];
-    expect(ALL_AMINO_ACID_THREE_LETTER_CODES()).toEqual(expected);
+    expect(AminoAcid.ALL_3LETTER_CODES()).toEqual(expected);
   });
 });
 
@@ -74,8 +72,8 @@ describe('Sequence Mismatch', () => {
   it('Should correctly report sequence mismatches.', () => {
     const expected: IResidueMismatchResult[] = [
       {
-        couplingAminoAcid: AMINO_ACID_BY_CODE.E,
-        pdbAminoAcid: AMINO_ACID_BY_CODE.A,
+        couplingAminoAcid: AminoAcid.GlutamicAcid,
+        pdbAminoAcid: AminoAcid.Alanine,
         resno: 8,
       },
     ];
@@ -100,8 +98,8 @@ describe('Sequence Mismatch', () => {
     const pdb = await BioblocksPDB.createPDB();
     const couplings = new CouplingContainer(
       firstSequence.split('').map((char, index) => ({
-        A_i: char as AMINO_ACID_SINGLE_LETTER_CODE,
-        A_j: char as AMINO_ACID_SINGLE_LETTER_CODE,
+        A_i: char,
+        A_j: char,
         i: index + 1,
         j: index + 1,
       })),
@@ -109,8 +107,8 @@ describe('Sequence Mismatch', () => {
 
     const expected: IResidueMismatchResult[] = [
       {
-        couplingAminoAcid: AMINO_ACID_BY_CODE.A,
-        pdbAminoAcid: AMINO_ACID_BY_CODE.E,
+        couplingAminoAcid: AminoAcid.Alanine,
+        pdbAminoAcid: AminoAcid.GlutamicAcid,
         resno: 8,
       },
     ];
@@ -124,8 +122,8 @@ describe('Sequence Mismatch', () => {
         .substr(1)
         .split('')
         .map((char, index) => ({
-          A_i: char as AMINO_ACID_SINGLE_LETTER_CODE,
-          A_j: char as AMINO_ACID_SINGLE_LETTER_CODE,
+          A_i: char,
+          A_j: char,
           i: index + 1,
           j: index + 1,
         })),

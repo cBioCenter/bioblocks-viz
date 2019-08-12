@@ -9,7 +9,7 @@
 import { Structure } from 'ngl';
 
 import {
-  AMINO_ACID_SINGLE_LETTER_CODE,
+  AMINO_ACID_1LETTER_CODE,
   Bioblocks1DSection,
   BioblocksPDB,
   CouplingContainer,
@@ -72,8 +72,8 @@ export interface ICouplingScoreFilter<T = number | number[]> {
 }
 
 export interface ICouplingScore {
-  A_i?: AMINO_ACID_SINGLE_LETTER_CODE;
-  A_j?: AMINO_ACID_SINGLE_LETTER_CODE;
+  A_i?: AMINO_ACID_1LETTER_CODE; // AMINO_ACID_SINGLE_LETTER_CODE;
+  A_j?: AMINO_ACID_1LETTER_CODE; // AMINO_ACID_SINGLE_LETTER_CODE;
   cn?: number;
   dist?: number;
   dist_intra?: number;
