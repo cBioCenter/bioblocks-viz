@@ -4,8 +4,10 @@ import { UMAP } from 'umap-js';
 // tslint:disable-next-line: no-submodule-imports
 import { euclidean } from 'umap-js/dist/umap';
 
+import { Button, Grid, Label, Popup } from 'semantic-ui-react';
 import { ComponentCard, defaultPlotlyLayout, PlotlyChart } from '~bioblocks-viz~/component';
-import { ILabel, Marker, SeqRecord } from '~bioblocks-viz~/data';
+import { ILabel, IPlotlyData, Marker, SeqRecord } from '~bioblocks-viz~/data';
+import { readFileAsText } from '~bioblocks-viz~/helper';
 
 export interface IUMAPSequenceContainerProps extends Partial<IUMAPVisualizationProps> {
   // if the number of data points are too large, the container will randomly subsample points
@@ -24,7 +26,9 @@ export interface IUMAPSequenceContainerProps extends Partial<IUMAPVisualizationP
 
   // the sequences to display (will be subsampled)
   allSequences: SeqRecord[];
+  showUploadButton: boolean;
 }
+
 export interface IUMAPSequenceContainerState {
   labelCategory: string;
   seqNameToTaxonomyMetadata: {
@@ -78,15 +82,18 @@ export interface IUMAPVisualizationProps {
   tooltipNames?: string[];
   distanceFn?: DISTANCE_FN_TYPE;
 
-  // the initial min/max of the x-axis and y-axis. If null, will be set from data.
-  xRange: number[];
-  yRange: number[];
-
   iconSrc?: string;
 }
 
 export interface IUMAPVisualizationState {
   currentEpoch: number | undefined;
+  plotlyData: Array<Partial<IPlotlyData>>;
+  ranges: {
+    minX: number;
+    maxX: number;
+    minY: number;
+    maxY: number;
+  };
   totalNumberEpochs: number | undefined;
   umapEmbedding: number[][];
 }
@@ -102,7 +109,11 @@ export interface IUMAPVisualizationState {
  *
  * No duplicates are returned
  */
-export function subsample(arr: any[], n: number, returnIndices: boolean = false): any[] {
+export function subsample<T, U extends boolean>(
+  arr: T[],
+  n: number,
+  returnIndices: boolean = false,
+): Array<T | number> {
   const unselectedObjBowl = returnIndices ? arr.map((obj, idx) => idx) : [...arr];
   if (n >= arr.length) {
     return unselectedObjBowl;
@@ -264,7 +275,8 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
   public static defaultProps = {
     labelCategory: 'class',
     numIterationsBeforeReRender: 1,
-    numSequencesToShow: 2000,
+    numSequencesToShow: 5000,
+    showUploadButton: false,
   };
 
   constructor(props: IUMAPSequenceContainerProps) {
@@ -282,18 +294,37 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
   }
 
   public componentDidUpdate(prevProps: IUMAPSequenceContainerProps, prevState: IUMAPSequenceContainerState) {
+    const { allSequences, numSequencesToShow, labelCategory, taxonomyText } = this.props;
+
     if (
-      prevProps.allSequences !== this.props.allSequences ||
-      prevProps.numSequencesToShow !== this.props.numSequencesToShow ||
-      prevProps.labelCategory !== this.props.labelCategory ||
-      prevProps.taxonomyText !== this.props.taxonomyText
+      prevProps.allSequences !== allSequences ||
+      prevProps.numSequencesToShow !== numSequencesToShow ||
+      prevProps.labelCategory !== labelCategory ||
+      prevProps.taxonomyText !== taxonomyText
     ) {
-      this.prepareData();
+      let onlyAnnotationChanged = true;
+      prevProps.allSequences.forEach((seq, index) => {
+        if (seq.sequence.localeCompare(allSequences[index].sequence) !== 0) {
+          onlyAnnotationChanged = false;
+
+          return;
+        }
+      });
+      if (onlyAnnotationChanged) {
+        if (taxonomyText) {
+          this.parseTaxonomy(taxonomyText);
+        } else {
+          // If sequence metadata only was updated, don't re-sample data.
+          this.setupSequenceAnnotation(allSequences, labelCategory);
+        }
+      } else {
+        this.prepareData();
+      }
     }
   }
 
   public render() {
-    const { numIterationsBeforeReRender, ...rest } = this.props;
+    const { numIterationsBeforeReRender, showUploadButton, ...rest } = this.props;
     const { labelCategory, randomSequencesDataMatrix, seqNameToTaxonomyMetadata, subsampledSequences } = this.state;
     if (subsampledSequences) {
       const tooltipNames = subsampledSequences.map(seq => (seq.annotations.name ? seq.annotations.name : ''));
@@ -312,20 +343,71 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
       }
 
       return (
-        <UMAPVisualization
-          dataLabels={dataLabels}
-          dataMatrix={randomSequencesDataMatrix}
-          distanceFn={this.equalityHammingDistance}
-          errorMessages={[]}
-          numIterationsBeforeReRender={numIterationsBeforeReRender}
-          tooltipNames={tooltipNames}
-          {...rest}
-        />
+        <Grid centered={true} padded={true}>
+          <Grid.Row>
+            <UMAPVisualization
+              dataLabels={dataLabels}
+              dataMatrix={randomSequencesDataMatrix}
+              distanceFn={this.equalityHammingDistance}
+              errorMessages={[]}
+              numIterationsBeforeReRender={numIterationsBeforeReRender}
+              tooltipNames={tooltipNames}
+              {...rest}
+            />
+          </Grid.Row>
+          {showUploadButton && <Grid.Row>{this.renderTaxonomyUpload()}</Grid.Row>}
+        </Grid>
       );
     }
 
     return null;
   }
+
+  protected renderTaxonomyUpload = () => {
+    return (
+      <Popup
+        trigger={
+          <Label as={'label'} basic={true} htmlFor={'upload-taxonomy'}>
+            <Button
+              icon={'upload'}
+              label={{
+                basic: true,
+                content: 'Upload Taxonomy File',
+              }}
+              labelPosition={'right'}
+            />
+            <input
+              hidden={true}
+              id={'upload-taxonomy'}
+              multiple={false}
+              onChange={this.onTaxonomyUpload}
+              required={true}
+              type={'file'}
+            />
+          </Label>
+        }
+        content={
+          <>
+            <span>A tab delimited file with 2 columns and optional headers:</span>
+            <br />
+            <span>- First column is sequence name.</span>
+            <br />
+            <span>- Second column is how to group sequences.</span>
+          </>
+        }
+      />
+    );
+  };
+
+  protected onTaxonomyUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.persist();
+    const files = (e.target as HTMLInputElement).files;
+    if (!files) {
+      return;
+    }
+    const file = files.item(0) as File;
+    this.parseTaxonomy(await readFileAsText(file));
+  };
 
   /* testing
   public flipAnnotation() {
@@ -347,19 +429,22 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
   }*/
 
   private prepareData() {
-    const { numSequencesToShow, labelCategory: labelCategory } = this.props;
+    const { allSequences, numSequencesToShow, labelCategory, taxonomyText } = this.props;
 
     // load taxonomy
-    if (this.props.taxonomyText) {
-      this.parseTaxonomy(this.props.taxonomyText); // await taxonomyFile.text());
+    if (taxonomyText) {
+      this.parseTaxonomy(taxonomyText); // await taxonomyFile.text());
+    } else {
+      this.setupSequenceAnnotation(allSequences, labelCategory);
     }
+
     // load sequences
-    console.log(`all ${this.props.allSequences.length} fasta sequences:`, this.props.allSequences);
+    console.log(`all ${allSequences.length} fasta sequences:`, allSequences);
 
     // slice reasonable number of sequences if needed
     let subsampledSequences = this.state ? this.state.subsampledSequences : undefined;
     if (!subsampledSequences || subsampledSequences.length !== numSequencesToShow) {
-      subsampledSequences = subsample(this.props.allSequences, numSequencesToShow);
+      subsampledSequences = subsample(this.props.allSequences, numSequencesToShow) as SeqRecord[];
     }
     console.log(`random ${subsampledSequences.length} fasta sequences:`, subsampledSequences);
 
@@ -377,6 +462,7 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
 
   private parseTaxonomy(taxonomyText: string) {
     if (taxonomyText) {
+      const isHeaderPresent = taxonomyText.split('\n')[0].includes('seq_name');
       Papa.parse(taxonomyText, {
         complete: results => {
           // simple stats
@@ -386,14 +472,22 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
           this.setState({
             seqNameToTaxonomyMetadata: results.data.reduce<{
               [seqName: string]: {};
-            }>((acc, seqMetadata: { seq_name: string }) => {
-              acc[seqMetadata.seq_name] = seqMetadata;
+            }>((acc, seqMetadata: { seq_name: string } | string[]) => {
+              if (isHeaderPresent) {
+                acc[(seqMetadata as { seq_name: string }).seq_name] = seqMetadata;
+              } else {
+                const seqRow = seqMetadata as string[];
+                acc[seqRow[0]] = {
+                  seq_name: seqRow[0],
+                  [this.props.labelCategory]: seqRow[1],
+                };
+              }
 
               return acc;
             }, {}),
           });
         },
-        header: true,
+        header: isHeaderPresent,
       });
     }
   }
@@ -415,6 +509,22 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
 
     return result;
   };
+
+  private setupSequenceAnnotation = (allSequences: SeqRecord[], labelCategory: string) => {
+    this.setState({
+      seqNameToTaxonomyMetadata: allSequences.reduce<{
+        [seqName: string]: {};
+      }>((acc, seq) => {
+        if (seq.annotations.name && seq.annotations.metadata) {
+          acc[seq.annotations.name] = {
+            [labelCategory]: seq.annotations.metadata[labelCategory],
+          };
+        }
+
+        return acc;
+      }, {}),
+    });
+  };
 }
 
 // tslint:disable-next-line: max-classes-per-file
@@ -423,8 +533,6 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     distanceFn: euclidean,
     errorMessages: [],
     numIterationsBeforeReRender: 1,
-    xRange: [-20, 20],
-    yRange: [-20, 20],
   };
 
   private timeout1: number | undefined;
@@ -434,6 +542,13 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     super(props);
     this.state = {
       currentEpoch: undefined,
+      plotlyData: new Array(),
+      ranges: {
+        maxX: 20,
+        maxY: 20,
+        minX: -20,
+        minY: -20,
+      },
       totalNumberEpochs: undefined,
       umapEmbedding: new Array(new Array<number>()),
     };
@@ -445,93 +560,115 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
 
   // tslint:disable-next-line: max-func-body-length
   public componentDidUpdate(prevProps: IUMAPVisualizationProps, prevState: IUMAPVisualizationState) {
-    if (this.props.distanceFn !== prevProps.distanceFn || this.props.dataMatrix !== prevProps.dataMatrix) {
+    const { distanceFn, dataMatrix, dataLabels, tooltipNames } = this.props;
+    if (distanceFn !== prevProps.distanceFn || dataMatrix !== prevProps.dataMatrix) {
       this.executeUMAP();
+    } else if (dataLabels !== prevProps.dataLabels || tooltipNames !== prevProps.tooltipNames) {
+      this.setState({
+        plotlyData: this.getData(this.state.umapEmbedding, this.props.dataLabels, this.props.tooltipNames),
+      });
     }
   }
   public render() {
-    const { iconSrc, tooltipNames, xRange, yRange } = this.props;
-
-    let plotType: string = 'scattergl';
-    const dataX = new Float32Array(this.state.umapEmbedding.map(datum => datum[0]));
-    const dataY = new Float32Array(this.state.umapEmbedding.map(datum => datum[1]));
-    let dataZ: Float32Array | undefined;
-    if (this.state.umapEmbedding && this.state.umapEmbedding.length > 0 && this.state.umapEmbedding[0].length > 2) {
-      dataZ = new Float32Array(this.state.umapEmbedding.map(datum => datum[3]));
-      plotType = 'scatter3d';
-    }
-
-    let colors = new Array<string>();
-    if (
-      this.props.dataLabels &&
-      this.state.umapEmbedding &&
-      this.props.dataLabels.length === this.state.umapEmbedding.length
-    ) {
-      colors = this.props.dataLabels.map(lbl => {
-        if (lbl) {
-          return lbl.color;
-        }
-
-        return 'gray';
-      });
-    }
-
-    // smart range setting
-    if (xRange[0] > Math.min(...dataX)) {
-      xRange[0] = Math.min(...dataX) - 5;
-    }
-    if (xRange[1] < Math.max(...dataX)) {
-      xRange[1] = Math.max(...dataX) + 5;
-    }
-    if (yRange[0] > Math.min(...dataY)) {
-      yRange[0] = Math.min(...dataY) - 5;
-    }
-    if (yRange[1] < Math.max(...dataY)) {
-      yRange[1] = Math.max(...dataY) + 5;
-    }
+    const { iconSrc } = this.props;
+    const { currentEpoch, ranges, plotlyData, totalNumberEpochs, umapEmbedding } = this.state;
 
     let epochInfo: string | undefined;
-    if (this.state.totalNumberEpochs && this.state.currentEpoch) {
-      epochInfo = `epoch ${this.state.currentEpoch}/${this.state.totalNumberEpochs}`;
+    if (totalNumberEpochs && currentEpoch) {
+      epochInfo = `epoch ${currentEpoch}/${totalNumberEpochs}`;
     }
+
+    const legend: SVGGElement | undefined = document.getElementsByClassName('legend')[0] as SVGGElement;
+    const legendWidth = legend ? legend.getBBox().width * 0.75 : 0;
 
     return (
       <div>
         <ComponentCard
           componentName={'UMAP'}
-          dockItems={[{ text: epochInfo ? epochInfo : '', isLink: false }]}
+          expandedStyle={{
+            height: '80vh',
+            width: `calc(${legendWidth}px + 80vh)`,
+          }}
+          dockItems={[{ text: `${umapEmbedding.length} sequences | ${epochInfo ? epochInfo : ''}`, isLink: false }]}
           iconSrc={iconSrc}
           isDataReady={epochInfo !== undefined}
+          width={`${legendWidth + 525}px`}
         >
           <PlotlyChart
             layout={{
               ...defaultPlotlyLayout,
-              dragmode: 'zoom', // 'select',
+              dragmode: 'zoom' as const, // 'select',
+              legend: {
+                itemdoubleclick: false,
+                traceorder: 'reversed',
+                x: 1,
+                y: 1,
+              },
               margin: {
                 b: 20,
               },
-              xaxis: { autorange: false, range: xRange },
-              yaxis: { autorange: false, range: yRange },
+
+              showlegend: true,
+              xaxis: { autorange: false, range: [ranges.minX, ranges.maxX] },
+              yaxis: { autorange: false, range: [ranges.minY, ranges.maxY] },
             }}
-            data={[
-              {
-                marker: {
-                  color: colors,
-                },
-                mode: 'markers',
-                text: tooltipNames,
-                type: 'scattergl' as const, // scatter3d
-                x: dataX,
-                y: dataY,
-                // z: dataZ,
-              },
-            ]}
+            data={plotlyData}
             showLoader={true}
           />
         </ComponentCard>
       </div>
     );
   }
+
+  protected getData = (
+    umapEmbedding: number[][],
+    dataLabels: Array<ILabel | undefined> = [],
+    tooltipNames: string[] = [],
+  ) => {
+    let result: Record<string, Partial<IPlotlyData>> = {};
+    result = umapEmbedding.reduce<Record<string, Partial<IPlotlyData>>>((acc, umapRow, index) => {
+      const label = dataLabels[index];
+      const { color, name } = label ? label : { color: 'gray', name: 'Unannotated' };
+      if (acc[name]) {
+        acc[name].x = (acc[name].x as number[]).concat(umapRow[0]);
+        acc[name].y = (acc[name].y as number[]).concat(umapRow[1]);
+        acc[name].name = `${name} (${(acc[name].x as number[]).length + 1})`;
+        if (acc[name].type === 'scatter3d') {
+          acc[name].z = (acc[name].z as number[]).concat(umapRow[2]);
+        }
+      } else {
+        acc[name] = {
+          hoverinfo: 'x+y+text',
+          marker: {
+            color: color ? color : 'gray',
+          },
+          mode: 'markers',
+          name: `${name} (${1})`,
+          text: tooltipNames[index],
+          type: 'scattergl' as const,
+          x: [umapRow[0]],
+          y: [umapRow[1]],
+        };
+
+        if (umapEmbedding.length > 0 && umapEmbedding[0].length > 2) {
+          acc[name].type = 'scatter3d';
+          acc[name].z = [umapRow[2]];
+        }
+      }
+
+      return acc;
+    }, {});
+
+    return (Object.values(result) as IPlotlyData[])
+      .sort((a, b) => {
+        if (a.name.includes('Unannotated') || b.name.includes('Unannotated')) {
+          return -1;
+        } else {
+          return a.name.localeCompare(b.name);
+        }
+      })
+      .reverse();
+  };
 
   private executeUMAP() {
     const { dataMatrix, distanceFn } = this.props;
@@ -567,8 +704,18 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
             console.log('embedding:', embedding);
           }
 
+          const ranges = this.state.ranges;
+          embedding.forEach(row => {
+            ranges.maxX = Math.max(ranges.maxX, row[0] + 5);
+            ranges.minX = Math.min(ranges.minX, row[0] - 5);
+            ranges.maxY = Math.max(ranges.maxY, row[1] + 5);
+            ranges.minY = Math.min(ranges.minY, row[1] - 5);
+          });
+
           this.setState({
             currentEpoch: epochCounter + 1,
+            plotlyData: this.getData(embedding, this.props.dataLabels, this.props.tooltipNames),
+            ranges,
             totalNumberEpochs: optimalNumberEpochs,
             umapEmbedding: embedding,
           });

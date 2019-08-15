@@ -12,6 +12,12 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
       },
     ]
   }
+  expandedStyle={
+    Object {
+      "height": "85vh",
+      "width": "85vh",
+    }
+  }
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}
@@ -271,6 +277,12 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
       },
     ]
   }
+  expandedStyle={
+    Object {
+      "height": "85vh",
+      "width": "85vh",
+    }
+  }
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}
@@ -522,6 +534,12 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
       },
     ]
   }
+  expandedStyle={
+    Object {
+      "height": "85vh",
+      "width": "85vh",
+    }
+  }
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}
@@ -739,6 +757,12 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
         "text": "Clear Selections",
       },
     ]
+  }
+  expandedStyle={
+    Object {
+      "height": "85vh",
+      "width": "85vh",
+    }
   }
   frameHeight={0}
   frameWidth={0}
@@ -958,6 +982,12 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
       },
     ]
   }
+  expandedStyle={
+    Object {
+      "height": "85vh",
+      "width": "85vh",
+    }
+  }
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}
@@ -1166,6 +1196,12 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
       },
     ]
   }
+  expandedStyle={
+    Object {
+      "height": "85vh",
+      "width": "85vh",
+    }
+  }
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}
@@ -1373,6 +1409,12 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
         "text": "Clear Selections",
       },
     ]
+  }
+  expandedStyle={
+    Object {
+      "height": "85vh",
+      "width": "85vh",
+    }
   }
   frameHeight={0}
   frameWidth={0}
@@ -1632,6 +1674,12 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
         "text": "Clear Selections",
       },
     ]
+  }
+  expandedStyle={
+    Object {
+      "height": "85vh",
+      "width": "85vh",
+    }
   }
   frameHeight={0}
   frameWidth={0}
@@ -2361,6 +2409,12 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           "text": "Clear Selections",
         },
       ]
+    }
+    expandedStyle={
+      Object {
+        "height": "85vh",
+        "width": "85vh",
+      }
     }
     frameHeight={0}
     frameWidth={0}

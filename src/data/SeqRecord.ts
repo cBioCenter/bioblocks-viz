@@ -17,7 +17,8 @@ export class SeqRecord extends Seq {
     letterAnnotations: {}, // Dictionary of per-letter-annotations, values
     // should be strings, list or tuples of the same
     // length as the full sequence
-    metadata: {} = {}, // Dictionary of arbitrary metadata for the whole sequence
+    // tslint:disable-next-line: no-object-literal-type-assertion
+    metadata: {} as Record<string, string>, // Dictionary of arbitrary metadata for the whole sequence
     name: '<unknown name>', // Sequence name
   };
 

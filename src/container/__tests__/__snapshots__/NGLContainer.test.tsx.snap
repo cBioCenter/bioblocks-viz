@@ -262,6 +262,12 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                         },
                       ]
                     }
+                    expandedStyle={
+                      Object {
+                        "height": "85vh",
+                        "width": "85vh",
+                      }
+                    }
                     frameHeight={0}
                     frameWidth={0}
                     headerHeight={20}

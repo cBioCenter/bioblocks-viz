@@ -25,6 +25,12 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
       },
     ]
   }
+  expandedStyle={
+    Object {
+      "height": "85vh",
+      "width": "85vh",
+    }
+  }
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}

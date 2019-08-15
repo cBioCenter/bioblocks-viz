@@ -15,6 +15,12 @@ exports[`SpringContainer Should match existing snapshot. 1`] = `
   <ComponentCard
     componentName="SPRING"
     dockItems={Array []}
+    expandedStyle={
+      Object {
+        "height": "85vh",
+        "width": "85vh",
+      }
+    }
     frameHeight={1150}
     frameWidth={1150}
     headerHeight={20}
