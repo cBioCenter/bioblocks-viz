@@ -121,10 +121,13 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="umapsequencecontainer.html#equalityhammingdistance" class="tsd-kind-icon">equality<wbr>Hamming<wbr>Distance</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="umapsequencecontainer.html#forceupdate" class="tsd-kind-icon">force<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="umapsequencecontainer.html#getsnapshotbeforeupdate" class="tsd-kind-icon">get<wbr>Snapshot<wbr>Before<wbr>Update</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="umapsequencecontainer.html#ontaxonomyupload" class="tsd-kind-icon">on<wbr>Taxonomy<wbr>Upload</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="umapsequencecontainer.html#parsetaxonomy" class="tsd-kind-icon">parse<wbr>Taxonomy</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="umapsequencecontainer.html#preparedata" class="tsd-kind-icon">prepare<wbr>Data</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="umapsequencecontainer.html#render" class="tsd-kind-icon">render</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="umapsequencecontainer.html#rendertaxonomyupload" class="tsd-kind-icon">render<wbr>Taxonomy<wbr>Upload</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="umapsequencecontainer.html#setstate" class="tsd-kind-icon">set<wbr>State</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="umapsequencecontainer.html#setupsequenceannotation" class="tsd-kind-icon">setup<wbr>Sequence<wbr>Annotation</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="umapsequencecontainer.html#shouldcomponentupdate" class="tsd-kind-icon">should<wbr>Component<wbr>Update</a></li>
 							</ul>
 						</section>
@@ -150,7 +153,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/b0a5053db/src/singlepage/UMAPVisualization.tsx#L268">src/singlepage/UMAPVisualization.tsx:268</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/47b7f4f00/src/singlepage/UMAPVisualization.tsx#L280">src/singlepage/UMAPVisualization.tsx:280</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -457,7 +460,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Overrides ComponentLifecycle.componentDidMount</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/b0a5053db/src/singlepage/UMAPVisualization.tsx#L280">src/singlepage/UMAPVisualization.tsx:280</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/47b7f4f00/src/singlepage/UMAPVisualization.tsx#L292">src/singlepage/UMAPVisualization.tsx:292</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -475,7 +478,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Overrides NewLifecycle.componentDidUpdate</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/b0a5053db/src/singlepage/UMAPVisualization.tsx#L284">src/singlepage/UMAPVisualization.tsx:284</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/47b7f4f00/src/singlepage/UMAPVisualization.tsx#L296">src/singlepage/UMAPVisualization.tsx:296</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -659,7 +662,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/b0a5053db/src/singlepage/UMAPVisualization.tsx#L408">src/singlepage/UMAPVisualization.tsx:408</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/47b7f4f00/src/singlepage/UMAPVisualization.tsx#L502">src/singlepage/UMAPVisualization.tsx:502</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -747,6 +750,29 @@ class Foo extends React.Component {
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="ontaxonomyupload" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> on<wbr>Taxonomy<wbr>Upload</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Taxonomy<wbr>Upload<span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ChangeEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLInputElement</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/47b7f4f00/src/singlepage/UMAPVisualization.tsx#L402">src/singlepage/UMAPVisualization.tsx:402</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>e: <span class="tsd-signature-type">ChangeEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLInputElement</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
 					<a name="parsetaxonomy" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> parse<wbr>Taxonomy</h3>
@@ -757,7 +783,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/b0a5053db/src/singlepage/UMAPVisualization.tsx#L378">src/singlepage/UMAPVisualization.tsx:378</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/47b7f4f00/src/singlepage/UMAPVisualization.tsx#L463">src/singlepage/UMAPVisualization.tsx:463</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -780,7 +806,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/b0a5053db/src/singlepage/UMAPVisualization.tsx#L349">src/singlepage/UMAPVisualization.tsx:349</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/47b7f4f00/src/singlepage/UMAPVisualization.tsx#L431">src/singlepage/UMAPVisualization.tsx:431</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -798,13 +824,30 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Overrides Component.render</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/b0a5053db/src/singlepage/UMAPVisualization.tsx#L295">src/singlepage/UMAPVisualization.tsx:295</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/47b7f4f00/src/singlepage/UMAPVisualization.tsx#L326">src/singlepage/UMAPVisualization.tsx:326</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">null</span>
 								<span class="tsd-signature-symbol"> | </span>
 								<span class="tsd-signature-type">Element</span>
 							</h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="rendertaxonomyupload" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> render<wbr>Taxonomy<wbr>Upload</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">render<wbr>Taxonomy<wbr>Upload<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/47b7f4f00/src/singlepage/UMAPVisualization.tsx#L366">src/singlepage/UMAPVisualization.tsx:366</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -835,6 +878,32 @@ class Foo extends React.Component {
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> callback: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="setupsequenceannotation" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> setup<wbr>Sequence<wbr>Annotation</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">setup<wbr>Sequence<wbr>Annotation<span class="tsd-signature-symbol">(</span>allSequences<span class="tsd-signature-symbol">: </span><a href="seqrecord.html" class="tsd-signature-type">SeqRecord</a><span class="tsd-signature-symbol">[]</span>, labelCategory<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/47b7f4f00/src/singlepage/UMAPVisualization.tsx#L513">src/singlepage/UMAPVisualization.tsx:513</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>allSequences: <a href="seqrecord.html" class="tsd-signature-type">SeqRecord</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+								<li>
+									<h5>labelCategory: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -890,7 +959,7 @@ class Foo extends React.Component {
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/b0a5053db/src/singlepage/UMAPVisualization.tsx#L264">src/singlepage/UMAPVisualization.tsx:264</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/47b7f4f00/src/singlepage/UMAPVisualization.tsx#L275">src/singlepage/UMAPVisualization.tsx:275</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -899,7 +968,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">label<wbr>Category<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;class&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/b0a5053db/src/singlepage/UMAPVisualization.tsx#L265">src/singlepage/UMAPVisualization.tsx:265</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/47b7f4f00/src/singlepage/UMAPVisualization.tsx#L276">src/singlepage/UMAPVisualization.tsx:276</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -909,17 +978,27 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">num<wbr>Iterations<wbr>Before<wbr>ReRender<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/b0a5053db/src/singlepage/UMAPVisualization.tsx#L266">src/singlepage/UMAPVisualization.tsx:266</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/47b7f4f00/src/singlepage/UMAPVisualization.tsx#L277">src/singlepage/UMAPVisualization.tsx:277</a></li>
 							</ul>
 						</aside>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 						<a name="defaultprops.numsequencestoshow" class="tsd-anchor"></a>
 						<h3>num<wbr>Sequences<wbr>ToShow</h3>
-						<div class="tsd-signature tsd-kind-icon">num<wbr>Sequences<wbr>ToShow<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;2000</span></div>
+						<div class="tsd-signature tsd-kind-icon">num<wbr>Sequences<wbr>ToShow<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;5000</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/b0a5053db/src/singlepage/UMAPVisualization.tsx#L267">src/singlepage/UMAPVisualization.tsx:267</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/47b7f4f00/src/singlepage/UMAPVisualization.tsx#L278">src/singlepage/UMAPVisualization.tsx:278</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="defaultprops.showuploadbutton" class="tsd-anchor"></a>
+						<h3>show<wbr>Upload<wbr>Button</h3>
+						<div class="tsd-signature tsd-kind-icon">show<wbr>Upload<wbr>Button<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/47b7f4f00/src/singlepage/UMAPVisualization.tsx#L279">src/singlepage/UMAPVisualization.tsx:279</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -998,6 +1077,9 @@ class Foo extends React.Component {
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="umapsequencecontainer.html#getsnapshotbeforeupdate" class="tsd-kind-icon">get<wbr>Snapshot<wbr>Before<wbr>Update</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="umapsequencecontainer.html#ontaxonomyupload" class="tsd-kind-icon">on<wbr>Taxonomy<wbr>Upload</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="umapsequencecontainer.html#parsetaxonomy" class="tsd-kind-icon">parse<wbr>Taxonomy</a>
 							</li>
@@ -1007,8 +1089,14 @@ class Foo extends React.Component {
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="umapsequencecontainer.html#render" class="tsd-kind-icon">render</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="umapsequencecontainer.html#rendertaxonomyupload" class="tsd-kind-icon">render<wbr>Taxonomy<wbr>Upload</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
 								<a href="umapsequencecontainer.html#setstate" class="tsd-kind-icon">set<wbr>State</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="umapsequencecontainer.html#setupsequenceannotation" class="tsd-kind-icon">setup<wbr>Sequence<wbr>Annotation</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="umapsequencecontainer.html#shouldcomponentupdate" class="tsd-kind-icon">should<wbr>Component<wbr>Update</a>
