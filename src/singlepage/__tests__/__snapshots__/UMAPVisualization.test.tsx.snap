@@ -1,110 +1,100 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UMAPVisualization UMAPSequenceContainer Should render when given a sequence. 1`] = `
-<UMAPVisualization
-  allSequences={
-    Array [
-      SeqRecord {
-        "alphabet": undefined,
-        "annotations": Object {
-          "dbxrefs": Array [],
-          "description": "<unknown description>",
-          "id": "<unknown id>",
-          "letterAnnotations": Object {},
-          "metadata": Object {},
-          "name": "<unknown name>",
-        },
-        "back_transcribe": [Function],
-        "binaryRepresentation": [Function],
-        "complement": [Function],
-        "determineAlphabet": [Function],
-        "equal": [Function],
-        "ignoredCharacters": Array [
-          "-",
-        ],
-        "integerRepresentation": [Function],
-        "isValidDNA": [Function],
-        "isValidProtein": [Function],
-        "isValidRNA": [Function],
-        "lower": [Function],
-        "reverse_complement": [Function],
-        "sequence": "gatcctag",
-        "subSequence": [Function],
-        "toString": [Function],
-        "transcribe": [Function],
-        "translate": [Function],
-        "upper": [Function],
-      },
-    ]
-  }
-  dataLabels={
-    Array [
-      undefined,
-    ]
-  }
-  dataMatrix={
-    Array [
-      Array [
-        0,
-        1,
-        2,
-        3,
-        3,
-        2,
-        1,
-        0,
-      ],
-    ]
-  }
-  distanceFn={[Function]}
-  errorMessages={Array []}
-  labelCategory="class"
-  numIterationsBeforeReRender={1}
-  numSequencesToShow={2000}
-  tooltipNames={
-    Array [
-      "<unknown name>",
-    ]
-  }
-  xRange={
-    Array [
-      -20,
-      20,
-    ]
-  }
-  yRange={
-    Array [
-      -20,
-      20,
-    ]
-  }
-/>
+<Grid
+  centered={true}
+  padded={true}
+>
+  <GridRow>
+    <UMAPVisualization
+      allSequences={
+        Array [
+          SeqRecord {
+            "alphabet": undefined,
+            "annotations": Object {
+              "dbxrefs": Array [],
+              "description": "<unknown description>",
+              "id": "<unknown id>",
+              "letterAnnotations": Object {},
+              "metadata": Object {},
+              "name": "<unknown name>",
+            },
+            "back_transcribe": [Function],
+            "binaryRepresentation": [Function],
+            "complement": [Function],
+            "determineAlphabet": [Function],
+            "equal": [Function],
+            "ignoredCharacters": Array [
+              "-",
+            ],
+            "integerRepresentation": [Function],
+            "isValidDNA": [Function],
+            "isValidProtein": [Function],
+            "isValidRNA": [Function],
+            "lower": [Function],
+            "reverse_complement": [Function],
+            "sequence": "gatcctag",
+            "subSequence": [Function],
+            "toString": [Function],
+            "transcribe": [Function],
+            "translate": [Function],
+            "upper": [Function],
+          },
+        ]
+      }
+      dataLabels={
+        Array [
+          undefined,
+        ]
+      }
+      dataMatrix={
+        Array [
+          Array [
+            0,
+            1,
+            2,
+            3,
+            3,
+            2,
+            1,
+            0,
+          ],
+        ]
+      }
+      distanceFn={[Function]}
+      errorMessages={Array []}
+      labelCategory="class"
+      numIterationsBeforeReRender={1}
+      numSequencesToShow={5000}
+      tooltipNames={
+        Array [
+          "<unknown name>",
+        ]
+      }
+    />
+  </GridRow>
+</Grid>
 `;
 
 exports[`UMAPVisualization UMAPSequenceContainer Should render when given an empty sequence. 1`] = `
-<UMAPVisualization
-  allSequences={Array []}
-  dataLabels={Array []}
-  dataMatrix={Array []}
-  distanceFn={[Function]}
-  errorMessages={Array []}
-  labelCategory="class"
-  numIterationsBeforeReRender={1}
-  numSequencesToShow={2000}
-  tooltipNames={Array []}
-  xRange={
-    Array [
-      -20,
-      20,
-    ]
-  }
-  yRange={
-    Array [
-      -20,
-      20,
-    ]
-  }
-/>
+<Grid
+  centered={true}
+  padded={true}
+>
+  <GridRow>
+    <UMAPVisualization
+      allSequences={Array []}
+      dataLabels={Array []}
+      dataMatrix={Array []}
+      distanceFn={[Function]}
+      errorMessages={Array []}
+      labelCategory="class"
+      numIterationsBeforeReRender={1}
+      numSequencesToShow={5000}
+      tooltipNames={Array []}
+    />
+  </GridRow>
+</Grid>
 `;
 
 exports[`UMAPVisualization UMAPTranscriptionalContainer Should render when given an empty data matrix. 1`] = `
@@ -120,18 +110,6 @@ exports[`UMAPVisualization UMAPTranscriptionalContainer Should render when given
   numIterationsBeforeReRender={1}
   numSamplesToShow={4000}
   tooltipNames={Array []}
-  xRange={
-    Array [
-      -20,
-      20,
-    ]
-  }
-  yRange={
-    Array [
-      -20,
-      20,
-    ]
-  }
 />
 `;
 
@@ -143,9 +121,15 @@ exports[`UMAPVisualization UMAPVisualization Should render when given an empty d
       Array [
         Object {
           "isLink": false,
-          "text": "",
+          "text": "1 sequences | ",
         },
       ]
+    }
+    expandedStyle={
+      Object {
+        "height": "80vh",
+        "width": "calc(0px + 80vh)",
+      }
     }
     frameHeight={0}
     frameWidth={0}
@@ -162,35 +146,23 @@ exports[`UMAPVisualization UMAPVisualization Should render when given an empty d
   >
     <PlotlyChart
       config={Object {}}
-      data={
-        Array [
-          Object {
-            "marker": Object {
-              "color": Array [],
-            },
-            "mode": "markers",
-            "text": undefined,
-            "type": "scattergl",
-            "x": Float32Array [
-              NaN,
-            ],
-            "y": Float32Array [
-              NaN,
-            ],
-          },
-        ]
-      }
+      data={Array []}
       height="100%"
       layout={
         Object {
           "autosize": true,
           "dragmode": "zoom",
           "hovermode": "closest",
-          "legend": Object {},
+          "legend": Object {
+            "itemdoubleclick": false,
+            "traceorder": "reversed",
+            "x": 1,
+            "y": 1,
+          },
           "margin": Object {
             "b": 20,
           },
-          "showlegend": false,
+          "showlegend": true,
           "title": "",
           "xaxis": Object {
             "autorange": false,

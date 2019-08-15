@@ -4,6 +4,12 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
 <ComponentCard
   componentName="Let's"
   dockItems={Array []}
+  expandedStyle={
+    Object {
+      "height": "85vh",
+      "width": "85vh",
+    }
+  }
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}
@@ -29,8 +35,8 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
     size="large"
     style={
       Object {
-        "height": "80vh",
-        "width": "80vh",
+        "height": "85vh",
+        "width": "85vh",
         "willChange": "unset",
       }
     }
@@ -50,11 +56,11 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
           >
             <div
               class="ui large modal transition visible active"
-              style="height: 80vh; width: 80vh; will-change: unset;"
+              style="height: 85vh; width: 85vh; will-change: unset;"
             >
               <div
                 class="ui centered card bioblocks-component-card"
-                style="max-width: unset; padding: 5px; height: 80vh; width: 80vh;"
+                style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
               >
                 <div
                   style="height: 6%;"
@@ -104,7 +110,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                   style="height: 91%; width: 100%;"
                 >
                   <div
-                    style="transform-origin: top left; transform: scale(calc(70/0),calc((62 - 20)/0));"
+                    style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
                   >
                     <div>
                       Go!
@@ -135,11 +141,11 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
             >
               <div
                 class="ui large modal transition visible active"
-                style="height: 80vh; width: 80vh; will-change: unset;"
+                style="height: 85vh; width: 85vh; will-change: unset;"
               >
                 <div
                   class="ui centered card bioblocks-component-card"
-                  style="max-width: unset; padding: 5px; height: 80vh; width: 80vh;"
+                  style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                 >
                   <div
                     style="height: 6%;"
@@ -189,7 +195,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                     style="height: 91%; width: 100%;"
                   >
                     <div
-                      style="transform-origin: top left; transform: scale(calc(70/0),calc((62 - 20)/0));"
+                      style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
                     >
                       <div>
                         Go!
@@ -215,11 +221,11 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
             >
               <div
                 class="ui large modal transition visible active"
-                style="height: 80vh; width: 80vh; will-change: unset;"
+                style="height: 85vh; width: 85vh; will-change: unset;"
               >
                 <div
                   class="ui centered card bioblocks-component-card"
-                  style="max-width: unset; padding: 5px; height: 80vh; width: 80vh;"
+                  style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                 >
                   <div
                     style="height: 6%;"
@@ -269,7 +275,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                     style="height: 91%; width: 100%;"
                   >
                     <div
-                      style="transform-origin: top left; transform: scale(calc(70/0),calc((62 - 20)/0));"
+                      style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
                     >
                       <div>
                         Go!
@@ -299,11 +305,11 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
               >
                 <div
                   class="ui large modal transition visible active"
-                  style="height: 80vh; width: 80vh; will-change: unset;"
+                  style="height: 85vh; width: 85vh; will-change: unset;"
                 >
                   <div
                     class="ui centered card bioblocks-component-card"
-                    style="max-width: unset; padding: 5px; height: 80vh; width: 80vh;"
+                    style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                   >
                     <div
                       style="height: 6%;"
@@ -353,7 +359,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                       style="height: 91%; width: 100%;"
                     >
                       <div
-                        style="transform-origin: top left; transform: scale(calc(70/0),calc((62 - 20)/0));"
+                        style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
                       >
                         <div>
                           Go!
@@ -383,11 +389,11 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                     Object {
                       "current": <div
                         class="ui large modal transition visible active"
-                        style="height: 80vh; width: 80vh; will-change: unset;"
+                        style="height: 85vh; width: 85vh; will-change: unset;"
                       >
                         <div
                           class="ui centered card bioblocks-component-card"
-                          style="max-width: unset; padding: 5px; height: 80vh; width: 80vh;"
+                          style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                         >
                           <div
                             style="height: 6%;"
@@ -437,7 +443,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                             style="height: 91%; width: 100%;"
                           >
                             <div
-                              style="transform-origin: top left; transform: scale(calc(70/0),calc((62 - 20)/0));"
+                              style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
                             >
                               <div>
                                 Go!
@@ -457,11 +463,11 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                       Object {
                         "current": <div
                           class="ui large modal transition visible active"
-                          style="height: 80vh; width: 80vh; will-change: unset;"
+                          style="height: 85vh; width: 85vh; will-change: unset;"
                         >
                           <div
                             class="ui centered card bioblocks-component-card"
-                            style="max-width: unset; padding: 5px; height: 80vh; width: 80vh;"
+                            style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                           >
                             <div
                               style="height: 6%;"
@@ -511,7 +517,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                               style="height: 91%; width: 100%;"
                             >
                               <div
-                                style="transform-origin: top left; transform: scale(calc(70/0),calc((62 - 20)/0));"
+                                style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
                               >
                                 <div>
                                   Go!
@@ -530,8 +536,8 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                       className="ui large modal transition visible active"
                       style={
                         Object {
-                          "height": "80vh",
-                          "width": "80vh",
+                          "height": "85vh",
+                          "width": "85vh",
                           "willChange": "unset",
                         }
                       }
@@ -544,10 +550,10 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                         className="bioblocks-component-card"
                         style={
                           Object {
-                            "height": "80vh",
+                            "height": "85vh",
                             "maxWidth": "unset",
                             "padding": "5px",
-                            "width": "80vh",
+                            "width": "85vh",
                           }
                         }
                       >
@@ -556,10 +562,10 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                           onClick={[Function]}
                           style={
                             Object {
-                              "height": "80vh",
+                              "height": "85vh",
                               "maxWidth": "unset",
                               "padding": "5px",
-                              "width": "80vh",
+                              "width": "85vh",
                             }
                           }
                         >
@@ -714,7 +720,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                             <div
                               style={
                                 Object {
-                                  "transform": "scale(calc(70/0),calc((62 - 20)/0))",
+                                  "transform": "scale(calc(75/0),calc((67 - 20)/0))",
                                   "transformOrigin": "top left",
                                 }
                               }
@@ -753,11 +759,11 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
             >
               <div
                 class="ui large modal transition visible active"
-                style="height: 80vh; width: 80vh; will-change: unset;"
+                style="height: 85vh; width: 85vh; will-change: unset;"
               >
                 <div
                   class="ui centered card bioblocks-component-card"
-                  style="max-width: unset; padding: 5px; height: 80vh; width: 80vh;"
+                  style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                 >
                   <div
                     style="height: 6%;"
@@ -807,7 +813,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                     style="height: 91%; width: 100%;"
                   >
                     <div
-                      style="transform-origin: top left; transform: scale(calc(70/0),calc((62 - 20)/0));"
+                      style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
                     >
                       <div>
                         Go!
@@ -835,11 +841,11 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
             >
               <div
                 class="ui large modal transition visible active"
-                style="height: 80vh; width: 80vh; will-change: unset;"
+                style="height: 85vh; width: 85vh; will-change: unset;"
               >
                 <div
                   class="ui centered card bioblocks-component-card"
-                  style="max-width: unset; padding: 5px; height: 80vh; width: 80vh;"
+                  style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                 >
                   <div
                     style="height: 6%;"
@@ -889,7 +895,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                     style="height: 91%; width: 100%;"
                   >
                     <div
-                      style="transform-origin: top left; transform: scale(calc(70/0),calc((62 - 20)/0));"
+                      style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
                     >
                       <div>
                         Go!
@@ -932,6 +938,12 @@ exports[`ComponentCard Should handle expanding a framed full page component. 1`]
 <ComponentCard
   componentName="Let's"
   dockItems={Array []}
+  expandedStyle={
+    Object {
+      "height": "85vh",
+      "width": "85vh",
+    }
+  }
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}
@@ -1146,6 +1158,12 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
 <ComponentCard
   componentName="Let's"
   dockItems={Array []}
+  expandedStyle={
+    Object {
+      "height": "85vh",
+      "width": "85vh",
+    }
+  }
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}
@@ -1171,8 +1189,8 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
     size="large"
     style={
       Object {
-        "height": "80vh",
-        "width": "80vh",
+        "height": "85vh",
+        "width": "85vh",
         "willChange": "unset",
       }
     }
@@ -1192,11 +1210,11 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
           >
             <div
               class="ui large modal transition visible active"
-              style="height: 80vh; width: 80vh; will-change: unset;"
+              style="height: 85vh; width: 85vh; will-change: unset;"
             >
               <div
                 class="ui centered card bioblocks-component-card"
-                style="max-width: unset; padding: 5px; height: 80vh; width: 80vh;"
+                style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
               >
                 <div
                   style="height: 6%;"
@@ -1246,7 +1264,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                   style="height: 91%; width: 100%;"
                 >
                   <div
-                    style="transform-origin: top left; transform: scale(calc(70/0),calc((62 - 20)/0));"
+                    style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
                   >
                     <div>
                       Go!
@@ -1265,11 +1283,11 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
           >
             <div
               class="ui large modal transition visible active"
-              style="height: 80vh; width: 80vh; will-change: unset;"
+              style="height: 85vh; width: 85vh; will-change: unset;"
             >
               <div
                 class="ui centered card bioblocks-component-card"
-                style="max-width: unset; padding: 5px; height: 80vh; width: 80vh;"
+                style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
               >
                 <div
                   style="height: 6%;"
@@ -1346,11 +1364,11 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
             >
               <div
                 class="ui large modal transition visible active"
-                style="height: 80vh; width: 80vh; will-change: unset;"
+                style="height: 85vh; width: 85vh; will-change: unset;"
               >
                 <div
                   class="ui centered card bioblocks-component-card"
-                  style="max-width: unset; padding: 5px; height: 80vh; width: 80vh;"
+                  style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                 >
                   <div
                     style="height: 6%;"
@@ -1422,11 +1440,11 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
             >
               <div
                 class="ui large modal transition visible active"
-                style="height: 80vh; width: 80vh; will-change: unset;"
+                style="height: 85vh; width: 85vh; will-change: unset;"
               >
                 <div
                   class="ui centered card bioblocks-component-card"
-                  style="max-width: unset; padding: 5px; height: 80vh; width: 80vh;"
+                  style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                 >
                   <div
                     style="height: 6%;"
@@ -1476,7 +1494,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                     style="height: 91%; width: 100%;"
                   >
                     <div
-                      style="transform-origin: top left; transform: scale(calc(70/0),calc((62 - 20)/0));"
+                      style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
                     >
                       <div>
                         Go!
@@ -1495,11 +1513,11 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
             >
               <div
                 class="ui large modal transition visible active"
-                style="height: 80vh; width: 80vh; will-change: unset;"
+                style="height: 85vh; width: 85vh; will-change: unset;"
               >
                 <div
                   class="ui centered card bioblocks-component-card"
-                  style="max-width: unset; padding: 5px; height: 80vh; width: 80vh;"
+                  style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                 >
                   <div
                     style="height: 6%;"
@@ -1575,11 +1593,11 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
               >
                 <div
                   class="ui large modal transition visible active"
-                  style="height: 80vh; width: 80vh; will-change: unset;"
+                  style="height: 85vh; width: 85vh; will-change: unset;"
                 >
                   <div
                     class="ui centered card bioblocks-component-card"
-                    style="max-width: unset; padding: 5px; height: 80vh; width: 80vh;"
+                    style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                   >
                     <div
                       style="height: 6%;"
@@ -1629,7 +1647,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                       style="height: 91%; width: 100%;"
                     >
                       <div
-                        style="transform-origin: top left; transform: scale(calc(70/0),calc((62 - 20)/0));"
+                        style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
                       >
                         <div>
                           Go!
@@ -1648,11 +1666,11 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
               >
                 <div
                   class="ui large modal transition visible active"
-                  style="height: 80vh; width: 80vh; will-change: unset;"
+                  style="height: 85vh; width: 85vh; will-change: unset;"
                 >
                   <div
                     class="ui centered card bioblocks-component-card"
-                    style="max-width: unset; padding: 5px; height: 80vh; width: 80vh;"
+                    style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                   >
                     <div
                       style="height: 6%;"
@@ -1728,11 +1746,11 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                     Object {
                       "current": <div
                         class="ui large modal transition visible active"
-                        style="height: 80vh; width: 80vh; will-change: unset;"
+                        style="height: 85vh; width: 85vh; will-change: unset;"
                       >
                         <div
                           class="ui centered card bioblocks-component-card"
-                          style="max-width: unset; padding: 5px; height: 80vh; width: 80vh;"
+                          style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                         >
                           <div
                             style="height: 6%;"
@@ -1798,11 +1816,11 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                       Object {
                         "current": <div
                           class="ui large modal transition visible active"
-                          style="height: 80vh; width: 80vh; will-change: unset;"
+                          style="height: 85vh; width: 85vh; will-change: unset;"
                         >
                           <div
                             class="ui centered card bioblocks-component-card"
-                            style="max-width: unset; padding: 5px; height: 80vh; width: 80vh;"
+                            style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                           >
                             <div
                               style="height: 6%;"
@@ -1867,8 +1885,8 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                       className="ui large modal transition visible active"
                       style={
                         Object {
-                          "height": "80vh",
-                          "width": "80vh",
+                          "height": "85vh",
+                          "width": "85vh",
                           "willChange": "unset",
                         }
                       }
@@ -1881,10 +1899,10 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                         className="bioblocks-component-card"
                         style={
                           Object {
-                            "height": "80vh",
+                            "height": "85vh",
                             "maxWidth": "unset",
                             "padding": "5px",
-                            "width": "80vh",
+                            "width": "85vh",
                           }
                         }
                       >
@@ -1893,10 +1911,10 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                           onClick={[Function]}
                           style={
                             Object {
-                              "height": "80vh",
+                              "height": "85vh",
                               "maxWidth": "unset",
                               "padding": "5px",
-                              "width": "80vh",
+                              "width": "85vh",
                             }
                           }
                         >
@@ -2081,11 +2099,11 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
             >
               <div
                 class="ui large modal transition visible active"
-                style="height: 80vh; width: 80vh; will-change: unset;"
+                style="height: 85vh; width: 85vh; will-change: unset;"
               >
                 <div
                   class="ui centered card bioblocks-component-card"
-                  style="max-width: unset; padding: 5px; height: 80vh; width: 80vh;"
+                  style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                 >
                   <div
                     style="height: 6%;"
@@ -2159,11 +2177,11 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
             >
               <div
                 class="ui large modal transition visible active"
-                style="height: 80vh; width: 80vh; will-change: unset;"
+                style="height: 85vh; width: 85vh; will-change: unset;"
               >
                 <div
                   class="ui centered card bioblocks-component-card"
-                  style="max-width: unset; padding: 5px; height: 80vh; width: 80vh;"
+                  style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                 >
                   <div
                     style="height: 6%;"
@@ -2252,6 +2270,12 @@ exports[`ComponentCard Should handle expanding a non-framed full page component.
 <ComponentCard
   componentName="Let's"
   dockItems={Array []}
+  expandedStyle={
+    Object {
+      "height": "85vh",
+      "width": "85vh",
+    }
+  }
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}
@@ -2457,6 +2481,12 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
 <ComponentCard
   componentName="Let's"
   dockItems={Array []}
+  expandedStyle={
+    Object {
+      "height": "85vh",
+      "width": "85vh",
+    }
+  }
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}

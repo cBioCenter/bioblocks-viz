@@ -10,7 +10,7 @@ import IframeComm, { IframeCommAttributes } from 'react-iframe-comm';
 import { createContainerActions, createSpringActions, fetchSpringGraphData } from '~bioblocks-viz~/action';
 import { ComponentCard } from '~bioblocks-viz~/component';
 import { BioblocksVisualization } from '~bioblocks-viz~/container';
-import { ISpringGraphData, ISpringLink, ISpringNode } from '~bioblocks-viz~/data';
+import { IFrameEvent, ISpringGraphData, ISpringLink, ISpringNode, VIZ_TYPE } from '~bioblocks-viz~/data';
 import { EMPTY_FUNCTION, fetchSpringData } from '~bioblocks-viz~/helper';
 import { BBStore, createSpringReducer } from '~bioblocks-viz~/reducer';
 import { getCategories, getGraphData, selectCurrentItems } from '~bioblocks-viz~/selector';
@@ -153,9 +153,9 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
     return;
   };
 
-  protected onReceiveMessage = (msg: MessageEvent) => {
+  protected onReceiveMessage = (msg: IFrameEvent<VIZ_TYPE.SPRING>) => {
     const { currentCells, setCurrentCategory, setCurrentCells } = this.props;
-    const data = msg.data as ISpringMessage;
+    const data = msg.data;
     switch (data.type) {
       case 'selected-category-update':
       case 'selected-cells-update': {

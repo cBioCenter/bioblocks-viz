@@ -35,6 +35,8 @@ export enum VIZ_TYPE {
   SPRING = 'Spring',
   'TENSOR-T-SNE' = 'TENSOR-T-SNE',
   'T-SNE' = 'T-SNE',
+  'UMAP_SEQUENCE' = 'UMAP Sequence',
+  'UMAP_TRANSCRIPTION' = 'UMAP Transcription',
 }
 
 export interface IContactMapData {

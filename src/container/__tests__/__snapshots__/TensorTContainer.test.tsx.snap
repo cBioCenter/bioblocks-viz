@@ -15,6 +15,12 @@ exports[`TensorTContainer Should match existing snapshot when given no props. 1`
   <ComponentCard
     componentName="tSNE - TensorFlow"
     dockItems={Array []}
+    expandedStyle={
+      Object {
+        "height": "85vh",
+        "width": "85vh",
+      }
+    }
     frameHeight={0}
     frameWidth={0}
     headerHeight={20}
@@ -116,6 +122,12 @@ exports[`TensorTContainer Should match existing snapshot when given sample data.
   <ComponentCard
     componentName="tSNE - TensorFlow"
     dockItems={Array []}
+    expandedStyle={
+      Object {
+        "height": "85vh",
+        "width": "85vh",
+      }
+    }
     frameHeight={0}
     frameWidth={0}
     headerHeight={20}

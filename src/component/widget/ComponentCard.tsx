@@ -7,6 +7,7 @@ import { ComponentDock, ComponentMenuBar, IComponentMenuBarItem, IDockItem } fro
 export interface IComponentCardProps {
   componentName: string;
   dockItems: IDockItem[];
+  expandedStyle: React.CSSProperties;
   frameHeight: number;
   frameWidth: number;
   headerHeight: number;
@@ -29,6 +30,10 @@ export interface IComponentCardState {
 export class ComponentCard extends React.Component<IComponentCardProps, IComponentCardState> {
   public static defaultProps = {
     dockItems: [],
+    expandedStyle: {
+      height: '85vh',
+      width: '85vh', // Intentionally 'vh' instead of 'vw' to make the card square.
+    },
     frameHeight: 0,
     frameWidth: 0,
     headerHeight: 20,
@@ -74,20 +79,14 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
   }
 
   public render() {
-    const { height, width } = this.props;
+    const { expandedStyle, height, width } = this.props;
     const { isFullPage } = this.state;
-
-    const expandedStyle: React.CSSProperties = {
-      height: '80vh',
-      padding: '5px',
-      width: '80vh',
-    };
 
     const heightAsNumber = typeof height === 'string' ? parseInt(height, 10) : height;
     const cardStyle: React.CSSProperties = {
       maxWidth: 'unset',
       padding: '0 0 5px 5px',
-      ...(isFullPage ? { ...expandedStyle } : { height: `${heightAsNumber * 1.01}px`, width }),
+      ...(isFullPage ? { ...expandedStyle, padding: '5px' } : { height: `${heightAsNumber * 1.01}px`, width }),
     };
 
     const card = (
@@ -96,10 +95,10 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
       </Card>
     );
 
-    return this.renderCard(card, isFullPage);
+    return this.renderCard(card, isFullPage, expandedStyle);
   }
 
-  protected renderCard = (card: JSX.Element, isFullPage: boolean) => {
+  protected renderCard = (card: JSX.Element, isFullPage: boolean, expandedStyle: React.CSSProperties) => {
     if (isFullPage) {
       return (
         <Modal
@@ -108,7 +107,7 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
           onClose={this.onFullPageToggle}
           open={true}
           size={'large'}
-          style={{ height: '80vh', width: '80vh', willChange: 'unset' }}
+          style={{ ...expandedStyle, willChange: 'unset' }}
         >
           {card}
         </Modal>
