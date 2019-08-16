@@ -6,7 +6,7 @@ import { euclidean } from 'umap-js/dist/umap';
 
 import { Button, Grid, Label, Popup } from 'semantic-ui-react';
 import { ComponentCard, defaultPlotlyLayout, PlotlyChart } from '~bioblocks-viz~/component';
-import { ILabel, IPlotlyData, Marker, SeqRecord } from '~bioblocks-viz~/data';
+import { BioblocksChartEvent, ILabel, IPlotlyData, Marker, SeqRecord } from '~bioblocks-viz~/data';
 import { readFileAsText } from '~bioblocks-viz~/helper';
 
 export interface IUMAPSequenceContainerProps extends Partial<IUMAPVisualizationProps> {
@@ -87,6 +87,7 @@ export interface IUMAPVisualizationProps {
 
 export interface IUMAPVisualizationState {
   currentEpoch: number | undefined;
+  dataVisibility: Record<number, boolean>;
   plotlyData: Array<Partial<IPlotlyData>>;
   ranges: {
     minX: number;
@@ -275,7 +276,7 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
   public static defaultProps = {
     labelCategory: 'class',
     numIterationsBeforeReRender: 1,
-    numSequencesToShow: 5000,
+    numSequencesToShow: 4000,
     showUploadButton: false,
   };
 
@@ -542,6 +543,7 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     super(props);
     this.state = {
       currentEpoch: undefined,
+      dataVisibility: {},
       plotlyData: new Array(),
       ranges: {
         maxX: 20,
@@ -581,6 +583,15 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     const legend: SVGGElement | undefined = document.getElementsByClassName('legend')[0] as SVGGElement;
     const legendWidth = legend ? legend.getBBox().width * 0.75 : 0;
 
+    // Show legend if:
+    // 2 or more data arrays.
+    // Only 1 data array with no name - OR - a name that is not unannotated.
+    const showLegend =
+      plotlyData.length >= 2 ||
+      (plotlyData.length === 1 &&
+        (plotlyData[0].name === undefined ||
+          (plotlyData[0].name !== undefined && !plotlyData[0].name.includes('Unannotated'))));
+
     return (
       <div>
         <ComponentCard
@@ -607,12 +618,18 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
               margin: {
                 b: 20,
               },
-
-              showlegend: true,
+              showlegend: showLegend,
               xaxis: { autorange: false, range: [ranges.minX, ranges.maxX] },
               yaxis: { autorange: false, range: [ranges.minY, ranges.maxY] },
             }}
-            data={plotlyData}
+            data={plotlyData.map((data, index) => {
+              const { dataVisibility } = this.state;
+              data.visible =
+                dataVisibility[index] === undefined || dataVisibility[index] === true ? true : 'legendonly';
+
+              return data;
+            })}
+            onLegendClickCallback={this.onLegendClick}
             showLoader={true}
           />
         </ComponentCard>
@@ -730,5 +747,24 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
 
       stepUmapFn(0);
     });
+
+    this.setState({
+      dataVisibility: {},
+    });
   }
+
+  private onLegendClick = (event: BioblocksChartEvent) => {
+    if ('expandedIndex' in event.plotlyEvent && event.plotlyEvent.expandedIndex !== undefined) {
+      const { dataVisibility } = this.state;
+      const { expandedIndex } = event.plotlyEvent;
+      this.setState({
+        dataVisibility: {
+          ...dataVisibility,
+          [expandedIndex]: dataVisibility[expandedIndex] === undefined ? false : !dataVisibility[expandedIndex],
+        },
+      });
+    }
+
+    return false;
+  };
 }

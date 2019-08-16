@@ -65,7 +65,7 @@ exports[`UMAPVisualization UMAPSequenceContainer Should render when given a sequ
       errorMessages={Array []}
       labelCategory="class"
       numIterationsBeforeReRender={1}
-      numSequencesToShow={5000}
+      numSequencesToShow={4000}
       tooltipNames={
         Array [
           "<unknown name>",
@@ -90,7 +90,7 @@ exports[`UMAPVisualization UMAPSequenceContainer Should render when given an emp
       errorMessages={Array []}
       labelCategory="class"
       numIterationsBeforeReRender={1}
-      numSequencesToShow={5000}
+      numSequencesToShow={4000}
       tooltipNames={Array []}
     />
   </GridRow>
@@ -162,7 +162,7 @@ exports[`UMAPVisualization UMAPVisualization Should render when given an empty d
           "margin": Object {
             "b": 20,
           },
-          "showlegend": true,
+          "showlegend": false,
           "title": "",
           "xaxis": Object {
             "autorange": false,
@@ -180,6 +180,7 @@ exports[`UMAPVisualization UMAPVisualization Should render when given an empty d
           },
         }
       }
+      onLegendClickCallback={[Function]}
       showLoader={true}
       width="100%"
     />

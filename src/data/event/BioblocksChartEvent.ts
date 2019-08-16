@@ -6,7 +6,10 @@ export class BioblocksChartEvent {
     readonly type: BIOBLOCKS_CHART_EVENT_TYPE,
     readonly chartPiece?: BIOBLOCKS_CHART_PIECE,
     readonly selectedPoints: number[] = [],
-    readonly plotlyEvent: Partial<Plotly.PlotMouseEvent> | Partial<Plotly.PlotSelectionEvent> = {},
+    readonly plotlyEvent:
+      | Partial<Plotly.PlotMouseEvent>
+      | Partial<Plotly.PlotSelectionEvent>
+      | Partial<Plotly.LegendClickEvent> = {},
   ) {}
 
   public isAxis() {

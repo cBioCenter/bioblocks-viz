@@ -26,6 +26,7 @@ export interface IPlotlyChartProps {
   onClickCallback?(event: BioblocksChartEvent): void;
   onDoubleClickCallback?(event: BioblocksChartEvent): void;
   onHoverCallback?(event: BioblocksChartEvent): void;
+  onLegendClickCallback?(event: BioblocksChartEvent): boolean;
   onSelectedCallback?(event: BioblocksChartEvent): void;
   onUnHoverCallback?(event: BioblocksChartEvent): void;
   onRelayoutCallback?(event: BioblocksChartEvent): void;
@@ -92,6 +93,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
       this.plotlyCanvas.on('plotly_click', this.onClick);
       this.plotlyCanvas.on('plotly_doubleclick', this.onDoubleClick);
       this.plotlyCanvas.on('plotly_hover', this.onHover);
+      this.plotlyCanvas.on('plotly_legendclick', this.onLegendClick);
       this.plotlyCanvas.on('plotly_relayout', this.onRelayout as any);
       this.plotlyCanvas.on('plotly_selected', this.onSelect);
       this.plotlyCanvas.on('plotly_unhover', this.onUnHover);
@@ -347,6 +349,17 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
       const { chartPiece, selectedPoints } = this.deriveChartPiece(x, y, event.points[0].data);
       onHoverCallback(new BioblocksChartEvent(BIOBLOCKS_CHART_EVENT_TYPE.HOVER, chartPiece, selectedPoints));
     }
+  };
+
+  protected onLegendClick = (event: plotly.LegendClickEvent) => {
+    const { onLegendClickCallback } = this.props;
+    if (onLegendClickCallback) {
+      return onLegendClickCallback(
+        new BioblocksChartEvent(BIOBLOCKS_CHART_EVENT_TYPE.LEGEND_CLICK, BIOBLOCKS_CHART_PIECE.LEGEND, [], event),
+      );
+    }
+
+    return false;
   };
 
   protected onRelayout = (event: plotly.PlotRelayoutEvent & { [key: string]: number }) => {
