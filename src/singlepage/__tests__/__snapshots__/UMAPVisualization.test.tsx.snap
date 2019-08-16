@@ -162,7 +162,7 @@ exports[`UMAPVisualization UMAPVisualization Should render when given an empty d
           "margin": Object {
             "b": 20,
           },
-          "showlegend": true,
+          "showlegend": false,
           "title": "",
           "xaxis": Object {
             "autorange": false,
@@ -180,6 +180,7 @@ exports[`UMAPVisualization UMAPVisualization Should render when given an empty d
           },
         }
       }
+      onLegendClickCallback={[Function]}
       showLoader={true}
       width="100%"
     />

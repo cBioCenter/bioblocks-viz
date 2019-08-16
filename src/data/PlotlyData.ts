@@ -31,7 +31,7 @@ export interface IPlotlyLayout extends Plotly.Layout {
   legend: Partial<
     {
       itemclick: 'toggle' | 'toggleothers' | false;
-      itemdoubleclick: 'toggle' | 'toggleothers' | false;
+      itemdoubleclick: 'toggle' | 'toggleothers' | boolean;
     } & Plotly.Legend
   >;
   // TODO Open PR to add these missing Plotly types. - https://plot.ly/javascript/reference/#box

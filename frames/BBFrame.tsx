@@ -45,7 +45,6 @@ export class BBFrame extends React.Component<any, IBBFrameState> {
     const { currentViz, vizData } = this.state;
 
     const combinedStyle: BIOBLOCKS_CSS_STYLE = {
-      ...{ height: 'auto', width: 'auto' },
       ...style,
     };
 
