@@ -23,7 +23,7 @@ export interface IComponentMenuBarProps {
   componentName: string;
   height: number | string;
   isExpanded: boolean;
-  iconSrc?: string;
+  iconSrc: string;
   menuItems: IComponentMenuBarItem[];
   opacity: number;
   width: number | string;
@@ -31,6 +31,7 @@ export interface IComponentMenuBarProps {
 }
 
 export interface IComponentMenuBarState {
+  iconUrl: string;
   isHovered: boolean;
 }
 
@@ -61,6 +62,7 @@ export const DEFAULT_POPUP_PROPS: Partial<PopupProps> = {
 export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IComponentMenuBarState> {
   public static defaultProps = {
     height: '100%',
+    iconSrc: 'assets/icons/bio-blocks-icon.svg',
     isExpanded: false,
     menuItems: [],
     opacity: 0.85,
@@ -70,12 +72,22 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
   constructor(props: IComponentMenuBarProps) {
     super(props);
     this.state = {
+      iconUrl: 'assets/icons/bio-blocks-icon.svg',
       isHovered: false,
     };
   }
 
+  public async componentDidMount() {
+    const { iconSrc } = this.props;
+    const result = await fetch(iconSrc);
+    this.setState({
+      iconUrl: result.url,
+    });
+  }
+
   public render() {
     const { componentName, height, iconSrc, isExpanded, menuItems, onExpandToggleCb } = this.props;
+    const { iconUrl } = this.state;
 
     return (
       <div onMouseEnter={this.onMenuEnter} onMouseLeave={this.onMenuLeave}>
@@ -83,7 +95,7 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
           <Menu secondary={true} widths={1}>
             <Menu.Item fitted={'horizontally'} position={'left'} style={{ margin: 0, padding: 0, width: 'auto' }}>
               {iconSrc && (
-                <img alt={'component icon'} src={iconSrc} style={{ height: '32px', padding: '2px', width: '32px' }} />
+                <img alt={'component icon'} src={iconUrl} style={{ height: '32px', padding: '2px', width: '32px' }} />
               )}
               {componentName}
             </Menu.Item>

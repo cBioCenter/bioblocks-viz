@@ -816,7 +816,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                         >
                                           <img
                                             alt="component icon"
-                                            src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                                            src="assets/icons/bio-blocks-icon.svg"
                                             style={
                                               Object {
                                                 "height": "32px",

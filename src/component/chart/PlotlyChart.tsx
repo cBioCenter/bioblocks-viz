@@ -1,7 +1,7 @@
 import * as Immutable from 'immutable';
 import { isEqual } from 'lodash';
 // tslint:disable-next-line: no-submodule-imports
-import * as plotly from 'plotly.js/lib/index-gl2d';
+import * as plotly from 'plotly.js/lib/index';
 import * as React from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react';
 
@@ -145,12 +145,20 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
    */
   public async componentDidUpdate(prevProps: IPlotlyChartProps) {
     const { data, layout, config } = this.props;
-    if (
-      !isEqual(data[0], prevProps.data[0]) ||
-      !isEqual(layout, prevProps.layout) ||
-      !isEqual(config, prevProps.config)
-    ) {
-      this.plotlyFormattedData = isEqual(data[0], prevProps.data[0])
+    let isDataEqual = data.length === prevProps.data.length;
+
+    if (isDataEqual) {
+      data.forEach((datum, index) => {
+        if (!isEqual(datum, prevProps.data[index])) {
+          isDataEqual = false;
+
+          return;
+        }
+      });
+    }
+
+    if (!isDataEqual || !isEqual(layout, prevProps.layout) || !isEqual(config, prevProps.config)) {
+      this.plotlyFormattedData = isDataEqual
         ? this.plotlyFormattedData
         : ((Immutable.fromJS(data) as Immutable.List<keyof IPlotlyData>).toJS() as IPlotlyData[]);
       await this.draw();

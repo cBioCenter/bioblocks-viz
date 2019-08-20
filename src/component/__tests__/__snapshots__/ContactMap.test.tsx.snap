@@ -2738,7 +2738,6 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                         >
                           <img
                             alt="component icon"
-                            src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                             style={
                               Object {
                                 "height": "32px",

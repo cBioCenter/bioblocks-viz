@@ -64,8 +64,12 @@ exports[`UMAPVisualization UMAPSequenceContainer Should render when given a sequ
       distanceFn={[Function]}
       errorMessages={Array []}
       labelCategory="class"
+      minDist={0.99}
+      nComponents={2}
+      nNeighbors={15}
       numIterationsBeforeReRender={1}
       numSequencesToShow={4000}
+      spread={1}
       tooltipNames={
         Array [
           "<unknown name>",
@@ -89,8 +93,12 @@ exports[`UMAPVisualization UMAPSequenceContainer Should render when given an emp
       distanceFn={[Function]}
       errorMessages={Array []}
       labelCategory="class"
+      minDist={0.99}
+      nComponents={2}
+      nNeighbors={15}
       numIterationsBeforeReRender={1}
       numSequencesToShow={4000}
+      spread={1}
       tooltipNames={Array []}
     />
   </GridRow>
@@ -107,8 +115,12 @@ exports[`UMAPVisualization UMAPTranscriptionalContainer Should render when given
   }
   distanceFn={[Function]}
   errorMessages={Array []}
+  minDist={0.99}
+  nComponents={2}
+  nNeighbors={15}
   numIterationsBeforeReRender={1}
   numSamplesToShow={4000}
+  spread={1}
   tooltipNames={Array []}
 />
 `;
@@ -139,7 +151,24 @@ exports[`UMAPVisualization UMAPVisualization Should render when given an empty d
     isDataReady={false}
     isFramedComponent={false}
     isFullPage={false}
-    menuItems={Array []}
+    menuItems={
+      Array [
+        Object {
+          "component": Object {
+            "name": "POPUP",
+            "props": Object {
+              "children": <Button
+                as="button"
+              />,
+              "disabled": false,
+              "position": "top center",
+              "wide": "very",
+            },
+          },
+          "description": "settings",
+        },
+      ]
+    }
     padding={0}
     showSettings={false}
     width="525px"

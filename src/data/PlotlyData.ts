@@ -26,15 +26,12 @@ export interface IPlotlyData extends plotly.ScatterData {
 }
 
 export interface IPlotlyLayout extends Plotly.Layout {
-  // TODO Open PR to add these missing Plotly types. - https://plot.ly/javascript/reference/#box
-  xaxis2: Partial<Plotly.LayoutAxis>;
   legend: Partial<
     {
       itemclick: 'toggle' | 'toggleothers' | false;
       itemdoubleclick: 'toggle' | 'toggleothers' | boolean;
     } & Plotly.Legend
   >;
-  // TODO Open PR to add these missing Plotly types. - https://plot.ly/javascript/reference/#box
 }
 
 export type REQUIRED_BIOBLOCKS_PLOTLY_DATA = Required<

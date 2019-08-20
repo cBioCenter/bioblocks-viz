@@ -30,6 +30,17 @@ exports[`ComponentMenuBar Should handle an unknown menu item. 1`] = `
           }
         }
       >
+        <img
+          alt="component icon"
+          src="assets/icons/bio-blocks-icon.svg"
+          style={
+            Object {
+              "height": "32px",
+              "padding": "2px",
+              "width": "32px",
+            }
+          }
+        />
         The Boxer
       </MenuItem>
     </Menu>
@@ -175,6 +186,17 @@ exports[`ComponentMenuBar Should match existing snapshot when expanded 1`] = `
           }
         }
       >
+        <img
+          alt="component icon"
+          src="assets/icons/bio-blocks-icon.svg"
+          style={
+            Object {
+              "height": "32px",
+              "padding": "2px",
+              "width": "32px",
+            }
+          }
+        />
         The Boxer
       </MenuItem>
     </Menu>
@@ -241,6 +263,17 @@ exports[`ComponentMenuBar Should match existing snapshot when given default prop
           }
         }
       >
+        <img
+          alt="component icon"
+          src="assets/icons/bio-blocks-icon.svg"
+          style={
+            Object {
+              "height": "32px",
+              "padding": "2px",
+              "width": "32px",
+            }
+          }
+        />
         The Boxer
       </MenuItem>
     </Menu>
@@ -307,6 +340,17 @@ exports[`ComponentMenuBar Should render a Button Group menu item. 1`] = `
           }
         }
       >
+        <img
+          alt="component icon"
+          src="assets/icons/bio-blocks-icon.svg"
+          style={
+            Object {
+              "height": "32px",
+              "padding": "2px",
+              "width": "32px",
+            }
+          }
+        />
         The Boxer
       </MenuItem>
     </Menu>
@@ -495,6 +539,17 @@ exports[`ComponentMenuBar Should render a Button menu item with an icon. 1`] = `
           }
         }
       >
+        <img
+          alt="component icon"
+          src="assets/icons/bio-blocks-icon.svg"
+          style={
+            Object {
+              "height": "32px",
+              "padding": "2px",
+              "width": "32px",
+            }
+          }
+        />
         The Boxer
       </MenuItem>
     </Menu>
@@ -650,6 +705,17 @@ exports[`ComponentMenuBar Should render a Button menu item. 1`] = `
           }
         }
       >
+        <img
+          alt="component icon"
+          src="assets/icons/bio-blocks-icon.svg"
+          style={
+            Object {
+              "height": "32px",
+              "padding": "2px",
+              "width": "32px",
+            }
+          }
+        />
         The Boxer
       </MenuItem>
     </Menu>
@@ -801,6 +867,17 @@ exports[`ComponentMenuBar Should render a Checkbox menu item. 1`] = `
           }
         }
       >
+        <img
+          alt="component icon"
+          src="assets/icons/bio-blocks-icon.svg"
+          style={
+            Object {
+              "height": "32px",
+              "padding": "2px",
+              "width": "32px",
+            }
+          }
+        />
         The Boxer
       </MenuItem>
     </Menu>
@@ -950,6 +1027,17 @@ exports[`ComponentMenuBar Should render a Label menu item. 1`] = `
           }
         }
       >
+        <img
+          alt="component icon"
+          src="assets/icons/bio-blocks-icon.svg"
+          style={
+            Object {
+              "height": "32px",
+              "padding": "2px",
+              "width": "32px",
+            }
+          }
+        />
         The Boxer
       </MenuItem>
     </Menu>
@@ -1100,6 +1188,17 @@ exports[`ComponentMenuBar Should render a Radio menu item. 1`] = `
           }
         }
       >
+        <img
+          alt="component icon"
+          src="assets/icons/bio-blocks-icon.svg"
+          style={
+            Object {
+              "height": "32px",
+              "padding": "2px",
+              "width": "32px",
+            }
+          }
+        />
         The Boxer
       </MenuItem>
     </Menu>
@@ -1257,6 +1356,17 @@ exports[`ComponentMenuBar Should render a Range Slider menu item. 1`] = `
           }
         }
       >
+        <img
+          alt="component icon"
+          src="assets/icons/bio-blocks-icon.svg"
+          style={
+            Object {
+              "height": "32px",
+              "padding": "2px",
+              "width": "32px",
+            }
+          }
+        />
         The Boxer
       </MenuItem>
     </Menu>
@@ -1424,6 +1534,17 @@ exports[`ComponentMenuBar Should render a Slider menu item. 1`] = `
           }
         }
       >
+        <img
+          alt="component icon"
+          src="assets/icons/bio-blocks-icon.svg"
+          style={
+            Object {
+              "height": "32px",
+              "padding": "2px",
+              "width": "32px",
+            }
+          }
+        />
         The Boxer
       </MenuItem>
     </Menu>
@@ -1581,6 +1702,17 @@ exports[`ComponentMenuBar Should render popup menu items. 1`] = `
           }
         }
       >
+        <img
+          alt="component icon"
+          src="assets/icons/bio-blocks-icon.svg"
+          style={
+            Object {
+              "height": "32px",
+              "padding": "2px",
+              "width": "32px",
+            }
+          }
+        />
         The Boxer
       </MenuItem>
     </Menu>

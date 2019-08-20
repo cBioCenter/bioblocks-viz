@@ -79,7 +79,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                         >
                           <img
                             alt="component icon"
-                            src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                            src="assets/icons/bio-blocks-icon.svg"
                             style="height: 32px; padding: 2px; width: 32px;"
                           />
                           Let's
@@ -164,7 +164,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                           >
                             <img
                               alt="component icon"
-                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                              src="assets/icons/bio-blocks-icon.svg"
                               style="height: 32px; padding: 2px; width: 32px;"
                             />
                             Let's
@@ -244,7 +244,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                           >
                             <img
                               alt="component icon"
-                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                              src="assets/icons/bio-blocks-icon.svg"
                               style="height: 32px; padding: 2px; width: 32px;"
                             />
                             Let's
@@ -328,7 +328,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                             >
                               <img
                                 alt="component icon"
-                                src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                                src="assets/icons/bio-blocks-icon.svg"
                                 style="height: 32px; padding: 2px; width: 32px;"
                               />
                               Let's
@@ -412,7 +412,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                                   >
                                     <img
                                       alt="component icon"
-                                      src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                                      src="assets/icons/bio-blocks-icon.svg"
                                       style="height: 32px; padding: 2px; width: 32px;"
                                     />
                                     Let's
@@ -486,7 +486,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                                     >
                                       <img
                                         alt="component icon"
-                                        src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                                        src="assets/icons/bio-blocks-icon.svg"
                                         style="height: 32px; padding: 2px; width: 32px;"
                                       />
                                       Let's
@@ -640,7 +640,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                                           >
                                             <img
                                               alt="component icon"
-                                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                                              src="assets/icons/bio-blocks-icon.svg"
                                               style={
                                                 Object {
                                                   "height": "32px",
@@ -782,7 +782,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                           >
                             <img
                               alt="component icon"
-                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                              src="assets/icons/bio-blocks-icon.svg"
                               style="height: 32px; padding: 2px; width: 32px;"
                             />
                             Let's
@@ -864,7 +864,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                           >
                             <img
                               alt="component icon"
-                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                              src="assets/icons/bio-blocks-icon.svg"
                               style="height: 32px; padding: 2px; width: 32px;"
                             />
                             Let's
@@ -1052,7 +1052,7 @@ exports[`ComponentCard Should handle expanding a framed full page component. 1`]
                       >
                         <img
                           alt="component icon"
-                          src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                          src="assets/icons/bio-blocks-icon.svg"
                           style={
                             Object {
                               "height": "32px",
@@ -1233,7 +1233,6 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                         >
                           <img
                             alt="component icon"
-                            src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                             style="height: 32px; padding: 2px; width: 32px;"
                           />
                           Let's
@@ -1306,7 +1305,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                         >
                           <img
                             alt="component icon"
-                            src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                            src="assets/icons/bio-blocks-icon.svg"
                             style="height: 32px; padding: 2px; width: 32px;"
                           />
                           Let's
@@ -1387,7 +1386,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                           >
                             <img
                               alt="component icon"
-                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                              src="assets/icons/bio-blocks-icon.svg"
                               style="height: 32px; padding: 2px; width: 32px;"
                             />
                             Let's
@@ -1463,7 +1462,6 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                           >
                             <img
                               alt="component icon"
-                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                               style="height: 32px; padding: 2px; width: 32px;"
                             />
                             Let's
@@ -1536,7 +1534,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                           >
                             <img
                               alt="component icon"
-                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                              src="assets/icons/bio-blocks-icon.svg"
                               style="height: 32px; padding: 2px; width: 32px;"
                             />
                             Let's
@@ -1616,7 +1614,6 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                             >
                               <img
                                 alt="component icon"
-                                src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
                                 style="height: 32px; padding: 2px; width: 32px;"
                               />
                               Let's
@@ -1689,7 +1686,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                             >
                               <img
                                 alt="component icon"
-                                src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                                src="assets/icons/bio-blocks-icon.svg"
                                 style="height: 32px; padding: 2px; width: 32px;"
                               />
                               Let's
@@ -1769,7 +1766,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                                   >
                                     <img
                                       alt="component icon"
-                                      src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                                      src="assets/icons/bio-blocks-icon.svg"
                                       style="height: 32px; padding: 2px; width: 32px;"
                                     />
                                     Let's
@@ -1839,7 +1836,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                                     >
                                       <img
                                         alt="component icon"
-                                        src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                                        src="assets/icons/bio-blocks-icon.svg"
                                         style="height: 32px; padding: 2px; width: 32px;"
                                       />
                                       Let's
@@ -1989,7 +1986,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                                           >
                                             <img
                                               alt="component icon"
-                                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                                              src="assets/icons/bio-blocks-icon.svg"
                                               style={
                                                 Object {
                                                   "height": "32px",
@@ -2122,7 +2119,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                           >
                             <img
                               alt="component icon"
-                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                              src="assets/icons/bio-blocks-icon.svg"
                               style="height: 32px; padding: 2px; width: 32px;"
                             />
                             Let's
@@ -2200,7 +2197,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                           >
                             <img
                               alt="component icon"
-                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                              src="assets/icons/bio-blocks-icon.svg"
                               style="height: 32px; padding: 2px; width: 32px;"
                             />
                             Let's
@@ -2384,7 +2381,7 @@ exports[`ComponentCard Should handle expanding a non-framed full page component.
                       >
                         <img
                           alt="component icon"
-                          src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                          src="assets/icons/bio-blocks-icon.svg"
                           style={
                             Object {
                               "height": "32px",
@@ -2595,7 +2592,7 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
                       >
                         <img
                           alt="component icon"
-                          src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                          src="assets/icons/bio-blocks-icon.svg"
                           style={
                             Object {
                               "height": "32px",
