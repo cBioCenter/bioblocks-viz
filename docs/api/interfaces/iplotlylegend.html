@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IUMAPVisualizationState | bioblocks-viz</title>
+	<title>IPlotlyLegend | bioblocks-viz</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="iumapvisualizationstate.html">IUMAPVisualizationState</a>
+					<a href="iplotlylegend.html">IPlotlyLegend</a>
 				</li>
 			</ul>
-			<h1>Interface IUMAPVisualizationState</h1>
+			<h1>Interface IPlotlyLegend</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IUMAPVisualizationState</span>
+						<span class="tsd-signature-type">object</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">IPlotlyLegend</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -79,12 +84,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iumapvisualizationstate.html#currentepoch" class="tsd-kind-icon">current<wbr>Epoch</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iumapvisualizationstate.html#datavisibility" class="tsd-kind-icon">data<wbr>Visibility</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iumapvisualizationstate.html#plotlydata" class="tsd-kind-icon">plotly<wbr>Data</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iumapvisualizationstate.html#ranges" class="tsd-kind-icon">ranges</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iumapvisualizationstate.html#totalnumberepochs" class="tsd-kind-icon">total<wbr>Number<wbr>Epochs</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iumapvisualizationstate.html#umapembedding" class="tsd-kind-icon">umap<wbr>Embedding</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iplotlylegend.html#itemclick" class="tsd-kind-icon">itemclick</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iplotlylegend.html#itemdoubleclick" class="tsd-kind-icon">itemdoubleclick</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iplotlylegend.html#traceorder" class="tsd-kind-icon">traceorder</a></li>
 							</ul>
 						</section>
 					</div>
@@ -93,79 +95,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="currentepoch" class="tsd-anchor"></a>
-					<h3>current<wbr>Epoch</h3>
-					<div class="tsd-signature tsd-kind-icon">current<wbr>Epoch<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
+					<a name="itemclick" class="tsd-anchor"></a>
+					<h3>itemclick</h3>
+					<div class="tsd-signature tsd-kind-icon">itemclick<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"toggle"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"toggleothers"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/7edee66e9/src/singlepage/UMAPVisualization.tsx#L89">src/singlepage/UMAPVisualization.tsx:89</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/data/PlotlyData.ts#L29">src/data/PlotlyData.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="datavisibility" class="tsd-anchor"></a>
-					<h3>data<wbr>Visibility</h3>
-					<div class="tsd-signature tsd-kind-icon">data<wbr>Visibility<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="itemdoubleclick" class="tsd-anchor"></a>
+					<h3>itemdoubleclick</h3>
+					<div class="tsd-signature tsd-kind-icon">itemdoubleclick<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"toggle"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"toggleothers"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/7edee66e9/src/singlepage/UMAPVisualization.tsx#L90">src/singlepage/UMAPVisualization.tsx:90</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/data/PlotlyData.ts#L30">src/data/PlotlyData.ts:30</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="plotlydata" class="tsd-anchor"></a>
-					<h3>plotly<wbr>Data</h3>
-					<div class="tsd-signature tsd-kind-icon">plotly<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="iplotlydata.html" class="tsd-signature-type">IPlotlyData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="traceorder" class="tsd-anchor"></a>
+					<h3>traceorder</h3>
+					<div class="tsd-signature tsd-kind-icon">traceorder<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"grouped"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"normal"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"reversed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"grouped+reversed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"reversed+grouped"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/7edee66e9/src/singlepage/UMAPVisualization.tsx#L91">src/singlepage/UMAPVisualization.tsx:91</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="ranges" class="tsd-anchor"></a>
-					<h3>ranges</h3>
-					<div class="tsd-signature tsd-kind-icon">ranges<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/7edee66e9/src/singlepage/UMAPVisualization.tsx#L92">src/singlepage/UMAPVisualization.tsx:92</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter">
-								<h5>maxX<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>maxY<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>minX<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>minY<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-							</li>
-						</ul>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="totalnumberepochs" class="tsd-anchor"></a>
-					<h3>total<wbr>Number<wbr>Epochs</h3>
-					<div class="tsd-signature tsd-kind-icon">total<wbr>Number<wbr>Epochs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/7edee66e9/src/singlepage/UMAPVisualization.tsx#L98">src/singlepage/UMAPVisualization.tsx:98</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="umapembedding" class="tsd-anchor"></a>
-					<h3>umap<wbr>Embedding</h3>
-					<div class="tsd-signature tsd-kind-icon">umap<wbr>Embedding<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/7edee66e9/src/singlepage/UMAPVisualization.tsx#L99">src/singlepage/UMAPVisualization.tsx:99</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/data/PlotlyData.ts#L31">src/data/PlotlyData.ts:31</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -184,25 +139,16 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="iumapvisualizationstate.html" class="tsd-kind-icon">IUMAPVisualization<wbr>State</a>
+						<a href="iplotlylegend.html" class="tsd-kind-icon">IPlotly<wbr>Legend</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iumapvisualizationstate.html#currentepoch" class="tsd-kind-icon">current<wbr>Epoch</a>
+								<a href="iplotlylegend.html#itemclick" class="tsd-kind-icon">itemclick</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iumapvisualizationstate.html#datavisibility" class="tsd-kind-icon">data<wbr>Visibility</a>
+								<a href="iplotlylegend.html#itemdoubleclick" class="tsd-kind-icon">itemdoubleclick</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iumapvisualizationstate.html#plotlydata" class="tsd-kind-icon">plotly<wbr>Data</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iumapvisualizationstate.html#ranges" class="tsd-kind-icon">ranges</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iumapvisualizationstate.html#totalnumberepochs" class="tsd-kind-icon">total<wbr>Number<wbr>Epochs</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iumapvisualizationstate.html#umapembedding" class="tsd-kind-icon">umap<wbr>Embedding</a>
+								<a href="iplotlylegend.html#traceorder" class="tsd-kind-icon">traceorder</a>
 							</li>
 						</ul>
 					</li>
