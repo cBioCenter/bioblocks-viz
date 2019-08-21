@@ -123,8 +123,8 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
 
     return (
       <>
-        <div style={{ height: '6%' }}>{this.renderTopMenu(headerHeight)}</div>
-        <div style={{ height: '91%', width: '100%' }}>
+        <div style={{ height: '7%' }}>{this.renderTopMenu(headerHeight)}</div>
+        <div style={{ height: '90%', width: '100%' }}>
           {isFramedComponent ? <div style={framedStyle}>{children}</div> : children}
         </div>
         <div style={{ height: '3%' }}>{this.renderDock()}</div>

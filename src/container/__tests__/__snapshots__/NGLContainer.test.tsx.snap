@@ -528,7 +528,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                         <div
                           style={
                             Object {
-                              "height": "6%",
+                              "height": "7%",
                             }
                           }
                         >
@@ -1073,7 +1073,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                         <div
                           style={
                             Object {
-                              "height": "91%",
+                              "height": "90%",
                               "width": "100%",
                             }
                           }

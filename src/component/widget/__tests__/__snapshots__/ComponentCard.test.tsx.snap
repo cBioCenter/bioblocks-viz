@@ -63,7 +63,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                 style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
               >
                 <div
-                  style="height: 6%;"
+                  style="height: 7%;"
                 >
                   <div>
                     <div
@@ -107,7 +107,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                   </div>
                 </div>
                 <div
-                  style="height: 91%; width: 100%;"
+                  style="height: 90%; width: 100%;"
                 >
                   <div
                     style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
@@ -148,7 +148,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                   style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                 >
                   <div
-                    style="height: 6%;"
+                    style="height: 7%;"
                   >
                     <div>
                       <div
@@ -192,7 +192,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                     </div>
                   </div>
                   <div
-                    style="height: 91%; width: 100%;"
+                    style="height: 90%; width: 100%;"
                   >
                     <div
                       style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
@@ -228,7 +228,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                   style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                 >
                   <div
-                    style="height: 6%;"
+                    style="height: 7%;"
                   >
                     <div>
                       <div
@@ -272,7 +272,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                     </div>
                   </div>
                   <div
-                    style="height: 91%; width: 100%;"
+                    style="height: 90%; width: 100%;"
                   >
                     <div
                       style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
@@ -312,7 +312,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                     style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                   >
                     <div
-                      style="height: 6%;"
+                      style="height: 7%;"
                     >
                       <div>
                         <div
@@ -356,7 +356,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                       </div>
                     </div>
                     <div
-                      style="height: 91%; width: 100%;"
+                      style="height: 90%; width: 100%;"
                     >
                       <div
                         style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
@@ -396,7 +396,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                           style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                         >
                           <div
-                            style="height: 6%;"
+                            style="height: 7%;"
                           >
                             <div>
                               <div
@@ -440,7 +440,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                             </div>
                           </div>
                           <div
-                            style="height: 91%; width: 100%;"
+                            style="height: 90%; width: 100%;"
                           >
                             <div
                               style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
@@ -470,7 +470,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                             style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                           >
                             <div
-                              style="height: 6%;"
+                              style="height: 7%;"
                             >
                               <div>
                                 <div
@@ -514,7 +514,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                               </div>
                             </div>
                             <div
-                              style="height: 91%; width: 100%;"
+                              style="height: 90%; width: 100%;"
                             >
                               <div
                                 style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
@@ -572,7 +572,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                           <div
                             style={
                               Object {
-                                "height": "6%",
+                                "height": "7%",
                               }
                             }
                           >
@@ -712,7 +712,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                           <div
                             style={
                               Object {
-                                "height": "91%",
+                                "height": "90%",
                                 "width": "100%",
                               }
                             }
@@ -766,7 +766,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                   style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                 >
                   <div
-                    style="height: 6%;"
+                    style="height: 7%;"
                   >
                     <div>
                       <div
@@ -810,7 +810,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                     </div>
                   </div>
                   <div
-                    style="height: 91%; width: 100%;"
+                    style="height: 90%; width: 100%;"
                   >
                     <div
                       style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
@@ -848,7 +848,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                   style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                 >
                   <div
-                    style="height: 6%;"
+                    style="height: 7%;"
                   >
                     <div>
                       <div
@@ -892,7 +892,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                     </div>
                   </div>
                   <div
-                    style="height: 91%; width: 100%;"
+                    style="height: 90%; width: 100%;"
                   >
                     <div
                       style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
@@ -984,7 +984,7 @@ exports[`ComponentCard Should handle expanding a framed full page component. 1`]
       <div
         style={
           Object {
-            "height": "6%",
+            "height": "7%",
           }
         }
       >
@@ -1124,7 +1124,7 @@ exports[`ComponentCard Should handle expanding a framed full page component. 1`]
       <div
         style={
           Object {
-            "height": "91%",
+            "height": "90%",
             "width": "100%",
           }
         }
@@ -1217,7 +1217,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                 style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
               >
                 <div
-                  style="height: 6%;"
+                  style="height: 7%;"
                 >
                   <div>
                     <div
@@ -1260,7 +1260,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                   </div>
                 </div>
                 <div
-                  style="height: 91%; width: 100%;"
+                  style="height: 90%; width: 100%;"
                 >
                   <div
                     style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
@@ -1289,7 +1289,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                 style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
               >
                 <div
-                  style="height: 6%;"
+                  style="height: 7%;"
                 >
                   <div>
                     <div
@@ -1333,7 +1333,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                   </div>
                 </div>
                 <div
-                  style="height: 91%; width: 100%;"
+                  style="height: 90%; width: 100%;"
                 >
                   <div>
                     Go!
@@ -1370,7 +1370,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                   style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                 >
                   <div
-                    style="height: 6%;"
+                    style="height: 7%;"
                   >
                     <div>
                       <div
@@ -1414,7 +1414,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                     </div>
                   </div>
                   <div
-                    style="height: 91%; width: 100%;"
+                    style="height: 90%; width: 100%;"
                   >
                     <div>
                       Go!
@@ -1446,7 +1446,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                   style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                 >
                   <div
-                    style="height: 6%;"
+                    style="height: 7%;"
                   >
                     <div>
                       <div
@@ -1489,7 +1489,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                     </div>
                   </div>
                   <div
-                    style="height: 91%; width: 100%;"
+                    style="height: 90%; width: 100%;"
                   >
                     <div
                       style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
@@ -1518,7 +1518,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                   style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                 >
                   <div
-                    style="height: 6%;"
+                    style="height: 7%;"
                   >
                     <div>
                       <div
@@ -1562,7 +1562,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                     </div>
                   </div>
                   <div
-                    style="height: 91%; width: 100%;"
+                    style="height: 90%; width: 100%;"
                   >
                     <div>
                       Go!
@@ -1598,7 +1598,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                     style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                   >
                     <div
-                      style="height: 6%;"
+                      style="height: 7%;"
                     >
                       <div>
                         <div
@@ -1641,7 +1641,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                       </div>
                     </div>
                     <div
-                      style="height: 91%; width: 100%;"
+                      style="height: 90%; width: 100%;"
                     >
                       <div
                         style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
@@ -1670,7 +1670,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                     style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                   >
                     <div
-                      style="height: 6%;"
+                      style="height: 7%;"
                     >
                       <div>
                         <div
@@ -1714,7 +1714,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                       </div>
                     </div>
                     <div
-                      style="height: 91%; width: 100%;"
+                      style="height: 90%; width: 100%;"
                     >
                       <div>
                         Go!
@@ -1750,7 +1750,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                           style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                         >
                           <div
-                            style="height: 6%;"
+                            style="height: 7%;"
                           >
                             <div>
                               <div
@@ -1794,7 +1794,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                             </div>
                           </div>
                           <div
-                            style="height: 91%; width: 100%;"
+                            style="height: 90%; width: 100%;"
                           >
                             <div>
                               Go!
@@ -1820,7 +1820,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                             style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                           >
                             <div
-                              style="height: 6%;"
+                              style="height: 7%;"
                             >
                               <div>
                                 <div
@@ -1864,7 +1864,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                               </div>
                             </div>
                             <div
-                              style="height: 91%; width: 100%;"
+                              style="height: 90%; width: 100%;"
                             >
                               <div>
                                 Go!
@@ -1918,7 +1918,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                           <div
                             style={
                               Object {
-                                "height": "6%",
+                                "height": "7%",
                               }
                             }
                           >
@@ -2058,7 +2058,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                           <div
                             style={
                               Object {
-                                "height": "91%",
+                                "height": "90%",
                                 "width": "100%",
                               }
                             }
@@ -2103,7 +2103,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                   style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                 >
                   <div
-                    style="height: 6%;"
+                    style="height: 7%;"
                   >
                     <div>
                       <div
@@ -2147,7 +2147,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                     </div>
                   </div>
                   <div
-                    style="height: 91%; width: 100%;"
+                    style="height: 90%; width: 100%;"
                   >
                     <div>
                       Go!
@@ -2181,7 +2181,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                   style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
                 >
                   <div
-                    style="height: 6%;"
+                    style="height: 7%;"
                   >
                     <div>
                       <div
@@ -2225,7 +2225,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                     </div>
                   </div>
                   <div
-                    style="height: 91%; width: 100%;"
+                    style="height: 90%; width: 100%;"
                   >
                     <div>
                       Go!
@@ -2313,7 +2313,7 @@ exports[`ComponentCard Should handle expanding a non-framed full page component.
       <div
         style={
           Object {
-            "height": "6%",
+            "height": "7%",
           }
         }
       >
@@ -2453,7 +2453,7 @@ exports[`ComponentCard Should handle expanding a non-framed full page component.
       <div
         style={
           Object {
-            "height": "91%",
+            "height": "90%",
             "width": "100%",
           }
         }
@@ -2524,7 +2524,7 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
       <div
         style={
           Object {
-            "height": "6%",
+            "height": "7%",
           }
         }
       >
@@ -2664,7 +2664,7 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
       <div
         style={
           Object {
-            "height": "91%",
+            "height": "90%",
             "width": "100%",
           }
         }
@@ -2710,7 +2710,7 @@ exports[`ComponentCard Should match existing snapshot when framed. 1`] = `
   <div
     style={
       Object {
-        "height": "6%",
+        "height": "7%",
       }
     }
   >
@@ -2728,7 +2728,7 @@ exports[`ComponentCard Should match existing snapshot when framed. 1`] = `
   <div
     style={
       Object {
-        "height": "91%",
+        "height": "90%",
         "width": "100%",
       }
     }
@@ -2767,7 +2767,7 @@ exports[`ComponentCard Should match existing snapshot when given default props. 
   <div
     style={
       Object {
-        "height": "6%",
+        "height": "7%",
       }
     }
   >
@@ -2785,7 +2785,7 @@ exports[`ComponentCard Should match existing snapshot when given default props. 
   <div
     style={
       Object {
-        "height": "91%",
+        "height": "90%",
         "width": "100%",
       }
     }
@@ -2816,7 +2816,7 @@ exports[`ComponentCard Should match existing snapshot when not framed. 1`] = `
   <div
     style={
       Object {
-        "height": "6%",
+        "height": "7%",
       }
     }
   >
@@ -2834,7 +2834,7 @@ exports[`ComponentCard Should match existing snapshot when not framed. 1`] = `
   <div
     style={
       Object {
-        "height": "91%",
+        "height": "90%",
         "width": "100%",
       }
     }

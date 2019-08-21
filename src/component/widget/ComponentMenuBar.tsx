@@ -266,7 +266,7 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
       if (item.component.name === 'POPUP') {
         const trigger = <Icon name={item.iconName ? item.iconName : 'setting'} />;
         menuItemChild = item.component.configs ? (
-          <Popup trigger={trigger} {...combinedProps} wide={true} style={{ opacity }}>
+          <Popup trigger={trigger} wide={true} {...combinedProps} style={{ opacity }}>
             <ConfigAccordion configs={this.renderConfigs(item.component.configs)} gridStyle={style} title={'Config'} />
           </Popup>
         ) : (

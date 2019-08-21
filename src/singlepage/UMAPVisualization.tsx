@@ -12,7 +12,15 @@ import {
   IComponentMenuBarItem,
   PlotlyChart,
 } from '~bioblocks-viz~/component';
-import { BioblocksChartEvent, ILabel, IPlotlyData, Marker, SeqRecord } from '~bioblocks-viz~/data';
+import {
+  BioblocksChartEvent,
+  BioblocksWidgetConfig,
+  CONFIGURATION_COMPONENT_TYPE,
+  ILabel,
+  IPlotlyData,
+  Marker,
+  SeqRecord,
+} from '~bioblocks-viz~/data';
 import { readFileAsText } from '~bioblocks-viz~/helper';
 
 export interface IUMAPSequenceContainerProps extends Partial<IUMAPVisualizationProps> {
@@ -94,21 +102,7 @@ export interface IUMAPVisualizationProps {
   tooltipNames?: string[];
 }
 
-export interface IUMAPVisualizationState {
-  currentEpoch: number | undefined;
-  dataVisibility: Record<number, boolean>;
-  plotlyData: Array<Partial<IPlotlyData>>;
-  ranges: {
-    maxX: number;
-    maxY: number;
-    maxZ: number;
-    minX: number;
-    minY: number;
-    minZ: number;
-  };
-  totalNumberEpochs: number | undefined;
-  umapEmbedding: number[][];
-}
+export type IUMAPVisualizationState = typeof UMAPVisualization.initialState;
 
 /**
  * TODO: move to a math or array helper class
@@ -126,7 +120,6 @@ export function subsample<T, U extends boolean>(
   n: number,
   returnIndices: boolean = false,
 ): Array<T | number> {
-  console.log(`n: ${n}`);
   const unselectedObjBowl = returnIndices ? arr.map((obj, idx) => idx) : [...arr];
   if (n >= arr.length) {
     return unselectedObjBowl;
@@ -546,10 +539,31 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     distanceFn: euclidean,
     errorMessages: [],
     minDist: 0.99,
-    nComponents: 2,
+    nComponents: 2 as 2 | 3,
     nNeighbors: 15,
     numIterationsBeforeReRender: 1,
     spread: 1,
+  };
+
+  public static initialState = {
+    currentEpoch: undefined as number | undefined,
+    // tslint:disable-next-line: no-object-literal-type-assertion
+    dataVisibility: {} as Record<number, boolean>,
+    numDimensions: UMAPVisualization.defaultProps.nComponents,
+    numMinDist: UMAPVisualization.defaultProps.minDist,
+    numNeighbors: UMAPVisualization.defaultProps.nNeighbors,
+    numSpread: UMAPVisualization.defaultProps.spread,
+    plotlyData: new Array<IPlotlyData>(),
+    ranges: {
+      maxX: -20,
+      maxY: -20,
+      maxZ: -20,
+      minX: 20,
+      minY: 20,
+      minZ: 20,
+    },
+    totalNumberEpochs: undefined as number | undefined,
+    umapEmbedding: new Array(new Array<number>()),
   };
 
   private timeout1: number | undefined;
@@ -558,19 +572,11 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
   constructor(props: IUMAPVisualizationProps) {
     super(props);
     this.state = {
-      currentEpoch: undefined,
-      dataVisibility: {},
-      plotlyData: new Array(),
-      ranges: {
-        maxX: 20,
-        maxY: 20,
-        maxZ: 20,
-        minX: -20,
-        minY: -20,
-        minZ: -20,
-      },
-      totalNumberEpochs: undefined,
-      umapEmbedding: new Array(new Array<number>()),
+      ...UMAPVisualization.initialState,
+      numDimensions: props.nComponents,
+      numMinDist: props.minDist,
+      numNeighbors: props.nNeighbors,
+      numSpread: props.spread,
     };
   }
 
@@ -580,8 +586,8 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
 
   // tslint:disable-next-line: max-func-body-length
   public componentDidUpdate(prevProps: IUMAPVisualizationProps, prevState: IUMAPVisualizationState) {
-    const { distanceFn, dataMatrix, dataLabels, tooltipNames } = this.props;
-    const { dataVisibility } = this.state;
+    const { dataLabels, dataMatrix, distanceFn, minDist, nComponents, nNeighbors, spread, tooltipNames } = this.props;
+    const { dataVisibility, umapEmbedding } = this.state;
     if (distanceFn !== prevProps.distanceFn || dataMatrix !== prevProps.dataMatrix) {
       this.executeUMAP();
     } else if (
@@ -590,13 +596,29 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
       dataVisibility !== prevState.dataVisibility
     ) {
       this.setState({
-        plotlyData: this.getData(this.state.umapEmbedding, this.props.dataLabels, this.props.tooltipNames),
+        plotlyData: this.getData(umapEmbedding, dataLabels, tooltipNames),
+      });
+    } else if (nComponents !== prevProps.nComponents) {
+      this.setState({
+        numDimensions: nComponents,
+      });
+    } else if (spread !== prevProps.spread) {
+      this.setState({
+        numSpread: spread,
+      });
+    } else if (minDist !== prevProps.minDist) {
+      this.setState({
+        numMinDist: minDist,
+      });
+    } else if (nNeighbors !== prevProps.nNeighbors) {
+      this.setState({
+        numNeighbors: nNeighbors,
       });
     }
   }
 
   public render() {
-    const { iconSrc, nComponents } = this.props;
+    const { iconSrc } = this.props;
     const { currentEpoch, totalNumberEpochs, umapEmbedding } = this.state;
 
     let epochInfo: string | undefined;
@@ -614,13 +636,22 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
             height: '80vh',
             width: `calc(${legendStats.legendWidth}px + 80vh)`,
           }}
-          dockItems={[{ text: `${umapEmbedding.length} sequences | ${epochInfo ? epochInfo : ''}`, isLink: false }]}
+          dockItems={[
+            {
+              isLink: false,
+              text: `${umapEmbedding.length} sequence${umapEmbedding.length !== 1 ? 's' : ''} | ${
+                epochInfo ? epochInfo : ''
+              }`,
+            },
+          ]}
           iconSrc={iconSrc}
           isDataReady={epochInfo !== undefined}
           menuItems={this.getMenuItems()}
           width={`${legendStats.legendWidth + 525}px`}
         >
-          {nComponents === 2 ? this.render2D(legendStats.showLegend) : this.render3D(legendStats.showLegend)}
+          {umapEmbedding.length >= 1 && umapEmbedding[0].length === 3
+            ? this.render3D(legendStats.showLegend)
+            : this.render2D(legendStats.showLegend)}
         </ComponentCard>
       </div>
     );
@@ -700,7 +731,7 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
             y: 0.95,
           },
           margin: {
-            b: 20,
+            b: 10,
             l: 0,
             r: 5,
           },
@@ -793,6 +824,7 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
           hovertemplate: '%{data.name}<br>%{text}<extra></extra>',
           marker: {
             color: color ? color : 'gray',
+            size: 4,
           },
           mode: 'markers',
           name: `${name} (${1})`,
@@ -809,15 +841,17 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
   };
 
   protected getMenuItems = (): IComponentMenuBarItem[] => {
+    const { umapEmbedding } = this.state;
+
     return [
       {
         component: {
+          configs: this.getSettingsConfigs(),
           name: 'POPUP',
           props: {
-            children: <Button />,
-            disabled: false,
+            disabled: umapEmbedding.length === 0,
             position: 'top center',
-            wide: 'very',
+            wide: false,
           },
         },
         description: 'settings',
@@ -825,7 +859,99 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     ];
   };
 
-  private executeUMAP() {
+  protected getSettingsConfigs = () => {
+    const { numDimensions, numMinDist, numNeighbors, numSpread } = this.state;
+
+    return {
+      Settings: [
+        {
+          marks: {
+            0: '0',
+            5: '5',
+          },
+          name: 'Min Dist',
+          onChange: this.onMinDistChange,
+          step: 0.01,
+          type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
+          values: {
+            current: numMinDist,
+            defaultValue: 0.99,
+            max: 5,
+            min: 0,
+          },
+        },
+        {
+          marks: {
+            0: '0',
+            30: '30',
+          },
+          name: 'Neighbors',
+          onChange: this.onNumNeighborsChange,
+          step: 1,
+          type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
+          values: {
+            current: numNeighbors,
+            defaultValue: 15,
+            max: 30,
+            min: 0,
+          },
+        },
+        {
+          marks: {
+            0: '0',
+            10: '10',
+          },
+          name: 'Spread',
+          onChange: this.onSpreadChange,
+          step: 1,
+          type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
+          values: {
+            current: numSpread,
+            defaultValue: 1,
+            max: 10,
+            min: 0,
+          },
+        },
+        {
+          current: numDimensions.toString(),
+          name: 'Dimensions',
+          onChange: this.onDimensionChange,
+          options: ['2', '3'],
+          type: CONFIGURATION_COMPONENT_TYPE.RADIO,
+        },
+        {
+          name: 'Re-Run UMAP',
+          onClick: this.executeUMAP,
+          type: CONFIGURATION_COMPONENT_TYPE.BUTTON,
+        },
+      ] as BioblocksWidgetConfig[],
+    };
+  };
+
+  protected onDimensionChange = (value: number) => {
+    this.setState({
+      numDimensions: value === 0 ? 2 : 3,
+    });
+  };
+
+  protected onNumNeighborsChange = (value: number) => {
+    this.setState({
+      numNeighbors: value,
+    });
+  };
+
+  protected onSpreadChange = (value: number) => {
+    this.setState({
+      numSpread: value,
+    });
+  };
+
+  protected onMinDistChange = (value: number) => {
+    this.setState({
+      numMinDist: value,
+    });
+  };
+  private executeUMAP = () => {
     const { dataMatrix, distanceFn } = this.props;
 
     console.log('dataMatrix', dataMatrix);
@@ -835,16 +961,24 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     clearTimeout(this.timeout1);
     clearTimeout(this.timeout2);
 
+    this.setState({
+      currentEpoch: undefined,
+      plotlyData: new Array<IPlotlyData>(),
+      ranges: UMAPVisualization.initialState.ranges,
+      totalNumberEpochs: undefined,
+      umapEmbedding: [],
+    });
+
     // start processing umap
     const t0 = performance.now();
     this.timeout1 = setTimeout(() => {
-      const { minDist, nComponents, nNeighbors, spread } = this.props;
+      const { numDimensions, numNeighbors, numSpread, numMinDist } = this.state;
       const umap = new UMAP({
         distanceFn,
-        minDist,
-        nComponents,
-        nNeighbors,
-        spread,
+        minDist: numMinDist,
+        nComponents: numDimensions,
+        nNeighbors: numNeighbors,
+        spread: numSpread,
       });
 
       const optimalNumberEpochs = umap.initializeFit(dataMatrix);
@@ -860,14 +994,14 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
             console.log('embedding:', umapEmbedding);
           }
 
-          const { ranges } = this.state;
+          const ranges = { ...UMAPVisualization.initialState.ranges };
           umapEmbedding.forEach(row => {
-            ranges.maxX = Math.max(ranges.maxX, row[0] + 1);
-            ranges.maxY = Math.max(ranges.maxY, row[1] + 1);
-            ranges.maxZ = Math.max(ranges.maxZ, row[2] + 1);
-            ranges.minX = Math.min(ranges.minX, row[0] - 1);
-            ranges.minY = Math.min(ranges.minY, row[1] - 1);
-            ranges.minZ = Math.min(ranges.minZ, row[2] - 1);
+            ranges.maxX = Math.max(ranges.maxX, row[0] + 2);
+            ranges.maxY = Math.max(ranges.maxY, row[1] + 2);
+            ranges.maxZ = Math.max(ranges.maxZ, row[2] + 2);
+            ranges.minX = Math.min(ranges.minX, row[0] - 2);
+            ranges.minY = Math.min(ranges.minY, row[1] - 2);
+            ranges.minZ = Math.min(ranges.minZ, row[2] - 2);
           });
 
           const plotlyData = this.getData(umapEmbedding, this.props.dataLabels, this.props.tooltipNames);
@@ -893,7 +1027,7 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
       });
       stepUmapFn(0);
     });
-  }
+  };
 
   private onLegendClick = (event: BioblocksChartEvent) => {
     if ('expandedIndex' in event.plotlyEvent && event.plotlyEvent.expandedIndex !== undefined) {

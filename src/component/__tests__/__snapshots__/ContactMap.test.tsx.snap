@@ -2563,7 +2563,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         <div
           style={
             Object {
-              "height": "6%",
+              "height": "7%",
             }
           }
         >
@@ -3043,7 +3043,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         <div
           style={
             Object {
-              "height": "91%",
+              "height": "90%",
               "width": "100%",
             }
           }

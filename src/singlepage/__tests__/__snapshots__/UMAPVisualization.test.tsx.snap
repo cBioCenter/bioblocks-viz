@@ -133,7 +133,7 @@ exports[`UMAPVisualization UMAPVisualization Should render when given an empty d
       Array [
         Object {
           "isLink": false,
-          "text": "1 sequences | ",
+          "text": "0 sequences | ",
         },
       ]
     }
@@ -155,14 +155,78 @@ exports[`UMAPVisualization UMAPVisualization Should render when given an empty d
       Array [
         Object {
           "component": Object {
+            "configs": Object {
+              "Settings": Array [
+                Object {
+                  "marks": Object {
+                    "0": "0",
+                    "5": "5",
+                  },
+                  "name": "Min Dist",
+                  "onChange": [Function],
+                  "step": 0.01,
+                  "type": "SLIDER",
+                  "values": Object {
+                    "current": 0.99,
+                    "defaultValue": 0.99,
+                    "max": 5,
+                    "min": 0,
+                  },
+                },
+                Object {
+                  "marks": Object {
+                    "0": "0",
+                    "30": "30",
+                  },
+                  "name": "Neighbors",
+                  "onChange": [Function],
+                  "step": 1,
+                  "type": "SLIDER",
+                  "values": Object {
+                    "current": 15,
+                    "defaultValue": 15,
+                    "max": 30,
+                    "min": 0,
+                  },
+                },
+                Object {
+                  "marks": Object {
+                    "0": "0",
+                    "10": "10",
+                  },
+                  "name": "Spread",
+                  "onChange": [Function],
+                  "step": 1,
+                  "type": "SLIDER",
+                  "values": Object {
+                    "current": 1,
+                    "defaultValue": 1,
+                    "max": 10,
+                    "min": 0,
+                  },
+                },
+                Object {
+                  "current": "2",
+                  "name": "Dimensions",
+                  "onChange": [Function],
+                  "options": Array [
+                    "2",
+                    "3",
+                  ],
+                  "type": "RADIO",
+                },
+                Object {
+                  "name": "Re-Run UMAP",
+                  "onClick": [Function],
+                  "type": "BUTTON",
+                },
+              ],
+            },
             "name": "POPUP",
             "props": Object {
-              "children": <Button
-                as="button"
-              />,
-              "disabled": false,
+              "disabled": true,
               "position": "top center",
-              "wide": "very",
+              "wide": false,
             },
           },
           "description": "settings",
@@ -196,15 +260,15 @@ exports[`UMAPVisualization UMAPVisualization Should render when given an empty d
           "xaxis": Object {
             "autorange": false,
             "range": Array [
-              -20,
               20,
+              -20,
             ],
           },
           "yaxis": Object {
             "autorange": false,
             "range": Array [
-              -20,
               20,
+              -20,
             ],
           },
         }
