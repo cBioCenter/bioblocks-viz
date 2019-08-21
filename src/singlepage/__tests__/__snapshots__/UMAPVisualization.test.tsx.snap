@@ -248,7 +248,7 @@ exports[`UMAPVisualization UMAPVisualization Should render when given an empty d
           "hovermode": "closest",
           "legend": Object {
             "itemdoubleclick": false,
-            "traceorder": "reversed",
+            "traceorder": "grouped",
             "x": 1,
             "y": 1,
           },

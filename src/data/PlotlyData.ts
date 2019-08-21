@@ -25,13 +25,14 @@ export interface IPlotlyData extends plotly.ScatterData {
   type: PLOTLY_CHART_TYPE | 'bar' | 'pointcloud' | 'scatter' | 'scattergl' | 'scatter3d';
 }
 
-export interface IPlotlyLayout extends Plotly.Layout {
-  legend: Partial<
-    {
-      itemclick: 'toggle' | 'toggleothers' | false;
-      itemdoubleclick: 'toggle' | 'toggleothers' | boolean;
-    } & Plotly.Legend
-  >;
+export interface IPlotlyLegend extends Omit<Plotly.Legend, 'traceorder'> {
+  itemclick: 'toggle' | 'toggleothers' | false;
+  itemdoubleclick: 'toggle' | 'toggleothers' | boolean;
+  traceorder: 'grouped' | 'normal' | 'reversed' | 'grouped+reversed' | 'reversed+grouped';
+}
+
+export interface IPlotlyLayout extends Omit<Plotly.Layout, 'legend'> {
+  legend: Partial<IPlotlyLegend>;
 }
 
 export type REQUIRED_BIOBLOCKS_PLOTLY_DATA = Required<

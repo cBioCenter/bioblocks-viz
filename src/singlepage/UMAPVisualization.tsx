@@ -584,7 +584,6 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     this.executeUMAP();
   }
 
-  // tslint:disable-next-line: max-func-body-length
   public componentDidUpdate(prevProps: IUMAPVisualizationProps, prevState: IUMAPVisualizationState) {
     const { dataLabels, dataMatrix, distanceFn, minDist, nComponents, nNeighbors, spread, tooltipNames } = this.props;
     const { dataVisibility, umapEmbedding } = this.state;
@@ -685,7 +684,7 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
           dragmode: 'zoom',
           legend: {
             itemdoubleclick: false,
-            traceorder: 'reversed',
+            traceorder: 'grouped',
             x: 1,
             y: 1,
           },
@@ -726,7 +725,7 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
           dragmode: 'turntable',
           legend: {
             itemdoubleclick: false,
-            traceorder: 'reversed',
+            traceorder: 'grouped',
             x: 0.85,
             y: 0.95,
           },
@@ -760,9 +759,12 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
         ? this.getData3D(umapEmbedding, dataLabels, tooltipNames)
         : this.getData2D(umapEmbedding, dataLabels, tooltipNames);
 
-    return (Object.values(result) as IPlotlyData[])
-      .sort((a, b) => a.x.length - b.x.length)
-      .reverse()
+    const plotlyData = Object.values(result) as IPlotlyData[];
+    const unannotated = plotlyData.splice(plotlyData.findIndex(datum => datum.legendgroup === 'Unannotated'), 1);
+
+    return plotlyData
+      .sort((a, b) => b.x.length - a.x.length)
+      .concat(unannotated)
       .map((data, index) => {
         const { dataVisibility } = this.state;
         data.visible = dataVisibility[index] === undefined || dataVisibility[index] === true ? true : 'legendonly';
@@ -788,6 +790,7 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
         acc[name] = {
           hoverinfo: 'none',
           hovertemplate: '%{data.name}<br>%{text}<extra></extra>',
+          legendgroup: name === 'Unannotated' ? 'Unannotated' : 'Annotated',
           marker: {
             color: color ? color : 'gray',
           },
@@ -822,6 +825,7 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
         acc[name] = {
           hoverinfo: 'none',
           hovertemplate: '%{data.name}<br>%{text}<extra></extra>',
+          legendgroup: name === 'Unannotated' ? 'Unannotated' : 'Annotated',
           marker: {
             color: color ? color : 'gray',
             size: 4,

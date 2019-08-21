@@ -301,7 +301,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   };
 
   protected getMergedLayout = (
-    layout: Partial<Plotly.Layout> = {},
+    layout: Partial<IPlotlyLayout> = {},
     plotlyFormattedData: Array<Partial<IPlotlyData>> = [],
   ) => {
     const copiedLayout = Immutable.fromJS({ ...layout }) as Immutable.List<keyof Plotly.Layout>;
