@@ -117,10 +117,11 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="componentcard.html#componentdidupdate" class="tsd-kind-icon">component<wbr>Did<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="componentcard.html#componentwillmount" class="tsd-kind-icon">component<wbr>Will<wbr>Mount</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="componentcard.html#componentwillreceiveprops" class="tsd-kind-icon">component<wbr>Will<wbr>Receive<wbr>Props</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="componentcard.html#componentwillunmount" class="tsd-kind-icon">component<wbr>Will<wbr>Unmount</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="componentcard.html#componentwillunmount" class="tsd-kind-icon">component<wbr>Will<wbr>Unmount</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="componentcard.html#componentwillupdate" class="tsd-kind-icon">component<wbr>Will<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="componentcard.html#forceupdate" class="tsd-kind-icon">force<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="componentcard.html#getsnapshotbeforeupdate" class="tsd-kind-icon">get<wbr>Snapshot<wbr>Before<wbr>Update</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="componentcard.html#onborderclick" class="tsd-kind-icon">on<wbr>Border<wbr>Click</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="componentcard.html#onfullpagetoggle" class="tsd-kind-icon">on<wbr>Full<wbr>Page<wbr>Toggle</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="componentcard.html#render" class="tsd-kind-icon">render</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="componentcard.html#rendercard" class="tsd-kind-icon">render<wbr>Card</a></li>
@@ -154,7 +155,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L51">src/component/widget/ComponentCard.tsx:51</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L58">src/component/widget/ComponentCard.tsx:58</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -176,7 +177,7 @@
 					<div class="tsd-signature tsd-kind-icon">card<wbr>Ref<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Component</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L51">src/component/widget/ComponentCard.tsx:51</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L58">src/component/widget/ComponentCard.tsx:58</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -464,17 +465,17 @@ class Foo extends React.Component {
 					<a name="componentdidmount" class="tsd-anchor"></a>
 					<h3>component<wbr>Did<wbr>Mount</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">component<wbr>Did<wbr>Mount<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">component<wbr>Did<wbr>Mount<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides ComponentLifecycle.componentDidMount</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L63">src/component/widget/ComponentCard.tsx:63</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L70">src/component/widget/ComponentCard.tsx:70</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -482,14 +483,14 @@ class Foo extends React.Component {
 					<a name="componentdidupdate" class="tsd-anchor"></a>
 					<h3>component<wbr>Did<wbr>Update</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">component<wbr>Did<wbr>Update<span class="tsd-signature-symbol">(</span>prevProps<span class="tsd-signature-symbol">: </span><a href="../interfaces/icomponentcardprops.html" class="tsd-signature-type">IComponentCardProps</a>, prevState<span class="tsd-signature-symbol">: </span><a href="../interfaces/icomponentcardstate.html" class="tsd-signature-type">IComponentCardState</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">component<wbr>Did<wbr>Update<span class="tsd-signature-symbol">(</span>prevProps<span class="tsd-signature-symbol">: </span><a href="../interfaces/icomponentcardprops.html" class="tsd-signature-type">IComponentCardProps</a>, prevState<span class="tsd-signature-symbol">: </span><a href="../interfaces/icomponentcardstate.html" class="tsd-signature-type">IComponentCardState</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides NewLifecycle.componentDidUpdate</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L74">src/component/widget/ComponentCard.tsx:74</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L95">src/component/widget/ComponentCard.tsx:95</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -501,7 +502,7 @@ class Foo extends React.Component {
 									<h5>prevState: <a href="../interfaces/icomponentcardstate.html" class="tsd-signature-type">IComponentCardState</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -590,26 +591,20 @@ class Foo extends React.Component {
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 					<a name="componentwillunmount" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> component<wbr>Will<wbr>Unmount</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<h3>component<wbr>Will<wbr>Unmount</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 						<li class="tsd-signature tsd-kind-icon">component<wbr>Will<wbr>Unmount<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from ComponentLifecycle.componentWillUnmount</p>
+								<p>Overrides ComponentLifecycle.componentWillUnmount</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:562</li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L87">src/component/widget/ComponentCard.tsx:87</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Called immediately before a component is destroyed. Perform any necessary cleanup in this method, such as
-									cancelled network requests, or cleaning up any DOM elements created in <code>componentDidMount</code>.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -727,19 +722,42 @@ class Foo extends React.Component {
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<a name="onfullpagetoggle" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> on<wbr>Full<wbr>Page<wbr>Toggle</h3>
+					<a name="onborderclick" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> on<wbr>Border<wbr>Click</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">on<wbr>Full<wbr>Page<wbr>Toggle<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Border<wbr>Click<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MouseEvent</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L156">src/component/widget/ComponentCard.tsx:156</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L179">src/component/widget/ComponentCard.tsx:179</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>event: <span class="tsd-signature-type">MouseEvent</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="onfullpagetoggle" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> on<wbr>Full<wbr>Page<wbr>Toggle</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Full<wbr>Page<wbr>Toggle<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L191">src/component/widget/ComponentCard.tsx:191</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -754,7 +772,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Overrides Component.render</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L81">src/component/widget/ComponentCard.tsx:81</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L102">src/component/widget/ComponentCard.tsx:102</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
@@ -771,7 +789,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L101">src/component/widget/ComponentCard.tsx:101</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L124">src/component/widget/ComponentCard.tsx:124</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -800,7 +818,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L120">src/component/widget/ComponentCard.tsx:120</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L143">src/component/widget/ComponentCard.tsx:143</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
@@ -817,7 +835,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L134">src/component/widget/ComponentCard.tsx:134</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L157">src/component/widget/ComponentCard.tsx:157</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">false</span>
@@ -837,7 +855,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L140">src/component/widget/ComponentCard.tsx:140</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L163">src/component/widget/ComponentCard.tsx:163</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -854,16 +872,16 @@ class Foo extends React.Component {
 					<a name="resizeframedcomponent" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> resize<wbr>Framed<wbr>Component</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">resize<wbr>Framed<wbr>Component<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">resize<wbr>Framed<wbr>Component<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L163">src/component/widget/ComponentCard.tsx:163</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L206">src/component/widget/ComponentCard.tsx:206</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -949,7 +967,7 @@ class Foo extends React.Component {
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L31">src/component/widget/ComponentCard.tsx:31</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L38">src/component/widget/ComponentCard.tsx:38</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -958,7 +976,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">dock<wbr>Items<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L32">src/component/widget/ComponentCard.tsx:32</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L39">src/component/widget/ComponentCard.tsx:39</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -968,7 +986,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">frame<wbr>Height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L37">src/component/widget/ComponentCard.tsx:37</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L44">src/component/widget/ComponentCard.tsx:44</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -978,7 +996,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">frame<wbr>Width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L38">src/component/widget/ComponentCard.tsx:38</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L45">src/component/widget/ComponentCard.tsx:45</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -988,7 +1006,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">header<wbr>Height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;20</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L39">src/component/widget/ComponentCard.tsx:39</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L46">src/component/widget/ComponentCard.tsx:46</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -998,7 +1016,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;525px&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L40">src/component/widget/ComponentCard.tsx:40</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L47">src/component/widget/ComponentCard.tsx:47</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1008,7 +1026,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">icon<wbr>Src<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;https://bioblocks.org/media/5d3f528028d9720a3428e4b2&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L41">src/component/widget/ComponentCard.tsx:41</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L48">src/component/widget/ComponentCard.tsx:48</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1018,7 +1036,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">is<wbr>Data<wbr>Ready<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L42">src/component/widget/ComponentCard.tsx:42</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L49">src/component/widget/ComponentCard.tsx:49</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1028,7 +1046,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">is<wbr>Framed<wbr>Component<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L43">src/component/widget/ComponentCard.tsx:43</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L50">src/component/widget/ComponentCard.tsx:50</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1038,7 +1056,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">is<wbr>Full<wbr>Page<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L44">src/component/widget/ComponentCard.tsx:44</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L51">src/component/widget/ComponentCard.tsx:51</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1048,7 +1066,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">menu<wbr>Items<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L45">src/component/widget/ComponentCard.tsx:45</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L52">src/component/widget/ComponentCard.tsx:52</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1058,7 +1076,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">padding<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L46">src/component/widget/ComponentCard.tsx:46</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L53">src/component/widget/ComponentCard.tsx:53</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1068,7 +1086,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">show<wbr>Settings<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L47">src/component/widget/ComponentCard.tsx:47</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L54">src/component/widget/ComponentCard.tsx:54</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1078,7 +1096,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;525px&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L48">src/component/widget/ComponentCard.tsx:48</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L55">src/component/widget/ComponentCard.tsx:55</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1088,7 +1106,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">expanded<wbr>Style<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L33">src/component/widget/ComponentCard.tsx:33</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L40">src/component/widget/ComponentCard.tsx:40</a></li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1097,7 +1115,7 @@ class Foo extends React.Component {
 							<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;85vh&quot;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L34">src/component/widget/ComponentCard.tsx:34</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L41">src/component/widget/ComponentCard.tsx:41</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -1107,7 +1125,7 @@ class Foo extends React.Component {
 							<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;85vh&quot;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f7a8fe070/src/component/widget/ComponentCard.tsx#L35">src/component/widget/ComponentCard.tsx:35</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/35123e2db/src/component/widget/ComponentCard.tsx#L42">src/component/widget/ComponentCard.tsx:42</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -1175,7 +1193,7 @@ class Foo extends React.Component {
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="componentcard.html#componentwillreceiveprops" class="tsd-kind-icon">component<wbr>Will<wbr>Receive<wbr>Props</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="componentcard.html#componentwillunmount" class="tsd-kind-icon">component<wbr>Will<wbr>Unmount</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
@@ -1186,6 +1204,9 @@ class Foo extends React.Component {
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="componentcard.html#getsnapshotbeforeupdate" class="tsd-kind-icon">get<wbr>Snapshot<wbr>Before<wbr>Update</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="componentcard.html#onborderclick" class="tsd-kind-icon">on<wbr>Border<wbr>Click</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 								<a href="componentcard.html#onfullpagetoggle" class="tsd-kind-icon">on<wbr>Full<wbr>Page<wbr>Toggle</a>
