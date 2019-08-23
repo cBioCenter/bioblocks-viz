@@ -726,15 +726,8 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
       <PlotlyChart
         config={{
           ...defaultPlotlyConfig,
-          displayModeBar: true,
+          displayModeBar: false,
           displaylogo: false,
-          modeBarButtonsToRemove: [
-            'resetCameraDefault3d',
-            'resetCameraLastSave3d',
-            'hoverClosest3d',
-            'toggleHover',
-            'toImage',
-          ],
           scrollZoom: true,
         }}
         layout={{
@@ -954,7 +947,7 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
       },
     ];
 
-    if (this.state.numDimensions === 3) {
+    if (umapEmbedding.length >= 1 && umapEmbedding[0].length === 3) {
       result.push(...this.get3DMenuItems());
     }
 
@@ -1083,9 +1076,9 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
         spread: numSpread,
       });
 
-      let optimalNumberEpochs = umap.initializeFit(dataMatrix);
+      const optimalNumberEpochs = umap.initializeFit(dataMatrix);
       console.log(`UMAP wants to do ${optimalNumberEpochs} epochs`);
-      optimalNumberEpochs = 5;
+
       const stepUmapFn = (epochCounter: number) => {
         if (epochCounter % this.props.numIterationsBeforeReRender === 0 && epochCounter < optimalNumberEpochs) {
           if (epochCounter % 50 === 0) {
