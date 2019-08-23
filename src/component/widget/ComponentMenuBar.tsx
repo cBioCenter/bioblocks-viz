@@ -35,7 +35,7 @@ export interface IComponentMenuBarProps {
   height: number | string;
   isExpanded: boolean;
   iconSrc: string;
-  menuItems: IComponentMenuBarItem[];
+  menuItems: Array<IComponentMenuBarItem<IButtonType | IPopupType>>;
   opacity: number;
   width: number | string;
   onExpandToggleCb?(): void;
@@ -272,16 +272,15 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
     return <span style={{ fontSize: '11px', visibility: isHovered ? 'visible' : 'hidden' }}>{text}</span>;
   }
 
-  protected renderMenuItems(items: IComponentMenuBarItem[], componentName: string) {
+  protected renderMenuItems(items: Array<IComponentMenuBarItem<IButtonType | IPopupType>>, componentName: string) {
     const { opacity } = this.props;
 
     return items.map((item, menuBarIndex) => {
-      // We are separating the style to prevent a bug where the popup arrow does not display if overflow is set.
-      const { style, ...combinedProps } = { ...DEFAULT_POPUP_PROPS, ...item.component.props };
-      const trigger = <Icon name={item.iconName ? item.iconName : 'setting'} />;
-
       let menuItemChild = null;
       if (item.component.name === 'POPUP') {
+        const trigger = <Icon name={item.iconName ? item.iconName : 'setting'} />;
+        // We are separating the style to prevent a bug where the popup arrow does not display if overflow is set.
+        const { style, ...combinedProps } = { ...DEFAULT_POPUP_PROPS, ...item.component.props };
         menuItemChild = item.component.configs ? (
           <Popup trigger={trigger} wide={true} {...combinedProps} style={{ opacity }}>
             <ConfigAccordion configs={this.renderConfigs(item.component.configs)} gridStyle={style} title={'Config'} />
@@ -290,16 +289,29 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
           <Popup trigger={trigger} {...combinedProps} style={{ opacity }} />
         );
       } else if (item.component.name === 'BUTTON') {
-        menuItemChild = trigger;
+        let validButtonProps = {};
+        if (item.component.props) {
+          const { color, size, ...rest } = item.component.props;
+          validButtonProps = rest;
+        }
+        menuItemChild = <Icon name={item.iconName ? item.iconName : 'setting'} {...validButtonProps} />;
       }
 
       return (
         menuItemChild && (
           <Menu.Item
+            active={item.component.props ? (item.component.props.active as boolean) : false}
             fitted={'horizontally'}
             key={`${componentName}-menu-item-${menuBarIndex}`}
             position={'right'}
             style={{ flexDirection: 'column' }}
+            onClick={
+              'onClick' in item.component
+                ? item.component.onClick
+                : () => {
+                    return;
+                  }
+            }
           >
             {menuItemChild}
             {this.renderMenuIconText(item.description)}

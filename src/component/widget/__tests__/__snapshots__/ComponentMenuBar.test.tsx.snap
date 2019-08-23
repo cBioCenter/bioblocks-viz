@@ -51,6 +51,7 @@ exports[`ComponentMenuBar Should handle an unknown menu item. 1`] = `
       <MenuItem
         fitted="horizontally"
         key="The Boxer-menu-item-0"
+        onClick={[Function]}
         position="right"
         style={
           Object {
@@ -361,6 +362,7 @@ exports[`ComponentMenuBar Should render a Button Group menu item. 1`] = `
       <MenuItem
         fitted="horizontally"
         key="The Boxer-menu-item-0"
+        onClick={[Function]}
         position="right"
         style={
           Object {
@@ -560,6 +562,7 @@ exports[`ComponentMenuBar Should render a Button menu item with an icon. 1`] = `
       <MenuItem
         fitted="horizontally"
         key="The Boxer-menu-item-0"
+        onClick={[Function]}
         position="right"
         style={
           Object {
@@ -726,6 +729,7 @@ exports[`ComponentMenuBar Should render a Button menu item. 1`] = `
       <MenuItem
         fitted="horizontally"
         key="The Boxer-menu-item-0"
+        onClick={[Function]}
         position="right"
         style={
           Object {
@@ -888,6 +892,7 @@ exports[`ComponentMenuBar Should render a Checkbox menu item. 1`] = `
       <MenuItem
         fitted="horizontally"
         key="The Boxer-menu-item-0"
+        onClick={[Function]}
         position="right"
         style={
           Object {
@@ -1048,6 +1053,7 @@ exports[`ComponentMenuBar Should render a Label menu item. 1`] = `
       <MenuItem
         fitted="horizontally"
         key="The Boxer-menu-item-0"
+        onClick={[Function]}
         position="right"
         style={
           Object {
@@ -1209,6 +1215,7 @@ exports[`ComponentMenuBar Should render a Radio menu item. 1`] = `
       <MenuItem
         fitted="horizontally"
         key="The Boxer-menu-item-0"
+        onClick={[Function]}
         position="right"
         style={
           Object {
@@ -1377,6 +1384,7 @@ exports[`ComponentMenuBar Should render a Range Slider menu item. 1`] = `
       <MenuItem
         fitted="horizontally"
         key="The Boxer-menu-item-0"
+        onClick={[Function]}
         position="right"
         style={
           Object {
@@ -1555,6 +1563,7 @@ exports[`ComponentMenuBar Should render a Slider menu item. 1`] = `
       <MenuItem
         fitted="horizontally"
         key="The Boxer-menu-item-0"
+        onClick={[Function]}
         position="right"
         style={
           Object {
@@ -1723,6 +1732,7 @@ exports[`ComponentMenuBar Should render popup menu items. 1`] = `
       <MenuItem
         fitted="horizontally"
         key="The Boxer-menu-item-0"
+        onClick={[Function]}
         position="right"
         style={
           Object {

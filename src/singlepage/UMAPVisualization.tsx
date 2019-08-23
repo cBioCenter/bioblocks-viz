@@ -9,7 +9,9 @@ import {
   ComponentCard,
   defaultPlotlyConfig,
   defaultPlotlyLayout,
+  IButtonType,
   IComponentMenuBarItem,
+  IPopupType,
   PlotlyChart,
 } from '~bioblocks-viz~/component';
 import {
@@ -102,7 +104,9 @@ export interface IUMAPVisualizationProps {
   tooltipNames?: string[];
 }
 
-export type IUMAPVisualizationState = typeof UMAPVisualization.initialState;
+export type IUMAPVisualizationState = typeof UMAPVisualization.initialState & {
+  dragMode: 'orbit' | 'pan' | 'turntable' | 'zoom';
+};
 
 /**
  * TODO: move to a math or array helper class
@@ -549,6 +553,7 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     currentEpoch: undefined as number | undefined,
     // tslint:disable-next-line: no-object-literal-type-assertion
     dataVisibility: {} as Record<number, boolean>,
+    dragMode: 'turntable' as 'orbit' | 'pan' | 'turntable' | 'zoom',
     numDimensions: UMAPVisualization.defaultProps.nComponents,
     numMinDist: UMAPVisualization.defaultProps.minDist,
     numNeighbors: UMAPVisualization.defaultProps.nNeighbors,
@@ -643,10 +648,11 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
               }`,
             },
           ]}
+          height={'575px'}
           iconSrc={iconSrc}
           isDataReady={epochInfo !== undefined}
           menuItems={this.getMenuItems()}
-          width={`${legendStats.legendWidth + 525}px`}
+          width={`${legendStats.legendWidth + 535}px`}
         >
           {umapEmbedding.length >= 1 && umapEmbedding[0].length === 3
             ? this.render3D(legendStats.showLegend)
@@ -689,11 +695,22 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
             y: 1,
           },
           margin: {
-            b: 20,
+            b: 50,
+            l: 40,
           },
           showlegend: showLegend,
-          xaxis: { autorange: false, range: [Math.floor(ranges.minX), Math.ceil(ranges.maxX)] },
-          yaxis: { autorange: false, range: [Math.floor(ranges.minY), Math.ceil(ranges.maxY)] },
+          xaxis: {
+            autorange: false,
+            range: [Math.floor(ranges.minX), Math.ceil(ranges.maxX)],
+            title: 'Dim 1',
+            titlefont: { size: 12 },
+          },
+          yaxis: {
+            autorange: false,
+            range: [Math.floor(ranges.minY), Math.ceil(ranges.maxY)],
+            title: 'Dim 2',
+            titlefont: { size: 12 },
+          },
         }}
         data={plotlyData}
         onLegendClickCallback={this.onLegendClick}
@@ -703,7 +720,7 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
   };
 
   protected render3D = (showLegend: boolean) => {
-    const { ranges, plotlyData } = this.state;
+    const { dragMode, ranges, plotlyData } = this.state;
 
     return (
       <PlotlyChart
@@ -722,7 +739,7 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
         }}
         layout={{
           ...defaultPlotlyLayout,
-          dragmode: 'turntable',
+          dragmode: dragMode,
           legend: {
             itemdoubleclick: false,
             traceorder: 'grouped',
@@ -736,9 +753,9 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
           },
           scene: {
             aspectmode: 'cube',
-            xaxis: { autorange: false, range: [Math.floor(ranges.minX), Math.ceil(ranges.maxX)] },
-            yaxis: { autorange: false, range: [Math.floor(ranges.minY), Math.ceil(ranges.maxY)] },
-            zaxis: { autorange: false, range: [Math.floor(ranges.minZ), Math.ceil(ranges.maxZ)] },
+            xaxis: { autorange: false, range: [Math.floor(ranges.minX), Math.ceil(ranges.maxX)], title: 'Dim 1' },
+            yaxis: { autorange: false, range: [Math.floor(ranges.minY), Math.ceil(ranges.maxY)], title: 'Dim 2' },
+            zaxis: { autorange: false, range: [Math.floor(ranges.minZ), Math.ceil(ranges.maxZ)], title: 'Dim 3' },
           },
           showlegend: showLegend,
         }}
@@ -844,25 +861,38 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     }, {});
   };
 
-  protected get3DMenuItems = (): IComponentMenuBarItem[] => {
+  protected get3DMenuItems = (): Array<IComponentMenuBarItem<IButtonType>> => {
+    const { dragMode } = this.state;
+
     return [
       {
         component: {
-          name: 'BUTTON' as any,
-          // @ts-ignore
-          onClick: () => {
-            console.log('hi');
+          name: 'BUTTON',
+          onClick: this.onZoomClick,
+          props: {
+            active: dragMode === 'zoom',
           },
         },
-        description: 'Turntable',
-        iconName: 'weight',
+        description: 'Zoom',
+        iconName: 'zoom',
       },
       {
         component: {
-          name: 'BUTTON' as any,
-          // @ts-ignore
-          onClick: () => {
-            console.log('hi');
+          name: 'BUTTON',
+          onClick: this.onPanClick,
+          props: {
+            active: dragMode === 'pan',
+          },
+        },
+        description: 'Pan',
+        iconName: 'arrows alternate',
+      },
+      {
+        component: {
+          name: 'BUTTON',
+          onClick: this.onOrbitClick,
+          props: {
+            active: dragMode === 'orbit',
           },
         },
         description: 'Orbit',
@@ -870,22 +900,46 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
       },
       {
         component: {
-          name: 'BUTTON' as any,
-          // @ts-ignore
-          onClick: () => {
-            console.log('hi');
+          name: 'BUTTON',
+          onClick: this.onTurntableClick,
+          props: {
+            active: dragMode === 'turntable',
           },
         },
-        description: 'Home',
-        iconName: 'home',
+        description: 'Turntable',
+        iconName: 'weight',
       },
     ];
   };
 
-  protected getMenuItems = (): IComponentMenuBarItem[] => {
+  protected onOrbitClick = () => {
+    this.setState({
+      dragMode: 'orbit',
+    });
+  };
+
+  protected onPanClick = () => {
+    this.setState({
+      dragMode: 'pan',
+    });
+  };
+
+  protected onTurntableClick = () => {
+    this.setState({
+      dragMode: 'turntable',
+    });
+  };
+
+  protected onZoomClick = () => {
+    this.setState({
+      dragMode: 'zoom',
+    });
+  };
+
+  protected getMenuItems = () => {
     const { umapEmbedding } = this.state;
 
-    const result = [
+    const result: Array<IComponentMenuBarItem<IButtonType | IPopupType>> = [
       {
         component: {
           configs: this.getSettingsConfigs(),
@@ -901,11 +955,9 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     ];
 
     if (this.state.numDimensions === 3) {
-      // @ts-ignore
       result.push(...this.get3DMenuItems());
     }
 
-    // @ts-ignore
     return result;
   };
 
@@ -1031,9 +1083,9 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
         spread: numSpread,
       });
 
-      const optimalNumberEpochs = umap.initializeFit(dataMatrix);
+      let optimalNumberEpochs = umap.initializeFit(dataMatrix);
       console.log(`UMAP wants to do ${optimalNumberEpochs} epochs`);
-
+      optimalNumberEpochs = 5;
       const stepUmapFn = (epochCounter: number) => {
         if (epochCounter % this.props.numIterationsBeforeReRender === 0 && epochCounter < optimalNumberEpochs) {
           if (epochCounter % 50 === 0) {

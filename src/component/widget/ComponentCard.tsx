@@ -2,7 +2,14 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Card, Modal } from 'semantic-ui-react';
 
-import { ComponentDock, ComponentMenuBar, IComponentMenuBarItem, IDockItem } from '~bioblocks-viz~/component/widget';
+import {
+  ComponentDock,
+  ComponentMenuBar,
+  IButtonType,
+  IComponentMenuBarItem,
+  IDockItem,
+  IPopupType,
+} from '~bioblocks-viz~/component/widget';
 
 export interface IComponentCardProps {
   componentName: string;
@@ -16,7 +23,7 @@ export interface IComponentCardProps {
   isDataReady: boolean;
   isFramedComponent: boolean;
   isFullPage: boolean;
-  menuItems: IComponentMenuBarItem[];
+  menuItems: Array<IComponentMenuBarItem<IButtonType | IPopupType>>;
   padding: number | string;
   showSettings: boolean;
   width: number | string;
@@ -99,7 +106,7 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     const heightAsNumber = typeof height === 'string' ? parseInt(height, 10) : height;
     const cardStyle: React.CSSProperties = {
       maxWidth: 'unset',
-      padding: '0 0 5px 5px',
+      padding: '0 0 0 5px',
       ...(isFullPage
         ? { ...expandedStyle, padding: '5px', border: '5em black solid' }
         : { height: `${heightAsNumber * 1.01}px`, width }),

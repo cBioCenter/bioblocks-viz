@@ -508,7 +508,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                         Object {
                           "height": "530.25px",
                           "maxWidth": "unset",
-                          "padding": "0 0 5px 5px",
+                          "padding": "0 0 0 5px",
                           "width": "525px",
                         }
                       }
@@ -520,7 +520,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                           Object {
                             "height": "530.25px",
                             "maxWidth": "unset",
-                            "padding": "0 0 5px 5px",
+                            "padding": "0 0 0 5px",
                             "width": "525px",
                           }
                         }
@@ -840,6 +840,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                       <MenuItem
                                         fitted="horizontally"
                                         key="NGL Viewer-menu-item-0"
+                                        onClick={[Function]}
                                         position="right"
                                         style={
                                           Object {
@@ -847,7 +848,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                           }
                                         }
                                       >
-                                        <div
+                                        <a
                                           className="right horizontally fitted item"
                                           onClick={[Function]}
                                           style={
@@ -903,11 +904,12 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                           >
                                             PDB Selector
                                           </span>
-                                        </div>
+                                        </a>
                                       </MenuItem>
                                       <MenuItem
                                         fitted="horizontally"
                                         key="NGL Viewer-menu-item-1"
+                                        onClick={[Function]}
                                         position="right"
                                         style={
                                           Object {
@@ -915,7 +917,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                           }
                                         }
                                       >
-                                        <div
+                                        <a
                                           className="right horizontally fitted item"
                                           onClick={[Function]}
                                           style={
@@ -1020,7 +1022,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                           >
                                             Settings
                                           </span>
-                                        </div>
+                                        </a>
                                       </MenuItem>
                                       <MenuItem
                                         fitted="horizontally"

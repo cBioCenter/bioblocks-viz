@@ -2543,7 +2543,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         Object {
           "height": "530.25px",
           "maxWidth": "unset",
-          "padding": "0 0 5px 5px",
+          "padding": "0 0 0 5px",
           "width": "525px",
         }
       }
@@ -2555,7 +2555,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           Object {
             "height": "530.25px",
             "maxWidth": "unset",
-            "padding": "0 0 5px 5px",
+            "padding": "0 0 0 5px",
             "width": "525px",
           }
         }
@@ -2759,8 +2759,10 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       className="ui secondary four item menu"
                     >
                       <MenuItem
+                        active={false}
                         fitted="horizontally"
                         key="tSNE - TensorFlow-menu-item-0"
+                        onClick={[Function]}
                         position="right"
                         style={
                           Object {
@@ -2768,7 +2770,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                           }
                         }
                       >
-                        <div
+                        <a
                           className="right horizontally fitted item"
                           onClick={[Function]}
                           style={
@@ -2873,11 +2875,13 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                           >
                             Filter
                           </span>
-                        </div>
+                        </a>
                       </MenuItem>
                       <MenuItem
+                        active={false}
                         fitted="horizontally"
                         key="tSNE - TensorFlow-menu-item-1"
+                        onClick={[Function]}
                         position="right"
                         style={
                           Object {
@@ -2885,7 +2889,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                           }
                         }
                       >
-                        <div
+                        <a
                           className="right horizontally fitted item"
                           onClick={[Function]}
                           style={
@@ -2990,7 +2994,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                           >
                             Settings
                           </span>
-                        </div>
+                        </a>
                       </MenuItem>
                       <MenuItem
                         fitted="horizontally"

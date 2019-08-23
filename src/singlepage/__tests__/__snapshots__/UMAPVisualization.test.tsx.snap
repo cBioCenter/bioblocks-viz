@@ -146,7 +146,7 @@ exports[`UMAPVisualization UMAPVisualization Should render when given an empty d
     frameHeight={0}
     frameWidth={0}
     headerHeight={20}
-    height="525px"
+    height="575px"
     iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
     isDataReady={false}
     isFramedComponent={false}
@@ -235,7 +235,7 @@ exports[`UMAPVisualization UMAPVisualization Should render when given an empty d
     }
     padding={0}
     showSettings={false}
-    width="525px"
+    width="535px"
   >
     <PlotlyChart
       config={Object {}}
@@ -253,7 +253,8 @@ exports[`UMAPVisualization UMAPVisualization Should render when given an empty d
             "y": 1,
           },
           "margin": Object {
-            "b": 20,
+            "b": 50,
+            "l": 40,
           },
           "showlegend": false,
           "title": "",
@@ -263,6 +264,10 @@ exports[`UMAPVisualization UMAPVisualization Should render when given an empty d
               20,
               -20,
             ],
+            "title": "Dim 1",
+            "titlefont": Object {
+              "size": 12,
+            },
           },
           "yaxis": Object {
             "autorange": false,
@@ -270,6 +275,10 @@ exports[`UMAPVisualization UMAPVisualization Should render when given an empty d
               20,
               -20,
             ],
+            "title": "Dim 2",
+            "titlefont": Object {
+              "size": 12,
+            },
           },
         }
       }
