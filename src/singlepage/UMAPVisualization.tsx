@@ -844,10 +844,48 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     }, {});
   };
 
+  protected get3DMenuItems = (): IComponentMenuBarItem[] => {
+    return [
+      {
+        component: {
+          name: 'BUTTON' as any,
+          // @ts-ignore
+          onClick: () => {
+            console.log('hi');
+          },
+        },
+        description: 'Turntable',
+        iconName: 'weight',
+      },
+      {
+        component: {
+          name: 'BUTTON' as any,
+          // @ts-ignore
+          onClick: () => {
+            console.log('hi');
+          },
+        },
+        description: 'Orbit',
+        iconName: 'sync alternate',
+      },
+      {
+        component: {
+          name: 'BUTTON' as any,
+          // @ts-ignore
+          onClick: () => {
+            console.log('hi');
+          },
+        },
+        description: 'Home',
+        iconName: 'home',
+      },
+    ];
+  };
+
   protected getMenuItems = (): IComponentMenuBarItem[] => {
     const { umapEmbedding } = this.state;
 
-    return [
+    const result = [
       {
         component: {
           configs: this.getSettingsConfigs(),
@@ -858,9 +896,17 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
             wide: false,
           },
         },
-        description: 'settings',
+        description: 'Settings',
       },
     ];
+
+    if (this.state.numDimensions === 3) {
+      // @ts-ignore
+      result.push(...this.get3DMenuItems());
+    }
+
+    // @ts-ignore
+    return result;
   };
 
   protected getSettingsConfigs = () => {

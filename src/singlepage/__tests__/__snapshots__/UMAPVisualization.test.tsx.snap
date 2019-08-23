@@ -229,7 +229,7 @@ exports[`UMAPVisualization UMAPVisualization Should render when given an empty d
               "wide": false,
             },
           },
-          "description": "settings",
+          "description": "Settings",
         },
       ]
     }

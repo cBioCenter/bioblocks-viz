@@ -1,5 +1,16 @@
 import * as React from 'react';
-import { Button, Checkbox, Grid, Icon, Label, Menu, Popup, PopupProps, SemanticICONS } from 'semantic-ui-react';
+import {
+  Button,
+  ButtonProps,
+  Checkbox,
+  Grid,
+  Icon,
+  Label,
+  Menu,
+  Popup,
+  PopupProps,
+  SemanticICONS,
+} from 'semantic-ui-react';
 
 import {
   BioblocksRadioGroup,
@@ -33,6 +44,12 @@ export interface IComponentMenuBarProps {
 export interface IComponentMenuBarState {
   iconUrl: string;
   isHovered: boolean;
+}
+
+export interface IButtonType {
+  name: 'BUTTON';
+  props?: ButtonProps;
+  onClick(...args: any[]): any;
 }
 
 export interface IPopupType {
@@ -261,10 +278,10 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
     return items.map((item, menuBarIndex) => {
       // We are separating the style to prevent a bug where the popup arrow does not display if overflow is set.
       const { style, ...combinedProps } = { ...DEFAULT_POPUP_PROPS, ...item.component.props };
+      const trigger = <Icon name={item.iconName ? item.iconName : 'setting'} />;
 
       let menuItemChild = null;
       if (item.component.name === 'POPUP') {
-        const trigger = <Icon name={item.iconName ? item.iconName : 'setting'} />;
         menuItemChild = item.component.configs ? (
           <Popup trigger={trigger} wide={true} {...combinedProps} style={{ opacity }}>
             <ConfigAccordion configs={this.renderConfigs(item.component.configs)} gridStyle={style} title={'Config'} />
@@ -272,6 +289,8 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         ) : (
           <Popup trigger={trigger} {...combinedProps} style={{ opacity }} />
         );
+      } else if (item.component.name === 'BUTTON') {
+        menuItemChild = trigger;
       }
 
       return (
