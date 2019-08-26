@@ -76,10 +76,9 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                   "margin": 0,
                 }
               }
-              widths={2}
             >
               <div
-                className="ui secondary two item menu"
+                className="ui secondary menu"
                 style={
                   Object {
                     "height": 20,
@@ -88,31 +87,39 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                 }
               >
                 <Menu
+                  fluid={false}
                   secondary={true}
-                  widths={1}
+                  style={
+                    Object {
+                      "width": "auto",
+                    }
+                  }
+                  widths={6}
                 >
                   <div
-                    className="ui secondary one item menu"
+                    className="ui secondary six item menu"
+                    style={
+                      Object {
+                        "width": "auto",
+                      }
+                    }
                   >
                     <MenuItem
                       fitted="horizontally"
-                      position="left"
                       style={
                         Object {
                           "margin": 0,
                           "padding": 0,
-                          "width": "auto",
                         }
                       }
                     >
                       <div
-                        className="left horizontally fitted item"
+                        className="horizontally fitted item"
                         onClick={[Function]}
                         style={
                           Object {
                             "margin": 0,
                             "padding": 0,
-                            "width": "auto",
                           }
                         }
                       >
@@ -132,56 +139,63 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                     </MenuItem>
                   </div>
                 </Menu>
-                <Menu
-                  secondary={true}
-                  widths={4}
+                <MenuItem
+                  fitted="horizontally"
+                  position="right"
                 >
                   <div
-                    className="ui secondary four item menu"
+                    className="right horizontally fitted item"
+                    onClick={[Function]}
                   >
-                    <MenuItem
-                      fitted="horizontally"
-                      position="right"
-                      style={
-                        Object {
-                          "flexDirection": "column",
-                        }
-                      }
+                    <Menu
+                      secondary={true}
                     >
                       <div
-                        className="right horizontally fitted item"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flexDirection": "column",
-                          }
-                        }
+                        className="ui secondary menu"
                       >
-                        <Icon
-                          as="i"
-                          name="expand arrows alternate"
-                          onClick={[Function]}
-                        >
-                          <i
-                            aria-hidden="true"
-                            className="expand arrows alternate icon"
-                            onClick={[Function]}
-                          />
-                        </Icon>
-                        <span
+                        <MenuItem
                           style={
                             Object {
-                              "fontSize": "11px",
-                              "visibility": "hidden",
+                              "flexDirection": "column",
                             }
                           }
                         >
-                          Expand
-                        </span>
+                          <div
+                            className="item"
+                            onClick={[Function]}
+                            style={
+                              Object {
+                                "flexDirection": "column",
+                              }
+                            }
+                          >
+                            <Icon
+                              as="i"
+                              name="expand arrows alternate"
+                              onClick={[Function]}
+                            >
+                              <i
+                                aria-hidden="true"
+                                className="expand arrows alternate icon"
+                                onClick={[Function]}
+                              />
+                            </Icon>
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "11px",
+                                  "visibility": "hidden",
+                                }
+                              }
+                            >
+                              Expand
+                            </span>
+                          </div>
+                        </MenuItem>
                       </div>
-                    </MenuItem>
+                    </Menu>
                   </div>
-                </Menu>
+                </MenuItem>
               </div>
             </Menu>
           </div>
@@ -298,10 +312,9 @@ exports[`ComponentCard Should handle expanding a framed full page component. 1`]
                   "margin": 0,
                 }
               }
-              widths={2}
             >
               <div
-                className="ui secondary two item menu"
+                className="ui secondary menu"
                 style={
                   Object {
                     "height": 20,
@@ -310,31 +323,39 @@ exports[`ComponentCard Should handle expanding a framed full page component. 1`]
                 }
               >
                 <Menu
+                  fluid={false}
                   secondary={true}
-                  widths={1}
+                  style={
+                    Object {
+                      "width": "auto",
+                    }
+                  }
+                  widths={6}
                 >
                   <div
-                    className="ui secondary one item menu"
+                    className="ui secondary six item menu"
+                    style={
+                      Object {
+                        "width": "auto",
+                      }
+                    }
                   >
                     <MenuItem
                       fitted="horizontally"
-                      position="left"
                       style={
                         Object {
                           "margin": 0,
                           "padding": 0,
-                          "width": "auto",
                         }
                       }
                     >
                       <div
-                        className="left horizontally fitted item"
+                        className="horizontally fitted item"
                         onClick={[Function]}
                         style={
                           Object {
                             "margin": 0,
                             "padding": 0,
-                            "width": "auto",
                           }
                         }
                       >
@@ -354,56 +375,63 @@ exports[`ComponentCard Should handle expanding a framed full page component. 1`]
                     </MenuItem>
                   </div>
                 </Menu>
-                <Menu
-                  secondary={true}
-                  widths={4}
+                <MenuItem
+                  fitted="horizontally"
+                  position="right"
                 >
                   <div
-                    className="ui secondary four item menu"
+                    className="right horizontally fitted item"
+                    onClick={[Function]}
                   >
-                    <MenuItem
-                      fitted="horizontally"
-                      position="right"
-                      style={
-                        Object {
-                          "flexDirection": "column",
-                        }
-                      }
+                    <Menu
+                      secondary={true}
                     >
                       <div
-                        className="right horizontally fitted item"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flexDirection": "column",
-                          }
-                        }
+                        className="ui secondary menu"
                       >
-                        <Icon
-                          as="i"
-                          name="compress"
-                          onClick={[Function]}
-                        >
-                          <i
-                            aria-hidden="true"
-                            className="compress icon"
-                            onClick={[Function]}
-                          />
-                        </Icon>
-                        <span
+                        <MenuItem
                           style={
                             Object {
-                              "fontSize": "11px",
-                              "visibility": "hidden",
+                              "flexDirection": "column",
                             }
                           }
                         >
-                          Close
-                        </span>
+                          <div
+                            className="item"
+                            onClick={[Function]}
+                            style={
+                              Object {
+                                "flexDirection": "column",
+                              }
+                            }
+                          >
+                            <Icon
+                              as="i"
+                              name="compress"
+                              onClick={[Function]}
+                            >
+                              <i
+                                aria-hidden="true"
+                                className="compress icon"
+                                onClick={[Function]}
+                              />
+                            </Icon>
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "11px",
+                                  "visibility": "hidden",
+                                }
+                              }
+                            >
+                              Close
+                            </span>
+                          </div>
+                        </MenuItem>
                       </div>
-                    </MenuItem>
+                    </Menu>
                   </div>
-                </Menu>
+                </MenuItem>
               </div>
             </Menu>
           </div>
@@ -518,10 +546,9 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                   "margin": 0,
                 }
               }
-              widths={2}
             >
               <div
-                className="ui secondary two item menu"
+                className="ui secondary menu"
                 style={
                   Object {
                     "height": 20,
@@ -530,31 +557,39 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                 }
               >
                 <Menu
+                  fluid={false}
                   secondary={true}
-                  widths={1}
+                  style={
+                    Object {
+                      "width": "auto",
+                    }
+                  }
+                  widths={6}
                 >
                   <div
-                    className="ui secondary one item menu"
+                    className="ui secondary six item menu"
+                    style={
+                      Object {
+                        "width": "auto",
+                      }
+                    }
                   >
                     <MenuItem
                       fitted="horizontally"
-                      position="left"
                       style={
                         Object {
                           "margin": 0,
                           "padding": 0,
-                          "width": "auto",
                         }
                       }
                     >
                       <div
-                        className="left horizontally fitted item"
+                        className="horizontally fitted item"
                         onClick={[Function]}
                         style={
                           Object {
                             "margin": 0,
                             "padding": 0,
-                            "width": "auto",
                           }
                         }
                       >
@@ -574,56 +609,63 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                     </MenuItem>
                   </div>
                 </Menu>
-                <Menu
-                  secondary={true}
-                  widths={4}
+                <MenuItem
+                  fitted="horizontally"
+                  position="right"
                 >
                   <div
-                    className="ui secondary four item menu"
+                    className="right horizontally fitted item"
+                    onClick={[Function]}
                   >
-                    <MenuItem
-                      fitted="horizontally"
-                      position="right"
-                      style={
-                        Object {
-                          "flexDirection": "column",
-                        }
-                      }
+                    <Menu
+                      secondary={true}
                     >
                       <div
-                        className="right horizontally fitted item"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flexDirection": "column",
-                          }
-                        }
+                        className="ui secondary menu"
                       >
-                        <Icon
-                          as="i"
-                          name="expand arrows alternate"
-                          onClick={[Function]}
-                        >
-                          <i
-                            aria-hidden="true"
-                            className="expand arrows alternate icon"
-                            onClick={[Function]}
-                          />
-                        </Icon>
-                        <span
+                        <MenuItem
                           style={
                             Object {
-                              "fontSize": "11px",
-                              "visibility": "hidden",
+                              "flexDirection": "column",
                             }
                           }
                         >
-                          Expand
-                        </span>
+                          <div
+                            className="item"
+                            onClick={[Function]}
+                            style={
+                              Object {
+                                "flexDirection": "column",
+                              }
+                            }
+                          >
+                            <Icon
+                              as="i"
+                              name="expand arrows alternate"
+                              onClick={[Function]}
+                            >
+                              <i
+                                aria-hidden="true"
+                                className="expand arrows alternate icon"
+                                onClick={[Function]}
+                              />
+                            </Icon>
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "11px",
+                                  "visibility": "hidden",
+                                }
+                              }
+                            >
+                              Expand
+                            </span>
+                          </div>
+                        </MenuItem>
                       </div>
-                    </MenuItem>
+                    </Menu>
                   </div>
-                </Menu>
+                </MenuItem>
               </div>
             </Menu>
           </div>
@@ -731,10 +773,9 @@ exports[`ComponentCard Should handle expanding a non-framed full page component.
                   "margin": 0,
                 }
               }
-              widths={2}
             >
               <div
-                className="ui secondary two item menu"
+                className="ui secondary menu"
                 style={
                   Object {
                     "height": 20,
@@ -743,31 +784,39 @@ exports[`ComponentCard Should handle expanding a non-framed full page component.
                 }
               >
                 <Menu
+                  fluid={false}
                   secondary={true}
-                  widths={1}
+                  style={
+                    Object {
+                      "width": "auto",
+                    }
+                  }
+                  widths={6}
                 >
                   <div
-                    className="ui secondary one item menu"
+                    className="ui secondary six item menu"
+                    style={
+                      Object {
+                        "width": "auto",
+                      }
+                    }
                   >
                     <MenuItem
                       fitted="horizontally"
-                      position="left"
                       style={
                         Object {
                           "margin": 0,
                           "padding": 0,
-                          "width": "auto",
                         }
                       }
                     >
                       <div
-                        className="left horizontally fitted item"
+                        className="horizontally fitted item"
                         onClick={[Function]}
                         style={
                           Object {
                             "margin": 0,
                             "padding": 0,
-                            "width": "auto",
                           }
                         }
                       >
@@ -787,56 +836,63 @@ exports[`ComponentCard Should handle expanding a non-framed full page component.
                     </MenuItem>
                   </div>
                 </Menu>
-                <Menu
-                  secondary={true}
-                  widths={4}
+                <MenuItem
+                  fitted="horizontally"
+                  position="right"
                 >
                   <div
-                    className="ui secondary four item menu"
+                    className="right horizontally fitted item"
+                    onClick={[Function]}
                   >
-                    <MenuItem
-                      fitted="horizontally"
-                      position="right"
-                      style={
-                        Object {
-                          "flexDirection": "column",
-                        }
-                      }
+                    <Menu
+                      secondary={true}
                     >
                       <div
-                        className="right horizontally fitted item"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flexDirection": "column",
-                          }
-                        }
+                        className="ui secondary menu"
                       >
-                        <Icon
-                          as="i"
-                          name="compress"
-                          onClick={[Function]}
-                        >
-                          <i
-                            aria-hidden="true"
-                            className="compress icon"
-                            onClick={[Function]}
-                          />
-                        </Icon>
-                        <span
+                        <MenuItem
                           style={
                             Object {
-                              "fontSize": "11px",
-                              "visibility": "hidden",
+                              "flexDirection": "column",
                             }
                           }
                         >
-                          Close
-                        </span>
+                          <div
+                            className="item"
+                            onClick={[Function]}
+                            style={
+                              Object {
+                                "flexDirection": "column",
+                              }
+                            }
+                          >
+                            <Icon
+                              as="i"
+                              name="compress"
+                              onClick={[Function]}
+                            >
+                              <i
+                                aria-hidden="true"
+                                className="compress icon"
+                                onClick={[Function]}
+                              />
+                            </Icon>
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "11px",
+                                  "visibility": "hidden",
+                                }
+                              }
+                            >
+                              Close
+                            </span>
+                          </div>
+                        </MenuItem>
                       </div>
-                    </MenuItem>
+                    </Menu>
                   </div>
-                </Menu>
+                </MenuItem>
               </div>
             </Menu>
           </div>
@@ -942,10 +998,9 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
                   "margin": 0,
                 }
               }
-              widths={2}
             >
               <div
-                className="ui secondary two item menu"
+                className="ui secondary menu"
                 style={
                   Object {
                     "height": 20,
@@ -954,31 +1009,39 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
                 }
               >
                 <Menu
+                  fluid={false}
                   secondary={true}
-                  widths={1}
+                  style={
+                    Object {
+                      "width": "auto",
+                    }
+                  }
+                  widths={6}
                 >
                   <div
-                    className="ui secondary one item menu"
+                    className="ui secondary six item menu"
+                    style={
+                      Object {
+                        "width": "auto",
+                      }
+                    }
                   >
                     <MenuItem
                       fitted="horizontally"
-                      position="left"
                       style={
                         Object {
                           "margin": 0,
                           "padding": 0,
-                          "width": "auto",
                         }
                       }
                     >
                       <div
-                        className="left horizontally fitted item"
+                        className="horizontally fitted item"
                         onClick={[Function]}
                         style={
                           Object {
                             "margin": 0,
                             "padding": 0,
-                            "width": "auto",
                           }
                         }
                       >
@@ -998,56 +1061,63 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
                     </MenuItem>
                   </div>
                 </Menu>
-                <Menu
-                  secondary={true}
-                  widths={4}
+                <MenuItem
+                  fitted="horizontally"
+                  position="right"
                 >
                   <div
-                    className="ui secondary four item menu"
+                    className="right horizontally fitted item"
+                    onClick={[Function]}
                   >
-                    <MenuItem
-                      fitted="horizontally"
-                      position="right"
-                      style={
-                        Object {
-                          "flexDirection": "column",
-                        }
-                      }
+                    <Menu
+                      secondary={true}
                     >
                       <div
-                        className="right horizontally fitted item"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flexDirection": "column",
-                          }
-                        }
+                        className="ui secondary menu"
                       >
-                        <Icon
-                          as="i"
-                          name="expand arrows alternate"
-                          onClick={[Function]}
-                        >
-                          <i
-                            aria-hidden="true"
-                            className="expand arrows alternate icon"
-                            onClick={[Function]}
-                          />
-                        </Icon>
-                        <span
+                        <MenuItem
                           style={
                             Object {
-                              "fontSize": "11px",
-                              "visibility": "hidden",
+                              "flexDirection": "column",
                             }
                           }
                         >
-                          Expand
-                        </span>
+                          <div
+                            className="item"
+                            onClick={[Function]}
+                            style={
+                              Object {
+                                "flexDirection": "column",
+                              }
+                            }
+                          >
+                            <Icon
+                              as="i"
+                              name="expand arrows alternate"
+                              onClick={[Function]}
+                            >
+                              <i
+                                aria-hidden="true"
+                                className="expand arrows alternate icon"
+                                onClick={[Function]}
+                              />
+                            </Icon>
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "11px",
+                                  "visibility": "hidden",
+                                }
+                              }
+                            >
+                              Expand
+                            </span>
+                          </div>
+                        </MenuItem>
                       </div>
-                    </MenuItem>
+                    </Menu>
                   </div>
-                </Menu>
+                </MenuItem>
               </div>
             </Menu>
           </div>

@@ -108,22 +108,24 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
 
     return (
       <div onMouseEnter={this.onMenuEnter} onMouseLeave={this.onMenuLeave}>
-        <Menu secondary={true} style={{ margin: 0, height }} widths={2}>
-          <Menu secondary={true} widths={1}>
-            <Menu.Item fitted={'horizontally'} position={'left'} style={{ margin: 0, padding: 0, width: 'auto' }}>
+        <Menu secondary={true} style={{ margin: 0, height }}>
+          <Menu secondary={true} widths={6} fluid={false} style={{ width: 'auto' }}>
+            <Menu.Item fitted={'horizontally'} style={{ margin: 0, padding: 0 }}>
               {iconSrc && (
                 <img alt={'component icon'} src={iconUrl} style={{ height: '32px', padding: '2px', width: '32px' }} />
               )}
               {componentName}
             </Menu.Item>
           </Menu>
-          <Menu secondary={true} widths={4}>
-            {this.renderMenuItems(menuItems, componentName)}
-            <Menu.Item fitted={'horizontally'} position={'right'} style={{ flexDirection: 'column' }}>
-              <Icon name={isExpanded ? 'compress' : 'expand arrows alternate'} onClick={onExpandToggleCb} />
-              {this.renderMenuIconText(isExpanded ? 'Close' : 'Expand')}
-            </Menu.Item>
-          </Menu>
+          <Menu.Item fitted={'horizontally'} position={'right'}>
+            <Menu secondary={true}>
+              {this.renderMenuItems(menuItems, componentName)}
+              <Menu.Item style={{ flexDirection: 'column' }}>
+                <Icon name={isExpanded ? 'compress' : 'expand arrows alternate'} onClick={onExpandToggleCb} />
+                {this.renderMenuIconText(isExpanded ? 'Close' : 'Expand')}
+              </Menu.Item>
+            </Menu>
+          </Menu.Item>
         </Menu>
       </div>
     );
@@ -278,7 +280,7 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
     return items.map((item, menuBarIndex) => {
       let menuItemChild = null;
       if (item.component.name === 'POPUP') {
-        const trigger = <Icon name={item.iconName ? item.iconName : 'setting'} />;
+        const trigger = <Icon fitted={true} name={item.iconName ? item.iconName : 'setting'} />;
         // We are separating the style to prevent a bug where the popup arrow does not display if overflow is set.
         const { style, ...combinedProps } = { ...DEFAULT_POPUP_PROPS, ...item.component.props };
         menuItemChild = item.component.configs ? (
@@ -294,16 +296,14 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
           const { color, size, ...rest } = item.component.props;
           validButtonProps = rest;
         }
-        menuItemChild = <Icon name={item.iconName ? item.iconName : 'setting'} {...validButtonProps} />;
+        menuItemChild = <Icon fitted={true} name={item.iconName ? item.iconName : 'setting'} {...validButtonProps} />;
       }
 
       return (
         menuItemChild && (
           <Menu.Item
-            active={item.component.props ? (item.component.props.active as boolean) : false}
-            fitted={'horizontally'}
+            active={item.component.props ? (item.component.props.active as boolean) : undefined}
             key={`${componentName}-menu-item-${menuBarIndex}`}
-            position={'right'}
             style={{ flexDirection: 'column' }}
             onClick={
               'onClick' in item.component

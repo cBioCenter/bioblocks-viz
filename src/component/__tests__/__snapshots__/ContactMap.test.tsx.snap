@@ -2696,10 +2696,9 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                     "margin": 0,
                   }
                 }
-                widths={2}
               >
                 <div
-                  className="ui secondary two item menu"
+                  className="ui secondary menu"
                   style={
                     Object {
                       "height": 20,
@@ -2708,31 +2707,39 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   }
                 >
                   <Menu
+                    fluid={false}
                     secondary={true}
-                    widths={1}
+                    style={
+                      Object {
+                        "width": "auto",
+                      }
+                    }
+                    widths={6}
                   >
                     <div
-                      className="ui secondary one item menu"
+                      className="ui secondary six item menu"
+                      style={
+                        Object {
+                          "width": "auto",
+                        }
+                      }
                     >
                       <MenuItem
                         fitted="horizontally"
-                        position="left"
                         style={
                           Object {
                             "margin": 0,
                             "padding": 0,
-                            "width": "auto",
                           }
                         }
                       >
                         <div
-                          className="left horizontally fitted item"
+                          className="horizontally fitted item"
                           onClick={[Function]}
                           style={
                             Object {
                               "margin": 0,
                               "padding": 0,
-                              "width": "auto",
                             }
                           }
                         >
@@ -2751,294 +2758,301 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                       </MenuItem>
                     </div>
                   </Menu>
-                  <Menu
-                    secondary={true}
-                    widths={4}
+                  <MenuItem
+                    fitted="horizontally"
+                    position="right"
                   >
                     <div
-                      className="ui secondary four item menu"
+                      className="right horizontally fitted item"
+                      onClick={[Function]}
                     >
-                      <MenuItem
-                        active={false}
-                        fitted="horizontally"
-                        key="tSNE - TensorFlow-menu-item-0"
-                        onClick={[Function]}
-                        position="right"
-                        style={
-                          Object {
-                            "flexDirection": "column",
-                          }
-                        }
-                      >
-                        <a
-                          className="right horizontally fitted item"
-                          onClick={[Function]}
-                          style={
-                            Object {
-                              "flexDirection": "column",
-                            }
-                          }
-                        >
-                          <Popup
-                            closeOnPortalMouseLeave={false}
-                            closeOnTriggerClick={true}
-                            closeOnTriggerMouseLeave={false}
-                            disabled={false}
-                            hoverable={false}
-                            offset={0}
-                            on="hover"
-                            openOnTriggerClick={true}
-                            openOnTriggerFocus={false}
-                            openOnTriggerMouseEnter={false}
-                            pinned={false}
-                            position="bottom left"
-                            style={
-                              Object {
-                                "opacity": 0.85,
-                              }
-                            }
-                            trigger={
-                              <Icon
-                                as="i"
-                                name="filter"
-                              />
-                            }
-                            wide={true}
-                          >
-                            <Portal
-                              closeOnDocumentClick={true}
-                              closeOnEscape={true}
-                              closeOnPortalMouseLeave={false}
-                              closeOnTriggerClick={true}
-                              closeOnTriggerMouseLeave={false}
-                              eventPool="default"
-                              mouseEnterDelay={50}
-                              mouseLeaveDelay={70}
-                              onClose={[Function]}
-                              onMount={[Function]}
-                              onOpen={[Function]}
-                              onUnmount={[Function]}
-                              openOnTriggerClick={true}
-                              openOnTriggerFocus={false}
-                              openOnTriggerMouseEnter={false}
-                              trigger={
-                                <Icon
-                                  as="i"
-                                  name="filter"
-                                />
-                              }
-                              triggerRef={
-                                Object {
-                                  "current": <i
-                                    aria-hidden="true"
-                                    class="filter icon"
-                                  />,
-                                }
-                              }
-                            >
-                              <Ref
-                                innerRef={[Function]}
-                              >
-                                <RefFindNode
-                                  innerRef={[Function]}
-                                >
-                                  <Icon
-                                    as="i"
-                                    name="filter"
-                                    onBlur={[Function]}
-                                    onClick={[Function]}
-                                    onFocus={[Function]}
-                                    onMouseEnter={[Function]}
-                                    onMouseLeave={[Function]}
-                                  >
-                                    <i
-                                      aria-hidden="true"
-                                      className="filter icon"
-                                      onBlur={[Function]}
-                                      onClick={[Function]}
-                                      onFocus={[Function]}
-                                      onMouseEnter={[Function]}
-                                      onMouseLeave={[Function]}
-                                    />
-                                  </Icon>
-                                </RefFindNode>
-                              </Ref>
-                            </Portal>
-                          </Popup>
-                          <span
-                            style={
-                              Object {
-                                "fontSize": "11px",
-                                "visibility": "hidden",
-                              }
-                            }
-                          >
-                            Filter
-                          </span>
-                        </a>
-                      </MenuItem>
-                      <MenuItem
-                        active={false}
-                        fitted="horizontally"
-                        key="tSNE - TensorFlow-menu-item-1"
-                        onClick={[Function]}
-                        position="right"
-                        style={
-                          Object {
-                            "flexDirection": "column",
-                          }
-                        }
-                      >
-                        <a
-                          className="right horizontally fitted item"
-                          onClick={[Function]}
-                          style={
-                            Object {
-                              "flexDirection": "column",
-                            }
-                          }
-                        >
-                          <Popup
-                            closeOnPortalMouseLeave={false}
-                            closeOnTriggerClick={true}
-                            closeOnTriggerMouseLeave={false}
-                            disabled={false}
-                            hoverable={false}
-                            offset={0}
-                            on="hover"
-                            openOnTriggerClick={true}
-                            openOnTriggerFocus={false}
-                            openOnTriggerMouseEnter={false}
-                            pinned={false}
-                            position="bottom left"
-                            style={
-                              Object {
-                                "opacity": 0.85,
-                              }
-                            }
-                            trigger={
-                              <Icon
-                                as="i"
-                                name="setting"
-                              />
-                            }
-                            wide={true}
-                          >
-                            <Portal
-                              closeOnDocumentClick={true}
-                              closeOnEscape={true}
-                              closeOnPortalMouseLeave={false}
-                              closeOnTriggerClick={true}
-                              closeOnTriggerMouseLeave={false}
-                              eventPool="default"
-                              mouseEnterDelay={50}
-                              mouseLeaveDelay={70}
-                              onClose={[Function]}
-                              onMount={[Function]}
-                              onOpen={[Function]}
-                              onUnmount={[Function]}
-                              openOnTriggerClick={true}
-                              openOnTriggerFocus={false}
-                              openOnTriggerMouseEnter={false}
-                              trigger={
-                                <Icon
-                                  as="i"
-                                  name="setting"
-                                />
-                              }
-                              triggerRef={
-                                Object {
-                                  "current": <i
-                                    aria-hidden="true"
-                                    class="setting icon"
-                                  />,
-                                }
-                              }
-                            >
-                              <Ref
-                                innerRef={[Function]}
-                              >
-                                <RefFindNode
-                                  innerRef={[Function]}
-                                >
-                                  <Icon
-                                    as="i"
-                                    name="setting"
-                                    onBlur={[Function]}
-                                    onClick={[Function]}
-                                    onFocus={[Function]}
-                                    onMouseEnter={[Function]}
-                                    onMouseLeave={[Function]}
-                                  >
-                                    <i
-                                      aria-hidden="true"
-                                      className="setting icon"
-                                      onBlur={[Function]}
-                                      onClick={[Function]}
-                                      onFocus={[Function]}
-                                      onMouseEnter={[Function]}
-                                      onMouseLeave={[Function]}
-                                    />
-                                  </Icon>
-                                </RefFindNode>
-                              </Ref>
-                            </Portal>
-                          </Popup>
-                          <span
-                            style={
-                              Object {
-                                "fontSize": "11px",
-                                "visibility": "hidden",
-                              }
-                            }
-                          >
-                            Settings
-                          </span>
-                        </a>
-                      </MenuItem>
-                      <MenuItem
-                        fitted="horizontally"
-                        position="right"
-                        style={
-                          Object {
-                            "flexDirection": "column",
-                          }
-                        }
+                      <Menu
+                        secondary={true}
                       >
                         <div
-                          className="right horizontally fitted item"
-                          onClick={[Function]}
-                          style={
-                            Object {
-                              "flexDirection": "column",
-                            }
-                          }
+                          className="ui secondary menu"
                         >
-                          <Icon
-                            as="i"
-                            name="expand arrows alternate"
+                          <MenuItem
+                            key="tSNE - TensorFlow-menu-item-0"
                             onClick={[Function]}
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="expand arrows alternate icon"
-                              onClick={[Function]}
-                            />
-                          </Icon>
-                          <span
                             style={
                               Object {
-                                "fontSize": "11px",
-                                "visibility": "hidden",
+                                "flexDirection": "column",
                               }
                             }
                           >
-                            Expand
-                          </span>
+                            <a
+                              className="item"
+                              onClick={[Function]}
+                              style={
+                                Object {
+                                  "flexDirection": "column",
+                                }
+                              }
+                            >
+                              <Popup
+                                closeOnPortalMouseLeave={false}
+                                closeOnTriggerClick={true}
+                                closeOnTriggerMouseLeave={false}
+                                disabled={false}
+                                hoverable={false}
+                                offset={0}
+                                on="hover"
+                                openOnTriggerClick={true}
+                                openOnTriggerFocus={false}
+                                openOnTriggerMouseEnter={false}
+                                pinned={false}
+                                position="bottom left"
+                                style={
+                                  Object {
+                                    "opacity": 0.85,
+                                  }
+                                }
+                                trigger={
+                                  <Icon
+                                    as="i"
+                                    fitted={true}
+                                    name="filter"
+                                  />
+                                }
+                                wide={true}
+                              >
+                                <Portal
+                                  closeOnDocumentClick={true}
+                                  closeOnEscape={true}
+                                  closeOnPortalMouseLeave={false}
+                                  closeOnTriggerClick={true}
+                                  closeOnTriggerMouseLeave={false}
+                                  eventPool="default"
+                                  mouseEnterDelay={50}
+                                  mouseLeaveDelay={70}
+                                  onClose={[Function]}
+                                  onMount={[Function]}
+                                  onOpen={[Function]}
+                                  onUnmount={[Function]}
+                                  openOnTriggerClick={true}
+                                  openOnTriggerFocus={false}
+                                  openOnTriggerMouseEnter={false}
+                                  trigger={
+                                    <Icon
+                                      as="i"
+                                      fitted={true}
+                                      name="filter"
+                                    />
+                                  }
+                                  triggerRef={
+                                    Object {
+                                      "current": <i
+                                        aria-hidden="true"
+                                        class="filter fitted icon"
+                                      />,
+                                    }
+                                  }
+                                >
+                                  <Ref
+                                    innerRef={[Function]}
+                                  >
+                                    <RefFindNode
+                                      innerRef={[Function]}
+                                    >
+                                      <Icon
+                                        as="i"
+                                        fitted={true}
+                                        name="filter"
+                                        onBlur={[Function]}
+                                        onClick={[Function]}
+                                        onFocus={[Function]}
+                                        onMouseEnter={[Function]}
+                                        onMouseLeave={[Function]}
+                                      >
+                                        <i
+                                          aria-hidden="true"
+                                          className="filter fitted icon"
+                                          onBlur={[Function]}
+                                          onClick={[Function]}
+                                          onFocus={[Function]}
+                                          onMouseEnter={[Function]}
+                                          onMouseLeave={[Function]}
+                                        />
+                                      </Icon>
+                                    </RefFindNode>
+                                  </Ref>
+                                </Portal>
+                              </Popup>
+                              <span
+                                style={
+                                  Object {
+                                    "fontSize": "11px",
+                                    "visibility": "hidden",
+                                  }
+                                }
+                              >
+                                Filter
+                              </span>
+                            </a>
+                          </MenuItem>
+                          <MenuItem
+                            key="tSNE - TensorFlow-menu-item-1"
+                            onClick={[Function]}
+                            style={
+                              Object {
+                                "flexDirection": "column",
+                              }
+                            }
+                          >
+                            <a
+                              className="item"
+                              onClick={[Function]}
+                              style={
+                                Object {
+                                  "flexDirection": "column",
+                                }
+                              }
+                            >
+                              <Popup
+                                closeOnPortalMouseLeave={false}
+                                closeOnTriggerClick={true}
+                                closeOnTriggerMouseLeave={false}
+                                disabled={false}
+                                hoverable={false}
+                                offset={0}
+                                on="hover"
+                                openOnTriggerClick={true}
+                                openOnTriggerFocus={false}
+                                openOnTriggerMouseEnter={false}
+                                pinned={false}
+                                position="bottom left"
+                                style={
+                                  Object {
+                                    "opacity": 0.85,
+                                  }
+                                }
+                                trigger={
+                                  <Icon
+                                    as="i"
+                                    fitted={true}
+                                    name="setting"
+                                  />
+                                }
+                                wide={true}
+                              >
+                                <Portal
+                                  closeOnDocumentClick={true}
+                                  closeOnEscape={true}
+                                  closeOnPortalMouseLeave={false}
+                                  closeOnTriggerClick={true}
+                                  closeOnTriggerMouseLeave={false}
+                                  eventPool="default"
+                                  mouseEnterDelay={50}
+                                  mouseLeaveDelay={70}
+                                  onClose={[Function]}
+                                  onMount={[Function]}
+                                  onOpen={[Function]}
+                                  onUnmount={[Function]}
+                                  openOnTriggerClick={true}
+                                  openOnTriggerFocus={false}
+                                  openOnTriggerMouseEnter={false}
+                                  trigger={
+                                    <Icon
+                                      as="i"
+                                      fitted={true}
+                                      name="setting"
+                                    />
+                                  }
+                                  triggerRef={
+                                    Object {
+                                      "current": <i
+                                        aria-hidden="true"
+                                        class="setting fitted icon"
+                                      />,
+                                    }
+                                  }
+                                >
+                                  <Ref
+                                    innerRef={[Function]}
+                                  >
+                                    <RefFindNode
+                                      innerRef={[Function]}
+                                    >
+                                      <Icon
+                                        as="i"
+                                        fitted={true}
+                                        name="setting"
+                                        onBlur={[Function]}
+                                        onClick={[Function]}
+                                        onFocus={[Function]}
+                                        onMouseEnter={[Function]}
+                                        onMouseLeave={[Function]}
+                                      >
+                                        <i
+                                          aria-hidden="true"
+                                          className="setting fitted icon"
+                                          onBlur={[Function]}
+                                          onClick={[Function]}
+                                          onFocus={[Function]}
+                                          onMouseEnter={[Function]}
+                                          onMouseLeave={[Function]}
+                                        />
+                                      </Icon>
+                                    </RefFindNode>
+                                  </Ref>
+                                </Portal>
+                              </Popup>
+                              <span
+                                style={
+                                  Object {
+                                    "fontSize": "11px",
+                                    "visibility": "hidden",
+                                  }
+                                }
+                              >
+                                Settings
+                              </span>
+                            </a>
+                          </MenuItem>
+                          <MenuItem
+                            style={
+                              Object {
+                                "flexDirection": "column",
+                              }
+                            }
+                          >
+                            <div
+                              className="item"
+                              onClick={[Function]}
+                              style={
+                                Object {
+                                  "flexDirection": "column",
+                                }
+                              }
+                            >
+                              <Icon
+                                as="i"
+                                name="expand arrows alternate"
+                                onClick={[Function]}
+                              >
+                                <i
+                                  aria-hidden="true"
+                                  className="expand arrows alternate icon"
+                                  onClick={[Function]}
+                                />
+                              </Icon>
+                              <span
+                                style={
+                                  Object {
+                                    "fontSize": "11px",
+                                    "visibility": "hidden",
+                                  }
+                                }
+                              >
+                                Expand
+                              </span>
+                            </div>
+                          </MenuItem>
                         </div>
-                      </MenuItem>
+                      </Menu>
                     </div>
-                  </Menu>
+                  </MenuItem>
                 </div>
               </Menu>
             </div>
