@@ -4,7 +4,7 @@ import { UMAP } from 'umap-js';
 // tslint:disable-next-line: no-submodule-imports
 import { euclidean } from 'umap-js/dist/umap';
 
-import { Button, Grid, Label, Popup } from 'semantic-ui-react';
+import { Button, Dropdown, DropdownProps, Grid, Label, Popup } from 'semantic-ui-react';
 import {
   ComponentCard,
   defaultPlotlyConfig,
@@ -23,7 +23,7 @@ import {
   Marker,
   SeqRecord,
 } from '~bioblocks-viz~/data';
-import { readFileAsText } from '~bioblocks-viz~/helper';
+import { EMPTY_FUNCTION, readFileAsText } from '~bioblocks-viz~/helper';
 
 export interface IUMAPSequenceContainerProps extends Partial<IUMAPVisualizationProps> {
   // if the number of data points are too large, the container will randomly subsample points
@@ -47,6 +47,7 @@ export interface IUMAPSequenceContainerProps extends Partial<IUMAPVisualizationP
 
 export interface IUMAPSequenceContainerState {
   labelCategory: string;
+  labels: string[];
   seqNameToTaxonomyMetadata: {
     [seqName: string]: {
       [taxonomyCategory: string]: string;
@@ -83,25 +84,27 @@ export interface IUMAPTranscriptionalContainerState {
   completeSampleAnnotations: {
     [labelCategoryName: string]: Array<ILabel | undefined>;
   };
-
   errorMessages: string[];
 }
 
 export type DISTANCE_FN_TYPE = (arg1: number[], arg2: number[]) => number;
 
 export interface IUMAPVisualizationProps {
+  currentLabel: string;
   // the data to display (will be subsampled) - if sampleNames are provided sampleNames.length must equal dataMatrix.length
   dataLabels?: Array<ILabel | undefined>;
   dataMatrix: number[][];
   distanceFn?: DISTANCE_FN_TYPE;
   errorMessages: string[];
   iconSrc?: string;
+  labels: string[];
   minDist: number;
   nComponents: 2 | 3;
   nNeighbors: number;
   numIterationsBeforeReRender: number;
   spread: number;
   tooltipNames?: string[];
+  onLabelChange(...args: any[]): void;
 }
 
 export type IUMAPVisualizationState = typeof UMAPVisualization.initialState & {
@@ -180,7 +183,7 @@ export class UMAPTranscriptionalContainer extends React.Component<
   }
 
   public render() {
-    const { dataMatrix, labelCategory, numIterationsBeforeReRender, ...rest } = this.props;
+    const { dataMatrix, labelCategory, numIterationsBeforeReRender, numSamplesToShow, ...rest } = this.props;
     const { completeSampleAnnotations, errorMessages } = this.state;
 
     let dataLabels = new Array<ILabel | undefined>();
@@ -216,8 +219,7 @@ export class UMAPTranscriptionalContainer extends React.Component<
   }
 
   private prepareData(annotationsUnchanged: boolean = false) {
-    const { categoricalAnnotations, sampleNames, dataMatrix, numSamplesToShow } = this.props;
-    const {} = this.state;
+    const { categoricalAnnotations, dataMatrix, numSamplesToShow, sampleNames } = this.props;
 
     // rudimentary error checking
     const errorMessages = new Array<string>();
@@ -293,6 +295,7 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
     super(props);
     this.state = {
       labelCategory: '',
+      labels: [],
       randomSequencesDataMatrix: new Array(new Array<number>()),
       seqNameToTaxonomyMetadata: {},
       subsampledSequences: new Array(),
@@ -304,7 +307,7 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
   }
 
   public componentDidUpdate(prevProps: IUMAPSequenceContainerProps, prevState: IUMAPSequenceContainerState) {
-    const { allSequences, numSequencesToShow, labelCategory, taxonomyText } = this.props;
+    const { allSequences, labelCategory, numSequencesToShow, taxonomyText } = this.props;
 
     if (
       prevProps.allSequences !== allSequences ||
@@ -334,8 +337,14 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
   }
 
   public render() {
-    const { numIterationsBeforeReRender, showUploadButton, ...rest } = this.props;
-    const { labelCategory, randomSequencesDataMatrix, seqNameToTaxonomyMetadata, subsampledSequences } = this.state;
+    const { allSequences, numIterationsBeforeReRender, showUploadButton, ...rest } = this.props;
+    const {
+      labelCategory,
+      labels,
+      randomSequencesDataMatrix,
+      seqNameToTaxonomyMetadata,
+      subsampledSequences,
+    } = this.state;
     if (subsampledSequences) {
       const tooltipNames = subsampledSequences.map(seq => (seq.annotations.name ? seq.annotations.name : ''));
 
@@ -356,11 +365,14 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
         <Grid centered={true} padded={true}>
           <Grid.Row>
             <UMAPVisualization
+              currentLabel={labelCategory}
               dataLabels={dataLabels}
               dataMatrix={randomSequencesDataMatrix}
               distanceFn={this.equalityHammingDistance}
               errorMessages={[]}
+              labels={labels}
               numIterationsBeforeReRender={numIterationsBeforeReRender}
+              onLabelChange={this.onLabelChange}
               tooltipNames={tooltipNames}
               {...rest}
             />
@@ -409,6 +421,12 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
     );
   };
 
+  protected onLabelChange = (event: React.SyntheticEvent, data: DropdownProps) => {
+    this.setState({
+      labelCategory: data.value as string,
+    });
+  };
+
   protected onTaxonomyUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.persist();
     const files = (e.target as HTMLInputElement).files;
@@ -417,6 +435,10 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
     }
     const file = files.item(0) as File;
     this.parseTaxonomy(await readFileAsText(file));
+  };
+
+  protected onNumSequenceChange = (value: number) => {
+    console.log(`Setting num seqs to ${value}`);
   };
 
   /* testing
@@ -439,7 +461,7 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
   }*/
 
   private prepareData() {
-    const { allSequences, numSequencesToShow, labelCategory, taxonomyText } = this.props;
+    const { allSequences, labelCategory, numSequencesToShow, taxonomyText } = this.props;
 
     // load taxonomy
     if (taxonomyText) {
@@ -476,10 +498,11 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
       Papa.parse(taxonomyText, {
         complete: results => {
           // simple stats
-          console.log(`Raw taxonomy contains ${results.data.length} sequences:`, results.data);
-
           // const labelProperties = this.getClassPhylumLabelDescription(); // todo: auto compute
           this.setState({
+            labels: isHeaderPresent
+              ? results.meta.fields.filter(field => field.toLocaleLowerCase() !== 'sequence')
+              : [],
             seqNameToTaxonomyMetadata: results.data.reduce<{
               [seqName: string]: {};
             }>((acc, seqMetadata: { seq_name: string } | string[]) => {
@@ -540,12 +563,15 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
 // tslint:disable-next-line: max-classes-per-file
 export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, IUMAPVisualizationState> {
   public static defaultProps = {
+    currentLabel: '',
     distanceFn: euclidean,
     errorMessages: [],
+    labels: [],
     minDist: 0.99,
     nComponents: 2 as 2 | 3,
     nNeighbors: 15,
     numIterationsBeforeReRender: 1,
+    onLabelChange: EMPTY_FUNCTION,
     spread: 1,
   };
 
@@ -624,7 +650,6 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
   public render() {
     const { iconSrc } = this.props;
     const { currentEpoch, totalNumberEpochs, umapEmbedding } = this.state;
-
     let epochInfo: string | undefined;
     if (totalNumberEpochs && currentEpoch) {
       epochInfo = `epoch ${currentEpoch}/${totalNumberEpochs}`;
@@ -654,6 +679,7 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
           menuItems={this.getMenuItems()}
           width={`${legendStats.legendWidth + 535}px`}
         >
+          {this.renderCategoryDropdown()}
           {umapEmbedding.length >= 1 && umapEmbedding[0].length === 3
             ? this.render3D(legendStats.showLegend)
             : this.render2D(legendStats.showLegend)}
@@ -692,7 +718,7 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
             itemdoubleclick: false,
             traceorder: 'grouped',
             x: 1,
-            y: 1,
+            y: 0.95,
           },
           margin: {
             b: 50,
@@ -772,15 +798,12 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     const plotlyData = Object.values(result) as IPlotlyData[];
     const unannotated = plotlyData.splice(plotlyData.findIndex(datum => datum.legendgroup === 'Unannotated'), 1);
 
-    return plotlyData
-      .sort((a, b) => b.x.length - a.x.length)
-      .concat(unannotated)
-      .map((data, index) => {
-        const { dataVisibility } = this.state;
-        data.visible = dataVisibility[index] === undefined || dataVisibility[index] === true ? true : 'legendonly';
+    return unannotated.concat(plotlyData.sort((a, b) => b.x.length - a.x.length)).map((data, index) => {
+      const { dataVisibility } = this.state;
+      data.visible = dataVisibility[index] === undefined || dataVisibility[index] === true ? true : 'legendonly';
 
-        return data;
-      });
+      return data;
+    });
   };
 
   protected getData2D = (
@@ -955,7 +978,8 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
   };
 
   protected getSettingsConfigs = () => {
-    const { numDimensions, numMinDist, numNeighbors, numSpread } = this.state;
+    // const { maxNumSequences, numSequencesToShow, onNumSequenceChange } = this.props;
+    const { numDimensions, numMinDist, numNeighbors, numSpread, umapEmbedding } = this.state;
 
     return {
       Settings: [
@@ -1007,6 +1031,23 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
             min: 0,
           },
         },
+        /*
+        {
+          marks: {
+            [maxNumSequences]: maxNumSequences,
+            [Math.min(1000, umapEmbedding.length)]: Math.min(1000, umapEmbedding.length),
+          },
+          name: 'Sequences',
+          onAfterChange: onNumSequenceChange,
+          step: 1,
+          type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
+          values: {
+            current: numSequencesToShow,
+            max: maxNumSequences,
+            min: Math.min(1000, umapEmbedding.length),
+          },
+        },
+        */
         {
           current: numDimensions.toString(),
           name: 'Dimensions',
@@ -1014,6 +1055,7 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
           options: ['2', '3'],
           type: CONFIGURATION_COMPONENT_TYPE.RADIO,
         },
+
         {
           name: 'Re-Run UMAP',
           onClick: this.executeUMAP,
@@ -1023,9 +1065,55 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     };
   };
 
+  protected renderCategoryDropdown = () => {
+    const { currentLabel, labels } = this.props;
+
+    return (
+      labels.length >= 1 && (
+        <div
+          style={{
+            float: 'right',
+            fontSize: '14px',
+            paddingRight: '5px',
+            position: 'relative',
+            width: '30%',
+            zIndex: 777,
+          }}
+        >
+          Annotation:{' '}
+          <Dropdown
+            direction={'right'}
+            fluid={false}
+            inline={true}
+            onChange={this.onLabelChange}
+            options={labels.map(label => ({
+              text: label,
+              value: label,
+            }))}
+            text={currentLabel}
+          />{' '}
+        </div>
+      )
+    );
+  };
+
   protected onDimensionChange = (value: number) => {
     this.setState({
       numDimensions: value === 0 ? 2 : 3,
+    });
+  };
+
+  protected onLabelChange = (event: React.SyntheticEvent, data: DropdownProps) => {
+    const { onLabelChange } = this.props;
+    this.setState({
+      dataVisibility: {},
+    });
+    onLabelChange(event, data);
+  };
+
+  protected onMinDistChange = (value: number) => {
+    this.setState({
+      numMinDist: value,
     });
   };
 
@@ -1041,11 +1129,6 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     });
   };
 
-  protected onMinDistChange = (value: number) => {
-    this.setState({
-      numMinDist: value,
-    });
-  };
   private executeUMAP = () => {
     const { dataMatrix, distanceFn } = this.props;
 

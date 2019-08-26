@@ -7,41 +7,7 @@ exports[`UMAPVisualization UMAPSequenceContainer Should render when given a sequ
 >
   <GridRow>
     <UMAPVisualization
-      allSequences={
-        Array [
-          SeqRecord {
-            "alphabet": undefined,
-            "annotations": Object {
-              "dbxrefs": Array [],
-              "description": "<unknown description>",
-              "id": "<unknown id>",
-              "letterAnnotations": Object {},
-              "metadata": Object {},
-              "name": "<unknown name>",
-            },
-            "back_transcribe": [Function],
-            "binaryRepresentation": [Function],
-            "complement": [Function],
-            "determineAlphabet": [Function],
-            "equal": [Function],
-            "ignoredCharacters": Array [
-              "-",
-            ],
-            "integerRepresentation": [Function],
-            "isValidDNA": [Function],
-            "isValidProtein": [Function],
-            "isValidRNA": [Function],
-            "lower": [Function],
-            "reverse_complement": [Function],
-            "sequence": "gatcctag",
-            "subSequence": [Function],
-            "toString": [Function],
-            "transcribe": [Function],
-            "translate": [Function],
-            "upper": [Function],
-          },
-        ]
-      }
+      currentLabel="class"
       dataLabels={
         Array [
           undefined,
@@ -64,11 +30,13 @@ exports[`UMAPVisualization UMAPSequenceContainer Should render when given a sequ
       distanceFn={[Function]}
       errorMessages={Array []}
       labelCategory="class"
+      labels={Array []}
       minDist={0.99}
       nComponents={2}
       nNeighbors={15}
       numIterationsBeforeReRender={1}
       numSequencesToShow={4000}
+      onLabelChange={[Function]}
       spread={1}
       tooltipNames={
         Array [
@@ -87,17 +55,19 @@ exports[`UMAPVisualization UMAPSequenceContainer Should render when given an emp
 >
   <GridRow>
     <UMAPVisualization
-      allSequences={Array []}
+      currentLabel="class"
       dataLabels={Array []}
       dataMatrix={Array []}
       distanceFn={[Function]}
       errorMessages={Array []}
       labelCategory="class"
+      labels={Array []}
       minDist={0.99}
       nComponents={2}
       nNeighbors={15}
       numIterationsBeforeReRender={1}
       numSequencesToShow={4000}
+      onLabelChange={[Function]}
       spread={1}
       tooltipNames={Array []}
     />
@@ -107,6 +77,7 @@ exports[`UMAPVisualization UMAPSequenceContainer Should render when given an emp
 
 exports[`UMAPVisualization UMAPTranscriptionalContainer Should render when given an empty data matrix. 1`] = `
 <UMAPVisualization
+  currentLabel=""
   dataLabels={Array []}
   dataMatrix={
     Array [
@@ -115,11 +86,12 @@ exports[`UMAPVisualization UMAPTranscriptionalContainer Should render when given
   }
   distanceFn={[Function]}
   errorMessages={Array []}
+  labels={Array []}
   minDist={0.99}
   nComponents={2}
   nNeighbors={15}
   numIterationsBeforeReRender={1}
-  numSamplesToShow={4000}
+  onLabelChange={[Function]}
   spread={1}
   tooltipNames={Array []}
 />
@@ -250,7 +222,7 @@ exports[`UMAPVisualization UMAPVisualization Should render when given an empty d
             "itemdoubleclick": false,
             "traceorder": "grouped",
             "x": 1,
-            "y": 1,
+            "y": 0.95,
           },
           "margin": Object {
             "b": 50,

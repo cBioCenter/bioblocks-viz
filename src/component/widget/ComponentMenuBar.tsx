@@ -3,6 +3,7 @@ import {
   Button,
   ButtonProps,
   Checkbox,
+  Dropdown,
   Grid,
   Icon,
   Label,
@@ -24,6 +25,7 @@ import {
   ButtonWidgetConfig,
   CheckboxWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
+  DropDownWidgetConfig,
   LabelWidgetConfig,
   RadioWidgetConfig,
   RangeSliderWidgetConfig,
@@ -165,6 +167,8 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         return this.renderConfigurationButtonGroup(config, `button-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.CHECKBOX:
         return this.renderConfigurationCheckbox(config, `label-${id}`);
+      case CONFIGURATION_COMPONENT_TYPE.DROP_DOWN:
+        return this.renderConfigurationDropDown(config, `label-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.LABEL:
         return this.renderConfigurationLabel(config, `label-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.RADIO:
@@ -209,6 +213,10 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
     return (
       <Checkbox key={id} checked={config.checked} label={config.name} onChange={config.onChange} style={config.style} />
     );
+  }
+
+  protected renderConfigurationDropDown(config: DropDownWidgetConfig, id: string) {
+    return <Dropdown key={id} onChange={config.onChange} options={config.options} />;
   }
 
   protected renderConfigurationLabel(config: LabelWidgetConfig, id: string) {
