@@ -5,7 +5,14 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { Button, Grid, Header, Label, Message, Segment } from 'semantic-ui-react';
 
 import { createContainerActions, createResiduePairActions } from '~bioblocks-viz~/action';
-import { NGLContainer, PredictedContactMap, SpringContainer } from '~bioblocks-viz~/container';
+import { ICategoricalAnnotation } from '~bioblocks-viz~/component';
+import {
+  NGLContainer,
+  PredictedContactMap,
+  SpringContainer,
+  UMAPSequenceContainer,
+  UMAPTranscriptionalContainer,
+} from '~bioblocks-viz~/container';
 import {
   Bioblocks1DSection,
   BioblocksPDB,
@@ -31,11 +38,6 @@ import {
   readFileAsText,
 } from '~bioblocks-viz~/helper';
 import { BBStore } from '~bioblocks-viz~/reducer';
-import {
-  ICategoricalAnnotation,
-  UMAPSequenceContainer,
-  UMAPTranscriptionalContainer,
-} from '~bioblocks-viz~/singlepage';
 
 export interface IExampleAppProps {
   fastaFilename: string;

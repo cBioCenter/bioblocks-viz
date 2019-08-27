@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import { NGLContainer, PredictedContactMap, SpringContainer } from '~bioblocks-viz~/container';
+import { NGLContainer, PredictedContactMap, SpringContainer, UMAPSequenceContainer } from '~bioblocks-viz~/container';
 import {
   BIOBLOCKS_CSS_STYLE,
   IFrameEvent,
@@ -13,7 +13,6 @@ import {
   VIZ_TYPE,
 } from '~bioblocks-viz~/data';
 import { BBStore } from '~bioblocks-viz~/reducer';
-import { UMAPSequenceContainer } from '~bioblocks-viz~/singlepage';
 
 export interface IBBFrameProps {
   style: BIOBLOCKS_CSS_STYLE;

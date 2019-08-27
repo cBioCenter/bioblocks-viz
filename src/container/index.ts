@@ -7,3 +7,5 @@ export * from './PredictedContactMap';
 export * from './ProteinFeatureViewer';
 export * from './SpringContainer';
 export * from './TensorTContainer';
+export * from './UMAPSequenceContainer';
+export * from './UMAPTranscriptionalContainer';

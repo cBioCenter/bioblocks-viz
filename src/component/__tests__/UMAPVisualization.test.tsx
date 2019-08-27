@@ -1,8 +1,9 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { UMAPVisualization } from '~bioblocks-viz~/component';
+import { UMAPSequenceContainer, UMAPTranscriptionalContainer } from '~bioblocks-viz~/container';
 import { Seq, SeqRecord } from '~bioblocks-viz~/data';
-import { UMAPSequenceContainer, UMAPTranscriptionalContainer, UMAPVisualization } from '~bioblocks-viz~/singlepage';
 
 describe('UMAPVisualization', () => {
   let sequence: Seq;
