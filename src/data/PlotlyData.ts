@@ -28,6 +28,7 @@ export interface IPlotlyData extends plotly.ScatterData {
 export interface IPlotlyLegend extends Omit<Plotly.Legend, 'traceorder'> {
   itemclick: 'toggle' | 'toggleothers' | false;
   itemdoubleclick: 'toggle' | 'toggleothers' | boolean;
+  itemsizing: 'trace' | 'constant';
   traceorder: 'grouped' | 'normal' | 'reversed' | 'grouped+reversed' | 'reversed+grouped';
 }
 

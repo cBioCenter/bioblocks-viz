@@ -691,18 +691,21 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
   protected getLegendStats = () => {
     const { plotlyData } = this.state;
     const legend: SVGGElement | undefined = document.getElementsByClassName('legend')[0] as SVGGElement;
-    const legendWidth = legend ? legend.getBBox().width * 0.75 : 0;
+    // const legendWidth = legend ? legend.getBBox().width * 0.75 : 0;
+    const legendWidth = legend ? 200 : 0;
+
+    // Show legend if:
+    // 2 or more data arrays.
+    // Only 1 data array with no name - OR - a name that is not unannotated.
+    const showLegend =
+      plotlyData.length >= 2 ||
+      (plotlyData.length === 1 &&
+        (plotlyData[0].name === undefined ||
+          (plotlyData[0].name !== undefined && !plotlyData[0].name.includes('Unannotated'))));
 
     return {
       legendWidth,
-      // Show legend if:
-      // 2 or more data arrays.
-      // Only 1 data array with no name - OR - a name that is not unannotated.
-      showLegend:
-        plotlyData.length >= 2 ||
-        (plotlyData.length === 1 &&
-          (plotlyData[0].name === undefined ||
-            (plotlyData[0].name !== undefined && !plotlyData[0].name.includes('Unannotated')))),
+      showLegend,
     };
   };
 
@@ -797,10 +800,19 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
 
     const plotlyData = Object.values(result) as IPlotlyData[];
     const unannotated = plotlyData.splice(plotlyData.findIndex(datum => datum.legendgroup === 'Unannotated'), 1);
+    const MAX_LEGEND_LENGTH = 20;
 
     return unannotated.concat(plotlyData.sort((a, b) => b.x.length - a.x.length)).map((data, index) => {
       const { dataVisibility } = this.state;
       data.visible = dataVisibility[index] === undefined || dataVisibility[index] === true ? true : 'legendonly';
+      if (data.name.length > MAX_LEGEND_LENGTH) {
+        const countStartPos = data.name.lastIndexOf('(');
+        const count = data.name.slice(countStartPos);
+        data.name =
+          data.name.length - count.length - 1 > MAX_LEGEND_LENGTH
+            ? `${data.name.slice(0, MAX_LEGEND_LENGTH - count.length + 1)}... ${count}`
+            : data.name;
+      }
 
       return data;
     });
@@ -878,15 +890,17 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
   };
 
   protected get3DMenuItems = (): Array<IComponentMenuBarItem<IButtonType>> => {
-    const { dragMode } = this.state;
+    const { currentEpoch, dragMode, totalNumberEpochs } = this.state;
+    const disabled = currentEpoch === undefined || totalNumberEpochs === undefined || currentEpoch < totalNumberEpochs;
 
     return [
       {
         component: {
           name: 'BUTTON',
-          onClick: this.onZoomClick,
+          onClick: disabled ? EMPTY_FUNCTION : this.onZoomClick,
           props: {
             active: dragMode === 'zoom',
+            disabled,
           },
         },
         description: 'Zoom',
@@ -895,9 +909,10 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
       {
         component: {
           name: 'BUTTON',
-          onClick: this.onPanClick,
+          onClick: disabled ? EMPTY_FUNCTION : this.onPanClick,
           props: {
             active: dragMode === 'pan',
+            disabled,
           },
         },
         description: 'Pan',
@@ -906,9 +921,10 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
       {
         component: {
           name: 'BUTTON',
-          onClick: this.onOrbitClick,
+          onClick: disabled ? EMPTY_FUNCTION : this.onOrbitClick,
           props: {
             active: dragMode === 'orbit',
+            disabled,
           },
         },
         description: 'Orbit',
@@ -917,9 +933,10 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
       {
         component: {
           name: 'BUTTON',
-          onClick: this.onTurntableClick,
+          onClick: disabled ? EMPTY_FUNCTION : this.onTurntableClick,
           props: {
             active: dragMode === 'turntable',
+            disabled,
           },
         },
         description: 'Turntable',
