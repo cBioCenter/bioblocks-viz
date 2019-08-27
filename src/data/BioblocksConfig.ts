@@ -1,9 +1,10 @@
 import { Marks } from 'rc-slider';
-import { ButtonProps, SemanticICONS } from 'semantic-ui-react';
+import { ButtonProps, DropdownProps, SemanticICONS } from 'semantic-ui-react';
 
 export enum CONFIGURATION_COMPONENT_TYPE {
   BUTTON = 'BUTTON',
   BUTTON_GROUP = 'BUTTON_GROUP',
+  DROP_DOWN = 'DROP_DOWN',
   LABEL = 'LABEL',
   CHECKBOX = 'CHECKBOX',
   RADIO = 'RADIO',
@@ -63,6 +64,16 @@ export type CheckboxWidgetConfig = IBaseBioblocksWidgetConfig &
     type: CONFIGURATION_COMPONENT_TYPE.CHECKBOX;
   });
 
+export type DropDownWidgetConfig = IBaseBioblocksWidgetConfig &
+  ({
+    current: string;
+    defaultOption?: string;
+    options: Array<{ text: string; value: string }>;
+    // tslint:disable-next-line:no-reserved-keywords
+    type: CONFIGURATION_COMPONENT_TYPE.DROP_DOWN;
+    onChange(event: React.SyntheticEvent<HTMLElement>, data: DropdownProps): void;
+  });
+
 export type LabelWidgetConfig = IBaseBioblocksWidgetConfig &
   ({
     // tslint:disable-next-line:no-reserved-keywords
@@ -94,9 +105,10 @@ export type SliderWidgetConfig = IBaseBioblocksWidgetConfig &
   });
 
 export type BioblocksWidgetConfig =
-  | ButtonWidgetConfig
   | ButtonGroupWidgetConfig
+  | ButtonWidgetConfig
   | CheckboxWidgetConfig
+  | DropDownWidgetConfig
   | LabelWidgetConfig
   | RadioWidgetConfig
   | RangeSliderWidgetConfig

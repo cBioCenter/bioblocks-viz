@@ -1,5 +1,17 @@
 import * as React from 'react';
-import { Button, Checkbox, Grid, Icon, Label, Menu, Popup, PopupProps, SemanticICONS } from 'semantic-ui-react';
+import {
+  Button,
+  ButtonProps,
+  Checkbox,
+  Dropdown,
+  Grid,
+  Icon,
+  Label,
+  Menu,
+  Popup,
+  PopupProps,
+  SemanticICONS,
+} from 'semantic-ui-react';
 
 import {
   BioblocksRadioGroup,
@@ -13,6 +25,7 @@ import {
   ButtonWidgetConfig,
   CheckboxWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
+  DropDownWidgetConfig,
   LabelWidgetConfig,
   RadioWidgetConfig,
   RangeSliderWidgetConfig,
@@ -23,15 +36,22 @@ export interface IComponentMenuBarProps {
   componentName: string;
   height: number | string;
   isExpanded: boolean;
-  iconSrc?: string;
-  menuItems: IComponentMenuBarItem[];
+  iconSrc: string;
+  menuItems: Array<IComponentMenuBarItem<IButtonType | IPopupType>>;
   opacity: number;
   width: number | string;
   onExpandToggleCb?(): void;
 }
 
 export interface IComponentMenuBarState {
+  iconUrl: string;
   isHovered: boolean;
+}
+
+export interface IButtonType {
+  name: 'BUTTON';
+  props?: ButtonProps;
+  onClick(...args: any[]): any;
 }
 
 export interface IPopupType {
@@ -61,6 +81,7 @@ export const DEFAULT_POPUP_PROPS: Partial<PopupProps> = {
 export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IComponentMenuBarState> {
   public static defaultProps = {
     height: '100%',
+    iconSrc: 'assets/icons/bio-blocks-icon.svg',
     isExpanded: false,
     menuItems: [],
     opacity: 0.85,
@@ -70,31 +91,43 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
   constructor(props: IComponentMenuBarProps) {
     super(props);
     this.state = {
+      iconUrl: 'assets/icons/bio-blocks-icon.svg',
       isHovered: false,
     };
   }
 
+  public async componentDidMount() {
+    const { iconSrc } = this.props;
+    const result = await fetch(iconSrc);
+    this.setState({
+      iconUrl: result.url,
+    });
+  }
+
   public render() {
     const { componentName, height, iconSrc, isExpanded, menuItems, onExpandToggleCb } = this.props;
+    const { iconUrl } = this.state;
 
     return (
       <div onMouseEnter={this.onMenuEnter} onMouseLeave={this.onMenuLeave}>
-        <Menu secondary={true} style={{ margin: 0, height }} widths={2}>
-          <Menu secondary={true} widths={1}>
-            <Menu.Item fitted={'horizontally'} position={'left'} style={{ margin: 0, padding: 0, width: 'auto' }}>
+        <Menu secondary={true} style={{ margin: 0, height }}>
+          <Menu secondary={true} widths={6} fluid={false} style={{ width: 'auto' }}>
+            <Menu.Item fitted={'horizontally'} style={{ margin: 0, padding: 0 }}>
               {iconSrc && (
-                <img alt={'component icon'} src={iconSrc} style={{ height: '32px', padding: '2px', width: '32px' }} />
+                <img alt={'component icon'} src={iconUrl} style={{ height: '32px', padding: '2px', width: '32px' }} />
               )}
               {componentName}
             </Menu.Item>
           </Menu>
-          <Menu secondary={true} widths={4}>
-            {this.renderMenuItems(menuItems, componentName)}
-            <Menu.Item fitted={'horizontally'} position={'right'} style={{ flexDirection: 'column' }}>
-              <Icon name={isExpanded ? 'compress' : 'expand arrows alternate'} onClick={onExpandToggleCb} />
-              {this.renderMenuIconText(isExpanded ? 'Close' : 'Expand')}
-            </Menu.Item>
-          </Menu>
+          <Menu.Item fitted={'horizontally'} position={'right'}>
+            <Menu secondary={true}>
+              {this.renderMenuItems(menuItems, componentName)}
+              <Menu.Item style={{ flexDirection: 'column' }}>
+                <Icon name={isExpanded ? 'compress' : 'expand arrows alternate'} onClick={onExpandToggleCb} />
+                {this.renderMenuIconText(isExpanded ? 'Close' : 'Expand')}
+              </Menu.Item>
+            </Menu>
+          </Menu.Item>
         </Menu>
       </div>
     );
@@ -134,6 +167,8 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         return this.renderConfigurationButtonGroup(config, `button-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.CHECKBOX:
         return this.renderConfigurationCheckbox(config, `label-${id}`);
+      case CONFIGURATION_COMPONENT_TYPE.DROP_DOWN:
+        return this.renderConfigurationDropDown(config, `label-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.LABEL:
         return this.renderConfigurationLabel(config, `label-${id}`);
       case CONFIGURATION_COMPONENT_TYPE.RADIO:
@@ -178,6 +213,10 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
     return (
       <Checkbox key={id} checked={config.checked} label={config.name} onChange={config.onChange} style={config.style} />
     );
+  }
+
+  protected renderConfigurationDropDown(config: DropDownWidgetConfig, id: string) {
+    return <Dropdown key={id} onChange={config.onChange} options={config.options} />;
   }
 
   protected renderConfigurationLabel(config: LabelWidgetConfig, id: string) {
@@ -243,32 +282,44 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
     return <span style={{ fontSize: '11px', visibility: isHovered ? 'visible' : 'hidden' }}>{text}</span>;
   }
 
-  protected renderMenuItems(items: IComponentMenuBarItem[], componentName: string) {
+  protected renderMenuItems(items: Array<IComponentMenuBarItem<IButtonType | IPopupType>>, componentName: string) {
     const { opacity } = this.props;
 
     return items.map((item, menuBarIndex) => {
-      // We are separating the style to prevent a bug where the popup arrow does not display if overflow is set.
-      const { style, ...combinedProps } = { ...DEFAULT_POPUP_PROPS, ...item.component.props };
-
       let menuItemChild = null;
       if (item.component.name === 'POPUP') {
-        const trigger = <Icon name={item.iconName ? item.iconName : 'setting'} />;
+        const trigger = <Icon fitted={true} name={item.iconName ? item.iconName : 'setting'} />;
+        // We are separating the style to prevent a bug where the popup arrow does not display if overflow is set.
+        const { style, ...combinedProps } = { ...DEFAULT_POPUP_PROPS, ...item.component.props };
         menuItemChild = item.component.configs ? (
-          <Popup trigger={trigger} {...combinedProps} wide={true} style={{ opacity }}>
+          <Popup trigger={trigger} wide={true} {...combinedProps} style={{ opacity }}>
             <ConfigAccordion configs={this.renderConfigs(item.component.configs)} gridStyle={style} title={'Config'} />
           </Popup>
         ) : (
           <Popup trigger={trigger} {...combinedProps} style={{ opacity }} />
         );
+      } else if (item.component.name === 'BUTTON') {
+        let validButtonProps = {};
+        if (item.component.props) {
+          const { color, size, ...rest } = item.component.props;
+          validButtonProps = rest;
+        }
+        menuItemChild = <Icon fitted={true} name={item.iconName ? item.iconName : 'setting'} {...validButtonProps} />;
       }
 
       return (
         menuItemChild && (
           <Menu.Item
-            fitted={'horizontally'}
+            active={item.component.props ? (item.component.props.active as boolean) : undefined}
             key={`${componentName}-menu-item-${menuBarIndex}`}
-            position={'right'}
             style={{ flexDirection: 'column' }}
+            onClick={
+              'onClick' in item.component
+                ? item.component.onClick
+                : () => {
+                    return;
+                  }
+            }
           >
             {menuItemChild}
             {this.renderMenuIconText(item.description)}

@@ -13,134 +13,150 @@ exports[`ComponentMenuBar Should handle an unknown menu item. 1`] = `
         "margin": 0,
       }
     }
-    widths={2}
   >
     <Menu
+      fluid={false}
       secondary={true}
-      widths={1}
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+      widths={6}
     >
       <MenuItem
         fitted="horizontally"
-        position="left"
         style={
           Object {
             "margin": 0,
             "padding": 0,
-            "width": "auto",
           }
         }
       >
+        <img
+          alt="component icon"
+          src="assets/icons/bio-blocks-icon.svg"
+          style={
+            Object {
+              "height": "32px",
+              "padding": "2px",
+              "width": "32px",
+            }
+          }
+        />
         The Boxer
       </MenuItem>
     </Menu>
-    <Menu
-      secondary={true}
-      widths={4}
+    <MenuItem
+      fitted="horizontally"
+      position="right"
     >
-      <MenuItem
-        fitted="horizontally"
-        key="The Boxer-menu-item-0"
-        position="right"
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
+      <Menu
+        secondary={true}
       >
-        <Popup
-          closeOnPortalMouseLeave={false}
-          closeOnTriggerClick={true}
-          closeOnTriggerMouseLeave={false}
-          disabled={false}
-          hoverable={false}
-          offset={0}
-          on="hover"
-          openOnTriggerClick={true}
-          openOnTriggerFocus={false}
-          openOnTriggerMouseEnter={false}
-          pinned={false}
-          position="bottom left"
+        <MenuItem
+          key="The Boxer-menu-item-0"
+          onClick={[Function]}
           style={
             Object {
-              "opacity": 0.85,
+              "flexDirection": "column",
             }
           }
-          trigger={
-            <Icon
-              as="i"
-              name="setting"
-            />
-          }
-          wide={true}
         >
-          <ConfigAccordion
-            allowMultipleOpen={false}
-            configs={
-              Array [
-                Object {
-                  "Catcher": Array [
-                    <GridRow
-                      columns={1}
-                      style={
-                        Object {
-                          "padding": "5px 0",
-                          "width": "100%",
-                        }
-                      }
-                    >
-                      configuration for Catcher-row-0
-                    </GridRow>,
-                  ],
-                },
-              ]
-            }
-            gridStyle={
+          <Popup
+            closeOnPortalMouseLeave={false}
+            closeOnTriggerClick={true}
+            closeOnTriggerMouseLeave={false}
+            disabled={false}
+            hoverable={false}
+            offset={0}
+            on="hover"
+            openOnTriggerClick={true}
+            openOnTriggerFocus={false}
+            openOnTriggerMouseEnter={false}
+            pinned={false}
+            position="bottom left"
+            style={
               Object {
-                "marginTop": 0,
-                "maxHeight": "350px",
-                "overflow": "auto",
-                "zIndex": 3,
+                "opacity": 0.85,
               }
             }
-            title="Config"
+            trigger={
+              <Icon
+                as="i"
+                fitted={true}
+                name="setting"
+              />
+            }
+            wide={true}
+          >
+            <ConfigAccordion
+              allowMultipleOpen={false}
+              configs={
+                Array [
+                  Object {
+                    "Catcher": Array [
+                      <GridRow
+                        columns={1}
+                        style={
+                          Object {
+                            "padding": "5px 0",
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        configuration for Catcher-row-0
+                      </GridRow>,
+                    ],
+                  },
+                ]
+              }
+              gridStyle={
+                Object {
+                  "marginTop": 0,
+                  "maxHeight": "350px",
+                  "overflow": "auto",
+                  "zIndex": 3,
+                }
+              }
+              title="Config"
+            />
+          </Popup>
+          <span
+            style={
+              Object {
+                "fontSize": "11px",
+                "visibility": "hidden",
+              }
+            }
+          >
+            A Popup
+          </span>
+        </MenuItem>
+        <MenuItem
+          style={
+            Object {
+              "flexDirection": "column",
+            }
+          }
+        >
+          <Icon
+            as="i"
+            name="expand arrows alternate"
           />
-        </Popup>
-        <span
-          style={
-            Object {
-              "fontSize": "11px",
-              "visibility": "hidden",
+          <span
+            style={
+              Object {
+                "fontSize": "11px",
+                "visibility": "hidden",
+              }
             }
-          }
-        >
-          A Popup
-        </span>
-      </MenuItem>
-      <MenuItem
-        fitted="horizontally"
-        position="right"
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
-      >
-        <Icon
-          as="i"
-          name="expand arrows alternate"
-        />
-        <span
-          style={
-            Object {
-              "fontSize": "11px",
-              "visibility": "hidden",
-            }
-          }
-        >
-          Expand
-        </span>
-      </MenuItem>
-    </Menu>
+          >
+            Expand
+          </span>
+        </MenuItem>
+      </Menu>
+    </MenuItem>
   </Menu>
 </div>
 `;
@@ -158,55 +174,71 @@ exports[`ComponentMenuBar Should match existing snapshot when expanded 1`] = `
         "margin": 0,
       }
     }
-    widths={2}
   >
     <Menu
+      fluid={false}
       secondary={true}
-      widths={1}
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+      widths={6}
     >
       <MenuItem
         fitted="horizontally"
-        position="left"
         style={
           Object {
             "margin": 0,
             "padding": 0,
-            "width": "auto",
           }
         }
       >
+        <img
+          alt="component icon"
+          src="assets/icons/bio-blocks-icon.svg"
+          style={
+            Object {
+              "height": "32px",
+              "padding": "2px",
+              "width": "32px",
+            }
+          }
+        />
         The Boxer
       </MenuItem>
     </Menu>
-    <Menu
-      secondary={true}
-      widths={4}
+    <MenuItem
+      fitted="horizontally"
+      position="right"
     >
-      <MenuItem
-        fitted="horizontally"
-        position="right"
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
+      <Menu
+        secondary={true}
       >
-        <Icon
-          as="i"
-          name="compress"
-        />
-        <span
+        <MenuItem
           style={
             Object {
-              "fontSize": "11px",
-              "visibility": "hidden",
+              "flexDirection": "column",
             }
           }
         >
-          Close
-        </span>
-      </MenuItem>
-    </Menu>
+          <Icon
+            as="i"
+            name="compress"
+          />
+          <span
+            style={
+              Object {
+                "fontSize": "11px",
+                "visibility": "hidden",
+              }
+            }
+          >
+            Close
+          </span>
+        </MenuItem>
+      </Menu>
+    </MenuItem>
   </Menu>
 </div>
 `;
@@ -224,55 +256,71 @@ exports[`ComponentMenuBar Should match existing snapshot when given default prop
         "margin": 0,
       }
     }
-    widths={2}
   >
     <Menu
+      fluid={false}
       secondary={true}
-      widths={1}
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+      widths={6}
     >
       <MenuItem
         fitted="horizontally"
-        position="left"
         style={
           Object {
             "margin": 0,
             "padding": 0,
-            "width": "auto",
           }
         }
       >
+        <img
+          alt="component icon"
+          src="assets/icons/bio-blocks-icon.svg"
+          style={
+            Object {
+              "height": "32px",
+              "padding": "2px",
+              "width": "32px",
+            }
+          }
+        />
         The Boxer
       </MenuItem>
     </Menu>
-    <Menu
-      secondary={true}
-      widths={4}
+    <MenuItem
+      fitted="horizontally"
+      position="right"
     >
-      <MenuItem
-        fitted="horizontally"
-        position="right"
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
+      <Menu
+        secondary={true}
       >
-        <Icon
-          as="i"
-          name="expand arrows alternate"
-        />
-        <span
+        <MenuItem
           style={
             Object {
-              "fontSize": "11px",
-              "visibility": "hidden",
+              "flexDirection": "column",
             }
           }
         >
-          Expand
-        </span>
-      </MenuItem>
-    </Menu>
+          <Icon
+            as="i"
+            name="expand arrows alternate"
+          />
+          <span
+            style={
+              Object {
+                "fontSize": "11px",
+                "visibility": "hidden",
+              }
+            }
+          >
+            Expand
+          </span>
+        </MenuItem>
+      </Menu>
+    </MenuItem>
   </Menu>
 </div>
 `;
@@ -290,177 +338,193 @@ exports[`ComponentMenuBar Should render a Button Group menu item. 1`] = `
         "margin": 0,
       }
     }
-    widths={2}
   >
     <Menu
+      fluid={false}
       secondary={true}
-      widths={1}
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+      widths={6}
     >
       <MenuItem
         fitted="horizontally"
-        position="left"
         style={
           Object {
             "margin": 0,
             "padding": 0,
-            "width": "auto",
           }
         }
       >
+        <img
+          alt="component icon"
+          src="assets/icons/bio-blocks-icon.svg"
+          style={
+            Object {
+              "height": "32px",
+              "padding": "2px",
+              "width": "32px",
+            }
+          }
+        />
         The Boxer
       </MenuItem>
     </Menu>
-    <Menu
-      secondary={true}
-      widths={4}
+    <MenuItem
+      fitted="horizontally"
+      position="right"
     >
-      <MenuItem
-        fitted="horizontally"
-        key="The Boxer-menu-item-0"
-        position="right"
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
+      <Menu
+        secondary={true}
       >
-        <Popup
-          closeOnPortalMouseLeave={false}
-          closeOnTriggerClick={true}
-          closeOnTriggerMouseLeave={false}
-          disabled={false}
-          hoverable={false}
-          offset={0}
-          on="hover"
-          openOnTriggerClick={true}
-          openOnTriggerFocus={false}
-          openOnTriggerMouseEnter={false}
-          pinned={false}
-          position="bottom left"
+        <MenuItem
+          key="The Boxer-menu-item-0"
+          onClick={[Function]}
           style={
             Object {
-              "opacity": 0.85,
+              "flexDirection": "column",
             }
           }
-          trigger={
-            <Icon
-              as="i"
-              name="setting"
-            />
-          }
-          wide={true}
         >
-          <ConfigAccordion
-            allowMultipleOpen={false}
-            configs={
-              Array [
-                Object {
-                  "Catcher": Array [
-                    <GridRow
-                      columns={1}
-                      style={
-                        Object {
-                          "padding": "5px 0",
-                          "width": "100%",
-                        }
-                      }
-                    >
-                      <Grid
-                        padded={true}
+          <Popup
+            closeOnPortalMouseLeave={false}
+            closeOnTriggerClick={true}
+            closeOnTriggerMouseLeave={false}
+            disabled={false}
+            hoverable={false}
+            offset={0}
+            on="hover"
+            openOnTriggerClick={true}
+            openOnTriggerFocus={false}
+            openOnTriggerMouseEnter={false}
+            pinned={false}
+            position="bottom left"
+            style={
+              Object {
+                "opacity": 0.85,
+              }
+            }
+            trigger={
+              <Icon
+                as="i"
+                fitted={true}
+                name="setting"
+              />
+            }
+            wide={true}
+          >
+            <ConfigAccordion
+              allowMultipleOpen={false}
+              configs={
+                Array [
+                  Object {
+                    "Catcher": Array [
+                      <GridRow
+                        columns={1}
                         style={
                           Object {
-                            "padding": "initial 0",
+                            "padding": "5px 0",
+                            "width": "100%",
                           }
                         }
                       >
-                        <GridRow
-                          columns={2}
+                        <Grid
+                          padded={true}
+                          style={
+                            Object {
+                              "padding": "initial 0",
+                            }
+                          }
                         >
-                          <GridColumn
-                            width={11}
+                          <GridRow
+                            columns={2}
                           >
-                            Rye
-                          </GridColumn>
-                          <GridColumn
-                            width={5}
-                          >
-                            <ButtonGroup>
-                              <Button
-                                as="button"
-                                basic={true}
-                                compact={true}
-                                icon={
-                                  <div>
-                                    Howdy
-                                  </div>
-                                }
-                              />
-                              <Button
-                                as="button"
-                                basic={true}
-                                compact={true}
-                                icon={
-                                  <div>
-                                    Ho
-                                  </div>
-                                }
-                              />
-                            </ButtonGroup>
-                          </GridColumn>
-                        </GridRow>
-                      </Grid>
-                    </GridRow>,
-                  ],
-                },
-              ]
-            }
-            gridStyle={
+                            <GridColumn
+                              width={11}
+                            >
+                              Rye
+                            </GridColumn>
+                            <GridColumn
+                              width={5}
+                            >
+                              <ButtonGroup>
+                                <Button
+                                  as="button"
+                                  basic={true}
+                                  compact={true}
+                                  icon={
+                                    <div>
+                                      Howdy
+                                    </div>
+                                  }
+                                />
+                                <Button
+                                  as="button"
+                                  basic={true}
+                                  compact={true}
+                                  icon={
+                                    <div>
+                                      Ho
+                                    </div>
+                                  }
+                                />
+                              </ButtonGroup>
+                            </GridColumn>
+                          </GridRow>
+                        </Grid>
+                      </GridRow>,
+                    ],
+                  },
+                ]
+              }
+              gridStyle={
+                Object {
+                  "marginTop": 0,
+                  "maxHeight": "350px",
+                  "overflow": "auto",
+                  "zIndex": 3,
+                }
+              }
+              title="Config"
+            />
+          </Popup>
+          <span
+            style={
               Object {
-                "marginTop": 0,
-                "maxHeight": "350px",
-                "overflow": "auto",
-                "zIndex": 3,
+                "fontSize": "11px",
+                "visibility": "hidden",
               }
             }
-            title="Config"
+          >
+            A Popup
+          </span>
+        </MenuItem>
+        <MenuItem
+          style={
+            Object {
+              "flexDirection": "column",
+            }
+          }
+        >
+          <Icon
+            as="i"
+            name="expand arrows alternate"
           />
-        </Popup>
-        <span
-          style={
-            Object {
-              "fontSize": "11px",
-              "visibility": "hidden",
+          <span
+            style={
+              Object {
+                "fontSize": "11px",
+                "visibility": "hidden",
+              }
             }
-          }
-        >
-          A Popup
-        </span>
-      </MenuItem>
-      <MenuItem
-        fitted="horizontally"
-        position="right"
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
-      >
-        <Icon
-          as="i"
-          name="expand arrows alternate"
-        />
-        <span
-          style={
-            Object {
-              "fontSize": "11px",
-              "visibility": "hidden",
-            }
-          }
-        >
-          Expand
-        </span>
-      </MenuItem>
-    </Menu>
+          >
+            Expand
+          </span>
+        </MenuItem>
+      </Menu>
+    </MenuItem>
   </Menu>
 </div>
 `;
@@ -478,144 +542,160 @@ exports[`ComponentMenuBar Should render a Button menu item with an icon. 1`] = `
         "margin": 0,
       }
     }
-    widths={2}
   >
     <Menu
+      fluid={false}
       secondary={true}
-      widths={1}
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+      widths={6}
     >
       <MenuItem
         fitted="horizontally"
-        position="left"
         style={
           Object {
             "margin": 0,
             "padding": 0,
-            "width": "auto",
           }
         }
       >
+        <img
+          alt="component icon"
+          src="assets/icons/bio-blocks-icon.svg"
+          style={
+            Object {
+              "height": "32px",
+              "padding": "2px",
+              "width": "32px",
+            }
+          }
+        />
         The Boxer
       </MenuItem>
     </Menu>
-    <Menu
-      secondary={true}
-      widths={4}
+    <MenuItem
+      fitted="horizontally"
+      position="right"
     >
-      <MenuItem
-        fitted="horizontally"
-        key="The Boxer-menu-item-0"
-        position="right"
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
+      <Menu
+        secondary={true}
       >
-        <Popup
-          closeOnPortalMouseLeave={false}
-          closeOnTriggerClick={true}
-          closeOnTriggerMouseLeave={false}
-          disabled={false}
-          hoverable={false}
-          offset={0}
-          on="hover"
-          openOnTriggerClick={true}
-          openOnTriggerFocus={false}
-          openOnTriggerMouseEnter={false}
-          pinned={false}
-          position="bottom left"
+        <MenuItem
+          key="The Boxer-menu-item-0"
+          onClick={[Function]}
           style={
             Object {
-              "opacity": 0.85,
+              "flexDirection": "column",
             }
           }
-          trigger={
-            <Icon
-              as="i"
-              name="setting"
-            />
-          }
-          wide={true}
         >
-          <ConfigAccordion
-            allowMultipleOpen={false}
-            configs={
-              Array [
-                Object {
-                  "Catcher": Array [
-                    <GridRow
-                      columns={1}
-                      style={
-                        Object {
-                          "padding": "5px 0",
-                          "width": "100%",
-                        }
-                      }
-                    >
-                      <Button
-                        as="button"
-                        compact={true}
-                        onClick={[Function]}
-                      >
-                        <Icon
-                          as="i"
-                          name="coffee"
-                        />
-                        Rye
-                      </Button>
-                    </GridRow>,
-                  ],
-                },
-              ]
-            }
-            gridStyle={
+          <Popup
+            closeOnPortalMouseLeave={false}
+            closeOnTriggerClick={true}
+            closeOnTriggerMouseLeave={false}
+            disabled={false}
+            hoverable={false}
+            offset={0}
+            on="hover"
+            openOnTriggerClick={true}
+            openOnTriggerFocus={false}
+            openOnTriggerMouseEnter={false}
+            pinned={false}
+            position="bottom left"
+            style={
               Object {
-                "marginTop": 0,
-                "maxHeight": "350px",
-                "overflow": "auto",
-                "zIndex": 3,
+                "opacity": 0.85,
               }
             }
-            title="Config"
+            trigger={
+              <Icon
+                as="i"
+                fitted={true}
+                name="setting"
+              />
+            }
+            wide={true}
+          >
+            <ConfigAccordion
+              allowMultipleOpen={false}
+              configs={
+                Array [
+                  Object {
+                    "Catcher": Array [
+                      <GridRow
+                        columns={1}
+                        style={
+                          Object {
+                            "padding": "5px 0",
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        <Button
+                          as="button"
+                          compact={true}
+                          onClick={[Function]}
+                        >
+                          <Icon
+                            as="i"
+                            name="coffee"
+                          />
+                          Rye
+                        </Button>
+                      </GridRow>,
+                    ],
+                  },
+                ]
+              }
+              gridStyle={
+                Object {
+                  "marginTop": 0,
+                  "maxHeight": "350px",
+                  "overflow": "auto",
+                  "zIndex": 3,
+                }
+              }
+              title="Config"
+            />
+          </Popup>
+          <span
+            style={
+              Object {
+                "fontSize": "11px",
+                "visibility": "hidden",
+              }
+            }
+          >
+            A Popup
+          </span>
+        </MenuItem>
+        <MenuItem
+          style={
+            Object {
+              "flexDirection": "column",
+            }
+          }
+        >
+          <Icon
+            as="i"
+            name="expand arrows alternate"
           />
-        </Popup>
-        <span
-          style={
-            Object {
-              "fontSize": "11px",
-              "visibility": "hidden",
+          <span
+            style={
+              Object {
+                "fontSize": "11px",
+                "visibility": "hidden",
+              }
             }
-          }
-        >
-          A Popup
-        </span>
-      </MenuItem>
-      <MenuItem
-        fitted="horizontally"
-        position="right"
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
-      >
-        <Icon
-          as="i"
-          name="expand arrows alternate"
-        />
-        <span
-          style={
-            Object {
-              "fontSize": "11px",
-              "visibility": "hidden",
-            }
-          }
-        >
-          Expand
-        </span>
-      </MenuItem>
-    </Menu>
+          >
+            Expand
+          </span>
+        </MenuItem>
+      </Menu>
+    </MenuItem>
   </Menu>
 </div>
 `;
@@ -633,140 +713,156 @@ exports[`ComponentMenuBar Should render a Button menu item. 1`] = `
         "margin": 0,
       }
     }
-    widths={2}
   >
     <Menu
+      fluid={false}
       secondary={true}
-      widths={1}
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+      widths={6}
     >
       <MenuItem
         fitted="horizontally"
-        position="left"
         style={
           Object {
             "margin": 0,
             "padding": 0,
-            "width": "auto",
           }
         }
       >
+        <img
+          alt="component icon"
+          src="assets/icons/bio-blocks-icon.svg"
+          style={
+            Object {
+              "height": "32px",
+              "padding": "2px",
+              "width": "32px",
+            }
+          }
+        />
         The Boxer
       </MenuItem>
     </Menu>
-    <Menu
-      secondary={true}
-      widths={4}
+    <MenuItem
+      fitted="horizontally"
+      position="right"
     >
-      <MenuItem
-        fitted="horizontally"
-        key="The Boxer-menu-item-0"
-        position="right"
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
+      <Menu
+        secondary={true}
       >
-        <Popup
-          closeOnPortalMouseLeave={false}
-          closeOnTriggerClick={true}
-          closeOnTriggerMouseLeave={false}
-          disabled={false}
-          hoverable={false}
-          offset={0}
-          on="hover"
-          openOnTriggerClick={true}
-          openOnTriggerFocus={false}
-          openOnTriggerMouseEnter={false}
-          pinned={false}
-          position="bottom left"
+        <MenuItem
+          key="The Boxer-menu-item-0"
+          onClick={[Function]}
           style={
             Object {
-              "opacity": 0.85,
+              "flexDirection": "column",
             }
           }
-          trigger={
-            <Icon
-              as="i"
-              name="setting"
-            />
-          }
-          wide={true}
         >
-          <ConfigAccordion
-            allowMultipleOpen={false}
-            configs={
-              Array [
-                Object {
-                  "Catcher": Array [
-                    <GridRow
-                      columns={1}
-                      style={
-                        Object {
-                          "padding": "5px 0",
-                          "width": "100%",
-                        }
-                      }
-                    >
-                      <Button
-                        as="button"
-                        compact={true}
-                        onClick={[Function]}
-                      >
-                        Rye
-                      </Button>
-                    </GridRow>,
-                  ],
-                },
-              ]
-            }
-            gridStyle={
+          <Popup
+            closeOnPortalMouseLeave={false}
+            closeOnTriggerClick={true}
+            closeOnTriggerMouseLeave={false}
+            disabled={false}
+            hoverable={false}
+            offset={0}
+            on="hover"
+            openOnTriggerClick={true}
+            openOnTriggerFocus={false}
+            openOnTriggerMouseEnter={false}
+            pinned={false}
+            position="bottom left"
+            style={
               Object {
-                "marginTop": 0,
-                "maxHeight": "350px",
-                "overflow": "auto",
-                "zIndex": 3,
+                "opacity": 0.85,
               }
             }
-            title="Config"
+            trigger={
+              <Icon
+                as="i"
+                fitted={true}
+                name="setting"
+              />
+            }
+            wide={true}
+          >
+            <ConfigAccordion
+              allowMultipleOpen={false}
+              configs={
+                Array [
+                  Object {
+                    "Catcher": Array [
+                      <GridRow
+                        columns={1}
+                        style={
+                          Object {
+                            "padding": "5px 0",
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        <Button
+                          as="button"
+                          compact={true}
+                          onClick={[Function]}
+                        >
+                          Rye
+                        </Button>
+                      </GridRow>,
+                    ],
+                  },
+                ]
+              }
+              gridStyle={
+                Object {
+                  "marginTop": 0,
+                  "maxHeight": "350px",
+                  "overflow": "auto",
+                  "zIndex": 3,
+                }
+              }
+              title="Config"
+            />
+          </Popup>
+          <span
+            style={
+              Object {
+                "fontSize": "11px",
+                "visibility": "hidden",
+              }
+            }
+          >
+            A Popup
+          </span>
+        </MenuItem>
+        <MenuItem
+          style={
+            Object {
+              "flexDirection": "column",
+            }
+          }
+        >
+          <Icon
+            as="i"
+            name="expand arrows alternate"
           />
-        </Popup>
-        <span
-          style={
-            Object {
-              "fontSize": "11px",
-              "visibility": "hidden",
+          <span
+            style={
+              Object {
+                "fontSize": "11px",
+                "visibility": "hidden",
+              }
             }
-          }
-        >
-          A Popup
-        </span>
-      </MenuItem>
-      <MenuItem
-        fitted="horizontally"
-        position="right"
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
-      >
-        <Icon
-          as="i"
-          name="expand arrows alternate"
-        />
-        <span
-          style={
-            Object {
-              "fontSize": "11px",
-              "visibility": "hidden",
-            }
-          }
-        >
-          Expand
-        </span>
-      </MenuItem>
-    </Menu>
+          >
+            Expand
+          </span>
+        </MenuItem>
+      </Menu>
+    </MenuItem>
   </Menu>
 </div>
 `;
@@ -784,138 +880,154 @@ exports[`ComponentMenuBar Should render a Checkbox menu item. 1`] = `
         "margin": 0,
       }
     }
-    widths={2}
   >
     <Menu
+      fluid={false}
       secondary={true}
-      widths={1}
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+      widths={6}
     >
       <MenuItem
         fitted="horizontally"
-        position="left"
         style={
           Object {
             "margin": 0,
             "padding": 0,
-            "width": "auto",
           }
         }
       >
+        <img
+          alt="component icon"
+          src="assets/icons/bio-blocks-icon.svg"
+          style={
+            Object {
+              "height": "32px",
+              "padding": "2px",
+              "width": "32px",
+            }
+          }
+        />
         The Boxer
       </MenuItem>
     </Menu>
-    <Menu
-      secondary={true}
-      widths={4}
+    <MenuItem
+      fitted="horizontally"
+      position="right"
     >
-      <MenuItem
-        fitted="horizontally"
-        key="The Boxer-menu-item-0"
-        position="right"
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
+      <Menu
+        secondary={true}
       >
-        <Popup
-          closeOnPortalMouseLeave={false}
-          closeOnTriggerClick={true}
-          closeOnTriggerMouseLeave={false}
-          disabled={false}
-          hoverable={false}
-          offset={0}
-          on="hover"
-          openOnTriggerClick={true}
-          openOnTriggerFocus={false}
-          openOnTriggerMouseEnter={false}
-          pinned={false}
-          position="bottom left"
+        <MenuItem
+          key="The Boxer-menu-item-0"
+          onClick={[Function]}
           style={
             Object {
-              "opacity": 0.85,
+              "flexDirection": "column",
             }
           }
-          trigger={
-            <Icon
-              as="i"
-              name="setting"
-            />
-          }
-          wide={true}
         >
-          <ConfigAccordion
-            allowMultipleOpen={false}
-            configs={
-              Array [
-                Object {
-                  "Catcher": Array [
-                    <GridRow
-                      columns={1}
-                      style={
-                        Object {
-                          "padding": "5px 0",
-                          "width": "100%",
-                        }
-                      }
-                    >
-                      <Checkbox
-                        checked={false}
-                        label="Rye"
-                        type="checkbox"
-                      />
-                    </GridRow>,
-                  ],
-                },
-              ]
-            }
-            gridStyle={
+          <Popup
+            closeOnPortalMouseLeave={false}
+            closeOnTriggerClick={true}
+            closeOnTriggerMouseLeave={false}
+            disabled={false}
+            hoverable={false}
+            offset={0}
+            on="hover"
+            openOnTriggerClick={true}
+            openOnTriggerFocus={false}
+            openOnTriggerMouseEnter={false}
+            pinned={false}
+            position="bottom left"
+            style={
               Object {
-                "marginTop": 0,
-                "maxHeight": "350px",
-                "overflow": "auto",
-                "zIndex": 3,
+                "opacity": 0.85,
               }
             }
-            title="Config"
+            trigger={
+              <Icon
+                as="i"
+                fitted={true}
+                name="setting"
+              />
+            }
+            wide={true}
+          >
+            <ConfigAccordion
+              allowMultipleOpen={false}
+              configs={
+                Array [
+                  Object {
+                    "Catcher": Array [
+                      <GridRow
+                        columns={1}
+                        style={
+                          Object {
+                            "padding": "5px 0",
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        <Checkbox
+                          checked={false}
+                          label="Rye"
+                          type="checkbox"
+                        />
+                      </GridRow>,
+                    ],
+                  },
+                ]
+              }
+              gridStyle={
+                Object {
+                  "marginTop": 0,
+                  "maxHeight": "350px",
+                  "overflow": "auto",
+                  "zIndex": 3,
+                }
+              }
+              title="Config"
+            />
+          </Popup>
+          <span
+            style={
+              Object {
+                "fontSize": "11px",
+                "visibility": "hidden",
+              }
+            }
+          >
+            A Popup
+          </span>
+        </MenuItem>
+        <MenuItem
+          style={
+            Object {
+              "flexDirection": "column",
+            }
+          }
+        >
+          <Icon
+            as="i"
+            name="expand arrows alternate"
           />
-        </Popup>
-        <span
-          style={
-            Object {
-              "fontSize": "11px",
-              "visibility": "hidden",
+          <span
+            style={
+              Object {
+                "fontSize": "11px",
+                "visibility": "hidden",
+              }
             }
-          }
-        >
-          A Popup
-        </span>
-      </MenuItem>
-      <MenuItem
-        fitted="horizontally"
-        position="right"
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
-      >
-        <Icon
-          as="i"
-          name="expand arrows alternate"
-        />
-        <span
-          style={
-            Object {
-              "fontSize": "11px",
-              "visibility": "hidden",
-            }
-          }
-        >
-          Expand
-        </span>
-      </MenuItem>
-    </Menu>
+          >
+            Expand
+          </span>
+        </MenuItem>
+      </Menu>
+    </MenuItem>
   </Menu>
 </div>
 `;
@@ -933,139 +1045,155 @@ exports[`ComponentMenuBar Should render a Label menu item. 1`] = `
         "margin": 0,
       }
     }
-    widths={2}
   >
     <Menu
+      fluid={false}
       secondary={true}
-      widths={1}
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+      widths={6}
     >
       <MenuItem
         fitted="horizontally"
-        position="left"
         style={
           Object {
             "margin": 0,
             "padding": 0,
-            "width": "auto",
           }
         }
       >
+        <img
+          alt="component icon"
+          src="assets/icons/bio-blocks-icon.svg"
+          style={
+            Object {
+              "height": "32px",
+              "padding": "2px",
+              "width": "32px",
+            }
+          }
+        />
         The Boxer
       </MenuItem>
     </Menu>
-    <Menu
-      secondary={true}
-      widths={4}
+    <MenuItem
+      fitted="horizontally"
+      position="right"
     >
-      <MenuItem
-        fitted="horizontally"
-        key="The Boxer-menu-item-0"
-        position="right"
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
+      <Menu
+        secondary={true}
       >
-        <Popup
-          closeOnPortalMouseLeave={false}
-          closeOnTriggerClick={true}
-          closeOnTriggerMouseLeave={false}
-          disabled={false}
-          hoverable={false}
-          offset={0}
-          on="hover"
-          openOnTriggerClick={true}
-          openOnTriggerFocus={false}
-          openOnTriggerMouseEnter={false}
-          pinned={false}
-          position="bottom left"
+        <MenuItem
+          key="The Boxer-menu-item-0"
+          onClick={[Function]}
           style={
             Object {
-              "opacity": 0.85,
+              "flexDirection": "column",
             }
           }
-          trigger={
-            <Icon
-              as="i"
-              name="setting"
-            />
-          }
-          wide={true}
         >
-          <ConfigAccordion
-            allowMultipleOpen={false}
-            configs={
-              Array [
-                Object {
-                  "Catcher": Array [
-                    <GridRow
-                      columns={1}
-                      style={
-                        Object {
-                          "padding": "5px 0",
-                          "width": "100%",
-                        }
-                      }
-                    >
-                      <Label
-                        basic={true}
-                        color="orange"
-                      >
-                        Rye
-                      </Label>
-                    </GridRow>,
-                  ],
-                },
-              ]
-            }
-            gridStyle={
+          <Popup
+            closeOnPortalMouseLeave={false}
+            closeOnTriggerClick={true}
+            closeOnTriggerMouseLeave={false}
+            disabled={false}
+            hoverable={false}
+            offset={0}
+            on="hover"
+            openOnTriggerClick={true}
+            openOnTriggerFocus={false}
+            openOnTriggerMouseEnter={false}
+            pinned={false}
+            position="bottom left"
+            style={
               Object {
-                "marginTop": 0,
-                "maxHeight": "350px",
-                "overflow": "auto",
-                "zIndex": 3,
+                "opacity": 0.85,
               }
             }
-            title="Config"
+            trigger={
+              <Icon
+                as="i"
+                fitted={true}
+                name="setting"
+              />
+            }
+            wide={true}
+          >
+            <ConfigAccordion
+              allowMultipleOpen={false}
+              configs={
+                Array [
+                  Object {
+                    "Catcher": Array [
+                      <GridRow
+                        columns={1}
+                        style={
+                          Object {
+                            "padding": "5px 0",
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        <Label
+                          basic={true}
+                          color="orange"
+                        >
+                          Rye
+                        </Label>
+                      </GridRow>,
+                    ],
+                  },
+                ]
+              }
+              gridStyle={
+                Object {
+                  "marginTop": 0,
+                  "maxHeight": "350px",
+                  "overflow": "auto",
+                  "zIndex": 3,
+                }
+              }
+              title="Config"
+            />
+          </Popup>
+          <span
+            style={
+              Object {
+                "fontSize": "11px",
+                "visibility": "hidden",
+              }
+            }
+          >
+            A Popup
+          </span>
+        </MenuItem>
+        <MenuItem
+          style={
+            Object {
+              "flexDirection": "column",
+            }
+          }
+        >
+          <Icon
+            as="i"
+            name="expand arrows alternate"
           />
-        </Popup>
-        <span
-          style={
-            Object {
-              "fontSize": "11px",
-              "visibility": "hidden",
+          <span
+            style={
+              Object {
+                "fontSize": "11px",
+                "visibility": "hidden",
+              }
             }
-          }
-        >
-          A Popup
-        </span>
-      </MenuItem>
-      <MenuItem
-        fitted="horizontally"
-        position="right"
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
-      >
-        <Icon
-          as="i"
-          name="expand arrows alternate"
-        />
-        <span
-          style={
-            Object {
-              "fontSize": "11px",
-              "visibility": "hidden",
-            }
-          }
-        >
-          Expand
-        </span>
-      </MenuItem>
-    </Menu>
+          >
+            Expand
+          </span>
+        </MenuItem>
+      </Menu>
+    </MenuItem>
   </Menu>
 </div>
 `;
@@ -1083,146 +1211,162 @@ exports[`ComponentMenuBar Should render a Radio menu item. 1`] = `
         "margin": 0,
       }
     }
-    widths={2}
   >
     <Menu
+      fluid={false}
       secondary={true}
-      widths={1}
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+      widths={6}
     >
       <MenuItem
         fitted="horizontally"
-        position="left"
         style={
           Object {
             "margin": 0,
             "padding": 0,
-            "width": "auto",
           }
         }
       >
+        <img
+          alt="component icon"
+          src="assets/icons/bio-blocks-icon.svg"
+          style={
+            Object {
+              "height": "32px",
+              "padding": "2px",
+              "width": "32px",
+            }
+          }
+        />
         The Boxer
       </MenuItem>
     </Menu>
-    <Menu
-      secondary={true}
-      widths={4}
+    <MenuItem
+      fitted="horizontally"
+      position="right"
     >
-      <MenuItem
-        fitted="horizontally"
-        key="The Boxer-menu-item-0"
-        position="right"
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
+      <Menu
+        secondary={true}
       >
-        <Popup
-          closeOnPortalMouseLeave={false}
-          closeOnTriggerClick={true}
-          closeOnTriggerMouseLeave={false}
-          disabled={false}
-          hoverable={false}
-          offset={0}
-          on="hover"
-          openOnTriggerClick={true}
-          openOnTriggerFocus={false}
-          openOnTriggerMouseEnter={false}
-          pinned={false}
-          position="bottom left"
+        <MenuItem
+          key="The Boxer-menu-item-0"
+          onClick={[Function]}
           style={
             Object {
-              "opacity": 0.85,
+              "flexDirection": "column",
             }
           }
-          trigger={
-            <Icon
-              as="i"
-              name="setting"
-            />
-          }
-          wide={true}
         >
-          <ConfigAccordion
-            allowMultipleOpen={false}
-            configs={
-              Array [
-                Object {
-                  "Catcher": Array [
-                    <GridRow
-                      columns={1}
-                      style={
-                        Object {
-                          "padding": "5px 0",
-                          "width": "100%",
-                        }
-                      }
-                    >
-                      <BioblocksRadioGroup
-                        disabled={false}
-                        id="radio-Catcher-row-0"
-                        options={
-                          Array [
-                            "Ludo",
-                            "Queen",
-                          ]
-                        }
-                        selectedOption="Ludo"
-                        style={Object {}}
-                        title="Rye"
-                      />
-                    </GridRow>,
-                  ],
-                },
-              ]
-            }
-            gridStyle={
+          <Popup
+            closeOnPortalMouseLeave={false}
+            closeOnTriggerClick={true}
+            closeOnTriggerMouseLeave={false}
+            disabled={false}
+            hoverable={false}
+            offset={0}
+            on="hover"
+            openOnTriggerClick={true}
+            openOnTriggerFocus={false}
+            openOnTriggerMouseEnter={false}
+            pinned={false}
+            position="bottom left"
+            style={
               Object {
-                "marginTop": 0,
-                "maxHeight": "350px",
-                "overflow": "auto",
-                "zIndex": 3,
+                "opacity": 0.85,
               }
             }
-            title="Config"
+            trigger={
+              <Icon
+                as="i"
+                fitted={true}
+                name="setting"
+              />
+            }
+            wide={true}
+          >
+            <ConfigAccordion
+              allowMultipleOpen={false}
+              configs={
+                Array [
+                  Object {
+                    "Catcher": Array [
+                      <GridRow
+                        columns={1}
+                        style={
+                          Object {
+                            "padding": "5px 0",
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        <BioblocksRadioGroup
+                          disabled={false}
+                          id="radio-Catcher-row-0"
+                          options={
+                            Array [
+                              "Ludo",
+                              "Queen",
+                            ]
+                          }
+                          selectedOption="Ludo"
+                          style={Object {}}
+                          title="Rye"
+                        />
+                      </GridRow>,
+                    ],
+                  },
+                ]
+              }
+              gridStyle={
+                Object {
+                  "marginTop": 0,
+                  "maxHeight": "350px",
+                  "overflow": "auto",
+                  "zIndex": 3,
+                }
+              }
+              title="Config"
+            />
+          </Popup>
+          <span
+            style={
+              Object {
+                "fontSize": "11px",
+                "visibility": "hidden",
+              }
+            }
+          >
+            A Popup
+          </span>
+        </MenuItem>
+        <MenuItem
+          style={
+            Object {
+              "flexDirection": "column",
+            }
+          }
+        >
+          <Icon
+            as="i"
+            name="expand arrows alternate"
           />
-        </Popup>
-        <span
-          style={
-            Object {
-              "fontSize": "11px",
-              "visibility": "hidden",
+          <span
+            style={
+              Object {
+                "fontSize": "11px",
+                "visibility": "hidden",
+              }
             }
-          }
-        >
-          A Popup
-        </span>
-      </MenuItem>
-      <MenuItem
-        fitted="horizontally"
-        position="right"
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
-      >
-        <Icon
-          as="i"
-          name="expand arrows alternate"
-        />
-        <span
-          style={
-            Object {
-              "fontSize": "11px",
-              "visibility": "hidden",
-            }
-          }
-        >
-          Expand
-        </span>
-      </MenuItem>
-    </Menu>
+          >
+            Expand
+          </span>
+        </MenuItem>
+      </Menu>
+    </MenuItem>
   </Menu>
 </div>
 `;
@@ -1240,156 +1384,172 @@ exports[`ComponentMenuBar Should render a Range Slider menu item. 1`] = `
         "margin": 0,
       }
     }
-    widths={2}
   >
     <Menu
+      fluid={false}
       secondary={true}
-      widths={1}
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+      widths={6}
     >
       <MenuItem
         fitted="horizontally"
-        position="left"
         style={
           Object {
             "margin": 0,
             "padding": 0,
-            "width": "auto",
           }
         }
       >
+        <img
+          alt="component icon"
+          src="assets/icons/bio-blocks-icon.svg"
+          style={
+            Object {
+              "height": "32px",
+              "padding": "2px",
+              "width": "32px",
+            }
+          }
+        />
         The Boxer
       </MenuItem>
     </Menu>
-    <Menu
-      secondary={true}
-      widths={4}
+    <MenuItem
+      fitted="horizontally"
+      position="right"
     >
-      <MenuItem
-        fitted="horizontally"
-        key="The Boxer-menu-item-0"
-        position="right"
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
+      <Menu
+        secondary={true}
       >
-        <Popup
-          closeOnPortalMouseLeave={false}
-          closeOnTriggerClick={true}
-          closeOnTriggerMouseLeave={false}
-          disabled={false}
-          hoverable={false}
-          offset={0}
-          on="hover"
-          openOnTriggerClick={true}
-          openOnTriggerFocus={false}
-          openOnTriggerMouseEnter={false}
-          pinned={false}
-          position="bottom left"
+        <MenuItem
+          key="The Boxer-menu-item-0"
+          onClick={[Function]}
           style={
             Object {
-              "opacity": 0.85,
+              "flexDirection": "column",
             }
           }
-          trigger={
-            <Icon
-              as="i"
-              name="setting"
-            />
-          }
-          wide={true}
         >
-          <ConfigAccordion
-            allowMultipleOpen={false}
-            configs={
-              Array [
-                Object {
-                  "Catcher": Array [
-                    <GridRow
-                      columns={1}
-                      style={
-                        Object {
-                          "padding": "5px 0",
-                          "width": "100%",
-                        }
-                      }
-                    >
-                      <BioblocksRangeSlider
-                        defaultValue={
-                          Array [
-                            1,
-                            3,
-                          ]
-                        }
-                        label="Rye"
-                        max={4}
-                        min={0}
+          <Popup
+            closeOnPortalMouseLeave={false}
+            closeOnTriggerClick={true}
+            closeOnTriggerMouseLeave={false}
+            disabled={false}
+            hoverable={false}
+            offset={0}
+            on="hover"
+            openOnTriggerClick={true}
+            openOnTriggerFocus={false}
+            openOnTriggerMouseEnter={false}
+            pinned={false}
+            position="bottom left"
+            style={
+              Object {
+                "opacity": 0.85,
+              }
+            }
+            trigger={
+              <Icon
+                as="i"
+                fitted={true}
+                name="setting"
+              />
+            }
+            wide={true}
+          >
+            <ConfigAccordion
+              allowMultipleOpen={false}
+              configs={
+                Array [
+                  Object {
+                    "Catcher": Array [
+                      <GridRow
+                        columns={1}
                         style={
                           Object {
-                            "padding": "2px 0 3px 18px",
+                            "padding": "5px 0",
                             "width": "100%",
                           }
                         }
-                        value={
-                          Array [
-                            1,
-                            3,
-                          ]
-                        }
-                      />
-                    </GridRow>,
-                  ],
-                },
-              ]
-            }
-            gridStyle={
+                      >
+                        <BioblocksRangeSlider
+                          defaultValue={
+                            Array [
+                              1,
+                              3,
+                            ]
+                          }
+                          label="Rye"
+                          max={4}
+                          min={0}
+                          style={
+                            Object {
+                              "padding": "2px 0 3px 18px",
+                              "width": "100%",
+                            }
+                          }
+                          value={
+                            Array [
+                              1,
+                              3,
+                            ]
+                          }
+                        />
+                      </GridRow>,
+                    ],
+                  },
+                ]
+              }
+              gridStyle={
+                Object {
+                  "marginTop": 0,
+                  "maxHeight": "350px",
+                  "overflow": "auto",
+                  "zIndex": 3,
+                }
+              }
+              title="Config"
+            />
+          </Popup>
+          <span
+            style={
               Object {
-                "marginTop": 0,
-                "maxHeight": "350px",
-                "overflow": "auto",
-                "zIndex": 3,
+                "fontSize": "11px",
+                "visibility": "hidden",
               }
             }
-            title="Config"
+          >
+            A Popup
+          </span>
+        </MenuItem>
+        <MenuItem
+          style={
+            Object {
+              "flexDirection": "column",
+            }
+          }
+        >
+          <Icon
+            as="i"
+            name="expand arrows alternate"
           />
-        </Popup>
-        <span
-          style={
-            Object {
-              "fontSize": "11px",
-              "visibility": "hidden",
+          <span
+            style={
+              Object {
+                "fontSize": "11px",
+                "visibility": "hidden",
+              }
             }
-          }
-        >
-          A Popup
-        </span>
-      </MenuItem>
-      <MenuItem
-        fitted="horizontally"
-        position="right"
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
-      >
-        <Icon
-          as="i"
-          name="expand arrows alternate"
-        />
-        <span
-          style={
-            Object {
-              "fontSize": "11px",
-              "visibility": "hidden",
-            }
-          }
-        >
-          Expand
-        </span>
-      </MenuItem>
-    </Menu>
+          >
+            Expand
+          </span>
+        </MenuItem>
+      </Menu>
+    </MenuItem>
   </Menu>
 </div>
 `;
@@ -1407,146 +1567,162 @@ exports[`ComponentMenuBar Should render a Slider menu item. 1`] = `
         "margin": 0,
       }
     }
-    widths={2}
   >
     <Menu
+      fluid={false}
       secondary={true}
-      widths={1}
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+      widths={6}
     >
       <MenuItem
         fitted="horizontally"
-        position="left"
         style={
           Object {
             "margin": 0,
             "padding": 0,
-            "width": "auto",
           }
         }
       >
+        <img
+          alt="component icon"
+          src="assets/icons/bio-blocks-icon.svg"
+          style={
+            Object {
+              "height": "32px",
+              "padding": "2px",
+              "width": "32px",
+            }
+          }
+        />
         The Boxer
       </MenuItem>
     </Menu>
-    <Menu
-      secondary={true}
-      widths={4}
+    <MenuItem
+      fitted="horizontally"
+      position="right"
     >
-      <MenuItem
-        fitted="horizontally"
-        key="The Boxer-menu-item-0"
-        position="right"
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
+      <Menu
+        secondary={true}
       >
-        <Popup
-          closeOnPortalMouseLeave={false}
-          closeOnTriggerClick={true}
-          closeOnTriggerMouseLeave={false}
-          disabled={false}
-          hoverable={false}
-          offset={0}
-          on="hover"
-          openOnTriggerClick={true}
-          openOnTriggerFocus={false}
-          openOnTriggerMouseEnter={false}
-          pinned={false}
-          position="bottom left"
+        <MenuItem
+          key="The Boxer-menu-item-0"
+          onClick={[Function]}
           style={
             Object {
-              "opacity": 0.85,
+              "flexDirection": "column",
             }
           }
-          trigger={
-            <Icon
-              as="i"
-              name="setting"
-            />
-          }
-          wide={true}
         >
-          <ConfigAccordion
-            allowMultipleOpen={false}
-            configs={
-              Array [
-                Object {
-                  "Catcher": Array [
-                    <GridRow
-                      columns={1}
-                      style={
-                        Object {
-                          "padding": "5px 0",
-                          "width": "100%",
-                        }
-                      }
-                    >
-                      <BioblocksSlider
-                        defaultValue={2}
-                        label="Rye"
-                        max={4}
-                        min={0}
+          <Popup
+            closeOnPortalMouseLeave={false}
+            closeOnTriggerClick={true}
+            closeOnTriggerMouseLeave={false}
+            disabled={false}
+            hoverable={false}
+            offset={0}
+            on="hover"
+            openOnTriggerClick={true}
+            openOnTriggerFocus={false}
+            openOnTriggerMouseEnter={false}
+            pinned={false}
+            position="bottom left"
+            style={
+              Object {
+                "opacity": 0.85,
+              }
+            }
+            trigger={
+              <Icon
+                as="i"
+                fitted={true}
+                name="setting"
+              />
+            }
+            wide={true}
+          >
+            <ConfigAccordion
+              allowMultipleOpen={false}
+              configs={
+                Array [
+                  Object {
+                    "Catcher": Array [
+                      <GridRow
+                        columns={1}
                         style={
                           Object {
-                            "padding": "2px 0 3px 18px",
+                            "padding": "5px 0",
                             "width": "100%",
                           }
                         }
-                        value={2}
-                      />
-                    </GridRow>,
-                  ],
-                },
-              ]
-            }
-            gridStyle={
+                      >
+                        <BioblocksSlider
+                          defaultValue={2}
+                          label="Rye"
+                          max={4}
+                          min={0}
+                          style={
+                            Object {
+                              "padding": "2px 0 3px 18px",
+                              "width": "100%",
+                            }
+                          }
+                          value={2}
+                        />
+                      </GridRow>,
+                    ],
+                  },
+                ]
+              }
+              gridStyle={
+                Object {
+                  "marginTop": 0,
+                  "maxHeight": "350px",
+                  "overflow": "auto",
+                  "zIndex": 3,
+                }
+              }
+              title="Config"
+            />
+          </Popup>
+          <span
+            style={
               Object {
-                "marginTop": 0,
-                "maxHeight": "350px",
-                "overflow": "auto",
-                "zIndex": 3,
+                "fontSize": "11px",
+                "visibility": "hidden",
               }
             }
-            title="Config"
+          >
+            A Popup
+          </span>
+        </MenuItem>
+        <MenuItem
+          style={
+            Object {
+              "flexDirection": "column",
+            }
+          }
+        >
+          <Icon
+            as="i"
+            name="expand arrows alternate"
           />
-        </Popup>
-        <span
-          style={
-            Object {
-              "fontSize": "11px",
-              "visibility": "hidden",
+          <span
+            style={
+              Object {
+                "fontSize": "11px",
+                "visibility": "hidden",
+              }
             }
-          }
-        >
-          A Popup
-        </span>
-      </MenuItem>
-      <MenuItem
-        fitted="horizontally"
-        position="right"
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
-      >
-        <Icon
-          as="i"
-          name="expand arrows alternate"
-        />
-        <span
-          style={
-            Object {
-              "fontSize": "11px",
-              "visibility": "hidden",
-            }
-          }
-        >
-          Expand
-        </span>
-      </MenuItem>
-    </Menu>
+          >
+            Expand
+          </span>
+        </MenuItem>
+      </Menu>
+    </MenuItem>
   </Menu>
 </div>
 `;
@@ -1564,101 +1740,117 @@ exports[`ComponentMenuBar Should render popup menu items. 1`] = `
         "margin": 0,
       }
     }
-    widths={2}
   >
     <Menu
+      fluid={false}
       secondary={true}
-      widths={1}
+      style={
+        Object {
+          "width": "auto",
+        }
+      }
+      widths={6}
     >
       <MenuItem
         fitted="horizontally"
-        position="left"
         style={
           Object {
             "margin": 0,
             "padding": 0,
-            "width": "auto",
           }
         }
       >
+        <img
+          alt="component icon"
+          src="assets/icons/bio-blocks-icon.svg"
+          style={
+            Object {
+              "height": "32px",
+              "padding": "2px",
+              "width": "32px",
+            }
+          }
+        />
         The Boxer
       </MenuItem>
     </Menu>
-    <Menu
-      secondary={true}
-      widths={4}
+    <MenuItem
+      fitted="horizontally"
+      position="right"
     >
-      <MenuItem
-        fitted="horizontally"
-        key="The Boxer-menu-item-0"
-        position="right"
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
+      <Menu
+        secondary={true}
       >
-        <Popup
-          closeOnPortalMouseLeave={false}
-          closeOnTriggerClick={true}
-          closeOnTriggerMouseLeave={false}
-          disabled={false}
-          hoverable={false}
-          offset={0}
-          on="hover"
-          openOnTriggerClick={true}
-          openOnTriggerFocus={false}
-          openOnTriggerMouseEnter={false}
-          pinned={false}
-          position="bottom left"
+        <MenuItem
+          key="The Boxer-menu-item-0"
+          onClick={[Function]}
           style={
             Object {
-              "opacity": 0.85,
-            }
-          }
-          trigger={
-            <Icon
-              as="i"
-              name="setting"
-            />
-          }
-        />
-        <span
-          style={
-            Object {
-              "fontSize": "11px",
-              "visibility": "hidden",
+              "flexDirection": "column",
             }
           }
         >
-          A Popup
-        </span>
-      </MenuItem>
-      <MenuItem
-        fitted="horizontally"
-        position="right"
-        style={
-          Object {
-            "flexDirection": "column",
-          }
-        }
-      >
-        <Icon
-          as="i"
-          name="expand arrows alternate"
-        />
-        <span
+          <Popup
+            closeOnPortalMouseLeave={false}
+            closeOnTriggerClick={true}
+            closeOnTriggerMouseLeave={false}
+            disabled={false}
+            hoverable={false}
+            offset={0}
+            on="hover"
+            openOnTriggerClick={true}
+            openOnTriggerFocus={false}
+            openOnTriggerMouseEnter={false}
+            pinned={false}
+            position="bottom left"
+            style={
+              Object {
+                "opacity": 0.85,
+              }
+            }
+            trigger={
+              <Icon
+                as="i"
+                fitted={true}
+                name="setting"
+              />
+            }
+          />
+          <span
+            style={
+              Object {
+                "fontSize": "11px",
+                "visibility": "hidden",
+              }
+            }
+          >
+            A Popup
+          </span>
+        </MenuItem>
+        <MenuItem
           style={
             Object {
-              "fontSize": "11px",
-              "visibility": "hidden",
+              "flexDirection": "column",
             }
           }
         >
-          Expand
-        </span>
-      </MenuItem>
-    </Menu>
+          <Icon
+            as="i"
+            name="expand arrows alternate"
+          />
+          <span
+            style={
+              Object {
+                "fontSize": "11px",
+                "visibility": "hidden",
+              }
+            }
+          >
+            Expand
+          </span>
+        </MenuItem>
+      </Menu>
+    </MenuItem>
   </Menu>
 </div>
 `;

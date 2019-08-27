@@ -25,16 +25,15 @@ export interface IPlotlyData extends plotly.ScatterData {
   type: PLOTLY_CHART_TYPE | 'bar' | 'pointcloud' | 'scatter' | 'scattergl' | 'scatter3d';
 }
 
-export interface IPlotlyLayout extends Plotly.Layout {
-  // TODO Open PR to add these missing Plotly types. - https://plot.ly/javascript/reference/#box
-  xaxis2: Partial<Plotly.LayoutAxis>;
-  legend: Partial<
-    {
-      itemclick: 'toggle' | 'toggleothers' | false;
-      itemdoubleclick: 'toggle' | 'toggleothers' | boolean;
-    } & Plotly.Legend
-  >;
-  // TODO Open PR to add these missing Plotly types. - https://plot.ly/javascript/reference/#box
+export interface IPlotlyLegend extends Omit<Plotly.Legend, 'traceorder'> {
+  itemclick: 'toggle' | 'toggleothers' | false;
+  itemdoubleclick: 'toggle' | 'toggleothers' | boolean;
+  itemsizing: 'trace' | 'constant';
+  traceorder: 'grouped' | 'normal' | 'reversed' | 'grouped+reversed' | 'reversed+grouped';
+}
+
+export interface IPlotlyLayout extends Omit<Plotly.Layout, 'legend'> {
+  legend: Partial<IPlotlyLegend>;
 }
 
 export type REQUIRED_BIOBLOCKS_PLOTLY_DATA = Required<

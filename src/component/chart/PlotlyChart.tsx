@@ -1,7 +1,7 @@
 import * as Immutable from 'immutable';
 import { isEqual } from 'lodash';
 // tslint:disable-next-line: no-submodule-imports
-import * as plotly from 'plotly.js/lib/index-gl2d';
+import * as plotly from 'plotly.js/lib/index';
 import * as React from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react';
 
@@ -83,6 +83,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   protected plotlyFormattedData: Array<Partial<IPlotlyData>> = [];
   protected renderTimeout: undefined | NodeJS.Timer | number;
   protected savedAxisZoom?: { xaxis: plotly.PlotAxis; yaxis: plotly.PlotAxis };
+  protected savedCameraScene?: plotly.Camera;
 
   /**
    * Setup all the event listeners for the plotly canvas.
@@ -145,15 +146,24 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
    */
   public async componentDidUpdate(prevProps: IPlotlyChartProps) {
     const { data, layout, config } = this.props;
-    if (
-      !isEqual(data[0], prevProps.data[0]) ||
-      !isEqual(layout, prevProps.layout) ||
-      !isEqual(config, prevProps.config)
-    ) {
-      this.plotlyFormattedData = isEqual(data[0], prevProps.data[0])
+
+    let isDataEqual = data.length === prevProps.data.length;
+    if (isDataEqual) {
+      data.forEach((datum, index) => {
+        if (!isEqual(datum, prevProps.data[index])) {
+          isDataEqual = false;
+
+          return;
+        }
+      });
+    }
+
+    if (!isDataEqual || !isEqual(layout, prevProps.layout) || !isEqual(config, prevProps.config)) {
+      this.plotlyFormattedData = isDataEqual
         ? this.plotlyFormattedData
         : ((Immutable.fromJS(data) as Immutable.List<keyof IPlotlyData>).toJS() as IPlotlyData[]);
       await this.draw();
+      this.forceUpdate();
     }
   }
 
@@ -291,7 +301,7 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   };
 
   protected getMergedLayout = (
-    layout: Partial<Plotly.Layout> = {},
+    layout: Partial<IPlotlyLayout> = {},
     plotlyFormattedData: Array<Partial<IPlotlyData>> = [],
   ) => {
     const copiedLayout = Immutable.fromJS({ ...layout }) as Immutable.List<keyof Plotly.Layout>;
@@ -307,6 +317,11 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     if (this.savedAxisZoom && result.xaxis && result.yaxis) {
       result.xaxis.range = this.savedAxisZoom.xaxis.range;
       result.yaxis.range = this.savedAxisZoom.yaxis.range;
+    } else if (this.savedCameraScene) {
+      result.scene = {
+        ...result.scene,
+        camera: this.savedCameraScene,
+      };
     }
 
     return result;
@@ -363,25 +378,31 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   };
 
   protected onRelayout = (event: plotly.PlotRelayoutEvent & { [key: string]: number }) => {
-    this.isDoubleClickInProgress = false;
-    // !IMPORTANT! Yes, these numbers have to be accessed like this, see:
+    // !IMPORTANT! Yes, these properties have to be accessed like this, see:
     // https://plot.ly/javascript/plotlyjs-function-reference/#plotlyrestyle
     // https://github.com/plotly/plotly.js/issues/2843
-    const axisKeys = ['xaxis.range[0]', 'xaxis.range[1]', 'yaxis.range[0]', 'yaxis.range[1]'];
-    const isEventFormattedCorrect =
-      event !== undefined && axisKeys.reduce((prev, cur) => prev && event[cur] !== undefined, true) === true;
-    this.savedAxisZoom = isEventFormattedCorrect
-      ? {
-          xaxis: {
-            autorange: false,
-            range: [event[axisKeys[0]], event[axisKeys[1]]],
-          },
-          yaxis: {
-            autorange: false,
-            range: [event[axisKeys[2]], event[axisKeys[3]]],
-          },
-        }
-      : undefined;
+    this.isDoubleClickInProgress = false;
+    if (event !== undefined && 'scene.camera' in event) {
+      // Quick fix to type the camera.
+      // Alternatively, the event could have types expanded but that requires more casting/tweaking to handle 2d/3d.
+      this.savedCameraScene = (event['scene.camera'] as unknown) as plotly.Camera;
+    } else if (event !== undefined) {
+      const axisKeys = ['xaxis.range[0]', 'xaxis.range[1]', 'yaxis.range[0]', 'yaxis.range[1]'];
+      const isEventFormattedCorrect =
+        event !== undefined && axisKeys.reduce((prev, cur) => prev && event[cur] !== undefined, true) === true;
+      this.savedAxisZoom = isEventFormattedCorrect
+        ? {
+            xaxis: {
+              autorange: false,
+              range: [event[axisKeys[0]], event[axisKeys[1]]],
+            },
+            yaxis: {
+              autorange: false,
+              range: [event[axisKeys[2]], event[axisKeys[3]]],
+            },
+          }
+        : undefined;
+    }
     const { onRelayoutCallback } = this.props;
     if (onRelayoutCallback) {
       onRelayoutCallback(new BioblocksChartEvent(BIOBLOCKS_CHART_EVENT_TYPE.RELAYOUT));

@@ -1,6 +1,6 @@
 {
   "name": "bioblocks-viz",
-  "version": "0.0.138",
+  "version": "0.0.139",
   "author": "Biostatistics and Computational Biology at Dana-Farber <bcb@jimmy.harvard.edu>",
   "license": "MIT",
   "engines": {
@@ -47,7 +47,9 @@
       "~bioblocks-viz~/test": "<rootDir>/test",
       "~bioblocks-viz~/(.*)": "<rootDir>/src/$1",
       "\\.(css|less)$": "<rootDir>/test/__mocks__/styleMock.ts",
+      "plotly.js/lib/index": "<rootDir>/test/__mocks__/plotly.ts",
       "plotly.js/lib/index-gl2d": "<rootDir>/test/__mocks__/plotly.ts",
+      "plotly.js/lib/index-gl3d": "<rootDir>/test/__mocks__/plotly.ts",
       "@tensorflow/tfjs-core": "<rootDir>/test/__mocks__/@tensorflow/tfjs-core-mock.ts",
       "@tensorflow/tfjs-tsne": "<rootDir>/test/__mocks__/@tensorflow/tfjs-tsne-mock.ts"
     },

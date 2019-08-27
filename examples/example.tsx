@@ -171,7 +171,8 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     return (
       <div id={'BioblocksVizApp'} style={{ ...style, height: '1000px' }}>
         <meta name={'viewport'} content={'width=device-width, initial-scale=1'} />
-        {this.renderUMapAndSpring()}
+        {this.renderSeqUMap()}
+        {/*this.renderUMapAndSpring()*/}
         {/*
         <UMAPSequenceContainer
           allSequences={this.state.allSequences}
@@ -184,6 +185,14 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
     );
   }
 
+  protected renderSeqUMap() {
+    const { allSequences, scRNAseqMatrix, taxonomyText } = this.state;
+
+    return (
+      scRNAseqMatrix.length >= 1 &&
+      scRNAseqMatrix[0].length >= 1 && <UMAPSequenceContainer allSequences={allSequences} taxonomyText={taxonomyText} />
+    );
+  }
   protected renderUMapAndSpring() {
     const { datasetLocation, scRNAseqCategoricalData, scRNAseqCategorySelected, scRNAseqMatrix } = this.state;
 

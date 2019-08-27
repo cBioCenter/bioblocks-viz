@@ -5,12 +5,10 @@ import * as React from 'react';
 import { Dimmer, Icon, Loader } from 'semantic-ui-react';
 import { Matrix4, Vector2 } from 'three';
 
-import { AMINO_ACID_1LETTER_CODE, AminoAcid } from '~bioblocks-viz~/data/AminoAcid';
+import { AminoAcid } from '~bioblocks-viz~/data/AminoAcid';
 
 import { ComponentCard, IComponentMenuBarItem } from '~bioblocks-viz~/component';
 import {
-  // AMINO_ACID_BY_CODE,
-  // AMINO_ACID_THREE_LETTER_CODE,
   BIOBLOCKS_CSS_STYLE,
   BioblocksPDB,
   BioblocksWidgetConfig,

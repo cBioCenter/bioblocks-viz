@@ -23,914 +23,214 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
   showSettings={false}
   width="525px"
 >
-  <Modal
+  <Card
     centered={true}
-    closeOnDimmerClick={true}
-    closeOnDocumentClick={false}
-    closeOnEscape={true}
-    dimmer={true}
-    eventPool="Modal"
-    onClose={[Function]}
-    open={true}
-    size="large"
+    className="bioblocks-component-card"
     style={
       Object {
-        "height": "85vh",
-        "width": "85vh",
-        "willChange": "unset",
+        "height": "530.25px",
+        "maxWidth": "unset",
+        "padding": "0 0 0 5px",
+        "width": "525px",
       }
     }
   >
-    <Portal
-      closeOnDocumentClick={false}
-      closeOnEscape={true}
-      eventPool="Modal"
-      mountNode={
-        <body
-          class="dimmable dimmed"
-          style="overflow-y: hidden;"
-        >
-          <div
-            class="ui page modals dimmer transition visible active"
-            style="display: flex;"
-          >
-            <div
-              class="ui large modal transition visible active"
-              style="height: 85vh; width: 85vh; will-change: unset;"
-            >
-              <div
-                class="ui centered card bioblocks-component-card"
-                style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
-              >
-                <div
-                  style="height: 6%;"
-                >
-                  <div>
-                    <div
-                      class="ui secondary two item menu"
-                      style="margin: 0px; height: 20px;"
-                    >
-                      <div
-                        class="ui secondary one item menu"
-                      >
-                        <div
-                          class="left horizontally fitted item"
-                          style="margin: 0px; padding: 0px; width: auto;"
-                        >
-                          <img
-                            alt="component icon"
-                            src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-                            style="height: 32px; padding: 2px; width: 32px;"
-                          />
-                          Let's
-                        </div>
-                      </div>
-                      <div
-                        class="ui secondary four item menu"
-                      >
-                        <div
-                          class="right horizontally fitted item"
-                          style="flex-direction: column;"
-                        >
-                          <i
-                            aria-hidden="true"
-                            class="compress icon"
-                          />
-                          <span
-                            style="font-size: 11px; visibility: hidden;"
-                          >
-                            Close
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  style="height: 91%; width: 100%;"
-                >
-                  <div
-                    style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
-                  >
-                    <div>
-                      Go!
-                    </div>
-                  </div>
-                </div>
-                <div
-                  style="height: 3%;"
-                />
-              </div>
-            </div>
-          </div>
-        </body>
+    <div
+      className="ui centered card bioblocks-component-card"
+      onClick={[Function]}
+      style={
+        Object {
+          "height": "530.25px",
+          "maxWidth": "unset",
+          "padding": "0 0 0 5px",
+          "width": "525px",
+        }
       }
-      onClose={[Function]}
-      onMount={[Function]}
-      onOpen={[Function]}
-      onUnmount={[Function]}
-      open={true}
-      openOnTriggerClick={true}
     >
-      <PortalInner
-        innerRef={
+      <div
+        style={
           Object {
-            "current": <div
-              class="ui page modals dimmer transition visible active"
-              style="display: flex;"
-            >
-              <div
-                class="ui large modal transition visible active"
-                style="height: 85vh; width: 85vh; will-change: unset;"
-              >
-                <div
-                  class="ui centered card bioblocks-component-card"
-                  style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
-                >
-                  <div
-                    style="height: 6%;"
-                  >
-                    <div>
-                      <div
-                        class="ui secondary two item menu"
-                        style="margin: 0px; height: 20px;"
-                      >
-                        <div
-                          class="ui secondary one item menu"
-                        >
-                          <div
-                            class="left horizontally fitted item"
-                            style="margin: 0px; padding: 0px; width: auto;"
-                          >
-                            <img
-                              alt="component icon"
-                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-                              style="height: 32px; padding: 2px; width: 32px;"
-                            />
-                            Let's
-                          </div>
-                        </div>
-                        <div
-                          class="ui secondary four item menu"
-                        >
-                          <div
-                            class="right horizontally fitted item"
-                            style="flex-direction: column;"
-                          >
-                            <i
-                              aria-hidden="true"
-                              class="compress icon"
-                            />
-                            <span
-                              style="font-size: 11px; visibility: hidden;"
-                            >
-                              Close
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    style="height: 91%; width: 100%;"
-                  >
-                    <div
-                      style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
-                    >
-                      <div>
-                        Go!
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    style="height: 3%;"
-                  />
-                </div>
-              </div>
-            </div>,
+            "height": "7%",
           }
         }
-        mountNode={
-          <body
-            class="dimmable dimmed"
-            style="overflow-y: hidden;"
-          >
-            <div
-              class="ui page modals dimmer transition visible active"
-              style="display: flex;"
-            >
-              <div
-                class="ui large modal transition visible active"
-                style="height: 85vh; width: 85vh; will-change: unset;"
-              >
-                <div
-                  class="ui centered card bioblocks-component-card"
-                  style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
-                >
-                  <div
-                    style="height: 6%;"
-                  >
-                    <div>
-                      <div
-                        class="ui secondary two item menu"
-                        style="margin: 0px; height: 20px;"
-                      >
-                        <div
-                          class="ui secondary one item menu"
-                        >
-                          <div
-                            class="left horizontally fitted item"
-                            style="margin: 0px; padding: 0px; width: auto;"
-                          >
-                            <img
-                              alt="component icon"
-                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-                              style="height: 32px; padding: 2px; width: 32px;"
-                            />
-                            Let's
-                          </div>
-                        </div>
-                        <div
-                          class="ui secondary four item menu"
-                        >
-                          <div
-                            class="right horizontally fitted item"
-                            style="flex-direction: column;"
-                          >
-                            <i
-                              aria-hidden="true"
-                              class="compress icon"
-                            />
-                            <span
-                              style="font-size: 11px; visibility: hidden;"
-                            >
-                              Close
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    style="height: 91%; width: 100%;"
-                  >
-                    <div
-                      style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
-                    >
-                      <div>
-                        Go!
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    style="height: 3%;"
-                  />
-                </div>
-              </div>
-            </div>
-          </body>
-        }
-        onMount={[Function]}
-        onUnmount={[Function]}
       >
-        <Portal
-          containerInfo={
-            <body
-              class="dimmable dimmed"
-              style="overflow-y: hidden;"
+        <ComponentMenuBar
+          componentName="Let's"
+          height={20}
+          iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+          isExpanded={false}
+          menuItems={Array []}
+          onExpandToggleCb={[Function]}
+          opacity={0.85}
+          width="100%"
+        >
+          <div
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+          >
+            <Menu
+              secondary={true}
+              style={
+                Object {
+                  "height": 20,
+                  "margin": 0,
+                }
+              }
             >
               <div
-                class="ui page modals dimmer transition visible active"
-                style="display: flex;"
+                className="ui secondary menu"
+                style={
+                  Object {
+                    "height": 20,
+                    "margin": 0,
+                  }
+                }
               >
-                <div
-                  class="ui large modal transition visible active"
-                  style="height: 85vh; width: 85vh; will-change: unset;"
+                <Menu
+                  fluid={false}
+                  secondary={true}
+                  style={
+                    Object {
+                      "width": "auto",
+                    }
+                  }
+                  widths={6}
                 >
                   <div
-                    class="ui centered card bioblocks-component-card"
-                    style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
+                    className="ui secondary six item menu"
+                    style={
+                      Object {
+                        "width": "auto",
+                      }
+                    }
                   >
-                    <div
-                      style="height: 6%;"
+                    <MenuItem
+                      fitted="horizontally"
+                      style={
+                        Object {
+                          "margin": 0,
+                          "padding": 0,
+                        }
+                      }
                     >
-                      <div>
-                        <div
-                          class="ui secondary two item menu"
-                          style="margin: 0px; height: 20px;"
+                      <div
+                        className="horizontally fitted item"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "margin": 0,
+                            "padding": 0,
+                          }
+                        }
+                      >
+                        <img
+                          alt="component icon"
+                          src="assets/icons/bio-blocks-icon.svg"
+                          style={
+                            Object {
+                              "height": "32px",
+                              "padding": "2px",
+                              "width": "32px",
+                            }
+                          }
+                        />
+                        Let's
+                      </div>
+                    </MenuItem>
+                  </div>
+                </Menu>
+                <MenuItem
+                  fitted="horizontally"
+                  position="right"
+                >
+                  <div
+                    className="right horizontally fitted item"
+                    onClick={[Function]}
+                  >
+                    <Menu
+                      secondary={true}
+                    >
+                      <div
+                        className="ui secondary menu"
+                      >
+                        <MenuItem
+                          style={
+                            Object {
+                              "flexDirection": "column",
+                            }
+                          }
                         >
                           <div
-                            class="ui secondary one item menu"
+                            className="item"
+                            onClick={[Function]}
+                            style={
+                              Object {
+                                "flexDirection": "column",
+                              }
+                            }
                           >
-                            <div
-                              class="left horizontally fitted item"
-                              style="margin: 0px; padding: 0px; width: auto;"
-                            >
-                              <img
-                                alt="component icon"
-                                src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-                                style="height: 32px; padding: 2px; width: 32px;"
-                              />
-                              Let's
-                            </div>
-                          </div>
-                          <div
-                            class="ui secondary four item menu"
-                          >
-                            <div
-                              class="right horizontally fitted item"
-                              style="flex-direction: column;"
+                            <Icon
+                              as="i"
+                              name="expand arrows alternate"
+                              onClick={[Function]}
                             >
                               <i
                                 aria-hidden="true"
-                                class="compress icon"
+                                className="expand arrows alternate icon"
+                                onClick={[Function]}
                               />
-                              <span
-                                style="font-size: 11px; visibility: hidden;"
-                              >
-                                Close
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      style="height: 91%; width: 100%;"
-                    >
-                      <div
-                        style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
-                      >
-                        <div>
-                          Go!
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      style="height: 3%;"
-                    />
-                  </div>
-                </div>
-              </div>
-            </body>
-          }
-        >
-          <Ref
-            innerRef={[Function]}
-          >
-            <RefFindNode
-              innerRef={[Function]}
-            >
-              <div
-                className="ui page modals dimmer transition visible active"
-              >
-                <Ref
-                  innerRef={
-                    Object {
-                      "current": <div
-                        class="ui large modal transition visible active"
-                        style="height: 85vh; width: 85vh; will-change: unset;"
-                      >
-                        <div
-                          class="ui centered card bioblocks-component-card"
-                          style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
-                        >
-                          <div
-                            style="height: 6%;"
-                          >
-                            <div>
-                              <div
-                                class="ui secondary two item menu"
-                                style="margin: 0px; height: 20px;"
-                              >
-                                <div
-                                  class="ui secondary one item menu"
-                                >
-                                  <div
-                                    class="left horizontally fitted item"
-                                    style="margin: 0px; padding: 0px; width: auto;"
-                                  >
-                                    <img
-                                      alt="component icon"
-                                      src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-                                      style="height: 32px; padding: 2px; width: 32px;"
-                                    />
-                                    Let's
-                                  </div>
-                                </div>
-                                <div
-                                  class="ui secondary four item menu"
-                                >
-                                  <div
-                                    class="right horizontally fitted item"
-                                    style="flex-direction: column;"
-                                  >
-                                    <i
-                                      aria-hidden="true"
-                                      class="compress icon"
-                                    />
-                                    <span
-                                      style="font-size: 11px; visibility: hidden;"
-                                    >
-                                      Close
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            style="height: 91%; width: 100%;"
-                          >
-                            <div
-                              style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
-                            >
-                              <div>
-                                Go!
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            style="height: 3%;"
-                          />
-                        </div>
-                      </div>,
-                    }
-                  }
-                >
-                  <RefFindNode
-                    innerRef={
-                      Object {
-                        "current": <div
-                          class="ui large modal transition visible active"
-                          style="height: 85vh; width: 85vh; will-change: unset;"
-                        >
-                          <div
-                            class="ui centered card bioblocks-component-card"
-                            style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
-                          >
-                            <div
-                              style="height: 6%;"
-                            >
-                              <div>
-                                <div
-                                  class="ui secondary two item menu"
-                                  style="margin: 0px; height: 20px;"
-                                >
-                                  <div
-                                    class="ui secondary one item menu"
-                                  >
-                                    <div
-                                      class="left horizontally fitted item"
-                                      style="margin: 0px; padding: 0px; width: auto;"
-                                    >
-                                      <img
-                                        alt="component icon"
-                                        src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-                                        style="height: 32px; padding: 2px; width: 32px;"
-                                      />
-                                      Let's
-                                    </div>
-                                  </div>
-                                  <div
-                                    class="ui secondary four item menu"
-                                  >
-                                    <div
-                                      class="right horizontally fitted item"
-                                      style="flex-direction: column;"
-                                    >
-                                      <i
-                                        aria-hidden="true"
-                                        class="compress icon"
-                                      />
-                                      <span
-                                        style="font-size: 11px; visibility: hidden;"
-                                      >
-                                        Close
-                                      </span>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div
-                              style="height: 91%; width: 100%;"
-                            >
-                              <div
-                                style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
-                              >
-                                <div>
-                                  Go!
-                                </div>
-                              </div>
-                            </div>
-                            <div
-                              style="height: 3%;"
-                            />
-                          </div>
-                        </div>,
-                      }
-                    }
-                  >
-                    <div
-                      className="ui large modal transition visible active"
-                      style={
-                        Object {
-                          "height": "85vh",
-                          "width": "85vh",
-                          "willChange": "unset",
-                        }
-                      }
-                    >
-                      <MountNode
-                        className="dimmable dimmed"
-                      />
-                      <Card
-                        centered={true}
-                        className="bioblocks-component-card"
-                        style={
-                          Object {
-                            "height": "85vh",
-                            "maxWidth": "unset",
-                            "padding": "5px",
-                            "width": "85vh",
-                          }
-                        }
-                      >
-                        <div
-                          className="ui centered card bioblocks-component-card"
-                          onClick={[Function]}
-                          style={
-                            Object {
-                              "height": "85vh",
-                              "maxWidth": "unset",
-                              "padding": "5px",
-                              "width": "85vh",
-                            }
-                          }
-                        >
-                          <div
-                            style={
-                              Object {
-                                "height": "6%",
-                              }
-                            }
-                          >
-                            <ComponentMenuBar
-                              componentName="Let's"
-                              height={20}
-                              iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-                              isExpanded={true}
-                              menuItems={Array []}
-                              onExpandToggleCb={[Function]}
-                              opacity={0.85}
-                              width="100%"
-                            >
-                              <div
-                                onMouseEnter={[Function]}
-                                onMouseLeave={[Function]}
-                              >
-                                <Menu
-                                  secondary={true}
-                                  style={
-                                    Object {
-                                      "height": 20,
-                                      "margin": 0,
-                                    }
-                                  }
-                                  widths={2}
-                                >
-                                  <div
-                                    className="ui secondary two item menu"
-                                    style={
-                                      Object {
-                                        "height": 20,
-                                        "margin": 0,
-                                      }
-                                    }
-                                  >
-                                    <Menu
-                                      secondary={true}
-                                      widths={1}
-                                    >
-                                      <div
-                                        className="ui secondary one item menu"
-                                      >
-                                        <MenuItem
-                                          fitted="horizontally"
-                                          position="left"
-                                          style={
-                                            Object {
-                                              "margin": 0,
-                                              "padding": 0,
-                                              "width": "auto",
-                                            }
-                                          }
-                                        >
-                                          <div
-                                            className="left horizontally fitted item"
-                                            onClick={[Function]}
-                                            style={
-                                              Object {
-                                                "margin": 0,
-                                                "padding": 0,
-                                                "width": "auto",
-                                              }
-                                            }
-                                          >
-                                            <img
-                                              alt="component icon"
-                                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-                                              style={
-                                                Object {
-                                                  "height": "32px",
-                                                  "padding": "2px",
-                                                  "width": "32px",
-                                                }
-                                              }
-                                            />
-                                            Let's
-                                          </div>
-                                        </MenuItem>
-                                      </div>
-                                    </Menu>
-                                    <Menu
-                                      secondary={true}
-                                      widths={4}
-                                    >
-                                      <div
-                                        className="ui secondary four item menu"
-                                      >
-                                        <MenuItem
-                                          fitted="horizontally"
-                                          position="right"
-                                          style={
-                                            Object {
-                                              "flexDirection": "column",
-                                            }
-                                          }
-                                        >
-                                          <div
-                                            className="right horizontally fitted item"
-                                            onClick={[Function]}
-                                            style={
-                                              Object {
-                                                "flexDirection": "column",
-                                              }
-                                            }
-                                          >
-                                            <Icon
-                                              as="i"
-                                              name="compress"
-                                              onClick={[Function]}
-                                            >
-                                              <i
-                                                aria-hidden="true"
-                                                className="compress icon"
-                                                onClick={[Function]}
-                                              />
-                                            </Icon>
-                                            <span
-                                              style={
-                                                Object {
-                                                  "fontSize": "11px",
-                                                  "visibility": "hidden",
-                                                }
-                                              }
-                                            >
-                                              Close
-                                            </span>
-                                          </div>
-                                        </MenuItem>
-                                      </div>
-                                    </Menu>
-                                  </div>
-                                </Menu>
-                              </div>
-                            </ComponentMenuBar>
-                          </div>
-                          <div
-                            style={
-                              Object {
-                                "height": "91%",
-                                "width": "100%",
-                              }
-                            }
-                          >
-                            <div
+                            </Icon>
+                            <span
                               style={
                                 Object {
-                                  "transform": "scale(calc(75/0),calc((67 - 20)/0))",
-                                  "transformOrigin": "top left",
+                                  "fontSize": "11px",
+                                  "visibility": "hidden",
                                 }
                               }
                             >
-                              <div>
-                                Go!
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            style={
-                              Object {
-                                "height": "3%",
-                              }
-                            }
-                          />
-                        </div>
-                      </Card>
-                    </div>
-                  </RefFindNode>
-                </Ref>
-              </div>
-            </RefFindNode>
-          </Ref>
-        </Portal>
-      </PortalInner>
-      <EventStack
-        name="mouseleave"
-        on={[Function]}
-        pool="Modal"
-        target={
-          Object {
-            "current": <div
-              class="ui page modals dimmer transition visible active"
-              style="display: flex;"
-            >
-              <div
-                class="ui large modal transition visible active"
-                style="height: 85vh; width: 85vh; will-change: unset;"
-              >
-                <div
-                  class="ui centered card bioblocks-component-card"
-                  style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
-                >
-                  <div
-                    style="height: 6%;"
-                  >
-                    <div>
-                      <div
-                        class="ui secondary two item menu"
-                        style="margin: 0px; height: 20px;"
-                      >
-                        <div
-                          class="ui secondary one item menu"
-                        >
-                          <div
-                            class="left horizontally fitted item"
-                            style="margin: 0px; padding: 0px; width: auto;"
-                          >
-                            <img
-                              alt="component icon"
-                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-                              style="height: 32px; padding: 2px; width: 32px;"
-                            />
-                            Let's
-                          </div>
-                        </div>
-                        <div
-                          class="ui secondary four item menu"
-                        >
-                          <div
-                            class="right horizontally fitted item"
-                            style="flex-direction: column;"
-                          >
-                            <i
-                              aria-hidden="true"
-                              class="compress icon"
-                            />
-                            <span
-                              style="font-size: 11px; visibility: hidden;"
-                            >
-                              Close
+                              Expand
                             </span>
                           </div>
-                        </div>
+                        </MenuItem>
                       </div>
-                    </div>
+                    </Menu>
                   </div>
-                  <div
-                    style="height: 91%; width: 100%;"
-                  >
-                    <div
-                      style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
-                    >
-                      <div>
-                        Go!
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    style="height: 3%;"
-                  />
-                </div>
+                </MenuItem>
               </div>
-            </div>,
+            </Menu>
+          </div>
+        </ComponentMenuBar>
+      </div>
+      <div
+        style={
+          Object {
+            "height": "90%",
+            "width": "100%",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "transform": "scale(calc(515/0),calc((512 - 20)/0))",
+              "transformOrigin": "top left",
+            }
+          }
+        >
+          <div>
+            Go!
+          </div>
+        </div>
+      </div>
+      <div
+        style={
+          Object {
+            "height": "3%",
           }
         }
       />
-      <EventStack
-        name="mouseenter"
-        on={[Function]}
-        pool="Modal"
-        target={
-          Object {
-            "current": <div
-              class="ui page modals dimmer transition visible active"
-              style="display: flex;"
-            >
-              <div
-                class="ui large modal transition visible active"
-                style="height: 85vh; width: 85vh; will-change: unset;"
-              >
-                <div
-                  class="ui centered card bioblocks-component-card"
-                  style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
-                >
-                  <div
-                    style="height: 6%;"
-                  >
-                    <div>
-                      <div
-                        class="ui secondary two item menu"
-                        style="margin: 0px; height: 20px;"
-                      >
-                        <div
-                          class="ui secondary one item menu"
-                        >
-                          <div
-                            class="left horizontally fitted item"
-                            style="margin: 0px; padding: 0px; width: auto;"
-                          >
-                            <img
-                              alt="component icon"
-                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-                              style="height: 32px; padding: 2px; width: 32px;"
-                            />
-                            Let's
-                          </div>
-                        </div>
-                        <div
-                          class="ui secondary four item menu"
-                        >
-                          <div
-                            class="right horizontally fitted item"
-                            style="flex-direction: column;"
-                          >
-                            <i
-                              aria-hidden="true"
-                              class="compress icon"
-                            />
-                            <span
-                              style="font-size: 11px; visibility: hidden;"
-                            >
-                              Close
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    style="height: 91%; width: 100%;"
-                  >
-                    <div
-                      style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
-                    >
-                      <div>
-                        Go!
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    style="height: 3%;"
-                  />
-                </div>
-              </div>
-            </div>,
-          }
-        }
-      />
-      <EventStack
-        name="mousedown"
-        on={[Function]}
-        pool="Modal"
-        target="document"
-      />
-      <EventStack
-        name="click"
-        on={[Function]}
-        pool="Modal"
-        target="document"
-      />
-      <EventStack
-        name="keydown"
-        on={[Function]}
-        pool="Modal"
-        target="document"
-      />
-    </Portal>
-  </Modal>
+    </div>
+  </Card>
 </ComponentCard>
 `;
 
@@ -962,10 +262,11 @@ exports[`ComponentCard Should handle expanding a framed full page component. 1`]
     className="bioblocks-component-card"
     style={
       Object {
-        "height": "530.25px",
+        "border": "5em black solid",
+        "height": "85vh",
         "maxWidth": "unset",
-        "padding": "0 0 5px 5px",
-        "width": "525px",
+        "padding": "5px",
+        "width": "85vh",
       }
     }
   >
@@ -974,17 +275,18 @@ exports[`ComponentCard Should handle expanding a framed full page component. 1`]
       onClick={[Function]}
       style={
         Object {
-          "height": "530.25px",
+          "border": "5em black solid",
+          "height": "85vh",
           "maxWidth": "unset",
-          "padding": "0 0 5px 5px",
-          "width": "525px",
+          "padding": "5px",
+          "width": "85vh",
         }
       }
     >
       <div
         style={
           Object {
-            "height": "6%",
+            "height": "7%",
           }
         }
       >
@@ -992,7 +294,7 @@ exports[`ComponentCard Should handle expanding a framed full page component. 1`]
           componentName="Let's"
           height={20}
           iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-          isExpanded={false}
+          isExpanded={true}
           menuItems={Array []}
           onExpandToggleCb={[Function]}
           opacity={0.85}
@@ -1010,10 +312,9 @@ exports[`ComponentCard Should handle expanding a framed full page component. 1`]
                   "margin": 0,
                 }
               }
-              widths={2}
             >
               <div
-                className="ui secondary two item menu"
+                className="ui secondary menu"
                 style={
                   Object {
                     "height": 20,
@@ -1022,37 +323,45 @@ exports[`ComponentCard Should handle expanding a framed full page component. 1`]
                 }
               >
                 <Menu
+                  fluid={false}
                   secondary={true}
-                  widths={1}
+                  style={
+                    Object {
+                      "width": "auto",
+                    }
+                  }
+                  widths={6}
                 >
                   <div
-                    className="ui secondary one item menu"
+                    className="ui secondary six item menu"
+                    style={
+                      Object {
+                        "width": "auto",
+                      }
+                    }
                   >
                     <MenuItem
                       fitted="horizontally"
-                      position="left"
                       style={
                         Object {
                           "margin": 0,
                           "padding": 0,
-                          "width": "auto",
                         }
                       }
                     >
                       <div
-                        className="left horizontally fitted item"
+                        className="horizontally fitted item"
                         onClick={[Function]}
                         style={
                           Object {
                             "margin": 0,
                             "padding": 0,
-                            "width": "auto",
                           }
                         }
                       >
                         <img
                           alt="component icon"
-                          src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                          src="assets/icons/bio-blocks-icon.svg"
                           style={
                             Object {
                               "height": "32px",
@@ -1066,56 +375,63 @@ exports[`ComponentCard Should handle expanding a framed full page component. 1`]
                     </MenuItem>
                   </div>
                 </Menu>
-                <Menu
-                  secondary={true}
-                  widths={4}
+                <MenuItem
+                  fitted="horizontally"
+                  position="right"
                 >
                   <div
-                    className="ui secondary four item menu"
+                    className="right horizontally fitted item"
+                    onClick={[Function]}
                   >
-                    <MenuItem
-                      fitted="horizontally"
-                      position="right"
-                      style={
-                        Object {
-                          "flexDirection": "column",
-                        }
-                      }
+                    <Menu
+                      secondary={true}
                     >
                       <div
-                        className="right horizontally fitted item"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flexDirection": "column",
-                          }
-                        }
+                        className="ui secondary menu"
                       >
-                        <Icon
-                          as="i"
-                          name="expand arrows alternate"
-                          onClick={[Function]}
-                        >
-                          <i
-                            aria-hidden="true"
-                            className="expand arrows alternate icon"
-                            onClick={[Function]}
-                          />
-                        </Icon>
-                        <span
+                        <MenuItem
                           style={
                             Object {
-                              "fontSize": "11px",
-                              "visibility": "hidden",
+                              "flexDirection": "column",
                             }
                           }
                         >
-                          Expand
-                        </span>
+                          <div
+                            className="item"
+                            onClick={[Function]}
+                            style={
+                              Object {
+                                "flexDirection": "column",
+                              }
+                            }
+                          >
+                            <Icon
+                              as="i"
+                              name="compress"
+                              onClick={[Function]}
+                            >
+                              <i
+                                aria-hidden="true"
+                                className="compress icon"
+                                onClick={[Function]}
+                              />
+                            </Icon>
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "11px",
+                                  "visibility": "hidden",
+                                }
+                              }
+                            >
+                              Close
+                            </span>
+                          </div>
+                        </MenuItem>
                       </div>
-                    </MenuItem>
+                    </Menu>
                   </div>
-                </Menu>
+                </MenuItem>
               </div>
             </Menu>
           </div>
@@ -1124,7 +440,7 @@ exports[`ComponentCard Should handle expanding a framed full page component. 1`]
       <div
         style={
           Object {
-            "height": "91%",
+            "height": "90%",
             "width": "100%",
           }
         }
@@ -1132,7 +448,7 @@ exports[`ComponentCard Should handle expanding a framed full page component. 1`]
         <div
           style={
             Object {
-              "transform": "scale(calc(515/0),calc((512 - 20)/0))",
+              "transform": "scale(calc(75/0),calc((67 - 20)/0))",
               "transformOrigin": "top left",
             }
           }
@@ -1177,1092 +493,205 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
   showSettings={false}
   width="525px"
 >
-  <Modal
+  <Card
     centered={true}
-    closeOnDimmerClick={true}
-    closeOnDocumentClick={false}
-    closeOnEscape={true}
-    dimmer={true}
-    eventPool="Modal"
-    onClose={[Function]}
-    open={true}
-    size="large"
+    className="bioblocks-component-card"
     style={
       Object {
-        "height": "85vh",
-        "width": "85vh",
-        "willChange": "unset",
+        "height": "530.25px",
+        "maxWidth": "unset",
+        "padding": "0 0 0 5px",
+        "width": "525px",
       }
     }
   >
-    <Portal
-      closeOnDocumentClick={false}
-      closeOnEscape={true}
-      eventPool="Modal"
-      mountNode={
-        <body
-          class="dimmable dimmed"
-          style="overflow-y: hidden;"
-        >
-          <div
-            class="ui page modals dimmer transition visible active"
-            style="display: flex;"
-          >
-            <div
-              class="ui large modal transition visible active"
-              style="height: 85vh; width: 85vh; will-change: unset;"
-            >
-              <div
-                class="ui centered card bioblocks-component-card"
-                style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
-              >
-                <div
-                  style="height: 6%;"
-                >
-                  <div>
-                    <div
-                      class="ui secondary two item menu"
-                      style="margin: 0px; height: 20px;"
-                    >
-                      <div
-                        class="ui secondary one item menu"
-                      >
-                        <div
-                          class="left horizontally fitted item"
-                          style="margin: 0px; padding: 0px; width: auto;"
-                        >
-                          <img
-                            alt="component icon"
-                            src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-                            style="height: 32px; padding: 2px; width: 32px;"
-                          />
-                          Let's
-                        </div>
-                      </div>
-                      <div
-                        class="ui secondary four item menu"
-                      >
-                        <div
-                          class="right horizontally fitted item"
-                          style="flex-direction: column;"
-                        >
-                          <i
-                            aria-hidden="true"
-                            class="compress icon"
-                          />
-                          <span
-                            style="font-size: 11px; visibility: hidden;"
-                          >
-                            Close
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  style="height: 91%; width: 100%;"
-                >
-                  <div
-                    style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
-                  >
-                    <div>
-                      Go!
-                    </div>
-                  </div>
-                </div>
-                <div
-                  style="height: 3%;"
-                />
-              </div>
-            </div>
-          </div>
-          <div
-            class="ui page modals dimmer transition visible active"
-            style="display: flex;"
-          >
-            <div
-              class="ui large modal transition visible active"
-              style="height: 85vh; width: 85vh; will-change: unset;"
-            >
-              <div
-                class="ui centered card bioblocks-component-card"
-                style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
-              >
-                <div
-                  style="height: 6%;"
-                >
-                  <div>
-                    <div
-                      class="ui secondary two item menu"
-                      style="margin: 0px; height: 20px;"
-                    >
-                      <div
-                        class="ui secondary one item menu"
-                      >
-                        <div
-                          class="left horizontally fitted item"
-                          style="margin: 0px; padding: 0px; width: auto;"
-                        >
-                          <img
-                            alt="component icon"
-                            src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-                            style="height: 32px; padding: 2px; width: 32px;"
-                          />
-                          Let's
-                        </div>
-                      </div>
-                      <div
-                        class="ui secondary four item menu"
-                      >
-                        <div
-                          class="right horizontally fitted item"
-                          style="flex-direction: column;"
-                        >
-                          <i
-                            aria-hidden="true"
-                            class="compress icon"
-                          />
-                          <span
-                            style="font-size: 11px; visibility: hidden;"
-                          >
-                            Close
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  style="height: 91%; width: 100%;"
-                >
-                  <div>
-                    Go!
-                  </div>
-                </div>
-                <div
-                  style="height: 3%;"
-                />
-              </div>
-            </div>
-          </div>
-        </body>
+    <div
+      className="ui centered card bioblocks-component-card"
+      onClick={[Function]}
+      style={
+        Object {
+          "height": "530.25px",
+          "maxWidth": "unset",
+          "padding": "0 0 0 5px",
+          "width": "525px",
+        }
       }
-      onClose={[Function]}
-      onMount={[Function]}
-      onOpen={[Function]}
-      onUnmount={[Function]}
-      open={true}
-      openOnTriggerClick={true}
     >
-      <PortalInner
-        innerRef={
+      <div
+        style={
           Object {
-            "current": <div
-              class="ui page modals dimmer transition visible active"
-              style="display: flex;"
-            >
-              <div
-                class="ui large modal transition visible active"
-                style="height: 85vh; width: 85vh; will-change: unset;"
-              >
-                <div
-                  class="ui centered card bioblocks-component-card"
-                  style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
-                >
-                  <div
-                    style="height: 6%;"
-                  >
-                    <div>
-                      <div
-                        class="ui secondary two item menu"
-                        style="margin: 0px; height: 20px;"
-                      >
-                        <div
-                          class="ui secondary one item menu"
-                        >
-                          <div
-                            class="left horizontally fitted item"
-                            style="margin: 0px; padding: 0px; width: auto;"
-                          >
-                            <img
-                              alt="component icon"
-                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-                              style="height: 32px; padding: 2px; width: 32px;"
-                            />
-                            Let's
-                          </div>
-                        </div>
-                        <div
-                          class="ui secondary four item menu"
-                        >
-                          <div
-                            class="right horizontally fitted item"
-                            style="flex-direction: column;"
-                          >
-                            <i
-                              aria-hidden="true"
-                              class="compress icon"
-                            />
-                            <span
-                              style="font-size: 11px; visibility: hidden;"
-                            >
-                              Close
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    style="height: 91%; width: 100%;"
-                  >
-                    <div>
-                      Go!
-                    </div>
-                  </div>
-                  <div
-                    style="height: 3%;"
-                  />
-                </div>
-              </div>
-            </div>,
+            "height": "7%",
           }
         }
-        mountNode={
-          <body
-            class="dimmable dimmed"
-            style="overflow-y: hidden;"
-          >
-            <div
-              class="ui page modals dimmer transition visible active"
-              style="display: flex;"
-            >
-              <div
-                class="ui large modal transition visible active"
-                style="height: 85vh; width: 85vh; will-change: unset;"
-              >
-                <div
-                  class="ui centered card bioblocks-component-card"
-                  style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
-                >
-                  <div
-                    style="height: 6%;"
-                  >
-                    <div>
-                      <div
-                        class="ui secondary two item menu"
-                        style="margin: 0px; height: 20px;"
-                      >
-                        <div
-                          class="ui secondary one item menu"
-                        >
-                          <div
-                            class="left horizontally fitted item"
-                            style="margin: 0px; padding: 0px; width: auto;"
-                          >
-                            <img
-                              alt="component icon"
-                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-                              style="height: 32px; padding: 2px; width: 32px;"
-                            />
-                            Let's
-                          </div>
-                        </div>
-                        <div
-                          class="ui secondary four item menu"
-                        >
-                          <div
-                            class="right horizontally fitted item"
-                            style="flex-direction: column;"
-                          >
-                            <i
-                              aria-hidden="true"
-                              class="compress icon"
-                            />
-                            <span
-                              style="font-size: 11px; visibility: hidden;"
-                            >
-                              Close
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    style="height: 91%; width: 100%;"
-                  >
-                    <div
-                      style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
-                    >
-                      <div>
-                        Go!
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    style="height: 3%;"
-                  />
-                </div>
-              </div>
-            </div>
-            <div
-              class="ui page modals dimmer transition visible active"
-              style="display: flex;"
-            >
-              <div
-                class="ui large modal transition visible active"
-                style="height: 85vh; width: 85vh; will-change: unset;"
-              >
-                <div
-                  class="ui centered card bioblocks-component-card"
-                  style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
-                >
-                  <div
-                    style="height: 6%;"
-                  >
-                    <div>
-                      <div
-                        class="ui secondary two item menu"
-                        style="margin: 0px; height: 20px;"
-                      >
-                        <div
-                          class="ui secondary one item menu"
-                        >
-                          <div
-                            class="left horizontally fitted item"
-                            style="margin: 0px; padding: 0px; width: auto;"
-                          >
-                            <img
-                              alt="component icon"
-                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-                              style="height: 32px; padding: 2px; width: 32px;"
-                            />
-                            Let's
-                          </div>
-                        </div>
-                        <div
-                          class="ui secondary four item menu"
-                        >
-                          <div
-                            class="right horizontally fitted item"
-                            style="flex-direction: column;"
-                          >
-                            <i
-                              aria-hidden="true"
-                              class="compress icon"
-                            />
-                            <span
-                              style="font-size: 11px; visibility: hidden;"
-                            >
-                              Close
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    style="height: 91%; width: 100%;"
-                  >
-                    <div>
-                      Go!
-                    </div>
-                  </div>
-                  <div
-                    style="height: 3%;"
-                  />
-                </div>
-              </div>
-            </div>
-          </body>
-        }
-        onMount={[Function]}
-        onUnmount={[Function]}
       >
-        <Portal
-          containerInfo={
-            <body
-              class="dimmable dimmed"
-              style="overflow-y: hidden;"
-            >
-              <div
-                class="ui page modals dimmer transition visible active"
-                style="display: flex;"
-              >
-                <div
-                  class="ui large modal transition visible active"
-                  style="height: 85vh; width: 85vh; will-change: unset;"
-                >
-                  <div
-                    class="ui centered card bioblocks-component-card"
-                    style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
-                  >
-                    <div
-                      style="height: 6%;"
-                    >
-                      <div>
-                        <div
-                          class="ui secondary two item menu"
-                          style="margin: 0px; height: 20px;"
-                        >
-                          <div
-                            class="ui secondary one item menu"
-                          >
-                            <div
-                              class="left horizontally fitted item"
-                              style="margin: 0px; padding: 0px; width: auto;"
-                            >
-                              <img
-                                alt="component icon"
-                                src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-                                style="height: 32px; padding: 2px; width: 32px;"
-                              />
-                              Let's
-                            </div>
-                          </div>
-                          <div
-                            class="ui secondary four item menu"
-                          >
-                            <div
-                              class="right horizontally fitted item"
-                              style="flex-direction: column;"
-                            >
-                              <i
-                                aria-hidden="true"
-                                class="compress icon"
-                              />
-                              <span
-                                style="font-size: 11px; visibility: hidden;"
-                              >
-                                Close
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      style="height: 91%; width: 100%;"
-                    >
-                      <div
-                        style="transform-origin: top left; transform: scale(calc(75/0),calc((67 - 20)/0));"
-                      >
-                        <div>
-                          Go!
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      style="height: 3%;"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div
-                class="ui page modals dimmer transition visible active"
-                style="display: flex;"
-              >
-                <div
-                  class="ui large modal transition visible active"
-                  style="height: 85vh; width: 85vh; will-change: unset;"
-                >
-                  <div
-                    class="ui centered card bioblocks-component-card"
-                    style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
-                  >
-                    <div
-                      style="height: 6%;"
-                    >
-                      <div>
-                        <div
-                          class="ui secondary two item menu"
-                          style="margin: 0px; height: 20px;"
-                        >
-                          <div
-                            class="ui secondary one item menu"
-                          >
-                            <div
-                              class="left horizontally fitted item"
-                              style="margin: 0px; padding: 0px; width: auto;"
-                            >
-                              <img
-                                alt="component icon"
-                                src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-                                style="height: 32px; padding: 2px; width: 32px;"
-                              />
-                              Let's
-                            </div>
-                          </div>
-                          <div
-                            class="ui secondary four item menu"
-                          >
-                            <div
-                              class="right horizontally fitted item"
-                              style="flex-direction: column;"
-                            >
-                              <i
-                                aria-hidden="true"
-                                class="compress icon"
-                              />
-                              <span
-                                style="font-size: 11px; visibility: hidden;"
-                              >
-                                Close
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      style="height: 91%; width: 100%;"
-                    >
-                      <div>
-                        Go!
-                      </div>
-                    </div>
-                    <div
-                      style="height: 3%;"
-                    />
-                  </div>
-                </div>
-              </div>
-            </body>
-          }
+        <ComponentMenuBar
+          componentName="Let's"
+          height={20}
+          iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+          isExpanded={false}
+          menuItems={Array []}
+          onExpandToggleCb={[Function]}
+          opacity={0.85}
+          width="100%"
         >
-          <Ref
-            innerRef={[Function]}
+          <div
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
-            <RefFindNode
-              innerRef={[Function]}
+            <Menu
+              secondary={true}
+              style={
+                Object {
+                  "height": 20,
+                  "margin": 0,
+                }
+              }
             >
               <div
-                className="ui page modals dimmer transition visible active"
+                className="ui secondary menu"
+                style={
+                  Object {
+                    "height": 20,
+                    "margin": 0,
+                  }
+                }
               >
-                <Ref
-                  innerRef={
+                <Menu
+                  fluid={false}
+                  secondary={true}
+                  style={
                     Object {
-                      "current": <div
-                        class="ui large modal transition visible active"
-                        style="height: 85vh; width: 85vh; will-change: unset;"
-                      >
-                        <div
-                          class="ui centered card bioblocks-component-card"
-                          style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
-                        >
-                          <div
-                            style="height: 6%;"
-                          >
-                            <div>
-                              <div
-                                class="ui secondary two item menu"
-                                style="margin: 0px; height: 20px;"
-                              >
-                                <div
-                                  class="ui secondary one item menu"
-                                >
-                                  <div
-                                    class="left horizontally fitted item"
-                                    style="margin: 0px; padding: 0px; width: auto;"
-                                  >
-                                    <img
-                                      alt="component icon"
-                                      src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-                                      style="height: 32px; padding: 2px; width: 32px;"
-                                    />
-                                    Let's
-                                  </div>
-                                </div>
-                                <div
-                                  class="ui secondary four item menu"
-                                >
-                                  <div
-                                    class="right horizontally fitted item"
-                                    style="flex-direction: column;"
-                                  >
-                                    <i
-                                      aria-hidden="true"
-                                      class="compress icon"
-                                    />
-                                    <span
-                                      style="font-size: 11px; visibility: hidden;"
-                                    >
-                                      Close
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            style="height: 91%; width: 100%;"
-                          >
-                            <div>
-                              Go!
-                            </div>
-                          </div>
-                          <div
-                            style="height: 3%;"
-                          />
-                        </div>
-                      </div>,
+                      "width": "auto",
                     }
                   }
+                  widths={6}
                 >
-                  <RefFindNode
-                    innerRef={
+                  <div
+                    className="ui secondary six item menu"
+                    style={
                       Object {
-                        "current": <div
-                          class="ui large modal transition visible active"
-                          style="height: 85vh; width: 85vh; will-change: unset;"
-                        >
-                          <div
-                            class="ui centered card bioblocks-component-card"
-                            style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
-                          >
-                            <div
-                              style="height: 6%;"
-                            >
-                              <div>
-                                <div
-                                  class="ui secondary two item menu"
-                                  style="margin: 0px; height: 20px;"
-                                >
-                                  <div
-                                    class="ui secondary one item menu"
-                                  >
-                                    <div
-                                      class="left horizontally fitted item"
-                                      style="margin: 0px; padding: 0px; width: auto;"
-                                    >
-                                      <img
-                                        alt="component icon"
-                                        src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-                                        style="height: 32px; padding: 2px; width: 32px;"
-                                      />
-                                      Let's
-                                    </div>
-                                  </div>
-                                  <div
-                                    class="ui secondary four item menu"
-                                  >
-                                    <div
-                                      class="right horizontally fitted item"
-                                      style="flex-direction: column;"
-                                    >
-                                      <i
-                                        aria-hidden="true"
-                                        class="compress icon"
-                                      />
-                                      <span
-                                        style="font-size: 11px; visibility: hidden;"
-                                      >
-                                        Close
-                                      </span>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div
-                              style="height: 91%; width: 100%;"
-                            >
-                              <div>
-                                Go!
-                              </div>
-                            </div>
-                            <div
-                              style="height: 3%;"
-                            />
-                          </div>
-                        </div>,
+                        "width": "auto",
                       }
                     }
                   >
-                    <div
-                      className="ui large modal transition visible active"
+                    <MenuItem
+                      fitted="horizontally"
                       style={
                         Object {
-                          "height": "85vh",
-                          "width": "85vh",
-                          "willChange": "unset",
+                          "margin": 0,
+                          "padding": 0,
                         }
                       }
                     >
-                      <MountNode
-                        className="dimmable dimmed"
-                      />
-                      <Card
-                        centered={true}
-                        className="bioblocks-component-card"
+                      <div
+                        className="horizontally fitted item"
+                        onClick={[Function]}
                         style={
                           Object {
-                            "height": "85vh",
-                            "maxWidth": "unset",
-                            "padding": "5px",
-                            "width": "85vh",
+                            "margin": 0,
+                            "padding": 0,
                           }
                         }
                       >
-                        <div
-                          className="ui centered card bioblocks-component-card"
-                          onClick={[Function]}
+                        <img
+                          alt="component icon"
+                          src="assets/icons/bio-blocks-icon.svg"
                           style={
                             Object {
-                              "height": "85vh",
-                              "maxWidth": "unset",
-                              "padding": "5px",
-                              "width": "85vh",
+                              "height": "32px",
+                              "padding": "2px",
+                              "width": "32px",
+                            }
+                          }
+                        />
+                        Let's
+                      </div>
+                    </MenuItem>
+                  </div>
+                </Menu>
+                <MenuItem
+                  fitted="horizontally"
+                  position="right"
+                >
+                  <div
+                    className="right horizontally fitted item"
+                    onClick={[Function]}
+                  >
+                    <Menu
+                      secondary={true}
+                    >
+                      <div
+                        className="ui secondary menu"
+                      >
+                        <MenuItem
+                          style={
+                            Object {
+                              "flexDirection": "column",
                             }
                           }
                         >
                           <div
+                            className="item"
+                            onClick={[Function]}
                             style={
                               Object {
-                                "height": "6%",
+                                "flexDirection": "column",
                               }
                             }
                           >
-                            <ComponentMenuBar
-                              componentName="Let's"
-                              height={20}
-                              iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-                              isExpanded={true}
-                              menuItems={Array []}
-                              onExpandToggleCb={[Function]}
-                              opacity={0.85}
-                              width="100%"
+                            <Icon
+                              as="i"
+                              name="expand arrows alternate"
+                              onClick={[Function]}
                             >
-                              <div
-                                onMouseEnter={[Function]}
-                                onMouseLeave={[Function]}
-                              >
-                                <Menu
-                                  secondary={true}
-                                  style={
-                                    Object {
-                                      "height": 20,
-                                      "margin": 0,
-                                    }
-                                  }
-                                  widths={2}
-                                >
-                                  <div
-                                    className="ui secondary two item menu"
-                                    style={
-                                      Object {
-                                        "height": 20,
-                                        "margin": 0,
-                                      }
-                                    }
-                                  >
-                                    <Menu
-                                      secondary={true}
-                                      widths={1}
-                                    >
-                                      <div
-                                        className="ui secondary one item menu"
-                                      >
-                                        <MenuItem
-                                          fitted="horizontally"
-                                          position="left"
-                                          style={
-                                            Object {
-                                              "margin": 0,
-                                              "padding": 0,
-                                              "width": "auto",
-                                            }
-                                          }
-                                        >
-                                          <div
-                                            className="left horizontally fitted item"
-                                            onClick={[Function]}
-                                            style={
-                                              Object {
-                                                "margin": 0,
-                                                "padding": 0,
-                                                "width": "auto",
-                                              }
-                                            }
-                                          >
-                                            <img
-                                              alt="component icon"
-                                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-                                              style={
-                                                Object {
-                                                  "height": "32px",
-                                                  "padding": "2px",
-                                                  "width": "32px",
-                                                }
-                                              }
-                                            />
-                                            Let's
-                                          </div>
-                                        </MenuItem>
-                                      </div>
-                                    </Menu>
-                                    <Menu
-                                      secondary={true}
-                                      widths={4}
-                                    >
-                                      <div
-                                        className="ui secondary four item menu"
-                                      >
-                                        <MenuItem
-                                          fitted="horizontally"
-                                          position="right"
-                                          style={
-                                            Object {
-                                              "flexDirection": "column",
-                                            }
-                                          }
-                                        >
-                                          <div
-                                            className="right horizontally fitted item"
-                                            onClick={[Function]}
-                                            style={
-                                              Object {
-                                                "flexDirection": "column",
-                                              }
-                                            }
-                                          >
-                                            <Icon
-                                              as="i"
-                                              name="compress"
-                                              onClick={[Function]}
-                                            >
-                                              <i
-                                                aria-hidden="true"
-                                                className="compress icon"
-                                                onClick={[Function]}
-                                              />
-                                            </Icon>
-                                            <span
-                                              style={
-                                                Object {
-                                                  "fontSize": "11px",
-                                                  "visibility": "hidden",
-                                                }
-                                              }
-                                            >
-                                              Close
-                                            </span>
-                                          </div>
-                                        </MenuItem>
-                                      </div>
-                                    </Menu>
-                                  </div>
-                                </Menu>
-                              </div>
-                            </ComponentMenuBar>
-                          </div>
-                          <div
-                            style={
-                              Object {
-                                "height": "91%",
-                                "width": "100%",
-                              }
-                            }
-                          >
-                            <div>
-                              Go!
-                            </div>
-                          </div>
-                          <div
-                            style={
-                              Object {
-                                "height": "3%",
-                              }
-                            }
-                          />
-                        </div>
-                      </Card>
-                    </div>
-                  </RefFindNode>
-                </Ref>
-              </div>
-            </RefFindNode>
-          </Ref>
-        </Portal>
-      </PortalInner>
-      <EventStack
-        name="mouseleave"
-        on={[Function]}
-        pool="Modal"
-        target={
-          Object {
-            "current": <div
-              class="ui page modals dimmer transition visible active"
-              style="display: flex;"
-            >
-              <div
-                class="ui large modal transition visible active"
-                style="height: 85vh; width: 85vh; will-change: unset;"
-              >
-                <div
-                  class="ui centered card bioblocks-component-card"
-                  style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
-                >
-                  <div
-                    style="height: 6%;"
-                  >
-                    <div>
-                      <div
-                        class="ui secondary two item menu"
-                        style="margin: 0px; height: 20px;"
-                      >
-                        <div
-                          class="ui secondary one item menu"
-                        >
-                          <div
-                            class="left horizontally fitted item"
-                            style="margin: 0px; padding: 0px; width: auto;"
-                          >
-                            <img
-                              alt="component icon"
-                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-                              style="height: 32px; padding: 2px; width: 32px;"
-                            />
-                            Let's
-                          </div>
-                        </div>
-                        <div
-                          class="ui secondary four item menu"
-                        >
-                          <div
-                            class="right horizontally fitted item"
-                            style="flex-direction: column;"
-                          >
-                            <i
-                              aria-hidden="true"
-                              class="compress icon"
-                            />
+                              <i
+                                aria-hidden="true"
+                                className="expand arrows alternate icon"
+                                onClick={[Function]}
+                              />
+                            </Icon>
                             <span
-                              style="font-size: 11px; visibility: hidden;"
+                              style={
+                                Object {
+                                  "fontSize": "11px",
+                                  "visibility": "hidden",
+                                }
+                              }
                             >
-                              Close
+                              Expand
                             </span>
                           </div>
-                        </div>
+                        </MenuItem>
                       </div>
-                    </div>
+                    </Menu>
                   </div>
-                  <div
-                    style="height: 91%; width: 100%;"
-                  >
-                    <div>
-                      Go!
-                    </div>
-                  </div>
-                  <div
-                    style="height: 3%;"
-                  />
-                </div>
+                </MenuItem>
               </div>
-            </div>,
+            </Menu>
+          </div>
+        </ComponentMenuBar>
+      </div>
+      <div
+        style={
+          Object {
+            "height": "90%",
+            "width": "100%",
+          }
+        }
+      >
+        <div>
+          Go!
+        </div>
+      </div>
+      <div
+        style={
+          Object {
+            "height": "3%",
           }
         }
       />
-      <EventStack
-        name="mouseenter"
-        on={[Function]}
-        pool="Modal"
-        target={
-          Object {
-            "current": <div
-              class="ui page modals dimmer transition visible active"
-              style="display: flex;"
-            >
-              <div
-                class="ui large modal transition visible active"
-                style="height: 85vh; width: 85vh; will-change: unset;"
-              >
-                <div
-                  class="ui centered card bioblocks-component-card"
-                  style="max-width: unset; padding: 5px; height: 85vh; width: 85vh;"
-                >
-                  <div
-                    style="height: 6%;"
-                  >
-                    <div>
-                      <div
-                        class="ui secondary two item menu"
-                        style="margin: 0px; height: 20px;"
-                      >
-                        <div
-                          class="ui secondary one item menu"
-                        >
-                          <div
-                            class="left horizontally fitted item"
-                            style="margin: 0px; padding: 0px; width: auto;"
-                          >
-                            <img
-                              alt="component icon"
-                              src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-                              style="height: 32px; padding: 2px; width: 32px;"
-                            />
-                            Let's
-                          </div>
-                        </div>
-                        <div
-                          class="ui secondary four item menu"
-                        >
-                          <div
-                            class="right horizontally fitted item"
-                            style="flex-direction: column;"
-                          >
-                            <i
-                              aria-hidden="true"
-                              class="compress icon"
-                            />
-                            <span
-                              style="font-size: 11px; visibility: hidden;"
-                            >
-                              Close
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    style="height: 91%; width: 100%;"
-                  >
-                    <div>
-                      Go!
-                    </div>
-                  </div>
-                  <div
-                    style="height: 3%;"
-                  />
-                </div>
-              </div>
-            </div>,
-          }
-        }
-      />
-      <EventStack
-        name="mousedown"
-        on={[Function]}
-        pool="Modal"
-        target="document"
-      />
-      <EventStack
-        name="click"
-        on={[Function]}
-        pool="Modal"
-        target="document"
-      />
-      <EventStack
-        name="keydown"
-        on={[Function]}
-        pool="Modal"
-        target="document"
-      />
-    </Portal>
-  </Modal>
+    </div>
+  </Card>
 </ComponentCard>
 `;
 
@@ -2294,10 +723,11 @@ exports[`ComponentCard Should handle expanding a non-framed full page component.
     className="bioblocks-component-card"
     style={
       Object {
-        "height": "530.25px",
+        "border": "5em black solid",
+        "height": "85vh",
         "maxWidth": "unset",
-        "padding": "0 0 5px 5px",
-        "width": "525px",
+        "padding": "5px",
+        "width": "85vh",
       }
     }
   >
@@ -2306,17 +736,18 @@ exports[`ComponentCard Should handle expanding a non-framed full page component.
       onClick={[Function]}
       style={
         Object {
-          "height": "530.25px",
+          "border": "5em black solid",
+          "height": "85vh",
           "maxWidth": "unset",
-          "padding": "0 0 5px 5px",
-          "width": "525px",
+          "padding": "5px",
+          "width": "85vh",
         }
       }
     >
       <div
         style={
           Object {
-            "height": "6%",
+            "height": "7%",
           }
         }
       >
@@ -2324,7 +755,7 @@ exports[`ComponentCard Should handle expanding a non-framed full page component.
           componentName="Let's"
           height={20}
           iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
-          isExpanded={false}
+          isExpanded={true}
           menuItems={Array []}
           onExpandToggleCb={[Function]}
           opacity={0.85}
@@ -2342,10 +773,9 @@ exports[`ComponentCard Should handle expanding a non-framed full page component.
                   "margin": 0,
                 }
               }
-              widths={2}
             >
               <div
-                className="ui secondary two item menu"
+                className="ui secondary menu"
                 style={
                   Object {
                     "height": 20,
@@ -2354,37 +784,45 @@ exports[`ComponentCard Should handle expanding a non-framed full page component.
                 }
               >
                 <Menu
+                  fluid={false}
                   secondary={true}
-                  widths={1}
+                  style={
+                    Object {
+                      "width": "auto",
+                    }
+                  }
+                  widths={6}
                 >
                   <div
-                    className="ui secondary one item menu"
+                    className="ui secondary six item menu"
+                    style={
+                      Object {
+                        "width": "auto",
+                      }
+                    }
                   >
                     <MenuItem
                       fitted="horizontally"
-                      position="left"
                       style={
                         Object {
                           "margin": 0,
                           "padding": 0,
-                          "width": "auto",
                         }
                       }
                     >
                       <div
-                        className="left horizontally fitted item"
+                        className="horizontally fitted item"
                         onClick={[Function]}
                         style={
                           Object {
                             "margin": 0,
                             "padding": 0,
-                            "width": "auto",
                           }
                         }
                       >
                         <img
                           alt="component icon"
-                          src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                          src="assets/icons/bio-blocks-icon.svg"
                           style={
                             Object {
                               "height": "32px",
@@ -2398,56 +836,63 @@ exports[`ComponentCard Should handle expanding a non-framed full page component.
                     </MenuItem>
                   </div>
                 </Menu>
-                <Menu
-                  secondary={true}
-                  widths={4}
+                <MenuItem
+                  fitted="horizontally"
+                  position="right"
                 >
                   <div
-                    className="ui secondary four item menu"
+                    className="right horizontally fitted item"
+                    onClick={[Function]}
                   >
-                    <MenuItem
-                      fitted="horizontally"
-                      position="right"
-                      style={
-                        Object {
-                          "flexDirection": "column",
-                        }
-                      }
+                    <Menu
+                      secondary={true}
                     >
                       <div
-                        className="right horizontally fitted item"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flexDirection": "column",
-                          }
-                        }
+                        className="ui secondary menu"
                       >
-                        <Icon
-                          as="i"
-                          name="expand arrows alternate"
-                          onClick={[Function]}
-                        >
-                          <i
-                            aria-hidden="true"
-                            className="expand arrows alternate icon"
-                            onClick={[Function]}
-                          />
-                        </Icon>
-                        <span
+                        <MenuItem
                           style={
                             Object {
-                              "fontSize": "11px",
-                              "visibility": "hidden",
+                              "flexDirection": "column",
                             }
                           }
                         >
-                          Expand
-                        </span>
+                          <div
+                            className="item"
+                            onClick={[Function]}
+                            style={
+                              Object {
+                                "flexDirection": "column",
+                              }
+                            }
+                          >
+                            <Icon
+                              as="i"
+                              name="compress"
+                              onClick={[Function]}
+                            >
+                              <i
+                                aria-hidden="true"
+                                className="compress icon"
+                                onClick={[Function]}
+                              />
+                            </Icon>
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "11px",
+                                  "visibility": "hidden",
+                                }
+                              }
+                            >
+                              Close
+                            </span>
+                          </div>
+                        </MenuItem>
                       </div>
-                    </MenuItem>
+                    </Menu>
                   </div>
-                </Menu>
+                </MenuItem>
               </div>
             </Menu>
           </div>
@@ -2456,7 +901,7 @@ exports[`ComponentCard Should handle expanding a non-framed full page component.
       <div
         style={
           Object {
-            "height": "91%",
+            "height": "90%",
             "width": "100%",
           }
         }
@@ -2507,7 +952,7 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
       Object {
         "height": "530.25px",
         "maxWidth": "unset",
-        "padding": "0 0 5px 5px",
+        "padding": "0 0 0 5px",
         "width": "525px",
       }
     }
@@ -2519,7 +964,7 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
         Object {
           "height": "530.25px",
           "maxWidth": "unset",
-          "padding": "0 0 5px 5px",
+          "padding": "0 0 0 5px",
           "width": "525px",
         }
       }
@@ -2527,7 +972,7 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
       <div
         style={
           Object {
-            "height": "6%",
+            "height": "7%",
           }
         }
       >
@@ -2553,10 +998,9 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
                   "margin": 0,
                 }
               }
-              widths={2}
             >
               <div
-                className="ui secondary two item menu"
+                className="ui secondary menu"
                 style={
                   Object {
                     "height": 20,
@@ -2565,37 +1009,45 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
                 }
               >
                 <Menu
+                  fluid={false}
                   secondary={true}
-                  widths={1}
+                  style={
+                    Object {
+                      "width": "auto",
+                    }
+                  }
+                  widths={6}
                 >
                   <div
-                    className="ui secondary one item menu"
+                    className="ui secondary six item menu"
+                    style={
+                      Object {
+                        "width": "auto",
+                      }
+                    }
                   >
                     <MenuItem
                       fitted="horizontally"
-                      position="left"
                       style={
                         Object {
                           "margin": 0,
                           "padding": 0,
-                          "width": "auto",
                         }
                       }
                     >
                       <div
-                        className="left horizontally fitted item"
+                        className="horizontally fitted item"
                         onClick={[Function]}
                         style={
                           Object {
                             "margin": 0,
                             "padding": 0,
-                            "width": "auto",
                           }
                         }
                       >
                         <img
                           alt="component icon"
-                          src="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+                          src="assets/icons/bio-blocks-icon.svg"
                           style={
                             Object {
                               "height": "32px",
@@ -2609,56 +1061,63 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
                     </MenuItem>
                   </div>
                 </Menu>
-                <Menu
-                  secondary={true}
-                  widths={4}
+                <MenuItem
+                  fitted="horizontally"
+                  position="right"
                 >
                   <div
-                    className="ui secondary four item menu"
+                    className="right horizontally fitted item"
+                    onClick={[Function]}
                   >
-                    <MenuItem
-                      fitted="horizontally"
-                      position="right"
-                      style={
-                        Object {
-                          "flexDirection": "column",
-                        }
-                      }
+                    <Menu
+                      secondary={true}
                     >
                       <div
-                        className="right horizontally fitted item"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "flexDirection": "column",
-                          }
-                        }
+                        className="ui secondary menu"
                       >
-                        <Icon
-                          as="i"
-                          name="expand arrows alternate"
-                          onClick={[Function]}
-                        >
-                          <i
-                            aria-hidden="true"
-                            className="expand arrows alternate icon"
-                            onClick={[Function]}
-                          />
-                        </Icon>
-                        <span
+                        <MenuItem
                           style={
                             Object {
-                              "fontSize": "11px",
-                              "visibility": "hidden",
+                              "flexDirection": "column",
                             }
                           }
                         >
-                          Expand
-                        </span>
+                          <div
+                            className="item"
+                            onClick={[Function]}
+                            style={
+                              Object {
+                                "flexDirection": "column",
+                              }
+                            }
+                          >
+                            <Icon
+                              as="i"
+                              name="expand arrows alternate"
+                              onClick={[Function]}
+                            >
+                              <i
+                                aria-hidden="true"
+                                className="expand arrows alternate icon"
+                                onClick={[Function]}
+                              />
+                            </Icon>
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "11px",
+                                  "visibility": "hidden",
+                                }
+                              }
+                            >
+                              Expand
+                            </span>
+                          </div>
+                        </MenuItem>
                       </div>
-                    </MenuItem>
+                    </Menu>
                   </div>
-                </Menu>
+                </MenuItem>
               </div>
             </Menu>
           </div>
@@ -2667,7 +1126,7 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
       <div
         style={
           Object {
-            "height": "91%",
+            "height": "90%",
             "width": "100%",
           }
         }
@@ -2705,7 +1164,7 @@ exports[`ComponentCard Should match existing snapshot when framed. 1`] = `
     Object {
       "height": "530.25px",
       "maxWidth": "unset",
-      "padding": "0 0 5px 5px",
+      "padding": "0 0 0 5px",
       "width": "525px",
     }
   }
@@ -2713,7 +1172,7 @@ exports[`ComponentCard Should match existing snapshot when framed. 1`] = `
   <div
     style={
       Object {
-        "height": "6%",
+        "height": "7%",
       }
     }
   >
@@ -2731,7 +1190,7 @@ exports[`ComponentCard Should match existing snapshot when framed. 1`] = `
   <div
     style={
       Object {
-        "height": "91%",
+        "height": "90%",
         "width": "100%",
       }
     }
@@ -2762,7 +1221,7 @@ exports[`ComponentCard Should match existing snapshot when given default props. 
     Object {
       "height": "530.25px",
       "maxWidth": "unset",
-      "padding": "0 0 5px 5px",
+      "padding": "0 0 0 5px",
       "width": "525px",
     }
   }
@@ -2770,7 +1229,7 @@ exports[`ComponentCard Should match existing snapshot when given default props. 
   <div
     style={
       Object {
-        "height": "6%",
+        "height": "7%",
       }
     }
   >
@@ -2788,7 +1247,7 @@ exports[`ComponentCard Should match existing snapshot when given default props. 
   <div
     style={
       Object {
-        "height": "91%",
+        "height": "90%",
         "width": "100%",
       }
     }
@@ -2811,7 +1270,7 @@ exports[`ComponentCard Should match existing snapshot when not framed. 1`] = `
     Object {
       "height": "530.25px",
       "maxWidth": "unset",
-      "padding": "0 0 5px 5px",
+      "padding": "0 0 0 5px",
       "width": "525px",
     }
   }
@@ -2819,7 +1278,7 @@ exports[`ComponentCard Should match existing snapshot when not framed. 1`] = `
   <div
     style={
       Object {
-        "height": "6%",
+        "height": "7%",
       }
     }
   >
@@ -2837,7 +1296,7 @@ exports[`ComponentCard Should match existing snapshot when not framed. 1`] = `
   <div
     style={
       Object {
-        "height": "91%",
+        "height": "90%",
         "width": "100%",
       }
     }

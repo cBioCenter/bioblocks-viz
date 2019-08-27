@@ -2,7 +2,14 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Card, Modal } from 'semantic-ui-react';
 
-import { ComponentDock, ComponentMenuBar, IComponentMenuBarItem, IDockItem } from '~bioblocks-viz~/component/widget';
+import {
+  ComponentDock,
+  ComponentMenuBar,
+  IButtonType,
+  IComponentMenuBarItem,
+  IDockItem,
+  IPopupType,
+} from '~bioblocks-viz~/component/widget';
 
 export interface IComponentCardProps {
   componentName: string;
@@ -16,7 +23,7 @@ export interface IComponentCardProps {
   isDataReady: boolean;
   isFramedComponent: boolean;
   isFullPage: boolean;
-  menuItems: IComponentMenuBarItem[];
+  menuItems: Array<IComponentMenuBarItem<IButtonType | IPopupType>>;
   padding: number | string;
   showSettings: boolean;
   width: number | string;
@@ -60,21 +67,35 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     };
   }
 
-  public componentDidMount() {
+  public async componentDidMount() {
     if (this.props.isFramedComponent) {
-      window.onresize = () => {
+      window.onresize = async () => {
         if (this.props.isFramedComponent) {
-          this.resizeFramedComponent();
+          await this.resizeFramedComponent();
         }
       };
-      this.resizeFramedComponent();
+      await this.resizeFramedComponent();
+    }
+    document.onfullscreenchange = () => {
+      const { isFullPage } = this.state;
+      this.setState({
+        isFullPage: !isFullPage,
+      });
+    };
+  }
+
+  public componentWillUnmount() {
+    document.onfullscreenchange = null;
+    const cardElement = ReactDOM.findDOMNode(this.cardRef) as HTMLDivElement;
+    if (cardElement) {
+      cardElement.removeEventListener('click', this.onBorderClick);
     }
   }
 
-  public componentDidUpdate(prevProps: IComponentCardProps, prevState: IComponentCardState) {
+  public async componentDidUpdate(prevProps: IComponentCardProps, prevState: IComponentCardState) {
     const { isFullPage } = this.state;
     if (isFullPage !== prevState.isFullPage) {
-      this.resizeFramedComponent();
+      await this.resizeFramedComponent();
     }
   }
 
@@ -85,17 +106,19 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     const heightAsNumber = typeof height === 'string' ? parseInt(height, 10) : height;
     const cardStyle: React.CSSProperties = {
       maxWidth: 'unset',
-      padding: '0 0 5px 5px',
-      ...(isFullPage ? { ...expandedStyle, padding: '5px' } : { height: `${heightAsNumber * 1.01}px`, width }),
+      padding: '0 0 0 5px',
+      ...(isFullPage
+        ? { ...expandedStyle, padding: '5px', border: '5em black solid' }
+        : { height: `${heightAsNumber * 1.01}px`, width }),
     };
 
-    const card = (
+    return (
       <Card centered={true} className={'bioblocks-component-card'} ref={ref => (this.cardRef = ref)} style={cardStyle}>
         {this.renderCardChildren()}
       </Card>
     );
 
-    return this.renderCard(card, isFullPage, expandedStyle);
+    // return this.renderCard(card, isFullPage, expandedStyle);
   }
 
   protected renderCard = (card: JSX.Element, isFullPage: boolean, expandedStyle: React.CSSProperties) => {
@@ -123,8 +146,8 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
 
     return (
       <>
-        <div style={{ height: '6%' }}>{this.renderTopMenu(headerHeight)}</div>
-        <div style={{ height: '91%', width: '100%' }}>
+        <div style={{ height: '7%' }}>{this.renderTopMenu(headerHeight)}</div>
+        <div style={{ height: '90%', width: '100%' }}>
           {isFramedComponent ? <div style={framedStyle}>{children}</div> : children}
         </div>
         <div style={{ height: '3%' }}>{this.renderDock()}</div>
@@ -153,20 +176,40 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     );
   };
 
-  protected onFullPageToggle = () => {
-    this.setState({
-      isFullPage: !this.state.isFullPage,
-    });
-    this.forceUpdate();
+  protected onBorderClick = async (event: MouseEvent) => {
+    const cardElement = ReactDOM.findDOMNode(this.cardRef) as HTMLDivElement;
+    if (
+      event.offsetX < 0 ||
+      event.offsetY < 0 ||
+      event.offsetX > cardElement.clientWidth ||
+      event.offsetY > cardElement.clientHeight
+    ) {
+      await document.exitFullscreen();
+    }
   };
 
-  protected resizeFramedComponent() {
+  protected onFullPageToggle = async () => {
+    const { isFullPage } = this.state;
+    const cardElement = ReactDOM.findDOMNode(this.cardRef) as HTMLDivElement;
+
+    if (cardElement && !isFullPage) {
+      cardElement.onclick = this.onBorderClick;
+      await cardElement.requestFullscreen();
+    } else {
+      await document.exitFullscreen();
+      if (cardElement) {
+        cardElement.removeEventListener('click', this.onBorderClick);
+      }
+    }
+  };
+
+  protected async resizeFramedComponent() {
     const { frameHeight, frameWidth, headerHeight } = this.props;
     const { framedStyle, isFullPage } = this.state;
 
-    const iFrameNodeRef = ReactDOM.findDOMNode(this.cardRef) as Element;
-    if (iFrameNodeRef) {
-      const iFrameNodeStyle = window.getComputedStyle(iFrameNodeRef);
+    const cardElement = ReactDOM.findDOMNode(this.cardRef) as Element;
+    if (cardElement) {
+      const iFrameNodeStyle = window.getComputedStyle(cardElement);
       if (iFrameNodeStyle && iFrameNodeStyle.width !== null && iFrameNodeStyle.height !== null) {
         document.body.style.overflowY = isFullPage ? 'hidden' : 'auto';
         const refHeight = parseInt(iFrameNodeStyle.height, 10) - 18;
