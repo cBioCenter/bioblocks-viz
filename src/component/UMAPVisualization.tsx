@@ -489,8 +489,7 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
   };
 
   protected getSettingsConfigs = () => {
-    // const { maxNumSequences, numSequencesToShow, onNumSequenceChange } = this.props;
-    const { numDimensions, numMinDist, numNeighbors, numSpread, umapEmbedding } = this.state;
+    const { numDimensions, numMinDist, numNeighbors, numSpread } = this.state;
 
     return {
       Settings: [
@@ -542,23 +541,6 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
             min: 0,
           },
         },
-        /*
-        {
-          marks: {
-            [maxNumSequences]: maxNumSequences,
-            [Math.min(1000, umapEmbedding.length)]: Math.min(1000, umapEmbedding.length),
-          },
-          name: 'Sequences',
-          onAfterChange: onNumSequenceChange,
-          step: 1,
-          type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
-          values: {
-            current: numSequencesToShow,
-            max: maxNumSequences,
-            min: Math.min(1000, umapEmbedding.length),
-          },
-        },
-        */
         {
           current: numDimensions.toString(),
           name: 'Dimensions',
@@ -643,8 +625,8 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
   private executeUMAP = () => {
     const { dataMatrix, distanceFn } = this.props;
 
-    console.log('dataMatrix', dataMatrix);
-    console.log('distanceFn', distanceFn);
+    // console.log('dataMatrix', dataMatrix);
+    // console.log('distanceFn', distanceFn);
 
     // is this an update? if so, halt any previous executions
     clearTimeout(this.timeout1);
@@ -670,21 +652,24 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
         spread: numSpread,
       });
 
+      if (dataMatrix.length === 0 || dataMatrix[0].length === 0) {
+        return;
+      }
       const optimalNumberEpochs = umap.initializeFit(dataMatrix);
-      console.log(`UMAP wants to do ${optimalNumberEpochs} epochs`);
+      // console.log(`UMAP wants to do ${optimalNumberEpochs} epochs`);
 
       const stepUmapFn = (epochCounter: number) => {
         if (epochCounter % this.props.numIterationsBeforeReRender === 0 && epochCounter < optimalNumberEpochs) {
           if (epochCounter % 50 === 0) {
-            console.log(`${epochCounter} :: ${(performance.now() - t0) / 1000} sec`);
+            // console.log(`${epochCounter} :: ${(performance.now() - t0) / 1000} sec`);
           }
           const umapEmbedding = umap.getEmbedding();
           if (epochCounter === 0) {
-            console.log('embedding:', umapEmbedding);
+            // console.log('embedding:', umapEmbedding);
           }
 
           const ranges = { ...UMAPVisualization.initialState.ranges };
-          umapEmbedding.forEach(row => {
+          umapEmbedding.forEach((row: number[]) => {
             ranges.maxX = Math.max(ranges.maxX, row[0] + 2);
             ranges.maxY = Math.max(ranges.maxY, row[1] + 2);
             ranges.maxZ = Math.max(ranges.maxZ, row[2] + 2);

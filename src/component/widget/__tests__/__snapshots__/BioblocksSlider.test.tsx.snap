@@ -35,6 +35,7 @@ exports[`BioblocksSlider Should match existing snapshot when given simple data. 
       onChange={[Function]}
       prefixCls="rc-slider"
       railStyle={Object {}}
+      reverse={false}
       step={1}
       trackStyle={
         Array [

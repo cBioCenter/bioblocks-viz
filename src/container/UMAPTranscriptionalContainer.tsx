@@ -18,9 +18,7 @@ export type IUMAPTranscriptionalContainerProps = Required<
 
 export interface IUMAPTranscriptionalContainerState {
   // completeSampleAnnotations: ILabelCategory2;
-  completeSampleAnnotations: {
-    [labelCategoryName: string]: Array<ILabel | undefined>;
-  };
+  completeSampleAnnotations: Record<string, Array<ILabel | undefined>>;
   errorMessages: string[];
 }
 
@@ -58,7 +56,6 @@ export class UMAPTranscriptionalContainer extends React.Component<
       prevProps.categoricalAnnotations !== this.props.categoricalAnnotations ||
       prevProps.labelCategory !== this.props.labelCategory
     ) {
-      console.log('UMAP T Preparing data');
       this.prepareData(prevProps.categoricalAnnotations === this.props.categoricalAnnotations);
     }
   }
@@ -99,9 +96,41 @@ export class UMAPTranscriptionalContainer extends React.Component<
     );
   }
 
-  private prepareData(annotationsUnchanged: boolean = false) {
-    const { categoricalAnnotations, dataMatrix, numSamplesToShow, sampleNames } = this.props;
+  protected getAnnotations = () => {
+    const { categoricalAnnotations } = this.props;
+    const annotations: Record<string, Array<ILabel | undefined>> = {};
+    if (categoricalAnnotations) {
+      Object.keys(categoricalAnnotations).forEach((catName: string) => {
+        // build the annotations state object from the prop
+        const propLabelList = categoricalAnnotations[catName].label_list;
+        const propLabelColors = categoricalAnnotations[catName].label_colors;
 
+        let stateLabelStyles;
+        if (!propLabelColors || Object.keys(propLabelColors).length === 0) {
+          // auto generate styles for the labels
+          stateLabelStyles = Marker.colors.autoColorFromStates(propLabelList);
+        } else {
+          stateLabelStyles = propLabelList.map(labelName => {
+            if (propLabelColors[labelName]) {
+              return {
+                color: propLabelColors[labelName],
+                name: labelName,
+              };
+            }
+
+            return undefined;
+          });
+        }
+
+        annotations[catName] = stateLabelStyles;
+      });
+    }
+
+    return annotations;
+  };
+
+  protected getErrorMessages = (annotationsUnchanged: boolean) => {
+    const { categoricalAnnotations, dataMatrix, sampleNames } = this.props;
     // rudimentary error checking
     const errorMessages = new Array<string>();
     if (sampleNames && dataMatrix.length !== sampleNames.length) {
@@ -120,36 +149,18 @@ export class UMAPTranscriptionalContainer extends React.Component<
       });
     }
 
+    return errorMessages;
+  };
+
+  protected prepareData(annotationsUnchanged: boolean = false) {
+    const { numSamplesToShow } = this.props;
+
+    const errorMessages = this.getErrorMessages(annotationsUnchanged);
+
     // auto generate marker properties if they are not explicitly set
     let annotations = this.state.completeSampleAnnotations;
     if (annotationsUnchanged === false) {
-      annotations = {};
-      if (categoricalAnnotations) {
-        Object.keys(categoricalAnnotations).forEach(catName => {
-          // build the annotations state object from the prop
-          const propLabelList = categoricalAnnotations[catName].label_list;
-          const propLabelColors = categoricalAnnotations[catName].label_colors;
-
-          let stateLabelStyles;
-          if (!propLabelColors || Object.keys(propLabelColors).length === 0) {
-            // auto generate styles for the labels
-            stateLabelStyles = Marker.colors.autoColorFromStates(propLabelList);
-          } else {
-            stateLabelStyles = propLabelList.map(labelName => {
-              if (propLabelColors[labelName]) {
-                return {
-                  color: propLabelColors[labelName],
-                  name: labelName,
-                };
-              }
-
-              return undefined;
-            });
-          }
-
-          annotations[catName] = stateLabelStyles;
-        });
-      }
+      annotations = this.getAnnotations();
     }
 
     // subsample data if needed

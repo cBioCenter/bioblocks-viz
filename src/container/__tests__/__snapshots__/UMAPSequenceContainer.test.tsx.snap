@@ -1,0 +1,347 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UMAPSequenceContainer Should handle missing annotation data. 1`] = `
+<Grid
+  centered={true}
+  padded={true}
+>
+  <GridRow>
+    <UMAPVisualization
+      currentLabel="class"
+      dataLabels={
+        Array [
+          undefined,
+        ]
+      }
+      dataMatrix={
+        Array [
+          Array [
+            0,
+            1,
+            2,
+            3,
+            3,
+            2,
+            1,
+            0,
+          ],
+        ]
+      }
+      distanceFn={[Function]}
+      errorMessages={Array []}
+      labelCategory="class"
+      labels={
+        Array [
+          "seq_name",
+          "tax_id",
+          "superkingdom",
+          "phylum",
+          "genus",
+          "class",
+          "subphylum",
+          "family",
+          "order",
+          "species",
+        ]
+      }
+      minDist={0.99}
+      nComponents={2}
+      nNeighbors={15}
+      numIterationsBeforeReRender={1}
+      numSequencesToShow={4000}
+      onLabelChange={[Function]}
+      spread={1}
+      taxonomyText="seq_name,sequence,tax_id,superkingdom,phylum,genus,class,subphylum,family,order,species
+example_sequence,EVA-NERV,59846,Bacteria,Firmicutes,Paenibacillus,Bacilli,Paenibacillaceae,Bacillales,Paenibacillus,chibensis"
+      tooltipNames={
+        Array [
+          "",
+        ]
+      }
+    />
+  </GridRow>
+</Grid>
+`;
+
+exports[`UMAPSequenceContainer Should handle removing the taxonomy data. 1`] = `
+<Grid
+  centered={true}
+  padded={true}
+>
+  <GridRow>
+    <UMAPVisualization
+      currentLabel="class"
+      dataLabels={
+        Array [
+          undefined,
+        ]
+      }
+      dataMatrix={
+        Array [
+          Array [
+            0,
+            1,
+            2,
+            3,
+            3,
+            2,
+            1,
+            0,
+          ],
+        ]
+      }
+      distanceFn={[Function]}
+      errorMessages={Array []}
+      labelCategory="class"
+      labels={
+        Array [
+          "seq_name",
+          "tax_id",
+          "superkingdom",
+          "phylum",
+          "genus",
+          "class",
+          "subphylum",
+          "family",
+          "order",
+          "species",
+        ]
+      }
+      minDist={0.99}
+      nComponents={2}
+      nNeighbors={15}
+      numIterationsBeforeReRender={1}
+      numSequencesToShow={4000}
+      onLabelChange={[Function]}
+      spread={1}
+      tooltipNames={
+        Array [
+          "<unknown name>",
+        ]
+      }
+    />
+  </GridRow>
+</Grid>
+`;
+
+exports[`UMAPSequenceContainer Should handle updating the data. 1`] = `
+<Grid
+  centered={true}
+  padded={true}
+>
+  <GridRow>
+    <UMAPVisualization
+      currentLabel="class"
+      dataLabels={
+        Array [
+          undefined,
+        ]
+      }
+      dataMatrix={
+        Array [
+          Array [
+            0,
+            0,
+            1,
+            1,
+            2,
+            2,
+            3,
+            3,
+          ],
+        ]
+      }
+      distanceFn={[Function]}
+      errorMessages={Array []}
+      labelCategory="class"
+      labels={Array []}
+      minDist={0.99}
+      nComponents={2}
+      nNeighbors={15}
+      numIterationsBeforeReRender={1}
+      numSequencesToShow={4000}
+      onLabelChange={[Function]}
+      spread={1}
+      tooltipNames={
+        Array [
+          "<unknown name>",
+        ]
+      }
+    />
+  </GridRow>
+</Grid>
+`;
+
+exports[`UMAPSequenceContainer Should render an upload form when enabled. 1`] = `
+<Grid
+  centered={true}
+  padded={true}
+>
+  <GridRow>
+    <UMAPVisualization
+      currentLabel="class"
+      dataLabels={
+        Array [
+          undefined,
+        ]
+      }
+      dataMatrix={
+        Array [
+          Array [
+            0,
+            1,
+            2,
+            3,
+            3,
+            2,
+            1,
+            0,
+          ],
+        ]
+      }
+      distanceFn={[Function]}
+      errorMessages={Array []}
+      labelCategory="class"
+      labels={Array []}
+      minDist={0.99}
+      nComponents={2}
+      nNeighbors={15}
+      numIterationsBeforeReRender={1}
+      numSequencesToShow={4000}
+      onLabelChange={[Function]}
+      spread={1}
+      tooltipNames={
+        Array [
+          "<unknown name>",
+        ]
+      }
+    />
+  </GridRow>
+  <GridRow>
+    <Popup
+      content={
+        <React.Fragment>
+          <span>
+            A tab delimited file with 2 columns and optional headers:
+          </span>
+          <br />
+          <span>
+            - First column is sequence name.
+          </span>
+          <br />
+          <span>
+            - Second column is how to group sequences.
+          </span>
+        </React.Fragment>
+      }
+      disabled={false}
+      offset={0}
+      on="hover"
+      pinned={false}
+      position="top left"
+      trigger={
+        <Label
+          as="label"
+          basic={true}
+          htmlFor="upload-taxonomy"
+        >
+          <Button
+            as="button"
+            icon="upload"
+            label={
+              Object {
+                "basic": true,
+                "content": "Upload Taxonomy File",
+              }
+            }
+            labelPosition="right"
+          />
+          <input
+            hidden={true}
+            id="upload-taxonomy"
+            multiple={false}
+            onChange={[Function]}
+            required={true}
+            type="file"
+          />
+        </Label>
+      }
+    />
+  </GridRow>
+</Grid>
+`;
+
+exports[`UMAPSequenceContainer Should render when given a sequence. 1`] = `
+<Grid
+  centered={true}
+  padded={true}
+>
+  <GridRow>
+    <UMAPVisualization
+      currentLabel="class"
+      dataLabels={
+        Array [
+          undefined,
+        ]
+      }
+      dataMatrix={
+        Array [
+          Array [
+            0,
+            1,
+            2,
+            3,
+            3,
+            2,
+            1,
+            0,
+          ],
+        ]
+      }
+      distanceFn={[Function]}
+      errorMessages={Array []}
+      labelCategory="class"
+      labels={Array []}
+      minDist={0.99}
+      nComponents={2}
+      nNeighbors={15}
+      numIterationsBeforeReRender={1}
+      numSequencesToShow={4000}
+      onLabelChange={[Function]}
+      spread={1}
+      tooltipNames={
+        Array [
+          "<unknown name>",
+        ]
+      }
+    />
+  </GridRow>
+</Grid>
+`;
+
+exports[`UMAPSequenceContainer Should render when given an empty sequence. 1`] = `
+<Grid
+  centered={true}
+  padded={true}
+>
+  <GridRow>
+    <UMAPVisualization
+      currentLabel="class"
+      dataLabels={Array []}
+      dataMatrix={Array []}
+      distanceFn={[Function]}
+      errorMessages={Array []}
+      labelCategory="class"
+      labels={Array []}
+      minDist={0.99}
+      nComponents={2}
+      nNeighbors={15}
+      numIterationsBeforeReRender={1}
+      numSequencesToShow={4000}
+      onLabelChange={[Function]}
+      spread={1}
+      tooltipNames={Array []}
+    />
+  </GridRow>
+</Grid>
+`;

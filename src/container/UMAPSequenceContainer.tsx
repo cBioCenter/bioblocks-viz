@@ -29,13 +29,14 @@ export interface IUMAPSequenceContainerProps extends Partial<IUMAPVisualizationP
 export interface IUMAPSequenceContainerState {
   labelCategory: string;
   labels: string[];
+  randomSequencesDataMatrix: number[][];
   seqNameToTaxonomyMetadata: {
     [seqName: string]: {
       [taxonomyCategory: string]: string;
     };
   };
   subsampledSequences: SeqRecord[];
-  randomSequencesDataMatrix: number[][];
+  tooltipNames: string[];
 }
 
 export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContainerProps, IUMAPSequenceContainerState> {
@@ -50,10 +51,11 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
     super(props);
     this.state = {
       labelCategory: '',
-      labels: [],
+      labels: new Array(),
       randomSequencesDataMatrix: new Array(new Array<number>()),
       seqNameToTaxonomyMetadata: {},
       subsampledSequences: new Array(),
+      tooltipNames: new Array(),
     };
   }
 
@@ -70,9 +72,9 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
       prevProps.labelCategory !== labelCategory ||
       prevProps.taxonomyText !== taxonomyText
     ) {
-      let onlyAnnotationChanged = true;
+      let onlyAnnotationChanged = prevProps.allSequences.length === allSequences.length;
       prevProps.allSequences.forEach((seq, index) => {
-        if (seq.sequence.localeCompare(allSequences[index].sequence) !== 0) {
+        if (!allSequences[index] || seq.sequence.localeCompare(allSequences[index].sequence) !== 0) {
           onlyAnnotationChanged = false;
 
           return;
@@ -93,87 +95,48 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
 
   public render() {
     const { allSequences, numIterationsBeforeReRender, showUploadButton, ...rest } = this.props;
-    const {
-      labelCategory,
-      labels,
-      randomSequencesDataMatrix,
-      seqNameToTaxonomyMetadata,
-      subsampledSequences,
-    } = this.state;
-    if (subsampledSequences) {
-      const tooltipNames = subsampledSequences.map(seq => (seq.annotations.name ? seq.annotations.name : ''));
+    const { labelCategory, labels, randomSequencesDataMatrix, tooltipNames } = this.state;
 
-      let dataLabels = new Array<ILabel | undefined>();
-      if (seqNameToTaxonomyMetadata) {
-        const seqStates = subsampledSequences.map(seq => {
-          if (seq.annotations.name && seqNameToTaxonomyMetadata[seq.annotations.name]) {
-            return seqNameToTaxonomyMetadata[seq.annotations.name][labelCategory];
-          }
+    const dataLabels = this.getDataLabels();
 
-          return undefined;
-        });
-
-        dataLabels = Marker.colors.autoColorFromStates(seqStates);
-      }
-
-      return (
-        <Grid centered={true} padded={true}>
-          <Grid.Row>
-            <UMAPVisualization
-              currentLabel={labelCategory}
-              dataLabels={dataLabels}
-              dataMatrix={randomSequencesDataMatrix}
-              distanceFn={this.equalityHammingDistance}
-              errorMessages={[]}
-              labels={labels}
-              numIterationsBeforeReRender={numIterationsBeforeReRender}
-              onLabelChange={this.onLabelChange}
-              tooltipNames={tooltipNames}
-              {...rest}
-            />
-          </Grid.Row>
-          {showUploadButton && <Grid.Row>{this.renderTaxonomyUpload()}</Grid.Row>}
-        </Grid>
-      );
-    }
-
-    return null;
+    return (
+      <Grid centered={true} padded={true}>
+        <Grid.Row>
+          <UMAPVisualization
+            currentLabel={labelCategory}
+            dataLabels={dataLabels}
+            dataMatrix={randomSequencesDataMatrix}
+            // tslint:disable-next-line: jsx-no-lambda
+            distanceFn={(seq1, seq2) => this.equalityHammingDistance(seq1, seq2)}
+            errorMessages={[]}
+            labels={labels}
+            numIterationsBeforeReRender={numIterationsBeforeReRender}
+            onLabelChange={this.onLabelChange}
+            tooltipNames={tooltipNames}
+            {...rest}
+          />
+        </Grid.Row>
+        {showUploadButton && <Grid.Row>{this.renderTaxonomyUpload()}</Grid.Row>}
+      </Grid>
+    );
   }
 
-  protected renderTaxonomyUpload = () => {
-    return (
-      <Popup
-        trigger={
-          <Label as={'label'} basic={true} htmlFor={'upload-taxonomy'}>
-            <Button
-              icon={'upload'}
-              label={{
-                basic: true,
-                content: 'Upload Taxonomy File',
-              }}
-              labelPosition={'right'}
-            />
-            <input
-              hidden={true}
-              id={'upload-taxonomy'}
-              multiple={false}
-              onChange={this.onTaxonomyUpload}
-              required={true}
-              type={'file'}
-            />
-          </Label>
+  protected getDataLabels = () => {
+    const { labelCategory, seqNameToTaxonomyMetadata, subsampledSequences } = this.state;
+    let dataLabels = new Array<ILabel | undefined>();
+    if (seqNameToTaxonomyMetadata) {
+      const seqStates = subsampledSequences.map((seq: SeqRecord) => {
+        if (seq.annotations.name && seqNameToTaxonomyMetadata[seq.annotations.name]) {
+          return seqNameToTaxonomyMetadata[seq.annotations.name][labelCategory];
         }
-        content={
-          <>
-            <span>A tab delimited file with 2 columns and optional headers:</span>
-            <br />
-            <span>- First column is sequence name.</span>
-            <br />
-            <span>- Second column is how to group sequences.</span>
-          </>
-        }
-      />
-    );
+
+        return undefined;
+      });
+
+      dataLabels = Marker.colors.autoColorFromStates(seqStates);
+    }
+
+    return dataLabels;
   };
 
   protected onLabelChange = (event: React.SyntheticEvent, data: DropdownProps) => {
@@ -192,10 +155,45 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
     this.parseTaxonomy(await readFileAsText(file));
   };
 
-  protected onNumSequenceChange = (value: number) => {
-    console.log(`Setting num seqs to ${value}`);
+  protected renderTaxonomyUpload = () => {
+    return (
+      <Popup
+        trigger={this.renderTaxonomyTrigger()}
+        content={
+          <>
+            <span>A tab delimited file with 2 columns and optional headers:</span>
+            <br />
+            <span>- First column is sequence name.</span>
+            <br />
+            <span>- Second column is how to group sequences.</span>
+          </>
+        }
+      />
+    );
   };
 
+  protected renderTaxonomyTrigger = () => {
+    return (
+      <Label as={'label'} basic={true} htmlFor={'upload-taxonomy'}>
+        <Button
+          icon={'upload'}
+          label={{
+            basic: true,
+            content: 'Upload Taxonomy File',
+          }}
+          labelPosition={'right'}
+        />
+        <input
+          hidden={true}
+          id={'upload-taxonomy'}
+          multiple={false}
+          onChange={this.onTaxonomyUpload}
+          required={true}
+          type={'file'}
+        />
+      </Label>
+    );
+  };
   /* testing
   public flipAnnotation() {
     const thisObj = this;
@@ -226,14 +224,13 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
     }
 
     // load sequences
-    console.log(`all ${allSequences.length} fasta sequences:`, allSequences);
+    // console.log(`all ${allSequences.length} fasta sequences:`, allSequences);
 
     // slice reasonable number of sequences if needed
-    let subsampledSequences = this.state ? this.state.subsampledSequences : undefined;
+    let subsampledSequences = this.state.subsampledSequences;
     if (!subsampledSequences || subsampledSequences.length !== numSequencesToShow) {
       subsampledSequences = subsample(this.props.allSequences, numSequencesToShow) as SeqRecord[];
     }
-    console.log(`random ${subsampledSequences.length} fasta sequences:`, subsampledSequences);
 
     this.setState({
       labelCategory,
@@ -241,6 +238,7 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
         return seq.integerRepresentation(['-']);
       }),
       subsampledSequences,
+      tooltipNames: subsampledSequences.map(seq => (seq.annotations.name ? seq.annotations.name : '')),
     });
 
     // temporary for testing - flip the color annotation
@@ -256,7 +254,7 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
           // const labelProperties = this.getClassPhylumLabelDescription(); // todo: auto compute
           this.setState({
             labels: isHeaderPresent
-              ? results.meta.fields.filter(field => field.toLocaleLowerCase() !== 'sequence')
+              ? results.meta.fields.filter((field: string) => field.toLocaleLowerCase() !== 'sequence')
               : [],
             seqNameToTaxonomyMetadata: results.data.reduce<{
               [seqName: string]: {};
@@ -287,7 +285,7 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
    * the distance is one. The total distance is then the sum of each positional distance.
    * @returns the total distance between a pair of sequences.
    */
-  private equalityHammingDistance = (seq1: number[], seq2: number[]) => {
+  private equalityHammingDistance(seq1: number[], seq2: number[]) {
     let result = 0;
     for (let i = 0; i < seq1.length; i++) {
       if (seq1[i] !== seq2[i]) {
@@ -296,7 +294,7 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
     }
 
     return result;
-  };
+  }
 
   private setupSequenceAnnotation = (allSequences: SeqRecord[], labelCategory: string) => {
     this.setState({

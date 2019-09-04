@@ -381,7 +381,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
 
   protected onMeasuredProximityChange = () => (value: number) => {
     this.setState({
-      measuredProximity: Object.values(CONTACT_DISTANCE_PROXIMITY)[value] as CONTACT_DISTANCE_PROXIMITY,
+      measuredProximity: Object.values(CONTACT_DISTANCE_PROXIMITY)[value],
     });
   };
 
