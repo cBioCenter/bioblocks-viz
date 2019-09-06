@@ -5,4 +5,3 @@ export * from './data';
 export * from './helper';
 export * from './reducer';
 export * from './selector';
-export * from './singlepage';

@@ -56,7 +56,7 @@ describe('FetchHelper', () => {
 
       FileReader.prototype.readAsText = function() {
         if (this.onerror) {
-          this.onerror(new ProgressEvent('error'));
+          this.onerror(new ProgressEvent('error') as ProgressEvent<FileReader>);
         }
       };
 

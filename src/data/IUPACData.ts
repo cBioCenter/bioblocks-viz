@@ -4,7 +4,6 @@
  *     https://github.com/biopython/biopython/blob/master/Bio/Data/IUPACData.py
  *     which is under the BSD 3-Clause License with Copyright 2000 Andrew Dalke
  *
- * @author Nicholas Gauthier
  * Note: Currently unimplemented are a few functions and variables:
  *     function '_make_ranges()', which is needed to generate:
  *         - variable 'unambiguous_dna_weight_ranges'

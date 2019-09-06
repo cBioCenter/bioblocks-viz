@@ -38,6 +38,7 @@ exports[`BioblocksRangeSlider Should match existing snapshot when given simple d
       prefixCls="rc-slider"
       pushable={false}
       railStyle={Object {}}
+      reverse={false}
       step={1}
       tabIndex={Array []}
       trackStyle={

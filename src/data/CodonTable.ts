@@ -4,7 +4,6 @@
  *     https://github.com/biopython/biopython/blob/master/Bio/Data/CodonTable.py
  *     which is under the BSD 3-Clause License with Copyright 2000 Andrew Dalke
  *
- * @author Nicholas Gauthier
  * Note: only implemented a very small subset of BioPython functionality.
  */
 

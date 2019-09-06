@@ -331,24 +331,32 @@ export const getSecondaryStructureData = (line: string): ISecondaryStructureData
     });
 };
 
-/*
-TODO Currently not being used by Spring. Remove? Use in future Spring work?
-export const fetchColorData = async (file: string) => {
-  const colorText: string = await fetchCSVFile(file);
-  const dict: { [k: string]: any } = {};
-  colorText.split('\n').forEach((entry, index, array) => {
-    if (entry.length > 0) {
-      const items = entry.split(',');
-      const gene = items[0];
-      const expArray: any[] = [];
-      items.forEach((e, i, a) => {
-        if (i > 0) {
-          expArray.push(parseFloat(e));
-        }
-      });
-      dict[gene] = expArray;
-    }
-  });
-  return dict;
-};
-*/
+/**
+ * Randomly select and return "n" objects or indices (if returnIndices==true) and return
+ * in a new array.
+ *
+ * If "n" is larger than the array, return the array directly or all the indices in the
+ * array (if returnIndices==true).
+ *
+ * No duplicates are returned
+ */
+export function subsample<T, U extends boolean>(
+  arr: T[],
+  n: number,
+  returnIndices: boolean = false,
+): Array<T | number> {
+  const unselectedObjBowl = returnIndices ? arr.map((obj, idx) => idx) : [...arr];
+  if (n >= arr.length) {
+    return unselectedObjBowl;
+  }
+
+  const toReturn = new Array<any>();
+  while (toReturn.length < n) {
+    // tslint:disable-next-line: insecure-random
+    const randomIdx = Math.floor(Math.random() * unselectedObjBowl.length); // btw 0 and length of in sequenceBowl
+    toReturn.push(unselectedObjBowl[randomIdx]);
+    unselectedObjBowl.splice(randomIdx, 1);
+  }
+
+  return toReturn;
+}

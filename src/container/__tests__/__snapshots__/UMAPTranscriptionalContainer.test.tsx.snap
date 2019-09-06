@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UMAPTranscriptionalContainer Should render labels. 1`] = `
+<UMAPVisualization
+  categoricalAnnotations={
+    Object {
+      "banjo": Object {
+        "label_colors": Object {
+          "bear": "brown",
+          "bird": "red",
+        },
+        "label_list": Array [
+          "bear",
+          "bird",
+        ],
+      },
+    }
+  }
+  currentLabel=""
+  dataLabels={
+    Array [
+      Object {
+        "color": "brown",
+        "name": "bear",
+      },
+      Object {
+        "color": "red",
+        "name": "bird",
+      },
+    ]
+  }
+  dataMatrix={
+    Array [
+      Array [
+        1,
+        2,
+        3,
+      ],
+      Array [
+        4,
+        5,
+        6,
+      ],
+    ]
+  }
+  distanceFn={[Function]}
+  errorMessages={Array []}
+  labels={Array []}
+  minDist={0.99}
+  nComponents={2}
+  nNeighbors={15}
+  numIterationsBeforeReRender={1}
+  onLabelChange={[Function]}
+  spread={1}
+  tooltipNames={
+    Array [
+      "bear",
+      "bird",
+    ]
+  }
+/>
+`;
+
+exports[`UMAPTranscriptionalContainer Should render when given an empty data matrix. 1`] = `
+<UMAPVisualization
+  currentLabel=""
+  dataLabels={Array []}
+  dataMatrix={
+    Array [
+      Array [],
+    ]
+  }
+  distanceFn={[Function]}
+  errorMessages={Array []}
+  labels={Array []}
+  minDist={0.99}
+  nComponents={2}
+  nNeighbors={15}
+  numIterationsBeforeReRender={1}
+  onLabelChange={[Function]}
+  spread={1}
+  tooltipNames={Array []}
+/>
+`;

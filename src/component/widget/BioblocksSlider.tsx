@@ -78,6 +78,8 @@ export class BioblocksSlider extends React.Component<BioblocksSliderProps, IBiob
 
   public componentDidUpdate(prevProps: BioblocksSliderProps) {
     const { defaultValue, value } = this.props;
+    console.log(value);
+    console.log(prevProps.value);
     if (value && value !== prevProps.value) {
       this.setState({
         value,
