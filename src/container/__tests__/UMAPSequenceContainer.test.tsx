@@ -64,6 +64,7 @@ example_sequence,EVA-NERV,59846,Bacteria,Firmicutes,Paenibacillus,Bacilli,Paenib
     );
     const instance = wrapper.instance() as UMAPSequenceContainer;
     expect(instance.state.labels).toEqual([]);
+
     await act(async () => {
       wrapper
         .find('input')
