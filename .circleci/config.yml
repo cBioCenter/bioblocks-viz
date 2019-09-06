@@ -2,24 +2,24 @@ version: 2
 
 defaults: &defaults
   docker:
-    - image: 'circleci/node:10'
+    - image: "circleci/node:12"
   working_directory: ~/repo
 
 jobs:
   build:
-    <<: *defaults  
+    <<: *defaults
     steps:
       - checkout
       - restore_cache:
           keys:
             - 'v1-dependencies-{{ checksum "package.json" }}'
             - v1-dependencies-
-      - run: 'yarn install'
-      
-      - run: 'yarn build:prod'
-      - run: 'yarn lint'
+      - run: "yarn install"
+
+      - run: "yarn build:prod"
+      - run: "yarn lint"
       # maxWorkers flag resolves potential timeout issue, via https://vgpena.github.io/jest-circleci/
-      - run: 'yarn test:cover --maxWorkers=2'
+      - run: "yarn test:cover --maxWorkers=2"
       - store_artifacts:
           path: dist/test-results
           destination: test-results
@@ -28,14 +28,14 @@ jobs:
           destination: coverage
       - store_test_results:
           path: dist/test-results
-      - run: 'bash <(curl -s https://codecov.io/bash)'
+      - run: "bash <(curl -s https://codecov.io/bash)"
       - save_cache:
           paths:
             - node_modules
           key: 'v1-dependencies-{{ checksum "package.json" }}'
       - persist_to_workspace:
           root: ~/repo
-          paths: 
+          paths:
             - .
 
   deploy:
