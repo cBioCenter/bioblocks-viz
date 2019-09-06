@@ -72,6 +72,7 @@ example_sequence,EVA-NERV,59846,Bacteria,Firmicutes,Paenibacillus,Bacilli,Paenib
 
     await act(async () => {
       wrapper.update();
+      instance.forceUpdate();
     });
 
     const expected = [
