@@ -9,7 +9,7 @@ const devConfig = {
   devServer: {
     contentBase: './dist',
     hot: true,
-    index: 'example.html',
+    index: 'index.html',
   },
   devtool: 'inline-source-map',
   mode: 'development',
