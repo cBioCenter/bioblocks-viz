@@ -120,8 +120,10 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="umaptranscriptionalcontainer.html#componentwillunmount" class="tsd-kind-icon">component<wbr>Will<wbr>Unmount</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="umaptranscriptionalcontainer.html#componentwillupdate" class="tsd-kind-icon">component<wbr>Will<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="umaptranscriptionalcontainer.html#forceupdate" class="tsd-kind-icon">force<wbr>Update</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="umaptranscriptionalcontainer.html#getannotations" class="tsd-kind-icon">get<wbr>Annotations</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="umaptranscriptionalcontainer.html#geterrormessages" class="tsd-kind-icon">get<wbr>Error<wbr>Messages</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="umaptranscriptionalcontainer.html#getsnapshotbeforeupdate" class="tsd-kind-icon">get<wbr>Snapshot<wbr>Before<wbr>Update</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="umaptranscriptionalcontainer.html#preparedata" class="tsd-kind-icon">prepare<wbr>Data</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="umaptranscriptionalcontainer.html#preparedata" class="tsd-kind-icon">prepare<wbr>Data</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="umaptranscriptionalcontainer.html#render" class="tsd-kind-icon">render</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="umaptranscriptionalcontainer.html#setstate" class="tsd-kind-icon">set<wbr>State</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="umaptranscriptionalcontainer.html#shouldcomponentupdate" class="tsd-kind-icon">should<wbr>Component<wbr>Update</a></li>
@@ -149,7 +151,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/75c6d300b/src/singlepage/UMAPVisualization.tsx#L155">src/singlepage/UMAPVisualization.tsx:155</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/249eb56ca/src/container/UMAPTranscriptionalContainer.tsx#L34">src/container/UMAPTranscriptionalContainer.tsx:34</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -246,7 +248,7 @@ context!: React.ContextType&lt;<span class="hljs-keyword">typeof</span> MyContex
 					<div class="tsd-signature tsd-kind-icon">subsampled<wbr>Indices<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;new Array&lt;number&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/75c6d300b/src/singlepage/UMAPVisualization.tsx#L155">src/singlepage/UMAPVisualization.tsx:155</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/249eb56ca/src/container/UMAPTranscriptionalContainer.tsx#L34">src/container/UMAPTranscriptionalContainer.tsx:34</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -466,7 +468,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Overrides ComponentLifecycle.componentDidMount</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/75c6d300b/src/singlepage/UMAPVisualization.tsx#L165">src/singlepage/UMAPVisualization.tsx:165</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/249eb56ca/src/container/UMAPTranscriptionalContainer.tsx#L44">src/container/UMAPTranscriptionalContainer.tsx:44</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -484,7 +486,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Overrides NewLifecycle.componentDidUpdate</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/75c6d300b/src/singlepage/UMAPVisualization.tsx#L169">src/singlepage/UMAPVisualization.tsx:169</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/249eb56ca/src/container/UMAPTranscriptionalContainer.tsx#L48">src/container/UMAPTranscriptionalContainer.tsx:48</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -682,6 +684,48 @@ class Foo extends React.Component {
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="getannotations" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Annotations</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Annotations<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/249eb56ca/src/container/UMAPTranscriptionalContainer.tsx#L99">src/container/UMAPTranscriptionalContainer.tsx:99</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
+							<ul class="tsd-parameters">
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="geterrormessages" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Error<wbr>Messages</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Error<wbr>Messages<span class="tsd-signature-symbol">(</span>annotationsUnchanged<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/249eb56ca/src/container/UMAPTranscriptionalContainer.tsx#L132">src/container/UMAPTranscriptionalContainer.tsx:132</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>annotationsUnchanged: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="getsnapshotbeforeupdate" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> get<wbr>Snapshot<wbr>Before<wbr>Update</h3>
@@ -721,17 +765,17 @@ class Foo extends React.Component {
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 					<a name="preparedata" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> prepare<wbr>Data</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> prepare<wbr>Data</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 						<li class="tsd-signature tsd-kind-icon">prepare<wbr>Data<span class="tsd-signature-symbol">(</span>annotationsUnchanged<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/75c6d300b/src/singlepage/UMAPVisualization.tsx#L221">src/singlepage/UMAPVisualization.tsx:221</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/249eb56ca/src/container/UMAPTranscriptionalContainer.tsx#L155">src/container/UMAPTranscriptionalContainer.tsx:155</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -755,7 +799,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Overrides Component.render</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/75c6d300b/src/singlepage/UMAPVisualization.tsx#L185">src/singlepage/UMAPVisualization.tsx:185</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/249eb56ca/src/container/UMAPTranscriptionalContainer.tsx#L63">src/container/UMAPTranscriptionalContainer.tsx:63</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
@@ -844,7 +888,7 @@ class Foo extends React.Component {
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/75c6d300b/src/singlepage/UMAPVisualization.tsx#L150">src/singlepage/UMAPVisualization.tsx:150</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/249eb56ca/src/container/UMAPTranscriptionalContainer.tsx#L29">src/container/UMAPTranscriptionalContainer.tsx:29</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -853,7 +897,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">num<wbr>Iterations<wbr>Before<wbr>ReRender<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/75c6d300b/src/singlepage/UMAPVisualization.tsx#L151">src/singlepage/UMAPVisualization.tsx:151</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/249eb56ca/src/container/UMAPTranscriptionalContainer.tsx#L30">src/container/UMAPTranscriptionalContainer.tsx:30</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -863,7 +907,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">num<wbr>Samples<wbr>ToShow<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;4000</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/75c6d300b/src/singlepage/UMAPVisualization.tsx#L152">src/singlepage/UMAPVisualization.tsx:152</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/249eb56ca/src/container/UMAPTranscriptionalContainer.tsx#L31">src/container/UMAPTranscriptionalContainer.tsx:31</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -939,10 +983,16 @@ class Foo extends React.Component {
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="umaptranscriptionalcontainer.html#forceupdate" class="tsd-kind-icon">force<wbr>Update</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="umaptranscriptionalcontainer.html#getannotations" class="tsd-kind-icon">get<wbr>Annotations</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="umaptranscriptionalcontainer.html#geterrormessages" class="tsd-kind-icon">get<wbr>Error<wbr>Messages</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="umaptranscriptionalcontainer.html#getsnapshotbeforeupdate" class="tsd-kind-icon">get<wbr>Snapshot<wbr>Before<wbr>Update</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 								<a href="umaptranscriptionalcontainer.html#preparedata" class="tsd-kind-icon">prepare<wbr>Data</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
