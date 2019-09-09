@@ -14,9 +14,9 @@ const distDir = './dist';
 const releaseDir = `${distDir}/${dirName}`;
 
 mkdirSync(releaseDir);
-copyFileSync(`${distDir}/example.html`, `${releaseDir}/index.html`);
+copyFileSync(`${distDir}/index.html`, `${releaseDir}/index.html`);
 
-const filesToCopy = ['*example*.bundle.js', 'favicon.ico'];
+const filesToCopy = ['*index*.bundle.js', 'favicon.ico'];
 filesToCopy.forEach(file => {
   execSync(`cp ${distDir}/${file} ${releaseDir}/`);
 });

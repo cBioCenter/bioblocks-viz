@@ -24,7 +24,16 @@
     "typeRoots": ["./types", "./node_modules/@types"]
   },
   "exclude": ["node_modules"],
-  "include": ["examples/**/*", "frames/**/*", "src/**/*", "types", "configs/**/*", "test/**/*", "index.ts", "./*.tsx"],
+  "include": [
+    "./*.tsx",
+    "configs/**/*",
+    "docs/example/**/*",
+    "frames/**/*",
+    "index.ts",
+    "src/**/*",
+    "test/**/*",
+    "types"
+  ],
   "typeAcquisition": {
     "enable": false
   }
