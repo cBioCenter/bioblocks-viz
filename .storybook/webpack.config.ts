@@ -12,7 +12,7 @@ module.exports = async ({ config, mode }: { config: webpack.Configuration; mode:
   }, config);
 
   if (config.module && baseConfig.module && baseConfig.module.rules) {
-    const merged: webpack.Configuration = {
+    return {
       ...config,
       module: {
         rules: baseConfig.module.rules,
@@ -30,9 +30,6 @@ module.exports = async ({ config, mode }: { config: webpack.Configuration; mode:
             : {},
       },
     };
-    console.log(merged);
-
-    return merged;
   }
 
   return baseConfig;

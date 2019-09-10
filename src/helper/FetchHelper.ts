@@ -1,3 +1,5 @@
+import { SeqIO, SEQUENCE_FILE_TYPES } from '~bioblocks-viz~/data';
+
 export const fetchCSVFile = async (filename: string) => {
   const response = await fetch(filename);
   if (response.ok) {
@@ -13,6 +15,15 @@ export const fetchJSONFile = async (filename: string) => {
     return response.json();
   } else {
     throw new Error(genErrorMsg('JSON', response));
+  }
+};
+
+export const fetchFastaFile = async (filename: string) => {
+  const response = await fetch(filename);
+  if (response.ok) {
+    return SeqIO.parseFile(await response.text(), SEQUENCE_FILE_TYPES.fasta);
+  } else {
+    throw new Error(`error ${response}`);
   }
 };
 

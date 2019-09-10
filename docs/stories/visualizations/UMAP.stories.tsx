@@ -3,4 +3,8 @@ import * as React from 'react';
 
 import { UMAPSequenceContainer } from '~bioblocks-viz~/container';
 
-storiesOf('UMAPSequenceContainer', module).add('with text', () => <UMAPSequenceContainer allSequences={[]} />);
+const stories = storiesOf('UMAPSequenceContainer', module);
+
+stories.add('Component name', () => <UMAPSequenceContainer allSequences={[]} />, {
+  info: { inline: true },
+});
