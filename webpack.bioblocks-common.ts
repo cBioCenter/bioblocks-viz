@@ -31,17 +31,22 @@ export const generateCommonConfig = (
       },
       {
         test: /\.tsx?$/,
-        use: {
-          loader: 'ts-loader',
-          options: {
-            configFile: path.resolve(
-              __dirname,
-              'configs',
-              argv.mode === 'development' ? 'tsconfig.dev.json' : 'tsconfig.webpack.json',
-            ),
-            context: __dirname,
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              configFile: path.resolve(
+                __dirname,
+                'configs',
+                argv.mode === 'development' ? 'tsconfig.dev.json' : 'tsconfig.webpack.json',
+              ),
+              context: __dirname,
+            },
           },
-        },
+          {
+            loader: 'react-docgen-typescript-loader',
+          },
+        ],
       },
       {
         // Needed for Plotly.js: https://github.com/plotly/plotly.js#building-plotlyjs-with-webpack
