@@ -2,7 +2,7 @@
 
 exports[`ContactMap Snapshots Should match existing snapshot when a single point are hovered. 1`] = `
 <ComponentCard
-  componentName="tSNE - TensorFlow"
+  componentName="Contact Map"
   dockItems={
     Array [
       Object {
@@ -267,7 +267,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
 
 exports[`ContactMap Snapshots Should match existing snapshot when given basic data. 1`] = `
 <ComponentCard
-  componentName="tSNE - TensorFlow"
+  componentName="Contact Map"
   dockItems={
     Array [
       Object {
@@ -524,7 +524,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
 
 exports[`ContactMap Snapshots Should match existing snapshot when given data with a PDB. 1`] = `
 <ComponentCard
-  componentName="tSNE - TensorFlow"
+  componentName="Contact Map"
   dockItems={
     Array [
       Object {
@@ -748,7 +748,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
 
 exports[`ContactMap Snapshots Should match existing snapshot when given data with amino acids. 1`] = `
 <ComponentCard
-  componentName="tSNE - TensorFlow"
+  componentName="Contact Map"
   dockItems={
     Array [
       Object {
@@ -972,7 +972,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
 
 exports[`ContactMap Snapshots Should match existing snapshot when given empty data. 1`] = `
 <ComponentCard
-  componentName="tSNE - TensorFlow"
+  componentName="Contact Map"
   dockItems={
     Array [
       Object {
@@ -1186,7 +1186,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
 
 exports[`ContactMap Snapshots Should match existing snapshot when given no data. 1`] = `
 <ComponentCard
-  componentName="tSNE - TensorFlow"
+  componentName="Contact Map"
   dockItems={
     Array [
       Object {
@@ -1400,7 +1400,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
 
 exports[`ContactMap Snapshots Should match existing snapshot when multiple points are hovered. 1`] = `
 <ComponentCard
-  componentName="tSNE - TensorFlow"
+  componentName="Contact Map"
   dockItems={
     Array [
       Object {
@@ -1665,7 +1665,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
 
 exports[`ContactMap Snapshots Should match existing snapshot when multiple points are selected. 1`] = `
 <ComponentCard
-  componentName="tSNE - TensorFlow"
+  componentName="Contact Map"
   dockItems={
     Array [
       Object {
@@ -2400,7 +2400,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
   width="100%"
 >
   <ComponentCard
-    componentName="tSNE - TensorFlow"
+    componentName="Contact Map"
     dockItems={
       Array [
         Object {
@@ -2568,7 +2568,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           }
         >
           <ComponentMenuBar
-            componentName="tSNE - TensorFlow"
+            componentName="Contact Map"
             height={20}
             iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
             isExpanded={false}
@@ -2753,7 +2753,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                               }
                             }
                           />
-                          tSNE - TensorFlow
+                          Contact Map
                         </div>
                       </MenuItem>
                     </div>
@@ -2773,7 +2773,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                           className="ui secondary menu"
                         >
                           <MenuItem
-                            key="tSNE - TensorFlow-menu-item-0"
+                            key="Contact Map-menu-item-0"
                             onClick={[Function]}
                             style={
                               Object {
@@ -2892,7 +2892,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                             </a>
                           </MenuItem>
                           <MenuItem
-                            key="tSNE - TensorFlow-menu-item-1"
+                            key="Contact Map-menu-item-1"
                             onClick={[Function]}
                             style={
                               Object {
