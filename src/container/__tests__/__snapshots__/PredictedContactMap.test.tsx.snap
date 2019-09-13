@@ -187,7 +187,9 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
         ]
       }
       height="100%"
+      highlightColor="#ff8800"
       isDataLoading={false}
+      observedColor="#0000ff"
       width="100%"
     />
   </div>
@@ -306,7 +308,9 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
         ]
       }
       height="100%"
+      highlightColor="#ff8800"
       isDataLoading={false}
+      observedColor="#0000ff"
       width="100%"
     />
   </div>
@@ -425,6 +429,7 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
         ]
       }
       height="100%"
+      highlightColor="#ff8800"
       isDataLoading={false}
       lockedResiduePairs={
         Object {
@@ -437,6 +442,7 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
           ],
         }
       }
+      observedColor="#0000ff"
       width="100%"
     />
   </div>

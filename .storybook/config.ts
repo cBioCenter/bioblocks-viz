@@ -17,5 +17,9 @@ const infoParameters: InfoOptions = {
 
 addDecorator(withKnobs);
 addDecorator(withInfo(infoParameters));
-
+addParameters({
+  options: {
+    addonPanelInRight: true,
+  },
+});
 configure(loadStories, module);
