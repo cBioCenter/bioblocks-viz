@@ -103,7 +103,7 @@
 					<div class="tsd-signature tsd-kind-icon">all<wbr>Sequences<span class="tsd-signature-symbol">:</span> <a href="../classes/seqrecord.html" class="tsd-signature-type">SeqRecord</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/80903ee2a/src/container/UMAPSequenceContainer.tsx#L25">src/container/UMAPSequenceContainer.tsx:25</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f181d52ba/src/container/UMAPSequenceContainer.tsx#L26">src/container/UMAPSequenceContainer.tsx:26</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -113,7 +113,7 @@
 					<div class="tsd-signature tsd-kind-icon">label<wbr>Category<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/80903ee2a/src/container/UMAPSequenceContainer.tsx#L22">src/container/UMAPSequenceContainer.tsx:22</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f181d52ba/src/container/UMAPSequenceContainer.tsx#L24">src/container/UMAPSequenceContainer.tsx:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -123,7 +123,7 @@
 					<div class="tsd-signature tsd-kind-icon">num<wbr>Iterations<wbr>Before<wbr>ReRender<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/80903ee2a/src/container/UMAPSequenceContainer.tsx#L12">src/container/UMAPSequenceContainer.tsx:12</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f181d52ba/src/container/UMAPSequenceContainer.tsx#L12">src/container/UMAPSequenceContainer.tsx:12</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -133,9 +133,14 @@
 					<div class="tsd-signature tsd-kind-icon">num<wbr>Sequences<wbr>ToShow<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/80903ee2a/src/container/UMAPSequenceContainer.tsx#L11">src/container/UMAPSequenceContainer.tsx:11</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f181d52ba/src/container/UMAPSequenceContainer.tsx#L11">src/container/UMAPSequenceContainer.tsx:11</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>if the number of data points are too large, the container will randomly subsample points</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="showuploadbutton" class="tsd-anchor"></a>
@@ -143,7 +148,7 @@
 					<div class="tsd-signature tsd-kind-icon">show<wbr>Upload<wbr>Button<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/80903ee2a/src/container/UMAPSequenceContainer.tsx#L26">src/container/UMAPSequenceContainer.tsx:26</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f181d52ba/src/container/UMAPSequenceContainer.tsx#L27">src/container/UMAPSequenceContainer.tsx:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -153,9 +158,20 @@
 					<div class="tsd-signature tsd-kind-icon">taxonomy<wbr>Text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/80903ee2a/src/container/UMAPSequenceContainer.tsx#L20">src/container/UMAPSequenceContainer.tsx:20</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/f181d52ba/src/container/UMAPSequenceContainer.tsx#L22">src/container/UMAPSequenceContainer.tsx:22</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Text from taxonomy file - only valid when umap is showing sequences:</p>
+							<ol>
+								<li>tab delimited with each row being a sequence</li>
+								<li>first row is a header with column names</li>
+								<li>must contain columns &#39;seq_name&#39;: values matched to fasta sequence names<pre><code>                 <span class="hljs-string">'phylum'</span>: <span class="hljs-keyword">the</span> phylum <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> organism <span class="hljs-keyword">the</span> sequence originated <span class="hljs-built_in">from</span>
+                 <span class="hljs-string">'class'</span>: <span class="hljs-keyword">the</span> class <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> organism <span class="hljs-keyword">the</span> sequence originated <span class="hljs-built_in">from</span></code></pre></li>
+							</ol>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
