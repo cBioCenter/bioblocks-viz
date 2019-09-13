@@ -34,7 +34,7 @@
     "src/**/*",
     "test/**/*",
     "types",
-    ".storybook"
+    ".storybook/**/*"
   ],
   "typeAcquisition": {
     "enable": false

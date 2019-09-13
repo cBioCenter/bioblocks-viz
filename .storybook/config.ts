@@ -2,8 +2,10 @@ import { Options as InfoOptions, withInfo } from '@storybook/addon-info';
 import { withKnobs } from '@storybook/addon-knobs';
 import { addDecorator, addParameters, configure } from '@storybook/react';
 
-// tslint:disable-next-line:no-import-side-effect no-relative-imports
+// tslint:disable:no-import-side-effect no-relative-imports
 import '../assets/semantic.flat.min.css';
+import { withProvider } from './decorators';
+// tslint:enable:no-import-side-effect no-relative-imports
 
 function loadStories() {
   const req = require.context('../docs/stories', true, /\.tsx$/);
@@ -17,9 +19,10 @@ const infoParameters: InfoOptions = {
 
 addDecorator(withKnobs);
 addDecorator(withInfo(infoParameters));
+addDecorator(withProvider);
 addParameters({
   options: {
-    addonPanelInRight: true,
+    panelPosition: 'right',
   },
 });
 configure(loadStories, module);
