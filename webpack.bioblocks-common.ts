@@ -16,7 +16,6 @@ export const generateCommonConfig = (
 ): webpack.Configuration => ({
   entry: {
     bioblocks: './frames/BBFrame.tsx',
-    example: './docs/example/index.tsx',
   },
   module: {
     rules: [
