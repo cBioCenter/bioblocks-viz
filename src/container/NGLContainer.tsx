@@ -7,7 +7,6 @@ import { Checkbox, CheckboxProps, Grid, Header, Popup, Table } from 'semantic-ui
 import { createContainerActions } from '~bioblocks-viz~/action';
 import { createResiduePairActions } from '~bioblocks-viz~/action/ResiduePairAction';
 import { NGLComponent } from '~bioblocks-viz~/component';
-import { BioblocksVisualization } from '~bioblocks-viz~/container';
 import {
   BIOBLOCKS_CSS_STYLE,
   BioblocksPDB,
@@ -48,7 +47,7 @@ export interface INGLContainerState {
   selectedPredictedProteins: string[];
 }
 
-export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps, INGLContainerState> {
+export class NGLContainerClass extends React.Component<INGLContainerProps, INGLContainerState> {
   public static defaultProps = {
     dispatchNglFetch: EMPTY_FUNCTION,
     experimentalProteins: [],
@@ -66,6 +65,7 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
       selectedExperimentalProteins: [],
       selectedPredictedProteins: [],
     };
+    this.setupDataServices();
   }
 
   public componentDidMount() {

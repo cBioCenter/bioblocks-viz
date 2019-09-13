@@ -68,9 +68,15 @@ exports[`ComponentMenuBar Should handle an unknown menu item. 1`] = `
             closeOnTriggerClick={true}
             closeOnTriggerMouseLeave={false}
             disabled={false}
+            eventsEnabled={true}
             hoverable={false}
             offset={0}
-            on="hover"
+            on={
+              Array [
+                "click",
+                "hover",
+              ]
+            }
             openOnTriggerClick={true}
             openOnTriggerFocus={false}
             openOnTriggerMouseEnter={false}
@@ -393,9 +399,15 @@ exports[`ComponentMenuBar Should render a Button Group menu item. 1`] = `
             closeOnTriggerClick={true}
             closeOnTriggerMouseLeave={false}
             disabled={false}
+            eventsEnabled={true}
             hoverable={false}
             offset={0}
-            on="hover"
+            on={
+              Array [
+                "click",
+                "hover",
+              ]
+            }
             openOnTriggerClick={true}
             openOnTriggerFocus={false}
             openOnTriggerMouseEnter={false}
@@ -597,9 +609,15 @@ exports[`ComponentMenuBar Should render a Button menu item with an icon. 1`] = `
             closeOnTriggerClick={true}
             closeOnTriggerMouseLeave={false}
             disabled={false}
+            eventsEnabled={true}
             hoverable={false}
             offset={0}
-            on="hover"
+            on={
+              Array [
+                "click",
+                "hover",
+              ]
+            }
             openOnTriggerClick={true}
             openOnTriggerFocus={false}
             openOnTriggerMouseEnter={false}
@@ -768,9 +786,15 @@ exports[`ComponentMenuBar Should render a Button menu item. 1`] = `
             closeOnTriggerClick={true}
             closeOnTriggerMouseLeave={false}
             disabled={false}
+            eventsEnabled={true}
             hoverable={false}
             offset={0}
-            on="hover"
+            on={
+              Array [
+                "click",
+                "hover",
+              ]
+            }
             openOnTriggerClick={true}
             openOnTriggerFocus={false}
             openOnTriggerMouseEnter={false}
@@ -935,9 +959,15 @@ exports[`ComponentMenuBar Should render a Checkbox menu item. 1`] = `
             closeOnTriggerClick={true}
             closeOnTriggerMouseLeave={false}
             disabled={false}
+            eventsEnabled={true}
             hoverable={false}
             offset={0}
-            on="hover"
+            on={
+              Array [
+                "click",
+                "hover",
+              ]
+            }
             openOnTriggerClick={true}
             openOnTriggerFocus={false}
             openOnTriggerMouseEnter={false}
@@ -1100,9 +1130,15 @@ exports[`ComponentMenuBar Should render a Label menu item. 1`] = `
             closeOnTriggerClick={true}
             closeOnTriggerMouseLeave={false}
             disabled={false}
+            eventsEnabled={true}
             hoverable={false}
             offset={0}
-            on="hover"
+            on={
+              Array [
+                "click",
+                "hover",
+              ]
+            }
             openOnTriggerClick={true}
             openOnTriggerFocus={false}
             openOnTriggerMouseEnter={false}
@@ -1266,9 +1302,15 @@ exports[`ComponentMenuBar Should render a Radio menu item. 1`] = `
             closeOnTriggerClick={true}
             closeOnTriggerMouseLeave={false}
             disabled={false}
+            eventsEnabled={true}
             hoverable={false}
             offset={0}
-            on="hover"
+            on={
+              Array [
+                "click",
+                "hover",
+              ]
+            }
             openOnTriggerClick={true}
             openOnTriggerFocus={false}
             openOnTriggerMouseEnter={false}
@@ -1439,9 +1481,15 @@ exports[`ComponentMenuBar Should render a Range Slider menu item. 1`] = `
             closeOnTriggerClick={true}
             closeOnTriggerMouseLeave={false}
             disabled={false}
+            eventsEnabled={true}
             hoverable={false}
             offset={0}
-            on="hover"
+            on={
+              Array [
+                "click",
+                "hover",
+              ]
+            }
             openOnTriggerClick={true}
             openOnTriggerFocus={false}
             openOnTriggerMouseEnter={false}
@@ -1622,9 +1670,15 @@ exports[`ComponentMenuBar Should render a Slider menu item. 1`] = `
             closeOnTriggerClick={true}
             closeOnTriggerMouseLeave={false}
             disabled={false}
+            eventsEnabled={true}
             hoverable={false}
             offset={0}
-            on="hover"
+            on={
+              Array [
+                "click",
+                "hover",
+              ]
+            }
             openOnTriggerClick={true}
             openOnTriggerFocus={false}
             openOnTriggerMouseEnter={false}
@@ -1795,9 +1849,15 @@ exports[`ComponentMenuBar Should render popup menu items. 1`] = `
             closeOnTriggerClick={true}
             closeOnTriggerMouseLeave={false}
             disabled={false}
+            eventsEnabled={true}
             hoverable={false}
             offset={0}
-            on="hover"
+            on={
+              Array [
+                "click",
+                "hover",
+              ]
+            }
             openOnTriggerClick={true}
             openOnTriggerFocus={false}
             openOnTriggerMouseEnter={false}

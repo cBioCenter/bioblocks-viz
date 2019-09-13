@@ -28,11 +28,13 @@
     "./*.tsx",
     "configs/**/*",
     "docs/example/**/*",
+    "docs/stories/**/*",
     "frames/**/*",
     "index.ts",
     "src/**/*",
     "test/**/*",
-    "types"
+    "types",
+    ".storybook/**/*"
   ],
   "typeAcquisition": {
     "enable": false

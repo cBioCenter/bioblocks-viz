@@ -4,15 +4,17 @@ import { Provider } from 'react-redux';
 import { ContactMap, generateChartDataEntry, IContactMapChartData } from '~bioblocks-viz~/component';
 import {
   BIOBLOCKS_CSS_STYLE,
+  BioblocksPDB,
   BioblocksWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
   CouplingContainer,
   IContactMapData,
   ICouplingScoreFilter,
   SECONDARY_STRUCTURE,
+  SECONDARY_STRUCTURE_SECTION,
 } from '~bioblocks-viz~/data';
 import { generateCouplingScoreHoverText } from '~bioblocks-viz~/helper';
-import { BBStore } from '~bioblocks-viz~/reducer';
+import { BBStore, createContainerReducer, createResiduePairReducer } from '~bioblocks-viz~/reducer';
 
 export interface IPredictedContactMapProps {
   agreementColor: string;
@@ -20,7 +22,9 @@ export interface IPredictedContactMapProps {
   data: IContactMapData;
   filters: ICouplingScoreFilter[];
   height: number | string;
+  highlightColor: string;
   isDataLoading: boolean;
+  observedColor: string;
   style?: BIOBLOCKS_CSS_STYLE;
   width: number | string;
 }
@@ -46,7 +50,9 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     },
     filters: [],
     height: '100%',
+    highlightColor: '#ff8800',
     isDataLoading: false,
+    observedColor: '#0000ff',
     width: '100%',
   };
 
@@ -54,17 +60,26 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
 
   constructor(props: IPredictedContactMapProps) {
     super(props);
+    this.setupDataServices();
   }
 
+  public setupDataServices() {
+    createContainerReducer<SECONDARY_STRUCTURE_SECTION>('secondaryStructure/hovered');
+    createContainerReducer<SECONDARY_STRUCTURE_SECTION>('secondaryStructure/selected');
+    createContainerReducer<BioblocksPDB[]>('pdb');
+    createResiduePairReducer();
+  }
   public componentDidMount() {
     this.setupData(true);
   }
 
   public componentDidUpdate(prevProps: IPredictedContactMapProps, prevState: PredictedContactMapState) {
-    const { data } = this.props;
+    const { agreementColor, allColor, data } = this.props;
     const { linearDistFilter, minimumProbability, minimumScore, numPredictionsToShow, rankFilter } = this.state;
 
     const isRecomputeNeeded =
+      agreementColor !== prevProps.agreementColor ||
+      allColor !== prevProps.allColor ||
       data.couplingScores !== prevProps.data.couplingScores ||
       linearDistFilter !== prevState.linearDistFilter ||
       minimumProbability !== prevState.minimumProbability ||
