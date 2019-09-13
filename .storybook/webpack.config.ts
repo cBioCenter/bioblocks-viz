@@ -1,3 +1,4 @@
+import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import * as path from 'path';
 import * as webpack from 'webpack';
@@ -11,6 +12,10 @@ module.exports = async ({ config, mode }: { config: webpack.Configuration; mode:
   const baseConfig: webpack.Configuration = generateCommonConfig((err: any, stats: any) => {
     return;
   }, config);
+
+  const plugins = baseConfig.plugins
+    ? baseConfig.plugins.filter(plugin => plugin instanceof HtmlWebpackPlugin === false)
+    : [new MiniCssExtractPlugin()];
 
   if (config.module && baseConfig.module && baseConfig.module.rules) {
     return {
@@ -58,7 +63,7 @@ module.exports = async ({ config, mode }: { config: webpack.Configuration; mode:
           },
         ],
       },
-      plugins: [...config.plugins, new MiniCssExtractPlugin()],
+      plugins: [...config.plugins, ...plugins],
       resolve: {
         ...config.resolve,
         ...baseConfig.resolve,

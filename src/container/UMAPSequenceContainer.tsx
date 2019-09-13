@@ -7,21 +7,22 @@ import { ILabel, Marker, SeqRecord } from '~bioblocks-viz~/data';
 import { readFileAsText, subsample } from '~bioblocks-viz~/helper';
 
 export interface IUMAPSequenceContainerProps extends Partial<IUMAPVisualizationProps> {
-  // if the number of data points are too large, the container will randomly subsample points
+  /** if the number of data points are too large, the container will randomly subsample points */
   numSequencesToShow: number;
   numIterationsBeforeReRender: number;
 
-  // Text from taxonomy file - only valid when umap is showing sequences:
-  //   1. tab delimited with each row being a sequence
-  //   2. first row is a header with column names
-  //   3. must contain columns 'seq_name': values matched to fasta sequence names
-  //                           'phylum': the phylum of the organism the sequence originated from
-  //                           'class': the class of the organism the sequence originated from
+  /**
+   * Text from taxonomy file - only valid when umap is showing sequences:
+   * 1. tab delimited with each row being a sequence
+   * 2. first row is a header with column names
+   * 3. must contain columns 'seq_name': values matched to fasta sequence names
+   *                         'phylum': the phylum of the organism the sequence originated from
+   *                         'class': the class of the organism the sequence originated from
+   */
   taxonomyText?: string;
 
   labelCategory: string;
 
-  // the sequences to display (will be subsampled)
   allSequences: SeqRecord[];
   showUploadButton: boolean;
 }

@@ -1,15 +1,10 @@
 import { mount, shallow } from 'enzyme';
-// tslint:disable-next-line:import-name
-import Slider from 'rc-slider';
 import * as React from 'react';
-import { act } from 'react-test-renderer';
-import { Button, Icon, Menu, Radio } from 'semantic-ui-react';
+import { Icon, Radio } from 'semantic-ui-react';
 
 import { UMAPVisualization } from '~bioblocks-viz~/component';
-import { Seq, SeqRecord } from '~bioblocks-viz~/data';
 
-// tslint:disable-next-line
-describe.only('UMAPVisualization', () => {
+describe('UMAPVisualization', () => {
   let dataMatrix: number[][] = [[]];
 
   beforeEach(() => {

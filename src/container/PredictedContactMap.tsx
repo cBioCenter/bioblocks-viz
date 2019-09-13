@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 
 import { ContactMap, generateChartDataEntry, IContactMapChartData } from '~bioblocks-viz~/component';
-import { BioblocksVisualization } from '~bioblocks-viz~/container';
 import {
   BIOBLOCKS_CSS_STYLE,
   BioblocksPDB,
@@ -41,7 +40,7 @@ export const initialPredictedContactMapState = {
 
 export type PredictedContactMapState = typeof initialPredictedContactMapState;
 
-export class PredictedContactMap extends BioblocksVisualization<IPredictedContactMapProps, PredictedContactMapState> {
+export class PredictedContactMap extends React.Component<IPredictedContactMapProps, PredictedContactMapState> {
   public static defaultProps = {
     agreementColor: '#ff0000',
     allColor: '#000000',
@@ -61,6 +60,7 @@ export class PredictedContactMap extends BioblocksVisualization<IPredictedContac
 
   constructor(props: IPredictedContactMapProps) {
     super(props);
+    this.setupDataServices();
   }
 
   public setupDataServices() {
