@@ -874,9 +874,15 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                                 closeOnTriggerClick={true}
                                                 closeOnTriggerMouseLeave={false}
                                                 disabled={true}
+                                                eventsEnabled={true}
                                                 hoverable={false}
                                                 offset={0}
-                                                on="hover"
+                                                on={
+                                                  Array [
+                                                    "click",
+                                                    "hover",
+                                                  ]
+                                                }
                                                 openOnTriggerClick={true}
                                                 openOnTriggerFocus={false}
                                                 openOnTriggerMouseEnter={false}
@@ -943,9 +949,15 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                                 closeOnTriggerClick={true}
                                                 closeOnTriggerMouseLeave={false}
                                                 disabled={false}
+                                                eventsEnabled={true}
                                                 hoverable={false}
                                                 offset={0}
-                                                on="hover"
+                                                on={
+                                                  Array [
+                                                    "click",
+                                                    "hover",
+                                                  ]
+                                                }
                                                 openOnTriggerClick={true}
                                                 openOnTriggerFocus={false}
                                                 openOnTriggerMouseEnter={false}

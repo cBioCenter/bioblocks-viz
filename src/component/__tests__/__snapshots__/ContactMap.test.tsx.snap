@@ -2795,9 +2795,15 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                 closeOnTriggerClick={true}
                                 closeOnTriggerMouseLeave={false}
                                 disabled={false}
+                                eventsEnabled={true}
                                 hoverable={false}
                                 offset={0}
-                                on="hover"
+                                on={
+                                  Array [
+                                    "click",
+                                    "hover",
+                                  ]
+                                }
                                 openOnTriggerClick={true}
                                 openOnTriggerFocus={false}
                                 openOnTriggerMouseEnter={false}
@@ -2914,9 +2920,15 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                                 closeOnTriggerClick={true}
                                 closeOnTriggerMouseLeave={false}
                                 disabled={false}
+                                eventsEnabled={true}
                                 hoverable={false}
                                 offset={0}
-                                on="hover"
+                                on={
+                                  Array [
+                                    "click",
+                                    "hover",
+                                  ]
+                                }
                                 openOnTriggerClick={true}
                                 openOnTriggerFocus={false}
                                 openOnTriggerMouseEnter={false}

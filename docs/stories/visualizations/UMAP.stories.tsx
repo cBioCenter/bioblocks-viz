@@ -1,11 +1,11 @@
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 
-import { object } from '@storybook/addon-knobs';
+import { boolean, object } from '@storybook/addon-knobs';
 import { UMAPSequenceContainer } from '~bioblocks-viz~/container';
 import { Seq, SeqRecord } from '~bioblocks-viz~/data';
 
-const stories = storiesOf('UMAPSequenceContainer', module);
+const stories = storiesOf('visualizations/UMAPSequenceContainer', module);
 
 // Taken from first 16 rows of datasets/betalactamase_alignment/PSE1_NATURAL_TAXONOMY.csv
 const sequences = [
@@ -27,6 +27,15 @@ const sequences = [
   new SeqRecord(new Seq('EAEDKG')),
 ];
 
-stories.add('Component name', () => <UMAPSequenceContainer allSequences={object('Sequences', sequences)} />, {
-  info: { inline: true },
-});
+stories.add(
+  'Sequence Data',
+  () => (
+    <UMAPSequenceContainer
+      showUploadButton={boolean('Show Upload Button', false)}
+      allSequences={object('Sequences', sequences)}
+    />
+  ),
+  {
+    info: { inline: true },
+  },
+);
