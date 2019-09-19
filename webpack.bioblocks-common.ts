@@ -20,6 +20,7 @@ export const generateCommonConfig = (
   module: {
     rules: [
       {
+        include: [path.resolve(__dirname, 'assets'), path.resolve(__dirname, 'node_modules/rc-slider')],
         test: /\.css$/,
         use: [
           {
@@ -48,12 +49,14 @@ export const generateCommonConfig = (
         ],
       },
       {
+        include: [path.resolve(__dirname, 'node_modules/plotly.js')],
         // Needed for Plotly.js: https://github.com/plotly/plotly.js#building-plotlyjs-with-webpack
         loader: 'ify-loader',
         test: /\.js$/,
       },
       {
-        test: /\.(jpe?g|png|gif)$/i,
+        include: [path.resolve(__dirname, 'assets')],
+        test: /\.(woff(2)?|ttf|png|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
             loader: 'file-loader',
@@ -81,8 +84,9 @@ export const generateCommonConfig = (
         ],
       },
       {
+        // We handle anatomogram assets differently because anatomogram component expects exact sizes.
         include: [path.resolve(__dirname, 'node_modules/anatomogram')],
-        test: /\.(svg)$/i,
+        test: /\.(woff(2)?|ttf|png|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
             loader: 'file-loader',
@@ -109,18 +113,30 @@ export const generateCommonConfig = (
           test: /[\\/]node_modules[\\/]/,
         },
       },
-      chunks: chunk => chunk.name !== 'bioblocks',
+      chunks: 'all',
       maxAsyncRequests: 5,
       maxInitialRequests: 3,
-      maxSize: 0,
+      maxSize: 3000000, // 3MB
       minChunks: 1,
-      minSize: 30000,
+      minSize: 30000, // 30KB
       name: true,
     },
   },
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
+  },
+  performance: {
+    assetFilter: (assetFilename: string) => {
+      const allowedLargeAssetExtensions = ['png', 'svg'];
+      for (const ext of allowedLargeAssetExtensions) {
+        if (assetFilename.endsWith(ext)) {
+          return false;
+        }
+      }
+
+      return true;
+    },
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -162,7 +178,10 @@ export const generateCommonConfig = (
         toType: 'dir',
       },
     ]),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      chunkFilename: '[id].css',
+      filename: '[name].css',
+    }),
     new webpack.NamedModulesPlugin(),
   ],
   resolve: {

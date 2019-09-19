@@ -1,6 +1,11 @@
 # [Bioblocks Visualization Library](https://cbiocenter.github.io/bioblocks-viz/)
 
-[![npm version](https://badge.fury.io/js/bioblocks-viz.svg)](https://badge.fury.io/js/bioblocks-viz)[![CircleCI](https://circleci.com/gh/cBioCenter/bioblocks-viz.svg?style=shield)](https://circleci.com/gh/cBioCenter/bioblocks-viz)[![GitHub license](https://img.shields.io/github/license/cBioCenter/bioblocks-viz.svg?style=flat)](https://github.com/cBioCenter/bioblocks-viz/blob/master/LICENSE)[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)[![Coverage Status](https://img.shields.io/codecov/c/github/cBioCenter/bioblocks-viz/master.svg)](https://codecov.io/gh/cBioCenter/bioblocks-viz/branch/master)
+[![npm version](https://badge.fury.io/js/bioblocks-viz.svg)](https://badge.fury.io/js/bioblocks-viz)
+[![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://cbiocenter.github.io/bioblocks-viz/storybook)
+[![CircleCI](https://circleci.com/gh/cBioCenter/bioblocks-viz.svg?style=shield)](https://circleci.com/gh/cBioCenter/bioblocks-viz)
+[![GitHub license](https://img.shields.io/github/license/cBioCenter/bioblocks-viz.svg?style=flat)](https://github.com/cBioCenter/bioblocks-viz/blob/master/LICENSE)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)
+[![Coverage Status](https://img.shields.io/codecov/c/github/cBioCenter/bioblocks-viz/master.svg)](https://codecov.io/gh/cBioCenter/bioblocks-viz/branch/master)
 
 ## Intro
 

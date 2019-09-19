@@ -22,7 +22,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
   frameWidth={0}
   headerHeight={20}
   height="525px"
-  iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+  iconSrc="assets/icons/bio-blocks-icon.svg"
   isDataReady={true}
   isFramedComponent={false}
   isFullPage={false}
@@ -144,7 +144,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
     contactData={
       Array [
         Object {
-          "hoverinfo": "text",
+          "hoverinfo": "skip",
           "marker": Object {
             "colorscale": Array [
               Array [
@@ -287,7 +287,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
   frameWidth={0}
   headerHeight={20}
   height="525px"
-  iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+  iconSrc="assets/icons/bio-blocks-icon.svg"
   isDataReady={true}
   isFramedComponent={false}
   isFullPage={false}
@@ -409,7 +409,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
     contactData={
       Array [
         Object {
-          "hoverinfo": "text",
+          "hoverinfo": "skip",
           "marker": Object {
             "colorscale": Array [
               Array [
@@ -544,7 +544,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
   frameWidth={0}
   headerHeight={20}
   height="525px"
-  iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+  iconSrc="assets/icons/bio-blocks-icon.svg"
   isDataReady={true}
   isFramedComponent={false}
   isFullPage={false}
@@ -666,7 +666,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
     contactData={
       Array [
         Object {
-          "hoverinfo": "text",
+          "hoverinfo": "skip",
           "marker": Object {
             "colorscale": Array [
               Array [
@@ -768,7 +768,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
   frameWidth={0}
   headerHeight={20}
   height="525px"
-  iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+  iconSrc="assets/icons/bio-blocks-icon.svg"
   isDataReady={true}
   isFramedComponent={false}
   isFullPage={false}
@@ -890,7 +890,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
     contactData={
       Array [
         Object {
-          "hoverinfo": "text",
+          "hoverinfo": "skip",
           "marker": Object {
             "colorscale": Array [
               Array [
@@ -992,7 +992,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
   frameWidth={0}
   headerHeight={20}
   height="525px"
-  iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+  iconSrc="assets/icons/bio-blocks-icon.svg"
   isDataReady={false}
   isFramedComponent={false}
   isFullPage={false}
@@ -1114,7 +1114,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
     contactData={
       Array [
         Object {
-          "hoverinfo": "text",
+          "hoverinfo": "skip",
           "marker": Object {
             "colorscale": Array [
               Array [
@@ -1206,7 +1206,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
   frameWidth={0}
   headerHeight={20}
   height="525px"
-  iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+  iconSrc="assets/icons/bio-blocks-icon.svg"
   isDataReady={false}
   isFramedComponent={false}
   isFullPage={false}
@@ -1328,7 +1328,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
     contactData={
       Array [
         Object {
-          "hoverinfo": "text",
+          "hoverinfo": "skip",
           "marker": Object {
             "colorscale": Array [
               Array [
@@ -1420,7 +1420,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
   frameWidth={0}
   headerHeight={20}
   height="525px"
-  iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+  iconSrc="assets/icons/bio-blocks-icon.svg"
   isDataReady={true}
   isFramedComponent={false}
   isFullPage={false}
@@ -1542,7 +1542,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
     contactData={
       Array [
         Object {
-          "hoverinfo": "text",
+          "hoverinfo": "skip",
           "marker": Object {
             "colorscale": Array [
               Array [
@@ -1685,7 +1685,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
   frameWidth={0}
   headerHeight={20}
   height="525px"
-  iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+  iconSrc="assets/icons/bio-blocks-icon.svg"
   isDataReady={true}
   isFramedComponent={false}
   isFullPage={false}
@@ -1807,7 +1807,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
     contactData={
       Array [
         Object {
-          "hoverinfo": "text",
+          "hoverinfo": "skip",
           "marker": Object {
             "colorscale": Array [
               Array [
@@ -2420,7 +2420,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
     frameWidth={0}
     headerHeight={20}
     height="525px"
-    iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+    iconSrc="assets/icons/bio-blocks-icon.svg"
     isDataReady={true}
     isFramedComponent={false}
     isFullPage={false}
@@ -2570,7 +2570,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
           <ComponentMenuBar
             componentName="Contact Map"
             height={20}
-            iconSrc="https://bioblocks.org/media/5d3f528028d9720a3428e4b2"
+            iconSrc="assets/icons/bio-blocks-icon.svg"
             isExpanded={false}
             menuItems={
               Array [
@@ -3084,7 +3084,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             contactData={
               Array [
                 Object {
-                  "hoverinfo": "text",
+                  "hoverinfo": "skip",
                   "marker": Object {
                     "colorscale": Array [
                       Array [
@@ -3200,7 +3200,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               data={
                 Array [
                   Object {
-                    "hoverinfo": "text",
+                    "hoverinfo": "skip",
                     "marker": Object {
                       "color": Array [
                         "2.4",

@@ -1,4 +1,3 @@
-import { Options as InfoOptions, withInfo } from '@storybook/addon-info';
 import { withKnobs } from '@storybook/addon-knobs';
 import { addDecorator, addParameters, configure } from '@storybook/react';
 
@@ -12,13 +11,8 @@ function loadStories() {
   req.keys().forEach(req);
 }
 
-const infoParameters: InfoOptions = {
-  header: false,
-  inline: true,
-};
-
 addDecorator(withKnobs);
-addDecorator(withInfo(infoParameters));
+// addDecorator(withInfo(infoParameters));
 addDecorator(withProvider);
 addParameters({
   options: {

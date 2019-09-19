@@ -456,6 +456,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
         4,
         observedContactPoints,
         {
+          hoverinfo: 'skip',
           text: observedContactPoints.map(generateCouplingScoreHoverText),
         },
       ),
