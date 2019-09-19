@@ -186,10 +186,10 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
 
     return new Array<ICouplingScoreFilter>(
       {
-        filterFn: score => (score.probability ? score.probability >= minimumProbability : true),
+        filterFn: score => (score.probability !== undefined ? score.probability >= minimumProbability : true),
       },
       {
-        filterFn: score => (score.score ? score.score >= minimumScore : true),
+        filterFn: score => (score.score !== undefined ? score.score >= minimumScore : true),
       },
       {
         filterFn: score => Math.abs(score.i - score.j) >= linearDistFilter,
@@ -224,7 +224,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
         generateChartDataEntry(
           'text',
           allColor,
-          'Experimental Contact',
+          'Inferred Contact',
           `(N=${numPredictionsToShow}, L=${chainLength})`,
           4,
           allPredictions.predicted,
@@ -235,7 +235,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
         generateChartDataEntry(
           'text',
           agreementColor,
-          'Inferred Contact Agrees with Experimental Contact',
+          'Inferred Contact Agrees with PDB Contact',
           `(N=${allPredictions.correct.length}, ${correctPredictionPercent}%)`,
           6,
           allPredictions.correct,

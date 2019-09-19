@@ -24,48 +24,8 @@ module.exports = async ({ config: storybookConfig, mode }: { config: webpack.Con
       )
     : [new MiniCssExtractPlugin()];
   if (storybookConfig.module && storybookConfig.plugins && bioblocksConfig.module && bioblocksConfig.module.rules) {
-    storybookConfig.module.rules = [
-      ...bioblocksConfig.module.rules,
-      {
-        include: path.resolve(__dirname, 'assets'),
-        loaders: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-        ],
-        test: /\.css?$/,
-      },
-      {
-        include: path.resolve(__dirname, '../assets'),
-        test: /\.(woff(2)?|ttf|png|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-            },
-          },
-          {
-            loader: `image-webpack-loader`,
-            options: {
-              query: {
-                bypassOnDebug: true,
-                gifsicle: {
-                  interlaced: true,
-                },
-                mozjpeg: {
-                  progressive: true,
-                },
-                optipng: {
-                  optimizationLevel: 7,
-                },
-              },
-            },
-          },
-        ],
-      },
-    ];
-    // storybookConfig.optimization = bioblocksConfig.optimization;
+    storybookConfig.module.rules = [...bioblocksConfig.module.rules];
+    storybookConfig.optimization = bioblocksConfig.optimization;
     storybookConfig.plugins.push(new MiniCssExtractPlugin(), ...plugins);
     storybookConfig.resolve = {
       ...storybookConfig.resolve,

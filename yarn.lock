@@ -2843,7 +2843,7 @@
     "@types/source-list-map" "*"
     source-map "^0.6.1"
 
-"@types/webpack@*":
+"@types/webpack@*", "@types/webpack@^4.39.1":
   version "4.39.1"
   resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.39.1.tgz#d76cd551cc851198f67f75ff3e26551d204530e9"
   integrity sha512-rgO9ihNu/l72Sjx3shqwc9r6gi+tOMsqxhMEZhOEVIZt82GFOeUyEdpTk1BO2HqEHLS/XJW8ldUTIIfIMMyYFQ==
@@ -5831,6 +5831,13 @@ csstype@^2.2.0, csstype@^2.5.7:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.6.tgz#c34f8226a94bbb10c32cc0d714afdf942291fc41"
   integrity sha512-RpFbQGUE74iyPgvr46U9t1xoQBM8T4BL8SxrN66Le2xYAPSaDJJKeztV3awugusb3g3G9iL8StmkBBXhcbbXhg==
 
+csv-loader@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/csv-loader/-/csv-loader-3.0.2.tgz#2af224a0582c47b761b4eee70576bd0e15af34b3"
+  integrity sha512-NSgkStzsNscNssEGjj4upYIm6AfPrJOCAAYoujjnszkAAboLZE7ChNOHO8YTlBLEMsQ6lizC9raIhfONneaA6g==
+  dependencies:
+    loader-utils "^1.1.0"
+
 cubic-hermite@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/cubic-hermite/-/cubic-hermite-1.0.0.tgz#84e3b2f272b31454e8393b99bb6aed45168c14e5"
@@ -6800,9 +6807,9 @@ duplexify@^3.4.2, duplexify@^3.4.5, duplexify@^3.6.0:
     stream-shift "^1.0.0"
 
 earcut@^2.1.5:
-  version "2.1.5"
-  resolved "https://registry.yarnpkg.com/earcut/-/earcut-2.1.5.tgz#829280a9a3a0f5fee0529f0a47c3e4eff09b21e4"
-  integrity sha512-QFWC7ywTVLtvRAJTVp8ugsuuGQ5mVqNmJ1cRYeLrSHgP3nycr2RHTJob9OtM0v8ujuoKN0NY1a93J/omeTL1PA==
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/earcut/-/earcut-2.2.1.tgz#3bae0b1b6fec41853b56b126f03a42a34b28f1d5"
+  integrity sha512-5jIMi2RB3HtGPHcYd9Yyl0cczo84y+48lgKPxMijliNQaKAHEZJbdzLmKmdxG/mCdS/YD9DQ1gihL8mxzR0F9w==
 
 ecc-jsbn@~0.1.1:
   version "0.1.2"
@@ -14011,9 +14018,9 @@ please-upgrade-node@^3.0.2, please-upgrade-node@^3.1.1:
     semver-compare "^1.0.0"
 
 plotly.js@^1.49.4:
-  version "1.49.4"
-  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.49.4.tgz#4b287f25f09597d4bc51f3ef4dbd12cca658540c"
-  integrity sha512-yOcA1GKLY6vsGLWYoGa/jWTPXcHPTyTWwkgAhopNtCgxTVexXzKfnnGQ2SslL//+TkpNX8CpCzC88HQVV4p42Q==
+  version "1.49.5"
+  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.49.5.tgz#258d12a02ad3c01bdcf31d3729b0a04ef9d4a0da"
+  integrity sha512-R8viAou9aIeMOaI+sDWyQb4uQajGV6nFqPg2ybNTy/XcZVBetzw+2ALSdkBFR1TyzCF46IvQZcF7BcdCrdraPA==
   dependencies:
     "@plotly/d3-sankey" "0.7.2"
     "@plotly/d3-sankey-circular" "0.33.1"
@@ -14859,18 +14866,18 @@ react-dev-utils@^9.0.0:
     text-table "0.2.0"
 
 react-docgen-typescript-loader@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/react-docgen-typescript-loader/-/react-docgen-typescript-loader-3.2.0.tgz#137afca0d96211b82685253eb7397dab2ee43920"
-  integrity sha512-FL7H3yXNkcsQD/OKwReJ1i8faqaarRBzpjZd/pNtpz4nH6hx1h/oWkmaIaL8I2YaY4moPaNgAoi2PAMA9o0K7A==
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/react-docgen-typescript-loader/-/react-docgen-typescript-loader-3.2.1.tgz#5aaf059eba5b8054afc6f7c3b45df471515d90a0"
+  integrity sha512-k3yY+nJ0Q6O/86OmdSKKEaVH3rDIn9XNvi/UfGA1BiI7AymvrkggFDzHTNbDy9wPtZA2Cc6T7tLH7xU6nSb1wQ==
   dependencies:
     "@webpack-contrib/schema-utils" "^1.0.0-beta.0"
     loader-utils "^1.2.3"
-    react-docgen-typescript "^1.14.0"
+    react-docgen-typescript "^1.14.1"
 
-react-docgen-typescript@^1.14.0:
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/react-docgen-typescript/-/react-docgen-typescript-1.14.0.tgz#f795992e7da2f4f621c6addc23a60419f2f3924a"
-  integrity sha512-LalT7mYQwsgXjKBo9qRO9fuArAql0yQ2nmlVhoxu0/pVQ+oBnIPXGn1D+seFXdtm6VmgDJv9YN/A99fKU/6Y8g==
+react-docgen-typescript@^1.14.1:
+  version "1.14.1"
+  resolved "https://registry.yarnpkg.com/react-docgen-typescript/-/react-docgen-typescript-1.14.1.tgz#92671c480eb84e53cf8b7e845a0591c9fc061f8d"
+  integrity sha512-LQAK5dAtVmDwf+WHjIgBdF1v+uCeBzeYw3igC7rOxo1+j0uSHVppiKnJIXm7qnv+LPSjTwAkhGQHTE0dUVTeoQ==
 
 react-docgen@^4.1.0:
   version "4.1.1"
@@ -15629,9 +15636,9 @@ regl-splom@^1.0.7:
     regl-scatter2d "^3.1.2"
 
 regl@^1.3.11:
-  version "1.3.12"
-  resolved "https://registry.yarnpkg.com/regl/-/regl-1.3.12.tgz#2e07201829d086818001c14cccbf56a531f4de75"
-  integrity sha512-RsYw/01WrkFanniKeZ/x6pQjG6/2DL+ansp90Olx0yyiVIXZR2PzZ+m/eKmBQ/M43bvaGOabtt+mNEgPG0TiCg==
+  version "1.3.13"
+  resolved "https://registry.yarnpkg.com/regl/-/regl-1.3.13.tgz#c376bfa6477995a9be9cd21495a0c9beb9b2f3af"
+  integrity sha512-TTiCabJbbUykCL4otjqOvKqDFJhvJOT7xB51JxcDeSHGrEJl1zz4RthPcoOogqfuR3ECN4Te790DfHCXzli5WQ==
 
 relateurl@^0.2.7:
   version "0.2.7"
@@ -18357,7 +18364,7 @@ urix@^0.1.0:
   resolved "https://registry.yarnpkg.com/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
   integrity sha1-2pN/emLiH+wf0Y1Js1wpNQZ6bHI=
 
-url-loader@^2.0.1:
+url-loader@^2.0.1, url-loader@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/url-loader/-/url-loader-2.1.0.tgz#bcc1ecabbd197e913eca23f5e0378e24b4412961"
   integrity sha512-kVrp/8VfEm5fUt+fl2E0FQyrpmOYgMEkBsv8+UDP1wFhszECq5JyGF33I7cajlVY90zRZ6MyfgKXngLvHYZX8A==
