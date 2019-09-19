@@ -16,7 +16,6 @@ export const generateCommonConfig = (
 ): webpack.Configuration => ({
   entry: {
     bioblocks: './frames/BBFrame.tsx',
-    example: './docs/example/index.tsx',
   },
   module: {
     rules: [
@@ -114,12 +113,12 @@ export const generateCommonConfig = (
           test: /[\\/]node_modules[\\/]/,
         },
       },
-      chunks: chunk => chunk.name !== 'bioblocks',
+      chunks: 'all',
       maxAsyncRequests: 5,
       maxInitialRequests: 3,
-      maxSize: 0,
+      maxSize: 3000000, // 3MB
       minChunks: 1,
-      minSize: 30000,
+      minSize: 30000, // 30KB
       name: true,
     },
   },
@@ -179,7 +178,10 @@ export const generateCommonConfig = (
         toType: 'dir',
       },
     ]),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      chunkFilename: '[id].css',
+      filename: '[name].css',
+    }),
     new webpack.NamedModulesPlugin(),
   ],
   resolve: {
