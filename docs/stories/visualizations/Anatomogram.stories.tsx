@@ -2,9 +2,11 @@ import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 
 import { select } from '@storybook/addon-knobs';
-import { AnatomogramContainer } from '~bioblocks-viz~/container';
+import { AnatomogramContainer, AnatomogramContainerClass } from '~bioblocks-viz~/container';
 
-const stories = storiesOf('visualizations/Anatomogram Container', module);
+const stories = storiesOf('visualizations/Anatomogram Container', module).addParameters({
+  component: AnatomogramContainerClass,
+});
 
 stories.add(
   'Species',

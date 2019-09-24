@@ -14,7 +14,7 @@ import { BBStore, BioblocksMiddlewareTransformer, RootState } from '~bioblocks-v
 import { getSpring, selectCurrentItems } from '~bioblocks-viz~/selector';
 
 interface IAnatomogramContainerProps {
-  iconSrc?: string;
+  iconSrc: string;
   selectIds: Set<string>;
   species: SPECIES_TYPE;
   addLabel(label: string): void;
@@ -31,8 +31,10 @@ export class AnatomogramContainerClass extends BioblocksVisualization<
 > {
   public static defaultProps = {
     addLabel: EMPTY_FUNCTION,
+    iconSrc: '',
     removeLabel: EMPTY_FUNCTION,
     selectIds: Set<string>(),
+    species: 'homo_sapiens' as const,
   };
 
   public static displayName = 'Anatomogram';

@@ -2,11 +2,12 @@ import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 
 import { boolean, object } from '@storybook/addon-knobs';
-import { UMAPSequenceContainer, UMAPTranscriptionalContainer } from '~bioblocks-viz~/container';
+import { UMAPSequenceContainer } from '~bioblocks-viz~/container';
 import { Seq, SeqRecord } from '~bioblocks-viz~/data';
-import { fetchMatrixData } from '~bioblocks-viz~/helper';
 
-const stories = storiesOf('visualizations/UMAP', module);
+const stories = storiesOf('visualizations/UMAP/Sequential Container', module).addParameters({
+  component: UMAPSequenceContainer,
+});
 
 // Taken from first 16 rows of datasets/betalactamase_alignment/PSE1_NATURAL_TAXONOMY.csv
 const sequences = [
@@ -40,13 +41,3 @@ stories.add(
     info: { inline: true },
   },
 );
-
-fetchMatrixData('datasets/hpc/full/tsne_matrix.csv')
-  .then(dataMatrix => {
-    stories.add('Transcriptional Data', () => <UMAPTranscriptionalContainer dataMatrix={dataMatrix} />, {
-      info: { inline: true },
-    });
-  })
-  .catch(e => {
-    console.log(e);
-  });
