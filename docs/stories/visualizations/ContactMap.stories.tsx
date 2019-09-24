@@ -5,7 +5,9 @@ import { color } from '@storybook/addon-knobs';
 import { PredictedContactMap } from '~bioblocks-viz~/container';
 import { CouplingContainer, IContactMapData } from '~bioblocks-viz~/data';
 
-const stories = storiesOf('visualizations/Predicted Contact Map', module);
+const stories = storiesOf('visualizations/Predicted Contact Map', module).addParameters({
+  component: PredictedContactMap,
+});
 
 const contactMapData: IContactMapData = {
   couplingScores: new CouplingContainer([
