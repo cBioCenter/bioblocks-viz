@@ -6,7 +6,7 @@ import { UMAPSequenceContainer, UMAPTranscriptionalContainer } from '~bioblocks-
 import { Seq, SeqRecord } from '~bioblocks-viz~/data';
 import { fetchMatrixData } from '~bioblocks-viz~/helper';
 
-const stories = storiesOf('visualizations/UMAPSequenceContainer', module);
+const stories = storiesOf('visualizations/UMAP', module);
 
 // Taken from first 16 rows of datasets/betalactamase_alignment/PSE1_NATURAL_TAXONOMY.csv
 const sequences = [

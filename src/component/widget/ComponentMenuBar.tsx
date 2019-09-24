@@ -111,40 +111,37 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
     return (
       <div onMouseEnter={this.onMenuEnter} onMouseLeave={this.onMenuLeave}>
         <Menu secondary={true} style={{ margin: 0, height }}>
-          <Menu secondary={true} widths={6} fluid={false} style={{ width: 'auto' }}>
-            <Menu.Item fitted={'horizontally'} style={{ margin: 0, padding: 0 }}>
-              {iconSrc && (
-                <img alt={'component icon'} src={iconUrl} style={{ height: '32px', padding: '2px', width: '32px' }} />
-              )}
-              {componentName}
-            </Menu.Item>
-          </Menu>
-          <Menu.Item fitted={'horizontally'} position={'right'}>
-            <Menu secondary={true}>
-              {this.renderMenuItems(menuItems, componentName)}
-              <Menu.Item style={{ flexDirection: 'column' }}>
-                <Icon name={isExpanded ? 'compress' : 'expand arrows alternate'} onClick={onExpandToggleCb} />
-                {this.renderMenuIconText(isExpanded ? 'Close' : 'Expand')}
-              </Menu.Item>
-            </Menu>
-          </Menu.Item>
+          {this.renderComponentTitle(componentName, iconSrc, iconUrl)}
+          {this.renderComponentRightMenu()}
         </Menu>
       </div>
     );
   }
 
-  protected renderConfigs = (configs: { [key: string]: BioblocksWidgetConfig[] }) => {
-    return Object.keys(configs).map(configKey => ({
-      [configKey]: configs[configKey].map((config, configIndex) => (
-        <Grid.Row
-          columns={1}
-          key={`menu-bar-${configKey}-row-${configIndex}`}
-          style={{ padding: '5px 0', width: '100%' }}
-        >
-          {this.renderConfig(config, `${configKey}-row-${configIndex}`)}
-        </Grid.Row>
-      )),
-    }));
+  protected getPopupMenuItem = (item: IComponentMenuBarItem) => {
+    const { opacity } = this.props;
+
+    const trigger = <Icon fitted={true} name={item.iconName ? item.iconName : 'setting'} />;
+    // We are separating the style to prevent a bug where the popup arrow does not display if overflow is set.
+    const { style, ...combinedProps } = { ...DEFAULT_POPUP_PROPS, ...item.component.props };
+
+    return item.component.configs ? (
+      <Popup trigger={trigger} wide={true} {...combinedProps} style={{ opacity }}>
+        <ConfigAccordion configs={this.renderConfigs(item.component.configs)} gridStyle={style} title={'Config'} />
+      </Popup>
+    ) : (
+      <Popup trigger={trigger} {...combinedProps} style={{ opacity }} />
+    );
+  };
+
+  protected getButtonMenuItem = (item: IComponentMenuBarItem<IButtonType>) => {
+    let validButtonProps = {};
+    if (item.component.props) {
+      const { color, size, ...rest } = item.component.props;
+      validButtonProps = rest;
+    }
+
+    return <Icon fitted={true} name={item.iconName ? item.iconName : 'setting'} {...validButtonProps} />;
   };
 
   protected onMenuEnter = () => {
@@ -159,29 +156,47 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
     });
   };
 
-  protected renderConfig(config: BioblocksWidgetConfig, id: string) {
-    switch (config.type) {
-      case CONFIGURATION_COMPONENT_TYPE.BUTTON:
-        return this.renderConfigurationButton(config, `button-${id}`);
-      case CONFIGURATION_COMPONENT_TYPE.BUTTON_GROUP:
-        return this.renderConfigurationButtonGroup(config, `button-${id}`);
-      case CONFIGURATION_COMPONENT_TYPE.CHECKBOX:
-        return this.renderConfigurationCheckbox(config, `label-${id}`);
-      case CONFIGURATION_COMPONENT_TYPE.DROP_DOWN:
-        return this.renderConfigurationDropDown(config, `label-${id}`);
-      case CONFIGURATION_COMPONENT_TYPE.LABEL:
-        return this.renderConfigurationLabel(config, `label-${id}`);
-      case CONFIGURATION_COMPONENT_TYPE.RADIO:
-        return this.renderConfigurationRadioButton(config, `radio-${id}`);
-      case CONFIGURATION_COMPONENT_TYPE.RANGE_SLIDER:
-        return this.renderConfigurationRangeSlider(config, `range-slider-${id}`);
-      case CONFIGURATION_COMPONENT_TYPE.SLIDER:
-        return this.renderConfigurationSlider(config, `slider-${id}`);
-      default: {
-        return `configuration for ${id}`;
-      }
-    }
-  }
+  protected renderComponentRightMenu = () => {
+    const { componentName, isExpanded, menuItems, onExpandToggleCb } = this.props;
+
+    return (
+      <Menu.Item fitted={'horizontally'} position={'right'}>
+        <Menu secondary={true}>
+          {this.renderMenuItems(menuItems, componentName)}
+          <Menu.Item style={{ flexDirection: 'column' }}>
+            <Icon name={isExpanded ? 'compress' : 'expand arrows alternate'} onClick={onExpandToggleCb} />
+            {this.renderMenuIconText(isExpanded ? 'Close' : 'Expand')}
+          </Menu.Item>
+        </Menu>
+      </Menu.Item>
+    );
+  };
+
+  protected renderComponentTitle = (componentName: string, iconSrc: string, iconUrl: string) => {
+    return (
+      <Menu secondary={true} widths={6} fluid={false} style={{ width: 'auto' }}>
+        <Menu.Item fitted={'horizontally'} style={{ margin: 0, padding: 0 }}>
+          {iconSrc && (
+            <img alt={'component icon'} src={iconUrl} style={{ height: '32px', padding: '2px', width: '32px' }} />
+          )}
+          {componentName}
+        </Menu.Item>
+      </Menu>
+    );
+  };
+  protected renderConfigs = (configs: { [key: string]: BioblocksWidgetConfig[] }) => {
+    return Object.keys(configs).map(configKey => ({
+      [configKey]: configs[configKey].map((config, configIndex) => (
+        <Grid.Row
+          columns={1}
+          key={`menu-bar-${configKey}-row-${configIndex}`}
+          style={{ padding: '5px 0', width: '100%' }}
+        >
+          {this.renderSingleConfig(config, `${configKey}-row-${configIndex}`)}
+        </Grid.Row>
+      )),
+    }));
+  };
 
   protected renderConfigurationButton(config: ButtonWidgetConfig, id: string) {
     return (
@@ -283,29 +298,11 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
   }
 
   protected renderMenuItems(items: Array<IComponentMenuBarItem<IButtonType | IPopupType>>, componentName: string) {
-    const { opacity } = this.props;
-
     return items.map((item, menuBarIndex) => {
-      let menuItemChild = null;
-      if (item.component.name === 'POPUP') {
-        const trigger = <Icon fitted={true} name={item.iconName ? item.iconName : 'setting'} />;
-        // We are separating the style to prevent a bug where the popup arrow does not display if overflow is set.
-        const { style, ...combinedProps } = { ...DEFAULT_POPUP_PROPS, ...item.component.props };
-        menuItemChild = item.component.configs ? (
-          <Popup trigger={trigger} wide={true} {...combinedProps} style={{ opacity }}>
-            <ConfigAccordion configs={this.renderConfigs(item.component.configs)} gridStyle={style} title={'Config'} />
-          </Popup>
-        ) : (
-          <Popup trigger={trigger} {...combinedProps} style={{ opacity }} />
-        );
-      } else if (item.component.name === 'BUTTON') {
-        let validButtonProps = {};
-        if (item.component.props) {
-          const { color, size, ...rest } = item.component.props;
-          validButtonProps = rest;
-        }
-        menuItemChild = <Icon fitted={true} name={item.iconName ? item.iconName : 'setting'} {...validButtonProps} />;
-      }
+      const menuItemChild =
+        item.component.name === 'POPUP'
+          ? this.getPopupMenuItem(item as IComponentMenuBarItem)
+          : this.getButtonMenuItem(item as IComponentMenuBarItem<IButtonType>);
 
       return (
         menuItemChild && (
@@ -327,5 +324,29 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         )
       );
     });
+  }
+
+  protected renderSingleConfig(config: BioblocksWidgetConfig, id: string) {
+    switch (config.type) {
+      case CONFIGURATION_COMPONENT_TYPE.BUTTON:
+        return this.renderConfigurationButton(config, `button-${id}`);
+      case CONFIGURATION_COMPONENT_TYPE.BUTTON_GROUP:
+        return this.renderConfigurationButtonGroup(config, `button-${id}`);
+      case CONFIGURATION_COMPONENT_TYPE.CHECKBOX:
+        return this.renderConfigurationCheckbox(config, `label-${id}`);
+      case CONFIGURATION_COMPONENT_TYPE.DROP_DOWN:
+        return this.renderConfigurationDropDown(config, `label-${id}`);
+      case CONFIGURATION_COMPONENT_TYPE.LABEL:
+        return this.renderConfigurationLabel(config, `label-${id}`);
+      case CONFIGURATION_COMPONENT_TYPE.RADIO:
+        return this.renderConfigurationRadioButton(config, `radio-${id}`);
+      case CONFIGURATION_COMPONENT_TYPE.RANGE_SLIDER:
+        return this.renderConfigurationRangeSlider(config, `range-slider-${id}`);
+      case CONFIGURATION_COMPONENT_TYPE.SLIDER:
+        return this.renderConfigurationSlider(config, `slider-${id}`);
+      default: {
+        return `configuration for ${id}`;
+      }
+    }
   }
 }
