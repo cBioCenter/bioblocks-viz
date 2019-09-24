@@ -10,13 +10,13 @@ import {
   SECONDARY_STRUCTURE_CODES,
   SECONDARY_STRUCTURE_SECTION,
 } from '~bioblocks-viz~/data';
-import { ILockedResiduePair } from '~bioblocks-viz~/reducer';
+import { LockedResiduePair } from '~bioblocks-viz~/reducer';
 import { getLocked, selectCurrentItems } from '~bioblocks-viz~/selector';
 
 export interface IInfoPanelProps {
   data: IContactMapData;
   height: number;
-  lockedResiduePairs: ILockedResiduePair;
+  lockedResiduePairs: LockedResiduePair;
   selectedSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
   width: number;
 }
@@ -81,7 +81,7 @@ export class InfoPanelContainerClass extends React.Component<IInfoPanelProps, an
     );
   }
 
-  protected renderLockedResiduePairs(lockedResiduePairs: ILockedResiduePair) {
+  protected renderLockedResiduePairs(lockedResiduePairs: LockedResiduePair) {
     return Object.keys(lockedResiduePairs).length === 0
       ? [<Label key={'locked-residue-pair-none'}>None</Label>]
       : Array.from(Object.values(lockedResiduePairs)).map((pair, index) => (

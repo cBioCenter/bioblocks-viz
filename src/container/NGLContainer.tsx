@@ -15,7 +15,7 @@ import {
   SECONDARY_STRUCTURE_SECTION,
 } from '~bioblocks-viz~/data';
 import { EMPTY_FUNCTION } from '~bioblocks-viz~/helper';
-import { BBStore, createContainerReducer, createResiduePairReducer, ILockedResiduePair } from '~bioblocks-viz~/reducer';
+import { BBStore, createContainerReducer, createResiduePairReducer, LockedResiduePair } from '~bioblocks-viz~/reducer';
 import { getCandidates, getHovered, getLocked, selectCurrentItems } from '~bioblocks-viz~/selector';
 
 export interface INGLContainerProps {
@@ -32,7 +32,7 @@ export interface INGLContainerProps {
   showConfigurations: boolean;
   addCandidateResidues?(residues: RESIDUE_TYPE[]): void;
   addHoveredResidues?(residues: RESIDUE_TYPE[]): void;
-  addLockedResiduePair?(residuePair: ILockedResiduePair): void;
+  addLockedResiduePair?(residuePair: LockedResiduePair): void;
   onMeasuredProximityChange?(value: number): void;
   onResize?(event?: UIEvent): void;
   removeAllLockedResiduePairs?(): void;
@@ -117,7 +117,7 @@ export class NGLContainerClass extends React.Component<INGLContainerProps, INGLC
           <Grid.Row>
             <NGLComponent
               experimentalProteins={experimentalProteins.filter(pdb => selectedExperimentalProteins.includes(pdb.name))}
-              lockedResiduePairs={lockedResiduePairs.toJS() as ILockedResiduePair}
+              lockedResiduePairs={lockedResiduePairs.toJS() as LockedResiduePair}
               menuItems={[
                 {
                   component: {

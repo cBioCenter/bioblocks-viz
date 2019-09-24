@@ -26,7 +26,7 @@ import {
   createSecStructRepresentation,
   EMPTY_FUNCTION,
 } from '~bioblocks-viz~/helper';
-import { ILockedResiduePair } from '~bioblocks-viz~/reducer';
+import { LockedResiduePair } from '~bioblocks-viz~/reducer';
 
 export type NGL_HOVER_CB_RESULT_TYPE = number;
 
@@ -41,7 +41,7 @@ export interface INGLComponentProps {
   hoveredResidues: RESIDUE_TYPE[];
   hoveredSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
   isDataLoading: boolean;
-  lockedResiduePairs: ILockedResiduePair;
+  lockedResiduePairs: LockedResiduePair;
   measuredProximity: CONTACT_DISTANCE_PROXIMITY;
   menuItems: IComponentMenuBarItem[];
   predictedProteins: BioblocksPDB[];
@@ -50,7 +50,7 @@ export interface INGLComponentProps {
   width: number | string;
   addCandidateResidues(residues: RESIDUE_TYPE[]): void;
   addHoveredResidues(residues: RESIDUE_TYPE[]): void;
-  addLockedResiduePair(residuePair: ILockedResiduePair): void;
+  addLockedResiduePair(residuePair: LockedResiduePair): void;
   onMeasuredProximityChange?(value: number): void;
   onResize?(event?: UIEvent): void;
   removeAllLockedResiduePairs(): void;
@@ -666,7 +666,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
 
   protected highlightLockedDistancePairs(
     structureComponent: NGL.StructureComponent,
-    lockedResidues: ILockedResiduePair,
+    lockedResidues: LockedResiduePair,
   ) {
     const reps = new Array<NGL.RepresentationElement>();
 
