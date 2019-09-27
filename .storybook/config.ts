@@ -9,7 +9,7 @@ import { withProvider } from './decorators';
 // tslint:enable:no-import-side-effect no-relative-imports
 
 function loadStories() {
-  const req = require.context('../docs/stories', true, /\.stories\.(ts|js|md)x$/);
+  const req = require.context('../docs/stories/visualizations/', true, /\ContactMap.stories\.(ts|js|md)x$/);
   req.keys().forEach(req);
 }
 

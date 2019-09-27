@@ -15,7 +15,20 @@ module.exports = async ({ config: storybookConfig, mode }: { config: webpack.Con
     return;
   }, storybookConfig);
 
-  const plugins = bioblocksConfig.plugins
+  if (storybookConfig.module && storybookConfig.plugins && bioblocksConfig.module && bioblocksConfig.module.rules) {
+    storybookConfig.module.rules = getModuleRules(bioblocksConfig.module.rules);
+    storybookConfig.optimization = bioblocksConfig.optimization;
+    storybookConfig.plugins.push(new MiniCssExtractPlugin(), ...getPlugins(bioblocksConfig));
+    storybookConfig.resolve = getAliases(storybookConfig, bioblocksConfig);
+
+    return storybookConfig;
+  }
+
+  return bioblocksConfig;
+};
+
+const getPlugins = (bioblocksConfig: webpack.Configuration) => {
+  return bioblocksConfig.plugins
     ? bioblocksConfig.plugins.filter(
         plugin =>
           plugin instanceof CleanWebpackPlugin === false &&
@@ -23,24 +36,22 @@ module.exports = async ({ config: storybookConfig, mode }: { config: webpack.Con
           plugin instanceof HtmlWebpackPlugin === false,
       )
     : [new MiniCssExtractPlugin()];
-  if (storybookConfig.module && storybookConfig.plugins && bioblocksConfig.module && bioblocksConfig.module.rules) {
-    storybookConfig.module.rules = [...bioblocksConfig.module.rules];
-    storybookConfig.optimization = bioblocksConfig.optimization;
-    storybookConfig.plugins.push(new MiniCssExtractPlugin(), ...plugins);
-    storybookConfig.resolve = {
-      ...storybookConfig.resolve,
-      ...bioblocksConfig.resolve,
-      alias:
-        bioblocksConfig.resolve && storybookConfig.resolve
-          ? {
-              ...bioblocksConfig.resolve.alias,
-              ...storybookConfig.resolve.alias,
-            }
-          : {},
-    };
+};
 
-    return storybookConfig;
-  }
+const getModuleRules = (bioblocksRules: webpack.RuleSetRule[]): webpack.RuleSetRule[] => {
+  return [...bioblocksRules];
+};
 
-  return bioblocksConfig;
+const getAliases = (storybookConfig: webpack.Configuration, bioblocksConfig: webpack.Configuration) => {
+  return {
+    ...storybookConfig.resolve,
+    ...bioblocksConfig.resolve,
+    alias:
+      bioblocksConfig.resolve && storybookConfig.resolve
+        ? {
+            ...bioblocksConfig.resolve.alias,
+            ...storybookConfig.resolve.alias,
+          }
+        : {},
+  };
 };
