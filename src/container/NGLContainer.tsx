@@ -15,7 +15,13 @@ import {
   SECONDARY_STRUCTURE_SECTION,
 } from '~bioblocks-viz~/data';
 import { EMPTY_FUNCTION } from '~bioblocks-viz~/helper';
-import { BBStore, createContainerReducer, createResiduePairReducer, LockedResiduePair } from '~bioblocks-viz~/reducer';
+import {
+  BBStore,
+  createContainerReducer,
+  createResiduePairReducer,
+  LockedResiduePair,
+  RootState,
+} from '~bioblocks-viz~/reducer';
 import { getCandidates, getHovered, getLocked, selectCurrentItems } from '~bioblocks-viz~/selector';
 
 export interface INGLContainerProps {
@@ -314,7 +320,7 @@ export class NGLContainerClass extends React.Component<INGLContainerProps, INGLC
   }
 }
 
-const mapStateToProps = (state: { [key: string]: any }) => ({
+const mapStateToProps = (state: RootState, ownProps: INGLContainerProps) => ({
   candidateResidues: getCandidates(state).toArray(),
   hoveredResidues: getHovered(state).toArray(),
   hoveredSecondaryStructures: selectCurrentItems<SECONDARY_STRUCTURE_SECTION>(
@@ -348,7 +354,17 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     dispatch,
   );
 
-export const NGLContainer = connect(
+const ConnectedNGLContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(NGLContainerClass);
+
+export const NGLContainer = (props: INGLContainerProps) => {
+  return (
+    <Provider store={BBStore}>
+      <ConnectedNGLContainer {...props} />
+    </Provider>
+  );
+};
+
+NGLContainer.defaultProps = NGLContainerClass.defaultProps;

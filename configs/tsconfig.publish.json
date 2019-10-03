@@ -2,12 +2,13 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "declaration": true,
+    "emitDeclarationOnly": false,
+    "esModuleInterop": true,
     "outDir": "../lib",
     "pretty": true,
     "sourceMap": false,
     "target": "es5"
   },
-  "files": ["../index.ts"],
-  "include": ["../src/**/*", "../types"],
-  "exclude": ["../node_modules", "../**/__tests__/**", "../**/__mocks__/**", "../configs"]
+  "include": ["../frames", "../index.ts", "../src", "../types"],
+  "exclude": ["../configs", "../docs", "../node_modules", "../test", "../**/__tests__/**"]
 }

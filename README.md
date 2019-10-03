@@ -9,20 +9,32 @@
 
 ## Intro
 
-Visualization components for use in [Human Cell Atlas](https://www.humancellatlas.org/) portals, such as with [Bioblocks](https://github.com/cBioCenter/bioblocks).
+Visualization components displaying biological data, such as with [ContactMap.org](https://www.contactmap.org) or [Bioblocks Portal](https://github.com/cBioCenter/bioblocks-portal) for the [Human Cell Atlas](https://www.humancellatlas.org/).
 
 Check out the [API Docs](https://cbiocenter.github.io/bioblocks-viz/docs/api/index.html), some [live examples](https://cbiocenter.github.io/bioblocks-viz/example.html), or even the [Contact Map](http://contactmap.org) site!
 
-## Getting Started (For Development Use)
+## Installation
 
-Please see the [Getting Started](https://cbiocenter.github.io/bioblocks-viz/docs/DEV_GETTING_STARTED.md) page for an introduction to the bioblocks-viz development environment!
-
-## Getting Started (For Non-Development Use)
-
-- Clone the repository:
+We're on [NPM](https://www.npmjs.com/) so you can install using your favorite package manager:
 
 ```sh
-git clone https://github.com/cBioCenter/bioblocks-viz
+yarn install bioblocks-viz
+```
+
+```TypeScript
+import * as React from 'react';
+import {
+  fetchMatrixData,
+  UMAPTranscriptionalContainer,
+} from 'bioblocks-viz';
+
+const data = await fetchMatrixData('somewhere-over-the-rainbow-is-this-pca.csv'); // Returns number[][]
+
+<UMAPTranscriptionalContainer
+  dataMatrix={data}
+  numIterationsBeforeReRender={1}
+  numSamplesToShow={5000}
+/>
 ```
 
 - Install dependencies with [yarn](https://yarnpkg.com/):
@@ -37,3 +49,7 @@ yarn
 ```sh
 yarn start
 ```
+
+## Getting Started (For Development Use)
+
+Please see the [Getting Started](https://cbiocenter.github.io/bioblocks-viz/docs/DEV_GETTING_STARTED.md) page for an introduction to the bioblocks-viz development environment!

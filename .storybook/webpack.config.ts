@@ -39,7 +39,38 @@ const getPlugins = (bioblocksConfig: webpack.Configuration) => {
 };
 
 const getModuleRules = (bioblocksRules: webpack.RuleSetRule[]): webpack.RuleSetRule[] => {
-  return [...bioblocksRules];
+  return [
+    ...bioblocksRules,
+    {
+      include: path.resolve(__dirname, '../assets'),
+      test: /\.(woff(2)?|ttf|png|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+          },
+        },
+        {
+          loader: `image-webpack-loader`,
+          options: {
+            query: {
+              bypassOnDebug: true,
+              gifsicle: {
+                interlaced: true,
+              },
+              mozjpeg: {
+                progressive: true,
+              },
+              optipng: {
+                optimizationLevel: 7,
+              },
+            },
+          },
+        },
+      ],
+    },
+  ];
 };
 
 const getAliases = (storybookConfig: webpack.Configuration, bioblocksConfig: webpack.Configuration) => {

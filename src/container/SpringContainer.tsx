@@ -53,7 +53,7 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
   public static defaultProps = {
     categories: Set<string>(),
     currentCells: Set<number>(),
-    datasetLocation: 'hpc/full',
+    datasetLocation: '../datasets/hpc/full',
     datasetsURI: '',
     dispatchSpringFetch: EMPTY_FUNCTION,
     headerHeight: 18,
@@ -70,7 +70,7 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
     springSrc: `${window.location.origin}/${window.location.pathname.substr(
       0,
       window.location.pathname.lastIndexOf('/'),
-    )}/springViewer.html`,
+    )}/SPRING/springViewer.html`,
     springWidth: 1150,
   };
 
@@ -185,7 +185,7 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
     }
   };
 
-  protected generateSpringURL = (dataset: string) => `${this.props.springSrc}?datasets/${dataset}`;
+  protected generateSpringURL = (dataset: string) => `${this.props.springSrc}?${dataset}`;
 }
 
 const mapStateToProps = (state: { [key: string]: any }) => ({
