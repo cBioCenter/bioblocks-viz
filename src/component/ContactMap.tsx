@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
-import { ButtonProps, Icon } from 'semantic-ui-react';
+import { ButtonProps, Checkbox, CheckboxProps, Icon, Label } from 'semantic-ui-react';
 import { createContainerActions, createResiduePairActions } from '~bioblocks-viz~/action';
 import {
   ComponentCard,
@@ -17,6 +17,7 @@ import {
   BioblocksChartEvent,
   BioblocksWidgetConfig,
   ButtonGroupWidgetConfig,
+  CheckboxWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
   CouplingContainer,
   IContactMapData,
@@ -27,7 +28,7 @@ import {
   SECONDARY_STRUCTURE_SECTION,
 } from '~bioblocks-viz~/data';
 import { ColorMapper, EMPTY_FUNCTION, generateCouplingScoreHoverText } from '~bioblocks-viz~/helper';
-import { ILockedResiduePair } from '~bioblocks-viz~/reducer';
+import { LockedResiduePair } from '~bioblocks-viz~/reducer';
 import { getCandidates, getHovered, getLocked, selectCurrentItems } from '~bioblocks-viz~/selector';
 
 export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
@@ -43,7 +44,7 @@ export interface IContactMapProps {
   hoveredResidues: RESIDUE_TYPE[];
   hoveredSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
   isDataLoading: boolean;
-  lockedResiduePairs: ILockedResiduePair;
+  lockedResiduePairs: LockedResiduePair;
   observedColor: string;
   secondaryStructureColors?: ColorMapper<SECONDARY_STRUCTURE_KEYS>;
   selectedSecondaryStructures: SECONDARY_STRUCTURE;
@@ -59,7 +60,7 @@ export interface IContactMapProps {
   removeHoveredResidues(): void;
   removeHoveredSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
   onBoxSelection?(residues: RESIDUE_TYPE[]): void;
-  toggleLockedResiduePair(residuePair: ILockedResiduePair): void;
+  toggleLockedResiduePair(residuePair: LockedResiduePair): void;
 }
 
 export const initialContactMapState = {
@@ -117,6 +118,24 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     }
   }
 
+  public onNodeSelectionChange = (index: number) => (
+    event?: React.MouseEvent<HTMLInputElement>,
+    data?: CheckboxProps,
+  ) => {
+    const { pointsToPlot } = this.state;
+
+    this.setState({
+      pointsToPlot: [
+        ...pointsToPlot.slice(0, index),
+        {
+          ...pointsToPlot[index],
+          hoverinfo: pointsToPlot[index].hoverinfo === 'skip' ? 'text' : 'skip',
+        },
+        ...pointsToPlot.slice(index + 1),
+      ],
+    });
+  };
+
   public onNodeSizeChange = (index: number, nodeSizeMod: number) => (
     event?: React.MouseEvent<HTMLButtonElement>,
     data?: ButtonProps,
@@ -143,16 +162,17 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
   }
 
   /**
-   * Given a chart data entry, sets the node size if one already is set for this point.
+   * Given a chart data entry, sets node options if one is already set for this point.
    *
    * @param chartDatum A single chart data entry.
    */
-  protected applyNodeSize = (chartDatum: IContactMapChartData) => {
+  protected applySavedNodeOptions = (chartDatum: IContactMapChartData) => {
     const { pointsToPlot } = this.state;
     const index = pointsToPlot.findIndex(currentPoint => currentPoint.name === chartDatum.name);
     if (index >= 0) {
       return {
         ...chartDatum,
+        hoverinfo: pointsToPlot[index].hoverinfo,
         nodeSize: pointsToPlot[index].nodeSize,
       };
     } else {
@@ -183,7 +203,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
    *
    * @param hoveredResidues Array of residues that are hovered.
    */
-  protected generateLockedResiduePairs = (lockedResiduePairs: ILockedResiduePair) => {
+  protected generateLockedResiduePairs = (lockedResiduePairs: LockedResiduePair) => {
     const lockedResiduePairKeys = Object.keys(lockedResiduePairs);
 
     return lockedResiduePairKeys.reduce((reduceResult: IContactMapChartPoint[], key) => {
@@ -267,20 +287,39 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     },
     {
       component: {
-        configs: this.getNodeSizeSliderConfigs(pointsToPlot),
+        configs: this.getNodeOptionConfigs(pointsToPlot),
         name: 'POPUP',
       },
       description: 'Settings',
     },
   ];
 
-  protected getNodeSizeSliderConfigs = (entries: IContactMapChartData[]) => ({
-    'Node Sizes': entries.map(
-      (entry, index): ButtonGroupWidgetConfig => {
-        const color = this.getColorFromEntry(entry);
-
+  protected getNodeOptionConfigs = (entries: IContactMapChartData[]) => ({
+    'Node Options': new Array<ButtonGroupWidgetConfig>(
+      {
+        id: 'stuff-1-2-3',
+        name: '',
         // prettier-ignore
-        const options = [(
+        options: [(
+          <Label basic={true} style={{border: 0}} key={'node-selection-label'}>
+            Selectable?
+          </Label>
+        )],
+        style: { padding: 0 },
+        type: CONFIGURATION_COMPONENT_TYPE.BUTTON_GROUP,
+      },
+      ...entries.map(
+        (entry, index): ButtonGroupWidgetConfig => {
+          const color = this.getColorFromEntry(entry);
+
+          // prettier-ignore
+          const options = [(
+            <Checkbox
+              checked={this.state.pointsToPlot[index].hoverinfo !== 'skip'}
+              key={`node-selection-checkbox-${index}`}
+              onClick={this.onNodeSelectionChange(index)}
+            />),
+            (
           <Icon
             key={`node-size-slider-${index}-minus`}
             name={'minus'}
@@ -301,16 +340,17 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
             size={'small'}
             style={{ color }}
           />
-        )];
+        ), ];
 
-        return {
-          id: `node-size-slider-${index}`,
-          name: entry.name,
-          options,
-          style: { padding: '.5em' },
-          type: CONFIGURATION_COMPONENT_TYPE.BUTTON_GROUP,
-        };
-      },
+          return {
+            id: `node-option-config-${index}`,
+            name: entry.name,
+            options,
+            style: { padding: '.5em' },
+            type: CONFIGURATION_COMPONENT_TYPE.BUTTON_GROUP,
+          };
+        },
+      ),
     ),
   });
 
@@ -358,7 +398,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     }
   };
 
-  protected onMouseClick = (cb: (residues: ILockedResiduePair) => void) => (e: BioblocksChartEvent) => {
+  protected onMouseClick = (cb: (residues: LockedResiduePair) => void) => (e: BioblocksChartEvent) => {
     if (e.isAxis()) {
       this.handleAxisClick(e);
     } else {
@@ -456,7 +496,6 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
         4,
         observedContactPoints,
         {
-          hoverinfo: 'skip',
           text: observedContactPoints.map(generateCouplingScoreHoverText),
         },
       ),
@@ -472,7 +511,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 
     this.setState({
       ...this.state,
-      pointsToPlot: result.map(this.applyNodeSize),
+      pointsToPlot: result.map(this.applySavedNodeOptions),
     });
   }
 }

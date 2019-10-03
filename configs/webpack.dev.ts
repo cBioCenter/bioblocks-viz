@@ -22,6 +22,14 @@ const devConfig = {
         toType: 'dir',
       },
     ]),
+    new CopyWebpackPlugin([
+      {
+        from: './assets',
+        ignore: ['*.pdf'],
+        to: './assets',
+        toType: 'dir',
+      },
+    ]),
   ],
 };
 

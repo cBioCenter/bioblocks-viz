@@ -14,14 +14,20 @@ import { BBStore, BioblocksMiddlewareTransformer, RootState } from '~bioblocks-v
 import { getSpring, selectCurrentItems } from '~bioblocks-viz~/selector';
 
 interface IAnatomogramContainerProps {
-  iconSrc?: string;
+  /** URI for the icon of the component. */
+  iconSrc: string;
+  /** Set of IDs for selected parts of the Anatomogram. */
   selectIds: Set<string>;
+  /** The species to display. See @SPECIES_TYPE */
   species: SPECIES_TYPE;
-  addLabel(label: string): void;
-  removeLabel(label: string): void;
+  /** Callback for a label being added. */
+  onLabelAdd(label: string): void;
+  /** Callback for a label being removed. */
+  onLabelRemove(label: string): void;
 }
 
 interface IAnatomogramContainerState {
+  /** All of the ids for this Anatomogram. */
   ids: string[];
 }
 
@@ -30,9 +36,11 @@ export class AnatomogramContainerClass extends BioblocksVisualization<
   IAnatomogramContainerState
 > {
   public static defaultProps = {
-    addLabel: EMPTY_FUNCTION,
-    removeLabel: EMPTY_FUNCTION,
+    iconSrc: '',
+    onLabelAdd: EMPTY_FUNCTION,
+    onLabelRemove: EMPTY_FUNCTION,
     selectIds: Set<string>(),
+    species: 'homo_sapiens' as SPECIES_TYPE,
   };
 
   public static displayName = 'Anatomogram';
@@ -152,7 +160,7 @@ export class AnatomogramContainerClass extends BioblocksVisualization<
   protected onClick = (ids: string[]) => {
     // Anatomogram returns an array of strings for click events, but we only ever work with a single id.
     const id = ids[0];
-    const { addLabel, removeLabel, selectIds } = this.props;
+    const { onLabelAdd: addLabel, onLabelRemove: removeLabel, selectIds } = this.props;
 
     if (selectIds.includes(id)) {
       removeLabel(id);
@@ -197,8 +205,8 @@ const mapStateToProps = (state: RootState) => ({
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
-      addLabel: createContainerActions<string>('labels').add,
-      removeLabel: createContainerActions<string>('labels').remove,
+      onLabelAdd: createContainerActions<string>('labels').add,
+      onLabelRemove: createContainerActions<string>('labels').remove,
     },
     dispatch,
   );

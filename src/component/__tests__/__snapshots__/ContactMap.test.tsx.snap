@@ -41,11 +41,36 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
       Object {
         "component": Object {
           "configs": Object {
-            "Node Sizes": Array [
+            "Node Options": Array [
               Object {
-                "id": "node-size-slider-0",
+                "id": "stuff-1-2-3",
+                "name": "",
+                "options": Array [
+                  <Label
+                    basic={true}
+                    style={
+                      Object {
+                        "border": 0,
+                      }
+                    }
+                  >
+                    Selectable?
+                  </Label>,
+                ],
+                "style": Object {
+                  "padding": 0,
+                },
+                "type": "BUTTON_GROUP",
+              },
+              Object {
+                "id": "node-option-config-0",
                 "name": "Structure Contact (Coupling Scores)",
                 "options": Array [
+                  <Checkbox
+                    checked={true}
+                    onClick={[Function]}
+                    type="checkbox"
+                  />,
                   <Icon
                     as="i"
                     name="minus"
@@ -85,9 +110,14 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
                 "type": "BUTTON_GROUP",
               },
               Object {
-                "id": "node-size-slider-1",
+                "id": "node-option-config-1",
                 "name": "Selected Residue Pair",
                 "options": Array [
+                  <Checkbox
+                    checked={true}
+                    onClick={[Function]}
+                    type="checkbox"
+                  />,
                   <Icon
                     as="i"
                     name="minus"
@@ -144,7 +174,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
     contactData={
       Array [
         Object {
-          "hoverinfo": "skip",
+          "hoverinfo": "text",
           "marker": Object {
             "colorscale": Array [
               Array [
@@ -306,11 +336,36 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
       Object {
         "component": Object {
           "configs": Object {
-            "Node Sizes": Array [
+            "Node Options": Array [
               Object {
-                "id": "node-size-slider-0",
+                "id": "stuff-1-2-3",
+                "name": "",
+                "options": Array [
+                  <Label
+                    basic={true}
+                    style={
+                      Object {
+                        "border": 0,
+                      }
+                    }
+                  >
+                    Selectable?
+                  </Label>,
+                ],
+                "style": Object {
+                  "padding": 0,
+                },
+                "type": "BUTTON_GROUP",
+              },
+              Object {
+                "id": "node-option-config-0",
                 "name": "Structure Contact (Coupling Scores)",
                 "options": Array [
+                  <Checkbox
+                    checked={true}
+                    onClick={[Function]}
+                    type="checkbox"
+                  />,
                   <Icon
                     as="i"
                     name="minus"
@@ -350,9 +405,14 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
                 "type": "BUTTON_GROUP",
               },
               Object {
-                "id": "node-size-slider-1",
+                "id": "node-option-config-1",
                 "name": "Selected Residue Pair",
                 "options": Array [
+                  <Checkbox
+                    checked={true}
+                    onClick={[Function]}
+                    type="checkbox"
+                  />,
                   <Icon
                     as="i"
                     name="minus"
@@ -409,7 +469,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
     contactData={
       Array [
         Object {
-          "hoverinfo": "skip",
+          "hoverinfo": "text",
           "marker": Object {
             "colorscale": Array [
               Array [
@@ -563,11 +623,36 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
       Object {
         "component": Object {
           "configs": Object {
-            "Node Sizes": Array [
+            "Node Options": Array [
               Object {
-                "id": "node-size-slider-0",
+                "id": "stuff-1-2-3",
+                "name": "",
+                "options": Array [
+                  <Label
+                    basic={true}
+                    style={
+                      Object {
+                        "border": 0,
+                      }
+                    }
+                  >
+                    Selectable?
+                  </Label>,
+                ],
+                "style": Object {
+                  "padding": 0,
+                },
+                "type": "BUTTON_GROUP",
+              },
+              Object {
+                "id": "node-option-config-0",
                 "name": "Structure Contact (Coupling Scores)",
                 "options": Array [
+                  <Checkbox
+                    checked={true}
+                    onClick={[Function]}
+                    type="checkbox"
+                  />,
                   <Icon
                     as="i"
                     name="minus"
@@ -607,9 +692,14 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
                 "type": "BUTTON_GROUP",
               },
               Object {
-                "id": "node-size-slider-1",
+                "id": "node-option-config-1",
                 "name": "Selected Residue Pair",
                 "options": Array [
+                  <Checkbox
+                    checked={true}
+                    onClick={[Function]}
+                    type="checkbox"
+                  />,
                   <Icon
                     as="i"
                     name="minus"
@@ -666,7 +756,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
     contactData={
       Array [
         Object {
-          "hoverinfo": "skip",
+          "hoverinfo": "text",
           "marker": Object {
             "colorscale": Array [
               Array [
@@ -787,11 +877,36 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
       Object {
         "component": Object {
           "configs": Object {
-            "Node Sizes": Array [
+            "Node Options": Array [
               Object {
-                "id": "node-size-slider-0",
+                "id": "stuff-1-2-3",
+                "name": "",
+                "options": Array [
+                  <Label
+                    basic={true}
+                    style={
+                      Object {
+                        "border": 0,
+                      }
+                    }
+                  >
+                    Selectable?
+                  </Label>,
+                ],
+                "style": Object {
+                  "padding": 0,
+                },
+                "type": "BUTTON_GROUP",
+              },
+              Object {
+                "id": "node-option-config-0",
                 "name": "Structure Contact (Coupling Scores)",
                 "options": Array [
+                  <Checkbox
+                    checked={true}
+                    onClick={[Function]}
+                    type="checkbox"
+                  />,
                   <Icon
                     as="i"
                     name="minus"
@@ -831,9 +946,14 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
                 "type": "BUTTON_GROUP",
               },
               Object {
-                "id": "node-size-slider-1",
+                "id": "node-option-config-1",
                 "name": "Selected Residue Pair",
                 "options": Array [
+                  <Checkbox
+                    checked={true}
+                    onClick={[Function]}
+                    type="checkbox"
+                  />,
                   <Icon
                     as="i"
                     name="minus"
@@ -890,7 +1010,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
     contactData={
       Array [
         Object {
-          "hoverinfo": "skip",
+          "hoverinfo": "text",
           "marker": Object {
             "colorscale": Array [
               Array [
@@ -1011,11 +1131,36 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
       Object {
         "component": Object {
           "configs": Object {
-            "Node Sizes": Array [
+            "Node Options": Array [
               Object {
-                "id": "node-size-slider-0",
+                "id": "stuff-1-2-3",
+                "name": "",
+                "options": Array [
+                  <Label
+                    basic={true}
+                    style={
+                      Object {
+                        "border": 0,
+                      }
+                    }
+                  >
+                    Selectable?
+                  </Label>,
+                ],
+                "style": Object {
+                  "padding": 0,
+                },
+                "type": "BUTTON_GROUP",
+              },
+              Object {
+                "id": "node-option-config-0",
                 "name": "Structure Contact (Coupling Scores)",
                 "options": Array [
+                  <Checkbox
+                    checked={true}
+                    onClick={[Function]}
+                    type="checkbox"
+                  />,
                   <Icon
                     as="i"
                     name="minus"
@@ -1055,9 +1200,14 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
                 "type": "BUTTON_GROUP",
               },
               Object {
-                "id": "node-size-slider-1",
+                "id": "node-option-config-1",
                 "name": "Selected Residue Pair",
                 "options": Array [
+                  <Checkbox
+                    checked={true}
+                    onClick={[Function]}
+                    type="checkbox"
+                  />,
                   <Icon
                     as="i"
                     name="minus"
@@ -1114,7 +1264,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
     contactData={
       Array [
         Object {
-          "hoverinfo": "skip",
+          "hoverinfo": "text",
           "marker": Object {
             "colorscale": Array [
               Array [
@@ -1225,11 +1375,36 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
       Object {
         "component": Object {
           "configs": Object {
-            "Node Sizes": Array [
+            "Node Options": Array [
               Object {
-                "id": "node-size-slider-0",
+                "id": "stuff-1-2-3",
+                "name": "",
+                "options": Array [
+                  <Label
+                    basic={true}
+                    style={
+                      Object {
+                        "border": 0,
+                      }
+                    }
+                  >
+                    Selectable?
+                  </Label>,
+                ],
+                "style": Object {
+                  "padding": 0,
+                },
+                "type": "BUTTON_GROUP",
+              },
+              Object {
+                "id": "node-option-config-0",
                 "name": "Structure Contact (Coupling Scores)",
                 "options": Array [
+                  <Checkbox
+                    checked={true}
+                    onClick={[Function]}
+                    type="checkbox"
+                  />,
                   <Icon
                     as="i"
                     name="minus"
@@ -1269,9 +1444,14 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
                 "type": "BUTTON_GROUP",
               },
               Object {
-                "id": "node-size-slider-1",
+                "id": "node-option-config-1",
                 "name": "Selected Residue Pair",
                 "options": Array [
+                  <Checkbox
+                    checked={true}
+                    onClick={[Function]}
+                    type="checkbox"
+                  />,
                   <Icon
                     as="i"
                     name="minus"
@@ -1328,7 +1508,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
     contactData={
       Array [
         Object {
-          "hoverinfo": "skip",
+          "hoverinfo": "text",
           "marker": Object {
             "colorscale": Array [
               Array [
@@ -1439,11 +1619,36 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
       Object {
         "component": Object {
           "configs": Object {
-            "Node Sizes": Array [
+            "Node Options": Array [
               Object {
-                "id": "node-size-slider-0",
+                "id": "stuff-1-2-3",
+                "name": "",
+                "options": Array [
+                  <Label
+                    basic={true}
+                    style={
+                      Object {
+                        "border": 0,
+                      }
+                    }
+                  >
+                    Selectable?
+                  </Label>,
+                ],
+                "style": Object {
+                  "padding": 0,
+                },
+                "type": "BUTTON_GROUP",
+              },
+              Object {
+                "id": "node-option-config-0",
                 "name": "Structure Contact (Coupling Scores)",
                 "options": Array [
+                  <Checkbox
+                    checked={true}
+                    onClick={[Function]}
+                    type="checkbox"
+                  />,
                   <Icon
                     as="i"
                     name="minus"
@@ -1483,9 +1688,14 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                 "type": "BUTTON_GROUP",
               },
               Object {
-                "id": "node-size-slider-1",
+                "id": "node-option-config-1",
                 "name": "Selected Residue Pair",
                 "options": Array [
+                  <Checkbox
+                    checked={true}
+                    onClick={[Function]}
+                    type="checkbox"
+                  />,
                   <Icon
                     as="i"
                     name="minus"
@@ -1542,7 +1752,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
     contactData={
       Array [
         Object {
-          "hoverinfo": "skip",
+          "hoverinfo": "text",
           "marker": Object {
             "colorscale": Array [
               Array [
@@ -1704,11 +1914,36 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
       Object {
         "component": Object {
           "configs": Object {
-            "Node Sizes": Array [
+            "Node Options": Array [
               Object {
-                "id": "node-size-slider-0",
+                "id": "stuff-1-2-3",
+                "name": "",
+                "options": Array [
+                  <Label
+                    basic={true}
+                    style={
+                      Object {
+                        "border": 0,
+                      }
+                    }
+                  >
+                    Selectable?
+                  </Label>,
+                ],
+                "style": Object {
+                  "padding": 0,
+                },
+                "type": "BUTTON_GROUP",
+              },
+              Object {
+                "id": "node-option-config-0",
                 "name": "Structure Contact (Coupling Scores)",
                 "options": Array [
+                  <Checkbox
+                    checked={true}
+                    onClick={[Function]}
+                    type="checkbox"
+                  />,
                   <Icon
                     as="i"
                     name="minus"
@@ -1748,9 +1983,14 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
                 "type": "BUTTON_GROUP",
               },
               Object {
-                "id": "node-size-slider-1",
+                "id": "node-option-config-1",
                 "name": "Selected Residue Pair",
                 "options": Array [
+                  <Checkbox
+                    checked={true}
+                    onClick={[Function]}
+                    type="checkbox"
+                  />,
                   <Icon
                     as="i"
                     name="minus"
@@ -1807,7 +2047,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
     contactData={
       Array [
         Object {
-          "hoverinfo": "skip",
+          "hoverinfo": "text",
           "marker": Object {
             "colorscale": Array [
               Array [
@@ -2439,11 +2679,36 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
         Object {
           "component": Object {
             "configs": Object {
-              "Node Sizes": Array [
+              "Node Options": Array [
                 Object {
-                  "id": "node-size-slider-0",
+                  "id": "stuff-1-2-3",
+                  "name": "",
+                  "options": Array [
+                    <Label
+                      basic={true}
+                      style={
+                        Object {
+                          "border": 0,
+                        }
+                      }
+                    >
+                      Selectable?
+                    </Label>,
+                  ],
+                  "style": Object {
+                    "padding": 0,
+                  },
+                  "type": "BUTTON_GROUP",
+                },
+                Object {
+                  "id": "node-option-config-0",
                   "name": "Structure Contact (Coupling Scores)",
                   "options": Array [
+                    <Checkbox
+                      checked={true}
+                      onClick={[Function]}
+                      type="checkbox"
+                    />,
                     <Icon
                       as="i"
                       name="minus"
@@ -2483,9 +2748,14 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                   "type": "BUTTON_GROUP",
                 },
                 Object {
-                  "id": "node-size-slider-1",
+                  "id": "node-option-config-1",
                   "name": "Selected Residue Pair",
                   "options": Array [
+                    <Checkbox
+                      checked={true}
+                      onClick={[Function]}
+                      type="checkbox"
+                    />,
                     <Icon
                       as="i"
                       name="minus"
@@ -2587,11 +2857,36 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                 Object {
                   "component": Object {
                     "configs": Object {
-                      "Node Sizes": Array [
+                      "Node Options": Array [
                         Object {
-                          "id": "node-size-slider-0",
+                          "id": "stuff-1-2-3",
+                          "name": "",
+                          "options": Array [
+                            <Label
+                              basic={true}
+                              style={
+                                Object {
+                                  "border": 0,
+                                }
+                              }
+                            >
+                              Selectable?
+                            </Label>,
+                          ],
+                          "style": Object {
+                            "padding": 0,
+                          },
+                          "type": "BUTTON_GROUP",
+                        },
+                        Object {
+                          "id": "node-option-config-0",
                           "name": "Structure Contact (Coupling Scores)",
                           "options": Array [
+                            <Checkbox
+                              checked={true}
+                              onClick={[Function]}
+                              type="checkbox"
+                            />,
                             <Icon
                               as="i"
                               name="minus"
@@ -2631,9 +2926,14 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
                           "type": "BUTTON_GROUP",
                         },
                         Object {
-                          "id": "node-size-slider-1",
+                          "id": "node-option-config-1",
                           "name": "Selected Residue Pair",
                           "options": Array [
+                            <Checkbox
+                              checked={true}
+                              onClick={[Function]}
+                              type="checkbox"
+                            />,
                             <Icon
                               as="i"
                               name="minus"
@@ -3084,7 +3384,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
             contactData={
               Array [
                 Object {
-                  "hoverinfo": "skip",
+                  "hoverinfo": "text",
                   "marker": Object {
                     "colorscale": Array [
                       Array [
@@ -3200,7 +3500,7 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
               data={
                 Array [
                   Object {
-                    "hoverinfo": "skip",
+                    "hoverinfo": "text",
                     "marker": Object {
                       "color": Array [
                         "2.4",

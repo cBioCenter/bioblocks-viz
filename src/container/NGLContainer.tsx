@@ -15,7 +15,13 @@ import {
   SECONDARY_STRUCTURE_SECTION,
 } from '~bioblocks-viz~/data';
 import { EMPTY_FUNCTION } from '~bioblocks-viz~/helper';
-import { BBStore, createContainerReducer, createResiduePairReducer, ILockedResiduePair } from '~bioblocks-viz~/reducer';
+import {
+  BBStore,
+  createContainerReducer,
+  createResiduePairReducer,
+  LockedResiduePair,
+  RootState,
+} from '~bioblocks-viz~/reducer';
 import { getCandidates, getHovered, getLocked, selectCurrentItems } from '~bioblocks-viz~/selector';
 
 export interface INGLContainerProps {
@@ -32,7 +38,7 @@ export interface INGLContainerProps {
   showConfigurations: boolean;
   addCandidateResidues?(residues: RESIDUE_TYPE[]): void;
   addHoveredResidues?(residues: RESIDUE_TYPE[]): void;
-  addLockedResiduePair?(residuePair: ILockedResiduePair): void;
+  addLockedResiduePair?(residuePair: LockedResiduePair): void;
   onMeasuredProximityChange?(value: number): void;
   onResize?(event?: UIEvent): void;
   removeAllLockedResiduePairs?(): void;
@@ -117,7 +123,7 @@ export class NGLContainerClass extends React.Component<INGLContainerProps, INGLC
           <Grid.Row>
             <NGLComponent
               experimentalProteins={experimentalProteins.filter(pdb => selectedExperimentalProteins.includes(pdb.name))}
-              lockedResiduePairs={lockedResiduePairs.toJS() as ILockedResiduePair}
+              lockedResiduePairs={lockedResiduePairs.toJS() as LockedResiduePair}
               menuItems={[
                 {
                   component: {
@@ -314,7 +320,7 @@ export class NGLContainerClass extends React.Component<INGLContainerProps, INGLC
   }
 }
 
-const mapStateToProps = (state: { [key: string]: any }) => ({
+const mapStateToProps = (state: RootState, ownProps: INGLContainerProps) => ({
   candidateResidues: getCandidates(state).toArray(),
   hoveredResidues: getHovered(state).toArray(),
   hoveredSecondaryStructures: selectCurrentItems<SECONDARY_STRUCTURE_SECTION>(
@@ -348,7 +354,17 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     dispatch,
   );
 
-export const NGLContainer = connect(
+const ConnectedNGLContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(NGLContainerClass);
+
+export const NGLContainer = (props: INGLContainerProps) => {
+  return (
+    <Provider store={BBStore}>
+      <ConnectedNGLContainer {...props} />
+    </Provider>
+  );
+};
+
+NGLContainer.defaultProps = NGLContainerClass.defaultProps;

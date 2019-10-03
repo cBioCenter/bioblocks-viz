@@ -4,9 +4,7 @@ import { combineReducers } from 'redux';
 import { RESIDUE_TYPE } from '~bioblocks-viz~/data';
 import { ContainerReducer, ObjectReducer, ReducerRegistry } from '~bioblocks-viz~/reducer';
 
-export interface ILockedResiduePair {
-  [key: string]: RESIDUE_TYPE[];
-}
+export type LockedResiduePair = Record<string, RESIDUE_TYPE[]>;
 
 export interface IResiduePairReducerState {
   candidates: Set<RESIDUE_TYPE>;
