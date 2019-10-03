@@ -16,6 +16,7 @@ import { BBStore } from '~bioblocks-viz~/reducer';
 
 export interface IBBFrameProps {
   style: BIOBLOCKS_CSS_STYLE;
+  viz: VIZ_TYPE | undefined;
 }
 
 export interface IBBFrameState {
@@ -23,11 +24,16 @@ export interface IBBFrameState {
   vizData: VIZ_EVENT_DATA_TYPE;
 }
 
-export class BBFrame extends React.Component<any, IBBFrameState> {
-  constructor(props: any) {
+export class BBFrame extends React.Component<IBBFrameProps, IBBFrameState> {
+  public static defaultProps = {
+    style: {},
+    viz: undefined,
+  };
+
+  constructor(props: IBBFrameProps) {
     super(props);
     this.state = {
-      currentViz: undefined,
+      currentViz: props.viz,
       vizData: {},
     };
   }
@@ -51,8 +57,10 @@ export class BBFrame extends React.Component<any, IBBFrameState> {
   }
 
   protected onMessage = (msg: IFrameEvent<VIZ_TYPE>) => {
+    const { currentViz } = this.state;
+
     this.setState({
-      currentViz: msg.data.viz,
+      currentViz: msg.data.viz !== undefined ? msg.data.viz : currentViz,
       vizData: msg.data,
     });
   };
@@ -88,12 +96,16 @@ export class BBFrame extends React.Component<any, IBBFrameState> {
   }
 }
 
-ReactDOM.render(
-  <Provider store={BBStore}>
-    <BBFrame />
-  </Provider>,
-  document.getElementById('bb-viz-frame'),
-);
+const bioblocksFrame = document.getElementById('bioblocks-frame');
+
+if (bioblocksFrame) {
+  ReactDOM.render(
+    <Provider store={BBStore}>
+      <BBFrame />
+    </Provider>,
+    document.getElementById('bioblocks-frame'),
+  );
+}
 
 if (module.hot) {
   module.hot.accept();

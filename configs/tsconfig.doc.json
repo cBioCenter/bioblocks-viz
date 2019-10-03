@@ -5,7 +5,7 @@
     "outDir": "../docs/api",
     "sourceMap": false
   },
-  "include": ["../src/**/*", "../types/**/*"],
+  "include": ["../src/**/*", "../types/**/*", "../frames/**/*"],
   "exclude": ["../SPRING_dev", "../node_modules", "../**/__tests__/**", "../**/__mocks__/**", "../**/configs/**"],
   "typedocOptions": {
     "excludeExternals": true,
