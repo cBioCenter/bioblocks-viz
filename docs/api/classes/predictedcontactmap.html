@@ -154,7 +154,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8f36e171/src/container/PredictedContactMap.tsx#L59">src/container/PredictedContactMap.tsx:59</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/src/container/PredictedContactMap.tsx#L59">src/container/PredictedContactMap.tsx:59</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -177,7 +177,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Component.context</p>
 						<ul>
-							<li>Defined in node_modules/@types/react/index.d.ts:425</li>
+							<li>Defined in node_modules/@types/react/index.d.ts:428</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -186,7 +186,10 @@
 							<code>React.ContextType</code> of your <code>static contextType</code>.</p>
 						</div>
 						<pre><code class="language-ts"><span class="hljs-keyword">static</span> contextType = MyContext
-context!: React.ContextType&lt;<span class="hljs-keyword">typeof</span> MyContext&gt;</code></pre>
+<span class="hljs-comment">// For TS pre-3.7:</span>
+context!: React.ContextType&lt;<span class="hljs-keyword">typeof</span> MyContext&gt;
+<span class="hljs-comment">// For TS 3.7 and above:</span>
+<span class="hljs-keyword">declare</span> context: React.ContextType&lt;<span class="hljs-keyword">typeof</span> MyContext&gt;</code></pre>
 						<dl class="tsd-comment-tags">
 							<dt>deprecated</dt>
 							<dd><p>if used without a type annotation, or without static contextType</p>
@@ -204,7 +207,7 @@ context!: React.ContextType&lt;<span class="hljs-keyword">typeof</span> MyContex
 					<aside class="tsd-sources">
 						<p>Inherited from Component.props</p>
 						<ul>
-							<li>Defined in node_modules/@types/react/index.d.ts:450</li>
+							<li>Defined in node_modules/@types/react/index.d.ts:453</li>
 						</ul>
 					</aside>
 				</section>
@@ -215,7 +218,7 @@ context!: React.ContextType&lt;<span class="hljs-keyword">typeof</span> MyContex
 					<aside class="tsd-sources">
 						<p>Inherited from Component.refs</p>
 						<ul>
-							<li>Defined in node_modules/@types/react/index.d.ts:456</li>
+							<li>Defined in node_modules/@types/react/index.d.ts:459</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -241,7 +244,7 @@ context!: React.ContextType&lt;<span class="hljs-keyword">typeof</span> MyContex
 					<aside class="tsd-sources">
 						<p>Overrides Component.state</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8f36e171/src/container/PredictedContactMap.tsx#L59">src/container/PredictedContactMap.tsx:59</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/src/container/PredictedContactMap.tsx#L59">src/container/PredictedContactMap.tsx:59</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -291,7 +294,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.UNSAFE_componentWillMount</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:638</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:641</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -329,7 +332,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.UNSAFE_componentWillReceiveProps</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:670</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:673</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -378,7 +381,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.UNSAFE_componentWillUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:698</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:701</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -428,7 +431,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Inherited from ComponentLifecycle.componentDidCatch</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:567</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:570</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -461,7 +464,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Overrides ComponentLifecycle.componentDidMount</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8f36e171/src/container/PredictedContactMap.tsx#L72">src/container/PredictedContactMap.tsx:72</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/src/container/PredictedContactMap.tsx#L72">src/container/PredictedContactMap.tsx:72</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -479,7 +482,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Overrides NewLifecycle.componentDidUpdate</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8f36e171/src/container/PredictedContactMap.tsx#L76">src/container/PredictedContactMap.tsx:76</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/src/container/PredictedContactMap.tsx#L76">src/container/PredictedContactMap.tsx:76</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -506,7 +509,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.componentWillMount</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:624</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:627</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -543,7 +546,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.componentWillReceiveProps</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:653</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:656</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -591,7 +594,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Inherited from ComponentLifecycle.componentWillUnmount</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:562</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:565</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -615,7 +618,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.componentWillUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:683</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:686</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -664,7 +667,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Inherited from Component.forceUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:442</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:445</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -687,7 +690,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8f36e171/src/container/PredictedContactMap.tsx#L134">src/container/PredictedContactMap.tsx:134</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/src/container/PredictedContactMap.tsx#L134">src/container/PredictedContactMap.tsx:134</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../globals.html#bioblockswidgetconfig" class="tsd-signature-type">BioblocksWidgetConfig</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -704,7 +707,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8f36e171/src/container/PredictedContactMap.tsx#L184">src/container/PredictedContactMap.tsx:184</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/src/container/PredictedContactMap.tsx#L184">src/container/PredictedContactMap.tsx:184</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/icouplingscorefilter.html" class="tsd-signature-type">ICouplingScoreFilter</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h4>
@@ -722,7 +725,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Inherited from NewLifecycle.getSnapshotBeforeUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:603</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:606</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -760,7 +763,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8f36e171/src/container/PredictedContactMap.tsx#L116">src/container/PredictedContactMap.tsx:116</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/src/container/PredictedContactMap.tsx#L116">src/container/PredictedContactMap.tsx:116</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">(Anonymous function)</span></h4>
@@ -777,7 +780,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8f36e171/src/container/PredictedContactMap.tsx#L122">src/container/PredictedContactMap.tsx:122</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/src/container/PredictedContactMap.tsx#L122">src/container/PredictedContactMap.tsx:122</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">(Anonymous function)</span></h4>
@@ -794,7 +797,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8f36e171/src/container/PredictedContactMap.tsx#L128">src/container/PredictedContactMap.tsx:128</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/src/container/PredictedContactMap.tsx#L128">src/container/PredictedContactMap.tsx:128</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">(Anonymous function)</span></h4>
@@ -812,7 +815,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Overrides Component.render</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8f36e171/src/container/PredictedContactMap.tsx#L94">src/container/PredictedContactMap.tsx:94</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/src/container/PredictedContactMap.tsx#L94">src/container/PredictedContactMap.tsx:94</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
@@ -830,7 +833,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Inherited from Component.setState</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:437</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:440</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -862,7 +865,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8f36e171/src/container/PredictedContactMap.tsx#L205">src/container/PredictedContactMap.tsx:205</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/src/container/PredictedContactMap.tsx#L205">src/container/PredictedContactMap.tsx:205</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -893,7 +896,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8f36e171/src/container/PredictedContactMap.tsx#L66">src/container/PredictedContactMap.tsx:66</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/src/container/PredictedContactMap.tsx#L66">src/container/PredictedContactMap.tsx:66</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -911,7 +914,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Inherited from ComponentLifecycle.shouldComponentUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:557</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:560</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -949,7 +952,7 @@ class Foo extends React.Component {
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8f36e171/src/container/PredictedContactMap.tsx#L44">src/container/PredictedContactMap.tsx:44</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/src/container/PredictedContactMap.tsx#L44">src/container/PredictedContactMap.tsx:44</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -958,7 +961,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">agreement<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;#ff0000&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8f36e171/src/container/PredictedContactMap.tsx#L45">src/container/PredictedContactMap.tsx:45</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/src/container/PredictedContactMap.tsx#L45">src/container/PredictedContactMap.tsx:45</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -968,7 +971,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">all<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;#000000&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8f36e171/src/container/PredictedContactMap.tsx#L46">src/container/PredictedContactMap.tsx:46</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/src/container/PredictedContactMap.tsx#L46">src/container/PredictedContactMap.tsx:46</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -978,7 +981,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">filters<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8f36e171/src/container/PredictedContactMap.tsx#L51">src/container/PredictedContactMap.tsx:51</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/src/container/PredictedContactMap.tsx#L51">src/container/PredictedContactMap.tsx:51</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -988,7 +991,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;100%&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8f36e171/src/container/PredictedContactMap.tsx#L52">src/container/PredictedContactMap.tsx:52</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/src/container/PredictedContactMap.tsx#L52">src/container/PredictedContactMap.tsx:52</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -998,7 +1001,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">highlight<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;#ff8800&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8f36e171/src/container/PredictedContactMap.tsx#L53">src/container/PredictedContactMap.tsx:53</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/src/container/PredictedContactMap.tsx#L53">src/container/PredictedContactMap.tsx:53</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1008,7 +1011,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">is<wbr>Data<wbr>Loading<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8f36e171/src/container/PredictedContactMap.tsx#L54">src/container/PredictedContactMap.tsx:54</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/src/container/PredictedContactMap.tsx#L54">src/container/PredictedContactMap.tsx:54</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1018,7 +1021,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">observed<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;#0000ff&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8f36e171/src/container/PredictedContactMap.tsx#L55">src/container/PredictedContactMap.tsx:55</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/src/container/PredictedContactMap.tsx#L55">src/container/PredictedContactMap.tsx:55</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1028,7 +1031,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;100%&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8f36e171/src/container/PredictedContactMap.tsx#L56">src/container/PredictedContactMap.tsx:56</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/src/container/PredictedContactMap.tsx#L56">src/container/PredictedContactMap.tsx:56</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1038,7 +1041,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8f36e171/src/container/PredictedContactMap.tsx#L47">src/container/PredictedContactMap.tsx:47</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/src/container/PredictedContactMap.tsx#L47">src/container/PredictedContactMap.tsx:47</a></li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1047,7 +1050,7 @@ class Foo extends React.Component {
 							<div class="tsd-signature tsd-kind-icon">coupling<wbr>Scores<span class="tsd-signature-symbol">:</span> <a href="couplingcontainer.html" class="tsd-signature-type">CouplingContainer</a><span class="tsd-signature-symbol"> =&nbsp;new CouplingContainer()</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8f36e171/src/container/PredictedContactMap.tsx#L48">src/container/PredictedContactMap.tsx:48</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/src/container/PredictedContactMap.tsx#L48">src/container/PredictedContactMap.tsx:48</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -1057,7 +1060,7 @@ class Foo extends React.Component {
 							<div class="tsd-signature tsd-kind-icon">secondary<wbr>Structures<span class="tsd-signature-symbol">:</span> <a href="bioblocks1dsection.html" class="tsd-signature-type">Bioblocks1DSection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"C"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"E"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"G"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"H"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"I"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"S"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"T"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"B"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;new Array&lt;SECONDARY_STRUCTURE&gt;()</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e8f36e171/src/container/PredictedContactMap.tsx#L49">src/container/PredictedContactMap.tsx:49</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/src/container/PredictedContactMap.tsx#L49">src/container/PredictedContactMap.tsx:49</a></li>
 								</ul>
 							</aside>
 						</section>
