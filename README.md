@@ -50,6 +50,10 @@ yarn
 yarn start
 ```
 
+## Usage
+
+Please see our [Usage Guide](./docs/USAGE.md) for an overview of how to use bioblocks for your visualization needs!
+
 ## Getting Started (For Development Use)
 
 Please see the [Getting Started](https://cbiocenter.github.io/bioblocks-viz/docs/DEV_GETTING_STARTED.md) page for an introduction to the bioblocks-viz development environment!
