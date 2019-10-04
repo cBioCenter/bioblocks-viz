@@ -24,6 +24,7 @@ import { selectCurrentItems } from '~bioblocks-viz~/selector/ContainerSelectors'
 interface ITensorContainerProps {
   currentCells: Set<number>;
   datasetLocation: string;
+  height: number | string | undefined;
   iconSrc?: string;
   isFullPage: boolean;
   pointColor: string;
@@ -44,7 +45,7 @@ export class TensorTContainerClass extends BioblocksVisualization<ITensorContain
   public static defaultProps = {
     currentCells: Set<number>(),
     datasetLocation: 'hpc/full',
-    height: 400,
+    height: '525px',
     isFullPage: false,
     pointColor: '#aa0000',
     setCurrentCells: EMPTY_FUNCTION,
@@ -103,15 +104,20 @@ export class TensorTContainerClass extends BioblocksVisualization<ITensorContain
   }
 
   public render() {
-    const { iconSrc, isFullPage } = this.props;
+    const { height, iconSrc, isFullPage } = this.props;
     const { plotlyCoords } = this.state;
 
     return (
       <Provider store={BBStore}>
-        <ComponentCard componentName={TensorTContainerClass.displayName} iconSrc={iconSrc} isFullPage={isFullPage}>
+        <ComponentCard
+          componentName={TensorTContainerClass.displayName}
+          iconSrc={iconSrc}
+          isFullPage={isFullPage}
+          height={height}
+        >
           <Grid centered={true} style={{ height: '100%', marginLeft: 0, width: '100%' }}>
             {this.renderPlaybackControls()}
-            <Grid.Row style={{ height: '100%', margin: 0 }}>
+            <Grid.Row style={{ height: `calc(100% - 3px)`, margin: 0 }}>
               <TensorTComponent onSelectedCallback={this.handlePointSelection} pointsToPlot={plotlyCoords} />
             </Grid.Row>
           </Grid>

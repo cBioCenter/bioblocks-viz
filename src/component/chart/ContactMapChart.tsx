@@ -13,7 +13,6 @@ import {
 import { ColorMapper, generateScatterGLData } from '~bioblocks-viz~/helper';
 
 export interface IContactMapChartProps {
-  candidateResidues: RESIDUE_TYPE[];
   configurations: BioblocksWidgetConfig[];
   contactData: IContactMapChartData[];
   height: number | string;
@@ -90,7 +89,6 @@ export interface IContactMapChartPoint {
  */
 export class ContactMapChart extends React.Component<IContactMapChartProps, IContactMapChartState> {
   public static defaultProps = {
-    candidateResidues: new Array<RESIDUE_TYPE>(),
     configurations: new Array<BioblocksWidgetConfig>(),
     dataTransformFn: generateScatterGLData,
     height: '100%',

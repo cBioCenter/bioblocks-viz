@@ -35,7 +35,6 @@ export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
 export type ContactMapCallback = (coupling: CONTACT_MAP_CB_RESULT_TYPE) => void;
 
 export interface IContactMapProps {
-  candidateResidues: RESIDUE_TYPE[];
   configurations: BioblocksWidgetConfig[];
   data: IContactMapData;
   formattedPoints: IContactMapChartData[];
@@ -74,7 +73,6 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     addHoveredResidues: EMPTY_FUNCTION,
     addHoveredSecondaryStructure: EMPTY_FUNCTION,
     addSelectedSecondaryStructure: EMPTY_FUNCTION,
-    candidateResidues: [],
     configurations: new Array<BioblocksWidgetConfig>(),
     data: {
       couplingScores: new CouplingContainer(),
@@ -433,7 +431,6 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
   protected renderContactMapChart(pointsToPlot: IContactMapChartData[]) {
     const {
       addHoveredResidues,
-      candidateResidues,
       configurations,
       data,
       height,
@@ -457,7 +454,6 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
         menuItems={this.getMenuConfigs(configurations, pointsToPlot)}
       >
         <ContactMapChart
-          candidateResidues={candidateResidues}
           contactData={pointsToPlot}
           height={height}
           isDataLoading={isDataLoading}
@@ -517,7 +513,6 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
 }
 
 const mapStateToProps = (state: { [key: string]: any }) => ({
-  candidateResidues: getCandidates(state).toArray(),
   hoveredResidues: getHovered(state).toArray(),
   hoveredSecondaryStructures: selectCurrentItems<SECONDARY_STRUCTURE_SECTION>(
     state,
