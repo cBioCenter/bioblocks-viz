@@ -1,24 +1,4 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin);
-.info-table {
-  width: 100%;
-}
-
-.info-table, .info-table td, .info-table th {
-  border-collapse: collapse;
-  border: 1px solid #cccccc;
-  color: #444444;
-  margin-top: 0.25rem;
-  padding-right: 0.5rem;
-  padding: 0.25rem;
-  text-align: left;
-  vertical-align: top;
-}
-
-.info-table-monospace {
-  font-family: Menlo, Monaco, "Courier New", monospace;
-  font-size: 0.88em;
-}
-
  /*
  * # Semantic UI - 2.3.2
  * https://github.com/Semantic-Org/Semantic-UI

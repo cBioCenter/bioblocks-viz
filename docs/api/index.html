@@ -74,8 +74,7 @@
 				<a href="#intro" id="intro" style="color: inherit; text-decoration: none;">
 					<h2>Intro</h2>
 				</a>
-				<p>Visualization components displaying biological data, such as with <a href="https://www.contactmap.org">ContactMap.org</a> or <a href="https://github.com/cBioCenter/bioblocks-portal">Bioblocks Portal</a> for the <a href="https://www.humancellatlas.org/">Human Cell Atlas</a>.</p>
-				<p>Check out the <a href="https://cbiocenter.github.io/bioblocks-viz/docs/api/index.html">API Docs</a>, some <a href="https://cbiocenter.github.io/bioblocks-viz/example.html">live examples</a>, or even the <a href="http://contactmap.org">Contact Map</a> site!</p>
+				<p>Visualization components displaying biological data for the <a href="https://www.humancellatlas.org/">Human Cell Atlas</a>.</p>
 				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
 					<h2>Installation</h2>
 				</a>
@@ -87,7 +86,7 @@
   UMAPTranscriptionalContainer,
 } <span class="hljs-keyword">from</span> <span class="hljs-string">'bioblocks-viz'</span>;
 
-<span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> fetchMatrixData(<span class="hljs-string">'somewhere-over-the-rainbow-is-this-pca.csv'</span>); <span class="hljs-comment">// Returns number[][]</span>
+<span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> fetchMatrixData(<span class="hljs-string">'somewhere-over-the-rainbow-is-this-matrix.csv'</span>); <span class="hljs-comment">// Returns number[][]</span>
 
 &lt;UMAPTranscriptionalContainer
   dataMatrix={data}
@@ -103,10 +102,20 @@ yarn</code></pre>
 					<li>Start a local server to see the components in action!</li>
 				</ul>
 				<pre><code class="language-sh">yarn start</code></pre>
-				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
-					<h2>Usage</h2>
+				<a href="#examples" id="examples" style="color: inherit; text-decoration: none;">
+					<h2>Examples</h2>
 				</a>
-				<p>Please see our <a href="./docs/USAGE.md">Usage Guide</a> for an overview of how to use bioblocks for your visualization needs!</p>
+				<ul>
+					<li><a href="https://cbiocenter.github.io/bioblocks-viz/storybook/">Storybook</a></li>
+					<li><a href="https://cbiocenter.github.io/bioblocks-viz/">UMAP &amp; TSNE</a></li>
+					<li><a href="https://cbiocenter.github.io/bioblocks-portal/">Bioblocks Portal</a></li>
+					<li><a href="https://www.contactmap.org">ContactMap.org</a>
+					)</li>
+				</ul>
+				<a href="#further-reading" id="further-reading" style="color: inherit; text-decoration: none;">
+					<h2>Further Reading</h2>
+				</a>
+				<p>Please see our <a href="https://cbiocenter.github.io/bioblocks-viz/docs/api/index.html">API Docs</a> and <a href="./docs/USAGE.md">Usage Guide</a> for an overview of how to use bioblocks for your visualization needs!</p>
 				<a href="#getting-started-for-development-use" id="getting-started-for-development-use" style="color: inherit; text-decoration: none;">
 					<h2>Getting Started (For Development Use)</h2>
 				</a>
@@ -265,7 +274,10 @@ yarn</code></pre>
 						<a href="classes/contactmapchart.html" class="tsd-kind-icon">Contact<wbr>Map<wbr>Chart</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="classes/contactmapclass.html" class="tsd-kind-icon">Contact<wbr>Map<wbr>Class</a>
+						<a href="classes/contactmapcomponent.html" class="tsd-kind-icon">Contact<wbr>Map<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/contactmapcontainerclass.html" class="tsd-kind-icon">Contact<wbr>Map<wbr>Container<wbr>Class</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/couplingcontainer.html" class="tsd-kind-icon">Coupling<wbr>Container</a>
@@ -293,9 +305,6 @@ yarn</code></pre>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/plotlychart.html" class="tsd-kind-icon">Plotly<wbr>Chart</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="classes/predictedcontactmap.html" class="tsd-kind-icon">Predicted<wbr>Contact<wbr>Map</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/proteinfeatureviewer.html" class="tsd-kind-icon">Protein<wbr>Feature<wbr>Viewer</a>
@@ -439,10 +448,13 @@ yarn</code></pre>
 						<a href="interfaces/icontactmapchartstate.html" class="tsd-kind-icon">IContact<wbr>Map<wbr>Chart<wbr>State</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/icontactmapdata.html" class="tsd-kind-icon">IContact<wbr>Map<wbr>Data</a>
+						<a href="interfaces/icontactmapcomponentprops.html" class="tsd-kind-icon">IContact<wbr>Map<wbr>Component<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/icontactmapprops.html" class="tsd-kind-icon">IContact<wbr>Map<wbr>Props</a>
+						<a href="interfaces/icontactmapcontainerprops.html" class="tsd-kind-icon">IContact<wbr>Map<wbr>Container<wbr>Props</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/icontactmapdata.html" class="tsd-kind-icon">IContact<wbr>Map<wbr>Data</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/icouplingscore.html" class="tsd-kind-icon">ICoupling<wbr>Score</a>
@@ -539,9 +551,6 @@ yarn</code></pre>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/ipopuptype.html" class="tsd-kind-icon">IPopup<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/ipredictedcontactmapprops.html" class="tsd-kind-icon">IPredicted<wbr>Contact<wbr>Map<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/iproperties.html" class="tsd-kind-icon">IProperties</a>
@@ -718,7 +727,10 @@ yarn</code></pre>
 						<a href="globals.html#contactmapcallback" class="tsd-kind-icon">Contact<wbr>Map<wbr>Callback</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#contactmapstate" class="tsd-kind-icon">Contact<wbr>Map<wbr>State</a>
+						<a href="globals.html#contactmapcomponentstate" class="tsd-kind-icon">Contact<wbr>Map<wbr>Component<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#contactmapcontainerstate" class="tsd-kind-icon">Contact<wbr>Map<wbr>Container<wbr>State</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#distance_fn_type" class="tsd-kind-icon">DISTANCE_<wbr>FN_<wbr>TYPE</a>
@@ -767,9 +779,6 @@ yarn</code></pre>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported">
 						<a href="globals.html#partialexcept" class="tsd-kind-icon">Partial<wbr>Except</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#predictedcontactmapstate" class="tsd-kind-icon">Predicted<wbr>Contact<wbr>Map<wbr>State</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#required_bioblocks_plotly_data" class="tsd-kind-icon">REQUIRED_<wbr>BIOBLOCKS_<wbr>PLOTLY_<wbr>DATA</a>
@@ -838,7 +847,7 @@ yarn</code></pre>
 						<a href="globals.html#connectednglcontainer" class="tsd-kind-icon">ConnectedNGLContainer</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="globals.html#contactmap" class="tsd-kind-icon">Contact<wbr>Map</a>
+						<a href="globals.html#contactmapcontainer" class="tsd-kind-icon">Contact<wbr>Map<wbr>Container</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="globals.html#evfold_expected_headers" class="tsd-kind-icon">EVFOLD_<wbr>EXPECTED_<wbr>HEADERS</a>
@@ -1234,13 +1243,13 @@ yarn</code></pre>
 						<a href="globals.html#extendedproteinvalues" class="tsd-kind-icon">extended<wbr>Protein<wbr>Values</a>
 					</li>
 					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#initialcontactmapcontainerstate" class="tsd-kind-icon">initial<wbr>Contact<wbr>Map<wbr>Container<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
 						<a href="globals.html#initialcontactmapstate" class="tsd-kind-icon">initial<wbr>Contact<wbr>Map<wbr>State</a>
 					</li>
 					<li class=" tsd-kind-object-literal">
 						<a href="globals.html#initialnglstate" class="tsd-kind-icon">initialNGLState</a>
-					</li>
-					<li class=" tsd-kind-object-literal">
-						<a href="globals.html#initialpredictedcontactmapstate" class="tsd-kind-icon">initial<wbr>Predicted<wbr>Contact<wbr>Map<wbr>State</a>
 					</li>
 					<li class=" tsd-kind-object-literal tsd-is-not-exported">
 						<a href="globals.html#initialstate" class="tsd-kind-icon">initial<wbr>State</a>

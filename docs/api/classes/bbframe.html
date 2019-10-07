@@ -120,6 +120,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="bbframe.html#componentwillupdate" class="tsd-kind-icon">component<wbr>Will<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="bbframe.html#forceupdate" class="tsd-kind-icon">force<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="bbframe.html#getsnapshotbeforeupdate" class="tsd-kind-icon">get<wbr>Snapshot<wbr>Before<wbr>Update</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="bbframe.html#getviz" class="tsd-kind-icon">get<wbr>Viz</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="bbframe.html#onmessage" class="tsd-kind-icon">on<wbr>Message</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="bbframe.html#render" class="tsd-kind-icon">render</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="bbframe.html#renderumapseq" class="tsd-kind-icon">render<wbr>Umap<wbr>Seq</a></li>
@@ -150,7 +151,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Component.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/frames/BBFrame.tsx#L31">frames/BBFrame.tsx:31</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/d22d1ecb5/frames/BBFrame.tsx#L31">frames/BBFrame.tsx:31</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -460,7 +461,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Overrides ComponentLifecycle.componentDidMount</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/frames/BBFrame.tsx#L40">frames/BBFrame.tsx:40</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/d22d1ecb5/frames/BBFrame.tsx#L40">frames/BBFrame.tsx:40</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -599,7 +600,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Overrides ComponentLifecycle.componentWillUnmount</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/frames/BBFrame.tsx#L44">frames/BBFrame.tsx:44</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/d22d1ecb5/frames/BBFrame.tsx#L44">frames/BBFrame.tsx:44</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -719,6 +720,46 @@ class Foo extends React.Component {
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="getviz" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Viz</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Viz<span class="tsd-signature-symbol">(</span>viz<span class="tsd-signature-symbol">: </span><a href="../enums/viz_type.html" class="tsd-signature-type">VIZ_TYPE</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">NamedExoticComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">NamedExoticComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">NGLContainer</span><span class="tsd-signature-symbol"> | </span><a href="umapsequencecontainer.html" class="tsd-signature-type">UMAPSequenceContainer</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/d22d1ecb5/frames/BBFrame.tsx#L59">frames/BBFrame.tsx:59</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>viz: <a href="../enums/viz_type.html" class="tsd-signature-type">VIZ_TYPE</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">null</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">NamedExoticComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span>
+								<span class="tsd-signature-symbol"> &amp; </span>
+								<span class="tsd-signature-type">object</span>
+								<span class="tsd-signature-symbol"> &amp; </span>
+								<span class="tsd-signature-type">object</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">NamedExoticComponent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span>
+								<span class="tsd-signature-symbol"> &amp; </span>
+								<span class="tsd-signature-type">object</span>
+								<span class="tsd-signature-symbol"> &amp; </span>
+								<span class="tsd-signature-type">object</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">NGLContainer</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<a href="umapsequencecontainer.html" class="tsd-signature-type">UMAPSequenceContainer</a>
+							</h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 					<a name="onmessage" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> on<wbr>Message</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
@@ -728,7 +769,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/frames/BBFrame.tsx#L59">frames/BBFrame.tsx:59</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/d22d1ecb5/frames/BBFrame.tsx#L74">frames/BBFrame.tsx:74</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -752,7 +793,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Overrides Component.render</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/frames/BBFrame.tsx#L48">frames/BBFrame.tsx:48</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/d22d1ecb5/frames/BBFrame.tsx#L48">frames/BBFrame.tsx:48</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">null</span>
@@ -772,7 +813,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/frames/BBFrame.tsx#L83">frames/BBFrame.tsx:83</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/d22d1ecb5/frames/BBFrame.tsx#L98">frames/BBFrame.tsx:98</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -795,7 +836,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/frames/BBFrame.tsx#L68">frames/BBFrame.tsx:68</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/d22d1ecb5/frames/BBFrame.tsx#L83">frames/BBFrame.tsx:83</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -893,7 +934,7 @@ class Foo extends React.Component {
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/frames/BBFrame.tsx#L28">frames/BBFrame.tsx:28</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/d22d1ecb5/frames/BBFrame.tsx#L28">frames/BBFrame.tsx:28</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -902,7 +943,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">style<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/frames/BBFrame.tsx#L29">frames/BBFrame.tsx:29</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/d22d1ecb5/frames/BBFrame.tsx#L29">frames/BBFrame.tsx:29</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-type-declaration">
@@ -917,7 +958,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">viz<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> =&nbsp;undefined</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/4fe556c71/frames/BBFrame.tsx#L30">frames/BBFrame.tsx:30</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/d22d1ecb5/frames/BBFrame.tsx#L30">frames/BBFrame.tsx:30</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -992,6 +1033,9 @@ class Foo extends React.Component {
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="bbframe.html#getsnapshotbeforeupdate" class="tsd-kind-icon">get<wbr>Snapshot<wbr>Before<wbr>Update</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="bbframe.html#getviz" class="tsd-kind-icon">get<wbr>Viz</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 								<a href="bbframe.html#onmessage" class="tsd-kind-icon">on<wbr>Message</a>

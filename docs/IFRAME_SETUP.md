@@ -7,6 +7,7 @@
     - [HTML Only](#html-only)
     - [Non-Framework HTML and JavaScript](#non-framework-html-and-javascript)
     - [React](#react)
+  - [Target Origin](#target-origin)
   - [Sending Data](#sending-data)
 
 <!-- /TOC -->
@@ -33,15 +34,16 @@ And the appropriate scriptlet:
 ```html
 <script>
   function startBioblocks(e) {
-    const iframe = document.getElementById("bioblocks-frame");
+    const iframe = document.getElementById('bioblocks-frame');
     if (iframe && iframe.contentWindow) {
       iframe.contentWindow.postMessage(
         {
-          viz: "Contact Map"
+          viz: 'Contact Map',
         },
-        "*"
+        '*',
       );
     }
+  }
 </script>
 ```
 
@@ -72,7 +74,7 @@ if (iframe && iframe.contentWindow) {
         seqs: new Array(100).fill(1).map((value, index) => index.toString()),
         viz: 'UMAP Sequence',
       },
-      '*',
+      'http://my.domain/',
     );
   });
 }
@@ -84,9 +86,79 @@ This will produce 100 data points in a UMAP component. Neat!
 
 Coming Soon™ - A component to encapsulate an instance of bioblocks in an iFrame! In the meantime, please take a look at our [regular react usage guide](./USAGE.md#bioblocks-viz-usage).
 
+## Target Origin
+
+Please take note of the second parameter to postMessage! It is the origin of the iFrame, which should be the server you are serving your site from.
+
+The following is an example for demonstrative / development purposes. Consider this `index.html`:
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <iframe
+      allowfullscreen="true"
+      id="bioblocks-frame"
+      src="./node_modules/bioblocks-viz/bioblocks.html"
+      onload="startBioblocks()"
+      width="525"
+      height="530"
+    ></iframe>
+
+    <script>
+      function startBioblocks(e) {
+        const iframe = document.getElementById('bioblocks-frame');
+        if (iframe && iframe.contentWindow) {
+          iframe.contentWindow.postMessage(
+            {
+              viz: 'Contact Map',
+            },
+            'http://127.0.0.1:8080',
+          );
+        }
+      }
+    </script>
+  </body>
+</html>
+```
+
+If we open this file directly in chrome, we will see the message `Failed to execute 'postMessage' on 'DOMWindow'` in the console.
+
+To resolve, we need to either serve this file via a webserver or change the targetOrigin to the wildcard character (`*`).
+
+A quick method for starting a server is to run:
+
+```sh
+npx http-server ./
+```
+
+The targetOrigin change is equally as quick:
+
+```js
+// Before
+iframe.contentWindow.postMessage(
+  {
+    viz: 'Contact Map',
+  },
+  'http://127.0.0.1:8080',
+);
+
+// After
+iframe.contentWindow.postMessage(
+  {
+    viz: 'Contact Map',
+  },
+  '*',
+);
+```
+
+\***\*DO NOT USE THE WILDCARD IN PRODUCTION\*\***
+
+For more info, please refer to the [PostMessage API](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage)
+
 ## Sending Data
 
-Now let's see how we can send your existing application data to an iFrame'd bioblocks for visualization. Consider the following function that returns some domain-specific data[^1].
+Now let's see how we can send your existing application data to an iFrame'd bioblocks for visualization. Consider the following function that returns some domain-specific data¹.
 
 ```js
 const fetchData = () => {
@@ -142,10 +214,12 @@ iframe.contentWindow.postMessage(
     seqs: data.songLengths.map(length => length),
     viz: 'UMAP Sequence',
   },
-  '*',
+  'http://my.domain/',
 );
 ```
 
 Please refer to our [API Documentation](https://cbiocenter.github.io/bioblocks-viz/docs/api/index.html) for the various visualization types and associated property names for data sending.
 
-[^1]: The domain in this case being good music.
+---
+
+¹ The domain in this case being good music.
