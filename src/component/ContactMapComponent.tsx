@@ -1,9 +1,6 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators, Dispatch } from 'redux';
-
 import { ButtonProps, Checkbox, CheckboxProps, Icon, Label } from 'semantic-ui-react';
-import { createContainerActions, createResiduePairActions } from '~bioblocks-viz~/action';
+
 import {
   ComponentCard,
   ContactMapChart,
@@ -17,7 +14,6 @@ import {
   BioblocksChartEvent,
   BioblocksWidgetConfig,
   ButtonGroupWidgetConfig,
-  CheckboxWidgetConfig,
   CONFIGURATION_COMPONENT_TYPE,
   CouplingContainer,
   IContactMapData,
@@ -29,36 +25,40 @@ import {
 } from '~bioblocks-viz~/data';
 import { ColorMapper, EMPTY_FUNCTION, generateCouplingScoreHoverText } from '~bioblocks-viz~/helper';
 import { LockedResiduePair } from '~bioblocks-viz~/reducer';
-import { getCandidates, getHovered, getLocked, selectCurrentItems } from '~bioblocks-viz~/selector';
 
 export type CONTACT_MAP_CB_RESULT_TYPE = ICouplingScore;
 export type ContactMapCallback = (coupling: CONTACT_MAP_CB_RESULT_TYPE) => void;
 
-export interface IContactMapProps {
+export interface IContactMapComponentProps {
   configurations: BioblocksWidgetConfig[];
+  /** Data for the Contact Map */
   data: IContactMapData;
   formattedPoints: IContactMapChartData[];
+  /** Height of the component. */
   height: number | string;
   highlightColor: string;
   hoveredResidues: RESIDUE_TYPE[];
   hoveredSecondaryStructures: SECONDARY_STRUCTURE_SECTION[];
   isDataLoading: boolean;
   lockedResiduePairs: LockedResiduePair;
+  /** Color to distinguish contacts that are considered 'observed' */
   observedColor: string;
   secondaryStructureColors?: ColorMapper<SECONDARY_STRUCTURE_KEYS>;
   selectedSecondaryStructures: SECONDARY_STRUCTURE;
+  /** Controls whether button to change settings is shown. */
   showConfigurations: boolean;
   style?: BIOBLOCKS_CSS_STYLE;
+  /** Width of the component. */
   width: number | string;
   addHoveredResidues(residues: RESIDUE_TYPE[]): void;
   addHoveredSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
   addSelectedSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
+  onBoxSelection?(residues: RESIDUE_TYPE[]): void;
   removeAllLockedResiduePairs(): void;
   removeAllSelectedSecondaryStructures(): void;
-  removeSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
   removeHoveredResidues(): void;
   removeHoveredSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
-  onBoxSelection?(residues: RESIDUE_TYPE[]): void;
+  removeSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
   toggleLockedResiduePair(residuePair: LockedResiduePair): void;
 }
 
@@ -66,9 +66,14 @@ export const initialContactMapState = {
   pointsToPlot: new Array<IContactMapChartData>(),
 };
 
-export type ContactMapState = Readonly<typeof initialContactMapState>;
+export type ContactMapComponentState = Readonly<typeof initialContactMapState>;
 
-export class ContactMapClass extends React.Component<IContactMapProps, ContactMapState> {
+/**
+ * Presentational Component for the ContactMap.
+ *
+ * @extends {React.Component<IContactMapComponentProps, ContactMapComponentState>}
+ */
+export class ContactMapComponent extends React.Component<IContactMapComponentProps, ContactMapComponentState> {
   public static defaultProps = {
     addHoveredResidues: EMPTY_FUNCTION,
     addHoveredSecondaryStructure: EMPTY_FUNCTION,
@@ -99,9 +104,9 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     width: '100%',
   };
 
-  public readonly state: ContactMapState = initialContactMapState;
+  public readonly state: ContactMapComponentState = initialContactMapState;
 
-  constructor(props: IContactMapProps) {
+  constructor(props: IContactMapComponentProps) {
     super(props);
   }
 
@@ -109,7 +114,7 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     this.setupPointsToPlot(this.props.data.couplingScores);
   }
 
-  public componentDidUpdate(prevProps: IContactMapProps) {
+  public componentDidUpdate(prevProps: IContactMapComponentProps) {
     const { data, lockedResiduePairs } = this.props;
     if (data !== prevProps.data || lockedResiduePairs !== prevProps.lockedResiduePairs) {
       this.setupPointsToPlot(data.couplingScores);
@@ -511,37 +516,3 @@ export class ContactMapClass extends React.Component<IContactMapProps, ContactMa
     });
   }
 }
-
-const mapStateToProps = (state: { [key: string]: any }) => ({
-  hoveredResidues: getHovered(state).toArray(),
-  hoveredSecondaryStructures: selectCurrentItems<SECONDARY_STRUCTURE_SECTION>(
-    state,
-    'secondaryStructure/hovered',
-  ).toArray(),
-  lockedResiduePairs: getLocked(state).toJS(),
-  selectedSecondaryStructures: selectCurrentItems<SECONDARY_STRUCTURE_SECTION>(
-    state,
-    'secondaryStructure/selected',
-  ).toArray(),
-});
-
-const mapDispatchToProps = (dispatch: Dispatch) =>
-  bindActionCreators(
-    {
-      addHoveredResidues: createResiduePairActions().hovered.set,
-      addHoveredSecondaryStructure: createContainerActions('secondaryStructure/hovered').add,
-      addSelectedSecondaryStructure: createContainerActions('secondaryStructure/selected').add,
-      removeAllLockedResiduePairs: createResiduePairActions().locked.clear,
-      removeAllSelectedSecondaryStructures: createContainerActions('secondaryStructure/selected').clear,
-      removeHoveredResidues: createResiduePairActions().hovered.clear,
-      removeHoveredSecondaryStructure: createContainerActions('secondaryStructure/hovered').remove,
-      removeSecondaryStructure: createContainerActions('secondaryStructure/selected').remove,
-      toggleLockedResiduePair: createResiduePairActions().locked.toggle,
-    },
-    dispatch,
-  );
-
-export const ContactMap = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ContactMapClass);

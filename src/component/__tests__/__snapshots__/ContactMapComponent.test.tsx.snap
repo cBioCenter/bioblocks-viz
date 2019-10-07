@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ContactMap Snapshots Should match existing snapshot when a single point are hovered. 1`] = `
+exports[`ContactMapComponent Snapshots Should match existing snapshot when a single point are hovered. 1`] = `
 <ComponentCard
   componentName="Contact Map"
   dockItems={
@@ -294,7 +294,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when a single point
 </ComponentCard>
 `;
 
-exports[`ContactMap Snapshots Should match existing snapshot when given basic data. 1`] = `
+exports[`ContactMapComponent Snapshots Should match existing snapshot when given basic data. 1`] = `
 <ComponentCard
   componentName="Contact Map"
   dockItems={
@@ -580,7 +580,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given basic da
 </ComponentCard>
 `;
 
-exports[`ContactMap Snapshots Should match existing snapshot when given data with a PDB. 1`] = `
+exports[`ContactMapComponent Snapshots Should match existing snapshot when given data with a PDB. 1`] = `
 <ComponentCard
   componentName="Contact Map"
   dockItems={
@@ -833,7 +833,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
 </ComponentCard>
 `;
 
-exports[`ContactMap Snapshots Should match existing snapshot when given data with amino acids. 1`] = `
+exports[`ContactMapComponent Snapshots Should match existing snapshot when given data with amino acids. 1`] = `
 <ComponentCard
   componentName="Contact Map"
   dockItems={
@@ -1086,7 +1086,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given data wit
 </ComponentCard>
 `;
 
-exports[`ContactMap Snapshots Should match existing snapshot when given empty data. 1`] = `
+exports[`ContactMapComponent Snapshots Should match existing snapshot when given empty data. 1`] = `
 <ComponentCard
   componentName="Contact Map"
   dockItems={
@@ -1329,7 +1329,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given empty da
 </ComponentCard>
 `;
 
-exports[`ContactMap Snapshots Should match existing snapshot when given no data. 1`] = `
+exports[`ContactMapComponent Snapshots Should match existing snapshot when given no data. 1`] = `
 <ComponentCard
   componentName="Contact Map"
   dockItems={
@@ -1572,7 +1572,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when given no data.
 </ComponentCard>
 `;
 
-exports[`ContactMap Snapshots Should match existing snapshot when multiple points are hovered. 1`] = `
+exports[`ContactMapComponent Snapshots Should match existing snapshot when multiple points are hovered. 1`] = `
 <ComponentCard
   componentName="Contact Map"
   dockItems={
@@ -1866,7 +1866,7 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
 </ComponentCard>
 `;
 
-exports[`ContactMap Snapshots Should match existing snapshot when multiple points are selected. 1`] = `
+exports[`ContactMapComponent Snapshots Should match existing snapshot when multiple points are selected. 1`] = `
 <ComponentCard
   componentName="Contact Map"
   dockItems={
@@ -2174,8 +2174,8 @@ exports[`ContactMap Snapshots Should match existing snapshot when multiple point
 </ComponentCard>
 `;
 
-exports[`ContactMap Snapshots Should match snapshot when locked residues are added. 1`] = `
-<ContactMapClass
+exports[`ContactMapComponent Snapshots Should match snapshot when locked residues are added. 1`] = `
+<ContactMapComponent
   addHoveredResidues={[Function]}
   addHoveredSecondaryStructure={[Function]}
   addSelectedSecondaryStructure={[Function]}
@@ -3779,5 +3779,5 @@ exports[`ContactMap Snapshots Should match snapshot when locked residues are add
       </div>
     </Card>
   </ComponentCard>
-</ContactMapClass>
+</ContactMapComponent>
 `;
