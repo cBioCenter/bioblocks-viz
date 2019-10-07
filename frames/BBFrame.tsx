@@ -56,6 +56,21 @@ export class BBFrame extends React.Component<IBBFrameProps, IBBFrameState> {
     return currentViz !== undefined ? <div style={combinedStyle}>{this.renderViz(currentViz, vizData)}</div> : null;
   }
 
+  protected getViz = (viz: VIZ_TYPE) => {
+    switch (viz) {
+      case VIZ_TYPE.CONTACT_MAP:
+        return PredictedContactMap;
+      case VIZ_TYPE.NGL:
+        return NGLContainer;
+      case VIZ_TYPE.SPRING:
+        return SpringContainer;
+      case VIZ_TYPE.UMAP_SEQUENCE:
+        return UMAPSequenceContainer;
+      default:
+        return null;
+    }
+  };
+
   protected onMessage = (msg: IFrameEvent<VIZ_TYPE>) => {
     const { currentViz } = this.state;
 

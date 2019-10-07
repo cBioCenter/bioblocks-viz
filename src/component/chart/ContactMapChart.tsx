@@ -6,7 +6,6 @@ import { AuxiliaryAxis, PlotlyChart, SecondaryStructureAxis } from '~bioblocks-v
 import {
   BioblocksWidgetConfig,
   IPlotlyData,
-  RESIDUE_TYPE,
   SECONDARY_STRUCTURE,
   SECONDARY_STRUCTURE_KEYS,
 } from '~bioblocks-viz~/data';
