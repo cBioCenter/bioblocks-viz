@@ -92,7 +92,7 @@ exports[`TensorTContainer Should match existing snapshot when given no props. 1`
       <GridRow
         style={
           Object {
-            "height": "100%",
+            "height": "calc(100% - 3px)",
             "margin": 0,
           }
         }
@@ -199,7 +199,7 @@ exports[`TensorTContainer Should match existing snapshot when given sample data.
       <GridRow
         style={
           Object {
-            "height": "100%",
+            "height": "calc(100% - 3px)",
             "margin": 0,
           }
         }

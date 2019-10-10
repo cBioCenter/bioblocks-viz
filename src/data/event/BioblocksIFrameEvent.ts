@@ -23,5 +23,5 @@ export type VIZ_EVENT_DATA_TYPE<T = unknown> = T extends VIZ_TYPE.SPRING
   : Record<string, any>;
 
 export interface IFrameEvent<T extends VIZ_TYPE> extends MessageEvent {
-  data: { viz: T } & VIZ_EVENT_DATA_TYPE<T>;
+  data: { props: any; viz: T } & VIZ_EVENT_DATA_TYPE<T>;
 }

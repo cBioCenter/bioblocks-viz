@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PredictedContactMap Should update points to plot when new data is provided. 1`] = `
+exports[`ContactMapContainer Should update points to plot when new data is provided. 1`] = `
 Array [
   Object {
     "hoverinfo": "text",
@@ -75,7 +75,7 @@ Array [
 ]
 `;
 
-exports[`PredictedContactMap Snapshots Should match existing snapshot when given empty data. 1`] = `
+exports[`ContactMapContainer Snapshots Should match existing snapshot when given empty data. 1`] = `
 <Provider
   store={
     Object {
@@ -88,9 +88,12 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
   }
 >
   <div
-    className="PredictedContactMapComponent"
+    className="ContactMapContainer"
   >
-    <Connect(ContactMapClass)
+    <ContactMapComponent
+      addHoveredResidues={[Function]}
+      addHoveredSecondaryStructure={[Function]}
+      addSelectedSecondaryStructure={[Function]}
       agreementColor="#ff0000"
       allColor="#000000"
       configurations={
@@ -157,6 +160,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
           "secondaryStructures": Array [],
         }
       }
+      enableSliders={true}
       filters={Array []}
       formattedPoints={
         Array [
@@ -188,15 +192,27 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
       }
       height="100%"
       highlightColor="#ff8800"
+      hoveredResidues={Array []}
+      hoveredSecondaryStructures={Array []}
       isDataLoading={false}
+      lockedResiduePairs={Object {}}
       observedColor="#0000ff"
+      onBoxSelection={[Function]}
+      removeAllLockedResiduePairs={[Function]}
+      removeAllSelectedSecondaryStructures={[Function]}
+      removeHoveredResidues={[Function]}
+      removeHoveredSecondaryStructure={[Function]}
+      removeSecondaryStructure={[Function]}
+      selectedSecondaryStructures={Array []}
+      showConfigurations={true}
+      toggleLockedResiduePair={[Function]}
       width="100%"
     />
   </div>
 </Provider>
 `;
 
-exports[`PredictedContactMap Snapshots Should match existing snapshot when given no data. 1`] = `
+exports[`ContactMapContainer Snapshots Should match existing snapshot when given no data. 1`] = `
 <Provider
   store={
     Object {
@@ -209,9 +225,12 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
   }
 >
   <div
-    className="PredictedContactMapComponent"
+    className="ContactMapContainer"
   >
-    <Connect(ContactMapClass)
+    <ContactMapComponent
+      addHoveredResidues={[Function]}
+      addHoveredSecondaryStructure={[Function]}
+      addSelectedSecondaryStructure={[Function]}
       agreementColor="#ff0000"
       allColor="#000000"
       configurations={
@@ -278,6 +297,7 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
           "secondaryStructures": Array [],
         }
       }
+      enableSliders={true}
       filters={Array []}
       formattedPoints={
         Array [
@@ -309,15 +329,27 @@ exports[`PredictedContactMap Snapshots Should match existing snapshot when given
       }
       height="100%"
       highlightColor="#ff8800"
+      hoveredResidues={Array []}
+      hoveredSecondaryStructures={Array []}
       isDataLoading={false}
+      lockedResiduePairs={Object {}}
       observedColor="#0000ff"
+      onBoxSelection={[Function]}
+      removeAllLockedResiduePairs={[Function]}
+      removeAllSelectedSecondaryStructures={[Function]}
+      removeHoveredResidues={[Function]}
+      removeHoveredSecondaryStructure={[Function]}
+      removeSecondaryStructure={[Function]}
+      selectedSecondaryStructures={Array []}
+      showConfigurations={true}
+      toggleLockedResiduePair={[Function]}
       width="100%"
     />
   </div>
 </Provider>
 `;
 
-exports[`PredictedContactMap Snapshots Should match snapshot when locked residues are added. 1`] = `
+exports[`ContactMapContainer Snapshots Should match snapshot when locked residues are added. 1`] = `
 <Provider
   store={
     Object {
@@ -330,9 +362,12 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
   }
 >
   <div
-    className="PredictedContactMapComponent"
+    className="ContactMapContainer"
   >
-    <Connect(ContactMapClass)
+    <ContactMapComponent
+      addHoveredResidues={[Function]}
+      addHoveredSecondaryStructure={[Function]}
+      addSelectedSecondaryStructure={[Function]}
       agreementColor="#ff0000"
       allColor="#000000"
       configurations={
@@ -399,6 +434,7 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
           "secondaryStructures": Array [],
         }
       }
+      enableSliders={true}
       filters={Array []}
       formattedPoints={
         Array [
@@ -430,6 +466,8 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
       }
       height="100%"
       highlightColor="#ff8800"
+      hoveredResidues={Array []}
+      hoveredSecondaryStructures={Array []}
       isDataLoading={false}
       lockedResiduePairs={
         Object {
@@ -443,6 +481,15 @@ exports[`PredictedContactMap Snapshots Should match snapshot when locked residue
         }
       }
       observedColor="#0000ff"
+      onBoxSelection={[Function]}
+      removeAllLockedResiduePairs={[Function]}
+      removeAllSelectedSecondaryStructures={[Function]}
+      removeHoveredResidues={[Function]}
+      removeHoveredSecondaryStructure={[Function]}
+      removeSecondaryStructure={[Function]}
+      selectedSecondaryStructures={Array []}
+      showConfigurations={true}
+      toggleLockedResiduePair={[Function]}
       width="100%"
     />
   </div>

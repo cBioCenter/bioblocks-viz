@@ -28,7 +28,7 @@ import {
   UMAPTranscriptionalContainer,
 } from 'bioblocks-viz';
 
-const data = await fetchMatrixData('somewhere-over-the-rainbow-is-this-pca.csv'); // Returns number[][]
+const data = await fetchMatrixData('somewhere-over-the-rainbow-is-this-matrix.csv'); // Returns number[][]
 
 <UMAPTranscriptionalContainer
   dataMatrix={data}
@@ -50,9 +50,17 @@ yarn
 yarn start
 ```
 
-## Usage
+## Examples
 
-Please see our [Usage Guide](./docs/USAGE.md) for an overview of how to use bioblocks for your visualization needs!
+- [Storybook](https://cbiocenter.github.io/bioblocks-viz/storybook/)
+- [UMAP & TSNE](https://cbiocenter.github.io/bioblocks-viz/)
+- [Bioblocks Portal](https://cbiocenter.github.io/bioblocks-portal/)
+- [ContactMap.org](https://www.contactmap.org)
+  )
+
+## Further Reading
+
+Please see our [API Docs](https://cbiocenter.github.io/bioblocks-viz/docs/api/index.html) and [Usage Guide](./docs/USAGE.md) for an overview of how to use bioblocks for your visualization needs!
 
 ## Getting Started (For Development Use)
 

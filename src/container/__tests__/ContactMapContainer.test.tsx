@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { PredictedContactMap, PredictedContactMapState } from '~bioblocks-viz~/container';
+import { ContactMapContainerClass, ContactMapContainerState } from '~bioblocks-viz~/container';
 import {
   Bioblocks1DSection,
   CouplingContainer,
@@ -11,7 +11,7 @@ import {
 } from '~bioblocks-viz~/data';
 import { getAsyncShallowComponent } from '~bioblocks-viz~/test';
 
-describe('PredictedContactMap', () => {
+describe('ContactMapContainer', () => {
   let emptyData: IContactMapData;
   let sampleCorrectPredictedContacts: ICouplingScore[];
   let sampleData: IContactMapData;
@@ -65,15 +65,15 @@ describe('PredictedContactMap', () => {
 
   describe('Snapshots', () => {
     it('Should match existing snapshot when given no data.', () => {
-      expect(shallow(<PredictedContactMap />)).toMatchSnapshot();
+      expect(shallow(<ContactMapContainerClass />)).toMatchSnapshot();
     });
 
     it('Should match existing snapshot when given empty data.', () => {
-      expect(shallow(<PredictedContactMap data={emptyData} />)).toMatchSnapshot();
+      expect(shallow(<ContactMapContainerClass data={emptyData} />)).toMatchSnapshot();
     });
 
     it('Should match snapshot when locked residues are added.', async () => {
-      const wrapper = await getAsyncShallowComponent(<PredictedContactMap />);
+      const wrapper = await getAsyncShallowComponent(<ContactMapContainerClass />);
       const expectedSelectedPoints = {
         '37,46': [37, 46],
         8: [8],
@@ -88,8 +88,8 @@ describe('PredictedContactMap', () => {
 
   describe('Sliders', () => {
     it('Should update linear distance filter when appropriate slider is updated.', () => {
-      const wrapper = shallow(<PredictedContactMap data={sampleData} />);
-      const instance = wrapper.instance() as PredictedContactMap;
+      const wrapper = shallow(<ContactMapContainerClass data={sampleData} />);
+      const instance = wrapper.instance() as ContactMapContainerClass;
       const expected = 10;
       expect(instance.state.linearDistFilter).not.toBe(expected);
       instance.onLinearDistFilterChange()(expected);
@@ -98,8 +98,8 @@ describe('PredictedContactMap', () => {
     });
 
     it('Should update number of predicted contacts to show when appropriate slider is updated.', () => {
-      const wrapper = shallow(<PredictedContactMap data={sampleData} />);
-      const instance = wrapper.instance() as PredictedContactMap;
+      const wrapper = shallow(<ContactMapContainerClass data={sampleData} />);
+      const instance = wrapper.instance() as ContactMapContainerClass;
       const expectedCount = 50;
       expect(instance.state.numPredictionsToShow).not.toBe(expectedCount);
       instance.onNumPredictionsToShowChange()(expectedCount);
@@ -108,8 +108,8 @@ describe('PredictedContactMap', () => {
     });
 
     it('Should update # of predicted contacts to show when appropriate slider is updated.', () => {
-      const wrapper = shallow(<PredictedContactMap data={sampleData} />);
-      const instance = wrapper.instance() as PredictedContactMap;
+      const wrapper = shallow(<ContactMapContainerClass data={sampleData} />);
+      const instance = wrapper.instance() as ContactMapContainerClass;
       const expected = 20;
       expect(instance.state.numPredictionsToShow).not.toBe(expected);
       instance.onNumPredictionsToShowChange()(expected);
@@ -120,7 +120,7 @@ describe('PredictedContactMap', () => {
 
   it('Should update number of predictions to show when new value is received.', () => {
     const expected = 28;
-    const wrapper = shallow(<PredictedContactMap data={emptyData} />);
+    const wrapper = shallow(<ContactMapContainerClass data={emptyData} />);
     expect(wrapper.state('numPredictionsToShow')).not.toBe(expected);
     wrapper.setState({
       numPredictionsToShow: expected,
@@ -129,11 +129,11 @@ describe('PredictedContactMap', () => {
   });
 
   it('Should update points to plot when new data is provided.', () => {
-    const wrapper = shallow(<PredictedContactMap data={emptyData} />);
+    const wrapper = shallow(<ContactMapContainerClass data={emptyData} />);
     wrapper.setProps({
       data: sampleData,
     });
-    const state = wrapper.instance().state as PredictedContactMapState;
+    const state = wrapper.instance().state as ContactMapContainerState;
     expect(state.pointsToPlot).not.toEqual([]);
     expect(state.pointsToPlot).toMatchSnapshot();
   });

@@ -3,7 +3,7 @@ import { mount, shallow } from 'enzyme';
 import * as plotly from 'plotly.js/lib/index-gl2d';
 import * as React from 'react';
 
-import { ContactMapClass } from '~bioblocks-viz~/component';
+import { ContactMapComponent } from '~bioblocks-viz~/component';
 import {
   Bioblocks1DSection,
   BioblocksPDB,
@@ -15,7 +15,7 @@ import {
 } from '~bioblocks-viz~/data';
 import { dispatchPlotlyEvent, dispatchPlotlySelectionEvent, getAsyncMountedComponent } from '~bioblocks-viz~/test';
 
-describe('ContactMap', () => {
+describe('ContactMapComponent', () => {
   let emptyData: IContactMapData;
   let sampleContactsWithAminoAcids: ICouplingScore[];
   let sampleCorrectPredictedContacts: ICouplingScore[];
@@ -98,15 +98,15 @@ describe('ContactMap', () => {
 
   describe('Snapshots', () => {
     it('Should match existing snapshot when given no data.', () => {
-      expect(shallow(<ContactMapClass />)).toMatchSnapshot();
+      expect(shallow(<ContactMapComponent />)).toMatchSnapshot();
     });
 
     it('Should match existing snapshot when given empty data.', () => {
-      expect(shallow(<ContactMapClass data={emptyData} />)).toMatchSnapshot();
+      expect(shallow(<ContactMapComponent data={emptyData} />)).toMatchSnapshot();
     });
 
     it('Should match snapshot when locked residues are added.', async () => {
-      const wrapper = await getAsyncMountedComponent(<ContactMapClass data={sampleData} />);
+      const wrapper = await getAsyncMountedComponent(<ContactMapComponent data={sampleData} />);
       const expectedSelectedPoints = new Map(
         Object.entries({
           '37,46': [37, 46],
@@ -121,22 +121,22 @@ describe('ContactMap', () => {
     });
 
     it('Should match existing snapshot when given basic data.', () => {
-      expect(shallow(<ContactMapClass data={sampleData} />)).toMatchSnapshot();
+      expect(shallow(<ContactMapComponent data={sampleData} />)).toMatchSnapshot();
     });
 
     it('Should match existing snapshot when given data with amino acids.', () => {
-      expect(shallow(<ContactMapClass data={sampleDataWithAminoAcid} />)).toMatchSnapshot();
+      expect(shallow(<ContactMapComponent data={sampleDataWithAminoAcid} />)).toMatchSnapshot();
     });
 
     it('Should match existing snapshot when given data with a PDB.', async () => {
       const pdbData = { experimental: await BioblocksPDB.createPDB() };
-      expect(shallow(<ContactMapClass data={{ ...sampleDataWithAminoAcid, pdbData }} />)).toMatchSnapshot();
+      expect(shallow(<ContactMapComponent data={{ ...sampleDataWithAminoAcid, pdbData }} />)).toMatchSnapshot();
     });
 
     it('Should match existing snapshot when a single point are hovered.', () => {
       expect(
         shallow(
-          <ContactMapClass
+          <ContactMapComponent
             data={sampleData}
             hoveredResidues={[sampleData.couplingScores.getObservedContacts()[0].i]}
           />,
@@ -146,13 +146,15 @@ describe('ContactMap', () => {
 
     it('Should match existing snapshot when multiple points are hovered.', () => {
       const contact = sampleData.couplingScores.getObservedContacts()[0];
-      expect(shallow(<ContactMapClass data={sampleData} hoveredResidues={[contact.i, contact.j]} />)).toMatchSnapshot();
+      expect(
+        shallow(<ContactMapComponent data={sampleData} hoveredResidues={[contact.i, contact.j]} />),
+      ).toMatchSnapshot();
     });
 
     it('Should match existing snapshot when multiple points are selected.', () => {
       const contacts = sampleData.couplingScores.getObservedContacts();
       const wrapper = shallow(
-        <ContactMapClass
+        <ContactMapComponent
           data={sampleData}
           hoveredResidues={[contacts[0].i, contacts[0].j]}
           lockedResiduePairs={{
@@ -175,7 +177,7 @@ describe('ContactMap', () => {
     it('Should invoke callback to add locked residues when a click event is fired.', async () => {
       const onClickSpy = jest.fn();
       const wrapper = await getAsyncMountedComponent(
-        <ContactMapClass data={sampleData} toggleLockedResiduePair={onClickSpy} />,
+        <ContactMapComponent data={sampleData} toggleLockedResiduePair={onClickSpy} />,
       );
       await dispatchPlotlyEvent(wrapper, 'plotly_click');
 
@@ -185,7 +187,7 @@ describe('ContactMap', () => {
     it('Should invoke callback to add hovered residues when a hover event is fired.', async () => {
       const onHoverSpy = jest.fn();
       const wrapper = await getAsyncMountedComponent(
-        <ContactMapClass data={sampleData} addHoveredResidues={onHoverSpy} />,
+        <ContactMapComponent data={sampleData} addHoveredResidues={onHoverSpy} />,
       );
       await dispatchPlotlyEvent(wrapper, 'plotly_hover');
 
@@ -195,7 +197,7 @@ describe('ContactMap', () => {
     it('Should invoke callback to remove hovered residues when the mouse leaves.', async () => {
       const onHoverSpy = jest.fn();
       const wrapper = await getAsyncMountedComponent(
-        <ContactMapClass data={sampleData} removeHoveredResidues={onHoverSpy} />,
+        <ContactMapComponent data={sampleData} removeHoveredResidues={onHoverSpy} />,
       );
       await dispatchPlotlyEvent(wrapper, 'plotly_unhover');
 
@@ -205,7 +207,7 @@ describe('ContactMap', () => {
     it('Should invoke callback for selected residues when a click event is fired.', async () => {
       const onSelectedSpy = jest.fn();
       const wrapper = await getAsyncMountedComponent(
-        <ContactMapClass data={sampleData} onBoxSelection={onSelectedSpy} />,
+        <ContactMapComponent data={sampleData} onBoxSelection={onSelectedSpy} />,
       );
       await dispatchPlotlySelectionEvent(wrapper);
       expect(onSelectedSpy).toHaveBeenLastCalledWith([0, 0]);
@@ -215,7 +217,7 @@ describe('ContactMap', () => {
       const addSecondaryStructureSpy = jest.fn();
       const testSecStruct = new Bioblocks1DSection<SECONDARY_STRUCTURE_KEYS>('C', 0, 10);
       const wrapper = await getAsyncMountedComponent(
-        <ContactMapClass
+        <ContactMapComponent
           data={{
             ...sampleData,
             secondaryStructures: [[testSecStruct]],
@@ -236,7 +238,7 @@ describe('ContactMap', () => {
       const removeSecondaryStructureSpy = jest.fn();
       const testSecStruct = new Bioblocks1DSection<SECONDARY_STRUCTURE_KEYS>('C', 0, 10);
       const wrapper = await getAsyncMountedComponent(
-        <ContactMapClass
+        <ContactMapComponent
           data={{
             ...sampleData,
             secondaryStructures: [[testSecStruct]],
@@ -258,7 +260,7 @@ describe('ContactMap', () => {
       const toggleSecondaryStructureSpy = jest.fn();
       const testSecStruct = new Bioblocks1DSection<SECONDARY_STRUCTURE_KEYS>('C', 0, 10);
       const wrapper = await getAsyncMountedComponent(
-        <ContactMapClass
+        <ContactMapComponent
           data={{
             ...sampleData,
             secondaryStructures: [[testSecStruct]],
@@ -279,7 +281,7 @@ describe('ContactMap', () => {
       const toggleSecondaryStructureSpy = jest.fn();
       const testSecStruct = new Bioblocks1DSection<SECONDARY_STRUCTURE_KEYS>('C', 10, 11);
       const wrapper = await getAsyncMountedComponent(
-        <ContactMapClass
+        <ContactMapComponent
           data={{
             ...sampleData,
             secondaryStructures: [[testSecStruct]],
@@ -300,7 +302,7 @@ describe('ContactMap', () => {
       const removeSecondaryStructureSpy = jest.fn();
       const testSecStruct = new Bioblocks1DSection<SECONDARY_STRUCTURE_KEYS>('C', 0, 10);
       const wrapper = await getAsyncMountedComponent(
-        <ContactMapClass
+        <ContactMapComponent
           data={{
             ...sampleData,
             secondaryStructures: [[testSecStruct]],
@@ -323,7 +325,7 @@ describe('ContactMap', () => {
       const toggleSecondaryStructureSpy = jest.fn();
       const testSecStruct = new Bioblocks1DSection<SECONDARY_STRUCTURE_KEYS>('C', 10, 11);
       const wrapper = await getAsyncMountedComponent(
-        <ContactMapClass
+        <ContactMapComponent
           data={{
             ...sampleData,
             secondaryStructures: [[testSecStruct]],
@@ -342,7 +344,7 @@ describe('ContactMap', () => {
 
     it('Should _not_ clear residues when given new data.', async () => {
       const onClearResidueSpy = jest.fn();
-      const wrapper = await getAsyncMountedComponent(<ContactMapClass data={sampleData} />);
+      const wrapper = await getAsyncMountedComponent(<ContactMapComponent data={sampleData} />);
       wrapper.update();
       wrapper.setProps({
         data: emptyData,
@@ -354,7 +356,7 @@ describe('ContactMap', () => {
     it('Should invoke callback for clearing all selections when clicked.', async () => {
       const mocks = [jest.fn(), jest.fn(), jest.fn()];
       const wrapper = await getAsyncMountedComponent(
-        <ContactMapClass
+        <ContactMapComponent
           data={sampleData}
           selectedSecondaryStructures={sampleData.secondaryStructures[0]}
           removeAllLockedResiduePairs={mocks[0]}
@@ -371,8 +373,8 @@ describe('ContactMap', () => {
 
   describe('Configuration', () => {
     it('Should handle the node size being changed.', () => {
-      const wrapper = mount(<ContactMapClass />);
-      const instance = wrapper.instance() as ContactMapClass;
+      const wrapper = mount(<ContactMapComponent />);
+      const instance = wrapper.instance() as ContactMapComponent;
       const expected = 10;
       expect(instance.state.pointsToPlot[0].nodeSize).not.toEqual(expected);
 

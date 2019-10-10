@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import { NGLContainer, PredictedContactMap, SpringContainer, UMAPSequenceContainer } from '~bioblocks-viz~/container';
+import { ContactMapContainer, NGLContainer, SpringContainer, UMAPSequenceContainer } from '~bioblocks-viz~/container';
 import {
   BIOBLOCKS_CSS_STYLE,
   IFrameEvent,
@@ -56,6 +56,21 @@ export class BBFrame extends React.Component<IBBFrameProps, IBBFrameState> {
     return currentViz !== undefined ? <div style={combinedStyle}>{this.renderViz(currentViz, vizData)}</div> : null;
   }
 
+  protected getViz = (viz: VIZ_TYPE) => {
+    switch (viz) {
+      case VIZ_TYPE.CONTACT_MAP:
+        return ContactMapContainer;
+      case VIZ_TYPE.NGL:
+        return NGLContainer;
+      case VIZ_TYPE.SPRING:
+        return SpringContainer;
+      case VIZ_TYPE.UMAP_SEQUENCE:
+        return UMAPSequenceContainer;
+      default:
+        return null;
+    }
+  };
+
   protected onMessage = (msg: IFrameEvent<VIZ_TYPE>) => {
     const { currentViz } = this.state;
 
@@ -68,7 +83,7 @@ export class BBFrame extends React.Component<IBBFrameProps, IBBFrameState> {
   protected renderViz = (viz: VIZ_TYPE | undefined, vizData: VIZ_EVENT_DATA_TYPE) => {
     switch (viz) {
       case VIZ_TYPE.CONTACT_MAP:
-        return <PredictedContactMap />;
+        return <ContactMapContainer />;
       case VIZ_TYPE.NGL:
         return <NGLContainer />;
       case VIZ_TYPE.SPRING:

@@ -1,7 +1,7 @@
 export * from './chart';
 export * from './widget';
 
-export * from './ContactMap';
+export * from './ContactMapComponent';
 export * from './FeatureViewer';
 export * from './NGLComponent';
 export * from './TensorTComponent';

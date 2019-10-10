@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { Provider } from 'react-redux';
+import { connect, Provider } from 'react-redux';
 
-import { ContactMap, generateChartDataEntry, IContactMapChartData } from '~bioblocks-viz~/component';
+import { bindActionCreators, Dispatch } from 'redux';
+import { createContainerActions, createResiduePairActions } from '~bioblocks-viz~/action';
+import { ContactMapComponent, generateChartDataEntry, IContactMapChartData } from '~bioblocks-viz~/component';
 import {
   BIOBLOCKS_CSS_STYLE,
   BioblocksPDB,
@@ -10,26 +12,43 @@ import {
   CouplingContainer,
   IContactMapData,
   ICouplingScoreFilter,
+  RESIDUE_TYPE,
   SECONDARY_STRUCTURE,
   SECONDARY_STRUCTURE_SECTION,
 } from '~bioblocks-viz~/data';
-import { generateCouplingScoreHoverText } from '~bioblocks-viz~/helper';
-import { BBStore, createContainerReducer, createResiduePairReducer } from '~bioblocks-viz~/reducer';
+import { EMPTY_FUNCTION, generateCouplingScoreHoverText } from '~bioblocks-viz~/helper';
+import { BBStore, createContainerReducer, createResiduePairReducer, LockedResiduePair } from '~bioblocks-viz~/reducer';
+import { getHovered, getLocked, selectCurrentItems } from '~bioblocks-viz~/selector';
 
-export interface IPredictedContactMapProps {
+export interface IContactMapContainerProps {
+  /** Color to distinguish contacts that are considered in agreement. */
   agreementColor: string;
+  /** Color to distinguish contacts with no special designation. */
   allColor: string;
   data: IContactMapData;
   filters: ICouplingScoreFilter[];
   height: number | string;
+  /** Color to distinguish contacts that are highlighted. */
   highlightColor: string;
+  /** Flag to control loading spinner. */
   isDataLoading: boolean;
+  /** Color to distinguish contacts that are considered observed. */
   observedColor: string;
   style?: BIOBLOCKS_CSS_STYLE;
   width: number | string;
+  addHoveredResidues(residues: RESIDUE_TYPE[]): void;
+  addHoveredSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
+  addSelectedSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
+  onBoxSelection?(residues: RESIDUE_TYPE[]): void;
+  removeAllLockedResiduePairs(): void;
+  removeAllSelectedSecondaryStructures(): void;
+  removeHoveredResidues(): void;
+  removeHoveredSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
+  removeSecondaryStructure(section: SECONDARY_STRUCTURE_SECTION): void;
+  toggleLockedResiduePair(residuePair: LockedResiduePair): void;
 }
 
-export const initialPredictedContactMapState = {
+export const initialContactMapContainerState = {
   linearDistFilter: 5,
   minimumProbability: 0.9,
   minimumScore: 0,
@@ -38,10 +57,17 @@ export const initialPredictedContactMapState = {
   rankFilter: [1, 100],
 };
 
-export type PredictedContactMapState = typeof initialPredictedContactMapState;
+export type ContactMapContainerState = typeof initialContactMapContainerState;
 
-export class PredictedContactMap extends React.Component<IPredictedContactMapProps, PredictedContactMapState> {
+/**
+ * Container for the ContactMap, responsible for data interaction.
+ * @extends {React.Component<IContactMapContainerProps, ContactMapContainerState>}
+ */
+export class ContactMapContainerClass extends React.Component<IContactMapContainerProps, ContactMapContainerState> {
   public static defaultProps = {
+    addHoveredResidues: EMPTY_FUNCTION,
+    addHoveredSecondaryStructure: EMPTY_FUNCTION,
+    addSelectedSecondaryStructure: EMPTY_FUNCTION,
     agreementColor: '#ff0000',
     allColor: '#000000',
     data: {
@@ -53,12 +79,19 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     highlightColor: '#ff8800',
     isDataLoading: false,
     observedColor: '#0000ff',
+    onBoxSelection: EMPTY_FUNCTION,
+    removeAllLockedResiduePairs: EMPTY_FUNCTION,
+    removeAllSelectedSecondaryStructures: EMPTY_FUNCTION,
+    removeHoveredResidues: EMPTY_FUNCTION,
+    removeHoveredSecondaryStructure: EMPTY_FUNCTION,
+    removeSecondaryStructure: EMPTY_FUNCTION,
+    toggleLockedResiduePair: EMPTY_FUNCTION,
     width: '100%',
   };
 
-  public readonly state: PredictedContactMapState = initialPredictedContactMapState;
+  public readonly state: ContactMapContainerState = initialContactMapContainerState;
 
-  constructor(props: IPredictedContactMapProps) {
+  constructor(props: IContactMapContainerProps) {
     super(props);
     this.setupDataServices();
   }
@@ -73,7 +106,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     this.setupData(true);
   }
 
-  public componentDidUpdate(prevProps: IPredictedContactMapProps, prevState: PredictedContactMapState) {
+  public componentDidUpdate(prevProps: IContactMapContainerProps, prevState: ContactMapContainerState) {
     const { agreementColor, allColor, data } = this.props;
     const { linearDistFilter, minimumProbability, minimumScore, numPredictionsToShow, rankFilter } = this.state;
 
@@ -97,8 +130,8 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
 
     return (
       <Provider store={BBStore}>
-        <div className="PredictedContactMapComponent" style={style}>
-          <ContactMap
+        <div className="ContactMapContainer" style={style}>
+          <ContactMapComponent
             configurations={this.getConfigs()}
             data={{
               couplingScores: data.couplingScores,
@@ -161,7 +194,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
         type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
         values: {
           current: linearDistFilter,
-          defaultValue: initialPredictedContactMapState.linearDistFilter,
+          defaultValue: initialContactMapContainerState.linearDistFilter,
           max: 10,
           min: 1,
         },
@@ -173,7 +206,7 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
         type: CONFIGURATION_COMPONENT_TYPE.SLIDER,
         values: {
           current: minimumProbability,
-          defaultValue: initialPredictedContactMapState.minimumProbability,
+          defaultValue: initialContactMapContainerState.minimumProbability,
           max: 1.0,
           min: 0.0,
         },
@@ -252,3 +285,37 @@ export class PredictedContactMap extends React.Component<IPredictedContactMapPro
     });
   }
 }
+
+const mapStateToProps = (state: { [key: string]: any }) => ({
+  hoveredResidues: getHovered(state).toArray(),
+  hoveredSecondaryStructures: selectCurrentItems<SECONDARY_STRUCTURE_SECTION>(
+    state,
+    'secondaryStructure/hovered',
+  ).toArray(),
+  lockedResiduePairs: getLocked(state).toJS(),
+  selectedSecondaryStructures: selectCurrentItems<SECONDARY_STRUCTURE_SECTION>(
+    state,
+    'secondaryStructure/selected',
+  ).toArray(),
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators(
+    {
+      addHoveredResidues: createResiduePairActions().hovered.set,
+      addHoveredSecondaryStructure: createContainerActions('secondaryStructure/hovered').add,
+      addSelectedSecondaryStructure: createContainerActions('secondaryStructure/selected').add,
+      removeAllLockedResiduePairs: createResiduePairActions().locked.clear,
+      removeAllSelectedSecondaryStructures: createContainerActions('secondaryStructure/selected').clear,
+      removeHoveredResidues: createResiduePairActions().hovered.clear,
+      removeHoveredSecondaryStructure: createContainerActions('secondaryStructure/hovered').remove,
+      removeSecondaryStructure: createContainerActions('secondaryStructure/selected').remove,
+      toggleLockedResiduePair: createResiduePairActions().locked.toggle,
+    },
+    dispatch,
+  );
+
+export const ContactMapContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ContactMapContainerClass);
