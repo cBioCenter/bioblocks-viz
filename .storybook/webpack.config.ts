@@ -19,10 +19,32 @@ module.exports = async ({ config: storybookConfig, mode }: { config: webpack.Con
   }, storybookConfig);
 
   if (storybookConfig.module && storybookConfig.plugins && bioblocksConfig.module && bioblocksConfig.module.rules) {
+    storybookConfig.entry = Array.isArray(storybookConfig.entry)
+      ? [...storybookConfig.entry, './frames/BBFrame.tsx']
+      : storybookConfig.entry;
+
     storybookConfig.module.rules = getModuleRules(bioblocksConfig.module.rules);
     storybookConfig.optimization = bioblocksConfig.optimization;
-    storybookConfig.plugins.push(new MiniCssExtractPlugin(), ...getPlugins(bioblocksConfig));
+    storybookConfig.plugins.push(
+      new MiniCssExtractPlugin(),
+      new HtmlWebpackPlugin({
+        chunks: ['main', 'vendor'],
+        favicon: 'assets/favicons/favicon.ico',
+        filename: 'bioblocks.html',
+        inject: true,
+        template: './frames/bioblocks.html',
+      }),
+      ...getPlugins(bioblocksConfig),
+    );
     storybookConfig.resolve = getAliases(storybookConfig, bioblocksConfig);
+
+    // @ts-ignore
+    storybookConfig.output = {
+      ...storybookConfig.output,
+      filename: (chunkData: { chunk: { name: string } }) => {
+        return chunkData.chunk.name.includes('frame') ? 'bioblocks-frame.js' : '[name].[hash].bundle.js';
+      },
+    };
 
     return storybookConfig;
   }
@@ -35,7 +57,7 @@ const getPlugins = (bioblocksConfig: webpack.Configuration) => {
     ? bioblocksConfig.plugins.filter(
         plugin => plugin instanceof CleanWebpackPlugin === false && plugin instanceof HtmlWebpackPlugin === false,
       )
-    : [new MiniCssExtractPlugin()];
+    : [];
 };
 
 const getModuleRules = (bioblocksRules: webpack.RuleSetRule[]): webpack.RuleSetRule[] => {
