@@ -2,7 +2,13 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import { ContactMapContainer, NGLContainer, SpringContainer, UMAPSequenceContainer } from '~bioblocks-viz~/container';
+import {
+  AnatomogramContainer,
+  ContactMapContainer,
+  NGLContainer,
+  SpringContainer,
+  UMAPSequenceContainer,
+} from '~bioblocks-viz~/container';
 import {
   BIOBLOCKS_CSS_STYLE,
   IFrameEvent,
@@ -10,6 +16,7 @@ import {
   Seq,
   SeqRecord,
   VIZ_EVENT_DATA_TYPE,
+  VIZ_PROPS_DATA_TYPE,
   VIZ_TYPE,
 } from '~bioblocks-viz~/data';
 import { BBStore } from '~bioblocks-viz~/reducer';
@@ -22,6 +29,7 @@ export interface IBBFrameProps {
 export interface IBBFrameState {
   currentViz: VIZ_TYPE | undefined;
   vizData: VIZ_EVENT_DATA_TYPE;
+  vizProps: VIZ_PROPS_DATA_TYPE;
 }
 
 export class BBFrame extends React.Component<IBBFrameProps, IBBFrameState> {
@@ -35,6 +43,7 @@ export class BBFrame extends React.Component<IBBFrameProps, IBBFrameState> {
     this.state = {
       currentViz: props.viz,
       vizData: {},
+      vizProps: {},
     };
   }
   public componentDidMount() {
@@ -47,29 +56,16 @@ export class BBFrame extends React.Component<IBBFrameProps, IBBFrameState> {
 
   public render() {
     const { style } = this.props;
-    const { currentViz, vizData } = this.state;
+    const { currentViz, vizData, vizProps } = this.state;
 
     const combinedStyle: BIOBLOCKS_CSS_STYLE = {
       ...style,
     };
 
-    return currentViz !== undefined ? <div style={combinedStyle}>{this.renderViz(currentViz, vizData)}</div> : null;
+    return currentViz !== undefined ? (
+      <div style={combinedStyle}>{this.renderViz(currentViz, vizData, vizProps)}</div>
+    ) : null;
   }
-
-  protected getViz = (viz: VIZ_TYPE) => {
-    switch (viz) {
-      case VIZ_TYPE.CONTACT_MAP:
-        return ContactMapContainer;
-      case VIZ_TYPE.NGL:
-        return NGLContainer;
-      case VIZ_TYPE.SPRING:
-        return SpringContainer;
-      case VIZ_TYPE.UMAP_SEQUENCE:
-        return UMAPSequenceContainer;
-      default:
-        return null;
-    }
-  };
 
   protected onMessage = (msg: IFrameEvent<VIZ_TYPE>) => {
     const { currentViz } = this.state;
@@ -77,25 +73,28 @@ export class BBFrame extends React.Component<IBBFrameProps, IBBFrameState> {
     this.setState({
       currentViz: msg.data.viz !== undefined ? msg.data.viz : currentViz,
       vizData: msg.data,
+      vizProps: msg.data.props,
     });
   };
 
-  protected renderViz = (viz: VIZ_TYPE | undefined, vizData: VIZ_EVENT_DATA_TYPE) => {
+  protected renderViz = (viz: VIZ_TYPE | undefined, vizData: VIZ_EVENT_DATA_TYPE, vizProps: VIZ_PROPS_DATA_TYPE) => {
     switch (viz) {
+      case VIZ_TYPE.ANATOMOGRAM:
+        return <AnatomogramContainer {...vizProps} />;
       case VIZ_TYPE.CONTACT_MAP:
-        return <ContactMapContainer />;
+        return <ContactMapContainer {...vizProps} />;
       case VIZ_TYPE.NGL:
-        return <NGLContainer />;
+        return <NGLContainer {...vizProps} />;
       case VIZ_TYPE.SPRING:
-        return <SpringContainer />;
+        return <SpringContainer {...vizProps} />;
       case VIZ_TYPE.UMAP_SEQUENCE:
-        return this.renderUmapSeq(vizData as IUMapEventData);
+        return this.renderUmapSeq(vizData as IUMapEventData, vizProps);
       default:
         return <div>{`Unsupported viz ${viz}!`}</div>;
     }
   };
 
-  protected renderUmapSeq(vizData: IUMapEventData) {
+  protected renderUmapSeq(vizData: IUMapEventData, vizProps: VIZ_PROPS_DATA_TYPE) {
     return (
       <UMAPSequenceContainer
         allSequences={vizData.seqs.map((seq, index) => {
@@ -106,6 +105,7 @@ export class BBFrame extends React.Component<IBBFrameProps, IBBFrameState> {
             name: vizData.names[index],
           });
         })}
+        {...vizProps}
       />
     );
   }

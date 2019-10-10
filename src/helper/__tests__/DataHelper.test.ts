@@ -310,7 +310,7 @@ describe('DataHelper', () => {
         -3.112878150223143958e+00,-3.342860779282196049e+00\n\
         5.882927335707632821e+00,4.215268767108215187e+00\n';
       fetchMock.mockResponseOnce(sampleCsv);
-      await expect(fetchAppropriateData(VIZ_TYPE['T-SNE'], '')).resolves.toEqual(expected);
+      await expect(fetchAppropriateData(VIZ_TYPE.T_SNE, '')).resolves.toEqual(expected);
     });
   });
 });

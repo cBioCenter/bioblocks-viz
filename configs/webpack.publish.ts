@@ -48,8 +48,6 @@ module.exports = (env: webpack.Compiler.Handler, argv: webpack.Configuration) =>
   // @ts-ignore
   mergedConfig.output = getWebpackPublishOutput();
 
-  console.log(JSON.stringify(mergedConfig, null, 2));
-
   return mergedConfig;
 };
 

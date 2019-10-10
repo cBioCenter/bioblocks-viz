@@ -180,7 +180,7 @@ const getCommonWebpackPlugins = () => [
     title: 'Bioblocks Visualization Library',
   }),
   new HtmlWebpackPlugin({
-    chunks: ['bioblocks-frame'],
+    chunks: ['bioblocks'],
     favicon: 'assets/favicons/favicon.ico',
     filename: 'bioblocks.html',
     inject: true,

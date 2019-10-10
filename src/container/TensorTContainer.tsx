@@ -21,7 +21,7 @@ import { EMPTY_FUNCTION, fetchTensorTSneCoordinateData } from '~bioblocks-viz~/h
 import { BBStore } from '~bioblocks-viz~/reducer';
 import { selectCurrentItems } from '~bioblocks-viz~/selector/ContainerSelectors';
 
-interface ITensorContainerProps {
+export interface ITensorContainerProps {
   currentCells: Set<number>;
   datasetLocation: string;
   height: number | string | undefined;
@@ -32,7 +32,7 @@ interface ITensorContainerProps {
   setCurrentCells(cells: number[]): void;
 }
 
-interface ITensorContainerState {
+export interface ITensorContainerState {
   coordsArray: number[][];
   isAnimating: boolean;
   isComputing: boolean;
