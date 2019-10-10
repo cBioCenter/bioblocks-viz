@@ -9,7 +9,9 @@
 
 ## Intro
 
-Visualization components displaying biological data for the [Human Cell Atlas](https://www.humancellatlas.org/).
+Visualization components displaying biological data, such as with [ContactMap.org](https://www.contactmap.org) or [Bioblocks Portal](https://github.com/cBioCenter/bioblocks-portal) for the [Human Cell Atlas](https://www.humancellatlas.org/).
+
+Check out the [API Docs](https://cbiocenter.github.io/bioblocks-viz/docs/api/index.html), some [live examples](https://cbiocenter.github.io/bioblocks-viz), our [storybook](https://cbiocenter.github.io/bioblocks-viz/storybook), or even the [Contact Map](http://contactmap.org) site!
 
 ## Installation
 
