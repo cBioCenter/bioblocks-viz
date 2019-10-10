@@ -13,7 +13,7 @@ import { EMPTY_FUNCTION } from '~bioblocks-viz~/helper';
 import { BBStore, BioblocksMiddlewareTransformer, RootState } from '~bioblocks-viz~/reducer';
 import { getSpring, selectCurrentItems } from '~bioblocks-viz~/selector';
 
-interface IAnatomogramContainerProps {
+export interface IAnatomogramContainerProps {
   /** URI for the icon of the component. */
   iconSrc: string;
   /** Set of IDs for selected parts of the Anatomogram. */
@@ -26,7 +26,7 @@ interface IAnatomogramContainerProps {
   onLabelRemove(label: string): void;
 }
 
-interface IAnatomogramContainerState {
+export interface IAnatomogramContainerState {
   /** All of the ids for this Anatomogram. */
   ids: string[];
 }

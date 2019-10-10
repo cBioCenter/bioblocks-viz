@@ -82,6 +82,7 @@ const getModuleRules = (bioblocksRules: webpack.RuleSetRule[]): webpack.RuleSetR
     {
       exclude: /node_modules/,
       include: [
+        path.resolve(__dirname, '../frames'),
         path.resolve(__dirname, '../src'),
         path.resolve(__dirname, '../.storybook'),
         path.resolve(__dirname, '../docs/stories'),

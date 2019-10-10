@@ -29,12 +29,12 @@ export type CELL_TYPE = number;
 export type RESIDUE_TYPE = number;
 
 export enum VIZ_TYPE {
+  ANATOMOGRAM = 'Anatomogram',
   CONTACT_MAP = 'Contact Map',
   INFO_PANEL = 'Info Panel',
   NGL = 'NGL',
   SPRING = 'Spring',
-  'TENSOR-T-SNE' = 'TENSOR-T-SNE',
-  'T-SNE' = 'T-SNE',
+  'T_SNE' = 'T-SNE',
   'UMAP_SEQUENCE' = 'UMAP Sequence',
   'UMAP_TRANSCRIPTION' = 'UMAP Transcription',
 }
