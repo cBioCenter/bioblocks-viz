@@ -1,8 +1,11 @@
+// @ts-ignore
+// tslint:disable-next-line: no-submodule-imports
+import * as createCompiler from '@storybook/addon-docs/mdx-compiler-plugin';
 import { default as CleanWebpackPlugin } from 'clean-webpack-plugin';
-import * as CopyWebpackPlugin from 'copy-webpack-plugin';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import * as path from 'path';
+
 import * as webpack from 'webpack';
 
 // tslint:disable-next-line:no-relative-imports
@@ -30,45 +33,79 @@ module.exports = async ({ config: storybookConfig, mode }: { config: webpack.Con
 const getPlugins = (bioblocksConfig: webpack.Configuration) => {
   return bioblocksConfig.plugins
     ? bioblocksConfig.plugins.filter(
-        plugin =>
-          plugin instanceof CleanWebpackPlugin === false &&
-          // plugin instanceof CopyWebpackPlugin === false &&
-          plugin instanceof HtmlWebpackPlugin === false,
+        plugin => plugin instanceof CleanWebpackPlugin === false && plugin instanceof HtmlWebpackPlugin === false,
       )
     : [new MiniCssExtractPlugin()];
 };
 
 const getModuleRules = (bioblocksRules: webpack.RuleSetRule[]): webpack.RuleSetRule[] => {
   return [
-    ...bioblocksRules,
+    ...bioblocksRules.filter(rule =>
+      rule.test && rule.test.toString().localeCompare('/\\.tsx?$/') !== 0 ? rule : undefined,
+    ),
     {
-      include: path.resolve(__dirname, '../assets'),
-      test: /\.(woff(2)?|ttf|png|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+      test: /\.(stories|story).mdx$/,
       use: [
         {
-          loader: 'file-loader',
+          loader: require.resolve('babel-loader'),
           options: {
-            name: '[name].[ext]',
+            presets: [['react-app', { flow: false, typescript: true }]],
           },
         },
         {
-          loader: `image-webpack-loader`,
+          loader: 'react-docgen-typescript-loader',
+        },
+        {
+          loader: '@mdx-js/loader',
           options: {
-            query: {
-              bypassOnDebug: true,
-              gifsicle: {
-                interlaced: true,
-              },
-              mozjpeg: {
-                progressive: true,
-              },
-              optipng: {
-                optimizationLevel: 7,
-              },
-            },
+            // tslint:disable-next-line: no-unsafe-any
+            compilers: [createCompiler({})],
           },
         },
       ],
+    },
+    {
+      exclude: /\.(stories|story).mdx$/,
+      test: /\.mdx$/,
+      use: [
+        {
+          loader: 'babel-loader',
+          options: {
+            presets: [['react-app', { flow: false, typescript: true }]],
+          },
+        },
+        {
+          loader: '@mdx-js/loader',
+        },
+      ],
+    },
+    {
+      exclude: /node_modules/,
+      include: [
+        path.resolve(__dirname, '../src'),
+        path.resolve(__dirname, '../.storybook'),
+        path.resolve(__dirname, '../docs/stories'),
+      ],
+      test: /\.ts(x?)$/,
+      use: [
+        {
+          loader: 'ts-loader',
+          options: {
+            configFile: path.resolve(__dirname, '../configs/tsconfig.publish.json'),
+            context: __dirname,
+            transpileOnly: true,
+          },
+        },
+        {
+          loader: 'react-docgen-typescript-loader',
+        },
+      ],
+    },
+    {
+      enforce: 'pre',
+      exclude: [/node_modules/],
+      loader: require.resolve('@storybook/source-loader'),
+      test: /\.(stories|story)\.[tj]sx?$/,
     },
   ];
 };
