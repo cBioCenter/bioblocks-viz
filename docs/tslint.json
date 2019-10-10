@@ -7,6 +7,7 @@
   "jsRules": {},
   "rules": {
     "export-name": false,
+    "jsx-no-lambda": false,
     "no-default-export": false
   },
   "rulesDirectory": []

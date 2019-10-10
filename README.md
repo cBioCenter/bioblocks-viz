@@ -56,11 +56,6 @@ yarn start
 - [UMAP & TSNE](https://cbiocenter.github.io/bioblocks-viz/)
 - [Bioblocks Portal](https://cbiocenter.github.io/bioblocks-portal/)
 - [ContactMap.org](https://www.contactmap.org)
-  )
-
-## Further Reading
-
-Please see our [API Docs](https://cbiocenter.github.io/bioblocks-viz/docs/api/index.html) and [Usage Guide](./docs/USAGE.md) for an overview of how to use bioblocks for your visualization needs!
 
 ## Getting Started (For Development Use)
 
