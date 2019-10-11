@@ -8,6 +8,12 @@ import { AminoAcid, COUPLING_SCORE_SOURCE, ICouplingScore, ICouplingScoreFilter 
  * @export
  */
 export class CouplingContainer implements IterableIterator<ICouplingScore> {
+  public static fromJSON(other: object) {
+    console.log(other);
+
+    return Object.assign(new CouplingContainer(), other);
+  }
+
   protected static getScore(couplingScore: ICouplingScore, scoreSource: COUPLING_SCORE_SOURCE) {
     switch (scoreSource) {
       case 'cn':

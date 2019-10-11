@@ -5,7 +5,7 @@ import { boolean, object } from '@storybook/addon-knobs';
 import { UMAPSequenceContainer } from '~bioblocks-viz~/container';
 import { Seq, SeqRecord } from '~bioblocks-viz~/data';
 
-const stories = storiesOf('visualizations/UMAP/Sequential Container', module).addParameters({
+const stories = storiesOf('visualization/UMAP/Sequential Container', module).addParameters({
   component: UMAPSequenceContainer,
 });
 

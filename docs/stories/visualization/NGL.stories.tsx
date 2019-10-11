@@ -4,7 +4,7 @@ import * as React from 'react';
 import { NGLComponent } from '~bioblocks-viz~/component';
 import { BioblocksPDB } from '~bioblocks-viz~/data';
 
-const stories = storiesOf('visualizations/NGL', module).addParameters({ component: NGLComponent });
+const stories = storiesOf('visualization/NGL', module).addParameters({ component: NGLComponent });
 
 BioblocksPDB.createPDB('datasets/beta_lactamase/1ZG4.pdb')
   .then(aPDB => {

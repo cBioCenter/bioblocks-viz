@@ -5,7 +5,7 @@ import { AnatomogramContainer, AnatomogramContainerClass } from '~bioblocks-viz~
 
 export default {
   component: AnatomogramContainerClass,
-  title: 'visualizations/Anatomogram',
+  title: 'visualization/Anatomogram',
 };
 
 export const WithReact = () => (
