@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { SpringContainer, SpringContainerClass } from '~bioblocks-viz~/container';
 
-const stories = storiesOf('visualizations/SPRING', module).addParameters({
+const stories = storiesOf('visualization/SPRING', module).addParameters({
   component: SpringContainerClass,
 });
 

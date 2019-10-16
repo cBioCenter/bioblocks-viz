@@ -6,7 +6,7 @@ import { CouplingContainer } from '~bioblocks-viz~/data';
 
 export default {
   component: ContactMapContainer,
-  title: 'visualizations/Contact Map',
+  title: 'visualization/Contact Map',
 };
 
 export const NodeColors = () => (

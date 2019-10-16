@@ -4,7 +4,7 @@ import * as React from 'react';
 import { UMAPTranscriptionalContainer } from '~bioblocks-viz~/container';
 import { fetchMatrixData } from '~bioblocks-viz~/helper';
 
-const stories = storiesOf('visualizations/UMAP/Transcriptional Container', module).addParameters({
+const stories = storiesOf('visualization/UMAP/Transcriptional Container', module).addParameters({
   component: UMAPTranscriptionalContainer,
 });
 
