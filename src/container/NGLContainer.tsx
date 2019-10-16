@@ -26,14 +26,14 @@ import { getCandidates, getHovered, getLocked, selectCurrentItems } from '~biobl
 
 export interface INGLContainerProps {
   candidateResidues?: RESIDUE_TYPE[];
-  experimentalProteins: BioblocksPDB[];
+  experimentalProteins: Array<string | BioblocksPDB>;
   hoveredResidues?: RESIDUE_TYPE[];
   hoveredSecondaryStructures?: SECONDARY_STRUCTURE_SECTION[];
   isDataLoading: boolean;
   lockedResiduePairs: Map<string, Set<RESIDUE_TYPE>>;
   maxPDBPerPopup: number;
   measuredProximity: CONTACT_DISTANCE_PROXIMITY;
-  predictedProteins: BioblocksPDB[];
+  predictedProteins: Array<string | BioblocksPDB>;
   selectedSecondaryStructures?: SECONDARY_STRUCTURE_SECTION[];
   showConfigurations: boolean;
   addCandidateResidues?(residues: RESIDUE_TYPE[]): void;
@@ -49,8 +49,10 @@ export interface INGLContainerProps {
 }
 
 export interface INGLContainerState {
+  experimentalProteins: BioblocksPDB[];
   selectedExperimentalProteins: string[];
   selectedPredictedProteins: string[];
+  predictedProteins: BioblocksPDB[];
 }
 
 export class NGLContainerClass extends React.Component<INGLContainerProps, INGLContainerState> {
@@ -68,14 +70,16 @@ export class NGLContainerClass extends React.Component<INGLContainerProps, INGLC
   constructor(props: INGLContainerProps) {
     super(props);
     this.state = {
+      experimentalProteins: [],
+      predictedProteins: [],
       selectedExperimentalProteins: [],
       selectedPredictedProteins: [],
     };
     this.setupDataServices();
   }
 
-  public componentDidMount() {
-    const { experimentalProteins, predictedProteins } = this.props;
+  public async componentDidMount() {
+    const { experimentalProteins, predictedProteins } = this.state;
     const selectedExperimentalProteins = experimentalProteins.length >= 1 ? [experimentalProteins[0].name] : [];
     const selectedPredictedProteins = predictedProteins.length >= 1 ? [predictedProteins[0].name] : [];
     this.setState({
@@ -84,22 +88,34 @@ export class NGLContainerClass extends React.Component<INGLContainerProps, INGLC
     });
   }
 
-  public componentDidUpdate(prevProps: INGLContainerProps) {
+  public async componentDidUpdate(prevProps: INGLContainerProps, prevState: INGLContainerState) {
     const { experimentalProteins, predictedProteins } = this.props;
+    const experimentalProteinsFromFiles = await Promise.all(
+      experimentalProteins.map(async file => (typeof file === 'string' ? BioblocksPDB.createPDB(file) : file)),
+    );
+    const predictedProteinsFromFiles = await Promise.all(
+      predictedProteins.map(async file => (typeof file === 'string' ? BioblocksPDB.createPDB(file) : file)),
+    );
+
+    // const { experimentalProteins, predictedProteins } = this.state;
     let { selectedExperimentalProteins, selectedPredictedProteins } = this.state;
     let isNewData = false;
 
-    if (this.isBioblocksPDBArrayEqual(experimentalProteins, prevProps.experimentalProteins)) {
+    if (this.isBioblocksPDBArrayEqual(experimentalProteinsFromFiles, prevState.experimentalProteins)) {
       isNewData = true;
-      selectedExperimentalProteins = experimentalProteins.length === 0 ? [] : [experimentalProteins[0].name];
+      selectedExperimentalProteins =
+        experimentalProteinsFromFiles.length === 0 ? [] : [experimentalProteinsFromFiles[0].name];
     }
 
-    if (this.isBioblocksPDBArrayEqual(predictedProteins, prevProps.predictedProteins)) {
+    if (this.isBioblocksPDBArrayEqual(predictedProteinsFromFiles, prevState.predictedProteins)) {
       isNewData = true;
-      selectedPredictedProteins = predictedProteins.length === 0 ? [] : [predictedProteins[0].name];
+      selectedPredictedProteins = predictedProteinsFromFiles.length === 0 ? [] : [predictedProteinsFromFiles[0].name];
     }
+
     if (isNewData) {
       this.setState({
+        experimentalProteins: experimentalProteinsFromFiles,
+        predictedProteins: predictedProteinsFromFiles,
         selectedExperimentalProteins,
         selectedPredictedProteins,
       });
@@ -114,14 +130,20 @@ export class NGLContainerClass extends React.Component<INGLContainerProps, INGLC
   }
 
   public render() {
-    const { experimentalProteins, lockedResiduePairs, predictedProteins, ...rest } = this.props;
-    const { selectedExperimentalProteins, selectedPredictedProteins } = this.state;
+    const { lockedResiduePairs, ...rest } = this.props;
+    const {
+      experimentalProteins,
+      predictedProteins,
+      selectedExperimentalProteins,
+      selectedPredictedProteins,
+    } = this.state;
 
     return (
       <Provider store={BBStore}>
         <Grid padded={true}>
           <Grid.Row>
             <NGLComponent
+              {...rest}
               experimentalProteins={experimentalProteins.filter(pdb => selectedExperimentalProteins.includes(pdb.name))}
               lockedResiduePairs={lockedResiduePairs.toJS() as LockedResiduePair}
               menuItems={[
@@ -140,7 +162,6 @@ export class NGLContainerClass extends React.Component<INGLContainerProps, INGLC
                 },
               ]}
               predictedProteins={predictedProteins.filter(pdb => selectedPredictedProteins.includes(pdb.name))}
-              {...rest}
             />
           </Grid.Row>
         </Grid>
@@ -183,11 +204,11 @@ export class NGLContainerClass extends React.Component<INGLContainerProps, INGLC
         <Grid.Row columns={2} style={{ padding: '5px 0' }}>
           <Grid.Column width={9}>
             {`Experimental (${this.state.selectedExperimentalProteins.length}/${this.props.experimentalProteins.length})`}
-            {this.renderPDBTable(this.props.experimentalProteins, 'experimental', this.onExperimentalProteinSelect)}
+            {this.renderPDBTable(this.state.experimentalProteins, 'experimental', this.onExperimentalProteinSelect)}
           </Grid.Column>
           <Grid.Column width={7}>
             {`Predicted (${this.state.selectedPredictedProteins.length}/${this.props.predictedProteins.length})`}
-            {this.renderPDBTable(this.props.predictedProteins, 'predicted', this.onPredictedProteinSelect)}
+            {this.renderPDBTable(this.state.predictedProteins, 'predicted', this.onPredictedProteinSelect)}
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -288,8 +309,8 @@ export class NGLContainerClass extends React.Component<INGLContainerProps, INGLC
     return (
       pdbGroup === 'experimental' && (
         <Table.Cell style={cellStyle}>
-          {this.props.predictedProteins.length >= 1
-            ? `${this.sequenceSimilarityPercent(pdb.sequence, this.props.predictedProteins[0].sequence)}`
+          {this.state.predictedProteins.length >= 1
+            ? `${this.sequenceSimilarityPercent(pdb.sequence, this.state.predictedProteins[0].sequence)}`
             : 'N/A'}
         </Table.Cell>
       )

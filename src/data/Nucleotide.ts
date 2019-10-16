@@ -38,10 +38,7 @@ export class Nucleotide {
     return nt ? nt : Nucleotide.Unknown;
   }
 
-  private constructor(readonly fullName: string, readonly singleLetterCode: string) {
-    this.fullName = fullName;
-    this.singleLetterCode = singleLetterCode;
-  }
+  private constructor(readonly fullName: string, readonly singleLetterCode: string) {}
 
   public getComplementDNA() {
     if (this === Nucleotide.A) {

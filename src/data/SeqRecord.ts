@@ -1,4 +1,9 @@
-import { Seq } from '~bioblocks-viz~/data/';
+import { ISeqOpts, Seq } from '~bioblocks-viz~/data';
+
+export interface ISeqRecordOpts {
+  annotations: Partial<typeof SeqRecord.DEFAULT_ANNOTATIONS>;
+  sequence: ISeqOpts;
+}
 
 /**
  * SeqRecord
@@ -20,6 +25,13 @@ export class SeqRecord extends Seq {
     // tslint:disable-next-line: no-object-literal-type-assertion
     metadata: {} as Record<string, string>, // Dictionary of arbitrary metadata for the whole sequence
     name: '<unknown name>', // Sequence name
+  };
+
+  public static fromSeqRecordOpts = (opts: ISeqRecordOpts) => {
+    return new SeqRecord(
+      new Seq(opts.sequence.sequence, opts.sequence.alphabet, opts.sequence.ignoredCharacters),
+      opts.annotations,
+    );
   };
 
   constructor(sequence: Seq, readonly annotations: Partial<typeof SeqRecord.DEFAULT_ANNOTATIONS> = {}) {
