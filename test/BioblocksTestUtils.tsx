@@ -21,7 +21,7 @@ import { IMockPlotlyCanvas } from '~bioblocks-viz~/test';
 export const getAsyncMountedComponent = async (Component: React.ReactElement) => {
   const wrapper = mount(Component);
   wrapper.update();
-  await Promise.resolve();
+  await flushPromises();
 
   return wrapper;
 };
@@ -35,7 +35,7 @@ export const getAsyncMountedComponent = async (Component: React.ReactElement) =>
 export const getAsyncShallowComponent = async (Component: React.ReactElement) => {
   const wrapper = shallow(Component);
   wrapper.update();
-  await Promise.resolve();
+  await flushPromises();
 
   return wrapper;
 };
@@ -191,3 +191,7 @@ export const genTensorTsneData = () => [
     0.05163,
   ],
 ];
+
+// Helpful when dealing with async component lifecycle method testing.
+// https://medium.com/@lucksp_22012/jest-enzyme-react-testing-with-async-componentdidmount-7c4c99e77d2d
+export const flushPromises = async () => new Promise(setImmediate);

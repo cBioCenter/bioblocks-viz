@@ -15,11 +15,21 @@ export enum ALPHABET {
   'generic_protein' = 'generic_protein',
 }
 
+export interface ISeqOpts {
+  alphabet?: ALPHABET;
+  ignoredCharacters?: string[];
+  sequence: string;
+}
+
 /**
  * Seq
  * Provide objects to represent biological sequences with alphabets.
  */
 export class Seq {
+  public static fromSeqOpts = (opts: ISeqOpts) => {
+    return new Seq(opts.sequence, opts.alphabet, opts.ignoredCharacters);
+  };
+
   /**
    * checkSequenceValidity
    * This convenience method will check whether a sequence contains only the characters
@@ -42,6 +52,7 @@ export class Seq {
       `^[${validSequenceString.toLowerCase()}${validSequenceString.toUpperCase()}${ignoredCharString}]+$`,
     ).test(sequence);
   }
+
   public readonly alphabet: ALPHABET | undefined;
   public readonly sequence: string;
   public readonly ignoredCharacters: string[];

@@ -10,7 +10,7 @@ import { ComponentCard } from '~bioblocks-viz~/component';
 import { BioblocksVisualization } from '~bioblocks-viz~/container';
 import { AnatomogramMapping, SPECIES_TYPE } from '~bioblocks-viz~/data';
 import { EMPTY_FUNCTION } from '~bioblocks-viz~/helper';
-import { BBStore, BioblocksMiddlewareTransformer, RootState } from '~bioblocks-viz~/reducer';
+import { BBStore, BioblocksMiddlewareTransformer, IBioblocksStateTransform, RootState } from '~bioblocks-viz~/reducer';
 import { getSpring, selectCurrentItems } from '~bioblocks-viz~/selector';
 
 export interface IAnatomogramContainerProps {
@@ -57,61 +57,8 @@ export class AnatomogramContainerClass extends BioblocksVisualization<
   public setupDataServices() {
     this.registerDataset('cells', []);
     this.registerDataset('labels', []);
-    BioblocksMiddlewareTransformer.addTransform({
-      fn: state => {
-        const { species, selectIds } = this.props;
-        const { graphData } = getSpring(state);
-        const anatomogramMap = AnatomogramMapping[species];
-        let candidateLabels = Set<string>();
-        selectIds.forEach(id => {
-          candidateLabels = id && anatomogramMap[id] ? candidateLabels.merge(anatomogramMap[id]) : candidateLabels;
-        });
-
-        let cellIndices = Set<number>();
-        graphData.nodes.forEach(node => {
-          candidateLabels.forEach(label => {
-            if (label && Object.values(node.labelForCategory).includes(label)) {
-              cellIndices = cellIndices.add(node.number);
-
-              return;
-            }
-          });
-        });
-
-        return cellIndices;
-      },
-      fromState: 'bioblocks/labels',
-      toState: 'bioblocks/cells',
-    });
-    BioblocksMiddlewareTransformer.addTransform({
-      fn: state => {
-        const { species } = this.props;
-        const currentCells = selectCurrentItems<number>(state, 'cells').toArray();
-        const { category, graphData } = getSpring(state);
-        let result = Set<string>();
-
-        for (const cellIndex of currentCells) {
-          const labelForCategory = graphData.nodes[cellIndex] ? graphData.nodes[cellIndex].labelForCategory : {};
-
-          const labels = AnatomogramMapping[species][labelForCategory[category]];
-          if (labels) {
-            labels.forEach(label => (result = result.add(label)));
-          }
-
-          for (const id of Object.keys(AnatomogramMapping[species])) {
-            for (const label of Object.values(labelForCategory)) {
-              if (AnatomogramMapping[species][id].includes(label)) {
-                result = result.add(id);
-              }
-            }
-          }
-        }
-
-        return result;
-      },
-      fromState: { stateName: 'cells' },
-      toState: { stateName: 'labels' },
-    });
+    BioblocksMiddlewareTransformer.addTransform(this.getCellToLabelTransform());
+    BioblocksMiddlewareTransformer.addTransform(this.getLabelToCellTransform());
   }
 
   public componentDidUpdate(prevProps: IAnatomogramContainerProps) {
@@ -155,6 +102,69 @@ export class AnatomogramContainerClass extends BioblocksVisualization<
         </div>
       </Provider>
     );
+  }
+
+  protected getCellToLabelTransform(): IBioblocksStateTransform {
+    return {
+      fn: state => {
+        const { species } = this.props;
+        const currentCells = selectCurrentItems<number>(state, 'cells').toArray();
+        const { category, graphData } = getSpring(state);
+        let result = Set<string>();
+
+        for (const cellIndex of currentCells) {
+          // Parse labels and categories from SPRING data.
+          const labelForCategory = graphData.nodes[cellIndex] ? graphData.nodes[cellIndex].labelForCategory : {};
+
+          const labels = AnatomogramMapping[species][labelForCategory[category]];
+          if (labels) {
+            labels.forEach(label => (result = result.add(label)));
+          }
+
+          for (const id of Object.keys(AnatomogramMapping[species])) {
+            for (const label of Object.values(labelForCategory)) {
+              if (AnatomogramMapping[species][id].includes(label)) {
+                result = result.add(id);
+              }
+            }
+          }
+        }
+
+        return result;
+      },
+      fromState: { stateName: 'cells' },
+      toState: { stateName: 'labels' },
+    };
+  }
+
+  protected getLabelToCellTransform(): IBioblocksStateTransform {
+    return {
+      fn: state => {
+        const { species, selectIds } = this.props;
+        const { graphData } = getSpring(state);
+        const anatomogramMap = AnatomogramMapping[species];
+        let candidateLabels = Set<string>();
+        selectIds.forEach(id => {
+          candidateLabels = id && anatomogramMap[id] ? candidateLabels.merge(anatomogramMap[id]) : candidateLabels;
+        });
+
+        let cellIndices = Set<number>();
+        graphData.nodes.forEach(node => {
+          const labelsForNode = Object.values(node.labelForCategory);
+          candidateLabels.forEach(label => {
+            if (label && labelsForNode.includes(label)) {
+              cellIndices = cellIndices.add(node.number);
+
+              return;
+            }
+          });
+        });
+
+        return cellIndices;
+      },
+      fromState: 'bioblocks/labels',
+      toState: 'bioblocks/cells',
+    };
   }
 
   protected onClick = (ids: string[]) => {

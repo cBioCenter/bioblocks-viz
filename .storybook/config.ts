@@ -11,7 +11,7 @@ import { withProvider } from './decorators';
 // tslint:enable:no-import-side-effect no-relative-imports  no-submodule-imports
 
 function loadStories() {
-  const req = require.context('../docs/stories/visualizations/', true, /\.stories\.(ts|js|md)x$/);
+  const req = require.context('../docs/stories/', true, /\.stories\.(ts|js|md)x$/);
 
   return req
     .keys()
