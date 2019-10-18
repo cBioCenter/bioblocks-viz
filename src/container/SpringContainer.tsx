@@ -56,7 +56,7 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
     datasetLocation: '../datasets/hpc/full',
     datasetsURI: '',
     dispatchSpringFetch: EMPTY_FUNCTION,
-    headerHeight: 18,
+    headerHeight: 0,
     isFullPage: false,
     padding: 0,
     selectedCategory: '',

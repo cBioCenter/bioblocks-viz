@@ -27,7 +27,7 @@ exports[`AnatomogramContainer Should match existing snapshot for homo sapiens. 1
       frameHeight={0}
       frameWidth={0}
       headerHeight={20}
-      height="525px"
+      height="575px"
       iconSrc=""
       isDataReady={false}
       isFramedComponent={false}
@@ -35,7 +35,7 @@ exports[`AnatomogramContainer Should match existing snapshot for homo sapiens. 1
       menuItems={Array []}
       padding={0}
       showSettings={false}
-      width="525px"
+      width="575px"
     >
       <defaultProps(withPropsOnChange(onlyUpdateForPropTypes(defaultProps(defaultProps(mapProps(Anatomogram))))))
         atlasUrl=""
@@ -98,7 +98,7 @@ exports[`AnatomogramContainer Should match existing snapshot for mus musculus. 1
       frameHeight={0}
       frameWidth={0}
       headerHeight={20}
-      height="525px"
+      height="575px"
       iconSrc=""
       isDataReady={false}
       isFramedComponent={false}
@@ -106,7 +106,7 @@ exports[`AnatomogramContainer Should match existing snapshot for mus musculus. 1
       menuItems={Array []}
       padding={0}
       showSettings={false}
-      width="525px"
+      width="575px"
     >
       <defaultProps(withPropsOnChange(onlyUpdateForPropTypes(defaultProps(defaultProps(mapProps(Anatomogram))))))
         atlasUrl=""

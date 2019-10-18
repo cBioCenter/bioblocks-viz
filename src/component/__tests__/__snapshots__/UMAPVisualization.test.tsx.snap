@@ -119,7 +119,7 @@ exports[`UMAPVisualization UMAPVisualization Should render when given an empty d
       layout={
         Object {
           "autosize": true,
-          "dragmode": "zoom",
+          "dragmode": "select",
           "hovermode": "closest",
           "legend": Object {
             "itemdoubleclick": false,
@@ -158,6 +158,7 @@ exports[`UMAPVisualization UMAPVisualization Should render when given an empty d
         }
       }
       onLegendClickCallback={[Function]}
+      onSelectedCallback={[Function]}
       showLoader={true}
       width="100%"
     />

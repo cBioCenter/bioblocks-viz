@@ -19,6 +19,7 @@ export interface IPlotlyData extends plotly.ScatterData {
   name: string;
   notched: boolean;
   orientation: 'h' | 'v';
+  selectedpoints: number[];
   showlegend: boolean;
   textfont: Partial<plotly.Font>;
   // tslint:disable-next-line:no-reserved-keywords

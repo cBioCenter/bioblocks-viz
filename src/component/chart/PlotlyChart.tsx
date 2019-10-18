@@ -175,6 +175,11 @@ export class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     if (this.plotlyCanvas && this.canvasRef) {
       const mergedLayout = this.getMergedLayout(layout, this.plotlyFormattedData);
       const mergedConfig = this.getMergedConfig(config);
+      this.plotlyFormattedData.forEach(datum => {
+        delete datum.selectedpoints;
+
+        return datum;
+      });
       this.plotlyCanvas = await plotly.react(this.canvasRef, this.plotlyFormattedData, mergedLayout, mergedConfig);
     }
   };

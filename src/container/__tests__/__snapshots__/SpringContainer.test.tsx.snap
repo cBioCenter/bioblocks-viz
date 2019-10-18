@@ -24,7 +24,7 @@ exports[`SpringContainer Should match existing snapshot. 1`] = `
     frameHeight={1150}
     frameWidth={1150}
     headerHeight={20}
-    height="525px"
+    height="575px"
     iconSrc="assets/icons/bio-blocks-icon.svg"
     isDataReady={false}
     isFramedComponent={true}
@@ -32,13 +32,13 @@ exports[`SpringContainer Should match existing snapshot. 1`] = `
     menuItems={Array []}
     padding={0}
     showSettings={false}
-    width="525px"
+    width="575px"
   >
     <IframeComm
       attributes={
         Object {
           "allowFullScreen": true,
-          "height": 1168,
+          "height": 1150,
           "src": "http://localhost//SPRING/springViewer.html?../datasets/hpc/full",
           "width": 1150,
         }

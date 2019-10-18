@@ -21,7 +21,7 @@ exports[`ContactMapComponent Snapshots Should match existing snapshot when a sin
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}
-  height="525px"
+  height="575px"
   iconSrc="assets/icons/bio-blocks-icon.svg"
   isDataReady={true}
   isFramedComponent={false}
@@ -166,7 +166,7 @@ exports[`ContactMapComponent Snapshots Should match existing snapshot when a sin
   }
   padding={0}
   showSettings={false}
-  width="525px"
+  width="575px"
 >
   <ContactMapChart
     configurations={Array []}
@@ -315,7 +315,7 @@ exports[`ContactMapComponent Snapshots Should match existing snapshot when given
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}
-  height="525px"
+  height="575px"
   iconSrc="assets/icons/bio-blocks-icon.svg"
   isDataReady={true}
   isFramedComponent={false}
@@ -460,7 +460,7 @@ exports[`ContactMapComponent Snapshots Should match existing snapshot when given
   }
   padding={0}
   showSettings={false}
-  width="525px"
+  width="575px"
 >
   <ContactMapChart
     configurations={Array []}
@@ -601,7 +601,7 @@ exports[`ContactMapComponent Snapshots Should match existing snapshot when given
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}
-  height="525px"
+  height="575px"
   iconSrc="assets/icons/bio-blocks-icon.svg"
   isDataReady={true}
   isFramedComponent={false}
@@ -746,7 +746,7 @@ exports[`ContactMapComponent Snapshots Should match existing snapshot when given
   }
   padding={0}
   showSettings={false}
-  width="525px"
+  width="575px"
 >
   <ContactMapChart
     configurations={Array []}
@@ -854,7 +854,7 @@ exports[`ContactMapComponent Snapshots Should match existing snapshot when given
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}
-  height="525px"
+  height="575px"
   iconSrc="assets/icons/bio-blocks-icon.svg"
   isDataReady={true}
   isFramedComponent={false}
@@ -999,7 +999,7 @@ exports[`ContactMapComponent Snapshots Should match existing snapshot when given
   }
   padding={0}
   showSettings={false}
-  width="525px"
+  width="575px"
 >
   <ContactMapChart
     configurations={Array []}
@@ -1107,7 +1107,7 @@ exports[`ContactMapComponent Snapshots Should match existing snapshot when given
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}
-  height="525px"
+  height="575px"
   iconSrc="assets/icons/bio-blocks-icon.svg"
   isDataReady={false}
   isFramedComponent={false}
@@ -1252,7 +1252,7 @@ exports[`ContactMapComponent Snapshots Should match existing snapshot when given
   }
   padding={0}
   showSettings={false}
-  width="525px"
+  width="575px"
 >
   <ContactMapChart
     configurations={Array []}
@@ -1350,7 +1350,7 @@ exports[`ContactMapComponent Snapshots Should match existing snapshot when given
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}
-  height="525px"
+  height="575px"
   iconSrc="assets/icons/bio-blocks-icon.svg"
   isDataReady={false}
   isFramedComponent={false}
@@ -1495,7 +1495,7 @@ exports[`ContactMapComponent Snapshots Should match existing snapshot when given
   }
   padding={0}
   showSettings={false}
-  width="525px"
+  width="575px"
 >
   <ContactMapChart
     configurations={Array []}
@@ -1593,7 +1593,7 @@ exports[`ContactMapComponent Snapshots Should match existing snapshot when multi
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}
-  height="525px"
+  height="575px"
   iconSrc="assets/icons/bio-blocks-icon.svg"
   isDataReady={true}
   isFramedComponent={false}
@@ -1738,7 +1738,7 @@ exports[`ContactMapComponent Snapshots Should match existing snapshot when multi
   }
   padding={0}
   showSettings={false}
-  width="525px"
+  width="575px"
 >
   <ContactMapChart
     configurations={Array []}
@@ -1887,7 +1887,7 @@ exports[`ContactMapComponent Snapshots Should match existing snapshot when multi
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}
-  height="525px"
+  height="575px"
   iconSrc="assets/icons/bio-blocks-icon.svg"
   isDataReady={true}
   isFramedComponent={false}
@@ -2032,7 +2032,7 @@ exports[`ContactMapComponent Snapshots Should match existing snapshot when multi
   }
   padding={0}
   showSettings={false}
-  width="525px"
+  width="575px"
 >
   <ContactMapChart
     configurations={Array []}
@@ -2650,7 +2650,7 @@ exports[`ContactMapComponent Snapshots Should match snapshot when locked residue
     frameHeight={0}
     frameWidth={0}
     headerHeight={20}
-    height="525px"
+    height="575px"
     iconSrc="assets/icons/bio-blocks-icon.svg"
     isDataReady={true}
     isFramedComponent={false}
@@ -2795,17 +2795,17 @@ exports[`ContactMapComponent Snapshots Should match snapshot when locked residue
     }
     padding={0}
     showSettings={false}
-    width="525px"
+    width="575px"
   >
     <Card
       centered={true}
       className="bioblocks-component-card"
       style={
         Object {
-          "height": "530.25px",
+          "height": "580.75px",
           "maxWidth": "unset",
           "padding": "0 0 0 5px",
-          "width": "525px",
+          "width": "575px",
         }
       }
     >
@@ -2814,10 +2814,10 @@ exports[`ContactMapComponent Snapshots Should match snapshot when locked residue
         onClick={[Function]}
         style={
           Object {
-            "height": "530.25px",
+            "height": "580.75px",
             "maxWidth": "unset",
             "padding": "0 0 0 5px",
-            "width": "525px",
+            "width": "575px",
           }
         }
       >

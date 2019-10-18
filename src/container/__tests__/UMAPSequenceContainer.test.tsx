@@ -2,8 +2,9 @@ import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import { act } from 'react-test-renderer';
 
-import { UMAPSequenceContainer } from '~bioblocks-viz~/container';
+import { UMAPSequenceContainerClass } from '~bioblocks-viz~/container';
 import { Seq, SeqRecord } from '~bioblocks-viz~/data';
+import { flushPromises } from '~bioblocks-viz~/test';
 
 // tslint:disable-next-line: max-func-body-length
 describe('UMAPSequenceContainer', () => {
@@ -21,17 +22,17 @@ example_sequence,EVA-NERV,59846,Bacteria,Firmicutes,Paenibacillus,Bacilli,Paenib
   });
 
   it('Should render when given an empty sequence.', () => {
-    const wrapper = shallow(<UMAPSequenceContainer allSequences={[]} />);
+    const wrapper = shallow(<UMAPSequenceContainerClass allSequences={[]} />);
     expect(wrapper).toMatchSnapshot();
   });
 
   it('Should render when given a sequence.', () => {
-    const wrapper = shallow(<UMAPSequenceContainer allSequences={sequences} />);
+    const wrapper = shallow(<UMAPSequenceContainerClass allSequences={sequences} />);
     expect(wrapper).toMatchSnapshot();
   });
 
   it('Should handle a taxonomy update.', () => {
-    const wrapper = shallow(<UMAPSequenceContainer allSequences={sequences} />);
+    const wrapper = shallow(<UMAPSequenceContainerClass allSequences={sequences} />);
     const expected = {
       example_sequence: {
         class: 'Bacilli',
@@ -54,15 +55,15 @@ example_sequence,EVA-NERV,59846,Bacteria,Firmicutes,Paenibacillus,Bacilli,Paenib
   });
 
   it('Should render an upload form when enabled.', () => {
-    const wrapper = shallow(<UMAPSequenceContainer allSequences={sequences} showUploadButton={true} />);
+    const wrapper = shallow(<UMAPSequenceContainerClass allSequences={sequences} showUploadButton={true} />);
     expect(wrapper).toMatchSnapshot();
   });
 
   it('Should parse a taxonomy file with headers.', async () => {
     const wrapper = mount(
-      <UMAPSequenceContainer allSequences={[]} labelCategory={'example_sequence'} showUploadButton={true} />,
+      <UMAPSequenceContainerClass allSequences={[]} labelCategory={'example_sequence'} showUploadButton={true} />,
     );
-    const instance = wrapper.instance() as UMAPSequenceContainer;
+    const instance = wrapper.instance() as UMAPSequenceContainerClass;
     expect(instance.state.labels).toEqual([]);
 
     await act(async () => {
@@ -93,9 +94,9 @@ example_sequence,EVA-NERV,59846,Bacteria,Firmicutes,Paenibacillus,Bacilli,Paenib
 
   it('Should parse a taxonomy file without headers.', async () => {
     const wrapper = mount(
-      <UMAPSequenceContainer allSequences={[]} labelCategory={'example_sequence'} showUploadButton={true} />,
+      <UMAPSequenceContainerClass allSequences={[]} labelCategory={'example_sequence'} showUploadButton={true} />,
     );
-    const instance = wrapper.instance() as UMAPSequenceContainer;
+    const instance = wrapper.instance() as UMAPSequenceContainerClass;
     expect(instance.state.labels).toEqual([]);
     const taxonomyTextNoHeaders = taxonomyText.split('\n')[1];
     await act(async () => {
@@ -114,9 +115,9 @@ example_sequence,EVA-NERV,59846,Bacteria,Firmicutes,Paenibacillus,Bacilli,Paenib
 
   it('Should gracefully handle an invalid taxonomy file.', async () => {
     const wrapper = mount(
-      <UMAPSequenceContainer allSequences={[]} labelCategory={'example_sequence'} showUploadButton={true} />,
+      <UMAPSequenceContainerClass allSequences={[]} labelCategory={'example_sequence'} showUploadButton={true} />,
     );
-    const instance = wrapper.instance() as UMAPSequenceContainer;
+    const instance = wrapper.instance() as UMAPSequenceContainerClass;
     expect(instance.state.labels).toEqual([]);
     await act(async () => {
       wrapper.find('input').simulate('change', { target: { files: null } });
@@ -130,7 +131,7 @@ example_sequence,EVA-NERV,59846,Bacteria,Firmicutes,Paenibacillus,Bacilli,Paenib
   });
 
   it('Should handle updating the data.', async () => {
-    const wrapper = shallow(<UMAPSequenceContainer allSequences={sequences} />);
+    const wrapper = shallow(<UMAPSequenceContainerClass allSequences={sequences} />);
     wrapper.setProps({
       allSequences: [new SeqRecord(new Seq('ggaattcc'))],
     });
@@ -141,7 +142,7 @@ example_sequence,EVA-NERV,59846,Bacteria,Firmicutes,Paenibacillus,Bacilli,Paenib
   });
 
   it('Should handle removing the taxonomy data.', async () => {
-    const wrapper = shallow(<UMAPSequenceContainer allSequences={sequences} taxonomyText={taxonomyText} />);
+    const wrapper = shallow(<UMAPSequenceContainerClass allSequences={sequences} taxonomyText={taxonomyText} />);
     wrapper.setProps({
       taxonomyText: undefined,
     });
@@ -158,17 +159,16 @@ example_sequence,EVA-NERV,59846,Bacteria,Firmicutes,Paenibacillus,Bacilli,Paenib
       return seq;
     });
 
-    const wrapper = shallow(<UMAPSequenceContainer allSequences={unannotatedSequences} taxonomyText={taxonomyText} />);
+    const wrapper = shallow(
+      <UMAPSequenceContainerClass allSequences={unannotatedSequences} taxonomyText={taxonomyText} />,
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
 
-  // tslint:disable: no-string-literal
   it('Should use hamming method for distance calculation.', async () => {
-    // @ts-ignore
-    const spy = jest.spyOn(UMAPSequenceContainer.prototype, 'equalityHammingDistance');
     const wrapper = mount(
-      <UMAPSequenceContainer
+      <UMAPSequenceContainerClass
         allSequences={[
           ...sequences,
           ...sequences,
@@ -189,11 +189,14 @@ example_sequence,EVA-NERV,59846,Bacteria,Firmicutes,Paenibacillus,Bacilli,Paenib
         ]}
       />,
     );
+    const instance = wrapper.instance() as UMAPSequenceContainerClass;
+    const spy = jest.spyOn(instance, 'equalityHammingDistance');
     expect(spy).not.toHaveBeenCalled();
     await act(async () => {
       wrapper.update();
+      instance.forceUpdate();
     });
     jest.runAllTimers();
-    expect(spy).toHaveBeenCalled();
+    expect(instance.equalityHammingDistance).toHaveBeenCalled();
   });
 });

@@ -2,7 +2,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { ICategoricalAnnotation } from '~bioblocks-viz~/component';
-import { UMAPTranscriptionalContainer } from '~bioblocks-viz~/container';
+import { UMAPTranscriptionalContainerClass } from '~bioblocks-viz~/container';
 
 describe('UMAPTranscriptionalContainer', () => {
   let categoricalAnnotations: ICategoricalAnnotation = {};
@@ -21,13 +21,13 @@ describe('UMAPTranscriptionalContainer', () => {
   });
 
   it('Should render when given an empty data matrix.', () => {
-    const wrapper = shallow(<UMAPTranscriptionalContainer dataMatrix={[[]]} />);
+    const wrapper = shallow(<UMAPTranscriptionalContainerClass dataMatrix={[[]]} />);
     expect(wrapper).toMatchSnapshot();
   });
 
   it('Should render labels.', async () => {
     const wrapper = shallow(
-      <UMAPTranscriptionalContainer
+      <UMAPTranscriptionalContainerClass
         categoricalAnnotations={categoricalAnnotations}
         dataMatrix={dataMatrix}
         labelCategory={'banjo'}
@@ -39,7 +39,7 @@ describe('UMAPTranscriptionalContainer', () => {
 
   it('Should generate colors if none are provided.', async () => {
     const wrapper = shallow(
-      <UMAPTranscriptionalContainer
+      <UMAPTranscriptionalContainerClass
         categoricalAnnotations={{
           banjo: {
             ...categoricalAnnotations.banjo,
@@ -50,7 +50,7 @@ describe('UMAPTranscriptionalContainer', () => {
         labelCategory={'banjo'}
       />,
     );
-    const instance = wrapper.instance() as UMAPTranscriptionalContainer;
+    const instance = wrapper.instance() as UMAPTranscriptionalContainerClass;
     const expected = {
       banjo: [{ color: '#66c2a5', name: 'bear' }, { color: '#fc8d62', name: 'bird' }],
     };

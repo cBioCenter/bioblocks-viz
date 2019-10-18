@@ -1,7 +1,12 @@
+import { Set } from 'immutable';
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
+import { createContainerActions } from '~bioblocks-viz~/action';
 import { ICategoricalAnnotation, IUMAPVisualizationProps, UMAPVisualization } from '~bioblocks-viz~/component';
 import { ILabel, Marker } from '~bioblocks-viz~/data';
-import { subsample } from '~bioblocks-viz~/helper';
+import { EMPTY_FUNCTION, subsample } from '~bioblocks-viz~/helper';
+import { selectCurrentItems } from '~bioblocks-viz~/selector';
 
 export type IUMAPTranscriptionalContainerProps = Required<
   Pick<IUMAPVisualizationProps, 'dataMatrix' | 'numIterationsBeforeReRender'>
@@ -14,6 +19,9 @@ export type IUMAPTranscriptionalContainerProps = Required<
 
     // names of the samples (will be displayed in tooltip)
     sampleNames?: string[];
+
+    currentCells: Set<number>;
+    setCurrentCells(cells: number[]): void;
   };
 
 export interface IUMAPTranscriptionalContainerState {
@@ -22,13 +30,15 @@ export interface IUMAPTranscriptionalContainerState {
   errorMessages: string[];
 }
 
-export class UMAPTranscriptionalContainer extends React.Component<
+export class UMAPTranscriptionalContainerClass extends React.Component<
   IUMAPTranscriptionalContainerProps,
   IUMAPTranscriptionalContainerState
 > {
   public static defaultProps = {
+    currentCells: Set<number>(),
     numIterationsBeforeReRender: 1,
     numSamplesToShow: 4000,
+    setCurrentCells: EMPTY_FUNCTION,
   };
 
   private subsampledIndices = new Array<number>();
@@ -173,3 +183,20 @@ export class UMAPTranscriptionalContainer extends React.Component<
     });
   }
 }
+
+const mapStateToProps = (state: { [key: string]: any }) => ({
+  currentCells: selectCurrentItems<number>(state, 'cells'),
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators(
+    {
+      setCurrentCells: createContainerActions<number>('cells').set,
+    },
+    dispatch,
+  );
+
+export const UMAPTranscriptionalContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(UMAPTranscriptionalContainerClass);
