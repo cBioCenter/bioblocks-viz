@@ -7,6 +7,6 @@ const stories = storiesOf('visualization/SPRING', module).addParameters({
   component: SpringContainerClass,
 });
 
-stories.add('HPC - Full', () => <SpringContainer />, {
+stories.add('HPC - Full', () => <SpringContainer datasetLocation={'../datasets/hpc_sf2/full'} />, {
   info: { inline: true },
 });

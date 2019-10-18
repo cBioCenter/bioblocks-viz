@@ -1,0 +1,942 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Bioblocks-Viz Jest Tests" tests="412" failures="0" time="108.915">
+  <testsuite name="UMAPVisualization" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:25:36" time="72.351" tests="15">
+    <testcase classname="UMAPVisualization › UMAPVisualization" name="Should render when given an empty data matrix." time="0.026">
+    </testcase>
+    <testcase classname="UMAPVisualization › UMAPVisualization" name="Should render when given some sample data." time="2.027">
+    </testcase>
+    <testcase classname="UMAPVisualization › UMAPVisualization" name="Should be able to render in 3d." time="2.405">
+    </testcase>
+    <testcase classname="UMAPVisualization › UMAPVisualization" name="Should label unannotated data as such." time="2.022">
+    </testcase>
+    <testcase classname="UMAPVisualization › UMAPVisualization" name="Should truncate long data names." time="2.168">
+    </testcase>
+    <testcase classname="UMAPVisualization › UMAPVisualization" name="Should not show 3d camera buttons in 2d mode." time="0.17">
+    </testcase>
+    <testcase classname="UMAPVisualization › UMAPVisualization" name="Should show 3d camera buttons in 3d mode." time="7.165">
+    </testcase>
+    <testcase classname="UMAPVisualization › Settings callbacks" name="Should handle zoom" time="8.148">
+    </testcase>
+    <testcase classname="UMAPVisualization › Settings callbacks" name="Should handle pan" time="4.385">
+    </testcase>
+    <testcase classname="UMAPVisualization › Settings callbacks" name="Should handle orbit" time="4.653">
+    </testcase>
+    <testcase classname="UMAPVisualization › Settings callbacks" name="Should handle turntable" time="4.246">
+    </testcase>
+    <testcase classname="UMAPVisualization › Settings callbacks" name="Should handle changing minimum distance" time="5.613">
+    </testcase>
+    <testcase classname="UMAPVisualization › Settings callbacks" name="Should handle changing number of neighbors." time="5.423">
+    </testcase>
+    <testcase classname="UMAPVisualization › Settings callbacks" name="Should handle changing spread value." time="5.436">
+    </testcase>
+    <testcase classname="UMAPVisualization › Settings callbacks" name="Should handle changing dimension value." time="3.691">
+    </testcase>
+  </testsuite>
+  <testsuite name="UMAPSequenceContainer" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:26:48" time="4.794" tests="11">
+    <testcase classname="UMAPSequenceContainer" name="Should render when given an empty sequence." time="0.006">
+    </testcase>
+    <testcase classname="UMAPSequenceContainer" name="Should render when given a sequence." time="0.004">
+    </testcase>
+    <testcase classname="UMAPSequenceContainer" name="Should handle a taxonomy update." time="0.022">
+    </testcase>
+    <testcase classname="UMAPSequenceContainer" name="Should render an upload form when enabled." time="0.007">
+    </testcase>
+    <testcase classname="UMAPSequenceContainer" name="Should parse a taxonomy file with headers." time="0.219">
+    </testcase>
+    <testcase classname="UMAPSequenceContainer" name="Should parse a taxonomy file without headers." time="0.118">
+    </testcase>
+    <testcase classname="UMAPSequenceContainer" name="Should gracefully handle an invalid taxonomy file." time="0.053">
+    </testcase>
+    <testcase classname="UMAPSequenceContainer" name="Should handle updating the data." time="0.051">
+    </testcase>
+    <testcase classname="UMAPSequenceContainer" name="Should handle removing the taxonomy data." time="0.005">
+    </testcase>
+    <testcase classname="UMAPSequenceContainer" name="Should handle missing annotation data." time="0.003">
+    </testcase>
+    <testcase classname="UMAPSequenceContainer" name="Should use hamming method for distance calculation." time="3.858">
+    </testcase>
+  </testsuite>
+  <testsuite name="NGLComponent" errors="0" failures="0" skipped="2" timestamp="2019-10-18T20:26:53" time="1.891" tests="39">
+    <testcase classname="NGLComponent" name="Should match existing snapshot when unconnected to a context." time="0.007">
+    </testcase>
+    <testcase classname="NGLComponent" name="Should handle a data reset." time="0.052">
+    </testcase>
+    <testcase classname="NGLComponent" name="Should handle prop updates." time="0.025">
+    </testcase>
+    <testcase classname="NGLComponent" name="Should handle candidate residue updates." time="0.003">
+    </testcase>
+    <testcase classname="NGLComponent" name="Should handle hovered residue updates." time="0.008">
+    </testcase>
+    <testcase classname="NGLComponent" name="Should show the ball+stick representation for hovered residues." time="0.04">
+    </testcase>
+    <testcase classname="NGLComponent" name="Should show the distance and ball+stick representation for locked residues for C-Alpha proximity." time="0.002">
+    </testcase>
+    <testcase classname="NGLComponent" name="Should show the distance and ball+stick representation for locked residues for Closest distance proximity." time="0.002">
+    </testcase>
+    <testcase classname="NGLComponent" name="Should show the distance and ball+stick representation for multiple hovered residues." time="0.036">
+    </testcase>
+    <testcase classname="NGLComponent" name="Should show the cartoon representation for selected secondary structures." time="0.036">
+    </testcase>
+    <testcase classname="NGLComponent" name="Should follow candidate selection flow." time="0.003">
+    </testcase>
+    <testcase classname="NGLComponent" name="Should follow candidate residue selection flow." time="0">
+      <skipped/>
+    </testcase>
+    <testcase classname="NGLComponent" name="Should call appropriate residue clearing callback." time="0">
+      <skipped/>
+    </testcase>
+    <testcase classname="NGLComponent" name="Should unmount correctly." time="0.002">
+    </testcase>
+    <testcase classname="NGLComponent › Events" name="Should handle hover events when there is no hovered or candidate residue." time="0.043">
+    </testcase>
+    <testcase classname="NGLComponent › Events" name="Should handle hover events when the residue name is not one of the 20 common Amino Acids." time="0.035">
+    </testcase>
+    <testcase classname="NGLComponent › Events" name="Should handle hover events when there is a hovered residue but no candidate." time="0.032">
+    </testcase>
+    <testcase classname="NGLComponent › Events" name="Should clear candidate and hovered residues when the mouse leaves the canvas." time="0.005">
+    </testcase>
+    <testcase classname="NGLComponent › Events" name="Should handle click events by creating a locked residue pair if there is a candidate." time="0.03">
+    </testcase>
+    <testcase classname="NGLComponent › Events" name="Should handle click events by creating a locked residue pair if there is a candidate." time="0.036">
+    </testcase>
+    <testcase classname="NGLComponent › Events" name="Should handle click events by creating a candidate residue when none is present." time="0.029">
+    </testcase>
+    <testcase classname="NGLComponent › Events" name="Should handle click events by creating a candidate residue when none is present." time="0.022">
+    </testcase>
+    <testcase classname="NGLComponent › Events" name="Should handle clicking on a distance representation." time="0.03">
+    </testcase>
+    <testcase classname="NGLComponent › Events" name="Should handle clicking off-component." time="0.027">
+    </testcase>
+    <testcase classname="NGLComponent › Events" name="Should add the hovered residue if the user clicks within a certain distance (snapping)." time="0.032">
+    </testcase>
+    <testcase classname="NGLComponent › Events" name="Should remove the hovered residue if the user clicks within beyond a certain distance (snapping)." time="0.035">
+    </testcase>
+    <testcase classname="NGLComponent › Events" name="Should handle pressing ESC." time="0.019">
+    </testcase>
+    <testcase classname="NGLComponent › Events" name="Should handle onResize events." time="0.002">
+    </testcase>
+    <testcase classname="NGLComponent › Events" name="Should remove the onResize handler when unmounted." time="0.003">
+    </testcase>
+    <testcase classname="NGLComponent › Events" name="Should ignore focus events." time="0.014">
+    </testcase>
+    <testcase classname="NGLComponent › Configurations" name="Should handle changing the measuring proximity." time="0.144">
+    </testcase>
+    <testcase classname="NGLComponent › Configurations" name="Should handle changing the structure representation type to the non-default." time="0.161">
+    </testcase>
+    <testcase classname="NGLComponent › Configurations" name="Should handle changing the structure representation type to a non-default." time="0.15">
+    </testcase>
+    <testcase classname="NGLComponent › Configurations" name="Should handle turning the distance representation off." time="0.113">
+    </testcase>
+    <testcase classname="NGLComponent › Configurations" name="Should handle turning movePick off." time="0.125">
+    </testcase>
+    <testcase classname="NGLComponent › Configurations" name="Should handle switching cameras." time="0.029">
+    </testcase>
+    <testcase classname="NGLComponent › Configurations" name="Should not allow switching superposition when not enough proteins." time="0.018">
+    </testcase>
+    <testcase classname="NGLComponent › Configurations" name="Should handle switching superposition." time="0.02">
+    </testcase>
+    <testcase classname="NGLComponent › Configurations" name="Should handle centering the camera." time="0.015">
+    </testcase>
+  </testsuite>
+  <testsuite name="NGLContainer" errors="0" failures="0" skipped="1" timestamp="2019-10-18T20:26:55" time="1.088" tests="8">
+    <testcase classname="NGLContainer" name="Should match the default snapshot when hooked up to a redux store." time="0.069">
+    </testcase>
+    <testcase classname="NGLContainer" name="Should match the default snapshot when not hooked up to a redux store." time="0.01">
+    </testcase>
+    <testcase classname="NGLContainer" name="Should handle experimental PDB files." time="0.036">
+    </testcase>
+    <testcase classname="NGLContainer" name="Should handle predicted PDB files." time="0.029">
+    </testcase>
+    <testcase classname="NGLContainer" name="Should handle selecting PDB files via checkbox." time="0.282">
+    </testcase>
+    <testcase classname="NGLContainer" name="Should not show a popup when there are no PDB files to select." time="0.139">
+    </testcase>
+    <testcase classname="NGLContainer" name="Should handle clearing PDB files." time="0.136">
+    </testcase>
+    <testcase classname="NGLContainer" name="Should show the correct sequence match." time="0">
+      <skipped/>
+    </testcase>
+  </testsuite>
+  <testsuite name="ContactMapComponent" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:26:57" time="1.106" tests="22">
+    <testcase classname="ContactMapComponent › Snapshots" name="Should match existing snapshot when given no data." time="0.016">
+    </testcase>
+    <testcase classname="ContactMapComponent › Snapshots" name="Should match existing snapshot when given empty data." time="0.006">
+    </testcase>
+    <testcase classname="ContactMapComponent › Snapshots" name="Should match snapshot when locked residues are added." time="0.098">
+    </testcase>
+    <testcase classname="ContactMapComponent › Snapshots" name="Should match existing snapshot when given basic data." time="0.005">
+    </testcase>
+    <testcase classname="ContactMapComponent › Snapshots" name="Should match existing snapshot when given data with amino acids." time="0.005">
+    </testcase>
+    <testcase classname="ContactMapComponent › Snapshots" name="Should match existing snapshot when given data with a PDB." time="0.006">
+    </testcase>
+    <testcase classname="ContactMapComponent › Snapshots" name="Should match existing snapshot when a single point are hovered." time="0.005">
+    </testcase>
+    <testcase classname="ContactMapComponent › Snapshots" name="Should match existing snapshot when multiple points are hovered." time="0.005">
+    </testcase>
+    <testcase classname="ContactMapComponent › Snapshots" name="Should match existing snapshot when multiple points are selected." time="0.007">
+    </testcase>
+    <testcase classname="ContactMapComponent › Callbacks" name="Should invoke callback to add locked residues when a click event is fired." time="0.044">
+    </testcase>
+    <testcase classname="ContactMapComponent › Callbacks" name="Should invoke callback to add hovered residues when a hover event is fired." time="0.044">
+    </testcase>
+    <testcase classname="ContactMapComponent › Callbacks" name="Should invoke callback to remove hovered residues when the mouse leaves." time="0.033">
+    </testcase>
+    <testcase classname="ContactMapComponent › Callbacks" name="Should invoke callback for selected residues when a click event is fired." time="0.039">
+    </testcase>
+    <testcase classname="ContactMapComponent › Callbacks" name="Should invoke callback for adding a secondary structure when a mouse clicks it the first time." time="0.052">
+    </testcase>
+    <testcase classname="ContactMapComponent › Callbacks" name="Should invoke callback for removing a secondary structure when a mouse clicks one that is already locked." time="0.042">
+    </testcase>
+    <testcase classname="ContactMapComponent › Callbacks" name="Should invoke callback for toggling a secondary structure when a mouse hovers over it." time="0.034">
+    </testcase>
+    <testcase classname="ContactMapComponent › Callbacks" name="Should not invoke callback for toggling a secondary structure when a mouse hovers over a different structure." time="0.035">
+    </testcase>
+    <testcase classname="ContactMapComponent › Callbacks" name="Should invoke callback for removing a secondary structure when a mouse leaves it." time="0.03">
+    </testcase>
+    <testcase classname="ContactMapComponent › Callbacks" name="Should not invoke callback for toggling a secondary structure when a mouse leaves a different structure." time="0.043">
+    </testcase>
+    <testcase classname="ContactMapComponent › Callbacks" name="Should _not_ clear residues when given new data." time="0.063">
+    </testcase>
+    <testcase classname="ContactMapComponent › Callbacks" name="Should invoke callback for clearing all selections when clicked." time="0.035">
+    </testcase>
+    <testcase classname="ContactMapComponent › Configuration" name="Should handle the node size being changed." time="0.033">
+    </testcase>
+  </testsuite>
+  <testsuite name="PlotlyChart" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:26:58" time="0.476" tests="18">
+    <testcase classname="PlotlyChart" name="Should match existing snapshot when given empty data." time="0.018">
+    </testcase>
+    <testcase classname="PlotlyChart" name="Should match existing snapshot when given sample data." time="0.006">
+    </testcase>
+    <testcase classname="PlotlyChart › Event Callbacks" name="Should handle plotly events." time="0.012">
+    </testcase>
+    <testcase classname="PlotlyChart › Event Callbacks" name="Should attach events when the container is attached." time="0.013">
+    </testcase>
+    <testcase classname="PlotlyChart › Event Callbacks" name="Should call the appropriate callback when the window is resized." time="0.005">
+    </testcase>
+    <testcase classname="PlotlyChart › Event Callbacks" name="Should call the appropriate callback when plotly emits a click event." time="0.005">
+    </testcase>
+    <testcase classname="PlotlyChart › Event Callbacks" name="Should return the appropriate event when plotly emits a click event on a point." time="0.005">
+    </testcase>
+    <testcase classname="PlotlyChart › Event Callbacks" name="Should return the appropriate event when plotly emits a click event on a secondary x axis." time="0.005">
+    </testcase>
+    <testcase classname="PlotlyChart › Event Callbacks" name="Should return the appropriate event when plotly emits a click event on a secondary y axis." time="0.005">
+    </testcase>
+    <testcase classname="PlotlyChart › Event Callbacks" name="Should call the appropriate callback when plotly emits a hover event." time="0.005">
+    </testcase>
+    <testcase classname="PlotlyChart › Event Callbacks" name="Should call the appropriate callback when plotly emits a selected event." time="0.007">
+    </testcase>
+    <testcase classname="PlotlyChart › Event Callbacks" name="Should call the appropriate callback when plotly emits a selected event for a range of points." time="0.005">
+    </testcase>
+    <testcase classname="PlotlyChart" name="Should unmount correctly." time="0.006">
+    </testcase>
+    <testcase classname="PlotlyChart" name="Should not call draw if data is unchanged." time="0.005">
+    </testcase>
+    <testcase classname="PlotlyChart" name="Should call draw when data is updated." time="0.007">
+    </testcase>
+    <testcase classname="PlotlyChart" name="Should call draw when layout is updated." time="0.006">
+    </testcase>
+    <testcase classname="PlotlyChart" name="Should call draw when config is updated." time="0.006">
+    </testcase>
+    <testcase classname="PlotlyChart" name="Should handle extra axes correctly." time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="ComponentMenuBar" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:26:58" time="0.406" tests="13">
+    <testcase classname="ComponentMenuBar" name="Should match existing snapshot when given default props." time="0.007">
+    </testcase>
+    <testcase classname="ComponentMenuBar" name="Should match existing snapshot when expanded" time="0.004">
+    </testcase>
+    <testcase classname="ComponentMenuBar" name="Should render popup menu items." time="0.008">
+    </testcase>
+    <testcase classname="ComponentMenuBar" name="Should determine the visibility of menu items via mouse hover." time="0.022">
+    </testcase>
+    <testcase classname="ComponentMenuBar" name="Should render a Button menu item." time="0.006">
+    </testcase>
+    <testcase classname="ComponentMenuBar" name="Should render a Button menu item with an icon." time="0.006">
+    </testcase>
+    <testcase classname="ComponentMenuBar" name="Should render a Button Group menu item." time="0.007">
+    </testcase>
+    <testcase classname="ComponentMenuBar" name="Should render a Checkbox menu item." time="0.006">
+    </testcase>
+    <testcase classname="ComponentMenuBar" name="Should render a Label menu item." time="0.005">
+    </testcase>
+    <testcase classname="ComponentMenuBar" name="Should render a Radio menu item." time="0.006">
+    </testcase>
+    <testcase classname="ComponentMenuBar" name="Should render a Range Slider menu item." time="0.006">
+    </testcase>
+    <testcase classname="ComponentMenuBar" name="Should render a Slider menu item." time="0.005">
+    </testcase>
+    <testcase classname="ComponentMenuBar" name="Should handle an unknown menu item." time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="TensorTContainer" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:26:59" time="8.354" tests="5">
+    <testcase classname="TensorTContainer" name="Should match existing snapshot when given no props." time="0.008">
+    </testcase>
+    <testcase classname="TensorTContainer" name="Should match existing snapshot when given sample data." time="0.008">
+    </testcase>
+    <testcase classname="TensorTContainer" name="Should handle selection events." time="4.036">
+    </testcase>
+    <testcase classname="TensorTContainer" name="Should handle starting playback." time="0.024">
+    </testcase>
+    <testcase classname="TensorTContainer" name="Should handle pausing playback." time="4.009">
+    </testcase>
+  </testsuite>
+  <testsuite name="ProteinFeatureViewer" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:07" time="0.374" tests="12">
+    <testcase classname="ProteinFeatureViewer" name="Should match the default snapshot." time="0.005">
+    </testcase>
+    <testcase classname="ProteinFeatureViewer" name="Should match the snapshot for sample data." time="0.004">
+    </testcase>
+    <testcase classname="ProteinFeatureViewer" name="Should match the snapshot for sample data when specifying a max length." time="0.004">
+    </testcase>
+    <testcase classname="ProteinFeatureViewer" name="Should match the snapshot for sample data when showing features grouped." time="0.003">
+    </testcase>
+    <testcase classname="ProteinFeatureViewer" name="Should match the snapshot when a background bar is provided." time="0.003">
+    </testcase>
+    <testcase classname="ProteinFeatureViewer › Event handlers" name="Should handle selecting a single feature." time="0.019">
+    </testcase>
+    <testcase classname="ProteinFeatureViewer › Event handlers" name="Should handle selecting multiple features sharing an overlap." time="0.007">
+    </testcase>
+    <testcase classname="ProteinFeatureViewer › Event handlers" name="Should handle selecting multiple features via selection box." time="0.01">
+    </testcase>
+    <testcase classname="ProteinFeatureViewer › Event handlers" name="Should call the appropriate callback on selection events." time="0.014">
+    </testcase>
+    <testcase classname="ProteinFeatureViewer › Event handlers" name="Should handle clicking a single feature." time="0.01">
+    </testcase>
+    <testcase classname="ProteinFeatureViewer › Event handlers" name="Should call the appropriate callback when clicking a single feature." time="0.007">
+    </testcase>
+    <testcase classname="ProteinFeatureViewer › Event handlers" name="Should handle hovering over a single feature." time="0.007">
+    </testcase>
+  </testsuite>
+  <testsuite name="ProteinFeatureViewer" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:08" time="0.497" tests="11">
+    <testcase classname="ProteinFeatureViewer" name="Should match the default snapshot." time="0.004">
+    </testcase>
+    <testcase classname="ProteinFeatureViewer" name="Should show protein information when successfully retrieved." time="0.005">
+    </testcase>
+    <testcase classname="ProteinFeatureViewer" name="Should default to an invalid range if there is a problem with the response JSON." time="0.014">
+    </testcase>
+    <testcase classname="ProteinFeatureViewer" name="Should toggle the grouping flag when the appropriate control is clicked." time="0.013">
+    </testcase>
+    <testcase classname="ProteinFeatureViewer" name="Should update the proteinId as the user enters text into the input field." time="0.005">
+    </testcase>
+    <testcase classname="ProteinFeatureViewer" name="Should fetch a new protein with a user-supplied protein ID when the user submits it." time="0.031">
+    </testcase>
+    <testcase classname="ProteinFeatureViewer" name="Should generate annotation text when a hover event is fired." time="0.061">
+    </testcase>
+    <testcase classname="ProteinFeatureViewer" name="Should generate empty annotation text when a hover event is fired and the protein information is not available." time="0.02">
+    </testcase>
+    <testcase classname="ProteinFeatureViewer" name="Should generate empty annotation text when a hover event is fired but the PFam information is not available." time="0.021">
+    </testcase>
+    <testcase classname="ProteinFeatureViewer" name="Should generate empty annotation text when a hover event is fired but no protein was fetched." time="0.028">
+    </testcase>
+    <testcase classname="ProteinFeatureViewer" name="Should handle when there is an error fetching." time="0.022">
+    </testcase>
+  </testsuite>
+  <testsuite name="ComponentCard" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:08" time="0.347" tests="8">
+    <testcase classname="ComponentCard" name="Should match existing snapshot when given default props." time="0.002">
+    </testcase>
+    <testcase classname="ComponentCard" name="Should match existing snapshot when framed." time="0.003">
+    </testcase>
+    <testcase classname="ComponentCard" name="Should match existing snapshot when not framed." time="0.001">
+    </testcase>
+    <testcase classname="ComponentCard" name="Should handle resizing a framed component." time="0.027">
+    </testcase>
+    <testcase classname="ComponentCard" name="Should handle expanding a framed full page component." time="0.016">
+    </testcase>
+    <testcase classname="ComponentCard" name="Should handle expanding a framed and non-full page component." time="0.013">
+    </testcase>
+    <testcase classname="ComponentCard" name="Should handle expanding a non-framed full page component." time="0.02">
+    </testcase>
+    <testcase classname="ComponentCard" name="Should handle expanding a non-framed and non-full page component." time="0.01">
+    </testcase>
+  </testsuite>
+  <testsuite name="BioblocksSlider" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:09" time="0.337" tests="7">
+    <testcase classname="BioblocksSlider" name="Should match existing snapshot when given simple data." time="0.004">
+    </testcase>
+    <testcase classname="BioblocksSlider" name="Should handle onChange callbacks." time="0.008">
+    </testcase>
+    <testcase classname="BioblocksSlider" name="Should handle onAfterChange callbacks." time="0.006">
+    </testcase>
+    <testcase classname="BioblocksSlider" name="Should handle resetting the slider when no default is originally given." time="0.023">
+    </testcase>
+    <testcase classname="BioblocksSlider" name="Should handle resetting the slider to a default value when available." time="0.009">
+    </testcase>
+    <testcase classname="BioblocksSlider" name="Should allow the default value to be updated if one was not provided when mounted." time="0.011">
+    </testcase>
+    <testcase classname="BioblocksSlider" name="Should allow the value to be updated via props." time="0.012">
+    </testcase>
+  </testsuite>
+  <testsuite name="BioblocksRangeSlider" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:09" time="0.306" tests="7">
+    <testcase classname="BioblocksRangeSlider" name="Should match existing snapshot when given simple data." time="0.014">
+    </testcase>
+    <testcase classname="BioblocksRangeSlider" name="Should handle onChange callbacks." time="0.006">
+    </testcase>
+    <testcase classname="BioblocksRangeSlider" name="Should handle onAfterChange callbacks." time="0.005">
+    </testcase>
+    <testcase classname="BioblocksRangeSlider" name="Should handle resetting the slider when no default is originally given." time="0.007">
+    </testcase>
+    <testcase classname="BioblocksRangeSlider" name="Should handle resetting the slider to a default value when available." time="0.008">
+    </testcase>
+    <testcase classname="BioblocksRangeSlider" name="Should allow the default value to be updated if one was not provided when mounted." time="0.006">
+    </testcase>
+    <testcase classname="BioblocksRangeSlider" name="Should allow the value to be updated via props." time="0.007">
+    </testcase>
+  </testsuite>
+  <testsuite name="CouplingContainer" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:10" time="0.286" tests="18">
+    <testcase classname="CouplingContainer" name="Should store a coupling [i=x, j=y] to the same place as [i=y, j=x]." time="0.001">
+    </testcase>
+    <testcase classname="CouplingContainer" name="Should tally unique number of couplings." time="0.001">
+    </testcase>
+    <testcase classname="CouplingContainer" name="Should allow adding of new couplings." time="0.001">
+    </testcase>
+    <testcase classname="CouplingContainer" name="Should allow updating of existing couplings." time="0.001">
+    </testcase>
+    <testcase classname="CouplingContainer" name="Should determine if a contact exists in storage regardless of order of [i, j]." time="0.011">
+    </testcase>
+    <testcase classname="CouplingContainer" name="Should allow iterators to iterate through existing contacts." time="0.001">
+    </testcase>
+    <testcase classname="CouplingContainer" name="Should allow retrieving the contacts sorted by rank." time="0.001">
+    </testcase>
+    <testcase classname="CouplingContainer" name="Should return undefined when getting a contact out of bounds." time="0.001">
+    </testcase>
+    <testcase classname="CouplingContainer" name="Should allow have contacts with undefined cn values at the bottom of the sorted list." time="0.002">
+    </testcase>
+    <testcase classname="CouplingContainer" name="Should return the correct amino acid sequence for a set of contacts." time="0.001">
+    </testcase>
+    <testcase classname="CouplingContainer" name="Should return the correct amino acid sequence for a set of contacts when indices are flipped." time="0.001">
+    </testcase>
+    <testcase classname="CouplingContainer" name="Should return the correct amino acid sequence for a set of contacts when they are updated and flipped." time="0">
+    </testcase>
+    <testcase classname="CouplingContainer" name="Should return the correct amino acid sequence for a set of contacts when they are updated and not flipped." time="0.003">
+    </testcase>
+    <testcase classname="CouplingContainer › Amino acid helper" name="Should return undefined when retrieving an amino acid from an empty Coupling Container." time="0.001">
+    </testcase>
+    <testcase classname="CouplingContainer › Amino acid helper" name="Should return undefined when an amino acid that has not been stored is retrieved." time="0.001">
+    </testcase>
+    <testcase classname="CouplingContainer › Amino acid helper" name="Should allow the correct amino acid corresponding to an individual contact to be retrieved." time="0.001">
+    </testcase>
+    <testcase classname="CouplingContainer › Scores" name="Should allow sorting by different score sources." time="0.006">
+    </testcase>
+    <testcase classname="CouplingContainer › Scores" name="Should sort the scores by cn if an invalid source is provided." time="0.025">
+    </testcase>
+  </testsuite>
+  <testsuite name="ConfigAccordion" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:10" time="0.35" tests="6">
+    <testcase classname="ConfigAccordion" name="Should match existing snapshot when given default props." time="0.002">
+    </testcase>
+    <testcase classname="ConfigAccordion" name="Should match existing snapshot when given some configuration." time="0.003">
+    </testcase>
+    <testcase classname="ConfigAccordion" name="Should handle click events when there are 2 or more exclusive configs." time="0.029">
+    </testcase>
+    <testcase classname="ConfigAccordion" name="Should close configs when the same one is clicked." time="0.014">
+    </testcase>
+    <testcase classname="ConfigAccordion" name="Should handle click events when there are 2 or more mutual configs." time="0.01">
+    </testcase>
+    <testcase classname="ConfigAccordion" name="Should handle click events when rendering shallowly." time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="InfoPanelContainer" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:10" time="0.277" tests="4">
+    <testcase classname="InfoPanelContainer" name="Should match existing snapshot when given no props." time="0.005">
+    </testcase>
+    <testcase classname="InfoPanelContainer" name="Should match existing snapshot when given sample data." time="0.009">
+    </testcase>
+    <testcase classname="InfoPanelContainer" name="Should match existing snapshot when given sample data and a known PDB." time="0.003">
+    </testcase>
+    <testcase classname="InfoPanelContainer" name="Should match existing snapshot when given sample data and a predicted PDB." time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="AuxiliaryAxis" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:11" time="0.277" tests="5">
+    <testcase classname="AuxiliaryAxis" name="Should allow passing a specific axis index." time="0.001">
+    </testcase>
+    <testcase classname="AuxiliaryAxis" name="Should allow a data transform function to be run on each section." time="0.002">
+    </testcase>
+    <testcase classname="AuxiliaryAxis" name="Should allow a filter function to determine if a section gets transformed." time="0.001">
+    </testcase>
+    <testcase classname="AuxiliaryAxis" name="Should allow a filter function that can disable the transform function on certain sections." time="0.002">
+    </testcase>
+    <testcase classname="AuxiliaryAxis" name="Should allow a color map to color specific sections." time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="ContactMapChart" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:11" time="0.267" tests="4">
+    <testcase classname="ContactMapChart" name="Should match existing snapshot when given simple data." time="0.003">
+    </testcase>
+    <testcase classname="ContactMapChart" name="Should match existing snapshot when given data with extra axes." time="0.004">
+    </testcase>
+    <testcase classname="ContactMapChart" name="Should match existing snapshot when given data with multiple secondary structures." time="0.005">
+    </testcase>
+    <testcase classname="ContactMapChart" name="Should be able to determine the number of legend entries that will be created.." time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="BioblocksRadioGroup" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:11" time="0.269" tests="5">
+    <testcase classname="BioblocksRadioGroup" name="Should match existing snapshot when given simple data." time="0.003">
+    </testcase>
+    <testcase classname="BioblocksRadioGroup" name="Should default to the first option if no default is given." time="0.003">
+    </testcase>
+    <testcase classname="BioblocksRadioGroup" name="Should default to the first option if the default is invalid." time="0.003">
+    </testcase>
+    <testcase classname="BioblocksRadioGroup" name="Should allow a default option to be provided." time="0.002">
+    </testcase>
+    <testcase classname="BioblocksRadioGroup" name="Should handle change events." time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="CategorySelector" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:12" time="0.298" tests="2">
+    <testcase classname="CategorySelector" name="Should match existing snapshot when given simple data." time="0.015">
+    </testcase>
+    <testcase classname="CategorySelector" name="Should invoke callback if provided when category is selected." time="0.04">
+    </testcase>
+  </testsuite>
+  <testsuite name="ComponentDock" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:12" time="0.27" tests="5">
+    <testcase classname="ComponentDock" name="Should match existing snapshot when given empty dock items." time="0.002">
+    </testcase>
+    <testcase classname="ComponentDock" name="Should not render when visible is toggled." time="0.001">
+    </testcase>
+    <testcase classname="ComponentDock" name="Should match existing snapshot when given sample dock items." time="0.003">
+    </testcase>
+    <testcase classname="ComponentDock" name="Should invoke visible callback if present." time="0.004">
+    </testcase>
+    <testcase classname="ComponentDock" name="Should invoke onClick callback if present." time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="SecondaryStructureAxis" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:13" time="0.292" tests="6">
+    <testcase classname="SecondaryStructureAxis" name="Should create an empty axis when no secondary structure is provided." time="0.001">
+    </testcase>
+    <testcase classname="SecondaryStructureAxis" name="Should handle an axis made up of a single secondary structure entry." time="0.001">
+    </testcase>
+    <testcase classname="SecondaryStructureAxis" name="Should handle an axis made up of different secondary structure types." time="0.013">
+    </testcase>
+    <testcase classname="SecondaryStructureAxis" name="Should allow custom color mappings." time="0.002">
+    </testcase>
+    <testcase classname="SecondaryStructureAxis › Alpha Helix" name="Should use points for a sine wave for alpha helix secondary structures." time="0.004">
+    </testcase>
+    <testcase classname="SecondaryStructureAxis › Beta Sheet" name="Should use arrow symbols for drawing beta sheets." time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="ContactMapContainer" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:13" time="0.343" tests="8">
+    <testcase classname="ContactMapContainer › Snapshots" name="Should match existing snapshot when given no data." time="0.007">
+    </testcase>
+    <testcase classname="ContactMapContainer › Snapshots" name="Should match existing snapshot when given empty data." time="0.011">
+    </testcase>
+    <testcase classname="ContactMapContainer › Snapshots" name="Should match snapshot when locked residues are added." time="0.007">
+    </testcase>
+    <testcase classname="ContactMapContainer › Sliders" name="Should update linear distance filter when appropriate slider is updated." time="0.005">
+    </testcase>
+    <testcase classname="ContactMapContainer › Sliders" name="Should update number of predicted contacts to show when appropriate slider is updated." time="0.014">
+    </testcase>
+    <testcase classname="ContactMapContainer › Sliders" name="Should update # of predicted contacts to show when appropriate slider is updated." time="0.004">
+    </testcase>
+    <testcase classname="ContactMapContainer" name="Should update number of predictions to show when new value is received." time="0.004">
+    </testcase>
+    <testcase classname="ContactMapContainer" name="Should update points to plot when new data is provided." time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="AnatomogramContainer" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:13" time="0.271" tests="2">
+    <testcase classname="AnatomogramContainer" name="Should match existing snapshot for homo sapiens." time="0.005">
+    </testcase>
+    <testcase classname="AnatomogramContainer" name="Should match existing snapshot for mus musculus." time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="UMAPTranscriptionalContainer" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:14" time="0.275" tests="3">
+    <testcase classname="UMAPTranscriptionalContainer" name="Should render when given an empty data matrix." time="0.003">
+    </testcase>
+    <testcase classname="UMAPTranscriptionalContainer" name="Should render labels." time="0.003">
+    </testcase>
+    <testcase classname="UMAPTranscriptionalContainer" name="Should generate colors if none are provided." time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="DataHelper" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:14" time="0.314" tests="22">
+    <testcase classname="DataHelper" name="Should throw an error when attempting to fetch data for an unsupported visualization type." time="0.002">
+    </testcase>
+    <testcase classname="DataHelper › Contact Map" name="Should throw on incorrect location." time="0.002">
+    </testcase>
+    <testcase classname="DataHelper › Contact Map" name="Should parse contact monomer data correctly." time="0.002">
+    </testcase>
+    <testcase classname="DataHelper › Contact Map" name="Should parse contact monomer data correctly when csv file has newline." time="0.002">
+    </testcase>
+    <testcase classname="DataHelper › Contact Map" name="Should parse contact monomer data correctly when csv file has headers." time="0.002">
+    </testcase>
+    <testcase classname="DataHelper › Contact Map" name="Should allow the residue mapping and coupling score csv to be combined to generate the CouplingContainer." time="0.002">
+    </testcase>
+    <testcase classname="DataHelper › Contact Map" name="Should allow a previously created coupling score csv to be augmented with a residue mapping csv." time="0.002">
+    </testcase>
+    <testcase classname="DataHelper › Contact Map" name="Should parse secondary structure data correctly." time="0.001">
+    </testcase>
+    <testcase classname="DataHelper › Contact Map" name="Should parse secondary structure data correctly when the csv file has newline." time="0.002">
+    </testcase>
+    <testcase classname="DataHelper › Contact Map" name="Should load pdb data if available." time="0.004">
+    </testcase>
+    <testcase classname="DataHelper › NGL" name="Should throw on incorrect location." time="0.002">
+    </testcase>
+    <testcase classname="DataHelper › NGL" name="Should resolve on nonempty location." time="0.001">
+    </testcase>
+    <testcase classname="DataHelper › Spring › Categorical Coloring File" name="Should throw on incorrect location." time="0.007">
+    </testcase>
+    <testcase classname="DataHelper › Spring › Categorical Coloring File" name="Should parse a correctly formatted categorical file." time="0.002">
+    </testcase>
+    <testcase classname="DataHelper › Spring › Categorical Coloring File" name="Should throw on a incorrectly formatted categorical file." time="0.001">
+    </testcase>
+    <testcase classname="DataHelper › Spring › Coordinate File" name="Should throw on incorrect column count." time="0.034">
+    </testcase>
+    <testcase classname="DataHelper › Spring › Coordinate File" name="Should parse a correctly formatted coordinate file." time="0.001">
+    </testcase>
+    <testcase classname="DataHelper › Spring › Coordinate File" name="Should parse a empty coordinate file." time="0.001">
+    </testcase>
+    <testcase classname="DataHelper › Spring › Graph File" name="Should throw on incorrect location." time="0.001">
+    </testcase>
+    <testcase classname="DataHelper › Spring › Graph File" name="Should parse a correctly formatted graph file." time="0.002">
+    </testcase>
+    <testcase classname="DataHelper › Spring › Graph File" name="Should throw on a incorrectly formatted graph file." time="0.001">
+    </testcase>
+    <testcase classname="DataHelper › T-SNE" name="Should return empty data for an incorrect location." time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="SpringContainer" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:15" time="0.269" tests="1">
+    <testcase classname="SpringContainer" name="Should match existing snapshot." time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="generateScatterGLData" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:15" time="0.188" tests="9">
+    <testcase classname="generateScatterGLData" name="Should create the expected plotly scatter data format when given defaults." time="0.011">
+    </testcase>
+    <testcase classname="generateScatterGLData" name="Should create the expected plotly scatter data format when points are mirrored." time="0.001">
+    </testcase>
+    <testcase classname="generateScatterGLData" name="Should create the expected plotly scatter data format when points are mirrored and dist is not provided." time="0.002">
+    </testcase>
+    <testcase classname="generateScatterGLData" name="Should create the expected text for the plotly scatter data when points are mirrored." time="0.001">
+    </testcase>
+    <testcase classname="generateScatterGLData" name="Should create the expected text for the plotly scatter data when points are not mirrored." time="0.001">
+    </testcase>
+    <testcase classname="generateScatterGLData" name="Should use z values for color when points are not mirrored and no explicit color is provided." time="0">
+    </testcase>
+    <testcase classname="generateScatterGLData" name="Should create the expected text for a coupling score." time="0.002">
+    </testcase>
+    <testcase classname="generatePointCloudData" name="Should create the expected plotly point cloud data format when given defaults." time="0.002">
+    </testcase>
+    <testcase classname="generatePointCloudData" name="Should create the expected plotly point cloud data format when points are mirrored." time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="TensorTComponent" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:15" time="0.258" tests="1">
+    <testcase classname="TensorTComponent" name="Should match existing snapshot when given no props." time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="Nucleotide" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:15" time="0.182" tests="5">
+    <testcase classname="Nucleotide" name="Should allow getting known nucleotides from a single letter." time="0.005">
+    </testcase>
+    <testcase classname="Nucleotide" name="Should allow getting known nucleotides from the full name." time="0.002">
+    </testcase>
+    <testcase classname="Nucleotide" name="Should allow getting DNA compliments." time="0.001">
+    </testcase>
+    <testcase classname="Nucleotide" name="Should allow getting RNA compliments." time="0.002">
+    </testcase>
+    <testcase classname="Nucleotide" name="Should return an unknown nucleotide when appropriate." time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="FetchHelper" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:16" time="0.188" tests="7">
+    <testcase classname="FetchHelper › CSV Files" name="Should correctly fetch them." time="0.002">
+    </testcase>
+    <testcase classname="FetchHelper › CSV Files" name="Should throw errors." time="0.005">
+    </testcase>
+    <testcase classname="FetchHelper › JSON Files" name="Should correctly fetch them." time="0.001">
+    </testcase>
+    <testcase classname="FetchHelper › JSON Files" name="Should throw errors." time="0.001">
+    </testcase>
+    <testcase classname="FetchHelper › Text Files" name="Should allow any file to be read as text" time="0.003">
+    </testcase>
+    <testcase classname="FetchHelper › Text Files" name="Should catch errors with invalid files." time="0.001">
+    </testcase>
+    <testcase classname="FetchHelper › Text Files" name="Should catch parsing errors with." time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="BioblocksPDB" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:16" time="0.226" tests="14">
+    <testcase classname="BioblocksPDB" name="Should handle loading an existing PDB file." time="0.001">
+    </testcase>
+    <testcase classname="BioblocksPDB" name="Should handle loading a non-existent PDB file." time="0.001">
+    </testcase>
+    <testcase classname="BioblocksPDB" name="Should correctly handle naming the pdb." time="0.002">
+    </testcase>
+    <testcase classname="BioblocksPDB" name="Should correctly handle getting the secondary structure." time="0.001">
+    </testcase>
+    <testcase classname="BioblocksPDB" name="Should correctly handle getting the secondary structure sections." time="0.013">
+    </testcase>
+    <testcase classname="BioblocksPDB" name="Should correctly handle getting the secondary structure sections for multiple chains." time="0.001">
+    </testcase>
+    <testcase classname="BioblocksPDB › Residue distances" name="Should report the minimum distance between the same residue as 0." time="0.001">
+    </testcase>
+    <testcase classname="BioblocksPDB › Residue distances" name="Should report the minimum distance between two discrete residues." time="0.001">
+    </testcase>
+    <testcase classname="BioblocksPDB › Getting a trimmed name" name="should trim the last 3 underscores by default." time="0.001">
+    </testcase>
+    <testcase classname="BioblocksPDB › Getting a trimmed name" name="should not trim by default if there are 2 or fewer underscored words." time="0.001">
+    </testcase>
+    <testcase classname="BioblocksPDB › Getting a trimmed name" name="should allow trimming the first 3 underscores." time="0.001">
+    </testcase>
+    <testcase classname="BioblocksPDB › Getting a trimmed name" name="should allow trimming a different character." time="0.001">
+    </testcase>
+    <testcase classname="BioblocksPDB › Getting a trimmed name" name="should allow trimming a different number of words." time="0.001">
+    </testcase>
+    <testcase classname="BioblocksPDB › Getting a trimmed name" name="should handle invalid word counts by not trimming." time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Seq" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:16" time="0.196" tests="9">
+    <testcase classname="Seq" name="Should allow getting a lowercase sequence." time="0.001">
+    </testcase>
+    <testcase classname="Seq" name="Should allow getting a uppercase sequence." time="0.001">
+    </testcase>
+    <testcase classname="Seq" name="Should allow getting a complement sequence." time="0.001">
+    </testcase>
+    <testcase classname="Seq" name="Should allow getting a binary representation." time="0.001">
+    </testcase>
+    <testcase classname="Seq" name="Should allow getting the transcription." time="0.001">
+    </testcase>
+    <testcase classname="Seq" name="Should allow getting the back-transcription." time="0.001">
+    </testcase>
+    <testcase classname="Seq" name="Should allow translation." time="0.001">
+    </testcase>
+    <testcase classname="Seq" name="Should throw errors for methods called on sequences with invalid alphabets." time="0.019">
+    </testcase>
+    <testcase classname="Seq" name="Should throw errors for translation on a malformed sequence." time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="ColorMapper" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:17" time="0.177" tests="6">
+    <testcase classname="ColorMapper" name="Should use a default set of colors when none are provided." time="0.001">
+    </testcase>
+    <testcase classname="ColorMapper" name="Should allow a custom set of colors to be supplied." time="0">
+    </testcase>
+    <testcase classname="ColorMapper" name="Should assign unique colors to each new key and cycle back when exhausted." time="0.001">
+    </testcase>
+    <testcase classname="ColorMapper" name="Should allow colors to be added for a key on first access if none currently exists." time="0.001">
+    </testcase>
+    <testcase classname="ColorMapper" name="Should allow colors to be provided when creating an entry." time="0.002">
+    </testcase>
+    <testcase classname="ColorMapper" name="Should allow user to opt-out of adding color to be included in the rotation for possible colors." time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="Amino Acids" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:17" time="0.18" tests="6">
+    <testcase classname="Amino Acids" name="Should correctly have all single letter codes." time="0.002">
+    </testcase>
+    <testcase classname="Amino Acids" name="Should correctly have all single letter codes." time="0.001">
+    </testcase>
+    <testcase classname="Sequence Mismatch" name="Should correctly report sequence mismatches." time="0.001">
+    </testcase>
+    <testcase classname="Sequence Mismatch" name="Should correctly report no sequence mismatch from empty PDB and CouplingContainer." time="0.001">
+    </testcase>
+    <testcase classname="Sequence Mismatch" name="Should correctly report a sequence mismatch from PDB and CouplingContainer." time="0.002">
+    </testcase>
+    <testcase classname="Sequence Mismatch" name="Should correctly report empty mismatches for PDB and CouplingContainer with different length sequence." time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="Bioblocks1DSection" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:17" time="0.173" tests="6">
+    <testcase classname="Bioblocks1DSection" name="Should allow a section to be created with a given start and end." time="0.002">
+    </testcase>
+    <testcase classname="Bioblocks1DSection" name="Should allow a section to be created when just given a start." time="0.001">
+    </testcase>
+    <testcase classname="Bioblocks1DSection" name="Should allow the start of a section to be updated." time="0.001">
+    </testcase>
+    <testcase classname="Bioblocks1DSection" name="Should allow the end of a section to be updated." time="0.001">
+    </testcase>
+    <testcase classname="Bioblocks1DSection" name="Should automatically fix negative ranges to be positive." time="0.002">
+    </testcase>
+    <testcase classname="Bioblocks1DSection" name="Should allow for determining if a number is within the section range." time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="ResidueMapper" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:17" time="0.161" tests="4">
+    <testcase classname="ResidueMapper" name="Should map residues correctly when given properly formatted indextableplus text." time="0.001">
+    </testcase>
+    <testcase classname="ResidueMapper" name="Should throw when given text that is missing the required headers." time="0.008">
+    </testcase>
+    <testcase classname="ResidueMapper" name="Should return an empty list if headers are correct but no other text is provided." time="0.001">
+    </testcase>
+    <testcase classname="ResidueMapper" name="Should skip empty lines." time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="SpringAction" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:18" time="0.151" tests="10">
+    <testcase classname="SpringAction › Graph Data Fetch Actions" name="Should create error actions." time="0.002">
+    </testcase>
+    <testcase classname="SpringAction › Graph Data Fetch Actions" name="Should create request actions." time="0.001">
+    </testcase>
+    <testcase classname="SpringAction › Graph Data Fetch Actions" name="Should create success actions." time="0.001">
+    </testcase>
+    <testcase classname="SpringAction › Graph Data Fetch Actions" name="Should use a namespace if provided." time="0.001">
+    </testcase>
+    <testcase classname="SpringAction › Species Actions" name="Should create clear actions." time="0.001">
+    </testcase>
+    <testcase classname="SpringAction › Species Actions" name="Should create set actions." time="0.001">
+    </testcase>
+    <testcase classname="SpringAction › Species Actions" name="Should use a namespace if provided." time="0">
+    </testcase>
+    <testcase classname="SpringAction › fetchSpringGraphData Callback" name="Should dispatch the right actions for successfully fetching data." time="0.001">
+    </testcase>
+    <testcase classname="SpringAction › fetchSpringGraphData Callback" name="Should dispatch the right actions for failing to fetch data." time="0.019">
+    </testcase>
+    <testcase classname="SpringAction › fetchSpringGraphData Callback" name="Should use a namespace if provided." time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="Marker" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:18" time="0.232" tests="3">
+    <testcase classname="Marker" name="Should return an empty color array from an empty state." time="0.002">
+    </testcase>
+    <testcase classname="Marker" name="Should return color-brewer colors for a small set of data." time="0.001">
+    </testcase>
+    <testcase classname="Marker" name="Should sort color-brewer colors when different counts are detected." time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="String Helper" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:18" time="0.238" tests="1">
+    <testcase classname="String Helper" name="Should transform a string such that only the first letter is capitalized." time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="DataAction" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:19" time="0.188" tests="6">
+    <testcase classname="DataAction › Fetch Actions" name="Should create error actions." time="0.001">
+    </testcase>
+    <testcase classname="DataAction › Fetch Actions" name="Should create request actions." time="0.001">
+    </testcase>
+    <testcase classname="DataAction › Fetch Actions" name="Should create success actions." time="0.001">
+    </testcase>
+    <testcase classname="DataAction › Fetch Actions" name="Should use a namespace if provided." time="0.002">
+    </testcase>
+    <testcase classname="DataAction › Fetch Callback" name="Should dispatch the right actions for successfully fetching data." time="0.002">
+    </testcase>
+    <testcase classname="DataAction › Fetch Callback" name="Should dispatch the right actions for failing to fetch data." time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="SeqIO" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:19" time="0.179" tests="4">
+    <testcase classname="SeqIO" name="Should parse fasta files." time="0.001">
+    </testcase>
+    <testcase classname="SeqIO" name="Should report errors on non-fasta files." time="0.008">
+    </testcase>
+    <testcase classname="SeqIO" name="Should get a random sequences if getRandomSetOfSequences is called with n &lt; length of provided records." time="0.001">
+    </testcase>
+    <testcase classname="SeqIO" name="Should get all sequences if getRandomSetOfSequences is called with n&gt; = length of provided records." time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="ContainerReducer" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:20" time="0.134" tests="7">
+    <testcase classname="ContainerReducer" name="Should handle undefined state." time="0.002">
+    </testcase>
+    <testcase classname="ContainerReducer" name="Should handle adding elements." time="0.001">
+    </testcase>
+    <testcase classname="ContainerReducer" name="Should handle adding multiple elements." time="0.001">
+    </testcase>
+    <testcase classname="ContainerReducer" name="Should handle clearing elements." time="0.001">
+    </testcase>
+    <testcase classname="ContainerReducer" name="Should handle removing elements." time="0.002">
+    </testcase>
+    <testcase classname="ContainerReducer" name="Should handle removing elements." time="0.001">
+    </testcase>
+    <testcase classname="ContainerReducer" name="Should handle setting elements." time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="ObjectReducer" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:20" time="0.137" tests="7">
+    <testcase classname="ObjectReducer" name="Should handle an empty state." time="0.002">
+    </testcase>
+    <testcase classname="ObjectReducer" name="Should handle adding a new field." time="0.001">
+    </testcase>
+    <testcase classname="ObjectReducer" name="Should handle clearing all fields on the object." time="0.001">
+    </testcase>
+    <testcase classname="ObjectReducer" name="Should handle removing a single field on the object." time="0.001">
+    </testcase>
+    <testcase classname="ObjectReducer" name="Should handle removing multiple fields on the object." time="0.012">
+    </testcase>
+    <testcase classname="ObjectReducer" name="Should handle setting a field on the object." time="0.001">
+    </testcase>
+    <testcase classname="ObjectReducer" name="Should allow creating a namespaced value reducer." time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="ObjectAction" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:20" time="0.103" tests="6">
+    <testcase classname="ObjectAction" name="Should create add actions." time="0.002">
+    </testcase>
+    <testcase classname="ObjectAction" name="Should create clear actions." time="0.001">
+    </testcase>
+    <testcase classname="ObjectAction" name="Should create remove actions." time="0.001">
+    </testcase>
+    <testcase classname="ObjectAction" name="Should create remove multiple actions." time="0.001">
+    </testcase>
+    <testcase classname="ObjectAction" name="Should create set actions." time="0">
+    </testcase>
+    <testcase classname="ObjectAction" name="Should use a namespace if provided." time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="ContainerAction" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:20" time="0.109" tests="7">
+    <testcase classname="ContainerAction" name="Should create add actions." time="0.001">
+    </testcase>
+    <testcase classname="ContainerAction" name="Should create add multiple actions." time="0.001">
+    </testcase>
+    <testcase classname="ContainerAction" name="Should create clear actions." time="0.001">
+    </testcase>
+    <testcase classname="ContainerAction" name="Should create remove actions." time="0.003">
+    </testcase>
+    <testcase classname="ContainerAction" name="Should create remove multiple actions." time="0.001">
+    </testcase>
+    <testcase classname="ContainerAction" name="Should create set actions." time="0.001">
+    </testcase>
+    <testcase classname="ContainerAction" name="Should use a namespace if provided." time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="ResiduePairAction" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:20" time="0.123" tests="2">
+    <testcase classname="ResiduePairAction" name="Should use a default namespace if none is given." time="0.005">
+    </testcase>
+    <testcase classname="ResiduePairAction" name="Should use a namespace if provided." time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="SpringSelector" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:21" time="0.107" tests="5">
+    <testcase classname="SpringSelector" name="Should create a new spring state if one does not exist." time="0.001">
+    </testcase>
+    <testcase classname="SpringSelector" name="Should allow selecting SPRING." time="0.001">
+    </testcase>
+    <testcase classname="SpringSelector" name="Should select basic data from SPRING." time="0.001">
+    </testcase>
+    <testcase classname="SpringSelector" name="Should allow selection of categories based off the graph data." time="0.002">
+    </testcase>
+    <testcase classname="SpringSelector" name="Should allow selection of labels based off the graph data." time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="SpringReducer" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:21" time="0.097" tests="2">
+    <testcase classname="SpringReducer" name="Should handle undefined state." time="0.002">
+    </testcase>
+    <testcase classname="SpringReducer" name="Should allow creating a namespaced spring reducer." time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="DataReducer" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:21" time="0.098" tests="4">
+    <testcase classname="DataReducer" name="Should handle undefined state." time="0.001">
+    </testcase>
+    <testcase classname="DataReducer" name="Should handle adding elements." time="0.001">
+    </testcase>
+    <testcase classname="DataReducer" name="Should handle adding multiple elements." time="0.002">
+    </testcase>
+    <testcase classname="DataReducer" name="Should allow creating a DataReducer." time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="ObjectSelector" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:21" time="0.092" tests="2">
+    <testcase classname="ObjectSelector" name="Should return an empty Map if the state does not exist." time="0.001">
+    </testcase>
+    <testcase classname="ObjectSelector" name="Should select the state correctly if it exists." time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="ContainerSelector" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:21" time="0.087" tests="2">
+    <testcase classname="ContainerSelector" name="Should return an empty Set if the state does not exist." time="0.001">
+    </testcase>
+    <testcase classname="ContainerSelector" name="Should select the state correctly if it exists." time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="ValueAction" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:22" time="0.093" tests="3">
+    <testcase classname="ValueAction" name="Should create clear actions." time="0.002">
+    </testcase>
+    <testcase classname="ValueAction" name="Should create set actions." time="0.001">
+    </testcase>
+    <testcase classname="ValueAction" name="Should use a namespace if provided." time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="ValueSelector" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:22" time="0.1" tests="2">
+    <testcase classname="ValueSelector" name="Should return an empty value if the state does not exist." time="0.002">
+    </testcase>
+    <testcase classname="ValueSelector" name="Should select the state correctly if it exists." time="0.012">
+    </testcase>
+  </testsuite>
+  <testsuite name="ResiduePairSelectors" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:22" time="0.09" tests="2">
+    <testcase classname="ResiduePairSelectors" name="Should create a new residuePair state if one does not exist." time="0.002">
+    </testcase>
+    <testcase classname="ResiduePairSelectors" name="Should select the residuePair state if one already exist." time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="ValueReducer" errors="0" failures="0" skipped="0" timestamp="2019-10-18T20:27:22" time="0.138" tests="3">
+    <testcase classname="ValueReducer" name="Should handle clearing the value." time="0.002">
+    </testcase>
+    <testcase classname="ValueReducer" name="Should handle setting a value." time="0.001">
+    </testcase>
+    <testcase classname="ValueReducer" name="Should allow creating a namespaced value reducer." time="0.002">
+    </testcase>
+  </testsuite>
+</testsuites>
