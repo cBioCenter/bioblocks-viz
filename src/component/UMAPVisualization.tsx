@@ -21,8 +21,9 @@ import {
   CONFIGURATION_COMPONENT_TYPE,
   ILabel,
   IPlotlyData,
+  PLOTLY_DATA_RECORD,
 } from '~bioblocks-viz~/data';
-import { EMPTY_FUNCTION } from '~bioblocks-viz~/helper';
+import { areTwoArraysEqual, EMPTY_FUNCTION } from '~bioblocks-viz~/helper';
 
 export interface ICategoricalAnnotation {
   [labelCategoryName: string]: {
@@ -133,7 +134,7 @@ export class UMAPVisualization extends BioblocksVisualization<IUMAPVisualization
     } = this.props;
     const { dataVisibility, umapEmbedding } = this.state;
 
-    if (distanceFn !== prevProps.distanceFn || dataMatrix !== prevProps.dataMatrix) {
+    if (distanceFn !== prevProps.distanceFn || !areTwoArraysEqual(dataMatrix, prevProps.dataMatrix)) {
       this.executeUMAP();
     } else if (
       dataLabels !== prevProps.dataLabels ||
@@ -170,7 +171,6 @@ export class UMAPVisualization extends BioblocksVisualization<IUMAPVisualization
     if (totalNumberEpochs && currentEpoch) {
       epochInfo = `epoch ${currentEpoch}/${totalNumberEpochs}`;
     }
-
     const legendStats = this.getLegendStats();
 
     return (
@@ -319,22 +319,26 @@ export class UMAPVisualization extends BioblocksVisualization<IUMAPVisualization
     const plotlyData = Object.values(result) as IPlotlyData[];
 
     const unannotated = plotlyData.splice(plotlyData.findIndex(datum => datum.legendgroup === 'Unannotated'), 1);
+
     const MAX_LEGEND_LENGTH = 20;
 
-    return unannotated.concat(plotlyData.sort((a, b) => b.x.length - a.x.length)).map((data, index) => {
-      const { dataVisibility } = this.state;
-      data.visible = dataVisibility[index] === undefined || dataVisibility[index] === true ? true : 'legendonly';
-      if (data.name.length > MAX_LEGEND_LENGTH) {
-        const countStartPos = data.name.lastIndexOf('(');
-        const count = data.name.slice(countStartPos);
-        data.name =
-          data.name.length - count.length - 1 > MAX_LEGEND_LENGTH
-            ? `${data.name.slice(0, MAX_LEGEND_LENGTH - count.length + 1)}... ${count}`
-            : data.name;
-      }
+    return plotlyData
+      .sort((a, b) => b.x.length - a.x.length)
+      .map((data: IPlotlyData, index) => {
+        const { dataVisibility } = this.state;
+        data.visible = dataVisibility[index] === undefined || dataVisibility[index] === true ? true : 'legendonly';
+        if (data.name.length > MAX_LEGEND_LENGTH) {
+          const countStartPos = data.name.lastIndexOf('(');
+          const count = data.name.slice(countStartPos);
+          data.name =
+            data.name.length - count.length - 1 > MAX_LEGEND_LENGTH
+              ? `${data.name.slice(0, MAX_LEGEND_LENGTH - count.length + 1)}... ${count}`
+              : data.name;
+        }
 
-      return data;
-    });
+        return data;
+      })
+      .concat(unannotated);
   };
 
   protected getData2D = (
@@ -346,9 +350,9 @@ export class UMAPVisualization extends BioblocksVisualization<IUMAPVisualization
     const highlightData = {
       hoverinfo: 'none',
       marker: {
-        color: '#ffaa00',
+        color: '#f1f80d',
+        size: 8,
         symbol: 'circle-open',
-        width: 2,
       },
       mode: 'markers',
       name: 'selected',
@@ -357,7 +361,7 @@ export class UMAPVisualization extends BioblocksVisualization<IUMAPVisualization
       x: new Array(),
       y: new Array(),
     } as const;
-    const result = umapEmbedding.reduce<Record<string, Partial<IPlotlyData>>>((acc, umapRow, index) => {
+    const result = umapEmbedding.reduce<PLOTLY_DATA_RECORD>((acc: PLOTLY_DATA_RECORD, umapRow, index) => {
       const label = dataLabels[index];
       const { color, name } = label ? label : { color: 'gray', name: 'Unannotated' };
       if (acc[name]) {
@@ -403,20 +407,20 @@ export class UMAPVisualization extends BioblocksVisualization<IUMAPVisualization
     const highlightData = {
       hoverinfo: 'none',
       marker: {
-        color: '#ffaa00',
+        color: '#f1f80d',
+        size: 8,
         symbol: 'circle-open',
-        width: 2,
       },
       mode: 'markers',
       name: 'selected',
       showlegend: false,
-      type: 'scattergl',
+      type: 'scatter3d',
       x: new Array(),
       y: new Array(),
       z: new Array(),
     } as const;
 
-    const result = umapEmbedding.reduce<Record<string, Partial<IPlotlyData>>>((acc, umapRow, index) => {
+    const result = umapEmbedding.reduce<PLOTLY_DATA_RECORD>((acc: PLOTLY_DATA_RECORD, umapRow, index) => {
       const label = dataLabels[index];
       const { color, name } = label ? label : { color: 'gray', name: 'Unannotated' };
       if (acc[name]) {
@@ -796,6 +800,14 @@ export class UMAPVisualization extends BioblocksVisualization<IUMAPVisualization
   };
 
   private onLegendClick = (event: BioblocksChartEvent) => {
+    const { onLabelChange } = this.props;
+    const { plotlyData } = this.state;
+    if ('expandedIndex' in event.plotlyEvent && event.plotlyEvent.expandedIndex !== undefined) {
+      const name = plotlyData[event.plotlyEvent.expandedIndex].name;
+      const trimmedName = name.slice(0, name.lastIndexOf('(') - 1);
+      onLabelChange(trimmedName);
+    }
+    /* TODO Handle legend visibility toggling?
     if ('expandedIndex' in event.plotlyEvent && event.plotlyEvent.expandedIndex !== undefined) {
       const { dataVisibility } = this.state;
       const { expandedIndex } = event.plotlyEvent;
@@ -807,6 +819,7 @@ export class UMAPVisualization extends BioblocksVisualization<IUMAPVisualization
         },
       });
     }
+    */
 
     return false;
   };

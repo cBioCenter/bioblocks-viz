@@ -18,6 +18,7 @@ exports[`UMAPTranscriptionalContainer Should render labels. 1`] = `
   }
   currentCells={Immutable.Set []}
   currentLabel=""
+  currentLabels={Immutable.Set []}
   dataLabels={
     Array [
       Object {
@@ -51,7 +52,9 @@ exports[`UMAPTranscriptionalContainer Should render labels. 1`] = `
   nComponents={2}
   nNeighbors={15}
   numIterationsBeforeReRender={1}
+  onLabelAdd={[Function]}
   onLabelChange={[Function]}
+  onLabelRemove={[Function]}
   setCurrentCells={[Function]}
   spread={1}
   tooltipNames={
@@ -67,6 +70,7 @@ exports[`UMAPTranscriptionalContainer Should render when given an empty data mat
 <UMAPVisualization
   currentCells={Immutable.Set []}
   currentLabel=""
+  currentLabels={Immutable.Set []}
   dataLabels={Array []}
   dataMatrix={
     Array [
@@ -80,7 +84,9 @@ exports[`UMAPTranscriptionalContainer Should render when given an empty data mat
   nComponents={2}
   nNeighbors={15}
   numIterationsBeforeReRender={1}
+  onLabelAdd={[Function]}
   onLabelChange={[Function]}
+  onLabelRemove={[Function]}
   setCurrentCells={[Function]}
   spread={1}
   tooltipNames={Array []}

@@ -52,8 +52,6 @@ exports[`ProteinFeatureViewer Should default to an invalid range if there is a p
 
 exports[`ProteinFeatureViewer Should generate annotation text when a hover event is fired. 1`] = `"MH1: MH1 domain (18 - 142)<br /><a href=\\"http://pfam.xfam.org/family/PF03165\\">PFAM</a> <a href=\\"http://mutationaligner.org/domains/PF03165\\">Mutagen Aligner</a>"`;
 
-exports[`ProteinFeatureViewer Should handle when there is an error fetching. 1`] = `""`;
-
 exports[`ProteinFeatureViewer Should match the default snapshot. 1`] = `
 <div
   className="protein-feature-viewer"

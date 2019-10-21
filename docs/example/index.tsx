@@ -5,7 +5,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 
 import { Button, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { ICategoricalAnnotation } from '~bioblocks-viz~/component';
-import { SpringContainer, UMAPSequenceContainer } from '~bioblocks-viz~/container';
+import { SpringContainer, UMAPTranscriptionalContainer } from '~bioblocks-viz~/container';
 import { SeqIO, SeqRecord, SEQUENCE_FILE_TYPES } from '~bioblocks-viz~/data';
 import { fetchJSONFile, fetchMatrixData } from '~bioblocks-viz~/helper';
 import { BBStore } from '~bioblocks-viz~/reducer';
@@ -126,18 +126,21 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
   );
 
   protected renderSPRINGAndUMAP = () => {
+    const { datasetLocation, scRNAseqCategoricalData, scRNAseqCategorySelected, scRNAseqMatrix } = this.state;
+
     return (
       <Grid centered={true} columns={2} padded={true} relaxed={true}>
         <Grid.Row>
           <Grid.Column>
-            <UMAPSequenceContainer
-              allSequences={this.state.allSequences}
-              taxonomyText={this.state.taxonomyText}
-              labelCategory={'class'}
+            <UMAPTranscriptionalContainer
+              categoricalAnnotations={scRNAseqCategoricalData}
+              dataMatrix={scRNAseqMatrix}
+              labelCategory={scRNAseqCategorySelected}
+              numSamplesToShow={scRNAseqMatrix.length}
             />
           </Grid.Column>
           <Grid.Column>
-            <SpringContainer datasetLocation={`../datasets/${this.state.datasetLocation}`} />
+            <SpringContainer datasetLocation={`../datasets/${datasetLocation}`} />
           </Grid.Column>
         </Grid.Row>
       </Grid>
