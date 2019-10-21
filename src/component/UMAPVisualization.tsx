@@ -319,6 +319,7 @@ export class UMAPVisualization extends BioblocksVisualization<IUMAPVisualization
     const plotlyData = Object.values(result) as IPlotlyData[];
 
     const unannotated = plotlyData.splice(plotlyData.findIndex(datum => datum.legendgroup === 'Unannotated'), 1);
+    const selected = plotlyData.splice(plotlyData.findIndex(datum => datum.legendgroup === 'selected'), 1);
 
     const MAX_LEGEND_LENGTH = 20;
 
@@ -338,7 +339,7 @@ export class UMAPVisualization extends BioblocksVisualization<IUMAPVisualization
 
         return data;
       })
-      .concat(unannotated);
+      .concat([...unannotated, ...selected]);
   };
 
   protected getData2D = (

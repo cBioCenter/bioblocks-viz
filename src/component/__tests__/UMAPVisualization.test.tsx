@@ -43,7 +43,7 @@ describe('UMAPVisualization', () => {
       const wrapper = shallow(<UMAPVisualization nComponents={3} dataMatrix={dataMatrix} />);
       jest.runAllTimers();
       const instance = wrapper.instance() as UMAPVisualization;
-      expect(instance.state.plotlyData[1].name).toEqual('Unannotated (31)');
+      expect(instance.state.plotlyData[0].name).toEqual('Unannotated (31)');
     });
 
     it('Should truncate long data names.', () => {

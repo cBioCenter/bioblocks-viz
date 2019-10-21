@@ -110,17 +110,18 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
   protected onSwitchDataset = () => {
     this.setState({
       allSequences: [],
-      datasetLocation: this.state.datasetLocation === 'hpc/full' ? 'tabula_muris/full' : 'hpc/full',
+      datasetLocation: this.state.datasetLocation === 'hpc/full' ? 'tabula_muris/10k' : 'hpc/full',
       scRNAseqCategoricalData: {},
+      scRNAseqCategorySelected: this.state.datasetLocation === 'hpc/full' ? 'sample' : 'Sample', // 'Louvain cluster',
       scRNAseqMatrix: new Array(new Array<number>()),
     });
   };
 
   protected renderStartMessage = () => (
     <Segment>
-      <Message>{`Demonstration of UMAP and T-SNE visualizations of the '${this.state.datasetLocation}' dataset. `}</Message>
+      <Message>{`Demonstration of UMAP and SPRING visualizations of the '${this.state.datasetLocation}' dataset. `}</Message>
       <Button onClick={this.onSwitchDataset}>
-        {`Switch to '${this.state.datasetLocation === 'hpc/full' ? 'tabula_muris/full' : 'hpc/full'}' dataset`}
+        {`Switch to '${this.state.datasetLocation === 'hpc/full' ? 'tabula_muris/10k' : 'hpc/full'}' dataset`}
       </Button>
     </Segment>
   );
@@ -137,6 +138,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
               dataMatrix={scRNAseqMatrix}
               labelCategory={scRNAseqCategorySelected}
               numSamplesToShow={scRNAseqMatrix.length}
+              nComponents={3}
             />
           </Grid.Column>
           <Grid.Column>
