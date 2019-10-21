@@ -408,8 +408,8 @@ export class UMAPVisualization extends BioblocksVisualization<IUMAPVisualization
       hoverinfo: 'none',
       marker: {
         color: '#f1f80d',
-        size: 8,
-        symbol: 'circle-open',
+        size: 2,
+        symbol: 'dot-open',
       },
       mode: 'markers',
       name: 'selected',
