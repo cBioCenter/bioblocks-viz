@@ -138,7 +138,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
               dataMatrix={scRNAseqMatrix}
               labelCategory={scRNAseqCategorySelected}
               numSamplesToShow={scRNAseqMatrix.length}
-              nComponents={3}
+              nComponents={2}
             />
           </Grid.Column>
           <Grid.Column>
