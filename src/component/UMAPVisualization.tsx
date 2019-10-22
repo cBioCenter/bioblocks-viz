@@ -351,7 +351,7 @@ export class UMAPVisualization extends BioblocksVisualization<IUMAPVisualization
     const highlightData = {
       hoverinfo: 'none',
       marker: {
-        color: '#f1f80d',
+        color: '#ff0000',
         size: 8,
         symbol: 'circle-open',
       },
@@ -408,7 +408,7 @@ export class UMAPVisualization extends BioblocksVisualization<IUMAPVisualization
     const highlightData = {
       hoverinfo: 'none',
       marker: {
-        color: '#f1f80d',
+        color: '#ff0000',
         size: 2,
         symbol: 'dot-open',
       },
