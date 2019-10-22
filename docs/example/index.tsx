@@ -157,14 +157,12 @@ const ExampleApp = connect(
   mapDispatchToProps,
 )(ExampleAppClass);
 
-setTimeout(() => {
-  ReactDOM.render(
-    <Provider store={BBStore}>
-      <ExampleApp />
-    </Provider>,
-    document.getElementById('example-root'),
-  );
-}, 3000);
+ReactDOM.render(
+  <Provider store={BBStore}>
+    <ExampleApp />
+  </Provider>,
+  document.getElementById('example-root'),
+);
 
 if (module.hot) {
   module.hot.accept();
