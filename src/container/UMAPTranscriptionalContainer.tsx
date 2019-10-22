@@ -204,7 +204,6 @@ export class UMAPTranscriptionalContainerClass extends BioblocksVisualization<
 
   protected onLabelChange = (label: string) => {
     const { currentLabels, onLabelAdd, onLabelRemove } = this.props;
-    console.log(currentLabels);
     if (currentLabels.contains(label)) {
       onLabelRemove(label);
     } else {
