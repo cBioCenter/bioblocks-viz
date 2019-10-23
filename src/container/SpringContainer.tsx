@@ -92,8 +92,13 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
   }
 
   public componentDidMount() {
+    console.log(window.location);
     const { datasetLocation, datasetsURI, dispatchSpringFetch } = this.props;
-    dispatchSpringFetch(async () => fetchSpringData(`${datasetsURI}/${datasetLocation}`));
+    dispatchSpringFetch(async () => {
+      console.log(window.location);
+
+      return fetchSpringData(`${window.location.href}/${datasetsURI}/${datasetLocation}`);
+    });
   }
 
   public componentDidUpdate(prevProps: ISpringContainerProps, prevState: ISpringContainerState) {
@@ -126,6 +131,8 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
     };
 
     const targetOriginPieces = springUrl.split('/');
+
+    console.log(targetOriginPieces);
 
     return (
       <Provider store={BBStore}>
@@ -185,7 +192,7 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
     }
   };
 
-  protected generateSpringURL = (dataset: string) => `${this.props.springSrc}?${dataset}`;
+  protected generateSpringURL = (dataset: string) => `${this.props.springSrc}?../${dataset}`;
 }
 
 const mapStateToProps = (state: { [key: string]: any }) => ({

@@ -142,7 +142,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
             />
           </Grid.Column>
           <Grid.Column>
-            <SpringContainer datasetLocation={`../datasets/${datasetLocation}`} />
+            <SpringContainer datasetLocation={`datasets/${datasetLocation}`} />
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -157,6 +157,11 @@ const ExampleApp = connect(
   mapDispatchToProps,
 )(ExampleAppClass);
 
+console.log(window.location);
+document.onload = () => {
+  console.log('loaded:');
+  console.log(window.location);
+};
 ReactDOM.render(
   <Provider store={BBStore}>
     <ExampleApp />
