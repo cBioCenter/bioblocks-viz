@@ -101,10 +101,7 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
           },
           "name": "POPUP",
           "props": Object {
-            "trigger": <Icon
-              as="i"
-              name="setting"
-            />,
+            "position": "top center",
           },
         },
         "description": "Settings",

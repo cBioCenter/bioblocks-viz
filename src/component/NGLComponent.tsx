@@ -216,7 +216,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
               configs: { ...this.getSettingsConfigurations(), ...this.getRepresentationConfigs() },
               name: 'POPUP',
               props: {
-                trigger: <Icon name={'setting'} />,
+                position: 'top center',
               },
             },
             description: 'Settings',

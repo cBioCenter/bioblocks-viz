@@ -8,6 +8,7 @@ import {
   Icon,
   Label,
   Menu,
+  MenuItemProps,
   Popup,
   PopupProps,
   SemanticICONS,
@@ -31,6 +32,7 @@ import {
   RangeSliderWidgetConfig,
   SliderWidgetConfig,
 } from '~bioblocks-viz~/data';
+import { EMPTY_FUNCTION } from '~bioblocks-viz~/helper';
 
 export interface IComponentMenuBarProps {
   componentName: string;
@@ -118,19 +120,23 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
     );
   }
 
-  protected getPopupMenuItem = (item: IComponentMenuBarItem) => {
+  protected getPopupMenuItem = (item: IComponentMenuBarItem, key: string, aTriggerElement?: JSX.Element) => {
     const { opacity } = this.props;
 
-    const trigger = <Icon fitted={true} name={item.iconName ? item.iconName : 'setting'} />;
+    const trigger = aTriggerElement ? (
+      aTriggerElement
+    ) : (
+      <Icon fitted={true} name={item.iconName ? item.iconName : 'setting'} />
+    );
     // We are separating the style to prevent a bug where the popup arrow does not display if overflow is set.
     const { style, ...combinedProps } = { ...DEFAULT_POPUP_PROPS, ...item.component.props };
 
     return item.component.configs ? (
-      <Popup trigger={trigger} wide={true} {...combinedProps} style={{ opacity }}>
+      <Popup key={`${key}-popup`} wide={true} {...combinedProps} style={{ opacity }} trigger={trigger}>
         <ConfigAccordion configs={this.renderConfigs(item.component.configs)} gridStyle={style} title={'Config'} />
       </Popup>
     ) : (
-      <Popup trigger={trigger} {...combinedProps} style={{ opacity }} />
+      <Popup key={`${key}-popup`} {...combinedProps} style={{ opacity }} trigger={trigger} />
     );
   };
 
@@ -164,7 +170,11 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
         <Menu secondary={true}>
           {this.renderMenuItems(menuItems, componentName)}
           <Menu.Item style={{ flexDirection: 'column' }}>
-            <Icon name={isExpanded ? 'compress' : 'expand arrows alternate'} onClick={onExpandToggleCb} />
+            <Icon
+              name={isExpanded ? 'compress' : 'expand arrows alternate'}
+              onClick={onExpandToggleCb}
+              style={{ margin: 0 }}
+            />
             {this.renderMenuIconText(isExpanded ? 'Close' : 'Expand')}
           </Menu.Item>
         </Menu>
@@ -299,30 +309,37 @@ export class ComponentMenuBar extends React.Component<IComponentMenuBarProps, IC
 
   protected renderMenuItems(items: Array<IComponentMenuBarItem<IButtonType | IPopupType>>, componentName: string) {
     return items.map((item, menuBarIndex) => {
-      const menuItemChild =
-        item.component.name === 'POPUP'
-          ? this.getPopupMenuItem(item as IComponentMenuBarItem)
-          : this.getButtonMenuItem(item as IComponentMenuBarItem<IButtonType>);
-
-      return (
-        menuItemChild && (
+      const key = `${componentName}-menu-item-${menuBarIndex}`;
+      if (item.component.name === 'POPUP') {
+        const trigger = (
           <Menu.Item
             active={item.component.props ? (item.component.props.active as boolean) : undefined}
-            key={`${componentName}-menu-item-${menuBarIndex}`}
+            key={`${key}-trigger`}
             style={{ flexDirection: 'column' }}
-            onClick={
-              'onClick' in item.component
-                ? item.component.onClick
-                : () => {
-                    return;
-                  }
-            }
           >
-            {menuItemChild}
+            <Icon fitted={true} name={item.iconName ? item.iconName : 'setting'} />
             {this.renderMenuIconText(item.description)}
           </Menu.Item>
-        )
-      );
+        );
+
+        return this.getPopupMenuItem(item as IComponentMenuBarItem, key, trigger);
+      } else {
+        const menuItemChild = this.getButtonMenuItem(item as IComponentMenuBarItem<IButtonType>);
+
+        return (
+          menuItemChild && (
+            <Menu.Item
+              active={item.component.props ? (item.component.props.active as boolean) : undefined}
+              key={key}
+              style={{ flexDirection: 'column' }}
+              onClick={'onClick' in item.component ? item.component.onClick : EMPTY_FUNCTION}
+            >
+              {menuItemChild}
+              {this.renderMenuIconText(item.description)}
+            </Menu.Item>
+          )
+        );
+      }
     });
   }
 

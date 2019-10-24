@@ -67,12 +67,6 @@ describe('ComponentMenuBar', () => {
         .at(0)
         .prop('style'),
     ).toHaveProperty('visibility', 'hidden');
-    expect(
-      wrapper
-        .find('span')
-        .at(1)
-        .prop('style'),
-    ).toHaveProperty('visibility', 'hidden');
 
     wrapper.simulate('mouseenter');
     expect(instance.state.isHovered).toBe(true);
@@ -82,24 +76,13 @@ describe('ComponentMenuBar', () => {
         .at(0)
         .prop('style'),
     ).toHaveProperty('visibility', 'visible');
-    expect(
-      wrapper
-        .find('span')
-        .at(1)
-        .prop('style'),
-    ).toHaveProperty('visibility', 'visible');
+
     wrapper.simulate('mouseleave');
     expect(instance.state.isHovered).toBe(false);
     expect(
       wrapper
         .find('span')
         .at(0)
-        .prop('style'),
-    ).toHaveProperty('visibility', 'hidden');
-    expect(
-      wrapper
-        .find('span')
-        .at(1)
         .prop('style'),
     ).toHaveProperty('visibility', 'hidden');
   });

@@ -3063,256 +3063,348 @@ exports[`ContactMapComponent Snapshots Should match snapshot when locked residue
                         <div
                           className="ui secondary menu"
                         >
-                          <MenuItem
-                            key="Contact Map-menu-item-0"
-                            onClick={[Function]}
+                          <Popup
+                            closeOnPortalMouseLeave={false}
+                            closeOnTriggerClick={true}
+                            closeOnTriggerMouseLeave={false}
+                            disabled={false}
+                            eventsEnabled={true}
+                            hoverable={false}
+                            key="Contact Map-menu-item-0-popup"
+                            offset={0}
+                            on={
+                              Array [
+                                "click",
+                                "hover",
+                              ]
+                            }
+                            openOnTriggerClick={true}
+                            openOnTriggerFocus={false}
+                            openOnTriggerMouseEnter={false}
+                            pinned={false}
+                            position="bottom left"
                             style={
                               Object {
-                                "flexDirection": "column",
+                                "opacity": 0.85,
                               }
                             }
-                          >
-                            <a
-                              className="item"
-                              onClick={[Function]}
-                              style={
-                                Object {
-                                  "flexDirection": "column",
-                                }
-                              }
-                            >
-                              <Popup
-                                closeOnPortalMouseLeave={false}
-                                closeOnTriggerClick={true}
-                                closeOnTriggerMouseLeave={false}
-                                disabled={false}
-                                eventsEnabled={true}
-                                hoverable={false}
-                                offset={0}
-                                on={
-                                  Array [
-                                    "click",
-                                    "hover",
-                                  ]
-                                }
-                                openOnTriggerClick={true}
-                                openOnTriggerFocus={false}
-                                openOnTriggerMouseEnter={false}
-                                pinned={false}
-                                position="bottom left"
+                            trigger={
+                              <MenuItem
                                 style={
                                   Object {
-                                    "opacity": 0.85,
+                                    "flexDirection": "column",
                                   }
                                 }
-                                trigger={
+                              >
+                                <Icon
+                                  as="i"
+                                  fitted={true}
+                                  name="filter"
+                                />
+                                <span
+                                  style={
+                                    Object {
+                                      "fontSize": "11px",
+                                      "visibility": "hidden",
+                                    }
+                                  }
+                                >
+                                  Filter
+                                </span>
+                              </MenuItem>
+                            }
+                            wide={true}
+                          >
+                            <Portal
+                              closeOnDocumentClick={true}
+                              closeOnEscape={true}
+                              closeOnPortalMouseLeave={false}
+                              closeOnTriggerClick={true}
+                              closeOnTriggerMouseLeave={false}
+                              eventPool="default"
+                              mouseEnterDelay={50}
+                              mouseLeaveDelay={70}
+                              onClose={[Function]}
+                              onMount={[Function]}
+                              onOpen={[Function]}
+                              onUnmount={[Function]}
+                              openOnTriggerClick={true}
+                              openOnTriggerFocus={false}
+                              openOnTriggerMouseEnter={false}
+                              trigger={
+                                <MenuItem
+                                  style={
+                                    Object {
+                                      "flexDirection": "column",
+                                    }
+                                  }
+                                >
                                   <Icon
                                     as="i"
                                     fitted={true}
                                     name="filter"
                                   />
-                                }
-                                wide={true}
-                              >
-                                <Portal
-                                  closeOnDocumentClick={true}
-                                  closeOnEscape={true}
-                                  closeOnPortalMouseLeave={false}
-                                  closeOnTriggerClick={true}
-                                  closeOnTriggerMouseLeave={false}
-                                  eventPool="default"
-                                  mouseEnterDelay={50}
-                                  mouseLeaveDelay={70}
-                                  onClose={[Function]}
-                                  onMount={[Function]}
-                                  onOpen={[Function]}
-                                  onUnmount={[Function]}
-                                  openOnTriggerClick={true}
-                                  openOnTriggerFocus={false}
-                                  openOnTriggerMouseEnter={false}
-                                  trigger={
-                                    <Icon
-                                      as="i"
-                                      fitted={true}
-                                      name="filter"
-                                    />
-                                  }
-                                  triggerRef={
-                                    Object {
-                                      "current": <i
-                                        aria-hidden="true"
-                                        class="filter fitted icon"
-                                      />,
+                                  <span
+                                    style={
+                                      Object {
+                                        "fontSize": "11px",
+                                        "visibility": "hidden",
+                                      }
                                     }
-                                  }
-                                >
-                                  <Ref
-                                    innerRef={[Function]}
                                   >
-                                    <RefFindNode
-                                      innerRef={[Function]}
+                                    Filter
+                                  </span>
+                                </MenuItem>
+                              }
+                              triggerRef={
+                                Object {
+                                  "current": <a
+                                    class="item"
+                                    style="flex-direction: column;"
+                                  >
+                                    <i
+                                      aria-hidden="true"
+                                      class="filter fitted icon"
+                                    />
+                                    <span
+                                      style="font-size: 11px; visibility: hidden;"
+                                    >
+                                      Filter
+                                    </span>
+                                  </a>,
+                                }
+                              }
+                            >
+                              <Ref
+                                innerRef={[Function]}
+                              >
+                                <RefFindNode
+                                  innerRef={[Function]}
+                                >
+                                  <MenuItem
+                                    key="Contact Map-menu-item-0-trigger"
+                                    onBlur={[Function]}
+                                    onClick={[Function]}
+                                    onFocus={[Function]}
+                                    onMouseEnter={[Function]}
+                                    onMouseLeave={[Function]}
+                                    style={
+                                      Object {
+                                        "flexDirection": "column",
+                                      }
+                                    }
+                                  >
+                                    <a
+                                      className="item"
+                                      onBlur={[Function]}
+                                      onClick={[Function]}
+                                      onFocus={[Function]}
+                                      onMouseEnter={[Function]}
+                                      onMouseLeave={[Function]}
+                                      style={
+                                        Object {
+                                          "flexDirection": "column",
+                                        }
+                                      }
                                     >
                                       <Icon
                                         as="i"
                                         fitted={true}
                                         name="filter"
-                                        onBlur={[Function]}
-                                        onClick={[Function]}
-                                        onFocus={[Function]}
-                                        onMouseEnter={[Function]}
-                                        onMouseLeave={[Function]}
                                       >
                                         <i
                                           aria-hidden="true"
                                           className="filter fitted icon"
-                                          onBlur={[Function]}
                                           onClick={[Function]}
-                                          onFocus={[Function]}
-                                          onMouseEnter={[Function]}
-                                          onMouseLeave={[Function]}
                                         />
                                       </Icon>
-                                    </RefFindNode>
-                                  </Ref>
-                                </Portal>
-                              </Popup>
-                              <span
+                                      <span
+                                        style={
+                                          Object {
+                                            "fontSize": "11px",
+                                            "visibility": "hidden",
+                                          }
+                                        }
+                                      >
+                                        Filter
+                                      </span>
+                                    </a>
+                                  </MenuItem>
+                                </RefFindNode>
+                              </Ref>
+                            </Portal>
+                          </Popup>
+                          <Popup
+                            closeOnPortalMouseLeave={false}
+                            closeOnTriggerClick={true}
+                            closeOnTriggerMouseLeave={false}
+                            disabled={false}
+                            eventsEnabled={true}
+                            hoverable={false}
+                            key="Contact Map-menu-item-1-popup"
+                            offset={0}
+                            on={
+                              Array [
+                                "click",
+                                "hover",
+                              ]
+                            }
+                            openOnTriggerClick={true}
+                            openOnTriggerFocus={false}
+                            openOnTriggerMouseEnter={false}
+                            pinned={false}
+                            position="bottom left"
+                            style={
+                              Object {
+                                "opacity": 0.85,
+                              }
+                            }
+                            trigger={
+                              <MenuItem
                                 style={
                                   Object {
-                                    "fontSize": "11px",
-                                    "visibility": "hidden",
+                                    "flexDirection": "column",
                                   }
                                 }
                               >
-                                Filter
-                              </span>
-                            </a>
-                          </MenuItem>
-                          <MenuItem
-                            key="Contact Map-menu-item-1"
-                            onClick={[Function]}
-                            style={
-                              Object {
-                                "flexDirection": "column",
-                              }
-                            }
-                          >
-                            <a
-                              className="item"
-                              onClick={[Function]}
-                              style={
-                                Object {
-                                  "flexDirection": "column",
-                                }
-                              }
-                            >
-                              <Popup
-                                closeOnPortalMouseLeave={false}
-                                closeOnTriggerClick={true}
-                                closeOnTriggerMouseLeave={false}
-                                disabled={false}
-                                eventsEnabled={true}
-                                hoverable={false}
-                                offset={0}
-                                on={
-                                  Array [
-                                    "click",
-                                    "hover",
-                                  ]
-                                }
-                                openOnTriggerClick={true}
-                                openOnTriggerFocus={false}
-                                openOnTriggerMouseEnter={false}
-                                pinned={false}
-                                position="bottom left"
-                                style={
-                                  Object {
-                                    "opacity": 0.85,
+                                <Icon
+                                  as="i"
+                                  fitted={true}
+                                  name="setting"
+                                />
+                                <span
+                                  style={
+                                    Object {
+                                      "fontSize": "11px",
+                                      "visibility": "hidden",
+                                    }
                                   }
-                                }
-                                trigger={
+                                >
+                                  Settings
+                                </span>
+                              </MenuItem>
+                            }
+                            wide={true}
+                          >
+                            <Portal
+                              closeOnDocumentClick={true}
+                              closeOnEscape={true}
+                              closeOnPortalMouseLeave={false}
+                              closeOnTriggerClick={true}
+                              closeOnTriggerMouseLeave={false}
+                              eventPool="default"
+                              mouseEnterDelay={50}
+                              mouseLeaveDelay={70}
+                              onClose={[Function]}
+                              onMount={[Function]}
+                              onOpen={[Function]}
+                              onUnmount={[Function]}
+                              openOnTriggerClick={true}
+                              openOnTriggerFocus={false}
+                              openOnTriggerMouseEnter={false}
+                              trigger={
+                                <MenuItem
+                                  style={
+                                    Object {
+                                      "flexDirection": "column",
+                                    }
+                                  }
+                                >
                                   <Icon
                                     as="i"
                                     fitted={true}
                                     name="setting"
                                   />
-                                }
-                                wide={true}
-                              >
-                                <Portal
-                                  closeOnDocumentClick={true}
-                                  closeOnEscape={true}
-                                  closeOnPortalMouseLeave={false}
-                                  closeOnTriggerClick={true}
-                                  closeOnTriggerMouseLeave={false}
-                                  eventPool="default"
-                                  mouseEnterDelay={50}
-                                  mouseLeaveDelay={70}
-                                  onClose={[Function]}
-                                  onMount={[Function]}
-                                  onOpen={[Function]}
-                                  onUnmount={[Function]}
-                                  openOnTriggerClick={true}
-                                  openOnTriggerFocus={false}
-                                  openOnTriggerMouseEnter={false}
-                                  trigger={
-                                    <Icon
-                                      as="i"
-                                      fitted={true}
-                                      name="setting"
-                                    />
-                                  }
-                                  triggerRef={
-                                    Object {
-                                      "current": <i
-                                        aria-hidden="true"
-                                        class="setting fitted icon"
-                                      />,
+                                  <span
+                                    style={
+                                      Object {
+                                        "fontSize": "11px",
+                                        "visibility": "hidden",
+                                      }
                                     }
-                                  }
-                                >
-                                  <Ref
-                                    innerRef={[Function]}
                                   >
-                                    <RefFindNode
-                                      innerRef={[Function]}
+                                    Settings
+                                  </span>
+                                </MenuItem>
+                              }
+                              triggerRef={
+                                Object {
+                                  "current": <a
+                                    class="item"
+                                    style="flex-direction: column;"
+                                  >
+                                    <i
+                                      aria-hidden="true"
+                                      class="setting fitted icon"
+                                    />
+                                    <span
+                                      style="font-size: 11px; visibility: hidden;"
+                                    >
+                                      Settings
+                                    </span>
+                                  </a>,
+                                }
+                              }
+                            >
+                              <Ref
+                                innerRef={[Function]}
+                              >
+                                <RefFindNode
+                                  innerRef={[Function]}
+                                >
+                                  <MenuItem
+                                    key="Contact Map-menu-item-1-trigger"
+                                    onBlur={[Function]}
+                                    onClick={[Function]}
+                                    onFocus={[Function]}
+                                    onMouseEnter={[Function]}
+                                    onMouseLeave={[Function]}
+                                    style={
+                                      Object {
+                                        "flexDirection": "column",
+                                      }
+                                    }
+                                  >
+                                    <a
+                                      className="item"
+                                      onBlur={[Function]}
+                                      onClick={[Function]}
+                                      onFocus={[Function]}
+                                      onMouseEnter={[Function]}
+                                      onMouseLeave={[Function]}
+                                      style={
+                                        Object {
+                                          "flexDirection": "column",
+                                        }
+                                      }
                                     >
                                       <Icon
                                         as="i"
                                         fitted={true}
                                         name="setting"
-                                        onBlur={[Function]}
-                                        onClick={[Function]}
-                                        onFocus={[Function]}
-                                        onMouseEnter={[Function]}
-                                        onMouseLeave={[Function]}
                                       >
                                         <i
                                           aria-hidden="true"
                                           className="setting fitted icon"
-                                          onBlur={[Function]}
                                           onClick={[Function]}
-                                          onFocus={[Function]}
-                                          onMouseEnter={[Function]}
-                                          onMouseLeave={[Function]}
                                         />
                                       </Icon>
-                                    </RefFindNode>
-                                  </Ref>
-                                </Portal>
-                              </Popup>
-                              <span
-                                style={
-                                  Object {
-                                    "fontSize": "11px",
-                                    "visibility": "hidden",
-                                  }
-                                }
-                              >
-                                Settings
-                              </span>
-                            </a>
-                          </MenuItem>
+                                      <span
+                                        style={
+                                          Object {
+                                            "fontSize": "11px",
+                                            "visibility": "hidden",
+                                          }
+                                        }
+                                      >
+                                        Settings
+                                      </span>
+                                    </a>
+                                  </MenuItem>
+                                </RefFindNode>
+                              </Ref>
+                            </Portal>
+                          </Popup>
                           <MenuItem
                             style={
                               Object {
@@ -3333,11 +3425,21 @@ exports[`ContactMapComponent Snapshots Should match snapshot when locked residue
                                 as="i"
                                 name="expand arrows alternate"
                                 onClick={[Function]}
+                                style={
+                                  Object {
+                                    "margin": 0,
+                                  }
+                                }
                               >
                                 <i
                                   aria-hidden="true"
                                   className="expand arrows alternate icon"
                                   onClick={[Function]}
+                                  style={
+                                    Object {
+                                      "margin": 0,
+                                    }
+                                  }
                                 />
                               </Icon>
                               <span

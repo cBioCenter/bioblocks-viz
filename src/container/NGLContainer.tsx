@@ -97,7 +97,6 @@ export class NGLContainerClass extends React.Component<INGLContainerProps, INGLC
       predictedProteins.map(async file => (typeof file === 'string' ? BioblocksPDB.createPDB(file) : file)),
     );
 
-    // const { experimentalProteins, predictedProteins } = this.state;
     let { selectedExperimentalProteins, selectedPredictedProteins } = this.state;
     let isNewData = false;
 
