@@ -312,35 +312,15 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
         : this.getData2D(umapEmbedding, dataLabels, tooltipNames);
 
     const plotlyData = Object.values(result) as IPlotlyData[];
-    console.log('version 5');
-    console.log(`getData before length: ${plotlyData.length}`);
-    plotlyData.map((datum, index) => {
-      console.log(`plotlyData[${index}]: ${datum.name} - ${datum.x.length}`);
-    });
-    console.log(`unannotated findIndex ${plotlyData.findIndex(datum => datum.legendgroup === 'Unannotated')}`);
     const unannotated =
       plotlyData.findIndex(datum => datum.legendgroup === 'Unannotated') === -1
         ? []
         : plotlyData.splice(plotlyData.findIndex(datum => datum.legendgroup === 'Unannotated'), 1);
 
-    console.log(`unannotated length: ${unannotated.length}`);
-    unannotated.map((datum, index) => {
-      console.log(`unannotated[${index}]: ${datum.name} - ${datum.x.length}`);
-    });
-    console.log(`selected findIndex ${plotlyData.findIndex(datum => datum.name === 'selected')}`);
     const selected =
       plotlyData.findIndex(datum => datum.name === 'selected') === -1
         ? []
         : plotlyData.splice(plotlyData.findIndex(datum => datum.name === 'selected'), 1);
-    console.log(`selected length: ${selected.length}`);
-    selected.map((datum, index) => {
-      console.log(`selected[${index}]: ${datum.name} - ${datum.x.length}`);
-    });
-
-    console.log(`getData after length: ${plotlyData.length}`);
-    plotlyData.map((datum, index) => {
-      console.log(`plotlyData[${index}]: ${datum.name} - ${datum.x.length}}`);
-    });
 
     const MAX_LEGEND_LENGTH = 20;
 
@@ -821,14 +801,11 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
   };
 
   private onLegendClick = (event: BioblocksChartEvent) => {
-    console.log(event);
     const { onLabelChange } = this.props;
     const { plotlyData } = this.state;
     if ('expandedIndex' in event.plotlyEvent && event.plotlyEvent.expandedIndex !== undefined) {
       const name = plotlyData[event.plotlyEvent.expandedIndex].name;
       const trimmedName = name.slice(0, name.lastIndexOf('(') - 1);
-      console.log(`Variable 'name':\n${name}`);
-      console.log(`Variable 'trimmedName':\n${trimmedName}`);
       onLabelChange(trimmedName);
     }
     /* TODO Handle legend visibility toggling?

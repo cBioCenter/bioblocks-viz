@@ -126,7 +126,6 @@ export class UMAPTranscriptionalContainerClass extends BioblocksVisualization<
       fn: state => {
         const { currentLabels } = this.props;
         const { graphData } = getSpring(state);
-        console.log(`label cell transform, #nodes: ${graphData.nodes.length}`);
         let cellIndices = Set<number>();
         graphData.nodes.forEach(node => {
           const labelsForNode = Object.values(node.labelForCategory);
@@ -203,13 +202,10 @@ export class UMAPTranscriptionalContainerClass extends BioblocksVisualization<
   };
 
   protected onLabelChange = (label: string) => {
-    console.log(`On label change for ${label}`);
     const { currentLabels, onLabelAdd, onLabelRemove } = this.props;
     if (currentLabels.contains(label)) {
-      console.log('remove');
       onLabelRemove(label);
     } else {
-      console.log('add');
       onLabelAdd(label);
     }
   };
