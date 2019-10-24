@@ -157,11 +157,6 @@ const ExampleApp = connect(
   mapDispatchToProps,
 )(ExampleAppClass);
 
-console.log(window.location);
-document.onload = () => {
-  console.log('loaded:');
-  console.log(window.location);
-};
 ReactDOM.render(
   <Provider store={BBStore}>
     <ExampleApp />
