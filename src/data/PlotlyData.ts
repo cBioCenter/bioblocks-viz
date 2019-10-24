@@ -19,6 +19,7 @@ export interface IPlotlyData extends plotly.ScatterData {
   name: string;
   notched: boolean;
   orientation: 'h' | 'v';
+  selectedpoints: number[];
   showlegend: boolean;
   textfont: Partial<plotly.Font>;
   // tslint:disable-next-line:no-reserved-keywords
@@ -44,3 +45,5 @@ export type REQUIRED_BIOBLOCKS_PLOTLY_DATA = Required<
 >;
 
 export type BIOBLOCKS_PLOTLY_DATA = REQUIRED_BIOBLOCKS_PLOTLY_DATA & Partial<IPlotlyData>;
+
+export type PLOTLY_DATA_RECORD = Record<string, Partial<IPlotlyData>>;

@@ -44,7 +44,7 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     frameHeight: 0,
     frameWidth: 0,
     headerHeight: 20,
-    height: '525px',
+    height: '575px',
     iconSrc: 'assets/icons/bio-blocks-icon.svg',
     isDataReady: false,
     isFramedComponent: false,
@@ -52,7 +52,7 @@ export class ComponentCard extends React.Component<IComponentCardProps, ICompone
     menuItems: [],
     padding: 0,
     showSettings: false,
-    width: '525px',
+    width: '575px',
   };
 
   protected cardRef: React.Component<any> | null = null;

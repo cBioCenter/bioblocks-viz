@@ -7,6 +7,7 @@ exports[`UMAPSequenceContainer Should handle missing annotation data. 1`] = `
 >
   <GridRow>
     <UMAPVisualization
+      currentCells={Immutable.Set []}
       currentLabel="class"
       dataLabels={
         Array [
@@ -50,6 +51,7 @@ exports[`UMAPSequenceContainer Should handle missing annotation data. 1`] = `
       numIterationsBeforeReRender={1}
       numSequencesToShow={4000}
       onLabelChange={[Function]}
+      setCurrentCells={[Function]}
       spread={1}
       taxonomyText="seq_name,sequence,tax_id,superkingdom,phylum,genus,class,subphylum,family,order,species
 example_sequence,EVA-NERV,59846,Bacteria,Firmicutes,Paenibacillus,Bacilli,Paenibacillaceae,Bacillales,Paenibacillus,chibensis"
@@ -70,6 +72,7 @@ exports[`UMAPSequenceContainer Should handle removing the taxonomy data. 1`] = `
 >
   <GridRow>
     <UMAPVisualization
+      currentCells={Immutable.Set []}
       currentLabel="class"
       dataLabels={
         Array [
@@ -113,6 +116,7 @@ exports[`UMAPSequenceContainer Should handle removing the taxonomy data. 1`] = `
       numIterationsBeforeReRender={1}
       numSequencesToShow={4000}
       onLabelChange={[Function]}
+      setCurrentCells={[Function]}
       spread={1}
       tooltipNames={
         Array [
@@ -131,6 +135,7 @@ exports[`UMAPSequenceContainer Should handle updating the data. 1`] = `
 >
   <GridRow>
     <UMAPVisualization
+      currentCells={Immutable.Set []}
       currentLabel="class"
       dataLabels={
         Array [
@@ -161,6 +166,7 @@ exports[`UMAPSequenceContainer Should handle updating the data. 1`] = `
       numIterationsBeforeReRender={1}
       numSequencesToShow={4000}
       onLabelChange={[Function]}
+      setCurrentCells={[Function]}
       spread={1}
       tooltipNames={
         Array [
@@ -179,6 +185,7 @@ exports[`UMAPSequenceContainer Should render an upload form when enabled. 1`] = 
 >
   <GridRow>
     <UMAPVisualization
+      currentCells={Immutable.Set []}
       currentLabel="class"
       dataLabels={
         Array [
@@ -209,6 +216,7 @@ exports[`UMAPSequenceContainer Should render an upload form when enabled. 1`] = 
       numIterationsBeforeReRender={1}
       numSequencesToShow={4000}
       onLabelChange={[Function]}
+      setCurrentCells={[Function]}
       spread={1}
       tooltipNames={
         Array [
@@ -284,6 +292,7 @@ exports[`UMAPSequenceContainer Should render when given a sequence. 1`] = `
 >
   <GridRow>
     <UMAPVisualization
+      currentCells={Immutable.Set []}
       currentLabel="class"
       dataLabels={
         Array [
@@ -314,6 +323,7 @@ exports[`UMAPSequenceContainer Should render when given a sequence. 1`] = `
       numIterationsBeforeReRender={1}
       numSequencesToShow={4000}
       onLabelChange={[Function]}
+      setCurrentCells={[Function]}
       spread={1}
       tooltipNames={
         Array [
@@ -332,6 +342,7 @@ exports[`UMAPSequenceContainer Should render when given an empty sequence. 1`] =
 >
   <GridRow>
     <UMAPVisualization
+      currentCells={Immutable.Set []}
       currentLabel="class"
       dataLabels={Array []}
       dataMatrix={Array []}
@@ -345,6 +356,7 @@ exports[`UMAPSequenceContainer Should render when given an empty sequence. 1`] =
       numIterationsBeforeReRender={1}
       numSequencesToShow={4000}
       onLabelChange={[Function]}
+      setCurrentCells={[Function]}
       spread={1}
       tooltipNames={Array []}
     />

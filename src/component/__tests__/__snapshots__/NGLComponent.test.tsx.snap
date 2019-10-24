@@ -34,7 +34,7 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}
-  height="525px"
+  height="575px"
   iconSrc="assets/icons/bio-blocks-icon.svg"
   isDataReady={false}
   isFramedComponent={false}
@@ -113,7 +113,7 @@ exports[`NGLComponent Should match existing snapshot when unconnected to a conte
   }
   padding={0}
   showSettings={false}
-  width="525px"
+  width="575px"
 >
   <div
     className="NGLComponent"

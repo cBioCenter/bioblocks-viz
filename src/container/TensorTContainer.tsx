@@ -159,7 +159,11 @@ export class TensorTContainerClass extends BioblocksVisualization<ITensorContain
       },
       {
         marker: {
-          color: '#ffaa00',
+          color: this.props.pointColor,
+          line: {
+            color: '#ffaa00',
+            width: 2,
+          },
         },
         mode: 'markers',
         type: 'scattergl',
@@ -182,7 +186,11 @@ export class TensorTContainerClass extends BioblocksVisualization<ITensorContain
       },
       {
         marker: {
-          color: '#ffaa00',
+          color: this.props.pointColor,
+          line: {
+            color: '#ffaa00',
+            width: 2,
+          },
         },
         mode: 'markers',
         type: 'scattergl',

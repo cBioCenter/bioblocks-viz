@@ -2,9 +2,14 @@ import * as Papa from 'papaparse';
 import * as React from 'react';
 import { Button, DropdownProps, Grid, Label, Popup } from 'semantic-ui-react';
 
+import { Set } from 'immutable';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
+import { createContainerActions } from '~bioblocks-viz~/action';
 import { IUMAPVisualizationProps, UMAPVisualization } from '~bioblocks-viz~/component';
 import { ILabel, Marker, SeqRecord } from '~bioblocks-viz~/data';
-import { readFileAsText, subsample } from '~bioblocks-viz~/helper';
+import { EMPTY_FUNCTION, readFileAsText, subsample } from '~bioblocks-viz~/helper';
+import { selectCurrentItems } from '~bioblocks-viz~/selector';
 
 export interface IUMAPSequenceContainerProps extends Partial<IUMAPVisualizationProps> {
   /** if the number of data points are too large, the container will randomly subsample points */
@@ -25,6 +30,8 @@ export interface IUMAPSequenceContainerProps extends Partial<IUMAPVisualizationP
 
   allSequences: SeqRecord[];
   showUploadButton: boolean;
+  currentCells: Set<number>;
+  setCurrentCells(cells: number[]): void;
 }
 
 export interface IUMAPSequenceContainerState {
@@ -40,11 +47,16 @@ export interface IUMAPSequenceContainerState {
   tooltipNames: string[];
 }
 
-export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContainerProps, IUMAPSequenceContainerState> {
+export class UMAPSequenceContainerClass extends React.Component<
+  IUMAPSequenceContainerProps,
+  IUMAPSequenceContainerState
+> {
   public static defaultProps = {
+    currentCells: Set<number>(),
     labelCategory: 'class',
     numIterationsBeforeReRender: 1,
     numSequencesToShow: 4000,
+    setCurrentCells: EMPTY_FUNCTION,
     showUploadButton: false,
   };
 
@@ -107,8 +119,7 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
             currentLabel={labelCategory}
             dataLabels={dataLabels}
             dataMatrix={randomSequencesDataMatrix}
-            // tslint:disable-next-line: jsx-no-lambda
-            distanceFn={(seq1, seq2) => this.equalityHammingDistance(seq1, seq2)}
+            distanceFn={this.equalityHammingDistance}
             errorMessages={[]}
             labels={labels}
             numIterationsBeforeReRender={numIterationsBeforeReRender}
@@ -121,6 +132,24 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
       </Grid>
     );
   }
+
+  /**
+   * A special hamming distance function that is speed optimized for sequence comparisons.
+   * Assumes that sequences are passed with a single integer for each position. If
+   * the position is the same in each position then the distance is zero, otherwise
+   * the distance is one. The total distance is then the sum of each positional distance.
+   * @returns the total distance between a pair of sequences.
+   */
+  public equalityHammingDistance = (seq1: number[], seq2: number[]) => {
+    let result = 0;
+    for (let i = 0; i < seq1.length; i++) {
+      if (seq1[i] !== seq2[i]) {
+        result += 1;
+      }
+    }
+
+    return result;
+  };
 
   protected getDataLabels = () => {
     const { labelCategory, seqNameToTaxonomyMetadata, subsampledSequences } = this.state;
@@ -279,24 +308,6 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
     }
   }
 
-  /**
-   * A special hamming distance function that is speed optimized for sequence comparisons.
-   * Assumes that sequences are passed with a single integer for each position. If
-   * the position is the same in each position then the distance is zero, otherwise
-   * the distance is one. The total distance is then the sum of each positional distance.
-   * @returns the total distance between a pair of sequences.
-   */
-  private equalityHammingDistance(seq1: number[], seq2: number[]) {
-    let result = 0;
-    for (let i = 0; i < seq1.length; i++) {
-      if (seq1[i] !== seq2[i]) {
-        result += 1;
-      }
-    }
-
-    return result;
-  }
-
   private setupSequenceAnnotation = (allSequences: SeqRecord[], labelCategory: string) => {
     this.setState({
       seqNameToTaxonomyMetadata: allSequences.reduce<{
@@ -313,3 +324,20 @@ export class UMAPSequenceContainer extends React.Component<IUMAPSequenceContaine
     });
   };
 }
+
+const mapStateToProps = (state: { [key: string]: any }) => ({
+  currentCells: selectCurrentItems<number>(state, 'cells'),
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators(
+    {
+      setCurrentCells: createContainerActions<number>('cells').set,
+    },
+    dispatch,
+  );
+
+export const UMAPSequenceContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(UMAPSequenceContainerClass);

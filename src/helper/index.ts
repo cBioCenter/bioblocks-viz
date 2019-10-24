@@ -1,3 +1,4 @@
+export * from './ArrayHelper';
 export * from './ColorMapper';
 export * from './CouplingMapper';
 export * from './DataHelper';

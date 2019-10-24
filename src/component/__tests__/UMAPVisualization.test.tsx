@@ -59,7 +59,7 @@ describe('UMAPVisualization', () => {
       jest.runAllTimers();
       const instance = wrapper.instance() as UMAPVisualization;
       const expected = 'supercalifragilist... (1)';
-      expect(instance.state.plotlyData[1].name).toEqual(expected);
+      expect(instance.state.plotlyData[0].name).toEqual(expected);
     });
 
     it('Should not show 3d camera buttons in 2d mode.', () => {

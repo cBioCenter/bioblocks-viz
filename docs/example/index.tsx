@@ -4,22 +4,10 @@ import { connect, Provider } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
 import { Button, Grid, Header, Message, Segment } from 'semantic-ui-react';
-import { createContainerActions, createResiduePairActions } from '~bioblocks-viz~/action';
 import { ICategoricalAnnotation } from '~bioblocks-viz~/component';
-import { TensorTContainer, UMAPSequenceContainer } from '~bioblocks-viz~/container';
-import {
-  BioblocksPDB,
-  CONTACT_DISTANCE_PROXIMITY,
-  CONTACT_MAP_DATA_TYPE,
-  CouplingContainer,
-  getPDBAndCouplingMismatch,
-  IResidueMismatchResult,
-  SeqIO,
-  SeqRecord,
-  SEQUENCE_FILE_TYPES,
-  VIZ_TYPE,
-} from '~bioblocks-viz~/data';
-import { EMPTY_FUNCTION, fetchJSONFile, fetchMatrixData, IResidueMapping } from '~bioblocks-viz~/helper';
+import { SpringContainer, UMAPTranscriptionalContainer } from '~bioblocks-viz~/container';
+import { SeqIO, SeqRecord, SEQUENCE_FILE_TYPES } from '~bioblocks-viz~/data';
+import { fetchJSONFile, fetchMatrixData } from '~bioblocks-viz~/helper';
 import { BBStore } from '~bioblocks-viz~/reducer';
 
 export interface IExampleAppProps {
@@ -97,7 +85,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
           </Header>
           {this.renderStartMessage()}
         </Segment>
-        {this.renderTSNEAndUMAP()}
+        {this.renderSPRINGAndUMAP()}
       </div>
     );
   }
@@ -122,34 +110,39 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
   protected onSwitchDataset = () => {
     this.setState({
       allSequences: [],
-      datasetLocation: this.state.datasetLocation === 'hpc/full' ? 'tabula_muris/full' : 'hpc/full',
+      datasetLocation: this.state.datasetLocation === 'hpc/full' ? 'tabula_muris/10k' : 'hpc/full',
       scRNAseqCategoricalData: {},
+      scRNAseqCategorySelected: this.state.datasetLocation === 'hpc/full' ? 'sample' : 'Sample', // 'Louvain cluster',
       scRNAseqMatrix: new Array(new Array<number>()),
     });
   };
 
   protected renderStartMessage = () => (
     <Segment>
-      <Message>{`Demonstration of UMAP and T-SNE visualizations of the '${this.state.datasetLocation}' dataset. `}</Message>
+      <Message>{`Demonstration of UMAP and SPRING visualizations of the '${this.state.datasetLocation}' dataset. `}</Message>
       <Button onClick={this.onSwitchDataset}>
-        {`Switch to '${this.state.datasetLocation === 'hpc/full' ? 'tabula_muris/full' : 'hpc/full'}' dataset`}
+        {`Switch to '${this.state.datasetLocation === 'hpc/full' ? 'tabula_muris/10k' : 'hpc/full'}' dataset`}
       </Button>
     </Segment>
   );
 
-  protected renderTSNEAndUMAP = () => {
+  protected renderSPRINGAndUMAP = () => {
+    const { datasetLocation, scRNAseqCategoricalData, scRNAseqCategorySelected, scRNAseqMatrix } = this.state;
+
     return (
       <Grid centered={true} columns={2} padded={true} relaxed={true}>
         <Grid.Row>
           <Grid.Column>
-            <UMAPSequenceContainer
-              allSequences={this.state.allSequences}
-              taxonomyText={this.state.taxonomyText}
-              labelCategory={'class'}
+            <UMAPTranscriptionalContainer
+              categoricalAnnotations={scRNAseqCategoricalData}
+              dataMatrix={scRNAseqMatrix}
+              labelCategory={scRNAseqCategorySelected}
+              numSamplesToShow={scRNAseqMatrix.length}
+              nComponents={2}
             />
           </Grid.Column>
           <Grid.Column>
-            <TensorTContainer datasetLocation={`datasets/${this.state.datasetLocation}`} height={'575px'} />
+            <SpringContainer datasetLocation={`datasets/${datasetLocation}`} />
           </Grid.Column>
         </Grid.Row>
       </Grid>

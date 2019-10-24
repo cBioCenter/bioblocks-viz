@@ -1,7 +1,14 @@
+import { Set } from 'immutable';
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
+import { createContainerActions } from '~bioblocks-viz~/action';
 import { ICategoricalAnnotation, IUMAPVisualizationProps, UMAPVisualization } from '~bioblocks-viz~/component';
+import { BioblocksVisualization } from '~bioblocks-viz~/container';
 import { ILabel, Marker } from '~bioblocks-viz~/data';
-import { subsample } from '~bioblocks-viz~/helper';
+import { EMPTY_FUNCTION, subsample } from '~bioblocks-viz~/helper';
+import { BioblocksMiddlewareTransformer, IBioblocksStateTransform } from '~bioblocks-viz~/reducer';
+import { getSpring, selectCurrentItems } from '~bioblocks-viz~/selector';
 
 export type IUMAPTranscriptionalContainerProps = Required<
   Pick<IUMAPVisualizationProps, 'dataMatrix' | 'numIterationsBeforeReRender'>
@@ -14,6 +21,15 @@ export type IUMAPTranscriptionalContainerProps = Required<
 
     // names of the samples (will be displayed in tooltip)
     sampleNames?: string[];
+
+    currentCells: Set<number>;
+    currentLabels: Set<string>;
+
+    /** Callback for a label being added. */
+    onLabelAdd(label: string): void;
+    /** Callback for a label being removed. */
+    onLabelRemove(label: string): void;
+    setCurrentCells(cells: number[]): void;
   };
 
 export interface IUMAPTranscriptionalContainerState {
@@ -22,13 +38,18 @@ export interface IUMAPTranscriptionalContainerState {
   errorMessages: string[];
 }
 
-export class UMAPTranscriptionalContainer extends React.Component<
+export class UMAPTranscriptionalContainerClass extends BioblocksVisualization<
   IUMAPTranscriptionalContainerProps,
   IUMAPTranscriptionalContainerState
 > {
   public static defaultProps = {
+    currentCells: Set<number>(),
+    currentLabels: Set<string>(),
     numIterationsBeforeReRender: 1,
     numSamplesToShow: 4000,
+    onLabelAdd: EMPTY_FUNCTION,
+    onLabelRemove: EMPTY_FUNCTION,
+    setCurrentCells: EMPTY_FUNCTION,
   };
 
   private subsampledIndices = new Array<number>();
@@ -39,6 +60,12 @@ export class UMAPTranscriptionalContainer extends React.Component<
       completeSampleAnnotations: {},
       errorMessages: [],
     };
+  }
+
+  public setupDataServices() {
+    this.registerDataset('cells', []);
+    this.registerDataset('labels', []);
+    BioblocksMiddlewareTransformer.addTransform(this.getLabelToCellTransform());
   }
 
   public componentDidMount() {
@@ -64,23 +91,20 @@ export class UMAPTranscriptionalContainer extends React.Component<
     const { dataMatrix, labelCategory, numIterationsBeforeReRender, numSamplesToShow, ...rest } = this.props;
     const { completeSampleAnnotations, errorMessages } = this.state;
 
-    let dataLabels = new Array<ILabel | undefined>();
-    let subsampledSampleNames = new Array<string>();
-    let subsampledData = new Array(new Array<number>());
+    const dataLabels = new Array<ILabel | undefined>();
+    const subsampledSampleNames = new Array<string>();
+    const subsampledData = new Array<number[]>();
 
-    if (this.subsampledIndices.length > 0) {
-      subsampledData = this.subsampledIndices.map(idx => dataMatrix[idx]);
+    for (const idx of this.subsampledIndices) {
+      if (dataMatrix[idx]) {
+        subsampledData.push(dataMatrix[idx]);
+      }
 
       if (labelCategory && completeSampleAnnotations && completeSampleAnnotations[labelCategory]) {
         const labelAnnotations = completeSampleAnnotations[labelCategory];
-        dataLabels = this.subsampledIndices.map(idx => {
-          return labelAnnotations[idx];
-        });
-        subsampledSampleNames = this.subsampledIndices.map(idx => {
-          const sampleLabel = labelAnnotations[idx];
-
-          return sampleLabel ? sampleLabel.name : 'unannotated';
-        });
+        const sampleLabel = labelAnnotations[idx];
+        dataLabels.push(sampleLabel);
+        subsampledSampleNames.push(sampleLabel ? sampleLabel.name : 'unannotated');
       }
     }
 
@@ -89,11 +113,36 @@ export class UMAPTranscriptionalContainer extends React.Component<
         dataLabels={dataLabels}
         dataMatrix={subsampledData}
         errorMessages={errorMessages}
-        tooltipNames={subsampledSampleNames}
         numIterationsBeforeReRender={numIterationsBeforeReRender}
+        onLabelChange={this.onLabelChange}
+        tooltipNames={subsampledSampleNames}
         {...rest}
       />
     );
+  }
+
+  protected getLabelToCellTransform(): IBioblocksStateTransform {
+    return {
+      fn: state => {
+        const { currentLabels } = this.props;
+        const { graphData } = getSpring(state);
+        let cellIndices = Set<number>();
+        graphData.nodes.forEach(node => {
+          const labelsForNode = Object.values(node.labelForCategory);
+          currentLabels.forEach(label => {
+            if (label && labelsForNode.includes(label)) {
+              cellIndices = cellIndices.add(node.number);
+
+              return;
+            }
+          });
+        });
+
+        return cellIndices;
+      },
+      fromState: 'bioblocks/labels',
+      toState: 'bioblocks/cells',
+    };
   }
 
   protected getAnnotations = () => {
@@ -152,6 +201,15 @@ export class UMAPTranscriptionalContainer extends React.Component<
     return errorMessages;
   };
 
+  protected onLabelChange = (label: string) => {
+    const { currentLabels, onLabelAdd, onLabelRemove } = this.props;
+    if (currentLabels.contains(label)) {
+      onLabelRemove(label);
+    } else {
+      onLabelAdd(label);
+    }
+  };
+
   protected prepareData(annotationsUnchanged: boolean = false) {
     const { numSamplesToShow } = this.props;
 
@@ -173,3 +231,23 @@ export class UMAPTranscriptionalContainer extends React.Component<
     });
   }
 }
+
+const mapStateToProps = (state: { [key: string]: any }) => ({
+  currentCells: selectCurrentItems<number>(state, 'cells'),
+  currentLabels: selectCurrentItems<string>(state, 'labels'),
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators(
+    {
+      onLabelAdd: createContainerActions<string>('labels').add,
+      onLabelRemove: createContainerActions<string>('labels').remove,
+      setCurrentCells: createContainerActions<number>('cells').set,
+    },
+    dispatch,
+  );
+
+export const UMAPTranscriptionalContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(UMAPTranscriptionalContainerClass);

@@ -13,7 +13,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}
-  height="525px"
+  height="575px"
   iconSrc="assets/icons/bio-blocks-icon.svg"
   isDataReady={false}
   isFramedComponent={true}
@@ -21,17 +21,17 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
   menuItems={Array []}
   padding={0}
   showSettings={false}
-  width="525px"
+  width="575px"
 >
   <Card
     centered={true}
     className="bioblocks-component-card"
     style={
       Object {
-        "height": "530.25px",
+        "height": "580.75px",
         "maxWidth": "unset",
         "padding": "0 0 0 5px",
-        "width": "525px",
+        "width": "575px",
       }
     }
   >
@@ -40,10 +40,10 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
       onClick={[Function]}
       style={
         Object {
-          "height": "530.25px",
+          "height": "580.75px",
           "maxWidth": "unset",
           "padding": "0 0 0 5px",
-          "width": "525px",
+          "width": "575px",
         }
       }
     >
@@ -212,7 +212,7 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
         <div
           style={
             Object {
-              "transform": "scale(calc(515/0),calc((512 - 20)/0))",
+              "transform": "scale(calc(565/0),calc((562 - 20)/0))",
               "transformOrigin": "top left",
             }
           }
@@ -247,7 +247,7 @@ exports[`ComponentCard Should handle expanding a framed full page component. 1`]
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}
-  height="525px"
+  height="575px"
   iconSrc="assets/icons/bio-blocks-icon.svg"
   isDataReady={false}
   isFramedComponent={true}
@@ -255,7 +255,7 @@ exports[`ComponentCard Should handle expanding a framed full page component. 1`]
   menuItems={Array []}
   padding={0}
   showSettings={false}
-  width="525px"
+  width="575px"
 >
   <Card
     centered={true}
@@ -483,7 +483,7 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}
-  height="525px"
+  height="575px"
   iconSrc="assets/icons/bio-blocks-icon.svg"
   isDataReady={false}
   isFramedComponent={false}
@@ -491,17 +491,17 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
   menuItems={Array []}
   padding={0}
   showSettings={false}
-  width="525px"
+  width="575px"
 >
   <Card
     centered={true}
     className="bioblocks-component-card"
     style={
       Object {
-        "height": "530.25px",
+        "height": "580.75px",
         "maxWidth": "unset",
         "padding": "0 0 0 5px",
-        "width": "525px",
+        "width": "575px",
       }
     }
   >
@@ -510,10 +510,10 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
       onClick={[Function]}
       style={
         Object {
-          "height": "530.25px",
+          "height": "580.75px",
           "maxWidth": "unset",
           "padding": "0 0 0 5px",
-          "width": "525px",
+          "width": "575px",
         }
       }
     >
@@ -708,7 +708,7 @@ exports[`ComponentCard Should handle expanding a non-framed full page component.
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}
-  height="525px"
+  height="575px"
   iconSrc="assets/icons/bio-blocks-icon.svg"
   isDataReady={false}
   isFramedComponent={false}
@@ -716,7 +716,7 @@ exports[`ComponentCard Should handle expanding a non-framed full page component.
   menuItems={Array []}
   padding={0}
   showSettings={false}
-  width="525px"
+  width="575px"
 >
   <Card
     centered={true}
@@ -935,7 +935,7 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
   frameHeight={0}
   frameWidth={0}
   headerHeight={20}
-  height="525px"
+  height="575px"
   iconSrc="assets/icons/bio-blocks-icon.svg"
   isDataReady={false}
   isFramedComponent={true}
@@ -943,17 +943,17 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
   menuItems={Array []}
   padding={0}
   showSettings={false}
-  width="525px"
+  width="575px"
 >
   <Card
     centered={true}
     className="bioblocks-component-card"
     style={
       Object {
-        "height": "530.25px",
+        "height": "580.75px",
         "maxWidth": "unset",
         "padding": "0 0 0 5px",
-        "width": "525px",
+        "width": "575px",
       }
     }
   >
@@ -962,10 +962,10 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
       onClick={[Function]}
       style={
         Object {
-          "height": "530.25px",
+          "height": "580.75px",
           "maxWidth": "unset",
           "padding": "0 0 0 5px",
-          "width": "525px",
+          "width": "575px",
         }
       }
     >
@@ -1134,7 +1134,7 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
         <div
           style={
             Object {
-              "transform": "scale(calc(515/0),calc((512 - 20)/0))",
+              "transform": "scale(calc(565/0),calc((562 - 20)/0))",
               "transformOrigin": "top left",
             }
           }
@@ -1162,10 +1162,10 @@ exports[`ComponentCard Should match existing snapshot when framed. 1`] = `
   className="bioblocks-component-card"
   style={
     Object {
-      "height": "530.25px",
+      "height": "580.75px",
       "maxWidth": "unset",
       "padding": "0 0 0 5px",
-      "width": "525px",
+      "width": "575px",
     }
   }
 >
@@ -1219,10 +1219,10 @@ exports[`ComponentCard Should match existing snapshot when given default props. 
   className="bioblocks-component-card"
   style={
     Object {
-      "height": "530.25px",
+      "height": "580.75px",
       "maxWidth": "unset",
       "padding": "0 0 0 5px",
-      "width": "525px",
+      "width": "575px",
     }
   }
 >
@@ -1268,10 +1268,10 @@ exports[`ComponentCard Should match existing snapshot when not framed. 1`] = `
   className="bioblocks-component-card"
   style={
     Object {
-      "height": "530.25px",
+      "height": "580.75px",
       "maxWidth": "unset",
       "padding": "0 0 0 5px",
-      "width": "525px",
+      "width": "575px",
     }
   }
 >

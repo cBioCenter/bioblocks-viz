@@ -56,7 +56,7 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
     datasetLocation: '../datasets/hpc/full',
     datasetsURI: '',
     dispatchSpringFetch: EMPTY_FUNCTION,
-    headerHeight: 18,
+    headerHeight: 0,
     isFullPage: false,
     padding: 0,
     selectedCategory: '',
@@ -93,7 +93,8 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
 
   public componentDidMount() {
     const { datasetLocation, datasetsURI, dispatchSpringFetch } = this.props;
-    dispatchSpringFetch(async () => fetchSpringData(`${datasetsURI}/${datasetLocation}`));
+    // TODO Investigate why window.location.href is necessary - difference in fetch path while page is loading?
+    dispatchSpringFetch(async () => fetchSpringData(`${window.location.href}/${datasetsURI}/${datasetLocation}`));
   }
 
   public componentDidUpdate(prevProps: ISpringContainerProps, prevState: ISpringContainerState) {
