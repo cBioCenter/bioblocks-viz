@@ -142,7 +142,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
             />
           </Grid.Column>
           <Grid.Column>
-            <SpringContainer datasetLocation={`../datasets/${datasetLocation}`} />
+            <SpringContainer datasetLocation={`datasets/${datasetLocation}`} />
           </Grid.Column>
         </Grid.Row>
       </Grid>
