@@ -88,7 +88,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="tsd-signature-type">Component</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/icontactmapcontainerprops.html" class="tsd-signature-type">IContactMapContainerProps</a><span class="tsd-signature-symbol">, </span><a href="../globals.html#contactmapcontainerstate" class="tsd-signature-type">ContactMapContainerState</a><span class="tsd-signature-symbol">&gt;</span>
+						<a href="bioblocksvisualization.html" class="tsd-signature-type">BioblocksVisualization</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/icontactmapcontainerprops.html" class="tsd-signature-type">IContactMapContainerProps</a><span class="tsd-signature-symbol">, </span><a href="../globals.html#contactmapcontainerstate" class="tsd-signature-type">ContactMapContainerState</a><span class="tsd-signature-symbol">&gt;</span>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">ContactMapContainerClass</span>
@@ -110,11 +110,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="contactmapcontainerclass.html#context" class="tsd-kind-icon">context</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="contactmapcontainerclass.html#props" class="tsd-kind-icon">props</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="contactmapcontainerclass.html#refs" class="tsd-kind-icon">refs</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite"><a href="contactmapcontainerclass.html#state" class="tsd-kind-icon">state</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="contactmapcontainerclass.html#contexttype" class="tsd-kind-icon">context<wbr>Type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="contactmapcontainerclass.html#bioblockshooks" class="tsd-kind-icon">bioblocks<wbr>Hooks</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="contactmapcontainerclass.html#datasets" class="tsd-kind-icon">datasets</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="contactmapcontainerclass.html#state" class="tsd-kind-icon">state</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -123,25 +121,33 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="contactmapcontainerclass.html#unsafe_componentwillmount" class="tsd-kind-icon">UNSAFE_<wbr>component<wbr>Will<wbr>Mount</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="contactmapcontainerclass.html#unsafe_componentwillreceiveprops" class="tsd-kind-icon">UNSAFE_<wbr>component<wbr>Will<wbr>Receive<wbr>Props</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="contactmapcontainerclass.html#unsafe_componentwillupdate" class="tsd-kind-icon">UNSAFE_<wbr>component<wbr>Will<wbr>Update</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="contactmapcontainerclass.html#addbioblockshook" class="tsd-kind-icon">add<wbr>Bioblocks<wbr>Hook</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="contactmapcontainerclass.html#componentdidcatch" class="tsd-kind-icon">component<wbr>Did<wbr>Catch</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="contactmapcontainerclass.html#componentdidmount" class="tsd-kind-icon">component<wbr>Did<wbr>Mount</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="contactmapcontainerclass.html#componentdidupdate" class="tsd-kind-icon">component<wbr>Did<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="contactmapcontainerclass.html#componentwillmount" class="tsd-kind-icon">component<wbr>Will<wbr>Mount</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="contactmapcontainerclass.html#componentwillreceiveprops" class="tsd-kind-icon">component<wbr>Will<wbr>Receive<wbr>Props</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="contactmapcontainerclass.html#componentwillunmount" class="tsd-kind-icon">component<wbr>Will<wbr>Unmount</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="contactmapcontainerclass.html#componentwillunmount" class="tsd-kind-icon">component<wbr>Will<wbr>Unmount</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="contactmapcontainerclass.html#componentwillupdate" class="tsd-kind-icon">component<wbr>Will<wbr>Update</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="contactmapcontainerclass.html#forceupdate" class="tsd-kind-icon">force<wbr>Update</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected"><a href="contactmapcontainerclass.html#createreducer" class="tsd-kind-icon">create<wbr>Reducer</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="contactmapcontainerclass.html#finishloading" class="tsd-kind-icon">finish<wbr>Loading</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="contactmapcontainerclass.html#getcomponentbioblockshooks" class="tsd-kind-icon">get<wbr>Component<wbr>Bioblocks<wbr>Hooks</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="contactmapcontainerclass.html#getconfigs" class="tsd-kind-icon">get<wbr>Configs</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="contactmapcontainerclass.html#getdatasets" class="tsd-kind-icon">get<wbr>Datasets</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="contactmapcontainerclass.html#getloadingstatus" class="tsd-kind-icon">get<wbr>Loading<wbr>Status</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="contactmapcontainerclass.html#getpredictedfilters" class="tsd-kind-icon">get<wbr>Predicted<wbr>Filters</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="contactmapcontainerclass.html#getsnapshotbeforeupdate" class="tsd-kind-icon">get<wbr>Snapshot<wbr>Before<wbr>Update</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="contactmapcontainerclass.html#havesettingsupdated" class="tsd-kind-icon">have<wbr>Settings<wbr>Updated</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="contactmapcontainerclass.html#onlineardistfilterchange" class="tsd-kind-icon">on<wbr>Linear<wbr>Dist<wbr>Filter<wbr>Change</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="contactmapcontainerclass.html#onminimumprobabilitychange" class="tsd-kind-icon">on<wbr>Minimum<wbr>Probability<wbr>Change</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="contactmapcontainerclass.html#onnumpredictionstoshowchange" class="tsd-kind-icon">on<wbr>Num<wbr>Predictions<wbr>ToShow<wbr>Change</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="contactmapcontainerclass.html#render" class="tsd-kind-icon">render</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="contactmapcontainerclass.html#setstate" class="tsd-kind-icon">set<wbr>State</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="contactmapcontainerclass.html#registerdataset" class="tsd-kind-icon">register<wbr>Dataset</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="contactmapcontainerclass.html#render" class="tsd-kind-icon">render</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="contactmapcontainerclass.html#setupdata" class="tsd-kind-icon">setup<wbr>Data</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="contactmapcontainerclass.html#setupdataservices" class="tsd-kind-icon">setup<wbr>Data<wbr>Services</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="contactmapcontainerclass.html#setupdataservices" class="tsd-kind-icon">setup<wbr>Data<wbr>Services</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="contactmapcontainerclass.html#shouldcomponentupdate" class="tsd-kind-icon">should<wbr>Component<wbr>Update</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="contactmapcontainerclass.html#teardown" class="tsd-kind-icon">teardown</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="contactmapcontainerclass.html#getactivebioblocksvisualizations" class="tsd-kind-icon">get<wbr>Active<wbr>Bioblocks<wbr>Visualizations</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -164,9 +170,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides Component.__constructor</p>
+								<p>Overrides <a href="bioblocksvisualization.html">BioblocksVisualization</a>.<a href="bioblocksvisualization.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L92">src/container/ContactMapContainer.tsx:92</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L96">src/container/ContactMapContainer.tsx:96</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -182,113 +188,37 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-					<a name="context" class="tsd-anchor"></a>
-					<h3>context</h3>
-					<div class="tsd-signature tsd-kind-icon">context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="bioblockshooks" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> bioblocks<wbr>Hooks</h3>
+					<div class="tsd-signature tsd-kind-icon">bioblocks<wbr>Hooks<span class="tsd-signature-symbol">:</span> <a href="../interfaces/ibioblockshookdict.html" class="tsd-signature-type">IBioblocksHookDict</a></div>
 					<aside class="tsd-sources">
-						<p>Inherited from Component.context</p>
+						<p>Inherited from <a href="bioblocksvisualization.html">BioblocksVisualization</a>.<a href="bioblocksvisualization.html#bioblockshooks">bioblocksHooks</a></p>
 						<ul>
-							<li>Defined in node_modules/@types/react/index.d.ts:433</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>If using the new style context, re-declare this in your class to be the
-								<code>React.ContextType</code> of your <code>static contextType</code>.
-							Should be used with type annotation or static contextType.</p>
-						</div>
-						<pre><code class="language-ts"><span class="hljs-keyword">static</span> contextType = MyContext
-<span class="hljs-comment">// For TS pre-3.7:</span>
-context!: React.ContextType&lt;<span class="hljs-keyword">typeof</span> MyContext&gt;
-<span class="hljs-comment">// For TS 3.7 and above:</span>
-<span class="hljs-keyword">declare</span> context: React.ContextType&lt;<span class="hljs-keyword">typeof</span> MyContext&gt;</code></pre>
-						<dl class="tsd-comment-tags">
-							<dt>see</dt>
-							<dd><p><a href="https://reactjs.org/docs/context.html">https://reactjs.org/docs/context.html</a></p>
-							</dd>
-						</dl>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-					<a name="props" class="tsd-anchor"></a>
-					<h3>props</h3>
-					<div class="tsd-signature tsd-kind-icon">props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/icontactmapcontainerprops.html" class="tsd-signature-type">IContactMapContainerProps</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from Component.props</p>
-						<ul>
-							<li>Defined in node_modules/@types/react/index.d.ts:458</li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/BioblocksVisualization.tsx#L28">src/container/BioblocksVisualization.tsx:28</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-					<a name="refs" class="tsd-anchor"></a>
-					<h3>refs</h3>
-					<div class="tsd-signature tsd-kind-icon">refs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="datasets" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> datasets</h3>
+					<div class="tsd-signature tsd-kind-icon">datasets<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><a href="dataset.html" class="tsd-signature-type">Dataset</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;Set&lt;Dataset&gt;()</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from Component.refs</p>
+						<p>Inherited from <a href="bioblocksvisualization.html">BioblocksVisualization</a>.<a href="bioblocksvisualization.html#datasets">datasets</a></p>
 						<ul>
-							<li>Defined in node_modules/@types/react/index.d.ts:464</li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/BioblocksVisualization.tsx#L29">src/container/BioblocksVisualization.tsx:29</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>deprecated</dt>
-							<dd><p><a href="https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs">https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs</a></p>
-							</dd>
-						</dl>
-					</div>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-index-signature">
-								<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">ReactInstance</span></h5>
-							</li>
-						</ul>
-					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="state" class="tsd-anchor"></a>
 					<h3>state</h3>
 					<div class="tsd-signature tsd-kind-icon">state<span class="tsd-signature-symbol">:</span> <a href="../globals.html#contactmapcontainerstate" class="tsd-signature-type">ContactMapContainerState</a><span class="tsd-signature-symbol"> =&nbsp;initialContactMapContainerState</span></div>
 					<aside class="tsd-sources">
-						<p>Overrides Component.state</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L92">src/container/ContactMapContainer.tsx:92</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L96">src/container/ContactMapContainer.tsx:96</a></li>
 						</ul>
 					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-					<a name="contexttype" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagOptional">Optional</span> context<wbr>Type</h3>
-					<div class="tsd-signature tsd-kind-icon">context<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Context</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from Component.contextType</p>
-						<ul>
-							<li>Defined in node_modules/@types/react/index.d.ts:415</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>If set, <code>this.context</code> will be set at runtime to the current value of the given Context.</p>
-						</div>
-						<p>Usage:</p>
-						<pre><code class="language-ts">type MyContext = number
-const Ctx = React.createContext&lt;MyContext&gt;(0)
-
-class Foo extends React.Component {
-  static contextType = Ctx
-  context!: React.ContextType&lt;typeof Ctx&gt;
-  render () {
-    return &lt;&gt;My context's value: {this.context}&lt;/&gt;;
-  }
-}</code></pre>
-						<dl class="tsd-comment-tags">
-							<dt>see</dt>
-							<dd><p><a href="https://reactjs.org/docs/context.html#classcontexttype">https://reactjs.org/docs/context.html#classcontexttype</a></p>
-							</dd>
-						</dl>
-					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -304,7 +234,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.UNSAFE_componentWillMount</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:646</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:658</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -342,7 +272,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.UNSAFE_componentWillReceiveProps</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:678</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:690</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -391,7 +321,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.UNSAFE_componentWillUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:706</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:718</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -430,6 +360,51 @@ class Foo extends React.Component {
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
+					<a name="addbioblockshook" class="tsd-anchor"></a>
+					<h3>add<wbr>Bioblocks<wbr>Hook</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Bioblocks<wbr>Hook&lt;T&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, cb<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="bioblocksvisualization.html">BioblocksVisualization</a>.<a href="bioblocksvisualization.html#addbioblockshook">addBioblocksHook</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/BioblocksVisualization.tsx#L47">src/container/BioblocksVisualization.tsx:47</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>cb: <span class="tsd-signature-type">function</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="componentdidcatch" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> component<wbr>Did<wbr>Catch</h3>
@@ -441,7 +416,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Inherited from ComponentLifecycle.componentDidCatch</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:575</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:587</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -474,7 +449,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Overrides ComponentLifecycle.componentDidMount</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L105">src/container/ContactMapContainer.tsx:105</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L109">src/container/ContactMapContainer.tsx:109</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -492,7 +467,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Overrides NewLifecycle.componentDidUpdate</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L109">src/container/ContactMapContainer.tsx:109</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L113">src/container/ContactMapContainer.tsx:113</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -519,7 +494,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.componentWillMount</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:632</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:644</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -556,7 +531,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.componentWillReceiveProps</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:661</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:673</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -593,26 +568,21 @@ class Foo extends React.Component {
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
 					<a name="componentwillunmount" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> component<wbr>Will<wbr>Unmount</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<h3>component<wbr>Will<wbr>Unmount</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">component<wbr>Will<wbr>Unmount<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from ComponentLifecycle.componentWillUnmount</p>
+								<p>Inherited from <a href="bioblocksvisualization.html">BioblocksVisualization</a>.<a href="bioblocksvisualization.html#componentwillunmount">componentWillUnmount</a></p>
+								<p>Overrides ComponentLifecycle.componentWillUnmount</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:570</li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/BioblocksVisualization.tsx#L43">src/container/BioblocksVisualization.tsx:43</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Called immediately before a component is destroyed. Perform any necessary cleanup in this method, such as
-									cancelled network requests, or cleaning up any DOM elements created in <code>componentDidMount</code>.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -628,7 +598,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Inherited from DeprecatedLifecycle.componentWillUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:691</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:703</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -666,27 +636,75 @@ class Foo extends React.Component {
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-					<a name="forceupdate" class="tsd-anchor"></a>
-					<h3>force<wbr>Update</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">force<wbr>Update<span class="tsd-signature-symbol">(</span>callback<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected">
+					<a name="createreducer" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> create<wbr>Reducer</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Reducer&lt;T&gt;<span class="tsd-signature-symbol">(</span>datasetName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, defaultValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, namespace<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from Component.forceUpdate</p>
+								<p>Inherited from <a href="bioblocksvisualization.html">BioblocksVisualization</a>.<a href="bioblocksvisualization.html#createreducer">createReducer</a></p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:450</li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/BioblocksVisualization.tsx#L79">src/container/BioblocksVisualization.tsx:79</a></li>
 								</ul>
 							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> callback: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></h5>
+									<h5>datasetName: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>defaultValue: <span class="tsd-signature-type">T</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> namespace: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;bioblocks&quot;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="finishloading" class="tsd-anchor"></a>
+					<h3>finish<wbr>Loading</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">finish<wbr>Loading<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="bioblocksvisualization.html">BioblocksVisualization</a>.<a href="bioblocksvisualization.html#finishloading">finishLoading</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/BioblocksVisualization.tsx#L56">src/container/BioblocksVisualization.tsx:56</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="getcomponentbioblockshooks" class="tsd-anchor"></a>
+					<h3>get<wbr>Component<wbr>Bioblocks<wbr>Hooks</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Component<wbr>Bioblocks<wbr>Hooks<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/ibioblockshookdict.html" class="tsd-signature-type">IBioblocksHookDict</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="bioblocksvisualization.html">BioblocksVisualization</a>.<a href="bioblocksvisualization.html#getcomponentbioblockshooks">getComponentBioblocksHooks</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/BioblocksVisualization.tsx#L64">src/container/BioblocksVisualization.tsx:64</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/ibioblockshookdict.html" class="tsd-signature-type">IBioblocksHookDict</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -700,10 +718,46 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L167">src/container/ContactMapContainer.tsx:167</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L178">src/container/ContactMapContainer.tsx:178</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../globals.html#bioblockswidgetconfig" class="tsd-signature-type">BioblocksWidgetConfig</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="getdatasets" class="tsd-anchor"></a>
+					<h3>get<wbr>Datasets</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Datasets<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><a href="dataset.html" class="tsd-signature-type">Dataset</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="bioblocksvisualization.html">BioblocksVisualization</a>.<a href="bioblocksvisualization.html#getdatasets">getDatasets</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/BioblocksVisualization.tsx#L60">src/container/BioblocksVisualization.tsx:60</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><a href="dataset.html" class="tsd-signature-type">Dataset</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="getloadingstatus" class="tsd-anchor"></a>
+					<h3>get<wbr>Loading<wbr>Status</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Loading<wbr>Status<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../enums/bioblocks_loading_status.html" class="tsd-signature-type">BIOBLOCKS_LOADING_STATUS</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="bioblocksvisualization.html">BioblocksVisualization</a>.<a href="bioblocksvisualization.html#getloadingstatus">getLoadingStatus</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/BioblocksVisualization.tsx#L68">src/container/BioblocksVisualization.tsx:68</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="../enums/bioblocks_loading_status.html" class="tsd-signature-type">BIOBLOCKS_LOADING_STATUS</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -717,7 +771,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L217">src/container/ContactMapContainer.tsx:217</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L228">src/container/ContactMapContainer.tsx:228</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/icouplingscorefilter.html" class="tsd-signature-type">ICouplingScoreFilter</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h4>
@@ -735,7 +789,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Inherited from NewLifecycle.getSnapshotBeforeUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:611</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:623</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -763,6 +817,29 @@ class Foo extends React.Component {
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="havesettingsupdated" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> have<wbr>Settings<wbr>Updated</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">have<wbr>Settings<wbr>Updated<span class="tsd-signature-symbol">(</span>prevState<span class="tsd-signature-symbol">: </span><a href="../globals.html#contactmapcontainerstate" class="tsd-signature-type">ContactMapContainerState</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L166">src/container/ContactMapContainer.tsx:166</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>prevState: <a href="../globals.html#contactmapcontainerstate" class="tsd-signature-type">ContactMapContainerState</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="onlineardistfilterchange" class="tsd-anchor"></a>
 					<h3>on<wbr>Linear<wbr>Dist<wbr>Filter<wbr>Change</h3>
@@ -773,7 +850,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L149">src/container/ContactMapContainer.tsx:149</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L148">src/container/ContactMapContainer.tsx:148</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">(Anonymous function)</span></h4>
@@ -790,7 +867,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L155">src/container/ContactMapContainer.tsx:155</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L154">src/container/ContactMapContainer.tsx:154</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">(Anonymous function)</span></h4>
@@ -807,61 +884,63 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L161">src/container/ContactMapContainer.tsx:161</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L160">src/container/ContactMapContainer.tsx:160</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">(Anonymous function)</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-					<a name="render" class="tsd-anchor"></a>
-					<h3>render</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">render<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Overrides Component.render</p>
-								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L127">src/container/ContactMapContainer.tsx:127</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
-					<a name="setstate" class="tsd-anchor"></a>
-					<h3>set<wbr>State</h3>
+					<a name="registerdataset" class="tsd-anchor"></a>
+					<h3>register<wbr>Dataset</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>State&lt;K&gt;<span class="tsd-signature-symbol">(</span>state<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span>, callback<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">register<wbr>Dataset&lt;T&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, defaultValue<span class="tsd-signature-symbol">?: </span><a href="" class="tsd-signature-type">T</a>, namespace<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from Component.setState</p>
+								<p>Inherited from <a href="bioblocksvisualization.html">BioblocksVisualization</a>.<a href="bioblocksvisualization.html#registerdataset">registerDataset</a></p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:445</li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/BioblocksVisualization.tsx#L51">src/container/BioblocksVisualization.tsx:51</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
-									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof ContactMapContainerState</span></h4>
+									<h4>T</h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>state: <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span></h5>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> callback: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> defaultValue: <a href="" class="tsd-signature-type">T</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> namespace: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;bioblocks&quot;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="render" class="tsd-anchor"></a>
+					<h3>render</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">render<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L126">src/container/ContactMapContainer.tsx:126</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -875,7 +954,7 @@ class Foo extends React.Component {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L238">src/container/ContactMapContainer.tsx:238</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L249">src/container/ContactMapContainer.tsx:249</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -896,17 +975,18 @@ class Foo extends React.Component {
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 					<a name="setupdataservices" class="tsd-anchor"></a>
 					<h3>setup<wbr>Data<wbr>Services</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 						<li class="tsd-signature tsd-kind-icon">setup<wbr>Data<wbr>Services<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="bioblocksvisualization.html">BioblocksVisualization</a>.<a href="bioblocksvisualization.html#setupdataservices">setupDataServices</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L99">src/container/ContactMapContainer.tsx:99</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L102">src/container/ContactMapContainer.tsx:102</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -924,7 +1004,7 @@ class Foo extends React.Component {
 							<aside class="tsd-sources">
 								<p>Inherited from ComponentLifecycle.shouldComponentUpdate</p>
 								<ul>
-									<li>Defined in node_modules/@types/react/index.d.ts:565</li>
+									<li>Defined in node_modules/@types/react/index.d.ts:577</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -953,6 +1033,42 @@ class Foo extends React.Component {
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="teardown" class="tsd-anchor"></a>
+					<h3>teardown</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">teardown<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="bioblocksvisualization.html">BioblocksVisualization</a>.<a href="bioblocksvisualization.html#teardown">teardown</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/BioblocksVisualization.tsx#L72">src/container/BioblocksVisualization.tsx:72</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+					<a name="getactivebioblocksvisualizations" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> get<wbr>Active<wbr>Bioblocks<wbr>Visualizations</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Active<wbr>Bioblocks<wbr>Visualizations<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><a href="bioblocksvisualization.html" class="tsd-signature-type">BioblocksVisualization</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="bioblocksvisualization.html">BioblocksVisualization</a>.<a href="bioblocksvisualization.html#getactivebioblocksvisualizations">getActiveBioblocksVisualizations</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/BioblocksVisualization.tsx#L22">src/container/BioblocksVisualization.tsx:22</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><a href="bioblocksvisualization.html" class="tsd-signature-type">BioblocksVisualization</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Object literals</h2>
@@ -962,7 +1078,7 @@ class Foo extends React.Component {
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L67">src/container/ContactMapContainer.tsx:67</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L71">src/container/ContactMapContainer.tsx:71</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -971,7 +1087,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">add<wbr>Hovered<wbr>Residues<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">EMPTY_FUNCTION</a><span class="tsd-signature-symbol"> =&nbsp;EMPTY_FUNCTION</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L68">src/container/ContactMapContainer.tsx:68</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L72">src/container/ContactMapContainer.tsx:72</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -981,7 +1097,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">add<wbr>Hovered<wbr>Secondary<wbr>Structure<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">EMPTY_FUNCTION</a><span class="tsd-signature-symbol"> =&nbsp;EMPTY_FUNCTION</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L69">src/container/ContactMapContainer.tsx:69</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L73">src/container/ContactMapContainer.tsx:73</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -991,7 +1107,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">add<wbr>Selected<wbr>Secondary<wbr>Structure<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">EMPTY_FUNCTION</a><span class="tsd-signature-symbol"> =&nbsp;EMPTY_FUNCTION</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L70">src/container/ContactMapContainer.tsx:70</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L74">src/container/ContactMapContainer.tsx:74</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1001,7 +1117,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">agreement<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;#ff0000&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L71">src/container/ContactMapContainer.tsx:71</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L75">src/container/ContactMapContainer.tsx:75</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1011,7 +1127,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">all<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;#000000&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L72">src/container/ContactMapContainer.tsx:72</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L76">src/container/ContactMapContainer.tsx:76</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1021,7 +1137,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">filters<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L77">src/container/ContactMapContainer.tsx:77</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L81">src/container/ContactMapContainer.tsx:81</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1031,7 +1147,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;100%&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L78">src/container/ContactMapContainer.tsx:78</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L82">src/container/ContactMapContainer.tsx:82</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1041,7 +1157,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">highlight<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;#ff8800&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L79">src/container/ContactMapContainer.tsx:79</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L83">src/container/ContactMapContainer.tsx:83</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1051,7 +1167,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">is<wbr>Data<wbr>Loading<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L80">src/container/ContactMapContainer.tsx:80</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L84">src/container/ContactMapContainer.tsx:84</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1061,7 +1177,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">observed<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;#0000ff&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L81">src/container/ContactMapContainer.tsx:81</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L85">src/container/ContactMapContainer.tsx:85</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1071,7 +1187,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">on<wbr>Box<wbr>Selection<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">EMPTY_FUNCTION</a><span class="tsd-signature-symbol"> =&nbsp;EMPTY_FUNCTION</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L82">src/container/ContactMapContainer.tsx:82</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L86">src/container/ContactMapContainer.tsx:86</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1081,7 +1197,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">remove<wbr>All<wbr>Locked<wbr>Residue<wbr>Pairs<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">EMPTY_FUNCTION</a><span class="tsd-signature-symbol"> =&nbsp;EMPTY_FUNCTION</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L83">src/container/ContactMapContainer.tsx:83</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L87">src/container/ContactMapContainer.tsx:87</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1091,7 +1207,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">remove<wbr>All<wbr>Selected<wbr>Secondary<wbr>Structures<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">EMPTY_FUNCTION</a><span class="tsd-signature-symbol"> =&nbsp;EMPTY_FUNCTION</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L84">src/container/ContactMapContainer.tsx:84</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L88">src/container/ContactMapContainer.tsx:88</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1101,7 +1217,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">remove<wbr>Hovered<wbr>Residues<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">EMPTY_FUNCTION</a><span class="tsd-signature-symbol"> =&nbsp;EMPTY_FUNCTION</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L85">src/container/ContactMapContainer.tsx:85</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L89">src/container/ContactMapContainer.tsx:89</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1111,7 +1227,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">remove<wbr>Hovered<wbr>Secondary<wbr>Structure<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">EMPTY_FUNCTION</a><span class="tsd-signature-symbol"> =&nbsp;EMPTY_FUNCTION</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L86">src/container/ContactMapContainer.tsx:86</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L90">src/container/ContactMapContainer.tsx:90</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1121,7 +1237,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">remove<wbr>Secondary<wbr>Structure<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">EMPTY_FUNCTION</a><span class="tsd-signature-symbol"> =&nbsp;EMPTY_FUNCTION</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L87">src/container/ContactMapContainer.tsx:87</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L91">src/container/ContactMapContainer.tsx:91</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1131,7 +1247,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">toggle<wbr>Locked<wbr>Residue<wbr>Pair<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">EMPTY_FUNCTION</a><span class="tsd-signature-symbol"> =&nbsp;EMPTY_FUNCTION</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L88">src/container/ContactMapContainer.tsx:88</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L92">src/container/ContactMapContainer.tsx:92</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1141,7 +1257,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;100%&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L89">src/container/ContactMapContainer.tsx:89</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L93">src/container/ContactMapContainer.tsx:93</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1151,7 +1267,7 @@ class Foo extends React.Component {
 						<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L73">src/container/ContactMapContainer.tsx:73</a></li>
+								<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L77">src/container/ContactMapContainer.tsx:77</a></li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1160,7 +1276,7 @@ class Foo extends React.Component {
 							<div class="tsd-signature tsd-kind-icon">coupling<wbr>Scores<span class="tsd-signature-symbol">:</span> <a href="couplingcontainer.html" class="tsd-signature-type">CouplingContainer</a><span class="tsd-signature-symbol"> =&nbsp;new CouplingContainer()</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L74">src/container/ContactMapContainer.tsx:74</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L78">src/container/ContactMapContainer.tsx:78</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -1170,7 +1286,7 @@ class Foo extends React.Component {
 							<div class="tsd-signature tsd-kind-icon">secondary<wbr>Structures<span class="tsd-signature-symbol">:</span> <a href="bioblocks1dsection.html" class="tsd-signature-type">Bioblocks1DSection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"C"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"E"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"G"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"H"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"I"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"S"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"T"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"B"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;new Array&lt;SECONDARY_STRUCTURE&gt;()</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/e253d3696/src/container/ContactMapContainer.tsx#L75">src/container/ContactMapContainer.tsx:75</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6009dd9ec/src/container/ContactMapContainer.tsx#L79">src/container/ContactMapContainer.tsx:79</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -1196,20 +1312,14 @@ class Foo extends React.Component {
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 								<a href="contactmapcontainerclass.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="contactmapcontainerclass.html#context" class="tsd-kind-icon">context</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="contactmapcontainerclass.html#bioblockshooks" class="tsd-kind-icon">bioblocks<wbr>Hooks</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="contactmapcontainerclass.html#props" class="tsd-kind-icon">props</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="contactmapcontainerclass.html#datasets" class="tsd-kind-icon">datasets</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="contactmapcontainerclass.html#refs" class="tsd-kind-icon">refs</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
+							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="contactmapcontainerclass.html#state" class="tsd-kind-icon">state</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-								<a href="contactmapcontainerclass.html#contexttype" class="tsd-kind-icon">context<wbr>Type</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="contactmapcontainerclass.html#unsafe_componentwillmount" class="tsd-kind-icon">UNSAFE_<wbr>component<wbr>Will<wbr>Mount</a>
@@ -1219,6 +1329,9 @@ class Foo extends React.Component {
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="contactmapcontainerclass.html#unsafe_componentwillupdate" class="tsd-kind-icon">UNSAFE_<wbr>component<wbr>Will<wbr>Update</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
+								<a href="contactmapcontainerclass.html#addbioblockshook" class="tsd-kind-icon">add<wbr>Bioblocks<wbr>Hook</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="contactmapcontainerclass.html#componentdidcatch" class="tsd-kind-icon">component<wbr>Did<wbr>Catch</a>
@@ -1235,23 +1348,38 @@ class Foo extends React.Component {
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="contactmapcontainerclass.html#componentwillreceiveprops" class="tsd-kind-icon">component<wbr>Will<wbr>Receive<wbr>Props</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
 								<a href="contactmapcontainerclass.html#componentwillunmount" class="tsd-kind-icon">component<wbr>Will<wbr>Unmount</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="contactmapcontainerclass.html#componentwillupdate" class="tsd-kind-icon">component<wbr>Will<wbr>Update</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected">
+								<a href="contactmapcontainerclass.html#createreducer" class="tsd-kind-icon">create<wbr>Reducer</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="contactmapcontainerclass.html#forceupdate" class="tsd-kind-icon">force<wbr>Update</a>
+								<a href="contactmapcontainerclass.html#finishloading" class="tsd-kind-icon">finish<wbr>Loading</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="contactmapcontainerclass.html#getcomponentbioblockshooks" class="tsd-kind-icon">get<wbr>Component<wbr>Bioblocks<wbr>Hooks</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 								<a href="contactmapcontainerclass.html#getconfigs" class="tsd-kind-icon">get<wbr>Configs</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="contactmapcontainerclass.html#getdatasets" class="tsd-kind-icon">get<wbr>Datasets</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="contactmapcontainerclass.html#getloadingstatus" class="tsd-kind-icon">get<wbr>Loading<wbr>Status</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 								<a href="contactmapcontainerclass.html#getpredictedfilters" class="tsd-kind-icon">get<wbr>Predicted<wbr>Filters</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="contactmapcontainerclass.html#getsnapshotbeforeupdate" class="tsd-kind-icon">get<wbr>Snapshot<wbr>Before<wbr>Update</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="contactmapcontainerclass.html#havesettingsupdated" class="tsd-kind-icon">have<wbr>Settings<wbr>Updated</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="contactmapcontainerclass.html#onlineardistfilterchange" class="tsd-kind-icon">on<wbr>Linear<wbr>Dist<wbr>Filter<wbr>Change</a>
@@ -1262,20 +1390,26 @@ class Foo extends React.Component {
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="contactmapcontainerclass.html#onnumpredictionstoshowchange" class="tsd-kind-icon">on<wbr>Num<wbr>Predictions<wbr>ToShow<wbr>Change</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-								<a href="contactmapcontainerclass.html#render" class="tsd-kind-icon">render</a>
-							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
-								<a href="contactmapcontainerclass.html#setstate" class="tsd-kind-icon">set<wbr>State</a>
+								<a href="contactmapcontainerclass.html#registerdataset" class="tsd-kind-icon">register<wbr>Dataset</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="contactmapcontainerclass.html#render" class="tsd-kind-icon">render</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 								<a href="contactmapcontainerclass.html#setupdata" class="tsd-kind-icon">setup<wbr>Data</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="contactmapcontainerclass.html#setupdataservices" class="tsd-kind-icon">setup<wbr>Data<wbr>Services</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="contactmapcontainerclass.html#shouldcomponentupdate" class="tsd-kind-icon">should<wbr>Component<wbr>Update</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="contactmapcontainerclass.html#teardown" class="tsd-kind-icon">teardown</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+								<a href="contactmapcontainerclass.html#getactivebioblocksvisualizations" class="tsd-kind-icon">get<wbr>Active<wbr>Bioblocks<wbr>Visualizations</a>
 							</li>
 							<li class=" tsd-kind-object-literal tsd-parent-kind-class tsd-is-static">
 								<a href="contactmapcontainerclass.html#defaultprops" class="tsd-kind-icon">default<wbr>Props</a>
