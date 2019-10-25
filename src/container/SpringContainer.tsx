@@ -186,7 +186,7 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
     }
   };
 
-  protected generateSpringURL = (dataset: string) => `${this.props.springSrc}?${dataset}`;
+  protected generateSpringURL = (dataset: string) => `${this.props.springSrc}?../${dataset}`;
 }
 
 const mapStateToProps = (state: { [key: string]: any }) => ({
