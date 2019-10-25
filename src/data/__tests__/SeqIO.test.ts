@@ -12,12 +12,12 @@ describe('SeqIO', () => {
   });
 
   it('Should get a random sequences if getRandomSetOfSequences is called with n < length of provided records.', () => {
-    const seqRecords = [new SeqRecord(new Seq('ctag')), new SeqRecord(new Seq('gatc'))];
+    const seqRecords = [new SeqRecord(new Seq('ctgg')), new SeqRecord(new Seq('gatc'))];
     const randomSequences = SeqIO.getRandomSetOfSequences(seqRecords, 1);
     expect(randomSequences).toHaveLength(1);
-    const randomSeqIsFirstSeq = randomSequences[0] === seqRecords[0];
+    const randomSeqIsFirstSeq = randomSequences[0] !== seqRecords[0];
     const randomSeqIsSecondSeq = randomSequences[0] === seqRecords[1];
-    expect(randomSeqIsFirstSeq !== randomSeqIsSecondSeq);
+    expect(randomSeqIsFirstSeq === randomSeqIsSecondSeq);
   });
 
   it('Should get all sequences if getRandomSetOfSequences is called with n> = length of provided records.', () => {

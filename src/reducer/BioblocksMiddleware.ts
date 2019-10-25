@@ -26,6 +26,7 @@ export const BioblocksMiddleware: Middleware = (store: MiddlewareAPI<Dispatch, R
       if (transformFn) {
         const state: RootState = store.getState();
         const payload = transformFn(state);
+        console.log(`dispatching ${payload}`);
         store.dispatch({
           payload,
           type: `${splitKey[splitKey.length - 1]}_SET`.toUpperCase(),

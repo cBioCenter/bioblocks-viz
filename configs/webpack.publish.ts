@@ -42,7 +42,7 @@ module.exports = (env: webpack.Compiler.Handler, argv: webpack.Configuration) =>
     ];
   }
 
-  mergedConfig.externals = getWebpackPublishExternals();
+  // mergedConfig.externals = getWebpackPublishExternals();
   mergedConfig.entry = getWebpackPublishEntry();
   mergedConfig.optimization = getWebpackPublishOptimizations(mergedConfig);
   // @ts-ignore

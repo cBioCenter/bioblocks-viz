@@ -55,7 +55,7 @@ const getFramedNGL = () => (
 const getFramedContactMap = () => (
   <iframe
     id="bioblocks-frame-contact-map"
-    sandbox={'allow-scripts allow-same-origin'}
+    sandbox={'allow-scripts'}
     width="525"
     height="590"
     src="bioblocks.html"

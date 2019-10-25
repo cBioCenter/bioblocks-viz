@@ -46,12 +46,15 @@ export class BBFrame extends React.Component<IBBFrameProps, IBBFrameState> {
       vizProps: {},
     };
   }
+
   public componentDidMount() {
-    window.addEventListener('message', this.onMessage);
+    // @ts-ignore
+    window.addEventListener('bb-message', this.onMessage);
   }
 
   public componentWillUnmount() {
-    window.removeEventListener('message', this.onMessage);
+    // @ts-ignore
+    window.removeEventListener('bb-message', this.onMessage);
   }
 
   public render() {
@@ -111,16 +114,24 @@ export class BBFrame extends React.Component<IBBFrameProps, IBBFrameState> {
   }
 }
 
-const bioblocksFrame = document.getElementById('bioblocks-frame');
+const addFrame = () => {
+  const bioblocksFrame = document.getElementById('bioblocks-frame');
 
-if (bioblocksFrame) {
-  ReactDOM.render(
-    <Provider store={BBStore}>
-      <BBFrame />
-    </Provider>,
-    document.getElementById('bioblocks-frame'),
-  );
-}
+  if (bioblocksFrame) {
+    console.log('Adding Bioblocks Frame.');
+    ReactDOM.render(
+      <Provider store={BBStore}>
+        <BBFrame />
+      </Provider>,
+      document.getElementById('bioblocks-frame'),
+    );
+  } else {
+    console.log(`Element with id=${bioblocksFrame} doesn't exist, not creating Bioblocks Frame.`);
+    setTimeout(addFrame, 2000);
+  }
+};
+
+setTimeout(addFrame, 2000);
 
 if (module.hot) {
   module.hot.accept();

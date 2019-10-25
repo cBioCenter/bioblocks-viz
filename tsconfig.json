@@ -4,7 +4,7 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "downlevelIteration": true,
-    "importHelpers": true,
+    "importHelpers": false,
     "jsx": "react",
     "lib": ["dom", "es2017"],
     "module": "commonjs",

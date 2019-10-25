@@ -750,7 +750,8 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
       if (dataMatrix.length === 0 || dataMatrix[0].length === 0) {
         return;
       }
-      const optimalNumberEpochs = umap.initializeFit(dataMatrix);
+      let optimalNumberEpochs = umap.initializeFit(dataMatrix);
+      optimalNumberEpochs = 1;
       // const optimalNumberEpochs = Math.min(umap.initializeFit(dataMatrix), 1);
       // console.log(`UMAP wants to do ${optimalNumberEpochs} epochs`);
 
@@ -770,10 +771,10 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
           umapEmbedding.forEach((row: number[]) => {
             ranges.maxX = Math.max(ranges.maxX, row[0] + 2);
             ranges.maxY = Math.max(ranges.maxY, row[1] + 2);
-            ranges.maxZ = Math.max(ranges.maxZ, row[2] + 2);
+            ranges.maxZ = row[2] ? Math.max(ranges.maxZ, row[2] + 2) : ranges.maxZ;
             ranges.minX = Math.min(ranges.minX, row[0] - 2);
             ranges.minY = Math.min(ranges.minY, row[1] - 2);
-            ranges.minZ = Math.min(ranges.minZ, row[2] - 2);
+            ranges.minZ = row[2] ? Math.min(ranges.minZ, row[2] - 2) : ranges.minZ;
           });
 
           const plotlyData = this.getData(umapEmbedding, this.props.dataLabels, this.props.tooltipNames);

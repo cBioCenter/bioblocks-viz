@@ -6,5 +6,5 @@ const tensorFlowTSNEMock = Promise.resolve({
   }),
 });
 
-// tslint:disable-next-line:export-name
-export = tensorFlowTSNEMock;
+// tslint:disable-next-line: export-name no-default-export
+export default tensorFlowTSNEMock;

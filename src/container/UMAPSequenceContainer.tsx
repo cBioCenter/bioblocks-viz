@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { createContainerActions } from '~bioblocks-viz~/action';
 import { IUMAPVisualizationProps, UMAPVisualization } from '~bioblocks-viz~/component';
+import { BioblocksVisualization } from '~bioblocks-viz~/container';
 import { ILabel, Marker, SeqRecord } from '~bioblocks-viz~/data';
 import { EMPTY_FUNCTION, readFileAsText, subsample } from '~bioblocks-viz~/helper';
 import { selectCurrentItems } from '~bioblocks-viz~/selector';
@@ -47,7 +48,7 @@ export interface IUMAPSequenceContainerState {
   tooltipNames: string[];
 }
 
-export class UMAPSequenceContainerClass extends React.Component<
+export class UMAPSequenceContainerClass extends BioblocksVisualization<
   IUMAPSequenceContainerProps,
   IUMAPSequenceContainerState
 > {
@@ -70,6 +71,10 @@ export class UMAPSequenceContainerClass extends React.Component<
       subsampledSequences: new Array(),
       tooltipNames: new Array(),
     };
+  }
+
+  public setupDataServices() {
+    this.registerDataset('cells', []);
   }
 
   public componentDidMount() {
