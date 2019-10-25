@@ -173,11 +173,21 @@ exports[`ComponentCard Should handle expanding a framed and non-full page compon
                               as="i"
                               name="expand arrows alternate"
                               onClick={[Function]}
+                              style={
+                                Object {
+                                  "margin": 0,
+                                }
+                              }
                             >
                               <i
                                 aria-hidden="true"
                                 className="expand arrows alternate icon"
                                 onClick={[Function]}
+                                style={
+                                  Object {
+                                    "margin": 0,
+                                  }
+                                }
                               />
                             </Icon>
                             <span
@@ -409,11 +419,21 @@ exports[`ComponentCard Should handle expanding a framed full page component. 1`]
                               as="i"
                               name="compress"
                               onClick={[Function]}
+                              style={
+                                Object {
+                                  "margin": 0,
+                                }
+                              }
                             >
                               <i
                                 aria-hidden="true"
                                 className="compress icon"
                                 onClick={[Function]}
+                                style={
+                                  Object {
+                                    "margin": 0,
+                                  }
+                                }
                               />
                             </Icon>
                             <span
@@ -643,11 +663,21 @@ exports[`ComponentCard Should handle expanding a non-framed and non-full page co
                               as="i"
                               name="expand arrows alternate"
                               onClick={[Function]}
+                              style={
+                                Object {
+                                  "margin": 0,
+                                }
+                              }
                             >
                               <i
                                 aria-hidden="true"
                                 className="expand arrows alternate icon"
                                 onClick={[Function]}
+                                style={
+                                  Object {
+                                    "margin": 0,
+                                  }
+                                }
                               />
                             </Icon>
                             <span
@@ -870,11 +900,21 @@ exports[`ComponentCard Should handle expanding a non-framed full page component.
                               as="i"
                               name="compress"
                               onClick={[Function]}
+                              style={
+                                Object {
+                                  "margin": 0,
+                                }
+                              }
                             >
                               <i
                                 aria-hidden="true"
                                 className="compress icon"
                                 onClick={[Function]}
+                                style={
+                                  Object {
+                                    "margin": 0,
+                                  }
+                                }
                               />
                             </Icon>
                             <span
@@ -1095,11 +1135,21 @@ exports[`ComponentCard Should handle resizing a framed component. 1`] = `
                               as="i"
                               name="expand arrows alternate"
                               onClick={[Function]}
+                              style={
+                                Object {
+                                  "margin": 0,
+                                }
+                              }
                             >
                               <i
                                 aria-hidden="true"
                                 className="expand arrows alternate icon"
                                 onClick={[Function]}
+                                style={
+                                  Object {
+                                    "margin": 0,
+                                  }
+                                }
                               />
                             </Icon>
                             <span

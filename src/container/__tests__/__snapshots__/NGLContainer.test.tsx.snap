@@ -517,10 +517,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                 },
                                 "name": "POPUP",
                                 "props": Object {
-                                  "trigger": <Icon
-                                    as="i"
-                                    name="setting"
-                                  />,
+                                  "position": "top center",
                                 },
                               },
                               "description": "Settings",
@@ -778,10 +775,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                         },
                                         "name": "POPUP",
                                         "props": Object {
-                                          "trigger": <Icon
-                                            as="i"
-                                            name="setting"
-                                          />,
+                                          "position": "top center",
                                         },
                                       },
                                       "description": "Settings",
@@ -881,56 +875,74 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                             <div
                                               className="ui secondary menu"
                                             >
-                                              <MenuItem
-                                                key="NGL Viewer-menu-item-0"
-                                                onClick={[Function]}
+                                              <Popup
+                                                closeOnPortalMouseLeave={false}
+                                                closeOnTriggerClick={true}
+                                                closeOnTriggerMouseLeave={false}
+                                                disabled={true}
+                                                eventsEnabled={true}
+                                                hoverable={false}
+                                                key="NGL Viewer-menu-item-0-popup"
+                                                offset={0}
+                                                on={
+                                                  Array [
+                                                    "click",
+                                                    "hover",
+                                                  ]
+                                                }
+                                                openOnTriggerClick={true}
+                                                openOnTriggerFocus={false}
+                                                openOnTriggerMouseEnter={false}
+                                                pinned={false}
+                                                position="top center"
                                                 style={
                                                   Object {
-                                                    "flexDirection": "column",
+                                                    "opacity": 0.85,
                                                   }
                                                 }
+                                                trigger={
+                                                  <MenuItem
+                                                    style={
+                                                      Object {
+                                                        "flexDirection": "column",
+                                                      }
+                                                    }
+                                                  >
+                                                    <Icon
+                                                      as="i"
+                                                      fitted={true}
+                                                      name="tasks"
+                                                    />
+                                                    <span
+                                                      style={
+                                                        Object {
+                                                          "fontSize": "11px",
+                                                          "visibility": "hidden",
+                                                        }
+                                                      }
+                                                    >
+                                                      PDB Selector
+                                                    </span>
+                                                  </MenuItem>
+                                                }
+                                                wide="very"
                                               >
-                                                <a
-                                                  className="item"
-                                                  onClick={[Function]}
+                                                <MenuItem
+                                                  key="NGL Viewer-menu-item-0-trigger"
                                                   style={
                                                     Object {
                                                       "flexDirection": "column",
                                                     }
                                                   }
                                                 >
-                                                  <Popup
-                                                    closeOnPortalMouseLeave={false}
-                                                    closeOnTriggerClick={true}
-                                                    closeOnTriggerMouseLeave={false}
-                                                    disabled={true}
-                                                    eventsEnabled={true}
-                                                    hoverable={false}
-                                                    offset={0}
-                                                    on={
-                                                      Array [
-                                                        "click",
-                                                        "hover",
-                                                      ]
-                                                    }
-                                                    openOnTriggerClick={true}
-                                                    openOnTriggerFocus={false}
-                                                    openOnTriggerMouseEnter={false}
-                                                    pinned={false}
-                                                    position="top center"
+                                                  <div
+                                                    className="item"
+                                                    onClick={[Function]}
                                                     style={
                                                       Object {
-                                                        "opacity": 0.85,
+                                                        "flexDirection": "column",
                                                       }
                                                     }
-                                                    trigger={
-                                                      <Icon
-                                                        as="i"
-                                                        fitted={true}
-                                                        name="tasks"
-                                                      />
-                                                    }
-                                                    wide="very"
                                                   >
                                                     <Icon
                                                       as="i"
@@ -943,141 +955,190 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                                         onClick={[Function]}
                                                       />
                                                     </Icon>
-                                                  </Popup>
-                                                  <span
-                                                    style={
-                                                      Object {
-                                                        "fontSize": "11px",
-                                                        "visibility": "hidden",
-                                                      }
-                                                    }
-                                                  >
-                                                    PDB Selector
-                                                  </span>
-                                                </a>
-                                              </MenuItem>
-                                              <MenuItem
-                                                key="NGL Viewer-menu-item-1"
-                                                onClick={[Function]}
-                                                style={
-                                                  Object {
-                                                    "flexDirection": "column",
-                                                  }
-                                                }
-                                              >
-                                                <a
-                                                  className="item"
-                                                  onClick={[Function]}
-                                                  style={
-                                                    Object {
-                                                      "flexDirection": "column",
-                                                    }
-                                                  }
-                                                >
-                                                  <Popup
-                                                    closeOnPortalMouseLeave={false}
-                                                    closeOnTriggerClick={true}
-                                                    closeOnTriggerMouseLeave={false}
-                                                    disabled={false}
-                                                    eventsEnabled={true}
-                                                    hoverable={false}
-                                                    offset={0}
-                                                    on={
-                                                      Array [
-                                                        "click",
-                                                        "hover",
-                                                      ]
-                                                    }
-                                                    openOnTriggerClick={true}
-                                                    openOnTriggerFocus={false}
-                                                    openOnTriggerMouseEnter={false}
-                                                    pinned={false}
-                                                    position="bottom left"
-                                                    style={
-                                                      Object {
-                                                        "opacity": 0.85,
-                                                      }
-                                                    }
-                                                    trigger={
-                                                      <Icon
-                                                        as="i"
-                                                        name="setting"
-                                                      />
-                                                    }
-                                                    wide={true}
-                                                  >
-                                                    <Portal
-                                                      closeOnDocumentClick={true}
-                                                      closeOnEscape={true}
-                                                      closeOnPortalMouseLeave={false}
-                                                      closeOnTriggerClick={true}
-                                                      closeOnTriggerMouseLeave={false}
-                                                      eventPool="default"
-                                                      mouseEnterDelay={50}
-                                                      mouseLeaveDelay={70}
-                                                      onClose={[Function]}
-                                                      onMount={[Function]}
-                                                      onOpen={[Function]}
-                                                      onUnmount={[Function]}
-                                                      openOnTriggerClick={true}
-                                                      openOnTriggerFocus={false}
-                                                      openOnTriggerMouseEnter={false}
-                                                      trigger={
-                                                        <Icon
-                                                          as="i"
-                                                          name="setting"
-                                                        />
-                                                      }
-                                                      triggerRef={
+                                                    <span
+                                                      style={
                                                         Object {
-                                                          "current": <i
-                                                            aria-hidden="true"
-                                                            class="setting icon"
-                                                          />,
+                                                          "fontSize": "11px",
+                                                          "visibility": "hidden",
                                                         }
                                                       }
                                                     >
-                                                      <Ref
-                                                        innerRef={[Function]}
-                                                      >
-                                                        <RefFindNode
-                                                          innerRef={[Function]}
-                                                        >
-                                                          <Icon
-                                                            as="i"
-                                                            name="setting"
-                                                            onBlur={[Function]}
-                                                            onClick={[Function]}
-                                                            onFocus={[Function]}
-                                                            onMouseEnter={[Function]}
-                                                            onMouseLeave={[Function]}
-                                                          >
-                                                            <i
-                                                              aria-hidden="true"
-                                                              className="setting icon"
-                                                              onBlur={[Function]}
-                                                              onClick={[Function]}
-                                                              onFocus={[Function]}
-                                                              onMouseEnter={[Function]}
-                                                              onMouseLeave={[Function]}
-                                                            />
-                                                          </Icon>
-                                                        </RefFindNode>
-                                                      </Ref>
-                                                    </Portal>
-                                                  </Popup>
-                                                  <span
+                                                      PDB Selector
+                                                    </span>
+                                                  </div>
+                                                </MenuItem>
+                                              </Popup>
+                                              <Popup
+                                                closeOnPortalMouseLeave={false}
+                                                closeOnTriggerClick={true}
+                                                closeOnTriggerMouseLeave={false}
+                                                disabled={false}
+                                                eventsEnabled={true}
+                                                hoverable={false}
+                                                key="NGL Viewer-menu-item-1-popup"
+                                                offset={0}
+                                                on={
+                                                  Array [
+                                                    "click",
+                                                    "hover",
+                                                  ]
+                                                }
+                                                openOnTriggerClick={true}
+                                                openOnTriggerFocus={false}
+                                                openOnTriggerMouseEnter={false}
+                                                pinned={false}
+                                                position="top center"
+                                                style={
+                                                  Object {
+                                                    "opacity": 0.85,
+                                                  }
+                                                }
+                                                trigger={
+                                                  <MenuItem
                                                     style={
                                                       Object {
-                                                        "fontSize": "11px",
-                                                        "visibility": "hidden",
+                                                        "flexDirection": "column",
                                                       }
                                                     }
                                                   >
-                                                    Settings
-                                                  </span>
-                                                </a>
-                                              </MenuItem>
+                                                    <Icon
+                                                      as="i"
+                                                      fitted={true}
+                                                      name="setting"
+                                                    />
+                                                    <span
+                                                      style={
+                                                        Object {
+                                                          "fontSize": "11px",
+                                                          "visibility": "hidden",
+                                                        }
+                                                      }
+                                                    >
+                                                      Settings
+                                                    </span>
+                                                  </MenuItem>
+                                                }
+                                                wide={true}
+                                              >
+                                                <Portal
+                                                  closeOnDocumentClick={true}
+                                                  closeOnEscape={true}
+                                                  closeOnPortalMouseLeave={false}
+                                                  closeOnTriggerClick={true}
+                                                  closeOnTriggerMouseLeave={false}
+                                                  eventPool="default"
+                                                  mouseEnterDelay={50}
+                                                  mouseLeaveDelay={70}
+                                                  onClose={[Function]}
+                                                  onMount={[Function]}
+                                                  onOpen={[Function]}
+                                                  onUnmount={[Function]}
+                                                  openOnTriggerClick={true}
+                                                  openOnTriggerFocus={false}
+                                                  openOnTriggerMouseEnter={false}
+                                                  trigger={
+                                                    <MenuItem
+                                                      style={
+                                                        Object {
+                                                          "flexDirection": "column",
+                                                        }
+                                                      }
+                                                    >
+                                                      <Icon
+                                                        as="i"
+                                                        fitted={true}
+                                                        name="setting"
+                                                      />
+                                                      <span
+                                                        style={
+                                                          Object {
+                                                            "fontSize": "11px",
+                                                            "visibility": "hidden",
+                                                          }
+                                                        }
+                                                      >
+                                                        Settings
+                                                      </span>
+                                                    </MenuItem>
+                                                  }
+                                                  triggerRef={
+                                                    Object {
+                                                      "current": <a
+                                                        class="item"
+                                                        style="flex-direction: column;"
+                                                      >
+                                                        <i
+                                                          aria-hidden="true"
+                                                          class="setting fitted icon"
+                                                        />
+                                                        <span
+                                                          style="font-size: 11px; visibility: hidden;"
+                                                        >
+                                                          Settings
+                                                        </span>
+                                                      </a>,
+                                                    }
+                                                  }
+                                                >
+                                                  <Ref
+                                                    innerRef={[Function]}
+                                                  >
+                                                    <RefFindNode
+                                                      innerRef={[Function]}
+                                                    >
+                                                      <MenuItem
+                                                        key="NGL Viewer-menu-item-1-trigger"
+                                                        onBlur={[Function]}
+                                                        onClick={[Function]}
+                                                        onFocus={[Function]}
+                                                        onMouseEnter={[Function]}
+                                                        onMouseLeave={[Function]}
+                                                        style={
+                                                          Object {
+                                                            "flexDirection": "column",
+                                                          }
+                                                        }
+                                                      >
+                                                        <a
+                                                          className="item"
+                                                          onBlur={[Function]}
+                                                          onClick={[Function]}
+                                                          onFocus={[Function]}
+                                                          onMouseEnter={[Function]}
+                                                          onMouseLeave={[Function]}
+                                                          style={
+                                                            Object {
+                                                              "flexDirection": "column",
+                                                            }
+                                                          }
+                                                        >
+                                                          <Icon
+                                                            as="i"
+                                                            fitted={true}
+                                                            name="setting"
+                                                          >
+                                                            <i
+                                                              aria-hidden="true"
+                                                              className="setting fitted icon"
+                                                              onClick={[Function]}
+                                                            />
+                                                          </Icon>
+                                                          <span
+                                                            style={
+                                                              Object {
+                                                                "fontSize": "11px",
+                                                                "visibility": "hidden",
+                                                              }
+                                                            }
+                                                          >
+                                                            Settings
+                                                          </span>
+                                                        </a>
+                                                      </MenuItem>
+                                                    </RefFindNode>
+                                                  </Ref>
+                                                </Portal>
+                                              </Popup>
                                               <MenuItem
                                                 style={
                                                   Object {
@@ -1098,11 +1159,21 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                                                     as="i"
                                                     name="expand arrows alternate"
                                                     onClick={[Function]}
+                                                    style={
+                                                      Object {
+                                                        "margin": 0,
+                                                      }
+                                                    }
                                                   >
                                                     <i
                                                       aria-hidden="true"
                                                       className="expand arrows alternate icon"
                                                       onClick={[Function]}
+                                                      style={
+                                                        Object {
+                                                          "margin": 0,
+                                                        }
+                                                      }
                                                     />
                                                   </Icon>
                                                   <span

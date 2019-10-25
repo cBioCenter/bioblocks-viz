@@ -1,6 +1,6 @@
 import { mount, shallow } from 'enzyme';
 import * as React from 'react';
-import { Icon, Radio } from 'semantic-ui-react';
+import { Icon, Menu, Radio } from 'semantic-ui-react';
 
 import { UMAPVisualization } from '~bioblocks-viz~/component';
 
@@ -66,7 +66,7 @@ describe('UMAPVisualization', () => {
       const wrapper = mount(<UMAPVisualization dataMatrix={[[]]} nComponents={2} />);
       jest.runAllTimers();
       wrapper.update();
-      expect(wrapper.find('a.item').length).toBe(1);
+      expect(wrapper.find(Menu.Item).length).toBe(4);
     });
 
     it('Should show 3d camera buttons in 3d mode.', () => {

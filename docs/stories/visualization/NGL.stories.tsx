@@ -11,7 +11,7 @@ stories.add(
   () => (
     <NGLContainer
       experimentalProteins={['datasets/beta_lactamase/1ZG4.pdb']}
-      predictedProteins={['datasets/beta_lactamase/1ZG4.pdb']}
+      predictedProteins={['datasets/1ZG4/1zg4.pdb']}
     />
   ),
   {

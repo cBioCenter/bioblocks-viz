@@ -4,6 +4,7 @@ import { connect, Provider } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { createContainerActions, createResiduePairActions } from '~bioblocks-viz~/action';
 import { ContactMapComponent, generateChartDataEntry, IContactMapChartData } from '~bioblocks-viz~/component';
+import { BioblocksVisualization } from '~bioblocks-viz~/container';
 import {
   BIOBLOCKS_CSS_STYLE,
   BioblocksPDB,
@@ -63,7 +64,10 @@ export type ContactMapContainerState = typeof initialContactMapContainerState;
  * Container for the ContactMap, responsible for data interaction.
  * @extends {React.Component<IContactMapContainerProps, ContactMapContainerState>}
  */
-export class ContactMapContainerClass extends React.Component<IContactMapContainerProps, ContactMapContainerState> {
+export class ContactMapContainerClass extends BioblocksVisualization<
+  IContactMapContainerProps,
+  ContactMapContainerState
+> {
   public static defaultProps = {
     addHoveredResidues: EMPTY_FUNCTION,
     addHoveredSecondaryStructure: EMPTY_FUNCTION,
@@ -93,7 +97,6 @@ export class ContactMapContainerClass extends React.Component<IContactMapContain
 
   constructor(props: IContactMapContainerProps) {
     super(props);
-    this.setupDataServices();
   }
 
   public setupDataServices() {
@@ -102,23 +105,19 @@ export class ContactMapContainerClass extends React.Component<IContactMapContain
     createContainerReducer<BioblocksPDB[]>('pdb');
     createResiduePairReducer();
   }
+
   public componentDidMount() {
     this.setupData(true);
   }
 
   public componentDidUpdate(prevProps: IContactMapContainerProps, prevState: ContactMapContainerState) {
     const { agreementColor, allColor, data } = this.props;
-    const { linearDistFilter, minimumProbability, minimumScore, numPredictionsToShow, rankFilter } = this.state;
 
     const isRecomputeNeeded =
       agreementColor !== prevProps.agreementColor ||
       allColor !== prevProps.allColor ||
       data.couplingScores !== prevProps.data.couplingScores ||
-      linearDistFilter !== prevState.linearDistFilter ||
-      minimumProbability !== prevState.minimumProbability ||
-      minimumScore !== prevState.minimumScore ||
-      numPredictionsToShow !== prevState.numPredictionsToShow ||
-      rankFilter !== prevState.rankFilter;
+      this.haveSettingsUpdated(prevState);
     if (isRecomputeNeeded) {
       this.setupData(data.couplingScores !== prevProps.data.couplingScores);
     }
@@ -162,6 +161,18 @@ export class ContactMapContainerClass extends React.Component<IContactMapContain
     this.setState({
       numPredictionsToShow: value,
     });
+  };
+
+  protected haveSettingsUpdated = (prevState: ContactMapContainerState) => {
+    const { linearDistFilter, minimumProbability, minimumScore, numPredictionsToShow, rankFilter } = this.state;
+
+    return (
+      linearDistFilter !== prevState.linearDistFilter ||
+      minimumProbability !== prevState.minimumProbability ||
+      minimumScore !== prevState.minimumScore ||
+      numPredictionsToShow !== prevState.numPredictionsToShow ||
+      rankFilter !== prevState.rankFilter
+    );
   };
 
   protected getConfigs = (): BioblocksWidgetConfig[] => {
