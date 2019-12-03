@@ -177,7 +177,6 @@
   "codemetrics.nodeconfiguration.DefaultClause": 0,
   "codemetrics.nodeconfiguration.ReturnStatement": 0,
   "editor.formatOnSave": true,
-  "prettier.tslintIntegration": true,
   "python.pythonPath": "/usr/local/bin/python3",
   "typescript.tsdk": "node_modules/typescript/lib"
 }
