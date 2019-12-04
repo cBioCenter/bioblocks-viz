@@ -6,7 +6,7 @@
     "esModuleInterop": true,
     "outDir": "../lib",
     "pretty": true,
-    "sourceMap": false,
+    "sourceMap": true,
     "target": "es5"
   },
   "include": ["../frames", "../index.ts", "../src", "../types"],

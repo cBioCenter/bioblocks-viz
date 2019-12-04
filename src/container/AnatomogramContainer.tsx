@@ -221,7 +221,4 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     dispatch,
   );
 
-export const AnatomogramContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(AnatomogramContainerClass);
+export const AnatomogramContainer = connect(mapStateToProps, mapDispatchToProps)(AnatomogramContainerClass);
