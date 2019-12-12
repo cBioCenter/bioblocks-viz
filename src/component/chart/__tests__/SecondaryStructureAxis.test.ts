@@ -1,3 +1,4 @@
+import { isArray } from 'util';
 import { IAxisMapping, SecondaryStructureAxis } from '~bioblocks-viz~/component';
 import {
   Bioblocks1DSection,
@@ -35,7 +36,11 @@ describe('SecondaryStructureAxis', () => {
 
   it('Should allow custom color mappings.', () => {
     const newColorMap = new ColorMapper<SECONDARY_STRUCTURE_KEYS>(
-      new Map([['C', 'purple'], ['E', 'orange'], ['H', 'black']]),
+      new Map([
+        ['C', 'purple'],
+        ['E', 'orange'],
+        ['H', 'black'],
+      ]),
       'black',
     );
     const result = new SecondaryStructureAxis(
@@ -98,19 +103,21 @@ describe('SecondaryStructureAxis', () => {
 
       const axis = result.getAxisById('E') as IAxisMapping;
 
-      if (!axis.x.marker.symbol || !axis.y.marker.symbol) {
+      const xSymbol = axis.x.marker.symbol;
+      const ySymbol = axis.y.marker.symbol;
+      if (!isArray(xSymbol) || !isArray(ySymbol)) {
         fail(`Axis symbols must be undefined. X: ${axis.x.marker.symbol} , y: ${axis.y.marker.symbol}`);
       } else {
-        expect(axis.x.marker.symbol).toHaveLength(7);
-        expect(axis.x.marker.symbol.length).toEqual(axis.y.marker.symbol.length);
+        expect(xSymbol).toHaveLength(7);
+        expect(xSymbol.length).toEqual(ySymbol.length);
 
-        for (let i = 1; i < axis.x.marker.symbol.length - 2; ++i) {
-          expect(axis.x.marker.symbol[i]).toEqual(lineSymbol);
-          expect(axis.x.marker.symbol[i]).toEqual(lineSymbol);
+        for (let i = 1; i < xSymbol.length - 2; ++i) {
+          expect(xSymbol[i]).toEqual(lineSymbol);
+          expect(xSymbol[i]).toEqual(lineSymbol);
         }
 
-        expect(axis.x.marker.symbol[5]).toEqual(rightArrow);
-        expect(axis.y.marker.symbol[5]).toEqual(downArrow);
+        expect(xSymbol[5]).toEqual(rightArrow);
+        expect(ySymbol[5]).toEqual(downArrow);
       }
     });
   });
