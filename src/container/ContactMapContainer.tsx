@@ -1,9 +1,13 @@
 import * as React from 'react';
-import { connect, Provider } from 'react-redux';
 
 import { bindActionCreators, Dispatch } from 'redux';
 import { createContainerActions, createResiduePairActions } from '~bioblocks-viz~/action';
-import { ContactMapComponent, generateChartDataEntry, IContactMapChartData } from '~bioblocks-viz~/component';
+import {
+  connectWithBBStore,
+  ContactMapComponent,
+  generateChartDataEntry,
+  IContactMapChartData,
+} from '~bioblocks-viz~/component';
 import { BioblocksVisualization } from '~bioblocks-viz~/container';
 import {
   BIOBLOCKS_CSS_STYLE,
@@ -128,20 +132,18 @@ export class ContactMapContainerClass extends BioblocksVisualization<
     const { pointsToPlot } = this.state;
 
     return (
-      <Provider store={BBStore}>
-        <div className="ContactMapContainer" style={style}>
-          <ContactMapComponent
-            configurations={this.getConfigs()}
-            data={{
-              couplingScores: data.couplingScores,
-              pdbData: data.pdbData,
-              secondaryStructures: data.secondaryStructures,
-            }}
-            formattedPoints={pointsToPlot}
-            {...passThroughProps}
-          />
-        </div>
-      </Provider>
+      <div className="ContactMapContainer" style={style}>
+        <ContactMapComponent
+          configurations={this.getConfigs()}
+          data={{
+            couplingScores: data.couplingScores,
+            pdbData: data.pdbData,
+            secondaryStructures: data.secondaryStructures,
+          }}
+          formattedPoints={pointsToPlot}
+          {...passThroughProps}
+        />
+      </div>
     );
   }
 
@@ -326,7 +328,4 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     dispatch,
   );
 
-export const ContactMapContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ContactMapContainerClass);
+export const ContactMapContainer = connectWithBBStore(mapStateToProps, mapDispatchToProps, ContactMapContainerClass);

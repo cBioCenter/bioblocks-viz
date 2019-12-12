@@ -76,422 +76,386 @@ Array [
 `;
 
 exports[`ContactMapContainer Snapshots Should match existing snapshot when given empty data. 1`] = `
-<Provider
-  store={
-    Object {
-      "dispatch": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-      Symbol(observable): [Function],
-    }
-  }
+<div
+  className="ContactMapContainer"
 >
-  <div
-    className="ContactMapContainer"
-  >
-    <ContactMapComponent
-      addHoveredResidues={[Function]}
-      addHoveredSecondaryStructure={[Function]}
-      addSelectedSecondaryStructure={[Function]}
-      agreementColor="#ff0000"
-      allColor="#000000"
-      configurations={
-        Array [
-          Object {
-            "marks": Object {
-              "0": "0",
-              "1": "L",
-              "2": "2L",
-              "3": "3L",
-            },
-            "name": "# Couplings to Display",
-            "onChange": [Function],
-            "type": "SLIDER",
-            "values": Object {
-              "current": 0,
-              "defaultValue": 0,
-              "max": 3,
-              "min": 0,
-            },
-          },
-          Object {
-            "name": "Linear Distance Filter (|i - j|)",
-            "onChange": [Function],
-            "type": "SLIDER",
-            "values": Object {
-              "current": 5,
-              "defaultValue": 5,
-              "max": 10,
-              "min": 1,
-            },
-          },
-          Object {
-            "name": "Minimum Probability",
-            "onChange": [Function],
-            "step": 0.01,
-            "type": "SLIDER",
-            "values": Object {
-              "current": 0.9,
-              "defaultValue": 0.9,
-              "max": 1,
-              "min": 0,
-            },
-          },
-        ]
-      }
-      data={
+  <ContactMapComponent
+    addHoveredResidues={[Function]}
+    addHoveredSecondaryStructure={[Function]}
+    addSelectedSecondaryStructure={[Function]}
+    agreementColor="#ff0000"
+    allColor="#000000"
+    configurations={
+      Array [
         Object {
-          "couplingScores": CouplingContainer {
-            "colCounter": 0,
-            "contacts": Array [],
-            "derivedFromCouplingScoresFlag": true,
-            "getCouplingScore": [Function],
-            "includes": [Function],
-            "indexRange": Object {
-              "max": 1,
-              "min": 1,
-            },
-            "rowCounter": 0,
-            "scoreSource": "cn",
-            "totalStoredContacts": 0,
+          "marks": Object {
+            "0": "0",
+            "1": "L",
+            "2": "2L",
+            "3": "3L",
           },
-          "pdbData": undefined,
-          "secondaryStructures": Array [],
-        }
+          "name": "# Couplings to Display",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 0,
+            "defaultValue": 0,
+            "max": 3,
+            "min": 0,
+          },
+        },
+        Object {
+          "name": "Linear Distance Filter (|i - j|)",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 5,
+            "defaultValue": 5,
+            "max": 10,
+            "min": 1,
+          },
+        },
+        Object {
+          "name": "Minimum Probability",
+          "onChange": [Function],
+          "step": 0.01,
+          "type": "SLIDER",
+          "values": Object {
+            "current": 0.9,
+            "defaultValue": 0.9,
+            "max": 1,
+            "min": 0,
+          },
+        },
+      ]
+    }
+    data={
+      Object {
+        "couplingScores": CouplingContainer {
+          "colCounter": 0,
+          "contacts": Array [],
+          "derivedFromCouplingScoresFlag": true,
+          "getCouplingScore": [Function],
+          "includes": [Function],
+          "indexRange": Object {
+            "max": 1,
+            "min": 1,
+          },
+          "rowCounter": 0,
+          "scoreSource": "cn",
+          "totalStoredContacts": 0,
+        },
+        "pdbData": undefined,
+        "secondaryStructures": Array [],
       }
-      enableSliders={true}
-      filters={Array []}
-      formattedPoints={
-        Array [
-          Object {
-            "hoverinfo": "text",
-            "marker": Object {
-              "color": Array [],
-            },
-            "mode": "lines+markers",
-            "name": "Inferred Contact",
-            "nodeSize": 4,
-            "points": Array [],
-            "subtitle": "(N=0, L=1)",
-            "text": Array [],
+    }
+    enableSliders={true}
+    filters={Array []}
+    formattedPoints={
+      Array [
+        Object {
+          "hoverinfo": "text",
+          "marker": Object {
+            "color": Array [],
           },
-          Object {
-            "hoverinfo": "text",
-            "marker": Object {
-              "color": Array [],
-            },
-            "mode": "lines+markers",
-            "name": "Inferred Contact Agrees with PDB Contact",
-            "nodeSize": 6,
-            "points": Array [],
-            "subtitle": "(N=0, NaN%)",
-            "text": Array [],
+          "mode": "lines+markers",
+          "name": "Inferred Contact",
+          "nodeSize": 4,
+          "points": Array [],
+          "subtitle": "(N=0, L=1)",
+          "text": Array [],
+        },
+        Object {
+          "hoverinfo": "text",
+          "marker": Object {
+            "color": Array [],
           },
-        ]
-      }
-      height="100%"
-      highlightColor="#ff8800"
-      hoveredResidues={Array []}
-      hoveredSecondaryStructures={Array []}
-      isDataLoading={false}
-      lockedResiduePairs={Object {}}
-      observedColor="#0000ff"
-      onBoxSelection={[Function]}
-      removeAllLockedResiduePairs={[Function]}
-      removeAllSelectedSecondaryStructures={[Function]}
-      removeHoveredResidues={[Function]}
-      removeHoveredSecondaryStructure={[Function]}
-      removeSecondaryStructure={[Function]}
-      selectedSecondaryStructures={Array []}
-      showConfigurations={true}
-      toggleLockedResiduePair={[Function]}
-      width="100%"
-    />
-  </div>
-</Provider>
+          "mode": "lines+markers",
+          "name": "Inferred Contact Agrees with PDB Contact",
+          "nodeSize": 6,
+          "points": Array [],
+          "subtitle": "(N=0, NaN%)",
+          "text": Array [],
+        },
+      ]
+    }
+    height="100%"
+    highlightColor="#ff8800"
+    hoveredResidues={Array []}
+    hoveredSecondaryStructures={Array []}
+    isDataLoading={false}
+    lockedResiduePairs={Object {}}
+    observedColor="#0000ff"
+    onBoxSelection={[Function]}
+    removeAllLockedResiduePairs={[Function]}
+    removeAllSelectedSecondaryStructures={[Function]}
+    removeHoveredResidues={[Function]}
+    removeHoveredSecondaryStructure={[Function]}
+    removeSecondaryStructure={[Function]}
+    selectedSecondaryStructures={Array []}
+    showConfigurations={true}
+    toggleLockedResiduePair={[Function]}
+    width="100%"
+  />
+</div>
 `;
 
 exports[`ContactMapContainer Snapshots Should match existing snapshot when given no data. 1`] = `
-<Provider
-  store={
-    Object {
-      "dispatch": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-      Symbol(observable): [Function],
-    }
-  }
+<div
+  className="ContactMapContainer"
 >
-  <div
-    className="ContactMapContainer"
-  >
-    <ContactMapComponent
-      addHoveredResidues={[Function]}
-      addHoveredSecondaryStructure={[Function]}
-      addSelectedSecondaryStructure={[Function]}
-      agreementColor="#ff0000"
-      allColor="#000000"
-      configurations={
-        Array [
-          Object {
-            "marks": Object {
-              "0": "0",
-              "1": "L",
-              "2": "2L",
-              "3": "3L",
-            },
-            "name": "# Couplings to Display",
-            "onChange": [Function],
-            "type": "SLIDER",
-            "values": Object {
-              "current": 0,
-              "defaultValue": 0,
-              "max": 3,
-              "min": 0,
-            },
-          },
-          Object {
-            "name": "Linear Distance Filter (|i - j|)",
-            "onChange": [Function],
-            "type": "SLIDER",
-            "values": Object {
-              "current": 5,
-              "defaultValue": 5,
-              "max": 10,
-              "min": 1,
-            },
-          },
-          Object {
-            "name": "Minimum Probability",
-            "onChange": [Function],
-            "step": 0.01,
-            "type": "SLIDER",
-            "values": Object {
-              "current": 0.9,
-              "defaultValue": 0.9,
-              "max": 1,
-              "min": 0,
-            },
-          },
-        ]
-      }
-      data={
+  <ContactMapComponent
+    addHoveredResidues={[Function]}
+    addHoveredSecondaryStructure={[Function]}
+    addSelectedSecondaryStructure={[Function]}
+    agreementColor="#ff0000"
+    allColor="#000000"
+    configurations={
+      Array [
         Object {
-          "couplingScores": CouplingContainer {
-            "colCounter": 0,
-            "contacts": Array [],
-            "derivedFromCouplingScoresFlag": true,
-            "getCouplingScore": [Function],
-            "includes": [Function],
-            "indexRange": Object {
-              "max": 1,
-              "min": 1,
-            },
-            "rowCounter": 0,
-            "scoreSource": "cn",
-            "totalStoredContacts": 0,
+          "marks": Object {
+            "0": "0",
+            "1": "L",
+            "2": "2L",
+            "3": "3L",
           },
-          "pdbData": undefined,
-          "secondaryStructures": Array [],
-        }
+          "name": "# Couplings to Display",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 0,
+            "defaultValue": 0,
+            "max": 3,
+            "min": 0,
+          },
+        },
+        Object {
+          "name": "Linear Distance Filter (|i - j|)",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 5,
+            "defaultValue": 5,
+            "max": 10,
+            "min": 1,
+          },
+        },
+        Object {
+          "name": "Minimum Probability",
+          "onChange": [Function],
+          "step": 0.01,
+          "type": "SLIDER",
+          "values": Object {
+            "current": 0.9,
+            "defaultValue": 0.9,
+            "max": 1,
+            "min": 0,
+          },
+        },
+      ]
+    }
+    data={
+      Object {
+        "couplingScores": CouplingContainer {
+          "colCounter": 0,
+          "contacts": Array [],
+          "derivedFromCouplingScoresFlag": true,
+          "getCouplingScore": [Function],
+          "includes": [Function],
+          "indexRange": Object {
+            "max": 1,
+            "min": 1,
+          },
+          "rowCounter": 0,
+          "scoreSource": "cn",
+          "totalStoredContacts": 0,
+        },
+        "pdbData": undefined,
+        "secondaryStructures": Array [],
       }
-      enableSliders={true}
-      filters={Array []}
-      formattedPoints={
-        Array [
-          Object {
-            "hoverinfo": "text",
-            "marker": Object {
-              "color": Array [],
-            },
-            "mode": "lines+markers",
-            "name": "Inferred Contact",
-            "nodeSize": 4,
-            "points": Array [],
-            "subtitle": "(N=0, L=1)",
-            "text": Array [],
+    }
+    enableSliders={true}
+    filters={Array []}
+    formattedPoints={
+      Array [
+        Object {
+          "hoverinfo": "text",
+          "marker": Object {
+            "color": Array [],
           },
-          Object {
-            "hoverinfo": "text",
-            "marker": Object {
-              "color": Array [],
-            },
-            "mode": "lines+markers",
-            "name": "Inferred Contact Agrees with PDB Contact",
-            "nodeSize": 6,
-            "points": Array [],
-            "subtitle": "(N=0, NaN%)",
-            "text": Array [],
+          "mode": "lines+markers",
+          "name": "Inferred Contact",
+          "nodeSize": 4,
+          "points": Array [],
+          "subtitle": "(N=0, L=1)",
+          "text": Array [],
+        },
+        Object {
+          "hoverinfo": "text",
+          "marker": Object {
+            "color": Array [],
           },
-        ]
-      }
-      height="100%"
-      highlightColor="#ff8800"
-      hoveredResidues={Array []}
-      hoveredSecondaryStructures={Array []}
-      isDataLoading={false}
-      lockedResiduePairs={Object {}}
-      observedColor="#0000ff"
-      onBoxSelection={[Function]}
-      removeAllLockedResiduePairs={[Function]}
-      removeAllSelectedSecondaryStructures={[Function]}
-      removeHoveredResidues={[Function]}
-      removeHoveredSecondaryStructure={[Function]}
-      removeSecondaryStructure={[Function]}
-      selectedSecondaryStructures={Array []}
-      showConfigurations={true}
-      toggleLockedResiduePair={[Function]}
-      width="100%"
-    />
-  </div>
-</Provider>
+          "mode": "lines+markers",
+          "name": "Inferred Contact Agrees with PDB Contact",
+          "nodeSize": 6,
+          "points": Array [],
+          "subtitle": "(N=0, NaN%)",
+          "text": Array [],
+        },
+      ]
+    }
+    height="100%"
+    highlightColor="#ff8800"
+    hoveredResidues={Array []}
+    hoveredSecondaryStructures={Array []}
+    isDataLoading={false}
+    lockedResiduePairs={Object {}}
+    observedColor="#0000ff"
+    onBoxSelection={[Function]}
+    removeAllLockedResiduePairs={[Function]}
+    removeAllSelectedSecondaryStructures={[Function]}
+    removeHoveredResidues={[Function]}
+    removeHoveredSecondaryStructure={[Function]}
+    removeSecondaryStructure={[Function]}
+    selectedSecondaryStructures={Array []}
+    showConfigurations={true}
+    toggleLockedResiduePair={[Function]}
+    width="100%"
+  />
+</div>
 `;
 
 exports[`ContactMapContainer Snapshots Should match snapshot when locked residues are added. 1`] = `
-<Provider
-  store={
-    Object {
-      "dispatch": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-      Symbol(observable): [Function],
-    }
-  }
+<div
+  className="ContactMapContainer"
 >
-  <div
-    className="ContactMapContainer"
-  >
-    <ContactMapComponent
-      addHoveredResidues={[Function]}
-      addHoveredSecondaryStructure={[Function]}
-      addSelectedSecondaryStructure={[Function]}
-      agreementColor="#ff0000"
-      allColor="#000000"
-      configurations={
-        Array [
-          Object {
-            "marks": Object {
-              "0": "0",
-              "1": "L",
-              "2": "2L",
-              "3": "3L",
-            },
-            "name": "# Couplings to Display",
-            "onChange": [Function],
-            "type": "SLIDER",
-            "values": Object {
-              "current": 0,
-              "defaultValue": 0,
-              "max": 3,
-              "min": 0,
-            },
-          },
-          Object {
-            "name": "Linear Distance Filter (|i - j|)",
-            "onChange": [Function],
-            "type": "SLIDER",
-            "values": Object {
-              "current": 5,
-              "defaultValue": 5,
-              "max": 10,
-              "min": 1,
-            },
-          },
-          Object {
-            "name": "Minimum Probability",
-            "onChange": [Function],
-            "step": 0.01,
-            "type": "SLIDER",
-            "values": Object {
-              "current": 0.9,
-              "defaultValue": 0.9,
-              "max": 1,
-              "min": 0,
-            },
-          },
-        ]
-      }
-      data={
+  <ContactMapComponent
+    addHoveredResidues={[Function]}
+    addHoveredSecondaryStructure={[Function]}
+    addSelectedSecondaryStructure={[Function]}
+    agreementColor="#ff0000"
+    allColor="#000000"
+    configurations={
+      Array [
         Object {
-          "couplingScores": CouplingContainer {
-            "colCounter": 0,
-            "contacts": Array [],
-            "derivedFromCouplingScoresFlag": true,
-            "getCouplingScore": [Function],
-            "includes": [Function],
-            "indexRange": Object {
-              "max": 1,
-              "min": 1,
-            },
-            "rowCounter": 0,
-            "scoreSource": "cn",
-            "totalStoredContacts": 0,
+          "marks": Object {
+            "0": "0",
+            "1": "L",
+            "2": "2L",
+            "3": "3L",
           },
-          "pdbData": undefined,
-          "secondaryStructures": Array [],
-        }
-      }
-      enableSliders={true}
-      filters={Array []}
-      formattedPoints={
-        Array [
-          Object {
-            "hoverinfo": "text",
-            "marker": Object {
-              "color": Array [],
-            },
-            "mode": "lines+markers",
-            "name": "Inferred Contact",
-            "nodeSize": 4,
-            "points": Array [],
-            "subtitle": "(N=0, L=1)",
-            "text": Array [],
+          "name": "# Couplings to Display",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 0,
+            "defaultValue": 0,
+            "max": 3,
+            "min": 0,
           },
-          Object {
-            "hoverinfo": "text",
-            "marker": Object {
-              "color": Array [],
-            },
-            "mode": "lines+markers",
-            "name": "Inferred Contact Agrees with PDB Contact",
-            "nodeSize": 6,
-            "points": Array [],
-            "subtitle": "(N=0, NaN%)",
-            "text": Array [],
-          },
-        ]
-      }
-      height="100%"
-      highlightColor="#ff8800"
-      hoveredResidues={Array []}
-      hoveredSecondaryStructures={Array []}
-      isDataLoading={false}
-      lockedResiduePairs={
+        },
         Object {
-          "37,46": Array [
-            37,
-            46,
-          ],
-          "8": Array [
-            8,
-          ],
-        }
+          "name": "Linear Distance Filter (|i - j|)",
+          "onChange": [Function],
+          "type": "SLIDER",
+          "values": Object {
+            "current": 5,
+            "defaultValue": 5,
+            "max": 10,
+            "min": 1,
+          },
+        },
+        Object {
+          "name": "Minimum Probability",
+          "onChange": [Function],
+          "step": 0.01,
+          "type": "SLIDER",
+          "values": Object {
+            "current": 0.9,
+            "defaultValue": 0.9,
+            "max": 1,
+            "min": 0,
+          },
+        },
+      ]
+    }
+    data={
+      Object {
+        "couplingScores": CouplingContainer {
+          "colCounter": 0,
+          "contacts": Array [],
+          "derivedFromCouplingScoresFlag": true,
+          "getCouplingScore": [Function],
+          "includes": [Function],
+          "indexRange": Object {
+            "max": 1,
+            "min": 1,
+          },
+          "rowCounter": 0,
+          "scoreSource": "cn",
+          "totalStoredContacts": 0,
+        },
+        "pdbData": undefined,
+        "secondaryStructures": Array [],
       }
-      observedColor="#0000ff"
-      onBoxSelection={[Function]}
-      removeAllLockedResiduePairs={[Function]}
-      removeAllSelectedSecondaryStructures={[Function]}
-      removeHoveredResidues={[Function]}
-      removeHoveredSecondaryStructure={[Function]}
-      removeSecondaryStructure={[Function]}
-      selectedSecondaryStructures={Array []}
-      showConfigurations={true}
-      toggleLockedResiduePair={[Function]}
-      width="100%"
-    />
-  </div>
-</Provider>
+    }
+    enableSliders={true}
+    filters={Array []}
+    formattedPoints={
+      Array [
+        Object {
+          "hoverinfo": "text",
+          "marker": Object {
+            "color": Array [],
+          },
+          "mode": "lines+markers",
+          "name": "Inferred Contact",
+          "nodeSize": 4,
+          "points": Array [],
+          "subtitle": "(N=0, L=1)",
+          "text": Array [],
+        },
+        Object {
+          "hoverinfo": "text",
+          "marker": Object {
+            "color": Array [],
+          },
+          "mode": "lines+markers",
+          "name": "Inferred Contact Agrees with PDB Contact",
+          "nodeSize": 6,
+          "points": Array [],
+          "subtitle": "(N=0, NaN%)",
+          "text": Array [],
+        },
+      ]
+    }
+    height="100%"
+    highlightColor="#ff8800"
+    hoveredResidues={Array []}
+    hoveredSecondaryStructures={Array []}
+    isDataLoading={false}
+    lockedResiduePairs={
+      Object {
+        "37,46": Array [
+          37,
+          46,
+        ],
+        "8": Array [
+          8,
+        ],
+      }
+    }
+    observedColor="#0000ff"
+    onBoxSelection={[Function]}
+    removeAllLockedResiduePairs={[Function]}
+    removeAllSelectedSecondaryStructures={[Function]}
+    removeHoveredResidues={[Function]}
+    removeHoveredSecondaryStructure={[Function]}
+    removeSecondaryStructure={[Function]}
+    selectedSecondaryStructures={Array []}
+    showConfigurations={true}
+    toggleLockedResiduePair={[Function]}
+    width="100%"
+  />
+</div>
 `;

@@ -1,215 +1,191 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TensorTContainer Should match existing snapshot when given no props. 1`] = `
-<Provider
-  store={
+<ComponentCard
+  componentName="tSNE - TensorFlow"
+  dockItems={Array []}
+  expandedStyle={
     Object {
-      "dispatch": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-      Symbol(observable): [Function],
+      "height": "85vh",
+      "width": "85vh",
     }
   }
+  frameHeight={0}
+  frameWidth={0}
+  headerHeight={20}
+  height="525px"
+  iconSrc="assets/icons/bio-blocks-icon.svg"
+  isDataReady={false}
+  isFramedComponent={false}
+  isFullPage={false}
+  menuItems={Array []}
+  padding={0}
+  showSettings={false}
+  width="575px"
 >
-  <ComponentCard
-    componentName="tSNE - TensorFlow"
-    dockItems={Array []}
-    expandedStyle={
+  <Grid
+    centered={true}
+    style={
       Object {
-        "height": "85vh",
-        "width": "85vh",
+        "height": "100%",
+        "marginLeft": 0,
+        "width": "100%",
       }
     }
-    frameHeight={0}
-    frameWidth={0}
-    headerHeight={20}
-    height="525px"
-    iconSrc="assets/icons/bio-blocks-icon.svg"
-    isDataReady={false}
-    isFramedComponent={false}
-    isFullPage={false}
-    menuItems={Array []}
-    padding={0}
-    showSettings={false}
-    width="575px"
   >
-    <Grid
-      centered={true}
+    <GridRow
+      columns="equal"
       style={
         Object {
-          "height": "100%",
-          "marginLeft": 0,
-          "width": "100%",
+          "maxHeight": "42px",
+          "padding": "14px 0 0 0",
         }
       }
     >
-      <GridRow
-        columns="equal"
-        style={
-          Object {
-            "maxHeight": "42px",
-            "padding": "14px 0 0 0",
-          }
-        }
+      <GridColumn
+        floated="left"
       >
-        <GridColumn
-          floated="left"
-        >
-          <Radio
-            label={
-              <label
-                style={
-                  Object {
-                    "fontSize": "14px",
-                    "fontWeight": "bold",
-                  }
+        <Radio
+          label={
+            <label
+              style={
+                Object {
+                  "fontSize": "14px",
+                  "fontWeight": "bold",
                 }
-              >
-                iterate
-              </label>
-            }
-            onClick={[Function]}
-            toggle={true}
-            type="radio"
-          />
-        </GridColumn>
-        <GridColumn>
-          <label>
-            iterations: 0
-          </label>
-        </GridColumn>
-        <GridColumn
-          floated="right"
-        >
-          <Icon
-            as="i"
-            name="undo"
-            onClick={[Function]}
-          />
-        </GridColumn>
-      </GridRow>
-      <GridRow
-        style={
-          Object {
-            "height": "calc(100% - 3px)",
-            "margin": 0,
+              }
+            >
+              iterate
+            </label>
           }
-        }
-      >
-        <Component
-          onSelectedCallback={[Function]}
-          pointsToPlot={Array []}
+          onClick={[Function]}
+          toggle={true}
+          type="radio"
         />
-      </GridRow>
-    </Grid>
-  </ComponentCard>
-</Provider>
+      </GridColumn>
+      <GridColumn>
+        <label>
+          iterations: 0
+        </label>
+      </GridColumn>
+      <GridColumn
+        floated="right"
+      >
+        <Icon
+          as="i"
+          name="undo"
+          onClick={[Function]}
+        />
+      </GridColumn>
+    </GridRow>
+    <GridRow
+      style={
+        Object {
+          "height": "calc(100% - 3px)",
+          "margin": 0,
+        }
+      }
+    >
+      <Component
+        onSelectedCallback={[Function]}
+        pointsToPlot={Array []}
+      />
+    </GridRow>
+  </Grid>
+</ComponentCard>
 `;
 
 exports[`TensorTContainer Should match existing snapshot when given sample data. 1`] = `
-<Provider
-  store={
+<ComponentCard
+  componentName="tSNE - TensorFlow"
+  dockItems={Array []}
+  expandedStyle={
     Object {
-      "dispatch": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-      Symbol(observable): [Function],
+      "height": "85vh",
+      "width": "85vh",
     }
   }
+  frameHeight={0}
+  frameWidth={0}
+  headerHeight={20}
+  height="525px"
+  iconSrc="assets/icons/bio-blocks-icon.svg"
+  isDataReady={false}
+  isFramedComponent={false}
+  isFullPage={false}
+  menuItems={Array []}
+  padding={0}
+  showSettings={false}
+  width="575px"
 >
-  <ComponentCard
-    componentName="tSNE - TensorFlow"
-    dockItems={Array []}
-    expandedStyle={
+  <Grid
+    centered={true}
+    style={
       Object {
-        "height": "85vh",
-        "width": "85vh",
+        "height": "100%",
+        "marginLeft": 0,
+        "width": "100%",
       }
     }
-    frameHeight={0}
-    frameWidth={0}
-    headerHeight={20}
-    height="525px"
-    iconSrc="assets/icons/bio-blocks-icon.svg"
-    isDataReady={false}
-    isFramedComponent={false}
-    isFullPage={false}
-    menuItems={Array []}
-    padding={0}
-    showSettings={false}
-    width="575px"
   >
-    <Grid
-      centered={true}
+    <GridRow
+      columns="equal"
       style={
         Object {
-          "height": "100%",
-          "marginLeft": 0,
-          "width": "100%",
+          "maxHeight": "42px",
+          "padding": "14px 0 0 0",
         }
       }
     >
-      <GridRow
-        columns="equal"
-        style={
-          Object {
-            "maxHeight": "42px",
-            "padding": "14px 0 0 0",
-          }
-        }
+      <GridColumn
+        floated="left"
       >
-        <GridColumn
-          floated="left"
-        >
-          <Radio
-            label={
-              <label
-                style={
-                  Object {
-                    "fontSize": "14px",
-                    "fontWeight": "bold",
-                  }
+        <Radio
+          label={
+            <label
+              style={
+                Object {
+                  "fontSize": "14px",
+                  "fontWeight": "bold",
                 }
-              >
-                iterate
-              </label>
-            }
-            onClick={[Function]}
-            toggle={true}
-            type="radio"
-          />
-        </GridColumn>
-        <GridColumn>
-          <label>
-            iterations: 0
-          </label>
-        </GridColumn>
-        <GridColumn
-          floated="right"
-        >
-          <Icon
-            as="i"
-            name="undo"
-            onClick={[Function]}
-          />
-        </GridColumn>
-      </GridRow>
-      <GridRow
-        style={
-          Object {
-            "height": "calc(100% - 3px)",
-            "margin": 0,
+              }
+            >
+              iterate
+            </label>
           }
-        }
-      >
-        <Component
-          onSelectedCallback={[Function]}
-          pointsToPlot={Array []}
+          onClick={[Function]}
+          toggle={true}
+          type="radio"
         />
-      </GridRow>
-    </Grid>
-  </ComponentCard>
-</Provider>
+      </GridColumn>
+      <GridColumn>
+        <label>
+          iterations: 0
+        </label>
+      </GridColumn>
+      <GridColumn
+        floated="right"
+      >
+        <Icon
+          as="i"
+          name="undo"
+          onClick={[Function]}
+        />
+      </GridColumn>
+    </GridRow>
+    <GridRow
+      style={
+        Object {
+          "height": "calc(100% - 3px)",
+          "margin": 0,
+        }
+      }
+    >
+      <Component
+        onSelectedCallback={[Function]}
+        pointsToPlot={Array []}
+      />
+    </GridRow>
+  </Grid>
+</ComponentCard>
 `;

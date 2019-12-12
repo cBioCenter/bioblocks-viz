@@ -3,10 +3,9 @@ import * as React from 'react';
 import { Button, DropdownProps, Grid, Label, Popup } from 'semantic-ui-react';
 
 import { Set } from 'immutable';
-import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { createContainerActions } from '~bioblocks-viz~/action';
-import { IUMAPVisualizationProps, UMAPVisualization } from '~bioblocks-viz~/component';
+import { connectWithBBStore, IUMAPVisualizationProps, UMAPVisualization } from '~bioblocks-viz~/component';
 import { ILabel, Marker, SeqRecord } from '~bioblocks-viz~/data';
 import { EMPTY_FUNCTION, readFileAsText, subsample } from '~bioblocks-viz~/helper';
 import { selectCurrentItems } from '~bioblocks-viz~/selector';
@@ -337,7 +336,8 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     dispatch,
   );
 
-export const UMAPSequenceContainer = connect(
+export const UMAPSequenceContainer = connectWithBBStore(
   mapStateToProps,
   mapDispatchToProps,
-)(UMAPSequenceContainerClass);
+  UMAPSequenceContainerClass,
+);
