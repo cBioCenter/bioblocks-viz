@@ -1,59 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SpringContainer Should match existing snapshot. 1`] = `
-<Provider
-  store={
+<ComponentCard
+  componentName="SPRING"
+  dockItems={Array []}
+  expandedStyle={
     Object {
-      "dispatch": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-      Symbol(observable): [Function],
+      "height": "85vh",
+      "width": "85vh",
     }
   }
+  frameHeight={1150}
+  frameWidth={1150}
+  headerHeight={20}
+  height="575px"
+  iconSrc="assets/icons/bio-blocks-icon.svg"
+  isDataReady={false}
+  isFramedComponent={true}
+  isFullPage={false}
+  menuItems={Array []}
+  padding={0}
+  showSettings={false}
+  width="575px"
 >
-  <ComponentCard
-    componentName="SPRING"
-    dockItems={Array []}
-    expandedStyle={
+  <IframeComm
+    attributes={
       Object {
-        "height": "85vh",
-        "width": "85vh",
+        "allowFullScreen": true,
+        "height": 1150,
+        "src": "http://localhost//SPRING/springViewer.html?../../datasets/hpc/full",
+        "width": 1150,
       }
     }
-    frameHeight={1150}
-    frameWidth={1150}
-    headerHeight={20}
-    height="575px"
-    iconSrc="assets/icons/bio-blocks-icon.svg"
-    isDataReady={false}
-    isFramedComponent={true}
-    isFullPage={false}
-    menuItems={Array []}
-    padding={0}
-    showSettings={false}
-    width="575px"
-  >
-    <IframeComm
-      attributes={
-        Object {
-          "allowFullScreen": true,
-          "height": 1150,
-          "src": "http://localhost//SPRING/springViewer.html?../../datasets/hpc/full",
-          "width": 1150,
-        }
+    handleReady={[Function]}
+    handleReceiveMessage={[Function]}
+    postMessageData={
+      Object {
+        "payload": Object {},
+        "type": "init",
       }
-      handleReady={[Function]}
-      handleReceiveMessage={[Function]}
-      postMessageData={
-        Object {
-          "payload": Object {},
-          "type": "init",
-        }
-      }
-      serializeMessage={true}
-      targetOrigin="http://localhost"
-    />
-  </ComponentCard>
-</Provider>
+    }
+    serializeMessage={true}
+    targetOrigin="http://localhost"
+  />
+</ComponentCard>
 `;

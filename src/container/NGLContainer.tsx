@@ -1,12 +1,12 @@
 import { Map, Set } from 'immutable';
 import * as React from 'react';
-import { connect, Provider } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
 import { Checkbox, CheckboxProps, Grid, Header, Popup, Table } from 'semantic-ui-react';
 import { createContainerActions } from '~bioblocks-viz~/action';
 import { createResiduePairActions } from '~bioblocks-viz~/action/ResiduePairAction';
-import { NGLComponent } from '~bioblocks-viz~/component';
+import { connectWithBBStore, NGLComponent } from '~bioblocks-viz~/component';
+import { BioblocksVisualization } from '~bioblocks-viz~/container';
 import {
   BIOBLOCKS_CSS_STYLE,
   BioblocksPDB,
@@ -16,7 +16,6 @@ import {
 } from '~bioblocks-viz~/data';
 import { EMPTY_FUNCTION } from '~bioblocks-viz~/helper';
 import {
-  BBStore,
   createContainerReducer,
   createResiduePairReducer,
   LockedResiduePair,
@@ -55,7 +54,7 @@ export interface INGLContainerState {
   predictedProteins: BioblocksPDB[];
 }
 
-export class NGLContainerClass extends React.Component<INGLContainerProps, INGLContainerState> {
+export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps, INGLContainerState> {
   public static defaultProps = {
     dispatchNglFetch: EMPTY_FUNCTION,
     experimentalProteins: [],
@@ -138,33 +137,31 @@ export class NGLContainerClass extends React.Component<INGLContainerProps, INGLC
     } = this.state;
 
     return (
-      <Provider store={BBStore}>
-        <Grid padded={true}>
-          <Grid.Row>
-            <NGLComponent
-              {...rest}
-              experimentalProteins={experimentalProteins.filter(pdb => selectedExperimentalProteins.includes(pdb.name))}
-              lockedResiduePairs={lockedResiduePairs.toJS() as LockedResiduePair}
-              menuItems={[
-                {
-                  component: {
-                    name: 'POPUP',
-                    props: {
-                      children: this.renderPDBSelector(),
-                      disabled: experimentalProteins.length === 0 && predictedProteins.length === 0,
-                      position: 'top center',
-                      wide: 'very',
-                    },
+      <Grid padded={true}>
+        <Grid.Row>
+          <NGLComponent
+            {...rest}
+            experimentalProteins={experimentalProteins.filter(pdb => selectedExperimentalProteins.includes(pdb.name))}
+            lockedResiduePairs={lockedResiduePairs.toJS() as LockedResiduePair}
+            menuItems={[
+              {
+                component: {
+                  name: 'POPUP',
+                  props: {
+                    children: this.renderPDBSelector(),
+                    disabled: experimentalProteins.length === 0 && predictedProteins.length === 0,
+                    position: 'top center',
+                    wide: 'very',
                   },
-                  description: 'PDB Selector',
-                  iconName: 'tasks',
                 },
-              ]}
-              predictedProteins={predictedProteins.filter(pdb => selectedPredictedProteins.includes(pdb.name))}
-            />
-          </Grid.Row>
-        </Grid>
-      </Provider>
+                description: 'PDB Selector',
+                iconName: 'tasks',
+              },
+            ]}
+            predictedProteins={predictedProteins.filter(pdb => selectedPredictedProteins.includes(pdb.name))}
+          />
+        </Grid.Row>
+      </Grid>
     );
   }
 
@@ -340,7 +337,7 @@ export class NGLContainerClass extends React.Component<INGLContainerProps, INGLC
   }
 }
 
-const mapStateToProps = (state: RootState, ownProps: INGLContainerProps) => ({
+const mapStateToProps = (state: RootState) => ({
   candidateResidues: getCandidates(state).toArray(),
   hoveredResidues: getHovered(state).toArray(),
   hoveredSecondaryStructures: selectCurrentItems<SECONDARY_STRUCTURE_SECTION>(
@@ -374,17 +371,4 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     dispatch,
   );
 
-const ConnectedNGLContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(NGLContainerClass);
-
-export const NGLContainer = (props: INGLContainerProps) => {
-  return (
-    <Provider store={BBStore}>
-      <ConnectedNGLContainer {...props} />
-    </Provider>
-  );
-};
-
-NGLContainer.defaultProps = NGLContainerClass.defaultProps;
+export const NGLContainer = connectWithBBStore(mapStateToProps, mapDispatchToProps, NGLContainerClass);

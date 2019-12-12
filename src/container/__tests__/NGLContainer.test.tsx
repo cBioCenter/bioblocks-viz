@@ -1,21 +1,14 @@
 import { mount, shallow } from 'enzyme';
 import * as React from 'react';
-import { Provider } from 'react-redux';
 
-import { Checkbox, Grid, Icon, Menu, Popup, Table } from 'semantic-ui-react';
+import { Checkbox, Icon, Menu, Popup, Table } from 'semantic-ui-react';
 import { NGLContainer, NGLContainerClass } from '~bioblocks-viz~/container';
 import { BioblocksPDB } from '~bioblocks-viz~/data';
-import { BBStore } from '~bioblocks-viz~/reducer';
 import { flushPromises, getAsyncShallowComponent } from '~bioblocks-viz~/test';
 
 describe('NGLContainer', () => {
   it('Should match the default snapshot when hooked up to a redux store.', () => {
-    const store = BBStore;
-    const wrapper = mount(
-      <Provider store={store}>
-        <NGLContainer />
-      </Provider>,
-    );
+    const wrapper = mount(<NGLContainer />);
     expect(wrapper).toMatchSnapshot();
   });
 

@@ -1,147 +1,123 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AnatomogramContainer Should match existing snapshot for homo sapiens. 1`] = `
-<Provider
-  store={
-    Object {
-      "dispatch": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-      Symbol(observable): [Function],
-    }
-  }
+<div
+  className="anatomogram-container"
 >
-  <div
-    className="anatomogram-container"
-  >
-    <ComponentCard
-      componentName="Anatomogram"
-      dockItems={Array []}
-      expandedStyle={
-        Object {
-          "height": "85vh",
-          "width": "85vh",
-        }
+  <ComponentCard
+    componentName="Anatomogram"
+    dockItems={Array []}
+    expandedStyle={
+      Object {
+        "height": "85vh",
+        "width": "85vh",
       }
-      frameHeight={0}
-      frameWidth={0}
-      headerHeight={20}
-      height="575px"
-      iconSrc=""
-      isDataReady={false}
-      isFramedComponent={false}
-      isFullPage={false}
-      menuItems={Array []}
-      padding={0}
-      showSettings={false}
-      width="575px"
-    >
-      <defaultProps(withPropsOnChange(onlyUpdateForPropTypes(defaultProps(defaultProps(mapProps(Anatomogram))))))
-        atlasUrl=""
-        highlightColour="yellow"
-        highlightIds={Array []}
-        highlightOpacity={0.4}
-        onClick={[Function]}
-        onInjected={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-        selectColour="ffaa00"
-        selectIds={Array []}
-        selectOpacity={0.4}
-        selectedView="male"
-        showColour="grey"
-        showIds={
-          Array [
-            "P11A",
-            "P11B",
-            "P12A",
-            "P9A",
-            "UBERON_0000178",
-            "UBERON_0000955",
-            "UBERON_0000977",
-            "UBERON_0001155",
-          ]
-        }
-        showOpacity={0.4}
-        species="homo_sapiens"
-      />
-    </ComponentCard>
-  </div>
-</Provider>
+    }
+    frameHeight={0}
+    frameWidth={0}
+    headerHeight={20}
+    height="575px"
+    iconSrc=""
+    isDataReady={false}
+    isFramedComponent={false}
+    isFullPage={false}
+    menuItems={Array []}
+    padding={0}
+    showSettings={false}
+    width="575px"
+  >
+    <defaultProps(withPropsOnChange(onlyUpdateForPropTypes(defaultProps(defaultProps(mapProps(Anatomogram))))))
+      atlasUrl=""
+      highlightColour="yellow"
+      highlightIds={Array []}
+      highlightOpacity={0.4}
+      onClick={[Function]}
+      onInjected={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+      selectColour="ffaa00"
+      selectIds={Array []}
+      selectOpacity={0.4}
+      selectedView="male"
+      showColour="grey"
+      showIds={
+        Array [
+          "P11A",
+          "P11B",
+          "P12A",
+          "P9A",
+          "UBERON_0000178",
+          "UBERON_0000955",
+          "UBERON_0000977",
+          "UBERON_0001155",
+        ]
+      }
+      showOpacity={0.4}
+      species="homo_sapiens"
+    />
+  </ComponentCard>
+</div>
 `;
 
 exports[`AnatomogramContainer Should match existing snapshot for mus musculus. 1`] = `
-<Provider
-  store={
-    Object {
-      "dispatch": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-      Symbol(observable): [Function],
-    }
-  }
+<div
+  className="anatomogram-container"
 >
-  <div
-    className="anatomogram-container"
-  >
-    <ComponentCard
-      componentName="Anatomogram"
-      dockItems={Array []}
-      expandedStyle={
-        Object {
-          "height": "85vh",
-          "width": "85vh",
-        }
+  <ComponentCard
+    componentName="Anatomogram"
+    dockItems={Array []}
+    expandedStyle={
+      Object {
+        "height": "85vh",
+        "width": "85vh",
       }
-      frameHeight={0}
-      frameWidth={0}
-      headerHeight={20}
-      height="575px"
-      iconSrc=""
-      isDataReady={false}
-      isFramedComponent={false}
-      isFullPage={false}
-      menuItems={Array []}
-      padding={0}
-      showSettings={false}
-      width="575px"
-    >
-      <defaultProps(withPropsOnChange(onlyUpdateForPropTypes(defaultProps(defaultProps(mapProps(Anatomogram))))))
-        atlasUrl=""
-        highlightColour="yellow"
-        highlightIds={Array []}
-        highlightOpacity={0.4}
-        onClick={[Function]}
-        onInjected={[Function]}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
-        selectColour="ffaa00"
-        selectIds={Array []}
-        selectOpacity={0.4}
-        selectedView="female"
-        showColour="grey"
-        showIds={
-          Array [
-            "UBERON_0000948",
-            "UBERON_0001255",
-            "UBERON_0001723",
-            "UBERON_0001911",
-            "UBERON_0002048",
-            "UBERON_0002106",
-            "UBERON_0002107",
-            "UBERON_0002113",
-            "UBERON_0002370",
-            "UBERON_0002371",
-            "UBERON_0003126",
-            "UBERON_0014892",
-          ]
-        }
-        showOpacity={0.4}
-        species="mus_musculus"
-      />
-    </ComponentCard>
-  </div>
-</Provider>
+    }
+    frameHeight={0}
+    frameWidth={0}
+    headerHeight={20}
+    height="575px"
+    iconSrc=""
+    isDataReady={false}
+    isFramedComponent={false}
+    isFullPage={false}
+    menuItems={Array []}
+    padding={0}
+    showSettings={false}
+    width="575px"
+  >
+    <defaultProps(withPropsOnChange(onlyUpdateForPropTypes(defaultProps(defaultProps(mapProps(Anatomogram))))))
+      atlasUrl=""
+      highlightColour="yellow"
+      highlightIds={Array []}
+      highlightOpacity={0.4}
+      onClick={[Function]}
+      onInjected={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+      selectColour="ffaa00"
+      selectIds={Array []}
+      selectOpacity={0.4}
+      selectedView="female"
+      showColour="grey"
+      showIds={
+        Array [
+          "UBERON_0000948",
+          "UBERON_0001255",
+          "UBERON_0001723",
+          "UBERON_0001911",
+          "UBERON_0002048",
+          "UBERON_0002106",
+          "UBERON_0002107",
+          "UBERON_0002113",
+          "UBERON_0002370",
+          "UBERON_0002371",
+          "UBERON_0003126",
+          "UBERON_0014892",
+        ]
+      }
+      showOpacity={0.4}
+      species="mus_musculus"
+    />
+  </ComponentCard>
+</div>
 `;

@@ -3,12 +3,11 @@ import * as tensorFlow from '@tensorflow/tfjs-core';
 import { TSNE } from '@tensorflow/tfjs-tsne/dist/tsne';
 import { Set } from 'immutable';
 import * as React from 'react';
-import { connect, Provider } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { Grid, Icon, Radio } from 'semantic-ui-react';
 
 import { createContainerActions } from '~bioblocks-viz~/action';
-import { ComponentCard, TensorTComponent } from '~bioblocks-viz~/component';
+import { ComponentCard, connectWithBBStore, TensorTComponent } from '~bioblocks-viz~/component';
 import { BioblocksVisualization } from '~bioblocks-viz~/container';
 import {
   BIOBLOCKS_CSS_STYLE,
@@ -18,7 +17,6 @@ import {
   IPlotlyData,
 } from '~bioblocks-viz~/data';
 import { EMPTY_FUNCTION, fetchTensorTSneCoordinateData } from '~bioblocks-viz~/helper';
-import { BBStore } from '~bioblocks-viz~/reducer';
 import { selectCurrentItems } from '~bioblocks-viz~/selector/ContainerSelectors';
 
 export interface ITensorContainerProps {
@@ -108,21 +106,19 @@ export class TensorTContainerClass extends BioblocksVisualization<ITensorContain
     const { plotlyCoords } = this.state;
 
     return (
-      <Provider store={BBStore}>
-        <ComponentCard
-          componentName={TensorTContainerClass.displayName}
-          iconSrc={iconSrc}
-          isFullPage={isFullPage}
-          height={height}
-        >
-          <Grid centered={true} style={{ height: '100%', marginLeft: 0, width: '100%' }}>
-            {this.renderPlaybackControls()}
-            <Grid.Row style={{ height: `calc(100% - 3px)`, margin: 0 }}>
-              <TensorTComponent onSelectedCallback={this.handlePointSelection} pointsToPlot={plotlyCoords} />
-            </Grid.Row>
-          </Grid>
-        </ComponentCard>
-      </Provider>
+      <ComponentCard
+        componentName={TensorTContainerClass.displayName}
+        iconSrc={iconSrc}
+        isFullPage={isFullPage}
+        height={height}
+      >
+        <Grid centered={true} style={{ height: '100%', marginLeft: 0, width: '100%' }}>
+          {this.renderPlaybackControls()}
+          <Grid.Row style={{ height: `calc(100% - 3px)`, margin: 0 }}>
+            <TensorTComponent onSelectedCallback={this.handlePointSelection} pointsToPlot={plotlyCoords} />
+          </Grid.Row>
+        </Grid>
+      </ComponentCard>
     );
   }
 
@@ -349,7 +345,4 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     dispatch,
   );
 
-export const TensorTContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(TensorTContainerClass);
+export const TensorTContainer = connectWithBBStore(mapStateToProps, mapDispatchToProps, TensorTContainerClass);

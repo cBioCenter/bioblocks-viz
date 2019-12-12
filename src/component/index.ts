@@ -1,4 +1,5 @@
 export * from './chart';
+export * from './hoc';
 export * from './widget';
 
 export * from './ContactMapComponent';

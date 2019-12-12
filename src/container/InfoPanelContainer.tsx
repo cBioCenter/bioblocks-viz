@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 import { Accordion, Label } from 'semantic-ui-react';
 
+import { connectWithBBStore } from '~bioblocks-viz~/component';
 import {
   BioblocksPDB,
   CouplingContainer,
@@ -144,4 +144,4 @@ const mapStateToProps = (state: { [key: string]: any }) => ({
   ).toArray(),
 });
 
-export const InfoPanelContainer = connect(mapStateToProps)(InfoPanelContainerClass);
+export const InfoPanelContainer = connectWithBBStore(mapStateToProps, undefined, InfoPanelContainerClass);

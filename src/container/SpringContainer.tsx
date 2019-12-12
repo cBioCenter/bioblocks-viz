@@ -1,6 +1,5 @@
 import { Set } from 'immutable';
 import * as React from 'react';
-import { connect, Provider } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
 // tslint:disable:import-name match-default-export-name
@@ -8,11 +7,11 @@ import IframeComm, { IframeCommAttributes } from 'react-iframe-comm';
 // tslint:enable:import-name match-default-export-name
 
 import { createContainerActions, createSpringActions, fetchSpringGraphData } from '~bioblocks-viz~/action';
-import { ComponentCard } from '~bioblocks-viz~/component';
+import { ComponentCard, connectWithBBStore } from '~bioblocks-viz~/component';
 import { BioblocksVisualization } from '~bioblocks-viz~/container';
 import { IFrameEvent, ISpringGraphData, ISpringLink, ISpringNode, VIZ_TYPE } from '~bioblocks-viz~/data';
 import { EMPTY_FUNCTION, fetchSpringData } from '~bioblocks-viz~/helper';
-import { BBStore, createSpringReducer } from '~bioblocks-viz~/reducer';
+import { createSpringReducer } from '~bioblocks-viz~/reducer';
 import { getCategories, getGraphData, selectCurrentItems } from '~bioblocks-viz~/selector';
 
 export interface ISpringContainerProps {
@@ -78,6 +77,7 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
 
   constructor(props: ISpringContainerProps) {
     super(props);
+    console.log('SpringContainer class');
     this.state = {
       postMessageData: {
         payload: {},
@@ -89,6 +89,8 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
 
   public setupDataServices() {
     createSpringReducer();
+    this.registerDataset('cells', []);
+    this.registerDataset('labels', []);
   }
 
   public componentDidMount() {
@@ -129,24 +131,22 @@ export class SpringContainerClass extends BioblocksVisualization<ISpringContaine
     const targetOriginPieces = springUrl.split('/');
 
     return (
-      <Provider store={BBStore}>
-        <ComponentCard
-          componentName={SpringContainerClass.displayName}
-          iconSrc={iconSrc}
-          isFramedComponent={true}
-          isFullPage={isFullPage}
-          frameHeight={springHeight}
-          frameWidth={springWidth}
-        >
-          <IframeComm
-            attributes={attributes}
-            postMessageData={postMessageData}
-            handleReady={this.onReady}
-            handleReceiveMessage={this.onReceiveMessage}
-            targetOrigin={`${targetOriginPieces[0]}//${targetOriginPieces[2]}`}
-          />
-        </ComponentCard>
-      </Provider>
+      <ComponentCard
+        componentName={SpringContainerClass.displayName}
+        iconSrc={iconSrc}
+        isFramedComponent={true}
+        isFullPage={isFullPage}
+        frameHeight={springHeight}
+        frameWidth={springWidth}
+      >
+        <IframeComm
+          attributes={attributes}
+          postMessageData={postMessageData}
+          handleReady={this.onReady}
+          handleReceiveMessage={this.onReceiveMessage}
+          targetOrigin={`${targetOriginPieces[0]}//${targetOriginPieces[2]}`}
+        />
+      </ComponentCard>
     );
   }
 
@@ -205,7 +205,4 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     dispatch,
   );
 
-export const SpringContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(SpringContainerClass);
+export const SpringContainer = connectWithBBStore(mapStateToProps, mapDispatchToProps, SpringContainerClass);

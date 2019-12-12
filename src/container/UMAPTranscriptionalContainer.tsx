@@ -1,9 +1,13 @@
 import { Set } from 'immutable';
 import * as React from 'react';
-import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { createContainerActions } from '~bioblocks-viz~/action';
-import { ICategoricalAnnotation, IUMAPVisualizationProps, UMAPVisualization } from '~bioblocks-viz~/component';
+import {
+  connectWithBBStore,
+  ICategoricalAnnotation,
+  IUMAPVisualizationProps,
+  UMAPVisualization,
+} from '~bioblocks-viz~/component';
 import { BioblocksVisualization } from '~bioblocks-viz~/container';
 import { ILabel, Marker } from '~bioblocks-viz~/data';
 import { EMPTY_FUNCTION, subsample } from '~bioblocks-viz~/helper';
@@ -247,7 +251,8 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     dispatch,
   );
 
-export const UMAPTranscriptionalContainer = connect(
+export const UMAPTranscriptionalContainer = connectWithBBStore(
   mapStateToProps,
   mapDispatchToProps,
-)(UMAPTranscriptionalContainerClass);
+  UMAPTranscriptionalContainerClass,
+);
