@@ -169,8 +169,9 @@ export class UMAPSequenceContainerClass extends React.Component<
   };
 
   protected onLabelChange = (event: React.SyntheticEvent, data: DropdownProps) => {
+    console.log(data);
     this.setState({
-      labelCategory: data.value ? (data.value as string) : this.state.labelCategory,
+      labelCategory: data ? (data.value as string) : this.state.labelCategory,
     });
   };
 

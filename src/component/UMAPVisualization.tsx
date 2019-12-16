@@ -337,27 +337,52 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
           );
 
     const MAX_LEGEND_LENGTH = 20;
+    const { dataVisibility } = this.state;
 
-    return notStyled
-      .concat(
-        plotlyData
-          .sort((a, b) => b.x.length - a.x.length)
-          .map((data: IPlotlyData, index) => {
-            const { dataVisibility } = this.state;
-            data.visible = dataVisibility[index] === undefined || dataVisibility[index] === true ? true : 'legendonly';
-            if (data.name.length > MAX_LEGEND_LENGTH) {
-              const countStartPos = data.name.lastIndexOf('(');
-              const count = data.name.slice(countStartPos);
-              data.name =
-                data.name.length - count.length - 1 > MAX_LEGEND_LENGTH
-                  ? `${data.name.slice(0, MAX_LEGEND_LENGTH - count.length + 1)}... ${count}`
-                  : data.name;
-            }
+    return [
+      ...notStyled.map((notStyledData, index) => {
+        notStyledData.visible =
+          dataVisibility[index] === undefined || dataVisibility[index] === true ? true : 'legendonly';
 
-            return data;
-          }),
-      )
-      .concat([...selected, ...unannotated]);
+        return notStyledData;
+      }),
+      ...plotlyData
+        .sort((a, b) => b.x.length - a.x.length)
+        .map((data: IPlotlyData, index) => {
+          data.visible =
+            dataVisibility[index + notStyled.length] === undefined || dataVisibility[index + notStyled.length] === true
+              ? true
+              : 'legendonly';
+          if (data.name.length > MAX_LEGEND_LENGTH) {
+            const countStartPos = data.name.lastIndexOf('(');
+            const count = data.name.slice(countStartPos);
+            data.name =
+              data.name.length - count.length - 1 > MAX_LEGEND_LENGTH
+                ? `${data.name.slice(0, MAX_LEGEND_LENGTH - count.length + 1)}... ${count}`
+                : data.name;
+          }
+
+          return data;
+        }),
+      ...selected.map((selectedData, index) => {
+        selectedData.visible =
+          dataVisibility[index + notStyled.length + plotlyData.length] === undefined ||
+          dataVisibility[index + notStyled.length + plotlyData.length] === true
+            ? true
+            : 'legendonly';
+
+        return selectedData;
+      }),
+      ...unannotated.map((unannotatedData, index) => {
+        unannotatedData.visible =
+          dataVisibility[index + notStyled.length + plotlyData.length + selected.length] === undefined ||
+          dataVisibility[index + notStyled.length + plotlyData.length + selected.length] === true
+            ? true
+            : 'legendonly';
+
+        return unannotatedData;
+      }),
+    ];
   };
 
   protected getData2D = (
@@ -667,6 +692,7 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
   };
 
   protected handlePointSelection = (event: BioblocksChartEvent) => {
+    console.log('oi');
     const { setCurrentCells } = this.props;
     const { umapEmbedding } = this.state;
     const selectedCells = new Array<number>();
@@ -831,16 +857,12 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
 
   private onLegendClick = (event: BioblocksChartEvent) => {
     const { onLabelChange } = this.props;
-    const { plotlyData } = this.state;
+    const { dataVisibility, plotlyData } = this.state;
     if ('expandedIndex' in event.plotlyEvent && event.plotlyEvent.expandedIndex !== undefined) {
-      const name = plotlyData[event.plotlyEvent.expandedIndex].name;
+      const { expandedIndex } = event.plotlyEvent;
+      const name = plotlyData[expandedIndex].name;
       const trimmedName = name.slice(0, name.lastIndexOf('(') - 1);
       onLabelChange(trimmedName);
-    }
-    /* TODO Handle legend visibility toggling?
-    if ('expandedIndex' in event.plotlyEvent && event.plotlyEvent.expandedIndex !== undefined) {
-      const { dataVisibility } = this.state;
-      const { expandedIndex } = event.plotlyEvent;
 
       this.setState({
         dataVisibility: {
@@ -849,7 +871,6 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
         },
       });
     }
-    */
 
     return false;
   };
