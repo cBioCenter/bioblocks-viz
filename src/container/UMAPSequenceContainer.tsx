@@ -169,8 +169,9 @@ export class UMAPSequenceContainerClass extends React.Component<
   };
 
   protected onLabelChange = (event: React.SyntheticEvent, data: DropdownProps) => {
+    console.log(data);
     this.setState({
-      labelCategory: data.value as string,
+      labelCategory: data ? (data.value as string) : this.state.labelCategory,
     });
   };
 
@@ -263,7 +264,7 @@ export class UMAPSequenceContainerClass extends React.Component<
 
     this.setState({
       labelCategory,
-      randomSequencesDataMatrix: subsampledSequences.map(seq => {
+      randomSequencesDataMatrix: subsampledSequences.map((seq: SeqRecord) => {
         return seq.integerRepresentation(['-']);
       }),
       subsampledSequences,

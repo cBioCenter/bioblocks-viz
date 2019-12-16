@@ -43,13 +43,10 @@ export class Marker {
 
       const stateToColor = sortedStateCountTuple.reduce<{ [state: string]: ILabel | undefined }>(
         (acc, stateCountTuple, idx) => {
-          acc[stateCountTuple[0]] = undefined;
-          if (idx < colorSet.length) {
-            acc[stateCountTuple[0]] = {
-              color: colorSet[idx],
-              name: stateCountTuple[0],
-            };
-          }
+          acc[stateCountTuple[0]] = {
+            color: idx < colorSet.length ? colorSet[idx] : '',
+            name: stateCountTuple[0],
+          };
 
           return acc;
         },
