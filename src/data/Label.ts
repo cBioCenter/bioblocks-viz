@@ -1,6 +1,7 @@
 export interface ILabel {
   name: string;
   color: string;
+  lineColor?: string;
   shape?: string;
 }
 

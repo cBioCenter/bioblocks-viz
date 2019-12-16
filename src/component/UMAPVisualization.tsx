@@ -315,32 +315,49 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     const unannotated =
       plotlyData.findIndex(datum => datum.legendgroup === 'Unannotated') === -1
         ? []
-        : plotlyData.splice(plotlyData.findIndex(datum => datum.legendgroup === 'Unannotated'), 1);
+        : plotlyData.splice(
+            plotlyData.findIndex(datum => datum.legendgroup === 'Unannotated'),
+            1,
+          );
+
+    const notStyled =
+      plotlyData.findIndex(datum => datum.legendgroup === 'Not Styled') === -1
+        ? []
+        : plotlyData.splice(
+            plotlyData.findIndex(datum => datum.legendgroup === 'Not Styled'),
+            1,
+          );
 
     const selected =
       plotlyData.findIndex(datum => datum.name === 'selected') === -1
         ? []
-        : plotlyData.splice(plotlyData.findIndex(datum => datum.name === 'selected'), 1);
+        : plotlyData.splice(
+            plotlyData.findIndex(datum => datum.name === 'selected'),
+            1,
+          );
 
     const MAX_LEGEND_LENGTH = 20;
 
-    return plotlyData
-      .sort((a, b) => b.x.length - a.x.length)
-      .map((data: IPlotlyData, index) => {
-        const { dataVisibility } = this.state;
-        data.visible = dataVisibility[index] === undefined || dataVisibility[index] === true ? true : 'legendonly';
-        if (data.name.length > MAX_LEGEND_LENGTH) {
-          const countStartPos = data.name.lastIndexOf('(');
-          const count = data.name.slice(countStartPos);
-          data.name =
-            data.name.length - count.length - 1 > MAX_LEGEND_LENGTH
-              ? `${data.name.slice(0, MAX_LEGEND_LENGTH - count.length + 1)}... ${count}`
-              : data.name;
-        }
+    return notStyled
+      .concat(
+        plotlyData
+          .sort((a, b) => b.x.length - a.x.length)
+          .map((data: IPlotlyData, index) => {
+            const { dataVisibility } = this.state;
+            data.visible = dataVisibility[index] === undefined || dataVisibility[index] === true ? true : 'legendonly';
+            if (data.name.length > MAX_LEGEND_LENGTH) {
+              const countStartPos = data.name.lastIndexOf('(');
+              const count = data.name.slice(countStartPos);
+              data.name =
+                data.name.length - count.length - 1 > MAX_LEGEND_LENGTH
+                  ? `${data.name.slice(0, MAX_LEGEND_LENGTH - count.length + 1)}... ${count}`
+                  : data.name;
+            }
 
-        return data;
-      })
-      .concat([...unannotated, ...selected]);
+            return data;
+          }),
+      )
+      .concat([...selected, ...unannotated]);
   };
 
   protected getData2D = (
@@ -364,8 +381,13 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
       y: new Array(),
     } as const;
     const result = umapEmbedding.reduce<PLOTLY_DATA_RECORD>((acc: PLOTLY_DATA_RECORD, umapRow, index) => {
-      const label = dataLabels[index];
-      const { color, name } = label ? label : { color: 'gray', name: 'Unannotated' };
+      let label = dataLabels[index];
+      if (!label) {
+        label = { color: 'gray', name: 'Unannotated' };
+      } else if (label.color.length === 0) {
+        label = { color: 'gray', lineColor: 'yellow', name: 'Not Styled' };
+      }
+      const { color, name } = label;
       if (acc[name]) {
         (acc[name].text as string[]).push(tooltipNames[index]);
         (acc[name].x as number[]).push(umapRow[0]);
@@ -375,9 +397,10 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
         acc[name] = {
           hoverinfo: 'none',
           hovertemplate: '%{data.name}<br>%{text}<extra></extra>',
-          legendgroup: name === 'Unannotated' ? 'Unannotated' : 'Annotated',
+          legendgroup: name === 'Unannotated' ? 'Unannotated' : name === 'Not Styled' ? 'Not Styled' : 'Annotated',
           marker: {
             color: color ? color : 'gray',
+            line: label.lineColor ? { color: label.lineColor, width: 1 } : undefined,
           },
           mode: 'markers',
           name: `${name} (${1})`,
@@ -423,8 +446,13 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     } as const;
 
     const result = umapEmbedding.reduce<PLOTLY_DATA_RECORD>((acc: PLOTLY_DATA_RECORD, umapRow, index) => {
-      const label = dataLabels[index];
-      const { color, name } = label ? label : { color: 'gray', name: 'Unannotated' };
+      let label = dataLabels[index];
+      if (!label) {
+        label = { color: 'gray', name: 'Unannotated' };
+      } else if (label.color.length === 0) {
+        label = { color: 'gray', lineColor: 'yellow', name: 'Not Styled' };
+      }
+      const { color, name } = label;
       if (acc[name]) {
         (acc[name].text as string[]).push(tooltipNames[index]);
         (acc[name].x as number[]).push(umapRow[0]);
@@ -435,9 +463,10 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
         acc[name] = {
           hoverinfo: 'none',
           hovertemplate: '%{data.name}<br>%{text}<extra></extra>',
-          legendgroup: name === 'Unannotated' ? 'Unannotated' : 'Annotated',
+          legendgroup: name === 'Unannotated' ? 'Unannotated' : name === 'Not Styled' ? 'Not Styled' : 'Annotated',
           marker: {
             color: color ? color : 'gray',
+            line: label.lineColor ? { color: label.lineColor, width: 1 } : undefined,
             size: 4,
           },
           mode: 'markers',
