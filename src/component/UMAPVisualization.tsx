@@ -692,7 +692,6 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
   };
 
   protected handlePointSelection = (event: BioblocksChartEvent) => {
-    console.log('oi');
     const { setCurrentCells } = this.props;
     const { umapEmbedding } = this.state;
     const selectedCells = new Array<number>();
