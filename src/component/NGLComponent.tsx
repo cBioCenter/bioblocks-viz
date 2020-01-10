@@ -2,7 +2,7 @@ import { Map } from 'immutable';
 import { cloneDeep } from 'lodash';
 import * as NGL from 'ngl';
 import * as React from 'react';
-import { Dimmer, Icon, Loader } from 'semantic-ui-react';
+import { Dimmer, Loader } from 'semantic-ui-react';
 import { Matrix4, Vector2 } from 'three';
 
 import { AminoAcid } from '~bioblocks-viz~/data/AminoAcid';

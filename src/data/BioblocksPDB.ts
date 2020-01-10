@@ -107,9 +107,9 @@ export class BioblocksPDB {
    *
    * !IMPORTANT! Since fetching the data is an asynchronous action, this must be used to create a new instance!
    */
-  public static async createPDB(file: File | string = '') {
+  public static async createPDB(file: File | string = '', fileLoaderParams: Partial<NGL.ILoaderParameters> = {}) {
     const result = new BioblocksPDB();
-    result.nglData = (await NGL.autoLoad(file)) as NGL.Structure;
+    result.nglData = (await NGL.autoLoad(file, fileLoaderParams)) as NGL.Structure;
     result.fileName = typeof file === 'string' ? file : file.name;
 
     return result;

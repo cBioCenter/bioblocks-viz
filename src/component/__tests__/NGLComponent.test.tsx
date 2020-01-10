@@ -58,13 +58,18 @@ describe('NGLComponent', () => {
   });
 
   it('Should handle updating the proteins to display.', () => {
-    const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
+    const wrapper = mount(<NGLComponent experimentalProteins={[]} predictedProteins={sampleData} />);
     const instance = wrapper.instance() as NGLComponent;
     const { stage } = instance.state;
     wrapper.update();
     console.log(sampleData.length);
     console.log(stage?.compList.length);
-    expect(instance.state.activeRepresentations.predicted.reps).toHaveLength(1);
+    wrapper.setProps({
+      experimentalProteins: sampleData,
+      predictedProteins: [],
+    });
+    wrapper.update();
+    // expect(instance.state.activeRepresentations.predicted.reps).toHaveLength(1);
   });
 
   it('Should show the ball+stick representation for hovered residues.', () => {
