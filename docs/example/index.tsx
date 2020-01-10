@@ -112,7 +112,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
       allSequences: [],
       datasetLocation: this.state.datasetLocation === 'hpc/full' ? 'tabula_muris/10k' : 'hpc/full',
       scRNAseqCategoricalData: {},
-      scRNAseqCategorySelected: this.state.datasetLocation === 'hpc/full' ? 'sample' : 'Sample', // 'Louvain cluster',
+      scRNAseqCategorySelected: this.state.datasetLocation === 'hpc/full' ? 'cell_ontology_class' : 'Sample', // 'Louvain cluster',
       scRNAseqMatrix: new Array(new Array<number>()),
     });
   };
@@ -152,10 +152,7 @@ class ExampleAppClass extends React.Component<IExampleAppProps, IExampleAppState
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({}, dispatch);
 
-const ExampleApp = connect(
-  null,
-  mapDispatchToProps,
-)(ExampleAppClass);
+const ExampleApp = connect(null, mapDispatchToProps)(ExampleAppClass);
 
 ReactDOM.render(
   <Provider store={BBStore}>
