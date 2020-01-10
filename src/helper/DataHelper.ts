@@ -1,4 +1,4 @@
-import * as NGL from 'ngl';
+import { ILoaderParameters } from 'ngl';
 
 import {
   BioblocksPDB,
@@ -20,6 +20,7 @@ import {
   generateResidueMapping,
   getCouplingHeaderIndices,
   IResidueMapping,
+  NGLInstanceManager,
   readFileAsText,
 } from '~bioblocks-viz~/helper';
 
@@ -166,8 +167,8 @@ export const fetchNGLDataFromDirectory = async (dir: string) => {
   return fetchNGLDataFromFile(file);
 };
 
-export const fetchNGLDataFromFile = async (file: string | File | Blob, params: Partial<NGL.ILoaderParameters> = {}) =>
-  (await NGL.autoLoad(file, params)) as NGL.Structure;
+export const fetchNGLDataFromFile = async (file: string | File | Blob, params: Partial<ILoaderParameters> = {}) =>
+  (await NGLInstanceManager.instance.autoLoad(file, params)) as typeof NGLInstanceManager.instance.Structure;
 
 export const fetchContactMapData = async (
   dir: string,

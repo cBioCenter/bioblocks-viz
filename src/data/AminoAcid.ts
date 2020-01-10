@@ -1,10 +1,10 @@
 import { flatten } from 'lodash';
 import { BioblocksPDB, CouplingContainer } from '~bioblocks-viz~/data';
 
-export type AMINO_ACID_FULL_NAME = keyof { [K in (ReturnType<typeof AminoAcid.ALL_FULL_NAMES>)[number]]: string };
-export type AMINO_ACID_1LETTER_CODE = keyof { [K in (ReturnType<typeof AminoAcid.ALL_1LETTER_CODES>)[number]]: string };
-export type AMINO_ACID_3LETTER_CODE = keyof { [K in (ReturnType<typeof AminoAcid.ALL_3LETTER_CODES>)[number]]: string };
-export type AMINO_ACID_CODON = keyof { [K in (ReturnType<typeof AminoAcid.ALL_CODONS>)[number]]: string[] };
+export type AMINO_ACID_FULL_NAME = keyof { [K in ReturnType<typeof AminoAcid.ALL_FULL_NAMES>[number]]: string };
+export type AMINO_ACID_1LETTER_CODE = keyof { [K in ReturnType<typeof AminoAcid.ALL_1LETTER_CODES>[number]]: string };
+export type AMINO_ACID_3LETTER_CODE = keyof { [K in ReturnType<typeof AminoAcid.ALL_3LETTER_CODES>[number]]: string };
+export type AMINO_ACID_CODON = keyof { [K in ReturnType<typeof AminoAcid.ALL_CODONS>[number]]: string[] };
 
 export class AminoAcid {
   public static readonly Alanine = new AminoAcid('Alanine', 'A', 'ALA', ['GCT', 'GCC', 'GCA', 'GCG']);
@@ -51,6 +51,16 @@ export class AminoAcid {
     }, new Array<AminoAcid>());
   }
 
+  public static fromFullName(fullName: string): AminoAcid | undefined {
+    return AminoAcid.getAllCanonicalAminoAcids().find(aa => {
+      if (aa.fullName.toUpperCase() === fullName.toUpperCase()) {
+        return true;
+      }
+
+      return false;
+    });
+  }
+
   public static fromSingleLetterCode(code: string): AminoAcid | undefined {
     return AminoAcid.getAllCanonicalAminoAcids().find(aa => {
       if (aa.singleLetterCode.toUpperCase() === code.toUpperCase()) {
@@ -62,13 +72,13 @@ export class AminoAcid {
   }
 
   public static fromThreeLetterCode(code: string): AminoAcid | undefined {
-    AminoAcid.getAllCanonicalAminoAcids().forEach(aa => {
+    return AminoAcid.getAllCanonicalAminoAcids().find(aa => {
       if (aa.threeLetterCode.toUpperCase() === code.toUpperCase()) {
-        return aa;
+        return true;
       }
-    });
 
-    return undefined;
+      return false;
+    });
   }
 
   public static fromCodon(codon: string): AminoAcid | undefined {

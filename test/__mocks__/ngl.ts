@@ -105,7 +105,9 @@ class MockStage {
   public defaultFileRepresentation = (...args: any[]) => jest.fn();
   public dispose = () => jest.fn();
   public handleResize = () => jest.fn();
-  public removeAllComponents = () => jest.fn();
+  public removeAllComponents = () => {
+    this.compList = [];
+  };
   public setParameters = (params: object) => {
     this.parameters = params;
   };
@@ -115,8 +117,9 @@ class MockStage {
   return new MockStage(canvas);
 });
 
-const genericResidue = (resno: number, chainIndex: number = 0) => ({
+const genericResidue = (resno: number, chainIndex: number = 0, index: number) => ({
   chainIndex,
+  index,
   isHelix: () => false,
   isProtein: () => true,
   isSheet: () => false,
@@ -124,26 +127,26 @@ const genericResidue = (resno: number, chainIndex: number = 0) => ({
   resno,
 });
 
-const helixResidue = (resno: number, chainIndex: number = 0) => ({
-  ...genericResidue(resno, chainIndex),
+const helixResidue = (resno: number, chainIndex: number, index: number) => ({
+  ...genericResidue(resno, chainIndex, index),
   isHelix: () => true,
   resname: 'Histidine',
 });
 
-const sheetResidue = (resno: number, chainIndex: number = 0) => ({
-  ...genericResidue(resno, chainIndex),
+const sheetResidue = (resno: number, chainIndex: number, index: number) => ({
+  ...genericResidue(resno, chainIndex, index),
   isSheet: () => true,
   resname: 'Glutamic Acid',
 });
 
-const turnResidue = (resno: number, chainIndex: number = 0) => ({
-  ...genericResidue(resno, chainIndex),
+const turnResidue = (resno: number, chainIndex: number, index: number) => ({
+  ...genericResidue(resno, chainIndex, index),
   isTurn: () => true,
   resname: 'Cysteine',
 });
 
-const sampleResidues = [helixResidue(1), sheetResidue(2), turnResidue(3)];
-const chainResidues = [...sampleResidues, helixResidue(1, 1), helixResidue(2, 1), helixResidue(3, 1)];
+const sampleResidues = [helixResidue(1, 0, 0), sheetResidue(2, 0, 1), turnResidue(3, 0, 2)];
+const chainResidues = [...sampleResidues, helixResidue(1, 1, 0), helixResidue(2, 1, 1), helixResidue(3, 1, 2)];
 
 // tslint:disable-next-line:max-classes-per-file
 class MockStructureComponent {
@@ -209,18 +212,19 @@ class MockStructure {
   }));
   public getResidueProxy = jest.fn((resno: number) => ({
     getAtomIndexByName: () => resno,
+    index: resno,
   }));
   public getSequence = jest.fn(() => []);
   public residueMap = {
     list: [],
   };
   public residueStore = {
-    atomCount: [2, 2],
-    atomOffset: [0, 2],
+    atomCount: [2, 2, 2, 2],
+    atomOffset: [0, 2, 4, 6],
     // We are the priests, of the Temples of Syrinx.
     // Our great computers fill the hollowed halls.
     residueTypeId: [2, 1, 1, 2],
-    resno: [1, 2],
+    resno: [1, 2, 3, 4],
   };
   public constructor(readonly name: string) {
     return;

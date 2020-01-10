@@ -1,6 +1,19 @@
-import { BioblocksPDB } from '~bioblocks-viz~/data';
+import {
+  AminoAcid,
+  BioblocksPDB,
+  CONTACT_DISTANCE_PROXIMITY,
+  CouplingContainer,
+  ICouplingScore,
+} from '~bioblocks-viz~/data';
+import { NGLInstanceManager } from '~bioblocks-viz~/helper';
 
 describe('BioblocksPDB', () => {
+  it('Should allow creation of an empty PDB.', () => {
+    const result = BioblocksPDB.createEmptyPDB();
+    expect(result.name).toEqual('');
+    expect(JSON.stringify(result.nglStructure)).toEqual(JSON.stringify(new NGLInstanceManager.instance.Structure()));
+  });
+
   it('Should handle loading an existing PDB file.', async () => {
     const result = BioblocksPDB.createPDB('protein.pdb');
     await expect(result).toBeDefined();
@@ -23,7 +36,10 @@ describe('BioblocksPDB', () => {
   });
 
   it('Should correctly handle getting the secondary structure.', async () => {
-    const expected = [{ resno: 1, structId: 'H' }, { resno: 2, structId: 'E' }];
+    const expected = [
+      { resno: 1, structId: 'H' },
+      { resno: 2, structId: 'E' },
+    ];
     const result = await BioblocksPDB.createPDB('sample.pdb');
     expect(result.secondaryStructure).toEqual(expected);
   });
@@ -51,6 +67,76 @@ describe('BioblocksPDB', () => {
     ];
     const result = await BioblocksPDB.createPDB('chain.pdb');
     expect(result.secondaryStructureSections).toEqual(expected);
+  });
+
+  it('Should allow amending the PDB with coupling scores and C-Alpha as a proximity metric.', async () => {
+    const result = await BioblocksPDB.createPDB('sample.pdb');
+    const prevContacts = result.contactInformation;
+    const contacts: ICouplingScore[] = [
+      { A_i: 'A', A_j: 'T', cn: 0.5, i: 1, j: 3, dist: 1 },
+      { A_i: 'R', A_j: 'A', cn: 0.5, i: 2, j: 1, dist: 1 },
+      { A_i: 'T', A_j: 'R', cn: 0.5, i: 3, j: 2, dist: 1 },
+      { A_i: 'R', A_j: 'T', cn: 0.5, i: 2, j: 3, dist: 1 },
+      { A_i: 'S', A_j: 'A', cn: 0.5, i: 4, j: 1, dist: 1 },
+      { A_i: 'T', A_j: 'Y', cn: 0.5, i: 3, j: 5, dist: 1 },
+    ];
+    result.amendPDBWithCouplingScores(contacts, CONTACT_DISTANCE_PROXIMITY.C_ALPHA);
+    expect(prevContacts).not.toEqual(contacts);
+  });
+
+  it('Should allow amending the PDB with coupling scores and closest atom as a proximity metric.', async () => {
+    const result = await BioblocksPDB.createPDB('sample.pdb');
+    const prevContacts = result.contactInformation;
+    const contacts: ICouplingScore[] = [
+      { A_i: 'A', A_j: 'T', cn: 0.5, i: 1, j: 3, dist: 1 },
+      { A_i: 'R', A_j: 'A', cn: 0.5, i: 2, j: 1, dist: 1 },
+      { A_i: 'T', A_j: 'R', cn: 0.5, i: 3, j: 2, dist: 1 },
+      { A_i: 'R', A_j: 'T', cn: 0.5, i: 2, j: 3, dist: 1 },
+      { A_i: 'S', A_j: 'A', cn: 0.5, i: 4, j: 1, dist: 1 },
+      { A_i: 'T', A_j: 'Y', cn: 0.5, i: 3, j: 5, dist: 1 },
+    ];
+    result.amendPDBWithCouplingScores(contacts, CONTACT_DISTANCE_PROXIMITY.CLOSEST);
+    expect(prevContacts).not.toEqual(contacts);
+  });
+
+  it('Should allow getting residue mismatch information.', async () => {
+    const result = await BioblocksPDB.createPDB('sample.pdb');
+    const contacts: ICouplingScore[] = [
+      { A_i: 'A', A_j: 'T', cn: 0.5, i: 1, j: 3, dist: 1 },
+      { A_i: 'R', A_j: 'A', cn: 0.5, i: 2, j: 1, dist: 1 },
+      { A_i: 'T', A_j: 'R', cn: 0.5, i: 3, j: 2, dist: 1 },
+      { A_i: 'R', A_j: 'T', cn: 0.5, i: 2, j: 3, dist: 1 },
+      { A_i: 'S', A_j: 'A', cn: 0.5, i: 4, j: 1, dist: 1 },
+      { A_i: 'T', A_j: 'Y', cn: 0.5, i: 3, j: 5, dist: 1 },
+    ];
+
+    const mismatchedContacts: ICouplingScore[] = [
+      { A_i: 'A', A_j: 'T', cn: 0.5, i: 1, j: 3, dist: 1 },
+      { A_i: 'I', A_j: 'A', cn: 0.5, i: 2, j: 1, dist: 1 },
+      { A_i: 'T', A_j: 'I', cn: 0.5, i: 3, j: 2, dist: 1 },
+      { A_i: 'I', A_j: 'T', cn: 0.5, i: 2, j: 3, dist: 1 },
+      { A_i: 'S', A_j: 'A', cn: 0.5, i: 4, j: 1, dist: 1 },
+      { A_i: 'T', A_j: 'Y', cn: 0.5, i: 3, j: 5, dist: 1 },
+    ];
+    result.amendPDBWithCouplingScores(contacts, CONTACT_DISTANCE_PROXIMITY.C_ALPHA);
+    const expected = [
+      {
+        couplingAminoAcid: AminoAcid.Alanine,
+        pdbAminoAcid: AminoAcid.Histidine,
+        resno: 1,
+      },
+      {
+        couplingAminoAcid: AminoAcid.Isoleucine,
+        pdbAminoAcid: AminoAcid.GlutamicAcid,
+        resno: 2,
+      },
+      {
+        couplingAminoAcid: AminoAcid.Threonine,
+        pdbAminoAcid: AminoAcid.Cysteine,
+        resno: 3,
+      },
+    ];
+    expect(result.getResidueNumberingMismatches(new CouplingContainer(mismatchedContacts))).toEqual(expected);
   });
 
   describe('Residue distances', () => {

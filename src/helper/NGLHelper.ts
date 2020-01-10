@@ -2,6 +2,20 @@ import * as NGL from 'ngl';
 
 import { RESIDUE_TYPE, SECONDARY_STRUCTURE_SECTION } from '~bioblocks-viz~/data';
 
+// tslint:disable-next-line: no-unnecessary-class
+export class NGLInstanceManager {
+  public static get instance() {
+    return NGLInstanceManager.nglInstance;
+  }
+
+  public static setNGLInstance(nglInstance: typeof NGL) {
+    NGLInstanceManager.nglInstance = nglInstance;
+  }
+  protected static nglInstance: typeof NGL = NGL;
+
+  private constructor() {}
+}
+
 export const defaultDistanceParams: Partial<NGL.IStructureRepresentationParams> = {
   color: 'red',
 };

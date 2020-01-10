@@ -1,16 +1,17 @@
 import { mount, ReactWrapper, shallow } from 'enzyme';
-import * as NGL from 'ngl';
+import { PickingProxy, Stage, StructureComponent } from 'ngl';
 import * as React from 'react';
-
 import { Checkbox, Popup } from 'semantic-ui-react';
+
 import { NGLComponent } from '~bioblocks-viz~/component';
 import { BioblocksPDB, CONTACT_DISTANCE_PROXIMITY } from '~bioblocks-viz~/data';
+import { NGLInstanceManager } from '~bioblocks-viz~/helper';
 
 describe('NGLComponent', () => {
   let sampleData: BioblocksPDB[];
 
   beforeEach(() => {
-    const nglStructure = new NGL.Structure('sample');
+    const nglStructure = new NGLInstanceManager.instance.Structure('sample');
     nglStructure.residueStore.resno = new Uint32Array([0, 1, 2, 3, 4]);
     sampleData = [BioblocksPDB.createPDBFromNGLData(nglStructure)];
   });
@@ -57,6 +58,31 @@ describe('NGLComponent', () => {
     });
   });
 
+  it('Should handle updating the proteins to display.', () => {
+    const wrapper = mount(<NGLComponent experimentalProteins={[]} predictedProteins={[]} />);
+    const instance = wrapper.instance() as NGLComponent;
+    const { stage } = instance.state;
+    expect(stage?.compList).toHaveLength(0);
+    wrapper.setProps({
+      experimentalProteins: [],
+      predictedProteins: [BioblocksPDB.createPDBFromNGLData(new NGLInstanceManager.instance.Structure('test-pred'))],
+    });
+    wrapper.update();
+    expect(stage?.compList).toHaveLength(1);
+    wrapper.setProps({
+      experimentalProteins: [BioblocksPDB.createPDBFromNGLData(new NGLInstanceManager.instance.Structure('test-exp'))],
+      predictedProteins: [],
+    });
+    wrapper.update();
+    expect(stage?.compList).toHaveLength(1);
+    wrapper.setProps({
+      experimentalProteins: [],
+      predictedProteins: [BioblocksPDB.createPDBFromNGLData(new NGLInstanceManager.instance.Structure('test-pred'))],
+    });
+    wrapper.update();
+    expect(stage?.compList).toHaveLength(1);
+  });
+
   it('Should show the ball+stick representation for hovered residues.', () => {
     const expectedRep = 'ball+stick';
     const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
@@ -73,43 +99,40 @@ describe('NGLComponent', () => {
 
   it('Should show the distance and ball+stick representation for locked residues for C-Alpha proximity.', () => {
     const expectedRep = ['ball+stick', 'distance', 'ball+stick', 'distance'];
-    const wrapper = shallow(<NGLComponent predictedProteins={sampleData} />);
+    const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
     const instance = wrapper.instance() as NGLComponent;
 
     wrapper.setProps({
-      lockedResiduePairs: new Map(
-        Object.entries({
-          '1,2': [1, 2],
-          '3,4': [3, 4],
-        }),
-      ),
+      lockedResiduePairs: {
+        '1,2': [1, 2],
+        '3,4': [3, 4],
+      },
     });
 
+    wrapper.update();
     const { activeRepresentations } = instance.state;
-    for (let i = 0; i < activeRepresentations.experimental.reps.length; i++) {
-      expect(activeRepresentations.experimental.reps[i].name()).toEqual(expectedRep[i]);
+    for (let i = 0; i < activeRepresentations.predicted.reps.length; i++) {
+      expect(activeRepresentations.predicted.reps[i].name()).toEqual(expectedRep[i]);
     }
   });
 
   it('Should show the distance and ball+stick representation for locked residues for Closest distance proximity.', () => {
     const expectedRep = ['ball+stick', 'distance', 'ball+stick', 'distance'];
-    const wrapper = shallow(
+    const wrapper = mount(
       <NGLComponent predictedProteins={sampleData} measuredProximity={CONTACT_DISTANCE_PROXIMITY.CLOSEST} />,
     );
     const instance = wrapper.instance() as NGLComponent;
 
     wrapper.setProps({
-      lockedResiduePairs: new Map(
-        Object.entries({
-          '1,2': [1, 2],
-          '3,4': [3, 4],
-        }),
-      ),
+      lockedResiduePairs: {
+        '1,2': [1, 2],
+        '3,4': [3, 4],
+      },
     });
 
     const { activeRepresentations } = instance.state;
-    for (let i = 0; i < activeRepresentations.experimental.reps.length; i++) {
-      expect(activeRepresentations.experimental.reps[i].name()).toEqual(expectedRep[i]);
+    for (let i = 0; i < activeRepresentations.predicted.reps.length; i++) {
+      expect(activeRepresentations.predicted.reps[i].name()).toEqual(expectedRep[i]);
     }
   });
 
@@ -170,7 +193,7 @@ describe('NGLComponent', () => {
     wrapper.update();
   });
 
-  it.skip('Should follow candidate residue selection flow.', () => {
+  it('Should follow candidate residue selection flow.', () => {
     const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
     const activeReps = (wrapper.instance() as NGLComponent).state.activeRepresentations;
 
@@ -187,43 +210,37 @@ describe('NGLComponent', () => {
     );
   });
 
-  it.skip('Should call appropriate residue clearing callback.', () => {
-    const removeSpy = jest.fn();
-    const wrapper = shallow(<NGLComponent removeAllLockedResiduePairs={removeSpy} />);
-    wrapper
-      .find('#clear-selections-0')
-      .at(0)
-      .simulate('click');
-    expect(removeSpy).toHaveBeenCalledTimes(1);
-  });
-
   it('Should unmount correctly.', () => {
-    const wrapper = shallow(<NGLComponent />);
-    expect(wrapper.get(0)).not.toBeNull();
+    const wrapper = mount(<NGLComponent />);
+    expect(wrapper.get(0)).not.toBeUndefined();
     wrapper.unmount();
-    expect(wrapper.get(0)).toBeNull();
+    expect(wrapper.get(0)).toBeUndefined();
   });
 
   describe('Events', () => {
     const simulateHoverEvent = (wrapper: ReactWrapper<any, any>, opts: object) => {
       const instance = wrapper.instance() as NGLComponent;
       const { stage } = instance.state;
-      if (stage) {
-        stage.mouseControls.run('hoverPick', instance.state.stage, opts);
-      } else {
-        expect(stage).not.toBeUndefined();
-      }
+      stage?.mouseControls.run('hoverPick', instance.state.stage, opts);
     };
 
     const simulateClickEvent = (wrapper: ReactWrapper<any, any>, opts?: object) => {
       const instance = wrapper.instance() as NGLComponent;
       const { stage } = instance.state;
-      if (stage) {
-        stage.signals.clicked.dispatch(opts);
-      } else {
-        expect(stage).not.toBeUndefined();
-      }
+      stage?.signals.clicked.dispatch(opts);
     };
+
+    it('Should show the residue name followed by the residue number for a hovered residue.', () => {
+      const expectedHoverText = 'P4';
+      const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
+      const instance = wrapper.instance() as NGLComponent;
+
+      simulateHoverEvent(wrapper, { atom: { resno: 4, resname: 'PRO' } });
+      wrapper.update();
+
+      const { stage } = instance.state;
+      expect(stage?.tooltip.textContent).toEqual(expectedHoverText);
+    });
 
     it('Should handle hover events when there is no hovered or candidate residue.', async () => {
       const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
@@ -284,7 +301,7 @@ describe('NGLComponent', () => {
     // tslint:disable-next-line:mocha-no-side-effect-code
     it.each([{ atom: { resno: 4, resname: 'ARG' } }, { closestBondAtom: { resno: 4, resname: 'ARG' } }])(
       'Should handle click events by creating a locked residue pair if there is a candidate.',
-      async (pickingResult: NGL.PickingProxy) => {
+      async (pickingResult: PickingProxy) => {
         const addLockedSpy = jest.fn();
         const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
         wrapper.setProps({
@@ -299,7 +316,7 @@ describe('NGLComponent', () => {
     // tslint:disable-next-line:mocha-no-side-effect-code
     it.each([{ atom: { resno: 4 } }, { closestBondAtom: { resno: 4 } }])(
       'Should handle click events by creating a candidate residue when none is present.',
-      async (pickingResult: NGL.PickingProxy) => {
+      async (pickingResult: PickingProxy) => {
         const addCandidateSpy = jest.fn();
         const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
         wrapper.setProps({
@@ -313,8 +330,8 @@ describe('NGLComponent', () => {
     it('Should handle clicking on a distance representation.', async () => {
       const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
       const removedLockedSpy = jest.fn();
-      const stage: NGL.Stage = wrapper.state('stage');
-      const structureComponent = stage.compList[0] as NGL.StructureComponent;
+      const stage: Stage = wrapper.state('stage');
+      const structureComponent = stage.compList[0] as StructureComponent;
       structureComponent.addRepresentation('distance');
       wrapper.setProps({
         lockedResiduePairs: new Map(
@@ -409,14 +426,9 @@ describe('NGLComponent', () => {
 
       const wrapper = mount(<NGLComponent />);
       const instance = wrapper.instance() as NGLComponent;
-      if (instance.canvas && instance.state.stage) {
-        instance.canvas.dispatchEvent(new Event('focus'));
-        instance.state.stage.keyBehavior.domElement.focus();
-        expect(onFocusSpy).not.toBeCalled();
-      } else {
-        expect(instance.canvas).not.toBeNull();
-        expect(instance.state.stage).not.toBeNull();
-      }
+      instance.canvas?.dispatchEvent(new Event('focus'));
+      instance.state.stage?.keyBehavior.domElement.focus();
+      expect(onFocusSpy).not.toBeCalled();
     });
   });
 
@@ -443,8 +455,6 @@ describe('NGLComponent', () => {
       const defaultFileRepresentationSpy = jest.fn();
       if (instance.state.stage) {
         instance.state.stage.defaultFileRepresentation = defaultFileRepresentationSpy;
-      } else {
-        expect(instance.state.stage).not.toBeNull();
       }
 
       wrapper
@@ -531,21 +541,17 @@ describe('NGLComponent', () => {
       const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
       const instance = wrapper.instance() as NGLComponent;
       const { stage } = instance.state;
-      if (stage) {
-        expect(stage.parameters.cameraType).toEqual('perspective');
-        wrapper
-          .find('a')
-          .at(2)
-          .simulate('click');
-        expect(stage.parameters.cameraType).toEqual('stereo');
-        wrapper
-          .find('a')
-          .at(2)
-          .simulate('click');
-        expect(stage.parameters.cameraType).toEqual('perspective');
-      } else {
-        expect(stage).not.toBeUndefined();
-      }
+      expect(stage?.parameters.cameraType).toEqual('perspective');
+      wrapper
+        .find('a')
+        .at(2)
+        .simulate('click');
+      expect(stage?.parameters.cameraType).toEqual('stereo');
+      wrapper
+        .find('a')
+        .at(2)
+        .simulate('click');
+      expect(stage?.parameters.cameraType).toEqual('perspective');
     });
 
     it('Should not allow switching superposition when not enough proteins.', () => {
@@ -573,18 +579,16 @@ describe('NGLComponent', () => {
     it('Should handle centering the camera.', () => {
       const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
       const instance = wrapper.instance() as NGLComponent;
+      const autoViewSpy = jest.fn();
       const { stage } = instance.state;
       if (stage) {
-        const autoViewSpy = jest.fn();
         stage.autoView = autoViewSpy;
-        wrapper
-          .find('a')
-          .at(1)
-          .simulate('click');
-        expect(autoViewSpy).toHaveBeenCalled();
-      } else {
-        expect(stage).not.toBeUndefined();
       }
+      wrapper
+        .find('a')
+        .at(1)
+        .simulate('click');
+      expect(autoViewSpy).toHaveBeenCalled();
     });
   });
 });
