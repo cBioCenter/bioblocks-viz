@@ -169,18 +169,12 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       selectedSecondaryStructures,
     } = this.props;
     const { isDistRepEnabled, stage, superpositionStatus } = this.state;
-
     const allProteins = [...experimentalProteins, ...predictedProteins];
-    let isNewProteinAdded = false;
-    for (const protein of allProteins) {
-      if (
-        prevProps.experimentalProteins.findIndex(prot => prot.name.localeCompare(protein.name) === 0) === -1 &&
-        prevProps.predictedProteins.findIndex(prot => prot.name.localeCompare(protein.name) === 0) === -1
-      ) {
-        isNewProteinAdded = true;
-      }
-    }
-    if (stage && isNewProteinAdded) {
+    const proteinChangedFlag =
+      !BioblocksPDB.arePDBArraysEqual(prevProps.experimentalProteins, experimentalProteins) ||
+      !BioblocksPDB.arePDBArraysEqual(prevProps.predictedProteins, predictedProteins);
+
+    if (stage && proteinChangedFlag) {
       stage.removeAllComponents();
       allProteins.map(pdb => {
         this.initData(stage, pdb.nglStructure);
@@ -269,7 +263,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     // const resname = AMINO_ACID_BY_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE]
     //  ? AMINO_ACID_BY_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE].singleLetterCode
     //  : atom.resname;
-    stage.tooltip.textContent = `${atom.resno}${resname}`;
+    stage.tooltip.textContent = `${resname}${atom.resno}`;
     addHoveredResidues([atom.resno]);
   };
 

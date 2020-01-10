@@ -99,6 +99,24 @@ export class BioblocksPDB {
 
   public static readonly NGL_C_ALPHA_INDEX = 'CA|C';
 
+  /**
+   * Helper function to determine if two BioblocksPDB arrays are equal.
+   * By default, PDB equality is determined by PDB name - this can be overridden by supplying a custom comparison function.
+   */
+  public static arePDBArraysEqual = (
+    firstArray: BioblocksPDB[],
+    secondArray: BioblocksPDB[],
+    compFn = (a: BioblocksPDB, b: BioblocksPDB) => a.name === b.name,
+  ) => {
+    for (const outerPDB of firstArray) {
+      if (secondArray.findIndex(innerPDB => compFn(innerPDB, outerPDB)) === -1) {
+        return false;
+      }
+    }
+
+    return firstArray.length === secondArray.length;
+  };
+
   public static createEmptyPDB() {
     return new BioblocksPDB();
   }
@@ -234,8 +252,8 @@ export class BioblocksPDB {
           AminoAcid.fromSingleLetterCode(couplingAminoAcid.singleLetterCode)
       ) {
         const caa = AminoAcid.fromSingleLetterCode(couplingAminoAcid.singleLetterCode);
-        const paa = AminoAcid.fromSingleLetterCode(pdbResCode);
-        if (caa && paa) {
+        const paa = AminoAcid.fromFullName(pdbResCode);
+        if (caa !== undefined && paa !== undefined) {
           result.push({
             couplingAminoAcid: caa,
             pdbAminoAcid: paa,
