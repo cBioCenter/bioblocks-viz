@@ -2,17 +2,18 @@ import * as NGL from 'ngl';
 
 import { RESIDUE_TYPE, SECONDARY_STRUCTURE_SECTION } from '~bioblocks-viz~/data';
 
+// tslint:disable-next-line: no-unnecessary-class
 export class NGLInstanceManager {
-  protected instance: typeof NGL = NGL;
+  public static get instance() {
+    return NGLInstanceManager.nglInstance;
+  }
+
+  public static setNGLInstance(nglInstance: typeof NGL) {
+    NGLInstanceManager.nglInstance = nglInstance;
+  }
+  protected static nglInstance: typeof NGL = NGL;
+
   private constructor() {}
-
-  public get nglInstance() {
-    return this.instance;
-  }
-
-  public setNGLInstance(instance: typeof NGL) {
-    this.instance = instance;
-  }
 }
 
 export const defaultDistanceParams: Partial<NGL.IStructureRepresentationParams> = {

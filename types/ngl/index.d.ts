@@ -1,5 +1,6 @@
 // tslint:disable:max-classes-per-file
 declare module 'ngl' {
+  const Version: string;
   export type ILoaderInput = File | Blob | string;
 
   /**
