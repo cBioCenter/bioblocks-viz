@@ -161,7 +161,16 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     const { isDistRepEnabled, stage, superpositionStatus } = this.state;
 
     const allProteins = [...experimentalProteins, ...predictedProteins];
-    if (stage && allProteins.length !== [...prevProps.experimentalProteins, ...prevProps.predictedProteins].length) {
+    let isNewProteinAdded = false;
+    for (const protein of allProteins) {
+      if (
+        prevProps.experimentalProteins.findIndex(prot => prot.name.localeCompare(protein.name) === 0) === -1 &&
+        prevProps.predictedProteins.findIndex(prot => prot.name.localeCompare(protein.name) === 0) === -1
+      ) {
+        isNewProteinAdded = true;
+      }
+    }
+    if (stage && isNewProteinAdded) {
       stage.removeAllComponents();
       allProteins.map(pdb => {
         this.initData(stage, pdb.nglStructure);
