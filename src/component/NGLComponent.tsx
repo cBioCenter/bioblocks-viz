@@ -1,11 +1,19 @@
 import { Map } from 'immutable';
 import { cloneDeep } from 'lodash';
-import * as NGL from 'ngl';
+import {
+  Component,
+  IStageParameters,
+  PickingProxy,
+  RepresentationElement,
+  ResidueStore,
+  Stage,
+  Structure,
+  StructureComponent,
+  StructureRepresentationType,
+} from 'ngl';
 import * as React from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react';
 import { Matrix4, Vector2 } from 'three';
-
-import { AminoAcid } from '~bioblocks-viz~/data/AminoAcid';
 
 import { ComponentCard, IComponentMenuBarItem } from '~bioblocks-viz~/component';
 import {
@@ -18,6 +26,7 @@ import {
   SECONDARY_STRUCTURE,
   SECONDARY_STRUCTURE_SECTION,
 } from '~bioblocks-viz~/data';
+import { AminoAcid } from '~bioblocks-viz~/data/AminoAcid';
 import {
   capitalizeEveryWord,
   capitalizeFirstLetter,
@@ -25,12 +34,13 @@ import {
   createDistanceRepresentation,
   createSecStructRepresentation,
   EMPTY_FUNCTION,
+  NGLInstanceManager,
 } from '~bioblocks-viz~/helper';
 import { LockedResiduePair } from '~bioblocks-viz~/reducer';
 
 export type NGL_HOVER_CB_RESULT_TYPE = number;
 
-export type RepresentationDict = Map<string, NGL.RepresentationElement[]>;
+export type RepresentationDict = Map<string, RepresentationElement[]>;
 export type SUPERPOSITION_STATUS_TYPE = 'NONE' | 'PREDICTED' | 'EXPERIMENTAL' | 'BOTH';
 
 export interface INGLComponentProps {
@@ -64,17 +74,17 @@ export interface INGLComponentProps {
 export const initialNGLState = {
   activeRepresentations: {
     experimental: {
-      reps: new Array<NGL.RepresentationElement>(),
-      structType: 'default' as NGL.StructureRepresentationType,
+      reps: new Array<RepresentationElement>(),
+      structType: 'default' as StructureRepresentationType,
     },
     predicted: {
-      reps: new Array<NGL.RepresentationElement>(),
-      structType: 'cartoon' as NGL.StructureRepresentationType,
+      reps: new Array<RepresentationElement>(),
+      structType: 'cartoon' as StructureRepresentationType,
     },
   },
   isDistRepEnabled: true,
   isMovePickEnabled: false,
-  stage: undefined as NGL.Stage | undefined,
+  stage: undefined as Stage | undefined,
   superpositionStatus: 'NONE' as SUPERPOSITION_STATUS_TYPE,
 };
 
@@ -249,7 +259,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     );
   }
 
-  protected addNewHoveredResidue = (pickingProxy: NGL.PickingProxy, stage: NGL.Stage) => {
+  protected addNewHoveredResidue = (pickingProxy: PickingProxy, stage: Stage) => {
     const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
     const { addHoveredResidues } = this.props;
 
@@ -269,7 +279,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
    * @param structure A NGL Structure.
    * @param stage A NGL Stage.
    */
-  protected addStructureToStage(structure: NGL.Structure, stage: NGL.Stage) {
+  protected addStructureToStage(structure: Structure, stage: Stage) {
     const structureComponent = stage.addComponentFromObject(structure);
     const { predictedProteins } = this.props;
     const { activeRepresentations } = this.state;
@@ -348,7 +358,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     }
   };
 
-  protected deriveActiveRepresentations(structureComponent: NGL.StructureComponent) {
+  protected deriveActiveRepresentations(structureComponent: StructureComponent) {
     const {
       candidateResidues,
       hoveredResidues,
@@ -372,12 +382,12 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     ];
   }
 
-  protected generateStage = (canvas: HTMLElement, params?: Partial<NGL.IStageParameters>) => {
-    const stage = new NGL.Stage(canvas, params);
-    stage.mouseControls.add('hoverPick', (aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) => {
+  protected generateStage = (canvas: HTMLElement, params?: Partial<IStageParameters>) => {
+    const stage = new NGLInstanceManager.instance.Stage(canvas, params);
+    stage.mouseControls.add('hoverPick', (aStage: Stage, pickingProxy: PickingProxy) => {
       this.onHover(aStage, pickingProxy);
     });
-    stage.mouseControls.remove('clickPick-*', NGL.MouseActions.movePick);
+    stage.mouseControls.remove('clickPick-*', NGLInstanceManager.instance.MouseActions.movePick);
     // !IMPORTANT! This is needed to prevent the canvas shifting when the user clicks the canvas.
     // It's unclear why the focus does this, but it's undesirable.
     stage.keyBehavior.domElement.focus = () => {
@@ -387,7 +397,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     return stage;
   };
 
-  protected getDistanceRepForResidues(structureComponent: NGL.StructureComponent, residues: RESIDUE_TYPE[]) {
+  protected getDistanceRepForResidues(structureComponent: StructureComponent, residues: RESIDUE_TYPE[]) {
     const { experimentalProteins, predictedProteins, measuredProximity } = this.props;
     const { isDistRepEnabled } = this.state;
 
@@ -439,7 +449,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   };
 
   protected getRepresentationConfigs = () => {
-    const reps: NGL.StructureRepresentationType[] = ['default', 'spacefill', 'backbone', 'cartoon', 'surface', 'tube'];
+    const reps: StructureRepresentationType[] = ['default', 'spacefill', 'backbone', 'cartoon', 'surface', 'tube'];
 
     return {
       'Structure Representations': [
@@ -514,7 +524,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     };
   };
 
-  protected handleAtomClick = (pickingProxy: NGL.PickingProxy) => {
+  protected handleAtomClick = (pickingProxy: PickingProxy) => {
     const { addLockedResiduePair, addCandidateResidues, candidateResidues, removeCandidateResidues } = this.props;
 
     const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
@@ -528,9 +538,13 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     }
   };
 
-  protected handleBothSuperposition = (stage: NGL.Stage) => {
+  protected handleBothSuperposition = (stage: Stage) => {
     for (let i = 1; i < stage.compList.length; ++i) {
-      NGL.superpose(stage.compList[i].object as NGL.Structure, stage.compList[0].object as NGL.Structure, true);
+      NGLInstanceManager.instance.superpose(
+        stage.compList[i].object as Structure,
+        stage.compList[0].object as Structure,
+        true,
+      );
     }
 
     for (const component of stage.compList) {
@@ -545,7 +559,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     }
   };
 
-  protected handleClickHover = (structureComponent: NGL.Component) => {
+  protected handleClickHover = (structureComponent: Component) => {
     const { hoveredResidues } = this.props;
 
     hoveredResidues.forEach(residueIndex => {
@@ -553,7 +567,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     });
   };
 
-  protected handleClickPick = (pickingProxy: NGL.PickingProxy) => {
+  protected handleClickPick = (pickingProxy: PickingProxy) => {
     const { removeLockedResiduePair } = this.props;
 
     if (pickingProxy.picker && pickingProxy.picker.type === 'distance') {
@@ -564,9 +578,9 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     }
   };
 
-  protected handleHoveredDistances = (residueIndex: number, structureComponent: NGL.Component) => {
+  protected handleHoveredDistances = (residueIndex: number, structureComponent: Component) => {
     const { addLockedResiduePair, candidateResidues, removeCandidateResidues, removeNonLockedResidues } = this.props;
-    const getMinDist = (residueStore: NGL.ResidueStore, target: Vector2) => {
+    const getMinDist = (residueStore: ResidueStore, target: Vector2) => {
       let minDist = Number.MAX_SAFE_INTEGER;
       const atomOffset = residueStore.atomOffset[residueIndex];
       const atomCount = residueStore.atomCount[residueIndex];
@@ -600,15 +614,15 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     }
   };
 
-  protected handleRepresentationUpdate(stage: NGL.Stage) {
+  protected handleRepresentationUpdate(stage: Stage) {
     const { activeRepresentations } = this.state;
     const result = {
       experimental: {
-        reps: new Array<NGL.RepresentationElement>(),
+        reps: new Array<RepresentationElement>(),
         structType: activeRepresentations.experimental.structType,
       },
       predicted: {
-        reps: new Array<NGL.RepresentationElement>(),
+        reps: new Array<RepresentationElement>(),
         structType: activeRepresentations.predicted.structType,
       },
     };
@@ -622,18 +636,16 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       }
 
       if (isExperimental) {
-        result.experimental.reps.push(
-          ...this.deriveActiveRepresentations(structureComponent as NGL.StructureComponent),
-        );
+        result.experimental.reps.push(...this.deriveActiveRepresentations(structureComponent as StructureComponent));
       } else {
-        result.predicted.reps.push(...this.deriveActiveRepresentations(structureComponent as NGL.StructureComponent));
+        result.predicted.reps.push(...this.deriveActiveRepresentations(structureComponent as StructureComponent));
       }
     }
 
     return result;
   }
 
-  protected handleStructureClick = (structureComponent: NGL.StructureComponent, pickingProxy: NGL.PickingProxy) => {
+  protected handleStructureClick = (structureComponent: StructureComponent, pickingProxy: PickingProxy) => {
     const { candidateResidues, hoveredResidues, removeNonLockedResidues } = this.props;
     if (pickingProxy) {
       this.handleClickPick(pickingProxy);
@@ -645,7 +657,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     }
   };
 
-  protected handleSuperposition(stage: NGL.Stage, superpositionStatus: SUPERPOSITION_STATUS_TYPE) {
+  protected handleSuperposition(stage: Stage, superpositionStatus: SUPERPOSITION_STATUS_TYPE) {
     if (superpositionStatus === 'BOTH') {
       this.handleBothSuperposition(stage);
     } else if (superpositionStatus === 'NONE') {
@@ -657,8 +669,8 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     }
   }
 
-  protected highlightCandidateResidues(structureComponent: NGL.StructureComponent, residues: RESIDUE_TYPE[]) {
-    const reps = new Array<NGL.RepresentationElement>();
+  protected highlightCandidateResidues(structureComponent: StructureComponent, residues: RESIDUE_TYPE[]) {
+    const reps = new Array<RepresentationElement>();
 
     if (residues.length >= 1) {
       reps.push(createBallStickRepresentation(structureComponent, residues));
@@ -673,11 +685,8 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     return reps;
   }
 
-  protected highlightLockedDistancePairs(
-    structureComponent: NGL.StructureComponent,
-    lockedResidues: LockedResiduePair,
-  ) {
-    const reps = new Array<NGL.RepresentationElement>();
+  protected highlightLockedDistancePairs(structureComponent: StructureComponent, lockedResidues: LockedResiduePair) {
+    const reps = new Array<RepresentationElement>();
 
     for (const residues of Object.values(lockedResidues)) {
       reps.push(createBallStickRepresentation(structureComponent, residues));
@@ -694,10 +703,10 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   }
 
   protected highlightSecondaryStructures(
-    structureComponent: NGL.StructureComponent,
+    structureComponent: StructureComponent,
     secondaryStructures: SECONDARY_STRUCTURE,
   ) {
-    const reps = new Array<NGL.RepresentationElement>();
+    const reps = new Array<RepresentationElement>();
 
     for (const structure of secondaryStructures) {
       reps.push(createSecStructRepresentation(structureComponent, structure));
@@ -706,7 +715,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     return reps;
   }
 
-  protected initData(stage: NGL.Stage, structure: NGL.Structure | null) {
+  protected initData(stage: Stage, structure: Structure | null) {
     if (structure) {
       // !IMPORTANT! We need to deeply clone the NGL data!
       // If we have multiple NGL components displaying the same data, removing the component will affect
@@ -717,7 +726,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     stage.viewer.requestRender();
   }
 
-  protected isExperimentalStructure = (structureComponent: NGL.Component) => {
+  protected isExperimentalStructure = (structureComponent: Component) => {
     const { predictedProteins } = this.props;
     if (predictedProteins.find(pred => pred.nglStructure.name === structureComponent.name)) {
       return false;
@@ -738,7 +747,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     removeNonLockedResidues();
   };
 
-  protected onClick = (pickingProxy: NGL.PickingProxy) => {
+  protected onClick = (pickingProxy: PickingProxy) => {
     const { stage } = this.state;
     const { candidateResidues, hoveredResidues, removeNonLockedResidues } = this.props;
 
@@ -746,7 +755,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       if (pickingProxy) {
         this.handleClickPick(pickingProxy);
       } else if (candidateResidues.length >= 1 && hoveredResidues.length >= 1) {
-        for (const structureComponent of stage.compList as NGL.StructureComponent[]) {
+        for (const structureComponent of stage.compList as StructureComponent[]) {
           this.handleClickHover(structureComponent);
         }
       } else {
@@ -756,7 +765,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     }
   };
 
-  protected onHover(aStage: NGL.Stage, pickingProxy: NGL.PickingProxy) {
+  protected onHover(aStage: Stage, pickingProxy: PickingProxy) {
     const { candidateResidues, hoveredResidues, removeHoveredResidues } = this.props;
     const { stage } = this.state;
     if (stage) {
@@ -830,9 +839,9 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     const { isMovePickEnabled, stage } = this.state;
     if (stage) {
       if (isMovePickEnabled) {
-        stage.mouseControls.remove('clickPick-*', NGL.MouseActions.movePick);
+        stage.mouseControls.remove('clickPick-*', NGLInstanceManager.instance.MouseActions.movePick);
       } else {
-        stage.mouseControls.add('clickPick-left', NGL.MouseActions.movePick);
+        stage.mouseControls.add('clickPick-left', NGLInstanceManager.instance.MouseActions.movePick);
       }
 
       this.setState({
@@ -841,9 +850,9 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     }
   };
 
-  protected updateRepresentation = (stage: NGL.Stage, rep: NGL.StructureRepresentationType, pdbs: BioblocksPDB[]) => {
+  protected updateRepresentation = (stage: Stage, rep: StructureRepresentationType, pdbs: BioblocksPDB[]) => {
     const result = {
-      reps: new Array<NGL.RepresentationElement>(),
+      reps: new Array<RepresentationElement>(),
       structType: rep,
     };
 
@@ -855,7 +864,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
         } else {
           structureComponent.addRepresentation(rep);
         }
-        result.reps.push(...this.deriveActiveRepresentations(structureComponent as NGL.StructureComponent));
+        result.reps.push(...this.deriveActiveRepresentations(structureComponent as StructureComponent));
       }
     }
 

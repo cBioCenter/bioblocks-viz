@@ -1,5 +1,3 @@
-import * as NGL from 'ngl';
-
 import {
   AMINO_ACID_1LETTER_CODE,
   AminoAcid,
@@ -9,6 +7,7 @@ import {
   getSequenceMismatch,
   IResidueMismatchResult,
 } from '~bioblocks-viz~/data';
+import { NGLInstanceManager } from '~bioblocks-viz~/helper';
 
 describe('Amino Acids', () => {
   it('Should correctly have all single letter codes.', () => {
@@ -90,7 +89,7 @@ describe('Sequence Mismatch', () => {
 
   it('Should correctly report a sequence mismatch from PDB and CouplingContainer.', async () => {
     BioblocksPDB.createPDB = jest.fn(async () => {
-      const nglData = new NGL.Structure('test', '');
+      const nglData = new NGLInstanceManager.instance.Structure('test', '');
       nglData.getSequence = jest.fn(() => secondSequence.split(''));
 
       return BioblocksPDB.createPDBFromNGLData(nglData);

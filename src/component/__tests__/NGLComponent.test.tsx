@@ -1,16 +1,17 @@
 import { mount, ReactWrapper, shallow } from 'enzyme';
-import * as NGL from 'ngl';
+import { PickingProxy, Stage, StructureComponent } from 'ngl';
 import * as React from 'react';
-
 import { Checkbox, Popup } from 'semantic-ui-react';
+
 import { NGLComponent } from '~bioblocks-viz~/component';
 import { BioblocksPDB, CONTACT_DISTANCE_PROXIMITY } from '~bioblocks-viz~/data';
+import { NGLInstanceManager } from '~bioblocks-viz~/helper';
 
 describe('NGLComponent', () => {
   let sampleData: BioblocksPDB[];
 
   beforeEach(() => {
-    const nglStructure = new NGL.Structure('sample');
+    const nglStructure = new NGLInstanceManager.instance.Structure('sample');
     nglStructure.residueStore.resno = new Uint32Array([0, 1, 2, 3, 4]);
     sampleData = [BioblocksPDB.createPDBFromNGLData(nglStructure)];
   });
@@ -299,7 +300,7 @@ describe('NGLComponent', () => {
     // tslint:disable-next-line:mocha-no-side-effect-code
     it.each([{ atom: { resno: 4, resname: 'ARG' } }, { closestBondAtom: { resno: 4, resname: 'ARG' } }])(
       'Should handle click events by creating a locked residue pair if there is a candidate.',
-      async (pickingResult: NGL.PickingProxy) => {
+      async (pickingResult: PickingProxy) => {
         const addLockedSpy = jest.fn();
         const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
         wrapper.setProps({
@@ -314,7 +315,7 @@ describe('NGLComponent', () => {
     // tslint:disable-next-line:mocha-no-side-effect-code
     it.each([{ atom: { resno: 4 } }, { closestBondAtom: { resno: 4 } }])(
       'Should handle click events by creating a candidate residue when none is present.',
-      async (pickingResult: NGL.PickingProxy) => {
+      async (pickingResult: PickingProxy) => {
         const addCandidateSpy = jest.fn();
         const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
         wrapper.setProps({
@@ -328,8 +329,8 @@ describe('NGLComponent', () => {
     it('Should handle clicking on a distance representation.', async () => {
       const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
       const removedLockedSpy = jest.fn();
-      const stage: NGL.Stage = wrapper.state('stage');
-      const structureComponent = stage.compList[0] as NGL.StructureComponent;
+      const stage: Stage = wrapper.state('stage');
+      const structureComponent = stage.compList[0] as StructureComponent;
       structureComponent.addRepresentation('distance');
       wrapper.setProps({
         lockedResiduePairs: new Map(

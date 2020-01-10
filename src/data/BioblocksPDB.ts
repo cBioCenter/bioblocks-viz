@@ -1,4 +1,4 @@
-import * as NGL from 'ngl';
+import { ILoaderParameters, ResidueProxy, Structure } from 'ngl';
 
 import {
   AminoAcid,
@@ -11,6 +11,7 @@ import {
   SECONDARY_STRUCTURE_KEYS,
   SECONDARY_STRUCTURE_SECTION,
 } from '~bioblocks-viz~/data';
+import { NGLInstanceManager } from '~bioblocks-viz~/helper';
 
 /**
  * A BioblocksPDB instance provides an API to interact with a loaded PDB file while hiding the implementation details of how it is loaded.
@@ -50,7 +51,7 @@ export class BioblocksPDB {
     return lastPart.slice(0, lastIndex === -1 ? undefined : lastIndex);
   }
 
-  public get nglStructure(): NGL.Structure {
+  public get nglStructure(): Structure {
     return this.nglData;
   }
 
@@ -107,15 +108,15 @@ export class BioblocksPDB {
    *
    * !IMPORTANT! Since fetching the data is an asynchronous action, this must be used to create a new instance!
    */
-  public static async createPDB(file: File | string = '', fileLoaderParams: Partial<NGL.ILoaderParameters> = {}) {
+  public static async createPDB(file: File | string = '', fileLoaderParams: Partial<ILoaderParameters> = {}) {
     const result = new BioblocksPDB();
-    result.nglData = (await NGL.autoLoad(file, fileLoaderParams)) as NGL.Structure;
+    result.nglData = (await NGLInstanceManager.instance.autoLoad(file, fileLoaderParams)) as Structure;
     result.fileName = typeof file === 'string' ? file : file.name;
 
     return result;
   }
 
-  public static createPDBFromNGLData(nglData: NGL.Structure) {
+  public static createPDBFromNGLData(nglData: Structure) {
     const result = new BioblocksPDB();
     result.nglData = nglData;
     result.fileName = nglData.path ? nglData.path : nglData.name;
@@ -125,11 +126,11 @@ export class BioblocksPDB {
 
   protected contactInfo?: CouplingContainer;
   protected fileName: string = '';
-  protected nglData: NGL.Structure = new NGL.Structure();
+  protected nglData: Structure = new NGLInstanceManager.instance.Structure();
 
   private constructor() {}
 
-  public eachResidue(callback: (residue: NGL.ResidueProxy) => void) {
+  public eachResidue(callback: (residue: ResidueProxy) => void) {
     this.nglData.eachResidue(callback);
   }
 
@@ -301,7 +302,7 @@ export class BioblocksPDB {
     return result;
   }
 
-  protected getSecStructFromNGLResidue = (residue: NGL.ResidueProxy, result: SECONDARY_STRUCTURE_SECTION[][]) => {
+  protected getSecStructFromNGLResidue = (residue: ResidueProxy, result: SECONDARY_STRUCTURE_SECTION[][]) => {
     const { chainIndex } = residue;
     while (!result[chainIndex]) {
       result.push(new Array<SECONDARY_STRUCTURE_SECTION>());
