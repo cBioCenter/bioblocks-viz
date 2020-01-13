@@ -200,7 +200,7 @@ describe('NGLContainer', () => {
     expect(instance.state.selectedPredictedProteins).toEqual([]);
   });
 
-  it.skip('Should show the correct sequence match.', async () => {
+  it('Should show the correct sequence match.', async () => {
     let experimentalPDB = await BioblocksPDB.createPDB('exp_1_sample');
     let predictedPDB = await BioblocksPDB.createPDB('pred_1_sample');
 
@@ -219,12 +219,15 @@ describe('NGLContainer', () => {
     wrapper.update();
 
     await flushPromises();
-    const foo = wrapper.text();
+    wrapper
+      .find(Popup)
+      .at(0)
+      .simulate('click');
 
     expect(
       wrapper
         .find(Table.Cell)
-        .at(1)
+        .at(4)
         .text(),
     ).toEqual('100.0%');
 
@@ -238,6 +241,12 @@ describe('NGLContainer', () => {
       experimentalProteins: [experimentalPDB],
       predictedProteins: [predictedPDB],
     });
+
+    await flushPromises();
+    wrapper
+      .find(Popup)
+      .at(0)
+      .simulate('click');
 
     expect(
       wrapper
