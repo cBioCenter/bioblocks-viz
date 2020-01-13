@@ -1,6 +1,7 @@
 import { Map } from 'immutable';
 import { cloneDeep } from 'lodash';
 import {
+  AtomProxy,
   Component,
   IStageParameters,
   PickingProxy,
@@ -15,7 +16,7 @@ import * as React from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react';
 import { Matrix4, Vector2 } from 'three';
 
-import { ComponentCard, IComponentMenuBarItem } from '~bioblocks-viz~/component';
+import { ComponentCard, IComponentMenuBarItem, IDockItem } from '~bioblocks-viz~/component';
 import {
   BIOBLOCKS_CSS_STYLE,
   BioblocksPDB,
@@ -43,6 +44,12 @@ export type NGL_HOVER_CB_RESULT_TYPE = number;
 export type RepresentationDict = Map<string, RepresentationElement[]>;
 export type SUPERPOSITION_STATUS_TYPE = 'NONE' | 'PREDICTED' | 'EXPERIMENTAL' | 'BOTH';
 
+export interface INGLHoverInfo {
+  atom: AtomProxy;
+  pickingProxy: PickingProxy;
+  stage: Stage;
+}
+
 export interface INGLComponentProps {
   backgroundColor: string | number;
   candidateResidues: RESIDUE_TYPE[];
@@ -61,6 +68,7 @@ export interface INGLComponentProps {
   addCandidateResidues(residues: RESIDUE_TYPE[]): void;
   addHoveredResidues(residues: RESIDUE_TYPE[]): void;
   addLockedResiduePair(residuePair: LockedResiduePair): void;
+  hoveredResidueTooltipTextCb(hoverInfo: INGLHoverInfo): string;
   onMeasuredProximityChange?(value: number): void;
   onResize?(event?: UIEvent): void;
   removeAllLockedResiduePairs(): void;
@@ -99,6 +107,13 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     candidateResidues: [],
     experimentalProteins: [],
     height: '92%',
+    hoveredResidueTooltipTextCb: (hoverInfo: INGLHoverInfo) => {
+      const { atom } = hoverInfo;
+      const aa = AminoAcid.fromThreeLetterCode(atom.resname);
+      const resname = aa ? aa.singleLetterCode : atom.resname;
+
+      return `${resname}${atom.resno}`;
+    },
     hoveredResidues: [],
     hoveredSecondaryStructures: [],
     isDataLoading: false,
@@ -158,17 +173,8 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   }
 
   public componentDidUpdate(prevProps: INGLComponentProps, prevState: NGLComponentState) {
-    const {
-      candidateResidues,
-      experimentalProteins,
-      hoveredResidues,
-      hoveredSecondaryStructures,
-      lockedResiduePairs,
-      predictedProteins,
-      measuredProximity,
-      selectedSecondaryStructures,
-    } = this.props;
-    const { isDistRepEnabled, stage, superpositionStatus } = this.state;
+    const { experimentalProteins, predictedProteins } = this.props;
+    const { stage, superpositionStatus } = this.state;
     const allProteins = [...experimentalProteins, ...predictedProteins];
     const proteinChangedFlag =
       !BioblocksPDB.arePDBArraysEqual(prevProps.experimentalProteins, experimentalProteins) ||
@@ -187,16 +193,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
         this.handleSuperposition(stage, superpositionStatus);
       }
 
-      const isHighlightUpdateNeeded =
-        candidateResidues !== prevProps.candidateResidues ||
-        hoveredResidues !== prevProps.hoveredResidues ||
-        hoveredSecondaryStructures !== prevProps.hoveredSecondaryStructures ||
-        isDistRepEnabled !== prevState.isDistRepEnabled ||
-        lockedResiduePairs !== prevProps.lockedResiduePairs ||
-        measuredProximity !== prevProps.measuredProximity ||
-        selectedSecondaryStructures !== prevProps.selectedSecondaryStructures;
-
-      if (isHighlightUpdateNeeded) {
+      if (this.isHighlightUpdateNeeded(prevProps, prevState)) {
         this.setState({
           activeRepresentations: { ...this.handleRepresentationUpdate(stage) },
         });
@@ -254,16 +251,10 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   }
 
   protected addNewHoveredResidue = (pickingProxy: PickingProxy, stage: Stage) => {
+    const { addHoveredResidues, hoveredResidueTooltipTextCb } = this.props;
     const atom = pickingProxy.atom || pickingProxy.closestBondAtom;
-    const { addHoveredResidues } = this.props;
 
-    const aa = AminoAcid.fromThreeLetterCode(atom.resname);
-    const resname = aa ? aa.singleLetterCode : atom.resname;
-
-    // const resname = AMINO_ACID_BY_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE]
-    //  ? AMINO_ACID_BY_CODE[atom.resname as AMINO_ACID_THREE_LETTER_CODE].singleLetterCode
-    //  : atom.resname;
-    stage.tooltip.textContent = `${resname}${atom.resno}`;
+    stage.tooltip.textContent = hoveredResidueTooltipTextCb({ atom, pickingProxy, stage });
     addHoveredResidues([atom.resno]);
   };
 
@@ -391,6 +382,20 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     return stage;
   };
 
+  protected getClearSelectionDockItem = (): IDockItem => ({
+    isVisibleCb: () =>
+      this.props.selectedSecondaryStructures.length >= 1 ||
+      Object.values(this.props.lockedResiduePairs).length >= 1 ||
+      this.props.candidateResidues.length >= 1,
+    onClick: () => {
+      this.props.removeAllLockedResiduePairs();
+      this.props.removeAllSelectedSecondaryStructures();
+      this.props.removeCandidateResidues();
+      this.props.removeHoveredResidues();
+    },
+    text: 'Clear Selections',
+  });
+
   protected getDistanceRepForResidues(structureComponent: StructureComponent, residues: RESIDUE_TYPE[]) {
     const { experimentalProteins, predictedProteins, measuredProximity } = this.props;
     const { isDistRepEnabled } = this.state;
@@ -411,19 +416,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     const isSuperPositionOn = this.state.superpositionStatus !== 'NONE';
 
     return [
-      {
-        isVisibleCb: () =>
-          this.props.selectedSecondaryStructures.length >= 1 ||
-          Object.values(this.props.lockedResiduePairs).length >= 1 ||
-          this.props.candidateResidues.length >= 1,
-        onClick: () => {
-          this.props.removeAllLockedResiduePairs();
-          this.props.removeAllSelectedSecondaryStructures();
-          this.props.removeCandidateResidues();
-          this.props.removeHoveredResidues();
-        },
-        text: 'Clear Selections',
-      },
+      this.getClearSelectionDockItem(),
       {
         onClick: this.centerCamera,
         text: 'Center View',
@@ -727,6 +720,28 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     }
 
     return true;
+  };
+
+  protected isHighlightUpdateNeeded = (prevProps: INGLComponentProps, prevState: NGLComponentState) => {
+    const {
+      candidateResidues,
+      hoveredResidues,
+      hoveredSecondaryStructures,
+      lockedResiduePairs,
+      measuredProximity,
+      selectedSecondaryStructures,
+    } = this.props;
+    const { isDistRepEnabled } = this.state;
+
+    return (
+      candidateResidues !== prevProps.candidateResidues ||
+      hoveredResidues !== prevProps.hoveredResidues ||
+      hoveredSecondaryStructures !== prevProps.hoveredSecondaryStructures ||
+      isDistRepEnabled !== prevState.isDistRepEnabled ||
+      lockedResiduePairs !== prevProps.lockedResiduePairs ||
+      measuredProximity !== prevProps.measuredProximity ||
+      selectedSecondaryStructures !== prevProps.selectedSecondaryStructures
+    );
   };
 
   protected measuredProximityHandler = (value: number) => {
