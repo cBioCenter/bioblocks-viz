@@ -16,7 +16,7 @@ import * as React from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react';
 import { Matrix4, Vector2 } from 'three';
 
-import { ComponentCard, IComponentMenuBarItem, IDockItem } from '~bioblocks-viz~/component';
+import { ComponentCard, IComponentCardProps, IComponentMenuBarItem, IDockItem } from '~bioblocks-viz~/component';
 import {
   BIOBLOCKS_CSS_STYLE,
   BioblocksPDB,
@@ -53,6 +53,7 @@ export interface INGLHoverInfo {
 export interface INGLComponentProps {
   backgroundColor: string | number;
   candidateResidues: RESIDUE_TYPE[];
+  cardProps: IComponentCardProps;
   experimentalProteins: BioblocksPDB[];
   height: number | string;
   hoveredResidues: RESIDUE_TYPE[];
@@ -105,6 +106,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     addLockedResiduePair: EMPTY_FUNCTION,
     backgroundColor: '#ffffff',
     candidateResidues: [],
+    cardProps: {},
     experimentalProteins: [],
     height: '92%',
     hoveredResidueTooltipTextCb: (hoverInfo: INGLHoverInfo) => {
@@ -211,27 +213,39 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
    * @returns The NGL Component
    */
   public render() {
-    const { experimentalProteins, height, isDataLoading, menuItems, predictedProteins, style, width } = this.props;
+    const {
+      cardProps,
+      experimentalProteins,
+      height,
+      isDataLoading,
+      menuItems,
+      predictedProteins,
+      style,
+      width,
+    } = this.props;
     const computedStyle = { ...style, height, width };
 
     return (
       <ComponentCard
-        componentName={'NGL Viewer'}
-        dockItems={this.getDockItems()}
-        isDataReady={experimentalProteins.length >= 1 || predictedProteins.length >= 1}
-        menuItems={[
-          ...menuItems,
-          {
-            component: {
-              configs: { ...this.getSettingsConfigurations(), ...this.getRepresentationConfigs() },
-              name: 'POPUP',
-              props: {
-                position: 'top center',
+        {...{
+          componentName: 'NGL Viewer',
+          dockItems: this.getDockItems(),
+          isDataReady: experimentalProteins.length >= 1 || predictedProteins.length >= 1,
+          menuItems: [
+            ...menuItems,
+            {
+              component: {
+                configs: { ...this.getSettingsConfigurations(), ...this.getRepresentationConfigs() },
+                name: 'POPUP',
+                props: {
+                  position: 'top center',
+                },
               },
+              description: 'Settings',
             },
-            description: 'Settings',
-          },
-        ]}
+          ],
+          ...cardProps,
+        }}
       >
         <div className={'NGLComponent'} style={computedStyle}>
           <Dimmer active={isDataLoading}>
