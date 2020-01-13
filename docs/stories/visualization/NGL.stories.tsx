@@ -2,7 +2,6 @@ import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 
 import { NGLContainer } from '~bioblocks-viz~/container';
-import { BioblocksPDB } from '~bioblocks-viz~/data';
 
 const stories = storiesOf('visualization/NGL', module).addParameters({ component: NGLContainer });
 

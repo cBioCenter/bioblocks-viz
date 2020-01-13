@@ -53,6 +53,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                   addLockedResiduePair={[Function]}
                   backgroundColor="#ffffff"
                   candidateResidues={Array []}
+                  cardProps={Object {}}
                   dispatchNglFetch={[Function]}
                   experimentalProteins={Array []}
                   height="92%"
@@ -1305,6 +1306,7 @@ exports[`NGLContainer Should match the default snapshot when not hooked up to a 
       addLockedResiduePair={[Function]}
       backgroundColor="#ffffff"
       candidateResidues={Array []}
+      cardProps={Object {}}
       dispatchNglFetch={[Function]}
       experimentalProteins={Array []}
       height="92%"

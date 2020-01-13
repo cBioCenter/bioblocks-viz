@@ -6,6 +6,7 @@ import { Checkbox, Popup } from 'semantic-ui-react';
 import { NGLComponent } from '~bioblocks-viz~/component';
 import { BioblocksPDB, CONTACT_DISTANCE_PROXIMITY } from '~bioblocks-viz~/data';
 import { NGLInstanceManager } from '~bioblocks-viz~/helper';
+import { flushPromises } from '~bioblocks-viz~/test';
 
 describe('NGLComponent', () => {
   let sampleData: BioblocksPDB[];
@@ -321,6 +322,35 @@ describe('NGLComponent', () => {
 
       wrapper.find('.NGLCanvas').simulate('mouseleave');
       expect(removeNonLockedResiduesSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it('Should clear candidate and hovered residues when the clear selection button is clicked.', async () => {
+      const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
+      const removeAllLockedResiduePairsSpy = jest.fn();
+      const removeAllSelectedSecondaryStructuresSpy = jest.fn();
+      const removeCandidateResiduesSpy = jest.fn();
+      const removeHoveredResiduesSpy = jest.fn();
+
+      wrapper.setProps({
+        candidateResidues: [3],
+        hoveredResidues: [4],
+        removeAllLockedResiduePairs: removeAllLockedResiduePairsSpy,
+        removeAllSelectedSecondaryStructures: removeAllSelectedSecondaryStructuresSpy,
+        removeCandidateResidues: removeCandidateResiduesSpy,
+        removeHoveredResidues: removeHoveredResiduesSpy,
+      });
+
+      await flushPromises();
+
+      wrapper
+        .find('a')
+        .at(1)
+        .simulate('click');
+
+      expect(removeAllLockedResiduePairsSpy).toHaveBeenCalledTimes(1);
+      expect(removeAllSelectedSecondaryStructuresSpy).toHaveBeenCalledTimes(1);
+      expect(removeCandidateResiduesSpy).toHaveBeenCalledTimes(1);
+      expect(removeHoveredResiduesSpy).toHaveBeenCalledTimes(1);
     });
 
     // tslint:disable-next-line:mocha-no-side-effect-code
