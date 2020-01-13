@@ -242,6 +242,31 @@ describe('NGLComponent', () => {
       expect(stage?.tooltip.textContent).toEqual(expectedHoverText);
     });
 
+    it('Should allow customization of the hovered residue tooltip text via callback.', () => {
+      const expectedHoverText = 'The horror of our love';
+      const expectedAtom = { resno: 4, resname: 'PRO' };
+      const hoveredResidueTooltipTextCbSpy = jest.fn(() => {
+        return expectedHoverText;
+      });
+      const wrapper = mount(
+        <NGLComponent hoveredResidueTooltipTextCb={hoveredResidueTooltipTextCbSpy} predictedProteins={sampleData} />,
+      );
+      const instance = wrapper.instance() as NGLComponent;
+
+      simulateHoverEvent(wrapper, { atom: expectedAtom });
+      wrapper.update();
+
+      const { stage } = instance.state;
+      expect(stage?.tooltip.textContent).toEqual(expectedHoverText);
+      expect(hoveredResidueTooltipTextCbSpy).toBeCalledWith({
+        atom: expectedAtom,
+        pickingProxy: {
+          atom: expectedAtom,
+        },
+        stage,
+      });
+    });
+
     it('Should handle hover events when there is no hovered or candidate residue.', async () => {
       const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
 

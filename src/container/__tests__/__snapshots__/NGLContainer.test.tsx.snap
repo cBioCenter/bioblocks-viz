@@ -56,6 +56,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                   dispatchNglFetch={[Function]}
                   experimentalProteins={Array []}
                   height="92%"
+                  hoveredResidueTooltipTextCb={[Function]}
                   hoveredResidues={Array []}
                   hoveredSecondaryStructures={Array []}
                   isDataLoading={false}
@@ -1307,6 +1308,7 @@ exports[`NGLContainer Should match the default snapshot when not hooked up to a 
       dispatchNglFetch={[Function]}
       experimentalProteins={Array []}
       height="92%"
+      hoveredResidueTooltipTextCb={[Function]}
       hoveredResidues={Array []}
       hoveredSecondaryStructures={Array []}
       isDataLoading={false}
