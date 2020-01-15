@@ -79,8 +79,8 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
 
   public async componentDidMount() {
     const { experimentalProteins, predictedProteins } = this.state;
-    const selectedExperimentalProteins = experimentalProteins.length >= 1 ? [experimentalProteins[0].name] : [];
-    const selectedPredictedProteins = predictedProteins.length >= 1 ? [predictedProteins[0].name] : [];
+    const selectedExperimentalProteins = experimentalProteins.length >= 1 ? [experimentalProteins[0].uuid] : [];
+    const selectedPredictedProteins = predictedProteins.length >= 1 ? [predictedProteins[0].uuid] : [];
     this.setState({
       selectedExperimentalProteins,
       selectedPredictedProteins,
@@ -99,15 +99,15 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
     let { selectedExperimentalProteins, selectedPredictedProteins } = this.state;
     let isNewData = false;
 
-    if (this.isBioblocksPDBArrayEqual(experimentalProteinsFromFiles, prevState.experimentalProteins)) {
+    if (!this.isBioblocksPDBArrayEqual(experimentalProteinsFromFiles, prevState.experimentalProteins)) {
       isNewData = true;
       selectedExperimentalProteins =
-        experimentalProteinsFromFiles.length === 0 ? [] : [experimentalProteinsFromFiles[0].name];
+        experimentalProteinsFromFiles.length === 0 ? [] : [experimentalProteinsFromFiles[0].uuid];
     }
 
-    if (this.isBioblocksPDBArrayEqual(predictedProteinsFromFiles, prevState.predictedProteins)) {
+    if (!this.isBioblocksPDBArrayEqual(predictedProteinsFromFiles, prevState.predictedProteins)) {
       isNewData = true;
-      selectedPredictedProteins = predictedProteinsFromFiles.length === 0 ? [] : [predictedProteinsFromFiles[0].name];
+      selectedPredictedProteins = predictedProteinsFromFiles.length === 0 ? [] : [predictedProteinsFromFiles[0].uuid];
     }
 
     if (isNewData) {
@@ -141,7 +141,7 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
         <Grid.Row>
           <NGLComponent
             {...rest}
-            experimentalProteins={experimentalProteins.filter(pdb => selectedExperimentalProteins.includes(pdb.name))}
+            experimentalProteins={experimentalProteins.filter(pdb => selectedExperimentalProteins.includes(pdb.uuid))}
             lockedResiduePairs={lockedResiduePairs.toJS() as LockedResiduePair}
             menuItems={[
               {
@@ -158,7 +158,7 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
                 iconName: 'tasks',
               },
             ]}
-            predictedProteins={predictedProteins.filter(pdb => selectedPredictedProteins.includes(pdb.name))}
+            predictedProteins={predictedProteins.filter(pdb => selectedPredictedProteins.includes(pdb.uuid))}
           />
         </Grid.Row>
       </Grid>
@@ -166,26 +166,24 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
   }
 
   protected isBioblocksPDBArrayEqual(a: BioblocksPDB[], b: BioblocksPDB[]) {
-    return (
-      a.length !== b.length || a.reduce((prev, cur, index) => prev || cur.name !== b[index].name, false as boolean)
-    );
+    return a.length === b.length && a.reduce((prev, cur, index) => prev && cur.uuid === b[index].uuid, true as boolean);
   }
 
   protected onExperimentalProteinSelect = (event: React.FormEvent<HTMLInputElement>, data: CheckboxProps) => {
-    const fullName = (data.value as string).split(' ')[0];
+    const uuid = (data.value as string).split(' ')[0];
     this.setState({
       selectedExperimentalProteins: data.checked
-        ? [...this.state.selectedExperimentalProteins, fullName]
-        : this.state.selectedExperimentalProteins.filter(pdb => pdb !== fullName),
+        ? [...this.state.selectedExperimentalProteins, uuid]
+        : this.state.selectedExperimentalProteins.filter(pdb => pdb !== uuid),
     });
   };
 
   protected onPredictedProteinSelect = (event: React.FormEvent<HTMLInputElement>, data: CheckboxProps) => {
-    const fullName = (data.value as string).split(' ')[0];
+    const uuid = (data.value as string).split(' ')[0];
     this.setState({
       selectedPredictedProteins: data.checked
-        ? [...this.state.selectedPredictedProteins, fullName]
-        : this.state.selectedPredictedProteins.filter(pdb => pdb !== fullName),
+        ? [...this.state.selectedPredictedProteins, uuid]
+        : this.state.selectedPredictedProteins.filter(pdb => pdb !== uuid),
     });
   };
 
@@ -257,9 +255,9 @@ export class NGLContainerClass extends BioblocksVisualization<INGLContainerProps
                 checked={(pdbGroup === 'experimental'
                   ? selectedExperimentalProteins
                   : selectedPredictedProteins
-                ).includes(pdb.name)}
+                ).includes(pdb.uuid)}
                 onChange={onChange}
-                value={pdb.name}
+                value={pdb.uuid}
                 label={pdb.name
                   .split('_')
                   .reverse()

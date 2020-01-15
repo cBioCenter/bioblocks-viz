@@ -53,7 +53,7 @@ export interface INGLHoverInfo {
 export interface INGLComponentProps {
   backgroundColor: string | number;
   candidateResidues: RESIDUE_TYPE[];
-  cardProps: IComponentCardProps;
+  cardProps: Partial<IComponentCardProps>;
   experimentalProteins: BioblocksPDB[];
   height: number | string;
   hoveredResidues: RESIDUE_TYPE[];
@@ -285,7 +285,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
 
     stage.signals.clicked.add(this.onClick);
 
-    if (predictedProteins.find(pred => pred.nglStructure.name === structureComponent.name)) {
+    if (predictedProteins.find(pred => pred.nglStructure.path === structureComponent.object.path)) {
       if (activeRepresentations.predicted.structType === 'default') {
         stage.defaultFileRepresentation(structureComponent);
       } else {
@@ -627,19 +627,22 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
         structType: activeRepresentations.predicted.structType,
       },
     };
+
     for (const structureComponent of stage.compList) {
-      const isExperimental = this.isExperimentalStructure(structureComponent);
+      if (structureComponent) {
+        const isExperimental = this.isExperimentalStructure(structureComponent);
 
-      for (const rep of [...activeRepresentations.experimental.reps, ...activeRepresentations.predicted.reps]) {
-        if (structureComponent.reprList.includes(rep)) {
-          structureComponent.removeRepresentation(rep);
+        for (const rep of [...activeRepresentations.experimental.reps, ...activeRepresentations.predicted.reps]) {
+          if (structureComponent.reprList.includes(rep)) {
+            structureComponent.removeRepresentation(rep);
+          }
         }
-      }
 
-      if (isExperimental) {
-        result.experimental.reps.push(...this.deriveActiveRepresentations(structureComponent as StructureComponent));
-      } else {
-        result.predicted.reps.push(...this.deriveActiveRepresentations(structureComponent as StructureComponent));
+        if (isExperimental) {
+          result.experimental.reps.push(...this.deriveActiveRepresentations(structureComponent as StructureComponent));
+        } else {
+          result.predicted.reps.push(...this.deriveActiveRepresentations(structureComponent as StructureComponent));
+        }
       }
     }
 
@@ -729,7 +732,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
 
   protected isExperimentalStructure = (structureComponent: Component) => {
     const { predictedProteins } = this.props;
-    if (predictedProteins.find(pred => pred.nglStructure.name === structureComponent.name)) {
+    if (predictedProteins.find(pred => pred.path === structureComponent.object.path)) {
       return false;
     }
 
@@ -880,7 +883,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     };
 
     for (const structureComponent of stage.compList) {
-      if (pdbs.find(pdb => pdb.nglStructure.name === structureComponent.name)) {
+      if (pdbs.find(pdb => pdb.path === structureComponent.object.path)) {
         structureComponent.removeAllRepresentations();
         if (rep === 'default') {
           stage.defaultFileRepresentation(structureComponent);

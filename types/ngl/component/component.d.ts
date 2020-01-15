@@ -112,7 +112,7 @@ declare module 'ngl' {
     public annotationList: Annotation[];
     public controls: ComponentControls;
     public matrix: Matrix4;
-    public object: any;
+    public object: Record<string, any>;
     public parameters: IComponentParameters;
     public position: Vector3;
     public quaternion: Quaternion;

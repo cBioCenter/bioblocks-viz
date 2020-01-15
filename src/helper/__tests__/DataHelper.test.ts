@@ -136,7 +136,10 @@ describe('DataHelper', () => {
       expect(result.allContacts).toEqual(expected.allContacts);
     });
 
-    const expectedSecondaryData = [{ resno: 30, structId: 'C' }, { resno: 31, structId: 'C' }];
+    const expectedSecondaryData = [
+      { resno: 30, structId: 'C' },
+      { resno: 31, structId: 'C' },
+    ];
 
     it('Should parse secondary structure data correctly.', () => {
       const data = getSecondaryStructureData(secondaryStructureCsv);
@@ -237,7 +240,10 @@ describe('DataHelper', () => {
         const expected = '0,21,12\n1,12,21\n';
         fetchMock.mockResponse(expected);
         const result = await fetchSpringCoordinateData('somewhere.place');
-        expect(result).toEqual([[21, 12], [12, 21]]);
+        expect(result).toEqual([
+          [21, 12],
+          [12, 21],
+        ]);
       });
 
       it('Should parse a empty coordinate file.', async () => {

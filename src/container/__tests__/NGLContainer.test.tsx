@@ -27,7 +27,7 @@ describe('NGLContainer', () => {
     expect(wrapper.instance().state).toEqual({
       experimentalProteins: pdbs,
       predictedProteins: [],
-      selectedExperimentalProteins: ['exp_1_sample'],
+      selectedExperimentalProteins: [pdbs[0].uuid],
       selectedPredictedProteins: [],
     });
     wrapper.setProps({
@@ -56,7 +56,7 @@ describe('NGLContainer', () => {
       experimentalProteins: [],
       predictedProteins: [pdbs[0], pdbs[1]],
       selectedExperimentalProteins: [],
-      selectedPredictedProteins: ['pred_1_sample'],
+      selectedPredictedProteins: [pdbs[0].uuid],
     });
 
     wrapper.setProps({
@@ -68,7 +68,7 @@ describe('NGLContainer', () => {
       experimentalProteins: [],
       predictedProteins: [pdbs[1]],
       selectedExperimentalProteins: [],
-      selectedPredictedProteins: ['pred_2_sample'],
+      selectedPredictedProteins: [pdbs[1].uuid],
     });
   });
 
@@ -88,8 +88,8 @@ describe('NGLContainer', () => {
     expect(wrapper.instance().state).toEqual({
       experimentalProteins: [pdbs[0], pdbs[1]],
       predictedProteins: [pdbs[2], pdbs[3]],
-      selectedExperimentalProteins: ['exp_1_sample'],
-      selectedPredictedProteins: ['pred_1_sample'],
+      selectedExperimentalProteins: [pdbs[0].uuid],
+      selectedPredictedProteins: [pdbs[2].uuid],
     });
 
     wrapper
@@ -103,8 +103,8 @@ describe('NGLContainer', () => {
     expect(wrapper.instance().state).toEqual({
       experimentalProteins: [pdbs[0], pdbs[1]],
       predictedProteins: [pdbs[2], pdbs[3]],
-      selectedExperimentalProteins: ['exp_1_sample', 'exp_2_sample'],
-      selectedPredictedProteins: ['pred_1_sample'],
+      selectedExperimentalProteins: [pdbs[0].uuid, pdbs[1].uuid],
+      selectedPredictedProteins: [pdbs[2].uuid],
     });
     wrapper
       .find(Checkbox)
@@ -114,8 +114,8 @@ describe('NGLContainer', () => {
     expect(wrapper.instance().state).toEqual({
       experimentalProteins: [pdbs[0], pdbs[1]],
       predictedProteins: [pdbs[2], pdbs[3]],
-      selectedExperimentalProteins: ['exp_2_sample'],
-      selectedPredictedProteins: ['pred_1_sample'],
+      selectedExperimentalProteins: [pdbs[1].uuid],
+      selectedPredictedProteins: [pdbs[2].uuid],
     });
 
     wrapper
@@ -129,8 +129,8 @@ describe('NGLContainer', () => {
     expect(wrapper.instance().state).toEqual({
       experimentalProteins: [pdbs[0], pdbs[1]],
       predictedProteins: [pdbs[2], pdbs[3]],
-      selectedExperimentalProteins: ['exp_2_sample'],
-      selectedPredictedProteins: ['pred_1_sample', 'pred_2_sample'],
+      selectedExperimentalProteins: [pdbs[1].uuid],
+      selectedPredictedProteins: [pdbs[2].uuid, pdbs[3].uuid],
     });
     wrapper
       .find(Checkbox)
@@ -139,8 +139,8 @@ describe('NGLContainer', () => {
     expect(wrapper.instance().state).toEqual({
       experimentalProteins: [pdbs[0], pdbs[1]],
       predictedProteins: [pdbs[2], pdbs[3]],
-      selectedExperimentalProteins: ['exp_2_sample'],
-      selectedPredictedProteins: ['pred_2_sample'],
+      selectedExperimentalProteins: [pdbs[1].uuid],
+      selectedPredictedProteins: [pdbs[3].uuid],
     });
   });
 
@@ -188,8 +188,8 @@ describe('NGLContainer', () => {
       .simulate('click');
 
     await flushPromises();
-    expect(instance.state.selectedExperimentalProteins).toEqual(['pred_1_sample']);
-    expect(instance.state.selectedPredictedProteins).toEqual(['pred_1_sample']);
+    expect(instance.state.selectedExperimentalProteins).toEqual([pdbs[0].uuid]);
+    expect(instance.state.selectedPredictedProteins).toEqual([pdbs[0].uuid]);
 
     wrapper.setProps({
       experimentalProteins: [],

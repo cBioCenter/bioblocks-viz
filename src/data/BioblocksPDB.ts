@@ -1,4 +1,6 @@
+import * as crypto from 'crypto';
 import { ILoaderParameters, ResidueProxy, Structure } from 'ngl';
+import { inspect } from 'util';
 
 import {
   AminoAcid,
@@ -89,12 +91,24 @@ export class BioblocksPDB {
     return result;
   }
 
+  public get path(): string {
+    return this.fileName;
+  }
+
   public get sequence(): string {
     return this.nglData ? this.nglData.getSequence().join('') : '';
   }
 
   public get source(): string {
     return 'UKN';
+  }
+
+  public get uuid(): string {
+    return this.id;
+  }
+
+  public set uuid(uuid: string) {
+    this.id = uuid;
   }
 
   public static readonly NGL_C_ALPHA_INDEX = 'CA|C';
@@ -106,7 +120,7 @@ export class BioblocksPDB {
   public static arePDBArraysEqual = (
     firstArray: BioblocksPDB[],
     secondArray: BioblocksPDB[],
-    compFn = (a: BioblocksPDB, b: BioblocksPDB) => a.name === b.name,
+    compFn = (a: BioblocksPDB, b: BioblocksPDB) => a.uuid === b.uuid,
   ) => {
     for (const outerPDB of firstArray) {
       if (secondArray.findIndex(innerPDB => compFn(innerPDB, outerPDB)) === -1) {
@@ -130,6 +144,9 @@ export class BioblocksPDB {
     const result = new BioblocksPDB();
     result.nglData = (await NGLInstanceManager.instance.autoLoad(file, fileLoaderParams)) as Structure;
     result.fileName = typeof file === 'string' ? file : file.name;
+    const hash = crypto.createHash('sha1');
+    hash.update(inspect(result.nglData, false, 2));
+    result.uuid = hash.digest('hex');
 
     return result;
   }
@@ -138,6 +155,9 @@ export class BioblocksPDB {
     const result = new BioblocksPDB();
     result.nglData = nglData;
     result.fileName = nglData.path ? nglData.path : nglData.name;
+    const hash = crypto.createHash('sha1');
+    hash.update(inspect(result.nglData, false, 2));
+    result.uuid = hash.digest('hex');
 
     return result;
   }
@@ -145,6 +165,7 @@ export class BioblocksPDB {
   protected contactInfo?: CouplingContainer;
   protected fileName: string = '';
   protected nglData: Structure = new NGLInstanceManager.instance.Structure();
+  protected id: string = '';
 
   private constructor() {}
 
