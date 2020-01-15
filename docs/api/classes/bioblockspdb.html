@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>BioblocksPDB | bioblocks-viz - v0.0.154</title>
+	<title>BioblocksPDB | bioblocks-viz - v0.0.155</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">bioblocks-viz - v0.0.154</a>
+					<a href="../index.html" class="title">bioblocks-viz - v0.0.155</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -98,6 +98,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="bioblockspdb.html#contactinfo" class="tsd-kind-icon">contact<wbr>Info</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="bioblockspdb.html#filename" class="tsd-kind-icon">file<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="bioblockspdb.html#id" class="tsd-kind-icon">id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="bioblockspdb.html#ngldata" class="tsd-kind-icon">ngl<wbr>Data</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="bioblockspdb.html#ngl_c_alpha_index" class="tsd-kind-icon">NGL_<wbr><wbr>C_ALPHA_<wbr>INDEX</a></li>
 							</ul>
@@ -108,11 +109,13 @@
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="bioblockspdb.html#contactinformation" class="tsd-kind-icon">contact<wbr>Information</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="bioblockspdb.html#name" class="tsd-kind-icon">name</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="bioblockspdb.html#nglstructure" class="tsd-kind-icon">ngl<wbr>Structure</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="bioblockspdb.html#path" class="tsd-kind-icon">path</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="bioblockspdb.html#rank" class="tsd-kind-icon">rank</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="bioblockspdb.html#secondarystructure" class="tsd-kind-icon">secondary<wbr>Structure</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="bioblockspdb.html#secondarystructuresections" class="tsd-kind-icon">secondary<wbr>Structure<wbr>Sections</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="bioblockspdb.html#sequence" class="tsd-kind-icon">sequence</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="bioblockspdb.html#source" class="tsd-kind-icon">source</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="bioblockspdb.html#uuid" class="tsd-kind-icon">uuid</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -147,7 +150,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L147">src/data/BioblocksPDB.ts:147</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L168">src/data/BioblocksPDB.ts:168</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="bioblockspdb.html" class="tsd-signature-type">BioblocksPDB</a></h4>
@@ -163,7 +166,7 @@
 					<div class="tsd-signature tsd-kind-icon">contact<wbr>Info<span class="tsd-signature-symbol">:</span> <a href="couplingcontainer.html" class="tsd-signature-type">CouplingContainer</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L145">src/data/BioblocksPDB.ts:145</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L165">src/data/BioblocksPDB.ts:165</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -173,7 +176,17 @@
 					<div class="tsd-signature tsd-kind-icon">file<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L146">src/data/BioblocksPDB.ts:146</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L166">src/data/BioblocksPDB.ts:166</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="id" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L168">src/data/BioblocksPDB.ts:168</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -183,7 +196,7 @@
 					<div class="tsd-signature tsd-kind-icon">ngl<wbr>Data<span class="tsd-signature-symbol">:</span> <a href="_ngl_.structure.html" class="tsd-signature-type">Structure</a><span class="tsd-signature-symbol"> =&nbsp;new NGLInstanceManager.instance.Structure()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L147">src/data/BioblocksPDB.ts:147</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L167">src/data/BioblocksPDB.ts:167</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -193,7 +206,7 @@
 					<div class="tsd-signature tsd-kind-icon">NGL_<wbr><wbr>C_ALPHA_<wbr>INDEX<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"CA|C"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;CA|C&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L100">src/data/BioblocksPDB.ts:100</a></li>
+							<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L114">src/data/BioblocksPDB.ts:114</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -210,7 +223,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L22">src/data/BioblocksPDB.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L24">src/data/BioblocksPDB.ts:24</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="couplingcontainer.html" class="tsd-signature-type">CouplingContainer</a></h4>
@@ -227,7 +240,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L46">src/data/BioblocksPDB.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L48">src/data/BioblocksPDB.ts:48</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -244,10 +257,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L54">src/data/BioblocksPDB.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L56">src/data/BioblocksPDB.ts:56</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_ngl_.structure.html" class="tsd-signature-type">Structure</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="path" class="tsd-anchor"></a>
+					<h3>path</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> path<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L94">src/data/BioblocksPDB.ts:94</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -261,7 +291,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L58">src/data/BioblocksPDB.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L60">src/data/BioblocksPDB.ts:60</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -278,7 +308,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L62">src/data/BioblocksPDB.ts:62</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L64">src/data/BioblocksPDB.ts:64</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/isecondarystructuredata.html" class="tsd-signature-type">ISecondaryStructureData</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -295,7 +325,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L81">src/data/BioblocksPDB.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L83">src/data/BioblocksPDB.ts:83</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../globals.html#secondary_structure_section" class="tsd-signature-type">SECONDARY_STRUCTURE_SECTION</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h4>
@@ -312,7 +342,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L92">src/data/BioblocksPDB.ts:92</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L98">src/data/BioblocksPDB.ts:98</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -329,10 +359,42 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L96">src/data/BioblocksPDB.ts:96</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L102">src/data/BioblocksPDB.ts:102</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
+					<a name="uuid" class="tsd-anchor"></a>
+					<h3>uuid</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> uuid<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> uuid<span class="tsd-signature-symbol">(</span>uuid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L106">src/data/BioblocksPDB.ts:106</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L110">src/data/BioblocksPDB.ts:110</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>uuid: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -349,7 +411,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L162">src/data/BioblocksPDB.ts:162</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L183">src/data/BioblocksPDB.ts:183</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -387,7 +449,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L151">src/data/BioblocksPDB.ts:151</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L172">src/data/BioblocksPDB.ts:172</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -428,7 +490,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L217">src/data/BioblocksPDB.ts:217</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L238">src/data/BioblocksPDB.ts:238</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -466,7 +528,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L293">src/data/BioblocksPDB.ts:293</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L314">src/data/BioblocksPDB.ts:314</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -515,7 +577,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L237">src/data/BioblocksPDB.ts:237</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L258">src/data/BioblocksPDB.ts:258</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -564,7 +626,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L244">src/data/BioblocksPDB.ts:244</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L265">src/data/BioblocksPDB.ts:265</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -587,7 +649,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L323">src/data/BioblocksPDB.ts:323</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L344">src/data/BioblocksPDB.ts:344</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -613,7 +675,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L269">src/data/BioblocksPDB.ts:269</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L290">src/data/BioblocksPDB.ts:290</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -642,7 +704,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L106">src/data/BioblocksPDB.ts:106</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L120">src/data/BioblocksPDB.ts:120</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -660,7 +722,7 @@
 									<h5>secondArray: <a href="bioblockspdb.html" class="tsd-signature-type">BioblocksPDB</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> compFn: <span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol"> =&nbsp;(a: BioblocksPDB, b: BioblocksPDB) &#x3D;&gt; a.name &#x3D;&#x3D;&#x3D; b.name</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> compFn: <span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol"> =&nbsp;(a: BioblocksPDB, b: BioblocksPDB) &#x3D;&gt; a.uuid &#x3D;&#x3D;&#x3D; b.uuid</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -677,7 +739,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L120">src/data/BioblocksPDB.ts:120</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L134">src/data/BioblocksPDB.ts:134</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="bioblockspdb.html" class="tsd-signature-type">BioblocksPDB</a></h4>
@@ -694,7 +756,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L129">src/data/BioblocksPDB.ts:129</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L143">src/data/BioblocksPDB.ts:143</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -726,7 +788,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/512188b41/src/data/BioblocksPDB.ts#L137">src/data/BioblocksPDB.ts:137</a></li>
+									<li>Defined in <a href="https://github.com/cBioCenter/bioblocks-viz/blob/6c3d1c6ef/src/data/BioblocksPDB.ts#L154">src/data/BioblocksPDB.ts:154</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -766,6 +828,9 @@
 								<a href="bioblockspdb.html#filename" class="tsd-kind-icon">file<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="bioblockspdb.html#id" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 								<a href="bioblockspdb.html#ngldata" class="tsd-kind-icon">ngl<wbr>Data</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
@@ -781,6 +846,9 @@
 								<a href="bioblockspdb.html#nglstructure" class="tsd-kind-icon">ngl<wbr>Structure</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="bioblockspdb.html#path" class="tsd-kind-icon">path</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="bioblockspdb.html#rank" class="tsd-kind-icon">rank</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
@@ -794,6 +862,9 @@
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="bioblockspdb.html#source" class="tsd-kind-icon">source</a>
+							</li>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class">
+								<a href="bioblockspdb.html#uuid" class="tsd-kind-icon">uuid</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="bioblockspdb.html#amendpdbwithcouplingscores" class="tsd-kind-icon">amendPDBWith<wbr>Coupling<wbr>Scores</a>
