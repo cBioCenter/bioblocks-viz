@@ -151,6 +151,7 @@ const chainResidues = [...sampleResidues, helixResidue(1, 1, 0), helixResidue(2,
 // tslint:disable-next-line:max-classes-per-file
 class MockStructureComponent {
   public name = '';
+  public object = { path: '' };
   public position = new Array<number>();
   public reprList = new Array<string>();
 
@@ -158,6 +159,9 @@ class MockStructureComponent {
 
   constructor(name: string, readonly stage?: object) {
     this.name = name;
+    this.object = {
+      path: name,
+    };
     this.structure = new MockStructure(name);
   }
 
