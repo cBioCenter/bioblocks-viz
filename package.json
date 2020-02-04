@@ -220,7 +220,7 @@
     "@types/storybook__react": "^4.0.2",
     "@types/three": "^0.93.5",
     "@types/wallabyjs": "^0.0.6",
-    "@types/webpack": "4.39.1",
+    "@types/webpack": "4.41.4",
     "@types/webpack-bundle-analyzer": "^2.9.2",
     "@types/webpack-env": "^1.13.6",
     "@types/webpack-merge": "^4.1.3",
