@@ -66,6 +66,9 @@ const getWebpackPublishOptimizations = (config: webpack.Configuration) => {
     name: false,
   };
 
+  optimization.mergeDuplicateChunks = true;
+  optimization.minimize = true;
+
   return optimization;
 };
 

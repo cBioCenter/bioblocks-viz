@@ -229,15 +229,18 @@ export class CouplingContainer implements IterableIterator<ICouplingScore> {
   /**
    * Primary interface for getting a coupling score, provides access to the same data object regardless of order of (firstRes, secondRes).
    */
-  public getCouplingScore = (firstRes: number, secondRes: number): ICouplingScore | undefined => {
+  public getCouplingScore(firstRes: number, secondRes: number): ICouplingScore | undefined {
     const row = this.contacts[Math.min(firstRes, secondRes) - 1];
 
     return row ? row[Math.max(firstRes, secondRes) - 1] : undefined;
-  };
+  }
 
-  public includes = (firstRes: number, secondRes: number) =>
-    this.contacts[Math.min(firstRes, secondRes) - 1] &&
-    this.contacts[Math.min(firstRes, secondRes) - 1][Math.max(firstRes, secondRes) - 1] !== undefined;
+  public includes(firstRes: number, secondRes: number) {
+    return (
+      this.contacts[Math.min(firstRes, secondRes) - 1] &&
+      this.contacts[Math.min(firstRes, secondRes) - 1][Math.max(firstRes, secondRes) - 1] !== undefined
+    );
+  }
 
   public next(): IteratorResult<ICouplingScore> {
     for (let i = this.rowCounter; i < this.contacts.length; ++i) {

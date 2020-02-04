@@ -1,5 +1,4 @@
-// tslint:disable-next-line: no-submodule-imports
-import * as plotly from 'plotly.js/lib/index-gl2d';
+import * as plotly from 'plotly.js-gl3d-dist-min';
 
 export enum PLOTLY_CHART_TYPE {
   /** [Plotly Bar Chart](https://plot.ly/javascript/bar-charts/) */

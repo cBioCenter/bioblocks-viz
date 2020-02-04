@@ -39,10 +39,7 @@ export const generateCommonConfig = (
   plugins: getCommonWebpackPlugins(),
   resolve: {
     alias: {
-      ngl: path.resolve(__dirname, './node_modules/ngl/dist/ngl.esm.js'),
-      'plotly.js/lib/index': path.resolve(__dirname, './node_modules/plotly.js/dist/plotly.min.js'),
-      'plotly.js/lib/index-gl2d': path.resolve(__dirname, './node_modules/plotly.js/dist/plotly-gl2d.min.js'),
-      'plotly.js/lib/index-gl3d': path.resolve(__dirname, './node_modules/plotly.js/dist/plotly-gl3d.min.js'),
+      ngl: path.resolve(__dirname, './node_modules/ngl/dist/ngl.js'),
       react: path.resolve(__dirname, './node_modules/react'),
       'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
     },

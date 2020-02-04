@@ -2579,8 +2579,6 @@ exports[`ContactMapComponent Snapshots Should match snapshot when locked residue
           ],
         ],
         "derivedFromCouplingScoresFlag": true,
-        "getCouplingScore": [Function],
-        "includes": [Function],
         "indexRange": Object {
           "max": 57,
           "min": 1,

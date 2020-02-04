@@ -11,6 +11,8 @@ import {
 } from '~bioblocks-viz~/container';
 import {
   BIOBLOCKS_CSS_STYLE,
+  CouplingContainer,
+  IContactMapData,
   IFrameEvent,
   IUMapEventData,
   Seq,
@@ -82,7 +84,17 @@ export class BBFrame extends React.Component<IBBFrameProps, IBBFrameState> {
       case VIZ_TYPE.ANATOMOGRAM:
         return <AnatomogramContainer {...vizProps} />;
       case VIZ_TYPE.CONTACT_MAP:
-        return <ContactMapContainer {...vizProps} />;
+        const data = vizProps.data as IContactMapData;
+
+        return (
+          <ContactMapContainer
+            {...vizProps}
+            data={{
+              ...data,
+              couplingScores: CouplingContainer.fromJSON(data.couplingScores),
+            }}
+          />
+        );
       case VIZ_TYPE.NGL:
         return <NGLContainer {...vizProps} />;
       case VIZ_TYPE.SPRING:

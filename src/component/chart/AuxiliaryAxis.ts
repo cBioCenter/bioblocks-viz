@@ -1,5 +1,4 @@
-// tslint:disable-next-line: no-submodule-imports
-import { Datum } from 'plotly.js/lib/index-gl2d';
+import { Datum } from 'plotly.js-gl3d-dist-min';
 
 import { Bioblocks1DSection, BIOBLOCKS_PLOTLY_DATA, REQUIRED_BIOBLOCKS_PLOTLY_DATA } from '~bioblocks-viz~/data';
 import { ColorMapper } from '~bioblocks-viz~/helper';

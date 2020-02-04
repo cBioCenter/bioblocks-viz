@@ -1,6 +1,6 @@
 {
   "name": "bioblocks-viz",
-  "version": "0.0.155",
+  "version": "0.0.156",
   "author": "Biostatistics and Computational Biology at Dana-Farber <bcb@jimmy.harvard.edu>",
   "contributors": [
     "Andrew Diamantoukos <MercifulCode@gmail.com",
@@ -52,9 +52,8 @@
       "~bioblocks-viz~/test": "<rootDir>/test",
       "~bioblocks-viz~/(.*)": "<rootDir>/src/$1",
       "\\.(css|less)$": "<rootDir>/test/__mocks__/styleMock.ts",
-      "plotly.js/lib/index": "<rootDir>/test/__mocks__/plotly.ts",
-      "plotly.js/lib/index-gl2d": "<rootDir>/test/__mocks__/plotly.ts",
-      "plotly.js/lib/index-gl3d": "<rootDir>/test/__mocks__/plotly.ts",
+      "plotly.js-gl2d-dist-min": "<rootDir>/test/__mocks__/plotly.ts",
+      "plotly.js-gl3d-dist-min": "<rootDir>/test/__mocks__/plotly.ts",
       "@tensorflow/tfjs-core": "<rootDir>/test/__mocks__/@tensorflow/tfjs-core-mock.ts",
       "@tensorflow/tfjs-tsne": "<rootDir>/test/__mocks__/@tensorflow/tfjs-tsne-mock.ts"
     },
@@ -166,7 +165,8 @@
     "memoize-one": "^5.0.0",
     "ngl": "2.0.0-dev.37",
     "papaparse": "^5.0.0",
-    "plotly.js": "^1.49.4",
+    "plotly.js-gl2d-dist-min": "^1.52.2",
+    "plotly.js-gl3d-dist-min": "^1.52.2",
     "rc-slider": "^8.6.3",
     "react-iframe-comm": "^1.2.2",
     "react-redux": "^7.1.1",
@@ -220,7 +220,7 @@
     "@types/storybook__react": "^4.0.2",
     "@types/three": "^0.93.5",
     "@types/wallabyjs": "^0.0.6",
-    "@types/webpack": "4.39.1",
+    "@types/webpack": "4.41.4",
     "@types/webpack-bundle-analyzer": "^2.9.2",
     "@types/webpack-env": "^1.13.6",
     "@types/webpack-merge": "^4.1.3",

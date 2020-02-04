@@ -1,6 +1,6 @@
 import { CommonWrapper, mount, ReactWrapper, shallow } from 'enzyme';
 // tslint:disable-next-line: no-submodule-imports
-import * as plotly from 'plotly.js/lib/index-gl2d';
+import * as plotly from 'plotly.js-gl3d-dist-min';
 import * as React from 'react';
 
 import { PlotlyChart } from '~bioblocks-viz~/component';
@@ -81,9 +81,10 @@ export const dispatchPlotlySelectionEvent = async (
   const plotlyWrapper = wrapper.find('PlotlyChart') as CommonWrapper;
   const canvas = (plotlyWrapper.instance() as PlotlyChart).plotlyCanvas;
   if (canvas) {
-    (canvas as IMockPlotlyCanvas).dispatchEvent(new Event('plotly_selected'), data as Partial<
-      plotly.PlotSelectionEvent
-    >);
+    (canvas as IMockPlotlyCanvas).dispatchEvent(
+      new Event('plotly_selected'),
+      data as Partial<plotly.PlotSelectionEvent>,
+    );
   }
   await Promise.resolve();
 };

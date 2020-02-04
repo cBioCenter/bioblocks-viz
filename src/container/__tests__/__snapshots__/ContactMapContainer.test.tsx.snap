@@ -135,8 +135,6 @@ exports[`ContactMapContainer Snapshots Should match existing snapshot when given
           "colCounter": 0,
           "contacts": Array [],
           "derivedFromCouplingScoresFlag": true,
-          "getCouplingScore": [Function],
-          "includes": [Function],
           "indexRange": Object {
             "max": 1,
             "min": 1,
@@ -260,8 +258,6 @@ exports[`ContactMapContainer Snapshots Should match existing snapshot when given
           "colCounter": 0,
           "contacts": Array [],
           "derivedFromCouplingScoresFlag": true,
-          "getCouplingScore": [Function],
-          "includes": [Function],
           "indexRange": Object {
             "max": 1,
             "min": 1,
@@ -385,8 +381,6 @@ exports[`ContactMapContainer Snapshots Should match snapshot when locked residue
           "colCounter": 0,
           "contacts": Array [],
           "derivedFromCouplingScoresFlag": true,
-          "getCouplingScore": [Function],
-          "includes": [Function],
           "indexRange": Object {
             "max": 1,
             "min": 1,

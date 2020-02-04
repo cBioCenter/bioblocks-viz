@@ -1,5 +1,4 @@
-// tslint:disable-next-line: no-submodule-imports
-import * as plotly from 'plotly.js/lib/index-gl2d';
+import * as plotly from 'plotly.js-gl3d-dist-min';
 import * as React from 'react';
 
 import { AuxiliaryAxis, PlotlyChart, SecondaryStructureAxis } from '~bioblocks-viz~/component';
@@ -64,7 +63,10 @@ export const generateChartDataEntry = (
     typeof color === 'string'
       ? { color: new Array(points.length * 2).fill(color) }
       : {
-          colorscale: [[0, color.start], [1, color.end]],
+          colorscale: [
+            [0, color.start],
+            [1, color.end],
+          ],
         },
   mode: 'lines+markers',
   name,
