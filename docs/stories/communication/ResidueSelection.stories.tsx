@@ -1,8 +1,6 @@
-import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 
 import { ContactMapContainer, NGLContainer } from '~bioblocks-viz~/container';
-import { BioblocksPDB, CouplingContainer } from '~bioblocks-viz~/data';
 import { fetchContactMapData } from '~bioblocks-viz~/helper';
 
 export default {
@@ -16,13 +14,17 @@ if (window) {
   });
 }
 
-export const Foo = () => {
+export const Story = () => {
   return (
     <div>
       {getFramedNGL()}
       {getFramedContactMap()}
     </div>
   );
+};
+
+Story.story = {
+  name: 'Beta Lactamase 1ZG4',
 };
 
 const getFramedNGL = () => (
@@ -41,7 +43,7 @@ const getFramedNGL = () => (
         iframe.contentWindow.postMessage(
           {
             props: {
-              predictedProteins: ['datasets/beta_lactamase/1ZG4.pdb'],
+              predictedProteins: ['datasets/beta_lactamase/1zg4.pdb'],
             },
             viz: 'NGL',
           },
@@ -59,7 +61,8 @@ const getFramedContactMap = () => (
     width="525"
     height="590"
     src="bioblocks.html"
-    onLoad={() => {
+    onLoad={async () => {
+      const data = await fetchContactMapData('datasets/beta_lactamase');
       const iframe = document.getElementById('bioblocks-frame-contact-map');
       // @ts-ignore
       if (iframe && iframe.contentWindow) {
@@ -67,7 +70,9 @@ const getFramedContactMap = () => (
         // tslint:disable-next-line: no-unsafe-any
         iframe.contentWindow.postMessage(
           {
-            props: {},
+            props: {
+              data: { couplingScores: data.couplingScores },
+            },
             viz: 'Contact Map',
           },
           '*',

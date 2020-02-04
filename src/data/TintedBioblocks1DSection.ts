@@ -1,5 +1,4 @@
-// tslint:disable-next-line: no-submodule-imports
-import { Color } from 'plotly.js/lib/index-gl2d';
+import { Color } from 'plotly.js-gl2d-dist-min';
 
 import { Bioblocks1DSection } from '~bioblocks-viz~/data';
 

@@ -1,6 +1,5 @@
 import { mount, shallow } from 'enzyme';
-// tslint:disable-next-line: no-submodule-imports
-import * as plotly from 'plotly.js/lib/index-gl2d';
+import * as plotly from 'plotly.js-gl3d-dist-min';
 import * as React from 'react';
 
 import { ContactMapComponent } from '~bioblocks-viz~/component';
