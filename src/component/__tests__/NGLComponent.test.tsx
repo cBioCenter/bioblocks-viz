@@ -382,6 +382,15 @@ describe('NGLComponent', () => {
       },
     );
 
+    it('Should call a callback with the associated PickingProxy object ona click.', async () => {
+      const pickingResult: RecursivePartial<PickingProxy> = { atom: { resno: 4 }, shiftKey: true };
+      const onResidueClickSpy = jest.fn();
+      const wrapper = mount(<NGLComponent predictedProteins={sampleData} onResidueClick={onResidueClickSpy} />);
+
+      simulateClickEvent(wrapper, pickingResult);
+      expect(onResidueClickSpy).toHaveBeenCalledWith(pickingResult);
+    });
+
     it('Should handle clicking on a distance representation.', async () => {
       const wrapper = mount(<NGLComponent predictedProteins={sampleData} />);
       const removedLockedSpy = jest.fn();

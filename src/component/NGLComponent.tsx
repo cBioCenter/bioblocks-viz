@@ -71,6 +71,7 @@ export interface INGLComponentProps {
   addLockedResiduePair(residuePair: LockedResiduePair): void;
   hoveredResidueTooltipTextCb(hoverInfo: INGLHoverInfo): string;
   onMeasuredProximityChange?(value: number): void;
+  onResidueClick(pickingProxy: PickingProxy): void;
   onResize?(event?: UIEvent): void;
   removeAllLockedResiduePairs(): void;
   removeAllSelectedSecondaryStructures(): void;
@@ -123,6 +124,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     measuredProximity: CONTACT_DISTANCE_PROXIMITY.C_ALPHA,
     menuItems: [],
     onMeasuredProximityChange: EMPTY_FUNCTION,
+    onResidueClick: EMPTY_FUNCTION,
     onResize: EMPTY_FUNCTION,
     predictedProteins: [],
     removeAllLockedResiduePairs: EMPTY_FUNCTION,
@@ -569,7 +571,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   };
 
   protected handleClickPick = (pickingProxy: PickingProxy) => {
-    const { removeLockedResiduePair } = this.props;
+    const { removeLockedResiduePair, onResidueClick } = this.props;
 
     if (pickingProxy.picker && pickingProxy.picker.type === 'distance') {
       const residues = [pickingProxy.distance.atom1.resno, pickingProxy.distance.atom2.resno];
@@ -577,6 +579,8 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     } else if (pickingProxy.atom || pickingProxy.closestBondAtom) {
       this.handleAtomClick(pickingProxy);
     }
+
+    onResidueClick(pickingProxy);
   };
 
   protected handleHoveredDistances = (residueIndex: number, structureComponent: Component) => {

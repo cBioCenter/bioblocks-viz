@@ -218,6 +218,7 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                     ]
                   }
                   onMeasuredProximityChange={[Function]}
+                  onResidueClick={[Function]}
                   onResize={[Function]}
                   predictedProteins={Array []}
                   removeAllLockedResiduePairs={[Function]}
@@ -1471,6 +1472,7 @@ exports[`NGLContainer Should match the default snapshot when not hooked up to a 
         ]
       }
       onMeasuredProximityChange={[Function]}
+      onResidueClick={[Function]}
       onResize={[Function]}
       predictedProteins={Array []}
       removeAllLockedResiduePairs={[Function]}
