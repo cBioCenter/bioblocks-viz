@@ -1,3 +1,8 @@
+// ~bb-viz~
+// NGL Visualization Component.
+// Responsible for setting up and controlling NGL viewer via a canvas element.
+// ~bb-viz~
+
 import { Map } from 'immutable';
 import { cloneDeep } from 'lodash';
 import {

@@ -36,7 +36,6 @@ export interface ITensorContainerState {
   isComputing: boolean;
   numIterations: number;
   tsne?: TSNE;
-  plotlyCoords: Array<Partial<IPlotlyData>>;
 }
 
 export class TensorTContainerClass extends BioblocksVisualization<ITensorContainerProps, ITensorContainerState> {
@@ -64,7 +63,6 @@ export class TensorTContainerClass extends BioblocksVisualization<ITensorContain
       isAnimating: false,
       isComputing: false,
       numIterations: 0,
-      plotlyCoords: [],
     };
   }
 
@@ -95,15 +93,15 @@ export class TensorTContainerClass extends BioblocksVisualization<ITensorContain
     } else if (tsne) {
       if (currentCells !== prevProps.currentCells) {
         this.setState({
-          plotlyCoords: this.getPlotlyCoordsFromTsne(await tsne.coordsArray()),
+          coordsArray: await tsne.coordsArray(),
         });
       }
     }
   }
 
   public render() {
-    const { height, iconSrc, isFullPage } = this.props;
-    const { plotlyCoords } = this.state;
+    const { currentCells, height, iconSrc, isFullPage, pointColor } = this.props;
+    const { coordsArray } = this.state;
 
     return (
       <ComponentCard
@@ -115,7 +113,12 @@ export class TensorTContainerClass extends BioblocksVisualization<ITensorContain
         <Grid centered={true} style={{ height: '100%', marginLeft: 0, width: '100%' }}>
           {this.renderPlaybackControls()}
           <Grid.Row style={{ height: `calc(100% - 3px)`, margin: 0 }}>
-            <TensorTComponent onSelectedCallback={this.handlePointSelection} pointsToPlot={plotlyCoords} />
+            <TensorTComponent
+              currentCells={currentCells.toArray()}
+              onSelectedCallback={this.handlePointSelection}
+              coordsArray={coordsArray}
+              pointColor={pointColor}
+            />
           </Grid.Row>
         </Grid>
       </ComponentCard>
@@ -130,12 +133,10 @@ export class TensorTContainerClass extends BioblocksVisualization<ITensorContain
       });
       await tsne.compute(numIterations);
       const coordsArray = await tsne.coordsArray();
-      const plotlyCoords = this.getPlotlyCoordsFromTsne(coordsArray);
       this.setState({
         coordsArray,
         isComputing: false,
         numIterations,
-        plotlyCoords,
       });
     }
   }
@@ -268,7 +269,6 @@ export class TensorTContainerClass extends BioblocksVisualization<ITensorContain
         coordsArray,
         isComputing: false,
         numIterations: this.state.numIterations + amount,
-        plotlyCoords,
       });
     }
   };
@@ -307,9 +307,9 @@ export class TensorTContainerClass extends BioblocksVisualization<ITensorContain
   protected async setupTensorData() {
     try {
       this.setState({
+        coordsArray: [],
         isAnimating: false,
         isComputing: true,
-        plotlyCoords: [],
         tsne: undefined,
       });
 
@@ -325,7 +325,6 @@ export class TensorTContainerClass extends BioblocksVisualization<ITensorContain
         coordsArray,
         isComputing: false,
         numIterations,
-        plotlyCoords,
       });
     } catch (e) {
       console.log(e);

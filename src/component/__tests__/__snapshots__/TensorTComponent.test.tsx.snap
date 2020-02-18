@@ -2,11 +2,9 @@
 
 exports[`TensorTComponent Should match existing snapshot when given no props. 1`] = `
 <TensorTComponentClass
+  coordsArray={Array []}
+  currentCells={Array []}
+  pointColor="#aa0000"
   pointsToPlot={Array []}
-  style={
-    Object {
-      "padding": 0,
-    }
-  }
 />
 `;

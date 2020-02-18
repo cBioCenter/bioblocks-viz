@@ -87,8 +87,10 @@ exports[`TensorTContainer Should match existing snapshot when given no props. 1`
       }
     >
       <Component
+        coordsArray={Array []}
+        currentCells={Array []}
         onSelectedCallback={[Function]}
-        pointsToPlot={Array []}
+        pointColor="#aa0000"
       />
     </GridRow>
   </Grid>
@@ -182,8 +184,10 @@ exports[`TensorTContainer Should match existing snapshot when given sample data.
       }
     >
       <Component
+        coordsArray={Array []}
+        currentCells={Array []}
         onSelectedCallback={[Function]}
-        pointsToPlot={Array []}
+        pointColor="#aa0000"
       />
     </GridRow>
   </Grid>
