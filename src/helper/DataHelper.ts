@@ -1,3 +1,9 @@
+// ~bb-viz~
+// Data Helper
+// Helper functions for parsing raw data into format(s) used in Bioblocks.
+// See FetchHelper.ts for the actual process of requesting data.
+// ~bb-viz~
+
 import { ILoaderParameters } from 'ngl';
 
 import {
@@ -17,6 +23,7 @@ import {
 import {
   fetchCSVFile,
   fetchJSONFile,
+  generateDefaultHeaderIndices,
   generateResidueMapping,
   getCouplingHeaderIndices,
   IResidueMapping,
@@ -237,7 +244,7 @@ const getParsedColor = (
 export const getCouplingScoresData = (line: string, residueMapping: IResidueMapping[] = []): CouplingContainer => {
   const headerRow = line.split('\n')[0].split(',');
   const isHeaderPresent = isCouplingHeaderPresent(headerRow);
-  const headerIndices = getCouplingHeaderIndices(headerRow, isHeaderPresent);
+  const headerIndices = isHeaderPresent ? getCouplingHeaderIndices(headerRow) : generateDefaultHeaderIndices(headerRow);
   const couplingScores = new CouplingContainer();
   line
     .split('\n')
@@ -320,7 +327,7 @@ export const getSecondaryStructureData = (line: string): ISecondaryStructureData
     .split('\n')
     .slice(1)
     .filter(row => row.split(',').length >= 3)
-    .map(row => {
+    .map((row: string) => {
       const items = row.split(',');
 
       return {

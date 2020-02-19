@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Value Action
+// Redux actions for handling a primitive JavaScript value.
+// ~bb-viz~
+
 import { createStandardAction } from 'typesafe-actions';
 
 // tslint:disable-next-line:export-name

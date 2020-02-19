@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Seq
+// Provides useful encapsulation of a biological sequence, including conversion and mapping functions.
+// ~bb-viz~
+
 import {
   ambiguousDnaComplement,
   ambiguousRnaComplement,

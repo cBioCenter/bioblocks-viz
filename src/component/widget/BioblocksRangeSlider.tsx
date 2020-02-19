@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Bioblocks Range Slider
+// Represents a simple 2d slider, allowing a range to be selected within a minimum and maximum.
+// ~bb-viz~
+
 // tslint:disable-next-line:import-name
 import { Range, RangeProps } from 'rc-slider';
 import * as React from 'react';

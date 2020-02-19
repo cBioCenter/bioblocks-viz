@@ -525,7 +525,9 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
           current: measuredProximity,
           name: 'Proximity Metric',
           onChange: this.measuredProximityHandler,
-          options: Object.values(CONTACT_DISTANCE_PROXIMITY).map(capitalizeEveryWord),
+          options: Object.values(CONTACT_DISTANCE_PROXIMITY).map(option => {
+            return capitalizeEveryWord(option);
+          }),
           type: CONFIGURATION_COMPONENT_TYPE.RADIO,
         },
       ] as BioblocksWidgetConfig[],

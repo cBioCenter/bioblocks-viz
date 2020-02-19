@@ -1,3 +1,8 @@
+// ~bb-viz~
+// BB Store
+// The store used by Bioblocks, holding both initial state and mechanism to update reducers dynamically.
+// ~bb-viz~
+
 import { applyMiddleware, combineReducers, createStore, Middleware } from 'redux';
 import { logger } from 'redux-logger';
 import * as thunk from 'redux-thunk';

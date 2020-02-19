@@ -1,8 +1,13 @@
+// ~bb-viz~
+// NGL Container
+// Responsible for preparing/interacting with PDB data to be displayed inside the NGLComponent.
+// ~bb-viz~
+
 import { Map, Set } from 'immutable';
 import * as React from 'react';
 import { bindActionCreators, Dispatch } from 'redux';
-
 import { Checkbox, CheckboxProps, Grid, Header, Popup, Table } from 'semantic-ui-react';
+
 import { createContainerActions } from '~bioblocks-viz~/action';
 import { createResiduePairActions } from '~bioblocks-viz~/action/ResiduePairAction';
 import { connectWithBBStore, NGLComponent } from '~bioblocks-viz~/component';

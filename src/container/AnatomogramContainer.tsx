@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Anatomogram Visualization
+// Component to display an Anatomogram.
+// ~bb-viz~
+
 // tslint:disable-next-line:import-name
 import Anatomogram from 'anatomogram';
 import { Set } from 'immutable';

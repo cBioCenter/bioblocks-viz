@@ -1,3 +1,8 @@
+// ~bb-viz~
+// NGL Helper
+// Helper functions for interacting with the lower levels of the NGL instance.
+// ~bb-viz~
+
 import * as NGL from 'ngl';
 
 import { RESIDUE_TYPE, SECONDARY_STRUCTURE_SECTION } from '~bioblocks-viz~/data';

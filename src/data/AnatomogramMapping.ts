@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Anatomogram Mapping
+// Manual mapping of Anatomogram homo_sapiens/mus_musculus IDs to those from SPRING.
+// ~bb-viz~
+
 export const AnatomogramMapping: { [key: string]: { [key: string]: string[] } } = {
   homo_sapiens: {
     P11A: ['UBERON_0000178'],

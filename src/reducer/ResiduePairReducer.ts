@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Residue Pair Reducer
+// They are composed of the generic reducers from bioblocks-viz/reducer, serving as an example of their usage.
+// ~bb-viz~
+
 import { Map, Set } from 'immutable';
 import { combineReducers } from 'redux';
 

@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Residue Mapper
+// Helper functions for mapping residues between coupling score and PDB files.
+// ~bb-viz~
+
 import { AMINO_ACID_1LETTER_CODE } from '~bioblocks-viz~/data';
 
 const UNI_PROT_RESNO_HEADER = 'up_index';

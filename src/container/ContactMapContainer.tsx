@@ -1,6 +1,11 @@
-import * as React from 'react';
+// ~bb-viz~
+// Contact Map Container
+// Responsible for preparing and interacting with Contact Map data.
+// ~bb-viz~
 
+import * as React from 'react';
 import { bindActionCreators, Dispatch } from 'redux';
+
 import { createContainerActions, createResiduePairActions } from '~bioblocks-viz~/action';
 import {
   connectWithBBStore,
@@ -22,7 +27,7 @@ import {
   SECONDARY_STRUCTURE_SECTION,
 } from '~bioblocks-viz~/data';
 import { EMPTY_FUNCTION, generateCouplingScoreHoverText } from '~bioblocks-viz~/helper';
-import { BBStore, createContainerReducer, createResiduePairReducer, LockedResiduePair } from '~bioblocks-viz~/reducer';
+import { createContainerReducer, createResiduePairReducer, LockedResiduePair } from '~bioblocks-viz~/reducer';
 import { getHovered, getLocked, selectCurrentItems } from '~bioblocks-viz~/selector';
 
 export interface IContactMapContainerProps {

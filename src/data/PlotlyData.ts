@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Plotly Data
+// Enums, Interfaces and Types for working with PlotlyData.
+// ~bb-viz~
+
 import * as plotly from 'plotly.js-gl3d-dist-min';
 
 export enum PLOTLY_CHART_TYPE {

@@ -1,3 +1,8 @@
+// ~bb-viz~
+// TensorFlow T-SNE Visualization Container.
+// Responsible for running T-SNE on data via TensorFlow JS.
+// ~bb-viz~
+
 import * as tensorFlow from '@tensorflow/tfjs-core';
 // tslint:disable-next-line:no-submodule-imports
 import { TSNE } from '@tensorflow/tfjs-tsne/dist/tsne';

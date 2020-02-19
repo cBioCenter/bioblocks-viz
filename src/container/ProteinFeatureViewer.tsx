@@ -1,3 +1,9 @@
+// ~bb-viz~
+// Protein Feature Viewer
+// ! WARNING - Experimental Component!
+// Component to get and display protein data from [EMBL-ebi](https://www.ebi.ac.uk/)
+// ~bb-viz~
+
 import * as React from 'react';
 import { CheckboxProps, Form, FormProps, GridColumn, GridRow, InputOnChangeData } from 'semantic-ui-react';
 

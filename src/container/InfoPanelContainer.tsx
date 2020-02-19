@@ -1,3 +1,9 @@
+// ~bb-viz~
+// Info Panel Container
+// ! WARNING - Experimental Component!
+// Component meant to display and allow interaction with Contact Map data in intuitive ways.
+// ~bb-viz~
+
 import * as React from 'react';
 import { Accordion, Label } from 'semantic-ui-react';
 

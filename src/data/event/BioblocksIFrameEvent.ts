@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Spring Data
+// Interfaces and Types for working with IFrame Events from different visualizations.
+// ~bb-viz~
+
 import {
   IAnatomogramContainerProps,
   IContactMapContainerProps,

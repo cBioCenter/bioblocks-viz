@@ -1,7 +1,8 @@
 // ~bb-viz~
 // TensorFlow T-SNE Visualization Component.
-// Responsible for displaying T-SNE data
+// Responsible for taking T-SNE data and displaying/formatting it via Plotly.
 // ~bb-viz~
+
 import * as React from 'react';
 
 import { defaultPlotlyLayout, PlotlyChart } from '~bioblocks-viz~/component';

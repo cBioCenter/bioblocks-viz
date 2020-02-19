@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Value Selector
+// Selector for getting the state as a primitive value.
+// ~bb-viz~
+
 import { RootState } from '~bioblocks-viz~/reducer';
 
 // tslint:disable-next-line:export-name

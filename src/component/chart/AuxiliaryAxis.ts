@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Auxiliary Axis
+// Class to represent an extra x and/or y axis for a Plotly chart.
+// ~bb-viz~
+
 import { Datum } from 'plotly.js-gl3d-dist-min';
 
 import { Bioblocks1DSection, BIOBLOCKS_PLOTLY_DATA, REQUIRED_BIOBLOCKS_PLOTLY_DATA } from '~bioblocks-viz~/data';

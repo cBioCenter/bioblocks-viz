@@ -1,3 +1,9 @@
+// ~bb-viz~
+// Spring Action
+// Redux actions specifically for SPRING.
+// They are composed of the generic action creators from bioblocks-viz/action, serving as an example of their usage.
+// ~bb-viz~
+
 import { Dispatch } from 'redux';
 
 import { createDataActions, createValueActions } from '~bioblocks-viz~/action';

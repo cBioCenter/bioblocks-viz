@@ -1,5 +1,11 @@
+// ~bb-viz~
+// BioblocksRadioGroup
+// Abstracts a grouping of radio buttons.
+// ~bb-viz~
+
 import * as React from 'react';
 import { CheckboxProps, Form, Grid } from 'semantic-ui-react';
+
 import { BIOBLOCKS_CSS_STYLE } from '~bioblocks-viz~/data';
 
 export interface IBioblocksRadioGroupProps {

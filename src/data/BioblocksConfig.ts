@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Bioblocks Config
+// Enums, Interfaces and Types to make reading/writing Bioblocks Configs easier.
+// ~bb-viz~
+
 import { Marks } from 'rc-slider';
 import { ButtonProps, DropdownProps, SemanticICONS } from 'semantic-ui-react';
 
@@ -43,66 +48,58 @@ export interface IBioblocksWidgetValueConfig {
   onAfterChange?(...args: any): any;
 }
 
-export type ButtonWidgetConfig = IBaseBioblocksWidgetConfig &
-  ({
-    // tslint:disable-next-line:no-reserved-keywords
-    type: CONFIGURATION_COMPONENT_TYPE.BUTTON;
-    onClick(event: React.MouseEvent<HTMLButtonElement>, data: ButtonProps): void;
-  });
+export type ButtonWidgetConfig = IBaseBioblocksWidgetConfig & {
+  // tslint:disable-next-line:no-reserved-keywords
+  type: CONFIGURATION_COMPONENT_TYPE.BUTTON;
+  onClick(event: React.MouseEvent<HTMLButtonElement>, data: ButtonProps): void;
+};
 
-export type ButtonGroupWidgetConfig = IBaseBioblocksWidgetConfig &
-  ({
-    options: JSX.Element[];
-    // tslint:disable-next-line:no-reserved-keywords
-    type: CONFIGURATION_COMPONENT_TYPE.BUTTON_GROUP;
-  });
+export type ButtonGroupWidgetConfig = IBaseBioblocksWidgetConfig & {
+  options: JSX.Element[];
+  // tslint:disable-next-line:no-reserved-keywords
+  type: CONFIGURATION_COMPONENT_TYPE.BUTTON_GROUP;
+};
 
-export type CheckboxWidgetConfig = IBaseBioblocksWidgetConfig &
-  ({
-    checked: boolean;
-    // tslint:disable-next-line:no-reserved-keywords
-    type: CONFIGURATION_COMPONENT_TYPE.CHECKBOX;
-  });
+export type CheckboxWidgetConfig = IBaseBioblocksWidgetConfig & {
+  checked: boolean;
+  // tslint:disable-next-line:no-reserved-keywords
+  type: CONFIGURATION_COMPONENT_TYPE.CHECKBOX;
+};
 
-export type DropDownWidgetConfig = IBaseBioblocksWidgetConfig &
-  ({
-    current: string;
-    defaultOption?: string;
-    options: Array<{ text: string; value: string }>;
-    // tslint:disable-next-line:no-reserved-keywords
-    type: CONFIGURATION_COMPONENT_TYPE.DROP_DOWN;
-    onChange(event: React.SyntheticEvent<HTMLElement>, data: DropdownProps): void;
-  });
+export type DropDownWidgetConfig = IBaseBioblocksWidgetConfig & {
+  current: string;
+  defaultOption?: string;
+  options: Array<{ text: string; value: string }>;
+  // tslint:disable-next-line:no-reserved-keywords
+  type: CONFIGURATION_COMPONENT_TYPE.DROP_DOWN;
+  onChange(event: React.SyntheticEvent<HTMLElement>, data: DropdownProps): void;
+};
 
-export type LabelWidgetConfig = IBaseBioblocksWidgetConfig &
-  ({
-    // tslint:disable-next-line:no-reserved-keywords
-    type: CONFIGURATION_COMPONENT_TYPE.LABEL;
-  });
+export type LabelWidgetConfig = IBaseBioblocksWidgetConfig & {
+  // tslint:disable-next-line:no-reserved-keywords
+  type: CONFIGURATION_COMPONENT_TYPE.LABEL;
+};
 
-export type RadioWidgetConfig = IBaseBioblocksWidgetConfig &
-  ({
-    current: string;
-    defaultOption?: string;
-    options: string[];
-    // tslint:disable-next-line:no-reserved-keywords
-    type: CONFIGURATION_COMPONENT_TYPE.RADIO;
-  });
+export type RadioWidgetConfig = IBaseBioblocksWidgetConfig & {
+  current: string;
+  defaultOption?: string;
+  options: string[];
+  // tslint:disable-next-line:no-reserved-keywords
+  type: CONFIGURATION_COMPONENT_TYPE.RADIO;
+};
 
 export type RangeSliderWidgetConfig = IBaseBioblocksWidgetConfig &
-  IBioblocksWidgetRangeConfig &
-  ({
+  IBioblocksWidgetRangeConfig & {
     // tslint:disable-next-line:no-reserved-keywords
     type: CONFIGURATION_COMPONENT_TYPE.RANGE_SLIDER;
-  });
+  };
 
 export type SliderWidgetConfig = IBaseBioblocksWidgetConfig &
-  IBioblocksWidgetValueConfig &
-  ({
+  IBioblocksWidgetValueConfig & {
     marks?: Marks;
     // tslint:disable-next-line:no-reserved-keywords
     type: CONFIGURATION_COMPONENT_TYPE.SLIDER;
-  });
+  };
 
 export type BioblocksWidgetConfig =
   | ButtonGroupWidgetConfig

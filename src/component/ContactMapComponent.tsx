@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Contact Map Component
+// Component for displaying and interacting with Contact Map data in plotly.
+// ~bb-viz~
+
 import * as React from 'react';
 import { ButtonProps, Checkbox, CheckboxProps, Icon, Label } from 'semantic-ui-react';
 

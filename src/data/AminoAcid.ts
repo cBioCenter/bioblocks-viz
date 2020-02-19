@@ -1,4 +1,10 @@
+// ~bb-viz~
+// Amino Acid
+// Provides useful encapsulation of an Amino Acid, including conversion and mapping functions.
+// ~bb-viz~
+
 import { flatten } from 'lodash';
+
 import { BioblocksPDB, CouplingContainer } from '~bioblocks-viz~/data';
 
 export type AMINO_ACID_FULL_NAME = keyof { [K in ReturnType<typeof AminoAcid.ALL_FULL_NAMES>[number]]: string };

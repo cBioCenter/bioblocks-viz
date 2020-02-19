@@ -1,6 +1,12 @@
+// ~bb-viz~
+// UMAP Transcriptional Container
+// Responsible for preparing and handling transcriptional-specific data for UMAP.
+// ~bb-viz~
+
 import { Set } from 'immutable';
 import * as React from 'react';
 import { bindActionCreators, Dispatch } from 'redux';
+
 import { createContainerActions } from '~bioblocks-viz~/action';
 import {
   connectWithBBStore,

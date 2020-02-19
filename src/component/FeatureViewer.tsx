@@ -1,6 +1,12 @@
-import * as React from 'react';
+// ~bb-viz~
+// Feature Viewer
+// ! WARNING - Experimental Component!
+// Component meant to display features as a stacked bar chart.
+// ~bb-viz~
 
 import { Set } from 'immutable';
+import * as React from 'react';
+
 import { PlotlyChart } from '~bioblocks-viz~/component';
 import { Bioblocks1DSection, BioblocksChartEvent, IPlotlyData, TintedBioblocks1DSection } from '~bioblocks-viz~/data';
 
@@ -65,7 +71,12 @@ export class FeatureViewer extends React.Component<IFeatureViewerProps, IFeature
     const backgroundBarData = FeatureViewer.getPlotlyBackgroundBarObject(
       backgroundBar
         ? backgroundBar
-        : new TintedBioblocks1DSection('', 0, data.reduce((prev, cur) => Math.max(prev, cur.end), -1), '#b9bcb6'),
+        : new TintedBioblocks1DSection(
+            '',
+            0,
+            data.reduce((prev, cur) => Math.max(prev, cur.end), -1),
+            '#b9bcb6',
+          ),
       showGrouped,
       maxGroups / 2,
     );

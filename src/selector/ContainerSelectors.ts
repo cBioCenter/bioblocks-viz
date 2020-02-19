@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Container Selector
+// Selector for getting the state from a container.
+// ~bb-viz~
+
 import { Set } from 'immutable';
 
 import { IContainerReducerState, RootState } from '~bioblocks-viz~/reducer';

@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Container Action
+// Redux actions for interacting with a regular JavaScript object.
+// ~bb-viz~
+
 import { createStandardAction } from 'typesafe-actions';
 
 // tslint:disable-next-line:export-name

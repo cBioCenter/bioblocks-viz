@@ -1,3 +1,9 @@
+// ~bb-viz~
+// Data Helper
+// Helper functions for the more general fetching of data in Bioblocks.
+// See DataHelper for the actual transformation of this raw data into Bioblocks objects.
+// ~bb-viz~
+
 import { SeqIO, SEQUENCE_FILE_TYPES } from '~bioblocks-viz~/data';
 
 export const fetchCSVFile = async (filename: string) => {

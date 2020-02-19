@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Plotly Helper
+// Helper functions for interacting with the data for Plotly.
+// ~bb-viz~
+
 import { IContactMapChartData } from '~bioblocks-viz~/component';
 import { ICouplingScore, IPlotlyData, PLOTLY_CHART_TYPE } from '~bioblocks-viz~/data';
 

@@ -1,5 +1,8 @@
 import { BIOBLOCKS_CHART_EVENT_TYPE, BIOBLOCKS_CHART_PIECE } from '~bioblocks-viz~/data';
 
+/**
+ * An event fired by a Bioblocks Chart.
+ */
 export class BioblocksChartEvent {
   public constructor(
     // tslint:disable-next-line:no-reserved-keywords

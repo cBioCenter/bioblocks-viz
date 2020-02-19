@@ -1,10 +1,13 @@
+// ~bb-viz~
+// Spring Container
+// Responsible for communication with SPRING instance that lives inside an iFrame.
+// ~bb-viz~
+
 import { Set } from 'immutable';
 import * as React from 'react';
-import { bindActionCreators, Dispatch } from 'redux';
-
 // tslint:disable:import-name match-default-export-name
 import IframeComm, { IframeCommAttributes } from 'react-iframe-comm';
-// tslint:enable:import-name match-default-export-name
+import { bindActionCreators, Dispatch } from 'redux';
 
 import { createContainerActions, createSpringActions, fetchSpringGraphData } from '~bioblocks-viz~/action';
 import { ComponentCard, connectWithBBStore } from '~bioblocks-viz~/component';

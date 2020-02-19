@@ -1,5 +1,11 @@
+// ~bb-viz~
+// BBStore Higher Order Component
+// HOC meant to "neatly" inject the Bioblocks store into a component.
+// ~bb-viz~
+
 import * as React from 'react';
 import { connect, MapDispatchToProps, MapStateToProps, Provider } from 'react-redux';
+
 import { BBStore } from '~bioblocks-viz~/reducer';
 
 export const connectWithBBStore = <TStateProps, TDispatchProps, TOwnProps, State>(

@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Reducer Registry
+// Class to dynamically allow reducers to be added and used by Redux.
+// ~bb-viz~
+
 import { Reducer } from 'redux';
 import { StateType } from 'typesafe-actions';
 
