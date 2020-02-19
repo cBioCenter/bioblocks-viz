@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Residue Pair Selector
+// Selector for getting the state of a residue pairs as either individual components or as a single object.
+// ~bb-viz~
+
 import { Map, Set } from 'immutable';
 import { RESIDUE_TYPE } from '~bioblocks-viz~/data';
 import { IResiduePairReducerState, RootState } from '~bioblocks-viz~/reducer';

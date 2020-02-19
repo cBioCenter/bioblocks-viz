@@ -1,3 +1,7 @@
+// ~bb-viz~
+// Class to represent the x and y axis for a secondary structure on a Plotly graph.
+// ~bb-viz~
+
 // tslint:disable-next-line:no-relative-imports
 import { AuxiliaryAxis } from './';
 
@@ -27,7 +31,11 @@ export class SecondaryStructureAxis extends AuxiliaryAxis<SECONDARY_STRUCTURE_KE
     readonly minimumRequiredResidues: number = 3,
     readonly axisIndex: number = 2,
     readonly colorMap = new ColorMapper<SECONDARY_STRUCTURE_KEYS>(
-      new Map([['C', 'red'], ['E', 'green'], ['H', 'blue']]),
+      new Map([
+        ['C', 'red'],
+        ['E', 'green'],
+        ['H', 'blue'],
+      ]),
       'black',
     ),
     readonly dataTransformFn = {

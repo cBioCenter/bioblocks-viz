@@ -1,3 +1,8 @@
+// ~bb-viz~
+// UMAP Visualization Component.
+// Responsible for running UMAP on data.
+// ~bb-viz~
+
 import { Set } from 'immutable';
 import * as React from 'react';
 import { UMAP } from 'umap-js';
@@ -385,6 +390,9 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     ];
   };
 
+  /**
+   * Get data for a 2D UMAP Visualization in the proper format for Plotly.
+   */
   protected getData2D = (
     umapEmbedding: number[][],
     dataLabels: Array<ILabel | undefined> = [],
@@ -448,6 +456,9 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     return result;
   };
 
+  /**
+   * Get data for a 2D UMAP Visualization in the proper format for Plotly.
+   */
   protected getData3D = (
     umapEmbedding: number[][],
     dataLabels: Array<ILabel | undefined> = [],
@@ -516,6 +527,9 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     return result;
   };
 
+  /**
+   * Get menu items specific to the 3D view - primarily involving camera control.
+   */
   protected get3DMenuItems = (): Array<IComponentMenuBarItem<IButtonType>> => {
     const { currentEpoch, dragMode, totalNumberEpochs } = this.state;
     const disabled = currentEpoch === undefined || totalNumberEpochs === undefined || currentEpoch < totalNumberEpochs;
@@ -570,30 +584,6 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
         iconName: 'weight',
       },
     ];
-  };
-
-  protected onOrbitClick = () => {
-    this.setState({
-      dragMode: 'orbit',
-    });
-  };
-
-  protected onPanClick = () => {
-    this.setState({
-      dragMode: 'pan',
-    });
-  };
-
-  protected onTurntableClick = () => {
-    this.setState({
-      dragMode: 'turntable',
-    });
-  };
-
-  protected onZoomClick = () => {
-    this.setState({
-      dragMode: 'zoom',
-    });
   };
 
   protected getMenuItems = () => {
@@ -765,9 +755,33 @@ export class UMAPVisualization extends React.Component<IUMAPVisualizationProps, 
     });
   };
 
+  protected onOrbitClick = () => {
+    this.setState({
+      dragMode: 'orbit',
+    });
+  };
+
+  protected onPanClick = () => {
+    this.setState({
+      dragMode: 'pan',
+    });
+  };
+
   protected onSpreadChange = (value: number) => {
     this.setState({
       numSpread: value,
+    });
+  };
+
+  protected onTurntableClick = () => {
+    this.setState({
+      dragMode: 'turntable',
+    });
+  };
+
+  protected onZoomClick = () => {
+    this.setState({
+      dragMode: 'zoom',
     });
   };
 

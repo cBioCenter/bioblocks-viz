@@ -1,3 +1,8 @@
+// ~bb-viz~
+// NGL Visualization Component.
+// Responsible for setting up and controlling NGL viewer via a canvas element.
+// ~bb-viz~
+
 import { Map } from 'immutable';
 import { cloneDeep } from 'lodash';
 import {
@@ -520,7 +525,9 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
           current: measuredProximity,
           name: 'Proximity Metric',
           onChange: this.measuredProximityHandler,
-          options: Object.values(CONTACT_DISTANCE_PROXIMITY).map(capitalizeEveryWord),
+          options: Object.values(CONTACT_DISTANCE_PROXIMITY).map(option => {
+            return capitalizeEveryWord(option);
+          }),
           type: CONFIGURATION_COMPONENT_TYPE.RADIO,
         },
       ] as BioblocksWidgetConfig[],

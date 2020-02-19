@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Data Reducer
+// Reducer for a piece of data that must be fetched.
+// ~bb-viz~
+
 import { Reducer } from 'redux';
 import { ActionType, getType } from 'typesafe-actions';
 // tslint:disable-next-line:no-submodule-imports

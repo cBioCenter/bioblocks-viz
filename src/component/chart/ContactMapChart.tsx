@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Contact Map Chart
+// Intermediary between a ContactMap and a PlotlyChart.
+// ~bb-viz~
+
 import * as plotly from 'plotly.js-gl3d-dist-min';
 import * as React from 'react';
 

@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Nucleotide
+// Provides useful encapsulation of a Nucleotide, including conversion and mapping functions.
+// ~bb-viz~
+
 export class Nucleotide {
   public static A = new Nucleotide('Adenine', 'A');
   public static C = new Nucleotide('Cytosine', 'C');

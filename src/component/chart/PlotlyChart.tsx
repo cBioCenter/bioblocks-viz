@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Plotly Chart
+// Encapsulates the Plotly canvas inside a react component, hooking it into the React lifecycle.
+// ~bb-viz~
+
 import * as Immutable from 'immutable';
 import { isEqual } from 'lodash';
 import * as plotly from 'plotly.js-gl3d-dist-min';

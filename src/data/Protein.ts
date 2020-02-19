@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Protein
+// Enums and Interfaces for data stored in [EMBL-ebi](https://www.ebi.ac.uk/)
+// ~bb-viz~
+
 // cSpell:disable
 // tslint:disable:max-line-length no-reserved-keywords
 

@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Component Dock
+// Visualization for UI elements to appear in the dock of a ComponentCard.
+// ~bb-viz~
+
 import * as React from 'react';
 import { Grid } from 'semantic-ui-react';
 

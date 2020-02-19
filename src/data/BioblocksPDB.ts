@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Bioblocks PDB
+// Wrapper to hold a PDB instance and provide useful functions to interact with it.
+// ~bb-viz~
+
 import * as crypto from 'crypto';
 import { ILoaderParameters, ResidueProxy, Structure } from 'ngl';
 import { inspect } from 'util';

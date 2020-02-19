@@ -1,11 +1,8 @@
-// Type definitions for Bioblocks Visualization Library
-// Project: https://github.com/cBioCenter/bioblocks-viz
-// Definitions by:
-//  - cBioCenter @ Dana-Farber <https://github.com/cBioCenter/>
-//  - James Lindsay <https://github.com/jim-bo>
-//  - Nick Gauthier <https://github.com/npgauth>
-//  - Drew Diamantoukos <https://github.com/MercifulCode>,
-// TypeScript Version: 3.1
+// ~bb-viz~
+// Bioblocks Data
+// Enums, Interfaces and Types to make reading/writing biology data easier.
+// ~bb-viz~
+
 import { Structure } from 'ngl';
 
 import {

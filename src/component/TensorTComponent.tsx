@@ -1,19 +1,26 @@
+// ~bb-viz~
+// TensorFlow T-SNE Visualization Component.
+// Responsible for taking T-SNE data and displaying/formatting it via Plotly.
+// ~bb-viz~
+
 import * as React from 'react';
 
 import { defaultPlotlyLayout, PlotlyChart } from '~bioblocks-viz~/component';
 import { BioblocksChartEvent, IPlotlyData } from '~bioblocks-viz~/data';
 
 export interface ITensorComponentProps {
-  pointsToPlot: Array<Partial<IPlotlyData>>;
+  currentCells: number[];
+  coordsArray: number[][];
+  pointColor: string;
   onSelectedCallback?(event: BioblocksChartEvent): void;
 }
 
 class TensorTComponentClass extends React.Component<ITensorComponentProps> {
   public static defaultProps = {
+    coordsArray: [],
+    currentCells: [],
+    pointColor: '#aa0000',
     pointsToPlot: [],
-    style: {
-      padding: 0,
-    },
   };
 
   constructor(props: ITensorComponentProps) {
@@ -21,11 +28,11 @@ class TensorTComponentClass extends React.Component<ITensorComponentProps> {
   }
 
   public render() {
-    const { onSelectedCallback, pointsToPlot } = this.props;
+    const { onSelectedCallback, coordsArray } = this.props;
 
     return (
       <PlotlyChart
-        data={pointsToPlot}
+        data={this.getPlotlyCoordsFromTsne(coordsArray)}
         layout={{
           ...defaultPlotlyLayout,
           dragmode: 'select',
@@ -39,6 +46,35 @@ class TensorTComponentClass extends React.Component<ITensorComponentProps> {
       />
     );
   }
+
+  protected getPlotlyCoordsFromTsne = (coords: number[][]): Array<Partial<IPlotlyData>> => {
+    const { currentCells, pointColor } = this.props;
+
+    return [
+      {
+        marker: {
+          color: pointColor,
+        },
+        mode: 'markers',
+        type: 'scattergl',
+        x: coords.map(coord => coord[0]),
+        y: coords.map(coord => coord[1]),
+      },
+      {
+        marker: {
+          color: this.props.pointColor,
+          line: {
+            color: '#ffaa00',
+            width: 2,
+          },
+        },
+        mode: 'markers',
+        type: 'scattergl',
+        x: currentCells.map(cellIndex => coords[cellIndex][0]),
+        y: currentCells.map(cellIndex => coords[cellIndex][1]),
+      },
+    ];
+  };
 }
 
 type requiredProps = Omit<ITensorComponentProps, keyof typeof TensorTComponentClass.defaultProps> &

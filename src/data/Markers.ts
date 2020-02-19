@@ -4,7 +4,7 @@ import { ILabel } from '~bioblocks-viz~/data';
 export class Marker {
   public static colors = {
     /**
-     * Get a ILabels with colors auto set based on a the states passed
+     * Get ILabels with colors auto set based on a the states passed
      * into the function. The function can at most generate 20 unique
      * colors. If more states exist than the colorset, the states that occur
      * the most number of times will receive ILabels and the others

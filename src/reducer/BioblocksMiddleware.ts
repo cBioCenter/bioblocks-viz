@@ -1,3 +1,9 @@
+// ~bb-viz~
+// Bioblocks Middleware
+// Middleware for Bioblocks to intercept and transform actions.
+// For example, dynamically sets the `type` for transformation actions to contain the to/from state.
+// ~bb-viz~
+
 import { Dispatch, Middleware, MiddlewareAPI } from 'redux';
 // tslint:disable-next-line:no-submodule-imports
 import { PayloadMetaAction } from 'typesafe-actions/dist/types';

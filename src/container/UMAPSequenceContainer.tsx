@@ -1,9 +1,14 @@
-import * as Papa from 'papaparse';
-import * as React from 'react';
-import { Button, DropdownProps, Grid, Label, Popup } from 'semantic-ui-react';
+// ~bb-viz~
+// UMAP Sequence Container
+// Responsible for preparing and handling sequence-specific data for UMAP.
+// ~bb-viz~
 
 import { Set } from 'immutable';
+import * as Papa from 'papaparse';
+import * as React from 'react';
 import { bindActionCreators, Dispatch } from 'redux';
+import { Button, DropdownProps, Grid, Label, Popup } from 'semantic-ui-react';
+
 import { createContainerActions } from '~bioblocks-viz~/action';
 import { connectWithBBStore, IUMAPVisualizationProps, UMAPVisualization } from '~bioblocks-viz~/component';
 import { ILabel, Marker, SeqRecord } from '~bioblocks-viz~/data';

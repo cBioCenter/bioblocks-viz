@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Component Menu Bar
+// Visualization for UI elements to appear on the top of a ComponentCard.
+// ~bb-viz~
+
 import * as React from 'react';
 import {
   Button,

@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Config Accordion
+// Visualization for groups of configurations to be controlled by accordions.
+// ~bb-viz~
+
 import * as React from 'react';
 import { Accordion, AccordionTitleProps, Grid, Icon } from 'semantic-ui-react';
 

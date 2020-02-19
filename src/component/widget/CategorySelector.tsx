@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Category Selector
+// Represents a dropdown.
+// ~bb-viz~
+
 import * as React from 'react';
 import { Dropdown } from 'semantic-ui-react';
 

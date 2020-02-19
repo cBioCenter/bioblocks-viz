@@ -1,4 +1,7 @@
-// tslint:disable:no-reserved-keywords
+// ~bb-viz~
+// Pfam Protein
+// Enums and Interfaces for data stored in PFAM.
+// ~bb-viz~
 
 export enum PFAM_A_TYPE {
   DOMAIN = 'Domain',
@@ -60,7 +63,9 @@ export interface IPfamElementResponse extends IPfamBaseResponse {
   match: {
     location: IPfamLocation[];
     id: string;
+    // tslint:disable-next-line:no-reserved-keywords
     class?: PFAM_A_TYPE;
+    // tslint:disable-next-line:no-reserved-keywords
     type: PFAM_ELEMENT_TYPE;
   };
 }

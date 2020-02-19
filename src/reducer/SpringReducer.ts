@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Spring Reducer
+// They are composed of the generic reducers from bioblocks-viz/reducer, serving as an example of their usage.
+// ~bb-viz~
+
 import { combineReducers } from 'redux';
 
 import { ISpringGraphData } from '~bioblocks-viz~/data';

@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Component Card
+// Component to neatly wrap around visualization to provide consistent look/feel.
+// ~bb-viz~
+
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Card, Modal } from 'semantic-ui-react';

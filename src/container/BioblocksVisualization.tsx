@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Bioblocks Visualization
+// Abstract component to handle behaviors common to all bioblocks visualization.
+// ~bb-viz~
+
 import { Set } from 'immutable';
 import * as React from 'react';
 import { isArray } from 'util';

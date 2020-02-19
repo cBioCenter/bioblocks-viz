@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Container Reducer
+// Reducer for a container, here represented as a Immutable Set.
+// ~bb-viz~
+
 import { Set } from 'immutable';
 import { Reducer } from 'redux';
 import { ActionType, getType } from 'typesafe-actions';

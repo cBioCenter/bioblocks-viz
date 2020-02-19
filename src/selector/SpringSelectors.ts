@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Spring Selector
+// Selector for getting the state of SPRING.
+// ~bb-viz~
+
 import { Set } from 'immutable';
 import { createSelector } from 'reselect';
 
@@ -14,37 +19,31 @@ export const getSpring = (state: RootState, namespace = 'bioblocks') => {
 
 export const getGraphData = (state: RootState, namespace = 'bioblocks') => getSpring(state, namespace).graphData;
 
-export const getCategories = createSelector(
-  [getGraphData],
-  graphData => {
-    const nodes = graphData && graphData.nodes ? graphData.nodes : [];
-    const categories = Set<string>(nodes.length >= 1 ? Object.keys(nodes[0].labelForCategory) : []);
-    const labelsByCategory = new Map<string, Set<string>>();
+export const getCategories = createSelector([getGraphData], graphData => {
+  const nodes = graphData && graphData.nodes ? graphData.nodes : [];
+  const categories = Set<string>(nodes.length >= 1 ? Object.keys(nodes[0].labelForCategory) : []);
+  const labelsByCategory = new Map<string, Set<string>>();
 
-    categories.forEach(category => {
-      if (category) {
-        const labels = Set<string>(Array.from(nodes.map(node => node.labelForCategory[category])));
-        labelsByCategory.set(category, labels);
-      }
-    });
+  categories.forEach(category => {
+    if (category) {
+      const labels = Set<string>(Array.from(nodes.map(node => node.labelForCategory[category])));
+      labelsByCategory.set(category, labels);
+    }
+  });
 
-    return categories;
-  },
-);
+  return categories;
+});
 
-export const getLabels = createSelector(
-  [getGraphData],
-  graphData => {
-    const nodes = graphData && graphData.nodes ? graphData.nodes : [];
-    const categories = Set<string>(nodes.length >= 1 ? Object.keys(nodes[0].labelForCategory) : []);
-    let labels = Set<string>();
+export const getLabels = createSelector([getGraphData], graphData => {
+  const nodes = graphData && graphData.nodes ? graphData.nodes : [];
+  const categories = Set<string>(nodes.length >= 1 ? Object.keys(nodes[0].labelForCategory) : []);
+  let labels = Set<string>();
 
-    categories.forEach(category => {
-      if (category) {
-        labels = labels.merge(Set<string>(Array.from(nodes.map(node => node.labelForCategory[category]))));
-      }
-    });
+  categories.forEach(category => {
+    if (category) {
+      labels = labels.merge(Set<string>(Array.from(nodes.map(node => node.labelForCategory[category]))));
+    }
+  });
 
-    return labels;
-  },
-);
+  return labels;
+});

@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Spring Data
+// Interfaces for working with SPRING data.
+// ~bb-viz~
+
 export interface ISpringCategoricalColorDataInput {
   [k: string]: {
     label_colors: { [key: string]: string | number };

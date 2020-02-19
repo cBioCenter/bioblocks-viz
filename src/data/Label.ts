@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Label
+// Interfaces to abstract association between categories, their labels, and the style of said labels.
+// ~bb-viz~
+
 export interface ILabel {
   name: string;
   color: string;

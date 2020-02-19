@@ -1,3 +1,8 @@
+// ~bb-viz~
+// Bioblocks Slider
+// Represents a simple 2d slider, allowing a value to be selected between a minimum and maximum.
+// ~bb-viz~
+
 // tslint:disable-next-line:import-name
 import Slider, { SliderProps } from 'rc-slider';
 import * as React from 'react';
