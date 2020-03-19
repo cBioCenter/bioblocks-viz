@@ -52,6 +52,8 @@ exports[`NGLContainer Should match the default snapshot when hooked up to a redu
                   addHoveredResidues={[Function]}
                   addLockedResiduePair={[Function]}
                   backgroundColor="#ffffff"
+                  cameraFov={65}
+                  cameraType="perspective"
                   candidateResidues={Array []}
                   cardProps={Object {}}
                   dispatchNglFetch={[Function]}
@@ -1306,6 +1308,8 @@ exports[`NGLContainer Should match the default snapshot when not hooked up to a 
       addHoveredResidues={[Function]}
       addLockedResiduePair={[Function]}
       backgroundColor="#ffffff"
+      cameraFov={65}
+      cameraType="perspective"
       candidateResidues={Array []}
       cardProps={Object {}}
       dispatchNglFetch={[Function]}
