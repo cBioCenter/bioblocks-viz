@@ -59,6 +59,8 @@ export interface INGLComponentProps {
   backgroundColor: string | number;
   candidateResidues: RESIDUE_TYPE[];
   cardProps: Partial<IComponentCardProps>;
+  cameraFov: 65;
+  cameraType: 'perspective' | 'orthographic' | 'stereo';
   experimentalProteins: BioblocksPDB[];
   height: number | string;
   hoveredResidues: RESIDUE_TYPE[];
@@ -111,6 +113,8 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     addHoveredResidues: EMPTY_FUNCTION,
     addLockedResiduePair: EMPTY_FUNCTION,
     backgroundColor: '#ffffff',
+    cameraFov: 65,
+    cameraType: 'perspective',
     candidateResidues: [],
     cardProps: {},
     experimentalProteins: [],
@@ -182,7 +186,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   }
 
   public componentDidUpdate(prevProps: INGLComponentProps, prevState: NGLComponentState) {
-    const { experimentalProteins, predictedProteins } = this.props;
+    const { cameraFov, cameraType, experimentalProteins, predictedProteins } = this.props;
     const { stage, superpositionStatus } = this.state;
     const allProteins = [...experimentalProteins, ...predictedProteins];
     const proteinChangedFlag =
@@ -209,6 +213,17 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
       }
 
       stage.viewer.requestRender();
+    }
+
+    if (stage && cameraType !== prevProps.cameraType) {
+      stage.setParameters({
+        cameraType,
+      });
+    }
+    if (stage && stage.parameters.cameraType === 'stereo' && cameraFov !== prevProps.cameraFov) {
+      stage.setParameters({
+        cameraFov,
+      });
     }
   }
 
@@ -389,6 +404,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   }
 
   protected generateStage = (canvas: HTMLElement, params?: Partial<IStageParameters>) => {
+    const { cameraFov, cameraType } = this.props;
     const stage = new NGLInstanceManager.instance.Stage(canvas, params);
     stage.mouseControls.add('hoverPick', (aStage: Stage, pickingProxy: PickingProxy) => {
       this.onHover(aStage, pickingProxy);
@@ -399,6 +415,11 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
     stage.keyBehavior.domElement.focus = () => {
       return;
     };
+
+    stage.setParameters({
+      cameraFov,
+      cameraType,
+    });
 
     return stage;
   };
@@ -849,6 +870,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
   };
 
   protected switchCameraType = () => {
+    const { cameraFov } = this.props;
     const { stage } = this.state;
     if (stage) {
       if (stage.parameters.cameraType === 'stereo') {
@@ -857,7 +879,7 @@ export class NGLComponent extends React.Component<INGLComponentProps, NGLCompone
         });
       } else {
         stage.setParameters({
-          cameraFov: 65,
+          cameraFov,
           cameraType: 'stereo',
         });
       }
