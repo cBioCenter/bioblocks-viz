@@ -164,7 +164,7 @@
     "lodash": "^4.17.15",
     "memoize-one": "^5.0.0",
     "ngl": "2.0.0-dev.37",
-    "papaparse": "^5.0.0",
+    "papaparse": "^5.2.0",
     "plotly.js-gl2d-dist-min": "^1.52.2",
     "plotly.js-gl3d-dist-min": "^1.52.2",
     "rc-slider": "^8.6.3",
