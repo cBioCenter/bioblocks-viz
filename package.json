@@ -161,7 +161,7 @@
     "anatomogram": "^2.1.1",
     "d3": "^5.9.2",
     "immutable": "^3.8.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "memoize-one": "^5.0.0",
     "ngl": "2.0.0-dev.37",
     "papaparse": "^5.0.0",
